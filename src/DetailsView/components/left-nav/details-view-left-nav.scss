@@ -9,6 +9,7 @@
         :global {
             .ms-Nav-compositeLink {
                 &.is-selected {
+                    background-color: $communication-tint-20;
                     a {
                         background-color: $communication-tint-20 !important;
                     }
@@ -20,6 +21,11 @@
                         color: $neutral-0;
                         background: $index-circle-background;
                         border-color: $neutral-0;
+                    }
+                }
+                &:hover {
+                    a {
+                        background-color: $nav-link-hover !important;
                     }
                 }
             }

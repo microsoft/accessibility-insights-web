@@ -12,6 +12,7 @@ import { DetailsViewStoreData } from 'common/types/store-data/details-view-store
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
@@ -43,6 +44,7 @@ export type RootContainerState = {
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    androidSetupStoreData: AndroidSetupStoreData;
 };
 
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {

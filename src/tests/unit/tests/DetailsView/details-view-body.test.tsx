@@ -146,6 +146,8 @@ describe('DetailsViewBody', () => {
                 scanMetadata: {
                     targetAppInfo: targetAppInfoStub,
                 } as ScanMetadata,
+                isSideNavOpen: false,
+                setSideNavOpen: null,
             } as DetailsViewBodyProps;
         });
 

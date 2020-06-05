@@ -153,6 +153,7 @@ describe(DetailsViewContent, () => {
                 lastSelectedHighContrast: false,
                 bugService: 'gitHub',
                 bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
+                adbLocation: null,
             };
 
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
@@ -215,7 +216,9 @@ describe(DetailsViewContent, () => {
                 )
                 .returns(() => cardsViewData);
 
-            const rendered = shallow(<DetailsViewContent {...props} />);
+            const rendered = shallow(
+                <DetailsViewContent {...props} isSideNavOpen={false} setSideNavOpen={() => {}} />,
+            );
             expect(rendered.getElement()).toMatchSnapshot();
 
             clickHandlerFactoryMock.verifyAll();
@@ -310,6 +313,7 @@ describe(DetailsViewContent, () => {
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,
+            permissionsStateStoreData: storeMocks.permissionsStateStoreData,
         };
     }
 });

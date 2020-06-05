@@ -4,10 +4,10 @@ import { Header } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { DetailsViewContent } from 'DetailsView/components/details-view-content';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 import { ThemeDeps } from '../common/components/theme';
 import {
     withStoreSubscription,
@@ -21,6 +21,7 @@ import { AssessmentStoreData } from '../common/types/store-data/assessment-resul
 import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
+import { PermissionsStateStoreData } from '../common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
@@ -85,13 +86,14 @@ export interface DetailsViewContainerState {
     selectedDetailsView: VisualizationType;
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
     cardSelectionStoreData: CardSelectionStoreData;
+    permissionsStateStoreData: PermissionsStateStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
     private initialRender: boolean = true;
 
     public render(): JSX.Element {
-        if (this.isTargetPageClosed()) {
+        if (this.shouldShowNoContentAvailable()) {
             return (
                 <>
                     <Header deps={this.props.deps} />
@@ -114,12 +116,30 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return this.renderContent();
     }
 
-    private isTargetPageClosed(): boolean {
+    private shouldShowNoContentAvailable(): boolean {
         return (
             !this.hasStores() ||
-            (this.props.deps.storesHub.hasStoreData() &&
-                this.props.storeState.tabStoreData.isClosed)
+            (this.props.deps.storesHub.hasStoreData() && this.isTargetPageInvalid())
         );
+    }
+
+    private isTargetPageInvalid(): boolean {
+        return (
+            this.isTargetPageClosed() ||
+            (this.isTargetPageOriginDifferent() && !this.isAllTabsPermissionGranted())
+        );
+    }
+
+    private isTargetPageClosed(): boolean {
+        return this.props.storeState.tabStoreData.isClosed;
+    }
+
+    private isTargetPageOriginDifferent(): boolean {
+        return this.props.storeState.tabStoreData.isOriginChanged;
+    }
+
+    private isAllTabsPermissionGranted(): boolean {
+        return this.props.storeState.permissionsStateStoreData.hasAllUrlAndFilePermissions;
     }
 
     private renderSpinner(): JSX.Element {
@@ -129,15 +149,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private renderContent(): JSX.Element {
-        return <DetailsViewContent {...this.props} />;
+        return <DetailsViewContentWithLocalState {...this.props} />;
     }
 
     private hasStores(): boolean {
-        return (
-            this.props.deps !== null &&
-            this.props.deps.storesHub !== null &&
-            this.props.deps.storesHub.hasStores()
-        );
+        return this.props.deps.storesHub.hasStores();
     }
 }
 

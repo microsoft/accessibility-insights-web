@@ -8,12 +8,15 @@ import {
     DetailsViewLeftNavProps,
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
+import { isNil } from 'lodash';
 import { PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type FluentSideNavDeps = DetailsViewLeftNavDeps;
 export type FluentSideNavProps = DetailsViewLeftNavProps & {
     tabStoreData: TabStoreData;
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export class FluentSideNav extends React.Component<FluentSideNavProps> {
@@ -25,15 +28,23 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         }
         const nav = <DetailsViewLeftNav {...this.props} />;
 
+        const dismissPanel = (ev: React.SyntheticEvent<HTMLElement, Event>) => {
+            if (isNil(ev)) {
+                return;
+            }
+            this.props.setSideNavOpen(false);
+        };
+
         const navPanel = (
             <GenericPanel
                 className={styles.leftNavPanel}
-                isOpen={false}
+                isOpen={this.props.isSideNavOpen}
                 isLightDismiss
                 hasCloseButton={false}
                 onRenderNavigationContent={() => null}
                 onRenderHeader={() => null}
                 onRenderNavigation={() => null}
+                onDismiss={dismissPanel}
                 type={PanelType.customNear}
                 layerProps={{
                     hostId: styles.sideNavContainer,

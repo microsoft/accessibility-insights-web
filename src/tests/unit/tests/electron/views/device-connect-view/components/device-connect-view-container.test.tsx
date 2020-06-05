@@ -26,6 +26,9 @@ describe('DeviceConnectViewContainer', () => {
                 currentWindowState: 'customSize',
                 routeId: 'deviceConnectView',
             },
+            androidSetupStoreData: {
+                currentStepId: 'detect-adb',
+            },
         } as DeviceConnectViewContainerProps;
 
         const wrapped = shallow(<DeviceConnectViewContainer {...props} />);

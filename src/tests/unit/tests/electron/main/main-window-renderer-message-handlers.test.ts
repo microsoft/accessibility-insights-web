@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
+import { App, BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -16,12 +17,17 @@ import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-ren
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(MainWindowRendererMessageHandlers, () => {
+    const stubElectronEvent = {} as Electron.Event;
+    const stubIpcMainEvent = {} as IpcMainEvent;
+
     const maximize = 'maximize';
     const unmaximize = 'unmaximize';
     const enterFullScreen = 'enter-full-screen';
     const leaveFullScreen = 'leave-full-screen';
 
-    const ipcChannelNames = [
+    const ipcChannelHandlerNames = [IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME];
+
+    const ipcChannelListenerNames = [
         IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -33,28 +39,49 @@ describe(MainWindowRendererMessageHandlers, () => {
 
     let mainWindowMock: IMock<BrowserWindow>;
     let ipcMainMock: IMock<IpcMain>;
+    let appMock: IMock<App>;
     let testSubject: MainWindowRendererMessageHandlers;
-    let ipcHandlers;
-    let windowHandlers;
-    let expectedIpcChannels;
-    let expectedWindowEvents;
+    let ipcHandlers: { [channelName: string]: (event: IpcMainEvent, args?: any) => Promise<any> };
+    let ipcListeners: { [channelName: string]: (event: IpcMainEvent, args?: any) => void };
+    let windowHandlers: { [channelName: string]: (event: Electron.Event, args?: any) => void };
+    let expectedIpcChannelHandlers: number;
+    let expectedIpcChannelListeners: number;
+    let expectedWindowEvents: number;
 
-    function setupToAddOneIpcChannel(channelName: string): void {
+    function setupToAddOneIpcChannelHandler(channelName: string): void {
         ipcMainMock
-            .setup(b => b.on(channelName, It.isAny()))
+            .setup(b => b.handle(channelName, It.isAny()))
             .callback((event, handler) => (ipcHandlers[event] = handler))
             .verifiable(Times.once());
-        expectedIpcChannels++;
+        expectedIpcChannelHandlers++;
     }
 
-    function setupToRemoveOneIpcChannel(channelName: string): void {
+    function setupToRemoveOneIpcChannelHandler(channelName: string): void {
         ipcMainMock
-            .setup(b => b.removeListener(channelName, It.isAny()))
-            .callback((event, handler) => {
-                ipcHandlers = removeElement(ipcHandlers, event);
+            .setup(b => b.removeHandler(channelName))
+            .callback(name => {
+                delete ipcHandlers[name];
             })
             .verifiable(Times.once());
-        expectedIpcChannels--;
+        expectedIpcChannelHandlers--;
+    }
+
+    function setupToAddOneIpcChannelListener(channelName: string): void {
+        ipcMainMock
+            .setup(b => b.on(channelName, It.isAny()))
+            .callback((event, listener) => (ipcListeners[event] = listener))
+            .verifiable(Times.once());
+        expectedIpcChannelListeners++;
+    }
+
+    function setupToRemoveOneIpcChannelListener(channelName: string): void {
+        ipcMainMock
+            .setup(b => b.removeListener(channelName, It.isAny()))
+            .callback((name, listener) => {
+                delete ipcListeners[name];
+            })
+            .verifiable(Times.once());
+        expectedIpcChannelListeners--;
     }
 
     function setupToAddOneWindowEvent(eventName: string): void {
@@ -70,40 +97,33 @@ describe(MainWindowRendererMessageHandlers, () => {
     function setupToRemoveOneWindowEvent(eventName: string): void {
         mainWindowMock
             .setup(b => b.removeListener(eventName as any, It.isAny()))
-            .callback((event, handler) => {
-                windowHandlers = removeElement(windowHandlers, event);
+            .callback((name, handler) => {
+                delete windowHandlers[name];
             })
             .verifiable(Times.once());
         expectedWindowEvents--;
     }
 
-    function removeElement(array: object, event: string): object {
-        const newArray = {};
-
-        Object.keys(array).forEach(key => {
-            if (key !== event) {
-                newArray[key] = array[key];
-            }
-        });
-
-        return newArray;
-    }
-
     beforeEach(() => {
         ipcHandlers = {};
+        ipcListeners = {};
         windowHandlers = {};
-        expectedIpcChannels = 0;
+        expectedIpcChannelHandlers = 0;
+        expectedIpcChannelListeners = 0;
         expectedWindowEvents = 0;
 
         mainWindowMock = Mock.ofType<BrowserWindow>(undefined, MockBehavior.Loose);
         ipcMainMock = Mock.ofType<IpcMain>(undefined, MockBehavior.Strict);
+        appMock = Mock.ofType<App>(undefined, MockBehavior.Strict);
 
         testSubject = new MainWindowRendererMessageHandlers(
             mainWindowMock.object,
             ipcMainMock.object,
+            appMock.object,
         );
 
-        ipcChannelNames.forEach(setupToAddOneIpcChannel);
+        ipcChannelListenerNames.forEach(setupToAddOneIpcChannelListener);
+        ipcChannelHandlerNames.forEach(setupToAddOneIpcChannelHandler);
         windowEventNames.forEach(setupToAddOneWindowEvent);
         testSubject.startListening();
     });
@@ -111,7 +131,9 @@ describe(MainWindowRendererMessageHandlers, () => {
     afterEach(() => {
         mainWindowMock.verifyAll();
         ipcMainMock.verifyAll();
-        expect(Object.keys(ipcHandlers).length).toBe(expectedIpcChannels);
+        appMock.verifyAll();
+        expect(Object.keys(ipcHandlers).length).toBe(expectedIpcChannelHandlers);
+        expect(Object.keys(ipcListeners).length).toBe(expectedIpcChannelListeners);
         expect(Object.keys(windowHandlers).length).toBe(expectedWindowEvents);
     });
 
@@ -120,20 +142,17 @@ describe(MainWindowRendererMessageHandlers, () => {
     describe('verify listeners on ipcMain', () => {
         it('maximize maximizes browserWindow', () => {
             mainWindowMock.setup(b => b.maximize).verifiable(Times.once());
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME](event);
+            ipcListeners[IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME](stubIpcMainEvent);
         });
 
         it('minimize minimizes browserWindow', () => {
             mainWindowMock.setup(b => b.minimize).verifiable(Times.once());
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME](event);
+            ipcListeners[IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME](stubIpcMainEvent);
         });
 
         it('close closes browserWindow', () => {
             mainWindowMock.setup(b => b.close).verifiable(Times.once());
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME](event);
+            ipcListeners[IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME](stubIpcMainEvent);
         });
 
         it('restore sets browserWindow fullScreen to false if fullScreen is initially true', () => {
@@ -142,8 +161,8 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .returns(() => true)
                 .verifiable(Times.once());
             mainWindowMock.setup(b => b.setFullScreen(false)).verifiable(Times.once());
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME](event);
+
+            ipcListeners[IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME](stubIpcMainEvent);
         });
 
         it('restore unmaximizes browserWindow if fullScreen is initially false', () => {
@@ -152,8 +171,8 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .returns(() => false)
                 .verifiable(Times.once());
             mainWindowMock.setup(b => b.unmaximize).verifiable(Times.once());
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME](event);
+
+            ipcListeners[IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME](stubIpcMainEvent);
         });
 
         it('setSizeAndCenter sets the correct size and centers the browserWindow', () => {
@@ -166,15 +185,30 @@ describe(MainWindowRendererMessageHandlers, () => {
 
             mainWindowMock.setup(b => b.setSize(width, height)).verifiable(Times.once());
             mainWindowMock.setup(b => b.center()).verifiable(Times.once());
-            const event = {} as IpcMainEvent;
-            ipcHandlers[IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME](
-                event,
+
+            ipcListeners[IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME](
+                stubIpcMainEvent,
                 payload,
             );
         });
 
+        it('uses app.getAppPath to handle GET_APP_PATH', async () => {
+            const stubAppPath = 'stub app path';
+            appMock
+                .setup(m => m.getAppPath())
+                .returns(() => stubAppPath)
+                .verifiable();
+
+            const result = await ipcHandlers[IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME](
+                stubIpcMainEvent,
+            );
+
+            expect(result).toBe(stubAppPath);
+        });
+
         it('StopListening removes all handlers', () => {
-            ipcChannelNames.forEach(setupToRemoveOneIpcChannel);
+            ipcChannelHandlerNames.forEach(setupToRemoveOneIpcChannelHandler);
+            ipcChannelListenerNames.forEach(setupToRemoveOneIpcChannelListener);
             windowEventNames.forEach(setupToRemoveOneWindowEvent);
 
             testSubject.stopListening();
@@ -201,7 +235,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.send(IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME, It.isAny()))
                 .verifiable(Times.once());
 
-            windowHandlers[maximize]();
+            windowHandlers[maximize](stubElectronEvent);
         });
 
         it('BrowserWindow unmaximize triggers unmaximize message', () => {
@@ -209,7 +243,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.send(IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME, It.isAny()))
                 .verifiable(Times.once());
 
-            windowHandlers[unmaximize]();
+            windowHandlers[unmaximize](stubElectronEvent);
         });
 
         it('BrowserWindow enter-full-screen triggers enterFullScreen message', () => {
@@ -217,7 +251,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.send(IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME, It.isAny()))
                 .verifiable(Times.once());
 
-            windowHandlers[enterFullScreen]();
+            windowHandlers[enterFullScreen](stubElectronEvent);
         });
 
         it('BrowserWindow leave-full-screen triggers maximize message if maximized', () => {
@@ -228,7 +262,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.isMaximized())
                 .returns(() => true)
                 .verifiable(Times.once());
-            windowHandlers[leaveFullScreen]();
+            windowHandlers[leaveFullScreen](stubElectronEvent);
         });
 
         it('BrowserWindow leave-full-screen triggers unmaximize message if not maximized', () => {
@@ -239,7 +273,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.isMaximized())
                 .returns(() => false)
                 .verifiable(Times.once());
-            windowHandlers[leaveFullScreen]();
+            windowHandlers[leaveFullScreen](stubElectronEvent);
         });
     });
 });

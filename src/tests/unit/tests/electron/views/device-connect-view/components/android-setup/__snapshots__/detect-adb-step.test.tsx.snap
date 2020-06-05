@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetectAdbStep renders 1`] = `
+<StyledSpinnerBase
+  className="androidSetupSpinner"
+  label="Loading..."
+  role="alert"
+  size={3}
+/>
+`;

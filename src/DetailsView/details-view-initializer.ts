@@ -85,6 +85,7 @@ import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewStoreData } from '../common/types/store-data/details-view-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
+import { PermissionsStateStoreData } from '../common/types/store-data/permissions-state-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
@@ -146,6 +147,11 @@ if (isNaN(tabId) === false) {
                 browserAdapter,
                 tab.id,
             );
+            const permissionsStateStore = new StoreProxy<PermissionsStateStoreData>(
+                StoreNames[StoreNames.PermissionsStateStore],
+                browserAdapter,
+                tab.id,
+            );
             const tabStore = new StoreProxy<TabStoreData>(
                 StoreNames[StoreNames.TabStore],
                 browserAdapter,
@@ -200,6 +206,7 @@ if (isNaN(tabId) === false) {
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
+                permissionsStateStore,
                 tabStore,
                 visualizationScanResultStore,
                 unifiedScanResultStore,
