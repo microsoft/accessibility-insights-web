@@ -4,10 +4,10 @@ import { Header } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { DetailsViewContent } from 'DetailsView/components/details-view-content';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 import { ThemeDeps } from '../common/components/theme';
 import {
     withStoreSubscription,
@@ -129,15 +129,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private renderContent(): JSX.Element {
-        return <DetailsViewContent {...this.props} />;
+        return <DetailsViewContentWithLocalState {...this.props} />;
     }
 
     private hasStores(): boolean {
-        return (
-            this.props.deps !== null &&
-            this.props.deps.storesHub !== null &&
-            this.props.deps.storesHub.hasStores()
-        );
+        return this.props.deps.storesHub.hasStores();
     }
 }
 
