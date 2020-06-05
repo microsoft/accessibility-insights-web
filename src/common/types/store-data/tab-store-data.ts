@@ -7,4 +7,5 @@ export interface TabStoreData {
     isClosed: boolean;
     isChanged: boolean;
     isPageHidden: boolean;
+    isOriginChanged: boolean;
 }
