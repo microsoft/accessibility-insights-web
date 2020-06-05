@@ -100,6 +100,7 @@ describe('KeyboardShortcutHandler', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
             });
 

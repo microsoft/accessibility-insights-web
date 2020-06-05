@@ -153,6 +153,7 @@ describe(DetailsViewContent, () => {
                 lastSelectedHighContrast: false,
                 bugService: 'gitHub',
                 bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
+                adbLocation: null,
             };
 
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {

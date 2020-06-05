@@ -35,6 +35,7 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
+            adbLocation: null,
         };
         defaultStoreData = {
             enableTelemetry: false,
@@ -43,6 +44,7 @@ describe('UserConfigurationStoreTest', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
+            adbLocation: null,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -86,6 +88,7 @@ describe('UserConfigurationStoreTest', () => {
             enableTelemetry: false,
             isFirstTime: true,
             enableHighContrast: true,
+            adbLocation: 'test',
         };
         const expected: UserConfigurationStoreData = {
             bugService: 'none',
@@ -183,6 +186,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
 
                 const expectedState: UserConfigurationStoreData = {
@@ -192,6 +196,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: false,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
 
                 indexDbStrictMock
@@ -228,6 +233,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
 
                 const setHighContrastData: SetHighContrastModePayload = {
@@ -241,6 +247,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: payload,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
 
                 indexDbStrictMock
@@ -277,6 +284,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
 
                 const setNativeHighContrastData: SetNativeHighContrastModePayload = {
@@ -290,6 +298,7 @@ describe('UserConfigurationStoreTest', () => {
                     lastSelectedHighContrast: initialLastSelected,
                     bugService: 'none',
                     bugServicePropertiesMap: {},
+                    adbLocation: null,
                 };
 
                 indexDbStrictMock
@@ -317,6 +326,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: {},
+                adbLocation: null,
             };
 
             const setIssueFilingServiceData: SetIssueFilingServicePayload = {
@@ -358,6 +368,7 @@ describe('UserConfigurationStoreTest', () => {
                 lastSelectedHighContrast: false,
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
+                adbLocation: null,
             };
 
             const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {
@@ -408,6 +419,26 @@ describe('UserConfigurationStoreTest', () => {
 
         storeTester
             .withActionParam(payload)
+            .withPostListenerMock(indexDbStrictMock)
+            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+    });
+
+    test('setAdbLocation', () => {
+        const storeTester = createStoreToTestAction('setAdbLocation');
+        const adbLocation = 'adb-here';
+        const expectedState: UserConfigurationStoreData = {
+            ...initialStoreData,
+            adbLocation,
+        };
+
+        indexDbStrictMock
+            .setup(indexDb =>
+                indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+            )
+            .verifiable(Times.once());
+
+        storeTester
+            .withActionParam(adbLocation)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
