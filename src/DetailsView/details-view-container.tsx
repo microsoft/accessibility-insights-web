@@ -93,10 +93,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     private initialRender: boolean = true;
 
     public render(): JSX.Element {
-        if (
-            !this.hasStores() ||
-            (this.props.deps.storesHub.hasStoreData() && this.isTargetPageInvalid())
-        ) {
+        if (this.shouldShowNoContentAvailable()) {
             return (
                 <>
                     <Header deps={this.props.deps} />
@@ -117,6 +114,13 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         }
 
         return this.renderContent();
+    }
+
+    private shouldShowNoContentAvailable(): boolean {
+        return (
+            !this.hasStores() ||
+            (this.props.deps.storesHub.hasStoreData() && this.isTargetPageInvalid())
+        );
     }
 
     private isTargetPageInvalid(): boolean {
