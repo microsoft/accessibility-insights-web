@@ -8,6 +8,7 @@ import {
     DetailsViewLeftNavProps,
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
+import { isNil } from 'lodash';
 import { PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -28,7 +29,10 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         }
         const navBar = <DetailsViewLeftNav {...this.props} />;
 
-        const dismissPanel = () => {
+        const dismissPanel = (ev: React.SyntheticEvent<HTMLElement, Event>) => {
+            if (isNil(ev)) {
+                return;
+            }
             this.props.setSideNavOpen(false);
         };
 

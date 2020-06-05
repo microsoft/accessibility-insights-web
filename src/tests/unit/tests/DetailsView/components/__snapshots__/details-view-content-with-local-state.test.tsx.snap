@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` render 1`] = `
+exports[`DetailsViewContentWithLocalState render 1`] = `
 <DetailsViewContent
   isSideNavOpen={false}
   setSideNavOpen={[Function]}
