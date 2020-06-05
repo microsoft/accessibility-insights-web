@@ -57,10 +57,14 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     public getPackageInfo = async (deviceId: string): Promise<PackageInfo> => {
         this.adb.setDeviceId(deviceId);
         const info: PackageInfo = await this.adb.getPackageInfo(servicePackageName);
-        if (info?.versionCode === undefined) {
-            throw new Error('Unable to obtain package version information');
+        const output: PackageInfo = {};
+        if (info?.versionCode) {
+            output.versionCode = info.versionCode;
         }
-        return { versionCode: info.versionCode, versionName: info.versionName };
+        if (info?.versionName) {
+            output.versionName = info.versionName;
+        }
+        return output;
     };
 
     public getPermissionInfo = async (deviceId: string): Promise<PermissionInfo> => {

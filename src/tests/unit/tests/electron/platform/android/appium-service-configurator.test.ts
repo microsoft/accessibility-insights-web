@@ -129,24 +129,52 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('getPackageInfo, version information not found', async () => {
-        const expectedPackageInfo: PackageInfo = {} as PackageInfo;
+    it('getPackageInfo, propagates error', async () => {
+        const expectedMessage = 'Package not found';
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(testSubject.getPackageInfo(emulatorId)).rejects.toThrowError(expectedMessage);
+
+        adbMock.verifyAll();
+    });
+
+    it('getPackageInfo, contains neither versionName nor versionCode', async () => {
+        const expectedPackageInfo: PackageInfo = {};
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
             .setup(m => m.getPackageInfo(servicePackageName))
             .returns(() => expectedPackageInfo)
             .verifiable(Times.once());
 
-        await expect(testSubject.getPackageInfo(emulatorId)).rejects.toThrowError(
-            'Unable to obtain package version information',
-        );
+        const info = await testSubject.getPackageInfo(emulatorId);
+        expect(info.versionCode).toBeUndefined();
+        expect(info.versionName).toBeUndefined();
 
         adbMock.verifyAll();
     });
 
-    it('getPackageInfo, contains versionCode but no versionName', async () => {
-        const versionCode: number = 500;
-        const expectedPackageInfo: PackageInfo = { versionCode } as PackageInfo;
+    it('getPackageInfo, contains only versionName', async () => {
+        const versionName: string = 'my version';
+        const expectedPackageInfo: PackageInfo = { versionName };
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.getPackageInfo(servicePackageName))
+            .returns(() => expectedPackageInfo)
+            .verifiable(Times.once());
+
+        const info = await testSubject.getPackageInfo(emulatorId);
+        expect(info.versionCode).toBeUndefined();
+        expect(info.versionName).toBe(versionName);
+
+        adbMock.verifyAll();
+    });
+
+    it('getPackageInfo, contains only versionCode', async () => {
+        const versionCode: number = 12345;
+        const expectedPackageInfo: PackageInfo = { versionCode };
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
             .setup(m => m.getPackageInfo(servicePackageName))
@@ -156,23 +184,6 @@ describe('AppiumServiceConfigurator tests', () => {
         const info = await testSubject.getPackageInfo(emulatorId);
         expect(info.versionCode).toBe(versionCode);
         expect(info.versionName).toBeUndefined();
-
-        adbMock.verifyAll();
-    });
-
-    it('getPackageInfo, contains versionCode and versionName', async () => {
-        const versionCode: number = 900;
-        const versionName: string = 'Latest awesome version';
-        const expectedPackageInfo: PackageInfo = { versionCode, versionName };
-        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
-        adbMock
-            .setup(m => m.getPackageInfo(servicePackageName))
-            .returns(() => expectedPackageInfo)
-            .verifiable(Times.once());
-
-        const info = await testSubject.getPackageInfo(emulatorId);
-        expect(info.versionCode).toBe(versionCode);
-        expect(info.versionName).toBe(versionName);
 
         adbMock.verifyAll();
     });
