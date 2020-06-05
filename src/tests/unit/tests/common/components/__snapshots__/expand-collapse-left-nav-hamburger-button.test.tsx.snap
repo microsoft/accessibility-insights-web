@@ -3,11 +3,15 @@
 exports[`AssessmentLeftNavHamburgerButton renders per snapshot 1`] = `
 <LeftNavHamburgerButton
   ariaLabel="Assessment - all tests and requirements list"
+  isSideNavOpen={false}
+  setSideNavOpen={null}
 />
 `;
 
 exports[`FastPassLeftNavHamburgerButton renders per snapshot 1`] = `
 <LeftNavHamburgerButton
   ariaLabel="FastPass - all tests list"
+  isSideNavOpen={false}
+  setSideNavOpen={null}
 />
 `;

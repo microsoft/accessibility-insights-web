@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow, IpcMain, IpcMainEvent } from 'electron';
+import { App, BrowserWindow, IpcMain, IpcMainEvent } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -19,16 +20,25 @@ type EventCallback = {
 };
 
 export class MainWindowRendererMessageHandlers {
-    private ipcMainCallbacks: EventCallback[];
+    private ipcMainHandlers: EventCallback[];
+    private ipcMainListeners: EventCallback[];
     private browserWindowCallbacks: EventCallback[];
 
     public constructor(
         private readonly browserWindow: BrowserWindow,
         private readonly ipcMain: IpcMain,
+        private readonly app: App,
     ) {}
 
     private populateCallbacks(): void {
-        this.ipcMainCallbacks = [
+        this.ipcMainHandlers = [
+            {
+                eventName: IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
+                eventHandler: this.handleGetAppPathFromRenderer,
+            },
+        ];
+
+        this.ipcMainListeners = [
             {
                 eventName: IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
                 eventHandler: this.onMaximizeFromRenderer,
@@ -62,7 +72,11 @@ export class MainWindowRendererMessageHandlers {
     public startListening(): void {
         this.populateCallbacks();
 
-        this.ipcMainCallbacks.forEach(callback => {
+        this.ipcMainHandlers.forEach(callback => {
+            this.ipcMain.handle(callback.eventName, callback.eventHandler);
+        });
+
+        this.ipcMainListeners.forEach(callback => {
             this.ipcMain.on(callback.eventName, callback.eventHandler);
         });
 
@@ -72,7 +86,11 @@ export class MainWindowRendererMessageHandlers {
     }
 
     public stopListening(): void {
-        this.ipcMainCallbacks.forEach(callback => {
+        this.ipcMainHandlers.forEach(callback => {
+            this.ipcMain.removeHandler(callback.eventName);
+        });
+
+        this.ipcMainListeners.forEach(callback => {
             this.ipcMain.removeListener(callback.eventName, callback.eventHandler);
         });
 
@@ -104,6 +122,10 @@ export class MainWindowRendererMessageHandlers {
     private onSetSizeAndCenterFromRenderer = (event: IpcMainEvent, args: SetSizePayload): void => {
         this.browserWindow.setSize(args.width, args.height);
         this.browserWindow.center();
+    };
+
+    private handleGetAppPathFromRenderer = async (): Promise<string> => {
+        return this.app.getAppPath();
     };
 
     private onMaximizeFromMainWindow = (): void => {

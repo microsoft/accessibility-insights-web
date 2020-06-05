@@ -21,10 +21,10 @@ describe(DetailsViewContentWithLocalState, () => {
         const contentComponent = wrapper.find(DetailsViewContent);
         const setNavOpen = contentComponent.props().setSideNavOpen;
 
-        expect(wrapper.find(DetailsViewContent).props().isSideNavOpen).toBe(false);
+        expect(wrapper.state('isSideNavOpen')).toBe(false);
 
         setNavOpen(true);
 
-        expect(wrapper.find(DetailsViewContent).props().isSideNavOpen).toBe(true);
+        expect(wrapper.state('isSideNavOpen')).toBe(true);
     });
 });

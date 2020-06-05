@@ -32,6 +32,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
                 navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton}
+                isSideNavOpen={props.isSideNavOpen}
+                setSideNavOpen={props.setSideNavOpen}
             />
         );
     };

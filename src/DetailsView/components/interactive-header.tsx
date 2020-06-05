@@ -20,6 +20,8 @@ export interface InteractiveHeaderProps {
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
     navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -30,7 +32,12 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     const getNavMenu = () => {
         return (
             <FlaggedComponent
-                enableJSXElement={<props.navMenu isLeftNavOpen={false} />}
+                enableJSXElement={
+                    <props.navMenu
+                        setSideNavOpen={props.setSideNavOpen}
+                        isSideNavOpen={props.isSideNavOpen}
+                    />
+                }
                 featureFlag={FeatureFlags.reflowUI}
                 featureFlagStoreData={props.featureFlagStoreData}
             />

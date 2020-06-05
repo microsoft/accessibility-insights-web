@@ -9,5 +9,6 @@ exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
       "iconName": "GlobalNavButton",
     }
   }
+  onClick={[Function]}
 />
 `;

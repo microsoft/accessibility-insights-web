@@ -7,6 +7,7 @@ import {
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -132,6 +133,28 @@ describe(IpcRendererShim, () => {
             testSubject.setSizeAndCenterWindow({ height: expectedHeight, width: expectedWidth });
             expect(actualHeight).toBe(expectedHeight);
             expect(actualWidth).toBe(expectedWidth);
+        });
+
+        describe('getAppPath', () => {
+            it('defers to the expected invoke call', async () => {
+                const appPath = '/test/path';
+                ipcRendererMock
+                    .setup(m => m.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME))
+                    .returns(() => Promise.resolve(appPath))
+                    .verifiable(Times.once());
+
+                expect(await testSubject.getAppPath()).toBe(appPath);
+            });
+
+            it('propagates errors from the invoke call', async () => {
+                const error = new Error('test error message');
+                ipcRendererMock
+                    .setup(m => m.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME))
+                    .returns(() => Promise.reject(error))
+                    .verifiable(Times.once());
+
+                await expect(testSubject.getAppPath()).rejects.toThrowError(error);
+            });
         });
     });
 });
