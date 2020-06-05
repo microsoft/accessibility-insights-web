@@ -5,6 +5,7 @@ const path = require('path');
 const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const yaml = require('js-yaml');
+const androidServiceBin = require('accessibility-insights-for-android-service-bin');
 
 module.exports = function (grunt) {
     const extensionPath = 'extension';
@@ -278,6 +279,25 @@ module.exports = function (grunt) {
         const dropPath = path.join(`drop/${productCategory}`, targetName);
         const dropExtensionPath = path.join(dropPath, 'product');
 
+        const productCategorySpecificCopyFiles = [];
+        if (productCategory === 'electron') {
+            productCategorySpecificCopyFiles.push(
+                {
+                    src: androidServiceBin.apkPath,
+                    // This should be kept in sync with android-service-apk.ts
+                    dest: path.join(dropExtensionPath, 'android-service', 'android-service.apk'),
+                },
+                {
+                    src: androidServiceBin.noticePath,
+                    dest: path.join(
+                        dropExtensionPath,
+                        'android-service',
+                        path.basename(androidServiceBin.noticePath),
+                    ),
+                },
+            );
+        }
+
         grunt.config.merge({
             drop: {
                 [targetName]: {
@@ -341,6 +361,7 @@ module.exports = function (grunt) {
                             dest: dropExtensionPath,
                             expand: true,
                         },
+                        ...productCategorySpecificCopyFiles,
                     ],
                 },
             },
@@ -461,6 +482,7 @@ module.exports = function (grunt) {
         config.appId = appId;
         config.directories.app = dropPath;
         config.directories.output = `${dropPath}/packed`;
+        config.extraResources[0].from = `${dropPath}/product/android-service`;
         config.extraMetadata.version = version;
         config.win.icon = `src/${electronIconBaseName}.ico`;
         // electron-builder infers the linux icon from the mac one

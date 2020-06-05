@@ -13,6 +13,14 @@ directories:
 
 files:
     - '!packed${/*}'
+    - '!product/android-service/**/*'
+
+# We include the android-service directory as an extraResource instead of a file because we need
+# to be able to pass the APK it contains as a file to adb; extraResources end up on the user's
+# machine as files as-is, but files get bundled together into a shared .asar archive.
+extraResources:
+    - from: TARGET_SPECIFIC
+      to: 'android-service'
 
 extraMetadata:
     main: product/bundle/main.bundle.js
