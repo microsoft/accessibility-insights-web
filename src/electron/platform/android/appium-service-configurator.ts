@@ -8,6 +8,7 @@ import {
     PackageInfo,
     PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
+import { DictionaryStringTo } from 'types/common-types';
 
 type AdbDevice = {
     udid: string;
@@ -19,7 +20,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     constructor(private readonly adb: ADB) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {
-        const detectedDevices = {};
+        const detectedDevices: DictionaryStringTo<DeviceInfo> = {};
         await this.addDevices(await this.adb.getConnectedEmulators(), true, detectedDevices);
         await this.addDevices(await this.adb.getConnectedDevices(), false, detectedDevices);
 
@@ -29,7 +30,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     private async addDevices(
         devices: Array<AdbDevice>,
         isEmulator: boolean,
-        detectedDevices: any,
+        detectedDevices: DictionaryStringTo<DeviceInfo>,
     ): Promise<void> {
         // This intentionally doesn't use foreach because foreach doesn't play nicely with await
         for (let loop = 0; loop < devices.length; loop++) {
