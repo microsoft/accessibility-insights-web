@@ -111,6 +111,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
                 scanMetadata={scanMetadata}
+                isSideNavOpen={props.isSideNavOpen}
+                setSideNavOpen={props.setSideNavOpen}
             />
         );
     };

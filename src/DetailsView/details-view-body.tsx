@@ -61,6 +61,8 @@ export interface DetailsViewBodyProps {
     cardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     scanMetadata: ScanMetadata;
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
@@ -101,6 +103,8 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return (
             <FluentSideNav
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
+                isSideNavOpen={this.props.isSideNavOpen}
+                setSideNavOpen={this.props.setSideNavOpen}
                 {...this.props}
             />
         );
