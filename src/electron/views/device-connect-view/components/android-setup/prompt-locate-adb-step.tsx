@@ -7,7 +7,7 @@ import {
     AndroidSetupPromptLayoutProps,
 } from './android-setup-prompt-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
-import { FolderPickerTextField } from './folder-picker-text-field';
+import { FolderPicker } from './folder-picker';
 
 export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptLocateAdbStep',
@@ -48,11 +48,7 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
 
         return (
             <AndroidSetupPromptLayout {...layoutProps}>
-                <FolderPickerTextField
-                    deps={props.deps}
-                    value={adbLocation}
-                    onChange={onFolderPickerChange}
-                />
+                <FolderPicker value={adbLocation} onChange={onFolderPickerChange} />
             </AndroidSetupPromptLayout>
         );
     },
