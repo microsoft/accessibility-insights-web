@@ -18,39 +18,60 @@
     padding-bottom: 32px;
     padding-top: 17px;
 
-    > {
-        // All flex growth goes to .prompt-content
-        flex-grow: 0;
-        flex-shrink: 0;
-        flex-basis: auto;
-    }
-
-    .prompt-header {
-        margin-top: 0;
-        margin-bottom: 0;
-
-        font-size: $fontSizeLML;
-        font-weight: $fontWeightNormal;
-        line-height: 25px;
-        letter-spacing: -0.02em;
-    }
-
-    .prompt-more-info {
-        margin-top: 4px;
-    }
-
-    .prompt-content {
-        width: 100%;
+    .prompt-main {
         flex-grow: 1;
         flex-shrink: 1;
         flex-basis: auto;
 
-        margin-top: 24px;
-        font-size: $fontSizeM;
-        line-height: 16px;
+        box-sizing: border-box;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-items: stretch;
+
+        .prompt-header {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+
+            margin-top: 0;
+            margin-bottom: 0;
+
+            font-size: $fontSizeLML;
+            font-weight: $fontWeightNormal;
+            line-height: 25px;
+            letter-spacing: -0.02em;
+        }
+
+        .prompt-more-info {
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: auto;
+
+            margin-top: 4px;
+        }
+
+        .prompt-content {
+            flex-grow: 1;
+            flex-shrink: 1;
+            flex-basis: auto;
+
+            width: 100%;
+            margin-top: 24px;
+            font-size: $fontSizeM;
+            line-height: 16px;
+        }
     }
 
     .prompt-footer {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: auto;
+
         width: 100%;
         margin-top: 24px;
         display: flex;

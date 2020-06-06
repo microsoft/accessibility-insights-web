@@ -25,9 +25,11 @@ export const AndroidSetupPromptLayout = NamedFC<AndroidSetupPromptLayoutProps>(
 
         return (
             <div className={styles.promptLayout}>
-                <h1 className={styles.promptHeader}>{props.headerText}</h1>
-                {renderOptionalMoreInfoLink(props.moreInfoLink)}
-                <div className={styles.promptContent}>{props.children}</div>
+                <main className={styles.promptMain}>
+                    <h1 className={styles.promptHeader}>{props.headerText}</h1>
+                    {renderOptionalMoreInfoLink(props.moreInfoLink)}
+                    <div className={styles.promptContent}>{props.children}</div>
+                </main>
                 <footer className={styles.promptFooter}>
                     <DefaultButton {...props.leftFooterButtonProps} />
                     <PrimaryButton {...props.rightFooterButtonProps} />
