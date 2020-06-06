@@ -46,7 +46,12 @@ module.exports = function (grunt) {
             onError: e => grunt.fail.fatal(e.errorMsg),
             onExtensionPublished: info => {
                 if (!info.success) {
-                    grunt.fail.fatal(JSON.stringify(info));
+                    const failedInfo = JSON.stringify(info);
+                    grunt.fail.warn(JSON.stringify(info));
+
+                    console.log('=====');
+                    console.log(failedInfo);
+                    console.log('=====');
                 }
             },
             fakeBadPublish: true,
