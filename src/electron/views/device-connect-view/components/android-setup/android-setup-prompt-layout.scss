@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../../../common/styles/fonts.scss';
+@import '../../../../../common/styles/colors.scss';
 
 .prompt-layout {
     display: flex;
@@ -9,10 +10,13 @@
     align-items: flex-start;
     justify-items: stretch;
 
-    margin-left: 32px;
-    margin-right: 32px;
-    margin-bottom: 32px;
-    margin-top: 17px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-left: 32px;
+    padding-right: 32px;
+    padding-bottom: 32px;
+    padding-top: 17px;
 
     > {
         // All flex growth goes to .prompt-content
@@ -30,12 +34,13 @@
         line-height: 25px;
         letter-spacing: -0.02em;
     }
+
     .prompt-more-info {
         margin-top: 4px;
-        font-size: $fontSize;
-        line-height: 14px;
     }
+
     .prompt-content {
+        width: 100%;
         flex-grow: 1;
         flex-shrink: 1;
         flex-basis: auto;
@@ -44,10 +49,16 @@
         font-size: $fontSizeM;
         line-height: 16px;
     }
+
     .prompt-footer {
+        width: 100%;
         margin-top: 24px;
         display: flex;
         flex-direction: row;
-        justify-items: space-between;
+        justify-content: space-between;
+
+        > {
+            margin-left: 8px;
+        }
     }
 }

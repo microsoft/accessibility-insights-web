@@ -19,13 +19,13 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
         const { LinkComponent } = props.deps;
 
         const onCloseButton = () => {
+            // To be implemented in future feature work
             console.log(`androidSetupActionCreator.close()`);
-            // props.deps.androidSetupActionCreator.close();
         };
 
         const onNextButton = () => {
-            console.log(`androidSetupActionCreator.commitAdbLocation(${adbLocation})`);
-            // props.deps.androidSetupActionCreator.commitAdbLocation(adbLocation);
+            // To be implemented in future feature work
+            console.log(`androidSetupActionCreator.confirmAdbLocation(${adbLocation})`);
         };
 
         const onFolderPickerChange = (newValue?: string) => {
@@ -34,7 +34,11 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
 
         const layoutProps: AndroidSetupPromptLayoutProps = {
             headerText: 'Locate Android Debug Bridge (adb)',
-            moreInfoLink: <LinkComponent href="https://TODO">How do I locate adb?</LinkComponent>,
+            moreInfoLink: (
+                <LinkComponent href="https://aka.ms/accessibility-insights-for-android/locateadb">
+                    How do I locate adb?
+                </LinkComponent>
+            ),
             leftFooterButtonProps: {
                 text: 'Close',
                 onClick: onCloseButton,
@@ -48,7 +52,11 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
 
         return (
             <AndroidSetupPromptLayout {...layoutProps}>
-                <FolderPicker value={adbLocation} onChange={onFolderPickerChange} />
+                <FolderPicker
+                    labelText="Select the folder containing adb. We'll use it to connect to your device."
+                    value={adbLocation}
+                    onChange={onFolderPickerChange}
+                />
             </AndroidSetupPromptLayout>
         );
     },
