@@ -23,6 +23,8 @@ describe('AndroidSetupStepContainer', () => {
                 )),
             },
             LinkComponent: null,
+            windowStateActionCreator: null,
+            windowFrameActionCreator: null,
         },
     };
 

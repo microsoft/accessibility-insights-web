@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AndroidSetupSpinnerLayout renders 1`] = `
+"<Fragment>
+  <StyledSpinnerBase className=\\"androidSetupSpinner\\" size={3} label=\\"test-label\\" role=\\"alert\\" aria-live={[undefined]} />
+  <DeviceConnectFooter deps={{...}} cancelClick={[Function]} canStartTesting={false} />
+</Fragment>"
+`;

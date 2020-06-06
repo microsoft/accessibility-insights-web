@@ -6,6 +6,7 @@ import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import * as React from 'react';
+import { AndroidSetupSpinnerDeps } from 'electron/views/device-connect-view/components/android-setup/android-setup-spinner-layout';
 
 export type AndroidSetupStep = React.ComponentType<CommonAndroidSetupStepProps>;
 
@@ -19,7 +20,7 @@ export type AndroidSetupPageDeps = {
     androidSetupActionCreator: AndroidSetupActionCreator;
     androidSetupStepComponentProvider: AndroidSetupStepComponentProvider;
     LinkComponent: LinkComponentType;
-};
+} & AndroidSetupSpinnerDeps;
 
 // 'Partial' is used to allow missing step IDs as they get implemented.
 // Once all step IDs have components, we should remove 'Partial'
