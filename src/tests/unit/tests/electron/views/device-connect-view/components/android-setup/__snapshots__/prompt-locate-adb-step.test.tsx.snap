@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] = `
+<AndroidSetupPromptLayout
+  headerText="Locate Android Debug Bridge (adb)"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Close",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/locateadb"
+    >
+      How do I locate adb?
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": [Function],
+      "text": "Next",
+    }
+  }
+>
+  <FolderPicker
+    labelText="Select the folder containing adb. We'll use it to connect to your device."
+    onChange={[Function]}
+    value=""
+  />
+</AndroidSetupPromptLayout>
+`;
+
+exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
+<AndroidSetupPromptLayout
+  headerText="Locate Android Debug Bridge (adb)"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Close",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/locateadb"
+    >
+      How do I locate adb?
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": false,
+      "onClick": [Function],
+      "text": "Next",
+    }
+  }
+>
+  <FolderPicker
+    labelText="Select the folder containing adb. We'll use it to connect to your device."
+    onChange={[Function]}
+    value="/some/path/to/android/home"
+  />
+</AndroidSetupPromptLayout>
+`;
