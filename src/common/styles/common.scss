@@ -35,6 +35,7 @@ $detailsViewTotalHeaderHeight: (
 $fastPassRightPanelMarginRight: 24px !default;
 $fastPassRightPanelMarginLeft: 24px !default;
 $fastPassRightPanelMarginTop: 24px !default;
+$minPanelWidth: 340px !default;
 
 @mixin ellipsedText {
     white-space: nowrap;

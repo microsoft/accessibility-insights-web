@@ -22,6 +22,7 @@ export interface InteractiveHeaderProps {
     navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    showFarItems?: boolean;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -62,9 +63,12 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         );
     };
 
-    const getFarItems = () => (
-        <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />
-    );
+    const getFarItems = () => {
+        if (props.showFarItems === false) {
+            return null;
+        }
+        return <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />;
+    };
 
     return (
         <Header

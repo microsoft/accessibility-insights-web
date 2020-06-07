@@ -3,17 +3,21 @@
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
+    InteractiveHeader,
+    InteractiveHeaderDeps,
+} from 'DetailsView/components/interactive-header';
+import {
     DetailsViewLeftNav,
     DetailsViewLeftNavDeps,
     DetailsViewLeftNavProps,
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
-import { isNil } from 'lodash';
 import { PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-export type FluentSideNavDeps = DetailsViewLeftNavDeps;
+export type FluentSideNavDeps = DetailsViewLeftNavDeps & InteractiveHeaderDeps;
 export type FluentSideNavProps = DetailsViewLeftNavProps & {
+    deps: FluentSideNavDeps;
     tabStoreData: TabStoreData;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -29,10 +33,22 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
         const nav = <DetailsViewLeftNav {...this.props} />;
 
         const dismissPanel = (ev: React.SyntheticEvent<HTMLElement, Event>) => {
-            if (isNil(ev)) {
-                return;
-            }
             this.props.setSideNavOpen(false);
+        };
+
+        const renderHeader = () => {
+            return (
+                <InteractiveHeader
+                    deps={this.props.deps}
+                    tabClosed={false}
+                    selectedPivot={this.props.selectedPivot}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
+                    navMenu={this.props.switcherNavConfiguration.leftNavHamburgerButton}
+                    isSideNavOpen={this.props.isSideNavOpen}
+                    setSideNavOpen={this.props.setSideNavOpen}
+                    showFarItems={false}
+                />
+            );
         };
 
         const navPanel = (
@@ -42,7 +58,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                 isLightDismiss
                 hasCloseButton={false}
                 onRenderNavigationContent={() => null}
-                onRenderHeader={() => null}
+                onRenderHeader={renderHeader}
                 onRenderNavigation={() => null}
                 onDismiss={dismissPanel}
                 type={PanelType.customNear}
