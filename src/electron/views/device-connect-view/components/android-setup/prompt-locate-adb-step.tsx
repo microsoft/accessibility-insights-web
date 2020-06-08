@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import {
-    AndroidSetupPromptLayout,
-    AndroidSetupPromptLayoutProps,
-} from './android-setup-prompt-layout';
+import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import { FolderPicker } from './folder-picker';
 
@@ -32,7 +29,7 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
             setAdbLocation(newValue ?? '');
         };
 
-        const layoutProps: AndroidSetupPromptLayoutProps = {
+        const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Locate Android Debug Bridge (adb)',
             moreInfoLink: (
                 <LinkComponent href="https://aka.ms/accessibility-insights-for-android/locateadb">
@@ -51,13 +48,13 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
         };
 
         return (
-            <AndroidSetupPromptLayout {...layoutProps}>
+            <AndroidSetupStepLayout {...layoutProps}>
                 <FolderPicker
                     instructionsText="Select the folder containing adb. We'll use it to connect to your device."
                     value={adbLocation}
                     onChange={onFolderPickerChange}
                 />
-            </AndroidSetupPromptLayout>
+            </AndroidSetupStepLayout>
         );
     },
 );

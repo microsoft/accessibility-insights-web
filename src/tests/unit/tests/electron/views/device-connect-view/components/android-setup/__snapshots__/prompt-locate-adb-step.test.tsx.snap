@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] = `
-<AndroidSetupPromptLayout
+<AndroidSetupStepLayout
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
     Object {
@@ -29,11 +29,11 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
     onChange={[Function]}
     value=""
   />
-</AndroidSetupPromptLayout>
+</AndroidSetupStepLayout>
 `;
 
 exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
-<AndroidSetupPromptLayout
+<AndroidSetupStepLayout
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
     Object {
@@ -61,5 +61,5 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
     onChange={[Function]}
     value="/some/path/to/android/home"
   />
-</AndroidSetupPromptLayout>
+</AndroidSetupStepLayout>
 `;

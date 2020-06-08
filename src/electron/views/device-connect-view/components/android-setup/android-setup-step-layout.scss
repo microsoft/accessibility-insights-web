@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 @import '../../../../../common/styles/fonts.scss';
 
-.prompt-main-layout {
+.layout-container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -24,7 +24,7 @@
         flex-basis: auto;
     }
 
-    .prompt-header {
+    .header {
         margin-top: 0;
         margin-bottom: 0;
 
@@ -34,11 +34,11 @@
         letter-spacing: -0.02em;
     }
 
-    .prompt-more-info {
+    .more-info-link {
         margin-top: 4px;
     }
 
-    .prompt-content {
+    .content {
         flex-grow: 1;
         flex-shrink: 1;
         flex-basis: auto;
@@ -49,7 +49,7 @@
         line-height: 16px;
     }
 
-    .prompt-nav-button-footer {
+    .footer {
         width: 100%;
         margin-top: 24px;
         display: flex;
