@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AndroidSetupPromptLayout renders per snapshot with a moreInfoLink 1`] = `
+<div
+  className="promptLayout"
+>
+  <main
+    className="promptMain"
+  >
+    <h1
+      className="promptHeader"
+    >
+      Header text
+    </h1>
+    <div
+      className="promptMoreInfo"
+    >
+      <a
+        href="https://test"
+      >
+        test link
+      </a>
+    </div>
+    <div
+      className="promptContent"
+    >
+      <p>
+        child content
+      </p>
+    </div>
+  </main>
+  <footer
+    className="promptFooter"
+  >
+    <CustomizedDefaultButton
+      text="left footer button"
+    />
+    <CustomizedPrimaryButton
+      text="right footer button"
+    />
+  </footer>
+</div>
+`;
+
+exports[`AndroidSetupPromptLayout renders per snapshot without a moreInfoLink 1`] = `
+<div
+  className="promptLayout"
+>
+  <main
+    className="promptMain"
+  >
+    <h1
+      className="promptHeader"
+    >
+      Header text
+    </h1>
+    <div
+      className="promptContent"
+    >
+      <p>
+        child content
+      </p>
+    </div>
+  </main>
+  <footer
+    className="promptFooter"
+  >
+    <CustomizedDefaultButton
+      text="left footer button"
+    />
+    <CustomizedPrimaryButton
+      text="right footer button"
+    />
+  </footer>
+</div>
+`;
