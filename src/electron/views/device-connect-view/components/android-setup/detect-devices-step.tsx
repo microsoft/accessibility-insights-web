@@ -5,9 +5,6 @@ import { AndroidSetupSpinnerLayout } from 'electron/views/device-connect-view/co
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import * as React from 'react';
 
-// export type DetectDevicesStepDeps = BufferingDeps;
-// export type DetectDevicesStepProps = BufferingProps;
-
 export const DetectDevicesStep = NamedFC<CommonAndroidSetupStepProps>(
     'DetectAdbStep',
     (props: CommonAndroidSetupStepProps) => {
