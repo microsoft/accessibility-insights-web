@@ -11,7 +11,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     }
 
     public getDefaultState(): AndroidSetupStoreData {
-        return { currentStepId: 'detect-adb' };
+        return { currentStepId: 'prompt-choose-device' };
     }
 
     private onCancel = () => {
