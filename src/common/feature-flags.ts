@@ -15,6 +15,7 @@ export class FeatureFlags {
     public static readonly debugTools = 'debugTools';
     public static readonly reflowUI = 'reflowUI';
     public static readonly exportReportOptions = 'exportReportOptions';
+    public static readonly needsReview = 'needsReview';
 }
 
 export interface FeatureFlagDetail {
@@ -115,6 +116,15 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'Reflow UI',
             displayableDescription:
                 'Enables new UX to allow for better reflow of application content and UI elements.',
+            isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.needsReview,
+            defaultValue: false,
+            displayableName: 'Needs review',
+            displayableDescription:
+                'Enable a new test to show automated check rules that might have an accessibility issue and need to be reviewed.',
             isPreviewFeature: false,
             forceDefault: false,
         },
