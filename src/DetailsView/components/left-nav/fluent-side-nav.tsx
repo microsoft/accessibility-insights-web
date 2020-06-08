@@ -47,18 +47,13 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                 onRenderNavigation={() => null}
                 onDismiss={dismissPanel}
                 type={PanelType.customNear}
-                layerProps={{
-                    hostId: styles.sideNavContainer,
-                }}
             >
                 {navBar}
             </GenericPanel>
         );
 
-        const renderNav = () => {
-            return this.props.isNarrowMode ? navPanel : navBar;
-        };
+        const navBarInSideNavContainer = <div id={styles.sideNavContainer}>{navBar}</div>;
 
-        return <div id={styles.sideNavContainer}>{renderNav()}</div>;
+        return this.props.isNarrowMode ? navPanel : navBarInSideNavContainer;
     }
 }
