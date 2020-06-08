@@ -37,6 +37,7 @@ export function initializeFabricIcons(): void {
             diagnostic: '\uE9D9',
             edit: '\uE70F',
             export: '\uEDE1',
+            FabricFolder: '\uF0A9',
             feedback: '\uED15',
             fileHTML: '\uF2ED',
             gear: '\uE713',
