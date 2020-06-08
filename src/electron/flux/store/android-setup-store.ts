@@ -16,7 +16,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
 
     constructor(
         private readonly androidSetupActions: AndroidSetupActions,
-        private createAndroidSetupStateMachine: AndroidSetupStateMachineFactory,
+        private readonly createAndroidSetupStateMachine: AndroidSetupStateMachineFactory,
     ) {
         super(StoreNames.AndroidSetupStore);
     }
@@ -29,7 +29,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     public getDefaultState(): AndroidSetupStoreData {
         // the value of currentStepId below is not especially meaningful
         // because the state will be overridden on the call to initialize
-        // when the state machine factory is run.
+        // when the state machine factory is created.
         return { currentStepId: 'detect-adb' };
     }
 
@@ -37,6 +37,11 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
         const actionNames = Object.keys(this.androidSetupActions) as (keyof AndroidSetupActions)[];
 
         for (const actionName of actionNames) {
+            // this.androidSetupActions will not be a type of exactly AndroidSetupActions at runtime during unit tests
+            if (!this.androidSetupActions[actionName].addListener) {
+                continue;
+            }
+
             this.androidSetupActions[actionName].addListener(payload =>
                 this.stateMachine.invokeAction(actionName, payload),
             );

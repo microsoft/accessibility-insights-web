@@ -4,10 +4,11 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import {
     AndroidSetupStateMachine,
+    AndroidSetupStateMachineFactory,
     AndroidSetupStepTransitionCallback,
 } from 'electron/flux/types/android-setup-state-machine-types';
-import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
-import { createStoreWithNullParams } from 'tests/unit/common/store-tester';
+import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 import { It, Mock, Times } from 'typemoq';
 
 const mockableStateMachineFactory = (
@@ -83,21 +84,38 @@ describe('AndroidSetupStore', () => {
     });
 
     it('ensure step transition function results in store update', () => {
-        const expectedStepId: AndroidSetupStepId = 'prompt-choose-device';
+        const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
+        const expectedData: AndroidSetupStoreData = { currentStepId: 'prompt-choose-device' };
+
+        let stepTransition: AndroidSetupStepTransitionCallback;
+
+        const stateMachineMock = Mock.ofType<AndroidSetupStateMachine>();
+        stateMachineMock
+            .setup(m => m.invokeAction('cancel', It.isAny()))
+            .callback((action, payload) => stepTransition('prompt-choose-device'))
+            .verifiable(Times.once());
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
             .setup(m => m(It.isAny()))
-            .callback(stepTransition => stepTransition(expectedStepId))
-            .returns(_ => null)
+            .callback(st => (stepTransition = st))
+            .returns(_ => stateMachineMock.object)
             .verifiable(Times.once());
 
-        const setupActions = new AndroidSetupActions();
+        const storeTester = createAndroidSetupStoreTester('cancel', stateMachineFactoryMock.object);
+        storeTester.testListenerToBeCalledOnce(initialData, expectedData);
 
-        const store = new AndroidSetupStore(setupActions, stateMachineFactoryMock.object);
-        store.initialize();
-
-        expect(store.getState().currentStepId).toBe(expectedStepId);
         stateMachineFactoryMock.verifyAll();
+        stateMachineMock.verifyAll();
     });
+
+    const createAndroidSetupStoreTester = (
+        actionToInvoke: keyof AndroidSetupActions,
+        stateMachineFactory: AndroidSetupStateMachineFactory,
+    ): StoreTester<AndroidSetupStoreData, AndroidSetupActions> => {
+        const storeFactory = (actions: AndroidSetupActions) =>
+            new AndroidSetupStore(actions, stateMachineFactory);
+
+        return new StoreTester(AndroidSetupActions, actionToInvoke, storeFactory);
+    };
 });
