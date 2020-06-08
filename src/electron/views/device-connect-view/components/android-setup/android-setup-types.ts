@@ -5,8 +5,8 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
-import * as React from 'react';
 import { AndroidSetupSpinnerDeps } from 'electron/views/device-connect-view/components/android-setup/android-setup-spinner-layout';
+import * as React from 'react';
 
 export type AndroidSetupStep = React.ComponentType<CommonAndroidSetupStepProps>;
 
