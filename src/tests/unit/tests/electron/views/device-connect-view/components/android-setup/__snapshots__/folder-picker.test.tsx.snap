@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FolderPicker renders per snapshot 1`] = `
+<div
+  className="folderPicker"
+>
+  <p
+    className="instructions"
+    id="folder-picker-instructions__1"
+  >
+    some instructions
+  </p>
+  <div
+    className="pickerControl"
+  >
+    <StyledTextFieldBase
+      aria-describedby="folder-picker-instructions__1"
+      aria-label="Enter a path"
+      className="textField"
+      iconProps={
+        Object {
+          "iconName": "FabricFolder",
+        }
+      }
+      onChange={[Function]}
+      placeholder="Enter a path..."
+      value="/path/to/folder"
+    />
+    <CustomizedPrimaryButton
+      className="browseButton"
+      onClick={[Function]}
+      text="Browse"
+    />
+  </div>
+</div>
+`;

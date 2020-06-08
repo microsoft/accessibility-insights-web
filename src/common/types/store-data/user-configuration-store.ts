@@ -11,6 +11,9 @@ export interface UserConfigurationStoreData {
 
     bugService: string;
     bugServicePropertiesMap: IssueFilingServicePropertiesMap;
+
+    // null if the path to adb is unknown
+    adbLocation: string | null;
 }
 
 export interface IssueFilingServicePropertiesMap {

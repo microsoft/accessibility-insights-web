@@ -237,6 +237,7 @@ describe('CompletedTestStepTelemetryCreatorTest', () => {
             isClosed: false,
             isChanged: false,
             isPageHidden: false,
+            isOriginChanged: false,
         };
         const testSubject = new CompletedTestStepTelemetryCreator(
             assessmentStoreMock.object,

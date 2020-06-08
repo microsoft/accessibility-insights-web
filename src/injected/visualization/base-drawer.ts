@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { throttle } from 'lodash';
 import { WindowUtils } from '../../common/window-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { ShadowUtils } from '../shadow-utils';
@@ -12,9 +13,8 @@ export abstract class BaseDrawer implements Drawer {
     protected formatter: Formatter;
     protected isEnabled = false;
     protected containerClass: string;
-    protected currentTimeoutId: number;
-    protected changeHandlerBind: (e: MessageEvent) => void;
-    public static recalculationTimeout = 500;
+    protected changeHandler: () => void;
+    public static recalculationTimeout = 16;
     protected dialogRenderer: DialogRenderer;
     protected windowUtils: WindowUtils;
     protected containerElement: HTMLElement;
@@ -35,7 +35,7 @@ export abstract class BaseDrawer implements Drawer {
         this.formatter = formatter;
         this.windowUtils = windowUtils;
         this.shadowUtils = shadowUtils;
-        this.changeHandlerBind = this.onPositionChangeHandler.bind(this);
+        this.changeHandler = throttle(this.handlePositionChange, BaseDrawer.recalculationTimeout);
         this.drawerUtils = drawerUtils;
     }
 
@@ -69,13 +69,13 @@ export abstract class BaseDrawer implements Drawer {
         this.windowUtils.addEventListener(
             this.windowUtils.getWindow(),
             'resize',
-            this.changeHandlerBind,
+            this.changeHandler,
             true,
         );
         this.windowUtils.addEventListener(
             this.windowUtils.getWindow(),
             'scroll',
-            this.changeHandlerBind,
+            this.changeHandler,
             true,
         );
     }
@@ -84,38 +84,25 @@ export abstract class BaseDrawer implements Drawer {
         this.windowUtils.removeEventListener(
             this.windowUtils.getWindow(),
             'resize',
-            this.changeHandlerBind,
+            this.changeHandler,
             true,
         );
         this.windowUtils.removeEventListener(
             this.windowUtils.getWindow(),
             'scroll',
-            this.changeHandlerBind,
+            this.changeHandler,
             true,
         );
     }
 
     protected abstract addHighlightsToContainer(): void;
 
-    private onPositionChangeHandler(): void {
-        if (this.currentTimeoutId != null) {
-            this.windowUtils.clearTimeout(this.currentTimeoutId);
-        }
-
-        this.currentTimeoutId = this.windowUtils.setTimeout(
-            () => this.handlePositionChange(),
-            BaseDrawer.recalculationTimeout,
-        );
-    }
-
-    protected handlePositionChange(): void {
+    protected handlePositionChange = () => {
         if (this.isEnabled) {
             this.removeContainerElement();
             this.draw();
         }
-
-        this.currentTimeoutId = null;
-    }
+    };
 
     protected applyContainerClass(): void {
         this.containerElement.setAttribute(

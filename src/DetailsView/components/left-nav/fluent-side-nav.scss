@@ -3,6 +3,15 @@
 @import '../../../common/styles/common.scss';
 
 #side-nav-container {
+    max-width: 25%;
+    min-width: 200px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: self-start;
+    align-content: stretch;
+
     .left-nav-panel {
         margin-top: $detailsViewHeaderBarHeight;
         :global(.ms-Panel-main) {

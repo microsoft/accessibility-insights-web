@@ -5,4 +5,8 @@
     height: 168px;
     padding-top: 24px;
     margin-right: 32px;
+    @media screen and (max-width: 1200px) {
+        padding-top: 0px;
+        margin-bottom: 40px;
+    }
 }
