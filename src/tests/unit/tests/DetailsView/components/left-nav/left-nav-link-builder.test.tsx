@@ -12,14 +12,17 @@ import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import {
     ManualTestStatus,
     ManualTestStatusData,
 } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
-import { onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
+import {
+    onBaseLeftNavItemClick,
+    BaseLeftNavLink,
+} from '../../../../../../DetailsView/components/base-left-nav';
 import {
     LeftNavLinkBuilder,
     LeftNavLinkBuilderDeps,
@@ -40,6 +43,9 @@ describe('LeftNavBuilder', () => {
     ) => RequirementOutcomeStats>;
     let navLinkHandlerMock: IMock<NavLinkHandler>;
     let navLinkRendererMock: IMock<NavLinkRenderer>;
+    let onRightPanelContentSwitchMock: IMock<() => void>;
+    let eventStub: React.MouseEvent<HTMLElement, MouseEvent>;
+    let itemStub: BaseLeftNavLink;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -54,6 +60,9 @@ describe('LeftNavBuilder', () => {
         assessmentsDataStub = {};
         navLinkHandlerMock = Mock.ofType(NavLinkHandler);
         navLinkRendererMock = Mock.ofType(NavLinkRenderer);
+        onRightPanelContentSwitchMock = Mock.ofInstance(() => {});
+        eventStub = {} as React.MouseEvent<HTMLElement, MouseEvent>;
+        itemStub = {} as BaseLeftNavLink;
 
         deps = {
             getStatusForTest: getStatusForTestMock.object,
@@ -67,6 +76,11 @@ describe('LeftNavBuilder', () => {
 
         testSubject = new LeftNavLinkBuilder();
     });
+
+    const setupLinkClickHandlerMocks = () => {
+        onLinkClickMock.setup(onClick => onClick(eventStub, itemStub)).verifiable(Times.once());
+        onRightPanelContentSwitchMock.setup(onClick => onClick()).verifiable(Times.once());
+    };
 
     describe('buildOverviewLink', () => {
         it('should build overview link', () => {
@@ -90,7 +104,10 @@ describe('LeftNavBuilder', () => {
                 assessmentProviderMock.object,
                 assessmentsDataStub,
                 index,
+                onRightPanelContentSwitchMock.object,
             );
+
+            setupLinkClickHandlerMocks();
 
             const expected = {
                 name: 'Overview',
@@ -107,9 +124,19 @@ describe('LeftNavBuilder', () => {
                 onRenderNavLink: navLinkRendererMock.object.renderOverviewLink,
             };
 
-            expect(actual).toMatchObject(expected);
+            actual.onClickNavLink(eventStub, itemStub);
+
+            expectStaticLinkPropToMatch(actual, expected);
+            onLinkClickMock.verifyAll();
+            onRightPanelContentSwitchMock.verifyAll();
         });
     });
+
+    const expectStaticLinkPropToMatch = (actual: BaseLeftNavLink, expected: BaseLeftNavLink) => {
+        delete actual.onClickNavLink;
+        delete expected.onClickNavLink;
+        expect(actual).toMatchObject(expected);
+    };
 
     describe('buildVisualizationConfigurationLink', () => {
         it('should build link using configuration', () => {
@@ -128,6 +155,7 @@ describe('LeftNavBuilder', () => {
                 onLinkClickMock.object,
                 visualizationTypeStub,
                 index,
+                onRightPanelContentSwitchMock.object,
             );
 
             const expected = {
@@ -272,6 +300,7 @@ describe('LeftNavBuilder', () => {
                 assessmentsDataStub,
                 startingIndexStub,
                 expandedTest,
+                onRightPanelContentSwitchMock.object,
             );
 
             links.forEach((testLink, linkIndex) => {

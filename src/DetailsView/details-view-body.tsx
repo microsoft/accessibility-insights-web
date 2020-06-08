@@ -105,6 +105,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
+                onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
                 {...this.props}
             />
         );
