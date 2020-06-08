@@ -14,7 +14,7 @@ describe('FolderPicker', () => {
 
     beforeEach(() => {
         props = {
-            labelText: 'Test label',
+            instructionsText: 'some instructions',
             value: '/path/to/folder',
             onChange: null,
         };
@@ -25,9 +25,11 @@ describe('FolderPicker', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it("coordinates the label's for attribute with the TextField's id", () => {
+    it("coordinates the instructions' id with the TextField's aria-describedby", () => {
         const rendered = shallow(<FolderPicker {...props} />);
-        expect(rendered.find('label').prop('htmlFor')).toBe(rendered.find(TextField).prop('id'));
+        expect(rendered.find('.instructions').prop('id')).toBe(
+            rendered.find(TextField).prop('aria-describedby'),
+        );
     });
 
     it('invokes onChange when the TextField is changed', () => {

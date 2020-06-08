@@ -6,7 +6,7 @@ import * as React from 'react';
 import * as styles from './folder-picker.scss';
 
 export type FolderPickerProps = {
-    labelText: string;
+    instructionsText: string;
     value: string;
     onChange: (newValue?: string) => void;
 };
@@ -22,19 +22,20 @@ export const FolderPicker = NamedFC<FolderPickerProps>(
             // To be implemented in terms of Electron.dialog.showOpenDialog in later feature work
         };
 
-        const textFieldId = getId('folder-picker-text-field__');
+        const instructionsId = getId('folder-picker-instructions__');
 
         return (
             <div className={styles.folderPicker}>
-                <label htmlFor={textFieldId} className={styles.label}>
-                    {props.labelText}
-                </label>
+                <p id={instructionsId} className={styles.instructions}>
+                    {props.instructionsText}
+                </p>
                 <div className={styles.pickerControl}>
                     <TextField
-                        id={textFieldId}
+                        placeholder="Enter a path..."
+                        aria-label="Enter a path"
+                        aria-describedby={instructionsId}
                         className={styles.textField}
                         iconProps={{ iconName: 'FabricFolder' }}
-                        placeholder="Type a path..."
                         value={props.value}
                         onChange={onTextFieldChange}
                     />

@@ -25,7 +25,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
   }
 >
   <FolderPicker
-    labelText="Select the folder containing adb. We'll use it to connect to your device."
+    instructionsText="Select the folder containing adb. We'll use it to connect to your device."
     onChange={[Function]}
     value=""
   />
@@ -57,7 +57,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
   }
 >
   <FolderPicker
-    labelText="Select the folder containing adb. We'll use it to connect to your device."
+    instructionsText="Select the folder containing adb. We'll use it to connect to your device."
     onChange={[Function]}
     value="/some/path/to/android/home"
   />

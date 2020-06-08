@@ -4,25 +4,26 @@ exports[`FolderPicker renders per snapshot 1`] = `
 <div
   className="folderPicker"
 >
-  <label
-    className="label"
-    htmlFor="folder-picker-text-field__1"
+  <p
+    className="instructions"
+    id="folder-picker-instructions__1"
   >
-    Test label
-  </label>
+    some instructions
+  </p>
   <div
     className="pickerControl"
   >
     <StyledTextFieldBase
+      aria-describedby="folder-picker-instructions__1"
+      aria-label="Enter a path"
       className="textField"
       iconProps={
         Object {
           "iconName": "FabricFolder",
         }
       }
-      id="folder-picker-text-field__1"
       onChange={[Function]}
-      placeholder="Type a path..."
+      placeholder="Enter a path..."
       value="/path/to/folder"
     />
     <CustomizedPrimaryButton
