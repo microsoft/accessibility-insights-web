@@ -7,6 +7,8 @@ import { FluentSideNav, FluentSideNavProps } from 'DetailsView/components/left-n
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+import { INav } from 'office-ui-fabric-react';
+import { DetailsViewLeftNav } from 'DetailsView/components/left-nav/details-view-left-nav';
 
 describe(FluentSideNav, () => {
     let tabStoreData: TabStoreData;
@@ -92,5 +94,44 @@ describe(FluentSideNav, () => {
             .onDismiss({} as React.SyntheticEvent<HTMLElement, Event>);
 
         setSideNavOpenMock.verifyAll();
+    });
+
+    test('componentDidUpdate', () => {
+        const focusMock = Mock.ofInstance((forceIntoFirstElement?: boolean) => {
+            return false;
+        });
+        const navStub: INav = {
+            selectedKey: 'dummy-key',
+            focus: focusMock.object,
+        };
+        focusMock.setup(fm => fm(true)).verifiable(Times.once());
+
+        tabStoreData = {
+            isClosed: false,
+        } as TabStoreData;
+
+        const prevProps: FluentSideNavProps = {
+            tabStoreData,
+            isSideNavOpen: true,
+            setSideNavOpen: null,
+            isNarrowMode: true,
+        } as FluentSideNavProps;
+
+        props = {
+            tabStoreData,
+            isSideNavOpen: false,
+            setSideNavOpen: null,
+            isNarrowMode: false,
+        } as FluentSideNavProps;
+
+        const wrapper = shallow(
+            <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...prevProps} />,
+        );
+
+        wrapper.find(DetailsViewLeftNav).props().setNavComponentRef(navStub);
+
+        wrapper.setProps(props);
+
+        focusMock.verifyAll();
     });
 });
