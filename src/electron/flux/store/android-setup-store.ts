@@ -27,7 +27,10 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     }
 
     public getDefaultState(): AndroidSetupStoreData {
-        return { currentStepId: 'prompt-choose-device' };
+        // the value of currentStepId below is not especially meaningful
+        // because the state will be overridden on the call to initialize
+        // when the state machine factory is created.
+        return { currentStepId: 'detect-adb' };
     }
 
     protected addActionListeners(): void {
