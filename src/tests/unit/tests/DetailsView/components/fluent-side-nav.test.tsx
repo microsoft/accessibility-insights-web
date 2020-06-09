@@ -3,12 +3,12 @@
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
+import { DetailsViewLeftNav } from 'DetailsView/components/left-nav/details-view-left-nav';
 import { FluentSideNav, FluentSideNavProps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { shallow } from 'enzyme';
+import { INav } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-import { INav } from 'office-ui-fabric-react';
-import { DetailsViewLeftNav } from 'DetailsView/components/left-nav/details-view-left-nav';
 
 describe(FluentSideNav, () => {
     let tabStoreData: TabStoreData;
@@ -130,7 +130,8 @@ describe(FluentSideNav, () => {
 
         wrapper.find(DetailsViewLeftNav).props().setNavComponentRef(navStub);
 
-        wrapper.setProps(props);
+        wrapper.setProps(prevProps); // won't call focus() since  navPanel not converted to  navBar
+        wrapper.setProps(props); // will call focus()
 
         focusMock.verifyAll();
     });
