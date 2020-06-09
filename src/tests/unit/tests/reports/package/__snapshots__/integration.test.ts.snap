@@ -272,7 +272,6 @@ exports[`report package integration with issues 1`] = `
           class="outcome-summary-bar"
         >
           <div
-            class="outcome-summary"
             style="flex-grow:26"
           >
             <span
@@ -304,7 +303,6 @@ exports[`report package integration with issues 1`] = `
             </span>
           </div>
           <div
-            class="outcome-summary"
             style="flex-grow:20"
           >
             <span
@@ -336,7 +334,6 @@ exports[`report package integration with issues 1`] = `
             </span>
           </div>
           <div
-            class="outcome-summary"
             style="flex-grow:49"
           >
             <span
@@ -7415,7 +7412,6 @@ exports[`report package integration with no issues 1`] = `
           class="outcome-summary-bar"
         >
           <div
-            class="outcome-summary"
             style="flex-grow:0"
           >
             <span
@@ -7447,7 +7443,6 @@ exports[`report package integration with no issues 1`] = `
             </span>
           </div>
           <div
-            class="outcome-summary"
             style="flex-grow:45"
           >
             <span
@@ -7479,7 +7474,6 @@ exports[`report package integration with no issues 1`] = `
             </span>
           </div>
           <div
-            class="outcome-summary"
             style="flex-grow:30"
           >
             <span
