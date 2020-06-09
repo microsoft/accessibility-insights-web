@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` render renders ReactResizeDetector  1`] = `
+exports[`NarrowModeDetector render renders ReactResizeDetector  1`] = `
 <ResizeDetector
   handleHeight={false}
   handleWidth={true}
@@ -14,4 +14,14 @@ exports[` render renders ReactResizeDetector  1`] = `
 />
 `;
 
-exports[` render renders null when narrow mode is not enabled 1`] = `null`;
+exports[`NarrowModeDetector render renders child component properly: narrow mode should be false 1`] = `
+<DetailsViewContent
+  isNarrowMode={false}
+/>
+`;
+
+exports[`NarrowModeDetector render renders child component properly: narrow mode should be true 1`] = `
+<DetailsViewContent
+  isNarrowMode={true}
+/>
+`;
