@@ -40,9 +40,11 @@ export class DetailsViewContentWithLocalState extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <ReactResizeDetector handleWidth querySelector="body">
-                {dimensions => this.renderAccordingToWidth(dimensions)}
-            </ReactResizeDetector>
+            <ReactResizeDetector
+                handleWidth
+                querySelector="body"
+                render={dimension => this.renderAccordingToWidth(dimension)}
+            />
         );
     }
 }
