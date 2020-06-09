@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceDescription renders with device 1`] = `
+<React.Fragment>
+  <div
+    className="content"
+  >
+    <div
+      class="ms-Grid"
+      dir="ltr"
+    >
+      <div
+        class="ms-Grid-row"
+      >
+        <div
+          class="ms-Grid-col ms-sm1"
+        >
+          <StyledIconBase
+            className="iconContent"
+            iconName="CellPhone"
+          />
+        </div>
+        <div
+          class="ms-Grid-col ms-sm11"
+        >
+          Super-Duper Gadget
+        </div>
+      </div>
+    </div>
+  </div>
+</React.Fragment>
+`;
+
+exports[`DeviceDescription renders with emulator 1`] = `
+<React.Fragment>
+  <div
+    className="content"
+  >
+    <div
+      class="ms-Grid"
+      dir="ltr"
+    >
+      <div
+        class="ms-Grid-row"
+      >
+        <div
+          class="ms-Grid-col ms-sm1"
+        >
+          <StyledIconBase
+            className="iconContent"
+            iconName="Devices3"
+          />
+        </div>
+        <div
+          class="ms-Grid-col ms-sm11"
+        >
+          Emulator Extraordinaire
+        </div>
+      </div>
+    </div>
+  </div>
+</React.Fragment>
+`;
