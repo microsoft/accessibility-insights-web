@@ -16,6 +16,7 @@ export type FastPassLeftNavDeps = {
 export type FastPassLeftNavProps = {
     deps: FastPassLeftNavDeps;
     selectedKey: string;
+    onRightPanelContentSwitch: () => void;
 };
 
 export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', props => {
@@ -30,6 +31,7 @@ export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', 
             {...props}
             onLinkClick={navLinkHandler.onFastPassTestClick}
             visualizations={tests}
+            onRightPanelContentSwitch={props.onRightPanelContentSwitch}
         />
     );
 });

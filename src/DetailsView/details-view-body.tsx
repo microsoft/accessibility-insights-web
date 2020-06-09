@@ -84,7 +84,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             <div className="details-view-body">
                 {this.renderCommandBar()}
                 <div className={bodyLayoutClassName}>
-                    {this.renderNavBar(this.props.isNarrowMode)}
+                    {this.renderNavBar()}
                     <div className={bodyContentClassName}>
                         {this.getTargetPageHiddenBar()}
                         <div className="view" role="main">
@@ -106,12 +106,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
-    private renderNavBar(isNarrowMode: boolean): JSX.Element {
+    private renderNavBar(): JSX.Element {
         return (
             <FluentSideNav
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
+                onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
                 isNarrowMode={this.props.isNarrowMode}
                 {...this.props}
             />
