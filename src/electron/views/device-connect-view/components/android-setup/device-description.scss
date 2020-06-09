@@ -3,6 +3,7 @@
 @import '../../../../../common/styles/fonts.scss';
 
 .content {
+    display: flex;
     line-height: 19px;
     margin-top: 24px;
     margin-bottom: 24px;
@@ -10,4 +11,5 @@
 
 .iconContent {
     font-size: 24px;
+    margin-right: 10px;
 }

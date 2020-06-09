@@ -15,14 +15,8 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
     return (
         <React.Fragment>
             <div className={styles.content}>
-                <div class="ms-Grid" dir="ltr">
-                    <div class="ms-Grid-row">
-                        <div class="ms-Grid-col ms-sm1">
-                            <Icon iconName={iconName} className={styles.iconContent} />
-                        </div>
-                        <div class="ms-Grid-col ms-sm11">{props.description}</div>
-                    </div>
-                </div>
+                <Icon iconName={iconName} className={styles.iconContent} />
+                {props.description}
             </div>
         </React.Fragment>
     );
