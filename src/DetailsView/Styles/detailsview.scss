@@ -457,6 +457,9 @@ div.insights-file-issue-details-dialog-container {
         .details-view-body-content-pane {
             display: flex;
             flex-direction: column;
+            &.reflow-ui {
+                word-break: break-word;
+            }
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;

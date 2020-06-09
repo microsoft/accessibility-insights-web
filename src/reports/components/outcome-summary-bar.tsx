@@ -24,7 +24,7 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
                 const count = props.outcomeStats[outcomeType];
 
                 return (
-                    <div key={outcomeType} style={{ flexGrow: count }} className="outcome-summary">
+                    <div key={outcomeType} style={{ flexGrow: count }}>
                         <span className={kebabCase(outcomeType)}>
                             <span aria-hidden="true">{outcomeIcon}</span>
                             {count}
