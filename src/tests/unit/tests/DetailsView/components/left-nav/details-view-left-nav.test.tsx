@@ -78,6 +78,7 @@ describe(DetailsViewLeftNav, () => {
             switcherNavConfiguration: switcherNavConfig,
             rightPanelConfiguration: rightPanelConfig,
             assessmentStoreData: assessmentStoreDataStub,
+            setNavComponentRef: nav => {},
         } as DetailsViewLeftNavProps;
 
         GetLeftNavSelectedKeyMock.setup(getter =>

@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mapValues } from 'lodash';
-import * as React from 'react';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
@@ -10,6 +7,10 @@ import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { leftNavSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
+import { mapValues } from 'lodash';
+import { INav } from 'office-ui-fabric-react';
+import * as React from 'react';
+
 import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
@@ -36,6 +37,7 @@ export type DetailsViewLeftNavProps = {
     assessmentStoreData: AssessmentStoreData;
     selectedPivot: DetailsViewPivotType;
     onRightPanelContentSwitch: () => void;
+    setNavComponentRef: (nav: INav) => void;
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
@@ -90,6 +92,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                 onRightPanelContentSwitch={props.onRightPanelContentSwitch}
                 featureFlagStoreData={featureFlagStoreData}
                 expandedTest={assessmentStoreData.assessmentNavState.expandedTestType}
+                setNavComponentRef={props.setNavComponentRef}
             />
         </div>
     );
