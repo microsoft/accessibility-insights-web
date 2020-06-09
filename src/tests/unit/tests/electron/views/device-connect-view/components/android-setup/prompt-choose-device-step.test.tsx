@@ -8,6 +8,7 @@ import * as React from 'react';
 
 describe('PromptChooseDeviceStep', () => {
     let props: CommonAndroidSetupStepProps;
+
     beforeEach(() => {
         props = {
             userConfigurationStoreData: {} as UserConfigurationStoreData,
