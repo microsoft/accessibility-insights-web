@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlags } from 'common/feature-flags';
-import {
-    DetailsViewContent,
-    DetailsViewContentProps,
-} from 'DetailsView/components/details-view-content';
+import { DetailsViewContent } from 'DetailsView/components/details-view-content';
 import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
