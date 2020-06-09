@@ -30,7 +30,7 @@ describe(FluentSideNav, () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render side nav', () => {
+    test('render sidePanel', () => {
         tabStoreData = {
             isClosed: false,
         } as TabStoreData;
@@ -39,6 +39,26 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: null,
+            isNarrowMode: true,
+        } as FluentSideNavProps;
+
+        const wrapper = shallow(
+            <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
+        );
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test('render nav bar', () => {
+        tabStoreData = {
+            isClosed: false,
+        } as TabStoreData;
+
+        props = {
+            tabStoreData,
+            isSideNavOpen: false,
+            setSideNavOpen: null,
+            isNarrowMode: false,
         } as FluentSideNavProps;
 
         const wrapper = shallow(
@@ -59,6 +79,7 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: setSideNavOpenMock.object,
+            isNarrowMode: true,
         } as FluentSideNavProps;
 
         const wrapper = shallow(
