@@ -3,20 +3,19 @@
 exports[`DetailsViewContentWithLocalState render 1`] = `
 <React.Fragment>
   <NarrowModeDetector
-    isNarrowModeEnabled={false}
-    setNarrowMode={[Function]}
-  />
-  <DetailsViewContent
-    isNarrowMode={false}
-    isSideNavOpen={false}
-    setSideNavOpen={[Function]}
-    storeState={
+    Component={[Function]}
+    childrenProps={
       Object {
-        "featureFlagStoreData": Object {
-          "reflowUI": false,
+        "isSideNavOpen": false,
+        "setSideNavOpen": [Function],
+        "storeState": Object {
+          "featureFlagStoreData": Object {
+            "reflowUI": false,
+          },
         },
       }
     }
+    isNarrowModeEnabled={false}
   />
 </React.Fragment>
 `;
