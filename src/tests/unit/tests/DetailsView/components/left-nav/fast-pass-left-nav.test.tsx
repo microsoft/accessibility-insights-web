@@ -14,7 +14,7 @@ describe(FastPassLeftNav, () => {
     it('renders visualization based left nav with appropriate params', () => {
         const onRightPanelContentSwitch: () => void = () => {};
         const navLinkHandlerStub: NavLinkHandler = {
-            onFastPassTestClick: (e, link, extraAction) => null,
+            onFastPassTestClick: (e, link) => null,
         } as NavLinkHandler;
         const deps: FastPassLeftNavDeps = {
             navLinkHandler: navLinkHandlerStub,
