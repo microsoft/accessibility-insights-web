@@ -10,7 +10,7 @@ import * as React from 'react';
 describe('DeviceDescription', () => {
     it('renders with device', () => {
         const props: DeviceDescriptionProps = {
-            iconName: 'CellPhone',
+            isEmulator: false,
             description: 'Super-Duper Gadget',
         };
 
@@ -20,7 +20,7 @@ describe('DeviceDescription', () => {
 
     it('renders with emulator', () => {
         const props: DeviceDescriptionProps = {
-            iconName: 'Devices3',
+            isEmulator: true,
             description: 'Emulator Extraordinaire',
         };
 

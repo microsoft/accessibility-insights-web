@@ -22,7 +22,7 @@ exports[`PromptInstallServiceStep renders with device 1`] = `
   </React.Fragment>
   <DeviceDescription
     description="Super-Duper Gadget"
-    iconName="CellPhone"
+    isEmulator={false}
   />
   <CustomizedPrimaryButton
     onClick={[Function]}
@@ -53,7 +53,7 @@ exports[`PromptInstallServiceStep renders with emulator 1`] = `
   </React.Fragment>
   <DeviceDescription
     description="Emulator Extraordinaire"
-    iconName="Devices3"
+    isEmulator={true}
   />
   <CustomizedPrimaryButton
     onClick={[Function]}

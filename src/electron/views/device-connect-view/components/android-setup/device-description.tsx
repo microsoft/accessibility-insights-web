@@ -10,13 +10,15 @@ import * as styles from './device-description.scss';
 export interface DeviceDescriptionProps extends DeviceMetadata {}
 
 export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescription', props => {
+    const iconName: string = props.isEmulator ? 'Devices3' : 'CellPhone';
+
     return (
         <React.Fragment>
             <div className={styles.content}>
                 <div class="ms-Grid" dir="ltr">
                     <div class="ms-Grid-row">
                         <div class="ms-Grid-col ms-sm1">
-                            <Icon iconName={props.iconName} className={styles.iconContent} />
+                            <Icon iconName={iconName} className={styles.iconContent} />
                         </div>
                         <div class="ms-Grid-col ms-sm11">{props.description}</div>
                     </div>

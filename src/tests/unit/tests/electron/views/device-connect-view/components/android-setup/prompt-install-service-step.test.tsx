@@ -26,7 +26,7 @@ describe('PromptInstallServiceStep', () => {
 
     it('renders with device', () => {
         const selectedDevice: DeviceMetadata = {
-            iconName: 'CellPhone',
+            isEmulator: false,
             description: 'Super-Duper Gadget',
         };
 
@@ -38,7 +38,7 @@ describe('PromptInstallServiceStep', () => {
 
     it('renders with emulator', () => {
         const selectedDevice: DeviceMetadata = {
-            iconName: 'Devices3',
+            isEmulator: true,
             description: 'Emulator Extraordinaire',
         };
 
