@@ -3,10 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import {
-    AndroidSetupPromptLayout,
-    AndroidSetupPromptLayoutProps,
-} from './android-setup-prompt-layout';
+import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
 export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
@@ -24,7 +21,7 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             console.log(`androidSetupActionCreator.detectDevices()`);
         };
 
-        const layoutProps: AndroidSetupPromptLayoutProps = {
+        const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Connect to your Android device',
             moreInfoLink: (
                 <LinkComponent href="https://aka.ms/accessibility-insights-for-android/connectDevice">
@@ -43,9 +40,9 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
         };
 
         return (
-            <AndroidSetupPromptLayout {...layoutProps}>
+            <AndroidSetupStepLayout {...layoutProps}>
                 <PrimaryButton text="Detect my device" onClick={onDetectButton} />
-            </AndroidSetupPromptLayout>
+            </AndroidSetupStepLayout>
         );
     },
 );

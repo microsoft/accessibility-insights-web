@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
-<AndroidSetupPromptLayout
+<AndroidSetupStepLayout
   headerText="Connect to your Android device"
   leftFooterButtonProps={
     Object {
@@ -28,5 +28,5 @@ exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
     onClick={[Function]}
     text="Detect my device"
   />
-</AndroidSetupPromptLayout>
+</AndroidSetupStepLayout>
 `;
