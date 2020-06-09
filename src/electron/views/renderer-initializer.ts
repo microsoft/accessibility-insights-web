@@ -24,6 +24,7 @@ import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { UserConfigurationController } from 'background/user-configuration-controller';
+import { A11YSelfValidator } from 'common/a11y-self-validator';
 import { provideBlob } from 'common/blob-provider';
 import { allCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
@@ -39,6 +40,7 @@ import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { FileURLProvider } from 'common/file-url-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { HTMLElementUtils } from 'common/html-element-utils';
 import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -83,6 +85,7 @@ import { RootContainerState } from 'electron/views/root-container/components/roo
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
+import { ScannerUtils } from 'injected/scanner-utils';
 import { createIssueDetailsBuilderForUnified } from 'issue-filing/common/create-issue-details-builder-for-unified';
 import { IssueFilingControllerImpl } from 'issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingUrlStringUtils } from 'issue-filing/common/issue-filing-url-string-utils';
@@ -125,10 +128,12 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { scan } from 'scanner/exposed-apis';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
     featureFlagsController: FeatureFlagsController;
+    A11YSelfValidator: A11YSelfValidator;
 };
 
 initializeFabricIcons();
@@ -469,6 +474,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             reportExportServiceProvider: ReportExportServiceProviderImpl,
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
         };
+
+        const a11ySelfValidator = new A11YSelfValidator(
+            new ScannerUtils(scan, logger),
+            new HTMLElementUtils(),
+            logger,
+        );
+        window.A11YSelfValidator = a11ySelfValidator;
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
         window.featureFlagsController = featureFlagsController;

@@ -49,12 +49,14 @@ export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
                     <p>2 Android devices or emulators connected</p>
                     <DefaultButton text="Rescan" onClick={onRescanButton} />
                     <DetailsList
+                        ariaLabel="android devices"
                         className={styles.phoneList}
                         items={items}
                         selectionMode={SelectionMode.single}
                         checkboxVisibility={CheckboxVisibility.always}
                         isHeaderVisible={false}
                         checkboxCellClassName={styles.checkmarkCell}
+                        checkButtonAriaLabel="selected device"
                         onRenderCheckbox={checkboxProps => {
                             return checkboxProps.checked ? (
                                 <>
