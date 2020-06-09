@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
+<AndroidSetupStepLayout
+  headerText="Choose which device to use"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Close",
+    }
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": false,
+      "onClick": [Function],
+      "text": "Next",
+    }
+  }
+>
+  <React.Fragment>
+    <p>
+      2 Android devices or emulators connected
+    </p>
+    <CustomizedDefaultButton
+      onClick={[Function]}
+      text="Rescan"
+    />
+    <StyledWithViewportComponent
+      ariaLabel="android devices"
+      checkButtonAriaLabel="select device"
+      checkboxCellClassName="checkmarkCell"
+      checkboxVisibility={1}
+      className="phoneList"
+      isHeaderVisible={false}
+      items={
+        Array [
+          Object {
+            "value": "Phone 1",
+          },
+          Object {
+            "value": "Phone 2",
+          },
+          Object {
+            "value": "Phone 3",
+          },
+        ]
+      }
+      onRenderCheckbox={[Function]}
+      onRenderItemColumn={[Function]}
+      selectionMode={1}
+    />
+  </React.Fragment>
+</AndroidSetupStepLayout>
+`;

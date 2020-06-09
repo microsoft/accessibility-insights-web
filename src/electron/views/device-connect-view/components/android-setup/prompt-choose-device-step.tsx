@@ -11,14 +11,14 @@ import {
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
-import * as styles from './prompt-choose-device.scss';
+import * as styles from './prompt-choose-device-step.scss';
 
-export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
-    'PromptChooseDevice',
+export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
+    'PromptChooseDeviceStep',
     (props: CommonAndroidSetupStepProps) => {
         const onCloseButton = () => {
             // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.close()`);
+            console.log(`ipc call to close`);
         };
 
         const onNextButton = () => {
@@ -27,6 +27,7 @@ export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
         };
 
         const onRescanButton = () => {
+            // To be implemented in future feature work
             console.log(`androidSetupActionCreator.rescan()`);
         };
 
@@ -56,7 +57,7 @@ export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
                         checkboxVisibility={CheckboxVisibility.always}
                         isHeaderVisible={false}
                         checkboxCellClassName={styles.checkmarkCell}
-                        checkButtonAriaLabel="selected device"
+                        checkButtonAriaLabel="select device"
                         onRenderCheckbox={checkboxProps => {
                             return checkboxProps.checked ? (
                                 <>
