@@ -20,7 +20,7 @@ import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/lef
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
-describe('AssessmentLeftNav', () => {
+describe(AssessmentLeftNav, () => {
     let linkStub: AssessmentLeftNavLink;
     let deps: AssessmentLeftNavDeps;
     let props: AssessmentLeftNavProps;

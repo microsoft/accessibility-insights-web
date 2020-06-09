@@ -13,6 +13,7 @@ import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import {
     ManualTestStatus,
@@ -20,8 +21,8 @@ import {
 } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import {
-    onBaseLeftNavItemClick,
     BaseLeftNavLink,
+    onBaseLeftNavItemClick,
 } from '../../../../../../DetailsView/components/base-left-nav';
 import {
     LeftNavLinkBuilder,
@@ -149,6 +150,8 @@ describe('LeftNavBuilder', () => {
                 },
             } as VisualizationConfiguration;
 
+            setupLinkClickHandlerMocks();
+
             const actual = testSubject.buildVisualizationConfigurationLink(
                 deps,
                 configStub,
@@ -171,7 +174,11 @@ describe('LeftNavBuilder', () => {
                 onRenderNavLink: navLinkRendererMock.object.renderVisualizationLink,
             };
 
-            expect(actual).toMatchObject(expected);
+            actual.onClickNavLink(eventStub, itemStub);
+
+            expectStaticLinkPropToMatch(actual, expected);
+            onLinkClickMock.verifyAll();
+            onRightPanelContentSwitchMock.verifyAll();
         });
     });
 
