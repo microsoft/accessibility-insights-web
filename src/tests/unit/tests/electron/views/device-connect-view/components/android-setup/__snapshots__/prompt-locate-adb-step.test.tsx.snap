@@ -5,7 +5,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
     Object {
-      "onClick": [Function],
+      "onClick": null,
       "text": "Close",
     }
   }
@@ -37,7 +37,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
     Object {
-      "onClick": [Function],
+      "onClick": null,
       "text": "Close",
     }
   }

@@ -11,11 +11,6 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
     (props: CommonAndroidSetupStepProps) => {
         const { LinkComponent } = props.deps;
 
-        const onCloseButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.close()`);
-        };
-
         const onDetectButton = () => {
             // To be implemented in future feature work
             console.log(`androidSetupActionCreator.detectDevices()`);
@@ -30,7 +25,7 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             ),
             leftFooterButtonProps: {
                 text: 'Close',
-                onClick: onCloseButton,
+                onClick: props.deps.closeApp,
             },
             rightFooterButtonProps: {
                 text: 'Next',

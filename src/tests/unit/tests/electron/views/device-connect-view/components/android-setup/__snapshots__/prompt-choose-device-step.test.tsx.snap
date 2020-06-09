@@ -5,7 +5,7 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
   headerText="Choose which device to use"
   leftFooterButtonProps={
     Object {
-      "onClick": [Function],
+      "onClick": null,
       "text": "Close",
     }
   }

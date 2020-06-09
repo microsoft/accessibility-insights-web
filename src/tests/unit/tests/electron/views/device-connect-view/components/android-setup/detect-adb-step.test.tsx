@@ -14,6 +14,7 @@ describe('DetectAdbStep', () => {
             androidSetupActionCreator: null,
             androidSetupStepComponentProvider: null,
             LinkComponent: null,
+            closeApp: null,
         },
     };
 

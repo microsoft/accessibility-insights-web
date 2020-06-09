@@ -5,7 +5,7 @@ exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
   headerText="Connect to your Android device"
   leftFooterButtonProps={
     Object {
-      "onClick": [Function],
+      "onClick": null,
       "text": "Close",
     }
   }

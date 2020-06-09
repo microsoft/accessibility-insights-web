@@ -19,6 +19,7 @@ describe('PromptLocateAdbStep', () => {
                 androidSetupActionCreator: null,
                 androidSetupStepComponentProvider: null,
                 LinkComponent: linkProps => <a {...linkProps} />,
+                closeApp: null,
             },
         };
     });
