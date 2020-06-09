@@ -1,35 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InteractiveHeader render: no feature flag store data 1`] = `"<Header deps={{...}} />"`;
+exports[`InteractiveHeader does render nav menu button if not in narrow mode 1`] = `
+<Header
+  deps={null}
+  farItems={
+    <GearOptionsButtonComponent
+      deps={null}
+      featureFlagData={null}
+    />
+  }
+  items={
+    <FlaggedComponent
+      disableJSXElement={
+        <Switcher
+          deps={null}
+          pivotKey={2}
+          styles={
+            Object {
+              "dropdownClassName": "headerSwitcherDropdown",
+              "dropdownOptionClassName": "switcherDropdownOption",
+              "switcherClassName": "headerSwitcher",
+            }
+          }
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="reflowUI"
+      featureFlagStoreData={null}
+    />
+  }
+  navMenu={
+    <test-nav-menu
+      isSideNavOpen={false}
+      setSideNavOpen={null}
+    />
+  }
+/>
+`;
 
 exports[`InteractiveHeader render: tabClosed is false 1`] = `
 <Header
   deps={
     Object {
-      "dropdownClickHandler": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "dropdownActionMessageCreator": undefined,
-        "openDebugTools": [Function],
-        "openPreviewFeaturesPanelHandler": [Function],
-        "openScopingPanelHandler": [Function],
-        "openSettingsPanelHandler": [Function],
-        "source": undefined,
-      },
+      "dropdownClickHandler": Object {},
     }
   }
   farItems={
     <GearOptionsButtonComponent
       deps={
         Object {
-          "dropdownClickHandler": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "dropdownActionMessageCreator": undefined,
-            "openDebugTools": [Function],
-            "openPreviewFeaturesPanelHandler": [Function],
-            "openScopingPanelHandler": [Function],
-            "openSettingsPanelHandler": [Function],
-            "source": undefined,
-          },
+          "dropdownClickHandler": Object {},
         }
       }
       featureFlagData={
@@ -45,15 +65,7 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
         <Switcher
           deps={
             Object {
-              "dropdownClickHandler": proxy {
-                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "dropdownActionMessageCreator": undefined,
-                "openDebugTools": [Function],
-                "openPreviewFeaturesPanelHandler": [Function],
-                "openScopingPanelHandler": [Function],
-                "openSettingsPanelHandler": [Function],
-                "source": undefined,
-              },
+              "dropdownClickHandler": Object {},
             }
           }
           pivotKey={2}
@@ -75,21 +87,7 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
       }
     />
   }
-  navMenu={
-    <FlaggedComponent
-      enableJSXElement={
-        <LeftNavHamburgerButton
-          selectedPivot={2}
-        />
-      }
-      featureFlag="reflowUI"
-      featureFlagStoreData={
-        Object {
-          "test-flag": true,
-        }
-      }
-    />
-  }
+  navMenu={null}
 />
 `;
 
@@ -97,15 +95,7 @@ exports[`InteractiveHeader render: tabClosed is true 1`] = `
 <Header
   deps={
     Object {
-      "dropdownClickHandler": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "dropdownActionMessageCreator": undefined,
-        "openDebugTools": [Function],
-        "openPreviewFeaturesPanelHandler": [Function],
-        "openScopingPanelHandler": [Function],
-        "openSettingsPanelHandler": [Function],
-        "source": undefined,
-      },
+      "dropdownClickHandler": Object {},
     }
   }
 />

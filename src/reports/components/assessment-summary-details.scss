@@ -13,6 +13,10 @@
         width: 100%;
         align-items: start;
 
+        @media screen and (max-width: 900px) {
+            column-count: 1;
+        }
+
         .assessment-summary-details-row {
             // This intermediate inline-block element between the wrapping multi-column block layout and
             // the per-row flex layout is required for Chromium to respect the parent's align-items style.

@@ -79,6 +79,7 @@ describe('PopupView', () => {
             lastSelectedHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
+            adbLocation: null,
         };
 
         beforeEach(() => {

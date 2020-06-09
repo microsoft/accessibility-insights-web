@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
+<AndroidSetupStepLayout
+  headerText="Connect to your Android device"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Close",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/connectDevice"
+    >
+      How do I connect to my device?
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": null,
+      "text": "Next",
+    }
+  }
+>
+  <CustomizedPrimaryButton
+    onClick={[Function]}
+    text="Detect my device"
+  />
+</AndroidSetupStepLayout>
+`;

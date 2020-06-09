@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ExpandCollpaseLeftNavButtonProps } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
-import { LeftNavHamburgerButton } from 'common/components/left-nav-hamburger-button';
 import { FeatureFlags } from 'common/feature-flags';
-import { NamedFC } from 'common/react/named-fc';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { headerSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
@@ -19,6 +19,10 @@ export interface InteractiveHeaderProps {
     featureFlagStoreData: FeatureFlagStoreData;
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
+    navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    isNarrowMode: boolean;
+    isSideNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
@@ -27,11 +31,14 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     }
 
     const getNavMenu = () => {
+        if (props.isNarrowMode === false) {
+            return null;
+        }
+
         return (
-            <FlaggedComponent
-                enableJSXElement={<LeftNavHamburgerButton selectedPivot={props.selectedPivot} />}
-                featureFlag={FeatureFlags.reflowUI}
-                featureFlagStoreData={props.featureFlagStoreData}
+            <props.navMenu
+                setSideNavOpen={props.setSideNavOpen}
+                isSideNavOpen={props.isSideNavOpen}
             />
         );
     };

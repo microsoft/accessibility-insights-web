@@ -8,6 +8,7 @@ import {
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -45,6 +46,10 @@ export class IpcRendererShim {
     public readonly fromBrowserWindowMaximize = new Action<void>();
     public readonly fromBrowserWindowUnmaximize = new Action<void>();
     public readonly fromBrowserWindowEnterFullScreen = new Action<void>();
+
+    public getAppPath = async (): Promise<string> => {
+        return await this.ipcRenderer.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME);
+    };
 
     // Call these methods to send data FROM renderer process
     public initializeWindow = (): void => {

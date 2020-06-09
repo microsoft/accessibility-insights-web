@@ -11,18 +11,31 @@ import * as React from 'react';
 export type DetailsViewContentProps = DetailsViewContainerProps & {
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 };
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
+    const selectedDetailsViewSwitcherNavConfiguration = props.deps.getDetailsSwitcherNavConfiguration(
+        {
+            selectedDetailsViewPivot:
+                props.storeState.visualizationStoreData.selectedDetailsViewPivot,
+        },
+    );
+
     const renderHeader = () => {
         const storeState = props.storeState;
         const visualizationStoreData = storeState.visualizationStoreData;
+
         return (
             <InteractiveHeader
                 deps={props.deps}
                 selectedPivot={visualizationStoreData.selectedDetailsViewPivot}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 tabClosed={props.storeState.tabStoreData.isClosed}
+                navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton}
+                isSideNavOpen={props.isSideNavOpen}
+                setSideNavOpen={props.setSideNavOpen}
+                isNarrowMode={props.isNarrowMode}
             />
         );
     };
@@ -53,12 +66,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                     storeState.detailsViewStoreData.detailsViewRightContentPanel,
             },
         );
-        const selectedDetailsViewSwitcherNavConfiguration = props.deps.getDetailsSwitcherNavConfiguration(
-            {
-                selectedDetailsViewPivot:
-                    storeState.visualizationStoreData.selectedDetailsViewPivot,
-            },
-        );
+
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(
             storeState,
         );
@@ -111,6 +119,9 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }
                 scanMetadata={scanMetadata}
+                isSideNavOpen={props.isSideNavOpen}
+                setSideNavOpen={props.setSideNavOpen}
+                isNarrowMode={props.isNarrowMode}
             />
         );
     };

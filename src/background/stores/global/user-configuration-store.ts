@@ -23,6 +23,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         lastSelectedHighContrast: false,
         bugService: 'none',
         bugServicePropertiesMap: {},
+        adbLocation: null,
     };
 
     constructor(
@@ -51,6 +52,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
     protected addActionListeners(): void {
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.userConfigActions.setAdbLocation.addListener(this.onSetAdbLocation);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setNativeHighContrastMode.addListener(
@@ -62,6 +64,11 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
+
+    private onSetAdbLocation = (location: string): void => {
+        this.state.adbLocation = location;
+        this.saveAndEmitChanged();
+    };
 
     private onSetTelemetryState = (enableTelemetry: boolean): void => {
         this.state.isFirstTime = false;

@@ -27,6 +27,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.debugTools]: false,
             [FeatureFlags.exportReportOptions]: false,
             [FeatureFlags.reflowUI]: false,
+            [FeatureFlags.needsReview]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
@@ -39,7 +40,7 @@ describe('FeatureFlagsTest', () => {
         });
     });
 
-    test('all feature flag have a corresponding feature flag value', () => {
+    test('all feature flags have a corresponding feature flag value', () => {
         const featureFlags = keys(FeatureFlags).sort();
         const featureFlagValueKeys = keys(featureFlagValues).sort();
 

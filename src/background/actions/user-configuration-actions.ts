@@ -9,6 +9,7 @@ import {
 } from './action-payloads';
 
 export class UserConfigurationActions {
+    public readonly setAdbLocation = new Action<string>();
     public readonly setTelemetryState = new Action<boolean>();
     public readonly getCurrentState = new Action<void>();
     public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
