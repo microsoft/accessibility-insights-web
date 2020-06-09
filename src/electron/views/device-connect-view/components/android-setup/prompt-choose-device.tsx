@@ -9,10 +9,7 @@ import {
     SelectionMode,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
-import {
-    AndroidSetupPromptLayout,
-    AndroidSetupPromptLayoutProps,
-} from './android-setup-prompt-layout';
+import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import * as styles from './prompt-choose-device.scss';
 
@@ -35,17 +32,17 @@ export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
 
         const items = [
             {
-                value: 'Galaxy S20',
+                value: 'Phone 1',
             },
             {
-                value: 'Galaxy S21',
+                value: 'Phone 2',
             },
             {
-                value: 'Galaxy S22',
+                value: 'Phone 3',
             },
         ];
 
-        const layoutProps: AndroidSetupPromptLayoutProps = {
+        const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Choose which device to use',
             children: (
                 <>
@@ -57,12 +54,16 @@ export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
                         selectionMode={SelectionMode.single}
                         checkboxVisibility={CheckboxVisibility.always}
                         isHeaderVisible={false}
+                        checkboxCellClassName={styles.checkmarkCell}
                         onRenderCheckbox={checkboxProps => {
                             return checkboxProps.checked ? (
                                 <>
-                                    <FontIcon iconName="CheckMark" className={'test'} />
+                                    <FontIcon iconName="CheckMark" className={styles.checkmark} />
                                 </>
                             ) : null;
+                        }}
+                        onRenderItemColumn={item => {
+                            return <p>{item.value}</p>;
                         }}
                     />
                 </>
@@ -78,6 +79,6 @@ export const PromptChooseDevice = NamedFC<CommonAndroidSetupStepProps>(
             },
         };
 
-        return <AndroidSetupPromptLayout {...layoutProps}></AndroidSetupPromptLayout>;
+        return <AndroidSetupStepLayout {...layoutProps}></AndroidSetupStepLayout>;
     },
 );

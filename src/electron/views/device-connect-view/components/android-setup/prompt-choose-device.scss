@@ -2,4 +2,15 @@
 // Licensed under the MIT License.
 .phone-list {
     -webkit-app-region: no-drag;
+    margin-top: 20px;
+    overflow-x: hidden;
+    max-height: 120px;
+}
+
+.checkmark-cell {
+    align-self: center;
+}
+
+.checkmark {
+    font-size: large;
 }
