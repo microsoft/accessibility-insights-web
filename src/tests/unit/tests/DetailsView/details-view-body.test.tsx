@@ -11,7 +11,6 @@ import * as React from 'react';
 
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { IMock, Mock } from 'typemoq';
-import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
@@ -21,10 +20,6 @@ import {
     AssessmentStoreData,
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
-import {
-    ScanData,
-    TestsEnabledState,
-} from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -46,10 +41,6 @@ describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
     let configFactoryStub: VisualizationConfigurationFactory;
     let clickHandlerFactoryStub: DetailsViewToggleClickHandlerFactory;
-    let clickHandlerStub: (event: any) => void;
-    let getStoreDataStub: (data: TestsEnabledState) => ScanData;
-    let configStub: VisualizationConfiguration;
-    let scanDataStub: ScanData;
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
@@ -80,22 +71,10 @@ describe('DetailsViewBody', () => {
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryStub = {} as VisualizationConfigurationFactory;
             clickHandlerFactoryStub = {} as DetailsViewToggleClickHandlerFactory;
-            (getStoreDataStub = () => null),
-                (configStub = {
-                    getStoreData: getStoreDataStub,
-                    displayableData: {},
-                } as VisualizationConfiguration);
-
-            scanDataStub = {
-                enabled: false,
-            } as ScanData;
-
             targetAppInfoStub = {
                 name: 'name',
                 url: 'url',
             } as TargetAppData;
-
-            clickHandlerStub = () => {};
 
             const assessmentStoreData = {
                 assessmentNavState: {
