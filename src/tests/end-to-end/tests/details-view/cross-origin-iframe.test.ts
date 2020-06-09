@@ -97,7 +97,7 @@ describe('scanning', () => {
             };
 
             await assertFailureCounts(ruleDetails, expectedCounts);
-        });
+        }, 300000);
 
         it('does not show iframe detected warning', async () => {
             const iframeWarning = await fastPassAutomatedChecks.getSelectorElement(
@@ -105,7 +105,7 @@ describe('scanning', () => {
             );
 
             expect(iframeWarning).toBeNull();
-        });
+        }, 300000);
     });
 
     async function launchFastPassWithExtraPermissions(
