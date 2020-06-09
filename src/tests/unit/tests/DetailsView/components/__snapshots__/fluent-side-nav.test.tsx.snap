@@ -1,12 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FluentSideNav render null if tab is closed 1`] = `null`;
-
-exports[`FluentSideNav render side nav 1`] = `
+exports[`FluentSideNav render nav bar 1`] = `
 <div
   id="sideNavContainer"
 >
   <DetailsViewLeftNav
+    isNarrowMode={false}
     isSideNavOpen={false}
     selectedPivot={0}
     setSideNavOpen={null}
@@ -16,32 +15,33 @@ exports[`FluentSideNav render side nav 1`] = `
       }
     }
   />
-  <GenericPanel
-    className="leftNavPanel"
-    hasCloseButton={false}
-    isLightDismiss={true}
-    isOpen={false}
-    layerProps={
+</div>
+`;
+
+exports[`FluentSideNav render null if tab is closed 1`] = `null`;
+
+exports[`FluentSideNav render sidePanel 1`] = `
+<GenericPanel
+  className="leftNavPanel"
+  hasCloseButton={false}
+  isLightDismiss={true}
+  isOpen={false}
+  onDismiss={[Function]}
+  onRenderHeader={[Function]}
+  onRenderNavigation={[Function]}
+  onRenderNavigationContent={[Function]}
+  type={8}
+>
+  <DetailsViewLeftNav
+    isNarrowMode={true}
+    isSideNavOpen={false}
+    selectedPivot={0}
+    setSideNavOpen={null}
+    tabStoreData={
       Object {
-        "hostId": "sideNavContainer",
+        "isClosed": false,
       }
     }
-    onDismiss={[Function]}
-    onRenderHeader={[Function]}
-    onRenderNavigation={[Function]}
-    onRenderNavigationContent={[Function]}
-    type={8}
-  >
-    <DetailsViewLeftNav
-      isSideNavOpen={false}
-      selectedPivot={0}
-      setSideNavOpen={null}
-      tabStoreData={
-        Object {
-          "isClosed": false,
-        }
-      }
-    />
-  </GenericPanel>
-</div>
+  />
+</GenericPanel>
 `;

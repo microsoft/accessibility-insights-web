@@ -36,15 +36,9 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         }
 
         return (
-            <FlaggedComponent
-                enableJSXElement={
-                    <props.navMenu
-                        setSideNavOpen={props.setSideNavOpen}
-                        isSideNavOpen={props.isSideNavOpen}
-                    />
-                }
-                featureFlag={FeatureFlags.reflowUI}
-                featureFlagStoreData={props.featureFlagStoreData}
+            <props.navMenu
+                setSideNavOpen={props.setSideNavOpen}
+                isSideNavOpen={props.isSideNavOpen}
             />
         );
     };
