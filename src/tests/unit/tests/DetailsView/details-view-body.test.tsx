@@ -9,6 +9,8 @@ import {
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { IMock, Mock } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -39,8 +41,6 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
-import { Mock, IMock } from 'typemoq';
-import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
