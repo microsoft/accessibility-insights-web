@@ -6,9 +6,8 @@ import {
     DetailsViewCommandBarDeps,
     DetailsViewCommandBarProps,
 } from 'DetailsView/components/details-view-command-bar';
-import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -34,29 +33,32 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from '../../../../DetailsView/components/details-view-switcher-nav';
-import { TargetPageHiddenBar } from '../../../../DetailsView/components/target-page-hidden-bar';
 import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
+import { Mock, IMock } from 'typemoq';
+import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
-    let configFactoryMock: IMock<VisualizationConfigurationFactory>;
-    let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
+    let configFactoryStub: VisualizationConfigurationFactory;
+    let clickHandlerFactoryStub: DetailsViewToggleClickHandlerFactory;
     let clickHandlerStub: (event: any) => void;
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
+    let getStoreDataStub: (data: TestsEnabledState) => ScanData;
     let configStub: VisualizationConfiguration;
     let scanDataStub: ScanData;
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
     let targetAppInfoStub: TargetAppData;
+    let setSideNavOpenMock: IMock<React.Dispatch<React.SetStateAction<boolean>>>;
 
     describe('render', () => {
         beforeEach(() => {
+            setSideNavOpenMock = Mock.ofInstance(() => {});
             selectedTest = -1;
             const RightPanelStub: Readonly<ReactFCWithDisplayName<RightPanelProps>> = NamedFC<
                 RightPanelProps
@@ -76,17 +78,13 @@ describe('DetailsViewBody', () => {
                 StartOverComponentFactory: p => null,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
-            configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
-            clickHandlerFactoryMock = Mock.ofType(
-                DetailsViewToggleClickHandlerFactory,
-                MockBehavior.Strict,
-            );
-            getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
-
-            configStub = {
-                getStoreData: getStoreDataMock.object,
-                displayableData: {},
-            } as VisualizationConfiguration;
+            configFactoryStub = {} as VisualizationConfigurationFactory;
+            clickHandlerFactoryStub = {} as DetailsViewToggleClickHandlerFactory;
+            (getStoreDataStub = () => null),
+                (configStub = {
+                    getStoreData: getStoreDataStub,
+                    displayableData: {},
+                } as VisualizationConfiguration);
 
             scanDataStub = {
                 enabled: false,
@@ -122,16 +120,15 @@ describe('DetailsViewBody', () => {
 
             props = {
                 deps: {
-                    detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator)
-                        .object,
+                    detailsViewActionMessageCreator: {} as DetailsViewActionMessageCreator,
                 } as DetailsViewCommandBarDeps,
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
                 featureFlagStoreData: getDefaultFeatureFlagsWeb(),
                 selectedTest: selectedTest,
-                visualizationConfigurationFactory: configFactoryMock.object,
-                clickHandlerFactory: clickHandlerFactoryMock.object,
+                visualizationConfigurationFactory: configFactoryStub,
+                clickHandlerFactory: clickHandlerFactoryStub,
                 assessmentStoreData: assessmentStoreData,
                 detailsViewStoreData: {
                     detailsViewRightContentPanel: 'Overview',
@@ -147,93 +144,24 @@ describe('DetailsViewBody', () => {
                     targetAppInfo: targetAppInfoStub,
                 } as ScanMetadata,
                 isSideNavOpen: false,
-                setSideNavOpen: null,
+                setSideNavOpen: setSideNavOpenMock.object,
             } as DetailsViewBodyProps;
         });
 
-        test('a non-assessment or non-issues view', () => {
-            setupClickHandlerFactoryMock(
-                clickHandlerFactoryMock,
-                selectedTest,
-                !scanDataStub.enabled,
-            );
-            setupConfigFactoryMock(
-                configFactoryMock,
-                getStoreDataMock,
-                configStub,
-                scanDataStub,
-                props,
-            );
+        test('render', () => {
+            const wrapper = shallow(<DetailsViewBody {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
 
-            const expected = (
-                <div className="details-view-body">
-                    {buildCommandBar(props)}
-                    <div className="details-view-body-nav-content-layout">
-                        {buildLeftNav(props)}
-                        <div className="details-view-body-content-pane">
-                            {buildTargetPageInfoBar(props)}
-                            <div className="view" role="main">
-                                {buildRightPanel(props)}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
+            wrapper.find(FluentSideNav).props().onRightPanelContentSwitch();
+        });
 
-            const testSubject = new DetailsViewBody(props);
-            const actual = testSubject.render();
-            expect(actual).toEqual(expected);
+        test('onRightPanelContentSwitch calls setSideNavOpen with false', () => {
+            const wrapper = shallow(<DetailsViewBody {...props} />);
+            setSideNavOpenMock.setup(sm => sm(false)).verifiable();
+
+            wrapper.find(FluentSideNav).props().onRightPanelContentSwitch();
+
+            setSideNavOpenMock.verifyAll();
         });
     });
-
-    function setupConfigFactoryMock(
-        factoryMock: IMock<VisualizationConfigurationFactory>,
-        givenGetStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>,
-        config: VisualizationConfiguration,
-        scanData: ScanData,
-        givenProps: DetailsViewBodyProps,
-    ): void {
-        factoryMock
-            .setup(cfm => cfm.getConfiguration(givenProps.selectedTest))
-            .returns(() => config);
-
-        givenGetStoreDataMock
-            .setup(gsdm => gsdm(givenProps.visualizationStoreData.tests))
-            .returns(() => scanData);
-    }
-
-    function setupClickHandlerFactoryMock(
-        factoryMock: IMock<DetailsViewToggleClickHandlerFactory>,
-        setupType: VisualizationType,
-        setupNewValue: boolean,
-    ): void {
-        factoryMock
-            .setup(chfm => chfm.createClickHandler(setupType, setupNewValue))
-            .returns(() => clickHandlerStub);
-    }
-
-    function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
-        return (
-            <FluentSideNav
-                selectedPivot={givenProps.visualizationStoreData.selectedDetailsViewPivot}
-                onRightPanelContentSwitch={() => givenProps.setSideNavOpen(false)}
-                {...givenProps}
-            />
-        );
-    }
-
-    function buildTargetPageInfoBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <TargetPageHiddenBar isTargetPageHidden={givenProps.tabStoreData.isPageHidden} />;
-    }
-
-    function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar {...givenProps} />;
-    }
-
-    function buildRightPanel(givenProps: DetailsViewBodyProps): JSX.Element {
-        const rightPanelProps = {
-            ...givenProps,
-        };
-        return <rightPanelConfig.RightPanel {...rightPanelProps} />;
-    }
 });
