@@ -1,74 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewContentWithLocalState render 1`] = `
-<ResizeDetector
-  handleHeight={false}
-  handleWidth={true}
-  nodeType="div"
-  onResize={null}
-  querySelector="body"
-  refreshRate={1000}
-  render={[Function]}
-  skipOnMount={false}
-  targetDomEl={null}
-/>
-`;
-
-exports[`DetailsViewContentWithLocalState render ReactResizeDetector 1`] = `
-<ResizeDetector
-  handleHeight={false}
-  handleWidth={true}
-  nodeType="div"
-  onResize={null}
-  querySelector="body"
-  refreshRate={1000}
-  render={[Function]}
-  skipOnMount={false}
-  targetDomEl={null}
-/>
-`;
-
-exports[`DetailsViewContentWithLocalState render narrow mode 1`] = `
-<DetailsViewContent
-  isNarrowMode={true}
-  isSideNavOpen={false}
-  setSideNavOpen={[Function]}
-  storeState={
-    Object {
-      "featureFlagStoreData": Object {
-        "reflowUI": true,
-      },
+<React.Fragment>
+  <NarrowModeDetector
+    isNarrowModeEnabled={false}
+    setNarrowMode={[Function]}
+  />
+  <DetailsViewContent
+    isNarrowMode={false}
+    isSideNavOpen={false}
+    setSideNavOpen={[Function]}
+    storeState={
+      Object {
+        "featureFlagStoreData": Object {
+          "reflowUI": false,
+        },
+      }
     }
-  }
-/>
-`;
-
-exports[`DetailsViewContentWithLocalState render normal mode 1`] = `
-<DetailsViewContent
-  isNarrowMode={false}
-  isSideNavOpen={false}
-  setSideNavOpen={[Function]}
-  storeState={
-    Object {
-      "featureFlagStoreData": Object {
-        "reflowUI": true,
-      },
-    }
-  }
-/>
-`;
-
-exports[`DetailsViewContentWithLocalState renderAccordingToWidth 1`] = `
-<DetailsViewContent
-  isNarrowMode={false}
-  isSideNavOpen={false}
-  setSideNavOpen={[Function]}
-  storeState={
-    Object {
-      "featureFlagStoreData": Object {
-        "reflowUI": false,
-      },
-    }
-  }
-/>
+  />
+</React.Fragment>
 `;
