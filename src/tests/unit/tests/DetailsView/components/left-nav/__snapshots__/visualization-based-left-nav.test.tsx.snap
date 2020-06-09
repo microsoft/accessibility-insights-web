@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VisualizationBasedLeftNav renders with index icon 1`] = `
+<BaseLeftNav
+  links={
+    Array [
+      Object {},
+      Object {},
+    ]
+  }
+  selectedKey="some key"
+/>
+`;
