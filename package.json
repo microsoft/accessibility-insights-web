@@ -74,6 +74,7 @@
         "@types/react-copy-to-clipboard": "^4.3.0",
         "@types/react-dom": "^16.9.8",
         "@types/react-helmet": "^6.0.0",
+        "@types/react-resize-detector": "^4.2.0",
         "@types/react-router-dom": "^5.1.5",
         "@types/serve-static": "^1.13.4",
         "@types/ua-parser-js": "^0.7.33",
@@ -136,7 +137,6 @@
         "webpack-node-externals": "^1.7.2"
     },
     "dependencies": {
-        "@types/react-resize-detector": "^4.2.0",
         "accessibility-insights-for-android-service-bin": "^1.2.0",
         "appium-adb": "^8.5.1",
         "applicationinsights-js": "^1.0.21",
