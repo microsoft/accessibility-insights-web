@@ -35,6 +35,7 @@ export type DetailsViewLeftNavProps = {
     featureFlagStoreData: FeatureFlagStoreData;
     assessmentStoreData: AssessmentStoreData;
     selectedPivot: DetailsViewPivotType;
+    onRightPanelContentSwitch: () => void;
 };
 
 export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
@@ -86,6 +87,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
                     assessmentStoreData.assessments,
                     data => data.testStepStatus,
                 )}
+                onRightPanelContentSwitch={props.onRightPanelContentSwitch}
                 featureFlagStoreData={featureFlagStoreData}
                 expandedTest={assessmentStoreData.assessmentNavState.expandedTestType}
             />

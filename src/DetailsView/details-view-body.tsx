@@ -68,18 +68,24 @@ export interface DetailsViewBodyProps {
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
-        const bodyLayoutClassname = classNames({
+        const bodyLayoutClassName = classNames({
             'details-view-body-nav-content-layout': true,
             'narrow-mode': this.props.isNarrowMode,
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
+
+        const bodyContentClassName = classNames({
+            'details-view-body-content-pane': true,
+
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
         return (
             <div className="details-view-body">
                 {this.renderCommandBar()}
-                <div className={bodyLayoutClassname}>
-                    {this.renderNavBar(this.props.isNarrowMode)}
-                    <div className="details-view-body-content-pane">
+                <div className={bodyLayoutClassName}>
+                    {this.renderNavBar()}
+                    <div className={bodyContentClassName}>
                         {this.getTargetPageHiddenBar()}
                         <div className="view" role="main">
                             {this.renderRightPanel()}
@@ -100,12 +106,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
-    private renderNavBar(isNarrowMode: boolean): JSX.Element {
+    private renderNavBar(): JSX.Element {
         return (
             <FluentSideNav
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
+                onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
                 isNarrowMode={this.props.isNarrowMode}
                 {...this.props}
             />
