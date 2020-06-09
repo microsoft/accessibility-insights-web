@@ -63,13 +63,14 @@ export interface DetailsViewBodyProps {
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
         const bodyLayoutClassname = classNames({
             'details-view-body-nav-content-layout': true,
-
+            'narrow-mode': this.props.isNarrowMode,
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
@@ -106,6 +107,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
                 onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
+                isNarrowMode={this.props.isNarrowMode}
                 {...this.props}
             />
         );
