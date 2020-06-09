@@ -217,7 +217,12 @@ describe(DetailsViewContent, () => {
                 .returns(() => cardsViewData);
 
             const rendered = shallow(
-                <DetailsViewContent {...props} isSideNavOpen={false} setSideNavOpen={() => {}} />,
+                <DetailsViewContent
+                    {...props}
+                    isNarrowMode={false}
+                    isSideNavOpen={false}
+                    setSideNavOpen={() => {}}
+                />,
             );
             expect(rendered.getElement()).toMatchSnapshot();
 

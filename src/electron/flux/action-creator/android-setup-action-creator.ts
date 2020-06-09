@@ -5,7 +5,7 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 export class AndroidSetupActionCreator {
     constructor(private readonly setupActions: AndroidSetupActions) {}
 
-    public cancel(): void {
+    public cancel = () => {
         this.setupActions.cancel.invoke();
-    }
+    };
 }

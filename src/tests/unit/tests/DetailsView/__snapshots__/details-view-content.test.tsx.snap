@@ -57,6 +57,7 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isNarrowMode={false}
     isSideNavOpen={false}
     selectedPivot={0}
     setSideNavOpen={[Function]}
@@ -160,6 +161,7 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isNarrowMode={false}
     isSideNavOpen={false}
     pathSnippetStoreData={
       Object {
