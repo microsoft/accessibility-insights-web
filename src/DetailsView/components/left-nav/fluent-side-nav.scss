@@ -11,14 +11,14 @@
     justify-content: start;
     align-items: self-start;
     align-content: stretch;
+}
 
-    .left-nav-panel {
-        margin-top: $detailsViewHeaderBarHeight;
-        :global(.ms-Panel-main) {
-            width: $detailsViewReflowLeftNavWidth;
-        }
-        :global(.ms-Panel-content) {
-            padding: 0px;
-        }
+.left-nav-panel {
+    margin-top: $detailsViewHeaderBarHeight;
+    :global(.ms-Panel-main) {
+        width: $detailsViewReflowLeftNavWidth;
+    }
+    :global(.ms-Panel-content) {
+        padding: 0px;
     }
 }

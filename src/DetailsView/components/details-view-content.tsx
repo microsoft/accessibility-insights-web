@@ -11,6 +11,7 @@ import * as React from 'react';
 export type DetailsViewContentProps = DetailsViewContainerProps & {
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 };
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
@@ -34,6 +35,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
+                isNarrowMode={props.isNarrowMode}
             />
         );
     };
@@ -119,6 +121,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 scanMetadata={scanMetadata}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
+                isNarrowMode={props.isNarrowMode}
             />
         );
     };

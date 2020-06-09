@@ -1,12 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewContent } from 'DetailsView/components/details-view-content';
+import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
 
 export type DetailsViewContentWithLocalStateProps = DetailsViewContainerProps;
 export type DetailsViewContentState = {
     isSideNavOpen: boolean;
+    isNarrowMode: boolean;
 };
 
 export class DetailsViewContentWithLocalState extends React.Component<
@@ -15,20 +18,34 @@ export class DetailsViewContentWithLocalState extends React.Component<
 > {
     constructor(props: DetailsViewContentWithLocalStateProps) {
         super(props);
-        this.state = { isSideNavOpen: false };
+        this.state = { isSideNavOpen: false, isNarrowMode: false };
     }
 
     private setSideNavOpen(isOpen: boolean): void {
         this.setState({ isSideNavOpen: isOpen });
     }
 
+    private setNarrowMode(isNarrowMode: boolean): void {
+        this.setState({ isNarrowMode: isNarrowMode });
+    }
+
     public render(): JSX.Element {
         return (
-            <DetailsViewContent
-                {...this.props}
-                isSideNavOpen={this.state.isSideNavOpen}
-                setSideNavOpen={(isOpen: boolean) => this.setSideNavOpen(isOpen)}
-            />
+            <>
+                <NarrowModeDetector
+                    isNarrowModeEnabled={
+                        this.props.storeState.featureFlagStoreData[FeatureFlags.reflowUI]
+                    }
+                    setNarrowMode={isNarrowMode => this.setNarrowMode(isNarrowMode)}
+                />
+
+                <DetailsViewContent
+                    {...this.props}
+                    isNarrowMode={this.state.isNarrowMode}
+                    isSideNavOpen={this.state.isSideNavOpen}
+                    setSideNavOpen={(isOpen: boolean) => this.setSideNavOpen(isOpen)}
+                />
+            </>
         );
     }
 }

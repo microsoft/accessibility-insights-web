@@ -1,8 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewContentWithLocalState render 1`] = `
-<DetailsViewContent
-  isSideNavOpen={false}
-  setSideNavOpen={[Function]}
-/>
+<React.Fragment>
+  <NarrowModeDetector
+    isNarrowModeEnabled={false}
+    setNarrowMode={[Function]}
+  />
+  <DetailsViewContent
+    isNarrowMode={false}
+    isSideNavOpen={false}
+    setSideNavOpen={[Function]}
+    storeState={
+      Object {
+        "featureFlagStoreData": Object {
+          "reflowUI": false,
+        },
+      }
+    }
+  />
+</React.Fragment>
 `;
