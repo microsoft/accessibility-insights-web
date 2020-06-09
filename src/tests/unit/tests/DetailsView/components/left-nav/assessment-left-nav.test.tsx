@@ -30,9 +30,11 @@ describe(AssessmentLeftNav, () => {
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     const expandedTest: VisualizationType = 1;
     let onRightPanelContentSwitch: () => void;
+    let setNavComponentRef: (nav) => void;
 
     beforeEach(() => {
         onRightPanelContentSwitch = () => {};
+        setNavComponentRef = _ => {};
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
@@ -56,6 +58,7 @@ describe(AssessmentLeftNav, () => {
             featureFlagStoreData: {},
             expandedTest,
             onRightPanelContentSwitch,
+            setNavComponentRef,
         };
 
         leftNavLinkBuilderMock
