@@ -48,7 +48,6 @@ describe('AndroidSetupStore', () => {
         store.initialize();
 
         setupActions.cancel.invoke();
-        setupActions.close.invoke();
         setupActions.next.invoke();
         setupActions.rescan.invoke();
         setupActions.saveAdbPath.invoke('');
