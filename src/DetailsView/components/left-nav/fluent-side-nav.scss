@@ -5,16 +5,9 @@
 #side-nav-container {
     max-width: 25%;
     min-width: $detailsViewReflowLeftNavWidth;
-
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: start;
-    align-items: self-start;
-    align-content: stretch;
 }
 
 .left-nav-panel {
-    margin-top: $detailsViewHeaderBarHeight;
     :global(.ms-Panel-main) {
         width: $detailsViewReflowLeftNavWidth;
     }

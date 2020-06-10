@@ -8,6 +8,7 @@ exports[`DetectDevicesStep renders 1`] = `
         "LinkComponent": null,
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
+        "closeApp": null,
       }
     }
     spinnerLabel="Scanning for devices..."

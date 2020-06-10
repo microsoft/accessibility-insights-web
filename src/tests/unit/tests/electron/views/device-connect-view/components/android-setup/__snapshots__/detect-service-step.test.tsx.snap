@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstallingServiceStep renders 1`] = `
+exports[`DetectServiceStep renders 1`] = `
 <main>
   <AndroidSetupSpinnerStep
     deps={
@@ -8,10 +8,10 @@ exports[`InstallingServiceStep renders 1`] = `
         "LinkComponent": null,
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
-        "closeApp": null,
       }
     }
-    spinnerLabel="Installing on your device..."
+    disableCancel={true}
+    spinnerLabel="Scanning for devices..."
   />
 </main>
 `;

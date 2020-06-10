@@ -15,6 +15,7 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
         "detect-adb": [Function],
         "prompt-locate-adb": [Function],
       },
+      "closeApp": null,
     }
   }
   userConfigurationStoreData={null}

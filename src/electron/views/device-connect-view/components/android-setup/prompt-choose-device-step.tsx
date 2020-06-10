@@ -16,11 +16,6 @@ import * as styles from './prompt-choose-device-step.scss';
 export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptChooseDeviceStep',
     (props: CommonAndroidSetupStepProps) => {
-        const onCloseButton = () => {
-            // To be implemented in future feature work
-            console.log(`ipc call to close`);
-        };
-
         const onNextButton = () => {
             // To be implemented in future feature work
             console.log(`androidSetupActionCreator.next()`);
@@ -73,7 +68,7 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             ),
             leftFooterButtonProps: {
                 text: 'Close',
-                onClick: onCloseButton,
+                onClick: _ => props.deps.closeApp(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
