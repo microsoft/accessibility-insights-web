@@ -26,7 +26,7 @@ import {
 } from '../../../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { GetLeftNavSelectedKeyProps } from '../../../../../../DetailsView/components/left-nav/get-left-nav-selected-key';
 
-describe('DetailsViewLeftNav', () => {
+describe(DetailsViewLeftNav, () => {
     it('should render from switcher nav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';
@@ -78,6 +78,7 @@ describe('DetailsViewLeftNav', () => {
             switcherNavConfiguration: switcherNavConfig,
             rightPanelConfiguration: rightPanelConfig,
             assessmentStoreData: assessmentStoreDataStub,
+            setNavComponentRef: nav => {},
         } as DetailsViewLeftNavProps;
 
         GetLeftNavSelectedKeyMock.setup(getter =>

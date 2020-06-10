@@ -62,6 +62,7 @@ export class LeftNavLinkBuilder {
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         index: number,
+        onRightPanelContentSwitch: () => void,
     ): BaseLeftNavLink {
         const { getAssessmentSummaryModelFromProviderAndStatusData, navLinkRenderer } = deps;
 
@@ -76,7 +77,7 @@ export class LeftNavLinkBuilder {
             'Overview',
             index,
             navLinkRenderer.renderOverviewLink,
-            onLinkClick,
+            this.getRightPanelContentSwitchLinkClickHandler(onLinkClick, onRightPanelContentSwitch),
         );
 
         const overviewLink = {
@@ -139,6 +140,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         startingIndex: number,
         expandedTest: VisualizationType | undefined,
+        onRightPanelContentSwitch: () => void,
     ): BaseLeftNavLink[] {
         const assessments = assessmentsProvider.all();
         let index = startingIndex;
@@ -151,6 +153,7 @@ export class LeftNavLinkBuilder {
                 index,
                 assessmentsData,
                 isExpanded,
+                onRightPanelContentSwitch,
             );
             index++;
             return test;
@@ -165,6 +168,7 @@ export class LeftNavLinkBuilder {
         index: number,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         isExpanded: boolean,
+        onRightPanelContentSwitch: () => void,
     ): ReflowAssessmentLeftNavLink => {
         const {
             getStatusForTest,
@@ -190,7 +194,10 @@ export class LeftNavLinkBuilder {
 
         const gettingStartedLink = this.buildGettingStartedLink(
             navLinkRenderer.renderGettingStartedLink,
-            navLinkHandler.onGettingStartedClick,
+            this.getRightPanelContentSwitchLinkClickHandler(
+                navLinkHandler.onGettingStartedClick,
+                onRightPanelContentSwitch,
+            ),
             assessment,
         );
 
@@ -203,7 +210,10 @@ export class LeftNavLinkBuilder {
                     stepStatus[requirement.key]?.stepFinalResult,
                     requirementIndex + 1,
                     index,
-                    navLinkHandler.onRequirementClick,
+                    this.getRightPanelContentSwitchLinkClickHandler(
+                        navLinkHandler.onRequirementClick,
+                        onRightPanelContentSwitch,
+                    ),
                 ),
         );
 
@@ -276,6 +286,7 @@ export class LeftNavLinkBuilder {
         onLinkClick: onBaseLeftNavItemClick,
         visualizationType: VisualizationType,
         index: number,
+        onRightPanelContentSwitch: () => void,
     ): BaseLeftNavLink {
         const displayableData = configuration.displayableData;
         const { navLinkRenderer } = deps;
@@ -285,7 +296,7 @@ export class LeftNavLinkBuilder {
             VisualizationType[visualizationType],
             index,
             navLinkRenderer.renderVisualizationLink,
-            onLinkClick,
+            this.getRightPanelContentSwitchLinkClickHandler(onLinkClick, onRightPanelContentSwitch),
         );
 
         return link;
@@ -309,6 +320,19 @@ export class LeftNavLinkBuilder {
                 className: 'hidden',
             },
             onClickNavLink: onClickNavLink,
+        };
+    }
+
+    private getRightPanelContentSwitchLinkClickHandler(
+        baseOnClick: onBaseLeftNavItemClick,
+        onRightPanelContentSwitch: () => void,
+    ): onBaseLeftNavItemClick {
+        return (
+            event: React.MouseEvent<HTMLElement, MouseEvent>,
+            item: TestRequirementLeftNavLink,
+        ) => {
+            baseOnClick(event, item);
+            onRightPanelContentSwitch();
         };
     }
 }

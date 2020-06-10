@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { INavLink, Nav } from 'office-ui-fabric-react';
+import { INav, INavLink, Nav } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type onBaseLeftNavItemClick = (
@@ -12,6 +12,7 @@ export type onBaseLeftNavItemRender = (link: BaseLeftNavLink) => JSX.Element;
 export type BaseLeftNavProps = {
     selectedKey: string;
     links: BaseLeftNavLink[];
+    setNavComponentRef: (nav: INav) => void;
 };
 
 export interface BaseLeftNavLink extends INavLink {
@@ -28,7 +29,7 @@ export interface BaseLeftNavLinkProps {
 export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
     public static pivotItemsClassName = 'details-view-test-nav-area';
     public render(): JSX.Element {
-        const { selectedKey, links } = this.props;
+        const { selectedKey, links, setNavComponentRef } = this.props;
 
         return (
             <Nav
@@ -44,6 +45,7 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
                 styles={{
                     chevronButton: 'hidden',
                 }}
+                componentRef={setNavComponentRef}
             />
         );
     }
