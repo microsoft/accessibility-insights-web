@@ -10,7 +10,7 @@ export const DetectServiceStep = NamedFC<CommonAndroidSetupStepProps>(
     (props: CommonAndroidSetupStepProps) => {
         return (
             <main>
-                <AndroidSetupSpinner label="Detecting the Accessibility Insights for Android service..." />
+                <AndroidSetupSpinner label="Scanning for the service on your device..." />
             </main>
         );
     },
