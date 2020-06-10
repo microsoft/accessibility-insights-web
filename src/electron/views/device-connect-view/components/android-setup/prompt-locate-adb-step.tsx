@@ -15,11 +15,6 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
 
         const { LinkComponent } = props.deps;
 
-        const onCloseButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.close()`);
-        };
-
         const onNextButton = () => {
             // To be implemented in future feature work
             console.log(`androidSetupActionCreator.confirmAdbLocation(${adbLocation})`);
@@ -38,7 +33,7 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
             ),
             leftFooterButtonProps: {
                 text: 'Close',
-                onClick: onCloseButton,
+                onClick: _ => props.deps.closeApp(),
             },
             rightFooterButtonProps: {
                 text: 'Next',

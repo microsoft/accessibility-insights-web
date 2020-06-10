@@ -14,6 +14,7 @@ describe('InstallingServiceStep', () => {
             androidSetupActionCreator: null,
             androidSetupStepComponentProvider: null,
             LinkComponent: null,
+            closeApp: null,
         },
     };
 

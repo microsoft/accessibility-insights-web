@@ -14,6 +14,7 @@ describe('DetectDevicesStep', () => {
             androidSetupActionCreator: null,
             androidSetupStepComponentProvider: null,
             LinkComponent: null,
+            closeApp: null,
         },
     };
 
