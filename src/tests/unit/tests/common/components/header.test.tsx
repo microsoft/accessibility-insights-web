@@ -17,7 +17,7 @@ describe('Header', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders without title', () => {
+    it('renders without header title', () => {
         const applicationTitle = 'THE_APPLICATION_TITLE';
         const deps = {
             textContent: {

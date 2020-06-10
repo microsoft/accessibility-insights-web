@@ -23,14 +23,18 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
         if (props.showHeaderTitle === false) {
             return null;
         } else {
-            return <span className={styles.headerTitle}>{applicationTitle}</span>;
+            return (
+                <>
+                    <HeaderIcon deps={props.deps} />
+                    <span className={styles.headerTitle}>{applicationTitle}</span>
+                </>
+            );
         }
     };
 
     return (
         <header className={styles.headerBar}>
             {props.navMenu}
-            <HeaderIcon deps={props.deps} />
             {getHeaderTitle()}
             <div>{props.items}</div>
             <div className={styles.spacer}></div>
