@@ -5,7 +5,7 @@ exports[`DetectDevicesStep renders 1`] = `
   <AndroidSetupSpinnerStep
     deps={
       Object {
-        "LinkComponent": null,
+        "LinkComponent": [Function],
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
         "closeApp": null,
