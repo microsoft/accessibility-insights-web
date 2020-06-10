@@ -74,6 +74,7 @@ import { createDeviceConfigFetcher } from 'electron/platform/android/device-conf
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
+import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
@@ -188,7 +189,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
-            createAndroidSetupStateMachineFactory({}),
+            createAndroidSetupStateMachineFactory({} as AndroidSetupStepDeps),
         );
         androidSetupStore.initialize();
 
