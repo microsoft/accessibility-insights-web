@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { AndroidSetupSpinner } from './android-setup-spinner';
+import { AndroidSetupSpinnerStep } from './android-setup-spinner-step';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
 export const DetectServiceStep = NamedFC<CommonAndroidSetupStepProps>(
@@ -10,7 +10,11 @@ export const DetectServiceStep = NamedFC<CommonAndroidSetupStepProps>(
     (props: CommonAndroidSetupStepProps) => {
         return (
             <main>
-                <AndroidSetupSpinner label="Scanning for the service on your device..." />
+                <AndroidSetupSpinnerStep
+                    deps={props.deps}
+                    spinnerLabel="Scanning for devices..."
+                    disableCancel={true}
+                />
             </main>
         );
     },
