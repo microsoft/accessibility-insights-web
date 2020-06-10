@@ -8,6 +8,7 @@ exports[`FluentSideNav render nav bar 1`] = `
     isNarrowMode={false}
     isSideNavOpen={false}
     selectedPivot={0}
+    setNavComponentRef={[Function]}
     setSideNavOpen={null}
     tabStoreData={
       Object {
@@ -36,6 +37,7 @@ exports[`FluentSideNav render sidePanel 1`] = `
     isNarrowMode={true}
     isSideNavOpen={false}
     selectedPivot={0}
+    setNavComponentRef={[Function]}
     setSideNavOpen={null}
     tabStoreData={
       Object {
