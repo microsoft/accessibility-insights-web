@@ -30,6 +30,67 @@ exports[`Header renders per snapshot 1`] = `
 </header>
 `;
 
+exports[`Header renders with showFarItems equals false 1`] = `
+<header
+  className="headerBar"
+>
+  <React.Fragment>
+    <WithStoreSubscriptionForHeaderIconComponent
+      deps={
+        Object {
+          "textContent": Object {
+            "applicationTitle": "THE_APPLICATION_TITLE",
+          },
+        }
+      }
+    />
+    <span
+      className="headerTitle"
+    >
+      THE_APPLICATION_TITLE
+    </span>
+  </React.Fragment>
+  <div />
+  <div
+    className="spacer"
+  />
+</header>
+`;
+
+exports[`Header renders with showFarItems equals true 1`] = `
+<header
+  className="headerBar"
+>
+  <React.Fragment>
+    <WithStoreSubscriptionForHeaderIconComponent
+      deps={
+        Object {
+          "textContent": Object {
+            "applicationTitle": "THE_APPLICATION_TITLE",
+          },
+        }
+      }
+    />
+    <span
+      className="headerTitle"
+    >
+      THE_APPLICATION_TITLE
+    </span>
+  </React.Fragment>
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  >
+    <div>
+      THis is far items!
+    </div>
+  </div>
+</header>
+`;
+
 exports[`Header renders without header title 1`] = `
 <header
   className="headerBar"

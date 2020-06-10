@@ -64,9 +64,6 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     };
 
     const getFarItems = () => {
-        if (props.showFarItems === false) {
-            return null;
-        }
         return <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />;
     };
 
@@ -77,6 +74,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
             farItems={getFarItems()}
             navMenu={getNavMenu()}
             showHeaderTitle={props.showHeaderTitle}
+            showFarItems={props.showFarItems}
         ></Header>
     );
 });

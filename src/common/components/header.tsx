@@ -14,6 +14,7 @@ export type HeaderProps = {
     farItems?: JSX.Element;
     navMenu?: JSX.Element;
     showHeaderTitle?: boolean;
+    showFarItems?: boolean;
 };
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
@@ -32,13 +33,21 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
         }
     };
 
+    const getFarItems = () => {
+        if (props.showFarItems === false) {
+            return null;
+        } else {
+            return <div className={styles.farItems}>{props.farItems}</div>;
+        }
+    };
+
     return (
         <header className={styles.headerBar}>
             {props.navMenu}
             {getHeaderTitle()}
             <div>{props.items}</div>
             <div className={styles.spacer}></div>
-            <div className={styles.farItems}>{props.farItems}</div>
+            {getFarItems()}
         </header>
     );
 });
