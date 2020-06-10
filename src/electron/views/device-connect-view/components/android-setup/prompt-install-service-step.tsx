@@ -40,10 +40,10 @@ export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>
-                <React.Fragment>
+                <>
                     It looks like the Accessibility Insights for Android Service on your device is
                     either missing or out of date. We'll need to install the latest version.
-                </React.Fragment>
+                </>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
                 <PrimaryButton text="Install" onClick={onInstallButton} />
             </AndroidSetupStepLayout>
