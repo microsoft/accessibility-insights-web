@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstallingServiceStep renders 1`] = `
+<main>
+  <AndroidSetupSpinnerStep
+    deps={
+      Object {
+        "LinkComponent": null,
+        "androidSetupActionCreator": null,
+        "androidSetupStepComponentProvider": null,
+      }
+    }
+    spinnerLabel="Installing on your device..."
+  />
+</main>
+`;
