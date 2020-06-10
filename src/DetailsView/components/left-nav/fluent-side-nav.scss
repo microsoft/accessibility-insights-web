@@ -4,7 +4,7 @@
 
 #side-nav-container {
     max-width: 25%;
-    min-width: 200px;
+    min-width: $detailsViewReflowLeftNavWidth;
 
     display: flex;
     flex-wrap: nowrap;
