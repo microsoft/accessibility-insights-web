@@ -3,6 +3,7 @@
 exports[`DeviceDescription renders with device 1`] = `
 <div
   className="content"
+  style={Object {}}
 >
   <StyledIconBase
     ariaLabel="Device"
@@ -16,6 +17,7 @@ exports[`DeviceDescription renders with device 1`] = `
 exports[`DeviceDescription renders with emulator 1`] = `
 <div
   className="content"
+  style={Object {}}
 >
   <StyledIconBase
     ariaLabel="Emulator"
@@ -23,5 +25,41 @@ exports[`DeviceDescription renders with emulator 1`] = `
     iconName="Devices3"
   />
   Emulator Extraordinaire
+</div>
+`;
+
+exports[`DeviceDescription renders with extra bottom margin 1`] = `
+<div
+  className="content"
+  style={
+    Object {
+      "marginBottom": "20px",
+    }
+  }
+>
+  <StyledIconBase
+    ariaLabel="Device"
+    className="iconContent"
+    iconName="CellPhone"
+  />
+  Test Phone
+</div>
+`;
+
+exports[`DeviceDescription renders with extra top margin 1`] = `
+<div
+  className="content"
+  style={
+    Object {
+      "marginTop": "20px",
+    }
+  }
+>
+  <StyledIconBase
+    ariaLabel="Emulator"
+    className="iconContent"
+    iconName="Devices3"
+  />
+  Simple Emulator
 </div>
 `;

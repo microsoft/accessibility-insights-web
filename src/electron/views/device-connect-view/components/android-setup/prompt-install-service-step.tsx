@@ -36,7 +36,11 @@ export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
             },
         };
 
-        const descriptionProps: DeviceDescriptionProps = props.androidSetupStoreData.selectedDevice;
+        const descriptionProps: DeviceDescriptionProps = {
+            ...props.androidSetupStoreData.selectedDevice,
+            marginTop: '16px',
+            marginBottom: '16px',
+        };
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>

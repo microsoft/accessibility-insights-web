@@ -23,6 +23,8 @@ exports[`PromptInstallServiceStep renders with device 1`] = `
   <DeviceDescription
     description="Super-Duper Gadget"
     isEmulator={false}
+    marginBottom="16px"
+    marginTop="16px"
   />
   <CustomizedPrimaryButton
     onClick={[Function]}
@@ -54,6 +56,8 @@ exports[`PromptInstallServiceStep renders with emulator 1`] = `
   <DeviceDescription
     description="Emulator Extraordinaire"
     isEmulator={true}
+    marginBottom="16px"
+    marginTop="16px"
   />
   <CustomizedPrimaryButton
     onClick={[Function]}

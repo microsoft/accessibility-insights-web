@@ -27,4 +27,26 @@ describe('DeviceDescription', () => {
         const rendered = shallow(<DeviceDescription {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
+
+    it('renders with extra top margin', () => {
+        const props: DeviceDescriptionProps = {
+            isEmulator: true,
+            description: 'Simple Emulator',
+            marginTop: '20px',
+        };
+
+        const rendered = shallow(<DeviceDescription {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with extra bottom margin', () => {
+        const props: DeviceDescriptionProps = {
+            isEmulator: false,
+            description: 'Test Phone',
+            marginBottom: '20px',
+        };
+
+        const rendered = shallow(<DeviceDescription {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 });
