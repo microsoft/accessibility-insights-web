@@ -6,6 +6,7 @@ exports[`DeviceDescription renders with device 1`] = `
     className="content"
   >
     <StyledIconBase
+      ariaLabel="Device"
       className="iconContent"
       iconName="CellPhone"
     />
@@ -20,6 +21,7 @@ exports[`DeviceDescription renders with emulator 1`] = `
     className="content"
   >
     <StyledIconBase
+      ariaLabel="Emulator"
       className="iconContent"
       iconName="Devices3"
     />

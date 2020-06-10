@@ -11,11 +11,16 @@ export interface DeviceDescriptionProps extends DeviceMetadata {}
 
 export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescription', props => {
     const iconName: string = props.isEmulator ? 'Devices3' : 'CellPhone';
+    const iconAriaLabel: string = props.isEmulator ? 'Emulator' : 'Device';
 
     return (
         <React.Fragment>
             <div className={styles.content}>
-                <Icon iconName={iconName} className={styles.iconContent} />
+                <Icon
+                    iconName={iconName}
+                    className={styles.iconContent}
+                    ariaLabel={iconAriaLabel}
+                />
                 {props.description}
             </div>
         </React.Fragment>
