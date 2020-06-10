@@ -135,6 +135,7 @@
             'fail-section pass-section'
             'fail-example pass-example';
         border: 1px solid $neutral-60;
+        word-break: break-word;
     }
 
     .fail-section,
