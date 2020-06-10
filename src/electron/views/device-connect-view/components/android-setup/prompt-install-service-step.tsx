@@ -9,6 +9,7 @@ import { PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
+import * as styles from './prompt-install-service-step.scss';
 
 export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptInstallServiceStep',
@@ -38,8 +39,7 @@ export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
 
         const descriptionProps: DeviceDescriptionProps = {
             ...props.androidSetupStoreData.selectedDevice,
-            marginTop: '16px',
-            marginBottom: '16px',
+            className: styles.deviceDescription,
         };
 
         return (

@@ -21,10 +21,9 @@ exports[`PromptInstallServiceStep renders with device 1`] = `
     It looks like the Accessibility Insights for Android Service on your device is either missing or out of date. We'll need to install the latest version.
   </React.Fragment>
   <DeviceDescription
+    className="deviceDescription"
     description="Super-Duper Gadget"
     isEmulator={false}
-    marginBottom="16px"
-    marginTop="16px"
   />
   <CustomizedPrimaryButton
     onClick={[Function]}
@@ -54,10 +53,9 @@ exports[`PromptInstallServiceStep renders with emulator 1`] = `
     It looks like the Accessibility Insights for Android Service on your device is either missing or out of date. We'll need to install the latest version.
   </React.Fragment>
   <DeviceDescription
+    className="deviceDescription"
     description="Emulator Extraordinaire"
     isEmulator={true}
-    marginBottom="16px"
-    marginTop="16px"
   />
   <CustomizedPrimaryButton
     onClick={[Function]}
