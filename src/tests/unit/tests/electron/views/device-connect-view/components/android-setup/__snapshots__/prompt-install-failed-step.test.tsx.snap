@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptInstallFailedStep renders with device 1`] = `
+<AndroidSetupStepLayout
+  headerText="Installation attempt failed"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/troubleshootInstallation"
+    >
+      Troubleshooting installation problems
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": null,
+      "text": "Next",
+    }
+  }
+>
+  <React.Fragment>
+    We were unable to install the latest version of Accessibility Insights for Android Service on your device. You can try installing the service yourself, from your device, or choose one of the options below.
+  </React.Fragment>
+  <DeviceDescription
+    className="deviceDescription"
+    description="Super-Duper Gadget"
+    isEmulator={false}
+  />
+  <CustomizedPrimaryButton
+    onClick={[Function]}
+    text="Try again"
+  />
+</AndroidSetupStepLayout>
+`;
+
+exports[`PromptInstallFailedStep renders with emulator 1`] = `
+<AndroidSetupStepLayout
+  headerText="Installation attempt failed"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/troubleshootInstallation"
+    >
+      Troubleshooting installation problems
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": null,
+      "text": "Next",
+    }
+  }
+>
+  <React.Fragment>
+    We were unable to install the latest version of Accessibility Insights for Android Service on your device. You can try installing the service yourself, from your device, or choose one of the options below.
+  </React.Fragment>
+  <DeviceDescription
+    className="deviceDescription"
+    description="Emulator Extraordinaire"
+    isEmulator={true}
+  />
+  <CustomizedPrimaryButton
+    onClick={[Function]}
+    text="Try again"
+  />
+</AndroidSetupStepLayout>
+`;
