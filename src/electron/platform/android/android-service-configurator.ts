@@ -8,7 +8,8 @@ export type DeviceInfo = {
 };
 
 export type PackageInfo = {
-    version: string;
+    versionCode?: number;
+    versionName?: string;
 };
 
 export type PermissionInfo = {
@@ -20,9 +21,10 @@ export interface AndroidServiceConfigurator {
     getPackageInfo(deviceId: string): Promise<PackageInfo>;
     getPermissionInfo(deviceId: string): Promise<PermissionInfo>;
     installService(deviceId: string): Promise<void>;
+    uninstallService(deviceId: string): Promise<void>;
     setTcpForwarding(deviceId: string): Promise<void>;
 }
 
 export interface AndroidServiceConfiguratorFactory {
-    getServiceConfigurator(adbFileLocation: string): Promise<AndroidServiceConfigurator>;
+    getServiceConfigurator(sdkRoot: string): Promise<AndroidServiceConfigurator>;
 }

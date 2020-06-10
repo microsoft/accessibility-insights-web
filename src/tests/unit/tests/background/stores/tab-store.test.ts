@@ -107,20 +107,20 @@ describe('TabStoreTest', () => {
     });
 
     test.each`
-        payloadUrl                               | originalIsClosed | expectedIsClosed
-        ${'https://original-host/original-path'} | ${false}         | ${false}
-        ${'https://original-host/new-path'}      | ${false}         | ${false}
-        ${'https://new-host/new-path'}           | ${false}         | ${true}
-        ${'https://original-host/original-path'} | ${true}          | ${true}
-        ${'https://original-host/new-path'}      | ${true}          | ${true}
-        ${'https://new-host/new-path'}           | ${true}          | ${true}
+        payloadUrl                               | initialIsOriginChanged | expectedIsOriginChanged
+        ${'https://original-host/original-path'} | ${false}               | ${false}
+        ${'https://original-host/new-path'}      | ${false}               | ${false}
+        ${'https://new-host/new-path'}           | ${false}               | ${true}
+        ${'https://original-host/original-path'} | ${true}                | ${true}
+        ${'https://original-host/new-path'}      | ${true}                | ${true}
+        ${'https://new-host/new-path'}           | ${true}                | ${true}
     `(
-        'onExistingTabUpdated from isClosed=$originalIsClosed with payload url $payloadUrl should result in isClosed=$expectedIsClosed',
-        ({ payloadUrl, originalIsClosed, expectedIsClosed }) => {
+        'onExistingTabUpdated from isOriginChanged=$initialIsOriginChanged with payload url $payloadUrl should result in isOriginChanged=$expectedIsOriginChanged',
+        ({ payloadUrl, initialIsOriginChanged, expectedIsOriginChanged }) => {
             const initialState: TabStoreData = new TabStoreDataBuilder()
                 .with('url', 'https://original-host/original-path')
                 .with('title', 'title 1')
-                .with('isClosed', originalIsClosed)
+                .with('isOriginChanged', initialIsOriginChanged)
                 .build();
 
             const payload: Tab = {
@@ -132,7 +132,7 @@ describe('TabStoreTest', () => {
                 .with('url', payload.url)
                 .with('title', payload.title)
                 .with('isChanged', true)
-                .with('isClosed', expectedIsClosed)
+                .with('isOriginChanged', expectedIsOriginChanged)
                 .build();
 
             createStoreTesterForTabActions('existingTabUpdated')

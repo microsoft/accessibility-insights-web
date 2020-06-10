@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as classNames from 'classnames';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
@@ -12,25 +13,34 @@ import {
     DetailsViewLeftNavProps,
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
-import { PanelType } from 'office-ui-fabric-react';
+import { INav, PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type FluentSideNavDeps = DetailsViewLeftNavDeps & InteractiveHeaderDeps;
-export type FluentSideNavProps = DetailsViewLeftNavProps & {
+
+export type FluentSideNavProps = Omit<DetailsViewLeftNavProps, 'setNavComponentRef'> & {
     deps: FluentSideNavDeps;
     tabStoreData: TabStoreData;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 };
 
 export class FluentSideNav extends React.Component<FluentSideNavProps> {
+    protected navComponentRef: INav;
+
     public render(): JSX.Element {
         const tabClosed = this.props.tabStoreData.isClosed;
 
         if (tabClosed) {
             return null;
         }
-        const nav = <DetailsViewLeftNav {...this.props} />;
+        const navBar = (
+            <DetailsViewLeftNav
+                {...this.props}
+                setNavComponentRef={nav => this.setNavComponentRef(nav)}
+            />
+        );
 
         const dismissPanel = (ev: React.SyntheticEvent<HTMLElement, Event>) => {
             this.props.setSideNavOpen(false);
@@ -48,13 +58,14 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                     setSideNavOpen={this.props.setSideNavOpen}
                     showFarItems={false}
                     showHeaderTitle={false}
+                    isNarrowMode={this.props.isNarrowMode}
                 />
             );
         };
 
         const navPanel = (
             <GenericPanel
-                className={styles.leftNavPanel}
+                className={classNames(styles.leftNavPanel, 'reflow-ui')}
                 isOpen={this.props.isSideNavOpen}
                 isLightDismiss
                 hasCloseButton={false}
@@ -63,19 +74,31 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                 onRenderNavigation={() => null}
                 onDismiss={dismissPanel}
                 type={PanelType.customNear}
-                layerProps={{
-                    hostId: styles.sideNavContainer,
-                }}
             >
-                {nav}
+                {navBar}
             </GenericPanel>
         );
 
+        const navBarInSideNavContainer = <div id={styles.sideNavContainer}>{navBar}</div>;
+
+        return this.props.isNarrowMode ? navPanel : navBarInSideNavContainer;
+    }
+
+    protected setNavComponentRef(nav: INav): void {
+        this.navComponentRef = nav;
+    }
+
+    private isNavPanelConvertedToNavBar(prevProps: FluentSideNavProps): boolean {
         return (
-            <div id={styles.sideNavContainer}>
-                {nav}
-                {navPanel}
-            </div>
+            prevProps.isNarrowMode === true &&
+            prevProps.isSideNavOpen === true &&
+            this.props.isNarrowMode === false
         );
+    }
+
+    public componentDidUpdate(prevProps: FluentSideNavProps): void {
+        if (this.isNavPanelConvertedToNavBar(prevProps)) {
+            this.navComponentRef.focus(true);
+        }
     }
 }

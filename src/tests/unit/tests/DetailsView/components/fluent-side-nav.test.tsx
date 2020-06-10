@@ -3,8 +3,10 @@
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
+import { DetailsViewLeftNav } from 'DetailsView/components/left-nav/details-view-left-nav';
 import { FluentSideNav, FluentSideNavProps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { shallow } from 'enzyme';
+import { INav } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
@@ -39,6 +41,26 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: null,
+            isNarrowMode: true,
+        } as FluentSideNavProps;
+
+        const wrapper = shallow(
+            <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...props} />,
+        );
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test('render nav bar', () => {
+        tabStoreData = {
+            isClosed: false,
+        } as TabStoreData;
+
+        props = {
+            tabStoreData,
+            isSideNavOpen: false,
+            setSideNavOpen: null,
+            isNarrowMode: false,
         } as FluentSideNavProps;
 
         const wrapper = shallow(
@@ -59,6 +81,7 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: setSideNavOpenMock.object,
+            isNarrowMode: true,
         } as FluentSideNavProps;
 
         const wrapper = shallow(
@@ -71,5 +94,45 @@ describe(FluentSideNav, () => {
             .onDismiss({} as React.SyntheticEvent<HTMLElement, Event>);
 
         setSideNavOpenMock.verifyAll();
+    });
+
+    test('componentDidUpdate', () => {
+        const focusMock = Mock.ofInstance((forceIntoFirstElement?: boolean) => {
+            return false;
+        });
+        const navStub: INav = {
+            selectedKey: 'dummy-key',
+            focus: focusMock.object,
+        };
+        focusMock.setup(fm => fm(true)).verifiable(Times.once());
+
+        tabStoreData = {
+            isClosed: false,
+        } as TabStoreData;
+
+        const prevProps: FluentSideNavProps = {
+            tabStoreData,
+            isSideNavOpen: true,
+            setSideNavOpen: null,
+            isNarrowMode: true,
+        } as FluentSideNavProps;
+
+        props = {
+            tabStoreData,
+            isSideNavOpen: false,
+            setSideNavOpen: null,
+            isNarrowMode: false,
+        } as FluentSideNavProps;
+
+        const wrapper = shallow(
+            <FluentSideNav selectedPivot={DetailsViewPivotType.fastPass} {...prevProps} />,
+        );
+
+        wrapper.find(DetailsViewLeftNav).props().setNavComponentRef(navStub);
+
+        wrapper.setProps(prevProps); // won't call focus() since  navPanel not converted to navBar
+        wrapper.setProps(props); // will call focus()
+
+        focusMock.verifyAll();
     });
 });

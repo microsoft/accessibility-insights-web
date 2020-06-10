@@ -299,12 +299,7 @@ exports[`report package integration with issues 1`] = `
                   </svg>
                 </span>
               </span>
-              26 
-              <span
-                class="outcome-past-tense"
-              >
-                Failed
-              </span>
+              26
             </span>
           </div>
           <div
@@ -335,12 +330,7 @@ exports[`report package integration with issues 1`] = `
                   </svg>
                 </span>
               </span>
-              20 
-              <span
-                class="outcome-past-tense"
-              >
-                Passed
-              </span>
+              20
             </span>
           </div>
           <div
@@ -380,12 +370,7 @@ exports[`report package integration with issues 1`] = `
                   </svg>
                 </span>
               </span>
-              49 
-              <span
-                class="outcome-past-tense"
-              >
-                Not applicable
-              </span>
+              49
             </span>
           </div>
         </div>
@@ -7454,12 +7439,7 @@ exports[`report package integration with no issues 1`] = `
                   </svg>
                 </span>
               </span>
-              0 
-              <span
-                class="outcome-past-tense"
-              >
-                Failed
-              </span>
+              0
             </span>
           </div>
           <div
@@ -7490,12 +7470,7 @@ exports[`report package integration with no issues 1`] = `
                   </svg>
                 </span>
               </span>
-              45 
-              <span
-                class="outcome-past-tense"
-              >
-                Passed
-              </span>
+              45
             </span>
           </div>
           <div
@@ -7535,12 +7510,7 @@ exports[`report package integration with no issues 1`] = `
                   </svg>
                 </span>
               </span>
-              30 
-              <span
-                class="outcome-past-tense"
-              >
-                Not applicable
-              </span>
+              30
             </span>
           </div>
         </div>

@@ -20,7 +20,7 @@ import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/lef
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
-describe('AssessmentLeftNav', () => {
+describe(AssessmentLeftNav, () => {
     let linkStub: AssessmentLeftNavLink;
     let deps: AssessmentLeftNavDeps;
     let props: AssessmentLeftNavProps;
@@ -29,8 +29,12 @@ describe('AssessmentLeftNav', () => {
     let assessmentsProviderStub: AssessmentsProvider;
     let assessmentsDataStub: DictionaryStringTo<ManualTestStatusData>;
     const expandedTest: VisualizationType = 1;
+    let onRightPanelContentSwitch: () => void;
+    let setNavComponentRef: (nav) => void;
 
     beforeEach(() => {
+        onRightPanelContentSwitch = () => {};
+        setNavComponentRef = _ => {};
         assessmentsDataStub = {};
         assessmentsProviderStub = {} as AssessmentsProvider;
         leftNavLinkBuilderMock = Mock.ofType(LeftNavLinkBuilder, MockBehavior.Strict);
@@ -53,6 +57,8 @@ describe('AssessmentLeftNav', () => {
             assessmentsData: assessmentsDataStub,
             featureFlagStoreData: {},
             expandedTest,
+            onRightPanelContentSwitch,
+            setNavComponentRef,
         };
 
         leftNavLinkBuilderMock
@@ -63,6 +69,7 @@ describe('AssessmentLeftNav', () => {
                     assessmentsProviderStub,
                     assessmentsDataStub,
                     0,
+                    onRightPanelContentSwitch,
                 ),
             )
             .returns(() => linkStub);
@@ -79,6 +86,7 @@ describe('AssessmentLeftNav', () => {
                     assessmentsDataStub,
                     1,
                     expandedTest,
+                    onRightPanelContentSwitch,
                 ),
             )
             .returns(() => [linkStub]);

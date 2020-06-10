@@ -26,6 +26,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
             isClosed: false,
             isChanged: false,
             isPageHidden: false,
+            isOriginChanged: false,
         };
 
         return defaultValues;
@@ -58,6 +59,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.state.url = payload.url;
         this.state.isClosed = false;
         this.state.isChanged = false;
+        this.state.isOriginChanged = false;
         this.emitChanged();
     };
 
@@ -68,7 +70,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
 
     private onExistingTabUpdated = (payload: Tab): void => {
         if (!this.originsMatch(payload.url, this.state.url)) {
-            this.state.isClosed = true;
+            this.state.isOriginChanged = true;
         }
         this.state.title = payload.title;
         this.state.url = payload.url;

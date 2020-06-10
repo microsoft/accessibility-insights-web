@@ -4,6 +4,8 @@
 
 .assessment-report-summary {
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
     h2 {
         font-family: $fontFamily;
         font-size: 21px;

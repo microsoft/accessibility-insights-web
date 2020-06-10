@@ -3,9 +3,15 @@
 @import '../../../common/styles/common.scss';
 
 #side-nav-container {
-    .left-nav-panel {
-        :global(.ms-Panel-content) {
-            padding: 0px;
-        }
+    max-width: 25%;
+    min-width: $detailsViewReflowLeftNavWidth;
+}
+
+.left-nav-panel {
+    :global(.ms-Panel-main) {
+        width: $detailsViewReflowLeftNavWidth;
+    }
+    :global(.ms-Panel-content) {
+        padding: 0px;
     }
 }

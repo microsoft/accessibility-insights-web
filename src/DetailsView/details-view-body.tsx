@@ -64,12 +64,19 @@ export interface DetailsViewBodyProps {
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    isNarrowMode: boolean;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
-        const bodyLayoutClassname = classNames({
+        const bodyLayoutClassName = classNames({
             'details-view-body-nav-content-layout': true,
+            'narrow-mode': this.props.isNarrowMode,
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
+
+        const bodyContentClassName = classNames({
+            'details-view-body-content-pane': true,
 
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
@@ -77,9 +84,9 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return (
             <div className="details-view-body">
                 {this.renderCommandBar()}
-                <div className={bodyLayoutClassname}>
+                <div className={bodyLayoutClassName}>
                     {this.renderNavBar()}
-                    <div className="details-view-body-content-pane">
+                    <div className={bodyContentClassName}>
                         {this.getTargetPageHiddenBar()}
                         <div className="view" role="main">
                             {this.renderRightPanel()}
@@ -106,6 +113,8 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 selectedPivot={this.props.visualizationStoreData?.selectedDetailsViewPivot}
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
+                onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
+                isNarrowMode={this.props.isNarrowMode}
                 {...this.props}
             />
         );

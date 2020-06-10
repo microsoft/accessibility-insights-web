@@ -57,6 +57,7 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isNarrowMode={false}
     isSideNavOpen={false}
     selectedPivot={0}
     setSideNavOpen={[Function]}
@@ -160,6 +161,7 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
+    isNarrowMode={false}
     isSideNavOpen={false}
     pathSnippetStoreData={
       Object {
@@ -194,6 +196,7 @@ exports[` render renders normally 1`] = `
         "id": 1,
         "isChanged": false,
         "isClosed": false,
+        "isOriginChanged": false,
         "isPageHidden": false,
         "title": "DetailsViewContainerTest title",
         "url": "http://detailsViewContainerTest/url/",

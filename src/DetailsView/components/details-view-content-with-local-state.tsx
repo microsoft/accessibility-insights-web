@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewContent } from 'DetailsView/components/details-view-content';
+import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
 
@@ -24,11 +26,19 @@ export class DetailsViewContentWithLocalState extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <DetailsViewContent
-                {...this.props}
-                isSideNavOpen={this.state.isSideNavOpen}
-                setSideNavOpen={(isOpen: boolean) => this.setSideNavOpen(isOpen)}
-            />
+            <>
+                <NarrowModeDetector
+                    isNarrowModeEnabled={
+                        this.props.storeState.featureFlagStoreData[FeatureFlags.reflowUI]
+                    }
+                    Component={DetailsViewContent}
+                    childrenProps={{
+                        ...this.props,
+                        isSideNavOpen: this.state.isSideNavOpen,
+                        setSideNavOpen: (isOpen: boolean) => this.setSideNavOpen(isOpen),
+                    }}
+                />
+            </>
         );
     }
 }

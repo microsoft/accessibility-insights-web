@@ -20,6 +20,7 @@ export interface InteractiveHeaderProps {
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
     navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    isNarrowMode: boolean;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
     showFarItems?: boolean;
@@ -32,16 +33,14 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     }
 
     const getNavMenu = () => {
+        if (props.isNarrowMode === false) {
+            return null;
+        }
+
         return (
-            <FlaggedComponent
-                enableJSXElement={
-                    <props.navMenu
-                        setSideNavOpen={props.setSideNavOpen}
-                        isSideNavOpen={props.isSideNavOpen}
-                    />
-                }
-                featureFlag={FeatureFlags.reflowUI}
-                featureFlagStoreData={props.featureFlagStoreData}
+            <props.navMenu
+                setSideNavOpen={props.setSideNavOpen}
+                isSideNavOpen={props.isSideNavOpen}
             />
         );
     };

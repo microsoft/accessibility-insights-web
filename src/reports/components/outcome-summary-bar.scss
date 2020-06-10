@@ -18,6 +18,8 @@ $outcome-not-applicable-color: $neutral-outcome;
     $outcome-summary-icon-size: 16px;
     flex: 0 0 100%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
     height: 32px;
     margin-top: 16px;
@@ -26,6 +28,7 @@ $outcome-not-applicable-color: $neutral-outcome;
     font-size: 17px;
     font-weight: 600;
     white-space: pre-wrap;
+
     .block {
         font-family: $fontFamily;
         line-height: 20px;

@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=false, withHeaderText=false) 1`] = `
+<main
+  className="layoutContainer"
+>
+  <div
+    className="content"
+  >
+    <p>
+      child content
+    </p>
+  </div>
+  <div
+    className="footer"
+  >
+    <CustomizedDefaultButton
+      text="left footer button"
+    />
+    <CustomizedPrimaryButton
+      text="right footer button"
+    />
+  </div>
+</main>
+`;
+
+exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=false, withHeaderText=true) 1`] = `
+<main
+  className="layoutContainer"
+>
+  <h1
+    className="header"
+  >
+    Header text
+  </h1>
+  <div
+    className="content"
+  >
+    <p>
+      child content
+    </p>
+  </div>
+  <div
+    className="footer"
+  >
+    <CustomizedDefaultButton
+      text="left footer button"
+    />
+    <CustomizedPrimaryButton
+      text="right footer button"
+    />
+  </div>
+</main>
+`;
+
+exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=true, withHeaderText=true) 1`] = `
+<main
+  className="layoutContainer"
+>
+  <h1
+    className="header"
+  >
+    Header text
+  </h1>
+  <div
+    className="moreInfoLink"
+  >
+    <a
+      href="https://test"
+    >
+      test link
+    </a>
+  </div>
+  <div
+    className="content"
+  >
+    <p>
+      child content
+    </p>
+  </div>
+  <div
+    className="footer"
+  >
+    <CustomizedDefaultButton
+      text="left footer button"
+    />
+    <CustomizedPrimaryButton
+      text="right footer button"
+    />
+  </div>
+</main>
+`;

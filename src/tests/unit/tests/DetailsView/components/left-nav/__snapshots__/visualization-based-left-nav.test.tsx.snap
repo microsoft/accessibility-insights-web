@@ -9,5 +9,6 @@ exports[`VisualizationBasedLeftNav renders with index icon 1`] = `
     ]
   }
   selectedKey="some key"
+  setNavComponentRef={[Function]}
 />
 `;

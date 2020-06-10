@@ -73,6 +73,11 @@ div.insights-dialog-main-override {
     width: 25% !important;
     max-width: 25% !important;
     min-width: 500px !important;
+    @media screen and (max-width: 500px) {
+        min-width: 256px !important;
+        width: 95% !important;
+        max-width: 100% !important;
+    }
     user-select: text;
     .start-over-dialog-body {
         font-size: 16px;
@@ -228,9 +233,13 @@ div.insights-file-issue-details-dialog-container {
         }
     }
     .details-view-body-nav-content-layout {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        align-content: stretch;
         padding-left: 0px;
         padding-right: 0px;
-        display: grid;
         grid-template-columns: $detailsViewLeftNavWidth 1fr;
         grid-template-rows: 1fr;
         width: 100%;
@@ -453,13 +462,16 @@ div.insights-file-issue-details-dialog-container {
         .details-view-body-content-pane {
             display: flex;
             flex-direction: column;
+            &.reflow-ui {
+                word-break: break-word;
+            }
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;
             box-sizing: border-box;
             max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
             > div {
-                min-width: 600px;
+                width: 100%;
                 height: auto;
             }
             .ms-MessageBar-icon i {
