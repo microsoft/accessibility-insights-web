@@ -16,6 +16,7 @@ export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = 
     'prompt-choose-device': PromptChooseDeviceStep,
     'prompt-connect-to-device': PromptConnectToDeviceStep,
     'prompt-install-service': PromptInstallServiceStep,
+    'prompt-install-failed': PromptInstallFailedStep,
     'installing-service': InstallingServiceStep,
     'detect-devices': DetectDevicesStep,
     'detect-service': DetectServiceStep,
