@@ -32,7 +32,7 @@ describe(FluentSideNav, () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render sidePanel', () => {
+    test('render sidePanel with correct class name', () => {
         tabStoreData = {
             isClosed: false,
         } as TabStoreData;
