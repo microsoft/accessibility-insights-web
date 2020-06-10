@@ -25,7 +25,7 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             ),
             leftFooterButtonProps: {
                 text: 'Close',
-                onClick: props.deps.closeApp,
+                onClick: _ => props.deps.closeApp(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
