@@ -1,16 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
+import { DeviceMetadata } from 'electron/flux/types/device-metadata';
 import {
     CheckboxVisibility,
     DefaultButton,
     DetailsList,
     FontIcon,
     SelectionMode,
+    DetailsRow,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
+import { DeviceDescription } from './device-description';
 import * as styles from './prompt-choose-device-step.scss';
 
 export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
@@ -26,17 +29,22 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             console.log(`androidSetupActionCreator.rescan()`);
         };
 
-        const items = [
+        const devices: DeviceMetadata[] = [
             {
-                value: 'Phone 1',
+                description: 'Phone 1',
+                isEmulator: true,
             },
             {
-                value: 'Phone 2',
+                description: 'Phone 2',
+                isEmulator: false,
             },
             {
-                value: 'Phone 3',
+                description: 'Phone 3',
+                isEmulator: true,
             },
         ];
+
+        const items = devices.map(m => ({ metadata: m }));
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Choose which device to use',
@@ -61,7 +69,23 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
                             ) : null;
                         }}
                         onRenderItemColumn={item => {
-                            return <p>{item.value}</p>;
+                            return (
+                                <DeviceDescription
+                                    className="test-row-column"
+                                    {...item.metadata}
+                                ></DeviceDescription>
+                            );
+                        }}
+                        onRenderRow={row => {
+                            return (
+                                <DetailsRow
+                                    rowFieldsAs={fieldProps => {
+                                        return <p>row field</p>;
+                                    }}
+                                    className="test-row-class"
+                                    {...row}
+                                ></DetailsRow>
+                            );
                         }}
                     />
                 </>
