@@ -14,15 +14,9 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
     const iconAriaLabel: string = props.isEmulator ? 'Emulator' : 'Device';
 
     return (
-        <React.Fragment>
-            <div className={styles.content}>
-                <Icon
-                    iconName={iconName}
-                    className={styles.iconContent}
-                    ariaLabel={iconAriaLabel}
-                />
-                {props.description}
-            </div>
-        </React.Fragment>
+        <div className={styles.content}>
+            <Icon iconName={iconName} className={styles.iconContent} ariaLabel={iconAriaLabel} />
+            {props.description}
+        </div>
     );
 });
