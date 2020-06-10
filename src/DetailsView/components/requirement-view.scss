@@ -15,6 +15,7 @@
 :global(.visual-helper) {
     display: flex;
     padding-top: 1.5vh;
+    flex-wrap: wrap;
     &-text {
         padding-right: 0.9vh;
         font-family: $fontFamily;
