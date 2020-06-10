@@ -32,9 +32,14 @@
         }
     }
 }
+
+:global(.details-view-body-nav-content-layout) {
+    .left-nav {
+        max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+        height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+    }
+}
 .left-nav {
-    max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-    height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     overflow-y: auto;
     border-right: 1px solid $neutral-8;
     z-index: 100;
