@@ -3,13 +3,14 @@
 @import '../../../../../common/styles/fonts.scss';
 
 .content {
+    align-items: center;
     display: flex;
-    line-height: 19px;
-    margin-top: 24px;
-    margin-bottom: 24px;
+    height: 48px;
+    margin-top: 16px;
+    margin-bottom: 16px;
 }
 
-.iconContent {
+.icon-content {
     font-size: 24px;
     margin-right: 10px;
 }
