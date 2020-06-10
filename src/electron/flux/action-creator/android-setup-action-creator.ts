@@ -5,7 +5,11 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 export class AndroidSetupActionCreator {
     constructor(private readonly setupActions: AndroidSetupActions) {}
 
-    public cancel = () => {
-        this.setupActions.cancel.invoke();
-    };
+    public cancel = () => this.setupActions.cancel.invoke();
+    public close = () => this.setupActions.close.invoke();
+    public next = () => this.setupActions.next.invoke();
+    public rescan = () => this.setupActions.rescan.invoke();
+    public saveAdbPath = (newAdbPath: string) => this.setupActions.saveAdbPath.invoke(newAdbPath);
+    public setSelectedDevice = (selectedDeviceId: string) =>
+        this.setupActions.setSelectedDevice.invoke(selectedDeviceId);
 }
