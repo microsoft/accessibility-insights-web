@@ -13,6 +13,7 @@ import { NavLinkHandler } from '../../../../../../DetailsView/components/left-na
 describe(FastPassLeftNav, () => {
     it('renders visualization based left nav with appropriate params', () => {
         const onRightPanelContentSwitch: () => void = () => {};
+        const setNavComponentRef = _ => {};
         const navLinkHandlerStub: NavLinkHandler = {
             onFastPassTestClick: (e, link) => null,
         } as NavLinkHandler;
@@ -23,6 +24,7 @@ describe(FastPassLeftNav, () => {
             deps,
             selectedKey: 'some string',
             onRightPanelContentSwitch,
+            setNavComponentRef,
         };
 
         const actual = shallow(<FastPassLeftNav {...props} />);

@@ -27,6 +27,7 @@ describe('VisualizationBasedLeftNav', () => {
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let configStub: VisualizationConfiguration;
     let onRightPanelContentSwitch: () => void;
+    let setNavComponentRef: (nav) => void;
 
     beforeEach(() => {
         visualizationsStub = [-1, -2];
@@ -36,6 +37,7 @@ describe('VisualizationBasedLeftNav', () => {
         linkStub = {} as BaseLeftNavLink;
         configStub = {} as VisualizationConfiguration;
         onRightPanelContentSwitch = () => {};
+        setNavComponentRef = _ => {};
 
         deps = {
             leftNavLinkBuilder: leftNavLinkBuilderMock.object,
@@ -49,6 +51,7 @@ describe('VisualizationBasedLeftNav', () => {
             onLinkClick: onLinkClickStub,
             visualizations: visualizationsStub,
             onRightPanelContentSwitch,
+            setNavComponentRef,
         };
 
         visualizationsStub.forEach((visualizationType, index) => {

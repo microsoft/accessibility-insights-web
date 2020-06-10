@@ -13,6 +13,7 @@ exports[` renders with reflow feature flag disabled 1`] = `
     ]
   }
   selectedKey="some key"
+  setNavComponentRef={[Function]}
 />
 `;
 
@@ -29,5 +30,6 @@ exports[` renders with reflow feature flag enabled 1`] = `
     ]
   }
   selectedKey="some key"
+  setNavComponentRef={[Function]}
 />
 `;

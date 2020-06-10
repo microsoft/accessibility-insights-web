@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { INav } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { NamedFC } from '../../../common/react/named-fc';
@@ -17,10 +18,11 @@ export type FastPassLeftNavProps = {
     deps: FastPassLeftNavDeps;
     selectedKey: string;
     onRightPanelContentSwitch: () => void;
+    setNavComponentRef: (nav: INav) => void;
 };
 
 export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', props => {
-    const { deps } = props;
+    const { deps, setNavComponentRef } = props;
 
     const { navLinkHandler } = deps;
 
@@ -32,6 +34,7 @@ export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', 
             onLinkClick={navLinkHandler.onFastPassTestClick}
             visualizations={tests}
             onRightPanelContentSwitch={props.onRightPanelContentSwitch}
+            setNavComponentRef={setNavComponentRef}
         />
     );
 });
