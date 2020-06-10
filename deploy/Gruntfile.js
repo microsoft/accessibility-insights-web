@@ -47,12 +47,10 @@ module.exports = function (grunt) {
             onExtensionPublished: info => {
                 if (!info.success) {
                     const failedInfo = JSON.stringify(info);
-                    grunt.log.write('##vso[task.logissue type=warning]Something went very wrong.');
-                    grunt.fail.warn(JSON.stringify(info));
-
                     console.log('=====');
                     console.log(failedInfo);
                     console.log('=====');
+                    grunt.log.write('##vso[task.complete result=SucceededWithIssues;]DONE');
                 }
             },
             fakeBadPublish: true,
