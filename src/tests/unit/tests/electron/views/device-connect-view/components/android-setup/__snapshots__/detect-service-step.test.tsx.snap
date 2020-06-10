@@ -5,9 +5,10 @@ exports[`DetectServiceStep renders 1`] = `
   <AndroidSetupSpinnerStep
     deps={
       Object {
-        "LinkComponent": null,
+        "LinkComponent": [Function],
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
+        "closeApp": null,
       }
     }
     disableCancel={true}
