@@ -1,26 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptLocateAdbStep } from 'electron/views/device-connect-view/components/android-setup/prompt-locate-adb-step';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
 
 describe('PromptLocateAdbStep', () => {
     let props: CommonAndroidSetupStepProps;
 
     beforeEach(() => {
-        props = {
-            userConfigurationStoreData: {} as UserConfigurationStoreData,
-            androidSetupStoreData: {
-                currentStepId: 'prompt-locate-adb',
-            },
-            deps: {
-                androidSetupActionCreator: null,
-                androidSetupStepComponentProvider: null,
-                LinkComponent: linkProps => <a {...linkProps} />,
-            },
-        };
+        props = new AndroidSetupStepPropsBuilder('prompt-locate-adb').build();
     });
 
     it('renders per snapshot with adbLocation not set', () => {

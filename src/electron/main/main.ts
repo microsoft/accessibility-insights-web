@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron';
+import { app, BrowserWindow, dialog, ipcMain, nativeTheme } from 'electron';
 import log from 'electron-log';
 import { autoUpdater } from 'electron-updater';
 import { AutoUpdaterClient } from 'electron/auto-update/auto-updater-client';
@@ -63,6 +63,7 @@ const createWindow = () => {
         mainWindow,
         ipcMain,
         app,
+        dialog,
     );
 
     mainWindow

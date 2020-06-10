@@ -147,7 +147,7 @@ export class MainWindowRendererMessageHandlers {
         _: IpcMainInvokeEvent,
         opts: OpenDialogOptions,
     ): Promise<OpenDialogReturnValue> => {
-        return await this.dialog.showOpenDialog(opts);
+        return await this.dialog.showOpenDialog(this.browserWindow, opts);
     };
 
     private onMaximizeFromMainWindow = (): void => {

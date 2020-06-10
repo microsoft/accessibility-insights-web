@@ -50,6 +50,7 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
         return (
             <AndroidSetupStepLayout {...layoutProps}>
                 <FolderPicker
+                    deps={props.deps}
                     instructionsText="Select the folder containing adb. We'll use it to connect to your device."
                     value={adbLocation}
                     onChange={onFolderPickerChange}

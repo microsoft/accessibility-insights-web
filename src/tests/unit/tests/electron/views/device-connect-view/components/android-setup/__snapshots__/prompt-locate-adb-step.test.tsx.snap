@@ -25,6 +25,14 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
   }
 >
   <FolderPicker
+    deps={
+      Object {
+        "LinkComponent": [Function],
+        "androidSetupActionCreator": null,
+        "androidSetupStepComponentProvider": null,
+        "showOpenFileDialog": null,
+      }
+    }
     instructionsText="Select the folder containing adb. We'll use it to connect to your device."
     onChange={[Function]}
     value=""
@@ -57,6 +65,14 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
   }
 >
   <FolderPicker
+    deps={
+      Object {
+        "LinkComponent": [Function],
+        "androidSetupActionCreator": null,
+        "androidSetupStepComponentProvider": null,
+        "showOpenFileDialog": null,
+      }
+    }
     instructionsText="Select the folder containing adb. We'll use it to connect to your device."
     onChange={[Function]}
     value="/some/path/to/android/home"
