@@ -7,9 +7,10 @@ import {
     AndroidSetupStepTransitionCallback,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
-import { createAndroidSetupSteps } from 'electron/platform/android/setup/android-setup-steps-factory';
 import { StateMachine } from 'electron/platform/android/setup/state-machine/state-machine';
+import { createStateMachineSteps } from 'electron/platform/android/setup/state-machine/state-machine-step-configs';
 import { AndroidSetupStepDeps } from './android-setup-step-deps';
+import { allAndroidSetupStepConfigs } from './android-setup-steps-configs';
 import { StateMachineSteps } from './state-machine/state-machine-steps';
 
 type AndroidSetupStepsFactory = (
@@ -25,7 +26,7 @@ const stepsFactory = (
             stepTransition: stateMachineStepTransition,
         };
 
-        return createAndroidSetupSteps(allDeps);
+        return createStateMachineSteps(allDeps, allAndroidSetupStepConfigs);
     };
 };
 

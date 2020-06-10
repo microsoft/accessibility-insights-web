@@ -8,5 +8,5 @@ export type StateMachineStep<ActionT extends ActionBag<ActionT>> = {
         // eg, 'adb-location-confirmed': (newAdbLocation) => { /* behavior */ }
         [actionName in keyof ActionT]?: StateMachineActionCallback<ActionT, actionName>;
     };
-    onEnter?: () => void;
+    onEnter?: () => Promise<void>;
 };

@@ -9,7 +9,7 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
   }
   deps={
     Object {
-      "LinkComponent": null,
+      "LinkComponent": [Function],
       "androidSetupActionCreator": null,
       "androidSetupStepComponentProvider": Object {
         "detect-adb": [Function],
@@ -18,7 +18,11 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
       "closeApp": null,
     }
   }
-  userConfigurationStoreData={null}
+  userConfigurationStoreData={
+    Object {
+      "adbLocation": undefined,
+    }
+  }
 />
 `;
 
