@@ -30,6 +30,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
         "LinkComponent": [Function],
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
+        "closeApp": [Function],
         "showOpenFileDialog": null,
       }
     }
@@ -70,6 +71,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
         "LinkComponent": [Function],
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
+        "closeApp": [Function],
         "showOpenFileDialog": null,
       }
     }
