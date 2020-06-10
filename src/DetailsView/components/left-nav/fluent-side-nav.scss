@@ -4,9 +4,6 @@
 
 #side-nav-container {
     .left-nav-panel {
-        :global(.ms-Panel-main) {
-            width: $minPanelWidth;
-        }
         :global(.ms-Panel-content) {
             padding: 0px;
         }

@@ -30,7 +30,7 @@ describe(FluentSideNav, () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render side nav', () => {
+    test('render side nav with header', () => {
         tabStoreData = {
             isClosed: false,
         } as TabStoreData;

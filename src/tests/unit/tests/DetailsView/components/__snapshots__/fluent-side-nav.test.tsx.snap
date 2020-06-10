@@ -45,3 +45,47 @@ exports[`FluentSideNav render side nav 1`] = `
   </GenericPanel>
 </div>
 `;
+
+exports[`FluentSideNav render side nav with header 1`] = `
+<div
+  id="sideNavContainer"
+>
+  <DetailsViewLeftNav
+    isSideNavOpen={false}
+    selectedPivot={0}
+    setSideNavOpen={null}
+    tabStoreData={
+      Object {
+        "isClosed": false,
+      }
+    }
+  />
+  <GenericPanel
+    className="leftNavPanel"
+    hasCloseButton={false}
+    isLightDismiss={true}
+    isOpen={false}
+    layerProps={
+      Object {
+        "hostId": "sideNavContainer",
+      }
+    }
+    onDismiss={[Function]}
+    onRenderHeader={[Function]}
+    onRenderNavigation={[Function]}
+    onRenderNavigationContent={[Function]}
+    type={8}
+  >
+    <DetailsViewLeftNav
+      isSideNavOpen={false}
+      selectedPivot={0}
+      setSideNavOpen={null}
+      tabStoreData={
+        Object {
+          "isClosed": false,
+        }
+      }
+    />
+  </GenericPanel>
+</div>
+`;

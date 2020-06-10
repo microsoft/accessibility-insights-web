@@ -27,3 +27,26 @@ exports[`Header renders per snapshot 1`] = `
   />
 </header>
 `;
+
+exports[`Header renders without title 1`] = `
+<header
+  className="headerBar"
+>
+  <WithStoreSubscriptionForHeaderIconComponent
+    deps={
+      Object {
+        "textContent": Object {
+          "applicationTitle": "THE_APPLICATION_TITLE",
+        },
+      }
+    }
+  />
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  />
+</header>
+`;

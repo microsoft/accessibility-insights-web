@@ -16,4 +16,15 @@ describe('Header', () => {
         const wrapper = shallow(<Header deps={deps} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('renders without title', () => {
+        const applicationTitle = 'THE_APPLICATION_TITLE';
+        const deps = {
+            textContent: {
+                applicationTitle,
+            },
+        } as HeaderDeps;
+        const wrapper = shallow(<Header deps={deps} showHeaderTitle={false} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });

@@ -2,7 +2,7 @@
 
 exports[`InteractiveHeader render: no feature flag store data 1`] = `"<Header deps={{...}} />"`;
 
-exports[`InteractiveHeader render: tabClosed is false 1`] = `
+exports[`InteractiveHeader render: tabClosed = false 1`] = `
 <Header
   deps={
     Object {
@@ -94,7 +94,7 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
 />
 `;
 
-exports[`InteractiveHeader render: tabClosed is true 1`] = `
+exports[`InteractiveHeader render: tabClosed = true 1`] = `
 <Header
   deps={
     Object {

@@ -47,6 +47,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                     isSideNavOpen={this.props.isSideNavOpen}
                     setSideNavOpen={this.props.setSideNavOpen}
                     showFarItems={false}
+                    showHeaderTitle={false}
                 />
             );
         };
