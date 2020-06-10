@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetectServiceStep renders 1`] = `
+<main>
+  <AndroidSetupSpinnerStep
+    deps={
+      Object {
+        "LinkComponent": null,
+        "androidSetupActionCreator": null,
+        "androidSetupStepComponentProvider": null,
+      }
+    }
+    disableCancel={true}
+    spinnerLabel="Scanning for devices..."
+  />
+</main>
+`;
