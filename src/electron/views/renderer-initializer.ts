@@ -468,6 +468,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
+            showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
