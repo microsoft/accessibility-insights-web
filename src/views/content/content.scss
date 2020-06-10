@@ -102,8 +102,10 @@
     }
 
     .columns {
-        display: flex;
         margin-top: 40px;
+        @media screen and (min-width: 800px) {
+            display: flex;
+        }
     }
 
     .column {
@@ -114,7 +116,9 @@
     }
 
     .column + .column {
-        margin-left: 80px;
+        @media screen and (min-width: 800px) {
+            margin-left: 80px;
+        }
     }
 
     $icon-size: 16px;

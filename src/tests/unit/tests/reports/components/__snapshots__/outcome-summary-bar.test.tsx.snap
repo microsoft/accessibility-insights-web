@@ -5,7 +5,6 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 42,
@@ -24,7 +23,6 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     </span>
   </div>
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 13,
@@ -43,7 +41,6 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     </span>
   </div>
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 7,
@@ -69,7 +66,6 @@ exports[`OutcomeSummaryBar show by count 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 42,
@@ -88,7 +84,6 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     </span>
   </div>
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 13,
@@ -107,7 +102,6 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     </span>
   </div>
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 7,
@@ -133,7 +127,6 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 42,
@@ -153,7 +146,6 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     </span>
   </div>
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 13,
@@ -173,7 +165,6 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     </span>
   </div>
   <div
-    className="outcome-summary"
     style={
       Object {
         "flexGrow": 7,

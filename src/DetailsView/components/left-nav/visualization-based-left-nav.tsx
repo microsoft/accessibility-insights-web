@@ -22,12 +22,13 @@ export type VisualizationBasedLeftNavProps = {
     selectedKey: string;
     onLinkClick: onBaseLeftNavItemClick;
     visualizations: VisualizationType[];
+    onRightPanelContentSwitch: () => void;
 };
 
 export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>(
     'VisualizationBasedLeftNav',
     props => {
-        const { deps, selectedKey, onLinkClick, visualizations } = props;
+        const { deps, selectedKey, onLinkClick, visualizations, onRightPanelContentSwitch } = props;
 
         const { leftNavLinkBuilder, visualizationConfigurationFactory } = deps;
 
@@ -41,6 +42,7 @@ export const VisualizationBasedLeftNav = NamedFC<VisualizationBasedLeftNavProps>
                     onLinkClick,
                     visualizationType,
                     index + 1,
+                    onRightPanelContentSwitch,
                 ),
             );
         });
