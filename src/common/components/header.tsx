@@ -13,18 +13,41 @@ export type HeaderProps = {
     items?: JSX.Element;
     farItems?: JSX.Element;
     navMenu?: JSX.Element;
+    showHeaderTitle?: boolean;
+    showFarItems?: boolean;
 };
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
     const { applicationTitle } = props.deps.textContent;
+
+    const getHeaderTitle = () => {
+        if (props.showHeaderTitle === false) {
+            return null;
+        } else {
+            return (
+                <>
+                    <HeaderIcon deps={props.deps} />
+                    <span className={styles.headerTitle}>{applicationTitle}</span>
+                </>
+            );
+        }
+    };
+
+    const getFarItems = () => {
+        if (props.showFarItems === false) {
+            return null;
+        } else {
+            return <div className={styles.farItems}>{props.farItems}</div>;
+        }
+    };
+
     return (
         <header className={styles.headerBar}>
             {props.navMenu}
-            <HeaderIcon deps={props.deps} />
-            <span className={styles.headerTitle}>{applicationTitle}</span>
+            {getHeaderTitle()}
             <div>{props.items}</div>
             <div className={styles.spacer}></div>
-            <div className={styles.farItems}>{props.farItems}</div>
+            {getFarItems()}
         </header>
     );
 });

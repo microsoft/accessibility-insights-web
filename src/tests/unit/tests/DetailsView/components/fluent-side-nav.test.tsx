@@ -32,7 +32,7 @@ describe(FluentSideNav, () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('render sidePanel with correct class name', () => {
+    test('render side nav', () => {
         tabStoreData = {
             isClosed: false,
         } as TabStoreData;
@@ -130,7 +130,7 @@ describe(FluentSideNav, () => {
 
         wrapper.find(DetailsViewLeftNav).props().setNavComponentRef(navStub);
 
-        wrapper.setProps(prevProps); // won't call focus() since  navPanel not converted to  navBar
+        wrapper.setProps(prevProps); // won't call focus() since  navPanel not converted to navBar
         wrapper.setProps(props); // will call focus()
 
         focusMock.verifyAll();

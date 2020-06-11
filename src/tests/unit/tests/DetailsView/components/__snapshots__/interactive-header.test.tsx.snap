@@ -38,7 +38,7 @@ exports[`InteractiveHeader does render nav menu button if not in narrow mode 1`]
 />
 `;
 
-exports[`InteractiveHeader render: tabClosed is false 1`] = `
+exports[`InteractiveHeader render: tabClosed equals false 1`] = `
 <Header
   deps={
     Object {
@@ -91,7 +91,7 @@ exports[`InteractiveHeader render: tabClosed is false 1`] = `
 />
 `;
 
-exports[`InteractiveHeader render: tabClosed is true 1`] = `
+exports[`InteractiveHeader render: tabClosed equals true 1`] = `
 <Header
   deps={
     Object {

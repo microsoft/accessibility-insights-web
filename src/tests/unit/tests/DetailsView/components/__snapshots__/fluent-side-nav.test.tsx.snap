@@ -21,7 +21,7 @@ exports[`FluentSideNav render nav bar 1`] = `
 
 exports[`FluentSideNav render null if tab is closed 1`] = `null`;
 
-exports[`FluentSideNav render sidePanel with correct class name 1`] = `
+exports[`FluentSideNav render side nav 1`] = `
 <GenericPanel
   className="leftNavPanel reflow-ui"
   hasCloseButton={false}
