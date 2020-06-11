@@ -3,7 +3,7 @@
 
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
 import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
-import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
+import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import {
     StateMachineStepConfig,
@@ -11,15 +11,17 @@ import {
 } from './state-machine/state-machine-step-configs';
 import { detectAdb } from './steps/detect.adb';
 
+export type AndroidSetupStepConfigDeps = AndroidSetupDeps & AndroidSetupStoreCallbacks;
+
 export type AndroidSetupStepConfig = StateMachineStepConfig<
     AndroidSetupActions,
-    AndroidSetupStepDeps & AndroidSetupStoreCallbacks
+    AndroidSetupStepConfigDeps
 >;
 
 type AndroidSetupStepConfigs = StateMachineStepConfigs<
     AndroidSetupStepId,
     AndroidSetupActions,
-    AndroidSetupStepDeps
+    AndroidSetupStepConfigDeps
 >;
 
 export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
