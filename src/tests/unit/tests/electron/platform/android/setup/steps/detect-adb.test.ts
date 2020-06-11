@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
+import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
 import { detectAdb } from 'electron/platform/android/setup/steps/detect.adb';
-import { checkExpectedActionsAreDefined } from 'tests/unit/tests/electron/platform/android/setup/steps/actions-tester';
 import { Mock, MockBehavior, Times } from 'typemoq';
+import { checkExpectedActionsAreDefined } from './actions-tester';
 
 describe('Android setup step: detectAdb', () => {
     it('has expected properties', () => {
-        const deps = {} as AndroidSetupStepDeps;
+        const deps = {} as AndroidSetupStepConfigDeps;
         const step = detectAdb(deps);
         checkExpectedActionsAreDefined(step, []);
         expect(step.onEnter).toBeDefined();
@@ -17,9 +17,9 @@ describe('Android setup step: detectAdb', () => {
     it('onEnter transitions to detect-devices as expected', async () => {
         const p = new Promise<boolean>(resolve => resolve(true));
 
-        const depsMock = Mock.ofType<AndroidSetupStepDeps>(undefined, MockBehavior.Strict);
+        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
         depsMock
-            .setup(m => m.detectAdb())
+            .setup(m => m.hasAdbPath())
             .returns(_ => p)
             .verifiable(Times.once());
 
@@ -34,9 +34,9 @@ describe('Android setup step: detectAdb', () => {
     it('onEnter transitions to prompt-locate-adb as expected', async () => {
         const p = new Promise<boolean>(resolve => resolve(false));
 
-        const depsMock = Mock.ofType<AndroidSetupStepDeps>(undefined, MockBehavior.Strict);
+        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
         depsMock
-            .setup(m => m.detectAdb())
+            .setup(m => m.hasAdbPath())
             .returns(_ => p)
             .verifiable(Times.once());
 
