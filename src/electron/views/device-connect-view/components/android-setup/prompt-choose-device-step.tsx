@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
 import { DeviceMetadata } from 'electron/flux/types/device-metadata';
 import {
     CheckboxVisibility,
     DefaultButton,
     DetailsList,
     FontIcon,
+    ISelection,
+    Selection,
     SelectionMode,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -15,12 +16,30 @@ import { CommonAndroidSetupStepProps } from './android-setup-types';
 import { DeviceDescription } from './device-description';
 import * as styles from './prompt-choose-device-step.scss';
 
-export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
-    'PromptChooseDeviceStep',
-    (props: CommonAndroidSetupStepProps) => {
-        const [selectedDevice, setSelectedDevice] = React.useState(
-            props.androidSetupStoreData.selectedDevice ?? null,
-        );
+export type PromptChooseDeviceStepState = {
+    selectedDevice: DeviceMetadata;
+};
+
+export class PromptChooseDeviceStep extends React.Component<
+    CommonAndroidSetupStepProps,
+    PromptChooseDeviceStepState
+> {
+    private selection: ISelection;
+    constructor(props) {
+        super(props);
+        this.state = { selectedDevice: null };
+
+        this.selection = new Selection({
+            onSelectionChanged: () => {
+                const details = this.selection.getSelection();
+                if (details.length > 0) {
+                    this.setState({ selectedDevice: details[0] as DeviceMetadata });
+                }
+            },
+        });
+    }
+
+    public render(): JSX.Element {
         const onNextButton = () => {
             // To be implemented in future feature work
             console.log(`androidSetupActionCreator.next()`);
@@ -31,6 +50,7 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             console.log(`androidSetupActionCreator.rescan()`);
         };
 
+        // Available devices will be retrieved from store in future feature work
         const devices: DeviceMetadata[] = [
             {
                 description: 'Phone 1',
@@ -52,13 +72,15 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             headerText: 'Choose which device to use',
             children: (
                 <>
-                    <p>2 Android devices or emulators connected</p>
+                    <p>{devices.length} Android devices or emulators connected</p>
                     <DefaultButton text="Rescan" onClick={onRescanButton} />
                     <DetailsList
+                        setKey={'devices'}
                         compact={true}
                         ariaLabel="android devices"
                         className={styles.phoneList}
                         items={items}
+                        selection={this.selection}
                         selectionMode={SelectionMode.single}
                         checkboxVisibility={CheckboxVisibility.always}
                         isHeaderVisible={false}
@@ -79,23 +101,20 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
                                 ></DeviceDescription>
                             );
                         }}
-                        onActiveItemChanged={item => {
-                            setSelectedDevice(item.metadata);
-                        }}
                     />
                 </>
             ),
             leftFooterButtonProps: {
                 text: 'Close',
-                onClick: _ => props.deps.closeApp(),
+                onClick: _ => this.props.deps.closeApp(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
-                disabled: selectedDevice == null,
+                disabled: this.state.selectedDevice === null,
                 onClick: onNextButton,
             },
         };
 
         return <AndroidSetupStepLayout {...layoutProps}></AndroidSetupStepLayout>;
-    },
-);
+    }
+}
