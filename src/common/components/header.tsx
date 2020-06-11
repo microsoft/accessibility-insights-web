@@ -15,21 +15,25 @@ export type HeaderProps = {
     navMenu?: JSX.Element;
     showHeaderTitle?: boolean;
     showFarItems?: boolean;
+    isNarrowMode?: boolean;
 };
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
     const { applicationTitle } = props.deps.textContent;
 
-    const getHeaderTitle = () => {
+    const getHeaderIcon = () => {
         if (props.showHeaderTitle === false) {
             return null;
         } else {
-            return (
-                <>
-                    <HeaderIcon deps={props.deps} />
-                    <span className={styles.headerTitle}>{applicationTitle}</span>
-                </>
-            );
+            return <HeaderIcon deps={props.deps} />;
+        }
+    };
+
+    const getHeaderTitle = () => {
+        if (props.showHeaderTitle === false || props.isNarrowMode === true) {
+            return null;
+        } else {
+            return <span className={styles.headerTitle}>{applicationTitle}</span>;
         }
     };
 
@@ -44,6 +48,7 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
     return (
         <header className={styles.headerBar}>
             {props.navMenu}
+            {getHeaderIcon()}
             {getHeaderTitle()}
             <div>{props.items}</div>
             <div className={styles.spacer}></div>
