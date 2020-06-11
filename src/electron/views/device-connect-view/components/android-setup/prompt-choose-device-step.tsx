@@ -8,7 +8,6 @@ import {
     DetailsList,
     FontIcon,
     SelectionMode,
-    DetailsRow,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
@@ -19,6 +18,9 @@ import * as styles from './prompt-choose-device-step.scss';
 export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptChooseDeviceStep',
     (props: CommonAndroidSetupStepProps) => {
+        const [selectedDevice, setSelectedDevice] = React.useState(
+            props.androidSetupStoreData.selectedDevice ?? null,
+        );
         const onNextButton = () => {
             // To be implemented in future feature work
             console.log(`androidSetupActionCreator.next()`);
@@ -53,6 +55,7 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
                     <p>2 Android devices or emulators connected</p>
                     <DefaultButton text="Rescan" onClick={onRescanButton} />
                     <DetailsList
+                        compact={true}
                         ariaLabel="android devices"
                         className={styles.phoneList}
                         items={items}
@@ -60,7 +63,7 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
                         checkboxVisibility={CheckboxVisibility.always}
                         isHeaderVisible={false}
                         checkboxCellClassName={styles.checkmarkCell}
-                        checkButtonAriaLabel="select device"
+                        checkButtonAriaLabel="select"
                         onRenderCheckbox={checkboxProps => {
                             return checkboxProps.checked ? (
                                 <>
@@ -71,21 +74,13 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
                         onRenderItemColumn={item => {
                             return (
                                 <DeviceDescription
-                                    className="test-row-column"
+                                    className={styles.row}
                                     {...item.metadata}
                                 ></DeviceDescription>
                             );
                         }}
-                        onRenderRow={row => {
-                            return (
-                                <DetailsRow
-                                    rowFieldsAs={fieldProps => {
-                                        return <p>row field</p>;
-                                    }}
-                                    className="test-row-class"
-                                    {...row}
-                                ></DetailsRow>
-                            );
+                        onActiveItemChanged={item => {
+                            setSelectedDevice(item.metadata);
                         }}
                     />
                 </>
@@ -96,7 +91,7 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             },
             rightFooterButtonProps: {
                 text: 'Next',
-                disabled: false,
+                disabled: selectedDevice == null,
                 onClick: onNextButton,
             },
         };
