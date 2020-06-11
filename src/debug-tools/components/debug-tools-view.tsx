@@ -42,7 +42,6 @@ export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps
                 Component={Header}
                 childrenProps={headerProps}
             />
-            <Header deps={deps} />
             <DebugToolsNav deps={deps} state={storeState} className={styles.nav} />
             <CurrentView deps={deps} storeState={storeState} />
         </div>

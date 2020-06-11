@@ -100,5 +100,6 @@ exports[`InteractiveHeader render: tabClosed equals true 1`] = `
       "dropdownClickHandler": Object {},
     }
   }
+  isNarrowMode={false}
 />
 `;
