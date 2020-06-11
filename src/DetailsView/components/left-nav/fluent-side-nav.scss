@@ -13,5 +13,9 @@
     }
     :global(.ms-Panel-content) {
         padding: 0px;
+        :global(.main-nav) {
+            max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+            height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+        }
     }
 }
