@@ -72,27 +72,6 @@ module.exports = function (grunt) {
                 }
             },
         },
-        test: {
-            fileName: 'extension.zip',
-            extensionName: 'open',
-            extensionId: 'oiokpkjanjfndgbdgepalohbolalekek',
-            published: false,
-            errorMsg:
-                'Error on uploading (open) with message "The item cannot be updated now because it is in pending review, ready to publish, or deleted status.". Raw response: {"kind":"chromewebstore#item","id":"oiokpkjanjfndgbdgepalohbolalekek","uploadState":"FAILURE","itemError":[{"error_code":"ITEM_NOT_UPDATABLE","error_detail":"The item cannot be updated now because it is in pending review, ready to publish, or deleted status."}]}',
-            errors: {
-                kind: 'chromewebstore#item',
-                id: 'oiokpkjanjfndgbdgepalohbolalekek',
-                uploadState: 'FAILURE',
-                itemError: [
-                    {
-                        error_code: 'ITEM_NOT_UPDATABLE',
-                        error_detail:
-                            'The item cannot be updated now because it is in pending review, ready to publish, or deleted status.',
-                    },
-                ],
-            },
-            success: false,
-        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-compress');
