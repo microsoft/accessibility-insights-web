@@ -24,6 +24,7 @@ export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
                 className={styles.leftNavHamburgerButton}
                 iconProps={{ iconName: 'GlobalNavButton' }}
                 ariaLabel={props.ariaLabel}
+                aria-expanded={props.isSideNavOpen}
                 onClick={onClick}
             />
         );
