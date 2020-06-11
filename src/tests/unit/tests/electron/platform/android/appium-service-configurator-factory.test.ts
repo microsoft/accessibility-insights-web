@@ -43,7 +43,7 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
     });
 
     it('getServiceConfigurator propagates error to caller', async () => {
-        const expectedMessage = 'Soething bad happened';
+        const expectedMessage = 'Something bad happened';
         adbCreatorMock
             .setup(m => m.createADB(undefined))
             .throws(new Error(expectedMessage))
