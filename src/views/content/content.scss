@@ -249,7 +249,14 @@
 
     .landmark-table {
         border-spacing: 5px;
-        padding-left: 32px;
+
+        @media screen and (min-width: 600px) {
+            padding-left: 32px;
+        }
+
+        .landmark-table-column {
+            width: 24%;
+        }
 
         .landmark-role {
             text-align: center;
