@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptGrantPermissionsStep renders with device 1`] = `
+<AndroidSetupStepLayout
+  headerText="Let us install the latest version on your device"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": null,
+      "text": "Next",
+    }
+  }
+>
+  <React.Fragment>
+    It looks like the Accessibility Insights for Android Service on your device is either missing or out of date. We'll need to install the latest version.
+  </React.Fragment>
+  <DeviceDescription
+    className="deviceDescription"
+    description="Super-Duper Gadget"
+    isEmulator={false}
+  />
+  <CustomizedPrimaryButton
+    onClick={[Function]}
+    text="Install"
+  />
+</AndroidSetupStepLayout>
+`;
+
+exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
+<AndroidSetupStepLayout
+  headerText="Let us install the latest version on your device"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": null,
+      "text": "Next",
+    }
+  }
+>
+  <React.Fragment>
+    It looks like the Accessibility Insights for Android Service on your device is either missing or out of date. We'll need to install the latest version.
+  </React.Fragment>
+  <DeviceDescription
+    className="deviceDescription"
+    description="Emulator Extraordinaire"
+    isEmulator={true}
+  />
+  <CustomizedPrimaryButton
+    onClick={[Function]}
+    text="Install"
+  />
+</AndroidSetupStepLayout>
+`;
