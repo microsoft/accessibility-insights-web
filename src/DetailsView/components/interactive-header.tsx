@@ -75,6 +75,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
             navMenu={getNavMenu()}
             showHeaderTitle={props.showHeaderTitle}
             showFarItems={props.showFarItems}
+            isNarrowMode={props.isNarrowMode}
         ></Header>
     );
 });

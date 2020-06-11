@@ -9,6 +9,7 @@ exports[`InteractiveHeader does render nav menu button if not in narrow mode 1`]
       featureFlagData={null}
     />
   }
+  isNarrowMode={true}
   items={
     <FlaggedComponent
       disableJSXElement={
@@ -59,6 +60,7 @@ exports[`InteractiveHeader render: tabClosed equals false 1`] = `
       }
     />
   }
+  isNarrowMode={false}
   items={
     <FlaggedComponent
       disableJSXElement={

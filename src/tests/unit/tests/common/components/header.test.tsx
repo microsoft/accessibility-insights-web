@@ -44,4 +44,15 @@ describe('Header', () => {
         );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('renders in narrow mode', () => {
+        const applicationTitle = 'THE_APPLICATION_TITLE';
+        const deps = {
+            textContent: {
+                applicationTitle,
+            },
+        } as HeaderDeps;
+        const wrapper = shallow(<Header deps={deps} isNarrowMode={true} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
