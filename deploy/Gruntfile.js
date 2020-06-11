@@ -48,11 +48,20 @@ module.exports = function (grunt) {
                 grunt.log.writeln(JSON.stringify(e));
                 grunt.log.writeln('======');
 
-                if (e.errors.itemError[0].error_code === 'ITEM_NOT_UPDATABLE') {
-                    grunt.log.write(
+                if (e['errors']) {
+                    grunt.log.writeln('has errors');
+
+                    if (e['errors']['itemError']) {
+                        grunt.log.writeln('has itemError');
+                        grunt.log.writeln(JSON.stringify(e['errors']['itemError']));
+                    }
+                }
+
+                if (e['errors']['itemError'][0]['error_code'] === 'ITEM_NOT_UPDATABLE') {
+                    grunt.log.writeln(
                         'Cannot publish due to extension not being updatable. This is likely due to a previous deployment that is pending review. As such, marking this as partially successful.',
                     );
-                    grunt.log.write('##vso[task.complete result=SucceededWithIssues;]DONE');
+                    grunt.log.writeln('##vso[task.complete result=SucceededWithIssues;]DONE');
                 }
 
                 grunt.fail.fatal(e.errorMsg);
@@ -62,6 +71,27 @@ module.exports = function (grunt) {
                     grunt.fail.fatal(JSON.stringify(info));
                 }
             },
+        },
+        test: {
+            fileName: 'extension.zip',
+            extensionName: 'open',
+            extensionId: 'oiokpkjanjfndgbdgepalohbolalekek',
+            published: false,
+            errorMsg:
+                'Error on uploading (open) with message "The item cannot be updated now because it is in pending review, ready to publish, or deleted status.". Raw response: {"kind":"chromewebstore#item","id":"oiokpkjanjfndgbdgepalohbolalekek","uploadState":"FAILURE","itemError":[{"error_code":"ITEM_NOT_UPDATABLE","error_detail":"The item cannot be updated now because it is in pending review, ready to publish, or deleted status."}]}',
+            errors: {
+                kind: 'chromewebstore#item',
+                id: 'oiokpkjanjfndgbdgepalohbolalekek',
+                uploadState: 'FAILURE',
+                itemError: [
+                    {
+                        error_code: 'ITEM_NOT_UPDATABLE',
+                        error_detail:
+                            'The item cannot be updated now because it is in pending review, ready to publish, or deleted status.',
+                    },
+                ],
+            },
+            success: false,
         },
     });
 
