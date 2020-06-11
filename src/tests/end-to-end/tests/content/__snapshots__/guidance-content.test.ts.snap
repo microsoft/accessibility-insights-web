@@ -14084,6 +14084,15 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
             <table
               class="landmark-table"
             >
+              <colgroup>
+                <col
+                  class="landmark-table-column"
+                />
+                <col
+                  class="landmark-table-column"
+                />
+                <col />
+              </colgroup>
               <tbody>
                 <tr>
                   <th>
