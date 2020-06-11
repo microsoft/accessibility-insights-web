@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
-import { async } from 'q';
 
 export const detectDevices: AndroidSetupStepConfig = deps => {
     return {
