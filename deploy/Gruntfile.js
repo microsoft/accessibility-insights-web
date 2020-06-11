@@ -62,9 +62,9 @@ module.exports = function (grunt) {
                         'Cannot publish due to extension not being updatable. This is likely due to a previous deployment that is pending review. As such, marking this as partially successful.',
                     );
                     grunt.log.writeln('##vso[task.complete result=SucceededWithIssues;]DONE');
+                } else {
+                    grunt.fail.fatal(e.errorMsg);
                 }
-
-                grunt.fail.fatal(e.errorMsg);
             },
             onExtensionPublished: info => {
                 if (!info.success) {
