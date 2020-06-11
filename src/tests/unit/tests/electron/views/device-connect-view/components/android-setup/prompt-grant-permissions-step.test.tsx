@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { DeviceMetadata } from 'electron/flux/types/device-metadata';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
-import { PromptInstallServiceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
+import { PromptGrantPermissionsStep } from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
@@ -22,7 +22,7 @@ describe('PromptGrantPermissionsStep', () => {
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
 
-        const rendered = shallow(<PromptInstallServiceStep {...props} />);
+        const rendered = shallow(<PromptGrantPermissionsStep {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
@@ -34,7 +34,7 @@ describe('PromptGrantPermissionsStep', () => {
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
 
-        const rendered = shallow(<PromptInstallServiceStep {...props} />);
+        const rendered = shallow(<PromptGrantPermissionsStep {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 });

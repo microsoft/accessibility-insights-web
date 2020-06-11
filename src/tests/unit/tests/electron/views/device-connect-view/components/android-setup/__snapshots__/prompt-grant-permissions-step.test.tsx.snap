@@ -2,12 +2,19 @@
 
 exports[`PromptGrantPermissionsStep renders with device 1`] = `
 <AndroidSetupStepLayout
-  headerText="Let us install the latest version on your device"
+  headerText="Grant permissions on your device"
   leftFooterButtonProps={
     Object {
       "onClick": [Function],
       "text": "Cancel",
     }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/grantPermissions"
+    >
+      How do I grant permissions?
+    </LinkComponent>
   }
   rightFooterButtonProps={
     Object {
@@ -18,7 +25,7 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
   }
 >
   <React.Fragment>
-    It looks like the Accessibility Insights for Android Service on your device is either missing or out of date. We'll need to install the latest version.
+    Be sure the Accessibility Insights for Android Service on your device is turned on and has permission to access your device and capture screenshots.
   </React.Fragment>
   <DeviceDescription
     className="deviceDescription"
@@ -27,19 +34,26 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
   />
   <CustomizedPrimaryButton
     onClick={[Function]}
-    text="Install"
+    text="Try again"
   />
 </AndroidSetupStepLayout>
 `;
 
 exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
 <AndroidSetupStepLayout
-  headerText="Let us install the latest version on your device"
+  headerText="Grant permissions on your device"
   leftFooterButtonProps={
     Object {
       "onClick": [Function],
       "text": "Cancel",
     }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/grantPermissions"
+    >
+      How do I grant permissions?
+    </LinkComponent>
   }
   rightFooterButtonProps={
     Object {
@@ -50,7 +64,7 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
   }
 >
   <React.Fragment>
-    It looks like the Accessibility Insights for Android Service on your device is either missing or out of date. We'll need to install the latest version.
+    Be sure the Accessibility Insights for Android Service on your device is turned on and has permission to access your device and capture screenshots.
   </React.Fragment>
   <DeviceDescription
     className="deviceDescription"
@@ -59,7 +73,7 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
   />
   <CustomizedPrimaryButton
     onClick={[Function]}
-    text="Install"
+    text="Try again"
   />
 </AndroidSetupStepLayout>
 `;
