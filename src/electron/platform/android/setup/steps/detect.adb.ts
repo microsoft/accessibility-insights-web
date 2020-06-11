@@ -7,6 +7,6 @@ export const detectAdb: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
         const detected = await deps.hasAdbPath();
-        deps.stepTransition(detected ? 'detect-devices' : 'prompt-locate-adb');
+        deps.stepTransition(detected ? 'prompt-connect-to-device' : 'prompt-locate-adb');
     },
 });

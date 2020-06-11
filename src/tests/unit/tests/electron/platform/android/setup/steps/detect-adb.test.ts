@@ -14,7 +14,7 @@ describe('Android setup step: detectAdb', () => {
         expect(step.onEnter).toBeDefined();
     });
 
-    it('onEnter transitions to detect-devices as expected', async () => {
+    it('onEnter transitions to prompt-connect-to-device as expected', async () => {
         const p = new Promise<boolean>(resolve => resolve(true));
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
@@ -23,7 +23,7 @@ describe('Android setup step: detectAdb', () => {
             .returns(_ => p)
             .verifiable(Times.once());
 
-        depsMock.setup(m => m.stepTransition('detect-devices')).verifiable(Times.once());
+        depsMock.setup(m => m.stepTransition('prompt-connect-to-device')).verifiable(Times.once());
 
         const step = detectAdb(depsMock.object);
         await step.onEnter();
