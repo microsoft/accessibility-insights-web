@@ -44,24 +44,15 @@ module.exports = function (grunt) {
                 },
             },
             onError: e => {
-                grunt.log.writeln('====== raw error response ======');
-                grunt.log.writeln(JSON.stringify(e));
-                grunt.log.writeln('======');
-
-                if (e['errors']) {
-                    grunt.log.writeln('has errors');
-
-                    if (e['errors']['itemError']) {
-                        grunt.log.writeln('has itemError');
-                        grunt.log.writeln(JSON.stringify(e['errors']['itemError']));
-                    }
-                }
-
-                if (e['errors']['itemError'][0]['error_code'] === 'ITEM_NOT_UPDATABLE') {
-                    grunt.log.writeln(
+                if (
+                    e.errors.itemError &&
+                    e.errors.itemError[0] &&
+                    e.errors.itemError[0].error_code === 'ITEM_NOT_UPDATABLE'
+                ) {
+                    grunt.log.write(
                         'Cannot publish due to extension not being updatable. This is likely due to a previous deployment that is pending review. As such, marking this as partially successful.',
                     );
-                    grunt.log.writeln('##vso[task.complete result=SucceededWithIssues;]DONE');
+                    grunt.log.write('##vso[task.complete result=SucceededWithIssues;]DONE');
                 } else {
                     grunt.fail.fatal(e.errorMsg);
                 }
