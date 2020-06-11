@@ -3,8 +3,8 @@
 
 import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
 import { detectAdb } from 'electron/platform/android/setup/steps/detect.adb';
-import { checkExpectedActionsAreDefined } from 'tests/unit/tests/electron/platform/android/setup/steps/actions-tester';
 import { Mock, MockBehavior, Times } from 'typemoq';
+import { checkExpectedActionsAreDefined } from './actions-tester';
 
 describe('Android setup step: detectAdb', () => {
     it('has expected properties', () => {
@@ -19,7 +19,7 @@ describe('Android setup step: detectAdb', () => {
 
         const depsMock = Mock.ofType<AndroidSetupStepDeps>(undefined, MockBehavior.Strict);
         depsMock
-            .setup(m => m.detectAdb())
+            .setup(m => m.hasAdbPath())
             .returns(_ => p)
             .verifiable(Times.once());
 
@@ -36,7 +36,7 @@ describe('Android setup step: detectAdb', () => {
 
         const depsMock = Mock.ofType<AndroidSetupStepDeps>(undefined, MockBehavior.Strict);
         depsMock
-            .setup(m => m.detectAdb())
+            .setup(m => m.hasAdbPath())
             .returns(_ => p)
             .verifiable(Times.once());
 

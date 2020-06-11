@@ -4,6 +4,6 @@
 import { AndroidSetupStepId } from './android-setup-step-id';
 
 export type AndroidSetupStepDeps = {
-    detectAdb: () => Promise<boolean>;
+    hasAdbPath: () => Promise<boolean>;
     stepTransition: (nextStep: AndroidSetupStepId) => void;
 };
