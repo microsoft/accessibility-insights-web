@@ -29,7 +29,7 @@ export interface InteractiveHeaderProps {
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
     if (props.tabClosed) {
-        return <Header deps={props.deps} />;
+        return <Header deps={props.deps} isNarrowMode={props.isNarrowMode} />;
     }
 
     const getNavMenu = () => {

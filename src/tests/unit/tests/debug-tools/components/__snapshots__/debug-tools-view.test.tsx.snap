@@ -15,13 +15,6 @@ exports[`DebugToolsView renders 1`] = `
     }
     isNarrowModeEnabled={true}
   />
-  <Header
-    deps={
-      Object {
-        "storesHub": null,
-      }
-    }
-  />
   <ToolsNav
     className="nav"
     deps={
