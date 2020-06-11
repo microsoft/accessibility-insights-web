@@ -52,6 +52,9 @@ module.exports = function (grunt) {
                         );
                         grunt.log.write('##vso[task.complete result=SucceededWithIssues;]DONE');
                     }
+                    grunt.log.write('======');
+                    grunt.log.write(JSON.stringify(info));
+                    grunt.log.write('======');
 
                     grunt.fail.fatal(JSON.stringify(info));
                 }
