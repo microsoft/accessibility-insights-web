@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
 import { detectAdb } from 'electron/platform/android/setup/steps/detect.adb';
 import { Mock, MockBehavior, Times } from 'typemoq';
@@ -8,7 +9,7 @@ import { checkExpectedActionsAreDefined } from './actions-tester';
 
 describe('Android setup step: detectAdb', () => {
     it('has expected properties', () => {
-        const deps = {} as AndroidSetupStepDeps;
+        const deps = {} as AndroidSetupStepDeps & AndroidSetupStoreCallbacks;
         const step = detectAdb(deps);
         checkExpectedActionsAreDefined(step, []);
         expect(step.onEnter).toBeDefined();
@@ -17,7 +18,10 @@ describe('Android setup step: detectAdb', () => {
     it('onEnter transitions to detect-devices as expected', async () => {
         const p = new Promise<boolean>(resolve => resolve(true));
 
-        const depsMock = Mock.ofType<AndroidSetupStepDeps>(undefined, MockBehavior.Strict);
+        const depsMock = Mock.ofType<AndroidSetupStepDeps & AndroidSetupStoreCallbacks>(
+            undefined,
+            MockBehavior.Strict,
+        );
         depsMock
             .setup(m => m.hasAdbPath())
             .returns(_ => p)
@@ -34,7 +38,10 @@ describe('Android setup step: detectAdb', () => {
     it('onEnter transitions to prompt-locate-adb as expected', async () => {
         const p = new Promise<boolean>(resolve => resolve(false));
 
-        const depsMock = Mock.ofType<AndroidSetupStepDeps>(undefined, MockBehavior.Strict);
+        const depsMock = Mock.ofType<AndroidSetupStepDeps & AndroidSetupStoreCallbacks>(
+            undefined,
+            MockBehavior.Strict,
+        );
         depsMock
             .setup(m => m.hasAdbPath())
             .returns(_ => p)

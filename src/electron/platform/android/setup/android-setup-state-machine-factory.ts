@@ -5,6 +5,7 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import {
     AndroidSetupStateMachineFactory,
     AndroidSetupStepTransitionCallback,
+    AndroidSetupStoreCallbacks,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { StateMachine } from 'electron/platform/android/setup/state-machine/state-machine';
@@ -18,7 +19,7 @@ type AndroidSetupStepsFactory = (
 ) => StateMachineSteps<AndroidSetupStepId, AndroidSetupActions>;
 
 const stepsFactory = (
-    deps: Omit<AndroidSetupStepDeps, 'stepTransition'>,
+    deps: Omit<AndroidSetupStepDeps & AndroidSetupStoreCallbacks, 'stepTransition'>,
 ): AndroidSetupStepsFactory => {
     return (stateMachineStepTransition: AndroidSetupStepTransitionCallback) => {
         const allDeps = {
@@ -31,12 +32,12 @@ const stepsFactory = (
 };
 
 export const createAndroidSetupStateMachineFactory = (
-    deps: Omit<AndroidSetupStepDeps, 'stepTransition'>,
+    deps: AndroidSetupStepDeps,
 ): AndroidSetupStateMachineFactory => {
-    return storeStepTransition => {
+    return (storeCallbacks: AndroidSetupStoreCallbacks) => {
         return new StateMachine<AndroidSetupStepId, AndroidSetupActions>(
-            stepsFactory(deps),
-            storeStepTransition,
+            stepsFactory({ ...deps, ...storeCallbacks }),
+            storeCallbacks.stepTransition,
             'detect-adb',
         );
     };

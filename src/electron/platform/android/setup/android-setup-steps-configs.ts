@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStepDeps } from 'electron/platform/android/setup/android-setup-step-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import {
@@ -12,7 +13,7 @@ import { detectAdb } from './steps/detect.adb';
 
 export type AndroidSetupStepConfig = StateMachineStepConfig<
     AndroidSetupActions,
-    AndroidSetupStepDeps
+    AndroidSetupStepDeps & AndroidSetupStoreCallbacks
 >;
 
 type AndroidSetupStepConfigs = StateMachineStepConfigs<
