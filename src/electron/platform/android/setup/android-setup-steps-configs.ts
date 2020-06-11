@@ -9,7 +9,7 @@ import {
     StateMachineStepConfig,
     StateMachineStepConfigs,
 } from './state-machine/state-machine-step-configs';
-import { detectAdb } from './steps/detect.adb';
+import { detectAdb } from './steps/detect-adb';
 
 export type AndroidSetupStepConfigDeps = AndroidSetupDeps & AndroidSetupStoreCallbacks;
 

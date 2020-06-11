@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
-import { detectAdb } from 'electron/platform/android/setup/steps/detect.adb';
+import { detectAdb } from 'electron/platform/android/setup/steps/detect-adb';
 import { Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
