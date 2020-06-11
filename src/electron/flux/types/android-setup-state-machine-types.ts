@@ -9,6 +9,10 @@ export type AndroidSetupStateMachine = StateMachine<AndroidSetupStepId, AndroidS
 
 export type AndroidSetupStepTransitionCallback = (nextStep: AndroidSetupStepId) => void;
 
+export type AndroidSetupStoreCallbacks = {
+    stepTransition: AndroidSetupStepTransitionCallback;
+};
+
 export type AndroidSetupStateMachineFactory = (
-    stepTransitionCallback: AndroidSetupStepTransitionCallback,
+    storeCallbacks: AndroidSetupStoreCallbacks,
 ) => AndroidSetupStateMachine;

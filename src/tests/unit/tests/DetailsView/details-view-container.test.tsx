@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     DetailsViewContainer,
@@ -62,6 +63,9 @@ describe('DetailsViewContainer', () => {
                     tabStoreData: {
                         isClosed: true,
                     },
+                    featureFlagStoreData: {
+                        reflowUI: true,
+                    } as FeatureFlagStoreData,
                 },
                 deps: {
                     storesHub: storesHubMock.object,
@@ -87,6 +91,9 @@ describe('DetailsViewContainer', () => {
                     permissionsStateStoreData: {
                         hasAllUrlAndFilePermissions: false,
                     },
+                    featureFlagStoreData: {
+                        reflowUI: true,
+                    } as FeatureFlagStoreData,
                 },
                 deps: {
                     storesHub: storesHubMock.object,

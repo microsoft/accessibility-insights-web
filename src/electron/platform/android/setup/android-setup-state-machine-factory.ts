@@ -5,12 +5,16 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import {
     AndroidSetupStateMachineFactory,
     AndroidSetupStepTransitionCallback,
+    AndroidSetupStoreCallbacks,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { StateMachine } from 'electron/platform/android/setup/state-machine/state-machine';
 import { createStateMachineSteps } from 'electron/platform/android/setup/state-machine/state-machine-step-configs';
-import { AndroidSetupStepDeps } from './android-setup-step-deps';
-import { allAndroidSetupStepConfigs } from './android-setup-steps-configs';
+import { AndroidSetupDeps } from './android-setup-deps';
+import {
+    allAndroidSetupStepConfigs,
+    AndroidSetupStepConfigDeps,
+} from './android-setup-steps-configs';
 import { StateMachineSteps } from './state-machine/state-machine-steps';
 
 type AndroidSetupStepsFactory = (
@@ -18,7 +22,7 @@ type AndroidSetupStepsFactory = (
 ) => StateMachineSteps<AndroidSetupStepId, AndroidSetupActions>;
 
 const stepsFactory = (
-    deps: Omit<AndroidSetupStepDeps, 'stepTransition'>,
+    deps: Omit<AndroidSetupStepConfigDeps, 'stepTransition'>,
 ): AndroidSetupStepsFactory => {
     return (stateMachineStepTransition: AndroidSetupStepTransitionCallback) => {
         const allDeps = {
@@ -31,12 +35,12 @@ const stepsFactory = (
 };
 
 export const createAndroidSetupStateMachineFactory = (
-    deps: Omit<AndroidSetupStepDeps, 'stepTransition'>,
+    deps: AndroidSetupDeps,
 ): AndroidSetupStateMachineFactory => {
-    return storeStepTransition => {
+    return (storeCallbacks: AndroidSetupStoreCallbacks) => {
         return new StateMachine<AndroidSetupStepId, AndroidSetupActions>(
-            stepsFactory(deps),
-            storeStepTransition,
+            stepsFactory({ ...deps, ...storeCallbacks }),
+            storeCallbacks.stepTransition,
             'detect-adb',
         );
     };
