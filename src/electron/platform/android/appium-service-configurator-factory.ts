@@ -18,10 +18,11 @@ export class AppiumServiceConfiguratorFactory implements AndroidServiceConfigura
     public getServiceConfigurator = async (
         sdkRoot: string,
     ): Promise<AndroidServiceConfigurator> => {
-        let parameters: AppiumAdbCreateParameters = undefined;
-        if (sdkRoot) {
-            parameters = { sdkRoot };
-        }
+        const parameters: AppiumAdbCreateParameters = sdkRoot
+            ? {
+                  sdkRoot,
+              }
+            : undefined;
 
         const adb: ADB = await this.adbCreator.createADB(parameters);
 
