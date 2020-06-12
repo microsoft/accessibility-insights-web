@@ -2,23 +2,23 @@
 // Licensed under the MIT License.
 
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
-import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
+import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
 import { Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
-describe('Android setup step: promptInstallService', () => {
+describe('Android setup step: promptGrantPermissions', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
-        const step = promptInstallService(deps);
+        const step = promptGrantPermissions(deps);
         checkExpectedActionsAreDefined(step, ['next']);
         expect(step.onEnter).not.toBeDefined();
     });
 
-    it('onEnter transitions to installing-service as expected', () => {
+    it('onEnter transitions to detect-permissions as expected', () => {
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
-        depsMock.setup(m => m.stepTransition('installing-service')).verifiable(Times.once());
+        depsMock.setup(m => m.stepTransition('detect-permissions')).verifiable(Times.once());
 
-        const step = promptInstallService(depsMock.object);
+        const step = promptGrantPermissions(depsMock.object);
         step.actions.next();
 
         depsMock.verifyAll();
