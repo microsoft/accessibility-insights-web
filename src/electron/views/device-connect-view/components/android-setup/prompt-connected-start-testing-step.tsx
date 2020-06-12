@@ -48,7 +48,11 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
         return (
             <AndroidSetupStepLayout {...layoutProps}>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
-                <Button text="Rescan device" onClick={onRescanButton} />
+                <Button
+                    className={styles.rescanButton}
+                    text="Rescan devices"
+                    onClick={onRescanButton}
+                />
             </AndroidSetupStepLayout>
         );
     },
