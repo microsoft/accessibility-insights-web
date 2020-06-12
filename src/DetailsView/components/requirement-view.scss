@@ -23,3 +23,7 @@
         line-height: 20px;
     }
 }
+
+:global(.no-matching-elements) {
+    font-weight: bold;
+}
