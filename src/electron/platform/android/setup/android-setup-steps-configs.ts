@@ -5,11 +5,14 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
+import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
+import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
+import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
 import {
     StateMachineStepConfig,
     StateMachineStepConfigs,
 } from './state-machine/state-machine-step-configs';
-import { detectAdb } from './steps/detect.adb';
+import { detectAdb } from './steps/detect-adb';
 
 export type AndroidSetupStepConfigDeps = AndroidSetupDeps & AndroidSetupStoreCallbacks;
 
@@ -26,9 +29,9 @@ type AndroidSetupStepConfigs = StateMachineStepConfigs<
 
 export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'detect-adb': detectAdb,
-    'prompt-locate-adb': null,
-    'prompt-connect-to-device': null,
-    'detect-devices': null,
+    'prompt-locate-adb': promptLocateAdb,
+    'prompt-connect-to-device': promptConnectToDevice,
+    'detect-devices': detectDevices,
     'prompt-choose-device': null,
     'detect-service': null,
     'prompt-install-service': null,
