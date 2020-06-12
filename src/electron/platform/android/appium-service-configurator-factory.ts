@@ -6,37 +6,23 @@ import {
     AndroidServiceConfigurator,
     AndroidServiceConfiguratorFactory,
 } from 'electron/platform/android/android-service-configurator';
+import {
+    AppiumAdbCreateParameters,
+    AppiumAdbCreator,
+} from 'electron/platform/android/appium-adb-creator';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 
-export type AdbCreateParameters = {
-    sdkRoot: string;
-};
-
-export interface AdbCreator {
-    createADB(opts: AdbCreateParameters): Promise<ADB>;
-}
-
-class ProductionAdbCreator implements AdbCreator {
-    public createADB = async (parameters: AdbCreateParameters): Promise<ADB> => {
-        return ADB.createADB(parameters);
-    };
-}
-
 export class AppiumServiceConfiguratorFactory implements AndroidServiceConfiguratorFactory {
-    private readonly adbCreator: AdbCreator;
-
-    public constructor(adbCreator: AdbCreator) {
-        // In Production, pass null for adbCreator
-        this.adbCreator = adbCreator ?? new ProductionAdbCreator();
-    }
+    public constructor(private readonly adbCreator: AppiumAdbCreator) {}
 
     public getServiceConfigurator = async (
         sdkRoot: string,
     ): Promise<AndroidServiceConfigurator> => {
-        let parameters: AdbCreateParameters = undefined;
-        if (sdkRoot) {
-            parameters = { sdkRoot };
-        }
+        const parameters: AppiumAdbCreateParameters = sdkRoot
+            ? {
+                  sdkRoot,
+              }
+            : undefined;
 
         const adb: ADB = await this.adbCreator.createADB(parameters);
 

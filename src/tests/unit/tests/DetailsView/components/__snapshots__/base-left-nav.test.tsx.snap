@@ -3,6 +3,7 @@
 exports[`BaseLeftNav should render 1`] = `
 <StyledNavBase
   className="details-view-test-nav-area"
+  componentRef={[Function]}
   groups={
     Array [
       Object {

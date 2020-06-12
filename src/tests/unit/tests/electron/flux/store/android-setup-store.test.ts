@@ -5,14 +5,14 @@ import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import {
     AndroidSetupStateMachine,
     AndroidSetupStateMachineFactory,
-    AndroidSetupStepTransitionCallback,
+    AndroidSetupStoreCallbacks,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 import { It, Mock, Times } from 'typemoq';
 
 const mockableStateMachineFactory = (
-    stepTransition: AndroidSetupStepTransitionCallback,
+    storeCallbacks: AndroidSetupStoreCallbacks,
 ): AndroidSetupStateMachine => {
     return null;
 };
@@ -48,7 +48,6 @@ describe('AndroidSetupStore', () => {
         store.initialize();
 
         setupActions.cancel.invoke();
-        setupActions.close.invoke();
         setupActions.next.invoke();
         setupActions.rescan.invoke();
         setupActions.saveAdbPath.invoke('');
@@ -87,18 +86,18 @@ describe('AndroidSetupStore', () => {
         const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
         const expectedData: AndroidSetupStoreData = { currentStepId: 'prompt-choose-device' };
 
-        let stepTransition: AndroidSetupStepTransitionCallback;
+        let storeCallbacks: AndroidSetupStoreCallbacks;
 
         const stateMachineMock = Mock.ofType<AndroidSetupStateMachine>();
         stateMachineMock
             .setup(m => m.invokeAction('cancel', It.isAny()))
-            .callback((action, payload) => stepTransition('prompt-choose-device'))
+            .callback((action, payload) => storeCallbacks.stepTransition('prompt-choose-device'))
             .verifiable(Times.once());
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
             .setup(m => m(It.isAny()))
-            .callback(st => (stepTransition = st))
+            .callback(sc => (storeCallbacks = sc))
             .returns(_ => stateMachineMock.object)
             .verifiable(Times.once());
 

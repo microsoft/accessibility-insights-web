@@ -19,7 +19,7 @@ describe('InteractiveHeader', () => {
         navMenuStub = NamedFC<ExpandCollpaseLeftNavButtonProps>('test-nav-menu', _ => null);
     });
 
-    it.each([false, true])('render: tabClosed is %s', tabClosed => {
+    it.each([false, true])('render: tabClosed equals %s', tabClosed => {
         const dropdownClickHandlerStub = {} as DropdownClickHandler;
         const props: InteractiveHeaderProps = {
             featureFlagStoreData: {

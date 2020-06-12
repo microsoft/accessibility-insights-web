@@ -29,6 +29,7 @@ describe('BaseLeftNav', () => {
         const props: BaseLeftNavProps = {
             selectedKey: 'some key',
             links: [{} as BaseLeftNavLink],
+            setNavComponentRef: _ => {},
         } as BaseLeftNavProps;
 
         const actual = shallow(<BaseLeftNav {...props} />);

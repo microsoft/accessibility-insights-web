@@ -73,6 +73,11 @@ div.insights-dialog-main-override {
     width: 25% !important;
     max-width: 25% !important;
     min-width: 500px !important;
+    @media screen and (max-width: 500px) {
+        min-width: 256px !important;
+        width: 95% !important;
+        max-width: 100% !important;
+    }
     user-select: text;
     .start-over-dialog-body {
         font-size: 16px;
@@ -457,6 +462,9 @@ div.insights-file-issue-details-dialog-container {
         .details-view-body-content-pane {
             display: flex;
             flex-direction: column;
+            &.reflow-ui {
+                word-break: break-word;
+            }
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;

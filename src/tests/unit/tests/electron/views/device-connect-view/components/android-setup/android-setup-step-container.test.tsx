@@ -2,29 +2,21 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { AndroidSetupStepContainer } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-container';
-import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { render, shallow } from 'enzyme';
 import * as React from 'react';
+import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
 
 describe('AndroidSetupStepContainer', () => {
-    const props: CommonAndroidSetupStepProps = {
-        userConfigurationStoreData: null,
-        androidSetupStoreData: {
-            currentStepId: 'detect-adb',
-        },
-        deps: {
-            androidSetupActionCreator: null,
-            androidSetupStepComponentProvider: {
-                'detect-adb': NamedFC('DetectTestComponent', p => (
-                    <>test component A {p.androidSetupStoreData.currentStepId}</>
-                )),
-                'prompt-locate-adb': NamedFC('PromptTestComponent', p => (
-                    <>test component B {p.androidSetupStoreData.currentStepId}</>
-                )),
-            },
-            LinkComponent: null,
-        },
-    };
+    const props = new AndroidSetupStepPropsBuilder('detect-adb')
+        .withDep('androidSetupStepComponentProvider', {
+            'detect-adb': NamedFC('DetectTestComponent', p => (
+                <>test component A {p.androidSetupStoreData.currentStepId}</>
+            )),
+            'prompt-locate-adb': NamedFC('PromptTestComponent', p => (
+                <>test component B {p.androidSetupStoreData.currentStepId}</>
+            )),
+        })
+        .build();
 
     it('passes common props and deps through', () => {
         const rendered = shallow(<AndroidSetupStepContainer {...props} />);

@@ -4,7 +4,9 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { INav } from 'office-ui-fabric-react';
 import * as React from 'react';
+
 import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
@@ -29,6 +31,8 @@ export type AssessmentLeftNavProps = {
     assessmentsData: DictionaryStringTo<ManualTestStatusData>;
     featureFlagStoreData: FeatureFlagStoreData;
     expandedTest: VisualizationType | undefined;
+    onRightPanelContentSwitch: () => void;
+    setNavComponentRef: (nav: INav) => void;
 };
 
 export type AssessmentLeftNavLink = {
@@ -68,6 +72,8 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         assessmentsData,
         featureFlagStoreData,
         expandedTest,
+        onRightPanelContentSwitch,
+        setNavComponentRef,
     } = props;
 
     const { navLinkHandler, leftNavLinkBuilder } = deps;
@@ -80,6 +86,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
             assessmentsProvider,
             assessmentsData,
             0,
+            onRightPanelContentSwitch,
         ),
     );
 
@@ -91,6 +98,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
                 assessmentsData,
                 1,
                 expandedTest,
+                onRightPanelContentSwitch,
             ),
         );
     } else {
@@ -105,5 +113,11 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         );
     }
 
-    return <BaseLeftNav selectedKey={selectedKey} links={links} />;
+    return (
+        <BaseLeftNav
+            selectedKey={selectedKey}
+            links={links}
+            setNavComponentRef={setNavComponentRef}
+        />
+    );
 });

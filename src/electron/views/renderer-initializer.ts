@@ -73,6 +73,7 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
@@ -188,7 +189,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
-            createAndroidSetupStateMachineFactory({}),
+            createAndroidSetupStateMachineFactory({} as AndroidSetupDeps),
         );
         androidSetupStore.initialize();
 
@@ -439,6 +440,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             null,
         );
 
+        const startTesting = () => {
+            windowStateActionCreator.setRoute({ routeId: 'resultsView' });
+            windowFrameActionCreator.maximize();
+        };
+
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,
             userConfigurationStore,
@@ -468,6 +474,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
+            closeApp: ipcRendererShim.closeWindow,
+            startTesting: startTesting,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

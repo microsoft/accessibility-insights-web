@@ -8,6 +8,7 @@ exports[`FluentSideNav render nav bar 1`] = `
     isNarrowMode={false}
     isSideNavOpen={false}
     selectedPivot={0}
+    setNavComponentRef={[Function]}
     setSideNavOpen={null}
     tabStoreData={
       Object {
@@ -20,9 +21,9 @@ exports[`FluentSideNav render nav bar 1`] = `
 
 exports[`FluentSideNav render null if tab is closed 1`] = `null`;
 
-exports[`FluentSideNav render sidePanel 1`] = `
+exports[`FluentSideNav render side nav 1`] = `
 <GenericPanel
-  className="leftNavPanel"
+  className="leftNavPanel reflow-ui"
   hasCloseButton={false}
   isLightDismiss={true}
   isOpen={false}
@@ -36,6 +37,7 @@ exports[`FluentSideNav render sidePanel 1`] = `
     isNarrowMode={true}
     isSideNavOpen={false}
     selectedPivot={0}
+    setNavComponentRef={[Function]}
     setSideNavOpen={null}
     tabStoreData={
       Object {

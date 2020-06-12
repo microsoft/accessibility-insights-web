@@ -27,6 +27,11 @@ type LandmarkTableProps = {
 
 export const LandmarkTable = NamedFC<LandmarkTableProps>('LandmarkTable', ({ markup }) => (
     <table className="landmark-table">
+        <colgroup>
+            <col className="landmark-table-column" />
+            <col className="landmark-table-column" />
+            <col />
+        </colgroup>
         <tr>
             <th>Role</th>
             <th>HTML element</th>

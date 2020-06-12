@@ -15,10 +15,15 @@
 :global(.visual-helper) {
     display: flex;
     padding-top: 1.5vh;
+    flex-wrap: wrap;
     &-text {
         padding-right: 0.9vh;
         font-family: $fontFamily;
         font-size: 14px;
         line-height: 20px;
     }
+}
+
+:global(.no-matching-elements) {
+    font-weight: bold;
 }

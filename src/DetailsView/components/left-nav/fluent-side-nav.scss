@@ -4,21 +4,18 @@
 
 #side-nav-container {
     max-width: 25%;
-    min-width: 200px;
-
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: start;
-    align-items: self-start;
-    align-content: stretch;
+    min-width: $detailsViewReflowLeftNavWidth;
 }
 
 .left-nav-panel {
-    margin-top: $detailsViewHeaderBarHeight;
     :global(.ms-Panel-main) {
         width: $detailsViewReflowLeftNavWidth;
     }
     :global(.ms-Panel-content) {
         padding: 0px;
+        :global(.main-nav) {
+            max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+            height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+        }
     }
 }

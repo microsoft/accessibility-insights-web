@@ -13,6 +13,7 @@ export type AndroidSetupSpinnerStepDeps = {
 export type AndroidSetupSpinnerStepProps = {
     deps: AndroidSetupSpinnerStepDeps;
     spinnerLabel: string;
+    disableCancel?: boolean;
 };
 
 export const AndroidSetupSpinnerStep = NamedFC<AndroidSetupSpinnerStepProps>(
@@ -22,6 +23,7 @@ export const AndroidSetupSpinnerStep = NamedFC<AndroidSetupSpinnerStepProps>(
             leftFooterButtonProps: {
                 text: 'Cancel',
                 onClick: props.deps.androidSetupActionCreator.cancel,
+                disabled: props.disableCancel ? props.disableCancel : false,
             },
             rightFooterButtonProps: {
                 text: 'Next',
