@@ -172,7 +172,6 @@
         "./src/electron/platform/android/android-service-configurator.ts",
         "./src/electron/platform/android/appium-service-configurator.ts",
         "./src/electron/platform/android/device-config.ts",
-        "./src/electron/platform/android/setup/android-setup-step-deps.ts",
         "./src/electron/platform/android/setup/android-setup-step-id.ts",
         "./src/electron/views/automated-checks/components/header-section.tsx",
         "./src/electron/views/bundled-renderer-styles.ts",
