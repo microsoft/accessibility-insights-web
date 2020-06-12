@@ -6,7 +6,13 @@ import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-st
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
+import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
+import { detectService } from 'electron/platform/android/setup/steps/detect-service';
+import { installingService } from 'electron/platform/android/setup/steps/installing-service';
 import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
+import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
+import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
+import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
 import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
 import {
     StateMachineStepConfig,
@@ -33,11 +39,11 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'prompt-connect-to-device': promptConnectToDevice,
     'detect-devices': detectDevices,
     'prompt-choose-device': null,
-    'detect-service': null,
-    'prompt-install-service': null,
-    'installing-service': null,
-    'prompt-install-failed': null,
-    'detect-permissions': null,
-    'prompt-grant-permissions': null,
-    'prompt-connected-start-testing': null,
+    'detect-service': detectService,
+    'prompt-install-service': promptInstallService,
+    'installing-service': installingService,
+    'prompt-install-failed': promptInstallService,
+    'detect-permissions': detectPermissions,
+    'prompt-grant-permissions': promptGrantPermissions,
+    'prompt-connected-start-testing': promptConnectedStartTesting,
 };
