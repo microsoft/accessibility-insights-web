@@ -7,7 +7,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -36,7 +36,8 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 
 export type DetailsViewBodyDeps = DetailsViewContentDeps &
     DetailsViewLeftNavDeps &
-    DetailsViewCommandBarDeps;
+    DetailsViewCommandBarDeps &
+    FluentSideNavDeps;
 
 export interface DetailsViewBodyProps {
     deps: DetailsViewBodyDeps;

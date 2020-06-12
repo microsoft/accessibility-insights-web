@@ -38,4 +38,15 @@ describe('DeviceDescription', () => {
         const rendered = shallow(<DeviceDescription {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
+
+    it('renders with currentApplication', () => {
+        const props: DeviceDescriptionProps = {
+            isEmulator: false,
+            description: 'Whizbang tablet',
+            currentApplication: 'Wildlife Manager',
+        };
+
+        const rendered = shallow(<DeviceDescription {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 });

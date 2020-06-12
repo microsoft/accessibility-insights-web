@@ -2,14 +2,18 @@
 
 exports[`NoContentAvailableView renders 1`] = `
 <React.Fragment>
-  <Header
-    deps={
+  <NarrowModeDetector
+    Component={[Function]}
+    childrenProps={
       Object {
-        "textContent": Object {
-          "applicationTitle": "test-application-title",
+        "deps": Object {
+          "textContent": Object {
+            "applicationTitle": "test-application-title",
+          },
         },
       }
     }
+    isNarrowModeEnabled={true}
   />
   <NoContentAvailable />
 </React.Fragment>

@@ -1,5 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DeviceDescription renders with currentApplication 1`] = `
+<div
+  className="content"
+>
+  <StyledIconBase
+    ariaLabel="Device"
+    className="iconContent"
+    iconName="CellPhone"
+  />
+  <div
+    className="deviceAndCurrentApplication"
+  >
+    Whizbang tablet
+    <div
+      className="currentApplication"
+    >
+      Wildlife Manager
+    </div>
+  </div>
+</div>
+`;
+
 exports[`DeviceDescription renders with device 1`] = `
 <div
   className="content"

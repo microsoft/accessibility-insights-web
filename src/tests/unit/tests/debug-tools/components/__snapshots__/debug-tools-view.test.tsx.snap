@@ -4,12 +4,16 @@ exports[`DebugToolsView renders 1`] = `
 <div
   className="debugToolsContainer"
 >
-  <Header
-    deps={
+  <NarrowModeDetector
+    Component={[Function]}
+    childrenProps={
       Object {
-        "storesHub": null,
+        "deps": Object {
+          "storesHub": null,
+        },
       }
     }
+    isNarrowModeEnabled={true}
   />
   <ToolsNav
     className="nav"
@@ -20,6 +24,9 @@ exports[`DebugToolsView renders 1`] = `
     }
     state={
       Object {
+        "featureFlagStoreData": Object {
+          "reflowUI": true,
+        },
         "userConfigurationStoreData": Object {
           "isFirstTime": true,
         },
@@ -34,6 +41,9 @@ exports[`DebugToolsView renders 1`] = `
     }
     storeState={
       Object {
+        "featureFlagStoreData": Object {
+          "reflowUI": true,
+        },
         "userConfigurationStoreData": Object {
           "isFirstTime": true,
         },
