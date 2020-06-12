@@ -440,6 +440,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             null,
         );
 
+        const startTesting = () => {
+            windowStateActionCreator.setRoute({ routeId: 'resultsView' });
+            windowFrameActionCreator.maximize();
+        };
+
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,
             userConfigurationStore,
@@ -470,6 +475,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             reportExportServiceProvider: ReportExportServiceProviderImpl,
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
             closeApp: ipcRendererShim.closeWindow,
+            startTesting: startTesting,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
