@@ -17,7 +17,7 @@ type AdbDevice = {
 const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
 
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
-    private portNumber: number = 62442;
+    private readonly portNumber: number = 62442;
 
     constructor(private readonly adb: ADB) {}
 
