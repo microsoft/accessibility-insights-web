@@ -126,6 +126,9 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
+import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
+import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -189,7 +192,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
-            createAndroidSetupStateMachineFactory({} as AndroidSetupDeps),
+            createAndroidSetupStateMachineFactory(
+                new LiveAndroidSetupDeps(
+                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator()),
+                    userConfigurationStore,
+                ),
+            ),
         );
         androidSetupStore.initialize();
 
