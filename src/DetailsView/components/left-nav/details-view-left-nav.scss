@@ -10,6 +10,7 @@
             .ms-Nav-compositeLink {
                 &.is-selected {
                     background-color: $communication-tint-20;
+                    a,
                     button {
                         background-color: $communication-tint-20 !important;
                     }
@@ -24,6 +25,7 @@
                     }
                 }
                 &:hover {
+                    a,
                     button {
                         background-color: $nav-link-hover !important;
                     }
@@ -101,6 +103,7 @@
             margin-top: 0px !important;
         }
         .ms-Nav-compositeLink {
+            a,
             button {
                 border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
                 border-top: 0px;
@@ -123,6 +126,7 @@
                 border-color: $neutral-20;
             }
             &.is-selected {
+                a,
                 button {
                     background-color: $communication-tint-40;
                     border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
@@ -135,6 +139,7 @@
                         color: $overview-percent-selected;
                     }
                 }
+                a::after,
                 button::after {
                     border-left: 0px;
                 }
