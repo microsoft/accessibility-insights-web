@@ -23,6 +23,7 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
        Android devices or emulators connected
     </p>
     <CustomizedDefaultButton
+      data-automation-id="rescan"
       onClick={[Function]}
       text="Rescan"
     />
