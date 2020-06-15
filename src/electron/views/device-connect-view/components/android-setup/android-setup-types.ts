@@ -21,6 +21,7 @@ export type AndroidSetupPageDeps = {
     androidSetupStepComponentProvider: AndroidSetupStepComponentProvider;
     LinkComponent: LinkComponentType;
     closeApp: () => void;
+    startTesting: () => void;
 } & FolderPickerDeps;
 
 // 'Partial' is used to allow missing step IDs as they get implemented.

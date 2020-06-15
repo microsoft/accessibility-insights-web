@@ -2,8 +2,14 @@
 
 exports[`page view renders 1`] = `
 <React.Fragment>
-  <Header
-    deps={Object {}}
+  <NarrowModeDetector
+    Component={[Function]}
+    childrenProps={
+      Object {
+        "deps": Object {},
+      }
+    }
+    isNarrowModeEnabled={true}
   />
   <main>
     INSIDE

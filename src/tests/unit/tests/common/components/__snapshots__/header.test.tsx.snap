@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Header renders in narrow mode 1`] = `
+<header
+  className="headerBar"
+>
+  <WithStoreSubscriptionForHeaderIconComponent
+    deps={
+      Object {
+        "textContent": Object {
+          "applicationTitle": "THE_APPLICATION_TITLE",
+        },
+      }
+    }
+  />
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  />
+</header>
+`;
+
 exports[`Header renders per snapshot 1`] = `
 <header
   className="headerBar"
@@ -18,6 +41,77 @@ exports[`Header renders per snapshot 1`] = `
   >
     THE_APPLICATION_TITLE
   </span>
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  />
+</header>
+`;
+
+exports[`Header renders with showFarItems equals false 1`] = `
+<header
+  className="headerBar"
+>
+  <WithStoreSubscriptionForHeaderIconComponent
+    deps={
+      Object {
+        "textContent": Object {
+          "applicationTitle": "THE_APPLICATION_TITLE",
+        },
+      }
+    }
+  />
+  <span
+    className="headerTitle"
+  >
+    THE_APPLICATION_TITLE
+  </span>
+  <div />
+  <div
+    className="spacer"
+  />
+</header>
+`;
+
+exports[`Header renders with showFarItems equals true 1`] = `
+<header
+  className="headerBar"
+>
+  <WithStoreSubscriptionForHeaderIconComponent
+    deps={
+      Object {
+        "textContent": Object {
+          "applicationTitle": "THE_APPLICATION_TITLE",
+        },
+      }
+    }
+  />
+  <span
+    className="headerTitle"
+  >
+    THE_APPLICATION_TITLE
+  </span>
+  <div />
+  <div
+    className="spacer"
+  />
+  <div
+    className="farItems"
+  >
+    <div>
+      THis is far items!
+    </div>
+  </div>
+</header>
+`;
+
+exports[`Header renders without header title 1`] = `
+<header
+  className="headerBar"
+>
   <div />
   <div
     className="spacer"

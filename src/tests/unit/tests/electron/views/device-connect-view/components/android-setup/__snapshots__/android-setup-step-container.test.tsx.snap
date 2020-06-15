@@ -17,6 +17,7 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
       },
       "closeApp": null,
       "showOpenFileDialog": null,
+      "startTesting": null,
     }
   }
   userConfigurationStoreData={

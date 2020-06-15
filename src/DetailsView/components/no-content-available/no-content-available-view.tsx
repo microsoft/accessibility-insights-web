@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Header, HeaderDeps } from 'common/components/header';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
 import { NoContentAvailable } from 'DetailsView/components/no-content-available/no-content-available';
 import * as React from 'react';
 
@@ -15,7 +16,11 @@ export const NoContentAvailableView = NamedFC<NoContentAvailableViewProps>(
     'NoContentAvailableView',
     ({ deps }) => (
         <>
-            <Header deps={deps} />
+            <NarrowModeDetector
+                isNarrowModeEnabled={true}
+                Component={Header}
+                childrenProps={{ deps: deps }}
+            />
             <NoContentAvailable />
         </>
     ),

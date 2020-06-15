@@ -23,11 +23,13 @@ export interface InteractiveHeaderProps {
     isNarrowMode: boolean;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    showFarItems?: boolean;
+    showHeaderTitle?: boolean;
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
     if (props.tabClosed) {
-        return <Header deps={props.deps} />;
+        return <Header deps={props.deps} isNarrowMode={props.isNarrowMode} />;
     }
 
     const getNavMenu = () => {
@@ -61,9 +63,9 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         );
     };
 
-    const getFarItems = () => (
-        <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />
-    );
+    const getFarItems = () => {
+        return <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />;
+    };
 
     return (
         <Header
@@ -71,6 +73,9 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
             items={getItems()}
             farItems={getFarItems()}
             navMenu={getNavMenu()}
+            showHeaderTitle={props.showHeaderTitle}
+            showFarItems={props.showFarItems}
+            isNarrowMode={props.isNarrowMode}
         ></Header>
     );
 });

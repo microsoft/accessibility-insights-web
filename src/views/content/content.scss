@@ -28,6 +28,7 @@
     font-family: $fontFamily;
     font-size: 14px;
     margin: 10px;
+    word-break: break-word;
 
     table {
         font-family: $fontFamily;
@@ -135,6 +136,7 @@
             'fail-section pass-section'
             'fail-example pass-example';
         border: 1px solid $neutral-60;
+        word-break: break-word;
     }
 
     .fail-section,
@@ -248,7 +250,14 @@
 
     .landmark-table {
         border-spacing: 5px;
-        padding-left: 32px;
+
+        @media screen and (min-width: 600px) {
+            padding-left: 32px;
+        }
+
+        .landmark-table-column {
+            width: 24%;
+        }
 
         .landmark-role {
             text-align: center;

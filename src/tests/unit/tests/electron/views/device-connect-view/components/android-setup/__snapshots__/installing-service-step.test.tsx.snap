@@ -10,6 +10,7 @@ exports[`InstallingServiceStep renders 1`] = `
         "androidSetupStepComponentProvider": null,
         "closeApp": null,
         "showOpenFileDialog": null,
+        "startTesting": null,
       }
     }
     spinnerLabel="Installing on your device..."

@@ -2,6 +2,7 @@
 
 exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
 <CustomizedIconButton
+  aria-expanded={false}
   ariaLabel="test-aria-label"
   className="leftNavHamburgerButton"
   iconProps={

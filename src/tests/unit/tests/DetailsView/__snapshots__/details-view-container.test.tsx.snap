@@ -52,15 +52,19 @@ exports[`DetailsViewContainer render content render once; should call details vi
 
 exports[`DetailsViewContainer render content show NoContentAvailable when stores are not loaded 1`] = `
 <React.Fragment>
-  <Header
-    deps={
+  <NarrowModeDetector
+    Component={[Function]}
+    childrenProps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
+        "deps": Object {
+          "storesHub": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "stores": undefined,
+          },
         },
       }
     }
+    isNarrowModeEnabled={false}
   />
   <NoContentAvailable />
 </React.Fragment>
@@ -68,15 +72,19 @@ exports[`DetailsViewContainer render content show NoContentAvailable when stores
 
 exports[`DetailsViewContainer render content show NoContentAvailable when target tab is closed 1`] = `
 <React.Fragment>
-  <Header
-    deps={
+  <NarrowModeDetector
+    Component={[Function]}
+    childrenProps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
+        "deps": Object {
+          "storesHub": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "stores": undefined,
+          },
         },
       }
     }
+    isNarrowModeEnabled={true}
   />
   <NoContentAvailable />
 </React.Fragment>
@@ -84,15 +92,19 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
 
 exports[`DetailsViewContainer render content shows NoContentAvailable when target page is changed and no permissions granted 1`] = `
 <React.Fragment>
-  <Header
-    deps={
+  <NarrowModeDetector
+    Component={[Function]}
+    childrenProps={
       Object {
-        "storesHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
+        "deps": Object {
+          "storesHub": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "stores": undefined,
+          },
         },
       }
     }
+    isNarrowModeEnabled={true}
   />
   <NoContentAvailable />
 </React.Fragment>

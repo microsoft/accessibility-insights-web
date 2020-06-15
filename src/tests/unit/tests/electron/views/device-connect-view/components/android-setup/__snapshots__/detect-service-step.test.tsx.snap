@@ -10,6 +10,7 @@ exports[`DetectServiceStep renders 1`] = `
         "androidSetupStepComponentProvider": null,
         "closeApp": null,
         "showOpenFileDialog": null,
+        "startTesting": null,
       }
     }
     disableCancel={true}

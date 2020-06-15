@@ -169,8 +169,11 @@ describe('Android setup state machine', () => {
     });
 
     it('onEnter is invoked when transition happens', () => {
-        const onEnterMock = Mock.ofInstance(() => {});
-        onEnterMock.setup(m => m()).verifiable(Times.once());
+        const onEnterMock = Mock.ofInstance(async () => {});
+        onEnterMock
+            .setup(m => m())
+            .returns(_ => new Promise((resolve, reject) => resolve()))
+            .verifiable(Times.once());
 
         const otherFactory = (
             onStepTransition: MartiniStepTransition,
@@ -194,7 +197,43 @@ describe('Android setup state machine', () => {
             'gin',
         );
 
-        expect(sm).toBeTruthy();
+        expect(sm).toBeDefined();
+        onEnterMock.verifyAll();
+        stepTransitionCallbackMock.verifyAll();
+    });
+
+    it('onEnter promise rejected has no side effects ', () => {
+        const onEnterMock = Mock.ofInstance(async () => {});
+        onEnterMock
+            .setup(m => m())
+            .returns(
+                _ => new Promise((resolve, reject) => reject(new Error('sample exception output'))),
+            )
+            .verifiable(Times.once());
+
+        const otherFactory = (
+            onStepTransition: MartiniStepTransition,
+        ): StateMachineSteps<MartiniStepId, MartiniActions> => {
+            return {
+                gin: {
+                    actions: {},
+                    onEnter: onEnterMock.object,
+                },
+                vermouth: null,
+                olives: null,
+            };
+        };
+
+        const stepTransitionCallbackMock = Mock.ofInstance((_: MartiniStepId) => {});
+        stepTransitionCallbackMock.setup(m => m('gin')).verifiable(Times.once());
+
+        const sm = new StateMachine<MartiniStepId, MartiniActions>(
+            otherFactory,
+            stepTransitionCallbackMock.object,
+            'gin',
+        );
+
+        expect(sm).toBeDefined();
         onEnterMock.verifyAll();
         stepTransitionCallbackMock.verifyAll();
     });
@@ -255,7 +294,7 @@ describe('Android setup state machine', () => {
     it('does not catch exceptions when calling onEnter', () => {
         const error = new Error('my error');
 
-        const onEnterMock = Mock.ofInstance(() => {});
+        const onEnterMock = Mock.ofInstance(async () => {});
         onEnterMock
             .setup(m => m())
             .throws(error)

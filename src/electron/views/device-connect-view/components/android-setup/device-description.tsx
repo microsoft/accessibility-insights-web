@@ -15,10 +15,23 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
     const iconName: string = props.isEmulator ? 'Devices3' : 'CellPhone';
     const iconAriaLabel: string = props.isEmulator ? 'Emulator' : 'Device';
 
+    let descriptionAndApp;
+
+    if (props.currentApplication) {
+        descriptionAndApp = (
+            <div className={styles.deviceAndCurrentApplication}>
+                {props.description}
+                <div className={styles.currentApplication}>{props.currentApplication}</div>
+            </div>
+        );
+    } else {
+        descriptionAndApp = props.description;
+    }
+
     return (
         <div className={css(styles.content, props.className)}>
             <Icon iconName={iconName} className={styles.iconContent} ariaLabel={iconAriaLabel} />
-            {props.description}
+            {descriptionAndApp}
         </div>
     );
 });

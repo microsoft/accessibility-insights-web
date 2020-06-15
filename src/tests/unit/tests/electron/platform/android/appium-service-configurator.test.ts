@@ -21,6 +21,7 @@ describe('AppiumServiceConfigurator tests', () => {
     const dumpsysAccessibilitySnippetWithServiceRunning: string =
         'Service[label=Accessibility Insights for';
     const pathToApk: string = './ServiceForAndroid/AccessibilityInsightsforAndroidService.apk';
+    const expectedPortNumber: number = 62442;
 
     beforeEach(() => {
         adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
@@ -333,11 +334,35 @@ describe('AppiumServiceConfigurator tests', () => {
     });
 
     it('setTcpForwarding, succeeds', async () => {
-        const expectedPort: number = 62442;
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
-        adbMock.setup(m => m.forwardPort(expectedPort, expectedPort)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.forwardPort(expectedPortNumber, expectedPortNumber))
+            .verifiable(Times.once());
 
         await testSubject.setTcpForwarding(emulatorId);
+
+        adbMock.verifyAll();
+    });
+
+    it('removeTcpForwarding, propagates error', async () => {
+        const expectedError: string = 'Oops';
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .throws(new Error(expectedError))
+            .verifiable(Times.once());
+
+        await expect(testSubject.removeTcpForwarding(emulatorId)).rejects.toThrowError(
+            expectedError,
+        );
+
+        adbMock.verifyAll();
+    });
+
+    it('removeTcpForwarding, succeeds', async () => {
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock.setup(m => m.removePortForward(expectedPortNumber)).verifiable(Times.once());
+
+        await testSubject.removeTcpForwarding(emulatorId);
 
         adbMock.verifyAll();
     });

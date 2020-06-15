@@ -15,11 +15,6 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
 
         const { LinkComponent } = props.deps;
 
-        const onNextButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.confirmAdbLocation(${adbLocation})`);
-        };
-
         const onFolderPickerChange = (newValue?: string) => {
             setAdbLocation(newValue ?? '');
         };
@@ -38,7 +33,7 @@ export const PromptLocateAdbStep = NamedFC<CommonAndroidSetupStepProps>(
             rightFooterButtonProps: {
                 text: 'Next',
                 disabled: adbLocation === '',
-                onClick: onNextButton,
+                onClick: _ => props.deps.androidSetupActionCreator.saveAdbPath(adbLocation),
             },
         };
 

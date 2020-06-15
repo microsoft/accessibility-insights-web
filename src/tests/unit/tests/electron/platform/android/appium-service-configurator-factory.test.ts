@@ -1,18 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { AppiumAdbCreator } from 'electron/platform/android/appium-adb-creator';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
-import {
-    AdbCreator,
-    AppiumServiceConfiguratorFactory,
-} from 'electron/platform/android/appium-service-configurator-factory';
+import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfiguratorFactory tests', () => {
-    let adbCreatorMock: IMock<AdbCreator>;
+    let adbCreatorMock: IMock<AppiumAdbCreator>;
 
     beforeEach(() => {
-        adbCreatorMock = Mock.ofType<AdbCreator>(undefined, MockBehavior.Strict);
+        adbCreatorMock = Mock.ofType<AppiumAdbCreator>(undefined, MockBehavior.Strict);
     });
 
     it('getServiceConfigurator creates without parameters if no sdkRoot is provided', async () => {
@@ -45,7 +43,7 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
     });
 
     it('getServiceConfigurator propagates error to caller', async () => {
-        const expectedMessage = 'Soething bad happened';
+        const expectedMessage = 'Something bad happened';
         adbCreatorMock
             .setup(m => m.createADB(undefined))
             .throws(new Error(expectedMessage))
