@@ -38,19 +38,22 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
         Array [
           Object {
             "metadata": Object {
-              "description": "Phone 1",
+              "friendlyName": "Phone 1",
+              "id": "1",
               "isEmulator": true,
             },
           },
           Object {
             "metadata": Object {
-              "description": "Phone 2",
+              "friendlyName": "Phone 2",
+              "id": "2",
               "isEmulator": false,
             },
           },
           Object {
             "metadata": Object {
-              "description": "Phone 3",
+              "friendlyName": "Phone 3",
+              "id": "3",
               "isEmulator": true,
             },
           },

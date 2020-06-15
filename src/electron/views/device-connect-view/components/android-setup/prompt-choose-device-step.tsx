@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceMetadata } from 'electron/flux/types/device-metadata';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import {
     CheckboxVisibility,
     DefaultButton,
@@ -17,7 +17,7 @@ import { DeviceDescription } from './device-description';
 import * as styles from './prompt-choose-device-step.scss';
 
 export type PromptChooseDeviceStepState = {
-    selectedDevice: DeviceMetadata;
+    selectedDevice: DeviceInfo;
 };
 
 export class PromptChooseDeviceStep extends React.Component<
@@ -33,7 +33,7 @@ export class PromptChooseDeviceStep extends React.Component<
             onSelectionChanged: () => {
                 const details = this.selection.getSelection();
                 if (details.length > 0) {
-                    this.setState({ selectedDevice: details[0] as DeviceMetadata });
+                    this.setState({ selectedDevice: details[0] as DeviceInfo });
                 }
             },
         });
@@ -51,17 +51,20 @@ export class PromptChooseDeviceStep extends React.Component<
         };
 
         // Available devices will be retrieved from store in future feature work
-        const devices: DeviceMetadata[] = [
+        const devices: DeviceInfo[] = [
             {
-                description: 'Phone 1',
+                id: '1',
+                friendlyName: 'Phone 1',
                 isEmulator: true,
             },
             {
-                description: 'Phone 2',
+                id: '2',
+                friendlyName: 'Phone 2',
                 isEmulator: false,
             },
             {
-                description: 'Phone 3',
+                id: '3',
+                friendlyName: 'Phone 3',
                 isEmulator: true,
             },
         ];

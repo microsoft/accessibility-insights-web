@@ -11,7 +11,8 @@ describe('DeviceDescription', () => {
     it('renders with device', () => {
         const props: DeviceDescriptionProps = {
             isEmulator: false,
-            description: 'Super-Duper Gadget',
+            friendlyName: 'Super-Duper Gadget',
+            id: '0',
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
@@ -21,7 +22,8 @@ describe('DeviceDescription', () => {
     it('renders with emulator', () => {
         const props: DeviceDescriptionProps = {
             isEmulator: true,
-            description: 'Emulator Extraordinaire',
+            friendlyName: 'Emulator Extraordinaire',
+            id: '1',
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
@@ -31,8 +33,9 @@ describe('DeviceDescription', () => {
     it('renders with extra classname', () => {
         const props: DeviceDescriptionProps = {
             isEmulator: true,
-            description: 'Simple Emulator',
+            friendlyName: 'Simple Emulator',
             className: 'my-class',
+            id: '2',
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
@@ -42,8 +45,9 @@ describe('DeviceDescription', () => {
     it('renders with currentApplication', () => {
         const props: DeviceDescriptionProps = {
             isEmulator: false,
-            description: 'Whizbang tablet',
+            friendlyName: 'Whizbang tablet',
             currentApplication: 'Wildlife Manager',
+            id: '3',
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
