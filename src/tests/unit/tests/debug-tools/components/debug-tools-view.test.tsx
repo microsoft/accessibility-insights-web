@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
@@ -9,24 +11,36 @@ import {
 } from 'debug-tools/components/debug-tools-view';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock } from 'typemoq';
 
+//
 describe('DebugToolsView', () => {
-    it('renders', () => {
-        const deps = {
-            storesHub: null,
-        } as DebugToolsViewDeps;
+    describe('renders', () => {
+        let storesHubMock: IMock<ClientStoresHub<DebugToolsViewState>>;
 
-        const storeState = {
-            userConfigurationStoreData: {
-                isFirstTime: true,
-            } as UserConfigurationStoreData,
-            featureFlagStoreData: {
-                reflowUI: true,
-            } as FeatureFlagStoreData,
-        } as DebugToolsViewState;
+        beforeEach(() => {
+            storesHubMock = Mock.ofType<ClientStoresHub<DebugToolsViewState>>(BaseClientStoresHub);
+        });
 
-        const wrapped = shallow(<DebugTools deps={deps} storeState={storeState} />);
+        it.each([true, false])('when storesHub.hasStoresData = %s', hasStoreData => {
+            storesHubMock.setup(hub => hub.hasStoreData()).returns(() => hasStoreData);
 
-        expect(wrapped.getElement()).toMatchSnapshot();
+            const deps = {
+                storesHub: storesHubMock.object,
+            } as DebugToolsViewDeps;
+
+            const storeState = {
+                userConfigurationStoreData: {
+                    isFirstTime: true,
+                } as UserConfigurationStoreData,
+                featureFlagStoreData: {
+                    reflowUI: true,
+                } as FeatureFlagStoreData,
+            } as DebugToolsViewState;
+
+            const wrapped = shallow(<DebugTools deps={deps} storeState={storeState} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 });
