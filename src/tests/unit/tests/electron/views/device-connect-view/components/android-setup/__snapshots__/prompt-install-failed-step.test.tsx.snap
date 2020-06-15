@@ -29,7 +29,8 @@ exports[`PromptInstallFailedStep renders with device 1`] = `
   </React.Fragment>
   <DeviceDescription
     className="deviceDescription"
-    description="Super-Duper Gadget"
+    friendlyName="Super-Duper Gadget"
+    id="1"
     isEmulator={false}
   />
   <CustomizedPrimaryButton
@@ -68,7 +69,8 @@ exports[`PromptInstallFailedStep renders with emulator 1`] = `
   </React.Fragment>
   <DeviceDescription
     className="deviceDescription"
-    description="Emulator Extraordinaire"
+    friendlyName="Emulator Extraordinaire"
+    id="1"
     isEmulator={true}
   />
   <CustomizedPrimaryButton
