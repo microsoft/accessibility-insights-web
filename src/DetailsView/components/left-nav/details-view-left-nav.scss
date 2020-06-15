@@ -49,6 +49,9 @@
         .dark-gray {
             color: $neutral-60;
         }
+        .ms-Nav-groupContent {
+            margin-bottom: 0px;
+        }
         .is-selected .button-flex-container {
             color: $always-black;
         }
@@ -98,6 +101,11 @@
             margin-top: 0px !important;
         }
         .ms-Nav-compositeLink {
+            a {
+                border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
+                border-top: 0px;
+                border-bottom: 0px;
+            }
             .ms-Button-label {
                 color: $neutral-100;
             }
@@ -116,6 +124,8 @@
             &.is-selected {
                 a {
                     background-color: $communication-tint-40;
+                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
+                        $communication-primary;
                 }
                 a::after {
                     border-left: 0px;

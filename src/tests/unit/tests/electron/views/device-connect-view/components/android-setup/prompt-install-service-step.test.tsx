@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceMetadata } from 'electron/flux/types/device-metadata';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptInstallServiceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
 import { shallow } from 'enzyme';
@@ -15,9 +15,10 @@ describe('PromptInstallServiceStep', () => {
     });
 
     it('renders with device', () => {
-        const selectedDevice: DeviceMetadata = {
+        const selectedDevice: DeviceInfo = {
             isEmulator: false,
-            description: 'Super-Duper Gadget',
+            friendlyName: 'Super-Duper Gadget',
+            id: '1',
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
@@ -27,9 +28,10 @@ describe('PromptInstallServiceStep', () => {
     });
 
     it('renders with emulator', () => {
-        const selectedDevice: DeviceMetadata = {
+        const selectedDevice: DeviceInfo = {
             isEmulator: true,
-            description: 'Emulator Extraordinaire',
+            friendlyName: 'Emulator Extraordinaire',
+            id: '1',
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;

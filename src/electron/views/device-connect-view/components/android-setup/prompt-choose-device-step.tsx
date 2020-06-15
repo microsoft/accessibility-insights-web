@@ -1,21 +1,45 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import {
     CheckboxVisibility,
     DefaultButton,
     DetailsList,
     FontIcon,
+    ISelection,
+    Selection,
     SelectionMode,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
+import { DeviceDescription } from './device-description';
 import * as styles from './prompt-choose-device-step.scss';
 
-export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
-    'PromptChooseDeviceStep',
-    (props: CommonAndroidSetupStepProps) => {
+export type PromptChooseDeviceStepState = {
+    selectedDevice: DeviceInfo;
+};
+
+export class PromptChooseDeviceStep extends React.Component<
+    CommonAndroidSetupStepProps,
+    PromptChooseDeviceStepState
+> {
+    private selection: ISelection;
+    constructor(props) {
+        super(props);
+        this.state = { selectedDevice: null };
+
+        this.selection = new Selection({
+            onSelectionChanged: () => {
+                const details = this.selection.getSelection();
+                if (details.length > 0) {
+                    this.setState({ selectedDevice: details[0] as DeviceInfo });
+                }
+            },
+        });
+    }
+
+    public render(): JSX.Element {
         const onNextButton = () => {
             // To be implemented in future feature work
             console.log(`androidSetupActionCreator.next()`);
@@ -26,33 +50,45 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
             console.log(`androidSetupActionCreator.rescan()`);
         };
 
-        const items = [
+        // Available devices will be retrieved from store in future feature work
+        const devices: DeviceInfo[] = [
             {
-                value: 'Phone 1',
+                id: '1',
+                friendlyName: 'Phone 1',
+                isEmulator: true,
             },
             {
-                value: 'Phone 2',
+                id: '2',
+                friendlyName: 'Phone 2',
+                isEmulator: false,
             },
             {
-                value: 'Phone 3',
+                id: '3',
+                friendlyName: 'Phone 3',
+                isEmulator: true,
             },
         ];
+
+        const items = devices.map(m => ({ metadata: m }));
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Choose which device to use',
             children: (
                 <>
-                    <p>2 Android devices or emulators connected</p>
+                    <p>{devices.length} Android devices or emulators connected</p>
                     <DefaultButton text="Rescan" onClick={onRescanButton} />
                     <DetailsList
+                        setKey={'devices'}
+                        compact={true}
                         ariaLabel="android devices"
                         className={styles.phoneList}
                         items={items}
+                        selection={this.selection}
                         selectionMode={SelectionMode.single}
                         checkboxVisibility={CheckboxVisibility.always}
                         isHeaderVisible={false}
                         checkboxCellClassName={styles.checkmarkCell}
-                        checkButtonAriaLabel="select device"
+                        checkButtonAriaLabel="select"
                         onRenderCheckbox={checkboxProps => {
                             return checkboxProps.checked ? (
                                 <>
@@ -61,22 +97,27 @@ export const PromptChooseDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
                             ) : null;
                         }}
                         onRenderItemColumn={item => {
-                            return <p>{item.value}</p>;
+                            return (
+                                <DeviceDescription
+                                    className={styles.row}
+                                    {...item.metadata}
+                                ></DeviceDescription>
+                            );
                         }}
                     />
                 </>
             ),
             leftFooterButtonProps: {
                 text: 'Close',
-                onClick: _ => props.deps.closeApp(),
+                onClick: _ => this.props.deps.closeApp(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
-                disabled: false,
+                disabled: this.state.selectedDevice === null,
                 onClick: onNextButton,
             },
         };
 
         return <AndroidSetupStepLayout {...layoutProps}></AndroidSetupStepLayout>;
-    },
-);
+    }
+}

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
-import { DeviceMetadata } from 'electron/flux/types/device-metadata';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptConnectedStartTestingStep } from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
@@ -29,9 +29,10 @@ describe('PromptConnectedStartTestingStep', () => {
     });
 
     it('renders with device', () => {
-        const selectedDevice: DeviceMetadata = {
+        const selectedDevice: DeviceInfo = {
             isEmulator: false,
-            description: 'Super-Duper Gadget',
+            friendlyName: 'Super-Duper Gadget',
+            id: '1',
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
@@ -41,9 +42,10 @@ describe('PromptConnectedStartTestingStep', () => {
     });
 
     it('renders with emulator', () => {
-        const selectedDevice: DeviceMetadata = {
+        const selectedDevice: DeviceInfo = {
             isEmulator: true,
-            description: 'Emulator Extraordinaire',
+            friendlyName: 'Emulator Extraordinaire',
+            id: '1',
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;

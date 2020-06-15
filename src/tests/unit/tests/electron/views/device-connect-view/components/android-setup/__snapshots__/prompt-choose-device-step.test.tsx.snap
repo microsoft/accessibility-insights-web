@@ -11,7 +11,7 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
   }
   rightFooterButtonProps={
     Object {
-      "disabled": false,
+      "disabled": true,
       "onClick": [Function],
       "text": "Next",
     }
@@ -19,7 +19,8 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
 >
   <React.Fragment>
     <p>
-      2 Android devices or emulators connected
+      3
+       Android devices or emulators connected
     </p>
     <CustomizedDefaultButton
       onClick={[Function]}
@@ -27,27 +28,60 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
     />
     <StyledWithViewportComponent
       ariaLabel="android devices"
-      checkButtonAriaLabel="select device"
+      checkButtonAriaLabel="select"
       checkboxCellClassName="checkmarkCell"
       checkboxVisibility={1}
       className="phoneList"
+      compact={true}
       isHeaderVisible={false}
       items={
         Array [
           Object {
-            "value": "Phone 1",
+            "metadata": Object {
+              "friendlyName": "Phone 1",
+              "id": "1",
+              "isEmulator": true,
+            },
           },
           Object {
-            "value": "Phone 2",
+            "metadata": Object {
+              "friendlyName": "Phone 2",
+              "id": "2",
+              "isEmulator": false,
+            },
           },
           Object {
-            "value": "Phone 3",
+            "metadata": Object {
+              "friendlyName": "Phone 3",
+              "id": "3",
+              "isEmulator": true,
+            },
           },
         ]
       }
       onRenderCheckbox={[Function]}
       onRenderItemColumn={[Function]}
+      selection={
+        Selection {
+          "_anchoredIndex": 0,
+          "_canSelectItem": [Function],
+          "_changeEventSuppressionCount": 0,
+          "_exemptedCount": 0,
+          "_exemptedIndices": Object {},
+          "_getKey": [Function],
+          "_isModal": false,
+          "_items": Array [],
+          "_keyToIndexMap": Object {},
+          "_onSelectionChanged": [Function],
+          "_selectedItems": null,
+          "_unselectableCount": 0,
+          "_unselectableIndices": Object {},
+          "count": 0,
+          "mode": 2,
+        }
+      }
       selectionMode={1}
+      setKey="devices"
     />
   </React.Fragment>
 </AndroidSetupStepLayout>
