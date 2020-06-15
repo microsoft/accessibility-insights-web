@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] = `
+exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation not set 1`] = `
 <AndroidSetupStepLayout
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
@@ -30,8 +30,9 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
         "LinkComponent": [Function],
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
-        "closeApp": [Function],
+        "closeApp": null,
         "showOpenFileDialog": null,
+        "startTesting": null,
       }
     }
     instructionsText="Select the folder containing adb. We'll use it to connect to your device."
@@ -41,7 +42,7 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation not set 1`] =
 </AndroidSetupStepLayout>
 `;
 
-exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
+exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation set 1`] = `
 <AndroidSetupStepLayout
   headerText="Locate Android Debug Bridge (adb)"
   leftFooterButtonProps={
@@ -71,8 +72,9 @@ exports[`PromptLocateAdbStep renders per snapshot with adbLocation set 1`] = `
         "LinkComponent": [Function],
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
-        "closeApp": [Function],
+        "closeApp": null,
         "showOpenFileDialog": null,
+        "startTesting": null,
       }
     }
     instructionsText="Select the folder containing adb. We'll use it to connect to your device."
