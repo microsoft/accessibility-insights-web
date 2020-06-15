@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IpcRenderer } from 'electron';
+import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -13,6 +13,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -154,6 +155,30 @@ describe(IpcRendererShim, () => {
                     .verifiable(Times.once());
 
                 await expect(testSubject.getAppPath()).rejects.toThrowError(error);
+            });
+        });
+
+        describe('showOpenFileDialog', () => {
+            it('defers to the expected invoke call', async () => {
+                const opts: OpenDialogOptions = { properties: ['createDirectory'] };
+                const output: OpenDialogReturnValue = { canceled: false, filePaths: ['/path/1'] };
+                ipcRendererMock
+                    .setup(m => m.invoke(IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG, opts))
+                    .returns(() => Promise.resolve(output))
+                    .verifiable(Times.once());
+
+                expect(await testSubject.showOpenFileDialog(opts)).toBe(output);
+            });
+
+            it('propagates errors from the invoke call', async () => {
+                const error = new Error('test error message');
+                const opts: OpenDialogOptions = { properties: ['createDirectory'] };
+                ipcRendererMock
+                    .setup(m => m.invoke(IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG, opts))
+                    .returns(() => Promise.reject(error))
+                    .verifiable(Times.once());
+
+                await expect(testSubject.showOpenFileDialog(opts)).rejects.toThrowError(error);
             });
         });
     });

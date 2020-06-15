@@ -1,6 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { App, BrowserWindow, IpcMain, IpcMainEvent, WebContents } from 'electron';
+import {
+    App,
+    BrowserWindow,
+    Dialog,
+    IpcMain,
+    IpcMainEvent,
+    OpenDialogOptions,
+    OpenDialogReturnValue,
+    WebContents,
+} from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -12,6 +21,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-renderer-message-handlers';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -25,7 +35,10 @@ describe(MainWindowRendererMessageHandlers, () => {
     const enterFullScreen = 'enter-full-screen';
     const leaveFullScreen = 'leave-full-screen';
 
-    const ipcChannelHandlerNames = [IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME];
+    const ipcChannelHandlerNames = [
+        IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
+        IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
+    ];
 
     const ipcChannelListenerNames = [
         IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -40,6 +53,7 @@ describe(MainWindowRendererMessageHandlers, () => {
     let mainWindowMock: IMock<BrowserWindow>;
     let ipcMainMock: IMock<IpcMain>;
     let appMock: IMock<App>;
+    let dialogMock: IMock<Dialog>;
     let testSubject: MainWindowRendererMessageHandlers;
     let ipcHandlers: { [channelName: string]: (event: IpcMainEvent, args?: any) => Promise<any> };
     let ipcListeners: { [channelName: string]: (event: IpcMainEvent, args?: any) => void };
@@ -115,11 +129,13 @@ describe(MainWindowRendererMessageHandlers, () => {
         mainWindowMock = Mock.ofType<BrowserWindow>(undefined, MockBehavior.Loose);
         ipcMainMock = Mock.ofType<IpcMain>(undefined, MockBehavior.Strict);
         appMock = Mock.ofType<App>(undefined, MockBehavior.Strict);
+        dialogMock = Mock.ofType<Dialog>(undefined, MockBehavior.Strict);
 
         testSubject = new MainWindowRendererMessageHandlers(
             mainWindowMock.object,
             ipcMainMock.object,
             appMock.object,
+            dialogMock.object,
         );
 
         ipcChannelListenerNames.forEach(setupToAddOneIpcChannelListener);
@@ -204,6 +220,22 @@ describe(MainWindowRendererMessageHandlers, () => {
             );
 
             expect(result).toBe(stubAppPath);
+        });
+
+        it('uses dialog.showOpenDialog to handle SHOW_OPEN_DIALOG', async () => {
+            const options: OpenDialogOptions = {};
+            const returnValue: OpenDialogReturnValue = { canceled: true, filePaths: [] };
+            dialogMock
+                .setup(m => m.showOpenDialog(mainWindowMock.object, options))
+                .returns(() => Promise.resolve(returnValue))
+                .verifiable();
+
+            const result = await ipcHandlers[IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG](
+                stubIpcMainEvent,
+                options,
+            );
+
+            expect(result).toBe(returnValue);
         });
 
         it('StopListening removes all handlers', () => {

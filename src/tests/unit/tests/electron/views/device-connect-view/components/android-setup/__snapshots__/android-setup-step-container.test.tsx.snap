@@ -16,6 +16,7 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
         "prompt-locate-adb": [Function],
       },
       "closeApp": null,
+      "showOpenFileDialog": null,
       "startTesting": null,
     }
   }
