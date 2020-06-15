@@ -9,7 +9,7 @@ import * as styles from 'electron/views/device-connect-view/components/android-s
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('PromptConnectedStartTestingStep', () => {
     let props: CommonAndroidSetupStepProps;
