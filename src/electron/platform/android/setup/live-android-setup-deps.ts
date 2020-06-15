@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { compareSemverValues, SemverComparisonResult } from 'electron/common/semver-comparer';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
     AndroidServiceConfiguratorFactory,
@@ -18,6 +20,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     constructor(
         private readonly configFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
+        private readonly apkLocator: AndroidServiceApkLocator,
     ) {}
 
     public hasAdbPath = async (): Promise<boolean> => {
@@ -26,7 +29,6 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             this.serviceConfig = await this.configFactory.getServiceConfigurator(adbLocation);
             return true;
         } catch (error) {
-            // console.log(error);
             return false;
         }
     };
@@ -45,18 +47,33 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedServiceVersion = async (): Promise<boolean> => {
         try {
-            const info: PackageInfo = await this.serviceConfig.getPackageInfo(
-                this.selectedDeviceId,
-            );
-            return info?.versionCode === 123; // Where should this value live?
+            const installedVersion: string = await this.getInstalledVersion();
+            if (installedVersion) {
+                return installedVersion === (await this.getTargetVersion());
+            }
         } catch (error) {
-            // console.warn(error);
+            console.log(error);
         }
         return false;
     };
 
     public installService = async (): Promise<boolean> => {
         try {
+            let needsUninstall: boolean = true; // Until proven otherwise
+            const installedVersion: string = await this.getInstalledVersion();
+            if (installedVersion) {
+                const targetVersion: string = await this.getTargetVersion();
+                if (
+                    compareSemverValues(targetVersion, installedVersion) ===
+                    SemverComparisonResult.V1GreaterThanV2
+                ) {
+                    needsUninstall = false;
+                }
+            }
+
+            if (needsUninstall) {
+                await this.serviceConfig.uninstallService(this.selectedDeviceId);
+            }
             await this.serviceConfig.installService(this.selectedDeviceId);
             return true;
         } catch (error) {
@@ -72,8 +89,17 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             );
             return info.screenshotGranted;
         } catch (error) {
-            // console.log(error);
+            console.log(error);
         }
         return false;
     };
+
+    private async getInstalledVersion(): Promise<string> {
+        const info: PackageInfo = await this.serviceConfig.getPackageInfo(this.selectedDeviceId);
+        return info?.versionName;
+    }
+
+    private async getTargetVersion(): Promise<string> {
+        return (await this.apkLocator.locateBundledApk()).versionName;
+    }
 }
