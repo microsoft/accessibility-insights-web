@@ -312,7 +312,6 @@ export class LeftNavLinkBuilder {
         return {
             name: name,
             key: key,
-            forceAnchor: true,
             url: '',
             index,
             onRenderNavLink: onRenderNavLink,
