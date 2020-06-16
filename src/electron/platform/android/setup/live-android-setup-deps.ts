@@ -118,7 +118,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             if (v1Value > v2Value) {
                 return 1;
             }
-            if (v2Value < v2Value) {
+            if (v1Value < v2Value) {
                 return -1;
             }
         }
