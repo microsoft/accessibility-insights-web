@@ -11,6 +11,9 @@ export const detectDevices: AndroidSetupStepConfig = deps => {
             },
         },
         onEnter: async () => {
+            deps.setSelectedDevice(null);
+            deps.setAvailableDevices([]);
+
             const devices = await deps.getDevices();
 
             switch (devices.length) {
@@ -20,10 +23,12 @@ export const detectDevices: AndroidSetupStepConfig = deps => {
                 }
                 case 1: {
                     deps.setSelectedDeviceId(devices[0].id);
+                    deps.setSelectedDevice(devices[0]);
                     deps.stepTransition('detect-service');
                     break;
                 }
                 default: {
+                    deps.setAvailableDevices(devices);
                     deps.stepTransition('prompt-choose-device');
                     break;
                 }

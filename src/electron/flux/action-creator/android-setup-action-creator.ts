@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 
 export class AndroidSetupActionCreator {
     constructor(private readonly setupActions: AndroidSetupActions) {}
@@ -9,6 +10,6 @@ export class AndroidSetupActionCreator {
     public next = () => this.setupActions.next.invoke();
     public rescan = () => this.setupActions.rescan.invoke();
     public saveAdbPath = (newAdbPath: string) => this.setupActions.saveAdbPath.invoke(newAdbPath);
-    public setSelectedDevice = (selectedDeviceId: string) =>
-        this.setupActions.setSelectedDevice.invoke(selectedDeviceId);
+    public setSelectedDevice = (device: DeviceInfo) =>
+        this.setupActions.setSelectedDevice.invoke(device);
 }

@@ -6,6 +6,7 @@ import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setu
 import { AndroidSetupActions } from '../action/android-setup-actions';
 import { AndroidSetupStoreData } from '../types/android-setup-store-data';
 
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import {
     AndroidSetupStateMachine,
     AndroidSetupStateMachineFactory,
@@ -25,6 +26,8 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
         super.initialize(initialState);
         this.stateMachine = this.createAndroidSetupStateMachine({
             stepTransition: this.stepTransition,
+            setSelectedDevice: this.setSelectedDevice,
+            setAvailableDevices: this.setAvailableDevices,
         });
     }
 
@@ -53,5 +56,15 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     private stepTransition = (nextStep: AndroidSetupStepId): void => {
         this.state.currentStepId = nextStep;
         this.emitChanged();
+    };
+
+    private setSelectedDevice = (device: DeviceInfo): void => {
+        // emitChange will be called from step transition when the step changes
+        this.state.selectedDevice = device;
+    };
+
+    private setAvailableDevices = (devices: DeviceInfo[]): void => {
+        // emitChange will be called from step transition when the step changes
+        this.state.availableDevices = devices;
     };
 }
