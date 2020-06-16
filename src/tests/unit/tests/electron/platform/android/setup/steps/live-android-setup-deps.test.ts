@@ -138,6 +138,22 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
+    it('setSelectedDeviceId persists correctly', async () => {
+        // Note: We can only validate this indirectly. We set the expected ID,
+        // then confirm that it gets passed to getPackageInfo.
+        const expectedDeviceId = '12345';
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(expectedDeviceId))
+            .throws(new Error('Threw validating setSeletedDeviceId'))
+            .verifiable(Times.once());
+
+        await initializeServiceConfig();
+        testSubject.setSelectedDeviceId(expectedDeviceId);
+        await testSubject.hasExpectedServiceVersion();
+
+        verifyAllMocks();
+    });
+
     it('hasExpectedServiceVersion returns false on error', async () => {
         serviceConfigMock
             .setup(m => m.getPackageInfo(undefined))
