@@ -9,7 +9,6 @@ import {
 } from 'DetailsView/components/left-nav/assessment-left-nav';
 import { GettingStartedNavLink } from 'DetailsView/components/left-nav/getting-started-nav-link';
 import { LeftNavIndexIcon, LeftNavStatusIcon } from 'DetailsView/components/left-nav/left-nav-icon';
-import * as styles from 'DetailsView/components/left-nav/nav-link-renderer.scss';
 import { OverviewLeftNavLink } from 'DetailsView/components/left-nav/overview-left-nav-link';
 import { TestViewLeftNavLink } from 'DetailsView/components/left-nav/test-view-left-nav-link';
 import * as React from 'react';
@@ -40,7 +39,7 @@ export class NavLinkRenderer {
             return <>{link.displayedIndex}</>;
         }
 
-        return <LeftNavStatusIcon className={styles.requirementStatusIcon} item={link} />;
+        return <LeftNavStatusIcon className={'requirement-status-icon'} item={link} />;
     };
 
     private renderAssessmentTestIcon: onBaseLeftNavItemRender = (link: AssessmentLeftNavLink) => {
