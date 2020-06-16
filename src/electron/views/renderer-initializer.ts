@@ -190,13 +190,16 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const deviceStore = new DeviceStore(deviceActions);
         deviceStore.initialize();
 
+        const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
+            ipcRendererShim.getAppPath,
+        );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator()),
+                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
                     userConfigurationStore,
-                    new AndroidServiceApkLocator(ipcRendererShim.getAppPath),
+                    apkLocator,
                 ),
             ),
         );
