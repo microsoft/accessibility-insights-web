@@ -224,6 +224,7 @@ export class LeftNavLinkBuilder {
             links: [gettingStartedLink, ...requirementLinks],
             isExpanded: isExpanded,
             testType: assessment.visualizationType,
+            forceAnchor: false,
         };
 
         return testLink;

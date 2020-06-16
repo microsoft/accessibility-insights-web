@@ -489,6 +489,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
             closeApp: ipcRendererShim.closeWindow,
             startTesting: startTesting,
+            showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

@@ -40,16 +40,6 @@ export class PromptChooseDeviceStep extends React.Component<
     }
 
     public render(): JSX.Element {
-        const onNextButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.next()`);
-        };
-
-        const onRescanButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.rescan()`);
-        };
-
         // Available devices will be retrieved from store in future feature work
         const devices: DeviceInfo[] = [
             {
@@ -76,7 +66,11 @@ export class PromptChooseDeviceStep extends React.Component<
             children: (
                 <>
                     <p>{devices.length} Android devices or emulators connected</p>
-                    <DefaultButton text="Rescan" onClick={onRescanButton} />
+                    <DefaultButton
+                        data-automation-id={'rescan'}
+                        text="Rescan"
+                        onClick={this.props.deps.androidSetupActionCreator.rescan}
+                    />
                     <DetailsList
                         setKey={'devices'}
                         compact={true}
@@ -114,7 +108,7 @@ export class PromptChooseDeviceStep extends React.Component<
             rightFooterButtonProps: {
                 text: 'Next',
                 disabled: this.state.selectedDevice === null,
-                onClick: onNextButton,
+                onClick: _ => this.props.deps.androidSetupActionCreator.next(),
             },
         };
 

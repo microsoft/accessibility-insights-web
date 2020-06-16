@@ -1,6 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DebugToolsView renders 1`] = `
+exports[`DebugToolsView renders when storesHub.hasStoresData = false 1`] = `
+<StyledSpinnerBase
+  label="Loading"
+  size={3}
+/>
+`;
+
+exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
 <div
   className="debugToolsContainer"
 >
@@ -9,7 +16,10 @@ exports[`DebugToolsView renders 1`] = `
     childrenProps={
       Object {
         "deps": Object {
-          "storesHub": null,
+          "storesHub": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "stores": undefined,
+          },
         },
       }
     }
@@ -19,7 +29,10 @@ exports[`DebugToolsView renders 1`] = `
     className="nav"
     deps={
       Object {
-        "storesHub": null,
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
       }
     }
     state={
@@ -36,7 +49,10 @@ exports[`DebugToolsView renders 1`] = `
   <CurrentView
     deps={
       Object {
-        "storesHub": null,
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
       }
     }
     storeState={

@@ -18,6 +18,7 @@ import {
     DebugToolsNavState,
 } from 'debug-tools/components/debug-tools-nav';
 import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './debug-tools-view.scss';
 
@@ -34,6 +35,10 @@ export interface DebugToolsViewProps {
 }
 
 export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps, storeState }) => {
+    if (!deps.storesHub.hasStoreData()) {
+        return <Spinner size={SpinnerSize.large} label="Loading" />;
+    }
+
     const headerProps: Omit<HeaderProps, 'isNarrowMode'> = { deps };
     return (
         <div className={styles.debugToolsContainer}>

@@ -6,15 +6,11 @@ import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
+export const detectDeviceAutomationId = 'detect-device';
 export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptConnectToDeviceStep',
     (props: CommonAndroidSetupStepProps) => {
         const { LinkComponent } = props.deps;
-
-        const onDetectButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.detectDevices()`);
-        };
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Connect to your Android device',
@@ -36,7 +32,11 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>
-                <PrimaryButton text="Detect my device" onClick={onDetectButton} />
+                <PrimaryButton
+                    data-automation-id={detectDeviceAutomationId}
+                    text="Detect my device"
+                    onClick={props.deps.androidSetupActionCreator.next}
+                />
             </AndroidSetupStepLayout>
         );
     },

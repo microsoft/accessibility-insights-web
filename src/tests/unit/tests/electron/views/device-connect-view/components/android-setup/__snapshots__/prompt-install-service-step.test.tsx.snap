@@ -27,6 +27,7 @@ exports[`PromptInstallServiceStep renders with device 1`] = `
     isEmulator={false}
   />
   <CustomizedPrimaryButton
+    data-automation-id="install"
     onClick={[Function]}
     text="Install"
   />
@@ -60,6 +61,7 @@ exports[`PromptInstallServiceStep renders with emulator 1`] = `
     isEmulator={true}
   />
   <CustomizedPrimaryButton
+    data-automation-id="install"
     onClick={[Function]}
     text="Install"
   />

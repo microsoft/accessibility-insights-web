@@ -34,6 +34,7 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
     isEmulator={false}
   />
   <CustomizedPrimaryButton
+    data-automation-id="try-again"
     onClick={[Function]}
     text="Try again"
   />
@@ -74,6 +75,7 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
     isEmulator={true}
   />
   <CustomizedPrimaryButton
+    data-automation-id="try-again"
     onClick={[Function]}
     text="Try again"
   />
