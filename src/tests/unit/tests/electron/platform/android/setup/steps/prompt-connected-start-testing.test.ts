@@ -14,7 +14,7 @@ describe('Android setup step: promptConnectedStartTesting', () => {
         expect(step.onEnter).not.toBeDefined();
     });
 
-    it('onEnter transitions to detect-adb as expected', () => {
+    it('rescan transitions to detect-adb as expected', () => {
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
         depsMock.setup(m => m.stepTransition('detect-adb')).verifiable(Times.once());
 
