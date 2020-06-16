@@ -3,7 +3,7 @@
 exports[`RequirementLink renders with index 1`] = `
 <span
   aria-hidden="true"
-  className="button-flex-container"
+  className="requirementLink"
 >
   <span
     className="ms-Button-label reqDescription"
@@ -33,7 +33,7 @@ exports[`RequirementLink renders with index 1`] = `
 exports[`RequirementLink renders without index 1`] = `
 <span
   aria-hidden="true"
-  className="button-flex-container"
+  className="requirementLink"
 >
   <span
     className="ms-Button-label reqDescription"
