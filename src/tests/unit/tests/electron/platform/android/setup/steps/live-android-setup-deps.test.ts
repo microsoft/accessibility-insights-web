@@ -141,7 +141,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('setSelectedDeviceId persists correctly', async () => {
         // Note: We can only validate this indirectly. We set the expected ID,
         // then confirm that it gets passed to getPackageInfo.
-        const expectedDeviceId = '12345';
+        const expectedDeviceId: string = 'abc-123';
         serviceConfigMock
             .setup(m => m.getPackageInfo(expectedDeviceId))
             .throws(new Error('Threw validating setSeletedDeviceId'))
