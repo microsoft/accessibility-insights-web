@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SetAdbLocationPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -67,4 +68,15 @@ export class UserConfigMessageCreator {
             payload,
         });
     };
+
+    public setAdbLocation(adbLocation: string): void {
+        const payload: SetAdbLocationPayload = {
+            adbLocation,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetAdbLocationConfig,
+            payload,
+        });
+    }
 }

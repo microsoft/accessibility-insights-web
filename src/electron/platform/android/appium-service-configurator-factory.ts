@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
     AndroidServiceConfiguratorFactory,
@@ -13,7 +14,10 @@ import {
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 
 export class AppiumServiceConfiguratorFactory implements AndroidServiceConfiguratorFactory {
-    public constructor(private readonly adbCreator: AppiumAdbCreator) {}
+    public constructor(
+        private readonly adbCreator: AppiumAdbCreator,
+        private readonly apkLocator: AndroidServiceApkLocator,
+    ) {}
 
     public getServiceConfigurator = async (
         sdkRoot: string,
@@ -26,6 +30,6 @@ export class AppiumServiceConfiguratorFactory implements AndroidServiceConfigura
 
         const adb: ADB = await this.adbCreator.createADB(parameters);
 
-        return new AppiumServiceConfigurator(adb);
+        return new AppiumServiceConfigurator(adb, this.apkLocator);
     };
 }
