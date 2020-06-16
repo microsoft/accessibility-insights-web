@@ -161,7 +161,6 @@
         "./src/electron/flux/action/window-state-payload.ts",
         "./src/electron/flux/types/android-setup-store-data.ts",
         "./src/electron/flux/types/device-connect-state.tsx",
-        "./src/electron/flux/types/device-metadata.ts",
         "./src/electron/flux/types/device-store-data.ts",
         "./src/electron/flux/types/scan-status.ts",
         "./src/electron/flux/types/scan-store-data.ts",
