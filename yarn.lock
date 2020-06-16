@@ -8899,10 +8899,10 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
-react-resize-detector@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-4.2.3.tgz#7df258668a30bdfd88e655bbdb27db7fd7b23127"
-  integrity sha512-4AeS6lxdz2KOgDZaOVt1duoDHrbYwSrUX32KeM9j6t9ISyRphoJbTRCMS1aPFxZHFqcCGLT1gMl3lEcSWZNW0A==
+react-resize-detector@^5.0.3:
+  version "5.0.3"
+  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-5.0.3.tgz#f3930abb0da5e5f5e00c8d69203617a301eecb22"
+  integrity sha512-eI21j633KraRXgxGSagATaJR1R2oSFAZLkVUuNanVuIhvBwY00lLBRMQVVb/j8Fu44xasNdmnUuo0OG/ebvj9A==
   dependencies:
     lodash "^4.17.15"
     lodash-es "^4.17.15"
