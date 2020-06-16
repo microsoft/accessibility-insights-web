@@ -18,26 +18,34 @@ export function compareSemverValues(v1: string, v2: string): SemverComparisonRes
     const v1Elements: SemVerElements = splitSemVer(v1);
     const v2Elements: SemVerElements = splitSemVer(v2);
 
-    if (
-        v1Elements.major > v2Elements.major ||
-        (v1Elements.major === v2Elements.major && v1Elements.minor > v2Elements.minor)
-    ) {
+    // Decide based purely on major version
+    if (v1Elements.major > v2Elements.major) {
         return SemverComparisonResult.V1GreaterThanV2;
     }
-    if (
-        v1Elements.major < v2Elements.major ||
-        (v1Elements.major === v2Elements.major && v1Elements.minor < v2Elements.minor)
-    ) {
+    if (v1Elements.major < v2Elements.major) {
         return SemverComparisonResult.V1LessThanV2;
     }
 
+    // Major versions are equal, decide based purely on minor version
+    if (v1Elements.minor > v2Elements.minor) {
+        return SemverComparisonResult.V1GreaterThanV2;
+    }
+    if (v1Elements.minor < v2Elements.minor) {
+        return SemverComparisonResult.V1LessThanV2;
+    }
+
+    // Major and minor versions are equal, decide based purely on patch presence
     if (v1Elements.patch && !v2Elements.patch) {
         return SemverComparisonResult.V1GreaterThanV2;
     }
-    if (v2Elements.patch && !v1Elements.patch) {
+    if (!v1Elements.patch && v2Elements.patch) {
         return SemverComparisonResult.V1LessThanV2;
     }
+    if (!v1Elements.patch && !v2Elements.patch) {
+        return SemverComparisonResult.V1EqualToV2;
+    }
 
+    // Decide based purely on patch values
     if (v1Elements.patch > v2Elements.patch) {
         return SemverComparisonResult.V1GreaterThanV2;
     }
