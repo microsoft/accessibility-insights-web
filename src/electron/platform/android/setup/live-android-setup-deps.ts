@@ -3,7 +3,6 @@
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Logger } from 'common/logging/logger';
-import { compareSemverValues, SemverComparisonResult } from 'electron/common/semver-comparer';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
@@ -62,21 +61,14 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public installService = async (): Promise<boolean> => {
         try {
-            let needsUninstall: boolean = true; // Until proven otherwise
             const installedVersion: string = await this.getInstalledVersion();
             if (installedVersion) {
                 const targetVersion: string = await this.getTargetVersion();
-                if (
-                    compareSemverValues(targetVersion, installedVersion) ===
-                    SemverComparisonResult.V1GreaterThanV2
-                ) {
-                    needsUninstall = false;
+                if (this.compareVersions(installedVersion, targetVersion) > 0) {
+                    await this.serviceConfig.uninstallService(this.selectedDeviceId);
                 }
             }
 
-            if (needsUninstall) {
-                await this.serviceConfig.uninstallService(this.selectedDeviceId);
-            }
             await this.serviceConfig.installService(this.selectedDeviceId);
             return true;
         } catch (error) {
@@ -104,5 +96,31 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     private async getTargetVersion(): Promise<string> {
         return (await this.apkLocator.locateBundledApk()).versionName;
+    }
+
+    private compareVersions(v1: string, v2: string): number {
+        const radix: number = 10;
+        const v1Parts: string[] = v1.split('.');
+        const v2Parts: string[] = v2.split('.');
+
+        for (let loop = 0; loop < 3; loop++) {
+            const v1Part = v1Parts[loop];
+            const v2Part = v2Parts[loop];
+
+            if (!v1Part && !v2Part) {
+                break;
+            }
+            const v1Value = parseInt(v1Part, radix);
+            const v2Value = parseInt(v2Part, radix);
+
+            if (v1Value > v2Value) {
+                return 1;
+            }
+            if (v2Value < v2Value) {
+                return -1;
+            }
+        }
+
+        return 0;
     }
 }

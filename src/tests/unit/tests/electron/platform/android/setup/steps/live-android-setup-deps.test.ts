@@ -230,7 +230,7 @@ describe('LiveAndroidSetupDeps', () => {
 
         verifyAllMocks();
     });
-
+    /*
     it('installService returns false on error', async () => {
         serviceConfigMock
             .setup(m => m.getPackageInfo(undefined))
@@ -245,83 +245,24 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('installService uninstalls then installs if installed package has no versionName', async () => {
-        const packageInfo: PackageInfo = {};
-        let callbackCount: number = 0;
-        let uninstallOrder: number = undefined;
-        let installOrder: number = undefined;
+    it('installService installs (no uninstall) if installed version does not exist', async () => {
+        const installedPackageInfo: PackageInfo = {};
         serviceConfigMock
             .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(packageInfo))
+            .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.uninstallService(undefined))
-            .callback(() => {
-                uninstallOrder = callbackCount++;
-            })
-            .verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.installService(undefined))
-            .callback(() => {
-                installOrder = callbackCount++;
-            })
-            .verifiable(Times.once());
+        serviceConfigMock.setup(m => m.installService(undefined)).verifiable(Times.once());
         await initializeServiceConfig();
 
         const success = await testSubject.installService();
 
         expect(success).toBe(true);
-        expect(uninstallOrder).toBe(0);
-        expect(installOrder).toBe(1);
-        expect(callbackCount).toBe(2);
-
-        verifyAllMocks();
-    });
-
-    it('installService uninstalls then installs if installed version is newer than Apk version', async () => {
-        let callbackCount: number = 0;
-        let uninstallOrder: number = undefined;
-        let installOrder: number = undefined;
-        const packageInfo: PackageInfo = {
-            versionName: '1.2.3',
-        };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.2',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(packageInfo))
-            .verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.uninstallService(undefined))
-            .callback(() => {
-                uninstallOrder = callbackCount++;
-            })
-            .verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.installService(undefined))
-            .callback(() => {
-                installOrder = callbackCount++;
-            })
-            .verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        const success = await testSubject.installService();
-
-        expect(success).toBe(true);
-        expect(uninstallOrder).toBe(0);
-        expect(installOrder).toBe(1);
-        expect(callbackCount).toBe(2);
 
         verifyAllMocks();
     });
 
     it('installService installs (no uninstall) if installed version is older than Apk version', async () => {
-        const packageInfo: PackageInfo = {
+        const installedPackageInfo: PackageInfo = {
             versionName: '1.2.2',
         };
         const apkInfo: AndroidServiceApkInfo = {
@@ -329,7 +270,7 @@ describe('LiveAndroidSetupDeps', () => {
         } as AndroidServiceApkInfo;
         serviceConfigMock
             .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(packageInfo))
+            .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
         serviceConfigMock.setup(m => m.installService(undefined)).verifiable(Times.once());
         apkLocatorMock
@@ -341,6 +282,48 @@ describe('LiveAndroidSetupDeps', () => {
         const success = await testSubject.installService();
 
         expect(success).toBe(true);
+
+        verifyAllMocks();
+    });
+*/
+    it('installService uninstalls then installs if installed version is newer than Apk version', async () => {
+        let callbackCount: number = 0;
+        let uninstallOrder: number = undefined;
+        let installOrder: number = undefined;
+        const installedPackageInfo: PackageInfo = {
+            versionName: '1.2.3',
+        };
+        const apkInfo: AndroidServiceApkInfo = {
+            versionName: '1.2.2',
+        } as AndroidServiceApkInfo;
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(undefined))
+            .returns(() => Promise.resolve(installedPackageInfo))
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.uninstallService(undefined))
+            .callback(() => {
+                uninstallOrder = callbackCount++;
+            })
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.installService(undefined))
+            .callback(() => {
+                installOrder = callbackCount++;
+            })
+            .verifiable(Times.once());
+        apkLocatorMock
+            .setup(m => m.locateBundledApk())
+            .returns(() => Promise.resolve(apkInfo))
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        const success = await testSubject.installService();
+
+        expect(success).toBe(true);
+        expect(uninstallOrder).toBe(0);
+        expect(installOrder).toBe(1);
+        expect(callbackCount).toBe(2);
 
         verifyAllMocks();
     });
