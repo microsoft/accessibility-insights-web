@@ -190,6 +190,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const deviceStore = new DeviceStore(deviceActions);
         deviceStore.initialize();
 
+        const interpreter = new Interpreter();
+        const dispatcher = new DirectActionMessageDispatcher(interpreter);
+        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
@@ -200,6 +204,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
                     new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
                     userConfigurationStore,
                     apkLocator,
+                    userConfigMessageCreator,
                     logger,
                 ),
             ),
@@ -255,12 +260,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const fetchScanResults = createScanResultsFetcher(axios.get);
         const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
 
-        const interpreter = new Interpreter();
-
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
-        const dispatcher = new DirectActionMessageDispatcher(interpreter);
-        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             userConfigActions,
         );

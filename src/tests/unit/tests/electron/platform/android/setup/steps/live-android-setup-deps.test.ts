@@ -3,6 +3,7 @@
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Logger } from 'common/logging/logger';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     AndroidServiceApkInfo,
@@ -25,6 +26,7 @@ describe('LiveAndroidSetupDeps', () => {
     let serviceConfigMock: IMock<AndroidServiceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
+    let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let loggerMock: IMock<Logger>;
     let testSubject: LiveAndroidSetupDeps;
 
@@ -36,11 +38,16 @@ describe('LiveAndroidSetupDeps', () => {
         serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
+        configMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
         loggerMock = Mock.ofType<Logger>();
         testSubject = new LiveAndroidSetupDeps(
             serviceConfigFactoryMock.object,
             configStoreMock.object,
             apkLocatorMock.object,
+            configMessageCreatorMock.object,
             loggerMock.object,
         );
     });
@@ -49,6 +56,7 @@ describe('LiveAndroidSetupDeps', () => {
         serviceConfigFactoryMock.verifyAll();
         serviceConfigMock.verifyAll();
         configStoreMock.verifyAll();
+        configMessageCreatorMock.verifyAll();
         apkLocatorMock.verifyAll();
     }
 
@@ -97,17 +105,12 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('setAdbPath chains to UserConfigurationStore', () => {
-        const mockStoreData = {} as UserConfigurationStoreData;
-
-        configStoreMock
-            .setup(m => m.getState())
-            .returns(() => mockStoreData)
+    it('setAdbPath chains to UserConfigMessageCreator', () => {
+        configMessageCreatorMock
+            .setup(m => m.setAdbLocation(expectedAdbLocation))
             .verifiable(Times.once());
 
         testSubject.setAdbPath(expectedAdbLocation);
-
-        expect(mockStoreData.adbLocation).toBe(expectedAdbLocation);
 
         verifyAllMocks();
     });
@@ -230,7 +233,7 @@ describe('LiveAndroidSetupDeps', () => {
 
         verifyAllMocks();
     });
-    /*
+
     it('installService returns false on error', async () => {
         serviceConfigMock
             .setup(m => m.getPackageInfo(undefined))
@@ -285,7 +288,32 @@ describe('LiveAndroidSetupDeps', () => {
 
         verifyAllMocks();
     });
-*/
+
+    it('installService installs (no uninstall) if installed version is same as Apk version', async () => {
+        const installedPackageInfo: PackageInfo = {
+            versionName: '1.2',
+        };
+        const apkInfo: AndroidServiceApkInfo = {
+            versionName: '1.2',
+        } as AndroidServiceApkInfo;
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(undefined))
+            .returns(() => Promise.resolve(installedPackageInfo))
+            .verifiable(Times.once());
+        serviceConfigMock.setup(m => m.installService(undefined)).verifiable(Times.once());
+        apkLocatorMock
+            .setup(m => m.locateBundledApk())
+            .returns(() => Promise.resolve(apkInfo))
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        const success = await testSubject.installService();
+
+        expect(success).toBe(true);
+
+        verifyAllMocks();
+    });
+
     it('installService uninstalls then installs if installed version is newer than Apk version', async () => {
         let callbackCount: number = 0;
         let uninstallOrder: number = undefined;

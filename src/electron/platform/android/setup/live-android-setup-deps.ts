@@ -3,6 +3,7 @@
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Logger } from 'common/logging/logger';
+import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
@@ -21,6 +22,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly configFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly userConfigMessageCreator: UserConfigMessageCreator,
         private readonly logger: Logger,
     ) {}
 
@@ -35,8 +37,8 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         }
     };
 
-    public setAdbPath = (path: string): void => {
-        this.configStore.getState().adbLocation = path;
+    public setAdbPath = (adbLocation: string): void => {
+        this.userConfigMessageCreator.setAdbLocation(adbLocation);
     };
 
     public getDevices = async (): Promise<DeviceInfo[]> => {
