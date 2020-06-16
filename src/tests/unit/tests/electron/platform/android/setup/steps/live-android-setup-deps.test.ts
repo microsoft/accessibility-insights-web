@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { Logger } from 'common/logging/logger';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     AndroidServiceApkInfo,
@@ -24,6 +25,7 @@ describe('LiveAndroidSetupDeps', () => {
     let serviceConfigMock: IMock<AndroidServiceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
+    let loggerMock: IMock<Logger>;
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
@@ -34,10 +36,12 @@ describe('LiveAndroidSetupDeps', () => {
         serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
+        loggerMock = Mock.ofType<Logger>();
         testSubject = new LiveAndroidSetupDeps(
             serviceConfigFactoryMock.object,
             configStoreMock.object,
             apkLocatorMock.object,
+            loggerMock.object,
         );
     });
 

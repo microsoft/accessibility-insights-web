@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { Logger } from 'common/logging/logger';
 import { compareSemverValues, SemverComparisonResult } from 'electron/common/semver-comparer';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
@@ -21,6 +22,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly configFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly logger: Logger,
     ) {}
 
     public hasAdbPath = async (): Promise<boolean> => {
@@ -29,6 +31,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             this.serviceConfig = await this.configFactory.getServiceConfigurator(adbLocation);
             return true;
         } catch (error) {
+            this.logger.log(error);
             return false;
         }
     };
@@ -52,7 +55,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
                 return installedVersion === (await this.getTargetVersion());
             }
         } catch (error) {
-            console.log(error);
+            this.logger.log(error);
         }
         return false;
     };
@@ -77,7 +80,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             await this.serviceConfig.installService(this.selectedDeviceId);
             return true;
         } catch (error) {
-            console.log(error);
+            this.logger.log(error);
         }
         return false;
     };
@@ -89,7 +92,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             );
             return info.screenshotGranted;
         } catch (error) {
-            console.log(error);
+            this.logger.log(error);
         }
         return false;
     };

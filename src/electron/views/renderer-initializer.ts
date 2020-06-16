@@ -200,6 +200,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
                     new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
                     userConfigurationStore,
                     apkLocator,
+                    logger,
                 ),
             ),
         );
