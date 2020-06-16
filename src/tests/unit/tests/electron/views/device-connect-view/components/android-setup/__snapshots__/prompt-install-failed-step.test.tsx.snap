@@ -29,10 +29,12 @@ exports[`PromptInstallFailedStep renders with device 1`] = `
   </React.Fragment>
   <DeviceDescription
     className="deviceDescription"
-    description="Super-Duper Gadget"
+    friendlyName="Super-Duper Gadget"
+    id="1"
     isEmulator={false}
   />
   <CustomizedPrimaryButton
+    data-automation-id="try-again"
     onClick={[Function]}
     text="Try again"
   />
@@ -68,10 +70,12 @@ exports[`PromptInstallFailedStep renders with emulator 1`] = `
   </React.Fragment>
   <DeviceDescription
     className="deviceDescription"
-    description="Emulator Extraordinaire"
+    friendlyName="Emulator Extraordinaire"
+    id="1"
     isEmulator={true}
   />
   <CustomizedPrimaryButton
+    data-automation-id="try-again"
     onClick={[Function]}
     text="Try again"
   />

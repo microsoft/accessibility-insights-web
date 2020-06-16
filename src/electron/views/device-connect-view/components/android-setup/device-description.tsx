@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 
 import { NamedFC } from 'common/react/named-fc';
-import { DeviceMetadata } from 'electron/flux/types/device-metadata';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { css, Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './device-description.scss';
 
-export interface DeviceDescriptionProps extends DeviceMetadata {
+export interface DeviceDescriptionProps extends DeviceInfo {
     className?: string;
+    currentApplication?: string;
 }
 
 export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescription', props => {
@@ -20,12 +21,12 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
     if (props.currentApplication) {
         descriptionAndApp = (
             <div className={styles.deviceAndCurrentApplication}>
-                {props.description}
+                {props.friendlyName}
                 <div className={styles.currentApplication}>{props.currentApplication}</div>
             </div>
         );
     } else {
-        descriptionAndApp = props.description;
+        descriptionAndApp = props.friendlyName;
     }
 
     return (

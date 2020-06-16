@@ -31,4 +31,7 @@ export class UserConfigurationActionCreator {
 
     public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) =>
         this.userConfigActions.saveIssueFilingSettings.invoke(payload);
+
+    public setAdbLocation = (adbLocation: string) =>
+        this.userConfigActions.setAdbLocation.invoke(adbLocation);
 }

@@ -9,6 +9,7 @@ exports[`DetectDevicesStep renders 1`] = `
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
         "closeApp": null,
+        "showOpenFileDialog": null,
         "startTesting": null,
       }
     }

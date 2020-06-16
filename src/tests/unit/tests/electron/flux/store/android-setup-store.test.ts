@@ -8,6 +8,7 @@ import {
     AndroidSetupStoreCallbacks,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 import { It, Mock, Times } from 'typemoq';
 
@@ -51,7 +52,7 @@ describe('AndroidSetupStore', () => {
         setupActions.next.invoke();
         setupActions.rescan.invoke();
         setupActions.saveAdbPath.invoke('');
-        setupActions.setSelectedDevice.invoke('');
+        setupActions.setSelectedDevice.invoke({} as DeviceInfo);
 
         stateMachineFactoryMock.verifyAll();
         stateMachineMock.verifyAll();
@@ -106,6 +107,81 @@ describe('AndroidSetupStore', () => {
 
         stateMachineFactoryMock.verifyAll();
         stateMachineMock.verifyAll();
+    });
+
+    it('ensure setSelectedDevice function results in store update', () => {
+        const testDevice: DeviceInfo = {
+            id: 'r2d2',
+            friendlyName: 'little buddy',
+            isEmulator: true,
+        };
+
+        const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
+        const expectedData: AndroidSetupStoreData = {
+            currentStepId: 'detect-adb',
+            selectedDevice: testDevice,
+        };
+
+        let storeCallbacks: AndroidSetupStoreCallbacks;
+
+        const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
+        stateMachineFactoryMock
+            .setup(m => m(It.isAny()))
+            .callback(sc => (storeCallbacks = sc))
+            .verifiable(Times.once());
+
+        const store = new AndroidSetupStore(
+            new AndroidSetupActions(),
+            stateMachineFactoryMock.object,
+        );
+        store.initialize(initialData);
+
+        storeCallbacks.setSelectedDevice(testDevice);
+
+        expect(store.getState()).toEqual(expectedData);
+
+        stateMachineFactoryMock.verifyAll();
+    });
+
+    it('ensure setAvailableDevices function results in store update', () => {
+        const testDevices: DeviceInfo[] = [
+            {
+                id: 'r2d2',
+                friendlyName: 'little buddy',
+                isEmulator: true,
+            },
+            {
+                id: 'c3po',
+                friendlyName: '3po',
+                isEmulator: false,
+            },
+        ];
+
+        const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
+        const expectedData: AndroidSetupStoreData = {
+            currentStepId: 'detect-adb',
+            availableDevices: testDevices,
+        };
+
+        let storeCallbacks: AndroidSetupStoreCallbacks;
+
+        const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
+        stateMachineFactoryMock
+            .setup(m => m(It.isAny()))
+            .callback(sc => (storeCallbacks = sc))
+            .verifiable(Times.once());
+
+        const store = new AndroidSetupStore(
+            new AndroidSetupActions(),
+            stateMachineFactoryMock.object,
+        );
+        store.initialize(initialData);
+
+        storeCallbacks.setAvailableDevices(testDevices);
+
+        expect(store.getState()).toEqual(expectedData);
+
+        stateMachineFactoryMock.verifyAll();
     });
 
     const createAndroidSetupStoreTester = (

@@ -11,24 +11,15 @@ import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-s
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import * as styles from './prompt-install-service-step.scss';
 
+export const installAutomationId = 'install';
 export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptInstallServiceStep',
     (props: CommonAndroidSetupStepProps) => {
-        const onCancelButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.cancel()`);
-        };
-
-        const onInstallButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.installService()`);
-        };
-
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Let us install the latest version on your device',
             leftFooterButtonProps: {
                 text: 'Cancel',
-                onClick: onCancelButton,
+                onClick: _ => props.deps.androidSetupActionCreator.cancel(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
@@ -49,7 +40,11 @@ export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
                     either missing or out of date. We'll need to install the latest version.
                 </>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
-                <PrimaryButton text="Install" onClick={onInstallButton} />
+                <PrimaryButton
+                    text="Install"
+                    data-automation-id={installAutomationId}
+                    onClick={props.deps.androidSetupActionCreator.next}
+                />
             </AndroidSetupStepLayout>
         );
     },

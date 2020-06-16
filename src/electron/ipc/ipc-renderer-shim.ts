@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
-import { IpcRenderer } from 'electron';
+import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -14,6 +14,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 
 export class IpcRendererShim {
@@ -49,6 +50,10 @@ export class IpcRendererShim {
 
     public getAppPath = async (): Promise<string> => {
         return await this.ipcRenderer.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME);
+    };
+
+    public showOpenFileDialog = async (opts: OpenDialogOptions): Promise<OpenDialogReturnValue> => {
+        return await this.ipcRenderer.invoke(IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG, opts);
     };
 
     // Call these methods to send data FROM renderer process

@@ -1,19 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { OpenDialogOptions } from 'electron';
 import {
     FolderPicker,
     FolderPickerProps,
 } from 'electron/views/device-connect-view/components/android-setup/folder-picker';
 import { shallow } from 'enzyme';
-import { TextField } from 'office-ui-fabric-react';
+import { PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { Mock, Times } from 'typemoq';
+import { tick } from 'tests/unit/common/tick';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('FolderPicker', () => {
     let props: FolderPickerProps;
 
     beforeEach(() => {
         props = {
+            deps: {
+                showOpenFileDialog: null,
+            },
             instructionsText: 'some instructions',
             value: '/path/to/folder',
             onChange: null,
@@ -32,14 +37,93 @@ describe('FolderPicker', () => {
         );
     });
 
-    it('invokes onChange when the TextField is changed', () => {
-        const onChangeMock = Mock.ofType<typeof props.onChange>();
-        props.onChange = onChangeMock.object;
+    describe('onChange behavior', () => {
+        let onChangeMock: IMock<typeof props.onChange>;
+        let showOpenFileDialogMock: IMock<typeof props.deps.showOpenFileDialog>;
+        const stubFormEvent = {} as React.FormEvent<any>;
+        const stubMouseEvent = {} as React.MouseEvent<any>;
 
-        const eventStub = {} as React.FormEvent<any>;
-        const rendered = shallow(<FolderPicker {...props} />);
-        rendered.find(TextField).prop('onChange')(eventStub, 'new text');
+        beforeEach(() => {
+            onChangeMock = Mock.ofType<typeof props.onChange>();
+            props.onChange = onChangeMock.object;
 
-        onChangeMock.verify(m => m('new text'), Times.once());
+            showOpenFileDialogMock = Mock.ofType<typeof props.deps.showOpenFileDialog>(
+                undefined,
+                MockBehavior.Strict,
+            );
+            props.deps.showOpenFileDialog = showOpenFileDialogMock.object;
+        });
+
+        it('invokes onChange when the TextField is changed', () => {
+            const rendered = shallow(<FolderPicker {...props} />);
+            rendered.find(TextField).prop('onChange')(stubFormEvent, 'new text');
+
+            onChangeMock.verify(m => m('new text'), Times.once());
+        });
+
+        const expectedShowOpenFileDialogOptions: OpenDialogOptions = {
+            properties: ['openDirectory'],
+        };
+
+        it('flows through showOpenFileDialog to onChange when browse button is clicked', async () => {
+            showOpenFileDialogMock
+                .setup(m => m(expectedShowOpenFileDialogOptions))
+                .returns(() => Promise.resolve({ canceled: false, filePaths: ['/path/to/adb'] }))
+                .verifiable(Times.once());
+
+            const rendered = shallow(<FolderPicker {...props} />);
+            rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
+
+            await tick();
+
+            showOpenFileDialogMock.verifyAll();
+            onChangeMock.verify(m => m('/path/to/adb'), Times.once());
+        });
+
+        // This is an unexpected case; cancellation of the dialog is not an error
+        it('does not invoke onChange if showOpenFileDialog throws an error', () => {
+            showOpenFileDialogMock
+                .setup(m => m(expectedShowOpenFileDialogOptions))
+                .returns(() => Promise.reject(new Error('unexpected error')))
+                .verifiable(Times.once());
+
+            const rendered = shallow(<FolderPicker {...props} />);
+            rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
+
+            jest.runAllTimers();
+
+            showOpenFileDialogMock.verifyAll();
+            onChangeMock.verify(m => m(It.isAny()), Times.never());
+        });
+
+        it('does not invoke onChange if showOpenFileDialog returns in a cancelled state', () => {
+            showOpenFileDialogMock
+                .setup(m => m(expectedShowOpenFileDialogOptions))
+                .returns(() => Promise.resolve({ canceled: true, filePaths: ['/path/to/adb'] }))
+                .verifiable(Times.once());
+
+            const rendered = shallow(<FolderPicker {...props} />);
+            rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
+
+            jest.runAllTimers();
+
+            showOpenFileDialogMock.verifyAll();
+            onChangeMock.verify(m => m(It.isAny()), Times.never());
+        });
+
+        it('does not invoke onChange if showOpenFileDialog returns without any selected folders', () => {
+            showOpenFileDialogMock
+                .setup(m => m(expectedShowOpenFileDialogOptions))
+                .returns(() => Promise.resolve({ canceled: false, filePaths: [] }))
+                .verifiable(Times.once());
+
+            const rendered = shallow(<FolderPicker {...props} />);
+            rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
+
+            jest.runAllTimers();
+
+            showOpenFileDialogMock.verifyAll();
+            onChangeMock.verify(m => m(It.isAny()), Times.never());
+        });
     });
 });

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
     DeviceInfo,
@@ -17,7 +18,9 @@ type AdbDevice = {
 const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
 
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
-    constructor(private readonly adb: ADB) {}
+    private readonly portNumber: number = 62442;
+
+    constructor(private readonly adb: ADB, private readonly apkLocator: AndroidServiceApkLocator) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {
         const detectedDevices: DictionaryStringTo<DeviceInfo> = {};
@@ -70,8 +73,8 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     };
 
     public installService = async (deviceId: string): Promise<void> => {
-        const pathToApk = './ServiceForAndroid/AccessibilityInsightsforAndroidService.apk';
         this.adb.setDeviceId(deviceId);
+        const pathToApk = (await this.apkLocator.locateBundledApk()).path;
         await this.adb.install(pathToApk);
     };
 
@@ -81,8 +84,12 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     };
 
     public setTcpForwarding = async (deviceId: string): Promise<void> => {
-        const port: number = 62442;
         this.adb.setDeviceId(deviceId);
-        await this.adb.forwardPort(port, port);
+        await this.adb.forwardPort(this.portNumber, this.portNumber);
+    };
+
+    public removeTcpForwarding = async (deviceId: string): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.removePortForward(this.portNumber);
     };
 }

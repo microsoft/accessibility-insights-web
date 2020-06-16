@@ -3,6 +3,7 @@
 import { Action } from 'common/flux/action';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(AndroidSetupActionCreator, () => {
@@ -42,13 +43,19 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes setSelectedDevice action on setSelectedDevice', () => {
-        const actionMock = Mock.ofType<Action<string>>();
+        const testDevice: DeviceInfo = {
+            id: 'Robbie',
+            friendlyName: 'Robbie the robot',
+            isEmulator: true,
+        };
+
+        const actionMock = Mock.ofType<Action<DeviceInfo>>();
         androidSetupActionsMock
             .setup(actions => actions.setSelectedDevice)
             .returns(() => actionMock.object);
-        actionMock.setup(s => s.invoke('new-device-id')).verifiable(Times.once());
+        actionMock.setup(s => s.invoke(testDevice)).verifiable(Times.once());
 
-        testSubject.setSelectedDevice('new-device-id');
+        testSubject.setSelectedDevice(testDevice);
         actionMock.verifyAll();
     });
 

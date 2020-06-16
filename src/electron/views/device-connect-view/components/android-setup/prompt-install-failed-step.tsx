@@ -11,20 +11,11 @@ import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-s
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import * as styles from './prompt-install-failed-step.scss';
 
+export const tryAgainAutomationId = 'try-again';
 export const PromptInstallFailedStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptInstallFailedStep',
     (props: CommonAndroidSetupStepProps) => {
         const { LinkComponent } = props.deps;
-
-        const onCancelButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.cancel()`);
-        };
-
-        const onTryAgain = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.installService()`);
-        };
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Installation attempt failed',
@@ -35,7 +26,7 @@ export const PromptInstallFailedStep = NamedFC<CommonAndroidSetupStepProps>(
             ),
             leftFooterButtonProps: {
                 text: 'Cancel',
-                onClick: onCancelButton,
+                onClick: _ => props.deps.androidSetupActionCreator.cancel(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
@@ -57,7 +48,11 @@ export const PromptInstallFailedStep = NamedFC<CommonAndroidSetupStepProps>(
                     from your device, or choose one of the options below.
                 </>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
-                <PrimaryButton text="Try again" onClick={onTryAgain} />
+                <PrimaryButton
+                    data-automation-id={tryAgainAutomationId}
+                    text="Try again"
+                    onClick={props.deps.androidSetupActionCreator.next}
+                />
             </AndroidSetupStepLayout>
         );
     },

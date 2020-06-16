@@ -17,11 +17,6 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
     (props: CommonAndroidSetupStepProps) => {
         const { LinkComponent } = props.deps;
 
-        const onRescanButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.rescanDevices()`);
-        };
-
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Connected and ready to go!',
             moreInfoLink: (
@@ -31,7 +26,7 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
             ),
             leftFooterButtonProps: {
                 text: 'Cancel',
-                onClick: props.deps.androidSetupActionCreator.cancel,
+                onClick: _ => props.deps.androidSetupActionCreator.cancel(),
             },
             rightFooterButtonProps: {
                 text: 'Start testing',
@@ -51,7 +46,7 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
                 <Button
                     className={styles.rescanButton}
                     text="Rescan devices"
-                    onClick={onRescanButton}
+                    onClick={props.deps.androidSetupActionCreator.rescan}
                 />
             </AndroidSetupStepLayout>
         );
