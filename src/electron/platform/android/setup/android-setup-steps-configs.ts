@@ -5,10 +5,12 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
+import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
 import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
 import { detectService } from 'electron/platform/android/setup/steps/detect-service';
 import { installingService } from 'electron/platform/android/setup/steps/installing-service';
+import { promptConfiguringPortForwardingFailed } from 'electron/platform/android/setup/steps/prompt-configuring-port-forwarding-failed';
 import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
 import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
 import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
@@ -45,7 +47,7 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'prompt-install-failed': promptInstallService,
     'detect-permissions': detectPermissions,
     'prompt-grant-permissions': promptGrantPermissions,
-    'configuring-port-forwarding': null, // to be implemented in future feature work
-    'prompt-configuring-port-forwarding-failed': null, // to be implemented in future feature work
+    'configuring-port-forwarding': configuringPortForwarding,
+    'prompt-configuring-port-forwarding-failed': promptConfiguringPortForwardingFailed,
     'prompt-connected-start-testing': promptConnectedStartTesting,
 };

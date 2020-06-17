@@ -403,4 +403,29 @@ describe('LiveAndroidSetupDeps', () => {
 
         verifyAllMocks();
     });
+
+    it('setTcpForwarding returns false on error', async () => {
+        serviceConfigMock
+            .setup(m => m.setTcpForwarding(undefined))
+            .throws(new Error('Threw during setTcpForwarding'))
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        const success = await testSubject.setTcpForwarding();
+
+        expect(success).toBe(false);
+
+        verifyAllMocks();
+    });
+
+    it('setTcpForwarding returns true if no error', async () => {
+        serviceConfigMock.setup(m => m.setTcpForwarding(undefined)).verifiable(Times.once());
+        await initializeServiceConfig();
+
+        const success = await testSubject.setTcpForwarding();
+
+        expect(success).toBe(true);
+
+        verifyAllMocks();
+    });
 });

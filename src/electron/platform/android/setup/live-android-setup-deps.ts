@@ -91,6 +91,16 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return false;
     };
 
+    public setTcpForwarding = async (): Promise<boolean> => {
+        try {
+            await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
+            return true;
+        } catch (error) {
+            this.logger.log(error);
+        }
+        return false;
+    };
+
     private async getInstalledVersion(): Promise<string> {
         const info: PackageInfo = await this.serviceConfig.getPackageInfo(this.selectedDeviceId);
         return info?.versionName;
