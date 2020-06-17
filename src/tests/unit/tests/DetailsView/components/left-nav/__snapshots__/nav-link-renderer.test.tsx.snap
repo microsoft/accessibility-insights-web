@@ -26,6 +26,7 @@ exports[`NavLinkRenderer renderAssessmentTestLink render status icon with link 1
 
 exports[`NavLinkRenderer renderAssessmentTestLink render status icon with link 2`] = `
 <LeftNavStatusIcon
+  className="linkIcon"
   item={
     Object {
       "status": 0,

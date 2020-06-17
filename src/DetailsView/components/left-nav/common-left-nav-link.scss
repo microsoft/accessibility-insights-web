@@ -1,0 +1,24 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/common.scss';
+
+:global(.is-selected) .left-nav-link-container {
+    color: $always-black;
+}
+
+.left-nav-link-container {
+    padding-left: 5%;
+    padding-right: 8%;
+    width: $detailsViewLeftNavWidth;
+    color: $primary-text;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    height: 100%;
+    align-items: center;
+    .link-icon {
+        font-size: 24px;
+    }
+}

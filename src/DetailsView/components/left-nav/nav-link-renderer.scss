@@ -1,10 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-/*
-Specificity due to clashes with details-view.scss & avoiding use of !important
-*/
-:global(#details-container .details-view-body-nav-content-layout .left-nav .button-flex-container)
-    .requirement-status-icon {
+.requirement-status-icon {
     font-size: 20px;
 }
