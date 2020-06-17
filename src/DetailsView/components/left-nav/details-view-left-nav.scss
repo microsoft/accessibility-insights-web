@@ -55,18 +55,6 @@
         .ms-Nav-groupContent {
             margin-bottom: 0px;
         }
-        .is-selected .button-flex-container {
-            color: $always-black;
-        }
-        .button-flex-container {
-            padding-left: 5%;
-            padding-right: 8%;
-            width: $detailsViewLeftNavWidth;
-            color: $primary-text;
-            .status-icon {
-                font-size: 24px;
-            }
-        }
         .ms-Nav-link {
             height: fit-content;
         }
@@ -113,13 +101,6 @@
             }
             .ms-Button-label {
                 color: $neutral-100;
-            }
-            .button-flex-container {
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                height: 100%;
-                align-items: center;
             }
             .index-circle {
                 color: $secondary-text;
