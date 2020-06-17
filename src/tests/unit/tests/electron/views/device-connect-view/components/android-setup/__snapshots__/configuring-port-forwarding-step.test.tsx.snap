@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfiguringPortForwardingStep renders 1`] = `
+<AndroidSetupSpinnerStep
+  deps={
+    Object {
+      "LinkComponent": [Function],
+      "androidSetupActionCreator": null,
+      "androidSetupStepComponentProvider": null,
+      "closeApp": null,
+      "showOpenFileDialog": null,
+      "startTesting": null,
+    }
+  }
+  spinnerLabel="Configuring ports..."
+/>
+`;
