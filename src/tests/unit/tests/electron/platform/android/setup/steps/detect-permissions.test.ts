@@ -3,7 +3,7 @@
 
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
-import { Mock, MockBehavior, Times } from 'typemoq';
+import { ExpectedCallType, It, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
 describe('Android setup step: detectPermissions', () => {
@@ -15,17 +15,26 @@ describe('Android setup step: detectPermissions', () => {
     });
 
     it('onEnter transitions to configuring-port-forwarding as expected', async () => {
-        const p = new Promise<boolean>(resolve => resolve(true));
+        const appName = 'my app name';
+
+        const detectPermissionsPromise = new Promise<boolean>(resolve => resolve(true));
+        const appNamePromise = new Promise<string>(resolve => resolve(appName));
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
         depsMock
             .setup(m => m.hasExpectedPermissions())
-            .returns(_ => p)
+            .returns(_ => detectPermissionsPromise)
             .verifiable(Times.once());
 
+        depsMock.setup(m => m.stepTransition('configuring-port-forwarding'));
+
         depsMock
-            .setup(m => m.stepTransition('configuring-port-forwarding'))
+            .setup(m => m.getApplicationName())
+            .returns(_ => appNamePromise)
             .verifiable(Times.once());
+
+        depsMock.setup(m => m.setApplicationName(undefined)).verifiable(Times.once());
+        depsMock.setup(m => m.setApplicationName(appName)).verifiable(Times.once());
 
         const step = detectPermissions(depsMock.object);
         await step.onEnter();
@@ -33,7 +42,7 @@ describe('Android setup step: detectPermissions', () => {
         depsMock.verifyAll();
     });
 
-    it('onEnter transitions to prompt-install-service as expected', async () => {
+    it('onEnter transitions to prompt-grant-permissions as expected', async () => {
         const p = new Promise<boolean>(resolve => resolve(false));
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
@@ -41,6 +50,8 @@ describe('Android setup step: detectPermissions', () => {
             .setup(m => m.hasExpectedPermissions())
             .returns(_ => p)
             .verifiable(Times.once());
+
+        depsMock.setup(m => m.setApplicationName(undefined)).verifiable(Times.once());
 
         depsMock.setup(m => m.stepTransition('prompt-grant-permissions')).verifiable(Times.once());
 

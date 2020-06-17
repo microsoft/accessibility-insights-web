@@ -6,7 +6,18 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 export const detectPermissions: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
+        deps.setApplicationName(); // init
+
         const detected = await deps.hasExpectedPermissions();
-        deps.stepTransition(detected ? 'configuring-port-forwarding' : 'prompt-grant-permissions');
+
+        if (detected === false) {
+            deps.stepTransition('prompt-grant-permissions');
+            return;
+        }
+
+        // device is good to go; so we can get the current app name
+        const appName = await deps.getApplicationName();
+        deps.setApplicationName(appName);
+        deps.stepTransition('configuring-port-forwarding');
     },
 });

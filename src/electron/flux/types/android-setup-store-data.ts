@@ -10,4 +10,6 @@ export type AndroidSetupStoreData = {
     selectedDevice?: DeviceInfo;
 
     availableDevices?: DeviceInfo[];
+
+    applicationName?: string;
 };
