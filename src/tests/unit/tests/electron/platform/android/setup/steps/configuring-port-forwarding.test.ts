@@ -6,7 +6,7 @@ import { configuringPortForwarding } from 'electron/platform/android/setup/steps
 import { Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
-describe('Android setup step: configuringPortFowarding', () => {
+describe('Android setup step: configuringPortForwarding', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
         const step = configuringPortForwarding(deps);
