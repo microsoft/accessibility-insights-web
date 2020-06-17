@@ -8,6 +8,7 @@ import { DetectPermissionsStep } from 'electron/views/device-connect-view/compon
 import { DetectServiceStep } from 'electron/views/device-connect-view/components/android-setup/detect-service-step';
 import { InstallingServiceStep } from 'electron/views/device-connect-view/components/android-setup/installing-service-step';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
+import { PromptConfiguringPortForwardingFailedStep } from 'electron/views/device-connect-view/components/android-setup/prompt-configuring-port-forwarding-failed-step';
 import { PromptConnectToDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-connect-to-device-step';
 import { PromptConnectedStartTestingStep } from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
 import { PromptGrantPermissionsStep } from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
@@ -28,6 +29,6 @@ export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = 
     'detect-devices': DetectDevicesStep,
     'detect-service': DetectServiceStep,
     'configuring-port-forwarding': ConfiguringPortForwardingStep,
-    'prompt-configuring-port-forwarding-failed': DetectAdbStep,
+    'prompt-configuring-port-forwarding-failed': PromptConfiguringPortForwardingFailedStep,
     'prompt-connected-start-testing': PromptConnectedStartTestingStep,
 };

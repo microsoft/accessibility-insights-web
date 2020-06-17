@@ -30,7 +30,7 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
     id="1"
     isEmulator={false}
   />
-  <Button
+  <CustomizedDefaultButton
     className="rescanButton"
     onClick={[Function]}
     text="Rescan devices"
@@ -68,7 +68,7 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
     id="1"
     isEmulator={true}
   />
-  <Button
+  <CustomizedDefaultButton
     className="rescanButton"
     onClick={[Function]}
     text="Rescan devices"
