@@ -45,5 +45,6 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'prompt-install-failed': promptInstallService,
     'detect-permissions': detectPermissions,
     'prompt-grant-permissions': promptGrantPermissions,
+    'configuring-port-forwarding': null, // to be implemented in future feature work
     'prompt-connected-start-testing': promptConnectedStartTesting,
 };
