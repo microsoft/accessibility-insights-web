@@ -3,6 +3,7 @@
 import { AndroidSetupStepComponentProvider } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { DetectAdbStep } from 'electron/views/device-connect-view/components/android-setup/detect-adb-step';
 import { DetectDevicesStep } from 'electron/views/device-connect-view/components/android-setup/detect-devices-step';
+import { DetectPermissionsStep } from 'electron/views/device-connect-view/components/android-setup/detect-permissions-step';
 import { DetectServiceStep } from 'electron/views/device-connect-view/components/android-setup/detect-service-step';
 import { InstallingServiceStep } from 'electron/views/device-connect-view/components/android-setup/installing-service-step';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
@@ -21,6 +22,7 @@ export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = 
     'prompt-install-service': PromptInstallServiceStep,
     'prompt-install-failed': PromptInstallFailedStep,
     'prompt-grant-permissions': PromptGrantPermissionsStep,
+    'detect-permissions': DetectPermissionsStep,
     'installing-service': InstallingServiceStep,
     'detect-devices': DetectDevicesStep,
     'detect-service': DetectServiceStep,
