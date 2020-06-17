@@ -193,6 +193,7 @@ div.insights-file-issue-details-dialog-container {
 #details-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
@@ -244,6 +245,7 @@ div.insights-file-issue-details-dialog-container {
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
+        height: 100%;
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
         }
@@ -462,6 +464,7 @@ div.insights-file-issue-details-dialog-container {
         .details-view-body-content-pane {
             display: flex;
             flex-direction: column;
+            height: 100%;
             &.reflow-ui {
                 word-break: break-word;
             }
