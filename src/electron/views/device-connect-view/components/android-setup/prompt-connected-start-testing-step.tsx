@@ -6,7 +6,7 @@ import {
     DeviceDescriptionProps,
 } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import * as styles from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step.scss';
-import { Button } from 'office-ui-fabric-react';
+import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
@@ -43,7 +43,7 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
         return (
             <AndroidSetupStepLayout {...layoutProps}>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
-                <Button
+                <DefaultButton
                     className={styles.rescanButton}
                     text="Rescan devices"
                     onClick={props.deps.androidSetupActionCreator.rescan}
