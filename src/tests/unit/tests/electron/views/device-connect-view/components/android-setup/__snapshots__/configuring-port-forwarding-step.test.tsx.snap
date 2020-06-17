@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetectDevicesStep renders 1`] = `
+exports[`ConfiguringPortForwardingStep renders 1`] = `
 <AndroidSetupSpinnerStep
   deps={
     Object {
@@ -12,6 +12,6 @@ exports[`DetectDevicesStep renders 1`] = `
       "startTesting": null,
     }
   }
-  spinnerLabel="Scanning for devices..."
+  spinnerLabel="Configuring ports..."
 />
 `;

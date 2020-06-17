@@ -8,10 +8,6 @@ import { CommonAndroidSetupStepProps } from './android-setup-types';
 export const DetectPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
     'DetectPermissionsStep',
     (props: CommonAndroidSetupStepProps) => {
-        return (
-            <main>
-                <AndroidSetupSpinnerStep deps={props.deps} spinnerLabel="Checking permissions..." />
-            </main>
-        );
+        return <AndroidSetupSpinnerStep deps={props.deps} spinnerLabel="Checking permissions..." />;
     },
 );
