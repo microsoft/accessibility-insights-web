@@ -26,5 +26,7 @@ export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = 
     'installing-service': InstallingServiceStep,
     'detect-devices': DetectDevicesStep,
     'detect-service': DetectServiceStep,
+    'configuring-port-forwarding': DetectAdbStep,
+    'prompt-configuring-port-forwarding-failed': DetectAdbStep,
     'prompt-connected-start-testing': PromptConnectedStartTestingStep,
 };
