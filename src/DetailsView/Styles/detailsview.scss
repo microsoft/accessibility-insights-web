@@ -279,17 +279,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Nav-navItems {
                 margin-bottom: 0px;
             }
-            .button-flex-container .status-icon {
-                color: $primary-text;
-                margin-left: 24px;
-                font-size: 18px;
-                &.negative-outcome-icon {
-                    color: $negative-outcome;
-                }
-                &.positive-outcome-icon {
-                    color: $positive-outcome;
-                }
-            }
         }
         .test-step-view {
             padding-left: 0.75vw;
@@ -397,11 +386,6 @@ div.insights-file-issue-details-dialog-container {
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
         .test-step-nav {
-            .ms-Nav-compositeLink {
-                .button-flex-container {
-                    width: 100%;
-                }
-            }
             z-index: 100;
             background-color: $neutral-0;
             .index-circle {
@@ -424,13 +408,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Nav-compositeLink {
                 .ms-Button-label {
                     color: $neutral-100;
-                }
-                .button-flex-container {
-                    display: flex;
-                    flex-wrap: nowrap;
-                    justify-content: flex-start;
-                    height: 100%;
-                    align-items: center;
                 }
                 &.is-selected {
                     a {
