@@ -419,9 +419,6 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('setTcpForwarding returns true if no error', async () => {
-        const permissionInfo: PermissionInfo = {
-            screenshotGranted: false,
-        };
         serviceConfigMock.setup(m => m.setTcpForwarding(undefined)).verifiable(Times.once());
         await initializeServiceConfig();
 
