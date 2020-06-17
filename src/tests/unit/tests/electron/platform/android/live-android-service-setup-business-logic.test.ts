@@ -19,7 +19,7 @@ import {
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('LiveAndroidSetupDeps', () => {
+describe('LiveAndroidBusinessLogic', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
     let serviceConfigFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
