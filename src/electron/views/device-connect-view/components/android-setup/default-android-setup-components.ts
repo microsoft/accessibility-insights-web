@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupStepComponentProvider } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
+import { ConfiguringPortForwardingStep } from 'electron/views/device-connect-view/components/android-setup/configuring-port-forwarding-step';
 import { DetectAdbStep } from 'electron/views/device-connect-view/components/android-setup/detect-adb-step';
 import { DetectDevicesStep } from 'electron/views/device-connect-view/components/android-setup/detect-devices-step';
 import { DetectPermissionsStep } from 'electron/views/device-connect-view/components/android-setup/detect-permissions-step';
@@ -26,5 +27,6 @@ export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = 
     'installing-service': InstallingServiceStep,
     'detect-devices': DetectDevicesStep,
     'detect-service': DetectServiceStep,
+    'configuring-port-forwarding': ConfiguringPortForwardingStep,
     'prompt-connected-start-testing': PromptConnectedStartTestingStep,
 };
