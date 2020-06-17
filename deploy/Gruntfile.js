@@ -49,10 +49,13 @@ module.exports = function (grunt) {
                     e.errors.itemError[0] &&
                     e.errors.itemError[0].error_code === 'ITEM_NOT_UPDATABLE'
                 ) {
+                    const errorExplanation =
+                        'Cannot publish due to extension not being updatable. This is likely due to a previous deployment that is pending review. As such, marking this as partially successful.\n';
+
                     grunt.log.write(
-                        'Cannot publish due to extension not being updatable. This is likely due to a previous deployment that is pending review. As such, marking this as partially successful.',
+                        errorExplanation,
+                        '##vso[task.complete result=SucceededWithIssues;]DONE',
                     );
-                    grunt.log.write('##vso[task.complete result=SucceededWithIssues;]DONE');
                 } else {
                     grunt.fail.fatal(e.errorMsg);
                 }
