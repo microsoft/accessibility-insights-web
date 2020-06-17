@@ -6,17 +6,17 @@
 
 :global(.reflow-ui) {
     .left-nav {
-        :global {
-            .ms-Nav-compositeLink {
-                &.is-selected {
+        li {
+            :global {
+                .is-selected {
                     background-color: $communication-tint-20;
                     a,
                     button {
                         background-color: $communication-tint-20 !important;
                     }
                 }
-                &.is-expanded,
-                &.is-expanded + ul {
+                .is-expanded,
+                .is-expanded + ul {
                     background-color: $communication-tint-40;
                     .index-circle {
                         color: $neutral-0;
@@ -24,11 +24,12 @@
                         border-color: $neutral-0;
                     }
                 }
-                &:hover {
-                    a,
-                    button {
-                        background-color: $nav-link-hover !important;
-                    }
+            }
+
+            > div:hover {
+                a,
+                button {
+                    background-color: $nav-link-hover !important;
                 }
             }
         }
