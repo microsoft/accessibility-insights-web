@@ -23,7 +23,7 @@ describe('Android setup step: detectAdb', () => {
             .returns(_ => p)
             .verifiable(Times.once());
 
-        depsMock.setup(m => m.stepTransition('prompt-connect-to-device')).verifiable(Times.once());
+        depsMock.setup(m => m.stepTransition('detect-devices')).verifiable(Times.once());
 
         const step = detectAdb(depsMock.object);
         await step.onEnter();
