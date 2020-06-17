@@ -94,6 +94,7 @@ import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-format
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
+import { getPortPromise } from 'portfinder';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
@@ -201,7 +202,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+                    new AppiumServiceConfiguratorFactory(
+                        new LiveAppiumAdbCreator(),
+                        apkLocator,
+                        getPortPromise,
+                    ),
                     userConfigurationStore,
                     apkLocator,
                     userConfigMessageCreator,

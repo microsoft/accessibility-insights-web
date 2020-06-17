@@ -22,7 +22,7 @@ export interface AndroidServiceConfigurator {
     getPermissionInfo(deviceId: string): Promise<PermissionInfo>;
     installService(deviceId: string): Promise<void>;
     uninstallService(deviceId: string): Promise<void>;
-    setTcpForwarding(deviceId: string): Promise<void>;
+    setTcpForwarding(deviceId: string): Promise<number>;
     removeTcpForwarding(deviceId: string): Promise<void>;
 }
 

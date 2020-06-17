@@ -9,17 +9,24 @@ import {
     PackageInfo,
     PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
+import { PortFinderOptions } from 'portfinder';
 import { DictionaryStringTo } from 'types/common-types';
 
 type AdbDevice = {
     udid: string;
 };
 
-const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+export type PortFinder = (options?: PortFinderOptions) => Promise<number>;
 
-export const defaultAdbPortNumber: number = 62442;
+const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+export const servicePortNumber: number = 62442; // hardcoded in service APK
+
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
-    constructor(private readonly adb: ADB, private readonly apkLocator: AndroidServiceApkLocator) {}
+    constructor(
+        private readonly adb: ADB,
+        private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly portFinder: PortFinder,
+    ) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {
         const detectedDevices: DictionaryStringTo<DeviceInfo> = {};
@@ -82,13 +89,41 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         await this.adb.uninstallApk(servicePackageName);
     };
 
-    public setTcpForwarding = async (deviceId: string): Promise<void> => {
+    public setTcpForwarding = async (deviceId: string): Promise<number> => {
+        const hostPort = await this.portFinder({
+            startPort: servicePortNumber,
+            stopPort: servicePortNumber + 100,
+        });
+
         this.adb.setDeviceId(deviceId);
-        await this.adb.forwardPort(defaultAdbPortNumber, defaultAdbPortNumber);
+        await this.adb.forwardPort(hostPort, servicePortNumber);
+        return hostPort;
     };
 
     public removeTcpForwarding = async (deviceId: string): Promise<void> => {
+        const possibleDevicePort = await this.getHostPortForwardedToDevicePort(
+            deviceId,
+            servicePortNumber,
+        );
+        if (possibleDevicePort != null) {
+            this.adb.setDeviceId(deviceId);
+            await this.adb.removePortForward(possibleDevicePort);
+        }
+    };
+
+    private getHostPortForwardedToDevicePort = async (
+        deviceId: string,
+        devicePort: number,
+    ): Promise<number | null> => {
         this.adb.setDeviceId(deviceId);
-        await this.adb.removePortForward(defaultAdbPortNumber);
+        // entry format: `${serial} ${hostPort} ${devicePort}`
+        const forwardEntries: string[] = await this.adb.getForwardList();
+        for (const forwardEntry of forwardEntries) {
+            const matches = /^.+ tcp:(\d+) tcp:(\d+)$/.exec(forwardEntry);
+            if (matches && matches[2] === `${devicePort}`) {
+                return parseInt(matches[1], 10);
+            }
+        }
+        return null;
     };
 }
