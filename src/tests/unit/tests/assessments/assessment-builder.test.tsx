@@ -24,7 +24,7 @@ import { RequirementLink } from '../../../../DetailsView/components/requirement-
 import { TestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../injected/scanner-utils';
+import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 
@@ -179,9 +179,6 @@ describe('AssessmentBuilderTest', () => {
             getDrawer: getDrawerMock.object,
             switchToTargetTabOnScan: true,
         };
-        const scannerStub = {
-            getAllCompletedInstances: {},
-        };
         const telemetryFactoryStub = {
             forAssessmentRequirementScan: {},
         };
@@ -281,9 +278,6 @@ describe('AssessmentBuilderTest', () => {
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
-        expect(config.resultProcessor(scannerStub as ScannerUtils)).toEqual(
-            scannerStub.getAllCompletedInstances,
-        );
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,
         );
