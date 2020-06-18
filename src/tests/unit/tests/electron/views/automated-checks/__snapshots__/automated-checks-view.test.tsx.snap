@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=false when status scan <Completed> 1`] = `
 <div
   className="automatedChecksView"
   data-automation-id="automated-checks-view"
@@ -62,7 +62,11 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
             },
           }
         }
-        deviceStoreData={Object {}}
+        featureFlagStoreData={
+          Object {
+            "adbSetupView": false,
+          }
+        }
         scanMetadata={
           Object {
             "deviceName": "TEST DEVICE",
@@ -177,7 +181,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=false when status scan <Failed> 1`] = `
 <div
   className="automatedChecksView"
   data-automation-id="automated-checks-view"
@@ -224,12 +228,13 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
             },
           }
         }
-        deviceStoreData={
+        featureFlagStoreData={
           Object {
-            "connectedDevice": "TEST DEVICE",
+            "adbSetupView": false,
           }
         }
         scanMetadata={null}
+        scanPort={62442}
         scanStoreData={
           Object {
             "status": 3,
@@ -239,7 +244,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       <main>
         <HeaderSection />
         <DeviceDisconnectedPopup
-          deviceName="TEST DEVICE"
+          deviceName="Device name from deviceStoreData"
           onConnectNewDevice={[Function]}
           onRescanDevice={[Function]}
         />
@@ -269,7 +274,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=false when status scan <Scanning> 1`] = `
 <div
   className="automatedChecksView"
   data-automation-id="automated-checks-view"
@@ -316,12 +321,13 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
             },
           }
         }
-        deviceStoreData={
+        featureFlagStoreData={
           Object {
-            "connectedDevice": "TEST DEVICE",
+            "adbSetupView": false,
           }
         }
         scanMetadata={null}
+        scanPort={62442}
         scanStoreData={
           Object {
             "status": 1,
@@ -361,7 +367,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=false when status scan <undefined> 1`] = `
 <div
   className="automatedChecksView"
   data-automation-id="automated-checks-view"
@@ -408,12 +414,473 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
             },
           }
         }
-        deviceStoreData={
+        featureFlagStoreData={
           Object {
-            "connectedDevice": "TEST DEVICE",
+            "adbSetupView": false,
           }
         }
         scanMetadata={null}
+        scanPort={62442}
+        scanStoreData={
+          Object {
+            "status": undefined,
+          }
+        }
+      />
+      <main>
+        <HeaderSection />
+        <ScanningSpinner
+          aria-live="assertive"
+          isSpinning={false}
+          label="Scanning..."
+        />
+      </main>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    isOpen={false}
+    layerClassName="settingsPanelLayerHost"
+  />
+</div>
+`;
+
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=true when status scan <Completed> 1`] = `
+<div
+  className="automatedChecksView"
+  data-automation-id="automated-checks-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    pageTitle="Automated checks"
+  />
+  <div
+    className="automatedChecksPanelLayout"
+  >
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        cardsViewData={
+          Object {
+            "cards": Object {
+              "fail": Array [
+                Object {
+                  "id": "test-fail-id",
+                },
+              ],
+            },
+          }
+        }
+        deps={
+          Object {
+            "getCardSelectionViewData": [Function],
+            "getCardsViewData": [Function],
+            "isResultHighlightUnavailable": [Function],
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
+              "scanActions": undefined,
+            },
+            "screenshotViewModelProvider": [Function],
+            "toolData": Object {
+              "applicationProperties": Object {
+                "name": "some app",
+              },
+            },
+          }
+        }
+        featureFlagStoreData={
+          Object {
+            "adbSetupView": true,
+          }
+        }
+        scanMetadata={
+          Object {
+            "deviceName": "TEST DEVICE",
+            "targetAppInfo": Object {
+              "name": "test-target-app-name",
+            },
+            "timestamp": "test timestamp",
+            "toolData": Object {
+              "applicationProperties": Object {
+                "name": "some app",
+              },
+            },
+          }
+        }
+        scanStoreData={
+          Object {
+            "status": 2,
+          }
+        }
+      />
+      <main>
+        <HeaderSection />
+        <CardsView
+          cardsViewData={
+            Object {
+              "cards": Object {
+                "fail": Array [
+                  Object {
+                    "id": "test-fail-id",
+                  },
+                ],
+              },
+            }
+          }
+          deps={
+            Object {
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          scanMetadata={
+            Object {
+              "deviceName": "TEST DEVICE",
+              "targetAppInfo": Object {
+                "name": "test-target-app-name",
+              },
+              "timestamp": "test timestamp",
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          userConfigurationStoreData={
+            Object {
+              "isFirstTime": false,
+            }
+          }
+        />
+      </main>
+    </div>
+    <ScreenshotView
+      viewModel={
+        Object {
+          "screenshotData": Object {
+            "base64PngData": "this should appear in snapshotted ScreenshotView props",
+          },
+        }
+      }
+    />
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    layerClassName="settingsPanelLayerHost"
+    userConfigStoreState={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=true when status scan <Failed> 1`] = `
+<div
+  className="automatedChecksView"
+  data-automation-id="automated-checks-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    pageTitle="Automated checks"
+    windowStateStoreData="window state store data"
+  />
+  <div
+    className="automatedChecksPanelLayout"
+  >
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        cardsViewData={null}
+        deps={
+          Object {
+            "isResultHighlightUnavailable": [Function],
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
+              "scanActions": undefined,
+            },
+            "windowStateActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "windowFrameActionCreator": undefined,
+              "windowStateActions": undefined,
+            },
+          }
+        }
+        featureFlagStoreData={
+          Object {
+            "adbSetupView": true,
+          }
+        }
+        scanMetadata={null}
+        scanPort={63000}
+        scanStoreData={
+          Object {
+            "status": 3,
+          }
+        }
+      />
+      <main>
+        <HeaderSection />
+        <DeviceDisconnectedPopup
+          deviceName="Device name from androidSetupStoreData"
+          onConnectNewDevice={[Function]}
+          onRescanDevice={[Function]}
+        />
+      </main>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    isOpen={false}
+    layerClassName="settingsPanelLayerHost"
+  />
+</div>
+`;
+
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=true when status scan <Scanning> 1`] = `
+<div
+  className="automatedChecksView"
+  data-automation-id="automated-checks-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    pageTitle="Automated checks"
+    windowStateStoreData="window state store data"
+  />
+  <div
+    className="automatedChecksPanelLayout"
+  >
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        cardsViewData={null}
+        deps={
+          Object {
+            "isResultHighlightUnavailable": [Function],
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
+              "scanActions": undefined,
+            },
+            "windowStateActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "windowFrameActionCreator": undefined,
+              "windowStateActions": undefined,
+            },
+          }
+        }
+        featureFlagStoreData={
+          Object {
+            "adbSetupView": true,
+          }
+        }
+        scanMetadata={null}
+        scanPort={63000}
+        scanStoreData={
+          Object {
+            "status": 1,
+          }
+        }
+      />
+      <main>
+        <HeaderSection />
+        <ScanningSpinner
+          aria-live="assertive"
+          isSpinning={true}
+          label="Scanning..."
+        />
+      </main>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    isOpen={false}
+    layerClassName="settingsPanelLayerHost"
+  />
+</div>
+`;
+
+exports[`AutomatedChecksView renders with adbSetupViewFeatureFlag=true when status scan <undefined> 1`] = `
+<div
+  className="automatedChecksView"
+  data-automation-id="automated-checks-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "isResultHighlightUnavailable": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    pageTitle="Automated checks"
+    windowStateStoreData="window state store data"
+  />
+  <div
+    className="automatedChecksPanelLayout"
+  >
+    <div
+      className="mainContentWrapper"
+    >
+      <CommandBar
+        cardsViewData={null}
+        deps={
+          Object {
+            "isResultHighlightUnavailable": [Function],
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "deviceActions": undefined,
+              "scanActions": undefined,
+            },
+            "windowStateActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "windowFrameActionCreator": undefined,
+              "windowStateActions": undefined,
+            },
+          }
+        }
+        featureFlagStoreData={
+          Object {
+            "adbSetupView": true,
+          }
+        }
+        scanMetadata={null}
+        scanPort={63000}
         scanStoreData={
           Object {
             "status": undefined,

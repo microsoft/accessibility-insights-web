@@ -12,7 +12,6 @@ import {
 } from 'DetailsView/components/report-export-component';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
-import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import * as React from 'react';
@@ -30,7 +29,7 @@ export type CommandBarDeps = {
 
 export interface CommandBarProps {
     deps: CommandBarDeps;
-    deviceStoreData: DeviceStoreData;
+    scanPort: number;
     scanStoreData: ScanStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;
@@ -41,7 +40,7 @@ export const commandButtonRefreshId = 'command-button-refresh';
 export const commandButtonSettingsId = 'command-button-settings';
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
-    const { deps, deviceStoreData, featureFlagStoreData, cardsViewData, scanMetadata } = props;
+    const { deps, scanPort, featureFlagStoreData, cardsViewData, scanMetadata } = props;
     let exportReport = null;
 
     if (scanMetadata != null) {
@@ -73,7 +72,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                     data-automation-id={commandButtonRefreshId}
                     text="Start over"
                     iconProps={{ iconName: 'Refresh' }}
-                    onClick={() => deps.scanActionCreator.scan(deviceStoreData.port)}
+                    onClick={() => deps.scanActionCreator.scan(scanPort)}
                     disabled={props.scanStoreData.status === ScanStatus.Scanning}
                 />
             </div>

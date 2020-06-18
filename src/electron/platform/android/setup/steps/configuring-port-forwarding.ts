@@ -6,11 +6,14 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 export const configuringPortForwarding: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
-        const configured = await deps.setTcpForwarding();
-        deps.stepTransition(
-            configured
-                ? 'prompt-connected-start-testing'
-                : 'prompt-configuring-port-forwarding-failed',
-        );
+        try {
+            const hostPort = await deps.setTcpForwarding();
+            deps.logger.log(`configured forwarding to tcp:${hostPort}`);
+            deps.setScanPort(hostPort);
+            deps.stepTransition('prompt-connected-start-testing');
+        } catch (e) {
+            deps.logger.error(e);
+            deps.stepTransition('prompt-configuring-port-forwarding-failed');
+        }
     },
 });
