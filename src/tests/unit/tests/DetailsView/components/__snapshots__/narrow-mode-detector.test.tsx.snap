@@ -8,19 +8,27 @@ exports[`NarrowModeDetector render renders ReactResizeDetector  1`] = `
   onResize={null}
   querySelector="body"
   refreshRate={1000}
-  render={[Function]}
   skipOnMount={false}
   targetDomEl={null}
-/>
+  targetRef={null}
+>
+  [Function]
+</ResizeDetector>
 `;
 
-exports[`NarrowModeDetector render renders child component properly: narrow mode should be false 1`] = `
+exports[`NarrowModeDetector render renders child component properly when narrow mode is disabled: narrow mode should be false 1`] = `
 <DetailsViewContent
   isNarrowMode={false}
 />
 `;
 
-exports[`NarrowModeDetector render renders child component properly: narrow mode should be true 1`] = `
+exports[`NarrowModeDetector render renders child component properly when narrow mode is enabled: narrow mode should be false 1`] = `
+<DetailsViewContent
+  isNarrowMode={false}
+/>
+`;
+
+exports[`NarrowModeDetector render renders child component properly when narrow mode is enabled: narrow mode should be true 1`] = `
 <DetailsViewContent
   isNarrowMode={true}
 />
