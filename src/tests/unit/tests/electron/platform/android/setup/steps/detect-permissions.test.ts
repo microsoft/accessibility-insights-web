@@ -3,7 +3,7 @@
 
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
-import { ExpectedCallType, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
 describe('Android setup step: detectPermissions', () => {
