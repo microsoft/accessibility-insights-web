@@ -91,7 +91,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
 
     public setTcpForwarding = async (deviceId: string): Promise<number> => {
         const hostPort = await this.portFinder({
-            startPort: servicePortNumber,
+            port: servicePortNumber,
             stopPort: servicePortNumber + 100,
         });
 
@@ -101,28 +101,29 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     };
 
     public removeTcpForwarding = async (deviceId: string): Promise<void> => {
-        const possibleDevicePort = await this.getHostPortForwardedToDevicePort(
-            deviceId,
-            servicePortNumber,
-        );
-        if (possibleDevicePort != null) {
-            this.adb.setDeviceId(deviceId);
-            await this.adb.removePortForward(possibleDevicePort);
+        this.adb.setDeviceId(deviceId);
+        const applicableHostPorts = await this.getHostPortsForwardedToDevicePort(servicePortNumber);
+        for (const applicableHostPort of applicableHostPorts) {
+            await this.adb.removePortForward(applicableHostPort);
         }
     };
 
-    private getHostPortForwardedToDevicePort = async (
-        deviceId: string,
-        devicePort: number,
-    ): Promise<number | null> => {
-        this.adb.setDeviceId(deviceId);
+    // Assumes setDeviceId was already invoked
+    private getHostPortsForwardedToDevicePort = async (devicePort: number): Promise<number[]> => {
         // entry format: `${serial} ${hostPort} ${devicePort}`
         const forwardEntries: string[] = await this.adb.getForwardList();
-        for (const forwardEntry of forwardEntries) {
-            const matches = /^.+ tcp:(\d+) tcp:(\d+)$/.exec(forwardEntry);
-            if (matches && matches[2] === `${devicePort}`) {
-                return parseInt(matches[1], 10);
-            }
+        return forwardEntries
+            .map(e => this.tryExtractHostPortMatchingDevicePort(e, devicePort))
+            .filter(p => p != null);
+    };
+
+    private tryExtractHostPortMatchingDevicePort = (
+        forwardEntry: string,
+        devicePort: number,
+    ): number | null => {
+        const matches = /^.+ tcp:(\d+) tcp:(\d+)$/.exec(forwardEntry);
+        if (matches && matches[2] === `${devicePort}`) {
+            return parseInt(matches[1], 10);
         }
         return null;
     };

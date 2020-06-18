@@ -382,7 +382,7 @@ describe('AppiumServiceConfigurator tests', () => {
             portFinderMock
                 .setup(m =>
                     m({
-                        startPort: expectedHostPortRangeStart,
+                        port: expectedHostPortRangeStart,
                         stopPort: expectedHostPortRangeStop,
                     }),
                 )
@@ -411,7 +411,7 @@ describe('AppiumServiceConfigurator tests', () => {
             portFinderMock
                 .setup(m =>
                     m({
-                        startPort: expectedHostPortRangeStart,
+                        port: expectedHostPortRangeStart,
                         stopPort: expectedHostPortRangeStop,
                     }),
                 )
@@ -464,7 +464,7 @@ describe('AppiumServiceConfigurator tests', () => {
         `(
             'calls removeTcpForwarding using host port identified by getForwardList',
             async ({ expectedHostPort, forwardList }) => {
-                adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.exactly(2));
+                adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
                 adbMock
                     .setup(m => m.getForwardList())
                     .returns(() => Promise.resolve(forwardList))
@@ -478,6 +478,29 @@ describe('AppiumServiceConfigurator tests', () => {
                 apkLocatorMock.verifyAll();
             },
         );
+
+        it('calls removeTcpForwarding once for each mapped host port if there are multiple mappings', async () => {
+            const hostPort1 = 62001;
+            const hostPort2 = 62002;
+            const forwardList = [
+                `${emulatorId} tcp:${hostPort1} tcp:${expectedServicePortNumber}`,
+                `${emulatorId} tcp:${hostPort2} tcp:${expectedServicePortNumber}`,
+            ];
+
+            adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+            adbMock
+                .setup(m => m.getForwardList())
+                .returns(() => Promise.resolve(forwardList))
+                .verifiable(Times.once());
+
+            adbMock.setup(m => m.removePortForward(hostPort1)).verifiable(Times.once());
+            adbMock.setup(m => m.removePortForward(hostPort2)).verifiable(Times.once());
+
+            await testSubject.removeTcpForwarding(emulatorId);
+
+            adbMock.verifyAll();
+            apkLocatorMock.verifyAll();
+        });
 
         it('propagates error from getForwardList', async () => {
             adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
@@ -497,7 +520,7 @@ describe('AppiumServiceConfigurator tests', () => {
         });
 
         it('propagates error from removeTcpForwarding', async () => {
-            adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.exactly(2));
+            adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
 
             const forwardListWithValidEntry = [
                 `${emulatorId} tcp:${expectedHostPortRangeStart} tcp:${expectedServicePortNumber}`,
