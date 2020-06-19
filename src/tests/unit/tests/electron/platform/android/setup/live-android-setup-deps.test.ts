@@ -453,7 +453,7 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('getApplicationName returns epty string on error', async () => {
+    it('getApplicationName returns empty string on error', async () => {
         fetchConfigMock
             .setup(m => m(62442))
             .throws(Error('some error'))
