@@ -22,8 +22,8 @@ export interface AndroidServiceConfigurator {
     getPermissionInfo(deviceId: string): Promise<PermissionInfo>;
     installService(deviceId: string): Promise<void>;
     uninstallService(deviceId: string): Promise<void>;
-    setTcpForwarding(deviceId: string): Promise<void>;
-    removeTcpForwarding(deviceId: string): Promise<void>;
+    setTcpForwarding(deviceId: string, localPort: number, devicePort: number): Promise<void>;
+    removeTcpForwarding(deviceId: string, devicePort: number): Promise<void>;
 }
 
 export interface AndroidServiceConfiguratorFactory {

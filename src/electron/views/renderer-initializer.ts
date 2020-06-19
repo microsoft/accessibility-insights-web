@@ -129,6 +129,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -197,13 +198,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
+        const businessLogicFactory = new LiveAndroidServiceSetupBusinessLogicFactory(
+            new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+            apkLocator,
+            logger,
+        );
+
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+                    businessLogicFactory,
                     userConfigurationStore,
-                    apkLocator,
                     userConfigMessageCreator,
                     logger,
                 ),

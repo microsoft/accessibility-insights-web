@@ -5,38 +5,38 @@ import { Logger } from 'common/logging/logger';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
+    DeviceInfo,
     PackageInfo,
     PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
 
 export interface AndroidServiceSetupBusinessLogic {
-    hasRequiredServiceVersion(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<boolean>;
-    installRequiredServiceVersion(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<void>;
-    hasRequiredPermissions(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<boolean>;
+    getDevices(): Promise<DeviceInfo[]>;
+    hasRequiredServiceVersion(deviceId: string): Promise<boolean>;
+    installRequiredServiceVersion(deviceId: string): Promise<void>;
+    hasRequiredPermissions(deviceId: string): Promise<boolean>;
+    setTcpForwarding(deviceId: string): Promise<number>;
+    removeTcpForwarding(deviceId: string): Promise<void>;
 }
 
 export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetupBusinessLogic {
+    private readonly devicePort = 62442;
+    private readonly localPort = 62442;
+
     public constructor(
-        private readonly logger: Logger,
+        private readonly serviceConfigurator: AndroidServiceConfigurator,
         private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly logger: Logger,
     ) {}
 
-    public async hasRequiredServiceVersion(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<boolean> {
+    public getDevices = async (): Promise<DeviceInfo[]> => {
+        return await this.serviceConfigurator.getConnectedDevices();
+    };
+
+    public hasRequiredServiceVersion = async (deviceId: string): Promise<boolean> => {
         try {
             const installedVersion: string = await this.getInstalledVersion(
-                serviceConfig,
+                this.serviceConfigurator,
                 deviceId,
             );
             if (installedVersion) {
@@ -46,30 +46,36 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
             this.logger.log(error);
         }
         return false;
-    }
+    };
 
-    public async installRequiredServiceVersion(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<void> {
-        const installedVersion: string = await this.getInstalledVersion(serviceConfig, deviceId);
+    public installRequiredServiceVersion = async (deviceId: string): Promise<void> => {
+        const installedVersion: string = await this.getInstalledVersion(
+            this.serviceConfigurator,
+            deviceId,
+        );
         if (installedVersion) {
             const targetVersion: string = await this.getTargetVersion();
             if (this.compareVersions(installedVersion, targetVersion) > 0) {
-                await serviceConfig.uninstallService(deviceId);
+                await this.serviceConfigurator.uninstallService(deviceId);
             }
         }
 
-        await serviceConfig.installService(deviceId);
-    }
+        await this.serviceConfigurator.installService(deviceId);
+    };
 
-    public async hasRequiredPermissions(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<boolean> {
-        const info: PermissionInfo = await serviceConfig.getPermissionInfo(deviceId);
+    public hasRequiredPermissions = async (deviceId: string): Promise<boolean> => {
+        const info: PermissionInfo = await this.serviceConfigurator.getPermissionInfo(deviceId);
         return info.screenshotGranted;
-    }
+    };
+
+    public setTcpForwarding = async (deviceId: string): Promise<number> => {
+        await this.serviceConfigurator.setTcpForwarding(deviceId, this.localPort, this.devicePort);
+        return this.localPort;
+    };
+
+    public removeTcpForwarding = async (deviceId: string): Promise<void> => {
+        return await this.serviceConfigurator.removeTcpForwarding(deviceId, this.localPort);
+    };
 
     private async getInstalledVersion(
         serviceConfig: AndroidServiceConfigurator,

@@ -17,7 +17,6 @@ type AdbDevice = {
 
 const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
 
-export const defaultAdbPortNumber: number = 62442;
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     constructor(private readonly adb: ADB, private readonly apkLocator: AndroidServiceApkLocator) {}
 
@@ -82,13 +81,17 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         await this.adb.uninstallApk(servicePackageName);
     };
 
-    public setTcpForwarding = async (deviceId: string): Promise<void> => {
+    public setTcpForwarding = async (
+        deviceId: string,
+        localPort: number,
+        devicePort: number,
+    ): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        await this.adb.forwardPort(defaultAdbPortNumber, defaultAdbPortNumber);
+        await this.adb.forwardPort(deviceId, localPort, devicePort);
     };
 
-    public removeTcpForwarding = async (deviceId: string): Promise<void> => {
+    public removeTcpForwarding = async (deviceId: string, localPort: number): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        await this.adb.removePortForward(defaultAdbPortNumber);
+        await this.adb.removePortForward(localPort);
     };
 }

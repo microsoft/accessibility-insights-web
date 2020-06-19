@@ -4,30 +4,26 @@
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import {
-    AndroidServiceConfigurator,
-    AndroidServiceConfiguratorFactory,
-    DeviceInfo,
-} from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
+import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
-    private serviceConfig: AndroidServiceConfigurator;
     private selectedDeviceId: string;
+    private businessLogic: AndroidServiceSetupBusinessLogic;
 
     constructor(
-        private readonly configFactory: AndroidServiceConfiguratorFactory,
+        private readonly businessLogicFactory: AndroidServiceSetupBusinessLogicFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
         private readonly logger: Logger,
-        private readonly businessLogic: AndroidServiceSetupBusinessLogic,
     ) {}
 
     public hasAdbPath = async (): Promise<boolean> => {
         try {
             const adbLocation = this.configStore.getState().adbLocation;
-            this.serviceConfig = await this.configFactory.getServiceConfigurator(adbLocation);
+            this.businessLogic = await this.businessLogicFactory.getBusinessLogic(adbLocation);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -40,7 +36,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     };
 
     public getDevices = async (): Promise<DeviceInfo[]> => {
-        return await this.serviceConfig.getConnectedDevices();
+        return await this.businessLogic.getDevices();
     };
 
     public setSelectedDeviceId = (id: string): void => {
@@ -49,10 +45,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedServiceVersion = async (): Promise<boolean> => {
         try {
-            return await this.businessLogic.hasRequiredServiceVersion(
-                this.serviceConfig,
-                this.selectedDeviceId,
-            );
+            return await this.businessLogic.hasRequiredServiceVersion(this.selectedDeviceId);
         } catch (error) {
             this.logger.log(error);
         }
@@ -61,10 +54,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public installService = async (): Promise<boolean> => {
         try {
-            await this.businessLogic.installRequiredServiceVersion(
-                this.serviceConfig,
-                this.selectedDeviceId,
-            );
+            await this.businessLogic.installRequiredServiceVersion(this.selectedDeviceId);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -74,18 +64,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedPermissions = async (): Promise<boolean> => {
         try {
-            return await this.businessLogic.hasRequiredPermissions(
-                this.serviceConfig,
-                this.selectedDeviceId,
-            );
-        } catch (error) {
-            this.logger.log(error);
-        }
-        return false;
-    };
-    public setTcpForwarding = async (): Promise<boolean> => {
-        try {
-            await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
+            await this.businessLogic.hasRequiredPermissions(this.selectedDeviceId);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -93,4 +72,13 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return false;
     };
 
+    public setTcpForwarding = async (): Promise<boolean> => {
+        try {
+            await this.businessLogic.setTcpForwarding(this.selectedDeviceId);
+            return true;
+        } catch (error) {
+            this.logger.log(error);
+        }
+        return false;
+    };
 }
