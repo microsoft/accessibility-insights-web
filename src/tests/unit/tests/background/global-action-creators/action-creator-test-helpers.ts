@@ -5,9 +5,16 @@ import { Action } from 'common/flux/action';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-export const createActionMock = <Payload>(payload: Payload): IMock<Action<Payload>> => {
+export const createActionMock = <Payload>(
+    payload: Payload,
+    scope: string = null,
+): IMock<Action<Payload>> => {
     const actionMock = Mock.ofType<Action<Payload>>(Action);
-    actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
+    if (scope) {
+        actionMock.setup(action => action.invoke(payload, scope)).verifiable(Times.once());
+    } else {
+        actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
+    }
     return actionMock;
 };
 

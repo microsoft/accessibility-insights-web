@@ -12,4 +12,6 @@ export type AndroidSetupStepId =
     | 'prompt-install-failed'
     | 'detect-permissions'
     | 'prompt-grant-permissions'
+    | 'configuring-port-forwarding'
+    | 'prompt-configuring-port-forwarding-failed'
     | 'prompt-connected-start-testing';

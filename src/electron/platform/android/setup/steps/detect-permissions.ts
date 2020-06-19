@@ -7,8 +7,6 @@ export const detectPermissions: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
         const detected = await deps.hasExpectedPermissions();
-        deps.stepTransition(
-            detected ? 'prompt-connected-start-testing' : 'prompt-grant-permissions',
-        );
+        deps.stepTransition(detected ? 'configuring-port-forwarding' : 'prompt-grant-permissions');
     },
 });

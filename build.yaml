@@ -35,6 +35,10 @@ jobs:
             displayName: generate typings for scss files
             timeoutInMinutes: 3
 
+          - script: yarn null:check
+            displayName: check for strictNullChecks violations
+            timeoutInMinutes: 5
+
           - script: yarn test --ci
             displayName: run unit tests
             timeoutInMinutes: 10

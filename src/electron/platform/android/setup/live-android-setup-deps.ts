@@ -83,4 +83,14 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         }
         return false;
     };
+    public setTcpForwarding = async (): Promise<boolean> => {
+        try {
+            await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
+            return true;
+        } catch (error) {
+            this.logger.log(error);
+        }
+        return false;
+    };
+
 }

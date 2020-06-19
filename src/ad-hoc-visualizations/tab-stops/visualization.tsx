@@ -9,10 +9,19 @@ import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
 import { createHowToTest } from 'content/adhoc/tabstops/how-to-test';
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
+import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
 
 const { guidance, extraGuidance } = content.tabstops;
+
+const tabStopVisualizationConfiguration: FocusAnalyzerConfiguration = {
+    key: AdHocTestkeys.TabStops,
+    testType: VisualizationType.TabStops,
+    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+    analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
+    analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
+};
 
 export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => (
@@ -36,13 +45,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
     getAnalyzer: provider =>
-        provider.createFocusTrackingAnalyzer({
-            key: AdHocTestkeys.TabStops,
-            testType: VisualizationType.TabStops,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-            analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
-            analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
-        }),
+        provider.createFocusTrackingAnalyzer(tabStopVisualizationConfiguration),
     getIdentifier: () => AdHocTestkeys.TabStops,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getDrawer: provider => provider.createSVGDrawer(),

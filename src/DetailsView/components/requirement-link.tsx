@@ -3,7 +3,6 @@
 import { css } from '@uifabric/utilities';
 import { INavLink } from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import * as styles from './requirement-link.scss';
 import { StatusIcon } from './status-icon';
@@ -17,7 +16,7 @@ export interface RequirementLinkProps {
 export class RequirementLink extends React.Component<RequirementLinkProps> {
     public render(): JSX.Element {
         return (
-            <span className={'button-flex-container'} aria-hidden="true">
+            <span className={styles.requirementLink} aria-hidden="true">
                 {this.props.renderRequirementDescription(this)}
                 <StatusIcon status={this.props.status} level="requirement" />
             </span>

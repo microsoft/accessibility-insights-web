@@ -8,10 +8,6 @@ import { CommonAndroidSetupStepProps } from './android-setup-types';
 export const DetectDevicesStep = NamedFC<CommonAndroidSetupStepProps>(
     'DetectDevicesStep',
     (props: CommonAndroidSetupStepProps) => {
-        return (
-            <main>
-                <AndroidSetupSpinnerStep deps={props.deps} spinnerLabel="Scanning for devices..." />
-            </main>
-        );
+        return <AndroidSetupSpinnerStep deps={props.deps} spinnerLabel="Scanning for devices..." />;
     },
 );

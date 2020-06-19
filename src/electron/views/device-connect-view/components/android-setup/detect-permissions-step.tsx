@@ -5,14 +5,9 @@ import * as React from 'react';
 import { AndroidSetupSpinnerStep } from './android-setup-spinner-step';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
-export const InstallingServiceStep = NamedFC<CommonAndroidSetupStepProps>(
-    'InstallingServiceStep',
+export const DetectPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
+    'DetectPermissionsStep',
     (props: CommonAndroidSetupStepProps) => {
-        return (
-            <AndroidSetupSpinnerStep
-                deps={props.deps}
-                spinnerLabel="Installing on your device..."
-            />
-        );
+        return <AndroidSetupSpinnerStep deps={props.deps} spinnerLabel="Checking permissions..." />;
     },
 );

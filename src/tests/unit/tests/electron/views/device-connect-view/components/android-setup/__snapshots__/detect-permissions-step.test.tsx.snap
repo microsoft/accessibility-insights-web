@@ -12,6 +12,6 @@ exports[`DetectDevicesStep renders 1`] = `
       "startTesting": null,
     }
   }
-  spinnerLabel="Scanning for devices..."
+  spinnerLabel="Checking permissions..."
 />
 `;

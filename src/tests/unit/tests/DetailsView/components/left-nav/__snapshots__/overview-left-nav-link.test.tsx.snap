@@ -3,11 +3,11 @@
 exports[`OverviewLeftNavLink renders 1`] = `
 <span
   aria-hidden="true"
-  className="button-flex-container"
+  className="leftNavLinkContainer"
 >
   <span>
     <StyledIconBase
-      className="status-icon dark-gray"
+      className="linkIcon dark-gray"
       iconName="home"
     />
   </span>

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { getStoreStateMessage, Messages } from '../../../common/messages';
 import { StoreNames } from '../../../common/stores/store-names';
-import { SetTelemetryStatePayload } from '../../actions/action-payloads';
+import { SetAdbLocationPayload, SetTelemetryStatePayload } from '../../actions/action-payloads';
 import { Interpreter } from '../../interpreter';
 import { UserConfigurationActionCreator } from '../user-configuration-action-creator';
 
@@ -38,8 +38,8 @@ export const registerUserConfigurationMessageCallback = (
         Messages.UserConfig.SaveIssueFilingSettings,
         userConfigurationActionCreator.saveIssueFilingSettings,
     );
-    interpreter.registerTypeToPayloadCallback(
+    interpreter.registerTypeToPayloadCallback<SetAdbLocationPayload>(
         Messages.UserConfig.SetAdbLocationConfig,
-        userConfigurationActionCreator.setAdbLocation,
+        payload => userConfigurationActionCreator.setAdbLocation(payload.adbLocation),
     );
 };

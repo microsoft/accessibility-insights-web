@@ -3,13 +3,10 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const promptLocateAdb: AndroidSetupStepConfig = deps => {
+export const promptConfiguringPortForwardingFailed: AndroidSetupStepConfig = deps => {
     return {
         actions: {
-            saveAdbPath: (path: string) => {
-                deps.setAdbPath(path);
-                deps.stepTransition('detect-adb');
-            },
+            next: () => deps.stepTransition('configuring-port-forwarding'),
         },
     };
 };

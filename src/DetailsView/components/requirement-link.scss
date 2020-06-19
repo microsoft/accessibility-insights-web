@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+@import '../../common/styles/colors.scss';
+
 .req-description {
     line-height: initial;
     text-align: left;
@@ -17,4 +20,27 @@
     .req-name {
         margin-right: 3px;
     }
+}
+
+.requirement-link {
+    :global {
+        .status-icon {
+            color: $primary-text;
+            margin-left: 24px;
+            font-size: 18px;
+            &.negative-outcome-icon {
+                color: $negative-outcome;
+            }
+            &.positive-outcome-icon {
+                color: $positive-outcome;
+            }
+        }
+    }
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    height: 100%;
+    align-items: center;
+    width: 100%;
 }

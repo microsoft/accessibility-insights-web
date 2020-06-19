@@ -10,9 +10,20 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
+
+const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: null,
+    resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
+    telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+        telemetryFactory.forIssuesAnalyzerScan,
+    key: AdHocTestkeys.Issues,
+    testType: VisualizationType.Issues,
+    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+};
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
@@ -43,17 +54,8 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '01_toggle-issues',
     launchPanelDisplayOrder: 1,
     adhocToolsPanelDisplayOrder: 1,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     getAnalyzer: provider =>
-        provider.createRuleAnalyzerUnifiedScan({
-            rules: null,
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forIssuesAnalyzerScan,
-            key: AdHocTestkeys.Issues,
-            testType: VisualizationType.Issues,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        }),
+        provider.createRuleAnalyzerUnifiedScan(issuesRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) =>

@@ -19,7 +19,7 @@ describe('Android setup step: promptLocateAdb', () => {
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
         depsMock.setup(m => m.setAdbPath(testPath)).verifiable(Times.once());
-        depsMock.setup(m => m.stepTransition('prompt-connect-to-device')).verifiable(Times.once());
+        depsMock.setup(m => m.stepTransition('detect-adb')).verifiable(Times.once());
 
         const step = promptLocateAdb(depsMock.object);
         step.actions.saveAdbPath(testPath);
