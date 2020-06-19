@@ -87,7 +87,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         devicePort: number,
     ): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        await this.adb.forwardPort(deviceId, localPort, devicePort);
+        await this.adb.forwardPort(localPort, devicePort);
     };
 
     public removeTcpForwarding = async (deviceId: string, localPort: number): Promise<void> => {
