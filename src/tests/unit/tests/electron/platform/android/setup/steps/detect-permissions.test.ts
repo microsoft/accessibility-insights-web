@@ -31,7 +31,7 @@ describe('Android setup step: detectPermissions', () => {
         depsMock.verifyAll();
     });
 
-    it('onEnter transitions to prompt-grant-permissions as expected', async () => {
+    it('onEnter transitions to prompt-grant-permissions on failure', async () => {
         const p = new Promise<boolean>(resolve => resolve(false));
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
