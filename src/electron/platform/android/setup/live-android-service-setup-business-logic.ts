@@ -34,25 +34,16 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
     };
 
     public hasRequiredServiceVersion = async (deviceId: string): Promise<boolean> => {
-        try {
-            const installedVersion: string = await this.getInstalledVersion(
-                this.serviceConfigurator,
-                deviceId,
-            );
-            if (installedVersion) {
-                return installedVersion === (await this.getTargetVersion());
-            }
-        } catch (error) {
-            this.logger.log(error);
+        const installedVersion: string = await this.getInstalledVersion(deviceId);
+        if (installedVersion) {
+            return installedVersion === (await this.getTargetVersion());
         }
+
         return false;
     };
 
     public installRequiredServiceVersion = async (deviceId: string): Promise<void> => {
-        const installedVersion: string = await this.getInstalledVersion(
-            this.serviceConfigurator,
-            deviceId,
-        );
+        const installedVersion: string = await this.getInstalledVersion(deviceId);
         if (installedVersion) {
             const targetVersion: string = await this.getTargetVersion();
             if (this.compareVersions(installedVersion, targetVersion) > 0) {
@@ -77,11 +68,8 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
         return await this.serviceConfigurator.removeTcpForwarding(deviceId, this.localPort);
     };
 
-    private async getInstalledVersion(
-        serviceConfig: AndroidServiceConfigurator,
-        deviceId: string,
-    ): Promise<string> {
-        const info: PackageInfo = await serviceConfig.getPackageInfo(deviceId);
+    private async getInstalledVersion(deviceId: string): Promise<string> {
+        const info: PackageInfo = await this.serviceConfigurator.getPackageInfo(deviceId);
         return info?.versionName;
     }
 
