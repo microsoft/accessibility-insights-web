@@ -64,8 +64,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedPermissions = async (): Promise<boolean> => {
         try {
-            await this.businessLogic.hasRequiredPermissions(this.selectedDeviceId);
-            return true;
+            return await this.businessLogic.hasRequiredPermissions(this.selectedDeviceId);
         } catch (error) {
             this.logger.log(error);
         }

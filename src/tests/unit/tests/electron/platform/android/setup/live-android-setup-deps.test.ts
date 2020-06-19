@@ -5,73 +5,64 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import {
-    AndroidServiceApkInfo,
-    AndroidServiceApkLocator,
-} from 'electron/platform/android/android-service-apk-locator';
-import {
-    AndroidServiceConfigurator,
-    AndroidServiceConfiguratorFactory,
-    DeviceInfo,
-    PackageInfo,
-    PermissionInfo,
-} from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo, PackageInfo } from 'electron/platform/android/android-service-configurator';
+import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
+import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidSetupDeps', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
-    let serviceConfigFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
-    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
+    let businessLogicFactoryMock: IMock<AndroidServiceSetupBusinessLogicFactory>;
+    let businessLogicMock: IMock<AndroidServiceSetupBusinessLogic>;
     let configStoreMock: IMock<UserConfigurationStore>;
-    let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let loggerMock: IMock<Logger>;
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
-        serviceConfigFactoryMock = Mock.ofType<AndroidServiceConfiguratorFactory>(
+        businessLogicFactoryMock = Mock.ofType<AndroidServiceSetupBusinessLogicFactory>(
             undefined,
             MockBehavior.Strict,
         );
-        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
+        businessLogicMock = Mock.ofType<AndroidServiceSetupBusinessLogic>(
+            undefined,
+            MockBehavior.Strict,
+        );
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
-        apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         configMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>(
             undefined,
             MockBehavior.Strict,
         );
         loggerMock = Mock.ofType<Logger>();
         testSubject = new LiveAndroidSetupDeps(
-            serviceConfigFactoryMock.object,
+            businessLogicFactoryMock.object,
             configStoreMock.object,
-            apkLocatorMock.object,
             configMessageCreatorMock.object,
             loggerMock.object,
         );
     });
 
     function verifyAllMocks(): void {
-        serviceConfigFactoryMock.verifyAll();
-        serviceConfigMock.verifyAll();
+        businessLogicFactoryMock.verifyAll();
+        businessLogicMock.verifyAll();
         configStoreMock.verifyAll();
         configMessageCreatorMock.verifyAll();
-        apkLocatorMock.verifyAll();
     }
 
-    async function initializeServiceConfig(): Promise<void> {
+    async function initializeBusinessLogic(): Promise<boolean> {
         const stateData = { adbLocation: expectedAdbLocation } as UserConfigurationStoreData;
         configStoreMock
             .setup(m => m.getState())
             .returns(() => stateData)
             .verifiable(Times.once());
-        serviceConfigFactoryMock
-            .setup(m => m.getServiceConfigurator(expectedAdbLocation))
-            .returns(() => Promise.resolve(serviceConfigMock.object))
+        businessLogicFactoryMock
+            .setup(m => m.getBusinessLogic(expectedAdbLocation))
+            .returns(() => Promise.resolve(businessLogicMock.object))
             .verifiable(Times.once());
-        serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
-        await testSubject.hasAdbPath();
+        businessLogicMock.setup((m: any) => m.then).returns(() => undefined);
+        return await testSubject.hasAdbPath();
     }
 
     it('hasAdbPath returns false on error', async () => {
@@ -87,19 +78,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasAdbPath chains and returns true on success', async () => {
-        const stateData = { adbLocation: expectedAdbLocation } as UserConfigurationStoreData;
-
-        serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
-        configStoreMock
-            .setup(m => m.getState())
-            .returns(() => stateData)
-            .verifiable(Times.once());
-        serviceConfigFactoryMock
-            .setup(m => m.getServiceConfigurator(expectedAdbLocation))
-            .returns(() => Promise.resolve(serviceConfigMock.object))
-            .verifiable(Times.once());
-
-        const success: boolean = await testSubject.hasAdbPath();
+        const success: boolean = await initializeBusinessLogic();
         expect(success).toBe(true);
 
         verifyAllMocks();
@@ -115,7 +94,7 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('getDevices returns info from AndroidServiceConfigurator', async () => {
+    it('getDevices returns info from business logic', async () => {
         const expectedDevices: DeviceInfo[] = [
             {
                 id: 'emulator1',
@@ -128,12 +107,12 @@ describe('LiveAndroidSetupDeps', () => {
                 friendlyName: 'a device',
             },
         ];
-        serviceConfigMock
-            .setup(m => m.getConnectedDevices())
+        businessLogicMock
+            .setup(m => m.getDevices())
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
+        await initializeBusinessLogic();
 
-        await initializeServiceConfig();
         const actualDevices = await testSubject.getDevices();
 
         expect(actualDevices).toBe(expectedDevices);
@@ -143,27 +122,28 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('setSelectedDeviceId persists correctly', async () => {
         // Note: We can only validate this indirectly. We set the expected ID,
-        // then confirm that it gets passed to getPackageInfo.
+        // then confirm that it gets passed to the business logic.
         const expectedDeviceId: string = 'abc-123';
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(expectedDeviceId))
+        businessLogicMock
+            .setup(m => m.hasRequiredServiceVersion(expectedDeviceId))
             .throws(new Error('Threw validating setSeletedDeviceId'))
             .verifiable(Times.once());
+        await initializeBusinessLogic();
 
-        await initializeServiceConfig();
         testSubject.setSelectedDeviceId(expectedDeviceId);
+
         await testSubject.hasExpectedServiceVersion();
 
         verifyAllMocks();
     });
 
     it('hasExpectedServiceVersion returns false on error', async () => {
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
+        businessLogicMock
+            .setup(m => m.hasRequiredServiceVersion(undefined))
             .throws(new Error('Threw during hasExpectedServiceVersion'))
             .verifiable(Times.once());
+        await initializeBusinessLogic();
 
-        await initializeServiceConfig();
         const success = await testSubject.hasExpectedServiceVersion();
 
         expect(success).toBe(false);
@@ -171,13 +151,13 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedServiceVersion returns false if installed package has no versionName', async () => {
+    it('hasExpectedServiceVersion returns false if business logic returns false', async () => {
         const packageInfo: PackageInfo = {};
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(packageInfo))
+        businessLogicMock
+            .setup(m => m.hasRequiredServiceVersion(undefined))
+            .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.hasExpectedServiceVersion();
 
@@ -186,46 +166,13 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedServiceVersion returns false if versionNames are different', async () => {
-        const packageInfo: PackageInfo = {
-            versionName: '1.2.2',
-        };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.3',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(packageInfo))
+    it('hasExpectedServiceVersion returns true if business logic returns true', async () => {
+        const packageInfo: PackageInfo = {};
+        businessLogicMock
+            .setup(m => m.hasRequiredServiceVersion(undefined))
+            .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        const success = await testSubject.hasExpectedServiceVersion();
-
-        expect(success).toBe(false);
-
-        verifyAllMocks();
-    });
-
-    it('hasExpectedServiceVersion returns true if versionNames are same', async () => {
-        const packageInfo: PackageInfo = {
-            versionName: '1.2.3',
-        };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.3',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(packageInfo))
-            .verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.hasExpectedServiceVersion();
 
@@ -235,12 +182,12 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('installService returns false on error', async () => {
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
+        businessLogicMock
+            .setup(m => m.installRequiredServiceVersion(undefined))
             .throws(new Error('Threw during installService'))
             .verifiable(Times.once());
+        await initializeBusinessLogic();
 
-        await initializeServiceConfig();
         const success = await testSubject.installService();
 
         expect(success).toBe(false);
@@ -248,120 +195,26 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('installService installs (no uninstall) if installed version does not exist', async () => {
-        const installedPackageInfo: PackageInfo = {};
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(installedPackageInfo))
+    it('installService returns true on success', async () => {
+        businessLogicMock
+            .setup(m => m.installRequiredServiceVersion(undefined))
+            .returns(() => Promise.resolve())
             .verifiable(Times.once());
-        serviceConfigMock.setup(m => m.installService(undefined)).verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.installService();
 
         expect(success).toBe(true);
-
-        verifyAllMocks();
-    });
-
-    it('installService installs (no uninstall) if installed version is older than Apk version', async () => {
-        const installedPackageInfo: PackageInfo = {
-            versionName: '1.2.2',
-        };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.3',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(installedPackageInfo))
-            .verifiable(Times.once());
-        serviceConfigMock.setup(m => m.installService(undefined)).verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        const success = await testSubject.installService();
-
-        expect(success).toBe(true);
-
-        verifyAllMocks();
-    });
-
-    it('installService installs (no uninstall) if installed version is same as Apk version', async () => {
-        const installedPackageInfo: PackageInfo = {
-            versionName: '1.2',
-        };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(installedPackageInfo))
-            .verifiable(Times.once());
-        serviceConfigMock.setup(m => m.installService(undefined)).verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        const success = await testSubject.installService();
-
-        expect(success).toBe(true);
-
-        verifyAllMocks();
-    });
-
-    it('installService uninstalls then installs if installed version is newer than Apk version', async () => {
-        let callbackCount: number = 0;
-        let uninstallOrder: number = undefined;
-        let installOrder: number = undefined;
-        const installedPackageInfo: PackageInfo = {
-            versionName: '1.2.3',
-        };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.2',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(undefined))
-            .returns(() => Promise.resolve(installedPackageInfo))
-            .verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.uninstallService(undefined))
-            .callback(() => {
-                uninstallOrder = callbackCount++;
-            })
-            .verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.installService(undefined))
-            .callback(() => {
-                installOrder = callbackCount++;
-            })
-            .verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        const success = await testSubject.installService();
-
-        expect(success).toBe(true);
-        expect(uninstallOrder).toBe(0);
-        expect(installOrder).toBe(1);
-        expect(callbackCount).toBe(2);
 
         verifyAllMocks();
     });
 
     it('hasExpectedPermissions returns false on error', async () => {
-        serviceConfigMock
-            .setup(m => m.getPermissionInfo(undefined))
+        businessLogicMock
+            .setup(m => m.hasRequiredPermissions(undefined))
             .throws(new Error('Threw during hasExpectedPermissions'))
             .verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.hasExpectedPermissions();
 
@@ -370,15 +223,12 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedPermissions returns false on error', async () => {
-        const permissionInfo: PermissionInfo = {
-            screenshotGranted: false,
-        };
-        serviceConfigMock
-            .setup(m => m.getPermissionInfo(undefined))
-            .returns(() => Promise.resolve(permissionInfo))
+    it('hasExpectedPermissions returns false if business logic returns false', async () => {
+        businessLogicMock
+            .setup(m => m.hasRequiredPermissions(undefined))
+            .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.hasExpectedPermissions();
 
@@ -387,15 +237,12 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedPermissions returns false on error', async () => {
-        const permissionInfo: PermissionInfo = {
-            screenshotGranted: true,
-        };
-        serviceConfigMock
-            .setup(m => m.getPermissionInfo(undefined))
-            .returns(() => Promise.resolve(permissionInfo))
+    it('hasExpectedPermissions returns true if business logic returns true', async () => {
+        businessLogicMock
+            .setup(m => m.hasRequiredPermissions(undefined))
+            .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.hasExpectedPermissions();
 
@@ -405,11 +252,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('setTcpForwarding returns false on error', async () => {
-        serviceConfigMock
+        businessLogicMock
             .setup(m => m.setTcpForwarding(undefined))
             .throws(new Error('Threw during setTcpForwarding'))
             .verifiable(Times.once());
-        await initializeServiceConfig();
+        await initializeBusinessLogic();
 
         const success = await testSubject.setTcpForwarding();
 
@@ -419,8 +266,12 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('setTcpForwarding returns true if no error', async () => {
-        serviceConfigMock.setup(m => m.setTcpForwarding(undefined)).verifiable(Times.once());
-        await initializeServiceConfig();
+        const testPort = 12345;
+        businessLogicMock
+            .setup(m => m.setTcpForwarding(undefined))
+            .returns(() => Promise.resolve(testPort))
+            .verifiable(Times.once());
+        await initializeBusinessLogic();
 
         const success = await testSubject.setTcpForwarding();
 
