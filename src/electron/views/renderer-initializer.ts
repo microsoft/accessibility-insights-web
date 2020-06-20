@@ -195,6 +195,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
         const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
 
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
+
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
@@ -209,6 +211,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
                     businessLogicFactory,
                     userConfigurationStore,
                     userConfigMessageCreator,
+                    fetchDeviceConfig,
                     logger,
                 ),
             ),
@@ -262,7 +265,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
-        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 

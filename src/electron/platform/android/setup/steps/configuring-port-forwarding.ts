@@ -6,11 +6,18 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 export const configuringPortForwarding: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
+        deps.setApplicationName(); // init
+
         const configured = await deps.setTcpForwarding();
-        deps.stepTransition(
-            configured
-                ? 'prompt-connected-start-testing'
-                : 'prompt-configuring-port-forwarding-failed',
-        );
+
+        if (configured === false) {
+            deps.stepTransition('prompt-configuring-port-forwarding-failed');
+            return;
+        }
+
+        // device is good to go; so we can get the current app name
+        const appName = await deps.getApplicationName();
+        deps.setApplicationName(appName);
+        deps.stepTransition('prompt-connected-start-testing');
     },
 });

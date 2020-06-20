@@ -5,6 +5,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
 import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
@@ -17,6 +18,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly businessLogicFactory: AndroidServiceSetupBusinessLogicFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
+        private readonly fetchDeviceConfig: DeviceConfigFetcher,
         private readonly logger: Logger,
     ) {}
 
@@ -79,5 +81,16 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             this.logger.log(error);
         }
         return false;
+    };
+
+    public getApplicationName = async (): Promise<string> => {
+        try {
+            const config = await this.fetchDeviceConfig(62442);
+            return config.appIdentifier;
+        } catch (error) {
+            this.logger.log(error);
+        }
+
+        return '';
     };
 }

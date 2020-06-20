@@ -28,6 +28,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
             stepTransition: this.stepTransition,
             setSelectedDevice: this.setSelectedDevice,
             setAvailableDevices: this.setAvailableDevices,
+            setApplicationName: this.setApplicationName,
         });
     }
 
@@ -66,5 +67,10 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     private setAvailableDevices = (devices: DeviceInfo[]): void => {
         // emitChange will be called from step transition when the step changes
         this.state.availableDevices = devices;
+    };
+
+    private setApplicationName = (appName?: string): void => {
+        // emitChange will be called from step transition when the step changes
+        this.state.applicationName = appName;
     };
 }

@@ -8,6 +8,8 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { DeviceInfo, PackageInfo } from 'electron/platform/android/android-service-configurator';
 import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
 import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
+import { DeviceConfig } from 'electron/platform/android/device-config';
+import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -18,6 +20,7 @@ describe('LiveAndroidSetupDeps', () => {
     let businessLogicMock: IMock<AndroidServiceSetupBusinessLogic>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
+    let fetchConfigMock: IMock<DeviceConfigFetcher>;
     let loggerMock: IMock<Logger>;
     let testSubject: LiveAndroidSetupDeps;
 
@@ -35,11 +38,13 @@ describe('LiveAndroidSetupDeps', () => {
             undefined,
             MockBehavior.Strict,
         );
+        fetchConfigMock = Mock.ofInstance((port: number) => new Promise<DeviceConfig>(() => null));
         loggerMock = Mock.ofType<Logger>();
         testSubject = new LiveAndroidSetupDeps(
             businessLogicFactoryMock.object,
             configStoreMock.object,
             configMessageCreatorMock.object,
+            fetchConfigMock.object,
             loggerMock.object,
         );
     });
@@ -265,6 +270,25 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
+    it('getApplicationName returns app name when successful', async () => {
+        const config: DeviceConfig = {
+            appIdentifier: 'Wonderful App',
+        } as DeviceConfig;
+
+        const p = new Promise<DeviceConfig>(resolve => resolve(config));
+
+        fetchConfigMock
+            .setup(m => m(62442))
+            .returns(() => p)
+            .verifiable();
+
+        const appName = await testSubject.getApplicationName();
+
+        expect(appName).toEqual(config.appIdentifier);
+
+        verifyAllMocks();
+    });
+
     it('setTcpForwarding returns true if no error', async () => {
         const testPort = 12345;
         businessLogicMock
@@ -276,6 +300,19 @@ describe('LiveAndroidSetupDeps', () => {
         const success = await testSubject.setTcpForwarding();
 
         expect(success).toBe(true);
+
+        verifyAllMocks();
+    });
+
+    it('getApplicationName returns empty string on error', async () => {
+        fetchConfigMock
+            .setup(m => m(62442))
+            .throws(Error('some error'))
+            .verifiable();
+
+        const appName = await testSubject.getApplicationName();
+
+        expect(appName).toEqual('');
 
         verifyAllMocks();
     });
