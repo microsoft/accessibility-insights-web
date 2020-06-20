@@ -35,7 +35,8 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
     public hasRequiredServiceVersion = async (deviceId: string): Promise<boolean> => {
         const installedVersion: string = await this.getInstalledVersion(deviceId);
         if (installedVersion) {
-            return installedVersion === (await this.getTargetVersion());
+            const targetVersion = (await this.apkLocator.locateBundledApk()).versionName;
+            return installedVersion === targetVersion;
         }
 
         return false;
@@ -43,14 +44,15 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
 
     public installRequiredServiceVersion = async (deviceId: string): Promise<void> => {
         const installedVersion: string = await this.getInstalledVersion(deviceId);
+        const apkInfo = await this.apkLocator.locateBundledApk();
         if (installedVersion) {
-            const targetVersion: string = await this.getTargetVersion();
+            const targetVersion: string = apkInfo.versionName;
             if (this.compareVersions(installedVersion, targetVersion) > 0) {
                 await this.serviceConfigurator.uninstallService(deviceId, this.servicePackageName);
             }
         }
 
-        const pathToApk = (await this.apkLocator.locateBundledApk()).path;
+        const pathToApk = apkInfo.path;
         await this.serviceConfigurator.installService(deviceId, pathToApk);
     };
 
@@ -87,10 +89,6 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
             this.servicePackageName,
         );
         return info?.versionName;
-    }
-
-    private async getTargetVersion(): Promise<string> {
-        return (await this.apkLocator.locateBundledApk()).versionName;
     }
 
     private compareVersions(v1: string, v2: string): number {

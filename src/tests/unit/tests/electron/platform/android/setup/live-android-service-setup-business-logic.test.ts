@@ -190,7 +190,7 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         apkLocatorMock
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
-            .verifiable(Times.exactly(2));
+            .verifiable(Times.once());
         serviceConfigMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
@@ -218,7 +218,7 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         apkLocatorMock
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
-            .verifiable(Times.exactly(2));
+            .verifiable(Times.once());
 
         await testSubject.installRequiredServiceVersion(testDeviceId);
 
@@ -251,7 +251,7 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         apkLocatorMock
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
-            .verifiable(Times.exactly(2));
+            .verifiable(Times.once());
 
         await testSubject.installRequiredServiceVersion(testDeviceId);
 
