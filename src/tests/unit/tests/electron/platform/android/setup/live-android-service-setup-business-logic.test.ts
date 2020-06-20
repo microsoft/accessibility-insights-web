@@ -24,7 +24,7 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         versionName: '1.2.3',
     };
     const accessibilityServiceName: string = 'accessibility';
-    const mediaProjectionServiceName: string = 'media-projection';
+    const mediaProjectionServiceName: string = 'media_projection';
     const serviceIsRunningResponseSnippet: string = 'label=Accessibility Insights';
 
     let serviceConfigMock: IMock<AndroidServiceConfigurator>;

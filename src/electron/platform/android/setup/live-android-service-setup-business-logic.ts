@@ -66,7 +66,7 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
 
         const mediaProjectionOutput: string = await this.serviceConfigurator.getDumpsysOutput(
             deviceId,
-            'media-projection',
+            'media_projection',
         );
         const screenshotGranted: boolean = mediaProjectionOutput.includes(this.servicePackageName);
         return screenshotGranted;
