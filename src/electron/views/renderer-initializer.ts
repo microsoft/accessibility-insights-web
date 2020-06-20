@@ -77,6 +77,7 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
+import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
@@ -129,7 +130,6 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
-import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;

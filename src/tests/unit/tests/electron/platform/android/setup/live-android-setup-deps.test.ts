@@ -5,11 +5,11 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { DeviceInfo, PackageInfo } from 'electron/platform/android/android-service-configurator';
-import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
-import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
+import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -157,7 +157,6 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns false if business logic returns false', async () => {
-        const packageInfo: PackageInfo = {};
         businessLogicMock
             .setup(m => m.hasRequiredServiceVersion(undefined))
             .returns(() => Promise.resolve(false))
@@ -172,7 +171,6 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns true if business logic returns true', async () => {
-        const packageInfo: PackageInfo = {};
         businessLogicMock
             .setup(m => m.hasRequiredServiceVersion(undefined))
             .returns(() => Promise.resolve(true))

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import { AndroidServiceApkInfo } from 'electron/platform/android/android-service-apk-locator';
 import { PackageInfo } from 'electron/platform/android/android-service-configurator';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -245,9 +244,6 @@ describe('AppiumServiceConfigurator tests', () => {
     });
 
     it('installService, succeeds', async () => {
-        const apkInfo: AndroidServiceApkInfo = {
-            path: expectedPathToApk,
-        } as AndroidServiceApkInfo;
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
             .setup(m => m.install(expectedPathToApk))
