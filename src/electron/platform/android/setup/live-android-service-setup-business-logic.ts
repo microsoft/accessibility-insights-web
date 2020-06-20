@@ -6,7 +6,6 @@ import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
-    PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
 
 export interface AndroidServiceSetupBusinessLogic {
@@ -56,11 +55,21 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
     };
 
     public hasRequiredPermissions = async (deviceId: string): Promise<boolean> => {
-        const info: PermissionInfo = await this.serviceConfigurator.getPermissionInfo(
+        const accessibilityOutput: string = await this.serviceConfigurator.getDumpsysOutput(
             deviceId,
-            this.servicePackageName,
+            'accessibility',
         );
-        return info.screenshotGranted;
+
+        if (!accessibilityOutput.includes('label=Accessibility Insights')) {
+            return false;
+        }
+
+        const mediaProjectionOutput: string = await this.serviceConfigurator.getDumpsysOutput(
+            deviceId,
+            'media-projection',
+        );
+        const screenshotGranted: boolean = mediaProjectionOutput.includes(this.servicePackageName);
+        return screenshotGranted;
     };
 
     public setTcpForwarding = async (deviceId: string): Promise<number> => {

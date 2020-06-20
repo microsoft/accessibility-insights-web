@@ -3,10 +3,7 @@
 
 import ADB from 'appium-adb';
 import { AndroidServiceApkInfo } from 'electron/platform/android/android-service-apk-locator';
-import {
-    PackageInfo,
-    PermissionInfo,
-} from 'electron/platform/android/android-service-configurator';
+import { PackageInfo } from 'electron/platform/android/android-service-configurator';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -19,8 +16,7 @@ describe('AppiumServiceConfigurator tests', () => {
     const deviceId: string = 'id2';
     const deviceModel: string = 'model2';
     const testPackageName: string = 'myCoolPackage';
-    const dumpsysAccessibilitySnippetWithServiceRunning: string =
-        'Service[label=Accessibility Insights for';
+    const testDumpsysService = 'super_widget';
     const expectedPathToApk: string = './some/path/package.apk';
     const testLocalPortNumber: number = 123;
     const testDevicePortNumber: number = 456;
@@ -205,72 +201,31 @@ describe('AppiumServiceConfigurator tests', () => {
         adbMock.verifyAll();
     });
 
-    it('getPermissionInfo, propagates error', async () => {
-        const expectedMessage = 'Thrown during getPermissionInfo';
+    it('getDumpsysOutput, propagates error', async () => {
+        const expectedMessage = 'Thrown during getDumpsysOutput';
         adbMock
             .setup(m => m.setDeviceId(emulatorId))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
         await expect(
-            testSubject.getPermissionInfo(emulatorId, testPackageName),
+            testSubject.getDumpsysOutput(emulatorId, testDumpsysService),
         ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
     });
 
-    it('getPermissionInfo, service is not running', async () => {
+    it('getDumpsysOutput, returns output', async () => {
+        const expectedDumpsysOutput: String = 'Mary had a little lamb';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.shell(['dumpsys', 'accessibility']))
-            .returns(() => '')
+            .setup(m => m.shell(['dumpsys', testDumpsysService]))
+            .returns(() => expectedDumpsysOutput)
             .verifiable(Times.once());
 
-        await expect(
-            testSubject.getPermissionInfo(emulatorId, testPackageName),
-        ).rejects.toThrowError('Accessibility Insights for Android Service is not running');
+        const output = await testSubject.getDumpsysOutput(emulatorId, testDumpsysService);
 
-        adbMock.verifyAll();
-    });
-
-    it('getPermissionInfo, service is running without screenshot permission', async () => {
-        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
-        adbMock
-            .setup(m => m.shell(['dumpsys', 'accessibility']))
-            .returns(() => dumpsysAccessibilitySnippetWithServiceRunning)
-            .verifiable(Times.once());
-        adbMock
-            .setup(m => m.shell(['dumpsys', 'media_projection']))
-            .returns(() => '')
-            .verifiable(Times.once());
-
-        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(
-            emulatorId,
-            testPackageName,
-        );
-
-        expect(permissionInfo.screenshotGranted).toBe(false);
-
-        adbMock.verifyAll();
-    });
-
-    it('getPermissionInfo, service is running with screenshot permission', async () => {
-        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
-        adbMock
-            .setup(m => m.shell(['dumpsys', 'accessibility']))
-            .returns(() => dumpsysAccessibilitySnippetWithServiceRunning)
-            .verifiable(Times.once());
-        adbMock
-            .setup(m => m.shell(['dumpsys', 'media_projection']))
-            .returns(() => 'ignore this ' + testPackageName + ' ignore this, too')
-            .verifiable(Times.once());
-
-        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(
-            emulatorId,
-            testPackageName,
-        );
-
-        expect(permissionInfo.screenshotGranted).toBe(true);
+        expect(output).toBe(expectedDumpsysOutput);
 
         adbMock.verifyAll();
     });

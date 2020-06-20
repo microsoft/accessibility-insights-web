@@ -6,7 +6,6 @@ import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
-    PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -54,20 +53,9 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         };
     };
 
-    public getPermissionInfo = async (
-        deviceId: string,
-        packageName: string,
-    ): Promise<PermissionInfo> => {
-        const dumpsys = 'dumpsys';
-
+    public getDumpsysOutput = async (deviceId: string, serviceToQuery: string): Promise<string> => {
         this.adb.setDeviceId(deviceId);
-        let stdout: string = await this.adb.shell([dumpsys, 'accessibility']);
-        if (!stdout.includes('label=Accessibility Insights')) {
-            throw new Error('Accessibility Insights for Android Service is not running');
-        }
-        stdout = await this.adb.shell([dumpsys, 'media_projection']);
-        const screenshotGranted: boolean = stdout.includes(packageName);
-        return { screenshotGranted };
+        return await this.adb.shell(['dumpsys', serviceToQuery]);
     };
 
     public installService = async (deviceId: string, apkLocation: string): Promise<void> => {

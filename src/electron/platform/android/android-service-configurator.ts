@@ -12,14 +12,10 @@ export type PackageInfo = {
     versionName?: string;
 };
 
-export type PermissionInfo = {
-    screenshotGranted: boolean;
-};
-
 export interface AndroidServiceConfigurator {
     getConnectedDevices(): Promise<Array<DeviceInfo>>;
     getPackageInfo(deviceId: string, packageName: string): Promise<PackageInfo>;
-    getPermissionInfo(deviceId: string, packageName: string): Promise<PermissionInfo>;
+    getDumpsysOutput(deviceId: string, serviceToQuery: string): Promise<string>;
     installService(deviceId: string, apkLocation: string): Promise<void>;
     uninstallService(deviceId: string, packageName: string): Promise<void>;
     setTcpForwarding(deviceId: string, localPort: number, devicePort: number): Promise<void>;

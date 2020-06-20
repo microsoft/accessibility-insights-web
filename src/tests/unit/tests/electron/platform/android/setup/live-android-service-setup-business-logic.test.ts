@@ -9,7 +9,6 @@ import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
-    PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
 import { LiveAndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -24,6 +23,9 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         path: testApkPackage,
         versionName: '1.2.3',
     };
+    const accessibilityServiceName: string = 'accessibility';
+    const mediaProjectionServiceName: string = 'media-projection';
+    const serviceIsRunningResponseSnippet: string = 'label=Accessibility Insights';
 
     let serviceConfigMock: IMock<AndroidServiceConfigurator>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
@@ -263,7 +265,7 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
     it('hasRequiredPermissions propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during hasRequiredPermissions';
         serviceConfigMock
-            .setup(m => m.getPermissionInfo(testDeviceId, servicePackageName))
+            .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
@@ -274,13 +276,10 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         verifyAllMocks();
     });
 
-    it('hasRequiredPermissions returns false on when config returns false', async () => {
-        const permissionInfo: PermissionInfo = {
-            screenshotGranted: false,
-        };
+    it('hasRequiredPermissions returns false if service is not running', async () => {
         serviceConfigMock
-            .setup(m => m.getPermissionInfo(testDeviceId, servicePackageName))
-            .returns(() => Promise.resolve(permissionInfo))
+            .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
+            .returns(() => Promise.resolve('No service here!'))
             .verifiable(Times.once());
 
         const success = await testSubject.hasRequiredPermissions(testDeviceId);
@@ -290,13 +289,32 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
         verifyAllMocks();
     });
 
-    it('hasRequiredPermissions returns true when config returns true', async () => {
-        const permissionInfo: PermissionInfo = {
-            screenshotGranted: true,
-        };
+    it('hasRequiredPermissions returns false if service is running without screenshot permission', async () => {
         serviceConfigMock
-            .setup(m => m.getPermissionInfo(testDeviceId, servicePackageName))
-            .returns(() => Promise.resolve(permissionInfo))
+            .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
+            .returns(() => Promise.resolve(serviceIsRunningResponseSnippet))
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.getDumpsysOutput(testDeviceId, mediaProjectionServiceName))
+            .returns(() => Promise.resolve('Nope!'))
+            .verifiable(Times.once());
+
+        const success = await testSubject.hasRequiredPermissions(testDeviceId);
+
+        expect(success).toBe(false);
+
+        verifyAllMocks();
+    });
+
+    it('hasRequiredPermissions returns true if service is running with screenshot permission', async () => {
+        const screenshotGranted = 'some stuff ' + servicePackageName + ' some more stuff';
+        serviceConfigMock
+            .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
+            .returns(() => Promise.resolve(serviceIsRunningResponseSnippet))
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.getDumpsysOutput(testDeviceId, mediaProjectionServiceName))
+            .returns(() => Promise.resolve(screenshotGranted))
             .verifiable(Times.once());
 
         const success = await testSubject.hasRequiredPermissions(testDeviceId);
