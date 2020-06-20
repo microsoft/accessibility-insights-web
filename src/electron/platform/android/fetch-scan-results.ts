@@ -9,7 +9,9 @@ export type HttpGet = typeof axios.get;
 
 export const createScanResultsFetcher = (httpGet: HttpGet): ScanResultsFetcher => {
     return async (port: number) => {
-        const response = await httpGet(`http://localhost:${port}/AccessibilityInsights/result`);
+        // TODO : This should jsut use port!
+        const portHack = port ?? 62442;
+        const response = await httpGet(`http://localhost:${portHack}/AccessibilityInsights/result`);
         return new AndroidScanResults(response.data);
     };
 };
