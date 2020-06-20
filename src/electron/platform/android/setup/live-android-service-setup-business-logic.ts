@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Logger } from 'common/logging/logger';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
@@ -22,11 +21,12 @@ export interface AndroidServiceSetupBusinessLogic {
 export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetupBusinessLogic {
     private readonly devicePort = 62442;
     private readonly localPort = 62442;
+    private readonly servicePackageName: string =
+        'com.microsoft.accessibilityinsightsforandroidservice';
 
     public constructor(
         private readonly serviceConfigurator: AndroidServiceConfigurator,
         private readonly apkLocator: AndroidServiceApkLocator,
-        private readonly logger: Logger,
     ) {}
 
     public getDevices = async (): Promise<DeviceInfo[]> => {
@@ -47,15 +47,19 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
         if (installedVersion) {
             const targetVersion: string = await this.getTargetVersion();
             if (this.compareVersions(installedVersion, targetVersion) > 0) {
-                await this.serviceConfigurator.uninstallService(deviceId);
+                await this.serviceConfigurator.uninstallService(deviceId, this.servicePackageName);
             }
         }
 
-        await this.serviceConfigurator.installService(deviceId);
+        const pathToApk = (await this.apkLocator.locateBundledApk()).path;
+        await this.serviceConfigurator.installService(deviceId, pathToApk);
     };
 
     public hasRequiredPermissions = async (deviceId: string): Promise<boolean> => {
-        const info: PermissionInfo = await this.serviceConfigurator.getPermissionInfo(deviceId);
+        const info: PermissionInfo = await this.serviceConfigurator.getPermissionInfo(
+            deviceId,
+            this.servicePackageName,
+        );
         return info.screenshotGranted;
     };
 
@@ -69,7 +73,10 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
     };
 
     private async getInstalledVersion(deviceId: string): Promise<string> {
-        const info: PackageInfo = await this.serviceConfigurator.getPackageInfo(deviceId);
+        const info: PackageInfo = await this.serviceConfigurator.getPackageInfo(
+            deviceId,
+            this.servicePackageName,
+        );
         return info?.versionName;
     }
 

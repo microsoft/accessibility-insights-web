@@ -199,11 +199,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             ipcRendererShim.getAppPath,
         );
         const businessLogicFactory = new LiveAndroidServiceSetupBusinessLogicFactory(
-            new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+            new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator()),
             apkLocator,
-            logger,
         );
-
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(

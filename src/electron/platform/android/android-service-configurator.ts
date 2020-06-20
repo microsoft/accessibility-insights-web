@@ -18,10 +18,10 @@ export type PermissionInfo = {
 
 export interface AndroidServiceConfigurator {
     getConnectedDevices(): Promise<Array<DeviceInfo>>;
-    getPackageInfo(deviceId: string): Promise<PackageInfo>;
-    getPermissionInfo(deviceId: string): Promise<PermissionInfo>;
-    installService(deviceId: string): Promise<void>;
-    uninstallService(deviceId: string): Promise<void>;
+    getPackageInfo(deviceId: string, packageName: string): Promise<PackageInfo>;
+    getPermissionInfo(deviceId: string, packageName: string): Promise<PermissionInfo>;
+    installService(deviceId: string, apkLocation: string): Promise<void>;
+    uninstallService(deviceId: string, packageName: string): Promise<void>;
     setTcpForwarding(deviceId: string, localPort: number, devicePort: number): Promise<void>;
     removeTcpForwarding(deviceId: string, devicePort: number): Promise<void>;
 }

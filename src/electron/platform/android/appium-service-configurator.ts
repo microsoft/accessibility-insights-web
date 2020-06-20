@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
     DeviceInfo,
@@ -15,10 +14,8 @@ type AdbDevice = {
     udid: string;
 };
 
-const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
-
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
-    constructor(private readonly adb: ADB, private readonly apkLocator: AndroidServiceApkLocator) {}
+    constructor(private readonly adb: ADB) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {
         const detectedDevices: DictionaryStringTo<DeviceInfo> = {};
@@ -48,16 +45,19 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         return { id, isEmulator, friendlyName };
     }
 
-    public getPackageInfo = async (deviceId: string): Promise<PackageInfo> => {
+    public getPackageInfo = async (deviceId: string, packageName: string): Promise<PackageInfo> => {
         this.adb.setDeviceId(deviceId);
-        const info: PackageInfo = await this.adb.getPackageInfo(servicePackageName);
+        const info: PackageInfo = await this.adb.getPackageInfo(packageName);
         return {
             versionCode: info?.versionCode,
             versionName: info?.versionName,
         };
     };
 
-    public getPermissionInfo = async (deviceId: string): Promise<PermissionInfo> => {
+    public getPermissionInfo = async (
+        deviceId: string,
+        packageName: string,
+    ): Promise<PermissionInfo> => {
         const dumpsys = 'dumpsys';
 
         this.adb.setDeviceId(deviceId);
@@ -66,19 +66,18 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
             throw new Error('Accessibility Insights for Android Service is not running');
         }
         stdout = await this.adb.shell([dumpsys, 'media_projection']);
-        const screenshotGranted: boolean = stdout.includes(servicePackageName);
+        const screenshotGranted: boolean = stdout.includes(packageName);
         return { screenshotGranted };
     };
 
-    public installService = async (deviceId: string): Promise<void> => {
+    public installService = async (deviceId: string, apkLocation: string): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        const pathToApk = (await this.apkLocator.locateBundledApk()).path;
-        await this.adb.install(pathToApk);
+        await this.adb.install(apkLocation);
     };
 
-    public uninstallService = async (deviceId: string): Promise<void> => {
+    public uninstallService = async (deviceId: string, packageName: string): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        await this.adb.uninstallApk(servicePackageName);
+        await this.adb.uninstallApk(packageName);
     };
 
     public setTcpForwarding = async (

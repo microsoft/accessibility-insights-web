@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Logger } from 'common/logging/logger';
 import {
     AndroidServiceApkInfo,
     AndroidServiceApkLocator,
@@ -15,24 +14,27 @@ import {
 import { LiveAndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('LiveAndroidSetupDeps', () => {
+describe('LiveAndroidServiceSetupBusinessLogic', () => {
     const testDeviceId: string = 'emulator-12345';
     const localPortNumber: number = 62442;
     const devicePortNumber: number = 62442;
+    const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+    const testApkPackage: string = './Some/Path/SomePackage.apk';
+    const testApkInfo: AndroidServiceApkInfo = {
+        path: testApkPackage,
+        versionName: '1.2.3',
+    };
 
     let serviceConfigMock: IMock<AndroidServiceConfigurator>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
-    let loggerMock: IMock<Logger>;
     let testSubject: LiveAndroidServiceSetupBusinessLogic;
 
     beforeEach(() => {
         serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
-        loggerMock = Mock.ofType<Logger>();
         testSubject = new LiveAndroidServiceSetupBusinessLogic(
             serviceConfigMock.object,
             apkLocatorMock.object,
-            loggerMock.object,
         );
     });
 
@@ -81,7 +83,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('hasRequiredServiceVersion propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during hasRequiredServiceVersion';
         serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
@@ -95,7 +97,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('hasRequiredServiceVersion returns false if installed package has no versionName', async () => {
         const packageInfo: PackageInfo = {};
         serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
 
@@ -110,16 +112,13 @@ describe('LiveAndroidSetupDeps', () => {
         const packageInfo: PackageInfo = {
             versionName: '1.2.2',
         };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.3',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
-            .returns(() => Promise.resolve(packageInfo))
-            .verifiable(Times.once());
         apkLocatorMock
             .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
+            .returns(() => Promise.resolve(testApkInfo))
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
+            .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
 
         const success = await testSubject.hasRequiredServiceVersion(testDeviceId);
@@ -133,16 +132,13 @@ describe('LiveAndroidSetupDeps', () => {
         const packageInfo: PackageInfo = {
             versionName: '1.2.3',
         };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.3',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
-            .returns(() => Promise.resolve(packageInfo))
-            .verifiable(Times.once());
         apkLocatorMock
             .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
+            .returns(() => Promise.resolve(testApkInfo))
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
+            .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
 
         const success = await testSubject.hasRequiredServiceVersion(testDeviceId);
@@ -155,7 +151,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('installRequiredServiceVersion propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during installRequiredServiceVersion';
         serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
@@ -168,11 +164,17 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('installRequiredServiceVersion installs (no uninstall) if installed version does not exist', async () => {
         const installedPackageInfo: PackageInfo = {};
+        apkLocatorMock
+            .setup(m => m.locateBundledApk())
+            .returns(() => Promise.resolve(testApkInfo))
+            .verifiable(Times.once());
         serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock.setup(m => m.installService(testDeviceId)).verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.installService(testDeviceId, testApkPackage))
+            .verifiable(Times.once());
 
         await testSubject.installRequiredServiceVersion(testDeviceId);
 
@@ -183,17 +185,16 @@ describe('LiveAndroidSetupDeps', () => {
         const installedPackageInfo: PackageInfo = {
             versionName: '1.2.2',
         };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.3',
-        } as AndroidServiceApkInfo;
-        serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
-            .returns(() => Promise.resolve(installedPackageInfo))
-            .verifiable(Times.once());
-        serviceConfigMock.setup(m => m.installService(testDeviceId)).verifiable(Times.once());
         apkLocatorMock
             .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
+            .returns(() => Promise.resolve(testApkInfo))
+            .verifiable(Times.exactly(2));
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
+            .returns(() => Promise.resolve(installedPackageInfo))
+            .verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.installService(testDeviceId, testApkPackage))
             .verifiable(Times.once());
 
         await testSubject.installRequiredServiceVersion(testDeviceId);
@@ -203,20 +204,19 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('installRequiredServiceVersion installs (no uninstall) if installed version is same as Apk version', async () => {
         const installedPackageInfo: PackageInfo = {
-            versionName: '1.2',
+            versionName: '1.2.3',
         };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2',
-        } as AndroidServiceApkInfo;
         serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock.setup(m => m.installService(testDeviceId)).verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.installService(testDeviceId, testApkPackage))
+            .verifiable(Times.once());
         apkLocatorMock
             .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
+            .returns(() => Promise.resolve(testApkInfo))
+            .verifiable(Times.exactly(2));
 
         await testSubject.installRequiredServiceVersion(testDeviceId);
 
@@ -228,31 +228,28 @@ describe('LiveAndroidSetupDeps', () => {
         let uninstallOrder: number = undefined;
         let installOrder: number = undefined;
         const installedPackageInfo: PackageInfo = {
-            versionName: '1.2.3',
+            versionName: '1.2.4',
         };
-        const apkInfo: AndroidServiceApkInfo = {
-            versionName: '1.2.2',
-        } as AndroidServiceApkInfo;
         serviceConfigMock
-            .setup(m => m.getPackageInfo(testDeviceId))
+            .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
         serviceConfigMock
-            .setup(m => m.uninstallService(testDeviceId))
+            .setup(m => m.uninstallService(testDeviceId, servicePackageName))
             .callback(() => {
                 uninstallOrder = callbackCount++;
             })
             .verifiable(Times.once());
         serviceConfigMock
-            .setup(m => m.installService(testDeviceId))
+            .setup(m => m.installService(testDeviceId, testApkPackage))
             .callback(() => {
                 installOrder = callbackCount++;
             })
             .verifiable(Times.once());
         apkLocatorMock
             .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
+            .returns(() => Promise.resolve(testApkInfo))
+            .verifiable(Times.exactly(2));
 
         await testSubject.installRequiredServiceVersion(testDeviceId);
 
@@ -266,7 +263,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('hasRequiredPermissions propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during hasRequiredPermissions';
         serviceConfigMock
-            .setup(m => m.getPermissionInfo(testDeviceId))
+            .setup(m => m.getPermissionInfo(testDeviceId, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
@@ -282,7 +279,7 @@ describe('LiveAndroidSetupDeps', () => {
             screenshotGranted: false,
         };
         serviceConfigMock
-            .setup(m => m.getPermissionInfo(testDeviceId))
+            .setup(m => m.getPermissionInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(permissionInfo))
             .verifiable(Times.once());
 
@@ -298,7 +295,7 @@ describe('LiveAndroidSetupDeps', () => {
             screenshotGranted: true,
         };
         serviceConfigMock
-            .setup(m => m.getPermissionInfo(testDeviceId))
+            .setup(m => m.getPermissionInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(permissionInfo))
             .verifiable(Times.once());
 
