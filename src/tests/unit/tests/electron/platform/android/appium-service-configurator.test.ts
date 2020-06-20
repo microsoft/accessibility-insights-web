@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import {
-    AndroidServiceApkInfo,
-    AndroidServiceApkLocator,
-} from 'electron/platform/android/android-service-apk-locator';
+import { AndroidServiceApkInfo } from 'electron/platform/android/android-service-apk-locator';
 import {
     PackageInfo,
     PermissionInfo,
@@ -15,23 +12,22 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfigurator tests', () => {
     let adbMock: IMock<ADB>;
-    let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let testSubject: AppiumServiceConfigurator;
 
     const emulatorId: string = 'id1';
     const emulatorModel: string = 'model1';
     const deviceId: string = 'id2';
     const deviceModel: string = 'model2';
-    const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+    const testPackageName: string = 'myCoolPackage';
     const dumpsysAccessibilitySnippetWithServiceRunning: string =
         'Service[label=Accessibility Insights for';
     const expectedPathToApk: string = './some/path/package.apk';
-    const expectedPortNumber: number = 62442;
+    const testLocalPortNumber: number = 123;
+    const testDevicePortNumber: number = 456;
 
     beforeEach(() => {
         adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
-        apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
-        testSubject = new AppiumServiceConfigurator(adbMock.object, apkLocatorMock.object);
+        testSubject = new AppiumServiceConfigurator(adbMock.object);
     });
 
     it('getConnectedDevices, propagates error', async () => {
@@ -44,7 +40,6 @@ describe('AppiumServiceConfigurator tests', () => {
         await expect(testSubject.getConnectedDevices()).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getConnectedDevices, No devices detected', async () => {
@@ -62,7 +57,6 @@ describe('AppiumServiceConfigurator tests', () => {
         expect(devices.length).toBe(0);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getConnectedDevices, 1 emulator detected', async () => {
@@ -89,7 +83,6 @@ describe('AppiumServiceConfigurator tests', () => {
         expect(devices[0].friendlyName).toBe(emulatorModel);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getConnectedDevices, 1 physical device detected', async () => {
@@ -116,7 +109,6 @@ describe('AppiumServiceConfigurator tests', () => {
         expect(devices[0].friendlyName).toBe(deviceModel);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getConnectedDevices, 1 emulator and 1 physical device detected', async () => {
@@ -150,7 +142,6 @@ describe('AppiumServiceConfigurator tests', () => {
         expect(devices[1].friendlyName).toBe(deviceModel);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPackageInfo, propagates error', async () => {
@@ -160,26 +151,26 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.getPackageInfo(emulatorId)).rejects.toThrowError(expectedMessage);
+        await expect(testSubject.getPackageInfo(emulatorId, testPackageName)).rejects.toThrowError(
+            expectedMessage,
+        );
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPackageInfo, contains neither versionName nor versionCode', async () => {
         const expectedPackageInfo: PackageInfo = {};
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.getPackageInfo(servicePackageName))
+            .setup(m => m.getPackageInfo(testPackageName))
             .returns(() => expectedPackageInfo)
             .verifiable(Times.once());
 
-        const info = await testSubject.getPackageInfo(emulatorId);
+        const info = await testSubject.getPackageInfo(emulatorId, testPackageName);
         expect(info.versionCode).toBeUndefined();
         expect(info.versionName).toBeUndefined();
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPackageInfo, contains only versionName', async () => {
@@ -187,16 +178,15 @@ describe('AppiumServiceConfigurator tests', () => {
         const expectedPackageInfo: PackageInfo = { versionName };
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.getPackageInfo(servicePackageName))
+            .setup(m => m.getPackageInfo(testPackageName))
             .returns(() => expectedPackageInfo)
             .verifiable(Times.once());
 
-        const info = await testSubject.getPackageInfo(emulatorId);
+        const info = await testSubject.getPackageInfo(emulatorId, testPackageName);
         expect(info.versionCode).toBeUndefined();
         expect(info.versionName).toBe(versionName);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPackageInfo, contains only versionCode', async () => {
@@ -204,16 +194,15 @@ describe('AppiumServiceConfigurator tests', () => {
         const expectedPackageInfo: PackageInfo = { versionCode };
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.getPackageInfo(servicePackageName))
+            .setup(m => m.getPackageInfo(testPackageName))
             .returns(() => expectedPackageInfo)
             .verifiable(Times.once());
 
-        const info = await testSubject.getPackageInfo(emulatorId);
+        const info = await testSubject.getPackageInfo(emulatorId, testPackageName);
         expect(info.versionCode).toBe(versionCode);
         expect(info.versionName).toBeUndefined();
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPermissionInfo, propagates error', async () => {
@@ -223,12 +212,11 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.getPermissionInfo(emulatorId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(
+            testSubject.getPermissionInfo(emulatorId, testPackageName),
+        ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPermissionInfo, service is not running', async () => {
@@ -238,12 +226,11 @@ describe('AppiumServiceConfigurator tests', () => {
             .returns(() => '')
             .verifiable(Times.once());
 
-        await expect(testSubject.getPermissionInfo(emulatorId)).rejects.toThrowError(
-            'Accessibility Insights for Android Service is not running',
-        );
+        await expect(
+            testSubject.getPermissionInfo(emulatorId, testPackageName),
+        ).rejects.toThrowError('Accessibility Insights for Android Service is not running');
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPermissionInfo, service is running without screenshot permission', async () => {
@@ -257,12 +244,14 @@ describe('AppiumServiceConfigurator tests', () => {
             .returns(() => '')
             .verifiable(Times.once());
 
-        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(emulatorId);
+        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(
+            emulatorId,
+            testPackageName,
+        );
 
         expect(permissionInfo.screenshotGranted).toBe(false);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('getPermissionInfo, service is running with screenshot permission', async () => {
@@ -273,19 +262,17 @@ describe('AppiumServiceConfigurator tests', () => {
             .verifiable(Times.once());
         adbMock
             .setup(m => m.shell(['dumpsys', 'media_projection']))
-            .returns(
-                () =>
-                    // This is just a snippet, not the full string
-                    '(com.microsoft.accessibilityinsightsforandroidservice, uid=10134): TYPE_SCREEN_CAPTURE',
-            )
+            .returns(() => 'ignore this ' + testPackageName + ' ignore this, too')
             .verifiable(Times.once());
 
-        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(emulatorId);
+        const permissionInfo: PermissionInfo = await testSubject.getPermissionInfo(
+            emulatorId,
+            testPackageName,
+        );
 
         expect(permissionInfo.screenshotGranted).toBe(true);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('installService, propagates error', async () => {
@@ -295,10 +282,11 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.installService(emulatorId)).rejects.toThrowError(expectedMessage);
+        await expect(testSubject.installService(emulatorId, testPackageName)).rejects.toThrowError(
+            expectedMessage,
+        );
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('installService, succeeds', async () => {
@@ -310,15 +298,10 @@ describe('AppiumServiceConfigurator tests', () => {
             .setup(m => m.install(expectedPathToApk))
             .returns(() => '')
             .verifiable(Times.once());
-        apkLocatorMock
-            .setup(m => m.locateBundledApk())
-            .returns(() => Promise.resolve(apkInfo))
-            .verifiable(Times.once());
 
-        await testSubject.installService(emulatorId);
+        await testSubject.installService(emulatorId, expectedPathToApk);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('uninstallService, propagates error', async () => {
@@ -328,25 +311,23 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.uninstallService(emulatorId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(
+            testSubject.uninstallService(emulatorId, testPackageName),
+        ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('uninstallService, succeeds', async () => {
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.uninstallApk(servicePackageName))
+            .setup(m => m.uninstallApk(testPackageName))
             .returns(() => '')
             .verifiable(Times.once());
 
-        await testSubject.uninstallService(emulatorId);
+        await testSubject.uninstallService(emulatorId, testPackageName);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('setTcpForwarding, propagates error', async () => {
@@ -356,24 +337,22 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.setTcpForwarding(emulatorId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(
+            testSubject.setTcpForwarding(emulatorId, testLocalPortNumber, testDevicePortNumber),
+        ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('setTcpForwarding, succeeds', async () => {
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.forwardPort(expectedPortNumber, expectedPortNumber))
+            .setup(m => m.forwardPort(testLocalPortNumber, testDevicePortNumber))
             .verifiable(Times.once());
 
-        await testSubject.setTcpForwarding(emulatorId);
+        await testSubject.setTcpForwarding(emulatorId, testLocalPortNumber, testDevicePortNumber);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('removeTcpForwarding, propagates error', async () => {
@@ -383,22 +362,20 @@ describe('AppiumServiceConfigurator tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.removeTcpForwarding(emulatorId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(
+            testSubject.removeTcpForwarding(emulatorId, testLocalPortNumber),
+        ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
 
     it('removeTcpForwarding, succeeds', async () => {
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
-        adbMock.setup(m => m.removePortForward(expectedPortNumber)).verifiable(Times.once());
+        adbMock.setup(m => m.removePortForward(testLocalPortNumber)).verifiable(Times.once());
 
-        await testSubject.removeTcpForwarding(emulatorId);
+        await testSubject.removeTcpForwarding(emulatorId, testLocalPortNumber);
 
         adbMock.verifyAll();
-        apkLocatorMock.verifyAll();
     });
     /*
     // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
