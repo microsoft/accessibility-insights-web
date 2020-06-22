@@ -4,6 +4,7 @@ import { ColorAdHocVisualization } from 'ad-hoc-visualizations/color/visualizati
 import { HeadingsAdHocVisualization } from 'ad-hoc-visualizations/headings/visualization';
 import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualization';
 import { LandmarksAdHocVisualization } from 'ad-hoc-visualizations/landmarks/visualization';
+import { NeedsReviewAdHocVisualization } from 'ad-hoc-visualizations/needs-review/visualization';
 import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from 'assessments/assessments';
 import { each, find, values } from 'lodash';
@@ -32,6 +33,7 @@ export class VisualizationConfigurationFactory {
             [VisualizationType.Issues]: IssuesAdHocVisualization,
             [VisualizationType.Landmarks]: LandmarksAdHocVisualization,
             [VisualizationType.TabStops]: TabStopsAdHocVisualization,
+            [VisualizationType.NeedsReview]: NeedsReviewAdHocVisualization,
         };
     }
 
