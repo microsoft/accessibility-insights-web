@@ -10,7 +10,7 @@ import {
     AppiumAdbCreateParameters,
     AppiumAdbCreator,
 } from 'electron/platform/android/appium-adb-creator';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
+import { AppiumServiceConfigurator } from 'electron/platform/android/appium-adb-wrapper';
 
 export class AppiumServiceConfiguratorFactory implements AndroidServiceConfiguratorFactory {
     public constructor(private readonly adbCreator: AppiumAdbCreator) {}

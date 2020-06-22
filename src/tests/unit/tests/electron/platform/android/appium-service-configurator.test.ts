@@ -3,7 +3,7 @@
 
 import ADB from 'appium-adb';
 import { PackageInfo } from 'electron/platform/android/adb-wrapper';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
+import { AppiumServiceConfigurator } from 'electron/platform/android/appium-adb-wrapper';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfigurator tests', () => {
