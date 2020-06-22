@@ -12,6 +12,7 @@ import {
     PackageInfo,
     PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
+import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
@@ -23,7 +24,8 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly configStore: UserConfigurationStore,
         private readonly apkLocator: AndroidServiceApkLocator,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
-        private readonly logger: Logger,
+        private readonly fetchDeviceConfig: DeviceConfigFetcher,
+        public readonly logger: Logger,
     ) {}
 
     public hasAdbPath = async (): Promise<boolean> => {
@@ -91,14 +93,19 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return false;
     };
 
-    public setTcpForwarding = async (): Promise<boolean> => {
+    public setTcpForwarding = async (): Promise<number> => {
+        return await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
+    };
+
+    public getApplicationName = async (): Promise<string> => {
         try {
-            await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
-            return true;
+            const config = await this.fetchDeviceConfig(62442);
+            return config.appIdentifier;
         } catch (error) {
             this.logger.log(error);
         }
-        return false;
+
+        return '';
     };
 
     private async getInstalledVersion(): Promise<string> {

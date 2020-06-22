@@ -9,11 +9,21 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
 
 const { guidance } = content.color;
+
+const colorRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: ['select-body'],
+    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
+    telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+    key: AdHocTestkeys.Color,
+    testType: VisualizationType.Color,
+    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+};
 
 export const ColorAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
@@ -32,17 +42,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-    getAnalyzer: provider =>
-        provider.createRuleAnalyzer({
-            rules: ['select-body'],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forTestScan,
-            key: AdHocTestkeys.Color,
-            testType: VisualizationType.Color,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        }),
+    getAnalyzer: provider => provider.createRuleAnalyzer(colorRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.Color,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,

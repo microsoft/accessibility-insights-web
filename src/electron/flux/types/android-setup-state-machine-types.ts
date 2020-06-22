@@ -14,6 +14,8 @@ export type AndroidSetupStoreCallbacks = {
     stepTransition: AndroidSetupStepTransitionCallback;
     setSelectedDevice: (device: DeviceInfo) => void;
     setAvailableDevices: (devices: DeviceInfo[]) => void;
+    setScanPort: (scanPort?: number) => void;
+    setApplicationName: (appName?: string) => void;
 };
 
 export type AndroidSetupStateMachineFactory = (
