@@ -4,16 +4,7 @@
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 
-export interface AndroidServiceConfigurator {
-    getDevices(): Promise<DeviceInfo[]>;
-    hasRequiredServiceVersion(deviceId: string): Promise<boolean>;
-    installRequiredServiceVersion(deviceId: string): Promise<void>;
-    hasRequiredPermissions(deviceId: string): Promise<boolean>;
-    setTcpForwarding(deviceId: string): Promise<number>;
-    removeTcpForwarding(deviceId: string): Promise<void>;
-}
-
-export class LiveAndroidServiceConfigurator implements AndroidServiceConfigurator {
+export class AndroidServiceConfigurator {
     private readonly devicePort = 62442;
     private readonly localPort = 62442;
     private readonly servicePackageName: string =
