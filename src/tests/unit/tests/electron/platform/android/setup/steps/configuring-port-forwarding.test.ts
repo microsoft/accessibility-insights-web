@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { Logger } from 'common/logging/logger';
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
 import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
-import { Mock, MockBehavior, Times, It, IMock } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
 describe('Android setup step: configuringPortForwarding', () => {
@@ -132,6 +130,7 @@ describe('Android setup step: configuringPortForwarding', () => {
                 mockStoreState.appName = newName;
             })
             // We don't care how many times this is invoked, we only care about the final mockStoreState
+
             .verifiable(Times.atLeastOnce());
 
         return depsMock;
