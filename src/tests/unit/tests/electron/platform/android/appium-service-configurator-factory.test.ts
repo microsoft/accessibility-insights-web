@@ -3,7 +3,7 @@
 
 import { AppiumAdbCreator } from 'electron/platform/android/appium-adb-creator';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-adb-wrapper';
-import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
+import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfiguratorFactory tests', () => {
