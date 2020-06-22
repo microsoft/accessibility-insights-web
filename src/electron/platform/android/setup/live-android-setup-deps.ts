@@ -97,6 +97,10 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return await this.serviceConfig.setupTcpForwarding(this.selectedDeviceId);
     };
 
+    public removeTcpForwarding = async (hostPort: number): Promise<void> => {
+        return await this.serviceConfig.removeTcpForwarding(this.selectedDeviceId, hostPort);
+    };
+
     public getApplicationName = async (): Promise<string> => {
         try {
             const config = await this.fetchDeviceConfig(62442);

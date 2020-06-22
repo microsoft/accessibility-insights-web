@@ -13,6 +13,7 @@ export type AndroidSetupDeps = {
     installService: () => Promise<boolean>;
     hasExpectedPermissions: () => Promise<boolean>;
     setupTcpForwarding: () => Promise<number>;
+    removeTcpForwarding: (hostPort: number) => Promise<void>;
     getApplicationName: () => Promise<string>;
     logger: Logger;
 };

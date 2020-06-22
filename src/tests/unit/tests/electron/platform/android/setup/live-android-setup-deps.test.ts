@@ -427,6 +427,57 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
+    it('setupTcpForwarding propagates output from serviceConfig.setupTcpForwarding', async () => {
+        const deviceId = 'id1';
+        const serviceConfigOutput = 63000;
+        serviceConfigMock
+            .setup(m => m.setupTcpForwarding(deviceId))
+            .returns(() => Promise.resolve(serviceConfigOutput))
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        testSubject.setSelectedDeviceId(deviceId);
+        const output = await testSubject.setupTcpForwarding();
+
+        expect(output).toBe(serviceConfigOutput);
+
+        verifyAllMocks();
+    });
+
+    it('removeTcpForwarding propagates error from serviceConfig.removeTcpForwarding', async () => {
+        const deviceId = 'id1';
+        const port = 2;
+        const serviceConfigErrorMessage = 'error from serviceConfig';
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(deviceId, port))
+            .returns(() => Promise.reject(new Error(serviceConfigErrorMessage)))
+            .verifiable(Times.once());
+
+        await initializeServiceConfig();
+
+        testSubject.setSelectedDeviceId(deviceId);
+        await expect(testSubject.removeTcpForwarding(port)).rejects.toThrowError(
+            serviceConfigErrorMessage,
+        );
+
+        verifyAllMocks();
+    });
+
+    it('removeTcpForwarding propagates to serviceConfig.removeTcpForwarding', async () => {
+        const deviceId = 'id1';
+        const port = 63000;
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(deviceId, port))
+            .returns(() => Promise.resolve())
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        testSubject.setSelectedDeviceId(deviceId);
+        await testSubject.removeTcpForwarding(port);
+
+        verifyAllMocks();
+    });
+
     it('getApplicationName returns app name when successful', async () => {
         const config: DeviceConfig = {
             appIdentifier: 'Wonderful App',
@@ -442,23 +493,6 @@ describe('LiveAndroidSetupDeps', () => {
         const appName = await testSubject.getApplicationName();
 
         expect(appName).toEqual(config.appIdentifier);
-
-        verifyAllMocks();
-    });
-
-    it('setupTcpForwarding propagates output from serviceConfig.setupTcpForwarding', async () => {
-        const deviceId = 'id1';
-        const serviceConfigOutput = 63000;
-        serviceConfigMock
-            .setup(m => m.setupTcpForwarding(deviceId))
-            .returns(() => Promise.resolve(serviceConfigOutput))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        testSubject.setSelectedDeviceId(deviceId);
-        const output = await testSubject.setupTcpForwarding();
-
-        expect(output).toBe(serviceConfigOutput);
 
         verifyAllMocks();
     });
