@@ -26,6 +26,7 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
 >
   <DeviceDescription
     className="deviceDescription"
+    currentApplication="super-cool app"
     friendlyName="Super-Duper Gadget"
     id="1"
     isEmulator={false}
@@ -64,6 +65,7 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
 >
   <DeviceDescription
     className="deviceDescription"
+    currentApplication="super-cool app"
     friendlyName="Emulator Extraordinaire"
     id="1"
     isEmulator={true}
