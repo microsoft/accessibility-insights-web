@@ -14,7 +14,7 @@ import {
     AppiumServiceConfigurator,
     PortFinder,
 } from 'electron/platform/android/appium-service-configurator';
-import { IMock, Mock, MockBehavior, Times, It } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfigurator tests', () => {
     let adbMock: IMock<ADB>;

@@ -114,7 +114,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         const forwardEntries: string[] = await this.adb.getForwardList();
         return forwardEntries
             .map(e => this.tryExtractHostPortMatchingDevicePort(e, devicePort))
-            .filter(p => p != null);
+            .filter((p): p is number => p != null);
     };
 
     private tryExtractHostPortMatchingDevicePort = (
