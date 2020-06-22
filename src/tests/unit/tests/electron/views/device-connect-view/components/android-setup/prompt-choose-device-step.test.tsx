@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('PromptChooseDeviceStep', () => {
     let props: CommonAndroidSetupStepProps;
@@ -63,11 +64,18 @@ describe('PromptChooseDeviceStep', () => {
         actionMessageCreatorMock.verify(m => m.rescan(), Times.once());
     });
 
-    it('passes next dep through', () => {
+    it('passes setSelectedDevice dep through', () => {
+        const expectedDevice: DeviceInfo = props.androidSetupStoreData.availableDevices[0];
+        let actualDevice: DeviceInfo;
         const stubEvent = {} as React.MouseEvent<HTMLButtonElement>;
-        const rendered = shallow(<PromptChooseDeviceStep {...props} />);
+        const rendered = mount(<PromptChooseDeviceStep {...props} />);
+        rendered.find('DeviceDescription').at(0).simulate('click');
+        actionMessageCreatorMock
+            .setup(m => m.setSelectedDevice(It.isAny()))
+            .callback(value => (actualDevice = value.metadata));
         rendered.find(AndroidSetupStepLayout).prop('rightFooterButtonProps').onClick(stubEvent);
-        actionMessageCreatorMock.verify(m => m.next(), Times.once());
+        actionMessageCreatorMock.verify(m => m.setSelectedDevice(It.isAny()), Times.once());
+        expect(actualDevice).toEqual(expectedDevice);
     });
 
     it('next button becomes enabled after device is selected', () => {
