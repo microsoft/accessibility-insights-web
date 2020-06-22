@@ -4,8 +4,8 @@
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import {
-    AndroidServiceSetupBusinessLogic,
-    LiveAndroidServiceSetupBusinessLogic,
+    AndroidServiceConfigurator,
+    LiveAndroidServiceConfigurator,
 } from 'electron/platform/android/setup/android-service-configurator';
 import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -34,11 +34,11 @@ describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
             .verifiable(Times.once());
         serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
 
-        const businessLogic: AndroidServiceSetupBusinessLogic = await testSubject.getBusinessLogic(
+        const businessLogic: AndroidServiceConfigurator = await testSubject.getBusinessLogic(
             expectedAdbLocation,
         );
 
-        expect(businessLogic).toBeInstanceOf(LiveAndroidServiceSetupBusinessLogic);
+        expect(businessLogic).toBeInstanceOf(LiveAndroidServiceConfigurator);
 
         serviceConfigFactoryMock.verifyAll();
     });

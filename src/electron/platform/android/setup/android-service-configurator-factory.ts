@@ -4,12 +4,12 @@
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import {
-    AndroidServiceSetupBusinessLogic,
-    LiveAndroidServiceSetupBusinessLogic,
+    AndroidServiceConfigurator,
+    LiveAndroidServiceConfigurator,
 } from 'electron/platform/android/setup/android-service-configurator';
 
 export interface AndroidServiceSetupBusinessLogicFactory {
-    getBusinessLogic(adbLocation: string): Promise<AndroidServiceSetupBusinessLogic>;
+    getBusinessLogic(adbLocation: string): Promise<AndroidServiceConfigurator>;
 }
 
 export class LiveAndroidServiceSetupBusinessLogicFactory {
@@ -18,12 +18,10 @@ export class LiveAndroidServiceSetupBusinessLogicFactory {
         private readonly apkLocator: AndroidServiceApkLocator,
     ) {}
 
-    public getBusinessLogic = async (
-        adbLocation: string,
-    ): Promise<AndroidServiceSetupBusinessLogic> => {
+    public getBusinessLogic = async (adbLocation: string): Promise<AndroidServiceConfigurator> => {
         const configurator = await this.serviceConfiguratorFactory.getServiceConfigurator(
             adbLocation,
         );
-        return new LiveAndroidServiceSetupBusinessLogic(configurator, this.apkLocator);
+        return new LiveAndroidServiceConfigurator(configurator, this.apkLocator);
     };
 }
