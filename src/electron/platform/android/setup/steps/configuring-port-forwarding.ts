@@ -4,11 +4,7 @@
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
 export const configuringPortForwarding: AndroidSetupStepConfig = deps => ({
-    actions: {
-        cancel: () => {
-            deps.stepTransition('prompt-choose-device');
-        },
-    },
+    actions: {},
     onEnter: async () => {
         deps.setApplicationName(); // init
 
