@@ -53,7 +53,10 @@ import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
 import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
-import { convertScanResultsToUnifiedResults } from './adapters/scan-results-to-unified-results';
+import {
+    convertScanResultsToNeedsReviewUnifiedResults,
+    convertScanResultsToUnifiedResults,
+} from './adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from './adapters/scan-results-to-unified-rules';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
@@ -297,6 +300,15 @@ export class MainWindowInitializer extends WindowInitializer {
             scanIncompleteWarningDetector,
         );
 
+        const unifiedResultSenderForNeedsReview = new UnifiedResultSender(
+            this.browserAdapter.sendMessageToFrames,
+            convertScanResultsToNeedsReviewUnifiedResults,
+            convertScanResultsToUnifiedRules,
+            toolData,
+            generateUID,
+            scanIncompleteWarningDetector,
+        );
+
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
@@ -307,6 +319,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.visualizationConfigurationFactory,
             filterResultsByRules,
             unifiedResultSender.sendResults,
+            unifiedResultSenderForNeedsReview.sendResults,
             scanIncompleteWarningDetector,
         );
 

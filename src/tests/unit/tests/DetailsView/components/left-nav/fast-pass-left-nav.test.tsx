@@ -23,6 +23,7 @@ describe(FastPassLeftNav, () => {
         const props: FastPassLeftNavProps = {
             deps,
             selectedKey: 'some string',
+            featureFlagStoreData: {},
             onRightPanelContentSwitch,
             setNavComponentRef,
         };

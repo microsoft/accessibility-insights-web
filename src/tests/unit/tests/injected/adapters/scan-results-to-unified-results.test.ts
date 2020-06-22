@@ -3,7 +3,10 @@
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { generateUID } from '../../../../../common/uid-generator';
-import { convertScanResultsToUnifiedResults } from '../../../../../injected/adapters/scan-results-to-unified-results';
+import {
+    convertScanResultsToUnifiedResults,
+    convertScanResultsToNeedsReviewUnifiedResults,
+} from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ScanResults to Unified Results Test', () => {
@@ -43,6 +46,34 @@ describe('ScanResults to Unified Results Test', () => {
         ).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
+
+    test.each(nullIdentifiers)(
+        'convertScanResultsToNeedsReviewUnifiedResults provides a defined UnifiedResult instance %s',
+        scanResultStub => {
+            const unifiedResults = convertScanResultsToNeedsReviewUnifiedResults(
+                scanResultStub as ScanResults,
+                generateGuidMock.object,
+            );
+            expect(unifiedResults).toBeDefined();
+        },
+    );
+
+    test('needs review conversion works fine when there is no data in scanresults', () => {
+        const scanResultsStub: ScanResults = createTestResultsWithNoData();
+        expect(
+            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
+        ).toMatchSnapshot();
+    });
+
+    test('conversion works with filled up passes and failures value in scan results', () => {
+        const scanResultsStub: ScanResults = createTestResults();
+        expect(
+            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
+        ).toMatchSnapshot();
+        generateGuidMock.verifyAll();
+    });
+
+    // add with incompletes as well?
 
     function createTestResultsWithNoData(): ScanResults {
         return {

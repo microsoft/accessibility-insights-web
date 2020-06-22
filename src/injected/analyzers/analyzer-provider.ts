@@ -38,6 +38,7 @@ export class AnalyzerProvider {
         private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private filterResultsByRules: IResultRuleFilter,
         private sendConvertedResults: PostResolveCallback,
+        private sendNeedsReviewResults: PostResolveCallback,
         private scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {
         this.tabStopsListener = tabStopsListener;
@@ -74,6 +75,22 @@ export class AnalyzerProvider {
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
             this.sendConvertedResults,
+            this.scanIncompleteWarningDetector,
+        );
+    }
+
+    public createRuleAnalyzerUnifiedScanForNeedsReview(
+        config: RuleAnalyzerConfiguration,
+    ): Analyzer {
+        return new RuleAnalyzer(
+            config,
+            this.scanner,
+            this.scopingStore,
+            this.sendMessageDelegate,
+            this.dateGetter,
+            this.telemetryDataFactory,
+            this.visualizationConfigFactory,
+            this.sendNeedsReviewResults,
             this.scanIncompleteWarningDetector,
         );
     }

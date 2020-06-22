@@ -37,6 +37,7 @@ describe('AnalyzerProviderTests', () => {
     let analyzerMessageTypeStub: string;
     let filterResultsByRulesMock: IMock<IResultRuleFilter>;
     let sendConvertedResultsMock: IMock<PostResolveCallback>;
+    let sendNeedsReviewResultsMock: IMock<PostResolveCallback>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
 
     beforeEach(() => {
@@ -53,6 +54,7 @@ describe('AnalyzerProviderTests', () => {
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         filterResultsByRulesMock = Mock.ofInstance(() => null);
         sendConvertedResultsMock = Mock.ofInstance(() => null);
+        sendNeedsReviewResultsMock = Mock.ofInstance(() => null);
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
 
         testObject = new AnalyzerProvider(
@@ -65,6 +67,7 @@ describe('AnalyzerProviderTests', () => {
             visualizationConfigurationFactoryMock.object,
             filterResultsByRulesMock.object,
             sendConvertedResultsMock.object,
+            sendNeedsReviewResultsMock.object,
             scanIncompleteWarningDetectorMock.object,
         );
     });
@@ -97,6 +100,21 @@ describe('AnalyzerProviderTests', () => {
         expect(analyzer).toBeInstanceOf(RuleAnalyzer);
         validateRuleAnalyzer(analyzer, config);
         expect((analyzer as any).postOnResolve).toEqual(sendConvertedResultsMock.object);
+    });
+
+    test('createRuleAnalyzerUnifiedScanForNeedsReview', () => {
+        const config: RuleAnalyzerConfiguration = {
+            testType: typeStub,
+            analyzerMessageType: analyzerMessageTypeStub,
+            key: keyStub,
+            rules: ['test rule'],
+            resultProcessor: null,
+            telemetryProcessor: null,
+        };
+        const analyzer = testObject.createRuleAnalyzerUnifiedScanForNeedsReview(config);
+        expect(analyzer).toBeInstanceOf(RuleAnalyzer);
+        validateRuleAnalyzer(analyzer, config);
+        expect((analyzer as any).postOnResolve).toEqual(sendNeedsReviewResultsMock.object);
     });
 
     test('createBatchedRuleAnalyzer', () => {
