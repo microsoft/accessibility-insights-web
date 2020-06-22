@@ -6,9 +6,9 @@ import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
-import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     private selectedDeviceId: string;

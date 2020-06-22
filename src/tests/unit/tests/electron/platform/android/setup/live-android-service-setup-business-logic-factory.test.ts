@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';

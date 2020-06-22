@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 
 export class AndroidServiceConfigurator {
     private readonly devicePort = 62442;
