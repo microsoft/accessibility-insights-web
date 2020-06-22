@@ -23,7 +23,7 @@ export interface AndroidServiceConfigurator {
     installService(deviceId: string): Promise<void>;
     uninstallService(deviceId: string): Promise<void>;
     setupTcpForwarding(deviceId: string): Promise<number>;
-    removeTcpForwarding(deviceId: string): Promise<void>;
+    removeTcpForwarding(deviceId: string, hostPort: number): Promise<void>;
 }
 
 export interface AndroidServiceConfiguratorFactory {

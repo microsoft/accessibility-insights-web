@@ -100,31 +100,8 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         return hostPort;
     };
 
-    public removeTcpForwarding = async (deviceId: string): Promise<void> => {
+    public removeTcpForwarding = async (deviceId: string, hostPort: number): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        const applicableHostPorts = await this.getHostPortsForwardedToDevicePort(servicePortNumber);
-        for (const applicableHostPort of applicableHostPorts) {
-            await this.adb.removePortForward(applicableHostPort);
-        }
-    };
-
-    // Assumes setDeviceId was already invoked
-    private getHostPortsForwardedToDevicePort = async (devicePort: number): Promise<number[]> => {
-        // entry format: `${serial} ${hostPort} ${devicePort}`
-        const forwardEntries: string[] = await this.adb.getForwardList();
-        return forwardEntries
-            .map(e => this.tryExtractHostPortMatchingDevicePort(e, devicePort))
-            .filter((p): p is number => p != null);
-    };
-
-    private tryExtractHostPortMatchingDevicePort = (
-        forwardEntry: string,
-        devicePort: number,
-    ): number | null => {
-        const matches = /^.+ tcp:(\d+) tcp:(\d+)$/.exec(forwardEntry);
-        if (matches && matches[2] === `${devicePort}`) {
-            return parseInt(matches[1], 10);
-        }
-        return null;
+        await this.adb.removePortForward(hostPort);
     };
 }
