@@ -77,7 +77,7 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
-import { LiveAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
@@ -200,7 +200,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const businessLogicFactory = new LiveAndroidServiceConfiguratorFactory(
+        const businessLogicFactory = new AndroidServiceConfiguratorFactory(
             new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
             apkLocator,
         );
