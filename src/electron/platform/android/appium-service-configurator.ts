@@ -89,7 +89,7 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         await this.adb.uninstallApk(servicePackageName);
     };
 
-    public setTcpForwarding = async (deviceId: string): Promise<number> => {
+    public setupTcpForwarding = async (deviceId: string): Promise<number> => {
         const hostPort = await this.portFinder({
             port: servicePortNumber,
             stopPort: servicePortNumber + 100,

@@ -32,7 +32,7 @@ describe('Android setup step: configuringPortForwarding', () => {
         const depsMock = makeMockDepsForMockStore();
 
         depsMock
-            .setup(m => m.setTcpForwarding())
+            .setup(m => m.setupTcpForwarding())
             .returns(() => Promise.resolve(scanPort))
             .verifiable(Times.once());
 
@@ -51,7 +51,7 @@ describe('Android setup step: configuringPortForwarding', () => {
         depsMock.verifyAll();
     });
 
-    it('onEnter transitions to prompt-configuring-port-forwarding-failed with null state on setTcpForwarding failure', async () => {
+    it('onEnter transitions to prompt-configuring-port-forwarding-failed with null state on setupTcpForwarding failure', async () => {
         mockStoreState = {
             appName: 'old name which should get cleared on failure',
             scanPort: 1,
@@ -59,7 +59,7 @@ describe('Android setup step: configuringPortForwarding', () => {
         const depsMock = makeMockDepsForMockStore();
 
         depsMock
-            .setup(m => m.setTcpForwarding())
+            .setup(m => m.setupTcpForwarding())
             .returns(() => Promise.reject(new Error('test error')))
             .verifiable(Times.once());
 
@@ -83,7 +83,7 @@ describe('Android setup step: configuringPortForwarding', () => {
         const depsMock = makeMockDepsForMockStore();
 
         depsMock
-            .setup(m => m.setTcpForwarding())
+            .setup(m => m.setupTcpForwarding())
             .returns(() => Promise.resolve(2))
             .verifiable(Times.once());
 

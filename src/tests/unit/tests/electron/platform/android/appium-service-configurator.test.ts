@@ -360,7 +360,7 @@ describe('AppiumServiceConfigurator tests', () => {
         apkLocatorMock.verifyAll();
     });
 
-    describe('setTcpForwarding', () => {
+    describe('setupTcpForwarding', () => {
         it('propagates error from portFinder', async () => {
             const expectedMessage: string = 'Thrown from portFinder';
             portFinderMock
@@ -368,7 +368,7 @@ describe('AppiumServiceConfigurator tests', () => {
                 .returns(() => Promise.reject(new Error(expectedMessage)))
                 .verifiable(Times.once());
 
-            await expect(testSubject.setTcpForwarding(emulatorId)).rejects.toThrowError(
+            await expect(testSubject.setupTcpForwarding(emulatorId)).rejects.toThrowError(
                 expectedMessage,
             );
 
@@ -397,7 +397,7 @@ describe('AppiumServiceConfigurator tests', () => {
                 .returns(() => Promise.reject(new Error(expectedMessage)))
                 .verifiable(Times.once());
 
-            await expect(testSubject.setTcpForwarding(emulatorId)).rejects.toThrowError(
+            await expect(testSubject.setupTcpForwarding(emulatorId)).rejects.toThrowError(
                 expectedMessage,
             );
 
@@ -423,7 +423,7 @@ describe('AppiumServiceConfigurator tests', () => {
                 .setup(m => m.forwardPort(portFinderOutput, expectedServicePortNumber))
                 .verifiable(Times.once());
 
-            const output = await testSubject.setTcpForwarding(emulatorId);
+            const output = await testSubject.setupTcpForwarding(emulatorId);
             expect(output).toBe(portFinderOutput);
 
             portFinderMock.verifyAll();
