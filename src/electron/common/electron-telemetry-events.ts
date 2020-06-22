@@ -6,3 +6,4 @@ export const VALIDATE_PORT: string = 'ValidatePort';
 export const SCAN_STARTED: string = 'ScanStarted';
 export const SCAN_COMPLETED: string = 'ScanCompleted';
 export const SCAN_FAILED: string = 'ScanFailed';
+export const DEVICE_SETUP_STEP: string = 'DeviceSetupStep';

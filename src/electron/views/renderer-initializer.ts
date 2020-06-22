@@ -70,6 +70,7 @@ import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
+import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
@@ -276,6 +277,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
+
+        const androidSetupTelemetrySender = new AndroidSetupTelemetrySender(
+            androidSetupStore,
+            telemetryEventHandler,
+            performance.now,
+        );
+        androidSetupTelemetrySender.initialize();
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 

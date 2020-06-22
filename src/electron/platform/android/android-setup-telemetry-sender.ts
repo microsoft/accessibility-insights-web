@@ -1,28 +1,39 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Interpreter } from 'background/interpreter';
-import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
+import { DEVICE_SETUP_STEP } from 'electron/common/electron-telemetry-events';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 
 export class AndroidSetupTelemetrySender {
-    private step: AndroidSetupStepId | null;
-    private prevTimestamp: number;
+    private step: AndroidSetupStepId | null = null;
+    private prevTimestamp: number = 0;
 
     constructor(
-        private readonly interpreter: Interpreter,
-        private readonly telemetryDataFactory: TelemetryDataFactory,
         private readonly androidSetupStore: AndroidSetupStore,
+        private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentMs: () => number,
-    ) {
-        this.step = null;
-        this.prevTimestamp = 0;
+    ) {}
+
+    public initialize(): void {
         this.androidSetupStore.addChangedListener(this.handleStoreUpdate);
     }
 
     private handleStoreUpdate(androidSetupStore: AndroidSetupStore): void {
-        if (androidSetupStore.getState().currentStepId !== this.step) {
-            const duration = this.step === null ? 0 : this.getCurrentMs() - this.prevTimestamp;
+        const newStep = androidSetupStore.getState().currentStepId;
+        if (this.step !== newStep) {
+            const elapsed = this.getCurrentMs() - this.prevTimestamp;
+            const prevDuration = this.step === null ? 0 : elapsed;
+            this.telemetryEventHandler.publishTelemetry(DEVICE_SETUP_STEP, {
+                telemetry: {
+                    triggeredBy: TriggeredByNotApplicable,
+                    source: TelemetryEventSource.ElectronDeviceConnect,
+                    prevStep: this.step,
+                    newStep,
+                    prevDuration,
+                },
+            });
         }
     }
 }
