@@ -14,7 +14,7 @@ describe('Android setup step: detectPermissions', () => {
         expect(step.onEnter).toBeDefined();
     });
 
-    it('onEnter transitions to prompt-connected-start-testing as expected', async () => {
+    it('onEnter transitions to configuring-port-forwarding on success', async () => {
         const p = new Promise<boolean>(resolve => resolve(true));
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
@@ -23,9 +23,7 @@ describe('Android setup step: detectPermissions', () => {
             .returns(_ => p)
             .verifiable(Times.once());
 
-        depsMock
-            .setup(m => m.stepTransition('prompt-connected-start-testing'))
-            .verifiable(Times.once());
+        depsMock.setup(m => m.stepTransition('configuring-port-forwarding'));
 
         const step = detectPermissions(depsMock.object);
         await step.onEnter();
@@ -33,7 +31,7 @@ describe('Android setup step: detectPermissions', () => {
         depsMock.verifyAll();
     });
 
-    it('onEnter transitions to prompt-install-service as expected', async () => {
+    it('onEnter transitions to prompt-grant-permissions on failure', async () => {
         const p = new Promise<boolean>(resolve => resolve(false));
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);

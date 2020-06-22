@@ -10,6 +10,8 @@ import {
 import { UserConfigurationActions } from '../actions/user-configuration-actions';
 
 export class UserConfigurationActionCreator {
+    private readonly currentScope: string = 'UserConfigurationActionCreator';
+
     constructor(private readonly userConfigActions: UserConfigurationActions) {}
 
     public getUserConfigurationState = () => this.userConfigActions.getCurrentState.invoke(null);
@@ -31,4 +33,7 @@ export class UserConfigurationActionCreator {
 
     public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) =>
         this.userConfigActions.saveIssueFilingSettings.invoke(payload);
+
+    public setAdbLocation = (adbLocation: string) =>
+        this.userConfigActions.setAdbLocation.invoke(adbLocation, this.currentScope);
 }

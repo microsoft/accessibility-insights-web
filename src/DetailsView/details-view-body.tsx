@@ -8,9 +8,9 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
+import * as styles from 'DetailsView/details-view-body.scss';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -82,7 +82,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         });
 
         return (
-            <div className="details-view-body">
+            <div className={styles.detailsViewBody}>
                 {this.renderCommandBar()}
                 <div className={bodyLayoutClassName}>
                     {this.renderNavBar()}

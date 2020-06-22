@@ -8,7 +8,7 @@ export const promptLocateAdb: AndroidSetupStepConfig = deps => {
         actions: {
             saveAdbPath: (path: string) => {
                 deps.setAdbPath(path);
-                deps.stepTransition('prompt-connect-to-device');
+                deps.stepTransition('detect-adb');
             },
         },
     };

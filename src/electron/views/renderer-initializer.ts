@@ -70,12 +70,15 @@ import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
+import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
+import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
-import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
+import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
@@ -188,9 +191,28 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const deviceStore = new DeviceStore(deviceActions);
         deviceStore.initialize();
 
+        const interpreter = new Interpreter();
+        const dispatcher = new DirectActionMessageDispatcher(interpreter);
+        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
+
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
+
+        const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
+            ipcRendererShim.getAppPath,
+        );
+
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
-            createAndroidSetupStateMachineFactory({} as AndroidSetupDeps),
+            createAndroidSetupStateMachineFactory(
+                new LiveAndroidSetupDeps(
+                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+                    userConfigurationStore,
+                    apkLocator,
+                    userConfigMessageCreator,
+                    fetchDeviceConfig,
+                    logger,
+                ),
+            ),
         );
         androidSetupStore.initialize();
 
@@ -241,14 +263,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
-        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
-
-        const interpreter = new Interpreter();
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
-        const dispatcher = new DirectActionMessageDispatcher(interpreter);
-        const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
             userConfigActions,
         );

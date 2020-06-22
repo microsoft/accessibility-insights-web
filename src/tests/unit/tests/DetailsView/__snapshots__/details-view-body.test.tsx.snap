@@ -2,7 +2,7 @@
 
 exports[`DetailsViewBody render render 1`] = `
 <div
-  className="details-view-body"
+  className="detailsViewBody"
 >
   <test
     assessmentStoreData={

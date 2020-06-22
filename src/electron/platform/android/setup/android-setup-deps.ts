@@ -11,4 +11,6 @@ export type AndroidSetupDeps = {
     hasExpectedServiceVersion: () => Promise<boolean>;
     installService: () => Promise<boolean>;
     hasExpectedPermissions: () => Promise<boolean>;
+    setTcpForwarding: () => Promise<boolean>;
+    getApplicationName: () => Promise<string>;
 };

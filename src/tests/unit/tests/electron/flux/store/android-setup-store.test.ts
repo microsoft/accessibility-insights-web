@@ -184,6 +184,36 @@ describe('AndroidSetupStore', () => {
         stateMachineFactoryMock.verifyAll();
     });
 
+    it('ensure setApplicationName function results in store update', () => {
+        const appName = 'Star Wars -- Episode Test';
+
+        const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
+        const expectedData: AndroidSetupStoreData = {
+            currentStepId: 'detect-adb',
+            applicationName: appName,
+        };
+
+        let storeCallbacks: AndroidSetupStoreCallbacks;
+
+        const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
+        stateMachineFactoryMock
+            .setup(m => m(It.isAny()))
+            .callback(sc => (storeCallbacks = sc))
+            .verifiable(Times.once());
+
+        const store = new AndroidSetupStore(
+            new AndroidSetupActions(),
+            stateMachineFactoryMock.object,
+        );
+        store.initialize(initialData);
+
+        storeCallbacks.setApplicationName(appName);
+
+        expect(store.getState()).toEqual(expectedData);
+
+        stateMachineFactoryMock.verifyAll();
+    });
+
     const createAndroidSetupStoreTester = (
         actionToInvoke: keyof AndroidSetupActions,
         stateMachineFactory: AndroidSetupStateMachineFactory,

@@ -24,8 +24,4 @@ export type AndroidSetupPageDeps = {
     startTesting: () => void;
 } & FolderPickerDeps;
 
-// 'Partial' is used to allow missing step IDs as they get implemented.
-// Once all step IDs have components, we should remove 'Partial'
-export type AndroidSetupStepComponentProvider = Partial<
-    Record<AndroidSetupStepId, AndroidSetupStep>
->;
+export type AndroidSetupStepComponentProvider = Record<AndroidSetupStepId, AndroidSetupStep>;

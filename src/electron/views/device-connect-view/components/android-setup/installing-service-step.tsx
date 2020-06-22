@@ -9,12 +9,10 @@ export const InstallingServiceStep = NamedFC<CommonAndroidSetupStepProps>(
     'InstallingServiceStep',
     (props: CommonAndroidSetupStepProps) => {
         return (
-            <main>
-                <AndroidSetupSpinnerStep
-                    deps={props.deps}
-                    spinnerLabel="Installing on your device..."
-                />
-            </main>
+            <AndroidSetupSpinnerStep
+                deps={props.deps}
+                spinnerLabel="Installing on your device..."
+            />
         );
     },
 );
