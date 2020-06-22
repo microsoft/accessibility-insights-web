@@ -86,7 +86,7 @@
         "commander": "^5.1.0",
         "core-js-bundle": "^3.6.5",
         "cross-env": "^7.0.2",
-        "css-loader": "^3.5.3",
+        "css-loader": "^3.6.0",
         "electron-builder": "^22.7.0",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.2",
