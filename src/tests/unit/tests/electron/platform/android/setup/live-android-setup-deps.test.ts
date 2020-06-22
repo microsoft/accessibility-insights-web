@@ -409,16 +409,20 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('setTcpForwarding returns false on error', async () => {
+    it('setTcpForwarding propagates error from serviceConfig.setTcpForwarding', async () => {
+        const deviceId = 'id1';
+        const serviceConfigErrorMessage = 'error from serviceConfig';
         serviceConfigMock
-            .setup(m => m.setTcpForwarding(undefined))
-            .throws(new Error('Threw during setTcpForwarding'))
+            .setup(m => m.setTcpForwarding(deviceId))
+            .returns(() => Promise.reject(new Error(serviceConfigErrorMessage)))
             .verifiable(Times.once());
+
         await initializeServiceConfig();
 
-        const success = await testSubject.setTcpForwarding();
-
-        expect(success).toBe(false);
+        testSubject.setSelectedDeviceId(deviceId);
+        await expect(testSubject.setTcpForwarding()).rejects.toThrowError(
+            serviceConfigErrorMessage,
+        );
 
         verifyAllMocks();
     });
@@ -442,13 +446,19 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('setTcpForwarding returns true if no error', async () => {
-        serviceConfigMock.setup(m => m.setTcpForwarding(undefined)).verifiable(Times.once());
+    it('setTcpForwarding propagates output from serviceConfig.setTcpForwarding', async () => {
+        const deviceId = 'id1';
+        const serviceConfigOutput = 63000;
+        serviceConfigMock
+            .setup(m => m.setTcpForwarding(deviceId))
+            .returns(() => Promise.resolve(serviceConfigOutput))
+            .verifiable(Times.once());
         await initializeServiceConfig();
 
-        const success = await testSubject.setTcpForwarding();
+        testSubject.setSelectedDeviceId(deviceId);
+        const output = await testSubject.setTcpForwarding();
 
-        expect(success).toBe(true);
+        expect(output).toBe(serviceConfigOutput);
 
         verifyAllMocks();
     });
