@@ -29,6 +29,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
             setSelectedDevice: this.setSelectedDevice,
             setAvailableDevices: this.setAvailableDevices,
             setScanPort: this.setScanPort,
+            setApplicationName: this.setApplicationName,
         });
     }
 
@@ -69,8 +70,13 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
         this.state.availableDevices = devices;
     };
 
-    private setScanPort = (scanPort: number): void => {
+    private setScanPort = (scanPort?: number): void => {
         // emitChange will be called from step transition when the step changes
         this.state.scanPort = scanPort;
+    };
+
+    private setApplicationName = (appName?: string): void => {
+        // emitChange will be called from step transition when the step changes
+        this.state.applicationName = appName;
     };
 }

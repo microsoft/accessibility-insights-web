@@ -20,7 +20,7 @@ import {
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
 import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
+import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import {
     PropertyBags,
     VisualizationInstanceProcessor,
@@ -31,7 +31,6 @@ import { cloneDeep } from 'lodash';
 import { IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
-
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
@@ -286,7 +285,6 @@ export class AssessmentBuilder {
             enableTest: AssessmentBuilder.enableTest,
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
             telemetryProcessor: factory => factory.forAssessmentRequirementScan,
             ...assessment.visualizationConfiguration,
             key: assessment.storeDataKey,

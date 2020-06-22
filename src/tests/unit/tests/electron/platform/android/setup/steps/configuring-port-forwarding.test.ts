@@ -19,6 +19,7 @@ describe('Android setup step: configuringPortForwarding', () => {
 
     it('onEnter transitions to prompt-connected-start-testing on success', async () => {
         const scanPort = 63000;
+        const appName = 'my app name';
 
         const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
 
@@ -28,11 +29,15 @@ describe('Android setup step: configuringPortForwarding', () => {
             .returns(() => Promise.resolve(scanPort))
             .verifiable(Times.once());
 
-        depsMock.setup(m => m.setScanPort(scanPort)).verifiable(Times.once());
-
         depsMock
-            .setup(m => m.stepTransition('prompt-connected-start-testing'))
+            .setup(m => m.getApplicationName())
+            .returns(_ => Promise.resolve(appName))
             .verifiable(Times.once());
+
+        depsMock.setup(m => m.setScanPort(scanPort)).verifiable(Times.once());
+        depsMock.setup(m => m.setApplicationName(appName)).verifiable(Times.once());
+
+        depsMock.setup(m => m.stepTransition('prompt-connected-start-testing'));
 
         const step = configuringPortForwarding(depsMock.object);
         await step.onEnter();
@@ -47,6 +52,8 @@ describe('Android setup step: configuringPortForwarding', () => {
             .setup(m => m.setTcpForwarding())
             .returns(() => Promise.reject(new Error('test error')))
             .verifiable(Times.once());
+
+        depsMock.setup(m => m.setApplicationName(undefined)).verifiable(Times.once());
 
         depsMock
             .setup(m => m.stepTransition('prompt-configuring-port-forwarding-failed'))

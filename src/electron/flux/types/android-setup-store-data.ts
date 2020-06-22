@@ -8,8 +8,8 @@ export type AndroidSetupStoreData = {
 
     // undefined if no device exists or if no device has been selected
     selectedDevice?: DeviceInfo;
-
     availableDevices?: DeviceInfo[];
 
     scanPort?: number;
+    applicationName?: string;
 };
