@@ -15,11 +15,11 @@ export class AndroidSetupStartListener {
     ) {}
 
     public initialize(): void {
-        this.storeChanged();
-
         this.userConfigStore.addChangedListener(this.storeChanged);
         this.featureFlagStore.addChangedListener(this.storeChanged);
         this.androidSetupStore.addChangedListener(this.storeChanged);
+
+        this.storeChanged();
     }
 
     private storeChanged = () => {
