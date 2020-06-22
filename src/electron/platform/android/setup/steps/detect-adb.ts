@@ -6,6 +6,7 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 export const detectAdb: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
+        console.log('inside onenter for detectAdb');
         const detected = await deps.hasAdbPath();
         deps.stepTransition(detected ? 'detect-devices' : 'prompt-locate-adb');
     },

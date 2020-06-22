@@ -7,23 +7,28 @@ import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 
 export class AndroidSetupTelemetrySender {
-    private step: AndroidSetupStepId | null = null;
-    private prevTimestamp: number = 0;
+    private step: AndroidSetupStepId | null;
+    private prevTimestamp: number;
 
     constructor(
         private readonly androidSetupStore: AndroidSetupStore,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentMs: () => number,
-    ) {}
+    ) {
+        this.step = null;
+        this.prevTimestamp = 0;
+    }
 
     public initialize(): void {
+        this.handleStoreUpdate(this.androidSetupStore);
         this.androidSetupStore.addChangedListener(this.handleStoreUpdate);
     }
 
-    private handleStoreUpdate(androidSetupStore: AndroidSetupStore): void {
+    private handleStoreUpdate = (androidSetupStore: AndroidSetupStore): void => {
         const newStep = androidSetupStore.getState().currentStepId;
+        const currentMs = this.getCurrentMs();
         if (this.step !== newStep) {
-            const elapsed = this.getCurrentMs() - this.prevTimestamp;
+            const elapsed = currentMs - this.prevTimestamp;
             const prevDuration = this.step === null ? 0 : elapsed;
             this.telemetryEventHandler.publishTelemetry(DEVICE_SETUP_STEP, {
                 telemetry: {
@@ -34,6 +39,9 @@ export class AndroidSetupTelemetrySender {
                     prevDuration,
                 },
             });
+
+            this.step = newStep;
+            this.prevTimestamp = currentMs;
         }
-    }
+    };
 }

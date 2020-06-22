@@ -298,7 +298,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const androidSetupTelemetrySender = new AndroidSetupTelemetrySender(
             androidSetupStore,
             telemetryEventHandler,
-            performance.now,
+            () => performance.now(),
         );
         androidSetupTelemetrySender.initialize();
 
