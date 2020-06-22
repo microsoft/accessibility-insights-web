@@ -11,18 +11,8 @@ describe('Android setup step: detectDevices', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
         const step = detectDevices(deps);
-        checkExpectedActionsAreDefined(step, ['cancel']);
+        checkExpectedActionsAreDefined(step, []);
         expect(step.onEnter).toBeDefined();
-    });
-
-    it('cancel transitions to prompt-connect-to-device as expected', () => {
-        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
-        depsMock.setup(m => m.stepTransition('prompt-connect-to-device')).verifiable(Times.once());
-
-        const step = detectDevices(depsMock.object);
-        step.actions.cancel();
-
-        depsMock.verifyAll();
     });
 
     it('onEnter transitions to prompt-connect-to-device as expected', async () => {
@@ -64,6 +54,7 @@ describe('Android setup step: detectDevices', () => {
         depsMock.setup(m => m.setAvailableDevices([])).verifiable(Times.once());
         depsMock.setup(m => m.setSelectedDeviceId('device1')).verifiable(Times.once());
         depsMock.setup(m => m.setSelectedDevice(devices[0])).verifiable(Times.once());
+        depsMock.setup(m => m.setAvailableDevices(devices)).verifiable(Times.once());
         depsMock.setup(m => m.stepTransition('detect-service')).verifiable(Times.once());
 
         const step = detectDevices(depsMock.object);

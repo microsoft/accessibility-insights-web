@@ -40,7 +40,7 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'prompt-locate-adb': promptLocateAdb,
     'prompt-connect-to-device': promptConnectToDevice,
     'detect-devices': detectDevices,
-    'prompt-choose-device': null,
+    'prompt-choose-device': promptConnectToDevice,
     'detect-service': detectService,
     'prompt-install-service': promptInstallService,
     'installing-service': installingService,

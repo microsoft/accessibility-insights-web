@@ -17,6 +17,7 @@
 .github/
 .prettierignore
 .yarnrc
+.vs/
 AppXManifest.xml
 copyright-header.txt
 dist/

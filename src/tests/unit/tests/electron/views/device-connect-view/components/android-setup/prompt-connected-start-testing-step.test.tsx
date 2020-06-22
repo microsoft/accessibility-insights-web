@@ -12,6 +12,7 @@ import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-st
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('PromptConnectedStartTestingStep', () => {
+    const testApp: string = 'super-cool app';
     let props: CommonAndroidSetupStepProps;
     let startTestingMock: IMock<typeof props.deps.startTesting>;
     let androidSetupActionCreatorMock: IMock<AndroidSetupActionCreator>;
@@ -33,6 +34,7 @@ describe('PromptConnectedStartTestingStep', () => {
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
+        props.androidSetupStoreData.applicationName = testApp;
 
         const rendered = shallow(<PromptConnectedStartTestingStep {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
@@ -46,6 +48,7 @@ describe('PromptConnectedStartTestingStep', () => {
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
+        props.androidSetupStoreData.applicationName = testApp;
 
         const rendered = shallow(<PromptConnectedStartTestingStep {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
