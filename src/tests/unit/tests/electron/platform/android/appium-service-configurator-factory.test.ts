@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { AppiumAdbCreator } from 'electron/platform/android/appium-adb-creator';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-adb-wrapper';
-import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
+import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
+import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfiguratorFactory tests', () => {
@@ -18,11 +18,9 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .setup(m => m.createADB(undefined))
             .returns(() => null)
             .verifiable(Times.once());
-        const factory = new AppiumServiceConfiguratorFactory(adbCreatorMock.object);
+        const factory = new AppiumAdbWrapperFactory(adbCreatorMock.object);
 
-        expect(await factory.getServiceConfigurator(null)).toBeInstanceOf(
-            AppiumServiceConfigurator,
-        );
+        expect(await factory.getServiceConfigurator(null)).toBeInstanceOf(AppiumAdbWrapper);
 
         adbCreatorMock.verifyAll();
     });
@@ -33,10 +31,10 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .setup(m => m.createADB({ sdkRoot: expectedSdkRoot }))
             .returns(() => null)
             .verifiable(Times.once());
-        const factory = new AppiumServiceConfiguratorFactory(adbCreatorMock.object);
+        const factory = new AppiumAdbWrapperFactory(adbCreatorMock.object);
 
         expect(await factory.getServiceConfigurator(expectedSdkRoot)).toBeInstanceOf(
-            AppiumServiceConfigurator,
+            AppiumAdbWrapper,
         );
 
         adbCreatorMock.verifyAll();
@@ -48,7 +46,7 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .setup(m => m.createADB(undefined))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
-        const factory = new AppiumServiceConfiguratorFactory(adbCreatorMock.object);
+        const factory = new AppiumAdbWrapperFactory(adbCreatorMock.object);
 
         await expect(factory.getServiceConfigurator(null)).rejects.toThrowError(expectedMessage);
 

@@ -2,11 +2,7 @@
 // Licensed under the MIT License.
 
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import {
-    AndroidServiceConfigurator,
-    DeviceInfo,
-    PackageInfo,
-} from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 
 export interface AndroidServiceSetupBusinessLogic {
     getDevices(): Promise<DeviceInfo[]>;
@@ -24,7 +20,7 @@ export class LiveAndroidServiceSetupBusinessLogic implements AndroidServiceSetup
         'com.microsoft.accessibilityinsightsforandroidservice';
 
     public constructor(
-        private readonly serviceConfigurator: AndroidServiceConfigurator,
+        private readonly serviceConfigurator: AdbWrapper,
         private readonly apkLocator: AndroidServiceApkLocator,
     ) {}
 

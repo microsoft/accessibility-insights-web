@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/adb-wrapper';
+import { AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidServiceSetupBusinessLogic,
     LiveAndroidServiceSetupBusinessLogic,
@@ -14,7 +14,7 @@ export interface AndroidServiceSetupBusinessLogicFactory {
 
 export class LiveAndroidServiceSetupBusinessLogicFactory {
     constructor(
-        private readonly serviceConfiguratorFactory: AndroidServiceConfiguratorFactory,
+        private readonly serviceConfiguratorFactory: AdbWrapperFactory,
         private readonly apkLocator: AndroidServiceApkLocator,
     ) {}
 

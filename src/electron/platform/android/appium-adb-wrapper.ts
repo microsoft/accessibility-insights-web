@@ -2,18 +2,14 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import {
-    AndroidServiceConfigurator,
-    DeviceInfo,
-    PackageInfo,
-} from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { DictionaryStringTo } from 'types/common-types';
 
 type AdbDevice = {
     udid: string;
 };
 
-export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
+export class AppiumAdbWrapper implements AdbWrapper {
     constructor(private readonly adb: ADB) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {

@@ -2,22 +2,17 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import {
-    AndroidServiceConfigurator,
-    AndroidServiceConfiguratorFactory,
-} from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import {
     AppiumAdbCreateParameters,
     AppiumAdbCreator,
 } from 'electron/platform/android/appium-adb-creator';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-adb-wrapper';
+import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 
-export class AppiumServiceConfiguratorFactory implements AndroidServiceConfiguratorFactory {
+export class AppiumAdbWrapperFactory implements AdbWrapperFactory {
     public constructor(private readonly adbCreator: AppiumAdbCreator) {}
 
-    public getServiceConfigurator = async (
-        sdkRoot: string,
-    ): Promise<AndroidServiceConfigurator> => {
+    public getServiceConfigurator = async (sdkRoot: string): Promise<AdbWrapper> => {
         const parameters: AppiumAdbCreateParameters = sdkRoot
             ? {
                   sdkRoot,
@@ -26,6 +21,6 @@ export class AppiumServiceConfiguratorFactory implements AndroidServiceConfigura
 
         const adb: ADB = await this.adbCreator.createADB(parameters);
 
-        return new AppiumServiceConfigurator(adb);
+        return new AppiumAdbWrapper(adb);
     };
 }

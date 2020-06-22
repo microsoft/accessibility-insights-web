@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import {
-    AndroidServiceConfigurator,
-    AndroidServiceConfiguratorFactory,
-} from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidServiceSetupBusinessLogic,
     LiveAndroidServiceSetupBusinessLogic,
@@ -14,17 +11,14 @@ import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/a
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
-    let serviceConfigFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
-    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
+    let serviceConfigFactoryMock: IMock<AdbWrapperFactory>;
+    let serviceConfigMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let testSubject: LiveAndroidServiceSetupBusinessLogicFactory;
 
     beforeEach(() => {
-        serviceConfigFactoryMock = Mock.ofType<AndroidServiceConfiguratorFactory>(
-            undefined,
-            MockBehavior.Strict,
-        );
-        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
+        serviceConfigFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
+        serviceConfigMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         testSubject = new LiveAndroidServiceSetupBusinessLogicFactory(
             serviceConfigFactoryMock.object,

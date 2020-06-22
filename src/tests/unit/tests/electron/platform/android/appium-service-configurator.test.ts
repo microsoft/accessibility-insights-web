@@ -3,12 +3,12 @@
 
 import ADB from 'appium-adb';
 import { PackageInfo } from 'electron/platform/android/adb-wrapper';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-adb-wrapper';
+import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfigurator tests', () => {
     let adbMock: IMock<ADB>;
-    let testSubject: AppiumServiceConfigurator;
+    let testSubject: AppiumAdbWrapper;
 
     const emulatorId: string = 'id1';
     const emulatorModel: string = 'model1';
@@ -22,7 +22,7 @@ describe('AppiumServiceConfigurator tests', () => {
 
     beforeEach(() => {
         adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
-        testSubject = new AppiumServiceConfigurator(adbMock.object);
+        testSubject = new AppiumAdbWrapper(adbMock.object);
     });
 
     it('getConnectedDevices, propagates error', async () => {

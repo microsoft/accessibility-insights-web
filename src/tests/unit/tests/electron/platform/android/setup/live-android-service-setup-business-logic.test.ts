@@ -5,11 +5,7 @@ import {
     AndroidServiceApkInfo,
     AndroidServiceApkLocator,
 } from 'electron/platform/android/android-service-apk-locator';
-import {
-    AndroidServiceConfigurator,
-    DeviceInfo,
-    PackageInfo,
-} from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { LiveAndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -27,12 +23,12 @@ describe('LiveAndroidServiceSetupBusinessLogic', () => {
     const mediaProjectionServiceName: string = 'media_projection';
     const serviceIsRunningResponseSnippet: string = 'label=Accessibility Insights';
 
-    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
+    let serviceConfigMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let testSubject: LiveAndroidServiceSetupBusinessLogic;
 
     beforeEach(() => {
-        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
+        serviceConfigMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         testSubject = new LiveAndroidServiceSetupBusinessLogic(
             serviceConfigMock.object,

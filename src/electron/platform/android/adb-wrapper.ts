@@ -12,7 +12,7 @@ export type PackageInfo = {
     versionName?: string;
 };
 
-export interface AndroidServiceConfigurator {
+export interface AdbWrapper {
     getConnectedDevices(): Promise<Array<DeviceInfo>>;
     getPackageInfo(deviceId: string, packageName: string): Promise<PackageInfo>;
     getDumpsysOutput(deviceId: string, serviceToQuery: string): Promise<string>;
@@ -22,6 +22,6 @@ export interface AndroidServiceConfigurator {
     removeTcpForwarding(deviceId: string, devicePort: number): Promise<void>;
 }
 
-export interface AndroidServiceConfiguratorFactory {
-    getServiceConfigurator(sdkRoot: string): Promise<AndroidServiceConfigurator>;
+export interface AdbWrapperFactory {
+    getServiceConfigurator(sdkRoot: string): Promise<AdbWrapper>;
 }
