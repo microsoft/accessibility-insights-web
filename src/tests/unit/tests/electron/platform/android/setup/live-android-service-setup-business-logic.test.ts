@@ -6,7 +6,7 @@ import {
     AndroidServiceApkLocator,
 } from 'electron/platform/android/android-service-apk-locator';
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
-import { LiveAndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
+import { LiveAndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidServiceSetupBusinessLogic', () => {

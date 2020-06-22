@@ -7,7 +7,7 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
-import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
+import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/android-service-configurator';
 import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {

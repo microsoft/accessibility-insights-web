@@ -6,7 +6,7 @@ import { AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidServiceSetupBusinessLogic,
     LiveAndroidServiceSetupBusinessLogic,
-} from 'electron/platform/android/setup/live-android-service-setup-business-logic';
+} from 'electron/platform/android/setup/android-service-configurator';
 
 export interface AndroidServiceSetupBusinessLogicFactory {
     getBusinessLogic(adbLocation: string): Promise<AndroidServiceSetupBusinessLogic>;
