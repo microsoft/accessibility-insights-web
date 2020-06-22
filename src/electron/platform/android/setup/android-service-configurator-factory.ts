@@ -8,11 +8,11 @@ import {
     LiveAndroidServiceConfigurator,
 } from 'electron/platform/android/setup/android-service-configurator';
 
-export interface AndroidServiceSetupBusinessLogicFactory {
+export interface AndroidServiceConfiguratorFactory {
     getBusinessLogic(adbLocation: string): Promise<AndroidServiceConfigurator>;
 }
 
-export class LiveAndroidServiceSetupBusinessLogicFactory {
+export class LiveAndroidServiceConfiguratorFactory {
     constructor(
         private readonly serviceConfiguratorFactory: AdbWrapperFactory,
         private readonly apkLocator: AndroidServiceApkLocator,

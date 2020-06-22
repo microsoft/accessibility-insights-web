@@ -7,20 +7,20 @@ import {
     AndroidServiceConfigurator,
     LiveAndroidServiceConfigurator,
 } from 'electron/platform/android/setup/android-service-configurator';
-import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { LiveAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
     let serviceConfigFactoryMock: IMock<AdbWrapperFactory>;
     let serviceConfigMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
-    let testSubject: LiveAndroidServiceSetupBusinessLogicFactory;
+    let testSubject: LiveAndroidServiceConfiguratorFactory;
 
     beforeEach(() => {
         serviceConfigFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
         serviceConfigMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
-        testSubject = new LiveAndroidServiceSetupBusinessLogicFactory(
+        testSubject = new LiveAndroidServiceConfiguratorFactory(
             serviceConfigFactoryMock.object,
             apkLocatorMock.object,
         );
