@@ -8,7 +8,7 @@ import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/android-service-configurator';
-import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
+import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     private selectedDeviceId: string;

@@ -7,7 +7,7 @@ import {
     AndroidServiceSetupBusinessLogic,
     LiveAndroidServiceSetupBusinessLogic,
 } from 'electron/platform/android/setup/android-service-configurator';
-import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
+import { LiveAndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {

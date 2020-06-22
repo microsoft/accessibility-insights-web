@@ -9,7 +9,7 @@ import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/android-service-configurator';
-import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/live-android-service-setup-business-logic-factory';
+import { AndroidServiceSetupBusinessLogicFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
