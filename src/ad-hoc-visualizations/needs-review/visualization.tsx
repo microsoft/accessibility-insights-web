@@ -1,13 +1,8 @@
-import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { Messages } from 'common/messages';
-import { TelemetryDataFactory } from 'common/telemetry-data-factory';
-import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
-import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
 
