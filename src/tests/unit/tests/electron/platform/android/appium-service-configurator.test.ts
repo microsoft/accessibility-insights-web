@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import { PackageInfo } from 'electron/platform/android/android-service-configurator';
+import { PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 

@@ -6,7 +6,7 @@ import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
-} from 'electron/platform/android/android-service-configurator';
+} from 'electron/platform/android/adb-wrapper';
 import { DictionaryStringTo } from 'types/common-types';
 
 type AdbDevice = {

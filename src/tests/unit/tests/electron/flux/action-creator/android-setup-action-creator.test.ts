@@ -3,7 +3,7 @@
 import { Action } from 'common/flux/action';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(AndroidSetupActionCreator, () => {

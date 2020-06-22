@@ -5,7 +5,7 @@ import { AndroidServiceApkLocator } from 'electron/platform/android/android-serv
 import {
     AndroidServiceConfigurator,
     AndroidServiceConfiguratorFactory,
-} from 'electron/platform/android/android-service-configurator';
+} from 'electron/platform/android/adb-wrapper';
 import {
     AndroidServiceSetupBusinessLogic,
     LiveAndroidServiceSetupBusinessLogic,

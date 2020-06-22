@@ -6,7 +6,7 @@ import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
-} from 'electron/platform/android/android-service-configurator';
+} from 'electron/platform/android/adb-wrapper';
 
 export interface AndroidServiceSetupBusinessLogic {
     getDevices(): Promise<DeviceInfo[]>;

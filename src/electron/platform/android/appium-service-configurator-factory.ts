@@ -5,7 +5,7 @@ import ADB from 'appium-adb';
 import {
     AndroidServiceConfigurator,
     AndroidServiceConfiguratorFactory,
-} from 'electron/platform/android/android-service-configurator';
+} from 'electron/platform/android/adb-wrapper';
 import {
     AppiumAdbCreateParameters,
     AppiumAdbCreator,

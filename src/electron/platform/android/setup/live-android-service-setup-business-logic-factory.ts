@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/android-service-configurator';
+import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidServiceSetupBusinessLogic,
     LiveAndroidServiceSetupBusinessLogic,

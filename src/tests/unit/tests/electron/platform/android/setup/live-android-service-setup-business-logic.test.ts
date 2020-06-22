@@ -9,7 +9,7 @@ import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
-} from 'electron/platform/android/android-service-configurator';
+} from 'electron/platform/android/adb-wrapper';
 import { LiveAndroidServiceSetupBusinessLogic } from 'electron/platform/android/setup/live-android-service-setup-business-logic';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 

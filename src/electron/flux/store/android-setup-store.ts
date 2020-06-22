@@ -6,7 +6,7 @@ import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setu
 import { AndroidSetupActions } from '../action/android-setup-actions';
 import { AndroidSetupStoreData } from '../types/android-setup-store-data';
 
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidSetupStateMachine,
     AndroidSetupStateMachineFactory,
