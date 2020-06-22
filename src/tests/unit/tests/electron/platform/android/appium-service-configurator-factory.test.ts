@@ -36,9 +36,7 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             AppiumServiceConfigurator,
         );
 
-        adbCreatorMock.verifyAll();
-        apkLocatorMock.verifyAll();
-        portFinderMock.verifyAll();
+        verifyAllMocks();
     });
 
     it('getServiceConfigurator creates with sdkRoot if it is provided', async () => {
@@ -57,9 +55,7 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             AppiumServiceConfigurator,
         );
 
-        adbCreatorMock.verifyAll();
-        apkLocatorMock.verifyAll();
-        portFinderMock.verifyAll();
+        verifyAllMocks();
     });
 
     it('getServiceConfigurator propagates error to caller', async () => {
@@ -76,8 +72,12 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
 
         await expect(factory.getServiceConfigurator(null)).rejects.toThrowError(expectedMessage);
 
+        verifyAllMocks();
+    });
+
+    function verifyAllMocks(): void {
         adbCreatorMock.verifyAll();
         apkLocatorMock.verifyAll();
         portFinderMock.verifyAll();
-    });
+    }
 });
