@@ -10,8 +10,18 @@ describe('Android setup step: detectPermissions', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
         const step = detectPermissions(deps);
-        checkExpectedActionsAreDefined(step, []);
+        checkExpectedActionsAreDefined(step, ['cancel']);
         expect(step.onEnter).toBeDefined();
+    });
+
+    it('cancel transitions to prompt-choose-device', async () => {
+        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
+        depsMock.setup(m => m.stepTransition('prompt-choose-device')).verifiable(Times.once());
+
+        const step = detectPermissions(depsMock.object);
+        step.actions.cancel();
+
+        depsMock.verifyAll();
     });
 
     it('onEnter transitions to configuring-port-forwarding on success', async () => {

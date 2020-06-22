@@ -4,7 +4,11 @@
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
 export const detectService: AndroidSetupStepConfig = deps => ({
-    actions: {},
+    actions: {
+        cancel: () => {
+            deps.stepTransition('prompt-choose-device');
+        },
+    },
     onEnter: async () => {
         const detected = await deps.hasExpectedServiceVersion();
         deps.stepTransition(detected ? 'detect-permissions' : 'prompt-install-service');

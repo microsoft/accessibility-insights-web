@@ -24,6 +24,7 @@ export const detectDevices: AndroidSetupStepConfig = deps => {
                 case 1: {
                     deps.setSelectedDeviceId(devices[0].id);
                     deps.setSelectedDevice(devices[0]);
+                    deps.setAvailableDevices(devices);
                     deps.stepTransition('detect-service');
                     break;
                 }

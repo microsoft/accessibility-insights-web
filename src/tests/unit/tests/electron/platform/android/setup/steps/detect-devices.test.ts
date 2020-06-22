@@ -64,6 +64,7 @@ describe('Android setup step: detectDevices', () => {
         depsMock.setup(m => m.setAvailableDevices([])).verifiable(Times.once());
         depsMock.setup(m => m.setSelectedDeviceId('device1')).verifiable(Times.once());
         depsMock.setup(m => m.setSelectedDevice(devices[0])).verifiable(Times.once());
+        depsMock.setup(m => m.setAvailableDevices(devices)).verifiable(Times.once());
         depsMock.setup(m => m.stepTransition('detect-service')).verifiable(Times.once());
 
         const step = detectDevices(depsMock.object);
