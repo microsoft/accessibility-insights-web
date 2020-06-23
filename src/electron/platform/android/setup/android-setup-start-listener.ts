@@ -11,7 +11,7 @@ export class AndroidSetupStartListener {
         private readonly userConfigStore: UserConfigurationStore,
         private readonly androidSetupStore: AndroidSetupStore,
         private readonly featureFlagStore: FeatureFlagStore,
-        private androidSetupActionCreator: AndroidSetupActionCreator,
+        private readonly androidSetupActionCreator: AndroidSetupActionCreator,
     ) {}
 
     public initialize(): void {
