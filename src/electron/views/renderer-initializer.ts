@@ -76,6 +76,7 @@ import { createDeviceConfigFetcher } from 'electron/platform/android/device-conf
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
@@ -94,6 +95,7 @@ import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-format
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
+import { getPortPromise } from 'portfinder';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
@@ -204,7 +206,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+                    new AppiumServiceConfiguratorFactory(
+                        new LiveAppiumAdbCreator(),
+                        apkLocator,
+                        getPortPromise,
+                    ),
                     userConfigurationStore,
                     apkLocator,
                     userConfigMessageCreator,
@@ -405,6 +411,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             telemetryDataFactory,
             TelemetryEventSource.ElectronAutomatedChecksView,
         );
+
+        const androidSetupStartListener = new AndroidSetupStartListener(
+            userConfigurationStore,
+            androidSetupStore,
+            featureFlagStore,
+            androidSetupActionCreator,
+        );
+        androidSetupStartListener.initialize();
 
         const navigatorUtils = new NavigatorUtils(window.navigator, logger);
 

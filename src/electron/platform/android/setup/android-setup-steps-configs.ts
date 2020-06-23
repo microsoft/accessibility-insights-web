@@ -10,12 +10,14 @@ import { detectDevices } from 'electron/platform/android/setup/steps/detect-devi
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
 import { detectService } from 'electron/platform/android/setup/steps/detect-service';
 import { installingService } from 'electron/platform/android/setup/steps/installing-service';
+import { promptChooseDevice } from 'electron/platform/android/setup/steps/prompt-choose-device';
 import { promptConfiguringPortForwardingFailed } from 'electron/platform/android/setup/steps/prompt-configuring-port-forwarding-failed';
 import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
 import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
 import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
 import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
 import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
+import { waitToStart } from 'electron/platform/android/setup/steps/wait-to-start';
 import {
     StateMachineStepConfig,
     StateMachineStepConfigs,
@@ -36,11 +38,12 @@ type AndroidSetupStepConfigs = StateMachineStepConfigs<
 >;
 
 export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
+    'wait-to-start': waitToStart,
     'detect-adb': detectAdb,
     'prompt-locate-adb': promptLocateAdb,
     'prompt-connect-to-device': promptConnectToDevice,
     'detect-devices': detectDevices,
-    'prompt-choose-device': null,
+    'prompt-choose-device': promptChooseDevice,
     'detect-service': detectService,
     'prompt-install-service': promptInstallService,
     'installing-service': installingService,

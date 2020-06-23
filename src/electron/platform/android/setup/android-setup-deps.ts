@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Logger } from 'common/logging/logger';
 import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
 
 export type AndroidSetupDeps = {
@@ -11,6 +12,8 @@ export type AndroidSetupDeps = {
     hasExpectedServiceVersion: () => Promise<boolean>;
     installService: () => Promise<boolean>;
     hasExpectedPermissions: () => Promise<boolean>;
-    setTcpForwarding: () => Promise<boolean>;
+    setupTcpForwarding: () => Promise<number>;
+    removeTcpForwarding: (hostPort: number) => Promise<void>;
     getApplicationName: () => Promise<string>;
+    logger: Logger;
 };

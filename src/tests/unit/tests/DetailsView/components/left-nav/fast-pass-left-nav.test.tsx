@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import {
     FastPassLeftNav,
     FastPassLeftNavDeps,
@@ -11,24 +11,39 @@ import {
 import { NavLinkHandler } from '../../../../../../DetailsView/components/left-nav/nav-link-handler';
 
 describe(FastPassLeftNav, () => {
-    it('renders visualization based left nav with appropriate params', () => {
-        const onRightPanelContentSwitch: () => void = () => {};
-        const setNavComponentRef = _ => {};
-        const navLinkHandlerStub: NavLinkHandler = {
+    let onRightPanelContentSwitch: () => void;
+    let setNavComponentRef: (_) => void;
+    let navLinkHandlerStub: NavLinkHandler;
+    let deps: FastPassLeftNavDeps;
+    let props: FastPassLeftNavProps;
+
+    beforeEach(() => {
+        onRightPanelContentSwitch = () => {};
+        setNavComponentRef = _ => {};
+        navLinkHandlerStub = {
             onFastPassTestClick: (e, link) => null,
         } as NavLinkHandler;
-        const deps: FastPassLeftNavDeps = {
+        deps = {
             navLinkHandler: navLinkHandlerStub,
         } as FastPassLeftNavDeps;
-        const props: FastPassLeftNavProps = {
+        props = {
             deps,
             selectedKey: 'some string',
             featureFlagStoreData: {},
             onRightPanelContentSwitch,
             setNavComponentRef,
         };
+    });
+
+    it('renders visualization based left nav with appropriate params', () => {
+        const actual = shallow(<FastPassLeftNav {...props} />);
+        expect(actual.getElement()).toMatchSnapshot();
+    });
+
+    it('includes needs review test when feature flag on', () => {
+        props.featureFlagStoreData[FeatureFlags.needsReview] = true;
 
         const actual = shallow(<FastPassLeftNav {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
     });
 });

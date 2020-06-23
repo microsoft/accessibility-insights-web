@@ -6,6 +6,9 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 export const promptConfiguringPortForwardingFailed: AndroidSetupStepConfig = deps => {
     return {
         actions: {
+            cancel: () => {
+                deps.stepTransition('prompt-choose-device');
+            },
             next: () => deps.stepTransition('configuring-port-forwarding'),
         },
     };

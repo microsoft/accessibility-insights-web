@@ -30,6 +30,8 @@ import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
+import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
@@ -58,11 +60,12 @@ export type AutomatedChecksViewProps = {
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    androidSetupStoreData: AndroidSetupStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
     public componentDidMount(): void {
-        this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port);
+        this.props.deps.scanActionCreator.scan(this.getScanPort());
     }
 
     public render(): JSX.Element {
@@ -125,7 +128,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     <div className={styles.mainContentWrapper}>
                         <CommandBar
                             deps={this.props.deps}
-                            deviceStoreData={this.props.deviceStoreData}
+                            scanPort={this.getScanPort()}
                             scanStoreData={this.props.scanStoreData}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             cardsViewData={cardsViewData}
@@ -149,18 +152,28 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
+    private getConnectedDeviceName(): string {
+        return this.props.featureFlagStoreData[UnifiedFeatureFlags.adbSetupView]
+            ? this.props.androidSetupStoreData.selectedDevice?.friendlyName
+            : this.props.deviceStoreData.connectedDevice;
+    }
+
+    private getScanPort(): number {
+        return this.props.featureFlagStoreData[UnifiedFeatureFlags.adbSetupView]
+            ? this.props.androidSetupStoreData.scanPort
+            : this.props.deviceStoreData.port;
+    }
+
     private renderDeviceDisconnected(): JSX.Element {
         return (
             <DeviceDisconnectedPopup
-                deviceName={this.props.deviceStoreData.connectedDevice}
+                deviceName={this.getConnectedDeviceName()}
                 onConnectNewDevice={() =>
                     this.props.deps.windowStateActionCreator.setRoute({
                         routeId: 'deviceConnectView',
                     })
                 }
-                onRescanDevice={() =>
-                    this.props.deps.scanActionCreator.scan(this.props.deviceStoreData.port)
-                }
+                onRescanDevice={() => this.props.deps.scanActionCreator.scan(this.getScanPort())}
             />
         );
     }

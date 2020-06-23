@@ -10,8 +10,18 @@ describe('Android setup step: promptConnectedStartTesting', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
         const step = promptConnectedStartTesting(deps);
-        checkExpectedActionsAreDefined(step, ['rescan']);
+        checkExpectedActionsAreDefined(step, ['cancel', 'rescan']);
         expect(step.onEnter).not.toBeDefined();
+    });
+
+    it('cancel transitions to prompt-choose-device', async () => {
+        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
+        depsMock.setup(m => m.stepTransition('prompt-choose-device')).verifiable(Times.once());
+
+        const step = promptConnectedStartTesting(depsMock.object);
+        step.actions.cancel();
+
+        depsMock.verifyAll();
     });
 
     it('rescan transitions to detect-adb as expected', () => {

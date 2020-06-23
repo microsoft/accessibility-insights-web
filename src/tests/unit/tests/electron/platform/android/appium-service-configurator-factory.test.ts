@@ -3,17 +3,22 @@
 
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AppiumAdbCreator } from 'electron/platform/android/appium-adb-creator';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
+import {
+    AppiumServiceConfigurator,
+    PortFinder,
+} from 'electron/platform/android/appium-service-configurator';
 import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumServiceConfiguratorFactory tests', () => {
     let adbCreatorMock: IMock<AppiumAdbCreator>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
+    let portFinderMock: IMock<PortFinder>;
 
     beforeEach(() => {
         adbCreatorMock = Mock.ofType<AppiumAdbCreator>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
+        portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
     });
 
     it('getServiceConfigurator creates without parameters if no sdkRoot is provided', async () => {
@@ -24,14 +29,14 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
         const factory = new AppiumServiceConfiguratorFactory(
             adbCreatorMock.object,
             apkLocatorMock.object,
+            portFinderMock.object,
         );
 
         expect(await factory.getServiceConfigurator(null)).toBeInstanceOf(
             AppiumServiceConfigurator,
         );
 
-        adbCreatorMock.verifyAll();
-        apkLocatorMock.verifyAll();
+        verifyAllMocks();
     });
 
     it('getServiceConfigurator creates with sdkRoot if it is provided', async () => {
@@ -43,14 +48,14 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
         const factory = new AppiumServiceConfiguratorFactory(
             adbCreatorMock.object,
             apkLocatorMock.object,
+            portFinderMock.object,
         );
 
         expect(await factory.getServiceConfigurator(expectedSdkRoot)).toBeInstanceOf(
             AppiumServiceConfigurator,
         );
 
-        adbCreatorMock.verifyAll();
-        apkLocatorMock.verifyAll();
+        verifyAllMocks();
     });
 
     it('getServiceConfigurator propagates error to caller', async () => {
@@ -62,11 +67,17 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
         const factory = new AppiumServiceConfiguratorFactory(
             adbCreatorMock.object,
             apkLocatorMock.object,
+            portFinderMock.object,
         );
 
         await expect(factory.getServiceConfigurator(null)).rejects.toThrowError(expectedMessage);
 
+        verifyAllMocks();
+    });
+
+    function verifyAllMocks(): void {
         adbCreatorMock.verifyAll();
         apkLocatorMock.verifyAll();
-    });
+        portFinderMock.verifyAll();
+    }
 });

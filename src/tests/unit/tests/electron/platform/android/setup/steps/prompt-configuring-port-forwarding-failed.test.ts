@@ -10,8 +10,18 @@ describe('Android setup step: promptConfiguringPortForwardingFailed', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
         const step = promptConfiguringPortForwardingFailed(deps);
-        checkExpectedActionsAreDefined(step, ['next']);
+        checkExpectedActionsAreDefined(step, ['cancel', 'next']);
         expect(step.onEnter).not.toBeDefined();
+    });
+
+    it('cancel transitions to prompt-choose-device', async () => {
+        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
+        depsMock.setup(m => m.stepTransition('prompt-choose-device')).verifiable(Times.once());
+
+        const step = promptConfiguringPortForwardingFailed(depsMock.object);
+        step.actions.cancel();
+
+        depsMock.verifyAll();
     });
 
     it('next transitions to configuring-port-forwarding as expected', () => {

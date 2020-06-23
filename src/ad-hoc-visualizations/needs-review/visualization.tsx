@@ -1,7 +1,9 @@
-import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { FeatureFlags } from 'common/feature-flags';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -16,16 +18,15 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     getTestView: props => <AdhocIssuesTestView {...props} />,
     getStoreData: data => data.adhoc.needsReview, //
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
-        title: 'Needs Review',
+        title: 'Needs review',
         enableMessage: 'Running needs review checks...',
-        toggleLabel: 'Show areas needing review',
+        toggleLabel: 'Show elements needing review',
         linkToDetailsViewText: 'List view and filtering',
     },
-    chromeCommand: '',
     launchPanelDisplayOrder: 6, //
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>
@@ -37,21 +38,17 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
                 'th-has-data-cells',
             ],
             resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances, //
-            telemetryProcessor: (
-                telemetryFactory: TelemetryDataFactory, //
-            ) => telemetryFactory.forIssuesAnalyzerScan,
+            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+                telemetryFactory.forIssuesAnalyzerScan, //
             key: AdHocTestkeys.NeedsReview,
             testType: VisualizationType.NeedsReview,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor, //
-    getNotificationMessage: (
-        selectorMap,
-        key,
-        warnings, //
-    ) => getNotificationMessage(selectorMap, warnings),
-    getDrawer: provider => provider.createIssuesDrawer(), //
+    getNotificationMessage: null, //
+    getDrawer: () => null, //
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID, //
+    featureFlagToEnable: FeatureFlags.needsReview,
 };
