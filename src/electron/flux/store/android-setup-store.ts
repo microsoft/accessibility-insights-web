@@ -28,6 +28,8 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
             stepTransition: this.stepTransition,
             setSelectedDevice: this.setSelectedDevice,
             setAvailableDevices: this.setAvailableDevices,
+            getScanPort: () => this.state.scanPort,
+            setScanPort: this.setScanPort,
             setApplicationName: this.setApplicationName,
         });
     }
@@ -67,6 +69,11 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     private setAvailableDevices = (devices: DeviceInfo[]): void => {
         // emitChange will be called from step transition when the step changes
         this.state.availableDevices = devices;
+    };
+
+    private setScanPort = (scanPort?: number): void => {
+        // emitChange will be called from step transition when the step changes
+        this.state.scanPort = scanPort;
     };
 
     private setApplicationName = (appName?: string): void => {

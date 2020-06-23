@@ -3,7 +3,6 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 
-import { defaultAdbPortNumber } from 'electron/platform/android/appium-service-configurator';
 import { ConnectedDevicePayload, PortPayload } from '../action/device-action-payloads';
 import { DeviceActions } from '../action/device-actions';
 import { DeviceConnectState } from '../types/device-connect-state';
@@ -18,7 +17,7 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
         return {
             deviceConnectState: DeviceConnectState.Default,
             connectedDevice: null,
-            port: defaultAdbPortNumber,
+            port: null,
         };
     }
 
