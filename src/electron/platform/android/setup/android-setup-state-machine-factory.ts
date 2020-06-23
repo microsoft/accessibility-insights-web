@@ -41,7 +41,7 @@ export const createAndroidSetupStateMachineFactory = (
         return new StateMachine<AndroidSetupStepId, AndroidSetupActions>(
             stepsFactory({ ...deps, ...storeCallbacks }),
             storeCallbacks.stepTransition,
-            'detect-adb',
+            'wait-to-start',
         );
     };
 };
