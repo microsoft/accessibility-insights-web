@@ -10,6 +10,7 @@ import { detectDevices } from 'electron/platform/android/setup/steps/detect-devi
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
 import { detectService } from 'electron/platform/android/setup/steps/detect-service';
 import { installingService } from 'electron/platform/android/setup/steps/installing-service';
+import { promptChooseDevice } from 'electron/platform/android/setup/steps/prompt-choose-device';
 import { promptConfiguringPortForwardingFailed } from 'electron/platform/android/setup/steps/prompt-configuring-port-forwarding-failed';
 import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
 import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
@@ -40,7 +41,7 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'prompt-locate-adb': promptLocateAdb,
     'prompt-connect-to-device': promptConnectToDevice,
     'detect-devices': detectDevices,
-    'prompt-choose-device': promptConnectToDevice,
+    'prompt-choose-device': promptChooseDevice,
     'detect-service': detectService,
     'prompt-install-service': promptInstallService,
     'installing-service': installingService,
