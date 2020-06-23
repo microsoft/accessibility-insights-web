@@ -132,9 +132,7 @@ describe('CommandBar', () => {
                     getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
-                deviceStoreData: {
-                    port,
-                },
+                scanPort: port,
                 scanStoreData: {
                     status: ScanStatus.Default,
                 },

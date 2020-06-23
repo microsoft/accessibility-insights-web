@@ -6,18 +6,25 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 export const configuringPortForwarding: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
-        deps.setApplicationName(); // init
+        try {
+            const existingPort = deps.getScanPort();
+            if (existingPort != null) {
+                deps.logger.log(`removing old tcp:${existingPort} forwarding`);
+                await deps.removeTcpForwarding(existingPort);
+                deps.setScanPort(null);
+                deps.setApplicationName(null);
+            }
 
-        const configured = await deps.setTcpForwarding();
+            const hostPort = await deps.setupTcpForwarding();
+            deps.logger.log(`configured forwarding to tcp:${hostPort}`);
+            const appName = await deps.getApplicationName();
 
-        if (configured === false) {
+            deps.setScanPort(hostPort);
+            deps.setApplicationName(appName);
+            deps.stepTransition('prompt-connected-start-testing');
+        } catch (e) {
+            deps.logger.error(e);
             deps.stepTransition('prompt-configuring-port-forwarding-failed');
-            return;
         }
-
-        // device is good to go; so we can get the current app name
-        const appName = await deps.getApplicationName();
-        deps.setApplicationName(appName);
-        deps.stepTransition('prompt-connected-start-testing');
     },
 });

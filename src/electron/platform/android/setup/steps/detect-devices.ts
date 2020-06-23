@@ -5,11 +5,7 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 
 export const detectDevices: AndroidSetupStepConfig = deps => {
     return {
-        actions: {
-            cancel: () => {
-                deps.stepTransition('prompt-connect-to-device');
-            },
-        },
+        actions: {},
         onEnter: async () => {
             deps.setSelectedDevice(null);
             deps.setAvailableDevices([]);
@@ -24,6 +20,7 @@ export const detectDevices: AndroidSetupStepConfig = deps => {
                 case 1: {
                     deps.setSelectedDeviceId(devices[0].id);
                     deps.setSelectedDevice(devices[0]);
+                    deps.setAvailableDevices(devices);
                     deps.stepTransition('detect-service');
                     break;
                 }

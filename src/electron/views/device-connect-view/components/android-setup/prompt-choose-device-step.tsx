@@ -40,25 +40,7 @@ export class PromptChooseDeviceStep extends React.Component<
     }
 
     public render(): JSX.Element {
-        // Available devices will be retrieved from store in future feature work
-        const devices: DeviceInfo[] = [
-            {
-                id: '1',
-                friendlyName: 'Phone 1',
-                isEmulator: true,
-            },
-            {
-                id: '2',
-                friendlyName: 'Phone 2',
-                isEmulator: false,
-            },
-            {
-                id: '3',
-                friendlyName: 'Phone 3',
-                isEmulator: true,
-            },
-        ];
-
+        const devices: DeviceInfo[] = this.props.androidSetupStoreData.availableDevices;
         const items = devices.map(m => ({ metadata: m }));
 
         const layoutProps: AndroidSetupStepLayoutProps = {
@@ -108,7 +90,10 @@ export class PromptChooseDeviceStep extends React.Component<
             rightFooterButtonProps: {
                 text: 'Next',
                 disabled: this.state.selectedDevice === null,
-                onClick: _ => this.props.deps.androidSetupActionCreator.next(),
+                onClick: _ => {
+                    const selectedDevice: DeviceInfo = this.state.selectedDevice['metadata'];
+                    this.props.deps.androidSetupActionCreator.setSelectedDevice(selectedDevice);
+                },
             },
         };
 
