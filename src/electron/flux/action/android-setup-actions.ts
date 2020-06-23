@@ -8,6 +8,7 @@ import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 export class AndroidSetupActions {
     public readonly cancel = new Action<void>();
     public readonly next = new Action<void>();
+    public readonly readyToStart = new Action<void>();
     public readonly rescan = new Action<void>();
     public readonly saveAdbPath = new Action<string>();
     public readonly setSelectedDevice = new Action<DeviceInfo>();

@@ -53,6 +53,7 @@ describe('AndroidSetupStore', () => {
         setupActions.rescan.invoke();
         setupActions.saveAdbPath.invoke('');
         setupActions.setSelectedDevice.invoke({} as DeviceInfo);
+        setupActions.readyToStart.invoke();
 
         stateMachineFactoryMock.verifyAll();
         stateMachineMock.verifyAll();

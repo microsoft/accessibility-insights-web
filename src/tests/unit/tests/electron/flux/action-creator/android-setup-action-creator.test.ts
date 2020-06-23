@@ -4,6 +4,7 @@ import { Action } from 'common/flux/action';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
+import { createActionMock } from 'tests/unit/tests/background/global-action-creators/action-creator-test-helpers';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(AndroidSetupActionCreator, () => {
@@ -68,5 +69,15 @@ describe(AndroidSetupActionCreator, () => {
 
         testSubject.saveAdbPath('/new/adb/path');
         actionMock.verifyAll();
+    });
+
+    it('invokes readyToStart action on readyToStart', () => {
+        const readyToStartMock = createActionMock<void>(null, 'AndroidSetupActionCreator');
+        androidSetupActionsMock
+            .setup(actions => actions.readyToStart)
+            .returns(() => readyToStartMock.object);
+
+        testSubject.readyToStart();
+        readyToStartMock.verifyAll();
     });
 });
