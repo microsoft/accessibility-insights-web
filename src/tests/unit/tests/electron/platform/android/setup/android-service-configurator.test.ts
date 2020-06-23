@@ -27,17 +27,17 @@ describe('AndroidServiceConfigurator', () => {
     const expectedHostPortRangeStart: number = 62442;
     const expectedHostPortRangeStop: number = 62542;
 
-    let serviceConfigMock: IMock<AdbWrapper>;
+    let adbWrapperMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let portFinderMock: IMock<PortFinder>;
     let testSubject: AndroidServiceConfigurator;
 
     beforeEach(() => {
-        serviceConfigMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
+        adbWrapperMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
         testSubject = new AndroidServiceConfigurator(
-            serviceConfigMock.object,
+            adbWrapperMock.object,
             apkLocatorMock.object,
             portFinderMock.object,
         );
@@ -45,14 +45,14 @@ describe('AndroidServiceConfigurator', () => {
     });
 
     function verifyAllMocks(): void {
-        serviceConfigMock.verifyAll();
+        adbWrapperMock.verifyAll();
         apkLocatorMock.verifyAll();
         portFinderMock.verifyAll();
     }
 
     it('getConnectedDevices propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during getDevices';
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getConnectedDevices())
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
@@ -75,7 +75,7 @@ describe('AndroidServiceConfigurator', () => {
                 friendlyName: 'a device',
             },
         ];
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getConnectedDevices())
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
@@ -91,7 +91,7 @@ describe('AndroidServiceConfigurator', () => {
         // Note that we test this indirectly since can't read it
         const expectedDevice = 'another device';
         const expectedMessage = 'Error thrown during hasRequiredServiceVersion';
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(expectedDevice, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
@@ -105,7 +105,7 @@ describe('AndroidServiceConfigurator', () => {
 
     it('hasRequiredServiceVersion propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during hasRequiredServiceVersion';
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
@@ -117,7 +117,7 @@ describe('AndroidServiceConfigurator', () => {
 
     it('hasRequiredServiceVersion returns false if installed package has no versionName', async () => {
         const packageInfo: PackageInfo = {};
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
@@ -137,7 +137,7 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
@@ -157,7 +157,7 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
@@ -171,7 +171,7 @@ describe('AndroidServiceConfigurator', () => {
 
     it('installRequiredServiceVersion propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during installRequiredServiceVersion';
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
@@ -189,11 +189,11 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.installService(testDeviceId, testApkPackage))
             .verifiable(Times.once());
 
@@ -210,11 +210,11 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.locateBundledApk())
             .returns(() => Promise.resolve(testApkInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.installService(testDeviceId, testApkPackage))
             .verifiable(Times.once());
 
@@ -227,11 +227,11 @@ describe('AndroidServiceConfigurator', () => {
         const installedPackageInfo: PackageInfo = {
             versionName: '1.2.3',
         };
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.installService(testDeviceId, testApkPackage))
             .verifiable(Times.once());
         apkLocatorMock
@@ -251,17 +251,17 @@ describe('AndroidServiceConfigurator', () => {
         const installedPackageInfo: PackageInfo = {
             versionName: '1.2.4',
         };
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getPackageInfo(testDeviceId, servicePackageName))
             .returns(() => Promise.resolve(installedPackageInfo))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.uninstallService(testDeviceId, servicePackageName))
             .callback(() => {
                 uninstallOrder = callbackCount++;
             })
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.installService(testDeviceId, testApkPackage))
             .callback(() => {
                 installOrder = callbackCount++;
@@ -283,7 +283,7 @@ describe('AndroidServiceConfigurator', () => {
 
     it('hasRequiredPermissions propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during hasRequiredPermissions';
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
@@ -294,7 +294,7 @@ describe('AndroidServiceConfigurator', () => {
     });
 
     it('hasRequiredPermissions returns false if service is not running', async () => {
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
             .returns(() => Promise.resolve('No service here!'))
             .verifiable(Times.once());
@@ -307,11 +307,11 @@ describe('AndroidServiceConfigurator', () => {
     });
 
     it('hasRequiredPermissions returns false if service is running without screenshot permission', async () => {
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
             .returns(() => Promise.resolve(serviceIsRunningResponseSnippet))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getDumpsysOutput(testDeviceId, mediaProjectionServiceName))
             .returns(() => Promise.resolve('Nope!'))
             .verifiable(Times.once());
@@ -325,11 +325,11 @@ describe('AndroidServiceConfigurator', () => {
 
     it('hasRequiredPermissions returns true if service is running with screenshot permission', async () => {
         const screenshotGranted = 'some stuff ' + servicePackageName + ' some more stuff';
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getDumpsysOutput(testDeviceId, accessibilityServiceName))
             .returns(() => Promise.resolve(serviceIsRunningResponseSnippet))
             .verifiable(Times.once());
-        serviceConfigMock
+        adbWrapperMock
             .setup(m => m.getDumpsysOutput(testDeviceId, mediaProjectionServiceName))
             .returns(() => Promise.resolve(screenshotGranted))
             .verifiable(Times.once());
@@ -367,7 +367,7 @@ describe('AndroidServiceConfigurator', () => {
                 .verifiable(Times.once());
 
             const expectedMessage: string = 'Thrown during forwardPort';
-            serviceConfigMock
+            adbWrapperMock
                 .setup(m =>
                     m.setTcpForwarding(testDeviceId, portFinderOutput, expectedServicePortNumber),
                 )
@@ -391,7 +391,7 @@ describe('AndroidServiceConfigurator', () => {
                 .returns(() => Promise.resolve(portFinderOutput))
                 .verifiable(Times.once());
 
-            serviceConfigMock
+            adbWrapperMock
                 .setup(m =>
                     m.setTcpForwarding(testDeviceId, portFinderOutput, expectedServicePortNumber),
                 )
@@ -409,7 +409,7 @@ describe('AndroidServiceConfigurator', () => {
         it('calls ADB.removePortForward using hostPort', async () => {
             const expectedHostPort = 123;
 
-            serviceConfigMock
+            adbWrapperMock
                 .setup(m => m.removeTcpForwarding(testDeviceId, expectedHostPort))
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
@@ -423,7 +423,7 @@ describe('AndroidServiceConfigurator', () => {
             const irrelevantHostPort = 123;
             const expectedMessage: string = 'Thrown during removeTcpForwarding';
 
-            serviceConfigMock
+            adbWrapperMock
                 .setup(m => m.removeTcpForwarding(testDeviceId, It.isAny()))
                 .returns(() => Promise.reject(new Error(expectedMessage)))
                 .verifiable(Times.once());
