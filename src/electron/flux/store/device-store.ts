@@ -9,8 +9,6 @@ import { DeviceConnectState } from '../types/device-connect-state';
 import { DeviceStoreData } from '../types/device-store-data';
 
 export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
-    private readonly defaultPortNumber: number = 62442;
-
     constructor(private readonly deviceActions: DeviceActions) {
         super(StoreNames.DeviceStore);
     }
