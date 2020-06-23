@@ -1,6 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { App, BrowserWindow, IpcMain, IpcMainEvent } from 'electron';
+import {
+    App,
+    BrowserWindow,
+    Dialog,
+    IpcMain,
+    IpcMainEvent,
+    IpcMainInvokeEvent,
+    OpenDialogOptions,
+    OpenDialogReturnValue,
+} from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -12,22 +21,24 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 
-type EventCallback = {
+type EventCallback<EventT> = {
     eventName: string;
-    eventHandler: (event: IpcMainEvent, ...args: any[]) => void;
+    eventHandler: (event: EventT, ...args: any[]) => void;
 };
 
 export class MainWindowRendererMessageHandlers {
-    private ipcMainHandlers: EventCallback[];
-    private ipcMainListeners: EventCallback[];
-    private browserWindowCallbacks: EventCallback[];
+    private ipcMainHandlers: EventCallback<IpcMainInvokeEvent>[];
+    private ipcMainListeners: EventCallback<IpcMainEvent>[];
+    private browserWindowCallbacks: EventCallback<Electron.Event>[];
 
     public constructor(
         private readonly browserWindow: BrowserWindow,
         private readonly ipcMain: IpcMain,
         private readonly app: App,
+        private readonly dialog: Dialog,
     ) {}
 
     private populateCallbacks(): void {
@@ -35,6 +46,10 @@ export class MainWindowRendererMessageHandlers {
             {
                 eventName: IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
                 eventHandler: this.handleGetAppPathFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
+                eventHandler: this.handleShowOpenFileDialogFromRenderer,
             },
         ];
 
@@ -126,6 +141,13 @@ export class MainWindowRendererMessageHandlers {
 
     private handleGetAppPathFromRenderer = async (): Promise<string> => {
         return this.app.getAppPath();
+    };
+
+    private handleShowOpenFileDialogFromRenderer = async (
+        _: IpcMainInvokeEvent,
+        opts: OpenDialogOptions,
+    ): Promise<OpenDialogReturnValue> => {
+        return await this.dialog.showOpenDialog(this.browserWindow, opts);
     };
 
     private onMaximizeFromMainWindow = (): void => {

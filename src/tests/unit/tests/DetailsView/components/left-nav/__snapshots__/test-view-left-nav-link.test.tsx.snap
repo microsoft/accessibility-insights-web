@@ -3,7 +3,7 @@
 exports[`TestViewLeftNavLink renders 1`] = `
 <span
   aria-hidden="true"
-  className="button-flex-container"
+  className="leftNavLinkContainer"
 >
   <i>
     test-props-renderIcon

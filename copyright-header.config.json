@@ -4,6 +4,7 @@
         "./.dependabot",
         "./.git",
         "./.github",
+        "./.vs",
         "./.vscode",
         "./dist",
         "./docs/art/ada-cat.ansi256.txt",

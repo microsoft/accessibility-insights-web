@@ -11,20 +11,11 @@ import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-s
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import * as styles from './prompt-grant-permissions-step.scss';
 
+export const tryAgainAutomationId = 'try-again';
 export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptGrantPermissionsStep',
     (props: CommonAndroidSetupStepProps) => {
         const { LinkComponent } = props.deps;
-
-        const onCancelButton = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.cancel()`);
-        };
-
-        const onTryAgain = () => {
-            // To be implemented in future feature work
-            console.log(`androidSetupActionCreator.checkPermissions()`);
-        };
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Grant permissions on your device',
@@ -35,7 +26,7 @@ export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
             ),
             leftFooterButtonProps: {
                 text: 'Cancel',
-                onClick: onCancelButton,
+                onClick: _ => props.deps.androidSetupActionCreator.cancel(),
             },
             rightFooterButtonProps: {
                 text: 'Next',
@@ -56,7 +47,11 @@ export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
                     on and has permission to access your device and capture screenshots.
                 </>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
-                <PrimaryButton text="Try again" onClick={onTryAgain} />
+                <PrimaryButton
+                    text="Try again"
+                    data-automation-id={tryAgainAutomationId}
+                    onClick={props.deps.androidSetupActionCreator.next}
+                />
             </AndroidSetupStepLayout>
         );
     },

@@ -316,7 +316,7 @@ describe('LeftNavBuilder', () => {
                 const expectedTestLink = {
                     name: assessmentStub.title,
                     key: VisualizationType[visualizationType],
-                    forceAnchor: true,
+                    forceAnchor: false,
                     url: '',
                     index: startingIndexStub + linkIndex,
                     iconProps: {

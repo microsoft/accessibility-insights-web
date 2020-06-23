@@ -2,22 +2,31 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
+import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
     AndroidServiceConfigurator,
     DeviceInfo,
     PackageInfo,
     PermissionInfo,
 } from 'electron/platform/android/android-service-configurator';
+import { PortFinderOptions } from 'portfinder';
 import { DictionaryStringTo } from 'types/common-types';
 
 type AdbDevice = {
     udid: string;
 };
 
+export type PortFinder = (options?: PortFinderOptions) => Promise<number>;
+
 const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
+export const servicePortNumber: number = 62442; // hardcoded in service APK
 
 export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
-    constructor(private readonly adb: ADB) {}
+    constructor(
+        private readonly adb: ADB,
+        private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly portFinder: PortFinder,
+    ) {}
 
     public getConnectedDevices = async (): Promise<Array<DeviceInfo>> => {
         const detectedDevices: DictionaryStringTo<DeviceInfo> = {};
@@ -70,8 +79,8 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
     };
 
     public installService = async (deviceId: string): Promise<void> => {
-        const pathToApk = './ServiceForAndroid/AccessibilityInsightsforAndroidService.apk';
         this.adb.setDeviceId(deviceId);
+        const pathToApk = (await this.apkLocator.locateBundledApk()).path;
         await this.adb.install(pathToApk);
     };
 
@@ -80,9 +89,19 @@ export class AppiumServiceConfigurator implements AndroidServiceConfigurator {
         await this.adb.uninstallApk(servicePackageName);
     };
 
-    public setTcpForwarding = async (deviceId: string): Promise<void> => {
-        const port: number = 62442;
+    public setupTcpForwarding = async (deviceId: string): Promise<number> => {
+        const hostPort = await this.portFinder({
+            port: servicePortNumber,
+            stopPort: servicePortNumber + 100,
+        });
+
         this.adb.setDeviceId(deviceId);
-        await this.adb.forwardPort(port, port);
+        await this.adb.forwardPort(hostPort, servicePortNumber);
+        return hostPort;
+    };
+
+    public removeTcpForwarding = async (deviceId: string, hostPort: number): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.removePortForward(hostPort);
     };
 }

@@ -6,16 +6,17 @@
 
 :global(.reflow-ui) {
     .left-nav {
-        :global {
-            .ms-Nav-compositeLink {
-                &.is-selected {
+        li {
+            :global {
+                .is-selected {
                     background-color: $communication-tint-20;
-                    a {
+                    a,
+                    button {
                         background-color: $communication-tint-20 !important;
                     }
                 }
-                &.is-expanded,
-                &.is-expanded + ul {
+                .is-expanded,
+                .is-expanded + ul {
                     background-color: $communication-tint-40;
                     .index-circle {
                         color: $neutral-0;
@@ -23,10 +24,12 @@
                         border-color: $neutral-0;
                     }
                 }
-                &:hover {
-                    a {
-                        background-color: $nav-link-hover !important;
-                    }
+            }
+
+            > div:hover {
+                a,
+                button {
+                    background-color: $nav-link-hover !important;
                 }
             }
         }
@@ -49,17 +52,8 @@
         .dark-gray {
             color: $neutral-60;
         }
-        .is-selected .button-flex-container {
-            color: $always-black;
-        }
-        .button-flex-container {
-            padding-left: 5%;
-            padding-right: 8%;
-            width: $detailsViewLeftNavWidth;
-            color: $primary-text;
-            .status-icon {
-                font-size: 24px;
-            }
+        .ms-Nav-groupContent {
+            margin-bottom: 0px;
         }
         .ms-Nav-link {
             height: fit-content;
@@ -98,15 +92,15 @@
             margin-top: 0px !important;
         }
         .ms-Nav-compositeLink {
+            a,
+            button {
+                border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
+                border-top: 0px;
+                border-bottom: 0px;
+                text-align: center;
+            }
             .ms-Button-label {
                 color: $neutral-100;
-            }
-            .button-flex-container {
-                display: flex;
-                flex-wrap: nowrap;
-                justify-content: flex-start;
-                height: 100%;
-                align-items: center;
             }
             .index-circle {
                 color: $secondary-text;
@@ -114,10 +108,21 @@
                 border-color: $neutral-20;
             }
             &.is-selected {
-                a {
+                a,
+                button {
                     background-color: $communication-tint-40;
+                    border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
+                        $communication-primary;
+                    .ms-Button-label {
+                        color: $highlighted-text;
+                    }
+                    .overview-percent,
+                    .dark-gray {
+                        color: $overview-percent-selected;
+                    }
                 }
-                a::after {
+                a::after,
+                button::after {
                     border-left: 0px;
                 }
                 .ms-Button-label {

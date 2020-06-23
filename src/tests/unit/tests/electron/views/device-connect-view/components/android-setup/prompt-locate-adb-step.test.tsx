@@ -12,69 +12,81 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('PromptLocateAdbStep', () => {
     let props: CommonAndroidSetupStepProps;
-    let closeAppMock: IMock<typeof props.deps.closeApp>;
-    let setupActionCreatorMock: IMock<AndroidSetupActionCreator>;
-    const stubClickEvent = {} as React.MouseEvent<HTMLButtonElement>;
 
-    beforeEach(() => {
-        closeAppMock = Mock.ofInstance(() => {});
-        setupActionCreatorMock = Mock.ofType<AndroidSetupActionCreator>();
-        props = new AndroidSetupStepPropsBuilder('prompt-locate-adb')
-            .withDep('closeApp', closeAppMock.object)
-            .withDep('androidSetupActionCreator', setupActionCreatorMock.object)
-            .build();
+    describe('rendering', () => {
+        beforeEach(() => {
+            props = new AndroidSetupStepPropsBuilder('prompt-locate-adb').build();
+        });
+
+        it('renders per snapshot with adbLocation not set', () => {
+            props.userConfigurationStoreData.adbLocation = null;
+            const rendered = shallow(<PromptLocateAdbStep {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        it('renders per snapshot with adbLocation set', () => {
+            props.userConfigurationStoreData.adbLocation = '/some/path/to/android/home';
+            const rendered = shallow(<PromptLocateAdbStep {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
     });
 
-    it('renders per snapshot with adbLocation not set', () => {
-        props.userConfigurationStoreData.adbLocation = null;
-        const rendered = shallow(<PromptLocateAdbStep {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
-    });
+    describe('handlers', () => {
+        let closeAppMock: IMock<typeof props.deps.closeApp>;
+        let setupActionCreatorMock: IMock<AndroidSetupActionCreator>;
+        const stubClickEvent = {} as React.MouseEvent<HTMLButtonElement>;
 
-    it('renders per snapshot with adbLocation set', () => {
-        props.userConfigurationStoreData.adbLocation = '/some/path/to/android/home';
-        const rendered = shallow(<PromptLocateAdbStep {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
-    });
+        beforeEach(() => {
+            closeAppMock = Mock.ofInstance(() => {});
+            setupActionCreatorMock = Mock.ofType<AndroidSetupActionCreator>();
+            props = new AndroidSetupStepPropsBuilder('prompt-locate-adb')
+                .withDep('closeApp', closeAppMock.object)
+                .withDep('androidSetupActionCreator', setupActionCreatorMock.object)
+                .build();
+        });
 
-    it('invokes closeApp when left footer button is clicked', () => {
-        const rendered = shallow(<PromptLocateAdbStep {...props} />);
-        rendered.find(AndroidSetupStepLayout).prop('leftFooterButtonProps').onClick(stubClickEvent);
-        closeAppMock.verify(m => m(), Times.once());
-    });
+        it('invokes closeApp when left footer button is clicked', () => {
+            const rendered = shallow(<PromptLocateAdbStep {...props} />);
+            rendered
+                .find(AndroidSetupStepLayout)
+                .prop('leftFooterButtonProps')
+                .onClick(stubClickEvent);
+            closeAppMock.verify(m => m(), Times.once());
+        });
 
-    it('does not invoke saveAdbPath for FolderPicker onChange with no next button click', () => {
-        const newValue = '/new/path';
-        const rendered = shallow(<PromptLocateAdbStep {...props} />);
+        it('does not invoke saveAdbPath for FolderPicker onChange with no next button click', () => {
+            const newValue = '/new/path';
+            const rendered = shallow(<PromptLocateAdbStep {...props} />);
 
-        rendered.find(FolderPicker).prop('onChange')(newValue);
+            rendered.find(FolderPicker).prop('onChange')(newValue);
 
-        setupActionCreatorMock.verify(m => m.saveAdbPath(It.isAny()), Times.never());
-    });
+            setupActionCreatorMock.verify(m => m.saveAdbPath(It.isAny()), Times.never());
+        });
 
-    it('invokes saveAdbPath on next click, defaulting to value from saved adbLocation', () => {
-        props.userConfigurationStoreData.adbLocation = '/old/path';
-        const rendered = shallow(<PromptLocateAdbStep {...props} />);
+        it('invokes saveAdbPath on next click, defaulting to value from saved adbLocation', () => {
+            props.userConfigurationStoreData.adbLocation = '/old/path';
+            const rendered = shallow(<PromptLocateAdbStep {...props} />);
 
-        rendered
-            .find(AndroidSetupStepLayout)
-            .prop('rightFooterButtonProps')
-            .onClick(stubClickEvent);
+            rendered
+                .find(AndroidSetupStepLayout)
+                .prop('rightFooterButtonProps')
+                .onClick(stubClickEvent);
 
-        setupActionCreatorMock.verify(m => m.saveAdbPath('/old/path'), Times.once());
-    });
+            setupActionCreatorMock.verify(m => m.saveAdbPath('/old/path'), Times.once());
+        });
 
-    it('invokes saveAdbPath on next click using the most recent onChange value from the FolderPicker', () => {
-        const rendered = shallow(<PromptLocateAdbStep {...props} />);
+        it('invokes saveAdbPath on next click using the most recent onChange value from the FolderPicker', () => {
+            const rendered = shallow(<PromptLocateAdbStep {...props} />);
 
-        rendered.find(FolderPicker).prop('onChange')('/first/new/path');
-        rendered.find(FolderPicker).prop('onChange')('/second/new/path');
+            rendered.find(FolderPicker).prop('onChange')('/first/new/path');
+            rendered.find(FolderPicker).prop('onChange')('/second/new/path');
 
-        rendered
-            .find(AndroidSetupStepLayout)
-            .prop('rightFooterButtonProps')
-            .onClick(stubClickEvent);
+            rendered
+                .find(AndroidSetupStepLayout)
+                .prop('rightFooterButtonProps')
+                .onClick(stubClickEvent);
 
-        setupActionCreatorMock.verify(m => m.saveAdbPath('/second/new/path'), Times.once());
+            setupActionCreatorMock.verify(m => m.saveAdbPath('/second/new/path'), Times.once());
+        });
     });
 });

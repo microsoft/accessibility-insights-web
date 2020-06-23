@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptConnectedStartTestingStep renders with device 1`] = `
+<AndroidSetupStepLayout
+  headerText="Connected and ready to go!"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/otherDevice"
+    >
+      How do I connect a different device?
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": false,
+      "onClick": [Function],
+      "text": "Start testing",
+    }
+  }
+>
+  <DeviceDescription
+    className="deviceDescription"
+    currentApplication="super-cool app"
+    friendlyName="Super-Duper Gadget"
+    id="1"
+    isEmulator={false}
+  />
+  <CustomizedDefaultButton
+    className="rescanButton"
+    onClick={[Function]}
+    text="Rescan devices"
+  />
+</AndroidSetupStepLayout>
+`;
+
+exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
+<AndroidSetupStepLayout
+  headerText="Connected and ready to go!"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/otherDevice"
+    >
+      How do I connect a different device?
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": false,
+      "onClick": [Function],
+      "text": "Start testing",
+    }
+  }
+>
+  <DeviceDescription
+    className="deviceDescription"
+    currentApplication="super-cool app"
+    friendlyName="Emulator Extraordinaire"
+    id="1"
+    isEmulator={true}
+  />
+  <CustomizedDefaultButton
+    className="rescanButton"
+    onClick={[Function]}
+    text="Rescan devices"
+  />
+</AndroidSetupStepLayout>
+`;

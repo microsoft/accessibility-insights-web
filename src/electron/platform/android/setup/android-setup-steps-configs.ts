@@ -5,11 +5,23 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
+import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
+import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
+import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
+import { detectService } from 'electron/platform/android/setup/steps/detect-service';
+import { installingService } from 'electron/platform/android/setup/steps/installing-service';
+import { promptChooseDevice } from 'electron/platform/android/setup/steps/prompt-choose-device';
+import { promptConfiguringPortForwardingFailed } from 'electron/platform/android/setup/steps/prompt-configuring-port-forwarding-failed';
+import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
+import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
+import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
+import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
+import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
 import {
     StateMachineStepConfig,
     StateMachineStepConfigs,
 } from './state-machine/state-machine-step-configs';
-import { detectAdb } from './steps/detect.adb';
+import { detectAdb } from './steps/detect-adb';
 
 export type AndroidSetupStepConfigDeps = AndroidSetupDeps & AndroidSetupStoreCallbacks;
 
@@ -26,15 +38,17 @@ type AndroidSetupStepConfigs = StateMachineStepConfigs<
 
 export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'detect-adb': detectAdb,
-    'prompt-locate-adb': null,
-    'prompt-connect-to-device': null,
-    'detect-devices': null,
-    'prompt-choose-device': null,
-    'detect-service': null,
-    'prompt-install-service': null,
-    'installing-service': null,
-    'prompt-install-failed': null,
-    'detect-permissions': null,
-    'prompt-grant-permissions': null,
-    'prompt-connected-start-testing': null,
+    'prompt-locate-adb': promptLocateAdb,
+    'prompt-connect-to-device': promptConnectToDevice,
+    'detect-devices': detectDevices,
+    'prompt-choose-device': promptChooseDevice,
+    'detect-service': detectService,
+    'prompt-install-service': promptInstallService,
+    'installing-service': installingService,
+    'prompt-install-failed': promptInstallService,
+    'detect-permissions': detectPermissions,
+    'prompt-grant-permissions': promptGrantPermissions,
+    'configuring-port-forwarding': configuringPortForwarding,
+    'prompt-configuring-port-forwarding-failed': promptConfiguringPortForwardingFailed,
+    'prompt-connected-start-testing': promptConnectedStartTesting,
 };

@@ -117,6 +117,21 @@ describe('UserConfigurationActionCreator', () => {
         setIssueFilingSettings.verifyAll();
     });
 
+    it('should SetAdbLocation Message', () => {
+        const expectedAdbLocation = 'Somewhere over the rainbow';
+
+        const setAdbLocationConfigMock = createActionMock(
+            expectedAdbLocation,
+            'UserConfigurationActionCreator',
+        );
+        const actionsMock = createActionsMock('setAdbLocation', setAdbLocationConfigMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+
+        testSubject.setAdbLocation(expectedAdbLocation);
+
+        setAdbLocationConfigMock.verifyAll();
+    });
+
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(
         actionName: ActionName,
         action: UserConfigurationActions[ActionName],

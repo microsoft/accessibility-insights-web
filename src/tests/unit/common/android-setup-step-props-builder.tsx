@@ -24,6 +24,8 @@ export class AndroidSetupStepPropsBuilder extends BaseDataBuilder<CommonAndroidS
                 androidSetupActionCreator: null,
                 androidSetupStepComponentProvider: null,
                 closeApp: null,
+                startTesting: null,
+                showOpenFileDialog: null,
             },
         };
     }
