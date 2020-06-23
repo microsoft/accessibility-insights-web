@@ -13,7 +13,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AndroidSetupTelemetrySender', () => {
     it('sends appropriate telemetry events when steps change', () => {
-        testWhetherTelemetrySent(
+        testTelemetryEvents(
             ['detect-adb', 'detect-devices', 'detect-permissions'],
             [20, 400, 415],
             [
@@ -37,7 +37,7 @@ describe('AndroidSetupTelemetrySender', () => {
     });
 
     it('does not send event if step has not changed', () => {
-        testWhetherTelemetrySent(
+        testTelemetryEvents(
             ['detect-adb', 'detect-adb'],
             [20, 400],
             [
@@ -50,7 +50,7 @@ describe('AndroidSetupTelemetrySender', () => {
         );
     });
 
-    function testWhetherTelemetrySent(
+    function testTelemetryEvents(
         steps: AndroidSetupStepId[],
         timestamps: number[],
         expectedEvents: Omit<AndroidSetupStepTelemetryData, 'triggeredBy' | 'source'>[],
