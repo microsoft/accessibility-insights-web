@@ -33,7 +33,7 @@ export class UnifiedResultSender {
 
     private sendResults = (
         axeResults: AxeAnalyzerResult,
-        converter: (scanResults: ScanResults, uiudGenerator: UUIDGenerator) => UnifiedResult[],
+        converter: ConvertScanResultsToUnifiedResultsDelegate,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
