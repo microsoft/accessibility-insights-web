@@ -5,6 +5,9 @@ import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-
 
 export const promptGrantPermissions: AndroidSetupStepConfig = deps => ({
     actions: {
+        cancel: () => {
+            deps.stepTransition('prompt-choose-device');
+        },
         next: () => {
             deps.stepTransition('detect-permissions');
         },

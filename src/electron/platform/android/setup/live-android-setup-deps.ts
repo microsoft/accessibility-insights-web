@@ -25,7 +25,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly apkLocator: AndroidServiceApkLocator,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
         private readonly fetchDeviceConfig: DeviceConfigFetcher,
-        private readonly logger: Logger,
+        public readonly logger: Logger,
     ) {}
 
     public hasAdbPath = async (): Promise<boolean> => {
@@ -93,14 +93,8 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return false;
     };
 
-    public setTcpForwarding = async (): Promise<boolean> => {
-        try {
-            await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
-            return true;
-        } catch (error) {
-            this.logger.log(error);
-        }
-        return false;
+    public setTcpForwarding = async (): Promise<number> => {
+        return await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
     };
 
     public getApplicationName = async (): Promise<string> => {
