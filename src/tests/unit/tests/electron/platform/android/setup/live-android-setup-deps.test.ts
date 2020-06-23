@@ -60,7 +60,7 @@ describe('LiveAndroidSetupDeps', () => {
             .returns(() => stateData)
             .verifiable(Times.once());
         businessLogicFactoryMock
-            .setup(m => m.getBusinessLogic(expectedAdbLocation))
+            .setup(m => m.getServiceConfig(expectedAdbLocation))
             .returns(() => Promise.resolve(businessLogicMock.object))
             .verifiable(Times.once());
         businessLogicMock.setup((m: any) => m.then).returns(() => undefined);

@@ -12,10 +12,10 @@ import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     private selectedDeviceId: string;
-    private businessLogic: AndroidServiceConfigurator;
+    private serviceConfig: AndroidServiceConfigurator;
 
     constructor(
-        private readonly businessLogicFactory: AndroidServiceConfiguratorFactory,
+        private readonly serviceConfigFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
         private readonly fetchDeviceConfig: DeviceConfigFetcher,
@@ -25,7 +25,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     public hasAdbPath = async (): Promise<boolean> => {
         try {
             const adbLocation = this.configStore.getState().adbLocation;
-            this.businessLogic = await this.businessLogicFactory.getBusinessLogic(adbLocation);
+            this.serviceConfig = await this.serviceConfigFactory.getServiceConfig(adbLocation);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -38,7 +38,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     };
 
     public getDevices = async (): Promise<DeviceInfo[]> => {
-        return await this.businessLogic.getDevices();
+        return await this.serviceConfig.getDevices();
     };
 
     public setSelectedDeviceId = (id: string): void => {
@@ -47,7 +47,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedServiceVersion = async (): Promise<boolean> => {
         try {
-            return await this.businessLogic.hasRequiredServiceVersion(this.selectedDeviceId);
+            return await this.serviceConfig.hasRequiredServiceVersion(this.selectedDeviceId);
         } catch (error) {
             this.logger.log(error);
         }
@@ -56,7 +56,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public installService = async (): Promise<boolean> => {
         try {
-            await this.businessLogic.installRequiredServiceVersion(this.selectedDeviceId);
+            await this.serviceConfig.installRequiredServiceVersion(this.selectedDeviceId);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -66,7 +66,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedPermissions = async (): Promise<boolean> => {
         try {
-            return await this.businessLogic.hasRequiredPermissions(this.selectedDeviceId);
+            return await this.serviceConfig.hasRequiredPermissions(this.selectedDeviceId);
         } catch (error) {
             this.logger.log(error);
         }
@@ -75,7 +75,6 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public setTcpForwarding = async (): Promise<number> => {
         return await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
-            return await this.businessLogic.setTcpForwarding(this.selectedDeviceId);
     };
 
     public getApplicationName = async (): Promise<string> => {

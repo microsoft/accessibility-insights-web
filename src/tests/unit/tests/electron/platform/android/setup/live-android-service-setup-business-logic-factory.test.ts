@@ -8,28 +8,28 @@ import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/set
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
-    let serviceConfigFactoryMock: IMock<AdbWrapperFactory>;
-    let serviceConfigMock: IMock<AdbWrapper>;
+    let adbWrapperFactoryMock: IMock<AdbWrapperFactory>;
+    let adbWrapperMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let testSubject: AndroidServiceConfiguratorFactory;
 
     beforeEach(() => {
-        serviceConfigFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
-        serviceConfigMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
+        adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
+        adbWrapperMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         testSubject = new AndroidServiceConfiguratorFactory(
-            serviceConfigFactoryMock.object,
+            adbWrapperFactoryMock.object,
             apkLocatorMock.object,
         );
     });
 
     it('getBusinessLogic returns correct object', async () => {
         const expectedAdbLocation: string = 'Some location';
-        serviceConfigFactoryMock
-            .setup(m => m.getServiceConfigurator(expectedAdbLocation))
-            .returns(() => Promise.resolve(serviceConfigMock.object))
+        adbWrapperFactoryMock
+            .setup(m => m.getAdbWrapper(expectedAdbLocation))
+            .returns(() => Promise.resolve(adbWrapperMock.object))
             .verifiable(Times.once());
-        serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
+        adbWrapperMock.setup((m: any) => m.then).returns(() => undefined);
 
         const businessLogic: AndroidServiceConfigurator = await testSubject.getBusinessLogic(
             expectedAdbLocation,
@@ -37,6 +37,6 @@ describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
 
         expect(businessLogic).toBeInstanceOf(AndroidServiceConfigurator);
 
-        serviceConfigFactoryMock.verifyAll();
+        adbWrapperFactoryMock.verifyAll();
     });
 });

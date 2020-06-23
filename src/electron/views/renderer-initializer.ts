@@ -200,7 +200,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const businessLogicFactory = new AndroidServiceConfiguratorFactory(
+        const serviceConfigFactory = new AndroidServiceConfiguratorFactory(
             new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
             apkLocator,
         );
@@ -208,7 +208,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    businessLogicFactory,
+                    serviceConfigFactory,
                     userConfigurationStore,
                     userConfigMessageCreator,
                     fetchDeviceConfig,
