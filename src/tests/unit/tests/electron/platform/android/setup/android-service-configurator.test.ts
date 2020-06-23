@@ -48,7 +48,7 @@ describe('AndroidServiceConfigurator', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.getDevices()).rejects.toThrowError(expectedMessage);
+        await expect(testSubject.getConnectedDevices()).rejects.toThrowError(expectedMessage);
 
         verifyAllMocks();
     });
@@ -71,7 +71,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
 
-        const actualDevices = await testSubject.getDevices();
+        const actualDevices = await testSubject.getConnectedDevices();
 
         expect(actualDevices).toBe(expectedDevices);
 

@@ -15,7 +15,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     private serviceConfig: AndroidServiceConfigurator;
 
     constructor(
-        private readonly serviceConfigFactory: AndroidServiceConfiguratorFactory,
+        private readonly configFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
         private readonly fetchDeviceConfig: DeviceConfigFetcher,
@@ -25,7 +25,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     public hasAdbPath = async (): Promise<boolean> => {
         try {
             const adbLocation = this.configStore.getState().adbLocation;
-            this.serviceConfig = await this.serviceConfigFactory.getServiceConfig(adbLocation);
+            this.serviceConfig = await this.configFactory.getServiceConfiguration(adbLocation);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -38,7 +38,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     };
 
     public getDevices = async (): Promise<DeviceInfo[]> => {
-        return await this.serviceConfig.getDevices();
+        return await this.serviceConfig.getConnectedDevices();
     };
 
     public setSelectedDeviceId = (id: string): void => {

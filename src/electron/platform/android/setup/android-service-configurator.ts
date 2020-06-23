@@ -15,7 +15,7 @@ export class AndroidServiceConfigurator {
         private readonly apkLocator: AndroidServiceApkLocator,
     ) {}
 
-    public getDevices = async (): Promise<DeviceInfo[]> => {
+    public getConnectedDevices = async (): Promise<DeviceInfo[]> => {
         return await this.serviceConfigurator.getConnectedDevices();
     };
 

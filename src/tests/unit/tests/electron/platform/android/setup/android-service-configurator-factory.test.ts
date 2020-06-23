@@ -31,7 +31,7 @@ describe('AndroidServiceConfiguratorFactory', () => {
             .verifiable(Times.once());
         adbWrapperMock.setup((m: any) => m.then).returns(() => undefined);
 
-        const serviceConfig: AndroidServiceConfigurator = await testSubject.getServiceConfig(
+        const serviceConfig: AndroidServiceConfigurator = await testSubject.getServiceConfiguration(
             expectedAdbLocation,
         );
 

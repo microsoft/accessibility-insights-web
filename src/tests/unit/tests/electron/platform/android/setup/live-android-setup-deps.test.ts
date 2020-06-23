@@ -60,7 +60,7 @@ describe('LiveAndroidSetupDeps', () => {
             .returns(() => stateData)
             .verifiable(Times.once());
         serviceConfigFactoryMock
-            .setup(m => m.getServiceConfig(expectedAdbLocation))
+            .setup(m => m.getServiceConfiguration(expectedAdbLocation))
             .returns(() => Promise.resolve(serviceConfigMock.object))
             .verifiable(Times.once());
         serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
@@ -110,7 +110,7 @@ describe('LiveAndroidSetupDeps', () => {
             },
         ];
         serviceConfigMock
-            .setup(m => m.getDevices())
+            .setup(m => m.getConnectedDevices())
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
         await initializeServiceConfig();
