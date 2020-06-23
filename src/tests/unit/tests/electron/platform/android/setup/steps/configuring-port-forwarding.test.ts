@@ -4,6 +4,7 @@ import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/andr
 import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
+import { DeviceConfig } from 'electron/platform/android/device-config';
 
 describe('Android setup step: configuringPortForwarding', () => {
     let mockStoreState: {
@@ -20,7 +21,7 @@ describe('Android setup step: configuringPortForwarding', () => {
 
     it('onEnter transitions to prompt-connected-start-testing with state set on success', async () => {
         const scanPort = 2;
-        const appName = 'new app';
+        const deviceConfig = { appIdentifier: 'new app' } as DeviceConfig;
         mockStoreState = {
             appName: null,
             scanPort: null,
@@ -34,8 +35,8 @@ describe('Android setup step: configuringPortForwarding', () => {
             .verifiable(Times.once());
 
         depsMock
-            .setup(m => m.getApplicationName())
-            .returns(_ => Promise.resolve(appName))
+            .setup(m => m.fetchDeviceConfig(scanPort))
+            .returns(_ => Promise.resolve(deviceConfig))
             .verifiable(Times.once());
 
         depsMock.setup(m => m.stepTransition('prompt-connected-start-testing'));
@@ -43,7 +44,7 @@ describe('Android setup step: configuringPortForwarding', () => {
         const step = configuringPortForwarding(depsMock.object);
         await step.onEnter();
 
-        expect(mockStoreState.appName).toBe(appName);
+        expect(mockStoreState.appName).toBe(deviceConfig.appIdentifier);
         expect(mockStoreState.scanPort).toBe(scanPort);
         depsMock.verifyAll();
     });
@@ -56,7 +57,7 @@ describe('Android setup step: configuringPortForwarding', () => {
         'onEnter clears previous forwarding, then transitions to prompt-connected-start-testing with state set on success',
         async ({ startingAppName, startingScanPort }) => {
             const newScanPort = 2;
-            const newAppName = 'new app';
+            const deviceConfig = { appIdentifier: 'new app' } as DeviceConfig;
             mockStoreState = {
                 appName: startingAppName,
                 scanPort: startingScanPort,
@@ -74,8 +75,8 @@ describe('Android setup step: configuringPortForwarding', () => {
                 .verifiable(Times.once());
 
             depsMock
-                .setup(m => m.getApplicationName())
-                .returns(_ => Promise.resolve(newAppName))
+                .setup(m => m.fetchDeviceConfig(newScanPort))
+                .returns(_ => Promise.resolve(deviceConfig))
                 .verifiable(Times.once());
 
             depsMock.setup(m => m.stepTransition('prompt-connected-start-testing'));
@@ -83,7 +84,7 @@ describe('Android setup step: configuringPortForwarding', () => {
             const step = configuringPortForwarding(depsMock.object);
             await step.onEnter();
 
-            expect(mockStoreState.appName).toBe(newAppName);
+            expect(mockStoreState.appName).toBe(deviceConfig.appIdentifier);
             expect(mockStoreState.scanPort).toBe(newScanPort);
             depsMock.verifyAll();
         },
@@ -177,7 +178,7 @@ describe('Android setup step: configuringPortForwarding', () => {
                 .verifiable(Times.once());
 
             depsMock
-                .setup(m => m.getApplicationName())
+                .setup(m => m.fetchDeviceConfig(It.isAny()))
                 .returns(() => Promise.reject(new Error('error from getApplicationName')))
                 .verifiable(Times.once());
 

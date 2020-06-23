@@ -17,10 +17,10 @@ export const configuringPortForwarding: AndroidSetupStepConfig = deps => ({
 
             const hostPort = await deps.setupTcpForwarding();
             deps.logger.log(`configured forwarding to tcp:${hostPort}`);
-            const appName = await deps.getApplicationName();
+            const deviceConfig = await deps.fetchDeviceConfig(hostPort);
 
             deps.setScanPort(hostPort);
-            deps.setApplicationName(appName);
+            deps.setApplicationName(deviceConfig.appIdentifier);
             deps.stepTransition('prompt-connected-start-testing');
         } catch (e) {
             deps.logger.error(e);
