@@ -38,13 +38,18 @@ describe('AndroidSetupTelemetrySender', () => {
 
     it('does not send event if step has not changed', () => {
         testTelemetryEvents(
-            ['detect-adb', 'detect-adb'],
-            [20, 400],
+            ['detect-adb', 'detect-adb', 'detect-devices'],
+            [20, 400, 450],
             [
                 {
                     prevStep: null,
                     newStep: 'detect-adb',
                     prevDuration: 0,
+                },
+                {
+                    prevStep: 'detect-adb',
+                    newStep: 'detect-devices',
+                    prevDuration: 430,
                 },
             ],
         );
