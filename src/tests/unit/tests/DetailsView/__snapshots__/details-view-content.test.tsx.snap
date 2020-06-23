@@ -275,6 +275,9 @@ exports[` render renders normally 1`] = `
             "landmarks": Object {
               "enabled": false,
             },
+            "needsReview": Object {
+              "enabled": false,
+            },
             "tabStops": Object {
               "enabled": false,
             },

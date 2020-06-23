@@ -17,6 +17,7 @@ import { promptConnectedStartTesting } from 'electron/platform/android/setup/ste
 import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
 import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
 import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
+import { waitToStart } from 'electron/platform/android/setup/steps/wait-to-start';
 import {
     StateMachineStepConfig,
     StateMachineStepConfigs,
@@ -37,6 +38,7 @@ type AndroidSetupStepConfigs = StateMachineStepConfigs<
 >;
 
 export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
+    'wait-to-start': waitToStart,
     'detect-adb': detectAdb,
     'prompt-locate-adb': promptLocateAdb,
     'prompt-connect-to-device': promptConnectToDevice,
