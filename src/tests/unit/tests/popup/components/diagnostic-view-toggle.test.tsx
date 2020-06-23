@@ -194,10 +194,6 @@ describe('DiagnosticViewToggleTest', () => {
 
             const props: DiagnosticViewToggleProps = propsBuilder.build();
 
-            const component = new DiagnosticViewToggle(props);
-
-            const renderAction = () => component.render();
-
             const wrapper = shallow(<DiagnosticViewToggle {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
