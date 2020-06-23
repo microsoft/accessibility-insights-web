@@ -220,7 +220,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         androidSetupStore.initialize();
 
-
         const windowStateStore = new WindowStateStore(windowStateActions);
         windowStateStore.initialize();
 
