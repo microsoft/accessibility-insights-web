@@ -13,19 +13,19 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
         adbCreatorMock = Mock.ofType<AppiumAdbCreator>(undefined, MockBehavior.Strict);
     });
 
-    it('getAdbWrapper creates without parameters if no sdkRoot is provided', async () => {
+    it('createValidatedAdbWrapper creates without parameters if no sdkRoot is provided', async () => {
         adbCreatorMock
             .setup(m => m.createADB(undefined))
             .returns(() => null)
             .verifiable(Times.once());
         const factory = new AppiumAdbWrapperFactory(adbCreatorMock.object);
 
-        expect(await factory.getAdbWrapper(null)).toBeInstanceOf(AppiumAdbWrapper);
+        expect(await factory.createValidatedAdbWrapper(null)).toBeInstanceOf(AppiumAdbWrapper);
 
         adbCreatorMock.verifyAll();
     });
 
-    it('getAdbWrapper creates with sdkRoot if it is provided', async () => {
+    it('createValidatedAdbWrapper creates with sdkRoot if it is provided', async () => {
         const expectedSdkRoot = 'path/to/android/sdk';
         adbCreatorMock
             .setup(m => m.createADB({ sdkRoot: expectedSdkRoot }))
@@ -33,12 +33,14 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .verifiable(Times.once());
         const factory = new AppiumAdbWrapperFactory(adbCreatorMock.object);
 
-        expect(await factory.getAdbWrapper(expectedSdkRoot)).toBeInstanceOf(AppiumAdbWrapper);
+        expect(await factory.createValidatedAdbWrapper(expectedSdkRoot)).toBeInstanceOf(
+            AppiumAdbWrapper,
+        );
 
         adbCreatorMock.verifyAll();
     });
 
-    it('getAdbWrapper propagates error to caller', async () => {
+    it('createValidatedAdbWrapper propagates error to caller', async () => {
         const expectedMessage = 'Something bad happened';
         adbCreatorMock
             .setup(m => m.createADB(undefined))
@@ -46,7 +48,7 @@ describe('AppiumServiceConfiguratorFactory tests', () => {
             .verifiable(Times.once());
         const factory = new AppiumAdbWrapperFactory(adbCreatorMock.object);
 
-        await expect(factory.getAdbWrapper(null)).rejects.toThrowError(expectedMessage);
+        await expect(factory.createValidatedAdbWrapper(null)).rejects.toThrowError(expectedMessage);
 
         adbCreatorMock.verifyAll();
     });

@@ -26,7 +26,7 @@ describe('AndroidServiceConfiguratorFactory', () => {
     it('getServiceConfig returns correct object', async () => {
         const expectedAdbLocation: string = 'Some location';
         adbWrapperFactoryMock
-            .setup(m => m.getAdbWrapper(expectedAdbLocation))
+            .setup(m => m.createValidatedAdbWrapper(expectedAdbLocation))
             .returns(() => Promise.resolve(adbWrapperMock.object))
             .verifiable(Times.once());
         adbWrapperMock.setup((m: any) => m.then).returns(() => undefined);

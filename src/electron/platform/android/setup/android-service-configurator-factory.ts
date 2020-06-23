@@ -14,7 +14,9 @@ export class AndroidServiceConfiguratorFactory {
     public getServiceConfigurator = async (
         adbLocation: string,
     ): Promise<AndroidServiceConfigurator> => {
-        const adbWrapper: AdbWrapper = await this.adbWrapperFactory.getAdbWrapper(adbLocation);
+        const adbWrapper: AdbWrapper = await this.adbWrapperFactory.createValidatedAdbWrapper(
+            adbLocation,
+        );
         return new AndroidServiceConfigurator(adbWrapper, this.apkLocator);
     };
 }
