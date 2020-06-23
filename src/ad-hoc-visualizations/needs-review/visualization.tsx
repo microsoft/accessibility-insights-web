@@ -33,7 +33,6 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
             testType: VisualizationType.NeedsReview,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
-    chromeCommand: '06_toggle-needsReview',
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: null,
