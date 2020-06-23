@@ -1781,16 +1781,16 @@ app-builder-lib@22.7.0, app-builder-lib@^22.6.1:
     semver "^7.3.2"
     temp-file "^3.3.7"
 
-appium-adb@^8.6.1:
-  version "8.6.1"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.6.1.tgz#1cb41c2f98ce40fccdf84c23dc65cc34f18dc2b2"
-  integrity sha512-Klz6M05dA1xKfoUVURTCx6tfaIUl/IoLDekI/g06PBhUB5AcaxfmZirY+ZMcTcc8uGr0CN9pqIqI7GvhSMjxhg==
+appium-adb@^8.6.2:
+  version "8.6.2"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.6.2.tgz#be0294f85cab517acf57465a794ff6010dfbef78"
+  integrity sha512-jAvyjAGtAb/XzUOZ/vQzKQhn17z2ooqHKfi8armU260jHSj4q/fuILkNoVC9r6sCwn8pzaX4FmikEMxqYOJiMg==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
     appium-support "^2.42.0"
     async-lock "^1.0.0"
-    asyncbox "^2.3.1"
+    asyncbox "^2.6.0"
     bluebird "^3.4.7"
     lodash "^4.0.0"
     lru-cache "^5.0.0"
@@ -2070,7 +2070,7 @@ async@~1.5.2:
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
   integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
 
-asyncbox@^2.3.1:
+asyncbox@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/asyncbox/-/asyncbox-2.6.0.tgz#ded2db43b14c4d14340d18d4898e5d63de2ffb42"
   integrity sha512-x9RDH0Dk4qZIGHQc9KbnDrUnaEbtWJW2DbuSElOFOQ2ppGsT1eFEDsiconZPpRGMW6+Uv724FYaBc8SUvyWVzA==
