@@ -25,7 +25,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     public hasAdbPath = async (): Promise<boolean> => {
         try {
             const adbLocation = this.configStore.getState().adbLocation;
-            this.serviceConfig = await this.configFactory.getServiceConfiguration(adbLocation);
+            this.serviceConfig = await this.configFactory.getServiceConfigurator(adbLocation);
             return true;
         } catch (error) {
             this.logger.log(error);
