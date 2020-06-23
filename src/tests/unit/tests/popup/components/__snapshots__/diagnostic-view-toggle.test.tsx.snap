@@ -164,7 +164,7 @@ exports[`DiagnosticViewToggleTest user interaction:  handles no chromeCommand de
   <div
     className="title"
   >
-    Needs Review
+    Needs review
   </div>
   <div
     className="toggle"
@@ -180,7 +180,7 @@ exports[`DiagnosticViewToggleTest user interaction:  handles no chromeCommand de
       onBlur={[Function]}
       onClick={[Function]}
       onFocus={[Function]}
-      visualizationName="Needs Review"
+      visualizationName="Needs review"
     />
   </div>
   <div>
@@ -194,8 +194,6 @@ exports[`DiagnosticViewToggleTest user interaction:  handles no chromeCommand de
   </div>
   <div
     className="shortcut"
-  >
-    
-  </div>
+  />
 </div>
 `;
