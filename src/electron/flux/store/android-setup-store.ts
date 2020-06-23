@@ -57,12 +57,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     }
 
     private stepTransition = (nextStep: AndroidSetupStepId): void => {
-        console.log('step transition');
-        console.log('initial');
-        console.log(this.state.currentStepId);
         this.state.currentStepId = nextStep;
-        console.log('after');
-        console.log(this.state.currentStepId);
         this.emitChanged();
     };
 
