@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
@@ -46,8 +47,9 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         }),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor, //
-    getNotificationMessage: null, //
-    getDrawer: () => null, //
+    getNotificationMessage: (selectorMap, key, warnings) =>
+        getNotificationMessage(selectorMap, warnings), //
+    getDrawer: provider => provider.createIssuesDrawer(), //
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID, //
     featureFlagToEnable: FeatureFlags.needsReview,

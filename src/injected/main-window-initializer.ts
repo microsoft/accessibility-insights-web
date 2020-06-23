@@ -294,20 +294,21 @@ export class MainWindowInitializer extends WindowInitializer {
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
-            convertScanResultsToUnifiedRules,
-            toolData,
-            generateUID,
-            scanIncompleteWarningDetector,
-        );
-
-        const unifiedResultSenderForNeedsReview = new UnifiedResultSender(
-            this.browserAdapter.sendMessageToFrames,
             convertScanResultsToNeedsReviewUnifiedResults,
             convertScanResultsToUnifiedRules,
             toolData,
             generateUID,
             scanIncompleteWarningDetector,
         );
+
+        // const unifiedResultSenderForNeedsReview = new UnifiedResultSender(
+        //     this.browserAdapter.sendMessageToFrames,
+        //     convertScanResultsToNeedsReviewUnifiedResults,
+        //     convertScanResultsToUnifiedRules,
+        //     toolData,
+        //     generateUID,
+        //     scanIncompleteWarningDetector,
+        // );
 
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
@@ -318,8 +319,8 @@ export class MainWindowInitializer extends WindowInitializer {
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
-            unifiedResultSender.sendResults,
-            unifiedResultSenderForNeedsReview.sendResults,
+            unifiedResultSender.sendAutomatedChecksResults,
+            unifiedResultSender.sendNeedsReviewResults,
             scanIncompleteWarningDetector,
         );
 
