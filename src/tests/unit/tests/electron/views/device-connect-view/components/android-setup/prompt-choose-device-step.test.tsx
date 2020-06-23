@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';

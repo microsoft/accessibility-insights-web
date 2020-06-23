@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 
 export class AndroidSetupActionCreator {
     private readonly scope: string = 'AndroidSetupActionCreator';

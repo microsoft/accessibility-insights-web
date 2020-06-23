@@ -4,25 +4,18 @@
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import {
-    AndroidServiceConfigurator,
-    AndroidServiceConfiguratorFactory,
-    DeviceInfo,
-    PackageInfo,
-    PermissionInfo,
-} from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     private serviceConfig: AndroidServiceConfigurator;
-    private selectedDeviceId: string;
 
     constructor(
         private readonly configFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
-        private readonly apkLocator: AndroidServiceApkLocator,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
         private readonly fetchDeviceConfig: DeviceConfigFetcher,
         public readonly logger: Logger,
@@ -47,16 +40,13 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return await this.serviceConfig.getConnectedDevices();
     };
 
-    public setSelectedDeviceId = (id: string): void => {
-        this.selectedDeviceId = id;
+    public setSelectedDeviceId = (deviceId: string): void => {
+        this.serviceConfig.setSelectedDevice(deviceId);
     };
 
     public hasExpectedServiceVersion = async (): Promise<boolean> => {
         try {
-            const installedVersion: string = await this.getInstalledVersion();
-            if (installedVersion) {
-                return installedVersion === (await this.getTargetVersion());
-            }
+            return await this.serviceConfig.hasRequiredServiceVersion();
         } catch (error) {
             this.logger.log(error);
         }
@@ -65,15 +55,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public installService = async (): Promise<boolean> => {
         try {
-            const installedVersion: string = await this.getInstalledVersion();
-            if (installedVersion) {
-                const targetVersion: string = await this.getTargetVersion();
-                if (this.compareVersions(installedVersion, targetVersion) > 0) {
-                    await this.serviceConfig.uninstallService(this.selectedDeviceId);
-                }
-            }
-
-            await this.serviceConfig.installService(this.selectedDeviceId);
+            await this.serviceConfig.installRequiredServiceVersion();
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -83,10 +65,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedPermissions = async (): Promise<boolean> => {
         try {
-            const info: PermissionInfo = await this.serviceConfig.getPermissionInfo(
-                this.selectedDeviceId,
-            );
-            return info.screenshotGranted;
+            return await this.serviceConfig.hasRequiredPermissions();
         } catch (error) {
             this.logger.log(error);
         }
@@ -94,11 +73,11 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     };
 
     public setupTcpForwarding = async (): Promise<number> => {
-        return await this.serviceConfig.setupTcpForwarding(this.selectedDeviceId);
+        return await this.serviceConfig.setupTcpForwarding();
     };
 
     public removeTcpForwarding = async (hostPort: number): Promise<void> => {
-        return await this.serviceConfig.removeTcpForwarding(this.selectedDeviceId, hostPort);
+        await this.serviceConfig.removeTcpForwarding(hostPort);
     };
 
     public getApplicationName = async (): Promise<string> => {
@@ -111,39 +90,4 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
         return '';
     };
-
-    private async getInstalledVersion(): Promise<string> {
-        const info: PackageInfo = await this.serviceConfig.getPackageInfo(this.selectedDeviceId);
-        return info?.versionName;
-    }
-
-    private async getTargetVersion(): Promise<string> {
-        return (await this.apkLocator.locateBundledApk()).versionName;
-    }
-
-    private compareVersions(v1: string, v2: string): number {
-        const radix: number = 10;
-        const v1Parts: string[] = v1.split('.');
-        const v2Parts: string[] = v2.split('.');
-
-        for (let loop = 0; loop < 3; loop++) {
-            const v1Part = v1Parts[loop];
-            const v2Part = v2Parts[loop];
-
-            if (!v1Part && !v2Part) {
-                break;
-            }
-            const v1Value = parseInt(v1Part, radix);
-            const v2Value = parseInt(v2Part, radix);
-
-            if (v1Value > v2Value) {
-                return 1;
-            }
-            if (v1Value < v2Value) {
-                return -1;
-            }
-        }
-
-        return 0;
-    }
 }
