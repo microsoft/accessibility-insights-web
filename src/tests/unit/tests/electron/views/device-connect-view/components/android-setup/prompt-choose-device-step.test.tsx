@@ -9,7 +9,7 @@ import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/compo
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('PromptChooseDeviceStep', () => {
     let props: CommonAndroidSetupStepProps;
