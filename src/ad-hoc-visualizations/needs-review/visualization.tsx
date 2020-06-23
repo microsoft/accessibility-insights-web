@@ -4,6 +4,8 @@ import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { FeatureFlags } from 'common/feature-flags';
+import { Messages } from 'common/messages';
+import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
@@ -23,10 +25,14 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         toggleLabel: 'Show areas needing review',
         linkToDetailsViewText: 'List view and filtering',
     },
-    chromeCommand: '06_toggle-needsReview',
     launchPanelDisplayOrder: 6,
     adhocToolsPanelDisplayOrder: 6,
-    getAnalyzer: () => null,
+    getAnalyzer: provider =>
+        provider.createBaseAnalyzer({
+            key: AdHocTestkeys.Color,
+            testType: VisualizationType.Color,
+            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+        }),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: null,
