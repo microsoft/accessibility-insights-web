@@ -24,7 +24,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly configStore: UserConfigurationStore,
         private readonly apkLocator: AndroidServiceApkLocator,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
-        private readonly fetchDeviceConfig: DeviceConfigFetcher,
+        public readonly fetchDeviceConfig: DeviceConfigFetcher,
         public readonly logger: Logger,
     ) {}
 
@@ -95,17 +95,6 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public setTcpForwarding = async (): Promise<number> => {
         return await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
-    };
-
-    public getApplicationName = async (): Promise<string> => {
-        try {
-            const config = await this.fetchDeviceConfig(62442);
-            return config.appIdentifier;
-        } catch (error) {
-            this.logger.log(error);
-        }
-
-        return '';
     };
 
     private async getInstalledVersion(): Promise<string> {
