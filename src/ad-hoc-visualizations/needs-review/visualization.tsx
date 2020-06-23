@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
