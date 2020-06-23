@@ -252,15 +252,29 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('setTcpForwarding returns false on error', async () => {
+        const expectedMessage = 'Threw during setTcpForwarding';
         serviceConfigMock
             .setup(m => m.setTcpForwarding(undefined))
-            .throws(new Error('Threw during setTcpForwarding'))
+            .throws(new Error(expectedMessage))
             .verifiable(Times.once());
         await initializeServiceConfig();
 
-        const success = await testSubject.setTcpForwarding();
+        await expect(testSubject.setTcpForwarding()).rejects.toThrowError(expectedMessage);
 
-        expect(success).toBe(false);
+        verifyAllMocks();
+    });
+
+    it('setTcpForwarding propagates configured port', async () => {
+        const testPort = 12345;
+        serviceConfigMock
+            .setup(m => m.setTcpForwarding(undefined))
+            .returns(() => Promise.resolve(testPort))
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        const forwardedPort = await testSubject.setTcpForwarding();
+
+        expect(forwardedPort).toBe(testPort);
 
         verifyAllMocks();
     });
@@ -280,21 +294,6 @@ describe('LiveAndroidSetupDeps', () => {
         const appName = await testSubject.getApplicationName();
 
         expect(appName).toEqual(config.appIdentifier);
-
-        verifyAllMocks();
-    });
-
-    it('setTcpForwarding returns true if no error', async () => {
-        const testPort = 12345;
-        serviceConfigMock
-            .setup(m => m.setTcpForwarding(undefined))
-            .returns(() => Promise.resolve(testPort))
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        const success = await testSubject.setTcpForwarding();
-
-        expect(success).toBe(true);
 
         verifyAllMocks();
     });
