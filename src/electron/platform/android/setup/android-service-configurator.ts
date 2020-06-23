@@ -3,10 +3,13 @@
 
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
+import { PortFinderOptions } from 'portfinder';
+
+export type PortFinder = (options?: PortFinderOptions) => Promise<number>;
+
+const servicePortNumber: number = 62442;
 
 export class AndroidServiceConfigurator {
-    private readonly devicePort = 62442;
-    private readonly localPort = 62442;
     private readonly servicePackageName: string =
         'com.microsoft.accessibilityinsightsforandroidservice';
 
@@ -15,6 +18,7 @@ export class AndroidServiceConfigurator {
     public constructor(
         private readonly serviceConfigurator: AdbWrapper,
         private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly portFinder: PortFinder,
     ) {}
 
     public getConnectedDevices = async (): Promise<DeviceInfo[]> => {
@@ -69,20 +73,21 @@ export class AndroidServiceConfigurator {
         return screenshotGranted;
     };
 
-    public setTcpForwarding = async (): Promise<number> => {
-        await this.serviceConfigurator.setTcpForwarding(
+    public setupTcpForwarding = async (): Promise<number> => {
+        const hostPort = await this.portFinder({
+            port: servicePortNumber,
+            stopPort: servicePortNumber + 100,
+        });
+
+        return await this.serviceConfigurator.setTcpForwarding(
             this.selectedDeviceId,
-            this.localPort,
-            this.devicePort,
+            hostPort,
+            servicePortNumber,
         );
-        return this.localPort;
     };
 
-    public removeTcpForwarding = async (): Promise<void> => {
-        return await this.serviceConfigurator.removeTcpForwarding(
-            this.selectedDeviceId,
-            this.localPort,
-        );
+    public removeTcpForwarding = async (hostPort: number): Promise<void> => {
+        return await this.serviceConfigurator.removeTcpForwarding(this.selectedDeviceId, hostPort);
     };
 
     private async getInstalledVersion(deviceId: string): Promise<string> {

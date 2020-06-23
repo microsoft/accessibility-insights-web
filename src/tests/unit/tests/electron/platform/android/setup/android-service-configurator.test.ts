@@ -6,13 +6,14 @@ import {
     AndroidServiceApkInfo,
     AndroidServiceApkLocator,
 } from 'electron/platform/android/android-service-apk-locator';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import {
+    AndroidServiceConfigurator,
+    PortFinder,
+} from 'electron/platform/android/setup/android-service-configurator';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AndroidServiceConfigurator', () => {
     const testDeviceId: string = 'emulator-12345';
-    const localPortNumber: number = 62442;
-    const devicePortNumber: number = 62442;
     const servicePackageName: string = 'com.microsoft.accessibilityinsightsforandroidservice';
     const testApkPackage: string = './Some/Path/SomePackage.apk';
     const testApkInfo: AndroidServiceApkInfo = {
@@ -22,17 +23,23 @@ describe('AndroidServiceConfigurator', () => {
     const accessibilityServiceName: string = 'accessibility';
     const mediaProjectionServiceName: string = 'media_projection';
     const serviceIsRunningResponseSnippet: string = 'label=Accessibility Insights';
+    const expectedServicePortNumber: number = 62442;
+    const expectedHostPortRangeStart: number = 62442;
+    const expectedHostPortRangeStop: number = 62542;
 
     let serviceConfigMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
+    let portFinderMock: IMock<PortFinder>;
     let testSubject: AndroidServiceConfigurator;
 
     beforeEach(() => {
         serviceConfigMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
+        portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
         testSubject = new AndroidServiceConfigurator(
             serviceConfigMock.object,
             apkLocatorMock.object,
+            portFinderMock.object,
         );
         testSubject.setSelectedDevice(testDeviceId);
     });
@@ -40,9 +47,10 @@ describe('AndroidServiceConfigurator', () => {
     function verifyAllMocks(): void {
         serviceConfigMock.verifyAll();
         apkLocatorMock.verifyAll();
+        portFinderMock.verifyAll();
     }
 
-    it('getDevices propagates thrown errors', async () => {
+    it('getConnectedDevices propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during getDevices';
         serviceConfigMock
             .setup(m => m.getConnectedDevices())
@@ -54,7 +62,7 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
-    it('getDevices returns info from AndroidServiceConfigurator', async () => {
+    it('getConnectedDevices returns info from AndroidServiceConfigurator', async () => {
         const expectedDevices: DeviceInfo[] = [
             {
                 id: 'emulator1',
@@ -333,47 +341,98 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
-    it('setTcpForwarding propagates thrown errors', async () => {
-        const expectedMessage = 'Error thrown during setTcpForwarding';
-        serviceConfigMock
-            .setup(m => m.setTcpForwarding(testDeviceId, localPortNumber, devicePortNumber))
-            .throws(new Error(expectedMessage))
-            .verifiable(Times.once());
+    describe('setupTcpForwarding', () => {
+        it('propagates error from portFinder', async () => {
+            const expectedMessage: string = 'Thrown from portFinder';
+            portFinderMock
+                .setup(m => m(It.isAny()))
+                .returns(() => Promise.reject(new Error(expectedMessage)))
+                .verifiable(Times.once());
 
-        await expect(testSubject.setTcpForwarding()).rejects.toThrowError(expectedMessage);
+            await expect(testSubject.setupTcpForwarding()).rejects.toThrowError(expectedMessage);
 
-        verifyAllMocks();
+            verifyAllMocks();
+        });
+
+        it('propagates error from ADB.forwardPort', async () => {
+            const portFinderOutput = 63000;
+            portFinderMock
+                .setup(m =>
+                    m({
+                        port: expectedHostPortRangeStart,
+                        stopPort: expectedHostPortRangeStop,
+                    }),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+
+            const expectedMessage: string = 'Thrown during forwardPort';
+            serviceConfigMock
+                .setup(m =>
+                    m.setTcpForwarding(testDeviceId, portFinderOutput, expectedServicePortNumber),
+                )
+                .returns(() => Promise.reject(new Error(expectedMessage)))
+                .verifiable(Times.once());
+
+            await expect(testSubject.setupTcpForwarding()).rejects.toThrowError(expectedMessage);
+
+            verifyAllMocks();
+        });
+
+        it('invokes ADB.forwardPort using the port from portFinder', async () => {
+            const portFinderOutput = 63000;
+            portFinderMock
+                .setup(m =>
+                    m({
+                        port: expectedHostPortRangeStart,
+                        stopPort: expectedHostPortRangeStop,
+                    }),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+
+            serviceConfigMock
+                .setup(m =>
+                    m.setTcpForwarding(testDeviceId, portFinderOutput, expectedServicePortNumber),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+
+            const output = await testSubject.setupTcpForwarding();
+            expect(output).toBe(portFinderOutput);
+
+            verifyAllMocks();
+        });
     });
 
-    it('setTcpForwarding returns if no error', async () => {
-        serviceConfigMock
-            .setup(m => m.setTcpForwarding(testDeviceId, localPortNumber, devicePortNumber))
-            .verifiable(Times.once());
+    describe('removeTcpForwarding', () => {
+        it('calls ADB.removePortForward using hostPort', async () => {
+            const expectedHostPort = 123;
 
-        await testSubject.setTcpForwarding();
+            serviceConfigMock
+                .setup(m => m.removeTcpForwarding(testDeviceId, expectedHostPort))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.once());
 
-        verifyAllMocks();
-    });
+            await testSubject.removeTcpForwarding(expectedHostPort);
 
-    it('removeTcpForwarding propagates thrown errors', async () => {
-        const expectedMessage = 'Error thrown during removeTcpForwarding';
-        serviceConfigMock
-            .setup(m => m.removeTcpForwarding(testDeviceId, localPortNumber))
-            .throws(new Error(expectedMessage))
-            .verifiable(Times.once());
+            verifyAllMocks();
+        });
 
-        await expect(testSubject.removeTcpForwarding()).rejects.toThrowError(expectedMessage);
+        it('propagates error from removePortForward', async () => {
+            const irrelevantHostPort = 123;
+            const expectedMessage: string = 'Thrown during removeTcpForwarding';
 
-        verifyAllMocks();
-    });
+            serviceConfigMock
+                .setup(m => m.removeTcpForwarding(testDeviceId, It.isAny()))
+                .returns(() => Promise.reject(new Error(expectedMessage)))
+                .verifiable(Times.once());
 
-    it('removeTcpForwarding returns if no error', async () => {
-        serviceConfigMock
-            .setup(m => m.removeTcpForwarding(testDeviceId, localPortNumber))
-            .verifiable(Times.once());
+            await expect(testSubject.removeTcpForwarding(irrelevantHostPort)).rejects.toThrowError(
+                expectedMessage,
+            );
 
-        await testSubject.removeTcpForwarding();
-
-        verifyAllMocks();
+            verifyAllMocks();
+        });
     });
 });

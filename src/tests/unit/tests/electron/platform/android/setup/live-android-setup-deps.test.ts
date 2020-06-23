@@ -246,30 +246,61 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('setTcpForwarding returns false on error', async () => {
-        const expectedMessage = 'Threw during setTcpForwarding';
+    it('setupTcpForwarding propagates error from serviceConfig.setupTcpForwarding', async () => {
+        const serviceConfigErrorMessage = 'error from serviceConfig';
         serviceConfigMock
-            .setup(m => m.setTcpForwarding())
-            .throws(new Error(expectedMessage))
+            .setup(m => m.setupTcpForwarding())
+            .returns(() => Promise.reject(new Error(serviceConfigErrorMessage)))
             .verifiable(Times.once());
         await initializeServiceConfig();
 
-        await expect(testSubject.setTcpForwarding()).rejects.toThrowError(expectedMessage);
+        await expect(testSubject.setupTcpForwarding()).rejects.toThrowError(
+            serviceConfigErrorMessage,
+        );
 
         verifyAllMocks();
     });
 
-    it('setTcpForwarding propagates configured port', async () => {
-        const testPort = 12345;
+    it('setupTcpForwarding propagates output from serviceConfig.setupTcpForwarding', async () => {
+        const serviceConfigOutput = 63000;
         serviceConfigMock
-            .setup(m => m.setTcpForwarding())
-            .returns(() => Promise.resolve(testPort))
+            .setup(m => m.setupTcpForwarding())
+            .returns(() => Promise.resolve(serviceConfigOutput))
             .verifiable(Times.once());
         await initializeServiceConfig();
 
-        const forwardedPort = await testSubject.setTcpForwarding();
+        const output = await testSubject.setupTcpForwarding();
 
-        expect(forwardedPort).toBe(testPort);
+        expect(output).toBe(serviceConfigOutput);
+
+        verifyAllMocks();
+    });
+
+    it('removeTcpForwarding propagates error from serviceConfig.removeTcpForwarding', async () => {
+        const port = 2;
+        const serviceConfigErrorMessage = 'error from serviceConfig';
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(port))
+            .returns(() => Promise.reject(new Error(serviceConfigErrorMessage)))
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        await expect(testSubject.removeTcpForwarding(port)).rejects.toThrowError(
+            serviceConfigErrorMessage,
+        );
+
+        verifyAllMocks();
+    });
+
+    it('removeTcpForwarding propagates to serviceConfig.removeTcpForwarding', async () => {
+        const port = 63000;
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(port))
+            .returns(() => Promise.resolve())
+            .verifiable(Times.once());
+        await initializeServiceConfig();
+
+        await testSubject.removeTcpForwarding(port);
 
         verifyAllMocks();
     });

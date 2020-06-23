@@ -3,12 +3,16 @@
 
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import {
+    AndroidServiceConfigurator,
+    PortFinder,
+} from 'electron/platform/android/setup/android-service-configurator';
 
 export class AndroidServiceConfiguratorFactory {
     constructor(
         private readonly adbWrapperFactory: AdbWrapperFactory,
         private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly portFinder: PortFinder,
     ) {}
 
     public getServiceConfigurator = async (
@@ -17,6 +21,6 @@ export class AndroidServiceConfiguratorFactory {
         const adbWrapper: AdbWrapper = await this.adbWrapperFactory.createValidatedAdbWrapper(
             adbLocation,
         );
-        return new AndroidServiceConfigurator(adbWrapper, this.apkLocator);
+        return new AndroidServiceConfigurator(adbWrapper, this.apkLocator, this.portFinder);
     };
 }
