@@ -2,7 +2,10 @@
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
-import { DEVICE_SETUP_STEP } from 'electron/common/electron-telemetry-events';
+import {
+    AndroidSetupStepTelemetryData,
+    DEVICE_SETUP_STEP,
+} from 'electron/common/electron-telemetry-events';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 
@@ -30,14 +33,15 @@ export class AndroidSetupTelemetrySender {
         if (this.step !== newStep) {
             const elapsed = currentMs - this.prevTimestamp;
             const prevDuration = this.step === null ? 0 : elapsed;
+            const telemetry: AndroidSetupStepTelemetryData = {
+                triggeredBy: TriggeredByNotApplicable,
+                source: TelemetryEventSource.ElectronDeviceConnect,
+                prevStep: this.step,
+                newStep,
+                prevDuration,
+            };
             this.telemetryEventHandler.publishTelemetry(DEVICE_SETUP_STEP, {
-                telemetry: {
-                    triggeredBy: TriggeredByNotApplicable,
-                    source: TelemetryEventSource.ElectronDeviceConnect,
-                    prevStep: this.step,
-                    newStep,
-                    prevDuration,
-                },
+                telemetry,
             });
 
             this.step = newStep;
