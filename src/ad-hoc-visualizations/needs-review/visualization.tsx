@@ -29,8 +29,8 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>
         provider.createBaseAnalyzer({
-            key: AdHocTestkeys.Color,
-            testType: VisualizationType.Color,
+            key: AdHocTestkeys.NeedsReview,
+            testType: VisualizationType.NeedsReview,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
