@@ -198,6 +198,9 @@ exports[`DetailsViewBody render render 1`] = `
             "landmarks": Object {
               "enabled": false,
             },
+            "needsReview": Object {
+              "enabled": false,
+            },
             "tabStops": Object {
               "enabled": false,
             },
@@ -501,6 +504,9 @@ exports[`DetailsViewBody render render 1`] = `
                 "enabled": false,
               },
               "landmarks": Object {
+                "enabled": false,
+              },
+              "needsReview": Object {
                 "enabled": false,
               },
               "tabStops": Object {
@@ -811,6 +817,9 @@ exports[`DetailsViewBody render render 1`] = `
                     "enabled": false,
                   },
                   "landmarks": Object {
+                    "enabled": false,
+                  },
+                  "needsReview": Object {
                     "enabled": false,
                   },
                   "tabStops": Object {

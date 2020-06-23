@@ -15,8 +15,10 @@ import { PromptGrantPermissionsStep } from 'electron/views/device-connect-view/c
 import { PromptInstallFailedStep } from 'electron/views/device-connect-view/components/android-setup/prompt-install-failed-step';
 import { PromptInstallServiceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
 import { PromptLocateAdbStep } from 'electron/views/device-connect-view/components/android-setup/prompt-locate-adb-step';
+import { WaitToStartStep } from 'electron/views/device-connect-view/components/android-setup/wait-to-start-step';
 
 export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = {
+    'wait-to-start': WaitToStartStep,
     'detect-adb': DetectAdbStep,
     'prompt-locate-adb': PromptLocateAdbStep,
     'prompt-choose-device': PromptChooseDeviceStep,

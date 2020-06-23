@@ -30,4 +30,5 @@ export enum VisualizationType {
     SemanticsAssessment,
     PointerMotionAssessment,
     ContrastAssessment,
+    NeedsReview,
 }
