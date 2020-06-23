@@ -14,7 +14,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     getTestView: props => <AdhocIssuesTestView {...props} />,
     getStoreData: data => data.adhoc.needsReview,
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
