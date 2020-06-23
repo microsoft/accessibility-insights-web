@@ -7,6 +7,7 @@ import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
+import { FeatureFlags } from 'common/feature-flags';
 
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.NeedsReview,
@@ -32,4 +33,5 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     getDrawer: () => null,
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
+    featureFlagToEnable: FeatureFlags.needsReview,
 };
