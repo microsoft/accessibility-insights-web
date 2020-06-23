@@ -9,7 +9,7 @@ import {
 import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('LiveAndroidServiceSetupBusinessLogic', () => {
+describe('AndroidServiceConfigurator', () => {
     const testDeviceId: string = 'emulator-12345';
     const localPortNumber: number = 62442;
     const devicePortNumber: number = 62442;

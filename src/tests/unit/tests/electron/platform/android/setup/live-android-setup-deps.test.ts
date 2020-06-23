@@ -16,8 +16,8 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 describe('LiveAndroidSetupDeps', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
-    let businessLogicFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
-    let businessLogicMock: IMock<AndroidServiceConfigurator>;
+    let serviceConfigFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
+    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let fetchConfigMock: IMock<DeviceConfigFetcher>;
@@ -25,11 +25,11 @@ describe('LiveAndroidSetupDeps', () => {
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
-        businessLogicFactoryMock = Mock.ofType<AndroidServiceConfiguratorFactory>(
+        serviceConfigFactoryMock = Mock.ofType<AndroidServiceConfiguratorFactory>(
             undefined,
             MockBehavior.Strict,
         );
-        businessLogicMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
+        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
         configMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>(
             undefined,
@@ -38,7 +38,7 @@ describe('LiveAndroidSetupDeps', () => {
         fetchConfigMock = Mock.ofInstance((port: number) => new Promise<DeviceConfig>(() => null));
         loggerMock = Mock.ofType<Logger>();
         testSubject = new LiveAndroidSetupDeps(
-            businessLogicFactoryMock.object,
+            serviceConfigFactoryMock.object,
             configStoreMock.object,
             configMessageCreatorMock.object,
             fetchConfigMock.object,
@@ -47,23 +47,23 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     function verifyAllMocks(): void {
-        businessLogicFactoryMock.verifyAll();
-        businessLogicMock.verifyAll();
+        serviceConfigFactoryMock.verifyAll();
+        serviceConfigMock.verifyAll();
         configStoreMock.verifyAll();
         configMessageCreatorMock.verifyAll();
     }
 
-    async function initializeBusinessLogic(): Promise<boolean> {
+    async function initializeServiceConfig(): Promise<boolean> {
         const stateData = { adbLocation: expectedAdbLocation } as UserConfigurationStoreData;
         configStoreMock
             .setup(m => m.getState())
             .returns(() => stateData)
             .verifiable(Times.once());
-        businessLogicFactoryMock
+        serviceConfigFactoryMock
             .setup(m => m.getServiceConfig(expectedAdbLocation))
-            .returns(() => Promise.resolve(businessLogicMock.object))
+            .returns(() => Promise.resolve(serviceConfigMock.object))
             .verifiable(Times.once());
-        businessLogicMock.setup((m: any) => m.then).returns(() => undefined);
+        serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
         return await testSubject.hasAdbPath();
     }
 
@@ -80,7 +80,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasAdbPath chains and returns true on success', async () => {
-        const success: boolean = await initializeBusinessLogic();
+        const success: boolean = await initializeServiceConfig();
         expect(success).toBe(true);
 
         verifyAllMocks();
@@ -109,11 +109,11 @@ describe('LiveAndroidSetupDeps', () => {
                 friendlyName: 'a device',
             },
         ];
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.getDevices())
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const actualDevices = await testSubject.getDevices();
 
@@ -126,11 +126,11 @@ describe('LiveAndroidSetupDeps', () => {
         // Note: We can only validate this indirectly. We set the expected ID,
         // then confirm that it gets passed to the business logic.
         const expectedDeviceId: string = 'abc-123';
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredServiceVersion(expectedDeviceId))
             .throws(new Error('Threw validating setSeletedDeviceId'))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         testSubject.setSelectedDeviceId(expectedDeviceId);
 
@@ -140,11 +140,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns false on error', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredServiceVersion(undefined))
             .throws(new Error('Threw during hasExpectedServiceVersion'))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.hasExpectedServiceVersion();
 
@@ -154,11 +154,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns false if business logic returns false', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredServiceVersion(undefined))
             .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.hasExpectedServiceVersion();
 
@@ -168,11 +168,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns true if business logic returns true', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredServiceVersion(undefined))
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.hasExpectedServiceVersion();
 
@@ -182,11 +182,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('installService returns false on error', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.installRequiredServiceVersion(undefined))
             .throws(new Error('Threw during installService'))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.installService();
 
@@ -196,11 +196,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('installService returns true on success', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.installRequiredServiceVersion(undefined))
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.installService();
 
@@ -210,11 +210,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedPermissions returns false on error', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredPermissions(undefined))
             .throws(new Error('Threw during hasExpectedPermissions'))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.hasExpectedPermissions();
 
@@ -224,11 +224,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedPermissions returns false if business logic returns false', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredPermissions(undefined))
             .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.hasExpectedPermissions();
 
@@ -238,11 +238,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedPermissions returns true if business logic returns true', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.hasRequiredPermissions(undefined))
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.hasExpectedPermissions();
 
@@ -252,11 +252,11 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('setTcpForwarding returns false on error', async () => {
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.setTcpForwarding(undefined))
             .throws(new Error('Threw during setTcpForwarding'))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.setTcpForwarding();
 
@@ -286,11 +286,11 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('setTcpForwarding returns true if no error', async () => {
         const testPort = 12345;
-        businessLogicMock
+        serviceConfigMock
             .setup(m => m.setTcpForwarding(undefined))
             .returns(() => Promise.resolve(testPort))
             .verifiable(Times.once());
-        await initializeBusinessLogic();
+        await initializeServiceConfig();
 
         const success = await testSubject.setTcpForwarding();
 

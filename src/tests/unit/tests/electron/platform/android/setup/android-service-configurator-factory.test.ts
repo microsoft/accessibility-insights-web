@@ -7,7 +7,7 @@ import { AndroidServiceConfigurator } from 'electron/platform/android/setup/andr
 import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
+describe('AndroidServiceConfiguratorFactory', () => {
     let adbWrapperFactoryMock: IMock<AdbWrapperFactory>;
     let adbWrapperMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
@@ -23,7 +23,7 @@ describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
         );
     });
 
-    it('getBusinessLogic returns correct object', async () => {
+    it('getServiceConfig returns correct object', async () => {
         const expectedAdbLocation: string = 'Some location';
         adbWrapperFactoryMock
             .setup(m => m.getAdbWrapper(expectedAdbLocation))
@@ -31,11 +31,11 @@ describe('LiveAndroidServiceSetupBusinessLogicFactory', () => {
             .verifiable(Times.once());
         adbWrapperMock.setup((m: any) => m.then).returns(() => undefined);
 
-        const businessLogic: AndroidServiceConfigurator = await testSubject.getBusinessLogic(
+        const serviceConfig: AndroidServiceConfigurator = await testSubject.getServiceConfig(
             expectedAdbLocation,
         );
 
-        expect(businessLogic).toBeInstanceOf(AndroidServiceConfigurator);
+        expect(serviceConfig).toBeInstanceOf(AndroidServiceConfigurator);
 
         adbWrapperFactoryMock.verifyAll();
     });
