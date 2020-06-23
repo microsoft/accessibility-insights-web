@@ -185,7 +185,7 @@ export class DiagnosticViewToggle extends React.Component<
 
     private getCommandShortcut(): string {
         if (!this.configuration.chromeCommand) {
-            return '';
+            return null;
         }
 
         const commandName: string = this.configuration.chromeCommand;
