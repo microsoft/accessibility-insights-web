@@ -90,10 +90,10 @@ export class PromptChooseDeviceStep extends React.Component<
             rightFooterButtonProps: {
                 text: 'Next',
                 disabled: this.state.selectedDevice === null,
-                onClick: _ =>
-                    this.props.deps.androidSetupActionCreator.setSelectedDevice(
-                        this.state.selectedDevice,
-                    ),
+                onClick: _ => {
+                    const selectedDevice = this.state.selectedDevice['metadata'];
+                    this.props.deps.androidSetupActionCreator.setSelectedDevice(selectedDevice);
+                },
             },
         };
 

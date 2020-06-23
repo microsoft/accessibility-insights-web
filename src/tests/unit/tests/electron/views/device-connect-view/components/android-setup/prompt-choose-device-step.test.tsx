@@ -72,7 +72,7 @@ describe('PromptChooseDeviceStep', () => {
         rendered.find('DeviceDescription').at(0).simulate('click');
         actionMessageCreatorMock
             .setup(m => m.setSelectedDevice(It.isAny()))
-            .callback(value => (actualDevice = value.metadata));
+            .callback(value => (actualDevice = value));
         rendered.find(AndroidSetupStepLayout).prop('rightFooterButtonProps').onClick(stubEvent);
         actionMessageCreatorMock.verify(m => m.setSelectedDevice(It.isAny()), Times.once());
         expect(actualDevice).toEqual(expectedDevice);
