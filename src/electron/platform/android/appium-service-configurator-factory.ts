@@ -11,12 +11,16 @@ import {
     AppiumAdbCreateParameters,
     AppiumAdbCreator,
 } from 'electron/platform/android/appium-adb-creator';
-import { AppiumServiceConfigurator } from 'electron/platform/android/appium-service-configurator';
+import {
+    AppiumServiceConfigurator,
+    PortFinder,
+} from 'electron/platform/android/appium-service-configurator';
 
 export class AppiumServiceConfiguratorFactory implements AndroidServiceConfiguratorFactory {
     public constructor(
         private readonly adbCreator: AppiumAdbCreator,
         private readonly apkLocator: AndroidServiceApkLocator,
+        private readonly portFinder: PortFinder,
     ) {}
 
     public getServiceConfigurator = async (
@@ -30,6 +34,6 @@ export class AppiumServiceConfiguratorFactory implements AndroidServiceConfigura
 
         const adb: ADB = await this.adbCreator.createADB(parameters);
 
-        return new AppiumServiceConfigurator(adb, this.apkLocator);
+        return new AppiumServiceConfigurator(adb, this.apkLocator, this.portFinder);
     };
 }

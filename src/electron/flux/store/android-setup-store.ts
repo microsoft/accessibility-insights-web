@@ -28,6 +28,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
             stepTransition: this.stepTransition,
             setSelectedDevice: this.setSelectedDevice,
             setAvailableDevices: this.setAvailableDevices,
+            getScanPort: () => this.state.scanPort,
             setScanPort: this.setScanPort,
             setApplicationName: this.setApplicationName,
         });

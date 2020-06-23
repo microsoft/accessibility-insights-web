@@ -7,9 +7,15 @@ export const configuringPortForwarding: AndroidSetupStepConfig = deps => ({
     actions: {},
     onEnter: async () => {
         try {
-            deps.setScanPort(null);
-            deps.setApplicationName(null);
-            const hostPort = await deps.setTcpForwarding();
+            const existingPort = deps.getScanPort();
+            if (existingPort != null) {
+                deps.logger.log(`removing old tcp:${existingPort} forwarding`);
+                await deps.removeTcpForwarding(existingPort);
+                deps.setScanPort(null);
+                deps.setApplicationName(null);
+            }
+
+            const hostPort = await deps.setupTcpForwarding();
             deps.logger.log(`configured forwarding to tcp:${hostPort}`);
             const appName = await deps.getApplicationName();
 
