@@ -301,7 +301,8 @@ describe('AppiumServiceConfigurator tests', () => {
             .setup(m => m.forwardPort(testLocalPortNumber, testDevicePortNumber))
             .verifiable(Times.once());
 
-        await testSubject.setTcpForwarding(emulatorId, testLocalPortNumber, testDevicePortNumber);
+        const output = await testSubject.setTcpForwarding(emulatorId);
+        expect(output).toBe(expectedPortNumber);
 
         adbMock.verifyAll();
     });

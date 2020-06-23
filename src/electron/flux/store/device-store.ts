@@ -19,7 +19,7 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
         return {
             deviceConnectState: DeviceConnectState.Default,
             connectedDevice: null,
-            port: this.defaultPortNumber,
+            port: null,
         };
     }
 
