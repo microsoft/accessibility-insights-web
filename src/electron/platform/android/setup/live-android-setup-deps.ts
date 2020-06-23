@@ -11,7 +11,6 @@ import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/set
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
-    private selectedDeviceId: string;
     private serviceConfig: AndroidServiceConfigurator;
 
     constructor(
@@ -41,13 +40,13 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return await this.serviceConfig.getConnectedDevices();
     };
 
-    public setSelectedDeviceId = (id: string): void => {
-        this.selectedDeviceId = id;
+    public setSelectedDeviceId = (deviceId: string): void => {
+        this.serviceConfig.setSelectedDevice(deviceId);
     };
 
     public hasExpectedServiceVersion = async (): Promise<boolean> => {
         try {
-            return await this.serviceConfig.hasRequiredServiceVersion(this.selectedDeviceId);
+            return await this.serviceConfig.hasRequiredServiceVersion();
         } catch (error) {
             this.logger.log(error);
         }
@@ -56,7 +55,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public installService = async (): Promise<boolean> => {
         try {
-            await this.serviceConfig.installRequiredServiceVersion(this.selectedDeviceId);
+            await this.serviceConfig.installRequiredServiceVersion();
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -66,7 +65,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedPermissions = async (): Promise<boolean> => {
         try {
-            return await this.serviceConfig.hasRequiredPermissions(this.selectedDeviceId);
+            return await this.serviceConfig.hasRequiredPermissions();
         } catch (error) {
             this.logger.log(error);
         }
@@ -74,7 +73,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     };
 
     public setTcpForwarding = async (): Promise<number> => {
-        return await this.serviceConfig.setTcpForwarding(this.selectedDeviceId);
+        return await this.serviceConfig.setTcpForwarding();
     };
 
     public getApplicationName = async (): Promise<string> => {

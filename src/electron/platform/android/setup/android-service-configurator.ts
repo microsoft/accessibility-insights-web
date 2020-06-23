@@ -10,6 +10,8 @@ export class AndroidServiceConfigurator {
     private readonly servicePackageName: string =
         'com.microsoft.accessibilityinsightsforandroidservice';
 
+    private selectedDeviceId: string;
+
     public constructor(
         private readonly serviceConfigurator: AdbWrapper,
         private readonly apkLocator: AndroidServiceApkLocator,
@@ -19,8 +21,12 @@ export class AndroidServiceConfigurator {
         return await this.serviceConfigurator.getConnectedDevices();
     };
 
-    public hasRequiredServiceVersion = async (deviceId: string): Promise<boolean> => {
-        const installedVersion: string = await this.getInstalledVersion(deviceId);
+    public setSelectedDevice = (deviceId: string): void => {
+        this.selectedDeviceId = deviceId;
+    };
+
+    public hasRequiredServiceVersion = async (): Promise<boolean> => {
+        const installedVersion: string = await this.getInstalledVersion(this.selectedDeviceId);
         if (installedVersion) {
             const targetVersion = (await this.apkLocator.locateBundledApk()).versionName;
             return installedVersion === targetVersion;
@@ -29,7 +35,8 @@ export class AndroidServiceConfigurator {
         return false;
     };
 
-    public installRequiredServiceVersion = async (deviceId: string): Promise<void> => {
+    public installRequiredServiceVersion = async (): Promise<void> => {
+        const deviceId: string = this.selectedDeviceId; // Prevent changes during execution
         const installedVersion: string = await this.getInstalledVersion(deviceId);
         const apkInfo = await this.apkLocator.locateBundledApk();
         if (installedVersion) {
@@ -43,7 +50,8 @@ export class AndroidServiceConfigurator {
         await this.serviceConfigurator.installService(deviceId, pathToApk);
     };
 
-    public hasRequiredPermissions = async (deviceId: string): Promise<boolean> => {
+    public hasRequiredPermissions = async (): Promise<boolean> => {
+        const deviceId: string = this.selectedDeviceId; // Prevent changes during execution
         const accessibilityOutput: string = await this.serviceConfigurator.getDumpsysOutput(
             deviceId,
             'accessibility',
@@ -61,13 +69,20 @@ export class AndroidServiceConfigurator {
         return screenshotGranted;
     };
 
-    public setTcpForwarding = async (deviceId: string): Promise<number> => {
-        await this.serviceConfigurator.setTcpForwarding(deviceId, this.localPort, this.devicePort);
+    public setTcpForwarding = async (): Promise<number> => {
+        await this.serviceConfigurator.setTcpForwarding(
+            this.selectedDeviceId,
+            this.localPort,
+            this.devicePort,
+        );
         return this.localPort;
     };
 
-    public removeTcpForwarding = async (deviceId: string): Promise<void> => {
-        return await this.serviceConfigurator.removeTcpForwarding(deviceId, this.localPort);
+    public removeTcpForwarding = async (): Promise<void> => {
+        return await this.serviceConfigurator.removeTcpForwarding(
+            this.selectedDeviceId,
+            this.localPort,
+        );
     };
 
     private async getInstalledVersion(deviceId: string): Promise<string> {

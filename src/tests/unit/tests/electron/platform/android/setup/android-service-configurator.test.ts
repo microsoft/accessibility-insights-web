@@ -34,6 +34,7 @@ describe('AndroidServiceConfigurator', () => {
             serviceConfigMock.object,
             apkLocatorMock.object,
         );
+        testSubject.setSelectedDevice(testDeviceId);
     });
 
     function verifyAllMocks(): void {
@@ -78,6 +79,22 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
+    it('setSelectedDevice changes value', async () => {
+        // Note that we test this indirectly since can't read it
+        const expectedDevice = 'another device';
+        const expectedMessage = 'Error thrown during hasRequiredServiceVersion';
+        serviceConfigMock
+            .setup(m => m.getPackageInfo(expectedDevice, servicePackageName))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        testSubject.setSelectedDevice(expectedDevice);
+
+        await expect(testSubject.hasRequiredServiceVersion()).rejects.toThrowError(expectedMessage);
+
+        verifyAllMocks();
+    });
+
     it('hasRequiredServiceVersion propagates thrown errors', async () => {
         const expectedMessage = 'Error thrown during hasRequiredServiceVersion';
         serviceConfigMock
@@ -85,9 +102,7 @@ describe('AndroidServiceConfigurator', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.hasRequiredServiceVersion(testDeviceId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(testSubject.hasRequiredServiceVersion()).rejects.toThrowError(expectedMessage);
 
         verifyAllMocks();
     });
@@ -99,7 +114,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
 
-        const success = await testSubject.hasRequiredServiceVersion(testDeviceId);
+        const success = await testSubject.hasRequiredServiceVersion();
 
         expect(success).toBe(false);
 
@@ -119,7 +134,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
 
-        const success = await testSubject.hasRequiredServiceVersion(testDeviceId);
+        const success = await testSubject.hasRequiredServiceVersion();
 
         expect(success).toBe(false);
 
@@ -139,7 +154,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(packageInfo))
             .verifiable(Times.once());
 
-        const success = await testSubject.hasRequiredServiceVersion(testDeviceId);
+        const success = await testSubject.hasRequiredServiceVersion();
 
         expect(success).toBe(true);
 
@@ -153,7 +168,7 @@ describe('AndroidServiceConfigurator', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.installRequiredServiceVersion(testDeviceId)).rejects.toThrowError(
+        await expect(testSubject.installRequiredServiceVersion()).rejects.toThrowError(
             expectedMessage,
         );
 
@@ -174,7 +189,7 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.installService(testDeviceId, testApkPackage))
             .verifiable(Times.once());
 
-        await testSubject.installRequiredServiceVersion(testDeviceId);
+        await testSubject.installRequiredServiceVersion();
 
         verifyAllMocks();
     });
@@ -195,7 +210,7 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.installService(testDeviceId, testApkPackage))
             .verifiable(Times.once());
 
-        await testSubject.installRequiredServiceVersion(testDeviceId);
+        await testSubject.installRequiredServiceVersion();
 
         verifyAllMocks();
     });
@@ -216,7 +231,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(testApkInfo))
             .verifiable(Times.once());
 
-        await testSubject.installRequiredServiceVersion(testDeviceId);
+        await testSubject.installRequiredServiceVersion();
 
         verifyAllMocks();
     });
@@ -249,7 +264,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(testApkInfo))
             .verifiable(Times.once());
 
-        await testSubject.installRequiredServiceVersion(testDeviceId);
+        await testSubject.installRequiredServiceVersion();
 
         expect(uninstallOrder).toBe(0);
         expect(installOrder).toBe(1);
@@ -265,9 +280,7 @@ describe('AndroidServiceConfigurator', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.hasRequiredPermissions(testDeviceId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(testSubject.hasRequiredPermissions()).rejects.toThrowError(expectedMessage);
 
         verifyAllMocks();
     });
@@ -278,7 +291,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve('No service here!'))
             .verifiable(Times.once());
 
-        const success = await testSubject.hasRequiredPermissions(testDeviceId);
+        const success = await testSubject.hasRequiredPermissions();
 
         expect(success).toBe(false);
 
@@ -295,7 +308,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve('Nope!'))
             .verifiable(Times.once());
 
-        const success = await testSubject.hasRequiredPermissions(testDeviceId);
+        const success = await testSubject.hasRequiredPermissions();
 
         expect(success).toBe(false);
 
@@ -313,7 +326,7 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(screenshotGranted))
             .verifiable(Times.once());
 
-        const success = await testSubject.hasRequiredPermissions(testDeviceId);
+        const success = await testSubject.hasRequiredPermissions();
 
         expect(success).toBe(true);
 
@@ -327,9 +340,7 @@ describe('AndroidServiceConfigurator', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.setTcpForwarding(testDeviceId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(testSubject.setTcpForwarding()).rejects.toThrowError(expectedMessage);
 
         verifyAllMocks();
     });
@@ -339,7 +350,7 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.setTcpForwarding(testDeviceId, localPortNumber, devicePortNumber))
             .verifiable(Times.once());
 
-        await testSubject.setTcpForwarding(testDeviceId);
+        await testSubject.setTcpForwarding();
 
         verifyAllMocks();
     });
@@ -351,9 +362,7 @@ describe('AndroidServiceConfigurator', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.removeTcpForwarding(testDeviceId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(testSubject.removeTcpForwarding()).rejects.toThrowError(expectedMessage);
 
         verifyAllMocks();
     });
@@ -363,7 +372,7 @@ describe('AndroidServiceConfigurator', () => {
             .setup(m => m.removeTcpForwarding(testDeviceId, localPortNumber))
             .verifiable(Times.once());
 
-        await testSubject.removeTcpForwarding(testDeviceId);
+        await testSubject.removeTcpForwarding();
 
         verifyAllMocks();
     });

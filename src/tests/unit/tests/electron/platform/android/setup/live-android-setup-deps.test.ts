@@ -96,7 +96,7 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('getDevices returns info from business logic', async () => {
+    it('getDevices returns info from service configurator', async () => {
         const expectedDevices: DeviceInfo[] = [
             {
                 id: 'emulator1',
@@ -122,26 +122,21 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('setSelectedDeviceId persists correctly', async () => {
-        // Note: We can only validate this indirectly. We set the expected ID,
-        // then confirm that it gets passed to the business logic.
+    it('setSelectedDeviceId chains to service configurator', async () => {
         const expectedDeviceId: string = 'abc-123';
         serviceConfigMock
-            .setup(m => m.hasRequiredServiceVersion(expectedDeviceId))
-            .throws(new Error('Threw validating setSeletedDeviceId'))
+            .setup(m => m.setSelectedDevice(expectedDeviceId))
             .verifiable(Times.once());
         await initializeServiceConfig();
 
         testSubject.setSelectedDeviceId(expectedDeviceId);
-
-        await testSubject.hasExpectedServiceVersion();
 
         verifyAllMocks();
     });
 
     it('hasExpectedServiceVersion returns false on error', async () => {
         serviceConfigMock
-            .setup(m => m.hasRequiredServiceVersion(undefined))
+            .setup(m => m.hasRequiredServiceVersion())
             .throws(new Error('Threw during hasExpectedServiceVersion'))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -153,9 +148,9 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedServiceVersion returns false if business logic returns false', async () => {
+    it('hasExpectedServiceVersion returns false if service configurator returns false', async () => {
         serviceConfigMock
-            .setup(m => m.hasRequiredServiceVersion(undefined))
+            .setup(m => m.hasRequiredServiceVersion())
             .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -167,9 +162,9 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedServiceVersion returns true if business logic returns true', async () => {
+    it('hasExpectedServiceVersion returns true if service configurator returns true', async () => {
         serviceConfigMock
-            .setup(m => m.hasRequiredServiceVersion(undefined))
+            .setup(m => m.hasRequiredServiceVersion())
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -183,7 +178,7 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('installService returns false on error', async () => {
         serviceConfigMock
-            .setup(m => m.installRequiredServiceVersion(undefined))
+            .setup(m => m.installRequiredServiceVersion())
             .throws(new Error('Threw during installService'))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -197,7 +192,7 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('installService returns true on success', async () => {
         serviceConfigMock
-            .setup(m => m.installRequiredServiceVersion(undefined))
+            .setup(m => m.installRequiredServiceVersion())
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -211,7 +206,7 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('hasExpectedPermissions returns false on error', async () => {
         serviceConfigMock
-            .setup(m => m.hasRequiredPermissions(undefined))
+            .setup(m => m.hasRequiredPermissions())
             .throws(new Error('Threw during hasExpectedPermissions'))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -223,9 +218,9 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedPermissions returns false if business logic returns false', async () => {
+    it('hasExpectedPermissions returns false if service configurator returns false', async () => {
         serviceConfigMock
-            .setup(m => m.hasRequiredPermissions(undefined))
+            .setup(m => m.hasRequiredPermissions())
             .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -237,9 +232,9 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('hasExpectedPermissions returns true if business logic returns true', async () => {
+    it('hasExpectedPermissions returns true if service configurator returns true', async () => {
         serviceConfigMock
-            .setup(m => m.hasRequiredPermissions(undefined))
+            .setup(m => m.hasRequiredPermissions())
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -254,7 +249,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('setTcpForwarding returns false on error', async () => {
         const expectedMessage = 'Threw during setTcpForwarding';
         serviceConfigMock
-            .setup(m => m.setTcpForwarding(undefined))
+            .setup(m => m.setTcpForwarding())
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
         await initializeServiceConfig();
@@ -267,7 +262,7 @@ describe('LiveAndroidSetupDeps', () => {
     it('setTcpForwarding propagates configured port', async () => {
         const testPort = 12345;
         serviceConfigMock
-            .setup(m => m.setTcpForwarding(undefined))
+            .setup(m => m.setTcpForwarding())
             .returns(() => Promise.resolve(testPort))
             .verifiable(Times.once());
         await initializeServiceConfig();
