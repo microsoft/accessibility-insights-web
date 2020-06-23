@@ -63,16 +63,23 @@ export class DiagnosticViewToggle extends React.Component<
 
     public render(): JSX.Element {
         const displayableData = this.configuration.displayableData;
-        const shortcut = this.getCommandShortcut();
 
         return (
             <div className={styles.diagnosticViewToggle}>
                 <div className={styles.title}>{displayableData.title}</div>
                 <div className={styles.toggle}>{this.renderToggleOrSpinner()}</div>
                 <div>{this.renderLink(displayableData.linkToDetailsViewText)}</div>
-                <div className={styles.shortcut}>{shortcut}</div>
+                {this.renderShortcut()}
             </div>
         );
+    }
+
+    private renderShortcut(): JSX.Element {
+        if (!this.configuration.chromeCommand) {
+            return null;
+        }
+        const shortcut = this.getCommandShortcut();
+        return <div className={styles.shortcut}>{shortcut}</div>;
     }
 
     private renderToggleOrSpinner(): JSX.Element {
@@ -184,10 +191,6 @@ export class DiagnosticViewToggle extends React.Component<
     }
 
     private getCommandShortcut(): string {
-        if (!this.configuration.chromeCommand) {
-            return null;
-        }
-
         const commandName: string = this.configuration.chromeCommand;
 
         for (const command of this.props.shortcutCommands) {

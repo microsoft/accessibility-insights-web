@@ -192,8 +192,5 @@ exports[`DiagnosticViewToggleTest user interaction:  handles no chromeCommand de
       List view and filtering
     </StyledLinkBase>
   </div>
-  <div
-    className="shortcut"
-  />
 </div>
 `;
