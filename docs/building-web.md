@@ -84,6 +84,7 @@ yarn test
 # -u updates snapshots
 yarn test --changedSince master -u
 yarn test -u
+yarn test -- -u -- SomeFile.test.tsx
 ```
 
 Extra command line arguments and flags are passed along to Jest. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
