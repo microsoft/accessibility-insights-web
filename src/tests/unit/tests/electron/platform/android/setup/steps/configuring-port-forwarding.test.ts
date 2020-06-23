@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DeviceConfig } from 'electron/platform/android/device-config';
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
 import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
-import { DeviceConfig } from 'electron/platform/android/device-config';
 
 describe('Android setup step: configuringPortForwarding', () => {
     let mockStoreState: {
