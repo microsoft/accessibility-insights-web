@@ -3,11 +3,11 @@
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { FeatureFlags } from 'common/feature-flags';
 import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
-import { FeatureFlags } from 'common/feature-flags';
 
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.NeedsReview,
