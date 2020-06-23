@@ -106,7 +106,7 @@
         "identity-obj-proxy": "^3.0.0",
         "jest": "^26.0.1",
         "jest-circus": "^26.0.1",
-        "jest-junit": "^10.0.0",
+        "jest-junit": "^11.0.1",
         "js-yaml": "^3.14.0",
         "license-check-and-add": "^3.0.4",
         "make-dir": "^3.1.0",
