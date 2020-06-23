@@ -29,13 +29,14 @@ export class AndroidSetupTelemetrySender {
         const currentMs = this.getCurrentMs();
         if (this.step !== newStep) {
             const elapsed = currentMs - this.prevTimestamp;
+            const prevDuration = this.step === null ? 0 : elapsed;
             this.telemetryEventHandler.publishTelemetry(DEVICE_SETUP_STEP, {
                 telemetry: {
                     triggeredBy: TriggeredByNotApplicable,
                     source: TelemetryEventSource.ElectronDeviceConnect,
                     prevStep: this.step,
                     newStep,
-                    this.step === null ? 0 : elapsed,
+                    prevDuration,
                 },
             });
 
