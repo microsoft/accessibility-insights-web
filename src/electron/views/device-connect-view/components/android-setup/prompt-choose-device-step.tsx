@@ -91,7 +91,7 @@ export class PromptChooseDeviceStep extends React.Component<
                 text: 'Next',
                 disabled: this.state.selectedDevice === null,
                 onClick: _ => {
-                    const selectedDevice = this.state.selectedDevice['metadata'];
+                    const selectedDevice: DeviceInfo = this.state.selectedDevice['metadata'];
                     this.props.deps.androidSetupActionCreator.setSelectedDevice(selectedDevice);
                 },
             },

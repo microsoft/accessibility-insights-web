@@ -66,16 +66,11 @@ describe('PromptChooseDeviceStep', () => {
 
     it('passes setSelectedDevice dep through', () => {
         const expectedDevice: DeviceInfo = props.androidSetupStoreData.availableDevices[0];
-        let actualDevice: DeviceInfo;
         const stubEvent = {} as React.MouseEvent<HTMLButtonElement>;
         const rendered = mount(<PromptChooseDeviceStep {...props} />);
         rendered.find('DeviceDescription').at(0).simulate('click');
-        actionMessageCreatorMock
-            .setup(m => m.setSelectedDevice(It.isAny()))
-            .callback(value => (actualDevice = value));
         rendered.find(AndroidSetupStepLayout).prop('rightFooterButtonProps').onClick(stubEvent);
-        actionMessageCreatorMock.verify(m => m.setSelectedDevice(It.isAny()), Times.once());
-        expect(actualDevice).toEqual(expectedDevice);
+        actionMessageCreatorMock.verify(m => m.setSelectedDevice(expectedDevice), Times.once());
     });
 
     it('next button becomes enabled after device is selected', () => {
