@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { PortFinder } from 'electron/platform/android/android-service-configurator';
 import { AppiumAdbCreator } from 'electron/platform/android/appium-adb-creator';
 import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
+import { PortFinder } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumAdbWrapperFactory tests', () => {
