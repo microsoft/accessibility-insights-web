@@ -6,7 +6,7 @@ import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('AppiumServiceConfiguratorFactory tests', () => {
+describe('AppiumAdbWrapperFactory tests', () => {
     let adbCreatorMock: IMock<AppiumAdbCreator>;
 
     beforeEach(() => {
