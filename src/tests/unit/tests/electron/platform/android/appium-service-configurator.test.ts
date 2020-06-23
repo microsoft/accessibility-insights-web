@@ -6,7 +6,7 @@ import { PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('AppiumServiceConfigurator tests', () => {
+describe('AppiumAdbWrapper tests', () => {
     let adbMock: IMock<ADB>;
     let testSubject: AppiumAdbWrapper;
 
@@ -301,8 +301,12 @@ describe('AppiumServiceConfigurator tests', () => {
             .setup(m => m.forwardPort(testLocalPortNumber, testDevicePortNumber))
             .verifiable(Times.once());
 
-        const output = await testSubject.setTcpForwarding(emulatorId);
-        expect(output).toBe(expectedPortNumber);
+        const output = await testSubject.setTcpForwarding(
+            emulatorId,
+            testLocalPortNumber,
+            testDevicePortNumber,
+        );
+        expect(output).toBe(testLocalPortNumber);
 
         adbMock.verifyAll();
     });

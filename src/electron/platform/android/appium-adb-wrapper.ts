@@ -70,7 +70,8 @@ export class AppiumAdbWrapper implements AdbWrapper {
         devicePort: number,
     ): Promise<number> => {
         this.adb.setDeviceId(deviceId);
-        return await this.adb.forwardPort(localPort, devicePort);
+        await this.adb.forwardPort(localPort, devicePort);
+        return localPort;
     };
 
     public removeTcpForwarding = async (deviceId: string, localPort: number): Promise<void> => {
