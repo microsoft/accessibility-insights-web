@@ -49,6 +49,8 @@ export class UnifiedResultSender {
             telemetry,
         };
 
+        console.log('unified payload: ', payload);
+
         this.sendMessage({
             messageType: Messages.UnifiedScan.ScanCompleted,
             payload,

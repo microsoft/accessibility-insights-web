@@ -6,7 +6,6 @@ export enum VisualizationType {
     Landmarks,
     TabStops,
     Color,
-    NeedsReview,
     HeadingsAssessment,
     ColorSensoryAssessment,
     LanguageAssessment,
