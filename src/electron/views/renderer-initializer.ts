@@ -71,6 +71,7 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
+import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
@@ -299,6 +300,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
+
+        const androidSetupTelemetrySender = new AndroidSetupTelemetrySender(
+            androidSetupStore,
+            telemetryEventHandler,
+            () => performance.now(),
+        );
+        androidSetupTelemetrySender.initialize();
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
