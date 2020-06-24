@@ -46,7 +46,7 @@ const createUnifiedResultsFromNeedsReviewScanResults = (
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
     return [
-        // ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
         ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
         ...createUnifiedResultsFromRuleResults(scanResults.incomplete, 'unknown', uuidGenerator),
     ];

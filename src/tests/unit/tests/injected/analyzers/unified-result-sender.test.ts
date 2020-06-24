@@ -65,35 +65,45 @@ describe('sendConvertedResults', () => {
                 scanIncompleteWarningDetectorMock.object,
             );
 
-            testSubject.sendAutomatedChecksResults({
-                results: null,
-                originalResult: axeInputResults,
-            });
+            for (const sendResultsFunction of [
+                testSubject.sendAutomatedChecksResults,
+                testSubject.sendNeedsReviewResults,
+            ]) {
+                // it.each`
+                //     sendResultsFn
+                //     ${testSubject.sendAutomatedChecksResults}
+                //     ${testSubject.sendNeedsReviewResults}
+                // `('it sends results using: $sendResultsFn', ({ sendResultsFn }) => {
+                sendResultsFunction({
+                    results: null,
+                    originalResult: axeInputResults,
+                });
 
-            convertToUnifiedMock.verifyAll();
-            convertToUnifiedRulesMock.verifyAll();
+                convertToUnifiedMock.verifyAll();
+                convertToUnifiedRulesMock.verifyAll();
 
-            const expectedPayload: UnifiedScanCompletedPayload = {
-                scanResult: unifiedResults,
-                rules: unifiedRules,
-                toolInfo: toolInfo,
-                targetAppInfo: {
-                    name: 'title',
-                    url: 'url',
-                },
-                timestamp: 'timestamp',
-                scanIncompleteWarnings: warnings,
-                telemetry,
-            };
+                const expectedPayload: UnifiedScanCompletedPayload = {
+                    scanResult: unifiedResults,
+                    rules: unifiedRules,
+                    toolInfo: toolInfo,
+                    targetAppInfo: {
+                        name: 'title',
+                        url: 'url',
+                    },
+                    timestamp: 'timestamp',
+                    scanIncompleteWarnings: warnings,
+                    telemetry,
+                };
 
-            const expectedMessage: Message = {
-                messageType: Messages.UnifiedScan.ScanCompleted,
-                payload: expectedPayload,
-            };
+                const expectedMessage: Message = {
+                    messageType: Messages.UnifiedScan.ScanCompleted,
+                    payload: expectedPayload,
+                };
 
-            sendDelegate.verify(m => m(expectedMessage), Times.once());
-
-            // duplicate for sendNeedsReviewResults then? if we go this route
+                sendDelegate.verify(m => m(expectedMessage), Times.atLeastOnce());
+                sendDelegate.verify(m => m(expectedMessage), Times.atMost(2));
+                // });
+            }
         },
     );
 });
