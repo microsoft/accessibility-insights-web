@@ -4,8 +4,8 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { generateUID } from '../../../../../common/uid-generator';
 import {
-    convertScanResultsToUnifiedResults,
     convertScanResultsToNeedsReviewUnifiedResults,
+    convertScanResultsToUnifiedResults,
 } from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 

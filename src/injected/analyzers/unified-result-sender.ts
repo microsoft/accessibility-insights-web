@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
-import { ToolData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
-import { ScanResults } from 'scanner/iruleresults';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../../common/messages';
 import { UUIDGenerator } from '../../common/uid-generator';
