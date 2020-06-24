@@ -8,7 +8,7 @@ import {
     DeviceConfigFetcher,
 } from 'electron/platform/android/device-config-fetcher';
 import { HttpGet } from 'electron/platform/android/fetch-scan-results';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 describe('createDeviceConfigFetcher', () => {
     const successfulResponse = {
