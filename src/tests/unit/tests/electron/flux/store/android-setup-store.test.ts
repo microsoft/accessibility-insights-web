@@ -8,7 +8,7 @@ import {
     AndroidSetupStoreCallbacks,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 import { It, Mock, Times } from 'typemoq';
 

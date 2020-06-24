@@ -24,9 +24,9 @@ exports[`PromptInstallFailedStep renders with device 1`] = `
     }
   }
 >
-  <React.Fragment>
+  <p>
     We were unable to install the latest version of Accessibility Insights for Android Service on your device. You can try installing the service yourself, from your device, or choose one of the options below.
-  </React.Fragment>
+  </p>
   <DeviceDescription
     className="deviceDescription"
     friendlyName="Super-Duper Gadget"
@@ -65,9 +65,9 @@ exports[`PromptInstallFailedStep renders with emulator 1`] = `
     }
   }
 >
-  <React.Fragment>
+  <p>
     We were unable to install the latest version of Accessibility Insights for Android Service on your device. You can try installing the service yourself, from your device, or choose one of the options below.
-  </React.Fragment>
+  </p>
   <DeviceDescription
     className="deviceDescription"
     friendlyName="Emulator Extraordinaire"

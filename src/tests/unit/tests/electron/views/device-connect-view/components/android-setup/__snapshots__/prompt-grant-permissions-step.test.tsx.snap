@@ -24,9 +24,9 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
     }
   }
 >
-  <React.Fragment>
+  <p>
     Be sure the Accessibility Insights for Android Service on your device is turned on and has permission to access your device and capture screenshots.
-  </React.Fragment>
+  </p>
   <DeviceDescription
     className="deviceDescription"
     friendlyName="Super-Duper Gadget"
@@ -65,9 +65,9 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
     }
   }
 >
-  <React.Fragment>
+  <p>
     Be sure the Accessibility Insights for Android Service on your device is turned on and has permission to access your device and capture screenshots.
-  </React.Fragment>
+  </p>
   <DeviceDescription
     className="deviceDescription"
     friendlyName="Emulator Extraordinaire"

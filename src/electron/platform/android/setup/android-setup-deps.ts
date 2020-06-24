@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { Logger } from 'common/logging/logger';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 
 export type AndroidSetupDeps = {
     hasAdbPath: () => Promise<boolean>;
