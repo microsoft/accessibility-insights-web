@@ -58,13 +58,14 @@ describe('sendConvertedResults', () => {
             const testSubject = new UnifiedResultSender(
                 sendDelegate.object,
                 convertToUnifiedMock.object,
+                convertToUnifiedMock.object,
                 convertToUnifiedRulesMock.object,
                 toolInfo,
                 uuidGeneratorStub,
                 scanIncompleteWarningDetectorMock.object,
             );
 
-            testSubject.sendResults({
+            testSubject.sendAutomatedChecksResults({
                 results: null,
                 originalResult: axeInputResults,
             });
@@ -91,6 +92,8 @@ describe('sendConvertedResults', () => {
             };
 
             sendDelegate.verify(m => m(expectedMessage), Times.once());
+
+            // duplicate for sendNeedsReviewResults then? if we go this route
         },
     );
 });

@@ -65,7 +65,7 @@ describe('ScanResults to Unified Results Test', () => {
         ).toMatchSnapshot();
     });
 
-    test('conversion works with filled up passes and failures value in scan results', () => {
+    test('needs review conversion works with filled up passes and failures value in scan results', () => {
         const scanResultsStub: ScanResults = createTestResults();
         expect(
             convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
