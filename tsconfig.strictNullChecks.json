@@ -97,6 +97,7 @@
         "./src/common/date-provider.ts",
         "./src/common/document-manipulator.ts",
         "./src/common/enum-helper.ts",
+        "./src/common/extension-telemetry-events.ts",
         "./src/common/fabric-icons.ts",
         "./src/common/file-url-provider.ts",
         "./src/common/flux/event-handler-list.ts",
