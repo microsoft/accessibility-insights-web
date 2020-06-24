@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
-import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
-import { TestMode } from 'common/configs/test-mode';
-import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { FeatureFlags } from 'common/feature-flags';
-import { Messages } from 'common/messages';
-import { TelemetryDataFactory } from 'common/telemetry-data-factory';
-import { VisualizationType } from 'common/types/visualization-type';
-import { generateUID } from 'common/uid-generator';
-import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
-import { ScannerUtils } from 'injected/scanner-utils';
-import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
+import { getNotificationMessage } from '../../ad-hoc-visualizations/issues/get-notification-message';
+import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
+import { TestMode } from '../../common/configs/test-mode';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { FeatureFlags } from '../../common/feature-flags';
+import { Messages } from '../../common/messages';
+import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
+import { VisualizationType } from '../../common/types/visualization-type';
+import { generateUID } from '../../common/uid-generator';
+import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
+import { ScannerUtils } from '../../injected/scanner-utils';
+import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.NeedsReview,
@@ -49,7 +49,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor, //
     getNotificationMessage: (selectorMap, key, warnings) =>
         getNotificationMessage(selectorMap, warnings), //
-    getDrawer: provider => provider.createIssuesDrawer(), //
+    getDrawer: provider => provider.createHighlightBoxDrawer(), //
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID, //
     featureFlagToEnable: FeatureFlags.needsReview,
