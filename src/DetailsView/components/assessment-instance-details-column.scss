@@ -31,10 +31,16 @@
 .instance-header {
     color: $primary-text;
     white-space: pre;
+    @media screen and (-ms-high-contrast: active) {
+        color: inherit;
+    }
 }
 .assessment-instance-textContent {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     color: $secondary-text;
+    @media screen and (-ms-high-contrast: active) {
+        color: inherit;
+    }
 }

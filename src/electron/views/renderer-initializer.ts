@@ -71,12 +71,13 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
+import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
@@ -202,18 +203,17 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-
+        const serviceConfigFactory = new AndroidServiceConfiguratorFactory(
+            new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
+            apkLocator,
+            getPortPromise,
+        );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    new AppiumServiceConfiguratorFactory(
-                        new LiveAppiumAdbCreator(),
-                        apkLocator,
-                        getPortPromise,
-                    ),
+                    serviceConfigFactory,
                     userConfigurationStore,
-                    apkLocator,
                     userConfigMessageCreator,
                     fetchDeviceConfig,
                     logger,

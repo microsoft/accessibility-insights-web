@@ -25,6 +25,7 @@ exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
   }
 >
   <CustomizedPrimaryButton
+    className="detectButton"
     data-automation-id="detect-device"
     onClick={[Function]}
     text="Detect my device"
