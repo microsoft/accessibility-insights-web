@@ -10,7 +10,10 @@ export const detectDevices: AndroidSetupStepConfig = deps => {
             deps.setSelectedDevice(null);
             deps.setAvailableDevices([]);
 
-            const devices = await deps.getDevices();
+            const devices = await deps.getDevices().catch(e => {
+                deps.logger.error(e);
+                return [];
+            });
 
             switch (devices.length) {
                 case 0: {
