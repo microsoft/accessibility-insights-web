@@ -1,8 +1,11 @@
 // @ts-check
 const path = require('path');
-const { repoRoot } = require('./src/config');
-const { forStrictNullCheckEligibleFiles, forEachFileInSrc } = require('./src/getStrictNullCheckEligibleFiles');
-const { getImportsForFile } = require('./src/tsHelper');
+const { repoRoot } = require('./config');
+const {
+    forStrictNullCheckEligibleFiles,
+    forEachFileInSrc,
+} = require('./getStrictNullCheckEligibleFiles');
+const { getImportsForFile } = require('./tsHelper');
 
 const srcRoot = path.join(repoRoot, 'src');
 
@@ -11,14 +14,15 @@ let filter;
 let printDependedOnCount = true;
 let includeTests = false;
 
-if (false) { // Generate test files listing
+if (false) {
+    // Generate test files listing
     sort = false;
-    filter = x => x.endsWith('.test.ts')
+    filter = x => x.endsWith('.test.ts');
     printDependedOnCount = false;
     includeTests = true;
 }
 
-forStrictNullCheckEligibleFiles(repoRoot, () => { }, { includeTests }).then(async eligibleFiles => {
+forStrictNullCheckEligibleFiles(repoRoot, () => {}, { includeTests }).then(async eligibleFiles => {
     const eligibleSet = new Set(eligibleFiles);
 
     const dependedOnCount = new Map(eligibleFiles.map(file => [file, 0]));
@@ -38,16 +42,18 @@ forStrictNullCheckEligibleFiles(repoRoot, () => { }, { includeTests }).then(asyn
 
     let out = Array.from(dependedOnCount.entries());
     if (filter) {
-        out = out.filter(x => filter(x[0]))
+        out = out.filter(x => filter(x[0]));
     }
     if (sort) {
         out = out.sort((a, b) => b[1] - a[1]);
     }
     for (const pair of out) {
-        console.log(toFormattedFilePath(pair[0]) + (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''));
+        console.log(
+            toFormattedFilePath(pair[0]) +
+                (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
+        );
     }
 });
-
 
 function toFormattedFilePath(file) {
     // return `"./${path.relative(srcRoot, file)}",`;

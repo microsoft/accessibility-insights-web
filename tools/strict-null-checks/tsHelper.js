@@ -15,14 +15,15 @@ module.exports.getImportsForFile = function getImportsForFile(file, srcRoot) {
                 return path.join(path.dirname(file), fileName);
             }
             return path.join(srcRoot, fileName);
-        }).map(fileName => {
+        })
+        .map(fileName => {
             for (const ext of ['ts', 'tsx', 'js', 'jsx', 'd.ts']) {
                 const candidate = `${fileName}.${ext}`;
                 if (fs.existsSync(candidate)) {
                     return candidate;
                 }
             }
-            
+
             for (const indexFile of ['index.ts', 'index.js']) {
                 const candidate = path.join(fileName, indexFile);
                 if (fs.existsSync(candidate)) {

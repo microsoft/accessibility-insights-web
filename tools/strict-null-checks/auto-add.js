@@ -1,16 +1,15 @@
-
 // @ts-check
 const path = require('path');
 const fs = require('fs');
 const child_process = require('child_process');
-const config = require('./src/config');
-const { forStrictNullCheckEligibleFiles } = require('./src/getStrictNullCheckEligibleFiles');
+const config = require('./config');
+const { forStrictNullCheckEligibleFiles } = require('./getStrictNullCheckEligibleFiles');
 
 const repoRoot = config.repoRoot;
 
 const buildCompletePattern = /Found (\d+) errors?\. Watching for file changes\./gi;
 
-forStrictNullCheckEligibleFiles(repoRoot, () => { }).then(async (files) => {
+forStrictNullCheckEligibleFiles(repoRoot, () => {}).then(async files => {
     const tscPath = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
     const tsconfigPath = path.join(repoRoot, config.targetTsconfig);
 
@@ -31,9 +30,11 @@ function tryAutoAddStrictNulls(child, tsconfigPath, file) {
 
         // Config on accept
         const newConfig = Object.assign({}, originalConfig);
-        newConfig.files = Array.from(new Set(originalConfig.files.concat('./' + relativeFilePath).sort()));
+        newConfig.files = Array.from(
+            new Set(originalConfig.files.concat('./' + relativeFilePath).sort()),
+        );
 
-        const listener = (data) => {
+        const listener = data => {
             const textOut = data.toString();
             // console.log('  ' + textOut);
             const match = buildCompletePattern.exec(textOut);
@@ -42,12 +43,11 @@ function tryAutoAddStrictNulls(child, tsconfigPath, file) {
                 if (errorCount === 0) {
                     console.log(`Success`);
                     fs.writeFileSync(tsconfigPath, JSON.stringify(newConfig, null, '\t'));
-                }
-                else {
+                } else {
                     console.log(`Errors (x${errorCount}), skipped`);
                     fs.writeFileSync(tsconfigPath, JSON.stringify(originalConfig, null, '\t'));
                 }
-                
+
                 child.stdout.removeListener('data', listener);
                 resolve();
             }
