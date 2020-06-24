@@ -4,22 +4,16 @@ Based closely on the VS Code team's [vscode-strict-null-check-migration-tools](h
 
 ## Usage
 
-```bash
-$ npm install
-```
-
-**index.js**
-
-The main script prints of list of files that are eligible for strict null checks. This includes all files that only import files thare are already strict null checked. 
+Use the `package.json` run-scripts in the root-level `package.json`:
 
 ```bash
-$ node index.js /path/to/accessibility-insights-web
-```
+$ # Print out a markdown-checklist of files that would be good candidates to update for null-safety
+$ yarn null:find
 
-**autoAdd.js**
+$ # For each file in the null:find list, automatically add it to tsconfig.strictNullChecks.json
+$ # if-and-only-if doing so does not introduce any new "yarn null:check" violations.
+$ yarn null:autoadd
 
-Very simple script that tries to auto add any eligible file to the `tsconfig.strictNullChecks.json`. This iteratively compiles the `tsconfig` project with just that file added. If there are no errors, it is added to the `tsconfig`
-
-```bash
-$ node autoAdd.js /path/to/accessibility-insights-web
+$ # Keep this command running on the side while you're fixing up null:check issues
+$ yarn null:check --watch
 ```
