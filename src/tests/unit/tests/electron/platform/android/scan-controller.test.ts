@@ -3,10 +3,10 @@
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import {
     SCAN_COMPLETED,
     SCAN_FAILED,

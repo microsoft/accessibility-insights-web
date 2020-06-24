@@ -4,13 +4,11 @@ import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Mock, Times } from 'typemoq';
 import * as TelemetryEvents from '../../../../common/extension-telemetry-events';
-import {
-    SettingsOpenTelemetryData,
-    TelemetryEventSource,
-} from '../../../../common/extension-telemetry-events';
+import { SettingsOpenTelemetryData } from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../../../../common/types/telemetry-data';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { EventStubFactory } from '../../common/event-stub-factory';
 

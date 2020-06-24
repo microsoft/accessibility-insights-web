@@ -10,16 +10,15 @@ import { TabActions } from 'background/actions/tab-actions';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import {
-    EXISTING_TAB_URL_UPDATED,
-    SWITCH_BACK_TO_TARGET,
-    TelemetryEventSource,
-    TriggeredBy,
-    TriggeredByNotApplicable,
-} from 'common/extension-telemetry-events';
+import { EXISTING_TAB_URL_UPDATED, SWITCH_BACK_TO_TARGET } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
+import {
+    TelemetryEventSource,
+    TriggeredBy,
+    TriggeredByNotApplicable,
+} from 'common/types/telemetry-data';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, Times } from 'typemoq';
 import {

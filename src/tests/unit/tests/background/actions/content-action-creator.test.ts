@@ -6,14 +6,11 @@ import { ContentActions, ContentPayload } from 'background/actions/content-actio
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import {
-    CONTENT_PANEL_CLOSED,
-    CONTENT_PANEL_OPENED,
-    TelemetryEventSource,
-} from 'common/extension-telemetry-events';
+import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
 import { Messages } from 'common/messages';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, Times } from 'typemoq';
 import {

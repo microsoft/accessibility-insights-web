@@ -5,16 +5,18 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import {
-    BaseTelemetryData,
     FILE_ISSUE_CLICK,
     SettingsOpenSourceItem,
-    TelemetryEventSource,
-    TriggeredBy,
 } from '../../../../../common/extension-telemetry-events';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    TriggeredBy,
+} from '../../../../../common/types/telemetry-data';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingActionMessageCreator', () => {

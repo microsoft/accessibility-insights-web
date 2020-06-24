@@ -5,11 +5,9 @@ import { ActionMessageDispatcher } from 'common/message-creators/types/dispatche
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
-    BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     LAUNCH_PANEL_OPEN,
     TelemetryData,
-    TelemetryEventSource,
     TUTORIAL_OPEN,
 } from 'common/extension-telemetry-events';
 import { Tab } from 'common/itab';
@@ -21,6 +19,10 @@ import { WindowUtils } from 'common/window-utils';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelType } from 'popup/components/popup-view';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+} from '../../../../../common/types/telemetry-data';
 
 describe('PopupActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();

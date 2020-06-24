@@ -2,11 +2,16 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    TriggeredBy,
+    TriggeredByNotApplicable,
+} from 'common/types/telemetry-data';
 import { DictionaryStringTo } from '../types/common-types';
 import {
     AssessmentRequirementScanTelemetryData,
     AssessmentTelemetryData,
-    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
@@ -25,10 +30,7 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
-    TelemetryEventSource,
     ToggleTelemetryData,
-    TriggeredBy,
-    TriggeredByNotApplicable,
 } from './extension-telemetry-events';
 import {
     ForIssuesAnalyzerScanCallback,

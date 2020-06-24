@@ -5,8 +5,8 @@ import {
     HamburgerMenuButtonDeps,
     HamburgerMenuButtonProps,
 } from 'common/components/hamburger-menu-button';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
 import { IButtonProps, IconButton } from 'office-ui-fabric-react';

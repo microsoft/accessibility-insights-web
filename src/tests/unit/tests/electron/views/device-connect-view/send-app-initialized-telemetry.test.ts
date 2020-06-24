@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
+import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/types/telemetry-data';
 import { APP_INITIALIZED } from 'electron/common/electron-telemetry-events';
 import { sendAppInitializedTelemetryEvent } from 'electron/views/device-connect-view/send-app-initialized-telemetry';
 import { PlatformInfo } from 'electron/window-management/platform-info';

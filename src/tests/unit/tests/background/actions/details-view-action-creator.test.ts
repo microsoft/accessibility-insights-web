@@ -14,13 +14,12 @@ import {
     SCOPING_OPEN,
     SETTINGS_PANEL_CLOSE,
     SETTINGS_PANEL_OPEN,
-    TelemetryEventSource,
-    TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
+import { TelemetryEventSource, TriggeredBy } from 'common/types/telemetry-data';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { VisualizationActionMessageCreator } from '../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../../common/types/telemetry-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export class DetailsViewToggleClickHandlerFactory {

@@ -5,12 +5,12 @@ import {
     CardSelectionPayload,
     RuleExpandCollapsePayload,
 } from 'background/actions/action-payloads';
-import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { BaseTelemetryData, TelemetryEventSource } from 'common/types/telemetry-data';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {

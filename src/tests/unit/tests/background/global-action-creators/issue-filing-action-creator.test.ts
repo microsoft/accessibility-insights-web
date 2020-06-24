@@ -7,12 +7,9 @@ import { IssueFilingActionCreator } from 'background/global-action-creators/issu
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import {
-    FILE_ISSUE_CLICK,
-    TelemetryEventSource,
-    TriggeredBy,
-} from '../../../../../common/extension-telemetry-events';
+import { FILE_ISSUE_CLICK } from '../../../../../common/extension-telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
+import { TelemetryEventSource, TriggeredBy } from '../../../../../common/types/telemetry-data';
 import { IssueFilingController } from '../../../../../issue-filing/common/issue-filing-controller-impl';
 
 export { isFunction } from 'lodash';

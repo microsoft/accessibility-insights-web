@@ -19,12 +19,12 @@ import { AssessmentActionCreator } from 'background/actions/assessment-action-cr
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { gettingStartedSubview } from 'common/types/store-data/assessment-result-data';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,

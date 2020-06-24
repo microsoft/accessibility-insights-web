@@ -5,12 +5,9 @@ import { PopupActionCreator } from 'background/actions/popup-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { UsageLogger } from 'background/usage-logger';
-import {
-    POPUP_INITIALIZED,
-    TelemetryEventSource,
-    TriggeredBy,
-} from 'common/extension-telemetry-events';
+import { POPUP_INITIALIZED } from 'common/extension-telemetry-events';
 import { Messages } from 'common/messages';
+import { TelemetryEventSource, TriggeredBy } from 'common/types/telemetry-data';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {

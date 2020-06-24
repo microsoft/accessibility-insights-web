@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';

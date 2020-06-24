@@ -29,12 +29,9 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import {
-    BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    TelemetryEventSource,
     ToggleTelemetryData,
-    TriggeredBy,
 } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
@@ -43,6 +40,7 @@ import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { BaseTelemetryData, TelemetryEventSource, TriggeredBy } from 'common/types/telemetry-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { forOwn } from 'lodash';

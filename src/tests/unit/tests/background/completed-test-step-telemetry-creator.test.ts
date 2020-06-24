@@ -8,8 +8,6 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     CHANGE_OVERALL_REQUIREMENT_STATUS,
     RequirementStatusTelemetryData,
-    TelemetryEventSource,
-    TriggeredByNotApplicable,
 } from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
@@ -20,6 +18,10 @@ import {
     AssessmentStoreData,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import {
+    TelemetryEventSource,
+    TriggeredByNotApplicable,
+} from '../../../../common/types/telemetry-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 function testBeforeAfterAssessmentData(

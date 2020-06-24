@@ -4,14 +4,14 @@ import { InspectMode } from 'background/inspect-modes';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import {
-    BaseTelemetryData,
-    TelemetryEventSource,
-} from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+} from '../../../../../common/types/telemetry-data';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('InspectActionMessageCreatorTest', () => {

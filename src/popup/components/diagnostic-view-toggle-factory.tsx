@@ -3,10 +3,10 @@
 import { BaseStore } from 'common/base-store';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { CommandStoreData } from 'common/types/store-data/command-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { map } from 'lodash';
 import * as React from 'react';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { mapValues } from 'lodash';
 
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
+import { TelemetryEventSource } from '../../common/types/telemetry-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { BaseActionPayload } from '../actions/action-payloads';
 import { TelemetryClient } from './telemetry-client';

@@ -4,16 +4,18 @@ import { ActionMessageDispatcher } from 'common/message-creators/types/dispatche
 import { It, Mock, Times } from 'typemoq';
 
 import {
-    BaseTelemetryData,
     CONTENT_HYPERLINK_OPENED,
     CONTENT_PAGE_OPENED,
-    TelemetryEventSource,
-    TriggeredBy,
 } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    TriggeredBy,
+} from '../../../../../common/types/telemetry-data';
 
 describe('ContentPanelActionMessageCreator', () => {
     const event = Mock.ofType<MouseEvent>().object;

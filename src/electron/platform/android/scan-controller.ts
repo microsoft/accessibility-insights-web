@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
+import { InstanceCount } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import {
     SCAN_COMPLETED,
     SCAN_FAILED,

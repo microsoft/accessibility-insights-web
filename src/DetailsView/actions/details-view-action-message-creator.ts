@@ -22,6 +22,7 @@ import {
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import * as React from 'react';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
@@ -95,7 +96,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const telemetry = this.telemetryFactory.forFeatureFlagToggle(
             event,
             enabled,
-            TelemetryEvents.TelemetryEventSource.DetailsView,
+            TelemetryEventSource.DetailsView,
             featureFlagId,
         );
         const payload: FeatureFlagPayload = {
@@ -119,7 +120,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             reportExportFormat,
             exportedHtml,
             event,
-            TelemetryEvents.TelemetryEventSource.DetailsView,
+            TelemetryEventSource.DetailsView,
         );
 
         this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
@@ -128,7 +129,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public copyIssueDetailsClicked = (event: React.MouseEvent<any>): void => {
         const telemetryData = this.telemetryFactory.withTriggeredByAndSource(
             event,
-            TelemetryEvents.TelemetryEventSource.DetailsView,
+            TelemetryEventSource.DetailsView,
         );
         this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     };
@@ -591,7 +592,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             test: test,
             telemetry: this.telemetryFactory.withTriggeredByAndSource(
                 event,
-                TelemetryEvents.TelemetryEventSource.DetailsView,
+                TelemetryEventSource.DetailsView,
             ),
         };
 
@@ -611,7 +612,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             hasAllUrlAndFilePermissions,
             telemetry: this.telemetryFactory.forSetAllUrlPermissionState(
                 event,
-                TelemetryEvents.TelemetryEventSource.DetailsView,
+                TelemetryEventSource.DetailsView,
                 hasAllUrlAndFilePermissions,
             ),
         };

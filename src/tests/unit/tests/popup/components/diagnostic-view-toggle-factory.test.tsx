@@ -6,7 +6,7 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { DiagnosticViewToggle } from 'popup/components/diagnostic-view-toggle';

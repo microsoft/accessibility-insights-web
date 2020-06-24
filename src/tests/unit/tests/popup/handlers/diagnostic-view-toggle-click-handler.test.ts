@@ -3,12 +3,10 @@
 import { It, Mock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import {
-    TelemetryEventSource,
-    ToggleTelemetryData,
-} from '../../../../../common/extension-telemetry-events';
+import { ToggleTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { VisualizationActionMessageCreator } from '../../../../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../../../../../common/types/telemetry-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
 import { EventStubFactory } from '../../../common/event-stub-factory';

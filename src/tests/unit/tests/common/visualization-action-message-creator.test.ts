@@ -4,14 +4,11 @@ import { VisualizationTogglePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import {
-    TelemetryEventSource,
-    ToggleTelemetryData,
-    TriggeredBy,
-} from '../../../../common/extension-telemetry-events';
+import { ToggleTelemetryData } from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
+import { TelemetryEventSource, TriggeredBy } from '../../../../common/types/telemetry-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('VisualizationActionMessageCreatorTest', () => {

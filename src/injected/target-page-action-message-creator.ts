@@ -4,10 +4,11 @@ import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
 import * as TelemetryEvents from '../common/extension-telemetry-events';
-import { TelemetryData, TelemetryEventSource } from '../common/extension-telemetry-events';
+import { TelemetryData } from '../common/extension-telemetry-events';
 import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../common/types/telemetry-data';
 
 export class TargetPageActionMessageCreator {
     constructor(
@@ -40,7 +41,7 @@ export class TargetPageActionMessageCreator {
     public copyIssueDetailsClicked = (event: React.MouseEvent<any>): void => {
         const telemetryData = this.telemetryFactory.withTriggeredByAndSource(
             event,
-            TelemetryEvents.TelemetryEventSource.TargetPage,
+            TelemetryEventSource.TargetPage,
         );
         this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     };

@@ -5,12 +5,9 @@ import { ContentPayload } from 'background/actions/content-actions';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
 
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { ActionInitiators } from '../action/action-initiator';
-import {
-    CONTENT_HYPERLINK_OPENED,
-    CONTENT_PAGE_OPENED,
-    TelemetryEventSource,
-} from '../extension-telemetry-events';
+import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED } from '../extension-telemetry-events';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 

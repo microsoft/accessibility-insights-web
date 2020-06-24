@@ -3,13 +3,13 @@
 import { Logger } from 'common/logging/logger';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import {
-    BaseTelemetryData,
-    TelemetryEventSource,
-} from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { RemoteActionMessageDispatcher } from '../../../../../common/message-creators/remote-action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+} from '../../../../../common/types/telemetry-data';
 
 describe('RemoteActionMessageDispatcher', () => {
     let postMessageMock: IMock<(message: Message) => Promise<void>>;

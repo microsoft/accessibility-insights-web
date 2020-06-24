@@ -3,14 +3,12 @@
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-import {
-    ScopingTelemetryData,
-    TelemetryEventSource,
-} from '../../../../../common/extension-telemetry-events';
+import { ScopingTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import { TelemetryEventSource } from '../../../../../common/types/telemetry-data';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('ScopingActionMessageCreatorTest', () => {

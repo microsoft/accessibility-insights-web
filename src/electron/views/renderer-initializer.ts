@@ -34,7 +34,6 @@ import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { FileURLProvider } from 'common/file-url-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -48,6 +47,7 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { NavigatorUtils } from 'common/navigator-utils';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';

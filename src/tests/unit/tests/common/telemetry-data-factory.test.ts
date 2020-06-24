@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import {
     AssessmentTelemetryData,
-    BaseTelemetryData,
     DetailsViewOpenedTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
@@ -17,12 +16,15 @@ import {
     SetAllUrlsPermissionTelemetryData,
     SettingsOpenSourceItem,
     SettingsOpenTelemetryData,
-    TelemetryEventSource,
     ToggleTelemetryData,
-    TriggeredByNotApplicable,
 } from '../../../../common/extension-telemetry-events';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    TriggeredByNotApplicable,
+} from '../../../../common/types/telemetry-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AxeAnalyzerResult } from '../../../../injected/analyzers/analyzer';
 import { EventStubFactory } from './../../common/event-stub-factory';

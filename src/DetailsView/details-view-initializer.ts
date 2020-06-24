@@ -59,7 +59,6 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
@@ -92,6 +91,7 @@ import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-d
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { TelemetryEventSource } from '../common/types/telemetry-data';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';

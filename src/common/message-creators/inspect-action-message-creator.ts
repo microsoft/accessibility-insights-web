@@ -4,7 +4,7 @@ import { InspectMode } from 'background/inspect-modes';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
 
-import { TelemetryEventSource } from '../extension-telemetry-events';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { InspectPayload } from './../../background/actions/inspect-actions';

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { BaseTelemetryData } from 'common/types/telemetry-data';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -67,34 +68,7 @@ export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
 export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
 export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
 
-export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
-export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
-
 export type ReportExportFormat = 'Assessment' | 'AutomatedChecks';
-
-export enum TelemetryEventSource {
-    LaunchPad,
-    LaunchPadFastPass,
-    LaunchPadAllTests,
-    LaunchPadAssessment,
-    AdHocTools,
-    HamburgerMenu,
-    DetailsView,
-    FastPassBanner,
-    OldLaunchPanel,
-    ShortcutCommand,
-    IssueDetailsDialog,
-    NewBugButton,
-    TargetPage,
-    ContentPage,
-    ElectronDeviceConnect,
-    ElectronAutomatedChecksView,
-}
-
-export type BaseTelemetryData = {
-    source: TelemetryEventSource;
-    triggeredBy: TriggeredBy;
-};
 
 export type ToggleTelemetryData = {
     enabled: boolean;

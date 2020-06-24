@@ -144,6 +144,7 @@
         "./src/common/types/store-data/visualization-store-data.ts",
         "./src/common/types/store-type.ts",
         "./src/common/types/store-update-message.ts",
+        "./src/common/types/telemetry-data.ts",
         "./src/common/types/visualization-type.ts",
         "./src/common/uid-generator.ts",
         "./src/common/url-validator.ts",

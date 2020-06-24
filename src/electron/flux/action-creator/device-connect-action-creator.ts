@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { TelemetryEventSource } from 'common/types/telemetry-data';
 import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 

@@ -11,7 +11,6 @@ import { NewTabLink } from '../common/components/new-tab-link';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
-import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { IsSupportedBrowser } from '../common/is-supported-browser';
 import { Logger } from '../common/logging/logger';
@@ -30,6 +29,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { LaunchPanelStoreData } from '../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { TelemetryEventSource } from '../common/types/telemetry-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';

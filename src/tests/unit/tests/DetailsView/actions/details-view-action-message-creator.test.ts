@@ -10,7 +10,6 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
     AssessmentTelemetryData,
-    BaseTelemetryData,
     COPY_ISSUE_DETAILS,
     DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
@@ -22,8 +21,6 @@ import {
     RequirementSelectTelemetryData,
     SelectGettingStartedTelemetryData,
     SetAllUrlsPermissionTelemetryData,
-    TelemetryEventSource,
-    TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
@@ -32,6 +29,11 @@ import {
     TelemetryDataFactory,
 } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    TriggeredByNotApplicable,
+} from '../../../../../common/types/telemetry-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewRightContentPanelType } from '../../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';

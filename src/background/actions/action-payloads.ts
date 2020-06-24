@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as TelemetryEvents from 'common/extension-telemetry-events';
-import {
-    BaseTelemetryData,
-    TelemetryData,
-    ToggleTelemetryData,
-} from 'common/extension-telemetry-events';
+import { TelemetryData, ToggleTelemetryData } from 'common/extension-telemetry-events';
 import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
@@ -20,6 +16,7 @@ import {
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
+import { BaseTelemetryData } from 'common/types/telemetry-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { FailureInstanceData } from 'DetailsView/components/failure-instance-panel-control';
 import { TabStopEvent } from 'injected/tab-stops-listener';

@@ -9,11 +9,11 @@ import { Tab } from 'common/itab';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
 
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { Messages } from '../../common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
+import { TelemetryEventSource } from '../../common/types/telemetry-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { WindowUtils } from '../../common/window-utils';
 import { LaunchPanelType } from '../components/popup-view';
