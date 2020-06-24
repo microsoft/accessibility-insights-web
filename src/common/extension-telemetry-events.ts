@@ -213,7 +213,9 @@ export type SetAllUrlsPermissionTelemetryData = {
     permissionState: boolean;
 } & BaseTelemetryData;
 
-export type ScanIncompleteWarningsTelemetryData = ScanIncompleteWarningId[];
+export type ScanIncompleteWarningsTelemetryData = {
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
+};
 
 export type TelemetryData =
     | BaseTelemetryData
