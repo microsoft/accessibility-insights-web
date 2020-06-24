@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Logger } from 'common/logging/logger';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
 import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
-import { Logger } from 'common/logging/logger';
 
 describe('Android setup step: detectDevices', () => {
     let depsMock: IMock<AndroidSetupStepConfigDeps>;
