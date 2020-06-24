@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export type AndroidSetupStepId =
+    | 'wait-to-start'
     | 'detect-adb'
     | 'prompt-locate-adb'
     | 'prompt-connect-to-device'
@@ -12,4 +13,6 @@ export type AndroidSetupStepId =
     | 'prompt-install-failed'
     | 'detect-permissions'
     | 'prompt-grant-permissions'
+    | 'configuring-port-forwarding'
+    | 'prompt-configuring-port-forwarding-failed'
     | 'prompt-connected-start-testing';

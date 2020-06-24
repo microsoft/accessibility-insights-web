@@ -3,7 +3,6 @@
 import { css } from '@uifabric/utilities';
 import { INavLink } from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import * as styles from './requirement-link.scss';
 import { StatusIcon } from './status-icon';

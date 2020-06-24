@@ -71,11 +71,13 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import { AppiumServiceConfiguratorFactory } from 'electron/platform/android/appium-service-configurator-factory';
+import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
@@ -94,6 +96,7 @@ import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-format
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
+import { getPortPromise } from 'portfinder';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
@@ -194,17 +197,24 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
         const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
 
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
+
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
+        );
+        const serviceConfigFactory = new AndroidServiceConfiguratorFactory(
+            new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
+            apkLocator,
+            getPortPromise,
         );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    new AppiumServiceConfiguratorFactory(new LiveAppiumAdbCreator(), apkLocator),
+                    serviceConfigFactory,
                     userConfigurationStore,
-                    apkLocator,
                     userConfigMessageCreator,
+                    fetchDeviceConfig,
                     logger,
                 ),
             ),
@@ -258,7 +268,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
-        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
@@ -402,6 +411,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             telemetryDataFactory,
             TelemetryEventSource.ElectronAutomatedChecksView,
         );
+
+        const androidSetupStartListener = new AndroidSetupStartListener(
+            userConfigurationStore,
+            androidSetupStore,
+            featureFlagStore,
+            androidSetupActionCreator,
+        );
+        androidSetupStartListener.initialize();
 
         const navigatorUtils = new NavigatorUtils(window.navigator, logger);
 

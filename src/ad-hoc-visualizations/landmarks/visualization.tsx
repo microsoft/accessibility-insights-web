@@ -9,12 +9,22 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
 import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 const { guidance } = content.landmarks;
+
+const landmarkRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: ['unique-landmark'],
+    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
+    telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
+    key: AdHocTestkeys.Landmarks,
+    testType: VisualizationType.Landmarks,
+    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+};
 
 export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
@@ -33,17 +43,7 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,
     adhocToolsPanelDisplayOrder: 4,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-    getAnalyzer: provider =>
-        provider.createRuleAnalyzer({
-            rules: ['unique-landmark'],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forTestScan,
-            key: AdHocTestkeys.Landmarks,
-            testType: VisualizationType.Landmarks,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        }),
+    getAnalyzer: provider => provider.createRuleAnalyzer(landmarkRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.Landmarks,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No landmarks found' : null),

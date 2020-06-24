@@ -1,17 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
-import { PromptConnectedStartTestingStep } from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
-import * as styles from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step.scss';
+import {
+    PromptConnectedStartTestingStep,
+    rescanAutomationId,
+} from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('PromptConnectedStartTestingStep', () => {
+    const testApp: string = 'super-cool app';
     let props: CommonAndroidSetupStepProps;
     let startTestingMock: IMock<typeof props.deps.startTesting>;
     let androidSetupActionCreatorMock: IMock<AndroidSetupActionCreator>;
@@ -33,6 +36,7 @@ describe('PromptConnectedStartTestingStep', () => {
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
+        props.androidSetupStoreData.applicationName = testApp;
 
         const rendered = shallow(<PromptConnectedStartTestingStep {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
@@ -46,6 +50,7 @@ describe('PromptConnectedStartTestingStep', () => {
         };
 
         props.androidSetupStoreData.selectedDevice = selectedDevice;
+        props.androidSetupStoreData.applicationName = testApp;
 
         const rendered = shallow(<PromptConnectedStartTestingStep {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
@@ -67,7 +72,7 @@ describe('PromptConnectedStartTestingStep', () => {
 
     it('handles the rescan button with the rescan action', () => {
         const rendered = shallow(<PromptConnectedStartTestingStep {...props} />);
-        rendered.find(`.${styles.rescanButton}`).simulate('click');
+        rendered.find({ 'data-automation-id': rescanAutomationId }).simulate('click');
         androidSetupActionCreatorMock.verify(m => m.rescan(), Times.once());
     });
 });

@@ -193,6 +193,7 @@ div.insights-file-issue-details-dialog-container {
 #details-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
@@ -244,6 +245,7 @@ div.insights-file-issue-details-dialog-container {
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
+        height: 100%;
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
         }
@@ -278,17 +280,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
-            }
-            .button-flex-container .status-icon {
-                color: $primary-text;
-                margin-left: 24px;
-                font-size: 18px;
-                &.negative-outcome-icon {
-                    color: $negative-outcome;
-                }
-                &.positive-outcome-icon {
-                    color: $positive-outcome;
-                }
             }
         }
         .test-step-view {
@@ -373,6 +364,9 @@ div.insights-file-issue-details-dialog-container {
             font-size: 16px;
             line-height: 24px;
             color: $negative-outcome;
+            @media screen and (-ms-high-contrast: active) {
+                color: inherit;
+            }
         }
         span.collapsible-title {
             padding-left: 0.5vw;
@@ -397,11 +391,6 @@ div.insights-file-issue-details-dialog-container {
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
         .test-step-nav {
-            .ms-Nav-compositeLink {
-                .button-flex-container {
-                    width: 100%;
-                }
-            }
             z-index: 100;
             background-color: $neutral-0;
             .index-circle {
@@ -424,13 +413,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Nav-compositeLink {
                 .ms-Button-label {
                     color: $neutral-100;
-                }
-                .button-flex-container {
-                    display: flex;
-                    flex-wrap: nowrap;
-                    justify-content: flex-start;
-                    height: 100%;
-                    align-items: center;
                 }
                 &.is-selected {
                     a {
@@ -462,6 +444,7 @@ div.insights-file-issue-details-dialog-container {
         .details-view-body-content-pane {
             display: flex;
             flex-direction: column;
+            height: 100%;
             &.reflow-ui {
                 word-break: break-word;
             }

@@ -120,7 +120,10 @@ describe('UserConfigurationActionCreator', () => {
     it('should SetAdbLocation Message', () => {
         const expectedAdbLocation = 'Somewhere over the rainbow';
 
-        const setAdbLocationConfigMock = createActionMock(expectedAdbLocation);
+        const setAdbLocationConfigMock = createActionMock(
+            expectedAdbLocation,
+            'UserConfigurationActionCreator',
+        );
         const actionsMock = createActionsMock('setAdbLocation', setAdbLocationConfigMock.object);
         const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 

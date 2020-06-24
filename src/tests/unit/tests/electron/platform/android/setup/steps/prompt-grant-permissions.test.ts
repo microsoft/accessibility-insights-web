@@ -10,8 +10,18 @@ describe('Android setup step: promptGrantPermissions', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupStepConfigDeps;
         const step = promptGrantPermissions(deps);
-        checkExpectedActionsAreDefined(step, ['next']);
+        checkExpectedActionsAreDefined(step, ['cancel', 'next']);
         expect(step.onEnter).not.toBeDefined();
+    });
+
+    it('cancel transitions to prompt-choose-device', async () => {
+        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
+        depsMock.setup(m => m.stepTransition('prompt-choose-device')).verifiable(Times.once());
+
+        const step = promptGrantPermissions(depsMock.object);
+        step.actions.cancel();
+
+        depsMock.verifyAll();
     });
 
     it('onEnter transitions to detect-permissions as expected', () => {
