@@ -43,13 +43,9 @@ describe('createDeviceConfigFetcher', () => {
 
         mockHttpGet
             .setup(m => m(expectedUrl, expectedRequestConfig))
-            .returns(() => Promise.resolve(successfulResponse))
-            .verifiable(Times.once());
+            .returns(() => Promise.resolve(successfulResponse));
 
-        mockParser
-            .setup(m => m(successfulResponse.data))
-            .returns(() => parserOutput)
-            .verifiable(Times.once());
+        mockParser.setup(m => m(successfulResponse.data)).returns(() => parserOutput);
 
         expect(await testSubject(port)).toBe(parserOutput);
 
@@ -60,8 +56,7 @@ describe('createDeviceConfigFetcher', () => {
         const httpGetError = new Error('error from httpGet');
         mockHttpGet
             .setup(m => m(It.isAny(), It.isAny()))
-            .returns(() => Promise.reject(httpGetError))
-            .verifiable(Times.once());
+            .returns(() => Promise.reject(httpGetError));
 
         await expect(testSubject(123)).rejects.toThrowError(httpGetError);
 
@@ -71,8 +66,7 @@ describe('createDeviceConfigFetcher', () => {
     it('propagates non-successful responses from httpGet as errors', async () => {
         mockHttpGet
             .setup(m => m(It.isAny(), It.isAny()))
-            .returns(() => Promise.resolve(errorResponse))
-            .verifiable(Times.once());
+            .returns(() => Promise.resolve(errorResponse));
 
         await expect(testSubject(123)).rejects.toThrowErrorMatchingInlineSnapshot(
             `"Invalid DeviceConfig response: 500: internal server error"`,
@@ -84,14 +78,10 @@ describe('createDeviceConfigFetcher', () => {
     it('propagates errors from parser', async () => {
         mockHttpGet
             .setup(m => m(It.isAny(), It.isAny()))
-            .returns(() => Promise.resolve(successfulResponse))
-            .verifiable(Times.once());
+            .returns(() => Promise.resolve(successfulResponse));
 
         const parserError = new Error('error from parser');
-        mockParser
-            .setup(m => m(successfulResponse.data))
-            .throws(parserError)
-            .verifiable(Times.once());
+        mockParser.setup(m => m(successfulResponse.data)).throws(parserError);
 
         await expect(testSubject(123)).rejects.toThrowError(parserError);
 
