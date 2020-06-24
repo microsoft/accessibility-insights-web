@@ -32,7 +32,7 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
     isEmulator={false}
   />
   <CustomizedDefaultButton
-    className="rescanButton"
+    data-automation-id="prompt-connected-start-testing-rescan-button"
     onClick={[Function]}
     text="Rescan devices"
   />
@@ -71,7 +71,7 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
     isEmulator={true}
   />
   <CustomizedDefaultButton
-    className="rescanButton"
+    data-automation-id="prompt-connected-start-testing-rescan-button"
     onClick={[Function]}
     text="Rescan devices"
   />

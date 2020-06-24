@@ -42,11 +42,11 @@ export const PromptInstallFailedStep = NamedFC<CommonAndroidSetupStepProps>(
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>
-                <>
+                <p>
                     We were unable to install the latest version of Accessibility Insights for
                     Android Service on your device. You can try installing the service yourself,
                     from your device, or choose one of the options below.
-                </>
+                </p>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
                 <PrimaryButton
                     data-automation-id={tryAgainAutomationId}

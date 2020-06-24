@@ -42,10 +42,10 @@ export const PromptConfiguringPortForwardingFailedStep = NamedFC<CommonAndroidSe
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>
-                <>
+                <p>
                     We were unable to configure port forwarding from Accessibility Insights for
                     Android Service on your device. Please reconnect your device and try again.
-                </>
+                </p>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
                 <PrimaryButton
                     data-automation-id={tryAgainAutomationId}
