@@ -17,7 +17,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly configFactory: AndroidServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
-        private readonly fetchDeviceConfig: DeviceConfigFetcher,
+        public readonly fetchDeviceConfig: DeviceConfigFetcher,
         public readonly logger: Logger,
     ) {}
 
@@ -78,16 +78,5 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public removeTcpForwarding = async (hostPort: number): Promise<void> => {
         await this.serviceConfig.removeTcpForwarding(hostPort);
-    };
-
-    public getApplicationName = async (): Promise<string> => {
-        try {
-            const config = await this.fetchDeviceConfig(62442);
-            return config.appIdentifier;
-        } catch (error) {
-            this.logger.log(error);
-        }
-
-        return '';
     };
 }

@@ -73,6 +73,7 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
+import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
@@ -198,7 +199,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
         const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
 
-        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get, parseDeviceConfig);
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
