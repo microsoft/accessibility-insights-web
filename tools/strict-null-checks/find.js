@@ -1,11 +1,8 @@
 // @ts-check
 const path = require('path');
 const { repoRoot } = require('./config');
-const {
-    forStrictNullCheckEligibleFiles,
-    forEachFileInSrc,
-} = require('./getStrictNullCheckEligibleFiles');
-const { getImportsForFile } = require('./tsHelper');
+const { forStrictNullCheckEligibleFiles, forEachFileInSrc } = require('./eligible-file-finder');
+const { getImportsForFile } = require('./import-finder');
 
 const srcRoot = path.join(repoRoot, 'src');
 

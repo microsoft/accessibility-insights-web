@@ -3,7 +3,7 @@ const path = require('path');
 const fs = require('fs');
 const child_process = require('child_process');
 const config = require('./config');
-const { forStrictNullCheckEligibleFiles } = require('./getStrictNullCheckEligibleFiles');
+const { forStrictNullCheckEligibleFiles } = require('./eligible-file-finder');
 
 const repoRoot = config.repoRoot;
 
