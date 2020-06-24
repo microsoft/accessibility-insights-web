@@ -60,7 +60,7 @@ describe('AndroidSetupTelemetrySender', () => {
         timestamps: number[],
         expectedEvents: Omit<AndroidSetupStepTelemetryData, 'triggeredBy' | 'source'>[],
     ): void {
-        const getCurrentMsMock = Mock.ofInstance(() => 0);
+        const getCurrentMsMock = Mock.ofInstance(() => 0, MockBehavior.Strict);
         const telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         const androidSetupStoreMock = Mock.ofType(AndroidSetupStore, MockBehavior.Strict);
         const testListener = new AndroidSetupTelemetrySender(
@@ -70,9 +70,17 @@ describe('AndroidSetupTelemetrySender', () => {
         );
 
         steps.forEach(currentStepId =>
-            androidSetupStoreMock.setup(m => m.getState()).returns(_ => ({ currentStepId })),
+            androidSetupStoreMock
+                .setup(m => m.getState())
+                .returns(_ => ({ currentStepId }))
+                .verifiable(Times.exactly(steps.length)),
         );
-        timestamps.forEach(timestamp => getCurrentMsMock.setup(m => m()).returns(_ => timestamp));
+        timestamps.forEach(timestamp =>
+            getCurrentMsMock
+                .setup(m => m())
+                .returns(_ => timestamp)
+                .verifiable(Times.exactly(timestamps.length)),
+        );
         expectedEvents.forEach(event =>
             telemetryEventHandlerMock.setup(m =>
                 m.publishTelemetry(DEVICE_SETUP_STEP, {
@@ -95,5 +103,9 @@ describe('AndroidSetupTelemetrySender', () => {
         for (let i = 1; i <= steps.length - 1; i++) {
             callback(androidSetupStoreMock.object);
         }
+
+        androidSetupStoreMock.verifyAll();
+        getCurrentMsMock.verifyAll();
+        telemetryEventHandlerMock.verifyAll();
     }
 });
