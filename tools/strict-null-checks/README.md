@@ -1,3 +1,8 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+
 Scripts to help migrate [accessibility-insights-web](https://github.com/microsoft/accessibility-insights-web) to use strict null checks.
 
 Based closely on the VS Code team's [vscode-strict-null-check-migration-tools](https://github.com/mjbvz/vscode-strict-null-check-migration-tools). See their excellent [migration write-up](https://code.visualstudio.com/blogs/2019/05/23/strict-null)!
