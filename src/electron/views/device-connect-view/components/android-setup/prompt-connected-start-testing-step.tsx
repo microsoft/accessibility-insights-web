@@ -12,6 +12,7 @@ import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
+export const rescanAutomationId = 'prompt-connected-start-testing-rescan-button';
 export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptConnectedStartTestingStep',
     (props: CommonAndroidSetupStepProps) => {
@@ -45,7 +46,7 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
             <AndroidSetupStepLayout {...layoutProps}>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
                 <DefaultButton
-                    className={styles.rescanButton}
+                    data-automation-id={rescanAutomationId}
                     text="Rescan devices"
                     onClick={props.deps.androidSetupActionCreator.rescan}
                 />

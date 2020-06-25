@@ -24,9 +24,9 @@ exports[`PromptConfiguringPortForwardingFailedStep renders with device 1`] = `
     }
   }
 >
-  <React.Fragment>
+  <p>
     We were unable to configure port forwarding from Accessibility Insights for Android Service on your device. Please reconnect your device and try again.
-  </React.Fragment>
+  </p>
   <DeviceDescription
     className="deviceDescription"
     friendlyName="Super-Duper Gadget"
@@ -65,9 +65,9 @@ exports[`PromptConfiguringPortForwardingFailedStep renders with emulator 1`] = `
     }
   }
 >
-  <React.Fragment>
+  <p>
     We were unable to configure port forwarding from Accessibility Insights for Android Service on your device. Please reconnect your device and try again.
-  </React.Fragment>
+  </p>
   <DeviceDescription
     className="deviceDescription"
     friendlyName="Emulator Extraordinaire"

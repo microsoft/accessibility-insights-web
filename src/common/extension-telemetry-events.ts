@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -213,10 +213,9 @@ export type SetAllUrlsPermissionTelemetryData = {
     permissionState: boolean;
 } & BaseTelemetryData;
 
-export type ScanIncompleteWarningsTelemetryData = Pick<
-    UnifiedScanCompletedPayload,
-    'scanIncompleteWarnings'
->;
+export type ScanIncompleteWarningsTelemetryData = {
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
+};
 
 export type TelemetryData =
     | BaseTelemetryData
