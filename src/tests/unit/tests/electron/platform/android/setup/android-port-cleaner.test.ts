@@ -8,6 +8,7 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { ExpectedInput } from 'assessments/custom-widgets/test-steps/expected-input';
 
 describe('AndroidPortCleaner', () => {
     let serviceConfigMock: IMock<ServiceConfigurator>;
@@ -45,8 +46,8 @@ describe('AndroidPortCleaner', () => {
         verifyAllMocks();
     });
 
-    it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports exist', async () => {
-        const expectedPorts: number[] = [123, 345, 456];
+    it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added', async () => {
+        const addedPorts: number[] = [123, 345, 456];
         const actualPorts: number[] = [];
 
         ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
@@ -54,21 +55,43 @@ describe('AndroidPortCleaner', () => {
             .setup(m => m.removeTcpForwarding(It.isAnyNumber()))
             .callback(actualPort => actualPorts.push(actualPort))
             .returns(() => Promise.resolve())
-            .verifiable(Times.once());
+            .verifiable(Times.exactly(addedPorts.length));
         testSubject.setServiceConfig(serviceConfigMock.object);
-        for (const expectedPort of expectedPorts) {
-            testSubject.addPort(expectedPort);
+        for (const addedPort of addedPorts) {
+            testSubject.addPort(addedPort);
         }
 
         await testSubject.closeWindow();
 
-        expect(actualPorts.length).toBe(expectedPorts.length);
-        for (const actualPort of actualPorts) {
-            expect(expectedPorts).toContain(actualPort);
+        expect(actualPorts).toEqual(addedPorts);
+
+        verifyAllMocks();
+    });
+
+    it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added but some removed', async () => {
+        const addedPorts: number[] = [123, 345, 456];
+        const removedPorts: number[] = [123, 456];
+
+        ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(345))
+            .returns(() => Promise.resolve())
+            .verifiable(Times.once());
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        for (const addedPort of addedPorts) {
+            testSubject.addPort(addedPort);
         }
-        for (const expectedPort of expectedPorts) {
-            expect(actualPorts).toContain(expectedPort);
+        for (const removedPort of removedPorts) {
+            testSubject.removePort(removedPort);
         }
+
+        await testSubject.closeWindow();
+
+        verifyAllMocks();
+    });
+
+    it('removePort gracefully handles a value that was not previously added', () => {
+        testSubject.removePort(5);
 
         verifyAllMocks();
     });
