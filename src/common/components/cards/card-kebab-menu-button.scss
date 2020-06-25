@@ -43,6 +43,9 @@ button.kebab-menu-button {
     background: transparent;
 
     svg {
+        @media screen and (-ms-high-contrast: active) {
+            fill: inherit !important;
+        }
         stroke: $primary-text;
     }
 
