@@ -23,11 +23,10 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
             portCleanerMock.object,
         );
 
-        // This gets awaited TWICE--once by the mock framework and once by the code
         serviceConfigMock
             .setup((m: any) => m.then)
             .returns(() => undefined)
-            .verifiable(Times.atLeast(1));
+            .verifiable(Times.once());
     });
 
     function verifyAllMocks(): void {
