@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InteractiveHeader does render nav menu button if not in narrow mode 1`] = `
+exports[`InteractiveHeader does render nav menu button if header not collapsed 1`] = `
 <Header
   deps={null}
   farItems={
@@ -9,7 +9,6 @@ exports[`InteractiveHeader does render nav menu button if not in narrow mode 1`]
       featureFlagData={null}
     />
   }
-  isNarrowMode={true}
   items={
     <FlaggedComponent
       disableJSXElement={
@@ -30,12 +29,12 @@ exports[`InteractiveHeader does render nav menu button if not in narrow mode 1`]
       featureFlagStoreData={null}
     />
   }
-  navMenu={
-    <test-nav-menu
-      isSideNavOpen={false}
-      setSideNavOpen={null}
-    />
+  narrowModeStatus={
+    Object {
+      "isHeaderAndNavCollapsed": false,
+    }
   }
+  navMenu={null}
 />
 `;
 
@@ -60,7 +59,6 @@ exports[`InteractiveHeader render: tabClosed equals false 1`] = `
       }
     />
   }
-  isNarrowMode={false}
   items={
     <FlaggedComponent
       disableJSXElement={
@@ -89,6 +87,11 @@ exports[`InteractiveHeader render: tabClosed equals false 1`] = `
       }
     />
   }
+  narrowModeStatus={
+    Object {
+      "isHeaderAndNavCollapsed": false,
+    }
+  }
   navMenu={null}
 />
 `;
@@ -100,6 +103,10 @@ exports[`InteractiveHeader render: tabClosed equals true 1`] = `
       "dropdownClickHandler": Object {},
     }
   }
-  isNarrowMode={false}
+  narrowModeStatus={
+    Object {
+      "isHeaderAndNavCollapsed": false,
+    }
+  }
 />
 `;

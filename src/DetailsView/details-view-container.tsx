@@ -96,7 +96,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     public render(): JSX.Element {
         if (this.shouldShowNoContentAvailable()) {
-            const headerProps: Omit<HeaderProps, 'isNarrowMode'> = { deps: this.props.deps };
+            const headerProps: Omit<HeaderProps, 'narrowModeStatus'> = { deps: this.props.deps };
             return (
                 <>
                     <NarrowModeDetector

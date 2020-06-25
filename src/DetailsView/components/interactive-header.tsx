@@ -29,11 +29,11 @@ export interface InteractiveHeaderProps {
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
-    const isNavCollapsed = props.narrowModeStatus.isHeaderAndNavCollapsed;
     if (props.tabClosed) {
-        return <Header deps={props.deps} isNarrowMode={isNavCollapsed} />;
+        return <Header deps={props.deps} narrowModeStatus={props.narrowModeStatus} />;
     }
 
+    const isNavCollapsed = props.narrowModeStatus.isHeaderAndNavCollapsed;
     const getNavMenu = () => {
         if (isNavCollapsed === false) {
             return null;
