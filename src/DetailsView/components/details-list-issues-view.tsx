@@ -22,15 +22,8 @@ export type DetailsListIssuesViewDeps = IssuesTableDeps;
 
 export interface DetailsListIssuesViewProps {
     deps: DetailsListIssuesViewDeps;
-    tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
-    visualizationScanResultData: VisualizationScanResultData;
-    visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    issuesSelection: ISelection;
-    issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
@@ -40,16 +33,8 @@ export interface DetailsListIssuesViewProps {
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
     'DetailsListIssuesView',
     ({ children, ...props }) => {
-        const selectedTest = props.selectedTest;
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
-        const clickHandler = props.clickHandlerFactory.createClickHandler(
-            selectedTest,
-            !scanData.enabled,
-        );
         const isScanning: boolean = props.visualizationStoreData.scanning !== null;
-        const scanResult = props.visualizationScanResultData.issues.scanResult;
-        const selectedIdToRuleResultMap =
-            props.visualizationScanResultData.issues.selectedIdToRuleResultMap;
         const title = props.configuration.displayableData.title;
         const subtitle = props.configuration.displayableData.subtitle;
 
@@ -58,18 +43,9 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 deps={props.deps}
                 title={title}
                 subtitle={subtitle}
-                issuesTableHandler={props.issuesTableHandler}
                 issuesEnabled={scanData.enabled}
-                violations={scanResult != null ? scanResult.violations : null}
-                issuesSelection={props.issuesSelection}
-                selectedIdToRuleResultMap={selectedIdToRuleResultMap}
-                pageTitle={props.tabStoreData.title}
-                pageUrl={props.tabStoreData.url}
                 scanning={isScanning}
-                toggleClickHandler={clickHandler}
-                visualizationConfigurationFactory={props.visualizationConfigurationFactory}
                 featureFlags={props.featureFlagStoreData}
-                scanResult={scanResult}
                 userConfigurationStoreData={props.userConfigurationStoreData}
                 scanMetadata={props.scanMetadata}
                 cardsViewData={props.cardsViewData}
