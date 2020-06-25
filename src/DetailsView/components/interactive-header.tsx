@@ -8,6 +8,7 @@ import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { headerSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
 import * as React from 'react';
 import { Switcher, SwitcherDeps } from './switcher';
@@ -20,7 +21,7 @@ export interface InteractiveHeaderProps {
     tabClosed: boolean;
     selectedPivot: DetailsViewPivotType;
     navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
-    isNarrowMode: boolean;
+    narrowModeStatus: NarrowModeStatus;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
     showFarItems?: boolean;
@@ -28,12 +29,13 @@ export interface InteractiveHeaderProps {
 }
 
 export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHeader', props => {
+    const isNavCollapsed = props.narrowModeStatus.isHeaderAndNavCollapsed;
     if (props.tabClosed) {
-        return <Header deps={props.deps} isNarrowMode={props.isNarrowMode} />;
+        return <Header deps={props.deps} isNarrowMode={isNavCollapsed} />;
     }
 
     const getNavMenu = () => {
-        if (props.isNarrowMode === false) {
+        if (isNavCollapsed === false) {
             return null;
         }
 
@@ -75,7 +77,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
             navMenu={getNavMenu()}
             showHeaderTitle={props.showHeaderTitle}
             showFarItems={props.showFarItems}
-            isNarrowMode={props.isNarrowMode}
+            narrowModeStatus={props.narrowModeStatus}
         ></Header>
     );
 });
