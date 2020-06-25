@@ -39,7 +39,7 @@ describe(NarrowModeDetector, () => {
                     isCommandBarCollapsed: true,
                 },
             };
-            const rendered = getChildComponentWrapper(props, {
+            const rendered = renderChildComponent(props, {
                 width: narrowModeThresholds.collapseHeaderAndNavThreshold - 1,
                 height: 0,
             });
@@ -59,7 +59,7 @@ describe(NarrowModeDetector, () => {
                     isCommandBarCollapsed: true,
                 },
             };
-            const rendered = getChildComponentWrapper(props, {
+            const rendered = renderChildComponent(props, {
                 width: narrowModeThresholds.collapseCommandBarThreshold - 1,
                 height: 0,
             });
@@ -79,7 +79,7 @@ describe(NarrowModeDetector, () => {
                     isCommandBarCollapsed: false,
                 },
             };
-            const rendered = getChildComponentWrapper(props, {
+            const rendered = renderChildComponent(props, {
                 width: narrowModeThresholds.collapseCommandBarThreshold + 1,
                 height: 0,
             });
@@ -104,7 +104,7 @@ describe(NarrowModeDetector, () => {
         });
     });
 
-    function getChildComponentWrapper(
+    function renderChildComponent(
         props: NarrowModeDetectorProps,
         dimensions: { width: number; height: number },
     ): JSX.Element {

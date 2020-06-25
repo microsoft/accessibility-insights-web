@@ -44,7 +44,7 @@ describe('InteractiveHeader', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('does render nav menu button if header not collapsed', () => {
+    it.each([false, true])('render: isNavCollapsed equals %s', isNavCollapsed => {
         const props: InteractiveHeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: null,
@@ -55,7 +55,7 @@ describe('InteractiveHeader', () => {
             selectedPivot: DetailsViewPivotType.assessment,
             navMenu: navMenuStub,
             narrowModeStatus: {
-                isHeaderAndNavCollapsed: false,
+                isHeaderAndNavCollapsed: isNavCollapsed,
             } as NarrowModeStatus,
             isSideNavOpen: false,
             setSideNavOpen: null,
