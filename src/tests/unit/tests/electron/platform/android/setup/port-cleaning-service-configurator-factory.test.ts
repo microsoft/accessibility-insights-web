@@ -2,22 +2,22 @@
 // Licensed under the MIT License.
 
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
-import { PortCleaningAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-android-service-configurator-factory';
+import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('PortCleaningAndroidServiceConfiguratorFactory', () => {
+describe('PortCleaningServiceConfiguratorFactory', () => {
     let innerFactoryMock: IMock<ServiceConfiguratorFactory>;
     let portCleanerMock: IMock<AndroidPortCleaner>;
-    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
-    let testSubject: PortCleaningAndroidServiceConfiguratorFactory;
+    let serviceConfigMock: IMock<ServiceConfigurator>;
+    let testSubject: PortCleaningServiceConfiguratorFactory;
 
     beforeEach(() => {
         innerFactoryMock = Mock.ofType<ServiceConfiguratorFactory>(undefined, MockBehavior.Strict);
         portCleanerMock = Mock.ofType<AndroidPortCleaner>(undefined, MockBehavior.Strict);
-        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
-        testSubject = new PortCleaningAndroidServiceConfiguratorFactory(
+        serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
+        testSubject = new PortCleaningServiceConfiguratorFactory(
             innerFactoryMock.object,
             portCleanerMock.object,
         );
@@ -37,7 +37,7 @@ describe('PortCleaningAndroidServiceConfiguratorFactory', () => {
 
     it('getServiceConfig returns correct object after linking to cleaner', async () => {
         const expectedAdbLocation: string = 'Some location';
-        let attachedServiceConfig: AndroidServiceConfigurator;
+        let attachedServiceConfig: ServiceConfigurator;
         innerFactoryMock
             .setup(m => m.getServiceConfigurator(expectedAdbLocation))
             .returns(() => Promise.resolve(serviceConfigMock.object))
@@ -47,7 +47,7 @@ describe('PortCleaningAndroidServiceConfiguratorFactory', () => {
             .callback(config => (attachedServiceConfig = config))
             .verifiable(Times.once());
 
-        const finalServiceConfig: AndroidServiceConfigurator = await testSubject.getServiceConfigurator(
+        const finalServiceConfig: ServiceConfigurator = await testSubject.getServiceConfigurator(
             expectedAdbLocation,
         );
 

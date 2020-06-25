@@ -86,7 +86,7 @@ import {
 import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
-import { PortCleaningAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-android-service-configurator-factory';
+import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
@@ -206,16 +206,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const fetchDeviceConfig = createDeviceConfigFetcher(axios.get, parseDeviceConfig);
 
-        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(ipcRendererShim);
+        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(
+            ipcRendererShim,
+            logger,
+        );
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningAndroidServiceConfiguratorFactory(
+        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
             new AndroidServiceConfiguratorFactory(
                 new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
                 apkLocator,
                 getPortPromise,
-                logger,
             ),
             androidPortCleaner,
         );

@@ -1,23 +1,50 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Logger } from 'common/logging/logger';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { DictionaryStringTo } from 'types/common-types';
 
 export class AndroidPortCleaner {
-    private serviceConfig: AndroidServiceConfigurator;
+    private serviceConfig: ServiceConfigurator;
+    private readonly portMap: DictionaryStringTo<number> = {};
 
-    constructor(private readonly ipcRendererShim: IpcRendererShim) {}
+    constructor(
+        private readonly ipcRendererShim: IpcRendererShim,
+        private readonly logger: Logger,
+    ) {}
 
     public closeWindow = async (): Promise<void> => {
-        if (this.serviceConfig) {
-            await this.serviceConfig.removeAllTcpForwarding();
-        }
-
+        await this.removeRemainingPorts();
         this.ipcRendererShim.closeWindow();
     };
 
-    public setServiceConfig = (serviceConfig: AndroidServiceConfigurator): void => {
+    public setServiceConfig = (serviceConfig: ServiceConfigurator): void => {
         this.serviceConfig = serviceConfig;
+    };
+
+    public addPort = (hostPort: number): void => {
+        this.portMap[hostPort.toString()] = hostPort;
+    };
+
+    public removePort = (hostPort: number): void => {
+        const portMapKey: string = hostPort.toString();
+        delete this.portMap[portMapKey];
+    };
+
+    private removeRemainingPorts = async (): Promise<void> => {
+        if (this.serviceConfig) {
+            const ports = Object.values(this.portMap);
+            for (const p of ports) {
+                if (p) {
+                    try {
+                        await this.serviceConfig.removeTcpForwarding(p);
+                    } catch (error) {
+                        this.logger.log(error);
+                    }
+                }
+            }
+        }
     };
 }

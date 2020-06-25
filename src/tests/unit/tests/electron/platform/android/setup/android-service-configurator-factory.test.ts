@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Logger } from 'common/logging/logger';
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import {
@@ -16,7 +15,6 @@ describe('AndroidServiceConfiguratorFactory', () => {
     let adbWrapperMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let portFinderMock: IMock<PortFinder>;
-    let loggerMock: IMock<Logger>;
     let testSubject: AndroidServiceConfiguratorFactory;
 
     beforeEach(() => {
@@ -24,12 +22,10 @@ describe('AndroidServiceConfiguratorFactory', () => {
         adbWrapperMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
-        loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         testSubject = new AndroidServiceConfiguratorFactory(
             adbWrapperFactoryMock.object,
             apkLocatorMock.object,
             portFinderMock.object,
-            loggerMock.object,
         );
     });
 

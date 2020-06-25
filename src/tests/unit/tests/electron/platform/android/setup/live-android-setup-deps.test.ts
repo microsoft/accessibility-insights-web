@@ -8,7 +8,7 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -17,7 +17,7 @@ describe('LiveAndroidSetupDeps', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
     let serviceConfigFactoryMock: IMock<ServiceConfiguratorFactory>;
-    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
+    let serviceConfigMock: IMock<ServiceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let fetchConfigMock: IMock<DeviceConfigFetcher>;
@@ -29,7 +29,7 @@ describe('LiveAndroidSetupDeps', () => {
             undefined,
             MockBehavior.Strict,
         );
-        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
+        serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
         configMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>(
             undefined,
