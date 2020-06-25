@@ -121,7 +121,7 @@
         "sass-loader": "^8.0.2",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
-        "simple-git": "^2.10.0",
+        "simple-git": "^2.11.0",
         "source-map-loader": "^1.0.0",
         "spectron": "^10.0.1",
         "terser-webpack-plugin": "^3.0.6",
