@@ -18,7 +18,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.NeedsReview,
     testMode: TestMode.Adhoc,
     getTestView: props => <AdhocIssuesTestView {...props} />,
-    getStoreData: data => data.adhoc.needsReview, //
+    getStoreData: data => data.adhoc.needsReview,
     enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
@@ -28,7 +28,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         toggleLabel: 'Show elements needing review',
         linkToDetailsViewText: 'List view and filtering',
     },
-    launchPanelDisplayOrder: 6, //
+    launchPanelDisplayOrder: 6,
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScanForNeedsReview({
@@ -38,19 +38,19 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
                 'td-headers-attr',
                 'th-has-data-cells',
             ],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances, //
+            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
             telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forIssuesAnalyzerScan, //
+                telemetryFactory.forIssuesAnalyzerScan,
             key: AdHocTestkeys.NeedsReview,
             testType: VisualizationType.NeedsReview,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
         }),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
-    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor, //
+    visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) =>
-        getNotificationMessage(selectorMap, warnings), //
-    getDrawer: provider => provider.createHighlightBoxDrawer(), //
+        getNotificationMessage(selectorMap, warnings),
+    getDrawer: provider => provider.createHighlightBoxDrawer(),
     getSwitchToTargetTabOnScan: () => false,
-    getInstanceIdentiferGenerator: () => generateUID, //
+    getInstanceIdentiferGenerator: () => generateUID,
     featureFlagToEnable: FeatureFlags.needsReview,
 };

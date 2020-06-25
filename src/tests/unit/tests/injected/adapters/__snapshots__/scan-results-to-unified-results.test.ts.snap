@@ -103,96 +103,6 @@ exports[`ScanResults to Unified Results Test needs review conversion works with 
 Array [
   Object {
     "descriptors": Object {
-      "snippet": "html1",
-    },
-    "identifiers": Object {
-      "conciseName": "id1",
-      "css-selector": "target1;id1",
-      "identifier": "target1;id1",
-    },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [
-          "any-test-message",
-        ],
-        "none": Array [],
-      },
-      "howToFixSummary": "how to fix 1",
-    },
-    "ruleId": "id1",
-    "status": "fail",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
-      "snippet": "html2",
-    },
-    "identifiers": Object {
-      "conciseName": "id2",
-      "css-selector": "target2;id2",
-      "identifier": "target2;id2",
-    },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [],
-        "none": Array [
-          "none-test-message",
-        ],
-      },
-      "howToFixSummary": "how to fix 2",
-    },
-    "ruleId": "id1",
-    "status": "fail",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
-      "snippet": "html3",
-    },
-    "identifiers": Object {
-      "conciseName": "id3",
-      "css-selector": "target3;id3",
-      "identifier": "target3;id3",
-    },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [
-          "all-test-message",
-        ],
-        "any": Array [],
-        "none": Array [],
-      },
-      "howToFixSummary": "how to fix 3",
-    },
-    "ruleId": "id2",
-    "status": "fail",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
-      "snippet": "html-pass",
-    },
-    "identifiers": Object {
-      "conciseName": "passTarget2",
-      "css-selector": "passTarget1;passTarget2",
-      "identifier": "passTarget1;passTarget2",
-    },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [],
-        "none": Array [],
-      },
-      "howToFixSummary": undefined,
-    },
-    "ruleId": "test",
-    "status": "pass",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
       "snippet": "html-incomplete",
     },
     "identifiers": Object {
@@ -209,7 +119,7 @@ Array [
       "howToFixSummary": undefined,
     },
     "ruleId": "test2",
-    "status": "unknown",
+    "status": "fail",
     "uid": "gguid-mock-stub",
   },
 ]

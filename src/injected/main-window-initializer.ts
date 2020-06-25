@@ -301,15 +301,6 @@ export class MainWindowInitializer extends WindowInitializer {
             scanIncompleteWarningDetector,
         );
 
-        // const unifiedResultSenderForNeedsReview = new UnifiedResultSender(
-        //     this.browserAdapter.sendMessageToFrames,
-        //     convertScanResultsToNeedsReviewUnifiedResults,
-        //     convertScanResultsToUnifiedRules,
-        //     toolData,
-        //     generateUID,
-        //     scanIncompleteWarningDetector,
-        // );
-
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
