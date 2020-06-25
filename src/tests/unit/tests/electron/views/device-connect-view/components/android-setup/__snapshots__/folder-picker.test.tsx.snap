@@ -23,7 +23,7 @@ exports[`FolderPicker renders per snapshot 1`] = `
         }
       }
       onChange={[Function]}
-      placeholder="Enter a path..."
+      placeholder="adb path"
       value="/path/to/folder"
     />
     <CustomizedPrimaryButton

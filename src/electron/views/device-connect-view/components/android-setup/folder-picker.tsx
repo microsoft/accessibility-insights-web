@@ -42,7 +42,7 @@ export const FolderPicker = NamedFC<FolderPickerProps>(
                 </p>
                 <div className={styles.pickerControl}>
                     <TextField
-                        placeholder="Enter a path..."
+                        placeholder="adb path"
                         ariaLabel="Enter a path"
                         aria-describedby={instructionsId}
                         className={styles.textField}
