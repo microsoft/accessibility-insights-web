@@ -4,12 +4,15 @@
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { PortFinderOptions } from 'portfinder';
+import { DictionaryStringTo } from 'types/common-types';
+import { Logger } from 'common/logging/logger';
 
 export type PortFinder = (options?: PortFinderOptions) => Promise<number>;
 
 const servicePortNumber: number = 62442;
 
 export class AndroidServiceConfigurator {
+    private readonly portMap: DictionaryStringTo<number> = {};
     private readonly servicePackageName: string =
         'com.microsoft.accessibilityinsightsforandroidservice';
 
@@ -19,6 +22,7 @@ export class AndroidServiceConfigurator {
         private readonly adbWrapperMock: AdbWrapper,
         private readonly apkLocator: AndroidServiceApkLocator,
         private readonly portFinder: PortFinder,
+        private readonly logger: Logger,
     ) {}
 
     public getConnectedDevices = async (): Promise<DeviceInfo[]> => {
@@ -79,15 +83,33 @@ export class AndroidServiceConfigurator {
             stopPort: servicePortNumber + 100,
         });
 
-        return await this.adbWrapperMock.setTcpForwarding(
+        const assignedPort: number = await this.adbWrapperMock.setTcpForwarding(
             this.selectedDeviceId,
             hostPort,
             servicePortNumber,
         );
+
+        this.portMap[assignedPort.toString()] = assignedPort;
+        return assignedPort;
     };
 
     public removeTcpForwarding = async (hostPort: number): Promise<void> => {
+        const portMapKey: string = hostPort.toString();
+        delete this.portMap[portMapKey];
         return await this.adbWrapperMock.removeTcpForwarding(this.selectedDeviceId, hostPort);
+    };
+
+    public removeAllTcpForwarding = async (): Promise<void> => {
+        const ports = Object.values(this.portMap);
+        for (const p of ports) {
+            if (p) {
+                try {
+                    await this.removeTcpForwarding(p);
+                } catch (error) {
+                    this.logger.log(error);
+                }
+            }
+        }
     };
 
     private async getInstalledVersion(deviceId: string): Promise<string> {

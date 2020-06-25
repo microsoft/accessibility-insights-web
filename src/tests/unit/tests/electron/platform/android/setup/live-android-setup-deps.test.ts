@@ -9,14 +9,14 @@ import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidSetupDeps', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
-    let serviceConfigFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
+    let serviceConfigFactoryMock: IMock<ServiceConfiguratorFactory>;
     let serviceConfigMock: IMock<AndroidServiceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
@@ -25,7 +25,7 @@ describe('LiveAndroidSetupDeps', () => {
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
-        serviceConfigFactoryMock = Mock.ofType<AndroidServiceConfiguratorFactory>(
+        serviceConfigFactoryMock = Mock.ofType<ServiceConfiguratorFactory>(
             undefined,
             MockBehavior.Strict,
         );

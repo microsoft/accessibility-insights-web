@@ -76,7 +76,11 @@ import { createDeviceConfigFetcher } from 'electron/platform/android/device-conf
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
+import {
+    AndroidServiceConfiguratorFactory,
+    ServiceConfiguratorFactory,
+} from 'electron/platform/android/setup/android-service-configurator-factory';
 import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
@@ -132,6 +136,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { PortCleaningAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-android-service-configurator-factory';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -199,13 +204,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
 
+        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(ipcRendererShim);
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const serviceConfigFactory = new AndroidServiceConfiguratorFactory(
-            new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
-            apkLocator,
-            getPortPromise,
+        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningAndroidServiceConfiguratorFactory(
+            new AndroidServiceConfiguratorFactory(
+                new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
+                apkLocator,
+                getPortPromise,
+                logger,
+            ),
+            androidPortCleaner,
         );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
@@ -252,7 +262,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         featureFlagStore.initialize();
 
-        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
+        const windowFrameUpdater = new WindowFrameUpdater(
+            windowFrameActions,
+            ipcRendererShim,
+            androidPortCleaner,
+        );
         windowFrameUpdater.initialize();
 
         const storesHub = new BaseClientStoresHub<RootContainerState>([
@@ -505,7 +519,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
-            closeApp: ipcRendererShim.closeWindow,
+            closeApp: androidPortCleaner.closeWindow,
             startTesting: startTesting,
             showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
         };

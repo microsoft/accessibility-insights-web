@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Logger } from 'common/logging/logger';
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidServiceApkInfo,
@@ -30,16 +31,19 @@ describe('AndroidServiceConfigurator', () => {
     let adbWrapperMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let portFinderMock: IMock<PortFinder>;
+    let loggerMock: IMock<Logger>;
     let testSubject: AndroidServiceConfigurator;
 
     beforeEach(() => {
         adbWrapperMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
+        loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         testSubject = new AndroidServiceConfigurator(
             adbWrapperMock.object,
             apkLocatorMock.object,
             portFinderMock.object,
+            loggerMock.object,
         );
         testSubject.setSelectedDevice(testDeviceId);
     });
@@ -431,6 +435,126 @@ describe('AndroidServiceConfigurator', () => {
             await expect(testSubject.removeTcpForwarding(irrelevantHostPort)).rejects.toThrowError(
                 expectedMessage,
             );
+
+            verifyAllMocks();
+        });
+    });
+
+    describe('removeAllTcpForwarding', () => {
+        it('does nothing if setTcpForwarding was never called', async () => {
+            await testSubject.removeAllTcpForwarding();
+        });
+
+        it('does nothing if setTcpForwarding and removeTcpForwarding calls are balanced', async () => {
+            const portFinderOutput = 12345;
+            portFinderMock
+                .setup(m =>
+                    m({
+                        port: expectedHostPortRangeStart,
+                        stopPort: expectedHostPortRangeStop,
+                    }),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+            adbWrapperMock
+                .setup(m =>
+                    m.setTcpForwarding(testDeviceId, portFinderOutput, expectedServicePortNumber),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+            adbWrapperMock
+                .setup(m => m.removeTcpForwarding(testDeviceId, portFinderOutput))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.once());
+            await testSubject.setupTcpForwarding();
+            await testSubject.removeTcpForwarding(portFinderOutput);
+
+            verifyAllMocks(); // Should already be satisfied
+
+            await testSubject.removeAllTcpForwarding();
+
+            verifyAllMocks(); // No more calls should have come through
+        });
+
+        it('does nothing if setTcpForwarding was never called', async () => {
+            await testSubject.removeAllTcpForwarding();
+        });
+
+        it('removes forwarding for any ports set via setTcpForwarding and not removed via removeTcpForwarding calls are balanced', async () => {
+            const portFinderOutputs = [12345, 23456, 34567];
+            const removedPorts: number[] = [];
+            let index: number = 0;
+            portFinderMock
+                .setup(m =>
+                    m({
+                        port: expectedHostPortRangeStart,
+                        stopPort: expectedHostPortRangeStop,
+                    }),
+                )
+                .returns(() => Promise.resolve(portFinderOutputs[index++]))
+                .verifiable(Times.exactly(3));
+            adbWrapperMock
+                .setup(m =>
+                    m.setTcpForwarding(testDeviceId, It.isAnyNumber(), expectedServicePortNumber),
+                )
+                .returns((_, localPort, __) => Promise.resolve(localPort))
+                .verifiable(Times.exactly(3));
+            adbWrapperMock
+                .setup(m => m.removeTcpForwarding(testDeviceId, It.isAnyNumber()))
+                .callback((_, localPort) => removedPorts.push(localPort))
+                .returns(() => Promise.resolve())
+                .verifiable(Times.exactly(3));
+            await testSubject.setupTcpForwarding();
+            await testSubject.setupTcpForwarding();
+            await testSubject.setupTcpForwarding();
+            await testSubject.removeTcpForwarding(portFinderOutputs[1]);
+
+            // At this point we've added 3 ports and only removed 1
+            expect(removedPorts.length).toBe(1);
+            expect(removedPorts[0]).toBe(portFinderOutputs[1]);
+
+            await testSubject.removeAllTcpForwarding();
+
+            expect(removedPorts.length).toBe(3);
+            expect(removedPorts).toContain(portFinderOutputs[0]);
+            expect(removedPorts).toContain(portFinderOutputs[2]);
+
+            verifyAllMocks();
+        });
+
+        it('eats and reports errors from removePortForwarding', async () => {
+            const expectedMessage: string = 'Thrown during removeAllTcpForwarding';
+            let actualError: Error;
+
+            const portFinderOutput = 12345;
+            portFinderMock
+                .setup(m =>
+                    m({
+                        port: expectedHostPortRangeStart,
+                        stopPort: expectedHostPortRangeStop,
+                    }),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+            adbWrapperMock
+                .setup(m =>
+                    m.setTcpForwarding(testDeviceId, portFinderOutput, expectedServicePortNumber),
+                )
+                .returns(() => Promise.resolve(portFinderOutput))
+                .verifiable(Times.once());
+            adbWrapperMock
+                .setup(m => m.removeTcpForwarding(testDeviceId, portFinderOutput))
+                .returns(() => Promise.reject(new Error(expectedMessage)))
+                .verifiable(Times.once());
+            loggerMock
+                .setup(m => m.log(It.isAny()))
+                .callback(_ => (actualError = _))
+                .verifiable(Times.once());
+            await testSubject.setupTcpForwarding(); // Put data in the list
+
+            await testSubject.removeAllTcpForwarding();
+
+            expect(actualError.message).toBe(expectedMessage);
 
             verifyAllMocks();
         });

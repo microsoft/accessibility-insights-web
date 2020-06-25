@@ -3,11 +3,13 @@
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
+import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 
 export class WindowFrameUpdater {
     constructor(
         private readonly windowFrameActions: WindowFrameActions,
         private readonly ipcRendererShim: IpcRendererShim,
+        private readonly androidPortCleaner: AndroidPortCleaner,
     ) {}
 
     public initialize(): void {
@@ -31,7 +33,7 @@ export class WindowFrameUpdater {
     };
 
     private onClose = (): void => {
-        this.ipcRendererShim.closeWindow();
+        this.androidPortCleaner.closeWindow().then().catch();
     };
 
     private onSetSize = (sizePayload: SetSizePayload): void => {
