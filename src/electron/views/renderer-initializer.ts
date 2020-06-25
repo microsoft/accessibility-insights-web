@@ -84,6 +84,7 @@ import {
 import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
+import { PortCleaningAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-android-service-configurator-factory';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
@@ -136,7 +137,6 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
-import { PortCleaningAndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-android-service-configurator-factory';
 
 declare var window: Window & {
     insightsUserConfiguration: UserConfigurationController;

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Logger } from 'common/logging/logger';
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { PortFinderOptions } from 'portfinder';
 import { DictionaryStringTo } from 'types/common-types';
-import { Logger } from 'common/logging/logger';
 
 export type PortFinder = (options?: PortFinderOptions) => Promise<number>;
 
