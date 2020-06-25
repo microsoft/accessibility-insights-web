@@ -6,6 +6,7 @@ import { AndroidServiceApkLocator } from 'electron/platform/android/android-serv
 import {
     AndroidServiceConfigurator,
     PortFinder,
+    ServiceConfigurator,
 } from 'electron/platform/android/setup/android-service-configurator';
 import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
@@ -37,7 +38,7 @@ describe('AndroidServiceConfiguratorFactory', () => {
             .verifiable(Times.once());
         adbWrapperMock.setup((m: any) => m.then).returns(() => undefined);
 
-        const serviceConfig: AndroidServiceConfigurator = await testSubject.getServiceConfigurator(
+        const serviceConfig: ServiceConfigurator = await testSubject.getServiceConfigurator(
             expectedAdbLocation,
         );
 
