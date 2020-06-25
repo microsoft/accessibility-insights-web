@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-.device-connect-view {
+.window-container {
     -webkit-app-region: drag;
 
     display: flex;
@@ -8,8 +8,16 @@
     height: 100%;
     width: 100%;
 
-    .main-content-wrapper {
+    .content-scroll-container {
         flex: 1 1 auto;
+
+        -webkit-app-region: no-drag; // Scrollbars need to be interactable
         overflow: auto;
+
+        .content-container {
+            min-width: 100%;
+            min-height: 100%;
+            -webkit-app-region: drag;
+        }
     }
 }
