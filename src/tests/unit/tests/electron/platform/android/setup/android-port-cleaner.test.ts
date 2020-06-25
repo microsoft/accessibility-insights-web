@@ -8,7 +8,6 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ExpectedInput } from 'assessments/custom-widgets/test-steps/expected-input';
 
 describe('AndroidPortCleaner', () => {
     let serviceConfigMock: IMock<ServiceConfigurator>;

@@ -39,14 +39,14 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
     it('getServiceConfig returns correct object after linking to cleaner', async () => {
         const expectedAdbLocation: string = 'Some location';
         const expectedServiceConfig: ServiceConfigurator = serviceConfigMock.object;
-        let attachedServiceConfig: ServiceConfigurator;
+        // let attachedServiceConfig: ServiceConfigurator;
         innerFactoryMock
             .setup(m => m.getServiceConfigurator(expectedAdbLocation))
             .returns(() => Promise.resolve(expectedServiceConfig))
             .verifiable(Times.once());
         portCleanerMock
             .setup(m => m.setServiceConfig(It.isAny()))
-            .callback(config => (attachedServiceConfig = config as ServiceConfigurator))
+            // .callback(config => (attachedServiceConfig = config as ServiceConfigurator))
             .verifiable(Times.once());
 
         // const finalServiceConfig: ServiceConfigurator =
