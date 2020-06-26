@@ -39,7 +39,7 @@ export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps
         return <Spinner size={SpinnerSize.large} label="Loading" />;
     }
 
-    const headerProps: Omit<HeaderProps, 'isNarrowMode'> = { deps };
+    const headerProps: Omit<HeaderProps, 'narrowModeStatus'> = { deps };
     return (
         <div className={styles.debugToolsContainer}>
             <NarrowModeDetector

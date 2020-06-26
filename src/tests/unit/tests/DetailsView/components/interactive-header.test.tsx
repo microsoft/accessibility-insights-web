@@ -9,6 +9,7 @@ import {
     InteractiveHeaderDeps,
     InteractiveHeaderProps,
 } from 'DetailsView/components/interactive-header';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -32,7 +33,9 @@ describe('InteractiveHeader', () => {
             } as InteractiveHeaderDeps,
             selectedPivot: DetailsViewPivotType.assessment,
             navMenu: navMenuStub,
-            isNarrowMode: false,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: false,
+            } as NarrowModeStatus,
             isSideNavOpen: false,
             setSideNavOpen: null,
         };
@@ -41,7 +44,7 @@ describe('InteractiveHeader', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('does render nav menu button if not in narrow mode', () => {
+    it.each([false, true])('render: isNavCollapsed equals %s', isNavCollapsed => {
         const props: InteractiveHeaderProps = {
             dropdownClickHandler: null,
             featureFlagStoreData: null,
@@ -51,7 +54,9 @@ describe('InteractiveHeader', () => {
             deps: null,
             selectedPivot: DetailsViewPivotType.assessment,
             navMenu: navMenuStub,
-            isNarrowMode: true,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: isNavCollapsed,
+            } as NarrowModeStatus,
             isSideNavOpen: false,
             setSideNavOpen: null,
         };
