@@ -5,8 +5,12 @@ exports[`FluentSideNav render nav bar 1`] = `
   id="sideNavContainer"
 >
   <DetailsViewLeftNav
-    isNarrowMode={false}
     isSideNavOpen={false}
+    narrowModeStatus={
+      Object {
+        "isHeaderAndNavCollapsed": false,
+      }
+    }
     selectedPivot={0}
     setNavComponentRef={[Function]}
     setSideNavOpen={null}
@@ -34,8 +38,12 @@ exports[`FluentSideNav render side nav 1`] = `
   type={8}
 >
   <DetailsViewLeftNav
-    isNarrowMode={true}
     isSideNavOpen={false}
+    narrowModeStatus={
+      Object {
+        "isHeaderAndNavCollapsed": true,
+      }
+    }
     selectedPivot={0}
     setNavComponentRef={[Function]}
     setSideNavOpen={null}

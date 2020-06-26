@@ -3,10 +3,10 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const promptConnectToDevice: AndroidSetupStepConfig = deps => {
+export const promptConnectToDevice: AndroidSetupStepConfig = stepTransition => {
     return {
         actions: {
-            next: () => deps.stepTransition('detect-devices'),
+            next: () => stepTransition('detect-devices'),
         },
     };
 };

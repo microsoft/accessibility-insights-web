@@ -8,6 +8,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as styles from 'DetailsView/details-view-body.scss';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -64,14 +65,13 @@ export interface DetailsViewBodyProps {
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    isNarrowMode: boolean;
+    narrowModeStatus: NarrowModeStatus;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
         const bodyLayoutClassName = classNames({
             'details-view-body-nav-content-layout': true,
-            'narrow-mode': this.props.isNarrowMode,
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
@@ -114,7 +114,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
                 onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
-                isNarrowMode={this.props.isNarrowMode}
+                narrowModeStatus={this.props.narrowModeStatus}
                 {...this.props}
             />
         );

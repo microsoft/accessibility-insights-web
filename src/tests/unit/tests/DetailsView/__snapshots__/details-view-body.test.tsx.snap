@@ -170,6 +170,13 @@ exports[`DetailsViewBody render render 1`] = `
           "selectedAxeResultsMap": null,
           "selectedIdToRuleResultMap": null,
         },
+        "needsReview": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
         "tabStops": Object {
           "tabbedElements": null,
         },
@@ -472,6 +479,13 @@ exports[`DetailsViewBody render render 1`] = `
             "selectedIdToRuleResultMap": null,
           },
           "landmarks": Object {
+            "fullAxeResultsMap": null,
+            "fullIdToRuleResultMap": null,
+            "scanResult": null,
+            "selectedAxeResultsMap": null,
+            "selectedIdToRuleResultMap": null,
+          },
+          "needsReview": Object {
             "fullAxeResultsMap": null,
             "fullIdToRuleResultMap": null,
             "scanResult": null,
@@ -785,6 +799,13 @@ exports[`DetailsViewBody render render 1`] = `
                 "selectedIdToRuleResultMap": null,
               },
               "landmarks": Object {
+                "fullAxeResultsMap": null,
+                "fullIdToRuleResultMap": null,
+                "scanResult": null,
+                "selectedAxeResultsMap": null,
+                "selectedIdToRuleResultMap": null,
+              },
+              "needsReview": Object {
                 "fullAxeResultsMap": null,
                 "fullIdToRuleResultMap": null,
                 "scanResult": null,

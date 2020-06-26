@@ -3,13 +3,9 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const promptInstallService: AndroidSetupStepConfig = deps => ({
+export const promptInstallService: AndroidSetupStepConfig = stepTransition => ({
     actions: {
-        cancel: () => {
-            deps.stepTransition('prompt-choose-device');
-        },
-        next: () => {
-            deps.stepTransition('installing-service');
-        },
+        cancel: () => stepTransition('prompt-choose-device'),
+        next: () => stepTransition('installing-service'),
     },
 });

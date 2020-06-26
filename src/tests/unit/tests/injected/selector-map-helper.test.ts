@@ -32,6 +32,11 @@ describe('SelectorMapHelperTest', () => {
         VisualizationType.Landmarks,
         VisualizationType.Color,
     ];
+
+    const unifiedAdHocVisualizationTypes = [
+        VisualizationType.Issues,
+        VisualizationType.NeedsReview,
+    ];
     beforeEach(() => {
         assessmentsProvider = CreateTestAssessmentProvider();
         getElementBasedViewModelMock = Mock.ofType<GetElementBasedViewModelCallback>();
@@ -60,28 +65,32 @@ describe('SelectorMapHelperTest', () => {
         });
     });
 
-    test('getState: issues', () => {
-        const selectorMap = { key1: { target: ['element1'] } as AssessmentVisualizationInstance };
-        const rulesStub: UnifiedRule[] = [{ id: 'some rule' } as UnifiedRule];
-        const resultsStub: UnifiedResult[] = [exampleUnifiedResult];
-        const unifiedScanData = {
-            rules: rulesStub,
-            results: resultsStub,
-        };
-        const storeData: VisualizationRelatedStoreData = {
-            unifiedScanResultStoreData: unifiedScanData,
-            cardSelectionStoreData: {},
-        } as VisualizationRelatedStoreData;
+    unifiedAdHocVisualizationTypes.forEach(visualizationType => {
+        test(`getState: ${VisualizationType[visualizationType]}`, () => {
+            const selectorMap = {
+                key1: { target: ['element1'] } as AssessmentVisualizationInstance,
+            };
+            const rulesStub: UnifiedRule[] = [{ id: 'some rule' } as UnifiedRule];
+            const resultsStub: UnifiedResult[] = [exampleUnifiedResult];
+            const unifiedScanData = {
+                rules: rulesStub,
+                results: resultsStub,
+            };
+            const storeData: VisualizationRelatedStoreData = {
+                unifiedScanResultStoreData: unifiedScanData,
+                cardSelectionStoreData: {},
+            } as VisualizationRelatedStoreData;
 
-        getElementBasedViewModelMock
-            .setup(gebvm =>
-                gebvm(storeData.unifiedScanResultStoreData, storeData.cardSelectionStoreData),
-            )
-            .returns(() => selectorMap);
+            getElementBasedViewModelMock
+                .setup(gebvm =>
+                    gebvm(storeData.unifiedScanResultStoreData, storeData.cardSelectionStoreData),
+                )
+                .returns(() => selectorMap);
 
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(
-            selectorMap,
-        );
+            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(
+                selectorMap,
+            );
+        });
     });
 
     test('getState: tabStops', () => {

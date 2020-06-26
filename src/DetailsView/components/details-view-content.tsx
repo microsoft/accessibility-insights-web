@@ -4,6 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewOverlay } from 'DetailsView/components/details-view-overlay/details-view-overlay';
 import { InteractiveHeader } from 'DetailsView/components/interactive-header';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewBody } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
@@ -11,7 +12,7 @@ import * as React from 'react';
 export type DetailsViewContentProps = DetailsViewContainerProps & {
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    isNarrowMode: boolean;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
@@ -35,7 +36,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 navMenu={selectedDetailsViewSwitcherNavConfiguration.leftNavHamburgerButton}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
-                isNarrowMode={props.isNarrowMode}
+                narrowModeStatus={props.narrowModeStatus}
             />
         );
     };
@@ -121,7 +122,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 scanMetadata={scanMetadata}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
-                isNarrowMode={props.isNarrowMode}
+                narrowModeStatus={props.narrowModeStatus}
             />
         );
     };

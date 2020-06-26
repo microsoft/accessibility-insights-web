@@ -867,6 +867,11 @@
   dependencies:
     debug "^4.1.1"
 
+"@kwsites/promise-deferred@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@kwsites/promise-deferred/-/promise-deferred-1.0.1.tgz#63b170e0d02b85a1fa6ad6bdea1f2f14f6f6adc2"
+  integrity sha512-+D6vnc8qMjU2s8DP7khMWA3/+ONsGYu8bTqRhC2mhYdG3mUEC7OGHX7x71V7VPADDcoR6/hMbuafdoGOthekMw==
+
 "@microsoft/load-themed-styles@^1.10.26":
   version "1.10.29"
   resolved "https://registry.yarnpkg.com/@microsoft/load-themed-styles/-/load-themed-styles-1.10.29.tgz#2d8505a36b70a2efff9f03a842843d9d9ca31cd3"
@@ -987,10 +992,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.116":
-  version "0.0.116"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.116.tgz#acb578685be2b0e9c9e0a64c15d201ccdecb1839"
-  integrity sha512-EM5AoIR1w2PtkyOMtIbQ0FAGmH4nnv28HOAVPtbNQmioc9eUMBYOe6p2BZrv9shXVV62WtyNiPi2FWS44A7BTg==
+"@types/chrome@0.0.117":
+  version "0.0.117"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.117.tgz#c535c00580faa307dd24cb81bd76d42b4e62aca9"
+  integrity sha512-MMr1PHywhr3oFF0aTpezv4hUNr959CkJNtTeeI1a97eBKimx0WR6qIIo/28JcmKJWwKnurF/hF/cE0Q0WV8rLw==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -1120,10 +1125,10 @@
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha512-7+2BITlgjgDhH0vvwZU/HZJVyk+2XUlvxXe8dFMedNX/aMkaOq++rMAFXc0tM7ij15QaWlbdQASBR9dihi+bDQ==
 
-"@types/lodash@^4.14.156":
-  version "4.14.156"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.156.tgz#cbe30909c89a1feeb7c60803e785344ea0ec82d1"
-  integrity sha512-l2AgHXcKUwx2DsvP19wtRPqZ4NkONjmorOdq4sMcxIjqdIuuV/ULo2ftuv4NUpevwfW7Ju/UKLqo0ZXuEt/8lQ==
+"@types/lodash@^4.14.157":
+  version "4.14.157"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.157.tgz#fdac1c52448861dfde1a2e1515dbc46e54926dc8"
+  integrity sha512-Ft5BNFmv2pHDgxV5JDsndOWTRJ+56zte0ZpYLowp03tW+K+t8u8YMOzAnpuqPgzX6WO1XpDIUm7u04M8vdDiVQ==
 
 "@types/make-dir@^2.1.0":
   version "2.1.0"
@@ -8765,10 +8770,10 @@ pupa@^2.0.1:
   dependencies:
     escape-goat "^2.0.0"
 
-puppeteer@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-4.0.0.tgz#96d647c3546119f8e670493bcebf9ddb044a2367"
-  integrity sha512-yNshT0M5DWfZ8DQoduZuGYpcwqXxKOZdgt5G0IF5VEKbydaDbWP/f5pQRfzQ4e+a4w0Rge3uzcogHeUPQM8nCA==
+puppeteer@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-4.0.1.tgz#ebc2ee61157ed1aa25be3843fda97807df1d51f5"
+  integrity sha512-LIiSWTRqpTnnm3R2yAoMBx1inSeKwVZy66RFSkgSTDINzheJZPd5z5mMbPM0FkvwWAZ27a+69j5nZf+Fpyhn3Q==
   dependencies:
     debug "^4.1.0"
     extract-zip "^2.0.0"
@@ -9836,12 +9841,13 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-simple-git@^2.10.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.10.0.tgz#9b9b6af5c7660b8ede5636296cc78774f85ac636"
-  integrity sha512-/lqaK+C7FwGe3du9E9gIIMjpRSPif71Ct80cYqpevdLGSU9LJXL+CBf2tT6bxXgmp/i3NsOj37jP43KjhlEZIA==
+simple-git@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.11.0.tgz#5bd99fe3465dcbcb82f0eb23ab3c1615cb947374"
+  integrity sha512-wFePCEQYY6BzVOg/BuUVEhr3jZPF/cPG/BN2UXgax6NHc3bJ9UrDc5AME281gs2C7J1UZ6BGRJYT64khx9T+ng==
   dependencies:
     "@kwsites/file-exists" "^1.1.1"
+    "@kwsites/promise-deferred" "^1.0.1"
     debug "^4.1.1"
 
 single-line-log@^1.1.2:
@@ -11322,10 +11328,10 @@ webdriverio@^4.13.0:
     wdio-dot-reporter "~0.0.8"
     wgxpath "~1.0.0"
 
-webextension-polyfill-ts@^0.17.0:
-  version "0.17.0"
-  resolved "https://registry.yarnpkg.com/webextension-polyfill-ts/-/webextension-polyfill-ts-0.17.0.tgz#40c7b82469401527a5cff9c53c88ba08cebf3927"
-  integrity sha512-VTk36aYicwPCM+qh7LPAWAZMeYASB7GqGcJ+f39kRO6l39NmoIakkX6L9rqAPwDxoIfLK0UpxtfkxXGfB5lEfA==
+webextension-polyfill-ts@^0.18.0:
+  version "0.18.0"
+  resolved "https://registry.yarnpkg.com/webextension-polyfill-ts/-/webextension-polyfill-ts-0.18.0.tgz#fc54698f83032b26e491eb8183b08a05f4dd69bd"
+  integrity sha512-quf/QdTZ5jB7D8X8oWKU4EAhMcmABL6n0xFFjANdnuz4WmNZ8q4IRBySge6TOs28rLoegxRJlu4S8l0dpPmAjg==
   dependencies:
     webextension-polyfill "^0.6.0"
 

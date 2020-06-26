@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import {
+    AndroidSetupStepTransitionCallback,
+    AndroidSetupStoreCallbacks,
+} from 'electron/flux/types/android-setup-state-machine-types';
 import { DeviceConfig } from 'electron/platform/android/device-config';
-import { AndroidSetupStepConfigDeps } from 'electron/platform/android/setup/android-setup-steps-configs';
+import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
+import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
@@ -12,9 +18,58 @@ describe('Android setup step: configuringPortForwarding', () => {
         scanPort?: number;
     };
 
+    let depsMock: IMock<AndroidSetupDeps>;
+    let storeCallbacksMock: IMock<AndroidSetupStoreCallbacks>;
+    let stepTransitionMock: IMock<AndroidSetupStepTransitionCallback>;
+
+    beforeEach(() => {
+        depsMock = Mock.ofType<AndroidSetupDeps>(undefined, MockBehavior.Strict);
+        storeCallbacksMock = Mock.ofType<AndroidSetupStoreCallbacks>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        stepTransitionMock = Mock.ofInstance((_: AndroidSetupStepId) => {});
+
+        depsMock
+            .setup(m => m.logger)
+            .returns(() => ({
+                log: () => {},
+                error: () => {},
+            }))
+            // We don't care how many times this is invoked
+            .verifiable(Times.atLeast(0));
+
+        storeCallbacksMock
+            .setup(m => m.setScanPort(It.isAny()))
+            .callback(newPort => {
+                mockStoreState.scanPort = newPort;
+            })
+            // We don't care how many times this is invoked, we only care about the final mockStoreState
+            .verifiable(Times.atLeast(0));
+
+        storeCallbacksMock
+            .setup(m => m.getScanPort())
+            .returns(() => mockStoreState.scanPort)
+            .verifiable(Times.atLeast(0));
+
+        storeCallbacksMock
+            .setup(m => m.setApplicationName(It.isAny()))
+            .callback(newName => {
+                mockStoreState.appName = newName;
+            })
+            // We don't care how many times this is invoked, we only care about the final mockStoreState
+            .verifiable(Times.atLeast(0));
+    });
+
+    afterEach(() => {
+        depsMock.verifyAll();
+        storeCallbacksMock.verifyAll();
+        stepTransitionMock.verifyAll();
+    });
+
     it('has expected properties', () => {
-        const deps = {} as AndroidSetupStepConfigDeps;
-        const step = configuringPortForwarding(deps);
+        const deps = {} as AndroidSetupDeps;
+        const step = configuringPortForwarding(null, deps);
         checkExpectedActionsAreDefined(step, []);
         expect(step.onEnter).toBeDefined();
     });
@@ -27,8 +82,6 @@ describe('Android setup step: configuringPortForwarding', () => {
             scanPort: null,
         };
 
-        const depsMock = makeMockDepsForMockStore();
-
         depsMock
             .setup(m => m.setupTcpForwarding())
             .returns(() => Promise.resolve(scanPort))
@@ -39,14 +92,17 @@ describe('Android setup step: configuringPortForwarding', () => {
             .returns(_ => Promise.resolve(deviceConfig))
             .verifiable(Times.once());
 
-        depsMock.setup(m => m.stepTransition('prompt-connected-start-testing'));
+        stepTransitionMock.setup(m => m('prompt-connected-start-testing'));
 
-        const step = configuringPortForwarding(depsMock.object);
+        const step = configuringPortForwarding(
+            stepTransitionMock.object,
+            depsMock.object,
+            storeCallbacksMock.object,
+        );
         await step.onEnter();
 
         expect(mockStoreState.appName).toBe(deviceConfig.appIdentifier);
         expect(mockStoreState.scanPort).toBe(scanPort);
-        depsMock.verifyAll();
     });
 
     it.each`
@@ -62,7 +118,6 @@ describe('Android setup step: configuringPortForwarding', () => {
                 appName: startingAppName,
                 scanPort: startingScanPort,
             };
-            const depsMock = makeMockDepsForMockStore();
 
             depsMock
                 .setup(m => m.removeTcpForwarding(startingScanPort))
@@ -79,14 +134,17 @@ describe('Android setup step: configuringPortForwarding', () => {
                 .returns(_ => Promise.resolve(deviceConfig))
                 .verifiable(Times.once());
 
-            depsMock.setup(m => m.stepTransition('prompt-connected-start-testing'));
+            stepTransitionMock.setup(m => m('prompt-connected-start-testing'));
 
-            const step = configuringPortForwarding(depsMock.object);
+            const step = configuringPortForwarding(
+                stepTransitionMock.object,
+                depsMock.object,
+                storeCallbacksMock.object,
+            );
             await step.onEnter();
 
             expect(mockStoreState.appName).toBe(deviceConfig.appIdentifier);
             expect(mockStoreState.scanPort).toBe(newScanPort);
-            depsMock.verifyAll();
         },
     );
 
@@ -97,7 +155,6 @@ describe('Android setup step: configuringPortForwarding', () => {
             appName: 'old app',
             scanPort: startingScanPort,
         };
-        const depsMock = makeMockDepsForMockStore();
 
         depsMock
             .setup(m => m.removeTcpForwarding(startingScanPort))
@@ -106,16 +163,19 @@ describe('Android setup step: configuringPortForwarding', () => {
 
         depsMock.setup(m => m.setupTcpForwarding()).verifiable(Times.never());
 
-        depsMock
-            .setup(m => m.stepTransition('prompt-configuring-port-forwarding-failed'))
+        stepTransitionMock
+            .setup(m => m('prompt-configuring-port-forwarding-failed'))
             .verifiable(Times.once());
 
-        const step = configuringPortForwarding(depsMock.object);
+        const step = configuringPortForwarding(
+            stepTransitionMock.object,
+            depsMock.object,
+            storeCallbacksMock.object,
+        );
         await step.onEnter();
 
         expect(mockStoreState.appName).toBe(startingAppName);
         expect(mockStoreState.scanPort).toBe(startingScanPort);
-        depsMock.verifyAll();
     });
 
     it.each`
@@ -129,7 +189,6 @@ describe('Android setup step: configuringPortForwarding', () => {
                 appName: startingAppName,
                 scanPort: startingScanPort,
             };
-            const depsMock = makeMockDepsForMockStore();
 
             depsMock
                 .setup(m => m.removeTcpForwarding(startingScanPort))
@@ -141,16 +200,19 @@ describe('Android setup step: configuringPortForwarding', () => {
                 .returns(() => Promise.reject(new Error('test error')))
                 .verifiable(Times.once());
 
-            depsMock
-                .setup(m => m.stepTransition('prompt-configuring-port-forwarding-failed'))
+            stepTransitionMock
+                .setup(m => m('prompt-configuring-port-forwarding-failed'))
                 .verifiable(Times.once());
 
-            const step = configuringPortForwarding(depsMock.object);
+            const step = configuringPortForwarding(
+                stepTransitionMock.object,
+                depsMock.object,
+                storeCallbacksMock.object,
+            );
             await step.onEnter();
 
             expect(mockStoreState.appName).toBeNull();
             expect(mockStoreState.scanPort).toBeNull();
-            depsMock.verifyAll();
         },
     );
 
@@ -165,7 +227,6 @@ describe('Android setup step: configuringPortForwarding', () => {
                 appName: startingAppName,
                 scanPort: startingScanPort,
             };
-            const depsMock = makeMockDepsForMockStore();
 
             depsMock
                 .setup(m => m.removeTcpForwarding(startingScanPort))
@@ -182,52 +243,19 @@ describe('Android setup step: configuringPortForwarding', () => {
                 .returns(() => Promise.reject(new Error('error from getApplicationName')))
                 .verifiable(Times.once());
 
-            depsMock
-                .setup(m => m.stepTransition('prompt-configuring-port-forwarding-failed'))
+            stepTransitionMock
+                .setup(m => m('prompt-configuring-port-forwarding-failed'))
                 .verifiable(Times.once());
 
-            const step = configuringPortForwarding(depsMock.object);
+            const step = configuringPortForwarding(
+                stepTransitionMock.object,
+                depsMock.object,
+                storeCallbacksMock.object,
+            );
             await step.onEnter();
 
             expect(mockStoreState.appName).toBeNull(); // not 2
             expect(mockStoreState.scanPort).toBeNull();
-            depsMock.verifyAll();
         },
     );
-
-    function makeMockDepsForMockStore(): IMock<AndroidSetupStepConfigDeps> {
-        const depsMock = Mock.ofType<AndroidSetupStepConfigDeps>(undefined, MockBehavior.Strict);
-
-        depsMock
-            .setup(m => m.logger)
-            .returns(() => ({
-                log: () => {},
-                error: () => {},
-            }))
-            // We don't care how many times this is invoked
-            .verifiable(Times.atLeast(0));
-
-        depsMock
-            .setup(m => m.setScanPort(It.isAny()))
-            .callback(newPort => {
-                mockStoreState.scanPort = newPort;
-            })
-            // We don't care how many times this is invoked, we only care about the final mockStoreState
-            .verifiable(Times.atLeast(0));
-
-        depsMock
-            .setup(m => m.getScanPort())
-            .returns(() => mockStoreState.scanPort)
-            .verifiable(Times.atLeast(0));
-
-        depsMock
-            .setup(m => m.setApplicationName(It.isAny()))
-            .callback(newName => {
-                mockStoreState.appName = newName;
-            })
-            // We don't care how many times this is invoked, we only care about the final mockStoreState
-            .verifiable(Times.atLeast(0));
-
-        return depsMock;
-    }
 });

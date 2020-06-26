@@ -221,6 +221,15 @@ div.insights-file-issue-details-dialog-container {
             padding-left: 13px !important;
         }
     }
+    .ms-DetailsRow.is-selected {
+        .expanded-property-div,
+        .property-bag-div,
+        .display-name {
+            @media screen and (-ms-high-contrast: active) {
+                color: highlighttext !important;
+            }
+        }
+    }
     .ms-DetailsHeader {
         .content-header {
             > span:first-of-type {

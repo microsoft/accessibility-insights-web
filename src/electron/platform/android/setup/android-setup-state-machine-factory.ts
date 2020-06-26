@@ -11,10 +11,7 @@ import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setu
 import { StateMachine } from 'electron/platform/android/setup/state-machine/state-machine';
 import { createStateMachineSteps } from 'electron/platform/android/setup/state-machine/state-machine-step-configs';
 import { AndroidSetupDeps } from './android-setup-deps';
-import {
-    allAndroidSetupStepConfigs,
-    AndroidSetupStepConfigDeps,
-} from './android-setup-steps-configs';
+import { allAndroidSetupStepConfigs } from './android-setup-steps-configs';
 import { StateMachineSteps } from './state-machine/state-machine-steps';
 
 type AndroidSetupStepsFactory = (
@@ -22,25 +19,26 @@ type AndroidSetupStepsFactory = (
 ) => StateMachineSteps<AndroidSetupStepId, AndroidSetupActions>;
 
 const stepsFactory = (
-    deps: Omit<AndroidSetupStepConfigDeps, 'stepTransition'>,
+    deps: AndroidSetupDeps,
+    store: AndroidSetupStoreCallbacks,
 ): AndroidSetupStepsFactory => {
     return (stateMachineStepTransition: AndroidSetupStepTransitionCallback) => {
-        const allDeps = {
-            ...deps,
-            stepTransition: stateMachineStepTransition,
-        };
-
-        return createStateMachineSteps(allDeps, allAndroidSetupStepConfigs);
+        return createStateMachineSteps(
+            allAndroidSetupStepConfigs,
+            stateMachineStepTransition,
+            deps,
+            store,
+        );
     };
 };
 
 export const createAndroidSetupStateMachineFactory = (
     deps: AndroidSetupDeps,
 ): AndroidSetupStateMachineFactory => {
-    return (storeCallbacks: AndroidSetupStoreCallbacks) => {
+    return (storeStepTransition, storeCallbacks) => {
         return new StateMachine<AndroidSetupStepId, AndroidSetupActions>(
-            stepsFactory({ ...deps, ...storeCallbacks }),
-            storeCallbacks.stepTransition,
+            stepsFactory(deps, storeCallbacks),
+            storeStepTransition,
             'wait-to-start',
         );
     };
