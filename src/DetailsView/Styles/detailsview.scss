@@ -24,49 +24,8 @@ body {
     overflow: hidden;
 }
 
-.target-change-dialog-modal {
-    .ms-Overlay {
-        background-color: $neutral-alpha-60;
-    }
-}
-
 .hidden {
     display: none !important;
-}
-
-div.insights-dialog-main-override.target-change-dialog,
-div.insights-dialog-main-override.insights-file-issue-details-dialog-container {
-    border-radius: 6px;
-    box-shadow: 0 0 10px 0 $neutral-alpha-60;
-    .ms-Dialog-title {
-        font-weight: $fontWeightSemiBold;
-    }
-    .target-change-dialog-button-container {
-        display: flex;
-        height: 40px;
-        justify-content: flex-end;
-
-        .action-cancel-button-col {
-            text-align: right;
-            padding-left: 0px;
-            margin-top: 4px;
-            margin-bottom: 24px;
-        }
-        button {
-            padding: 0;
-            height: 32px;
-        }
-        .continue-button {
-            button {
-                width: 140px;
-            }
-        }
-        .restart-button {
-            button {
-                width: 85px;
-            }
-        }
-    }
 }
 
 div.insights-dialog-main-override {
