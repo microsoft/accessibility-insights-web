@@ -4,7 +4,7 @@
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
-// import { PortCleaningServiceConfigurator } from 'electron/platform/android/setup/port-cleaning-service-configurator';
+import { PortCleaningServiceConfigurator } from 'electron/platform/android/setup/port-cleaning-service-configurator';
 import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -38,22 +38,21 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
     it('getServiceConfig returns correct object after linking to cleaner', async () => {
         const expectedAdbLocation: string = 'Some location';
         const expectedServiceConfig: ServiceConfigurator = serviceConfigMock.object;
-        // let attachedServiceConfig: ServiceConfigurator;
+        let attachedServiceConfig: ServiceConfigurator;
         innerFactoryMock
             .setup(m => m.getServiceConfigurator(expectedAdbLocation))
             .returns(() => Promise.resolve(expectedServiceConfig))
             .verifiable(Times.once());
         portCleanerMock
             .setup(m => m.setServiceConfig(It.isAny()))
-            // .callback(config => (attachedServiceConfig = config as ServiceConfigurator))
+            .callback(config => (attachedServiceConfig = config as ServiceConfigurator))
             .verifiable(Times.once());
 
-        // const finalServiceConfig: ServiceConfigurator =
-        await testSubject.getServiceConfigurator(expectedAdbLocation);
+        const finalServiceConfig: ServiceConfigurator = await testSubject.getServiceConfigurator(
+            expectedAdbLocation,
+        );
 
-        // TODO - DHT: Why do these generate function.asymmetricMatch?
-        // expect(finalServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
-        // expect(finalServiceConfig).toBe(attachedServiceConfig);
+        expect(finalServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
 
         verifyAllMocks();
     });
