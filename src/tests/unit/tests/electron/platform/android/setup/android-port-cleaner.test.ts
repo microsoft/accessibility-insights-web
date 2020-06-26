@@ -7,7 +7,7 @@ import { Logger } from 'common/logging/logger';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
 describe('AndroidPortCleaner', () => {
     let serviceConfigMock: IMock<ServiceConfigurator>;

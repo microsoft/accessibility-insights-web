@@ -268,11 +268,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         featureFlagStore.initialize();
 
-        const windowFrameUpdater = new WindowFrameUpdater(
-            windowFrameActions,
-            ipcRendererShim,
-            androidPortCleaner,
-        );
+        const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
         const storesHub = new BaseClientStoresHub<RootContainerState>([

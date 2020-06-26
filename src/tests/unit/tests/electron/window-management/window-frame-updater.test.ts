@@ -4,7 +4,6 @@
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
-import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -12,18 +11,12 @@ describe(WindowFrameUpdater, () => {
     let windowFrameActions: WindowFrameActions;
     let testSubject: WindowFrameUpdater;
     let ipcRendererShimMock: IMock<IpcRendererShim>;
-    let portCleanerMock: IMock<AndroidPortCleaner>;
 
     beforeEach(() => {
         windowFrameActions = new WindowFrameActions();
         ipcRendererShimMock = Mock.ofType<IpcRendererShim>(undefined, MockBehavior.Strict);
-        portCleanerMock = Mock.ofType<AndroidPortCleaner>(undefined, MockBehavior.Strict);
 
-        testSubject = new WindowFrameUpdater(
-            windowFrameActions,
-            ipcRendererShimMock.object,
-            portCleanerMock.object,
-        );
+        testSubject = new WindowFrameUpdater(windowFrameActions, ipcRendererShimMock.object);
     });
 
     afterEach(() => {
@@ -55,15 +48,6 @@ describe(WindowFrameUpdater, () => {
             ipcRendererShimMock.setup(b => b.restoreWindow()).verifiable(Times.once());
 
             windowFrameActions.restore.invoke(null);
-        });
-
-        it('invokes close', () => {
-            portCleanerMock
-                .setup(b => b.closeWindow())
-                .returns(() => Promise.resolve())
-                .verifiable(Times.once());
-
-            windowFrameActions.close.invoke(null);
         });
 
         it('invokes setSizeAndCenter', () => {
