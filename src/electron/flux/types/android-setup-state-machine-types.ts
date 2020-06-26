@@ -11,7 +11,6 @@ export type AndroidSetupStateMachine = StateMachine<AndroidSetupStepId, AndroidS
 export type AndroidSetupStepTransitionCallback = (nextStep: AndroidSetupStepId) => void;
 
 export type AndroidSetupStoreCallbacks = {
-    stepTransition: AndroidSetupStepTransitionCallback;
     setSelectedDevice: (device: DeviceInfo) => void;
     setAvailableDevices: (devices: DeviceInfo[]) => void;
     getScanPort: () => number | null;
@@ -20,5 +19,6 @@ export type AndroidSetupStoreCallbacks = {
 };
 
 export type AndroidSetupStateMachineFactory = (
+    stepTransition: (stepId: AndroidSetupStepId) => void,
     storeCallbacks: AndroidSetupStoreCallbacks,
 ) => AndroidSetupStateMachine;

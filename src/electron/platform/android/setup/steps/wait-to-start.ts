@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const waitToStart: AndroidSetupStepConfig = deps => {
+export const waitToStart: AndroidSetupStepConfig = stepTransition => {
     return {
         actions: {
-            readyToStart: () => deps.stepTransition('detect-adb'),
+            readyToStart: () => stepTransition('detect-adb'),
         },
     };
 };

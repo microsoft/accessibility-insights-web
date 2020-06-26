@@ -3,10 +3,10 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const detectService: AndroidSetupStepConfig = deps => ({
+export const detectService: AndroidSetupStepConfig = (stepTransition, deps) => ({
     actions: {},
     onEnter: async () => {
         const detected = await deps.hasExpectedServiceVersion();
-        deps.stepTransition(detected ? 'detect-permissions' : 'prompt-install-service');
+        stepTransition(detected ? 'detect-permissions' : 'prompt-install-service');
     },
 });
