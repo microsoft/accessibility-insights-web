@@ -68,7 +68,7 @@ describe('DetailsListIssuesView', () => {
         props.visualizationStoreData.scanning = null;
 
         const actual = shallow(<DetailsListIssuesView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });
 
