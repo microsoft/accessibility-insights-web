@@ -53,6 +53,7 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
         );
 
         expect(finalServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
+        expect(attachedServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
 
         verifyAllMocks();
     });
