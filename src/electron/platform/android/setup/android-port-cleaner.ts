@@ -4,11 +4,10 @@
 import { Logger } from 'common/logging/logger';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { DictionaryStringTo } from 'types/common-types';
 
 export class AndroidPortCleaner {
     private serviceConfig: ServiceConfigurator;
-    private readonly portMap: DictionaryStringTo<number> = {};
+    private readonly forwardedPorts: Set<number> = new Set<number>();
 
     constructor(
         private readonly ipcRendererShim: IpcRendererShim,
@@ -24,17 +23,16 @@ export class AndroidPortCleaner {
     };
 
     public addPort = (hostPort: number): void => {
-        this.portMap[hostPort.toString()] = hostPort;
+        this.forwardedPorts.add(hostPort);
     };
 
     public removePort = (hostPort: number): void => {
-        const portMapKey: string = hostPort.toString();
-        delete this.portMap[portMapKey];
+        this.forwardedPorts.delete(hostPort);
     };
 
     private removeRemainingPorts = async (): Promise<void> => {
         if (this.serviceConfig) {
-            const ports = Object.values(this.portMap);
+            const ports = this.forwardedPorts.values();
             for (const p of ports) {
                 if (p) {
                     try {
