@@ -3,6 +3,7 @@
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
+    IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
@@ -38,6 +39,7 @@ describe(IpcRendererShim, () => {
             IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
             IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
             IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+            IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
         ];
 
         let ipcHandlers;
