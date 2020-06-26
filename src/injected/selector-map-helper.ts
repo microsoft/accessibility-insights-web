@@ -69,6 +69,7 @@ export class SelectorMapHelper {
                 VisualizationType.Landmarks,
                 VisualizationType.TabStops,
                 VisualizationType.Color,
+                VisualizationType.NeedsReview,
             ],
             visualizationType,
         );
@@ -82,6 +83,7 @@ export class SelectorMapHelper {
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
         switch (visualizationType) {
+            case VisualizationType.NeedsReview:
             case VisualizationType.Issues:
                 selectorMap = this.getElementBasedViewModel(
                     unifiedScanData,

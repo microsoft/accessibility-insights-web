@@ -247,6 +247,13 @@ exports[` render renders normally 1`] = `
           "selectedAxeResultsMap": null,
           "selectedIdToRuleResultMap": null,
         },
+        "needsReview": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
         "tabStops": Object {
           "tabbedElements": null,
         },

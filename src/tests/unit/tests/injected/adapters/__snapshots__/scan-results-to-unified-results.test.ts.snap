@@ -96,3 +96,31 @@ Array [
   },
 ]
 `;
+
+exports[`ScanResults to Unified Results Test needs review conversion works fine when there is no data in scanresults 1`] = `Array []`;
+
+exports[`ScanResults to Unified Results Test needs review conversion works with filled up passes, failures and incomplete values in scan results 1`] = `
+Array [
+  Object {
+    "descriptors": Object {
+      "snippet": "html-incomplete",
+    },
+    "identifiers": Object {
+      "conciseName": "incompleteTarget1",
+      "css-selector": "incompleteTarget1",
+      "identifier": "incompleteTarget1",
+    },
+    "resolution": Object {
+      "how-to-fix-web": Object {
+        "all": Array [],
+        "any": Array [],
+        "none": Array [],
+      },
+      "howToFixSummary": undefined,
+    },
+    "ruleId": "test2",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+]
+`;
