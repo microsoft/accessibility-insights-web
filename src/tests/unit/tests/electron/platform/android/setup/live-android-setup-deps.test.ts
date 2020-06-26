@@ -304,36 +304,4 @@ describe('LiveAndroidSetupDeps', () => {
 
         verifyAllMocks();
     });
-
-    it('getApplicationName returns app name when successful', async () => {
-        const config: DeviceConfig = {
-            appIdentifier: 'Wonderful App',
-        } as DeviceConfig;
-
-        const p = new Promise<DeviceConfig>(resolve => resolve(config));
-
-        fetchConfigMock
-            .setup(m => m(62442))
-            .returns(() => p)
-            .verifiable();
-
-        const appName = await testSubject.getApplicationName();
-
-        expect(appName).toEqual(config.appIdentifier);
-
-        verifyAllMocks();
-    });
-
-    it('getApplicationName returns empty string on error', async () => {
-        fetchConfigMock
-            .setup(m => m(62442))
-            .throws(Error('some error'))
-            .verifiable();
-
-        const appName = await testSubject.getApplicationName();
-
-        expect(appName).toEqual('');
-
-        verifyAllMocks();
-    });
 });
