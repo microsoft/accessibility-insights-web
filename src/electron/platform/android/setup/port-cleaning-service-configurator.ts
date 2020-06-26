@@ -41,4 +41,8 @@ export class PortCleaningServiceConfigurator implements ServiceConfigurator {
         await this.innerObject.removeTcpForwarding(hostPort);
         this.portCleaner.removePort(hostPort);
     };
+
+    public listForwardedPorts = async (): Promise<string[]> => {
+        return await this.innerObject.listForwardedPorts();
+    };
 }

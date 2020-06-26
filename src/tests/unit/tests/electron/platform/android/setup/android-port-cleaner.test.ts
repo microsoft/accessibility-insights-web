@@ -27,67 +27,67 @@ describe('AndroidPortCleaner', () => {
         ipcRendererShimMock.verifyAll();
     }
 
-    it('closeWindow calls ipcRenderShim if no serviceConfig is set', async () => {
-        ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    // it('closeWindow calls ipcRenderShim if no serviceConfig is set', async () => {
+    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
 
-        await testSubject.closeWindow();
+    //     await testSubject.closeWindow();
 
-        verifyAllMocks();
-    });
+    //     verifyAllMocks();
+    // });
 
-    it('closeWindow calls ipcRenderShim if serviceConfig is set then cleared', async () => {
-        ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
-        testSubject.setServiceConfig(serviceConfigMock.object);
-        testSubject.setServiceConfig(null);
+    // it('closeWindow calls ipcRenderShim if serviceConfig is set then cleared', async () => {
+    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    //     testSubject.setServiceConfig(serviceConfigMock.object);
+    //     testSubject.setServiceConfig(null);
 
-        await testSubject.closeWindow();
+    //     await testSubject.closeWindow();
 
-        verifyAllMocks();
-    });
+    //     verifyAllMocks();
+    // });
 
-    it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added', async () => {
-        const addedPorts: number[] = [123, 345, 456];
-        const actualPorts: number[] = [];
+    // it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added', async () => {
+    //     const addedPorts: number[] = [123, 345, 456];
+    //     const actualPorts: number[] = [];
 
-        ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.removeTcpForwarding(It.isAnyNumber()))
-            .callback(actualPort => actualPorts.push(actualPort))
-            .returns(() => Promise.resolve())
-            .verifiable(Times.exactly(addedPorts.length));
-        testSubject.setServiceConfig(serviceConfigMock.object);
-        for (const addedPort of addedPorts) {
-            testSubject.addPort(addedPort);
-        }
+    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    //     serviceConfigMock
+    //         .setup(m => m.removeTcpForwarding(It.isAnyNumber()))
+    //         .callback(actualPort => actualPorts.push(actualPort))
+    //         .returns(() => Promise.resolve())
+    //         .verifiable(Times.exactly(addedPorts.length));
+    //     testSubject.setServiceConfig(serviceConfigMock.object);
+    //     for (const addedPort of addedPorts) {
+    //         testSubject.addPort(addedPort);
+    //     }
 
-        await testSubject.closeWindow();
+    //     await testSubject.closeWindow();
 
-        expect(actualPorts).toEqual(addedPorts);
+    //     expect(actualPorts).toEqual(addedPorts);
 
-        verifyAllMocks();
-    });
+    //     verifyAllMocks();
+    // });
 
-    it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added but some removed', async () => {
-        const addedPorts: number[] = [123, 345, 456];
-        const removedPorts: number[] = [123, 456];
+    // it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added but some removed', async () => {
+    //     const addedPorts: number[] = [123, 345, 456];
+    //     const removedPorts: number[] = [123, 456];
 
-        ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
-        serviceConfigMock
-            .setup(m => m.removeTcpForwarding(345))
-            .returns(() => Promise.resolve())
-            .verifiable(Times.once());
-        testSubject.setServiceConfig(serviceConfigMock.object);
-        for (const addedPort of addedPorts) {
-            testSubject.addPort(addedPort);
-        }
-        for (const removedPort of removedPorts) {
-            testSubject.removePort(removedPort);
-        }
+    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    //     serviceConfigMock
+    //         .setup(m => m.removeTcpForwarding(345))
+    //         .returns(() => Promise.resolve())
+    //         .verifiable(Times.once());
+    //     testSubject.setServiceConfig(serviceConfigMock.object);
+    //     for (const addedPort of addedPorts) {
+    //         testSubject.addPort(addedPort);
+    //     }
+    //     for (const removedPort of removedPorts) {
+    //         testSubject.removePort(removedPort);
+    //     }
 
-        await testSubject.closeWindow();
+    //     await testSubject.closeWindow();
 
-        verifyAllMocks();
-    });
+    //     verifyAllMocks();
+    // });
 
     it('removePort gracefully handles a value that was not previously added', () => {
         testSubject.removePort(5);

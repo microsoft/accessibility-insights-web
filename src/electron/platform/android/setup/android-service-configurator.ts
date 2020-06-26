@@ -17,6 +17,7 @@ export interface ServiceConfigurator {
     hasRequiredPermissions(): Promise<boolean>;
     setupTcpForwarding(): Promise<number>;
     removeTcpForwarding(hostPort: number): Promise<void>;
+    listForwardedPorts(): Promise<string[]>;
 }
 
 export class AndroidServiceConfigurator implements ServiceConfigurator {
@@ -98,6 +99,10 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
 
     public removeTcpForwarding = async (hostPort: number): Promise<void> => {
         return await this.adbWrapperMock.removeTcpForwarding(this.selectedDeviceId, hostPort);
+    };
+
+    public listForwardedPorts = async (): Promise<string[]> => {
+        return await this.adbWrapperMock.listForwardedPorts(this.selectedDeviceId);
     };
 
     private async getInstalledVersion(deviceId: string): Promise<string> {

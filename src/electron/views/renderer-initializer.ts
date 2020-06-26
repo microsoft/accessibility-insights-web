@@ -210,6 +210,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             ipcRendererShim,
             logger,
         );
+        androidPortCleaner.initialize();
+
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
@@ -530,7 +532,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,
             androidSetupStepComponentProvider: defaultAndroidSetupComponents,
-            closeApp: androidPortCleaner.closeWindow,
+            closeApp: ipcRendererShim.closeWindow,
             startTesting: startTesting,
             showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
         };

@@ -15,10 +15,9 @@ export class AndroidPortCleaner {
         private readonly logger: Logger,
     ) {}
 
-    public closeWindow = async (): Promise<void> => {
-        await this.removeRemainingPorts();
-        this.ipcRendererShim.closeWindow();
-    };
+    public initialize(): void {
+        this.ipcRendererShim.fromBrowserWindowClose.addListener(this.removeRemainingPorts);
+    }
 
     public setServiceConfig = (serviceConfig: ServiceConfigurator): void => {
         this.serviceConfig = serviceConfig;
@@ -40,6 +39,7 @@ export class AndroidPortCleaner {
                 if (p) {
                     try {
                         await this.serviceConfig.removeTcpForwarding(p);
+                        await this.serviceConfig.listForwardedPorts(); // Allows ADB to complete
                     } catch (error) {
                         this.logger.log(error);
                     }

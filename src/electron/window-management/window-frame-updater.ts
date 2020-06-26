@@ -33,7 +33,7 @@ export class WindowFrameUpdater {
     };
 
     private onClose = (): void => {
-        this.androidPortCleaner.closeWindow().then().catch();
+        this.ipcRendererShim.closeWindow();
     };
 
     private onSetSize = (sizePayload: SetSizePayload): void => {
