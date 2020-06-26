@@ -15,6 +15,7 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
         test: selectedTest,
         requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestSubview,
         rightPanelConfiguration: props.rightPanelConfiguration,
+        dropdownDirection: 'down',
     };
 
     return <StartOverDropdown {...startOverProps} />;
