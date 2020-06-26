@@ -66,17 +66,27 @@ describe(IpcRendererShim, () => {
             expect(callCount).toBe(1);
         });
 
-        it('invoke fromBrowserWindowMaximize action  maximize message from browser', () => {
+        it('invoke fromBrowserWindowMaximize on maximize message from browser', () => {
             let callCount = 0;
             testSubject.fromBrowserWindowMaximize.addListener(() => callCount++);
             ipcHandlers[IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
-        it('invoke fromBrowserWindowUnmaximize  on unmaximize message from browser', () => {
+        it('invoke fromBrowserWindowUnmaximize on unmaximize message from browser', () => {
             let callCount = 0;
             testSubject.fromBrowserWindowUnmaximize.addListener(() => callCount++);
             ipcHandlers[IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME]();
+            expect(callCount).toBe(1);
+        });
+
+        it('invoke fromBrowserWindowClose on close message from browser, calls closeWindow', () => {
+            let callCount = 0;
+            ipcRendererMock
+                .setup(m => m.send(IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME))
+                .verifiable(Times.once());
+            testSubject.fromBrowserWindowClose.addListener(() => callCount++);
+            ipcHandlers[IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
