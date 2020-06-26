@@ -29,24 +29,13 @@ import { exampleUnifiedStatusResults } from '../../common/components/cards/sampl
 describe('DetailsListIssuesView', () => {
     let props: DetailsListIssuesViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: DisplayableVisualizationTypeData;
     let scanDataStub: ScanData;
-    let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: VisualizationStoreData;
-    let visualizationScanResultStoreDataStub: VisualizationScanResultData;
-    let selectedTest: VisualizationType;
     let detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    let issuesSelectionStub: ISelection;
-    let issuesTableHandlerStub: IssuesTableHandler;
 
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
-        clickHandlerFactoryMock = Mock.ofType(
-            DetailsViewToggleClickHandlerFactory,
-            MockBehavior.Strict,
-        );
-        visualizationScanResultStoreDataStub = new VisualizationScanResultStoreDataBuilder().build();
         displayableDataStub = {
             title: 'test title',
             subtitle: <>test subtitle</>,
@@ -59,11 +48,7 @@ describe('DetailsListIssuesView', () => {
             tests: {},
             scanning: 'test-scanning',
         } as VisualizationStoreData;
-        clickHandlerStub = () => {};
         detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
-        issuesSelectionStub = {} as ISelection;
-        issuesTableHandlerStub = {} as IssuesTableHandler;
-        selectedTest = -1;
 
         props = {
             deps: {
@@ -73,12 +58,7 @@ describe('DetailsListIssuesView', () => {
                 getStoreData: getStoreDataMock.object,
                 displayableData: displayableDataStub,
             } as VisualizationConfiguration,
-            clickHandlerFactory: clickHandlerFactoryMock.object,
             visualizationStoreData: visualizationStoreDataStub,
-            selectedTest,
-            issuesSelection: issuesSelectionStub,
-            issuesTableHandler: issuesTableHandlerStub,
-            visualizationScanResultData: visualizationScanResultStoreDataStub,
             cardsViewData: {
                 cards: exampleUnifiedStatusResults,
                 visualHelperEnabled: true,
@@ -90,17 +70,9 @@ describe('DetailsListIssuesView', () => {
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
             .returns(() => scanDataStub)
             .verifiable();
-
-        clickHandlerFactoryMock
-            .setup(chfm => chfm.createClickHandler(selectedTest, !scanDataStub.enabled))
-            .returns(() => clickHandlerStub)
-            .verifiable();
     });
 
     it('should return issues table with scanning to false', () => {
-        props.tabStoreData = {
-            isChanged: false,
-        } as TabStoreData;
         props.visualizationStoreData.scanning = null;
 
         const actual = shallow(<DetailsListIssuesView {...props} />);
@@ -108,19 +80,7 @@ describe('DetailsListIssuesView', () => {
         verifyAll();
     });
 
-    it('should return  issues table with violations to null', () => {
-        props.tabStoreData = {
-            isChanged: false,
-        } as TabStoreData;
-        props.visualizationScanResultData.issues.scanResult = null;
-
-        const actual = shallow(<DetailsListIssuesView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
-        verifyAll();
-    });
-
     function verifyAll(): void {
         getStoreDataMock.verifyAll();
-        clickHandlerFactoryMock.verifyAll();
     }
 });
