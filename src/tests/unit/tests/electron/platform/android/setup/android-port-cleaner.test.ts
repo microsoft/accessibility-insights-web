@@ -7,91 +7,118 @@ import { Logger } from 'common/logging/logger';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { ipcRenderer } from 'electron';
 
 describe('AndroidPortCleaner', () => {
+    let ipcRendererShim: IpcRendererShim;
     let serviceConfigMock: IMock<ServiceConfigurator>;
-    let ipcRendererShimMock: IMock<IpcRendererShim>;
     let loggerMock: IMock<Logger>;
     let testSubject: AndroidPortCleaner;
 
     beforeEach(() => {
+        ipcRendererShim = new IpcRendererShim(ipcRenderer);
         serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
-        ipcRendererShimMock = Mock.ofType<IpcRendererShim>(undefined, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
-        testSubject = new AndroidPortCleaner(ipcRendererShimMock.object, loggerMock.object);
+        testSubject = new AndroidPortCleaner(ipcRendererShim, loggerMock.object);
+        testSubject.initialize();
     });
 
-    function verifyAllMocks(): void {
+    afterEach(() => {
         serviceConfigMock.verifyAll();
-        ipcRendererShimMock.verifyAll();
-    }
+        loggerMock.verifyAll();
+    });
 
-    // it('closeWindow calls ipcRenderShim if no serviceConfig is set', async () => {
-    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    it('action invocation does nothing if no serviceConfig is set', async () => {
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    });
 
-    //     await testSubject.closeWindow();
+    it('action invocation does nothing if serviceConfig is set then cleared', async () => {
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        testSubject.setServiceConfig(null);
 
-    //     verifyAllMocks();
-    // });
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    });
 
-    // it('closeWindow calls ipcRenderShim if serviceConfig is set then cleared', async () => {
-    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
-    //     testSubject.setServiceConfig(serviceConfigMock.object);
-    //     testSubject.setServiceConfig(null);
+    it('action invocation does nothing if serviceConfig is set but no ports are added', async () => {
+        testSubject.setServiceConfig(serviceConfigMock.object);
 
-    //     await testSubject.closeWindow();
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    });
 
-    //     verifyAllMocks();
-    // });
+    it('action invocation does nothing if serviceConfig is set but no ports are orphaned', async () => {
+        const port: number = 5;
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        testSubject.addPort(port);
+        testSubject.removePort(port);
 
-    // it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added', async () => {
-    //     const addedPorts: number[] = [123, 345, 456];
-    //     const actualPorts: number[] = [];
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    });
 
-    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    it('adding a port is idempotent (validated via action invocation)', async () => {
+        const port: number = 6;
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        testSubject.addPort(port);
+        testSubject.addPort(port);
+        testSubject.removePort(port);
+
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    });
+
+    it('removing a port is idempotent (validated via action invocation)', async () => {
+        const port: number = 7;
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        testSubject.addPort(port);
+        testSubject.removePort(port);
+        testSubject.removePort(port);
+
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    });
+
+    // it('orphaned ports get removed on action invocation', async () => {
+    //     const dummyPortList = new Array<string>();
+    //     const port1 = 10;
+    //     const port2 = 20;
+    //     const port3 = 30;
+    //     const removedPorts: number[] = [];
     //     serviceConfigMock
     //         .setup(m => m.removeTcpForwarding(It.isAnyNumber()))
-    //         .callback(actualPort => actualPorts.push(actualPort))
-    //         .returns(() => Promise.resolve())
-    //         .verifiable(Times.exactly(addedPorts.length));
-    //     testSubject.setServiceConfig(serviceConfigMock.object);
-    //     for (const addedPort of addedPorts) {
-    //         testSubject.addPort(addedPort);
-    //     }
-
-    //     await testSubject.closeWindow();
-
-    //     expect(actualPorts).toEqual(addedPorts);
-
-    //     verifyAllMocks();
-    // });
-
-    // it('closeWindow calls serviceConfig and ipcRenderShim if serviceConfig is set and ports are added but some removed', async () => {
-    //     const addedPorts: number[] = [123, 345, 456];
-    //     const removedPorts: number[] = [123, 456];
-
-    //     ipcRendererShimMock.setup(m => m.closeWindow()).verifiable(Times.once());
+    //         .callback(removedPort => removedPorts.push(removedPort))
+    //         .verifiable(Times.exactly(2));
     //     serviceConfigMock
-    //         .setup(m => m.removeTcpForwarding(345))
-    //         .returns(() => Promise.resolve())
-    //         .verifiable(Times.once());
+    //         .setup(m => m.listForwardedPorts())
+    //         .returns(() => Promise.resolve(dummyPortList))
+    //         .verifiable(Times.exactly(2));
     //     testSubject.setServiceConfig(serviceConfigMock.object);
-    //     for (const addedPort of addedPorts) {
-    //         testSubject.addPort(addedPort);
-    //     }
-    //     for (const removedPort of removedPorts) {
-    //         testSubject.removePort(removedPort);
-    //     }
+    //     testSubject.addPort(port1);
+    //     testSubject.addPort(port2);
+    //     testSubject.addPort(port3);
+    //     testSubject.removePort(port2);
 
-    //     await testSubject.closeWindow();
+    //     await ipcRendererShim.fromBrowserWindowClose.invoke(null);
 
-    //     verifyAllMocks();
+    //     expect(removedPorts.length).toBe(2);
+    //     expect(removedPorts).toContain(port1);
+    //     expect(removedPorts).toContain(port2);
     // });
 
-    it('removePort gracefully handles a value that was not previously added', () => {
-        testSubject.removePort(5);
+    it('errors in port removal are logged', async () => {
+        const expectedMessage = 'thrown during removeTcpForwarding';
+        const port = 10;
+        let actualError: Error;
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(port))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+        loggerMock
+            .setup(m => m.log(It.isAny()))
+            .callback(e => (actualError = e as Error))
+            .verifiable(Times.once());
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        testSubject.addPort(port);
 
-        verifyAllMocks();
+        await ipcRendererShim.fromBrowserWindowClose.invoke(null);
+
+        expect(actualError.message).toBe(expectedMessage);
     });
 });
