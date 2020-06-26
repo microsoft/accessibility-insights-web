@@ -1,22 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ISelection } from 'office-ui-fabric-react';
-import * as React from 'react';
-
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import * as React from 'react';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
 import { CardsViewModel } from '../../common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
-import { IssuesTableHandler } from './issues-table-handler';
 
 export type DetailsListIssuesViewDeps = IssuesTableDeps;
 
