@@ -8,10 +8,10 @@ import * as React from 'react';
 export type CommandBarButtonsMenuProps = CommandBarProps;
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
-    'DetailsListIssuesView',
+    'CommandBarButtonsMenu',
     props => {
         const onRenderItem = (item: IOverflowSetItemProps) => {
-            item.onRender(props);
+            return item.onRender(props);
         };
 
         const onRenderOverflowButton = (overflow: IOverflowSetItemProps[]): JSX.Element => {
@@ -20,7 +20,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                     ariaLabel="More items"
                     role="menuitem"
                     menuIconProps={{ iconName: 'More' }}
-                    menuProps={{ items: overflow! }}
+                    menuProps={{ items: overflow }}
                 />
             );
         };
