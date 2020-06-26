@@ -45,6 +45,12 @@
     }
 }
 
+:global(.ms-Dropdown-items .ms-Button:focus) {
+    @media screen and (-ms-high-contrast: active) {
+        border: 2px highlighttext solid !important;
+    }
+}
+
 .switcher-dropdown-option {
     display: flex;
     flex-direction: row;
