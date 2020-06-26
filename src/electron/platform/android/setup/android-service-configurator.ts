@@ -27,13 +27,13 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
     private selectedDeviceId: string;
 
     public constructor(
-        private readonly adbWrapperMock: AdbWrapper,
+        private readonly adbWrapper: AdbWrapper,
         private readonly apkLocator: AndroidServiceApkLocator,
         private readonly portFinder: PortFinder,
     ) {}
 
     public getConnectedDevices = async (): Promise<DeviceInfo[]> => {
-        return await this.adbWrapperMock.getConnectedDevices();
+        return await this.adbWrapper.getConnectedDevices();
     };
 
     public setSelectedDevice = (deviceId: string): void => {
@@ -57,17 +57,17 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
         if (installedVersion) {
             const targetVersion: string = apkInfo.versionName;
             if (this.compareVersions(installedVersion, targetVersion) > 0) {
-                await this.adbWrapperMock.uninstallService(deviceId, this.servicePackageName);
+                await this.adbWrapper.uninstallService(deviceId, this.servicePackageName);
             }
         }
 
         const pathToApk = apkInfo.path;
-        await this.adbWrapperMock.installService(deviceId, pathToApk);
+        await this.adbWrapper.installService(deviceId, pathToApk);
     };
 
     public hasRequiredPermissions = async (): Promise<boolean> => {
         const deviceId: string = this.selectedDeviceId; // Prevent changes during execution
-        const accessibilityOutput: string = await this.adbWrapperMock.getDumpsysOutput(
+        const accessibilityOutput: string = await this.adbWrapper.getDumpsysOutput(
             deviceId,
             'accessibility',
         );
@@ -76,7 +76,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
             return false;
         }
 
-        const mediaProjectionOutput: string = await this.adbWrapperMock.getDumpsysOutput(
+        const mediaProjectionOutput: string = await this.adbWrapper.getDumpsysOutput(
             deviceId,
             'media_projection',
         );
@@ -90,7 +90,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
             stopPort: servicePortNumber + 100,
         });
 
-        return await this.adbWrapperMock.setTcpForwarding(
+        return await this.adbWrapper.setTcpForwarding(
             this.selectedDeviceId,
             hostPort,
             servicePortNumber,
@@ -98,15 +98,15 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
     };
 
     public removeTcpForwarding = async (hostPort: number): Promise<void> => {
-        return await this.adbWrapperMock.removeTcpForwarding(this.selectedDeviceId, hostPort);
+        return await this.adbWrapper.removeTcpForwarding(this.selectedDeviceId, hostPort);
     };
 
     public listForwardedPorts = async (): Promise<string[]> => {
-        return await this.adbWrapperMock.listForwardedPorts(this.selectedDeviceId);
+        return await this.adbWrapper.listForwardedPorts(this.selectedDeviceId);
     };
 
     private async getInstalledVersion(deviceId: string): Promise<string> {
-        const info: PackageInfo = await this.adbWrapperMock.getPackageInfo(
+        const info: PackageInfo = await this.adbWrapper.getPackageInfo(
             deviceId,
             this.servicePackageName,
         );
