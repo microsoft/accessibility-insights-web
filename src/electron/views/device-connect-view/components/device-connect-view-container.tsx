@@ -16,9 +16,9 @@ import { AndroidSetupStepContainer } from 'electron/views/device-connect-view/co
 import * as React from 'react';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
-import { deviceConnectView, mainContentWrapper } from '../device-connect-view.scss';
 import { AndroidSetupPageDeps } from './android-setup/android-setup-types';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
+import * as styles from './device-connect-view-container.scss';
 
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
     DeviceConnectBodyDeps &
@@ -39,7 +39,7 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
     'DeviceConnectViewContainer',
     props => {
         return (
-            <div className={deviceConnectView}>
+            <div className={styles.windowContainer}>
                 <WindowTitle
                     pageTitle={'Connect to your Android device'}
                     deps={props.deps}
@@ -47,18 +47,20 @@ export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProp
                 >
                     <HeaderIcon invertColors deps={props.deps} />
                 </WindowTitle>
-                <div className={mainContentWrapper}>
-                    <FlaggedComponent
-                        featureFlagStoreData={props.featureFlagStoreData}
-                        deps={props.deps}
-                        featureFlag={UnifiedFeatureFlags.adbSetupView}
-                        enableJSXElement={<AndroidSetupStepContainer {...props} />}
-                        disableJSXElement={productionDeviceConnectBody(props)}
-                    ></FlaggedComponent>
-                    <TelemetryPermissionDialog
-                        deps={props.deps}
-                        isFirstTime={props.userConfigurationStoreData.isFirstTime}
-                    />
+                <div className={styles.contentScrollContainer}>
+                    <div className={styles.contentContainer}>
+                        <FlaggedComponent
+                            featureFlagStoreData={props.featureFlagStoreData}
+                            deps={props.deps}
+                            featureFlag={UnifiedFeatureFlags.adbSetupView}
+                            enableJSXElement={<AndroidSetupStepContainer {...props} />}
+                            disableJSXElement={productionDeviceConnectBody(props)}
+                        ></FlaggedComponent>
+                        <TelemetryPermissionDialog
+                            deps={props.deps}
+                            isFirstTime={props.userConfigurationStoreData.isFirstTime}
+                        />
+                    </div>
                 </div>
             </div>
         );
