@@ -40,7 +40,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
             ],
             resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
             telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forIssuesAnalyzerScan,
+                telemetryFactory.forNeedsReviewAnalyzerScan,
             key: AdHocTestkeys.NeedsReview,
             testType: VisualizationType.NeedsReview,
             analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
