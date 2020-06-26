@@ -17,6 +17,11 @@
             float: left;
             margin-top: 0px !important;
         }
+        .ms-ChoiceField-wrapper.is-inFocus .ms-ChoiceField-field {
+            @media screen and (-ms-high-contrast: active) {
+                outline: 3px highlighttext solid !important;
+            }
+        }
         .ms-ChoiceField:nth-of-type(1) {
             margin-right: 8px;
         }
@@ -49,5 +54,15 @@
         font-size: 16px;
         line-height: 24px;
         color: $neutral-100;
+        @media screen and (-ms-high-contrast: active) {
+            color: highlighttext !important;
+        }
+    }
+}
+
+.undo-button:focus,
+.undo-button-icon:focus {
+    @media screen and (-ms-high-contrast: active) {
+        outline: 1px highlighttext solid !important;
     }
 }

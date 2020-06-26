@@ -3,7 +3,10 @@
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { generateUID } from '../../../../../common/uid-generator';
-import { convertScanResultsToUnifiedResults } from '../../../../../injected/adapters/scan-results-to-unified-results';
+import {
+    convertScanResultsToNeedsReviewUnifiedResults,
+    convertScanResultsToUnifiedResults,
+} from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ScanResults to Unified Results Test', () => {
@@ -44,10 +47,37 @@ describe('ScanResults to Unified Results Test', () => {
         generateGuidMock.verifyAll();
     });
 
+    test.each(nullIdentifiers)(
+        'convertScanResultsToNeedsReviewUnifiedResults provides a defined UnifiedResult instance %s',
+        scanResultStub => {
+            const unifiedResults = convertScanResultsToNeedsReviewUnifiedResults(
+                scanResultStub as ScanResults,
+                generateGuidMock.object,
+            );
+            expect(unifiedResults).toBeDefined();
+        },
+    );
+
+    test('needs review conversion works fine when there is no data in scanresults', () => {
+        const scanResultsStub: ScanResults = createTestResultsWithNoData();
+        expect(
+            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
+        ).toMatchSnapshot();
+    });
+
+    test('needs review conversion works with filled up passes, failures and incomplete values in scan results', () => {
+        const scanResultsStub: ScanResults = createTestResultsWithIncompletes();
+        expect(
+            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
+        ).toMatchSnapshot();
+        generateGuidMock.verifyAll();
+    });
+
     function createTestResultsWithNoData(): ScanResults {
         return {
             passes: [],
             violations: [],
+            incomplete: [],
             targetPageTitle: '',
             targetPageUrl: '',
         } as ScanResults;
@@ -110,6 +140,15 @@ describe('ScanResults to Unified Results Test', () => {
         target: ['passTarget1', 'passTarget2'],
     };
 
+    const incompleteNode: AxeNodeResult = {
+        any: [],
+        none: [],
+        all: [],
+        instanceId: 'id-incomplete',
+        html: 'html-incomplete',
+        target: ['incompleteTarget1'],
+    };
+
     const failedRules: RuleResult[] = [
         {
             id: 'id1',
@@ -148,6 +187,26 @@ describe('ScanResults to Unified Results Test', () => {
                 },
             ],
             violations: failedRules,
+            targetPageTitle: '',
+            targetPageUrl: '',
+        } as ScanResults;
+    }
+
+    function createTestResultsWithIncompletes(): ScanResults {
+        return {
+            passes: [
+                {
+                    id: 'test',
+                    nodes: [passingNode],
+                },
+            ],
+            violations: failedRules,
+            incomplete: [
+                {
+                    id: 'test2',
+                    nodes: [incompleteNode],
+                },
+            ],
             targetPageTitle: '',
             targetPageUrl: '',
         } as ScanResults;

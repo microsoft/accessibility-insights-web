@@ -11,18 +11,29 @@ import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-res
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
 import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
-
 export class UnifiedResultSender {
     constructor(
         private readonly sendMessage: MessageDelegate,
         private readonly convertScanResultsToUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
+        private readonly convertScanResultsToNeedsReviewUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
     ) {}
 
-    public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
+    public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
+        this.sendResults(axeResults, this.convertScanResultsToUnifiedResults);
+    };
+
+    public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
+        this.sendResults(axeResults, this.convertScanResultsToNeedsReviewUnifiedResults);
+    };
+
+    private sendResults = (
+        axeResults: AxeAnalyzerResult,
+        converter: ConvertScanResultsToUnifiedResultsDelegate,
+    ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
         let telemetry: ScanIncompleteWarningsTelemetryData = null;
@@ -34,10 +45,7 @@ export class UnifiedResultSender {
         }
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: this.convertScanResultsToUnifiedResults(
-                axeResults.originalResult,
-                this.generateUID,
-            ),
+            scanResult: converter(axeResults.originalResult, this.generateUID),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.toolData,
             timestamp: axeResults.originalResult.timestamp,

@@ -34,7 +34,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             },
         };
 
-        const keys = ['issues', 'landmarks', 'headings', 'color'];
+        const keys = ['issues', 'landmarks', 'headings', 'color', 'needsReview'];
 
         keys.forEach(key => {
             state[key] = {
