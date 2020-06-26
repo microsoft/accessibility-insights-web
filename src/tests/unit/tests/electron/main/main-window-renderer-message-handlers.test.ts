@@ -12,6 +12,7 @@ import {
 } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
+    IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
@@ -27,9 +28,7 @@ import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-ren
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(MainWindowRendererMessageHandlers, () => {
-    const stubElectronEvent = {} as Electron.Event;
-    const stubIpcMainEvent = {} as IpcMainEvent;
-
+    const close = 'close';
     const maximize = 'maximize';
     const unmaximize = 'unmaximize';
     const enterFullScreen = 'enter-full-screen';
@@ -48,7 +47,7 @@ describe(MainWindowRendererMessageHandlers, () => {
         IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
     ];
 
-    const windowEventNames = [maximize, unmaximize, enterFullScreen, leaveFullScreen];
+    const windowEventNames = [close, maximize, unmaximize, enterFullScreen, leaveFullScreen];
 
     let mainWindowMock: IMock<BrowserWindow>;
     let ipcMainMock: IMock<IpcMain>;
@@ -61,6 +60,7 @@ describe(MainWindowRendererMessageHandlers, () => {
     let expectedIpcChannelHandlers: number;
     let expectedIpcChannelListeners: number;
     let expectedWindowEvents: number;
+    let stubIpcMainEvent: IpcMainEvent;
 
     function setupToAddOneIpcChannelHandler(channelName: string): void {
         ipcMainMock
@@ -119,6 +119,7 @@ describe(MainWindowRendererMessageHandlers, () => {
     }
 
     beforeEach(() => {
+        stubIpcMainEvent = {} as IpcMainEvent;
         ipcHandlers = {};
         ipcListeners = {};
         windowHandlers = {};
@@ -249,8 +250,11 @@ describe(MainWindowRendererMessageHandlers, () => {
 
     describe('verify listeners on mainWindow', () => {
         let webContentsMock: IMock<WebContents>;
+        let electronEventMock: IMock<Electron.Event>;
+
         beforeEach(() => {
             webContentsMock = Mock.ofType<WebContents>(undefined, MockBehavior.Loose);
+            electronEventMock = Mock.ofType<Electron.Event>(undefined, MockBehavior.Strict);
 
             mainWindowMock
                 .setup(b => b.webContents)
@@ -260,6 +264,7 @@ describe(MainWindowRendererMessageHandlers, () => {
 
         afterEach(() => {
             webContentsMock.verifyAll();
+            electronEventMock.verifyAll();
         });
 
         it('BrowserWindow maximize triggers maximize message', () => {
@@ -267,7 +272,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.send(IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME, It.isAny()))
                 .verifiable(Times.once());
 
-            windowHandlers[maximize](stubElectronEvent);
+            windowHandlers[maximize](electronEventMock.object);
         });
 
         it('BrowserWindow unmaximize triggers unmaximize message', () => {
@@ -275,7 +280,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.send(IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME, It.isAny()))
                 .verifiable(Times.once());
 
-            windowHandlers[unmaximize](stubElectronEvent);
+            windowHandlers[unmaximize](electronEventMock.object);
         });
 
         it('BrowserWindow enter-full-screen triggers enterFullScreen message', () => {
@@ -283,7 +288,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.send(IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME, It.isAny()))
                 .verifiable(Times.once());
 
-            windowHandlers[enterFullScreen](stubElectronEvent);
+            windowHandlers[enterFullScreen](electronEventMock.object);
         });
 
         it('BrowserWindow leave-full-screen triggers maximize message if maximized', () => {
@@ -294,7 +299,7 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.isMaximized())
                 .returns(() => true)
                 .verifiable(Times.once());
-            windowHandlers[leaveFullScreen](stubElectronEvent);
+            windowHandlers[leaveFullScreen](electronEventMock.object);
         });
 
         it('BrowserWindow leave-full-screen triggers unmaximize message if not maximized', () => {
@@ -305,7 +310,29 @@ describe(MainWindowRendererMessageHandlers, () => {
                 .setup(b => b.isMaximized())
                 .returns(() => false)
                 .verifiable(Times.once());
-            windowHandlers[leaveFullScreen](stubElectronEvent);
+            windowHandlers[leaveFullScreen](electronEventMock.object);
+        });
+
+        it('BrowserWindow close triggers close message on first call, prevents default handling', () => {
+            webContentsMock
+                .setup(b => b.send(IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME, It.isAny()))
+                .verifiable(Times.once());
+            electronEventMock.setup(m => m.preventDefault()).verifiable(Times.once());
+            windowHandlers[close](electronEventMock.object);
+        });
+
+        it('BrowserWindow close does nothing on second call', () => {
+            // Simulate the first call
+            webContentsMock
+                .setup(b => b.send(IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME, It.isAny()))
+                .verifiable(Times.once());
+            electronEventMock.setup(m => m.preventDefault()).verifiable(Times.once());
+            windowHandlers[close](electronEventMock.object);
+            webContentsMock.verifyAll();
+            electronEventMock.verifyAll();
+
+            // Simulate the second call
+            windowHandlers[close](electronEventMock.object);
         });
     });
 });

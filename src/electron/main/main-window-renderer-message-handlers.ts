@@ -12,6 +12,7 @@ import {
 } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
+    IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
@@ -33,6 +34,7 @@ export class MainWindowRendererMessageHandlers {
     private ipcMainHandlers: EventCallback<IpcMainInvokeEvent>[];
     private ipcMainListeners: EventCallback<IpcMainEvent>[];
     private browserWindowCallbacks: EventCallback<Electron.Event>[];
+    private haveNotifiedRendererOfClose: boolean = false;
 
     public constructor(
         private readonly browserWindow: BrowserWindow,
@@ -81,6 +83,7 @@ export class MainWindowRendererMessageHandlers {
             { eventName: 'unmaximize', eventHandler: this.onUnmaximizeFromMainWindow },
             { eventName: 'enter-full-screen', eventHandler: this.onEnterFullScreenFromMainWindow },
             { eventName: 'leave-full-screen', eventHandler: this.onLeaveFullScreenFromMainWindow },
+            { eventName: 'close', eventHandler: e => this.onCloseFromMainWindow(e) },
         ];
     }
 
@@ -148,6 +151,17 @@ export class MainWindowRendererMessageHandlers {
         opts: OpenDialogOptions,
     ): Promise<OpenDialogReturnValue> => {
         return await this.dialog.showOpenDialog(this.browserWindow, opts);
+    };
+
+    private onCloseFromMainWindow = (e: Event): void => {
+        if (this.haveNotifiedRendererOfClose) {
+            return;
+        }
+
+        this.browserWindow.webContents.send(IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME);
+        this.haveNotifiedRendererOfClose = true;
+        e.preventDefault();
+        return;
     };
 
     private onMaximizeFromMainWindow = (): void => {

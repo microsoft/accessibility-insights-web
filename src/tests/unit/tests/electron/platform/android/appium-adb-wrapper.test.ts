@@ -333,6 +333,35 @@ describe('AppiumAdbWrapper tests', () => {
 
         adbMock.verifyAll();
     });
+
+    it('listForwardedPorts, propagates error', async () => {
+        const expectedMessage: string = 'Thrown during listForwardedPorts';
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(testSubject.listForwardedPorts(emulatorId)).rejects.toThrowError(
+            expectedMessage,
+        );
+
+        adbMock.verifyAll();
+    });
+
+    it('listForwardedPorts, succeeds', async () => {
+        const expectedData: string[] = ['abc', 'mno', 'xyz'];
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.getForwardList())
+            .returns(() => Promise.resolve(expectedData))
+            .verifiable(Times.once());
+
+        const actualData: string[] = await testSubject.listForwardedPorts(emulatorId);
+
+        expect(actualData).toBe(expectedData);
+
+        adbMock.verifyAll();
+    });
     /*
     // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
     // to your local installation, then add this line just before
