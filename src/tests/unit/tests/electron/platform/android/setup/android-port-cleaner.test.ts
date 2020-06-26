@@ -8,6 +8,7 @@ import { ipcRenderer } from 'electron';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AndroidPortCleaner', () => {
@@ -75,32 +76,34 @@ describe('AndroidPortCleaner', () => {
         ipcRendererShim.fromBrowserWindowClose.invoke(null);
     });
 
-    // it('orphaned ports get removed on action invocation', () => {
-    //     const dummyPortList = new Array<string>();
-    //     const port1 = 10;
-    //     const port2 = 20;
-    //     const port3 = 30;
-    //     const removedPorts: number[] = [];
-    //     serviceConfigMock
-    //         .setup(m => m.removeTcpForwarding(It.isAnyNumber()))
-    //         .callback(removedPort => removedPorts.push(removedPort))
-    //         .verifiable(Times.exactly(2));
-    //     serviceConfigMock
-    //         .setup(m => m.listForwardedPorts())
-    //         .returns(() => Promise.resolve(dummyPortList))
-    //         .verifiable(Times.exactly(2));
-    //     testSubject.setServiceConfig(serviceConfigMock.object);
-    //     testSubject.addPort(port1);
-    //     testSubject.addPort(port2);
-    //     testSubject.addPort(port3);
-    //     testSubject.removePort(port2);
+    it('orphaned ports get removed on action invocation', async () => {
+        const dummyPortList = new Array<string>();
+        const port1 = 10;
+        const port2 = 20;
+        const port3 = 30;
+        const removedPorts: number[] = [];
+        serviceConfigMock
+            .setup(m => m.removeTcpForwarding(It.isAnyNumber()))
+            .callback(removedPort => removedPorts.push(removedPort))
+            .returns(() => Promise.resolve())
+            .verifiable(Times.exactly(2));
+        serviceConfigMock
+            .setup(m => m.listForwardedPorts())
+            .returns(() => Promise.resolve(dummyPortList))
+            .verifiable(Times.exactly(2));
+        testSubject.setServiceConfig(serviceConfigMock.object);
+        testSubject.addPort(port1);
+        testSubject.addPort(port2);
+        testSubject.addPort(port3);
+        testSubject.removePort(port2);
 
-    //     ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await tick();
 
-    //     expect(removedPorts.length).toBe(2);
-    //     expect(removedPorts).toContain(port1);
-    //     expect(removedPorts).toContain(port2);
-    // });
+        expect(removedPorts.length).toBe(2);
+        expect(removedPorts).toContain(port1);
+        expect(removedPorts).toContain(port3);
+    });
 
     it('errors in port removal are logged', () => {
         const expectedMessage = 'thrown during removeTcpForwarding';
