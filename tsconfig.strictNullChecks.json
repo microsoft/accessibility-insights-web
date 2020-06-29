@@ -104,6 +104,7 @@
         "./src/common/message-creators/store-action-message-creator.ts",
         "./src/common/message.ts",
         "./src/common/messages.ts",
+        "./src/common/navigator-utils.ts",
         "./src/common/platform.ts",
         "./src/common/stores/client-stores-hub.ts",
         "./src/common/stores/store-names.ts",
