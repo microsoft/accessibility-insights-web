@@ -78,6 +78,7 @@
         "./src/common/browser-adapters/browser-adapter.ts",
         "./src/common/browser-adapters/commands-adapter.ts",
         "./src/common/browser-adapters/storage-adapter.ts",
+        "./src/common/browser-adapters/webextension-browser-adapter.ts",
         "./src/common/components/blocking-dialog.tsx",
         "./src/common/components/cards/card-interaction-support.ts",
         "./src/common/components/cards/simple-card-row.tsx",
