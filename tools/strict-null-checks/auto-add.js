@@ -39,16 +39,14 @@ function tryAutoAddStrictNulls(child, tsconfigPath, file) {
 
         const listener = data => {
             const textOut = data.toString();
-            // console.log('  ' + textOut);
             const match = buildCompletePattern.exec(textOut);
             if (match) {
                 const errorCount = +match[1];
                 if (errorCount === 0) {
                     console.log(`Success`);
-                    fs.writeFileSync(tsconfigPath, JSON.stringify(newConfig, null, '\t'));
                 } else {
                     console.log(`Errors (x${errorCount}), skipped`);
-                    fs.writeFileSync(tsconfigPath, JSON.stringify(originalConfig, null, '\t'));
+                    fs.writeFileSync(tsconfigPath, JSON.stringify(originalConfig, null, '    '));
                 }
 
                 child.stdout.removeListener('data', listener);
