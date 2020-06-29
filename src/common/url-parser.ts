@@ -4,7 +4,11 @@
 export class UrlParser {
     public getIntParam(urlString: string, key: string): number {
         const url = new URL(urlString);
-        return parseInt(url.searchParams.get(key), 10);
+        const rawParamValue = url.searchParams.get(key);
+        if (rawParamValue == null) {
+            throw new Error(`URL does not contain expected int parameter ${key}`);
+        }
+        return parseInt(rawParamValue, 10);
     }
 
     public areURLsEqual(urlA: string, urlB: string): boolean {
