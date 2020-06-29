@@ -74,6 +74,14 @@ export class AppController {
         );
     }
 
+    public async setFeatureFlag(flag: string, enabled: boolean): Promise<void> {
+        await this.waitForfeatureFlagInitializer();
+        const action = enabled ? 'enable' : 'disable';
+        await this.app.webContents.executeJavaScript(
+            `window.featureFlagsController.${action}Feature('${flag}')`,
+        );
+    }
+
     private async waitForUserConfigurationInitializer(): Promise<void> {
         await this.client.waitUntil(
             async () => {
@@ -85,6 +93,20 @@ export class AppController {
             },
             DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
             'was expecting window.insightsUserConfiguration to be defined',
+        );
+    }
+
+    private async waitForfeatureFlagInitializer(): Promise<void> {
+        await this.client.waitUntil(
+            async () => {
+                const executeOutput = await this.client.executeAsync(done => {
+                    done((window as any).featureFlagsController != null);
+                });
+
+                return executeOutput.status === 0 && executeOutput.value === true;
+            },
+            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+            'was expecting window.featureFlagsController to be defined',
         );
     }
 }
