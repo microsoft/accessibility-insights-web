@@ -22,6 +22,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 exports[`CommandBarButtonsMenu renders overflow button 1`] = `
 <CustomizedCommandBarButton
   ariaLabel="More items"
+  className="commandBarButtonsMenuButton"
   menuIconProps={
     Object {
       "iconName": "More",
@@ -29,6 +30,7 @@ exports[`CommandBarButtonsMenu renders overflow button 1`] = `
   }
   menuProps={
     Object {
+      "className": "commandBarButtonsSubmenu",
       "items": Array [
         Object {
           "key": "item 1",

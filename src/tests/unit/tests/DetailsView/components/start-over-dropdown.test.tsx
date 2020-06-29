@@ -35,6 +35,7 @@ describe('StartOverDropdownTest', () => {
             rightPanelConfiguration: {
                 GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
             } as DetailsRightPanelConfiguration,
+            dropdownDirection: 'down',
         };
     });
 
@@ -81,6 +82,16 @@ describe('StartOverDropdownTest', () => {
             .find(elem => elem.key === 'assessment')
             .onClick();
         expect(rendered.debug()).toMatchSnapshot();
+    });
+
+    it('render with dropdown on left', () => {
+        const props: StartOverProps = {
+            ...defaultProps,
+            dropdownDirection: 'left',
+        };
+        const rendered = shallow(<StartOverDropdown {...props} />);
+        rendered.find(InsightsCommandButton).simulate('click', event);
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     it('should dismiss the start test over dialog', () => {

@@ -14,6 +14,7 @@ import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -33,7 +34,7 @@ export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
 
-export type StartOverComponentFactory = (props: CommandBarProps) => JSX.Element;
+export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -107,6 +108,10 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderStartOverComponent(): JSX.Element {
-        return this.props.switcherNavConfiguration.StartOverComponentFactory(this.props);
+        const startOverFactoryProps: StartOverFactoryProps = {
+            ...this.props,
+            dropdownDirection: 'down',
+        };
+        return this.props.switcherNavConfiguration.StartOverComponentFactory(startOverFactoryProps);
     }
 }

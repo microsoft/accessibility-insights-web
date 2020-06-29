@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
-import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
+import { ContextualMenu, DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
@@ -28,7 +28,21 @@ export interface StartOverProps {
     test: VisualizationType;
     requirementKey: string;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
+    dropdownDirection: DropdownDirection;
 }
+
+const dropdownDirections = {
+    down: {
+        directionalHint: DirectionalHint.bottomAutoEdge,
+        iconName: 'ChevronDown',
+    },
+    left: {
+        directionalHint: DirectionalHint.leftTopEdge,
+        iconName: 'ChevronRight',
+    },
+};
+
+export type DropdownDirection = keyof typeof dropdownDirections;
 
 export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
     constructor(props: StartOverProps) {
@@ -41,6 +55,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     public render(): JSX.Element {
+        const direction = this.props.dropdownDirection;
         return (
             <div>
                 <InsightsCommandButton
@@ -51,7 +66,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
                     ariaLabel="start over menu"
                     onClick={this.openDropdown}
                     menuIconProps={{
-                        iconName: 'ChevronDown',
+                        iconName: dropdownDirections[direction].iconName,
                     }}
                 />
                 {this.renderContextMenu()}
@@ -65,11 +80,14 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             return null;
         }
 
+        const direction = this.props.dropdownDirection;
+
         return (
             <ContextualMenu
                 onDismiss={() => this.dismissDropdown()}
                 target={this.state.target}
                 items={this.getMenuItems()}
+                directionalHint={dropdownDirections[direction].directionalHint}
             />
         );
     }
