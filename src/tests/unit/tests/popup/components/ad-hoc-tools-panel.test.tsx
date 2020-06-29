@@ -11,7 +11,7 @@ import { Mock, Times } from 'typemoq';
 describe('AdHocToolsPanelTest', () => {
     const diagnosticViewToggleFactoryMock = Mock.ofType(DiagnosticViewToggleFactory);
 
-    beforeEach(() => {
+    test('adhoc panel matches snapshot', () => {
         diagnosticViewToggleFactoryMock
             .setup(factory => factory.createTogglesForAdHocToolsPanel())
             .returns(() => [
@@ -21,9 +21,26 @@ describe('AdHocToolsPanelTest', () => {
                 <div key="fourth">fourth</div>,
                 <div key="fifth">fifth</div>,
             ]);
+        const props: AdHocToolsPanelProps = {
+            backLinkHandler: null,
+            diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
+        };
+
+        const wrapper = shallow(<AdHocToolsPanel {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test('adhoc panel matches snapshot', () => {
+    test('adhoc panel with needs review sixth toggle matches snapshot', () => {
+        diagnosticViewToggleFactoryMock
+            .setup(factory => factory.createTogglesForAdHocToolsPanel())
+            .returns(() => [
+                <div key="first">first</div>,
+                <div key="second">second</div>,
+                <div key="third">third</div>,
+                <div key="fourth">fourth</div>,
+                <div key="fifth">fifth</div>,
+                <div key="sixth">sixth</div>,
+            ]);
         const props: AdHocToolsPanelProps = {
             backLinkHandler: null,
             diagnosticViewToggleFactory: diagnosticViewToggleFactoryMock.object,
