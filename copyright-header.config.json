@@ -16,6 +16,7 @@
         "./node_modules",
         "./package",
         "./src/assessments/color/test-steps/flashing-text-example.html",
+        "./src/tests/miscellaneous/mock-adb/bin",
         "./test-results",
         ".gitattribute",
         ".gitattributes",
