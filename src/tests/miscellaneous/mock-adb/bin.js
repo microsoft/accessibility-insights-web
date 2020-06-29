@@ -14,7 +14,7 @@ if (config[inputCommand] === undefined) {
     process.exit(1);
 }
 
-const result = config[inputCommand]
+const result = config[inputCommand];
 
 if (result.stderr != undefined) {
     console.error(result.stderr);

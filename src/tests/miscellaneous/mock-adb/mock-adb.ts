@@ -6,6 +6,7 @@ import { promisify } from 'util';
 
 const writeFile = promisify(fs.writeFile);
 const exists = promisify(fs.exists);
+const stat = promisify(fs.stat);
 
 export const mockAdbFolder = path.join(__dirname, 'bin');
 
@@ -15,7 +16,15 @@ const mockAdbPath = path.join(mockAdbFolder, mockAdbName);
 const configPath = path.join(mockAdbFolder, 'mock_adb_config.json');
 
 async function needsRebuild(): Promise<boolean> {
-    return !(await exists(mockAdbPath));
+    const binExists = await exists(mockAdbPath);
+    if (!binExists) {
+        return true;
+    }
+
+    const binModified = (await stat(mockAdbPath)).mtimeMs;
+    const binSrcModified = (await stat(binPath)).mtimeMs;
+
+    return binModified < binSrcModified;
 }
 
 async function buildMockAdb(): Promise<void> {
