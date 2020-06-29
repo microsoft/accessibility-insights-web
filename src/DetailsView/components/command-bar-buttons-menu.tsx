@@ -10,7 +10,7 @@ export type CommandBarButtonsMenuProps = CommandBarProps;
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
-        const onRenderItem = (item: IOverflowSetItemProps) => {
+        const onRenderItem = (item: IOverflowSetItemProps): JSX.Element => {
             return item.onRender(props);
         };
 
