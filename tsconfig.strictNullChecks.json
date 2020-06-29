@@ -98,6 +98,7 @@
         "./src/common/fabric-icons.ts",
         "./src/common/file-url-provider.ts",
         "./src/common/get-inner-text-from-jsx-element.ts",
+        "./src/common/html-element-utils.ts",
         "./src/common/is-supported-browser.ts",
         "./src/common/itab.ts",
         "./src/common/message-creators/store-action-message-creator.ts",
