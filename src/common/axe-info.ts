@@ -10,6 +10,6 @@ export class AxeInfo {
     constructor(private axe: typeof Axe) {}
 
     public get version(): string {
-        return this.axe.version;
+        return (this.axe as any).version;
     }
 }

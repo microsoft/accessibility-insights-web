@@ -71,6 +71,7 @@
         "./src/background/telemetry/telemetry-client.ts",
         "./src/background/usage-logger.ts",
         "./src/background/user-stored-data-cleaner.ts",
+        "./src/common/axe-info.ts",
         "./src/common/base-store.ts",
         "./src/common/blob-provider.ts",
         "./src/common/browser-adapters/app-data-adapter.ts",
