@@ -130,13 +130,13 @@ const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
 const urlParser = new UrlParser();
-const tabId = urlParser.getIntParam(window.location.href, 'tabId');
+const tabId: number | null = urlParser.getIntParam(window.location.href, 'tabId');
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
 
 initializeFabricIcons();
 
-if (isNaN(tabId) === false) {
+if (tabId != null) {
     browserAdapter.getTab(
         tabId,
         (tab: Tab): void => {

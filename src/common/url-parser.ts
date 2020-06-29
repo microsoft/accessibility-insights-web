@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 export class UrlParser {
-    public getIntParam(urlString: string, key: string): number {
+    public getIntParam(urlString: string, key: string): number | null {
         const url = new URL(urlString);
         const rawParamValue = url.searchParams.get(key);
         if (rawParamValue == null) {
-            throw new Error(`URL does not contain expected int parameter ${key}`);
+            return null;
         }
         return parseInt(rawParamValue, 10);
     }
