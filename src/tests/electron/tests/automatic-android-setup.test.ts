@@ -33,6 +33,6 @@ describe('AutomaticAndroidSetup', () => {
         const selector = getAutomationIdSelector(moreInfoLinkAutomationId);
         await deviceConnectionController.client.waitForExist(selector);
         const text = await deviceConnectionController.client.getText(selector);
-        expect(text.startsWith('How do I')).toBeTruthy();
+        expect(text.startsWith('How do I')).toBe(true);
     });
 });
