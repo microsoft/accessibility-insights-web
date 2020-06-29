@@ -27,7 +27,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         subtitle: (
             <>
                 <i>Needs review</i> automated checks will highlight elements that might have an
-                accessibility issue. Examine each instance to determine if there is an Accessibility
+                accessibility issue. Examine each instance to determine if there is an accessibility
                 issue.
             </>
         ),
