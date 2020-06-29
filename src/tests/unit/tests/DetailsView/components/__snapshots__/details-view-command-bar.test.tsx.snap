@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
+"<div className=\\"detailsViewCommandBar\\">
+  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
+    <span id=\\"switch-to-target\\">
+      Target page: 
+    </span>
+    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
+        command-bar-test-tab-title
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <CommandBarButtonsMenu deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} />
+</div>"
+`;
+
 exports[`DetailsViewCommandBar renders with export button, with start over 1`] = `
 "<div className=\\"detailsViewCommandBar\\">
   <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
