@@ -108,6 +108,7 @@
         "./src/common/platform.ts",
         "./src/common/stores/client-stores-hub.ts",
         "./src/common/stores/store-names.ts",
+        "./src/common/tabbable-elements-helper.ts",
         "./src/common/types/deep-partial.ts",
         "./src/common/types/details-view-pivot-type.ts",
         "./src/common/types/dev-tools-open-message.ts",
