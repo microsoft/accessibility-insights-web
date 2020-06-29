@@ -85,23 +85,14 @@ describe('StartOverComponentFactory', () => {
 
     describe('getStartOverComponentPropsForFastPass', () => {
         describe('renders', () => {
-            test('scanResults is null => component matches snapshot', () => {
+            test('scanning is false => component matches snapshot', () => {
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
 
                 expect(rendered).toMatchSnapshot();
             });
 
-            test('scanResults is not null, scanning is false => component matches snapshot', () => {
-                setScanResult();
-                const props = getProps(false);
-                const rendered = getStartOverComponentForFastPass(props);
-
-                expect(rendered).toMatchSnapshot();
-            });
-
-            test('scanResults is not null, scanning is true => component matches snapshot', () => {
-                setScanResult();
+            test('scanning is true => component matches snapshot', () => {
                 scanning = 'some string';
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
