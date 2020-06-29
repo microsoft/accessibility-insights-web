@@ -9,7 +9,11 @@ export class FirefoxAdapter extends WebExtensionBrowserAdapter {
     }
 
     // Firefox will fail window creation requests with the "focused" property
-    public createTabInNewWindow(url: string): Promise<Tabs.Tab> {
-        return browser.windows.create({ url }).then(window => window.tabs[0]);
+    public async createTabInNewWindow(url: string): Promise<Tabs.Tab> {
+        const newWindow = await browser.windows.create({ url });
+        if (newWindow.tabs == null) {
+            throw new Error('Browser created a window with no tabs');
+        }
+        return newWindow.tabs[0];
     }
 }
