@@ -32,7 +32,11 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             },
             {
                 key: 'start over',
-                onRender: () => props.switcherNavConfiguration.StartOverComponentFactory(props),
+                onRender: () =>
+                    props.switcherNavConfiguration.StartOverComponentFactory({
+                        ...props,
+                        dropdownDirection: 'left',
+                    }),
             },
         ];
 

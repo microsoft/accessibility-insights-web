@@ -28,10 +28,10 @@ export interface StartOverProps {
     test: VisualizationType;
     requirementKey: string;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
-    dropdownDirection: keyof typeof dropdownDirectionConfigs;
+    dropdownDirection: DropdownDirection;
 }
 
-const dropdownDirectionConfigs = {
+const dropdownDirections = {
     down: {
         directionalHint: DirectionalHint.bottomAutoEdge,
         iconName: 'ChevronDown',
@@ -41,6 +41,8 @@ const dropdownDirectionConfigs = {
         iconName: 'ChevronRight',
     },
 };
+
+export type DropdownDirection = keyof typeof dropdownDirections;
 
 export class StartOverDropdown extends React.Component<StartOverProps, StartOverState> {
     constructor(props: StartOverProps) {
@@ -53,6 +55,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     public render(): JSX.Element {
+        const direction = this.props.dropdownDirection;
         return (
             <div>
                 <InsightsCommandButton
@@ -63,7 +66,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
                     ariaLabel="start over menu"
                     onClick={this.openDropdown}
                     menuIconProps={{
-                        iconName: dropdownDirectionConfigs[this.props.dropdownDirection].iconName,
+                        iconName: dropdownDirections[direction].iconName,
                     }}
                 />
                 {this.renderContextMenu()}
@@ -77,14 +80,14 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             return null;
         }
 
+        const direction = this.props.dropdownDirection;
+
         return (
             <ContextualMenu
                 onDismiss={() => this.dismissDropdown()}
                 target={this.state.target}
                 items={this.getMenuItems()}
-                directionalHint={
-                    dropdownDirectionConfigs[this.props.dropdownDirection].directionalHint
-                }
+                directionalHint={dropdownDirections[direction].directionalHint}
             />
         );
     }
