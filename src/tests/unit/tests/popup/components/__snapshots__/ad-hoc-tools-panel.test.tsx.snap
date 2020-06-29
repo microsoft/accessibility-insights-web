@@ -50,3 +50,60 @@ exports[`AdHocToolsPanelTest adhoc panel matches snapshot 1`] = `
   </div>
 </div>
 `;
+
+exports[`AdHocToolsPanelTest adhoc panel with needs review sixth toggle matches snapshot 1`] = `
+<div
+  className="main-section adHocToolsPanel"
+>
+  <main
+    className="adHocToolsGrid"
+  >
+    <div>
+      first
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      second
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      third
+    </div>
+    <div>
+      fourth
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      fifth
+    </div>
+    <span
+      className="divider"
+    />
+    <div>
+      sixth
+    </div>
+  </main>
+  <div
+    className="adHocToolsPanelFooter"
+    role="navigation"
+  >
+    <StyledLinkBase
+      className="link"
+      id="back-to-launchpad-link"
+      onClick={null}
+    >
+      <StyledIconBase
+        className="backToLaunchPadIcon"
+        iconName="back"
+      />
+      Back to launch pad
+    </StyledLinkBase>
+  </div>
+</div>
+`;
