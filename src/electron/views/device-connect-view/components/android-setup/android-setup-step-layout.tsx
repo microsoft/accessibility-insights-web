@@ -14,6 +14,9 @@ export type AndroidSetupStepLayoutProps = {
     rightFooterButtonProps: AndroidSetupFooterButtonProps;
 };
 export const moreInfoLinkAutomationId = 'more-info-link';
+export const leftFooterButtonAutomationId = 'android-left-footer-button';
+export const rightFooterButtonAutomationId = 'android-right-footer-button';
+
 export const AndroidSetupStepLayout = NamedFC<AndroidSetupStepLayoutProps>(
     'AndroidSetupStepLayout',
     props => {
@@ -33,8 +36,14 @@ export const AndroidSetupStepLayout = NamedFC<AndroidSetupStepLayoutProps>(
                 {optionalMoreInfoLink}
                 <div className={styles.content}>{props.children}</div>
                 <div className={styles.footer}>
-                    <DefaultButton {...props.leftFooterButtonProps} />
-                    <PrimaryButton {...props.rightFooterButtonProps} />
+                    <DefaultButton
+                        {...props.leftFooterButtonProps}
+                        data-automation-id={leftFooterButtonAutomationId}
+                    />
+                    <PrimaryButton
+                        {...props.rightFooterButtonProps}
+                        data-automation-id={rightFooterButtonAutomationId}
+                    />
                 </div>
             </main>
         );

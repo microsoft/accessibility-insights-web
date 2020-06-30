@@ -15,9 +15,11 @@ exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=false, withHe
     className="footer"
   >
     <CustomizedDefaultButton
+      data-automation-id="android-left-footer-button"
       text="left footer button"
     />
     <CustomizedPrimaryButton
+      data-automation-id="android-right-footer-button"
       text="right footer button"
     />
   </div>
@@ -44,9 +46,11 @@ exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=false, withHe
     className="footer"
   >
     <CustomizedDefaultButton
+      data-automation-id="android-left-footer-button"
       text="left footer button"
     />
     <CustomizedPrimaryButton
+      data-automation-id="android-right-footer-button"
       text="right footer button"
     />
   </div>
@@ -83,9 +87,11 @@ exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=true, withHea
     className="footer"
   >
     <CustomizedDefaultButton
+      data-automation-id="android-left-footer-button"
       text="left footer button"
     />
     <CustomizedPrimaryButton
+      data-automation-id="android-right-footer-button"
       text="right footer button"
     />
   </div>
