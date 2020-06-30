@@ -12,13 +12,15 @@ export const singleDeviceConfig: MockAdbConfig = {
         stdout: 'mock-adb device 1',
     },
     '-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice': {
-        stdout: `versionName=${apkVersionName}\nversionCode=12345`,
+        stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
     },
     '-s device-1 shell dumpsys accessibility': {
-        stdout: 'label=Accessibility Insights',
+        stdout:
+            '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
     },
     '-s device-1 shell dumpsys media_projection': {
-        stdout: 'com.microsoft.accessibilityinsightsforandroidservice',
+        stdout:
+            '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
     },
     // TODO after implementing test port support with portfinder:
     // [`-s device-1 forward tcp:${TEST_PORT} tcp:62442`]: {},
