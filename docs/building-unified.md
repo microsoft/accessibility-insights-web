@@ -48,7 +48,7 @@ yarn with:mock-service-for-android start:unified
 ```sh
 # This sets up mock-adb to respond as if a single physical device is connected with a working
 # and current install of Accessibility Insights for Android Service.
-yarn mockadb single-device
+yarn mock-adb single-device
 
 # Start the app like normal. During the "connect a device" flow where it asks you where to find
 # ADB, use the path C:\path\to\repo\drop\mock-adb - this folder should have been produced already

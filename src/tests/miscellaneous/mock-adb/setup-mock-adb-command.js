@@ -7,7 +7,7 @@ const { mockAdbFolder, setupMockAdb } = require('./setup-mock-adb');
 const availableConfigNameList = Object.keys(commonAdbConfigs).join(', ');
 
 function exitWithUsage() {
-    console.error(`Usage: yarn mockadb config-name\n`);
+    console.error(`Usage: yarn mock-adb config-name\n`);
     console.error(`Supported config-names: ${availableConfigNameList}`);
     process.exit(1);
 }
