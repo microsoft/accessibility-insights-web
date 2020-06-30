@@ -26,7 +26,7 @@ export class TargetTabFinder {
     private getTabInfo = (): Promise<Tab> => {
         const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
 
-        if (isNaN(tabIdInUrl)) {
+        if (tabIdInUrl == null) {
             return this.browserAdapter
                 .tabsQuery({ active: true, currentWindow: true })
                 .then(tabs => tabs.pop());

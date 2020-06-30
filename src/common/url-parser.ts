@@ -2,9 +2,13 @@
 // Licensed under the MIT License.
 
 export class UrlParser {
-    public getIntParam(urlString: string, key: string): number {
+    public getIntParam(urlString: string, key: string): number | null {
         const url = new URL(urlString);
-        return parseInt(url.searchParams.get(key), 10);
+        const rawParamValue = url.searchParams.get(key);
+        if (rawParamValue == null) {
+            return null;
+        }
+        return parseInt(rawParamValue, 10);
     }
 
     public areURLsEqual(urlA: string, urlB: string): boolean {

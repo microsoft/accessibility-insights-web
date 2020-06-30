@@ -55,7 +55,7 @@ describe('UrlParserTest', () => {
         ];
 
         test.each(invalidCases)('return invalid value', (testCase: ValidCase) => {
-            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBeNaN();
+            expect(testSubject.getIntParam(testCase.url, testCase.key)).toBeNull();
         });
     });
 
