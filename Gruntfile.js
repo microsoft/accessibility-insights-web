@@ -8,6 +8,10 @@ const targets = require('./targets.config');
 const yaml = require('js-yaml');
 
 module.exports = function (grunt) {
+    const pkgPath = path.resolve('./node_modules/.bin/pkg');
+    const tsmPath = path.resolve('./node_modules/.bin/tsm');
+    const webpackPath = path.resolve('./node_modules/.bin/webpack');
+
     const extensionPath = 'extension';
 
     const packageReportPath = path.join('package', 'report');
@@ -17,10 +21,6 @@ module.exports = function (grunt) {
     const packageUIPath = path.join('package', 'ui');
     const packageUIBundlePath = path.join(packageUIPath, 'bundle');
     const packageUIDropPath = path.join(packageUIPath, 'drop');
-
-    const pkgPath = path.resolve('./node_modules/.bin/pkg');
-    const webpackPath = path.resolve('./node_modules/.bin/webpack');
-    const tsmPath = path.resolve('./node_modules/.bin/tsm');
 
     const mockAdbAppPath = path.resolve('./src/tests/miscellaneous/mock-adb/app');
     const mockAdbBinSrcPath = path.join(mockAdbAppPath, 'bin.js');
