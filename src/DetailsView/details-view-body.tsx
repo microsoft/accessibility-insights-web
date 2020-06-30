@@ -81,15 +81,23 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
+        const bodyContentContainerClassName = classNames({
+            'details-view-content-pane-container': true,
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
+
         return (
             <div className={styles.detailsViewBody}>
                 {this.renderCommandBar()}
                 <div className={bodyLayoutClassName}>
                     {this.renderNavBar()}
-                    <div className={bodyContentClassName}>
-                        {this.getTargetPageHiddenBar()}
-                        <div className="view" role="main">
-                            {this.renderRightPanel()}
+                    <div className={bodyContentContainerClassName}>
+                        {this.renderReflowCommandBar()}
+                        <div className={bodyContentClassName}>
+                            {this.getTargetPageHiddenBar()}
+                            <div className="view" role="main">
+                                {this.renderRightPanel()}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,7 +112,23 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             ...this.props,
         };
 
+        if (this.props.featureFlagStoreData[FeatureFlags.reflowUI]) {
+            return null;
+        }
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
+    }
+
+    private renderReflowCommandBar(): JSX.Element {
+        const { switcherNavConfiguration } = this.props;
+
+        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
+            ...this.props,
+        };
+
+        if (this.props.featureFlagStoreData[FeatureFlags.reflowUI]) {
+            return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
+        }
+        return null;
     }
 
     private renderNavBar(): JSX.Element {
