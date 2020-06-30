@@ -64,6 +64,7 @@ exports[`AndroidSetupStepLayout renders per snapshot (withMoreInfo=true, withHea
   </h1>
   <div
     className="moreInfoLink"
+    data-automation-id="more-info-link"
   >
     <a
       href="https://test"

@@ -13,7 +13,7 @@ export type AndroidSetupStepLayoutProps = {
     leftFooterButtonProps: AndroidSetupFooterButtonProps;
     rightFooterButtonProps: AndroidSetupFooterButtonProps;
 };
-
+export const moreInfoLinkAutomationId = 'more-info-link';
 export const AndroidSetupStepLayout = NamedFC<AndroidSetupStepLayoutProps>(
     'AndroidSetupStepLayout',
     props => {
@@ -22,7 +22,9 @@ export const AndroidSetupStepLayout = NamedFC<AndroidSetupStepLayoutProps>(
 
         const optionalMoreInfoLink =
             props.moreInfoLink == null ? null : (
-                <div className={styles.moreInfoLink}>{props.moreInfoLink}</div>
+                <div className={styles.moreInfoLink} data-automation-id={moreInfoLinkAutomationId}>
+                    {props.moreInfoLink}
+                </div>
             );
 
         return (
