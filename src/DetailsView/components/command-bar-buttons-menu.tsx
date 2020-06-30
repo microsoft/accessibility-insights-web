@@ -20,9 +20,11 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                 <CommandBarButton
                     ariaLabel="More items"
                     role="menuitem"
-                    menuIconProps={{ iconName: 'More' }}
+                    menuIconProps={{
+                        iconName: 'More',
+                        className: styles.commandBarButtonsMenuButton,
+                    }}
                     menuProps={{ items: overflow, className: styles.commandBarButtonsSubmenu }}
-                    className={styles.commandBarButtonsMenuButton}
                 />
             );
         };
@@ -47,6 +49,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                 onRenderItem={onRenderItem}
                 overflowItems={overflowItems}
                 onRenderOverflowButton={onRenderOverflowButton}
+                className={styles.commandBarButtonsMenu}
             />
         );
     },

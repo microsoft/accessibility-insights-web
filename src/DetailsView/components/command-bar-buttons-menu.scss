@@ -1,12 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+@import '../../common/styles/common.scss';
+
 .command-bar-buttons-menu-button {
-    height: inherit;
+    font-size: 16px;
 }
 
 .command-bar-buttons-submenu {
     button {
         height: 36px;
     }
+}
+
+.command-bar-buttons-menu {
+    height: $detailsViewCommandBarHeight;
 }
