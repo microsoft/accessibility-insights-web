@@ -34,6 +34,11 @@
             overflow-y: auto;
             overflow-x: hidden;
             border-right: 1px solid $neutral-8;
+            a:focus {
+                @media screen and (-ms-high-contrast: active) {
+                    border: 3px highlighttext solid !important;
+                }
+            }
         }
     }
     .assessment-requirements-title {
