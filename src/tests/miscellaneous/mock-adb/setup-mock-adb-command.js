@@ -4,13 +4,24 @@ const { argv } = require('process');
 const { commonAdbConfigs } = require('./common-adb-configs');
 const { mockAdbFolder, setupMockAdb } = require('./setup-mock-adb');
 
+const availableConfigNameList = Object.keys(commonAdbConfigs).join(', ');
+
+function exitWithUsage() {
+    console.error(`Usage: yarn mockadb config-name\n`);
+    console.error(`Supported config-names: ${availableConfigNameList}`);
+    process.exit(1);
+}
+
+if (argv.length !== 3) {
+    exitWithUsage();
+}
+
 const configName = argv[2];
 const config = commonAdbConfigs[configName];
 
 if (config == undefined) {
-    const availableConfigNames = Object.keys(commonAdbConfigs).join(', ');
-    console.error(`No mock-adb config "${configName}", expected one of: ${availableConfigNames}`);
-    process.exit(1);
+    console.error(`Unrecognized config-name: ${configName}\n`);
+    exitWithUsage();
 }
 
 setupMockAdb(config)
