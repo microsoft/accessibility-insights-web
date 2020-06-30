@@ -7,7 +7,7 @@ export const promptConfiguringPortForwardingFailed: AndroidSetupStepConfig = ste
     return {
         actions: {
             cancel: () => stepTransition('prompt-choose-device'),
-            next: () => stepTransition('configuring-port-forwarding'),
+            rescan: () => stepTransition('configuring-port-forwarding'),
         },
     };
 };

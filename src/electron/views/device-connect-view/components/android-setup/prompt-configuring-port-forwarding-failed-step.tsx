@@ -50,7 +50,7 @@ export const PromptConfiguringPortForwardingFailedStep = NamedFC<CommonAndroidSe
                 <PrimaryButton
                     data-automation-id={tryAgainAutomationId}
                     text="Try again"
-                    onClick={props.deps.androidSetupActionCreator.next}
+                    onClick={props.deps.androidSetupActionCreator.rescan}
                 />
             </AndroidSetupStepLayout>
         );

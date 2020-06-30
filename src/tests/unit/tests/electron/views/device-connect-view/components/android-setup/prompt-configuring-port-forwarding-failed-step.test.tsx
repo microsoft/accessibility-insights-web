@@ -49,10 +49,10 @@ describe('PromptConfiguringPortForwardingFailedStep', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('routes try again button to next action', () => {
+    it('routes try again button to rescan action', () => {
         const rendered = shallow(<PromptConfiguringPortForwardingFailedStep {...props} />);
         const button = rendered.find({ 'data-automation-id': tryAgainAutomationId });
         button.simulate('click');
-        androidSetupActionCreatorMock.verify(m => m.next(), Times.once());
+        androidSetupActionCreatorMock.verify(m => m.rescan(), Times.once());
     });
 });
