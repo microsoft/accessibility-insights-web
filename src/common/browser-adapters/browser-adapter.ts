@@ -41,7 +41,7 @@ export interface BrowserAdapter {
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
     createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
-    getRuntimeLastError(): chrome.runtime.LastError;
+    getRuntimeLastError(): chrome.runtime.LastError | undefined;
     isAllowedFileSchemeAccess(): Promise<boolean>;
     getManageExtensionUrl(): string;
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;

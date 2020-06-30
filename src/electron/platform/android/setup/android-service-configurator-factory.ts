@@ -6,18 +6,21 @@ import { AndroidServiceApkLocator } from 'electron/platform/android/android-serv
 import {
     AndroidServiceConfigurator,
     PortFinder,
+    ServiceConfigurator,
 } from 'electron/platform/android/setup/android-service-configurator';
 
-export class AndroidServiceConfiguratorFactory {
+export interface ServiceConfiguratorFactory {
+    getServiceConfigurator(adbLocation: string): Promise<ServiceConfigurator>;
+}
+
+export class AndroidServiceConfiguratorFactory implements ServiceConfiguratorFactory {
     constructor(
         private readonly adbWrapperFactory: AdbWrapperFactory,
         private readonly apkLocator: AndroidServiceApkLocator,
         private readonly portFinder: PortFinder,
     ) {}
 
-    public getServiceConfigurator = async (
-        adbLocation: string,
-    ): Promise<AndroidServiceConfigurator> => {
+    public getServiceConfigurator = async (adbLocation: string): Promise<ServiceConfigurator> => {
         const adbWrapper: AdbWrapper = await this.adbWrapperFactory.createValidatedAdbWrapper(
             adbLocation,
         );

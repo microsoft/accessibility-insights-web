@@ -50,12 +50,6 @@ describe(WindowFrameUpdater, () => {
             windowFrameActions.restore.invoke(null);
         });
 
-        it('invokes close', () => {
-            ipcRendererShimMock.setup(b => b.closeWindow()).verifiable(Times.once());
-
-            windowFrameActions.close.invoke(null);
-        });
-
         it('invokes setSizeAndCenter', () => {
             const width = 12;
             const height = 34;

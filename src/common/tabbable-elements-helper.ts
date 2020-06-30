@@ -5,7 +5,7 @@ import { HTMLElementUtils } from './html-element-utils';
 export class TabbableElementsHelper {
     constructor(private htmlElementUtils: HTMLElementUtils) {}
 
-    public getCurrentFocusedElement(): Element {
+    public getCurrentFocusedElement(): Element | null {
         return this.htmlElementUtils.getCurrentFocusedElement();
     }
 
@@ -17,13 +17,13 @@ export class TabbableElementsHelper {
         const result =
             style.visibility !== 'hidden' &&
             style.display !== 'none' &&
-            offsetHeight &&
-            offsetWidth &&
+            offsetHeight !== 0 &&
+            offsetWidth !== 0 &&
             clientRects.length > 0;
         return result;
     };
 
-    public getAncestorMap(element: HTMLElement): HTMLMapElement {
+    public getAncestorMap(element: HTMLElement): HTMLMapElement | null {
         if (!element.parentElement || element.parentNode instanceof Document) {
             return null;
         }
@@ -39,7 +39,7 @@ export class TabbableElementsHelper {
         return this.getAncestorMap(parent);
     }
 
-    public getMappedImage(map: HTMLMapElement): HTMLImageElement {
+    public getMappedImage(map: HTMLMapElement): HTMLImageElement | null {
         const mapName: string = map.name;
 
         if (!mapName) {

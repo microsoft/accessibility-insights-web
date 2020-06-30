@@ -7,23 +7,17 @@ import {
     AssessmentNavState,
     AssessmentStoreData,
 } from 'common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
-    CommandBarProps,
-    DetailsViewCommandBarDeps,
-    DetailsViewCommandBarProps,
-} from 'DetailsView/components/details-view-command-bar';
-import {
     getStartOverComponentForAssessment,
     getStartOverComponentForFastPass,
+    StartOverFactoryProps,
 } from 'DetailsView/components/start-over-component-factory';
+import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ScanResults } from 'scanner/iruleresults';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -31,24 +25,20 @@ describe('StartOverComponentFactory', () => {
     const theTitle = 'the title';
     const theTestStep = 'test step';
     const theTestType = VisualizationType.ColorSensoryAssessment;
+    const dropdownDirection = 'down';
 
     let assessment: Readonly<Assessment>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
-    let featureFlagStoreData: FeatureFlagStoreData;
     let assessmentStoreData: AssessmentStoreData;
-    let visualizationScanResultData: VisualizationScanResultData;
-    let scanResult: ScanResults;
     let scanning: string;
 
     beforeEach(() => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
-        featureFlagStoreData = {};
-        scanResult = null;
         scanning = null;
     });
 
-    function getProps(isForAssessment: boolean): DetailsViewCommandBarProps {
-        const deps = {} as DetailsViewCommandBarDeps;
+    function getProps(isForAssessment: boolean): StartOverFactoryProps {
+        const deps = {} as StartOverDeps;
 
         let visualizationStoreData: VisualizationStoreData = null;
         let selectedTestType: VisualizationType = null;
@@ -67,11 +57,6 @@ describe('StartOverComponentFactory', () => {
                 scanning,
             } as VisualizationStoreData;
         }
-        visualizationScanResultData = {
-            issues: {
-                scanResult: scanResult,
-            },
-        } as VisualizationScanResultData;
 
         assessmentStoreData = {
             assessmentNavState: {
@@ -82,16 +67,11 @@ describe('StartOverComponentFactory', () => {
 
         return {
             deps,
-            featureFlagStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
-            visualizationScanResultData,
             visualizationStoreData,
-        } as DetailsViewCommandBarProps;
-    }
-
-    function setScanResult(): void {
-        scanResult = {} as ScanResults;
+            dropdownDirection,
+        } as StartOverFactoryProps;
     }
 
     describe('getStartOverComponentForAssessments', () => {
@@ -105,23 +85,14 @@ describe('StartOverComponentFactory', () => {
 
     describe('getStartOverComponentPropsForFastPass', () => {
         describe('renders', () => {
-            test('scanResults is null => component matches snapshot', () => {
+            test('scanning is false => component matches snapshot', () => {
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
 
                 expect(rendered).toMatchSnapshot();
             });
 
-            test('scanResults is not null, scanning is false => component matches snapshot', () => {
-                setScanResult();
-                const props = getProps(false);
-                const rendered = getStartOverComponentForFastPass(props);
-
-                expect(rendered).toMatchSnapshot();
-            });
-
-            test('scanResults is not null, scanning is true => component matches snapshot', () => {
-                setScanResult();
+            test('scanning is true => component matches snapshot', () => {
                 scanning = 'some string';
                 const props = getProps(false);
                 const rendered = getStartOverComponentForFastPass(props);
@@ -139,7 +110,7 @@ describe('StartOverComponentFactory', () => {
                 const props = getProps(false);
                 props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
-                const Wrapper = NamedFC<CommandBarProps>(
+                const Wrapper = NamedFC<StartOverFactoryProps>(
                     'WrappedStartOver',
                     getStartOverComponentForFastPass,
                 );

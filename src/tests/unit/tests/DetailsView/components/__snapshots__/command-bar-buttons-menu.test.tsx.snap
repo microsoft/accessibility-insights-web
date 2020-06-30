@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
+<StyledOverflowSetBase
+  className="commandBarButtonsMenu"
+  onRenderItem={[Function]}
+  onRenderOverflowButton={[Function]}
+  overflowItems={
+    Array [
+      Object {
+        "key": "export report",
+        "onRender": [Function],
+      },
+      Object {
+        "key": "start over",
+        "onRender": [Function],
+      },
+    ]
+  }
+/>
+`;
+
+exports[`CommandBarButtonsMenu renders overflow button 1`] = `
+<CustomizedCommandBarButton
+  ariaLabel="More items"
+  menuIconProps={
+    Object {
+      "className": "commandBarButtonsMenuButton",
+      "iconName": "More",
+    }
+  }
+  menuProps={
+    Object {
+      "className": "commandBarButtonsSubmenu",
+      "items": Array [
+        Object {
+          "key": "item 1",
+        },
+        Object {
+          "key": "item 2",
+        },
+      ],
+    }
+  }
+  role="menuitem"
+/>
+`;

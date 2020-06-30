@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { createApplication } from 'tests/electron/common/create-application';
 import { DeviceConnectionDialogSelectors } from 'tests/electron/common/element-identifiers/device-connection-dialog-selectors';
 import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -12,6 +13,7 @@ describe('device connection dialog', () => {
 
     beforeEach(async () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
+        await app.setFeatureFlag(UnifiedFeatureFlags.adbSetupView, false);
         dialog = await app.openDeviceConnectionDialog();
     });
 

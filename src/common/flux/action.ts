@@ -12,7 +12,7 @@ export class Action<TPayload> {
     private listeners: ((payload: TPayload) => void)[] = [];
     private scope: string = 'DEFAULT_SCOPE';
 
-    public invoke(payload: TPayload, scope: string = null): void {
+    public invoke(payload: TPayload, scope?: string): void {
         const activeScope = scope ?? this.scope;
         if (Action.executingScopes[activeScope]) {
             throw new Error(

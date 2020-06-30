@@ -24,6 +24,13 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     getTestStatus: data => data.enabled,
     displayableData: {
         title: 'Needs review',
+        subtitle: (
+            <>
+                <i>Needs review</i> automated checks will highlight elements that might have an
+                accessibility issue. Examine each instance to determine if there is an accessibility
+                issue.
+            </>
+        ),
         enableMessage: 'Running needs review checks...',
         toggleLabel: 'Show elements needing review',
         linkToDetailsViewText: 'List view and filtering',

@@ -1,11 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { DetailsRightPanelConfiguration } from 'DetailsView/components/details-view-right-panel';
+import {
+    DropdownDirection,
+    StartOverDeps,
+    StartOverDropdown,
+    StartOverProps,
+} from 'DetailsView/components/start-over-dropdown';
 import * as React from 'react';
 
-export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.Element {
+export type StartOverFactoryProps = {
+    deps: StartOverDeps;
+    assessmentStoreData: AssessmentStoreData;
+    assessmentsProvider: AssessmentsProvider;
+    rightPanelConfiguration: DetailsRightPanelConfiguration;
+    visualizationStoreData: VisualizationStoreData;
+    dropdownDirection: DropdownDirection;
+};
+
+export function getStartOverComponentForAssessment(props: StartOverFactoryProps): JSX.Element {
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.assessmentsProvider.forType(selectedTest);
     const deps = props.deps;
@@ -15,6 +32,7 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
         test: selectedTest,
         requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestSubview,
         rightPanelConfiguration: props.rightPanelConfiguration,
+        dropdownDirection: props.dropdownDirection,
     };
 
     return <StartOverDropdown {...startOverProps} />;
@@ -22,7 +40,7 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
 
 export const startOverAutomationId = 'start-over';
 
-export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.Element {
+export function getStartOverComponentForFastPass(props: StartOverFactoryProps): JSX.Element {
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
