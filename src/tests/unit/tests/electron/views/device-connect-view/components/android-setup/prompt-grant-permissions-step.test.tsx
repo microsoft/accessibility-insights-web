@@ -49,9 +49,9 @@ describe('PromptGrantPermissionsStep', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('calls next action when try again button is selected', () => {
+    it('calls rescan action when try again button is selected', () => {
         const rendered = shallow(<PromptGrantPermissionsStep {...props} />);
         rendered.find({ 'data-automation-id': tryAgainAutomationId }).simulate('click');
-        androidSetupActionCreatorMock.verify(m => m.next(), Times.once());
+        androidSetupActionCreatorMock.verify(m => m.rescan(), Times.once());
     });
 });

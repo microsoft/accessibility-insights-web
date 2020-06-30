@@ -34,7 +34,7 @@ describe('Android setup step: promptGrantPermissions', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupDeps;
         const step = promptGrantPermissions(null, deps);
-        checkExpectedActionsAreDefined(step, ['cancel', 'next']);
+        checkExpectedActionsAreDefined(step, ['cancel', 'rescan']);
         expect(step.onEnter).not.toBeDefined();
     });
 
@@ -49,7 +49,7 @@ describe('Android setup step: promptGrantPermissions', () => {
         step.actions.cancel();
     });
 
-    it('onEnter transitions to detect-permissions as expected', () => {
+    it('rescan transitions to detect-permissions as expected', () => {
         stepTransitionMock.setup(m => m('detect-permissions')).verifiable(Times.once());
 
         const step = promptGrantPermissions(
@@ -57,6 +57,6 @@ describe('Android setup step: promptGrantPermissions', () => {
             depsMock.object,
             storeCallbacksMock.object,
         );
-        step.actions.next();
+        step.actions.rescan();
     });
 });

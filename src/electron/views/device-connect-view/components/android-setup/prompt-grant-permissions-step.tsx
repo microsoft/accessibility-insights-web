@@ -50,7 +50,7 @@ export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
                 <PrimaryButton
                     text="Try again"
                     data-automation-id={tryAgainAutomationId}
-                    onClick={props.deps.androidSetupActionCreator.next}
+                    onClick={props.deps.androidSetupActionCreator.rescan}
                 />
             </AndroidSetupStepLayout>
         );
