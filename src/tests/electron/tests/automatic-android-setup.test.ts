@@ -6,7 +6,7 @@ import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector
 import { createApplication } from 'tests/electron/common/create-application';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
-describe('AutomaticAndroidSetup', () => {
+describe.skip('AutomaticAndroidSetup', () => {
     let app: AppController;
     let deviceConnectionController: DeviceConnectionDialogController;
 
