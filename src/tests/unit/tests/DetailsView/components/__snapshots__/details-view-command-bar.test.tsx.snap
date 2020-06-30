@@ -7,8 +7,10 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       Target page: 
     </span>
     <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-        command-bar-test-tab-title
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
+        <span className=\\"targetPageTitle\\">
+          command-bar-test-tab-title
+        </span>
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
