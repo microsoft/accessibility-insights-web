@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
@@ -13,6 +14,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
 
     beforeEach(async () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
+        await app.setFeatureFlag(UnifiedFeatureFlags.adbSetupView, false);
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForViewVisible();
         await automatedChecksView.openSettingsPanel();
