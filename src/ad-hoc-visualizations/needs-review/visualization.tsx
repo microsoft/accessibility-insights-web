@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
 import { getNotificationMessage } from '../../ad-hoc-visualizations/issues/get-notification-message';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
@@ -13,6 +14,16 @@ import { generateUID } from '../../common/uid-generator';
 import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
+
+const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells'],
+    resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
+    telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+        telemetryFactory.forNeedsReviewAnalyzerScan,
+    key: AdHocTestkeys.NeedsReview,
+    testType: VisualizationType.NeedsReview,
+    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+};
 
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.NeedsReview,
@@ -38,20 +49,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     launchPanelDisplayOrder: 6,
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>
-        provider.createRuleAnalyzerUnifiedScanForNeedsReview({
-            rules: [
-                'aria-input-field-name',
-                'color-contrast',
-                'td-headers-attr',
-                'th-has-data-cells',
-            ],
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forNeedsReviewAnalyzerScan,
-            key: AdHocTestkeys.NeedsReview,
-            testType: VisualizationType.NeedsReview,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        }),
+        provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) =>
