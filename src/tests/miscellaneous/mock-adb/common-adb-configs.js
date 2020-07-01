@@ -40,6 +40,9 @@ module.exports = {
                     port: 62442,
                 },
             },
+            '-s device-1 forward --remove': {
+                stdout: '/n',
+            },
         },
     },
 };
