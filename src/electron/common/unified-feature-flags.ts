@@ -22,7 +22,7 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.showAllFeatureFlags,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Show all feature flags',
             displayableDescription: 'Show all feature flags in the Preview Features panel.',
             isPreviewFeature: false,
