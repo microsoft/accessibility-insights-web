@@ -126,51 +126,27 @@ describe('DetailsViewStoreTest', () => {
     });
 
     test('onShowReportExportDialog', () => {
-        const actionPayload = {
-            exportName: 'export name',
-            exportDescription: 'export description',
-            exportData: 'export data',
-        };
-        const initialReportExportData = {
-            exportName: '',
-            exportDescription: '',
-            exportData: '',
-            isOpen: false,
-        };
-        const expectedReportExportData = {
-            ...actionPayload,
-            isOpen: true,
-        };
         const initialState = new DetailsViewStoreDataBuilder()
-            .withReportExportData(initialReportExportData)
+            .withReportExportDialogOpen(false)
             .build();
 
         const expectedState = new DetailsViewStoreDataBuilder()
-            .withReportExportData(expectedReportExportData)
+            .withReportExportDialogOpen(true)
             .build();
 
-        createStoreTesterForDetailsViewActions('showReportExportDialog')
-            .withActionParam(actionPayload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForDetailsViewActions('showReportExportDialog').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     test('onDismissReportExportDialog', () => {
-        const initialReportExportData = {
-            exportName: 'export name',
-            exportDescription: 'export description',
-            exportData: 'export data',
-            isOpen: true,
-        };
-        const expectedReportExportData = {
-            ...initialReportExportData,
-            isOpen: false,
-        };
         const initialState = new DetailsViewStoreDataBuilder()
-            .withReportExportData(initialReportExportData)
+            .withReportExportDialogOpen(true)
             .build();
 
         const expectedState = new DetailsViewStoreDataBuilder()
-            .withReportExportData(expectedReportExportData)
+            .withReportExportDialogOpen(false)
             .build();
 
         createStoreTesterForDetailsViewActions(

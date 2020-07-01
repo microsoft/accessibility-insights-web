@@ -17,7 +17,6 @@ import {
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     SetAllUrlsPermissionStatePayload,
-    ShowReportExportDialogPayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
 } from 'background/actions/action-payloads';
@@ -625,20 +624,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     };
 
-    public showReportExportDialog = (
-        exportName: string,
-        exportDescription: string,
-        exportData: string,
-    ) => {
-        const payload: ShowReportExportDialogPayload = {
-            exportName,
-            exportDescription,
-            exportData,
-        };
-
+    public showReportExportDialog = () => {
         const message: Message = {
             messageType: Messages.Visualizations.DetailsView.ShowReportExportDialog,
-            payload,
         };
 
         this.dispatcher.dispatchMessage(message);

@@ -8,27 +8,13 @@ import {
 } from 'DetailsView/components/report-export-button';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(ReportExportButton, () => {
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let reportGeneratorMock: IMock<ReportGenerator>;
-    let htmlGeneratorMock: IMock<(descriptionPlaceholder: string) => string>;
-    let getExportDescriptionMock: IMock<() => string>;
-
-    const pageTitle = 'page title';
-    const scanDate = new Date(1, 2, 3, 4);
-    const reportDescription = 'report description';
-    const reportHtml = 'report html';
-    const reportExportFormat = 'Assessment';
-    const reportName = 'report name';
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-        reportGeneratorMock = Mock.ofType(ReportGenerator);
-        htmlGeneratorMock = Mock.ofInstance(descriptionPlaceholder => '');
-        getExportDescriptionMock = Mock.ofInstance(() => '');
     });
 
     it('renders ReportExportButton', () => {
@@ -40,13 +26,8 @@ describe(ReportExportButton, () => {
 
     it('shows export dialog on click', () => {
         const props = getProps();
-        htmlGeneratorMock.setup(hg => hg(reportDescription)).returns(() => reportHtml);
-        getExportDescriptionMock.setup(g => g()).returns(() => reportDescription);
-        reportGeneratorMock
-            .setup(rg => rg.generateName(reportExportFormat, scanDate, pageTitle))
-            .returns(() => reportName);
         detailsViewActionMessageCreatorMock
-            .setup(d => d.showReportExportDialog(reportName, reportDescription, reportHtml))
+            .setup(d => d.showReportExportDialog())
             .verifiable(Times.once());
 
         const wrapper = shallow(<ReportExportButton {...props} />);
@@ -59,13 +40,7 @@ describe(ReportExportButton, () => {
         return {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-                reportGenerator: reportGeneratorMock.object,
             },
-            reportExportFormat,
-            pageTitle,
-            scanDate,
-            htmlGenerator: htmlGeneratorMock.object,
-            getExportDescription: getExportDescriptionMock.object,
         };
     }
 });
