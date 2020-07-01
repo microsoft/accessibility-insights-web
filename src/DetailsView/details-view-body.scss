@@ -6,21 +6,19 @@
     height: 100%;
 }
 
-:global(.details-view-content-pane-container) {
+.details-view-content-pane-container {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
     padding-bottom: 1px;
-    overflow: auto;
     box-sizing: border-box;
     max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     &:global(.reflow-ui) {
-        word-break: break-word;
         width: calc(100vw - (#{$detailsViewReflowLeftNavWidth}));
         max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
-        &:global(.narrow-mode) {
-            width: 100vw;
-        }
+    }
+    &.narrow-mode {
+        width: 100%;
     }
 }

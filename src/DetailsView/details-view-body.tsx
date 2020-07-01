@@ -81,9 +81,8 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
-        const bodyContentContainerClassName = classNames({
-            'details-view-content-pane-container': true,
-            'narrow-mode': this.props.narrowModeStatus.isHeaderAndNavCollapsed,
+        const bodyContentContainerClassName = classNames(styles.detailsViewContentPaneContainer, {
+            [styles.narrowMode]: this.props.narrowModeStatus.isHeaderAndNavCollapsed,
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
