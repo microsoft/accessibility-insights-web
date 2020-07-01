@@ -3,7 +3,7 @@
 import { AsyncAction } from 'electron/ipc/async-action';
 import { Mock, Times } from 'typemoq';
 
-describe('IpcEventAction', () => {
+describe('AsyncAction', () => {
     it('invokeAsync calls listeners when added', async () => {
         const testSubject = new AsyncAction();
         const listenerMocks = [];
