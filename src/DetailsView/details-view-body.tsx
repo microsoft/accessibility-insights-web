@@ -83,6 +83,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
         const bodyContentContainerClassName = classNames({
             'details-view-content-pane-container': true,
+            'narrow-mode': this.props.narrowModeStatus.isHeaderAndNavCollapsed,
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 

@@ -6,7 +6,7 @@
     height: 100%;
 }
 
-.details-view-content-pane-container {
+:global(.details-view-content-pane-container) {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -17,5 +17,10 @@
     max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     &:global(.reflow-ui) {
         word-break: break-word;
+        width: calc(100vw - (#{$detailsViewReflowLeftNavWidth}));
+        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+        &:global(.narrow-mode) {
+            width: 100vw;
+        }
     }
 }
