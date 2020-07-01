@@ -4,80 +4,90 @@
 // Licensed under the MIT License.
 
 import { Logger } from 'common/logging/logger';
-import { ipcRenderer } from 'electron';
+import { IpcEventAction } from 'electron/ipc/ipc-event-action';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AndroidPortCleaner', () => {
-    let ipcRendererShim: IpcRendererShim;
+    let ipcEventActionMock: IMock<IpcEventAction>;
     let serviceConfigMock: IMock<ServiceConfigurator>;
     let loggerMock: IMock<Logger>;
     let testSubject: AndroidPortCleaner;
+    let callback: () => Promise<void>;
 
     beforeEach(() => {
-        ipcRendererShim = new IpcRendererShim(ipcRenderer);
+        ipcEventActionMock = Mock.ofType<IpcEventAction>(undefined, MockBehavior.Strict);
         serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
-        testSubject = new AndroidPortCleaner(ipcRendererShim, loggerMock.object);
+
+        const ipcRendererShimStub = {
+            fromBrowserWindowClose: ipcEventActionMock.object,
+        } as IpcRendererShim;
+
+        testSubject = new AndroidPortCleaner(ipcRendererShimStub, loggerMock.object);
+
+        ipcEventActionMock
+            .setup(m => m.addAsyncListener(It.isAny()))
+            .callback(cb => (callback = cb));
+
         testSubject.initialize();
     });
 
     afterEach(() => {
+        ipcEventActionMock.verifyAll();
         serviceConfigMock.verifyAll();
         loggerMock.verifyAll();
     });
 
-    it('action invocation does nothing if no serviceConfig is set', () => {
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+    it('action invocation does nothing if no serviceConfig is set', async () => {
+        await callback();
     });
 
-    it('action invocation does nothing if serviceConfig is set then cleared', () => {
+    it('action invocation does nothing if serviceConfig is set then cleared', async () => {
         testSubject.setServiceConfig(serviceConfigMock.object);
         testSubject.setServiceConfig(null);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await callback();
     });
 
-    it('action invocation does nothing if serviceConfig is set but no ports are added', () => {
+    it('action invocation does nothing if serviceConfig is set but no ports are added', async () => {
         testSubject.setServiceConfig(serviceConfigMock.object);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await callback();
     });
 
-    it('action invocation does nothing if serviceConfig is set but no ports are orphaned', () => {
+    it('action invocation does nothing if serviceConfig is set but no ports are orphaned', async () => {
         const port: number = 5;
         testSubject.setServiceConfig(serviceConfigMock.object);
         testSubject.addPort(port);
         testSubject.removePort(port);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await callback();
     });
 
-    it('adding a port is idempotent (validated via action invocation)', () => {
+    it('adding a port is idempotent (validated via action invocation)', async () => {
         const port: number = 6;
         testSubject.setServiceConfig(serviceConfigMock.object);
         testSubject.addPort(port);
         testSubject.addPort(port);
         testSubject.removePort(port);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await callback();
     });
 
-    it('removing a port is idempotent (validated via action invocation)', () => {
+    it('removing a port is idempotent (validated via action invocation)', async () => {
         const port: number = 7;
         testSubject.setServiceConfig(serviceConfigMock.object);
         testSubject.addPort(port);
         testSubject.removePort(port);
         testSubject.removePort(port);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await callback();
     });
 
     it('orphaned ports get removed on action invocation', async () => {
-        const dummyPortList = new Array<string>();
         const port1 = 10;
         const port2 = 20;
         const port3 = 30;
@@ -87,25 +97,20 @@ describe('AndroidPortCleaner', () => {
             .callback(removedPort => removedPorts.push(removedPort))
             .returns(() => Promise.resolve())
             .verifiable(Times.exactly(2));
-        serviceConfigMock
-            .setup(m => m.listForwardedPorts())
-            .returns(() => Promise.resolve(dummyPortList))
-            .verifiable(Times.exactly(2));
         testSubject.setServiceConfig(serviceConfigMock.object);
         testSubject.addPort(port1);
         testSubject.addPort(port2);
         testSubject.addPort(port3);
         testSubject.removePort(port2);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
-        await tick();
+        await callback();
 
         expect(removedPorts.length).toBe(2);
         expect(removedPorts).toContain(port1);
         expect(removedPorts).toContain(port3);
     });
 
-    it('errors in port removal are logged', () => {
+    it('errors in port removal are logged', async () => {
         const expectedMessage = 'thrown during removeTcpForwarding';
         const port = 10;
         let actualError: Error;
@@ -120,7 +125,7 @@ describe('AndroidPortCleaner', () => {
         testSubject.setServiceConfig(serviceConfigMock.object);
         testSubject.addPort(port);
 
-        ipcRendererShim.fromBrowserWindowClose.invoke(null);
+        await callback();
 
         expect(actualError.message).toBe(expectedMessage);
     });

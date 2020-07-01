@@ -80,13 +80,16 @@ describe(IpcRendererShim, () => {
             expect(callCount).toBe(1);
         });
 
-        it('invoke fromBrowserWindowClose on close message from browser, calls closeWindow', () => {
+        it('invoke fromBrowserWindowClose on close message from browser, calls closeWindow, is async', async () => {
             let callCount = 0;
             ipcRendererMock
                 .setup(m => m.send(IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME))
                 .verifiable(Times.once());
-            testSubject.fromBrowserWindowClose.addListener(() => callCount++);
-            ipcHandlers[IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME]();
+            testSubject.fromBrowserWindowClose.addAsyncListener(() => {
+                callCount++;
+                return Promise.resolve();
+            });
+            await ipcHandlers[IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
