@@ -34,6 +34,7 @@ import { DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-
 import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
+import { FlaggedComponent } from 'common/components/flagged-component';
 
 export type DetailsViewBodyDeps = DetailsViewContentDeps &
     DetailsViewLeftNavDeps &
@@ -88,7 +89,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
         return (
             <div className={styles.detailsViewBody}>
-                {this.renderCommandBar()}
+                {this.renderCommandBarUnderHeader()}
                 <div className={bodyLayoutClassName}>
                     {this.renderNavBar()}
                     <div className={bodyContentContainerClassName}>
@@ -112,23 +113,29 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             ...this.props,
         };
 
-        if (this.props.featureFlagStoreData[FeatureFlags.reflowUI]) {
-            return null;
-        }
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
+    private renderCommandBarUnderHeader(): JSX.Element {
+        return (
+            <FlaggedComponent
+                enableJSXElement={null}
+                disableJSXElement={this.renderCommandBar()}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+            />
+        );
+    }
+
     private renderReflowCommandBar(): JSX.Element {
-        const { switcherNavConfiguration } = this.props;
-
-        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
-            ...this.props,
-        };
-
-        if (this.props.featureFlagStoreData[FeatureFlags.reflowUI]) {
-            return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
-        }
-        return null;
+        return (
+            <FlaggedComponent
+                enableJSXElement={this.renderCommandBar()}
+                disableJSXElement={null}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+            />
+        );
     }
 
     private renderNavBar(): JSX.Element {
