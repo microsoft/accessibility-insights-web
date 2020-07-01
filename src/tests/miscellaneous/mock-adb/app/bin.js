@@ -61,7 +61,7 @@ function main() {
 
     result.input = process.argv;
     result.inputCommand = inputCommand;
-    fs.writeFileSync(outputFile, JSON.stringify(result, null, '    '), { flag: 'a' });
+    fs.writeFileSync(outputFile, JSON.stringify(result, null, '    '));
 
     if (result.exitCode != undefined) {
         process.exit(result.exitCode);
