@@ -1177,6 +1177,41 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verifyAll();
     });
 
+    test('showReportExportDialog', () => {
+        const exportName = 'export name';
+        const exportDescription = 'exportDescription';
+        const exportData = 'exportTitle';
+        const payload = {
+            exportName,
+            exportDescription,
+            exportData,
+        };
+        const expectedMessage = {
+            messageType: Messages.Visualizations.DetailsView.ShowReportExportDialog,
+            payload,
+        };
+
+        testSubject.showReportExportDialog(exportName, exportDescription, exportData);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('DismissReportExportDialog', () => {
+        const expectedMessage = {
+            messageType: Messages.Visualizations.DetailsView.DismissReportExportDialog,
+        };
+
+        testSubject.dismissReportExportDialog();
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
     function setupTelemetryFactory(
         methodName: keyof TelemetryDataFactory,
         telemetry: any,

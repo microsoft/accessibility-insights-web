@@ -125,6 +125,59 @@ describe('DetailsViewStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
+    test('onShowReportExportDialog', () => {
+        const actionPayload = {
+            exportName: 'export name',
+            exportDescription: 'export description',
+            exportData: 'export data',
+        };
+        const initialReportExportData = {
+            exportName: '',
+            exportDescription: '',
+            exportData: '',
+            isOpen: false,
+        };
+        const expectedReportExportData = {
+            ...actionPayload,
+            isOpen: true,
+        };
+        const initialState = new DetailsViewStoreDataBuilder()
+            .withReportExportData(initialReportExportData)
+            .build();
+
+        const expectedState = new DetailsViewStoreDataBuilder()
+            .withReportExportData(expectedReportExportData)
+            .build();
+
+        createStoreTesterForDetailsViewActions('showReportExportDialog')
+            .withActionParam(actionPayload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onDismissReportExportDialog', () => {
+        const initialReportExportData = {
+            exportName: 'export name',
+            exportDescription: 'export description',
+            exportData: 'export data',
+            isOpen: true,
+        };
+        const expectedReportExportData = {
+            ...initialReportExportData,
+            isOpen: false,
+        };
+        const initialState = new DetailsViewStoreDataBuilder()
+            .withReportExportData(initialReportExportData)
+            .build();
+
+        const expectedState = new DetailsViewStoreDataBuilder()
+            .withReportExportData(expectedReportExportData)
+            .build();
+
+        createStoreTesterForDetailsViewActions(
+            'dismissReportExportDialog',
+        ).testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     function createStoreTesterForPreviewFeatureActions(
         actionName: keyof PreviewFeaturesActions,
     ): StoreTester<DetailsViewStoreData, PreviewFeaturesActions> {
