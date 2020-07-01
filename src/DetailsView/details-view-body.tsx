@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import * as classNames from 'classnames';
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -34,7 +35,6 @@ import { DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-
 import { TargetPageHiddenBar } from './components/target-page-hidden-bar';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
-import { FlaggedComponent } from 'common/components/flagged-component';
 
 export type DetailsViewBodyDeps = DetailsViewContentDeps &
     DetailsViewLeftNavDeps &
