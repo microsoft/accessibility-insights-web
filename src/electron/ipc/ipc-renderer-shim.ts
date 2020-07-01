@@ -17,6 +17,7 @@ import {
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
+import { IpcEventAction } from 'electron/ipc/ipc-event-action';
 
 export class IpcRendererShim {
     public constructor(private readonly ipcRenderer: IpcRenderer) {}
@@ -45,13 +46,13 @@ export class IpcRendererShim {
         this.fromBrowserWindowUnmaximize.invoke(null, this.invokeScope);
     };
 
-    private onClose = (): void => {
-        this.fromBrowserWindowClose.invoke(null, this.invokeScope);
+    private onClose = async (): Promise<void> => {
+        await this.fromBrowserWindowClose.invokeAsync();
         this.closeWindow();
     };
 
     // Listen to these events to receive data sent TO renderer process
-    public readonly fromBrowserWindowClose = new Action<void>();
+    public readonly fromBrowserWindowClose = new IpcEventAction();
     public readonly fromBrowserWindowMaximize = new Action<void>();
     public readonly fromBrowserWindowUnmaximize = new Action<void>();
     public readonly fromBrowserWindowEnterFullScreen = new Action<void>();

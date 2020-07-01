@@ -15,7 +15,7 @@ export class AndroidPortCleaner {
     ) {}
 
     public initialize(): void {
-        this.ipcRendererShim.fromBrowserWindowClose.addListener(this.removeRemainingPorts);
+        this.ipcRendererShim.fromBrowserWindowClose.addAsyncListener(this.removeRemainingPorts);
     }
 
     public setServiceConfig = (serviceConfig: ServiceConfigurator): void => {
@@ -37,7 +37,6 @@ export class AndroidPortCleaner {
                 if (p) {
                     try {
                         await this.serviceConfig.removeTcpForwarding(p);
-                        await this.serviceConfig.listForwardedPorts(); // Allows ADB to complete
                     } catch (error) {
                         this.logger.log(error);
                     }
