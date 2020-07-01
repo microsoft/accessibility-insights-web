@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IpcEventAction } from 'electron/ipc/ipc-event-action';
+import { AsyncAction } from 'electron/ipc/async-action';
 import { Mock, Times } from 'typemoq';
 
 describe('IpcEventAction', () => {
     it('invokeAsync calls listeners when added', async () => {
-        const testSubject = new IpcEventAction();
+        const testSubject = new AsyncAction();
         const listenerMocks = [];
         for (let i = 0; i <= 3; i++) {
             listenerMocks.push(Mock.ofInstance(async () => {}));

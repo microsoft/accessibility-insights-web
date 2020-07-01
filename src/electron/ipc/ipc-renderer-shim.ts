@@ -3,6 +3,7 @@
 import { Action } from 'common/flux/action';
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { AsyncAction } from 'electron/ipc/async-action';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -17,7 +18,6 @@ import {
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
-import { IpcEventAction } from 'electron/ipc/ipc-event-action';
 
 export class IpcRendererShim {
     public constructor(private readonly ipcRenderer: IpcRenderer) {}
@@ -52,7 +52,7 @@ export class IpcRendererShim {
     };
 
     // Listen to these events to receive data sent TO renderer process
-    public readonly fromBrowserWindowClose = new IpcEventAction();
+    public readonly fromBrowserWindowClose = new AsyncAction();
     public readonly fromBrowserWindowMaximize = new Action<void>();
     public readonly fromBrowserWindowUnmaximize = new Action<void>();
     public readonly fromBrowserWindowEnterFullScreen = new Action<void>();

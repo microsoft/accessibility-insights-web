@@ -4,21 +4,21 @@
 // Licensed under the MIT License.
 
 import { Logger } from 'common/logging/logger';
-import { IpcEventAction } from 'electron/ipc/ipc-event-action';
+import { AsyncAction } from 'electron/ipc/async-action';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AndroidPortCleaner', () => {
-    let ipcEventActionMock: IMock<IpcEventAction>;
+    let ipcEventActionMock: IMock<AsyncAction>;
     let serviceConfigMock: IMock<ServiceConfigurator>;
     let loggerMock: IMock<Logger>;
     let testSubject: AndroidPortCleaner;
     let callback: () => Promise<void>;
 
     beforeEach(() => {
-        ipcEventActionMock = Mock.ofType<IpcEventAction>(undefined, MockBehavior.Strict);
+        ipcEventActionMock = Mock.ofType<AsyncAction>(undefined, MockBehavior.Strict);
         serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
 
