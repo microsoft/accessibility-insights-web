@@ -51,7 +51,7 @@ export const PromptInstallFailedStep = NamedFC<CommonAndroidSetupStepProps>(
                 <PrimaryButton
                     data-automation-id={tryAgainAutomationId}
                     text="Try again"
-                    onClick={props.deps.androidSetupActionCreator.next}
+                    onClick={props.deps.androidSetupActionCreator.rescan}
                 />
             </AndroidSetupStepLayout>
         );

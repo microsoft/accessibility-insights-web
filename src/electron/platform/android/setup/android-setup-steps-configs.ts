@@ -15,6 +15,7 @@ import { promptConfiguringPortForwardingFailed } from 'electron/platform/android
 import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
 import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
 import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
+import { promptInstallFailed } from 'electron/platform/android/setup/steps/prompt-install-failed';
 import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
 import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
 import { waitToStart } from 'electron/platform/android/setup/steps/wait-to-start';
@@ -48,7 +49,7 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'detect-service': detectService,
     'prompt-install-service': promptInstallService,
     'installing-service': installingService,
-    'prompt-install-failed': promptInstallService,
+    'prompt-install-failed': promptInstallFailed,
     'detect-permissions': detectPermissions,
     'prompt-grant-permissions': promptGrantPermissions,
     'configuring-port-forwarding': configuringPortForwarding,
