@@ -7,14 +7,15 @@
 }
 
 .details-view-content-pane-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1px;
+    overflow: auto;
+    box-sizing: border-box;
+    max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     &:global(.reflow-ui) {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
         word-break: break-word;
-        width: calc(100vw - (#{$detailsViewReflowLeftNavWidth}));
-        padding-bottom: 1px;
-        box-sizing: border-box;
-        max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     }
 }
