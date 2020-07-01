@@ -22,7 +22,7 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.showAllFeatureFlags,
-            defaultValue: true,
+            defaultValue: false,
             displayableName: 'Show all feature flags',
             displayableDescription: 'Show all feature flags in the Preview Features panel.',
             isPreviewFeature: false,
@@ -38,7 +38,7 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.adbSetupView,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Enable the new adb experience',
             displayableDescription: 'Enable the new adb setup and installation experience',
             isPreviewFeature: false,
