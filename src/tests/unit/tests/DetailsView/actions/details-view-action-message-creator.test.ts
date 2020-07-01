@@ -1178,20 +1178,11 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('showReportExportDialog', () => {
-        const exportName = 'export name';
-        const exportDescription = 'exportDescription';
-        const exportData = 'exportTitle';
-        const payload = {
-            exportName,
-            exportDescription,
-            exportData,
-        };
         const expectedMessage = {
             messageType: Messages.Visualizations.DetailsView.ShowReportExportDialog,
-            payload,
         };
 
-        testSubject.showReportExportDialog(exportName, exportDescription, exportData);
+        testSubject.showReportExportDialog();
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

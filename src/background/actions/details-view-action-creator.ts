@@ -17,7 +17,7 @@ import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { BaseActionPayload, ShowReportExportDialogPayload } from './action-payloads';
+import { BaseActionPayload } from './action-payloads';
 import { DetailsViewActions } from './details-view-actions';
 
 type SidePanelToTelemetryEventName = {
@@ -114,8 +114,8 @@ export class DetailsViewActionCreator {
         this.detailsViewActions.getCurrentState.invoke(null);
     };
 
-    private showReportExportDialog = (payload: ShowReportExportDialogPayload): void => {
-        this.detailsViewActions.showReportExportDialog.invoke(payload);
+    private showReportExportDialog = (): void => {
+        this.detailsViewActions.showReportExportDialog.invoke(null);
     };
 
     private dismissReportExportDialog = () => {

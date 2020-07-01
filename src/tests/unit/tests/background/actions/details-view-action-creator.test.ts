@@ -217,19 +217,14 @@ describe('DetailsViewActionCreatorTest', () => {
     });
 
     it('handles Visualization.DetailsView.ShowReportExportDialog message', () => {
-        const payload = {
-            exportName: 'export name',
-            exportDescription: 'export description',
-            exportData: 'export data',
-        };
-        const showReportExportDialogMock = createActionMock(payload);
+        const showReportExportDialogMock = createActionMock(null);
         const detailsViewActionsMock = createDetailsViewActionsMock(
             'showReportExportDialog',
             showReportExportDialogMock.object,
         );
         const interpreterMock = createInterpreterMock(
             Messages.Visualizations.DetailsView.ShowReportExportDialog,
-            payload,
+            null,
         );
 
         const testObject = new DetailsViewActionCreator(

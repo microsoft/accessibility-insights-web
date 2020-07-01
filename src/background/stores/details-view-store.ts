@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ShowReportExportDialogPayload } from 'background/actions/action-payloads';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { SidePanel } from 'background/stores/side-panel';
 import { StoreNames } from 'common/stores/store-names';
@@ -37,12 +36,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
                 isSettingsOpen: false,
             },
             detailsViewRightContentPanel: 'Overview',
-            reportExportData: {
-                isOpen: false,
-                exportData: '',
-                exportDescription: '',
-                exportName: '',
-            },
+            isReportExportDialogOpen: false,
         };
 
         return data;
@@ -134,17 +128,13 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         this.emitChanged();
     };
 
-    private onShowReportExportDialog = (payload: ShowReportExportDialogPayload): void => {
-        this.state.reportExportData = {
-            ...payload,
-            isOpen: true,
-        };
+    private onShowReportExportDialog = (): void => {
+        this.state.isReportExportDialogOpen = true;
         this.emitChanged();
-        console.log(this.state);
     };
 
     private onDismissReportExportDialog = (): void => {
-        this.state.reportExportData.isOpen = false;
+        this.state.isReportExportDialogOpen = false;
         this.emitChanged();
     };
 }

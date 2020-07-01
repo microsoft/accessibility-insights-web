@@ -5,7 +5,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { ExportDialog, ExportDialogDeps, ExportDialogProps } from './export-dialog';
+import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ExportDialogWithLocalStateDeps = {
     reportGenerator: ReportGenerator;

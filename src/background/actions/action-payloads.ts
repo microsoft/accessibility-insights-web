@@ -204,9 +204,3 @@ export interface SetAllUrlsPermissionStatePayload extends BaseActionPayload {
 }
 
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
-
-export interface ShowReportExportDialogPayload extends BaseActionPayload {
-    exportName: string;
-    exportDescription: string;
-    exportData: string;
-}
