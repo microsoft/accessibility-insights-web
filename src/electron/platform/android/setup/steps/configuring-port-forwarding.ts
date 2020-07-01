@@ -17,8 +17,6 @@ export const configuringPortForwarding: AndroidSetupStepConfig = (stepTransition
 
             const hostPort = await deps.setupTcpForwarding();
             deps.logger.log(`configured forwarding to tcp:${hostPort}`);
-            // tslint:disable-next-line: no-string-based-set-timeout
-            await new Promise(resolve => setTimeout(resolve, 1000));
             const deviceConfig = await deps.fetchDeviceConfig(hostPort);
 
             store.setScanPort(hostPort);
