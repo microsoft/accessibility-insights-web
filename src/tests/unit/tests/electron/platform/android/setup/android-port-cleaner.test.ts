@@ -11,32 +11,30 @@ import { ServiceConfigurator } from 'electron/platform/android/setup/android-ser
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AndroidPortCleaner', () => {
-    let ipcEventActionMock: IMock<AsyncAction>;
+    let asyncActionMock: IMock<AsyncAction>;
     let serviceConfigMock: IMock<ServiceConfigurator>;
     let loggerMock: IMock<Logger>;
     let testSubject: AndroidPortCleaner;
     let callback: () => Promise<void>;
 
     beforeEach(() => {
-        ipcEventActionMock = Mock.ofType<AsyncAction>(undefined, MockBehavior.Strict);
+        asyncActionMock = Mock.ofType<AsyncAction>(undefined, MockBehavior.Strict);
         serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
 
         const ipcRendererShimStub = {
-            fromBrowserWindowClose: ipcEventActionMock.object,
+            fromBrowserWindowClose: asyncActionMock.object,
         } as IpcRendererShim;
 
         testSubject = new AndroidPortCleaner(ipcRendererShimStub, loggerMock.object);
 
-        ipcEventActionMock
-            .setup(m => m.addAsyncListener(It.isAny()))
-            .callback(cb => (callback = cb));
+        asyncActionMock.setup(m => m.addAsyncListener(It.isAny())).callback(cb => (callback = cb));
 
         testSubject.initialize();
     });
 
     afterEach(() => {
-        ipcEventActionMock.verifyAll();
+        asyncActionMock.verifyAll();
         serviceConfigMock.verifyAll();
         loggerMock.verifyAll();
     });
