@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DetailsViewStore } from 'background/stores/details-view-store';
-import { DetailsViewStoreData } from '../../../common/types/store-data/details-view-store-data';
+import {
+    DetailsViewStoreData,
+    ReportExportDialogData,
+} from '../../../common/types/store-data/details-view-store-data';
 import { DetailsViewRightContentPanelType } from '../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { BaseDataBuilder } from './base-data-builder';
 
@@ -41,6 +44,13 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
 
     public withSettingPanelState(isSettingsOpen: boolean): DetailsViewStoreDataBuilder {
         this.data.currentPanel.isSettingsOpen = isSettingsOpen;
+        return this;
+    }
+
+    public withReportExportData(
+        reportExportData: ReportExportDialogData,
+    ): DetailsViewStoreDataBuilder {
+        this.data.reportExportData = reportExportData;
         return this;
     }
 }

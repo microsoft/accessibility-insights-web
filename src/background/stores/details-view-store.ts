@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ShowReportExportDialogPayload } from 'background/actions/action-payloads';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { SidePanel } from 'background/stores/side-panel';
 import { StoreNames } from 'common/stores/store-names';
@@ -36,6 +37,12 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
                 isSettingsOpen: false,
             },
             detailsViewRightContentPanel: 'Overview',
+            reportExportData: {
+                isOpen: false,
+                exportData: '',
+                exportDescription: '',
+                exportName: '',
+            },
         };
 
         return data;
@@ -63,6 +70,10 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onSetSelectedDetailsViewRightContentPanel,
         );
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.detailsViewActions.showReportExportDialog.addListener(this.onShowReportExportDialog);
+        this.detailsViewActions.dismissReportExportDialog.addListener(
+            this.onDismissReportExportDialog,
+        );
 
         this.sidePanelActions.openSidePanel.addListener(this.onOpenSidePanel);
         this.sidePanelActions.closeSidePanel.addListener(this.onCloseSidePanel);
@@ -120,6 +131,20 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         view: DetailsViewRightContentPanelType,
     ): void => {
         this.state.detailsViewRightContentPanel = view;
+        this.emitChanged();
+    };
+
+    private onShowReportExportDialog = (payload: ShowReportExportDialogPayload): void => {
+        this.state.reportExportData = {
+            ...payload,
+            isOpen: true,
+        };
+        this.emitChanged();
+        console.log(this.state);
+    };
+
+    private onDismissReportExportDialog = (): void => {
+        this.state.reportExportData.isOpen = false;
         this.emitChanged();
     };
 }
