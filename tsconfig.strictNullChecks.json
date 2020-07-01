@@ -4,6 +4,9 @@
         "strictNullChecks": true
     },
     "files": [
+        "./src/background/browser-message-broadcaster-factory.ts",
+        "./src/background/extension-details-view-controller.ts",
+        "./src/background/interpreter.ts",
         "./src/DetailsView/bundled-details-view-styles.ts",
         "./src/DetailsView/components/action-and-cancel-buttons-component.tsx",
         "./src/DetailsView/components/assessment-instance-details-column.tsx",
