@@ -15,7 +15,7 @@ export type BaseSummarySectionProps = {
 export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummarySection', props => {
     const { cards } = props.cardsViewData;
 
-    const countSummary: { [type in InstanceOutcomeType]: number } = {
+    const countSummary = {
         fail: cards.fail.reduce((total, currentFail) => {
             return total + currentFail.nodes.length;
         }, 0),
