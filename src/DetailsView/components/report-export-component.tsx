@@ -21,7 +21,7 @@ export interface ReportExportComponentProps {
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
-    isHidden: boolean;
+    isHidden?: boolean;
 }
 
 export interface ReportExportComponentState {

@@ -14,11 +14,16 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const overflowItems: IContextualMenuItem[] = [
             {
                 key: 'export report',
-                onRender: () => (
-                    <div role="menuitem">
-                        {props.switcherNavConfiguration.ReportExportComponentFactory(props)}
-                    </div>
-                ),
+                onRender: () => {
+                    const exportReportProps = props.switcherNavConfiguration.ReportExportPropsFactory(
+                        props,
+                    );
+                    return (
+                        <div role="menuitem">
+                            <props.ReportExportComponent {...exportReportProps} />;
+                        </div>
+                    );
+                },
             },
             {
                 key: 'start over',

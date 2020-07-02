@@ -14,7 +14,8 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
-  <CommandBarButtonsMenu deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} />
+  <CommandBarButtonsMenu deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} detailsViewStoreData={{...}} ReportExportComponent={[Function]} />
+  <ExportDialogWithLocalState isHidden={true} isOpen={false} />
 </div>"
 `;
 
@@ -33,13 +34,12 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <CustomizedActionButton>
-      Report Export Component
-    </CustomizedActionButton>
+    <TestComponent isHidden={false} />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
   </div>
+  <ExportDialogWithLocalState isHidden={false} isOpen={false} />
 </div>"
 `;
 
@@ -58,10 +58,30 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <CustomizedActionButton>
-      Report Export Component
-    </CustomizedActionButton>
+    <TestComponent isHidden={false} />
   </div>
+  <ExportDialogWithLocalState isHidden={false} isOpen={false} />
+</div>"
+`;
+
+exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
+"<div className=\\"detailsViewCommandBar\\">
+  <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
+    <span id=\\"switch-to-target\\">
+      Target page: 
+    </span>
+    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
+      <StyledLinkBase role=\\"link\\" className=\\"insights-link targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
+        <span className=\\"targetPageTitle\\">
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div className=\\"detailsViewCommandButtons\\">
+    <TestComponent isHidden={true} />
+  </div>
+  <ExportDialogWithLocalState isHidden={true} isOpen={true} />
 </div>"
 `;
 
@@ -80,10 +100,12 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
+    <TestComponent isHidden={true} />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
   </div>
+  <ExportDialogWithLocalState isHidden={true} isOpen={false} />
 </div>"
 `;
 
@@ -101,5 +123,9 @@ exports[`DetailsViewCommandBar renders without export button, without start over
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
+  <div className=\\"detailsViewCommandButtons\\">
+    <TestComponent isHidden={true} />
+  </div>
+  <ExportDialogWithLocalState isHidden={true} isOpen={false} />
 </div>"
 `;

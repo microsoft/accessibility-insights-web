@@ -13,8 +13,10 @@ import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
+import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { ExportDialogWithLocalState } from 'DetailsView/components/export-dialog-with-local-state';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -23,6 +25,7 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponentDeps } from './report-export-component';
+import { ReportExportProps } from './report-export-props-factory';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
@@ -34,7 +37,7 @@ export type DetailsViewCommandBarDeps = {
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
-export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
+export type ReportExportPropsFactory = (props: CommandBarProps) => ReportExportProps;
 
 export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
@@ -51,6 +54,8 @@ export interface DetailsViewCommandBarProps {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
     narrowModeStatus: NarrowModeStatus;
+    detailsViewStoreData: DetailsViewStoreData;
+    ReportExportComponent: React.ComponentType<any>;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -63,6 +68,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             <div className={styles.detailsViewCommandBar}>
                 {this.renderTargetPageInfo()}
                 {this.renderFarItems()}
+                {this.renderExportDialog()}
             </div>
         );
     }
@@ -119,7 +125,22 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderExportComponent(): JSX.Element {
-        return this.props.switcherNavConfiguration.ReportExportComponentFactory(this.props);
+        const reportExportProps = this.props.switcherNavConfiguration.ReportExportPropsFactory(
+            this.props,
+        );
+        return <this.props.ReportExportComponent {...reportExportProps} />;
+    }
+
+    private renderExportDialog(): JSX.Element {
+        const reportExportProps = this.props.switcherNavConfiguration.ReportExportPropsFactory(
+            this.props,
+        );
+        return (
+            <ExportDialogWithLocalState
+                {...reportExportProps}
+                isOpen={this.props.detailsViewStoreData.isReportExportDialogOpen}
+            />
+        );
     }
 
     private renderStartOverComponent(): JSX.Element {

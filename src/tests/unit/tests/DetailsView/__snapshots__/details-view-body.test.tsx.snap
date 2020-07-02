@@ -120,7 +120,7 @@ exports[`DetailsViewBody render render 1`] = `
         Object {
           "CommandBar": [Function],
           "LeftNav": [Function],
-          "ReportExportComponentFactory": [Function],
+          "ReportExportPropsFactory": [Function],
           "StartOverComponentFactory": [Function],
         }
       }
@@ -314,6 +314,7 @@ exports[`DetailsViewBody render render 1`] = `
       className="detailsViewContentPaneContainer reflow-ui"
     >
       <test
+        ReportExportComponent={[Function]}
         assessmentStoreData={
           Object {
             "assessmentNavState": Object {
@@ -424,7 +425,7 @@ exports[`DetailsViewBody render render 1`] = `
           Object {
             "CommandBar": [Function],
             "LeftNav": [Function],
-            "ReportExportComponentFactory": [Function],
+            "ReportExportPropsFactory": [Function],
             "StartOverComponentFactory": [Function],
           }
         }
@@ -735,7 +736,7 @@ exports[`DetailsViewBody render render 1`] = `
               Object {
                 "CommandBar": [Function],
                 "LeftNav": [Function],
-                "ReportExportComponentFactory": [Function],
+                "ReportExportPropsFactory": [Function],
                 "StartOverComponentFactory": [Function],
               }
             }

@@ -24,7 +24,6 @@ import {
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { VisualizationStore } from 'background/stores/visualization-store';
 
 describe('ReportExportPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);

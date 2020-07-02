@@ -13,21 +13,21 @@ import { IMock, Mock, Times } from 'typemoq';
 import {
     DetailsViewCommandBarProps,
     // tslint:disable-next-line: ordered-imports
-    ReportExportComponentFactory,
+    ReportExportPropsFactory,
     StartOverComponentFactory,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('CommandBarButtonsMenu', () => {
-    let reportExportComponentFactory: IMock<ReportExportComponentFactory>;
+    let reportExportPropsFactory: IMock<ReportExportPropsFactory>;
     let startOverComponentFactory: IMock<StartOverComponentFactory>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
-        reportExportComponentFactory = Mock.ofType<ReportExportComponentFactory>();
+        reportExportPropsFactory = Mock.ofType<ReportExportPropsFactory>();
         startOverComponentFactory = Mock.ofType<StartOverComponentFactory>();
         commandBarButtonsMenuProps = {
             switcherNavConfiguration: {
-                ReportExportComponentFactory: reportExportComponentFactory.object,
+                ReportExportPropsFactory: reportExportPropsFactory.object,
                 StartOverComponentFactory: startOverComponentFactory.object,
             } as DetailsViewSwitcherNavConfiguration,
         } as DetailsViewCommandBarProps;
@@ -39,9 +39,9 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders child buttons', () => {
-        reportExportComponentFactory
+        reportExportPropsFactory
             .setup(r => r(commandBarButtonsMenuProps))
-            .returns(() => <></>)
+            .returns(() => null)
             .verifiable(Times.once());
 
         const startOverFactoryProps: StartOverFactoryProps = {
@@ -61,7 +61,7 @@ describe('CommandBarButtonsMenu', () => {
 
         overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
 
-        reportExportComponentFactory.verifyAll();
+        reportExportPropsFactory.verifyAll();
         startOverComponentFactory.verifyAll();
     });
 });
