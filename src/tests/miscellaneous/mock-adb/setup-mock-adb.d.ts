@@ -7,6 +7,7 @@ export type MockAdbConfig = {
         stdout?: string;
         stderr?: string;
         exitCode?: number;
+        delayMs?: number;
         startTestServer?: {
             port: number;
             path: string;
