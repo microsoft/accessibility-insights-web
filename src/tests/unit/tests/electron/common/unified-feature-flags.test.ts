@@ -23,7 +23,7 @@ describe('FeatureFlagsTest', () => {
             [UnifiedFeatureFlags.logTelemetryToConsole]: false,
             [UnifiedFeatureFlags.showAllFeatureFlags]: false,
             [UnifiedFeatureFlags.exportReport]: true,
-            [UnifiedFeatureFlags.adbSetupView]: false,
+            [UnifiedFeatureFlags.adbSetupView]: true,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
