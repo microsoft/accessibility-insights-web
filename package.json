@@ -123,7 +123,7 @@
         "puppeteer": "^4.0.1",
         "react-devtools": "^4.7.0",
         "regenerator-runtime": "^0.13.5",
-        "sass-loader": "^8.0.2",
+        "sass-loader": "^9.0.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
         "simple-git": "^2.11.0",
