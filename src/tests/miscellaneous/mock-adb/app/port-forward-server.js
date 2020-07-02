@@ -35,18 +35,19 @@ async function tryHandleAsPortForwardServer(argv) {
 
 async function waitForReadyMessage(testServerProcess) {
     return new Promise((resolve, reject) => {
-        let canceled = false;
+        let timeoutId = null;
 
         const onMessage = message => {
             if (message === portForwardProcessReadyMessage) {
                 testServerProcess.off('message', onMessage);
-                clearTimeout(timeoutId);
+                if (timeoutId != null) {
+                    clearTimeout(timeoutId);
+                }
                 resolve();
             }
         };
 
         const onTimeout = () => {
-            canceled = true;
             testServerProcess.off('message', onMessage);
             reject(new Error('Timeout: child port-forwarding server never sent ready message'));
         };
