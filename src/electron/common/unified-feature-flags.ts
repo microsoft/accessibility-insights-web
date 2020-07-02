@@ -38,7 +38,7 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.adbSetupView,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Enable the new adb experience',
             displayableDescription: 'Enable the new adb setup and installation experience',
             isPreviewFeature: false,
