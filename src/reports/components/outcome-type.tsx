@@ -31,7 +31,7 @@ export const outcomeIconMap: { [OT in OutcomeType]: JSX.Element } = {
     incomplete: <CircleIcon />,
     fail: <CrossIcon />,
     inapplicable: <InapplicableIcon />,
-    review: <CrossIcon />,
+    review: <CircleIcon />,
 };
 
 export const outcomeIconMapInverted: { [OT in OutcomeType]: JSX.Element } = {
@@ -39,5 +39,5 @@ export const outcomeIconMapInverted: { [OT in OutcomeType]: JSX.Element } = {
     incomplete: <CircleIcon />,
     fail: <CrossIconInverted />,
     inapplicable: <InapplicableIconInverted />,
-    review: <CrossIconInverted />,
+    review: <CircleIcon />,
 };

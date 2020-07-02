@@ -15,12 +15,13 @@ export type BaseSummarySectionProps = {
 export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummarySection', props => {
     const { cards } = props.cardsViewData;
 
-    const countSummary = {
+    const countSummary: { [type in InstanceOutcomeType]: number } = {
         fail: cards.fail.reduce((total, currentFail) => {
             return total + currentFail.nodes.length;
         }, 0),
         pass: cards.pass.length,
         inapplicable: cards.inapplicable.length,
+        review: 0, // never used
     };
 
     return (
@@ -38,7 +39,9 @@ export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummaryS
 export const AllOutcomesSummarySection = NamedFC<SummarySectionProps>(
     'AllOutcomesSummarySection',
     props => {
-        return <BaseSummarySection {...props} outcomeTypesShown={allInstanceOutcomeTypes} />;
+        return (
+            <BaseSummarySection {...props} outcomeTypesShown={['fail', 'pass', 'inapplicable']} />
+        );
     },
 );
 
