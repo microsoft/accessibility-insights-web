@@ -24,7 +24,6 @@ import {
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 
 describe('ReportExportPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -137,132 +136,129 @@ describe('ReportExportPropsFactory', () => {
         scanResult = {} as ScanResults;
     }
 
-    test('getReportExportPropsForAssessment expected properties are set', () => {
-        const props = getProps();
-        const expectedProps = {
-            deps,
-            reportExportFormat: 'Assessment',
-            pageTitle: thePageTitle,
-            scanDate: theDate,
-            featureFlagStoreData,
-        };
+    describe('getReportExportPropsForAssessment', () => {
+        test('expected properties are set', () => {
+            const props = getProps();
+            const expectedProps = {
+                deps,
+                reportExportFormat: 'Assessment',
+                pageTitle: thePageTitle,
+                scanDate: theDate,
+                featureFlagStoreData,
+            };
 
-        const reportExportProps = getReportExportPropsForAssessment(props);
+            const reportExportProps = getReportExportPropsForAssessment(props);
 
-        expect(reportExportProps).toBeDefined();
-        expect(reportExportProps).toMatchObject(expectedProps);
+            expect(reportExportProps).toBeDefined();
+            expect(reportExportProps).toMatchObject(expectedProps);
+        });
+
+        test('htmlGenerator calls reportGenerator', () => {
+            setAssessmentReportGenerator();
+            const props = getProps();
+
+            const reportExportProps = getReportExportPropsForAssessment(props);
+
+            reportExportProps.htmlGenerator(theDescription);
+
+            reportGeneratorMock.verifyAll();
+        });
+
+        test('updatePersistedDescription sends addResultDescription message', () => {
+            const updatedDescription = 'updated description';
+            detailsViewActionMessageCreatorMock
+                .setup(d => d.addResultDescription(updatedDescription))
+                .verifiable(Times.once());
+            const props = getProps();
+
+            const reportExportProps = getReportExportPropsForAssessment(props);
+
+            reportExportProps.updatePersistedDescription(updatedDescription);
+
+            detailsViewActionMessageCreatorMock.verifyAll();
+        });
+
+        test('getExportDescription returns description', () => {
+            const props = getProps();
+
+            const reportExportProps = getReportExportPropsForAssessment(props);
+
+            const exportDescription = reportExportProps.getExportDescription();
+            expect(exportDescription).toEqual(theDescription);
+        });
     });
 
-    test('getReportExportPropsForAssessment htmlGenerator', () => {
-        setAssessmentReportGenerator();
-        const props = getProps();
+    describe('getReportExportPropsForFastPass', () => {
+        test('scanResults is null, props is null', () => {
+            const props = getProps();
+            const reportExportProps = getReportExportPropsForFastPass(props);
 
-        const reportExportProps = getReportExportPropsForAssessment(props);
+            expect(reportExportProps).toBeNull();
+        });
 
-        reportExportProps.htmlGenerator(theDescription);
+        test('scanResults is not null, test is Tabstop, props is null', () => {
+            setScanResults();
+            setSelectedFastPassDetailsView(VisualizationType.TabStops);
+            const props = getProps();
+            const reportExportProps = getReportExportPropsForFastPass(props);
 
-        reportGeneratorMock.verifyAll();
-    });
+            expect(reportExportProps).toBeNull();
+        });
 
-    test('getReportExportPropsForAssessment updatePersistedDescription', () => {
-        const updatedDescription = 'updated description';
-        detailsViewActionMessageCreatorMock
-            .setup(d => d.addResultDescription(updatedDescription))
-            .verifiable(Times.once());
-        const props = getProps();
+        test('scanResults is not null, test is Issues, properties are set', () => {
+            cardsViewData = {} as CardsViewModel;
+            setScanResults();
+            setSelectedFastPassDetailsView(VisualizationType.Issues);
+            const props = getProps();
+            const expectedProps = {
+                deps,
+                reportExportFormat: 'AutomatedChecks',
+                pageTitle: thePageTitle,
+                scanDate: theDate,
+                featureFlagStoreData,
+            };
 
-        const reportExportProps = getReportExportPropsForAssessment(props);
+            const reportExportProps = getReportExportPropsForFastPass(props);
 
-        reportExportProps.updatePersistedDescription(updatedDescription);
+            expect(reportExportProps).toMatchObject(expectedProps);
+        });
 
-        detailsViewActionMessageCreatorMock.verifyAll();
-    });
+        test('htmlGenerator calls reportGenerator', () => {
+            cardsViewData = {} as CardsViewModel;
+            setScanResults();
+            setSelectedFastPassDetailsView(VisualizationType.Issues);
+            setAutomatedChecksReportGenerator();
+            const props = getProps();
 
-    test('getReportExportPropsForAssessment getExportDescription', () => {
-        const props = getProps();
+            const reportExportProps = getReportExportPropsForFastPass(props);
+            reportExportProps.htmlGenerator(theDescription);
 
-        const reportExportProps = getReportExportPropsForAssessment(props);
+            reportGeneratorMock.verifyAll();
+        });
 
-        const exportDescription = reportExportProps.getExportDescription();
-        expect(exportDescription).toEqual(theDescription);
-    });
+        test('updatePersistedDescription returns null', () => {
+            cardsViewData = {} as CardsViewModel;
+            setScanResults();
+            setSelectedFastPassDetailsView(VisualizationType.Issues);
+            setAutomatedChecksReportGenerator();
+            const props = getProps();
 
-    test('getReportExportPropsForFastPass, props is null', () => {
-        const props = getProps();
-        const reportExportProps = getReportExportPropsForFastPass(props);
+            const reportExportProps = getReportExportPropsForFastPass(props);
 
-        expect(reportExportProps).toBeNull();
-    });
+            expect(reportExportProps.updatePersistedDescription('test string')).toBeNull();
+        });
 
-    test('getReportExportPropsForFastPass, scanResults is null, props is null', () => {
-        const props = getProps();
-        const reportExportProps = getReportExportPropsForFastPass(props);
+        test('getExportDescription returns empty string', () => {
+            cardsViewData = {} as CardsViewModel;
+            setScanResults();
+            setSelectedFastPassDetailsView(VisualizationType.Issues);
+            setAutomatedChecksReportGenerator();
+            const props = getProps();
+            const expectedDescription = '';
 
-        expect(reportExportProps).toBeNull();
-    });
+            const reportExportProps = getReportExportPropsForFastPass(props);
 
-    test('getReportExportPropsForFastPass, scanResults is not null, test is Tabstop, props is null', () => {
-        setScanResults();
-        setSelectedFastPassDetailsView(VisualizationType.TabStops);
-        const props = getProps();
-        const reportExportProps = getReportExportPropsForFastPass(props);
-
-        expect(reportExportProps).toBeNull();
-    });
-
-    test('getReportExportPropsForFastPass, scanResults is not null, test is Issues, properties are set', () => {
-        cardsViewData = {} as CardsViewModel;
-        setScanResults();
-        setSelectedFastPassDetailsView(VisualizationType.Issues);
-        const props = getProps();
-        const expectedProps = {
-            deps,
-            reportExportFormat: 'AutomatedChecks',
-            pageTitle: thePageTitle,
-            scanDate: theDate,
-            featureFlagStoreData,
-        };
-
-        const reportExportProps = getReportExportPropsForFastPass(props);
-
-        expect(reportExportProps).toMatchObject(expectedProps);
-    });
-
-    test('getReportExportPropsForFastPass htmlGenerator', () => {
-        cardsViewData = {} as CardsViewModel;
-        setScanResults();
-        setSelectedFastPassDetailsView(VisualizationType.Issues);
-        setAutomatedChecksReportGenerator();
-        const props = getProps();
-
-        const reportExportProps = getReportExportPropsForFastPass(props);
-        reportExportProps.htmlGenerator(theDescription);
-
-        reportGeneratorMock.verifyAll();
-    });
-
-    test('getReportExportPropsForFastPass updatePersistedDescription', () => {
-        cardsViewData = {} as CardsViewModel;
-        setScanResults();
-        setSelectedFastPassDetailsView(VisualizationType.Issues);
-        setAutomatedChecksReportGenerator();
-        const props = getProps();
-
-        const reportExportProps = getReportExportPropsForFastPass(props);
-
-        expect(reportExportProps.updatePersistedDescription('test string')).toBeNull();
-    });
-
-    test('getReportExportPropsForFastPass getExportDescription', () => {
-        cardsViewData = {} as CardsViewModel;
-        setScanResults();
-        setSelectedFastPassDetailsView(VisualizationType.Issues);
-        setAutomatedChecksReportGenerator();
-        const props = getProps();
-        const expectedDescription = '';
-
-        const reportExportProps = getReportExportPropsForFastPass(props);
-
-        expect(reportExportProps.getExportDescription()).toEqual(expectedDescription);
+            expect(reportExportProps.getExportDescription()).toEqual(expectedDescription);
+        });
     });
 });
