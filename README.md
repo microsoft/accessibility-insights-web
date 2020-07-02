@@ -25,8 +25,6 @@ Two projects are built from this repository:
 
 ### Install Accessibility Insights for Android
 
-The application also requires an APK which you can download [here](https://accessibilityinsights.io/en/downloads).
-
 -   MacOS ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryMacOS), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderMacOS), [Production](https://aka.ms/accessibility-insights-for-android/downloads/MacOS))
 -   Windows ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryWindows), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderWindows), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Windows))
 -   Linux ([Canary](https://aka.ms/accessibility-insights-for-android/downloads/CanaryLinux), [Insider](https://aka.ms/accessibility-insights-for-android/downloads/InsiderLinux), [Production](https://aka.ms/accessibility-insights-for-android/downloads/Linux))
