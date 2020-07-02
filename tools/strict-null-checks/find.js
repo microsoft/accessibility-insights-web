@@ -49,13 +49,14 @@ forStrictNullCheckEligibleFiles(repoRoot, () => {}, { includeTests }).then(async
     }
     for (const pair of out) {
         console.log(
-            toFormattedFilePath(pair[0]) +
-                (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
+            toFormattedFilePath(pair[0]),
+            // + (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
         );
     }
 });
 
 function toFormattedFilePath(file) {
     // return `"./${path.relative(srcRoot, file)}",`;
-    return `- [ ] \`"./${path.relative(srcRoot, file)}"\``;
+    const relativePath = path.relative(srcRoot, file).replace(/\\/g, '/');
+    return `"./src/${relativePath}",`;
 }
