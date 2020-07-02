@@ -23,7 +23,7 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
     const { outcomeType, rule } = props;
 
     const renderCountBadge = () => {
-        if (outcomeType !== 'fail') {
+        if (outcomeType !== 'fail' && outcomeType !== 'review') {
             return null;
         }
 

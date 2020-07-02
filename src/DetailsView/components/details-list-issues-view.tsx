@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
@@ -20,6 +21,7 @@ export interface DetailsListIssuesViewProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
+    selectedTest: VisualizationType;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -41,6 +43,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 userConfigurationStoreData={props.userConfigurationStoreData}
                 scanMetadata={props.scanMetadata}
                 cardsViewData={props.cardsViewData}
+                selectedTest={props.selectedTest}
             />
         );
     },

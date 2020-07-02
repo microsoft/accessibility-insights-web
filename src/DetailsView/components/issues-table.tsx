@@ -6,6 +6,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationType } from 'common/types/visualization-type';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -28,6 +29,7 @@ export interface IssuesTableProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
+    selectedTest: VisualizationType;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -79,6 +81,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 cardsViewData={this.props.cardsViewData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 scanMetadata={this.props.scanMetadata}
+                selectedTest={this.props.selectedTest}
             />
         );
     }
