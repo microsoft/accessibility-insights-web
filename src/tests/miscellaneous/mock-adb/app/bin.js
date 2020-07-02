@@ -39,6 +39,11 @@ async function main() {
 
     const result = config[inputCommand] != undefined ? config[inputCommand] : defaultResult;
 
+    if (result.delayMs != undefined) {
+        await new Promise(resolve => {
+            setTimeout(resolve, result.delayMs);
+        });
+    }
     if (result.startTestServer != undefined) {
         const { port, path } = result.startTestServer;
         stopDetachedPortForwardServer(port);
