@@ -4,17 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const {
-    portForwardSentinelArgument,
     startDetachedPortForwardServer,
     stopDetachedPortForwardServer,
+    tryHandleAsPortForwardServer,
 } = require('./port-forward-server.js');
-const { startMockService } = require('../../mock-service-for-android/mock-service');
 
-function main() {
-    if (process.argv[2] === portForwardSentinelArgument) {
-        const port = parseInt(process.argv[3], 10);
-        const path = process.argv[4];
-        startMockService(port, path);
+async function main() {
+    if (await tryHandleAsPortForwardServer(process.argv)) {
         return;
     }
 
@@ -46,7 +42,7 @@ function main() {
     if (result.startTestServer != undefined) {
         const { port, path } = result.startTestServer;
         stopDetachedPortForwardServer(port);
-        result.testServerPid = startDetachedPortForwardServer(port, path);
+        result.testServerPid = await startDetachedPortForwardServer(port, path);
     }
     if (result.stopTestServer != undefined) {
         const { port } = result.stopTestServer;
@@ -68,4 +64,7 @@ function main() {
     }
 }
 
-main();
+main().catch(e => {
+    console.error(`mock-adb error: ${e.stack}`);
+    process.exit(1);
+});
