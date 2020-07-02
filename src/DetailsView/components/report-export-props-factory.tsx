@@ -2,11 +2,15 @@
 // Licensed under the MIT License.
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { ExportDialogWithLocalStateProps } from 'DetailsView/components/export-dialog-with-local-state';
+import { ReportExportButtonProps } from 'DetailsView/components/report-export-button';
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 
-export function getReportExportPropsForAssessment(
-    props: CommandBarProps,
-): ReportExportComponentProps {
+export type ReportExportProps = ReportExportComponentProps &
+    ReportExportButtonProps &
+    Omit<ExportDialogWithLocalStateProps, 'isOpen'>;
+
+export function getReportExportPropsForAssessment(props: CommandBarProps): ReportExportProps {
     const {
         deps,
         assessmentStoreData,
@@ -15,7 +19,7 @@ export function getReportExportPropsForAssessment(
         scanMetadata,
     } = props;
     const reportGenerator = deps.reportGenerator;
-    const reportExportComponentProps: ReportExportComponentProps = {
+    return {
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
@@ -32,31 +36,30 @@ export function getReportExportPropsForAssessment(
             props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
+        isHidden: false,
     };
-
-    return reportExportComponentProps;
 }
 
-export function getReportExportPropsForFastPass(
-    props: CommandBarProps,
-): ReportExportComponentProps {
+export function getReportExportPropsForFastPass(props: CommandBarProps): ReportExportProps {
+    let isHidden = false;
+
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {
-        return null;
+        isHidden = true;
     }
 
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
 
     if (selectedTest !== VisualizationType.Issues) {
-        return null;
+        isHidden = true;
     }
 
     const { deps } = props;
     const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
-    const reportExportComponentProps: ReportExportComponentProps = {
+    return {
         deps: deps,
         scanDate: scanDate,
         pageTitle: props.scanMetadata.targetAppInfo.name,
@@ -71,7 +74,6 @@ export function getReportExportPropsForFastPass(
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,
+        isHidden,
     };
-
-    return reportExportComponentProps;
 }

@@ -40,10 +40,17 @@ describe('ReportExportComponentTest', () => {
             featureFlagStoreData: {
                 'test-feature-flag': true,
             },
+            isHidden: false,
         };
     });
 
     test('render', () => {
+        const wrapper = shallow(<ReportExportComponent {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test('render with button hidden', () => {
+        props.isHidden = true;
         const wrapper = shallow(<ReportExportComponent {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });

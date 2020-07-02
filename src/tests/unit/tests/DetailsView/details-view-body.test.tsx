@@ -65,7 +65,7 @@ describe('DetailsViewBody', () => {
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
-                ReportExportComponentFactory: p => null,
+                ReportExportPropsFactory: p => null,
                 StartOverComponentFactory: p => null,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;

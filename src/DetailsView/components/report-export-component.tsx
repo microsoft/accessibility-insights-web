@@ -21,6 +21,7 @@ export interface ReportExportComponentProps {
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
+    isHidden: boolean;
 }
 
 export interface ReportExportComponentState {
@@ -71,8 +72,13 @@ export class ReportExportComponent extends React.Component<
     };
 
     public render(): JSX.Element {
-        const { deps, reportExportFormat } = this.props;
+        const { deps, reportExportFormat, isHidden } = this.props;
         const { isOpen, exportName, exportDescription, exportData } = this.state;
+
+        if (isHidden === true) {
+            return null;
+        }
+
         return (
             <>
                 <InsightsCommandButton

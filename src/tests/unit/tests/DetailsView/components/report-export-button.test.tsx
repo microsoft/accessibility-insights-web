@@ -24,6 +24,13 @@ describe(ReportExportButton, () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
+    it('renders ReportExportButton with isHidden = true', () => {
+        const props = getProps(true);
+
+        const wrapper = shallow(<ReportExportButton {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
     it('shows export dialog on click', () => {
         const props = getProps();
         detailsViewActionMessageCreatorMock
@@ -36,11 +43,12 @@ describe(ReportExportButton, () => {
         detailsViewActionMessageCreatorMock.verifyAll();
     });
 
-    function getProps(): ReportExportButtonProps {
+    function getProps(isHidden: boolean = false): ReportExportButtonProps {
         return {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
+            isHidden,
         };
     }
 });

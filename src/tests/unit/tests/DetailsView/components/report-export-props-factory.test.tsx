@@ -24,6 +24,7 @@ import {
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { VisualizationStore } from 'background/stores/visualization-store';
 
 describe('ReportExportPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -69,7 +70,7 @@ describe('ReportExportPropsFactory', () => {
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         cardsViewData = null;
         scanResult = null;
-        visualizationStoreData = null;
+        visualizationStoreData = {} as VisualizationStoreData;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             getCurrentDate: () => theDate,
@@ -145,6 +146,7 @@ describe('ReportExportPropsFactory', () => {
                 pageTitle: thePageTitle,
                 scanDate: theDate,
                 featureFlagStoreData,
+                isHidden: false,
             };
 
             const reportExportProps = getReportExportPropsForAssessment(props);
@@ -193,16 +195,17 @@ describe('ReportExportPropsFactory', () => {
             const props = getProps();
             const reportExportProps = getReportExportPropsForFastPass(props);
 
-            expect(reportExportProps).toBeNull();
+            expect(reportExportProps).toMatchObject({ isHidden: true });
         });
 
         test('scanResults is not null, test is Tabstop, props is null', () => {
             setScanResults();
             setSelectedFastPassDetailsView(VisualizationType.TabStops);
             const props = getProps();
+
             const reportExportProps = getReportExportPropsForFastPass(props);
 
-            expect(reportExportProps).toBeNull();
+            expect(reportExportProps).toMatchObject({ isHidden: true });
         });
 
         test('scanResults is not null, test is Issues, properties are set', () => {
@@ -216,6 +219,7 @@ describe('ReportExportPropsFactory', () => {
                 pageTitle: thePageTitle,
                 scanDate: theDate,
                 featureFlagStoreData,
+                isHidden: false,
             };
 
             const reportExportProps = getReportExportPropsForFastPass(props);

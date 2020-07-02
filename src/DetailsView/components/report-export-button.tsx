@@ -11,12 +11,17 @@ export type ReportExportButtonDeps = {
 
 export interface ReportExportButtonProps {
     deps: ReportExportButtonDeps;
+    isHidden: boolean;
 }
 
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
     const onExportButtonClick = () => {
         props.deps.detailsViewActionMessageCreator.showReportExportDialog();
     };
+
+    if (props.isHidden === true) {
+        return null;
+    }
 
     return (
         <InsightsCommandButton iconProps={{ iconName: 'Export' }} onClick={onExportButtonClick}>

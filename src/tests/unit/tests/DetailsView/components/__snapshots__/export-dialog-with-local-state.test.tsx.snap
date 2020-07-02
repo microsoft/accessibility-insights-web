@@ -224,6 +224,8 @@ exports[`ExportDialogWithLocalState render with dialog closed 1`] = `
 />
 `;
 
+exports[`ExportDialogWithLocalState render with dialog hidden 1`] = `null`;
+
 exports[`ExportDialogWithLocalState render with dialog open 1`] = `
 <ExportDialog
   deps={
