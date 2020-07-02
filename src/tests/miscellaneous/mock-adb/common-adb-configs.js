@@ -23,7 +23,7 @@ function workingDeviceCommands(deviceIds, port) {
     }
 
     for (const id of deviceIds) {
-        output[`-s ${id} devices`] = { ...output.devices };
+        output[`-s ${id} devices`] = cloneDeep(output.devices);
         output[`-s ${id} shell getprop ro.product.model`] = {
             stdout: `working mock device (${id})`,
         };
