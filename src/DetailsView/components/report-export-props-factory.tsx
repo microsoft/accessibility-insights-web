@@ -2,13 +2,11 @@
 // Licensed under the MIT License.
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import {
-    ReportExportComponent,
-    ReportExportComponentProps,
-} from 'DetailsView/components/report-export-component';
-import * as React from 'react';
+import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 
-export function getReportExportComponentForAssessment(props: CommandBarProps): JSX.Element {
+export function getReportExportPropsForAssessment(
+    props: CommandBarProps,
+): ReportExportComponentProps {
     const {
         deps,
         assessmentStoreData,
@@ -36,10 +34,12 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
         featureFlagStoreData: props.featureFlagStoreData,
     };
 
-    return <ReportExportComponent {...reportExportComponentProps} />;
+    return reportExportComponentProps;
 }
 
-export function getReportExportComponentForFastPass(props: CommandBarProps): JSX.Element {
+export function getReportExportPropsForFastPass(
+    props: CommandBarProps,
+): ReportExportComponentProps {
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {
@@ -73,5 +73,5 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         featureFlagStoreData: props.featureFlagStoreData,
     };
 
-    return <ReportExportComponent {...reportExportComponentProps} />;
+    return reportExportComponentProps;
 }
