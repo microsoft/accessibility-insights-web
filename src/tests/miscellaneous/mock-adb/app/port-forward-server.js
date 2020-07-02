@@ -52,7 +52,7 @@ async function waitForReadyMessage(testServerProcess) {
             reject(new Error('Timeout: child port-forwarding server never sent ready message'));
         };
 
-        const timeoutId = setTimeout(onTimeout, portForwardProcessStartTimeoutMs);
+        timeoutId = setTimeout(onTimeout, portForwardProcessStartTimeoutMs);
         testServerProcess.on('message', onMessage);
     });
 }
