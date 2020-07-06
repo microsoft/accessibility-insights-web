@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Markup from 'assessments/markup';
-import { FailedInstancesSectionProps } from 'common/components/cards/failed-instances-section';
-import { NeedsReviewInstancesSectionProps } from 'common/components/cards/needs-review-instances-section';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { InstancesSectionProps } from 'DetailsView/components/adhoc-issues-test-view';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -31,9 +30,7 @@ export interface IssuesTableProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
-    instancesSection: ReactFCWithDisplayName<
-        FailedInstancesSectionProps & NeedsReviewInstancesSectionProps
-    >;
+    instancesSection: ReactFCWithDisplayName<InstancesSectionProps>;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {

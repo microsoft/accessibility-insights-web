@@ -18,7 +18,7 @@ export type NeedsReviewInstancesSectionProps = {
 };
 
 export const NeedsReviewInstancesSection = NamedFC<NeedsReviewInstancesSectionProps>(
-    'FailedAndUnknownInstancesSection',
+    'NeedsReviewInstancesSection',
     ({
         cardsViewData,
         deps,

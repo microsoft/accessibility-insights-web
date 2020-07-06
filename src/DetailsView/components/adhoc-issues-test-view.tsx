@@ -19,8 +19,12 @@ import * as React from 'react';
 import { NamedFC, ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
+import { FailedInstancesSectionProps } from 'common/components/cards/failed-instances-section';
+import { NeedsReviewInstancesSectionProps } from 'common/components/cards/needs-review-instances-section';
 
 export type AdhocIssuesTestViewDeps = DetailsListIssuesViewDeps & ScanIncompleteWarningDeps;
+
+export type InstancesSectionProps = FailedInstancesSectionProps & NeedsReviewInstancesSectionProps;
 
 export type AdhocIssuesTestViewProps = {
     deps: AdhocIssuesTestViewDeps;
@@ -35,7 +39,7 @@ export type AdhocIssuesTestViewProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
-    instancesSection: ReactFCWithDisplayName; // specify type?
+    instancesSection: ReactFCWithDisplayName<InstancesSectionProps>;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
