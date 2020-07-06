@@ -55,34 +55,13 @@ describe('CommandBarButtonsMenu', () => {
 
         const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
         const renderedProps = wrapper.getElement().props;
-        const overflowItems: IOverflowSetItemProps[] = renderedProps.overflowItems;
-        const onRenderItem: (props: IOverflowSetItemProps) => JSX.Element =
-            renderedProps.onRenderItem;
+        const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
         expect(overflowItems).toBeDefined();
         expect(overflowItems).toHaveLength(2);
-        expect(onRenderItem).toBeDefined();
 
-        overflowItems.forEach(item => {
-            onRenderItem(item);
-        });
+        overflowItems.forEach(item => item.onRender());
 
         reportExportComponentFactory.verifyAll();
         startOverComponentFactory.verifyAll();
-    });
-
-    it('renders overflow button', () => {
-        const overflowItems: IOverflowSetItemProps[] = [
-            {
-                key: 'item 1',
-            },
-            {
-                key: 'item 2',
-            },
-        ];
-        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        const onRenderOverflowButton = wrapper.getElement().props.onRenderOverflowButton;
-        expect(onRenderOverflowButton).toBeDefined();
-
-        expect(onRenderOverflowButton(overflowItems)).toMatchSnapshot();
     });
 });
