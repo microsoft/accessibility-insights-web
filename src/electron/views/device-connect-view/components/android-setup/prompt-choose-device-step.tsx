@@ -19,7 +19,6 @@ import * as styles from './prompt-choose-device-step.scss';
 export type PromptChooseDeviceStepState = {
     selectedDevice: DeviceInfo;
 };
-
 export class PromptChooseDeviceStep extends React.Component<
     CommonAndroidSetupStepProps,
     PromptChooseDeviceStepState

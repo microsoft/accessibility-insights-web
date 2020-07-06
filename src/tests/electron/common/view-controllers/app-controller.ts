@@ -7,6 +7,7 @@ import { DeviceConnectionDialogController } from 'tests/electron/common/view-con
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
+import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 
 export class AppController {
     public client: SpectronAsyncClient;
@@ -34,15 +35,19 @@ export class AppController {
         return deviceConnectionDialog;
     }
 
-    public async openAndroidSetupView(): Promise<AndroidSetupViewController> {
+    public async openAndroidSetupView(
+        step: AndroidSetupStepId,
+    ): Promise<AndroidSetupViewController> {
         await this.setFeatureFlag(UnifiedFeatureFlags.adbSetupView, true);
         const androidSetupController = new AndroidSetupViewController(this.client);
-        await androidSetupController.waitForDialogVisible();
+        await androidSetupController.waitForDialogVisible(step);
         return androidSetupController;
     }
 
     public async openAutomatedChecksView(): Promise<AutomatedChecksViewController> {
-        const androidSetupViewController = await this.openAndroidSetupView();
+        const androidSetupViewController = await this.openAndroidSetupView(
+            'prompt-connected-start-testing',
+        );
         await androidSetupViewController.startTesting();
 
         const automatedChecksView = new AutomatedChecksViewController(this.client);

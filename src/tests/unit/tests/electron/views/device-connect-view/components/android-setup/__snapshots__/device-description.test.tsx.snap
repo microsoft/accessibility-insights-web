@@ -3,6 +3,7 @@
 exports[`DeviceDescription renders with currentApplication 1`] = `
 <div
   className="content"
+  data-automation-id="device-description"
 >
   <StyledIconBase
     ariaLabel="Device"
@@ -26,6 +27,7 @@ exports[`DeviceDescription renders with currentApplication 1`] = `
 exports[`DeviceDescription renders with device 1`] = `
 <div
   className="content"
+  data-automation-id="device-description"
 >
   <StyledIconBase
     ariaLabel="Device"
@@ -40,6 +42,7 @@ exports[`DeviceDescription renders with device 1`] = `
 exports[`DeviceDescription renders with emulator 1`] = `
 <div
   className="content"
+  data-automation-id="device-description"
 >
   <StyledIconBase
     ariaLabel="Emulator"
@@ -54,6 +57,7 @@ exports[`DeviceDescription renders with emulator 1`] = `
 exports[`DeviceDescription renders with extra classname 1`] = `
 <div
   className="content my-class"
+  data-automation-id="device-description"
 >
   <StyledIconBase
     ariaLabel="Emulator"
