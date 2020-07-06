@@ -30,7 +30,6 @@ export const FailedAndUnknownInstancesSection = NamedFC<FailedAndUnknownInstance
             return null;
         }
 
-        // could maybe just re-use it all.... or divide behavior here too?
         const count =
             cardsViewData.cards.fail.reduce((total, rule) => {
                 return total + rule.nodes.length;

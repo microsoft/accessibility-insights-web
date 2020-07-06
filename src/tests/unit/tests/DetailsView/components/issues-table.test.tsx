@@ -3,6 +3,7 @@
 import { DateProvider } from 'common/date-provider';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     IssuesTable,
     IssuesTableDeps,
@@ -82,6 +83,7 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private featureFlags = {};
     private deps: IssuesTableDeps;
+    private testStub: VisualizationType = -1;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
@@ -122,6 +124,7 @@ class TestPropsBuilder {
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,
+            selectedTest: this.testStub,
         };
     }
 }

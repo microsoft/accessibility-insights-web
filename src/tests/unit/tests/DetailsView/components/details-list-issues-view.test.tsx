@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -25,6 +26,7 @@ describe('DetailsListIssuesView', () => {
     let scanDataStub: ScanData;
     let visualizationStoreDataStub: VisualizationStoreData;
     let detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    let typeStub: VisualizationType;
 
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
@@ -41,6 +43,7 @@ describe('DetailsListIssuesView', () => {
             scanning: 'test-scanning',
         } as VisualizationStoreData;
         detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
+        typeStub = -1;
 
         props = {
             deps: {
@@ -56,6 +59,7 @@ describe('DetailsListIssuesView', () => {
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
+            selectedTest: typeStub,
         } as DetailsListIssuesViewProps;
 
         getStoreDataMock

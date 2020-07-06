@@ -60,6 +60,7 @@ exports[`DetailsListIssuesView should return issues table with scanning to false
   }
   issuesEnabled={true}
   scanning={false}
+  selectedTest={-1}
   subtitle={
     <React.Fragment>
       test subtitle

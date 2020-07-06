@@ -129,6 +129,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           },
         }
       }
+      selectedTest={-1}
       userConfigurationStoreData={
         Object {
           "bugService": "gitHub",
