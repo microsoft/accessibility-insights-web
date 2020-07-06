@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    FailedAndUnknownInstancesSection,
-    FailedAndUnknownInstancesSectionDeps,
-    FailedAndUnknownInstancesSectionProps,
-} from 'common/components/cards/failed-and-unknown-instances-section';
+    NeedsReviewInstancesSection,
+    NeedsReviewInstancesSectionDeps,
+    NeedsReviewInstancesSectionProps,
+} from 'common/components/cards/needs-review-instances-section';
 import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
@@ -12,7 +12,7 @@ import * as React from 'react';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-describe('FailedAndUnknownInstancesSection', () => {
+describe('NeedsReviewInstancesSection', () => {
     const resultsWithFailures: CardRuleResultsByStatus = {
         fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
         pass: [],
@@ -56,13 +56,13 @@ describe('FailedAndUnknownInstancesSection', () => {
             ${{ cards: nonEmptyResults }}                | ${false}                 | ${'with alerting off'}
         `('$description', ({ results, shouldAlertFailuresCount }) => {
             const props = {
-                deps: {} as FailedAndUnknownInstancesSectionDeps,
+                deps: {} as NeedsReviewInstancesSectionDeps,
                 cardsViewData: results,
                 shouldAlertFailuresCount,
                 scanMetadata,
-            } as FailedAndUnknownInstancesSectionProps;
+            } as NeedsReviewInstancesSectionProps;
 
-            const wrapper = shallow(<FailedAndUnknownInstancesSection {...props} />);
+            const wrapper = shallow(<NeedsReviewInstancesSection {...props} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });

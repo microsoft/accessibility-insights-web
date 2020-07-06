@@ -8,16 +8,16 @@ import { CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
 
-export type FailedAndUnknownInstancesSectionDeps = ResultSectionDeps;
-export type FailedAndUnknownInstancesSectionProps = {
-    deps: FailedAndUnknownInstancesSectionDeps;
+export type NeedsReviewInstancesSectionDeps = ResultSectionDeps;
+export type NeedsReviewInstancesSectionProps = {
+    deps: NeedsReviewInstancesSectionDeps;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     shouldAlertFailuresCount?: boolean;
 };
 
-export const FailedAndUnknownInstancesSection = NamedFC<FailedAndUnknownInstancesSectionProps>(
+export const NeedsReviewInstancesSection = NamedFC<NeedsReviewInstancesSectionProps>(
     'FailedAndUnknownInstancesSection',
     ({
         cardsViewData,

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
 import { getNotificationMessage } from '../../ad-hoc-visualizations/issues/get-notification-message';
@@ -28,7 +29,9 @@ const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.NeedsReview,
     testMode: TestMode.Adhoc,
-    getTestView: props => <AdhocIssuesTestView {...props} />,
+    getTestView: props => (
+        <AdhocIssuesTestView instancesSection={NeedsReviewInstancesSection} {...props} />
+    ),
     getStoreData: data => data.adhoc.needsReview,
     enableTest: data => (data.enabled = true),
     disableTest: data => (data.enabled = false),

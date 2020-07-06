@@ -16,7 +16,7 @@ import {
 } from 'DetailsView/components/scan-incomplete-warning';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import * as React from 'react';
-import { NamedFC } from '../../common/react/named-fc';
+import { NamedFC, ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
@@ -35,6 +35,7 @@ export type AdhocIssuesTestViewProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
+    instancesSection: ReactFCWithDisplayName; // specify type?
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
