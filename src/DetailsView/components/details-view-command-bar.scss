@@ -32,3 +32,14 @@
         flex: 1 1 auto;
     }
 }
+
+.target-page-title {
+    width: 100%;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.target-page-link {
+    width: 100%;
+}

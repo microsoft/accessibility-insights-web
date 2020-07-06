@@ -31,7 +31,12 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
 
     return (
         <div className={css(styles.content, props.className)}>
-            <Icon iconName={iconName} className={styles.iconContent} ariaLabel={iconAriaLabel} />
+            <Icon
+                iconName={iconName}
+                className={styles.iconContent}
+                ariaLabel={iconAriaLabel}
+                role="img"
+            />
             {descriptionAndApp}
         </div>
     );

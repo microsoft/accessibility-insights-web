@@ -24,17 +24,18 @@ import {
 } from './state-machine/state-machine-step-configs';
 import { detectAdb } from './steps/detect-adb';
 
-export type AndroidSetupStepConfigDeps = AndroidSetupDeps & AndroidSetupStoreCallbacks;
-
 export type AndroidSetupStepConfig = StateMachineStepConfig<
+    AndroidSetupStepId,
     AndroidSetupActions,
-    AndroidSetupStepConfigDeps
+    AndroidSetupDeps,
+    AndroidSetupStoreCallbacks
 >;
 
 type AndroidSetupStepConfigs = StateMachineStepConfigs<
     AndroidSetupStepId,
     AndroidSetupActions,
-    AndroidSetupStepConfigDeps
+    AndroidSetupDeps,
+    AndroidSetupStoreCallbacks
 >;
 
 export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {

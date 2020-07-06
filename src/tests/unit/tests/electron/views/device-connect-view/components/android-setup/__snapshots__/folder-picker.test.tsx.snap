@@ -15,7 +15,7 @@ exports[`FolderPicker renders per snapshot 1`] = `
   >
     <StyledTextFieldBase
       aria-describedby="folder-picker-instructions__1"
-      aria-label="Enter a path"
+      ariaLabel="Enter a path"
       className="textField"
       iconProps={
         Object {
@@ -23,7 +23,7 @@ exports[`FolderPicker renders per snapshot 1`] = `
         }
       }
       onChange={[Function]}
-      placeholder="Enter a path..."
+      placeholder="adb path"
       value="/path/to/folder"
     />
     <CustomizedPrimaryButton

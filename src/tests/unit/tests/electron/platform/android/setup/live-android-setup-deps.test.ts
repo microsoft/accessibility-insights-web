@@ -8,16 +8,16 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidSetupDeps', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
-    let serviceConfigFactoryMock: IMock<AndroidServiceConfiguratorFactory>;
-    let serviceConfigMock: IMock<AndroidServiceConfigurator>;
+    let serviceConfigFactoryMock: IMock<ServiceConfiguratorFactory>;
+    let serviceConfigMock: IMock<ServiceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let fetchConfigMock: IMock<DeviceConfigFetcher>;
@@ -25,11 +25,11 @@ describe('LiveAndroidSetupDeps', () => {
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
-        serviceConfigFactoryMock = Mock.ofType<AndroidServiceConfiguratorFactory>(
+        serviceConfigFactoryMock = Mock.ofType<ServiceConfiguratorFactory>(
             undefined,
             MockBehavior.Strict,
         );
-        serviceConfigMock = Mock.ofType<AndroidServiceConfigurator>(undefined, MockBehavior.Strict);
+        serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
         configMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>(
             undefined,
@@ -301,38 +301,6 @@ describe('LiveAndroidSetupDeps', () => {
         await initializeServiceConfig();
 
         await testSubject.removeTcpForwarding(port);
-
-        verifyAllMocks();
-    });
-
-    it('getApplicationName returns app name when successful', async () => {
-        const config: DeviceConfig = {
-            appIdentifier: 'Wonderful App',
-        } as DeviceConfig;
-
-        const p = new Promise<DeviceConfig>(resolve => resolve(config));
-
-        fetchConfigMock
-            .setup(m => m(62442))
-            .returns(() => p)
-            .verifiable();
-
-        const appName = await testSubject.getApplicationName();
-
-        expect(appName).toEqual(config.appIdentifier);
-
-        verifyAllMocks();
-    });
-
-    it('getApplicationName returns empty string on error', async () => {
-        fetchConfigMock
-            .setup(m => m(62442))
-            .throws(Error('some error'))
-            .verifiable();
-
-        const appName = await testSubject.getApplicationName();
-
-        expect(appName).toEqual('');
 
         verifyAllMocks();
     });

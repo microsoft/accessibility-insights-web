@@ -4,22 +4,40 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 
-export type NarrowModeDetectorProps<P = { isNarrowMode: boolean }> = {
+export type NarrowModeStatus = {
+    isHeaderAndNavCollapsed: boolean;
+    isCommandBarCollapsed: boolean;
+};
+
+export type NarrowModeDetectorProps<P = { narrowModeStatus: NarrowModeStatus }> = {
     isNarrowModeEnabled: boolean;
-    Component: ReactFCWithDisplayName<P & { isNarrowMode: boolean }>;
+    Component: ReactFCWithDisplayName<P & { narrowModeStatus: NarrowModeStatus }>;
     childrenProps: P;
 };
 
-const NARROW_MODE_THRESHOLD_IN_PIXEL = 600;
+export const narrowModeThresholds = {
+    collapseHeaderAndNavThreshold: 600,
+    collapseCommandBarThreshold: 960,
+};
 
 export function getNarrowModeComponentWrapper<P>(
     props: NarrowModeDetectorProps<P>,
 ): (dimensions: { width: number }) => JSX.Element {
     return (dimensions: { width: number }) => {
-        const isNarrowMode =
-            props.isNarrowModeEnabled === true && dimensions.width < NARROW_MODE_THRESHOLD_IN_PIXEL;
         const childrenProps = props.childrenProps;
-        return <props.Component {...childrenProps} isNarrowMode={isNarrowMode} />;
+        const isNarrowModeEnabled = props.isNarrowModeEnabled === true;
+
+        const isNarrowerThan = (threshold: number) => dimensions.width < threshold;
+
+        const narrowModeStatus = {
+            isHeaderAndNavCollapsed:
+                isNarrowModeEnabled &&
+                isNarrowerThan(narrowModeThresholds.collapseHeaderAndNavThreshold),
+            isCommandBarCollapsed:
+                isNarrowModeEnabled &&
+                isNarrowerThan(narrowModeThresholds.collapseCommandBarThreshold),
+        };
+        return <props.Component {...childrenProps} narrowModeStatus={narrowModeStatus} />;
     };
 }
 

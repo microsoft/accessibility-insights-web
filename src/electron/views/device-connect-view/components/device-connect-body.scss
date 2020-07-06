@@ -3,7 +3,8 @@
 @import '../../../../common/styles/fonts.scss';
 
 .device-connect-body {
-    margin: 16px 32px;
+    padding: 16px 32px;
+    box-sizing: border-box;
 
     h2 {
         font-family: $fontFamily;

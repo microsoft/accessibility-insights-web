@@ -24,6 +24,7 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
     text="Start over"
   />
   <StyledWithResponsiveMode
+    directionalHint={7}
     items={
       Array [
         Object {
@@ -62,6 +63,7 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
     text="Start over"
   />
   <StyledWithResponsiveMode
+    directionalHint={7}
     items={
       Array [
         Object {
@@ -80,7 +82,7 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
 exports[`StartOverDropdownTest render GenericDialog for start over a test 1`] = `
 "<div>
   <InsightsCommandButton iconProps={{...}} text=\\"Start over\\" ariaLabel=\\"start over menu\\" onClick={[Function]} menuIconProps={{...}} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} directionalHint={7} />
   <GenericDialog title=\\"Start over\\" messageText=\\"Starting over will clear all existing results from the test name test. Are you sure you want to start over?\\" onCancelButtonClick={[Function]} onPrimaryButtonClick={[Function]} primaryButtonText=\\"Start over\\" />
 </div>"
 `;
@@ -88,7 +90,46 @@ exports[`StartOverDropdownTest render GenericDialog for start over a test 1`] = 
 exports[`StartOverDropdownTest render GenericDialog for start over the whole assessment 1`] = `
 "<div>
   <InsightsCommandButton iconProps={{...}} text=\\"Start over\\" ariaLabel=\\"start over menu\\" onClick={[Function]} menuIconProps={{...}} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} directionalHint={7} />
   <GenericDialog title=\\"Start over\\" messageText=\\"Starting over will clear all existing results from the Assessment. This will clear results and progress of all tests and requirements. Are you sure you want to start over?\\" onCancelButtonClick={[Function]} onPrimaryButtonClick={[Function]} primaryButtonText=\\"Start over\\" />
 </div>"
+`;
+
+exports[`StartOverDropdownTest render with dropdown on left 1`] = `
+<div>
+  <InsightsCommandButton
+    ariaLabel="start over menu"
+    iconProps={
+      Object {
+        "iconName": "Refresh",
+      }
+    }
+    menuIconProps={
+      Object {
+        "iconName": "ChevronRight",
+      }
+    }
+    onClick={[Function]}
+    text="Start over"
+  />
+  <StyledWithResponsiveMode
+    directionalHint={8}
+    items={
+      Array [
+        Object {
+          "key": "assessment",
+          "name": "Start over Assessment",
+          "onClick": [Function],
+        },
+        Object {
+          "key": "test",
+          "name": "Start over test name",
+          "onClick": [Function],
+        },
+      ]
+    }
+    onDismiss={[Function]}
+    target="test target"
+  />
+</div>
 `;

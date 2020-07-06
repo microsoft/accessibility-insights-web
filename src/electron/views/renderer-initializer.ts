@@ -71,15 +71,22 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
+import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
+import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
+import {
+    AndroidServiceConfiguratorFactory,
+    ServiceConfiguratorFactory,
+} from 'electron/platform/android/setup/android-service-configurator-factory';
 import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
+import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
@@ -197,15 +204,24 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
         const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
 
-        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get);
+        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get, parseDeviceConfig);
+
+        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(
+            ipcRendererShim,
+            logger,
+        );
+        androidPortCleaner.initialize();
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const serviceConfigFactory = new AndroidServiceConfiguratorFactory(
-            new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
-            apkLocator,
-            getPortPromise,
+        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
+            new AndroidServiceConfiguratorFactory(
+                new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
+                apkLocator,
+                getPortPromise,
+            ),
+            androidPortCleaner,
         );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
@@ -299,6 +315,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const ipcMessageReceiver = new IpcMessageReceiver(interpreter, ipcRenderer, logger);
         ipcMessageReceiver.initialize();
+
+        const androidSetupTelemetrySender = new AndroidSetupTelemetrySender(
+            androidSetupStore,
+            telemetryEventHandler,
+            () => performance.now(),
+        );
+        androidSetupTelemetrySender.initialize();
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 

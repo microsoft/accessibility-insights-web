@@ -62,6 +62,16 @@
         max-width: 25%;
         user-select: text;
         min-width: 520px;
+        svg {
+            @media screen and (-ms-high-contrast: active) {
+                fill: inherit !important;
+            }
+        }
+        path {
+            @media screen and (-ms-high-contrast: active) {
+                fill: inherit !important;
+            }
+        }
     }
 
     div.insights-file-issue-details-dialog-container {

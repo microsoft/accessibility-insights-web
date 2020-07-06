@@ -24,8 +24,7 @@ export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
 
     public initialize(initialState?: AndroidSetupStoreData): void {
         super.initialize(initialState);
-        this.stateMachine = this.createAndroidSetupStateMachine({
-            stepTransition: this.stepTransition,
+        this.stateMachine = this.createAndroidSetupStateMachine(this.stepTransition, {
             setSelectedDevice: this.setSelectedDevice,
             setAvailableDevices: this.setAvailableDevices,
             getScanPort: () => this.state.scanPort,

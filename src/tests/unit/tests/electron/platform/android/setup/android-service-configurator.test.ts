@@ -62,7 +62,7 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
-    it('getConnectedDevices returns info from AndroidServiceConfigurator', async () => {
+    it('getConnectedDevices returns info from AdbWrapper', async () => {
         const expectedDevices: DeviceInfo[] = [
             {
                 id: 'emulator1',

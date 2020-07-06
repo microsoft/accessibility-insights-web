@@ -11,8 +11,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   hidden={false}
   modalProps={
     Object {
-      "className": "target-change-dialog-modal",
-      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "className": "targetChangeDialogModal",
+      "containerClassName": "insights-dialog-main-override targetChangeDialog",
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -31,7 +31,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="previous-target-page-link"
       >
         <NewTabLink
-          className="target-page-link"
           role="link"
         />
       </StyledTooltipHostBase>
@@ -47,7 +46,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           as="a"
-          className="insights-link target-page-link"
+          className="insights-link"
           onClick={[Function]}
           role="link"
           tabIndex={0}
@@ -69,10 +68,10 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   </div>
   <StyledDialogFooterBase>
     <div
-      className="target-change-dialog-button-container"
+      className="targetChangeDialogButtonContainer"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col continue-button"
+        className="actionCancelButtonCol continueButton"
       >
         <CustomizedDefaultButton
           autoFocus={true}
@@ -81,7 +80,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         />
       </div>
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
+        className="actionCancelButtonCol restartButton"
       >
         <CustomizedDefaultButton
           onClick={[Function]}
@@ -104,8 +103,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   hidden={false}
   modalProps={
     Object {
-      "className": "target-change-dialog-modal",
-      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "className": "targetChangeDialogModal",
+      "containerClassName": "insights-dialog-main-override targetChangeDialog",
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -125,7 +124,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="previous-target-page-link"
       >
         <NewTabLink
-          className="target-page-link"
           href="https://www.abc.com"
           role="link"
         >
@@ -144,7 +142,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           as="a"
-          className="insights-link target-page-link"
+          className="insights-link"
           onClick={[Function]}
           role="link"
           tabIndex={0}
@@ -166,10 +164,10 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   </div>
   <StyledDialogFooterBase>
     <div
-      className="target-change-dialog-button-container"
+      className="targetChangeDialogButtonContainer"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col continue-button"
+        className="actionCancelButtonCol continueButton"
       >
         <CustomizedDefaultButton
           autoFocus={true}
@@ -178,7 +176,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         />
       </div>
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
+        className="actionCancelButtonCol restartButton"
       >
         <CustomizedDefaultButton
           onClick={[Function]}
@@ -201,8 +199,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   hidden={false}
   modalProps={
     Object {
-      "className": "target-change-dialog-modal",
-      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "className": "targetChangeDialogModal",
+      "containerClassName": "insights-dialog-main-override targetChangeDialog",
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -222,7 +220,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="previous-target-page-link"
       >
         <NewTabLink
-          className="target-page-link"
           href="https://www.abc.com"
           role="link"
         >
@@ -241,7 +238,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           as="a"
-          className="insights-link target-page-link"
+          className="insights-link"
           onClick={[Function]}
           role="link"
           tabIndex={0}
@@ -263,10 +260,10 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   </div>
   <StyledDialogFooterBase>
     <div
-      className="target-change-dialog-button-container"
+      className="targetChangeDialogButtonContainer"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col continue-button"
+        className="actionCancelButtonCol continueButton"
       >
         <CustomizedDefaultButton
           autoFocus={true}
@@ -275,7 +272,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         />
       </div>
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
+        className="actionCancelButtonCol restartButton"
       >
         <CustomizedDefaultButton
           onClick={[Function]}
@@ -298,8 +295,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   hidden={false}
   modalProps={
     Object {
-      "className": "target-change-dialog-modal",
-      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "className": "targetChangeDialogModal",
+      "containerClassName": "insights-dialog-main-override targetChangeDialog",
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -319,7 +316,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="previous-target-page-link"
       >
         <NewTabLink
-          className="target-page-link"
           href="https://www.abc.com"
           role="link"
         >
@@ -338,7 +334,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           as="a"
-          className="insights-link target-page-link"
+          className="insights-link"
           onClick={[Function]}
           role="link"
           tabIndex={0}
@@ -360,10 +356,10 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   </div>
   <StyledDialogFooterBase>
     <div
-      className="target-change-dialog-button-container"
+      className="targetChangeDialogButtonContainer"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col continue-button"
+        className="actionCancelButtonCol continueButton"
       >
         <CustomizedDefaultButton
           autoFocus={true}
@@ -372,7 +368,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         />
       </div>
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
+        className="actionCancelButtonCol restartButton"
       >
         <CustomizedDefaultButton
           onClick={[Function]}
@@ -395,8 +391,8 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   hidden={false}
   modalProps={
     Object {
-      "className": "target-change-dialog-modal",
-      "containerClassName": "insights-dialog-main-override target-change-dialog",
+      "className": "targetChangeDialogModal",
+      "containerClassName": "insights-dialog-main-override targetChangeDialog",
       "subtitleAriaId": "target-change-dialog-description",
     }
   }
@@ -416,7 +412,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         id="previous-target-page-link"
       >
         <NewTabLink
-          className="target-page-link"
           href="https://www.abc.com"
           role="link"
         >
@@ -435,7 +430,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           as="a"
-          className="insights-link target-page-link"
+          className="insights-link"
           onClick={[Function]}
           role="link"
           tabIndex={0}
@@ -457,10 +452,10 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   </div>
   <StyledDialogFooterBase>
     <div
-      className="target-change-dialog-button-container"
+      className="targetChangeDialogButtonContainer"
     >
       <div
-        className="button ms-Grid-col  action-cancel-button-col continue-button"
+        className="actionCancelButtonCol continueButton"
       >
         <CustomizedDefaultButton
           autoFocus={true}
@@ -469,7 +464,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         />
       </div>
       <div
-        className="button ms-Grid-col  action-cancel-button-col restart-button"
+        className="actionCancelButtonCol restartButton"
       >
         <CustomizedDefaultButton
           onClick={[Function]}

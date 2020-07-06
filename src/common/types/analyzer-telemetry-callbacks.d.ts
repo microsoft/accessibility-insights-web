@@ -4,6 +4,7 @@ import { AxeAnalyzerResult } from '../../injected/analyzers/analyzer';
 import {
     RuleAnalyzerScanTelemetryData,
     IssuesAnalyzerScanTelemetryData,
+    NeedsReviewAnalyzerScanTelemetryData,
 } from '../extension-telemetry-events';
 
 export type IAnalyzerTelemetryCallback = ForRuleAnalyzerScanCallback;
@@ -22,3 +23,10 @@ export type ForIssuesAnalyzerScanCallback = (
     elementsScanned: number,
     testName: string,
 ) => IssuesAnalyzerScanTelemetryData;
+
+export type ForNeedsReviewAnalyzerScanCallback = (
+    analyzerResult: AxeAnalyzerResult,
+    scanDuration: number,
+    elementsScanned: number,
+    testName: string,
+) => NeedsReviewAnalyzerScanTelemetryData;

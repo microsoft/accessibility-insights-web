@@ -6,18 +6,18 @@ import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
-import { AndroidServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { AndroidServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
+import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
-    private serviceConfig: AndroidServiceConfigurator;
+    private serviceConfig: ServiceConfigurator;
 
     constructor(
-        private readonly configFactory: AndroidServiceConfiguratorFactory,
+        private readonly configFactory: ServiceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
-        private readonly fetchDeviceConfig: DeviceConfigFetcher,
+        public readonly fetchDeviceConfig: DeviceConfigFetcher,
         public readonly logger: Logger,
     ) {}
 
@@ -78,16 +78,5 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public removeTcpForwarding = async (hostPort: number): Promise<void> => {
         await this.serviceConfig.removeTcpForwarding(hostPort);
-    };
-
-    public getApplicationName = async (): Promise<string> => {
-        try {
-            const config = await this.fetchDeviceConfig(62442);
-            return config.appIdentifier;
-        } catch (error) {
-            this.logger.log(error);
-        }
-
-        return '';
     };
 }

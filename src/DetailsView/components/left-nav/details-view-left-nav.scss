@@ -41,6 +41,11 @@
         max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
         height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     }
+
+    &:global(.reflow-ui) .left-nav {
+        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+        height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+    }
 }
 
 .left-nav {

@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { Header, HeaderDeps } from 'common/components/header';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 
 describe('Header', () => {
     it('renders per snapshot', () => {
@@ -52,7 +53,10 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
-        const wrapper = shallow(<Header deps={deps} isNarrowMode={true} />);
+        const narrowModeStatus = {
+            isHeaderAndNavCollapsed: true,
+        } as NarrowModeStatus;
+        const wrapper = shallow(<Header deps={deps} narrowModeStatus={narrowModeStatus} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

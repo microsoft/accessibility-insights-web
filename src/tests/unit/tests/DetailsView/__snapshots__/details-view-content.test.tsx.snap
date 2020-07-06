@@ -57,8 +57,13 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
-    isNarrowMode={false}
     isSideNavOpen={false}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+        "isHeaderAndNavCollapsed": false,
+      }
+    }
     selectedPivot={0}
     setSideNavOpen={[Function]}
     tabClosed={false}
@@ -161,8 +166,13 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
-    isNarrowMode={false}
     isSideNavOpen={false}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+        "isHeaderAndNavCollapsed": false,
+      }
+    }
     pathSnippetStoreData={
       Object {
         "path": null,
@@ -241,6 +251,13 @@ exports[` render renders normally 1`] = `
           "selectedIdToRuleResultMap": null,
         },
         "landmarks": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
+        "needsReview": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
           "scanResult": null,

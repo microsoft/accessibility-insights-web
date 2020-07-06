@@ -8,6 +8,7 @@ exports[`DeviceDescription renders with currentApplication 1`] = `
     ariaLabel="Device"
     className="iconContent"
     iconName="CellPhone"
+    role="img"
   />
   <div
     className="deviceAndCurrentApplication"
@@ -30,6 +31,7 @@ exports[`DeviceDescription renders with device 1`] = `
     ariaLabel="Device"
     className="iconContent"
     iconName="CellPhone"
+    role="img"
   />
   Super-Duper Gadget
 </div>
@@ -43,6 +45,7 @@ exports[`DeviceDescription renders with emulator 1`] = `
     ariaLabel="Emulator"
     className="iconContent"
     iconName="Devices3"
+    role="img"
   />
   Emulator Extraordinaire
 </div>
@@ -56,6 +59,7 @@ exports[`DeviceDescription renders with extra classname 1`] = `
     ariaLabel="Emulator"
     className="iconContent"
     iconName="Devices3"
+    role="img"
   />
   Simple Emulator
 </div>

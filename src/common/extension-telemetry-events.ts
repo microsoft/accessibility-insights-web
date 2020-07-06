@@ -183,6 +183,12 @@ export type IssuesAnalyzerScanTelemetryData = {
     failedRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
+export type NeedsReviewAnalyzerScanTelemetryData = {
+    passedRuleResults: string;
+    failedRuleResults: string;
+    incompleteRuleResults: string;
+} & RuleAnalyzerScanTelemetryData;
+
 export type ValidatePortTelemetryData = {
     port: number;
 };

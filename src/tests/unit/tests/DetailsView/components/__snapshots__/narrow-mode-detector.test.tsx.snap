@@ -16,20 +16,13 @@ exports[`NarrowModeDetector render renders ReactResizeDetector  1`] = `
 </ResizeDetector>
 `;
 
-exports[`NarrowModeDetector render renders child component properly when narrow mode is disabled: narrow mode should be false 1`] = `
-<DetailsViewContent
-  isNarrowMode={false}
-/>
-`;
-
-exports[`NarrowModeDetector render renders child component properly when narrow mode is enabled: narrow mode should be false 1`] = `
-<DetailsViewContent
-  isNarrowMode={false}
-/>
-`;
-
-exports[`NarrowModeDetector render renders child component properly when narrow mode is enabled: narrow mode should be true 1`] = `
-<DetailsViewContent
-  isNarrowMode={true}
+exports[`NarrowModeDetector render renders child component properly when narrow mode is disabled: All narrow mode status values should be false 1`] = `
+<TestComponent
+  narrowModeStatus={
+    Object {
+      "isCommandBarCollapsed": false,
+      "isHeaderAndNavCollapsed": false,
+    }
+  }
 />
 `;

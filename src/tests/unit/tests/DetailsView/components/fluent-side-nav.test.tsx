@@ -41,7 +41,9 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: null,
-            isNarrowMode: true,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: true,
+            },
         } as FluentSideNavProps;
 
         const wrapper = shallow(
@@ -60,7 +62,9 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: null,
-            isNarrowMode: false,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: false,
+            },
         } as FluentSideNavProps;
 
         const wrapper = shallow(
@@ -81,7 +85,9 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: setSideNavOpenMock.object,
-            isNarrowMode: true,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: true,
+            },
         } as FluentSideNavProps;
 
         const wrapper = shallow(
@@ -114,14 +120,18 @@ describe(FluentSideNav, () => {
             tabStoreData,
             isSideNavOpen: true,
             setSideNavOpen: null,
-            isNarrowMode: true,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: true,
+            },
         } as FluentSideNavProps;
 
         props = {
             tabStoreData,
             isSideNavOpen: false,
             setSideNavOpen: null,
-            isNarrowMode: false,
+            narrowModeStatus: {
+                isHeaderAndNavCollapsed: false,
+            },
         } as FluentSideNavProps;
 
         const wrapper = shallow(

@@ -7,16 +7,10 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import * as styles from 'DetailsView/components/issues-table.scss';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
-import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { RuleResult, ScanResults } from 'scanner/iruleresults';
-import { DictionaryStringTo } from 'types/common-types';
-
 import { CardsView, CardsViewDeps } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
-import { IssuesTableHandler } from './issues-table-handler';
 
 export type IssuesTableDeps = CardsViewDeps &
     ExportDialogDeps & {
@@ -28,17 +22,9 @@ export interface IssuesTableProps {
     deps: IssuesTableDeps;
     title: string;
     subtitle?: JSX.Element;
-    issuesTableHandler: IssuesTableHandler;
-    violations: RuleResult[];
-    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
-    issuesSelection: ISelection;
-    pageTitle: string;
-    pageUrl: string;
     scanning: boolean;
-    toggleClickHandler: (event) => void;
     featureFlags: FeatureFlagStoreData;
-    scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
@@ -85,10 +71,6 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
         if (this.props.scanning) {
             return this.renderSpinner('Scanning...');
-        }
-
-        if (this.props.violations == null) {
-            return this.renderSpinner('Loading data...');
         }
 
         return (

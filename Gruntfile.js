@@ -1,13 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const sass = require('node-sass');
-const path = require('path');
-const targets = require('./targets.config');
-const merge = require('lodash/merge');
-const yaml = require('js-yaml');
 const androidServiceBin = require('accessibility-insights-for-android-service-bin');
+const merge = require('lodash/merge');
+const path = require('path');
+const sass = require('node-sass');
+const targets = require('./targets.config');
+const yaml = require('js-yaml');
 
 module.exports = function (grunt) {
+    const pkgPath = path.resolve('./node_modules/.bin/pkg');
+    const tsmPath = path.resolve('./node_modules/.bin/tsm');
+    const webpackPath = path.resolve('./node_modules/.bin/webpack');
+
     const extensionPath = 'extension';
 
     const packageReportPath = path.join('package', 'report');
@@ -17,6 +21,11 @@ module.exports = function (grunt) {
     const packageUIPath = path.join('package', 'ui');
     const packageUIBundlePath = path.join(packageUIPath, 'bundle');
     const packageUIDropPath = path.join(packageUIPath, 'drop');
+
+    const mockAdbAppPath = path.resolve('./src/tests/miscellaneous/mock-adb/app');
+    const mockAdbBinSrcPath = path.join(mockAdbAppPath, 'bin.js');
+    const mockAdbBinFilename = process.platform === 'win32' ? 'adb.exe' : 'adb';
+    const mockAdbBinOutPath = path.join('drop', 'mock-adb', mockAdbBinFilename);
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -166,18 +175,13 @@ module.exports = function (grunt) {
             },
         },
         exec: {
-            'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
-            'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
-            'webpack-unified': `"${path.resolve(
-                './node_modules/.bin/webpack',
-            )}" --config-name unified`,
-            'webpack-package-report': `"${path.resolve(
-                './node_modules/.bin/webpack',
-            )}" --config-name package-report`,
-            'webpack-package-ui': `"${path.resolve(
-                './node_modules/.bin/webpack',
-            )}" --config-name package-ui`,
-            'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
+            'webpack-dev': `"${webpackPath}" --config-name dev`,
+            'webpack-prod': `"${webpackPath}" --config-name prod`,
+            'webpack-unified': `"${webpackPath}" --config-name unified`,
+            'webpack-package-report': `"${webpackPath}" --config-name package-report`,
+            'webpack-package-ui': `"${webpackPath}" --config-name package-ui`,
+            'generate-scss-typings': `"${tsmPath}" src`,
+            'pkg-mock-adb': `"${pkgPath}" "${mockAdbBinSrcPath}" -d --target host --output "${mockAdbBinOutPath}"`,
         },
         sass: {
             options: {
@@ -641,6 +645,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-unified', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'exec:pkg-mock-adb',
         'exec:webpack-unified',
         'build-assets',
         'drop:unified-dev',
@@ -648,6 +653,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-unified-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'exec:pkg-mock-adb',
         'exec:webpack-unified',
         'build-assets',
         'drop:unified-dev',
@@ -671,6 +677,7 @@ module.exports = function (grunt) {
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
+        'exec:pkg-mock-adb',
         'concurrent:webpack-all',
         'build-assets',
         'drop:dev',

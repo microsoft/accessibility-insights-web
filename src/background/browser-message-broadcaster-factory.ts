@@ -19,7 +19,13 @@ export class BrowserMessageBroadcasterFactory {
 
         const allTabs = await this.browserAdapter.tabsQuery({});
 
-        await Promise.all(allTabs.map(tab => this.sendMessageToTab(tab.id, message)));
+        const sendMessageToTab = async tab => {
+            if (tab != null) {
+                await this.sendMessageToTab(tab.id, message);
+            }
+        };
+
+        await Promise.all(allTabs.map(sendMessageToTab));
     };
 
     public createTabSpecificBroadcaster = (tabId: number): MessageBroadcaster => {

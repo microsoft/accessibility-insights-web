@@ -3,6 +3,7 @@
 import { HeaderIcon, HeaderIconDeps } from 'common/components/header-icon';
 import { NamedFC } from 'common/react/named-fc';
 import { TextContent } from 'content/strings/text-content';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as React from 'react';
 import * as styles from './header.scss';
 
@@ -15,7 +16,7 @@ export type HeaderProps = {
     navMenu?: JSX.Element;
     showHeaderTitle?: boolean;
     showFarItems?: boolean;
-    isNarrowMode?: boolean;
+    narrowModeStatus?: NarrowModeStatus;
 };
 
 export const Header = NamedFC<HeaderProps>('Header', props => {
@@ -30,7 +31,8 @@ export const Header = NamedFC<HeaderProps>('Header', props => {
     };
 
     const getHeaderTitle = () => {
-        if (props.showHeaderTitle === false || props.isNarrowMode === true) {
+        const isHeaderCollapsed = props.narrowModeStatus?.isHeaderAndNavCollapsed === true;
+        if (props.showHeaderTitle === false || isHeaderCollapsed) {
             return null;
         } else {
             return <span className={styles.headerTitle}>{applicationTitle}</span>;

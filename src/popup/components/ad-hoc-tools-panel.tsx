@@ -23,14 +23,9 @@ export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', 
         );
 
         const totalRows = 3;
-        const totalIterableRows = totalRows - 1; // we treat the last row differently
 
         const result = flatMap(toggles, (toggle, index) => {
-            if (index === 0) {
-                return [toggle, getDivider()];
-            }
-
-            if (index % totalIterableRows === 0) {
+            if ((index + 1) % totalRows === 0 || index === toggles.length - 1) {
                 return [toggle];
             }
 

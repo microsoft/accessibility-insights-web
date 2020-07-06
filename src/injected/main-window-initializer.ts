@@ -53,7 +53,10 @@ import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
 import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
-import { convertScanResultsToUnifiedResults } from './adapters/scan-results-to-unified-results';
+import {
+    convertScanResultsToNeedsReviewUnifiedResults,
+    convertScanResultsToUnifiedResults,
+} from './adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from './adapters/scan-results-to-unified-rules';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
@@ -291,6 +294,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
+            convertScanResultsToNeedsReviewUnifiedResults,
             convertScanResultsToUnifiedRules,
             toolData,
             generateUID,
@@ -306,7 +310,8 @@ export class MainWindowInitializer extends WindowInitializer {
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
-            unifiedResultSender.sendResults,
+            unifiedResultSender.sendAutomatedChecksResults,
+            unifiedResultSender.sendNeedsReviewResults,
             scanIncompleteWarningDetector,
         );
 
