@@ -21,7 +21,7 @@ export class NavigatorUtils {
         return userAgent;
     }
 
-    private getVersion(userAgent: string, versionPrefix: string): string {
+    private getVersion(userAgent: string, versionPrefix: string): string | null {
         const versionOffset = userAgent.indexOf(versionPrefix);
         if (versionOffset === -1) {
             return null;

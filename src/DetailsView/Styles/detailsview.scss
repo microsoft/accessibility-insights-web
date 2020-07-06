@@ -228,6 +228,11 @@ div.insights-file-issue-details-dialog-container {
             }
             a {
                 padding-right: 0px;
+                &:focus {
+                    @media screen and (-ms-high-contrast: active) {
+                        border: 3px highlighttext solid;
+                    }
+                }
             }
         }
         .ms-Pivot {
@@ -417,7 +422,6 @@ div.insights-file-issue-details-dialog-container {
                 word-break: break-word;
             }
             width: 100%;
-            padding-bottom: 1px;
             overflow: auto;
             box-sizing: border-box;
             max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));

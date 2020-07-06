@@ -25,6 +25,7 @@ describe('DetailsViewCommandBar', () => {
     let startOverComponent: JSX.Element;
     let reportExportComponent: JSX.Element;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let isCommandBarCollapsed: boolean;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(
@@ -37,6 +38,7 @@ describe('DetailsViewCommandBar', () => {
         } as TabStoreData;
         startOverComponent = null;
         reportExportComponent = null;
+        isCommandBarCollapsed = false;
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -67,6 +69,9 @@ describe('DetailsViewCommandBar', () => {
             tabStoreData,
             switcherNavConfiguration: switcherNavConfiguration,
             scanMetadata: scanMetadata,
+            narrowModeStatus: {
+                isCommandBarCollapsed,
+            },
         } as DetailsViewCommandBarProps;
     }
 
@@ -90,6 +95,15 @@ describe('DetailsViewCommandBar', () => {
         tabStoreData.isClosed = true;
 
         expect(render()).toBeNull();
+    });
+
+    test('renders with buttons collapsed into a menu', () => {
+        isCommandBarCollapsed = true;
+        const props = getProps();
+
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+
+        expect(rendered.debug()).toMatchSnapshot();
     });
 
     function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {

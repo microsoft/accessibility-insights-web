@@ -124,6 +124,7 @@ describe('DetailsViewBody', () => {
                 } as ScanMetadata,
                 isSideNavOpen: false,
                 setSideNavOpen: setSideNavOpenMock.object,
+                narrowModeStatus: { isHeaderAndNavCollapsed: false },
             } as DetailsViewBodyProps;
         });
 

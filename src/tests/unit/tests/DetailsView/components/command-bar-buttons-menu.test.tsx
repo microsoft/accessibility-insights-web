@@ -5,6 +5,7 @@ import {
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { IOverflowSetItemProps } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -42,8 +43,13 @@ describe('CommandBarButtonsMenu', () => {
             .setup(r => r(commandBarButtonsMenuProps))
             .returns(() => <></>)
             .verifiable(Times.once());
+
+        const startOverFactoryProps: StartOverFactoryProps = {
+            ...commandBarButtonsMenuProps,
+            dropdownDirection: 'left',
+        };
         startOverComponentFactory
-            .setup(s => s(commandBarButtonsMenuProps))
+            .setup(s => s(startOverFactoryProps))
             .returns(() => <></>)
             .verifiable(Times.once());
 

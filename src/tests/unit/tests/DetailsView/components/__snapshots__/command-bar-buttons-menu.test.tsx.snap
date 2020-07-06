@@ -2,6 +2,7 @@
 
 exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 <StyledOverflowSetBase
+  className="commandBarButtonsMenu"
   onRenderItem={[Function]}
   onRenderOverflowButton={[Function]}
   overflowItems={
@@ -24,11 +25,13 @@ exports[`CommandBarButtonsMenu renders overflow button 1`] = `
   ariaLabel="More items"
   menuIconProps={
     Object {
+      "className": "commandBarButtonsMenuButton",
       "iconName": "More",
     }
   }
   menuProps={
     Object {
+      "className": "commandBarButtonsSubmenu",
       "items": Array [
         Object {
           "key": "item 1",

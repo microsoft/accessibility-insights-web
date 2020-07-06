@@ -14,6 +14,9 @@ import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -33,7 +36,7 @@ export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
 
-export type StartOverComponentFactory = (props: CommandBarProps) => JSX.Element;
+export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -47,6 +50,7 @@ export interface DetailsViewCommandBarProps {
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
+    narrowModeStatus: NarrowModeStatus;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -58,7 +62,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         return (
             <div className={styles.detailsViewCommandBar}>
                 {this.renderTargetPageInfo()}
-                {this.renderCommandButtons()}
+                {this.renderFarItems()}
             </div>
         );
     }
@@ -86,6 +90,14 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         );
     }
 
+    private renderFarItems(): JSX.Element {
+        if (this.props.narrowModeStatus.isCommandBarCollapsed) {
+            return this.renderCommandButtonsMenu();
+        } else {
+            return this.renderCommandButtons();
+        }
+    }
+
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportComponent();
         const startOverElement: JSX.Element = this.renderStartOverComponent();
@@ -102,11 +114,19 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         return null;
     }
 
+    private renderCommandButtonsMenu(): JSX.Element {
+        return <CommandBarButtonsMenu {...this.props} />;
+    }
+
     private renderExportComponent(): JSX.Element {
         return this.props.switcherNavConfiguration.ReportExportComponentFactory(this.props);
     }
 
     private renderStartOverComponent(): JSX.Element {
-        return this.props.switcherNavConfiguration.StartOverComponentFactory(this.props);
+        const startOverFactoryProps: StartOverFactoryProps = {
+            ...this.props,
+            dropdownDirection: 'down',
+        };
+        return this.props.switcherNavConfiguration.StartOverComponentFactory(startOverFactoryProps);
     }
 }

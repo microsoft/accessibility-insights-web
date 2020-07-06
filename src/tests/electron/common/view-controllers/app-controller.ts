@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { Application } from 'spectron';
+import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
-import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
@@ -33,9 +34,16 @@ export class AppController {
         return deviceConnectionDialog;
     }
 
+    public async openAndroidSetupView(): Promise<AndroidSetupViewController> {
+        await this.setFeatureFlag(UnifiedFeatureFlags.adbSetupView, true);
+        const androidSetupController = new AndroidSetupViewController(this.client);
+        await androidSetupController.waitForDialogVisible();
+        return androidSetupController;
+    }
+
     public async openAutomatedChecksView(): Promise<AutomatedChecksViewController> {
-        const deviceConnectionDialog = await this.openDeviceConnectionDialog();
-        await deviceConnectionDialog.connectToPort(testResourceServerConfig.port);
+        const androidSetupViewController = await this.openAndroidSetupView();
+        await androidSetupViewController.startTesting();
 
         const automatedChecksView = new AutomatedChecksViewController(this.client);
         await automatedChecksView.waitForViewVisible();
@@ -44,7 +52,7 @@ export class AppController {
     }
 
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
-        await this.waitForUserConfigurationInitializer();
+        await this.waitForWindowPropertyInitialized('insightsUserConfiguration');
 
         await this.app.webContents.executeJavaScript(
             `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
@@ -67,24 +75,34 @@ export class AppController {
     }
 
     public async setTelemetryState(enableTelemetry: boolean): Promise<void> {
-        await this.waitForUserConfigurationInitializer();
+        await this.waitForWindowPropertyInitialized('insightsUserConfiguration');
 
         await this.app.webContents.executeJavaScript(
             `window.insightsUserConfiguration.setTelemetryState(${enableTelemetry})`,
         );
     }
 
-    private async waitForUserConfigurationInitializer(): Promise<void> {
+    public async setFeatureFlag(flag: string, enabled: boolean): Promise<void> {
+        await this.waitForWindowPropertyInitialized('featureFlagsController');
+        const action = enabled ? 'enable' : 'disable';
+        await this.app.webContents.executeJavaScript(
+            `window.featureFlagsController.${action}Feature('${flag}')`,
+        );
+    }
+
+    private async waitForWindowPropertyInitialized(
+        propertyName: 'insightsUserConfiguration' | 'featureFlagsController',
+    ): Promise<void> {
         await this.client.waitUntil(
             async () => {
-                const executeOutput = await this.client.executeAsync(done => {
-                    done((window as any).insightsUserConfiguration != null);
-                });
+                const executeOutput = await this.client.executeAsync((prop, done) => {
+                    done((window as any)[prop] != null);
+                }, propertyName);
 
                 return executeOutput.status === 0 && executeOutput.value === true;
             },
             DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
-            'was expecting window.insightsUserConfiguration to be defined',
+            `was expecting window.${propertyName} to be defined`,
         );
     }
 }

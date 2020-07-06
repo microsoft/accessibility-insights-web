@@ -1,12 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class HTMLElementUtils {
-    constructor(private dom?: Document, private clientWindow?: Window) {
+    private readonly dom: Document;
+    private readonly clientWindow: Window;
+
+    constructor(dom?: Document, clientWindow?: Window) {
         this.dom = dom || document;
         this.clientWindow = clientWindow || window;
     }
 
-    public getContentWindow(frame: HTMLIFrameElement): Window {
+    public getContentWindow(frame: HTMLIFrameElement): Window | null {
         return frame.contentWindow;
     }
 
@@ -22,7 +25,7 @@ export class HTMLElementUtils {
         return this.dom.body;
     }
 
-    public querySelector(selector: string): Element {
+    public querySelector(selector: string): Element | null {
         return this.dom.querySelector(selector);
     }
 
@@ -38,7 +41,7 @@ export class HTMLElementUtils {
         return element.tagName.toLowerCase();
     }
 
-    public getCurrentFocusedElement(): Element {
+    public getCurrentFocusedElement(): Element | null {
         return this.dom.activeElement;
     }
 
@@ -50,7 +53,7 @@ export class HTMLElementUtils {
         return this.clientWindow.getComputedStyle(element);
     }
 
-    public getClientRects(element: Element): ClientRectList {
+    public getClientRects(element: Element): DOMRectList {
         return element.getClientRects();
     }
 

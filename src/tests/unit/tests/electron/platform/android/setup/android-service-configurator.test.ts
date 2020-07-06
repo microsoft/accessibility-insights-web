@@ -435,30 +435,4 @@ describe('AndroidServiceConfigurator', () => {
             verifyAllMocks();
         });
     });
-
-    it('listForwardedPorts propagates thrown errors', async () => {
-        const expectedMessage = 'Error thrown during listForwardedPorts';
-        adbWrapperMock
-            .setup(m => m.listForwardedPorts(testDeviceId))
-            .throws(new Error(expectedMessage))
-            .verifiable(Times.once());
-
-        await expect(testSubject.listForwardedPorts()).rejects.toThrowError(expectedMessage);
-
-        verifyAllMocks();
-    });
-
-    it('listForwardedPorts returns info from AdbWrapper', async () => {
-        const expectedData: string[] = ['red', 'blue', 'green'];
-        adbWrapperMock
-            .setup(m => m.listForwardedPorts(testDeviceId))
-            .returns(() => Promise.resolve(expectedData))
-            .verifiable(Times.once());
-
-        const actualDevices = await testSubject.listForwardedPorts();
-
-        expect(actualDevices).toBe(expectedData);
-
-        verifyAllMocks();
-    });
 });

@@ -4,6 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { CommandBarButton, IOverflowSetItemProps, OverflowSet } from 'office-ui-fabric-react';
 import * as React from 'react';
+import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = CommandBarProps;
 
@@ -19,8 +20,11 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                 <CommandBarButton
                     ariaLabel="More items"
                     role="menuitem"
-                    menuIconProps={{ iconName: 'More' }}
-                    menuProps={{ items: overflow }}
+                    menuIconProps={{
+                        iconName: 'More',
+                        className: styles.commandBarButtonsMenuButton,
+                    }}
+                    menuProps={{ items: overflow, className: styles.commandBarButtonsSubmenu }}
                 />
             );
         };
@@ -32,7 +36,11 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             },
             {
                 key: 'start over',
-                onRender: () => props.switcherNavConfiguration.StartOverComponentFactory(props),
+                onRender: () =>
+                    props.switcherNavConfiguration.StartOverComponentFactory({
+                        ...props,
+                        dropdownDirection: 'left',
+                    }),
             },
         ];
 
@@ -41,6 +49,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                 onRenderItem={onRenderItem}
                 overflowItems={overflowItems}
                 onRenderOverflowButton={onRenderOverflowButton}
+                className={styles.commandBarButtonsMenu}
             />
         );
     },

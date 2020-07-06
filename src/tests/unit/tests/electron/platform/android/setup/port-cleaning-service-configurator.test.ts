@@ -118,18 +118,4 @@ describe('PortCleaningServiceConfigurator', () => {
 
         verifyAllMocks();
     });
-
-    it('listForwardedPorts chains through', async () => {
-        const expectedData: string[] = ['Mercury', 'Venus', 'Earth', 'Mars'];
-        innerObjectMock
-            .setup(m => m.listForwardedPorts())
-            .returns(() => Promise.resolve(expectedData))
-            .verifiable(Times.once());
-
-        const actualData = await testSubject.listForwardedPorts();
-
-        expect(actualData).toBe(expectedData);
-
-        verifyAllMocks();
-    });
 });
