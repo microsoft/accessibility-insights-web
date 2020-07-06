@@ -4,17 +4,13 @@ const fs = require('fs');
 const path = require('path');
 const process = require('process');
 const {
-    portForwardSentinelArgument,
     startDetachedPortForwardServer,
     stopDetachedPortForwardServer,
+    tryHandleAsPortForwardServer,
 } = require('./port-forward-server.js');
-const { startMockService } = require('../../mock-service-for-android/mock-service');
 
-function main() {
-    if (process.argv[2] === portForwardSentinelArgument) {
-        const port = parseInt(process.argv[3], 10);
-        const path = process.argv[4];
-        startMockService(port, path);
+async function main() {
+    if (await tryHandleAsPortForwardServer(process.argv)) {
         return;
     }
 
@@ -43,10 +39,15 @@ function main() {
 
     const result = config[inputCommand] != undefined ? config[inputCommand] : defaultResult;
 
+    if (result.delayMs != undefined) {
+        await new Promise(resolve => {
+            setTimeout(resolve, result.delayMs);
+        });
+    }
     if (result.startTestServer != undefined) {
         const { port, path } = result.startTestServer;
         stopDetachedPortForwardServer(port);
-        result.testServerPid = startDetachedPortForwardServer(port, path);
+        result.testServerPid = await startDetachedPortForwardServer(port, path);
     }
     if (result.stopTestServer != undefined) {
         const { port } = result.stopTestServer;
@@ -61,11 +62,14 @@ function main() {
 
     result.input = process.argv;
     result.inputCommand = inputCommand;
-    fs.writeFileSync(outputFile, JSON.stringify(result, null, '    '));
+    fs.writeFileSync(outputFile, JSON.stringify(result, null, '    '), { flag: 'a' });
 
     if (result.exitCode != undefined) {
         process.exit(result.exitCode);
     }
 }
 
-main();
+main().catch(e => {
+    console.error(`mock-adb error: ${e.stack}`);
+    process.exit(1);
+});

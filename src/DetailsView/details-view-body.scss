@@ -1,6 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../common/styles/common.scss';
 
 .details-view-body {
     height: 100%;
+}
+
+.details-view-content-pane-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 1px;
+    box-sizing: border-box;
+    max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+    &:global(.reflow-ui) {
+        width: calc(100vw - (#{$detailsViewReflowLeftNavWidth}));
+        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+    }
+    &.narrow-mode {
+        width: 100%;
+    }
 }

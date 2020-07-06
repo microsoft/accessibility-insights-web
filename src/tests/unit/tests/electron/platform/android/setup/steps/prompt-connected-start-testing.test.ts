@@ -50,7 +50,7 @@ describe('Android setup step: promptConnectedStartTesting', () => {
     });
 
     it('rescan transitions to detect-adb as expected', () => {
-        stepTransitionMock.setup(m => m('detect-adb')).verifiable(Times.once());
+        stepTransitionMock.setup(m => m('detect-devices')).verifiable(Times.once());
 
         const step = promptConnectedStartTesting(
             stepTransitionMock.object,

@@ -33,6 +33,9 @@ export async function createAppController(targetApp: string): Promise<AppControl
         args: [targetApp],
         connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
         connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
+        env: {
+            ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
+        },
     });
     await app.start();
     return new AppController(app);

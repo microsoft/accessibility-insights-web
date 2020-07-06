@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import * as classNames from 'classnames';
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -81,15 +82,23 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
+        const bodyContentContainerClassName = classNames(styles.detailsViewContentPaneContainer, {
+            [styles.narrowMode]: this.props.narrowModeStatus.isHeaderAndNavCollapsed,
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
+
         return (
             <div className={styles.detailsViewBody}>
-                {this.renderCommandBar()}
+                {this.renderCommandBarUnderHeader()}
                 <div className={bodyLayoutClassName}>
                     {this.renderNavBar()}
-                    <div className={bodyContentClassName}>
-                        {this.getTargetPageHiddenBar()}
-                        <div className="view" role="main">
-                            {this.renderRightPanel()}
+                    <div className={bodyContentContainerClassName}>
+                        {this.renderReflowCommandBar()}
+                        <div className={bodyContentClassName}>
+                            {this.getTargetPageHiddenBar()}
+                            <div className="view" role="main">
+                                {this.renderRightPanel()}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -105,6 +114,28 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         };
 
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
+    }
+
+    private renderCommandBarUnderHeader(): JSX.Element {
+        return (
+            <FlaggedComponent
+                enableJSXElement={null}
+                disableJSXElement={this.renderCommandBar()}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+            />
+        );
+    }
+
+    private renderReflowCommandBar(): JSX.Element {
+        return (
+            <FlaggedComponent
+                enableJSXElement={this.renderCommandBar()}
+                disableJSXElement={null}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+            />
+        );
     }
 
     private renderNavBar(): JSX.Element {
