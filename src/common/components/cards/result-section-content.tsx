@@ -43,7 +43,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             targetAppInfo,
         } = props;
         if (results.length === 0) {
-            return <NoFailedInstancesCongrats deps={props.deps} />;
+            return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
         }
 
         return (

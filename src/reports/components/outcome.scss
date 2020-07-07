@@ -65,7 +65,8 @@ $outcome-count-border-size: 1.5px;
         @include check-icon-styles($outcome-chip-icon-size, 0px, $outcome-pass-color);
         @include outcome-chip-color($outcome-pass-color);
     }
-    &.outcome-chip-incomplete {
+    &.outcome-chip-incomplete,
+    &.outcome-chip-review {
         @include incomplete-icon-styles($outcome-chip-icon-size, 1px);
         @include outcome-chip-color($outcome-incomplete-border-color);
     }
