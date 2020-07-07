@@ -114,10 +114,18 @@
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
         fill: $primary-text !important;
+
+        @media screen and (-ms-high-contrast: active) {
+            fill: inherit !important;
+        }
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
         fill: $neutral-30 !important;
+
+        @media screen and (-ms-high-contrast: active) {
+            fill: inherit !important;
+        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
@@ -135,6 +143,10 @@
         svg path {
             fill: $neutral-100 !important;
             fill-opacity: 0.9 !important;
+
+            @media screen and (-ms-high-contrast: active) {
+                fill: inherit !important;
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
+import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { Application } from 'spectron';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
@@ -34,15 +35,19 @@ export class AppController {
         return deviceConnectionDialog;
     }
 
-    public async openAndroidSetupView(): Promise<AndroidSetupViewController> {
+    public async openAndroidSetupView(
+        step: AndroidSetupStepId,
+    ): Promise<AndroidSetupViewController> {
         await this.setFeatureFlag(UnifiedFeatureFlags.adbSetupView, true);
         const androidSetupController = new AndroidSetupViewController(this.client);
-        await androidSetupController.waitForDialogVisible();
+        await androidSetupController.waitForDialogVisible(step);
         return androidSetupController;
     }
 
     public async openAutomatedChecksView(): Promise<AutomatedChecksViewController> {
-        const androidSetupViewController = await this.openAndroidSetupView();
+        const androidSetupViewController = await this.openAndroidSetupView(
+            'prompt-connected-start-testing',
+        );
         await androidSetupViewController.startTesting();
 
         const automatedChecksView = new AutomatedChecksViewController(this.client);

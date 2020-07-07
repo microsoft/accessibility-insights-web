@@ -713,75 +713,79 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                html
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;html class="deque-axe-is-ready"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  html
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;html class="deque-axe-is-ready"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          No valid skip link found
+                                        </li>
+                                        <li>
+                                          Page does not have a header
+                                        </li>
+                                        <li>
+                                          Page does not have a landmark region
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        No valid skip link found
-                                      </li>
-                                      <li>
-                                        Page does not have a header
-                                      </li>
-                                      <li>
-                                        Page does not have a landmark region
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -930,94 +934,98 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                li:nth-child(1) &gt; a[href="\\#"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;a href="#"&gt;About&lt;/a&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  li:nth-child(1) &gt; a[href="\\#"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;a href="#"&gt;About&lt;/a&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          <span
+                                            aria-hidden="true"
+                                          >
+                                            <span>
+                                              Element has insufficient color contrast of 2.52 (foreground color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#8a94a8"
+                                            />
+                                            <span>
+                                              #8a94a8, background color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#e7ecd8"
+                                            />
+                                            <span>
+                                              #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                            </span>
+                                          </span>
+                                          <span
+                                            class="screenReaderOnly"
+                                          >
+                                            Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                          </span>
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        <span
-                                          aria-hidden="true"
-                                        >
-                                          <span>
-                                            Element has insufficient color contrast of 2.52 (foreground color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#8a94a8"
-                                          />
-                                          <span>
-                                            #8a94a8, background color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#e7ecd8"
-                                          />
-                                          <span>
-                                            #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                          </span>
-                                        </span>
-                                        <span
-                                          class="screenReaderOnly"
-                                        >
-                                          Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                        </span>
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1034,94 +1042,98 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                li:nth-child(2) &gt; a[href="\\#"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;a href="#"&gt;Academics&lt;/a&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  li:nth-child(2) &gt; a[href="\\#"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;a href="#"&gt;Academics&lt;/a&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          <span
+                                            aria-hidden="true"
+                                          >
+                                            <span>
+                                              Element has insufficient color contrast of 2.52 (foreground color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#8a94a8"
+                                            />
+                                            <span>
+                                              #8a94a8, background color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#e7ecd8"
+                                            />
+                                            <span>
+                                              #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                            </span>
+                                          </span>
+                                          <span
+                                            class="screenReaderOnly"
+                                          >
+                                            Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                          </span>
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        <span
-                                          aria-hidden="true"
-                                        >
-                                          <span>
-                                            Element has insufficient color contrast of 2.52 (foreground color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#8a94a8"
-                                          />
-                                          <span>
-                                            #8a94a8, background color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#e7ecd8"
-                                          />
-                                          <span>
-                                            #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                          </span>
-                                        </span>
-                                        <span
-                                          class="screenReaderOnly"
-                                        >
-                                          Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                        </span>
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1138,94 +1150,98 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                li:nth-child(3) &gt; a[href="\\#"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;a href="#"&gt;Admissions&lt;/a&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  li:nth-child(3) &gt; a[href="\\#"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;a href="#"&gt;Admissions&lt;/a&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          <span
+                                            aria-hidden="true"
+                                          >
+                                            <span>
+                                              Element has insufficient color contrast of 2.52 (foreground color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#8a94a8"
+                                            />
+                                            <span>
+                                              #8a94a8, background color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#e7ecd8"
+                                            />
+                                            <span>
+                                              #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                            </span>
+                                          </span>
+                                          <span
+                                            class="screenReaderOnly"
+                                          >
+                                            Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                          </span>
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        <span
-                                          aria-hidden="true"
-                                        >
-                                          <span>
-                                            Element has insufficient color contrast of 2.52 (foreground color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#8a94a8"
-                                          />
-                                          <span>
-                                            #8a94a8, background color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#e7ecd8"
-                                          />
-                                          <span>
-                                            #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                          </span>
-                                        </span>
-                                        <span
-                                          class="screenReaderOnly"
-                                        >
-                                          Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                        </span>
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1242,94 +1258,98 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                li:nth-child(4) &gt; a[href="\\#"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;a href="#"&gt;Visitors&lt;/a&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  li:nth-child(4) &gt; a[href="\\#"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;a href="#"&gt;Visitors&lt;/a&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          <span
+                                            aria-hidden="true"
+                                          >
+                                            <span>
+                                              Element has insufficient color contrast of 2.52 (foreground color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#8a94a8"
+                                            />
+                                            <span>
+                                              #8a94a8, background color: 
+                                            </span>
+                                            <span
+                                              class="fixInstructionColorBox"
+                                              style="background-color:#e7ecd8"
+                                            />
+                                            <span>
+                                              #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                            </span>
+                                          </span>
+                                          <span
+                                            class="screenReaderOnly"
+                                          >
+                                            Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
+                                          </span>
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        <span
-                                          aria-hidden="true"
-                                        >
-                                          <span>
-                                            Element has insufficient color contrast of 2.52 (foreground color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#8a94a8"
-                                          />
-                                          <span>
-                                            #8a94a8, background color: 
-                                          </span>
-                                          <span
-                                            class="fixInstructionColorBox"
-                                            style="background-color:#e7ecd8"
-                                          />
-                                          <span>
-                                            #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                          </span>
-                                        </span>
-                                        <span
-                                          class="screenReaderOnly"
-                                        >
-                                          Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1
-                                        </span>
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1478,69 +1498,73 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                html
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;html class="deque-axe-is-ready"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  html
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;html class="deque-axe-is-ready"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          The &lt;html&gt; element does not have a lang attribute
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        The &lt;html&gt; element does not have a lang attribute
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1689,84 +1713,88 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                img[src$="slide2\\.jpg"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;img src="images/slide2.jpg"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  img[src$="slide2\\.jpg"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;img src="images/slide2.jpg"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Element does not have an alt attribute
+                                        </li>
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="presentation"
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="none"
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Element does not have an alt attribute
-                                      </li>
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="presentation"
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="none"
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1783,84 +1811,88 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                img[src$="arrow-left\\.png"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;img src="images/arrow-left.png"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  img[src$="arrow-left\\.png"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;img src="images/arrow-left.png"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Element does not have an alt attribute
+                                        </li>
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="presentation"
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="none"
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Element does not have an alt attribute
-                                      </li>
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="presentation"
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="none"
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1877,84 +1909,88 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                img[src$="arrow-right\\.png"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;img src="images/arrow-right.png"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  img[src$="arrow-right\\.png"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;img src="images/arrow-right.png"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Element does not have an alt attribute
+                                        </li>
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="presentation"
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="none"
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Element does not have an alt attribute
-                                      </li>
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="presentation"
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="none"
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -1971,84 +2007,88 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                img[src$="captcha\\.png"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;img src="images/captcha.png"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  img[src$="captcha\\.png"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;img src="images/captcha.png"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Element does not have an alt attribute
+                                        </li>
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="presentation"
+                                        </li>
+                                        <li>
+                                          Element's default semantics were not overridden with role="none"
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Element does not have an alt attribute
-                                      </li>
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="presentation"
-                                      </li>
-                                      <li>
-                                        Element's default semantics were not overridden with role="none"
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2207,81 +2247,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="name"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="name"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="name"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="name"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2298,81 +2342,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="email"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="email"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="email"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="email"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2389,81 +2437,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="city"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="city"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="city"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="city"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2480,81 +2532,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="state"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="state"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="state"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="state"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2571,81 +2627,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="zip"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="zip"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="zip"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="zip"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2662,81 +2722,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="country"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="country"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="country"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="country"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2753,81 +2817,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="major_cs"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="checkbox" name="major_cs"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="major_cs"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="checkbox" name="major_cs"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2844,81 +2912,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="major_eng"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="checkbox" name="major_eng"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="major_eng"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="checkbox" name="major_eng"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -2935,81 +3007,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="major_econ"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="checkbox" name="major_econ"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="major_econ"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="checkbox" name="major_econ"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3026,81 +3102,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="major_phy"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="checkbox" name="major_phy"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="major_phy"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="checkbox" name="major_phy"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3117,81 +3197,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="major_psy"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="checkbox" name="major_psy"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="major_psy"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="checkbox" name="major_psy"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3208,81 +3292,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="major_sp"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="checkbox" name="major_sp"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="major_sp"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="checkbox" name="major_sp"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3299,81 +3387,85 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                input[name="captcha"]
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;input type="text" name="captcha"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  input[name="captcha"]
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;input type="text" name="captcha"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix ONE of the following:
+                                      <div>
+                                        Fix ONE of the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          aria-label attribute does not exist or is empty
+                                        </li>
+                                        <li>
+                                          aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                                        </li>
+                                        <li>
+                                          Form element does not have an implicit (wrapped) &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Form element does not have an explicit &lt;label&gt;
+                                        </li>
+                                        <li>
+                                          Element has no title attribute or the title attribute is empty
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        aria-label attribute does not exist or is empty
-                                      </li>
-                                      <li>
-                                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                                      </li>
-                                      <li>
-                                        Form element does not have an implicit (wrapped) &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Form element does not have an explicit &lt;label&gt;
-                                      </li>
-                                      <li>
-                                        Element has no title attribute or the title attribute is empty
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3521,69 +3613,73 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                html
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;html class="deque-axe-is-ready"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  html
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;html class="deque-axe-is-ready"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Document does not have a main landmark
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Document does not have a main landmark
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3731,69 +3827,73 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                html
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;html class="deque-axe-is-ready"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  html
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;html class="deque-axe-is-ready"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Page must have a level-one heading
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Page must have a level-one heading
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
@@ -3941,69 +4041,73 @@ exports[`report package integration with issues 1`] = `
                         role="row"
                         tabindex="0"
                       >
-                        <table
-                          class="reportInstanceTable"
+                        <div
+                          role="gridcell"
                         >
-                          <tbody>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
+                          <table
+                            class="reportInstanceTable"
+                          >
+                            <tbody>
+                              <tr
+                                class="row"
                               >
-                                Path
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                html
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                Snippet
-                              </th>
-                              <td
-                                class="instanceListRowContent contentSnipppet"
-                              >
-                                &lt;html class="deque-axe-is-ready"&gt;
-                              </td>
-                            </tr>
-                            <tr
-                              class="row"
-                            >
-                              <th
-                                class="label report-instance-table-label-overrides"
-                              >
-                                How to fix
-                              </th>
-                              <td
-                                class="instanceListRowContent"
-                              >
-                                <div
-                                  class="howToFixContent"
+                                <th
+                                  class="label report-instance-table-label-overrides"
                                 >
-                                  <div>
+                                  Path
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  html
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  Snippet
+                                </th>
+                                <td
+                                  class="instanceListRowContent contentSnipppet"
+                                >
+                                  &lt;html class="deque-axe-is-ready"&gt;
+                                </td>
+                              </tr>
+                              <tr
+                                class="row"
+                              >
+                                <th
+                                  class="label report-instance-table-label-overrides"
+                                >
+                                  How to fix
+                                </th>
+                                <td
+                                  class="instanceListRowContent"
+                                >
+                                  <div
+                                    class="howToFixContent"
+                                  >
                                     <div>
-                                      Fix the following:
+                                      <div>
+                                        Fix the following:
+                                      </div>
+                                      <ul
+                                        class="insightsFixInstructionList"
+                                      >
+                                        <li>
+                                          Some page content is not contained by landmarks
+                                        </li>
+                                      </ul>
                                     </div>
-                                    <ul
-                                      class="insightsFixInstructionList"
-                                    >
-                                      <li>
-                                        Some page content is not contained by landmarks
-                                      </li>
-                                    </ul>
                                   </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
                       </div>
                     </div>
                   </li>
