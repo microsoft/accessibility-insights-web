@@ -91,7 +91,16 @@ exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
 >
   <span
     className="outcomeChipContainer"
-  />
+  >
+    <span
+      aria-hidden="true"
+    >
+      <OutcomeChip
+        count={1}
+        outcomeType="review"
+      />
+    </span>
+  </span>
   <span>
     <span
       className="rule-details-id"
