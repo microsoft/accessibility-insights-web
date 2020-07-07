@@ -84,7 +84,6 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private featureFlags = {};
     private deps: IssuesTableDeps;
-    private instancesSection: ReactFCWithDisplayName<InstancesSectionProps>;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
