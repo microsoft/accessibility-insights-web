@@ -21,7 +21,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
 import { RequirementLink } from '../../../../DetailsView/components/requirement-link';
-import { TestViewProps } from '../../../../DetailsView/components/test-view';
+import { CommonTestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
@@ -34,7 +34,7 @@ describe('AssessmentBuilderTest', () => {
         const analyzerProviderMock = Mock.ofType(AnalyzerProvider);
         const drawerProviderMock = Mock.ofType(DrawerProvider);
         const getInstanceIdentifierMock = Mock.ofInstance(() => null);
-        const testViewPropsStub = {} as TestViewProps;
+        const testViewPropsStub = {} as CommonTestViewProps;
         const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
 
         const requirement: Requirement = {
@@ -146,7 +146,7 @@ describe('AssessmentBuilderTest', () => {
     });
 
     test('Assisted', () => {
-        const testViewPropsStub = {} as TestViewProps;
+        const testViewPropsStub = {} as CommonTestViewProps;
         const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
         const selectedRequirementKey = 'requirement key';
         const providerMock = Mock.ofType(AnalyzerProvider);
