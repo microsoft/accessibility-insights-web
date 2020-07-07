@@ -10,7 +10,11 @@ import * as React from 'react';
 describe('AssessmentLeftNavHamburgerButton', () => {
     it('renders per snapshot', () => {
         const wrapper = shallow(
-            <AssessmentLeftNavHamburgerButton isSideNavOpen={false} setSideNavOpen={null} />,
+            <AssessmentLeftNavHamburgerButton
+                isSideNavOpen={false}
+                setSideNavOpen={null}
+                deps={{ detailsViewActionMessageCreator: null }}
+            />,
         );
 
         expect(wrapper.getElement()).toMatchSnapshot();
@@ -20,7 +24,11 @@ describe('AssessmentLeftNavHamburgerButton', () => {
 describe('FastPassLeftNavHamburgerButton', () => {
     it('renders per snapshot', () => {
         const wrapper = shallow(
-            <FastPassLeftNavHamburgerButton isSideNavOpen={false} setSideNavOpen={null} />,
+            <FastPassLeftNavHamburgerButton
+                isSideNavOpen={false}
+                setSideNavOpen={null}
+                deps={{ detailsViewActionMessageCreator: null }}
+            />,
         );
 
         expect(wrapper.getElement()).toMatchSnapshot();
