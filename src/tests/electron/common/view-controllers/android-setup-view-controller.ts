@@ -11,8 +11,7 @@ export class AndroidSetupViewController extends ViewController {
         super(client);
     }
 
-    public async waitForDialogVisible(): Promise<void> {
-        const dialogStep: AndroidSetupStepId = 'prompt-connected-start-testing';
+    public async waitForDialogVisible(dialogStep: AndroidSetupStepId): Promise<void> {
         await this.waitForSelector(getAutomationIdSelector(`${dialogStep}-content`), 20000);
     }
 

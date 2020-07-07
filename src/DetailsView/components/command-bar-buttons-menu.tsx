@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { CommandBarButton, IOverflowSetItemProps, OverflowSet } from 'office-ui-fabric-react';
+import { CommandBarButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
 
@@ -11,25 +11,7 @@ export type CommandBarButtonsMenuProps = CommandBarProps;
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
-        const onRenderItem = (item: IOverflowSetItemProps): JSX.Element => {
-            return item.onRender(props);
-        };
-
-        const onRenderOverflowButton = (overflow: IOverflowSetItemProps[]): JSX.Element => {
-            return (
-                <CommandBarButton
-                    ariaLabel="More items"
-                    role="menuitem"
-                    menuIconProps={{
-                        iconName: 'More',
-                        className: styles.commandBarButtonsMenuButton,
-                    }}
-                    menuProps={{ items: overflow, className: styles.commandBarButtonsSubmenu }}
-                />
-            );
-        };
-
-        const overflowItems = [
+        const overflowItems: IContextualMenuItem[] = [
             {
                 key: 'export report',
                 onRender: () => props.switcherNavConfiguration.ReportExportComponentFactory(props),
@@ -45,11 +27,15 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         ];
 
         return (
-            <OverflowSet
-                onRenderItem={onRenderItem}
-                overflowItems={overflowItems}
-                onRenderOverflowButton={onRenderOverflowButton}
+            <CommandBarButton
+                ariaLabel="More items"
                 className={styles.commandBarButtonsMenu}
+                role="menuitem"
+                menuIconProps={{
+                    iconName: 'More',
+                    className: styles.commandBarButtonsMenuButton,
+                }}
+                menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
             />
         );
     },
