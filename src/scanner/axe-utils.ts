@@ -47,15 +47,16 @@ export function getPropertyValuesMatching(
     return dictionary;
 }
 
-export function getAttributes(node: HTMLElement, attributes: string[]): DictionaryStringTo<string> {
-    const retDict: DictionaryStringTo<string> = {};
+export function getAttributes(
+    node: HTMLElement,
+    attributes: string[],
+): DictionaryStringTo<string | null> {
+    const retDict: DictionaryStringTo<string | null> = {};
     attributes
         .filter(attributeName => node.hasAttribute(attributeName))
         .forEach(attributeName => {
             const attributeValue = node.getAttribute(attributeName)!;
-            if (attributeValue.length > 0) {
-                retDict[attributeName] = attributeValue;
-            }
+            retDict[attributeName] = attributeValue.length > 0 ? attributeValue : null;
         });
 
     return retDict;
