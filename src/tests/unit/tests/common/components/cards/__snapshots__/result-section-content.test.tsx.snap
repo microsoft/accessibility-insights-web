@@ -3,6 +3,7 @@
 exports[`ResultSectionContent renders, no rules 1`] = `
 <NoFailedInstancesCongrats
   deps={Object {}}
+  outcomeType="pass"
 />
 `;
 
