@@ -124,7 +124,7 @@ class TestPropsBuilder {
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,
-            instancesSection: NamedFC<InstancesSectionProps>('test', _ => null),
+            instancesSection: NamedFC<InstancesSectionProps>('SomeInstancesSection', _ => null),
         };
     }
 }
