@@ -84,10 +84,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 scanMetadata={this.props.scanMetadata}
                 shouldAlertFailuresCount={true}
-<<<<<<< HEAD
                 cardsViewData={this.props.cardsViewData}
-=======
->>>>>>> e17a4636fd9013f847de5dd181375e4224d2b4f7
             />
         );
     }
