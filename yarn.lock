@@ -5265,10 +5265,10 @@ grunt-sass@^3.1.0:
   resolved "https://registry.yarnpkg.com/grunt-sass/-/grunt-sass-3.1.0.tgz#a5936cc2a80ec08092d9f31c101dc307d1e4f71c"
   integrity sha512-90s27H7FoCDcA8C8+R0GwC+ntYD3lG6S/jqcavWm3bn9RiJTmSfOvfbFa1PXx4NbBWuiGQMLfQTj/JvvqT5w6A==
 
-grunt@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.2.0.tgz#efc9257f5bec71ae290a3df1036463f5cc76147f"
-  integrity sha512-uGMrucC+isjLBEcEyQjaSj41ehhePr07uCykQFJR0ciKs9kDsLdr1L976+v5aFsLB+l0n7JoWpovs941xbI9MA==
+grunt@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/grunt/-/grunt-1.2.1.tgz#5a1fcdfc222841108893e4e50c1a46f413a564ab"
+  integrity sha512-zgJjn9N56tScvRt/y0+1QA+zDBnKTrkpyeSBqQPLcZvbqTD/oyGMrdZQXmm6I3828s+FmPvxc3Xv+lgKFtudOw==
   dependencies:
     dateformat "~3.0.3"
     eventemitter2 "~0.4.13"
@@ -5284,7 +5284,6 @@ grunt@^1.2.0:
     minimatch "~3.0.4"
     mkdirp "~1.0.4"
     nopt "~3.0.6"
-    path-is-absolute "~2.0.0"
     rimraf "~3.0.2"
 
 har-schema@^2.0.0:
@@ -8283,11 +8282,6 @@ path-is-absolute@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-1.0.1.tgz#174b9268735534ffbc7ace6bf53a5a9e1b5c5f5f"
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
-
-path-is-absolute@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/path-is-absolute/-/path-is-absolute-2.0.0.tgz#cba416f4f3be5d068afe2083d9b3b3707414533d"
-  integrity sha512-ajROpjq1SLxJZsgSVCcVIt+ZebVH+PwJtPnVESjfg6JKwJGwAgHRC3zIcjvI0LnecjIHCJhtfNZ/Y/RregqyXg==
 
 path-is-inside@^1.0.1:
   version "1.0.2"
