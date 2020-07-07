@@ -114,20 +114,22 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 aria-label={cardAriaLabel}
                 role="row"
             >
-                <table className={reportInstanceTable}>
-                    <tbody>
-                        {renderCardRowsForPropertyBag(result.identifiers)}
-                        {renderCardRowsForPropertyBag(result.descriptors)}
-                        {renderCardRowsForPropertyBag(result.resolution)}
-                    </tbody>
-                </table>
-                <InstanceDetailsFooter
-                    deps={deps}
-                    result={result}
-                    userConfigurationStoreData={userConfigurationStoreData}
-                    rule={rule}
-                    targetAppInfo={targetAppInfo}
-                />
+                <div role="gridcell">
+                    <table className={reportInstanceTable}>
+                        <tbody>
+                            {renderCardRowsForPropertyBag(result.identifiers)}
+                            {renderCardRowsForPropertyBag(result.descriptors)}
+                            {renderCardRowsForPropertyBag(result.resolution)}
+                        </tbody>
+                    </table>
+                    <InstanceDetailsFooter
+                        deps={deps}
+                        result={result}
+                        userConfigurationStoreData={userConfigurationStoreData}
+                        rule={rule}
+                        targetAppInfo={targetAppInfo}
+                    />
+                </div>
             </div>
         </div>
     );
