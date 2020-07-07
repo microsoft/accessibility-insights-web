@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NoFailedInstancesCongrats with custom message renders 1`] = `
+exports[`NoFailedInstancesCongrats with outcomeType fail renders per snapshot with custom message 1`] = `
 <div
   className="reportCongratsMessage"
 >
@@ -22,7 +22,7 @@ exports[`NoFailedInstancesCongrats with custom message renders 1`] = `
 </div>
 `;
 
-exports[`NoFailedInstancesCongrats with default message renders 1`] = `
+exports[`NoFailedInstancesCongrats with outcomeType fail renders per snapshot with default message 1`] = `
 <div
   className="reportCongratsMessage"
 >
@@ -35,6 +35,138 @@ exports[`NoFailedInstancesCongrats with default message renders 1`] = `
     className="reportCongratsInfo"
   >
     No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+  </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
+</div>
+`;
+
+exports[`NoFailedInstancesCongrats with outcomeType inapplicable renders per snapshot with custom message 1`] = `
+<div
+  className="reportCongratsMessage"
+>
+  <div
+    className="reportCongratsHead"
+  >
+    Congratulations!
+  </div>
+  <div
+    className="reportCongratsInfo"
+  >
+    Look, ma! No bugs!
+  </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
+</div>
+`;
+
+exports[`NoFailedInstancesCongrats with outcomeType inapplicable renders per snapshot with default message 1`] = `
+<div
+  className="reportCongratsMessage"
+>
+  <div
+    className="reportCongratsHead"
+  >
+    Congratulations!
+  </div>
+  <div
+    className="reportCongratsInfo"
+  >
+    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+  </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
+</div>
+`;
+
+exports[`NoFailedInstancesCongrats with outcomeType pass renders per snapshot with custom message 1`] = `
+<div
+  className="reportCongratsMessage"
+>
+  <div
+    className="reportCongratsHead"
+  >
+    Congratulations!
+  </div>
+  <div
+    className="reportCongratsInfo"
+  >
+    Look, ma! No bugs!
+  </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
+</div>
+`;
+
+exports[`NoFailedInstancesCongrats with outcomeType pass renders per snapshot with default message 1`] = `
+<div
+  className="reportCongratsMessage"
+>
+  <div
+    className="reportCongratsHead"
+  >
+    Congratulations!
+  </div>
+  <div
+    className="reportCongratsInfo"
+  >
+    No failed automated checks were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
+  </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
+</div>
+`;
+
+exports[`NoFailedInstancesCongrats with outcomeType review renders per snapshot with custom message 1`] = `
+<div
+  className="reportCongratsMessage"
+>
+  <div
+    className="reportCongratsHead"
+  >
+    Congratulations!
+  </div>
+  <div
+    className="reportCongratsInfo"
+  >
+    Look, ma! No bugs!
+  </div>
+  <InlineImage
+    alt=""
+    className="sleepingAda"
+    imageType={6}
+  />
+</div>
+`;
+
+exports[`NoFailedInstancesCongrats with outcomeType review renders per snapshot with default message 1`] = `
+<div
+  className="reportCongratsMessage"
+>
+  <div
+    className="reportCongratsHead"
+  >
+    Congratulations!
+  </div>
+  <div
+    className="reportCongratsInfo"
+  >
+    No instances to review were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.
   </div>
   <InlineImage
     alt=""
