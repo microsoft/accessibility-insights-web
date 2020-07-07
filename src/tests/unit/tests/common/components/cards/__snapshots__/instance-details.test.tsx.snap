@@ -15,53 +15,57 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
     role="row"
     tabIndex={0}
   >
-    <table
-      className="reportInstanceTable"
+    <div
+      role="gridcell"
     >
-      <tbody>
-        <React.Fragment />
-        <React.Fragment />
-        <React.Fragment />
-      </tbody>
-    </table>
-    <InstanceDetailsFooter
-      deps={
-        Object {
-          "cardInteractionSupport": Object {
-            "supportsCopyFailureDetails": true,
-            "supportsHighlighting": true,
-            "supportsIssueFiling": true,
-          },
-          "cardSelectionMessageCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "collapseAllRules": [Function],
-            "dispatcher": undefined,
-            "expandAllRules": [Function],
-            "source": undefined,
-            "telemetryFactory": undefined,
-            "toggleCardSelection": [Function],
-            "toggleRuleExpandCollapse": [Function],
-            "toggleVisualHelper": [Function],
-          },
-          "getPropertyConfigById": [Function],
+      <table
+        className="reportInstanceTable"
+      >
+        <tbody>
+          <React.Fragment />
+          <React.Fragment />
+          <React.Fragment />
+        </tbody>
+      </table>
+      <InstanceDetailsFooter
+        deps={
+          Object {
+            "cardInteractionSupport": Object {
+              "supportsCopyFailureDetails": true,
+              "supportsHighlighting": true,
+              "supportsIssueFiling": true,
+            },
+            "cardSelectionMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "collapseAllRules": [Function],
+              "dispatcher": undefined,
+              "expandAllRules": [Function],
+              "source": undefined,
+              "telemetryFactory": undefined,
+              "toggleCardSelection": [Function],
+              "toggleRuleExpandCollapse": [Function],
+              "toggleVisualHelper": [Function],
+            },
+            "getPropertyConfigById": [Function],
+          }
         }
-      }
-      result={
-        Object {
-          "descriptors": Object {},
-          "identifiers": Object {
-            "conciseName": "test-concise-name",
-            "identifier": "test-id",
-            "this-property-does-not-have-config": "some value",
-          },
-          "isSelected": true,
-          "resolution": Object {},
-          "ruleId": "image-alt",
-          "status": "fail",
-          "uid": "some-guid-here",
+        result={
+          Object {
+            "descriptors": Object {},
+            "identifiers": Object {
+              "conciseName": "test-concise-name",
+              "identifier": "test-id",
+              "this-property-does-not-have-config": "some value",
+            },
+            "isSelected": true,
+            "resolution": Object {},
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          }
         }
-      }
-    />
+      />
+    </div>
   </div>
 </div>
 `;
@@ -81,53 +85,57 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
     role="row"
     tabIndex={0}
   >
-    <table
-      className="reportInstanceTable"
+    <div
+      role="gridcell"
     >
-      <tbody>
-        <React.Fragment />
-        <React.Fragment />
-        <React.Fragment />
-      </tbody>
-    </table>
-    <InstanceDetailsFooter
-      deps={
-        Object {
-          "cardInteractionSupport": Object {
-            "supportsCopyFailureDetails": true,
-            "supportsHighlighting": true,
-            "supportsIssueFiling": true,
-          },
-          "cardSelectionMessageCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "collapseAllRules": [Function],
-            "dispatcher": undefined,
-            "expandAllRules": [Function],
-            "source": undefined,
-            "telemetryFactory": undefined,
-            "toggleCardSelection": [Function],
-            "toggleRuleExpandCollapse": [Function],
-            "toggleVisualHelper": [Function],
-          },
-          "getPropertyConfigById": [Function],
+      <table
+        className="reportInstanceTable"
+      >
+        <tbody>
+          <React.Fragment />
+          <React.Fragment />
+          <React.Fragment />
+        </tbody>
+      </table>
+      <InstanceDetailsFooter
+        deps={
+          Object {
+            "cardInteractionSupport": Object {
+              "supportsCopyFailureDetails": true,
+              "supportsHighlighting": true,
+              "supportsIssueFiling": true,
+            },
+            "cardSelectionMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "collapseAllRules": [Function],
+              "dispatcher": undefined,
+              "expandAllRules": [Function],
+              "source": undefined,
+              "telemetryFactory": undefined,
+              "toggleCardSelection": [Function],
+              "toggleRuleExpandCollapse": [Function],
+              "toggleVisualHelper": [Function],
+            },
+            "getPropertyConfigById": [Function],
+          }
         }
-      }
-      result={
-        Object {
-          "descriptors": Object {},
-          "identifiers": Object {
-            "conciseName": "test-concise-name",
-            "identifier": "test-id",
-            "this-property-does-not-have-config": "some value",
-          },
-          "isSelected": false,
-          "resolution": Object {},
-          "ruleId": "image-alt",
-          "status": "fail",
-          "uid": "some-guid-here",
+        result={
+          Object {
+            "descriptors": Object {},
+            "identifiers": Object {
+              "conciseName": "test-concise-name",
+              "identifier": "test-id",
+              "this-property-does-not-have-config": "some value",
+            },
+            "isSelected": false,
+            "resolution": Object {},
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          }
         }
-      }
-    />
+      />
+    </div>
   </div>
 </div>
 `;
@@ -146,90 +154,140 @@ exports[`InstanceDetails renders 1`] = `
     role="row"
     tabIndex={0}
   >
-    <table
-      className="reportInstanceTable"
+    <div
+      role="gridcell"
     >
-      <tbody>
-        <React.Fragment>
-          <css-selector
-            deps={
-              Object {
-                "cardInteractionSupport": Object {
-                  "supportsCopyFailureDetails": true,
-                  "supportsHighlighting": true,
-                  "supportsIssueFiling": true,
-                },
-                "cardSelectionMessageCreator": proxy {
-                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "collapseAllRules": [Function],
-                  "dispatcher": undefined,
-                  "expandAllRules": [Function],
-                  "source": undefined,
-                  "telemetryFactory": undefined,
-                  "toggleCardSelection": [Function],
-                  "toggleRuleExpandCollapse": [Function],
-                  "toggleVisualHelper": [Function],
-                },
-                "getPropertyConfigById": [Function],
+      <table
+        className="reportInstanceTable"
+      >
+        <tbody>
+          <React.Fragment>
+            <css-selector
+              deps={
+                Object {
+                  "cardInteractionSupport": Object {
+                    "supportsCopyFailureDetails": true,
+                    "supportsHighlighting": true,
+                    "supportsIssueFiling": true,
+                  },
+                  "cardSelectionMessageCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "collapseAllRules": [Function],
+                    "dispatcher": undefined,
+                    "expandAllRules": [Function],
+                    "source": undefined,
+                    "telemetryFactory": undefined,
+                    "toggleCardSelection": [Function],
+                    "toggleRuleExpandCollapse": [Function],
+                    "toggleVisualHelper": [Function],
+                  },
+                  "getPropertyConfigById": [Function],
+                }
               }
-            }
-            index={22}
-            propertyData="body img"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <snippet
-            deps={
-              Object {
-                "cardInteractionSupport": Object {
-                  "supportsCopyFailureDetails": true,
-                  "supportsHighlighting": true,
-                  "supportsIssueFiling": true,
-                },
-                "cardSelectionMessageCreator": proxy {
-                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "collapseAllRules": [Function],
-                  "dispatcher": undefined,
-                  "expandAllRules": [Function],
-                  "source": undefined,
-                  "telemetryFactory": undefined,
-                  "toggleCardSelection": [Function],
-                  "toggleRuleExpandCollapse": [Function],
-                  "toggleVisualHelper": [Function],
-                },
-                "getPropertyConfigById": [Function],
+              index={22}
+              propertyData="body img"
+            />
+          </React.Fragment>
+          <React.Fragment>
+            <snippet
+              deps={
+                Object {
+                  "cardInteractionSupport": Object {
+                    "supportsCopyFailureDetails": true,
+                    "supportsHighlighting": true,
+                    "supportsIssueFiling": true,
+                  },
+                  "cardSelectionMessageCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "collapseAllRules": [Function],
+                    "dispatcher": undefined,
+                    "expandAllRules": [Function],
+                    "source": undefined,
+                    "telemetryFactory": undefined,
+                    "toggleCardSelection": [Function],
+                    "toggleRuleExpandCollapse": [Function],
+                    "toggleVisualHelper": [Function],
+                  },
+                  "getPropertyConfigById": [Function],
+                }
               }
-            }
-            index={22}
-            propertyData="this is a sample snippet"
-          />
-        </React.Fragment>
-        <React.Fragment>
-          <how-to-fix-web
-            deps={
-              Object {
-                "cardInteractionSupport": Object {
-                  "supportsCopyFailureDetails": true,
-                  "supportsHighlighting": true,
-                  "supportsIssueFiling": true,
-                },
-                "cardSelectionMessageCreator": proxy {
-                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "collapseAllRules": [Function],
-                  "dispatcher": undefined,
-                  "expandAllRules": [Function],
-                  "source": undefined,
-                  "telemetryFactory": undefined,
-                  "toggleCardSelection": [Function],
-                  "toggleRuleExpandCollapse": [Function],
-                  "toggleVisualHelper": [Function],
-                },
-                "getPropertyConfigById": [Function],
+              index={22}
+              propertyData="this is a sample snippet"
+            />
+          </React.Fragment>
+          <React.Fragment>
+            <how-to-fix-web
+              deps={
+                Object {
+                  "cardInteractionSupport": Object {
+                    "supportsCopyFailureDetails": true,
+                    "supportsHighlighting": true,
+                    "supportsIssueFiling": true,
+                  },
+                  "cardSelectionMessageCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "collapseAllRules": [Function],
+                    "dispatcher": undefined,
+                    "expandAllRules": [Function],
+                    "source": undefined,
+                    "telemetryFactory": undefined,
+                    "toggleCardSelection": [Function],
+                    "toggleRuleExpandCollapse": [Function],
+                    "toggleVisualHelper": [Function],
+                  },
+                  "getPropertyConfigById": [Function],
+                }
               }
-            }
-            index={22}
-            propertyData={
-              Object {
+              index={22}
+              propertyData={
+                Object {
+                  "all": Array [],
+                  "any": Array [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": Array [],
+                }
+              }
+            />
+          </React.Fragment>
+        </tbody>
+      </table>
+      <InstanceDetailsFooter
+        deps={
+          Object {
+            "cardInteractionSupport": Object {
+              "supportsCopyFailureDetails": true,
+              "supportsHighlighting": true,
+              "supportsIssueFiling": true,
+            },
+            "cardSelectionMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "collapseAllRules": [Function],
+              "dispatcher": undefined,
+              "expandAllRules": [Function],
+              "source": undefined,
+              "telemetryFactory": undefined,
+              "toggleCardSelection": [Function],
+              "toggleRuleExpandCollapse": [Function],
+              "toggleVisualHelper": [Function],
+            },
+            "getPropertyConfigById": [Function],
+          }
+        }
+        result={
+          Object {
+            "descriptors": Object {
+              "snippet": "this is a sample snippet",
+            },
+            "identifiers": Object {
+              "conciseName": "body img",
+              "css-selector": "body img",
+              "identifier": "body img",
+            },
+            "resolution": Object {
+              "how-to-fix-web": Object {
                 "all": Array [],
                 "any": Array [
                   "Element does not have an alt attribute",
@@ -237,67 +295,21 @@ exports[`InstanceDetails renders 1`] = `
                   "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
                 ],
                 "none": Array [],
-              }
-            }
-          />
-        </React.Fragment>
-      </tbody>
-    </table>
-    <InstanceDetailsFooter
-      deps={
-        Object {
-          "cardInteractionSupport": Object {
-            "supportsCopyFailureDetails": true,
-            "supportsHighlighting": true,
-            "supportsIssueFiling": true,
-          },
-          "cardSelectionMessageCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "collapseAllRules": [Function],
-            "dispatcher": undefined,
-            "expandAllRules": [Function],
-            "source": undefined,
-            "telemetryFactory": undefined,
-            "toggleCardSelection": [Function],
-            "toggleRuleExpandCollapse": [Function],
-            "toggleVisualHelper": [Function],
-          },
-          "getPropertyConfigById": [Function],
-        }
-      }
-      result={
-        Object {
-          "descriptors": Object {
-            "snippet": "this is a sample snippet",
-          },
-          "identifiers": Object {
-            "conciseName": "body img",
-            "css-selector": "body img",
-            "identifier": "body img",
-          },
-          "resolution": Object {
-            "how-to-fix-web": Object {
-              "all": Array [],
-              "any": Array [
-                "Element does not have an alt attribute",
-                "aria-label attribute does not exist or is empty",
-                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-              ],
-              "none": Array [],
+              },
+              "howToFixSummary": "sample how to fix summary",
             },
-            "howToFixSummary": "sample how to fix summary",
-          },
-          "ruleId": "image-alt",
-          "status": "fail",
-          "uid": "some-guid-here",
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          }
         }
-      }
-    />
+      />
+    </div>
   </div>
 </div>
 `;
 
-exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
+exports[`InstanceDetails renders nothing when there is no card row configuration for the property / no property 1`] = `
 <div
   className="instanceDetailsCardContainer"
   data-automation-id="instance-card"
@@ -311,52 +323,56 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
     role="row"
     tabIndex={0}
   >
-    <table
-      className="reportInstanceTable"
+    <div
+      role="gridcell"
     >
-      <tbody>
-        <React.Fragment />
-        <React.Fragment />
-        <React.Fragment />
-      </tbody>
-    </table>
-    <InstanceDetailsFooter
-      deps={
-        Object {
-          "cardInteractionSupport": Object {
-            "supportsCopyFailureDetails": true,
-            "supportsHighlighting": true,
-            "supportsIssueFiling": true,
-          },
-          "cardSelectionMessageCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "collapseAllRules": [Function],
-            "dispatcher": undefined,
-            "expandAllRules": [Function],
-            "source": undefined,
-            "telemetryFactory": undefined,
-            "toggleCardSelection": [Function],
-            "toggleRuleExpandCollapse": [Function],
-            "toggleVisualHelper": [Function],
-          },
-          "getPropertyConfigById": [Function],
+      <table
+        className="reportInstanceTable"
+      >
+        <tbody>
+          <React.Fragment />
+          <React.Fragment />
+          <React.Fragment />
+        </tbody>
+      </table>
+      <InstanceDetailsFooter
+        deps={
+          Object {
+            "cardInteractionSupport": Object {
+              "supportsCopyFailureDetails": true,
+              "supportsHighlighting": true,
+              "supportsIssueFiling": true,
+            },
+            "cardSelectionMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "collapseAllRules": [Function],
+              "dispatcher": undefined,
+              "expandAllRules": [Function],
+              "source": undefined,
+              "telemetryFactory": undefined,
+              "toggleCardSelection": [Function],
+              "toggleRuleExpandCollapse": [Function],
+              "toggleVisualHelper": [Function],
+            },
+            "getPropertyConfigById": [Function],
+          }
         }
-      }
-      result={
-        Object {
-          "descriptors": Object {},
-          "identifiers": Object {
-            "conciseName": "test-concise-name",
-            "identifier": "test-id",
-            "this-property-does-not-have-config": "some value",
-          },
-          "resolution": Object {},
-          "ruleId": "image-alt",
-          "status": "fail",
-          "uid": "some-guid-here",
+        result={
+          Object {
+            "descriptors": Object {},
+            "identifiers": Object {
+              "conciseName": "test-concise-name",
+              "identifier": "test-id",
+              "this-property-does-not-have-config": "some value",
+            },
+            "resolution": Object {},
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          }
         }
-      }
-    />
+      />
+    </div>
   </div>
 </div>
 `;
