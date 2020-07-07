@@ -37,6 +37,7 @@
         "null:autoadd": "node ./tools/strict-null-checks/auto-add.js",
         "null:check": "tsc -p ./tsconfig.strictNullChecks.json",
         "null:find": "node ./tools/strict-null-checks/find.js",
+        "null:progress": "node ./tools/strict-null-checks/progress.js",
         "react-devtools": "react-devtools",
         "scss:build": "tsm \"src/**/*.scss\"",
         "scss:clean": "grunt clean:scss",

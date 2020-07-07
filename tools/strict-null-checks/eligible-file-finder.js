@@ -28,18 +28,16 @@ const forEachFileInSrc = (srcRoot, options) => {
         });
     });
 };
-module.exports.forEachFileInSrc = forEachFileInSrc;
 
 /**
  * @param {string} repoRoot
  * @param {(file: string) => void} forEach
  * @param {{ includeTests: boolean }} [options]
  */
-module.exports.forStrictNullCheckEligibleFiles = async (repoRoot, forEach, options) => {
+async function forStrictNullCheckEligibleFiles(repoRoot, forEach, options) {
     const srcRoot = path.join(repoRoot, 'src');
 
-    const tsconfig = require(path.join(repoRoot, config.targetTsconfig));
-    const checkedFiles = await getCheckedFiles(tsconfig, repoRoot);
+    const checkedFiles = await getCheckedFiles(repoRoot);
 
     const imports = new Map();
     const getMemoizedImportsForFile = (file, srcRoot) => {
@@ -74,14 +72,17 @@ module.exports.forStrictNullCheckEligibleFiles = async (repoRoot, forEach, optio
                 });
 
             const isEdge = nonCheckedImports.length === 0;
+
             if (isEdge) {
                 forEach(file);
             }
             return isEdge;
         });
-};
+}
 
-async function getCheckedFiles(tsconfigContent, tsconfigDir) {
+async function getCheckedFiles(tsconfigDir) {
+    const tsconfigContent = require(path.join(tsconfigDir, config.targetTsconfig));
+
     const set = new Set(
         tsconfigContent.files.map(f => path.join(tsconfigDir, f).replace(/\\/g, '/')),
     );
@@ -102,3 +103,9 @@ async function getCheckedFiles(tsconfigContent, tsconfigDir) {
     await Promise.all(includes);
     return set;
 }
+
+module.exports = {
+    forEachFileInSrc,
+    forStrictNullCheckEligibleFiles,
+    getCheckedFiles,
+};
