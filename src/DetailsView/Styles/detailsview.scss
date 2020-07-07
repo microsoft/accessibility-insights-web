@@ -29,14 +29,13 @@ body {
 }
 
 div.insights-dialog-main-override {
-    width: 25% !important;
-    max-width: 25% !important;
-    min-width: 500px !important;
+    width: 75%;
+    max-width: 500px;
     @media screen and (max-width: 500px) {
-        min-width: 256px !important;
-        width: 95% !important;
-        max-width: 100% !important;
+        min-width: 240px;
+        width: 75%;
     }
+
     user-select: text;
     .start-over-dialog-body {
         font-size: 16px;
