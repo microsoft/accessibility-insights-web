@@ -18,7 +18,13 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
         (global as any).rootDir
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
 
-    const appController = await createAppController(targetApp, options);
+    const unifiedOptions = {
+        env: {
+            ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
+        },
+        ...options,
+    };
+    const appController = await createAppController(targetApp, unifiedOptions);
 
     if (options?.suppressFirstTimeDialog === true) {
         await appController.setTelemetryState(false);
@@ -36,9 +42,6 @@ export async function createAppController(
         args: [targetApp],
         connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
         connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
-        env: {
-            ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
-        },
         ...overrideSpectronOptions,
     });
     await app.start();
