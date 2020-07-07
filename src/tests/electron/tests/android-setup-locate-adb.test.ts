@@ -31,7 +31,7 @@ describe('Android setup - locate adb', () => {
         }
     });
 
-    it('respects user-provided adb location to proceed to choosing devices', async () => {
+    it('respects user-provided adb location', async () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
