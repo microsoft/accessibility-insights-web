@@ -22,20 +22,27 @@ export class FixInstructionProcessor {
     );
 
     public process(fixInstruction: string): JSX.Element {
-        const foregroundMatch = this.getColorMatch(fixInstruction, this.foregroundRegExp);
-        const backgroundMatch = this.getColorMatch(fixInstruction, this.backgroundRegExp);
-
-        const matches = [foregroundMatch, backgroundMatch];
-
+        const matches = this.getColorMatches(fixInstruction);
         return this.splitFixInstruction(fixInstruction, matches);
     }
 
-    private getColorMatch(fixInstruction: string, colorRegex: RegExp): ColorMatch {
+    private getColorMatches(fixInstruction: string): ColorMatch[] {
+        const foregroundMatch = this.getColorMatch(fixInstruction, this.foregroundRegExp);
+        const backgroundMatch = this.getColorMatch(fixInstruction, this.backgroundRegExp);
+
+        return [foregroundMatch, backgroundMatch].filter(match => match != null) as ColorMatch[];
+    }
+
+    private getColorMatch(fixInstruction: string, colorRegex: RegExp): ColorMatch | null {
         if (!colorRegex.test(fixInstruction)) {
             return null;
         }
 
         const match = colorRegex.exec(fixInstruction);
+        if (match == null || match[1] == null) {
+            return null;
+        }
+
         const colorHexValue = match[1];
 
         return {
@@ -45,11 +52,9 @@ export class FixInstructionProcessor {
     }
 
     private splitFixInstruction(fixInstruction: string, matches: ColorMatch[]): JSX.Element {
-        const properMatches = matches
-            .filter(current => current != null)
-            .sort((a, b) => a.splitIndex - b.splitIndex);
+        const sortedMatches = matches.sort((a, b) => a.splitIndex - b.splitIndex);
 
-        if (properMatches.length === 0) {
+        if (sortedMatches.length === 0) {
             return <>{fixInstruction}</>;
         }
 
@@ -58,7 +63,7 @@ export class FixInstructionProcessor {
 
         const result: JSX.Element[] = [];
 
-        properMatches.forEach(match => {
+        sortedMatches.forEach(match => {
             const endIndex = match.splitIndex - match.colorHexValue.length;
             const substring = fixInstruction.substring(insertionIndex, endIndex);
 
