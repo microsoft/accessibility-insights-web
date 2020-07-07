@@ -79,7 +79,7 @@ export class TestStatusChoiceGroup extends React.Component<
         );
     };
 
-    private renderUndoButton(): JSX.Element {
+    private renderUndoButton(): JSX.Element | null {
         if (this.props.originalStatus == null) {
             return null;
         }
