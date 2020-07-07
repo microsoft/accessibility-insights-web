@@ -34,7 +34,7 @@ export const getCardViewData: GetCardViewData = (
 
     for (const result of results) {
         const ruleResults = statusResults[result.status];
-        const isFailedInstance = result.status === 'fail';
+        const isInstanceDisplayed = result.status === 'fail' || result.status === 'unknown';
         let ruleResult = getExistingRuleFromResults(result.ruleId, ruleResults);
 
         if (!ruleResult) {
@@ -43,7 +43,7 @@ export const getCardViewData: GetCardViewData = (
                 continue;
             }
 
-            const isExpanded = isFailedInstance
+            const isExpanded = isInstanceDisplayed
                 ? includes(cardSelectionViewData.expandedRuleIds, rule.id)
                 : false;
 
@@ -51,7 +51,7 @@ export const getCardViewData: GetCardViewData = (
             ruleResults.push(ruleResult);
         }
 
-        const isSelected = isFailedInstance
+        const isSelected = isInstanceDisplayed
             ? includes(cardSelectionViewData.selectedResultUids, result.uid)
             : false;
         const highlightStatus = cardSelectionViewData.resultsHighlightStatus[result.uid];

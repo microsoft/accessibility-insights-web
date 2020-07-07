@@ -119,7 +119,7 @@ Array [
       "howToFixSummary": undefined,
     },
     "ruleId": "test2",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
 ]
