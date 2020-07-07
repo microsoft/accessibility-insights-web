@@ -22,6 +22,8 @@ import { NamedFC, ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
+export type InstancesSectionProps = FailedInstancesSectionProps & NeedsReviewInstancesSectionProps;
+
 export type AdhocIssuesTestViewDeps = DetailsListIssuesViewDeps & ScanIncompleteWarningDeps;
 
 export type InstancesSectionProps = FailedInstancesSectionProps & NeedsReviewInstancesSectionProps;

@@ -59,7 +59,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
   <div
     className="issuesTableContent"
   >
-    <CardsView
+    <SomeInstancesSection
       cardsViewData={
         Object {
           "allCardsCollapsed": true,
@@ -129,7 +129,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           },
         }
       }
-      selectedTest={-1}
+      shouldAlertFailuresCount={true}
       userConfigurationStoreData={
         Object {
           "bugService": "gitHub",

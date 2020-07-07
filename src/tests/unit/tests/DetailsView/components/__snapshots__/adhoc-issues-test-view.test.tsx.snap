@@ -23,6 +23,7 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
         "getStoreData": [Function],
       }
     }
+    instancesSection={[Function]}
     scanIncompleteWarnings={Array []}
     selectedTest={-1}
     switcherNavConfiguration={

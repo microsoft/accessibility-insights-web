@@ -3,7 +3,7 @@
 export class TargetPageInspector {
     constructor(private readonly inspectedWindow: typeof chrome.devtools.inspectedWindow) {}
 
-    public inspectElement(selector: string, frameUrl: string): void {
+    public inspectElement(selector: string, frameUrl?: string): void {
         const sanitizedSelector = this.sanitizeSelector(selector);
 
         const script = `inspect(document.querySelector(${sanitizedSelector}))`;

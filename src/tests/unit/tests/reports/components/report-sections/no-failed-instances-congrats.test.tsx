@@ -9,9 +9,10 @@ import {
     NoFailedInstancesCongratsDeps,
 } from 'reports/components/report-sections/no-failed-instances-congrats';
 
-for (const outcomeType of allInstanceOutcomeTypes) {
-    describe('NoFailedInstancesCongrats with default message', () => {
-        it('renders', () => {
+describe.each(allInstanceOutcomeTypes)(
+    'NoFailedInstancesCongrats with outcomeType %s',
+    outcomeType => {
+        it('renders per snapshot with default message', () => {
             const deps: NoFailedInstancesCongratsDeps = {
                 customCongratsMessage: null,
                 outcomeType: outcomeType,
@@ -22,10 +23,8 @@ for (const outcomeType of allInstanceOutcomeTypes) {
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
-    });
 
-    describe('NoFailedInstancesCongrats with custom message', () => {
-        it('renders', () => {
+        it('renders per snapshot with custom message', () => {
             const deps: NoFailedInstancesCongratsDeps = {
                 customCongratsMessage: 'Look, ma! No bugs!',
                 outcomeType: outcomeType,
@@ -36,5 +35,5 @@ for (const outcomeType of allInstanceOutcomeTypes) {
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
-    });
-}
+    },
+);
