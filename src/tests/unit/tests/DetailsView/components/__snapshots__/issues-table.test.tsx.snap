@@ -59,7 +59,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
   <div
     className="issuesTableContent"
   >
-    <test
+    <SomeInstancesSection
       cardsViewData={
         Object {
           "allCardsCollapsed": true,
