@@ -17,7 +17,7 @@ export type BodyClassModifierProps = {
 // body classes office fabric maintains.
 export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
     public render(): JSX.Element {
-        return null;
+        return <></>;
     }
 
     public componentDidMount(): void {
