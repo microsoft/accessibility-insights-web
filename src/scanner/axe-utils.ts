@@ -6,7 +6,9 @@ import { DictionaryStringTo } from '../types/common-types';
 
 export type ImageCodedAs = 'Decorative' | 'Meaningful';
 
-export function getMatchesFromRule(ruleId: string): (node: any, virtualNode: any) => boolean {
+export function getMatchesFromRule(
+    ruleId: string,
+): ((node: any, virtualNode: any) => boolean) | undefined {
     return axe._audit.defaultConfig.rules.filter(rule => rule.id === ruleId)[0].matches;
 }
 
@@ -38,19 +40,22 @@ export function getPropertyValuesMatching(
         for (let i = 0; i < attrs.length; i++) {
             const name = attrs[i].name;
             if (regex.test(name)) {
-                dictionary[name] = node.getAttribute(name);
+                dictionary[name] = node.getAttribute(name)!;
             }
         }
     }
     return dictionary;
 }
 
-export function getAttributes(node: HTMLElement, attributes: string[]): DictionaryStringTo<string> {
-    const retDict: DictionaryStringTo<string> = {};
+export function getAttributes(
+    node: HTMLElement,
+    attributes: string[],
+): DictionaryStringTo<string | null> {
+    const retDict: DictionaryStringTo<string | null> = {};
     attributes
-        .filter(atributeName => node.hasAttribute(atributeName))
+        .filter(attributeName => node.hasAttribute(attributeName))
         .forEach(attributeName => {
-            const attributeValue = node.getAttribute(attributeName);
+            const attributeValue = node.getAttribute(attributeName)!;
             retDict[attributeName] = attributeValue.length > 0 ? attributeValue : null;
         });
 
@@ -65,7 +70,7 @@ export function hasCustomWidgetMarkup(node: HTMLElement): boolean {
     return tabIndex === '-1' || Object.keys(ariaValues).length > 0 || hasRole;
 }
 
-export function getImageCodedAs(node: HTMLElement): ImageCodedAs {
+export function getImageCodedAs(node: HTMLElement): ImageCodedAs | null {
     const role = node.getAttribute('role');
     const alt = node.getAttribute('alt');
 
@@ -85,8 +90,8 @@ export function getImageCodedAs(node: HTMLElement): ImageCodedAs {
     return null;
 }
 
-export function isWhiteSpace(text: string): boolean {
-    return text && text.length > 0 && text.trim() === '';
+export function isWhiteSpace(text: string | null): boolean {
+    return text != null && text.length > 0 && text.trim() === '';
 }
 
 export function hasBackgoundImage(node: HTMLElement): boolean {
@@ -96,8 +101,8 @@ export function hasBackgoundImage(node: HTMLElement): boolean {
     return computedBackgroundImage !== 'none';
 }
 
-export function getImageType(node: HTMLElement): string {
-    let imageType: string;
+export function getImageType(node: HTMLElement): string | null {
+    let imageType: string | null = null;
     if (node.tagName.toLowerCase() === 'img') {
         imageType = '<img>';
     } else if (node.tagName.toLowerCase() === 'i') {

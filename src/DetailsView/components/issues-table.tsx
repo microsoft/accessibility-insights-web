@@ -2,14 +2,16 @@
 // Licensed under the MIT License.
 import * as Markup from 'assessments/markup';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
+import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { InstancesSectionProps } from 'DetailsView/components/adhoc-issues-test-view';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { CardsView, CardsViewDeps } from './cards-view';
+import { CardsViewDeps } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
 
 export type IssuesTableDeps = CardsViewDeps &
@@ -28,6 +30,7 @@ export interface IssuesTableProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
+    instancesSection: ReactFCWithDisplayName<InstancesSectionProps>;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -73,12 +76,15 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             return this.renderSpinner('Scanning...');
         }
 
+        const InstancesSection = this.props.instancesSection;
+
         return (
-            <CardsView
+            <InstancesSection
                 deps={this.props.deps}
                 cardsViewData={this.props.cardsViewData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 scanMetadata={this.props.scanMetadata}
+                shouldAlertFailuresCount={true}
             />
         );
     }
