@@ -373,6 +373,13 @@ export class TelemetryDataFactory {
         return telemetry;
     };
 
+    public forLeftNavPanelExpanded(event: SupportedMouseEvent): BaseTelemetryData {
+        return {
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: this.getTriggeredBy(event),
+        };
+    }
+
     private getTriggeredBy(event: SupportedMouseEvent): TriggeredBy {
         // MouseEvent => event.detail === 0 ? "keypress" : "mouseclick"
         // React.SyntheticEvent<MouseEvent> event.nativeEvent can be cast to MouseEvent

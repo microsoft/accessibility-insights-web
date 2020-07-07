@@ -623,4 +623,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         this.dispatcher.dispatchMessage(message);
     };
+
+    public leftNavPanelExpanded = (event: SupportedMouseEvent) => {
+        this.dispatcher.sendTelemetry(
+            TelemetryEvents.LEFT_NAV_PANEL_EXPANDED,
+            this.telemetryFactory.forLeftNavPanelExpanded(event),
+        );
+    };
 }

@@ -676,4 +676,15 @@ describe('TelemetryDataFactoryTest', () => {
 
         expect(result).toEqual(expected);
     });
+
+    test('forLeftNavPanelExpanded', () => {
+        const expected: BaseTelemetryData = {
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: 'mouseclick',
+        };
+
+        const result = testObject.forLeftNavPanelExpanded(mouseClickEvent);
+
+        expect(result).toEqual(expected);
+    });
 });
