@@ -58,6 +58,7 @@ exports[`DetailsListIssuesView should return issues table with scanning to false
       "detailsViewActionMessageCreator": Object {},
     }
   }
+  instancesSection={[Function]}
   issuesEnabled={true}
   scanning={false}
   subtitle={

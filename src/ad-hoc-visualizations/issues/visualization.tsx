@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
+import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
@@ -28,7 +29,9 @@ const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
     testMode: TestMode.Adhoc,
-    getTestView: props => <AdhocIssuesTestView {...props} />,
+    getTestView: props => (
+        <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...props} />
+    ),
     getStoreData: data => data.adhoc.issues,
     enableTest: (data, _) => (data.enabled = true),
     disableTest: data => (data.enabled = false),
