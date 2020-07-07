@@ -16,7 +16,7 @@ export type BodyClassModifierProps = {
 // need multiple BodyClassModifiers to be able to co-exist without overwriting each other or the
 // body classes office fabric maintains.
 export class BodyClassModifier extends React.Component<BodyClassModifierProps> {
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         return null;
     }
 
