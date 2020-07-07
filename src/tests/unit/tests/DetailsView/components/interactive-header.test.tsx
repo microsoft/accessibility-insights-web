@@ -51,7 +51,7 @@ describe('InteractiveHeader', () => {
             connected: null,
             avatarUrl: null,
             tabClosed: false,
-            deps: {} as InteractiveHeaderDeps,
+            deps: null,
             selectedPivot: DetailsViewPivotType.assessment,
             navMenu: navMenuStub,
             narrowModeStatus: {

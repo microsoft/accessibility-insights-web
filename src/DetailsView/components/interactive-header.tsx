@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    ExpandCollpaseLeftNavButtonDeps,
-    ExpandCollpaseLeftNavButtonProps,
-} from 'common/components/expand-collapse-left-nav-hamburger-button';
+import { ExpandCollpaseLeftNavButtonProps } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { GearMenuButton, GearMenuButtonDeps } from 'common/components/gear-menu-button';
 import { Header, HeaderDeps } from 'common/components/header';
@@ -16,10 +13,7 @@ import { headerSwitcherStyleNames } from 'DetailsView/components/switcher-style-
 import * as React from 'react';
 import { Switcher, SwitcherDeps } from './switcher';
 
-export type InteractiveHeaderDeps = SwitcherDeps &
-    HeaderDeps &
-    GearMenuButtonDeps &
-    ExpandCollpaseLeftNavButtonDeps;
+export type InteractiveHeaderDeps = SwitcherDeps & HeaderDeps & GearMenuButtonDeps;
 
 export interface InteractiveHeaderProps {
     deps: InteractiveHeaderDeps;
@@ -47,7 +41,6 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
 
         return (
             <props.navMenu
-                deps={props.deps}
                 setSideNavOpen={props.setSideNavOpen}
                 isSideNavOpen={props.isSideNavOpen}
             />

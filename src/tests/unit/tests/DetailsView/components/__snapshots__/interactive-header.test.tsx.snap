@@ -2,10 +2,10 @@
 
 exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
 <Header
-  deps={Object {}}
+  deps={null}
   farItems={
     <GearOptionsButtonComponent
-      deps={Object {}}
+      deps={null}
       featureFlagData={null}
     />
   }
@@ -13,7 +13,7 @@ exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
     <FlaggedComponent
       disableJSXElement={
         <Switcher
-          deps={Object {}}
+          deps={null}
           pivotKey={2}
           styles={
             Object {
@@ -40,10 +40,10 @@ exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
 
 exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
 <Header
-  deps={Object {}}
+  deps={null}
   farItems={
     <GearOptionsButtonComponent
-      deps={Object {}}
+      deps={null}
       featureFlagData={null}
     />
   }
@@ -51,7 +51,7 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
     <FlaggedComponent
       disableJSXElement={
         <Switcher
-          deps={Object {}}
+          deps={null}
           pivotKey={2}
           styles={
             Object {
@@ -74,7 +74,6 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
   }
   navMenu={
     <test-nav-menu
-      deps={Object {}}
       isSideNavOpen={false}
       setSideNavOpen={null}
     />
