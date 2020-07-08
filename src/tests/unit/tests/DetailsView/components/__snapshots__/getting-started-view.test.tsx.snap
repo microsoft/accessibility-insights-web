@@ -32,6 +32,7 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
               "copyIssueDetailsClicked": [Function],
               "dispatcher": undefined,
               "editFailureInstance": [Function],
+              "leftNavPanelExpanded": [Function],
               "removeFailureInstance": [Function],
               "rescanVisualization": [Function],
               "setAllUrlsPermissionState": [Function],
