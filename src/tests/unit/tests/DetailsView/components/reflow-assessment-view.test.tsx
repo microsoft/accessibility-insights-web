@@ -40,13 +40,11 @@ describe('AssessmentViewTest', () => {
             name: 'test-requirement-name',
             description: <div>test-description</div>,
             howToTest: <p>how-to-test-stub</p>,
+            order: 1,
         } as Requirement;
         const requirementResultStub: RequirementResult = {
             definition: requirementStub,
             data: { isStepScanned: true } as RequirementData,
-        };
-        const getRequirementResultStub = (requirementKey: string) => {
-            return requirementResultStub;
         };
         const assessmentTestResultStub: AssessmentTestResult = {
             definition: {
@@ -54,7 +52,9 @@ describe('AssessmentViewTest', () => {
                 title: 'some title',
                 guidance: { pageTitle: 'some page title' },
             },
-            getRequirementResult: getRequirementResultStub,
+            getRequirementResult: _ => requirementResultStub,
+            getRequirementResults: () => [requirementResultStub],
+            visualizationType: -1,
         } as AssessmentTestResult;
 
         const assessmentInstanceTableHandlerStub = {

@@ -4,31 +4,72 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
 <div
   className="gettingStartedView"
 >
-  <h1
-    className="gettingStartedHeader"
-  >
-    <span
-      className="gettingStartedHeaderTitle"
-    >
-      some title
-    </span>
-    <ContentLink
-      deps={Object {}}
-      iconName="info"
-      reference={
-        Object {
-          "pageTitle": "some page title",
-        }
-      }
-    />
-  </h1>
-  <h2
-    className="gettingStartedTitle"
-  >
-    Getting Started
-  </h2>
   <div>
-    test-getting-started-content
+    <h1
+      className="gettingStartedHeader"
+    >
+      <span
+        className="gettingStartedHeaderTitle"
+      >
+        some title
+      </span>
+      <ContentLink
+        deps={
+          Object {
+            "detailsViewActionMessageCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "addPathForValidation": [Function],
+              "cancelStartOver": [Function],
+              "cancelStartOverAllAssessments": [Function],
+              "changeAssessmentVisualizationState": [Function],
+              "changeManualRequirementStatus": [Function],
+              "changeManualTestStatus": [Function],
+              "clearPathSnippetData": [Function],
+              "closePreviewFeaturesPanel": [Function],
+              "closeScopingPanel": [Function],
+              "closeSettingsPanel": [Function],
+              "continuePreviousAssessment": [Function],
+              "copyIssueDetailsClicked": [Function],
+              "dispatcher": undefined,
+              "editFailureInstance": [Function],
+              "removeFailureInstance": [Function],
+              "rescanVisualization": [Function],
+              "setAllUrlsPermissionState": [Function],
+              "setFeatureFlag": [Function],
+              "startOverAllAssessments": [Function],
+              "switchToTargetTab": [Function],
+              "telemetryFactory": undefined,
+              "undoManualRequirementStatusChange": [Function],
+              "undoManualTestStatusChange": [Function],
+            },
+          }
+        }
+        iconName="info"
+        reference={
+          Object {
+            "pageTitle": "some page title",
+          }
+        }
+      />
+    </h1>
+    <h2
+      className="gettingStartedTitle"
+    >
+      Getting Started
+    </h2>
+    <div>
+      test-getting-started-content
+    </div>
   </div>
+  <CustomizedDefaultButton
+    className="nextRequirementButton"
+    onClick={[Function]}
+  >
+    <span>
+      <StyledIconBase
+        iconName="ChevronRight"
+      />
+    </span>
+  </CustomizedDefaultButton>
 </div>
 `;
