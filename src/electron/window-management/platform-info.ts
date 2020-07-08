@@ -9,7 +9,7 @@ export enum OSType {
 export class PlatformInfo {
     constructor(private readonly currentProcess: NodeJS.Process) {}
 
-    public getOs(): OSType {
+    public getOs(): OSType | null {
         if (this.currentProcess.platform === 'win32') {
             return OSType.Windows;
         } else if (this.currentProcess.platform === 'linux') {
