@@ -23,7 +23,7 @@ export type FluentSideNavProps = Omit<DetailsViewLeftNavProps, 'setNavComponentR
     deps: FluentSideNavDeps;
     tabStoreData: TabStoreData;
     isSideNavOpen: boolean;
-    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
 };
 
