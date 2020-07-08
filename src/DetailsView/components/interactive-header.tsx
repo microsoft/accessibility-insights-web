@@ -23,7 +23,7 @@ export interface InteractiveHeaderProps {
     navMenu: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
     narrowModeStatus: NarrowModeStatus;
     isSideNavOpen: boolean;
-    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     showFarItems?: boolean;
     showHeaderTitle?: boolean;
 }

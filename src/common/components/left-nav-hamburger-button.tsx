@@ -9,14 +9,14 @@ import * as styles from './left-nav-hamburger-button.scss';
 export type LeftNavHamburgerButtonProps = {
     ariaLabel: string;
     isSideNavOpen: boolean;
-    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
 };
 
 export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
     'LeftNavHamburgerButton',
     props => {
-        const onClick = () => {
-            props.setSideNavOpen(!props.isSideNavOpen);
+        const onClick = (event: React.MouseEvent<any>) => {
+            props.setSideNavOpen(!props.isSideNavOpen, event);
         };
 
         return (

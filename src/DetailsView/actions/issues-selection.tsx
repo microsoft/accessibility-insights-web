@@ -4,7 +4,7 @@ import { IObjectWithKey, ISelectionOptions, Selection } from 'office-ui-fabric-r
 
 export class IssuesSelection extends Selection {
     constructor(options?: ISelectionOptions) {
-        super(options);
+        options != null ? super(options) : super();
     }
 
     // this is a workaround, since DetailsList doesn't support SelectAll on load

@@ -239,6 +239,69 @@ exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
 </React.Fragment>
 `;
 
+exports[`FullRuleHeader renders, outcomeType = review 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <div>
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="needs-review-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="needs-review-rule-rule id-description"
+      >
+        rule description
+      </span>
+      <React.Fragment>
+        (
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "url://guidance-01.link",
+                "text": "guidance-01",
+              },
+              Object {
+                "href": "url://guidance-02.link",
+                "text": "guidance-02",
+              },
+            ]
+          }
+        />
+        )
+      </React.Fragment>
+      <GuidanceTags
+        deps={Object {}}
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+    </div>
+  </div>
+</React.Fragment>
+`;
+
 exports[`FullRuleHeader ruleId is displayed as text when there is no url provided for a link 1`] = `
 <React.Fragment>
   <div

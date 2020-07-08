@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
+import { InstancesSectionProps } from 'DetailsView/components/adhoc-issues-test-view';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -56,6 +58,7 @@ describe('DetailsListIssuesView', () => {
                 visualHelperEnabled: true,
                 allCardsCollapsed: true,
             },
+            instancesSection: NamedFC<InstancesSectionProps>('test', _ => null),
         } as DetailsListIssuesViewProps;
 
         getStoreDataMock

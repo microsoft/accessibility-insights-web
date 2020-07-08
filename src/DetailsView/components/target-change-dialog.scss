@@ -17,14 +17,13 @@
     }
     .target-change-dialog-button-container {
         display: flex;
-        height: 40px;
+        flex-wrap: wrap;
         justify-content: flex-end;
 
         .action-cancel-button-col {
             text-align: right;
             padding-left: 0px;
             margin-top: 4px;
-            margin-bottom: 24px;
         }
         .action-cancel-button-col + .action-cancel-button-col {
             margin-left: 8px;

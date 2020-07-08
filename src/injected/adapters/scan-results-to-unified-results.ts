@@ -41,11 +41,14 @@ export const convertScanResultsToUnifiedResults = (
     return createUnifiedResultsFromScanResults(scanResults, uuidGenerator);
 };
 
-const createUnifiedResultsFromNeedsReviewScanResults = (
+const createUnifiedResultsFromScanResults = (
     scanResults: ScanResults,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
-    return [...createUnifiedResultsFromRuleResults(scanResults.incomplete, 'fail', uuidGenerator)];
+    return [
+        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
+    ];
 };
 
 export const convertScanResultsToNeedsReviewUnifiedResults = (
@@ -58,13 +61,12 @@ export const convertScanResultsToNeedsReviewUnifiedResults = (
     return createUnifiedResultsFromNeedsReviewScanResults(scanResults, uuidGenerator);
 };
 
-const createUnifiedResultsFromScanResults = (
+const createUnifiedResultsFromNeedsReviewScanResults = (
     scanResults: ScanResults,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
     return [
-        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
-        ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(scanResults.incomplete, 'unknown', uuidGenerator),
     ];
 };
 

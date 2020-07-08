@@ -9,7 +9,7 @@ export class VisualizationTogglePropsBuilder extends BaseDataBuilder<Visualizati
         this.data = {
             checked: false,
             disabled: false,
-            visualizationName: null,
+            visualizationName: 'stub visualization name',
         } as VisualizationToggleProps;
     }
 }

@@ -37,7 +37,11 @@ describe('CardSelectionStore Test', () => {
         expect(defaultState.rules).toBeDefined();
     });
 
-    test('onScanCompleted', () => {
+    it.each`
+        result
+        ${'fail'}
+        ${'unknown'}
+    `('onScanCompleted', ({ result }) => {
         const initialState = getDefaultState();
 
         const payload: UnifiedScanCompletedPayload = {
@@ -45,12 +49,12 @@ describe('CardSelectionStore Test', () => {
                 {
                     ruleId: 'sampleRuleId',
                     uid: 'sampleUid1',
-                    status: 'fail',
+                    status: result,
                 } as UnifiedResult,
                 {
                     ruleId: 'sampleRuleId',
                     uid: 'sampleUid2',
-                    status: 'fail',
+                    status: result,
                 } as UnifiedResult,
             ],
             rules: [],

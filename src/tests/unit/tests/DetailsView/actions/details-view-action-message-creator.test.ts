@@ -18,6 +18,7 @@ import {
     EXPORT_RESULTS,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
+    LEFT_NAV_PANEL_EXPANDED,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
     SelectGettingStartedTelemetryData,
@@ -1156,6 +1157,24 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
             Times.once(),
         );
+    });
+
+    test('leftNavPanelExpanded', () => {
+        const eventStub = {} as SupportedMouseEvent;
+        const telemetryStub = {
+            source: testSource,
+        } as BaseTelemetryData;
+        telemetryFactoryMock
+            .setup(tf => tf.forLeftNavPanelExpanded(eventStub))
+            .returns(() => telemetryStub);
+
+        dispatcherMock
+            .setup(d => d.sendTelemetry(LEFT_NAV_PANEL_EXPANDED, telemetryStub))
+            .verifiable(Times.once());
+
+        testSubject.leftNavPanelExpanded(eventStub);
+
+        dispatcherMock.verifyAll();
     });
 
     function setupTelemetryFactory(

@@ -66,6 +66,7 @@ export const RESCAN_VISUALIZATION: string = 'rescanVisualization';
 export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
 export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
 export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
+export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';

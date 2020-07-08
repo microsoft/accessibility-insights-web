@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { allInstanceOutcomeTypes, InstanceOutcomeType } from '../instance-outcome-type';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';
 
@@ -21,6 +21,7 @@ export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummaryS
         }, 0),
         pass: cards.pass.length,
         inapplicable: cards.inapplicable.length,
+        review: 0, // never used
     };
 
     return (
@@ -38,7 +39,9 @@ export const BaseSummarySection = NamedFC<BaseSummarySectionProps>('BaseSummaryS
 export const AllOutcomesSummarySection = NamedFC<SummarySectionProps>(
     'AllOutcomesSummarySection',
     props => {
-        return <BaseSummarySection {...props} outcomeTypesShown={allInstanceOutcomeTypes} />;
+        return (
+            <BaseSummarySection {...props} outcomeTypesShown={['fail', 'pass', 'inapplicable']} />
+        );
     },
 );
 

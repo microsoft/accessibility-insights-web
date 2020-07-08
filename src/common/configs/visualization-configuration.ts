@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ContentPageComponent } from 'views/content/content-page';
-import { TestViewProps } from '../../DetailsView/components/test-view';
+import { CommonTestViewProps } from '../../DetailsView/components/test-view';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
@@ -13,7 +13,7 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;
-    getTestView: (props: TestViewProps) => JSX.Element;
+    getTestView: (props: CommonTestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
     getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
     setAssessmentData?: (

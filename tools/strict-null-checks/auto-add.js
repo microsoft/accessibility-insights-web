@@ -23,6 +23,13 @@ forStrictNullCheckEligibleFiles(repoRoot, () => {}).then(async files => {
     child.kill();
 });
 
+function writeTsconfigSync(tsconfigPath, content) {
+    let serializedContent = JSON.stringify(content, null, '    ');
+    serializedContent += '\n';
+
+    fs.writeFileSync(tsconfigPath, serializedContent);
+}
+
 function tryAutoAddStrictNulls(child, tsconfigPath, file) {
     return new Promise(resolve => {
         const relativeFilePath = path.relative(repoRoot, file).replace(/\\/g, '/');
@@ -46,7 +53,7 @@ function tryAutoAddStrictNulls(child, tsconfigPath, file) {
                     console.log(`Success`);
                 } else {
                     console.log(`Errors (x${errorCount}), skipped`);
-                    fs.writeFileSync(tsconfigPath, JSON.stringify(originalConfig, null, '    '));
+                    writeTsconfigSync(tsconfigPath, originalConfig);
                 }
 
                 child.stdout.removeListener('data', listener);
@@ -55,6 +62,6 @@ function tryAutoAddStrictNulls(child, tsconfigPath, file) {
         };
         child.stdout.on('data', listener);
 
-        fs.writeFileSync(tsconfigPath, JSON.stringify(newConfig, null, '    '));
+        writeTsconfigSync(tsconfigPath, newConfig);
     });
 }
