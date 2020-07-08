@@ -27,7 +27,14 @@ export class UnifiedResultSender {
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(axeResults, this.convertScanResultsToNeedsReviewUnifiedResults);
+        this.sendResults(
+            this.filterNeedsReviewResults(axeResults),
+            this.convertScanResultsToNeedsReviewUnifiedResults,
+        );
+    };
+
+    private filterNeedsReviewResults = (results: AxeAnalyzerResult): AxeAnalyzerResult => {
+        return results;
     };
 
     private sendResults = (
@@ -56,6 +63,8 @@ export class UnifiedResultSender {
             scanIncompleteWarnings,
             telemetry,
         };
+
+        console.log('unified scan completed payload: ', payload);
 
         this.sendMessage({
             messageType: Messages.UnifiedScan.ScanCompleted,

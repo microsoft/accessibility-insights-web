@@ -71,8 +71,11 @@ export class RuleAnalyzer extends BaseAnalyzer {
     }
 
     protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
+        console.log('before sendScanCompleteResolveMessage analyzerResult', analyzerResult);
         this.sendScanCompleteResolveMessage(analyzerResult, this.config);
+        console.log('before postOnResolve analyzerResult', analyzerResult);
         this.postOnResolve(analyzerResult);
+        console.log('analyzer result', analyzerResult);
     };
 
     protected sendScanCompleteResolveMessage(

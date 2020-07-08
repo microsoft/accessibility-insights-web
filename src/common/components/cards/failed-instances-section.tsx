@@ -34,6 +34,8 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
             return total + rule.nodes.length;
         }, 0);
 
+        console.log('AC instances cardsViewData.cards: ', cardsViewData.cards);
+
         return (
             <ResultSection
                 deps={deps}
