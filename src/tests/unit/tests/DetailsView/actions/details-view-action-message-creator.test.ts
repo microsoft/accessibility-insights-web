@@ -1159,7 +1159,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
-    test('setAllUrlsPermissionState', () => {
+    test('leftNavPanelExpanded', () => {
         const eventStub = {} as SupportedMouseEvent;
         const telemetryStub = {
             source: testSource,
