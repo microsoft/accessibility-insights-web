@@ -20,8 +20,11 @@ export class DetailsViewContentWithLocalState extends React.Component<
         this.state = { isSideNavOpen: false };
     }
 
-    private setSideNavOpen(isOpen: boolean): void {
+    private setSideNavOpen(isOpen: boolean, event?: React.MouseEvent<any>): void {
         this.setState({ isSideNavOpen: isOpen });
+        if (isOpen) {
+            this.props.deps.detailsViewActionMessageCreator.leftNavPanelExpanded(event!);
+        }
     }
 
     public render(): JSX.Element {
@@ -35,7 +38,8 @@ export class DetailsViewContentWithLocalState extends React.Component<
                     childrenProps={{
                         ...this.props,
                         isSideNavOpen: this.state.isSideNavOpen,
-                        setSideNavOpen: (isOpen: boolean) => this.setSideNavOpen(isOpen),
+                        setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) =>
+                            this.setSideNavOpen(isOpen, event),
                     }}
                 />
             </>
