@@ -10,24 +10,30 @@ import {
 import { shallow } from 'enzyme';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { ContentPageComponent } from 'views/content/content-page';
 
 describe('GettingStartedViewTest', () => {
-    const messageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-    const eventStub = {} as React.MouseEvent<HTMLElement>;
-    const props: GettingStartedViewProps = {
-        deps: {
-            detailsViewActionMessageCreator: messageCreatorMock.object,
-        } as GettingStartedViewDeps,
-        gettingStartedContent: <div>test-getting-started-content</div>,
-        title: 'some title',
-        guidance: { pageTitle: 'some page title' } as ContentPageComponent,
-        nextRequirement: {
-            key: 'some requirement key',
-        } as Requirement,
-        currentTest: -1,
-    };
+    let messageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let eventStub: React.MouseEvent<HTMLElement>;
+    let props: GettingStartedViewProps;
+
+    beforeEach(() => {
+        messageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        eventStub = {} as React.MouseEvent<HTMLElement>;
+        props = {
+            deps: {
+                detailsViewActionMessageCreator: messageCreatorMock.object,
+            } as GettingStartedViewDeps,
+            gettingStartedContent: <div>test-getting-started-content</div>,
+            title: 'some title',
+            guidance: { pageTitle: 'some page title' } as ContentPageComponent,
+            nextRequirement: {
+                key: 'some requirement key',
+            } as Requirement,
+            currentTest: -1,
+        };
+    });
 
     it('renders with content from props', () => {
         const rendered = shallow(<GettingStartedView {...props} />);
