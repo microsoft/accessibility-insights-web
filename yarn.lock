@@ -1171,11 +1171,6 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.11.tgz#bec2961975888d964196bf0016a2f984d793d3ce"
   integrity sha512-O+x6uIpa6oMNTkPuHDa9MhMMehlxLAd5QcOvKRjAFsBVpeFWTOPnXbDvILvFgFFZfQ1xh1EZi1FbXxUix+zpsQ==
 
-"@types/node@^10.12.18":
-  version "10.17.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.18.tgz#ae364d97382aacdebf583fa4e7132af2dfe56a0c"
-  integrity sha512-DQ2hl/Jl3g33KuAUOcMrcAOtsbzb+y/ufakzAdeK9z/H/xsvkpbETZZbPNMIiQuk24f5ZRMCcZIViAwyFIiKmg==
-
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
@@ -3868,7 +3863,7 @@ electron-chromedriver@^8.0.0:
     electron-download "^4.1.1"
     extract-zip "^1.6.7"
 
-electron-download@^4.1.0, electron-download@^4.1.1:
+electron-download@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/electron-download/-/electron-download-4.1.1.tgz#02e69556705cc456e520f9e035556ed5a015ebe8"
   integrity sha512-FjEWG9Jb/ppK/2zToP+U5dds114fM1ZOJqMAR4aXXL5CvyPE9fiqBK/9YcwC9poIFQTEJk/EM/zyRwziziRZrg==
@@ -3924,13 +3919,13 @@ electron@8.2.2:
     "@types/node" "^12.0.12"
     extract-zip "^1.0.3"
 
-electron@^5.0.0:
-  version "5.0.13"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-5.0.13.tgz#81d44f2078fb13d306279cf3854d3734f2c390b4"
-  integrity sha512-AM73AMZpb/5zm8eIXsIcp2eMdniD5WO+FqMtlIzhhtSjixflDm0pLtgudz0fHtiT/w6V+6YcpDVb4TtHtrJbHQ==
+electron@^9.1.0:
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-9.1.0.tgz#ca77600c9e4cd591298c340e013384114d3d8d05"
+  integrity sha512-VRAF8KX1m0py9I9sf0kw1kWfeC87mlscfFcbcRdLBsNJ44/GrJhi3+E8rKbpHUeZNQxsPaVA5Zu5Lxb6dV/scQ==
   dependencies:
-    "@types/node" "^10.12.18"
-    electron-download "^4.1.0"
+    "@electron/get" "^1.0.1"
+    "@types/node" "^12.0.12"
     extract-zip "^1.0.3"
 
 elliptic@^6.0.0:
@@ -8988,24 +8983,24 @@ react-copy-to-clipboard@^5.0.2:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
 
-react-devtools-core@4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.7.0.tgz#71e89087352abe60c160dfb60a7fa700f612af7a"
-  integrity sha512-6w/e0nkV0gogUnfz+9Q3yiMtYYol9T+oD27UIf4XWmula1KvSTTkQ9DnzLOqSSch8d1YzNWbTxguuNJMof58ww==
+react-devtools-core@4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.8.0.tgz#38bb7e48f9477125ee50fe1dbc9d904c19006b92"
+  integrity sha512-7VBbWnnbnae5UwOtdq7vn4nHO2JP2kGOQBwFEGAcSgh+YbJatY4RbeY1SruGiqCmcaAyNQ+YmIV4z+aunSsFLw==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.7.0:
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.7.0.tgz#d66ecfbf2f094dd07aad01402bf8c1776dfe7431"
-  integrity sha512-PFOVUpOVNTc+cV7GhncAWMAYMTisI1efK694JTsca0mzbTZPgfgZpaOYcjzYK8WuE7I75BZCvA07L56GnFYGOg==
+react-devtools@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.8.0.tgz#ee6053aafa787e0c6b584b2f70c7d177beeb45c5"
+  integrity sha512-iMlctVYhnz4Xvmz5NW9bOGlxB0xg1HAUrfUzrnw5jdfcV6uAjXl+7sOwx9+WTrVDDNPsr0cYUIqnu90TG/RTNQ==
   dependencies:
     cross-spawn "^5.0.1"
-    electron "^5.0.0"
+    electron "^9.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.7.0"
+    react-devtools-core "4.8.0"
     update-notifier "^2.1.0"
 
 react-dom@^16.13.1:
