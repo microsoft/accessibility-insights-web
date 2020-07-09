@@ -14,11 +14,13 @@ import { MessageDelegate, PostResolveCallback } from 'injected/analyzers/rule-an
 import { UnifiedResultSender } from 'injected/analyzers/unified-result-sender';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { forOwn } from 'lodash';
+import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, Times } from 'typemoq';
 
 interface UnifiedResultSenderTestDefinition {
     getMethodToTest: (testSubject: UnifiedResultSender) => PostResolveCallback;
     getConvertResultMock: () => IMock<ConvertScanResultsToUnifiedResultsDelegate>;
+    getChangedInputResults: () => ScanResults;
 }
 
 describe('sendConvertedResults', () => {
@@ -26,7 +28,17 @@ describe('sendConvertedResults', () => {
         targetPageTitle: 'title',
         targetPageUrl: 'url',
         timestamp: 'timestamp',
-    } as any;
+        violations: [
+            { id: 'test id', nodes: [], description: 'test description' },
+            { id: 'link-in-text-block', nodes: [], description: 'test description' },
+        ],
+    } as ScanResults;
+    const newlyDefinedChangedAxeInputResults = {
+        targetPageTitle: 'title',
+        targetPageUrl: 'url',
+        timestamp: 'timestamp',
+        violations: [{ id: 'link-in-text-block', nodes: [], description: 'test description' }],
+    } as ScanResults;
     const unifiedResults: UnifiedResult[] = [];
     const unifiedRules: UnifiedRule[] = [];
     const toolInfo = {} as ToolData;
@@ -51,11 +63,13 @@ describe('sendConvertedResults', () => {
     const automatedChecksTest: UnifiedResultSenderTestDefinition = {
         getMethodToTest: testSubject => testSubject.sendAutomatedChecksResults,
         getConvertResultMock: () => convertToUnifiedMock,
+        getChangedInputResults: () => axeInputResults,
     };
 
     const needsReviewTest: UnifiedResultSenderTestDefinition = {
         getMethodToTest: testSubject => testSubject.sendNeedsReviewResults,
         getConvertResultMock: () => convertToUnifiedNeedsReviewMock,
+        getChangedInputResults: () => newlyDefinedChangedAxeInputResults,
     };
 
     const testCases = {
@@ -63,7 +77,7 @@ describe('sendConvertedResults', () => {
         needsReview: needsReviewTest,
     };
 
-    forOwn(testCases, (testObject, testName) => {
+    forOwn(testCases, (testDefinition, testName) => {
         describe(testName, () => {
             it.each`
                 warnings                         | telemetry
@@ -72,12 +86,12 @@ describe('sendConvertedResults', () => {
             `(
                 'it send results with warnings: $warnings and telemetry: $telemetry',
                 ({ warnings, telemetry }) => {
-                    testObject
+                    testDefinition
                         .getConvertResultMock()
-                        .setup(m => m(axeInputResults, uuidGeneratorStub))
+                        .setup(m => m(testDefinition.getChangedInputResults(), uuidGeneratorStub))
                         .returns(val => unifiedResults);
                     convertToUnifiedRulesMock
-                        .setup(m => m(axeInputResults))
+                        .setup(m => m(testDefinition.getChangedInputResults()))
                         .returns(val => unifiedRules);
                     scanIncompleteWarningDetectorMock
                         .setup(m => m.detectScanIncompleteWarnings())
@@ -93,7 +107,7 @@ describe('sendConvertedResults', () => {
                         scanIncompleteWarningDetectorMock.object,
                     );
 
-                    testObject.getMethodToTest(testSubject)({
+                    testDefinition.getMethodToTest(testSubject)({
                         results: null,
                         originalResult: axeInputResults,
                     });

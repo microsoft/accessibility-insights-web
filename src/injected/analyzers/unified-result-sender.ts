@@ -4,6 +4,7 @@ import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
+import { ScanResults } from 'scanner/iruleresults';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../../common/messages';
 import { UUIDGenerator } from '../../common/uid-generator';
@@ -23,31 +24,32 @@ export class UnifiedResultSender {
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(axeResults, this.convertScanResultsToUnifiedResults);
+        this.sendResults(axeResults.originalResult, this.convertScanResultsToUnifiedResults);
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
-            this.filterNeedsReviewResults(axeResults),
+            this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToNeedsReviewUnifiedResults,
         );
     };
 
-    private filterNeedsReviewResults = (results: AxeAnalyzerResult): AxeAnalyzerResult => {
-        const x = results.originalResult.violations.filter(() => true);
-        console.log('og AxeAnalyzerResult violations', x);
-        const y = results.originalResult.incomplete.filter(() => true);
-        console.log('og AxeAnalyzerResult incomplete', y);
-
-        results.originalResult.violations = results.originalResult.violations.filter(
-            v => v.id === 'link-in-text-block',
-        );
-        results.originalResult.incomplete = results.originalResult.incomplete.filter(
-            i =>
-                i.id === 'aria-input-field-name' ||
-                i.id === 'color-contrast' ||
-                i.id === 'th-has-data-cells',
-        );
+    private filterNeedsReviewResults = (results: ScanResults): ScanResults => {
+        if (results.violations) {
+            // const x = results.originalResult.violations.filter(() => true);
+            // console.log('og AxeAnalyzerResult violations', x);
+            results.violations = results.violations.filter(v => v.id === 'link-in-text-block');
+        }
+        if (results.incomplete) {
+            // const y = results.originalResult.incomplete.filter(() => true);
+            // console.log('og AxeAnalyzerResult incomplete', y);
+            results.incomplete = results.incomplete.filter(
+                i =>
+                    i.id === 'aria-input-field-name' ||
+                    i.id === 'color-contrast' ||
+                    i.id === 'th-has-data-cells',
+            );
+        }
 
         console.log('filtered AxeAnalyzerResult', results);
 
@@ -55,7 +57,7 @@ export class UnifiedResultSender {
     };
 
     private sendResults = (
-        axeResults: AxeAnalyzerResult,
+        results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
@@ -69,13 +71,13 @@ export class UnifiedResultSender {
         }
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(axeResults.originalResult, this.generateUID),
-            rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
+            scanResult: converter(results, this.generateUID),
+            rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
-            timestamp: axeResults.originalResult.timestamp,
+            timestamp: results.timestamp,
             targetAppInfo: {
-                name: axeResults.originalResult.targetPageTitle,
-                url: axeResults.originalResult.targetPageUrl,
+                name: results.targetPageTitle,
+                url: results.targetPageUrl,
             },
             scanIncompleteWarnings,
             telemetry,
