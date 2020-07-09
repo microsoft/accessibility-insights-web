@@ -141,7 +141,7 @@
         "webdriverio": "^4.13.0",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
-        "webpack-node-externals": "^1.7.2"
+        "webpack-node-externals": "^2.3.0"
     },
     "dependencies": {
         "accessibility-insights-for-android-service-bin": "^1.2.0",
