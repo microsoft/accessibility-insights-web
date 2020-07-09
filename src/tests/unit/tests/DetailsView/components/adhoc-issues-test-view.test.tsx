@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
@@ -18,6 +18,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import {
     AdhocIssuesTestView,
     AdhocIssuesTestViewProps,
+    InstancesSectionProps,
 } from '../../../../../DetailsView/components/adhoc-issues-test-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 
@@ -48,6 +49,7 @@ describe('AdhocIssuesTestView', () => {
         visualizationStoreData: visualizationStoreDataStub,
         selectedTest: selectedTest,
         scanIncompleteWarnings: [],
+        instancesSection: NamedFC<InstancesSectionProps>('test', _ => null),
     } as AdhocIssuesTestViewProps;
 
     const scanDataStub: ScanData = {

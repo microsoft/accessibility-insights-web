@@ -23,6 +23,7 @@ export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } 
     incomplete: { pastTense: 'Incomplete' },
     fail: { pastTense: 'Failed' },
     inapplicable: { pastTense: 'Not applicable' },
+    review: { pastTense: 'Needs review' },
 };
 
 export const outcomeIconMap: { [OT in OutcomeType]: JSX.Element } = {
@@ -30,6 +31,7 @@ export const outcomeIconMap: { [OT in OutcomeType]: JSX.Element } = {
     incomplete: <CircleIcon />,
     fail: <CrossIcon />,
     inapplicable: <InapplicableIcon />,
+    review: <CircleIcon />,
 };
 
 export const outcomeIconMapInverted: { [OT in OutcomeType]: JSX.Element } = {
@@ -37,4 +39,5 @@ export const outcomeIconMapInverted: { [OT in OutcomeType]: JSX.Element } = {
     incomplete: <CircleIcon />,
     fail: <CrossIconInverted />,
     inapplicable: <InapplicableIconInverted />,
+    review: <CircleIcon />,
 };

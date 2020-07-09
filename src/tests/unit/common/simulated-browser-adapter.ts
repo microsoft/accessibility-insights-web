@@ -41,7 +41,9 @@ export function createSimulatedBrowserAdapter(
     tabs: chrome.tabs.Tab[],
     windows: chrome.windows.Window[],
 ): SimulatedBrowserAdapter {
-    const mock: Partial<SimulatedBrowserAdapter> = Mock.ofType<BrowserAdapter>();
+    const mock: Partial<SimulatedBrowserAdapter> & IMock<BrowserAdapter> = Mock.ofType<
+        BrowserAdapter
+    >();
     mock.tabs = [...tabs];
     mock.windows = [...windows];
     mock.setup(m => m.addListenerOnConnect(It.is(isFunction))).callback(
@@ -63,13 +65,13 @@ export function createSimulatedBrowserAdapter(
         c => (mock.notifyWindowsFocusChanged = c),
     );
 
-    mock.setup(m => m.getRuntimeLastError()).returns(() => null);
+    mock.setup(m => m.getRuntimeLastError()).returns(() => undefined);
     mock.setup(m => m.getAllWindows(It.isAny())).returns(() =>
         Promise.resolve(mock.windows as Windows.Window[]),
     );
     mock.setup(m => m.getTab(It.isAny(), It.isAny(), It.isAny())).callback(
         (tabId, resolve, reject) => {
-            const matchingTabs = mock.tabs.filter(tab => tab.id === tabId);
+            const matchingTabs = mock.tabs!.filter(tab => tab.id === tabId);
             if (matchingTabs.length === 1) {
                 resolve(matchingTabs[0]);
             } else if (reject != null) {
@@ -79,7 +81,7 @@ export function createSimulatedBrowserAdapter(
     );
 
     mock.setup(m => m.tabsQuery(It.isAny())).returns(query => {
-        const result = mock.tabs.filter(
+        const result = mock.tabs!.filter(
             candidateTab =>
                 (query.active == null || query.active === candidateTab.active) &&
                 (query.windowId == null || query.windowId === candidateTab.windowId),
@@ -89,20 +91,21 @@ export function createSimulatedBrowserAdapter(
     });
 
     mock.updateTab = (tabId, changeInfo) => {
-        mock.tabs
-            .filter(tab => tab.id === tabId)
-            .forEach((tab, index) => {
-                mock.tabs[index] = { ...tab, ...changeInfo };
-                mock.notifyTabsOnUpdated(tabId, changeInfo, mock.tabs[index]);
-            });
+        mock.tabs!.filter(tab => tab.id === tabId).forEach((tab, index) => {
+            mock.tabs![index] = { ...tab, ...changeInfo };
+            mock.notifyTabsOnUpdated!(tabId, changeInfo, mock.tabs![index]);
+        });
     };
     mock.activateTab = tabToActivate => {
-        mock.tabs
-            .filter(tab => tab.windowId === tabToActivate.windowId)
-            .forEach((tab, index) => {
-                mock.tabs[index] = { ...tab, active: tabToActivate.id === tab.id };
+        mock.tabs!.filter(tab => tab.windowId === tabToActivate.windowId).forEach((tab, index) => {
+            mock.tabs![index] = { ...tab, active: tabToActivate.id === tab.id };
+        });
+        if (tabToActivate.id != null) {
+            mock.notifyTabsOnActivated!({
+                windowId: tabToActivate.windowId,
+                tabId: tabToActivate.id,
             });
-        mock.notifyTabsOnActivated({ windowId: tabToActivate.windowId, tabId: tabToActivate.id });
+        }
     };
     return mock as SimulatedBrowserAdapter;
 }

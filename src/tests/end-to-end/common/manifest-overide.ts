@@ -24,6 +24,9 @@ export class ManifestOveride {
     private modifiedManifest: chrome.runtime.Manifest;
 
     public addTemporaryPermission(permissionToAdd: string): ManifestOveride {
+        if (this.modifiedManifest.permissions == null) {
+            this.modifiedManifest.permissions = [];
+        }
         this.modifiedManifest.permissions.push(permissionToAdd);
 
         return this;

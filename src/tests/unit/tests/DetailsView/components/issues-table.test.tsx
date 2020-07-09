@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DateProvider } from 'common/date-provider';
+import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { InstancesSectionProps } from 'DetailsView/components/adhoc-issues-test-view';
 import {
     IssuesTable,
     IssuesTableDeps,
@@ -122,6 +124,7 @@ class TestPropsBuilder {
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,
+            instancesSection: NamedFC<InstancesSectionProps>('SomeInstancesSection', _ => null),
         };
     }
 }

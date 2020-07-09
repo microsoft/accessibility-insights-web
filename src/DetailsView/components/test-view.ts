@@ -7,6 +7,6 @@ import { AssessmentTestViewDeps, AssessmentTestViewProps } from './assessment-te
 export type TestViewDeps = AssessmentTestViewDeps &
     AdhocIssuesTestViewDeps &
     AdhocStaticTestViewDeps;
-export type TestViewProps = AssessmentTestViewProps &
-    AdhocIssuesTestViewProps &
+export type CommonTestViewProps = AssessmentTestViewProps &
+    Omit<AdhocIssuesTestViewProps, 'instancesSection'> &
     AdhocStaticTestViewProps;

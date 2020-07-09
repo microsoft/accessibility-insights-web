@@ -9,7 +9,7 @@ exports[`NeedsReviewInstancesSection renders with alerting off 1`] = `
   badgeCount={0}
   containerClassName={null}
   deps={Object {}}
-  outcomeType="fail"
+  outcomeType="review"
   results={Array []}
   shouldAlertFailuresCount={false}
   targetAppInfo={
@@ -27,7 +27,7 @@ exports[`NeedsReviewInstancesSection renders with alerting on 1`] = `
   badgeCount={0}
   containerClassName={null}
   deps={Object {}}
-  outcomeType="fail"
+  outcomeType="review"
   results={Array []}
   shouldAlertFailuresCount={true}
   targetAppInfo={
@@ -45,7 +45,7 @@ exports[`NeedsReviewInstancesSection renders with failures 1`] = `
   badgeCount={2}
   containerClassName={null}
   deps={Object {}}
-  outcomeType="fail"
+  outcomeType="review"
   results={
     Array [
       Object {
@@ -141,7 +141,7 @@ exports[`NeedsReviewInstancesSection renders with failures and unknowns 1`] = `
   badgeCount={4}
   containerClassName={null}
   deps={Object {}}
-  outcomeType="fail"
+  outcomeType="review"
   results={
     Array [
       Object {
@@ -313,7 +313,7 @@ exports[`NeedsReviewInstancesSection renders with unknowns 1`] = `
   badgeCount={2}
   containerClassName={null}
   deps={Object {}}
-  outcomeType="fail"
+  outcomeType="review"
   results={
     Array [
       Object {

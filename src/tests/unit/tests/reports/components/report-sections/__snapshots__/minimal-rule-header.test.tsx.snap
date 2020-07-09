@@ -83,3 +83,37 @@ exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
   </span>
 </span>
 `;
+
+exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
+<span
+  className="rule-detail"
+  data-automation-id="rule-detail"
+>
+  <span
+    className="outcomeChipContainer"
+  >
+    <span
+      aria-hidden="true"
+    >
+      <OutcomeChip
+        count={1}
+        outcomeType="review"
+      />
+    </span>
+  </span>
+  <span>
+    <span
+      className="rule-details-id"
+      data-automation-id="cards-rule-id"
+    >
+      rule id
+    </span>
+    : 
+    <span
+      className="rule-details-description"
+    >
+      rule description
+    </span>
+  </span>
+</span>
+`;

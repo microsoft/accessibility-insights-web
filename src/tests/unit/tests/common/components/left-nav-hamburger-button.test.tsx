@@ -25,9 +25,12 @@ describe('LeftNavHamburgerButton', () => {
 
     it('sets side nav state with correct value', () => {
         const ariaLabel: string = 'test-aria-label';
-        const setSideNavOpenMock = Mock.ofInstance((isOpen: boolean) => {});
+        const eventStub = {} as React.MouseEvent<any>;
+        const setSideNavOpenMock = Mock.ofInstance(
+            (isOpen: boolean, event: React.MouseEvent<any>) => {},
+        );
         const isSideNavOpen = false;
-        setSideNavOpenMock.setup(sm => sm(!isSideNavOpen)).verifiable(Times.once());
+        setSideNavOpenMock.setup(sm => sm(!isSideNavOpen, eventStub)).verifiable(Times.once());
         const props: LeftNavHamburgerButtonProps = {
             ariaLabel,
             isSideNavOpen,
@@ -37,7 +40,7 @@ describe('LeftNavHamburgerButton', () => {
         const wrapper = shallow(<LeftNavHamburgerButton {...props} />);
 
         const button = wrapper.find(IconButton);
-        button.simulate('click');
+        button.simulate('click', eventStub);
 
         setSideNavOpenMock.verifyAll();
     });

@@ -6,6 +6,11 @@
     margin: 0px 18px;
     padding-left: 6px;
     padding-top: 1vh;
+    padding-bottom: 1vh;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
 }
 
 .getting-started-header {
@@ -22,4 +27,8 @@
 
 .getting-started-title {
     @include text-style-title-s;
+}
+
+.next-requirement-button {
+    align-self: flex-end;
 }

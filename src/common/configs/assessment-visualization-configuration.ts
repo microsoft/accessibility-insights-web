@@ -3,7 +3,7 @@
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
-import { TestViewProps } from '../../DetailsView/components/test-view';
+import { CommonTestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import {
@@ -20,7 +20,7 @@ import { TelemetryProcessor } from '../types/telemetry-processor';
 
 export interface AssessmentVisualizationConfiguration {
     key: string;
-    getTestView: (props: TestViewProps) => JSX.Element;
+    getTestView: (props: CommonTestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
     enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;
