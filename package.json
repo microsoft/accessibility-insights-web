@@ -132,7 +132,7 @@
         "spectron": "^10.0.1",
         "terser-webpack-plugin": "^3.0.6",
         "ts-jest": "^26.1.1",
-        "ts-loader": "^7.0.5",
+        "ts-loader": "^8.0.0",
         "tslint": "^5.20.1",
         "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^2.0.0",
