@@ -275,7 +275,7 @@ exports[`report package integration with issues 1`] = `
             style="flex-grow:26"
           >
             <span
-              class="fail"
+              class="fail summary-bar-left-edge"
             >
               <span
                 aria-hidden="true"
@@ -337,7 +337,7 @@ exports[`report package integration with issues 1`] = `
             style="flex-grow:49"
           >
             <span
-              class="inapplicable"
+              class="inapplicable summary-bar-right-edge"
             >
               <span
                 aria-hidden="true"
@@ -7519,7 +7519,7 @@ exports[`report package integration with no issues 1`] = `
             style="flex-grow:0"
           >
             <span
-              class="fail"
+              class="fail summary-bar-left-edge"
             >
               <span
                 aria-hidden="true"
@@ -7581,7 +7581,7 @@ exports[`report package integration with no issues 1`] = `
             style="flex-grow:30"
           >
             <span
-              class="inapplicable"
+              class="inapplicable summary-bar-right-edge"
             >
               <span
                 aria-hidden="true"
