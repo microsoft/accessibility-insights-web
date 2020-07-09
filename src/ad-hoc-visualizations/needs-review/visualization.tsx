@@ -17,7 +17,7 @@ import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells'], // , 'link-in-text-block'
+    rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells', 'link-in-text-block'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,

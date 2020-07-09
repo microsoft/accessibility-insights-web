@@ -20,7 +20,7 @@ import { IMock, Mock, Times } from 'typemoq';
 interface UnifiedResultSenderTestDefinition {
     getMethodToTest: (testSubject: UnifiedResultSender) => PostResolveCallback;
     getConvertResultMock: () => IMock<ConvertScanResultsToUnifiedResultsDelegate>;
-    getChangedInputResults: () => ScanResults;
+    getInputResults: () => ScanResults;
 }
 
 describe('sendConvertedResults', () => {
@@ -31,13 +31,28 @@ describe('sendConvertedResults', () => {
         violations: [
             { id: 'test id', nodes: [], description: 'test description' },
             { id: 'link-in-text-block', nodes: [], description: 'test description' },
+            { id: 'color-contrast', nodes: [], description: 'test description' },
+            { id: 'aria-input-field-name', nodes: [], description: 'test description' },
+            { id: 'th-has-data-cells', nodes: [], description: 'test description' },
+        ],
+        incomplete: [
+            { id: 'test id', nodes: [], description: 'test description' },
+            { id: 'link-in-text-block', nodes: [], description: 'test description' },
+            { id: 'color-contrast', nodes: [], description: 'test description' },
+            { id: 'aria-input-field-name', nodes: [], description: 'test description' },
+            { id: 'th-has-data-cells', nodes: [], description: 'test description' },
         ],
     } as ScanResults;
-    const newlyDefinedChangedAxeInputResults = {
+    const filteredAxeInputResults = {
         targetPageTitle: 'title',
         targetPageUrl: 'url',
         timestamp: 'timestamp',
         violations: [{ id: 'link-in-text-block', nodes: [], description: 'test description' }],
+        incomplete: [
+            { id: 'color-contrast', nodes: [], description: 'test description' },
+            { id: 'aria-input-field-name', nodes: [], description: 'test description' },
+            { id: 'th-has-data-cells', nodes: [], description: 'test description' },
+        ],
     } as ScanResults;
     const unifiedResults: UnifiedResult[] = [];
     const unifiedRules: UnifiedRule[] = [];
@@ -63,13 +78,13 @@ describe('sendConvertedResults', () => {
     const automatedChecksTest: UnifiedResultSenderTestDefinition = {
         getMethodToTest: testSubject => testSubject.sendAutomatedChecksResults,
         getConvertResultMock: () => convertToUnifiedMock,
-        getChangedInputResults: () => axeInputResults,
+        getInputResults: () => axeInputResults,
     };
 
     const needsReviewTest: UnifiedResultSenderTestDefinition = {
         getMethodToTest: testSubject => testSubject.sendNeedsReviewResults,
         getConvertResultMock: () => convertToUnifiedNeedsReviewMock,
-        getChangedInputResults: () => newlyDefinedChangedAxeInputResults,
+        getInputResults: () => filteredAxeInputResults,
     };
 
     const testCases = {
@@ -88,10 +103,10 @@ describe('sendConvertedResults', () => {
                 ({ warnings, telemetry }) => {
                     testDefinition
                         .getConvertResultMock()
-                        .setup(m => m(testDefinition.getChangedInputResults(), uuidGeneratorStub))
+                        .setup(m => m(testDefinition.getInputResults(), uuidGeneratorStub))
                         .returns(val => unifiedResults);
                     convertToUnifiedRulesMock
-                        .setup(m => m(testDefinition.getChangedInputResults()))
+                        .setup(m => m(testDefinition.getInputResults()))
                         .returns(val => unifiedRules);
                     scanIncompleteWarningDetectorMock
                         .setup(m => m.detectScanIncompleteWarnings())

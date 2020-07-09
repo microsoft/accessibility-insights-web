@@ -36,13 +36,9 @@ export class UnifiedResultSender {
 
     private filterNeedsReviewResults = (results: ScanResults): ScanResults => {
         if (results.violations) {
-            // const x = results.originalResult.violations.filter(() => true);
-            // console.log('og AxeAnalyzerResult violations', x);
             results.violations = results.violations.filter(v => v.id === 'link-in-text-block');
         }
         if (results.incomplete) {
-            // const y = results.originalResult.incomplete.filter(() => true);
-            // console.log('og AxeAnalyzerResult incomplete', y);
             results.incomplete = results.incomplete.filter(
                 i =>
                     i.id === 'aria-input-field-name' ||
