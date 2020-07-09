@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AssessmentViewTest render for gettting started 1`] = `
-<div>
+<React.Fragment>
   <TargetChangeDialog
     deps={Object {}}
     newTab={
@@ -16,6 +16,7 @@ exports[`AssessmentViewTest render for gettting started 1`] = `
     }
   />
   <GettingStartedView
+    currentTest={-1}
     deps={Object {}}
     gettingStartedContent={
       <h1>
@@ -27,13 +28,25 @@ exports[`AssessmentViewTest render for gettting started 1`] = `
         "pageTitle": "some page title",
       }
     }
+    nextRequirement={
+      Object {
+        "description": <div>
+          test-description
+        </div>,
+        "howToTest": <p>
+          how-to-test-stub
+        </p>,
+        "name": "test-requirement-name",
+        "order": 1,
+      }
+    }
     title="some title"
   />
-</div>
+</React.Fragment>
 `;
 
 exports[`AssessmentViewTest render for requirement 1`] = `
-<div>
+<React.Fragment>
   <TargetChangeDialog
     deps={Object {}}
     newTab={
@@ -92,9 +105,10 @@ exports[`AssessmentViewTest render for requirement 1`] = `
           how-to-test-stub
         </p>,
         "name": "test-requirement-name",
+        "order": 1,
       }
     }
     scanningInProgress={true}
   />
-</div>
+</React.Fragment>
 `;

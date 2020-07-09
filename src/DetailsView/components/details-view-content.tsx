@@ -11,7 +11,7 @@ import * as React from 'react';
 
 export type DetailsViewContentProps = DetailsViewContainerProps & {
     isSideNavOpen: boolean;
-    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
 };
 
