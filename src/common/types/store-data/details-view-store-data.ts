@@ -8,5 +8,4 @@ export interface DetailsViewStoreData {
     currentPanel: CurrentPanel;
     contentPath: string;
     contentTitle: string;
-    isReportExportDialogOpen: boolean;
 }

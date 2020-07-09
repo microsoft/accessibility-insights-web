@@ -13,8 +13,6 @@ export interface DetailsViewMessages {
     PivotSelect: string;
     Close: string;
     SetDetailsViewRightContentPanel: string;
-    ShowReportExportDialog: string;
-    DismissReportExportDialog: string;
 }
 
 export interface IssuesMessages {
@@ -81,8 +79,6 @@ export class Messages {
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
-            ShowReportExportDialog: `${messagePrefix}/details-view/report-export-dialog/show`,
-            DismissReportExportDialog: `${messagePrefix}/details-view/report-export-dialog/dismiss`,
         },
     };
 

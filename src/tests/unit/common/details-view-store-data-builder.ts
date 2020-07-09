@@ -43,11 +43,4 @@ export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStor
         this.data.currentPanel.isSettingsOpen = isSettingsOpen;
         return this;
     }
-
-    public withReportExportDialogOpen(
-        reportExportDialogOpen: boolean,
-    ): DetailsViewStoreDataBuilder {
-        this.data.isReportExportDialogOpen = reportExportDialogOpen;
-        return this;
-    }
 }

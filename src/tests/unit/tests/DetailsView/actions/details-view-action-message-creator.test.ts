@@ -1177,32 +1177,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verifyAll();
     });
 
-    test('showReportExportDialog', () => {
-        const expectedMessage = {
-            messageType: Messages.Visualizations.DetailsView.ShowReportExportDialog,
-        };
-
-        testSubject.showReportExportDialog();
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
-    test('DismissReportExportDialog', () => {
-        const expectedMessage = {
-            messageType: Messages.Visualizations.DetailsView.DismissReportExportDialog,
-        };
-
-        testSubject.dismissReportExportDialog();
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
     function setupTelemetryFactory(
         methodName: keyof TelemetryDataFactory,
         telemetry: any,

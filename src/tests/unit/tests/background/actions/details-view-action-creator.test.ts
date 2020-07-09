@@ -216,54 +216,6 @@ describe('DetailsViewActionCreatorTest', () => {
         getCurrentStateMock.verifyAll();
     });
 
-    it('handles Visualization.DetailsView.ShowReportExportDialog message', () => {
-        const showReportExportDialogMock = createActionMock(null);
-        const detailsViewActionsMock = createDetailsViewActionsMock(
-            'showReportExportDialog',
-            showReportExportDialogMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.DetailsView.ShowReportExportDialog,
-            null,
-        );
-
-        const testObject = new DetailsViewActionCreator(
-            interpreterMock.object,
-            detailsViewActionsMock.object,
-            null,
-            detailsViewControllerMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testObject.registerCallback();
-
-        showReportExportDialogMock.verifyAll();
-    });
-
-    it('handles Visualization.DetailsView.DismissReportExportDialog message', () => {
-        const dismissReportExportDialogMock = createActionMock(null);
-        const detailsViewActionsMock = createDetailsViewActionsMock(
-            'dismissReportExportDialog',
-            dismissReportExportDialogMock.object,
-        );
-        const interpreterMock = createInterpreterMock(
-            Messages.Visualizations.DetailsView.DismissReportExportDialog,
-            null,
-        );
-
-        const testObject = new DetailsViewActionCreator(
-            interpreterMock.object,
-            detailsViewActionsMock.object,
-            null,
-            detailsViewControllerMock.object,
-            telemetryEventHandlerMock.object,
-        );
-
-        testObject.registerCallback();
-
-        dismissReportExportDialogMock.verifyAll();
-    });
-
     function createDetailsViewActionsMock<ActionName extends keyof DetailsViewActions>(
         actionName: ActionName,
         action: DetailsViewActions[ActionName],

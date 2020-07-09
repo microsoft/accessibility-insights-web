@@ -36,7 +36,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
                 isSettingsOpen: false,
             },
             detailsViewRightContentPanel: 'Overview',
-            isReportExportDialogOpen: false,
         };
 
         return data;
@@ -64,10 +63,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
             this.onSetSelectedDetailsViewRightContentPanel,
         );
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.detailsViewActions.showReportExportDialog.addListener(this.onShowReportExportDialog);
-        this.detailsViewActions.dismissReportExportDialog.addListener(
-            this.onDismissReportExportDialog,
-        );
 
         this.sidePanelActions.openSidePanel.addListener(this.onOpenSidePanel);
         this.sidePanelActions.closeSidePanel.addListener(this.onCloseSidePanel);
@@ -125,16 +120,6 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewStoreData> {
         view: DetailsViewRightContentPanelType,
     ): void => {
         this.state.detailsViewRightContentPanel = view;
-        this.emitChanged();
-    };
-
-    private onShowReportExportDialog = (): void => {
-        this.state.isReportExportDialogOpen = true;
-        this.emitChanged();
-    };
-
-    private onDismissReportExportDialog = (): void => {
-        this.state.isReportExportDialogOpen = false;
         this.emitChanged();
     };
 }

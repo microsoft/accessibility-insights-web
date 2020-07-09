@@ -125,35 +125,6 @@ describe('DetailsViewStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onShowReportExportDialog', () => {
-        const initialState = new DetailsViewStoreDataBuilder()
-            .withReportExportDialogOpen(false)
-            .build();
-
-        const expectedState = new DetailsViewStoreDataBuilder()
-            .withReportExportDialogOpen(true)
-            .build();
-
-        createStoreTesterForDetailsViewActions('showReportExportDialog').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
-    });
-
-    test('onDismissReportExportDialog', () => {
-        const initialState = new DetailsViewStoreDataBuilder()
-            .withReportExportDialogOpen(true)
-            .build();
-
-        const expectedState = new DetailsViewStoreDataBuilder()
-            .withReportExportDialogOpen(false)
-            .build();
-
-        createStoreTesterForDetailsViewActions(
-            'dismissReportExportDialog',
-        ).testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
     function createStoreTesterForPreviewFeatureActions(
         actionName: keyof PreviewFeaturesActions,
     ): StoreTester<DetailsViewStoreData, PreviewFeaturesActions> {

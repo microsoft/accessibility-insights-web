@@ -8,6 +8,4 @@ export class DetailsViewActions {
         DetailsViewRightContentPanelType
     >();
     public readonly getCurrentState = new Action();
-    public readonly showReportExportDialog = new Action();
-    public readonly dismissReportExportDialog = new Action();
 }

@@ -630,20 +630,4 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             this.telemetryFactory.forLeftNavPanelExpanded(event),
         );
     };
-
-    public showReportExportDialog = () => {
-        const message: Message = {
-            messageType: Messages.Visualizations.DetailsView.ShowReportExportDialog,
-        };
-
-        this.dispatcher.dispatchMessage(message);
-    };
-
-    public dismissReportExportDialog = () => {
-        const message: Message = {
-            messageType: Messages.Visualizations.DetailsView.DismissReportExportDialog,
-        };
-
-        this.dispatcher.dispatchMessage(message);
-    };
 }

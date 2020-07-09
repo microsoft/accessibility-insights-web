@@ -63,14 +63,6 @@ export class DetailsViewActionCreator {
             Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
             this.onSetDetailsViewRightContentPanel,
         );
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.Visualizations.DetailsView.ShowReportExportDialog,
-            this.showReportExportDialog,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.Visualizations.DetailsView.DismissReportExportDialog,
-            this.dismissReportExportDialog,
-        );
     }
 
     private sidePanelToOpenPanelTelemetryEventName: SidePanelToTelemetryEventName = {
@@ -112,13 +104,5 @@ export class DetailsViewActionCreator {
 
     private onGetDetailsViewCurrentState = (): void => {
         this.detailsViewActions.getCurrentState.invoke(null);
-    };
-
-    private showReportExportDialog = (): void => {
-        this.detailsViewActions.showReportExportDialog.invoke(null);
-    };
-
-    private dismissReportExportDialog = () => {
-        this.detailsViewActions.dismissReportExportDialog.invoke(null);
     };
 }
