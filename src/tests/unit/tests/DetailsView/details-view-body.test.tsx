@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
 import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewCommandBarDeps,
@@ -9,6 +8,7 @@ import {
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -104,7 +104,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
-                featureFlagStoreData: getDefaultFeatureFlagsWeb(),
+                featureFlagStoreData: { reflowUI: true } as FeatureFlagStoreData,
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryStub,
                 clickHandlerFactory: clickHandlerFactoryStub,
