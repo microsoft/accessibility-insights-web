@@ -22,7 +22,6 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             },
             {
                 key: 'start over',
-                role: 'menuitem',
                 onRender: () => (
                     <div role="menuitem">
                         {props.switcherNavConfiguration.StartOverComponentFactory({
@@ -35,18 +34,16 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         ];
 
         return (
-            <div role="menu">
-                <CommandBarButton
-                    ariaLabel="More items"
-                    className={styles.commandBarButtonsMenu}
-                    role="menuitem"
-                    menuIconProps={{
-                        iconName: 'More',
-                        className: styles.commandBarButtonsMenuButton,
-                    }}
-                    menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
-                />
-            </div>
+            <CommandBarButton
+                ariaLabel="More items"
+                className={styles.commandBarButtonsMenu}
+                role="menu"
+                menuIconProps={{
+                    iconName: 'More',
+                    className: styles.commandBarButtonsMenuButton,
+                }}
+                menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
+            />
         );
     },
 );
