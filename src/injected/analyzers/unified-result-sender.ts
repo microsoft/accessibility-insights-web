@@ -47,8 +47,6 @@ export class UnifiedResultSender {
             );
         }
 
-        console.log('filtered AxeAnalyzerResult', results);
-
         return results;
     };
 
@@ -78,8 +76,6 @@ export class UnifiedResultSender {
             scanIncompleteWarnings,
             telemetry,
         };
-
-        console.log('unified scan completed payload: ', payload);
 
         this.sendMessage({
             messageType: Messages.UnifiedScan.ScanCompleted,
