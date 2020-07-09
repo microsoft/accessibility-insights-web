@@ -34,6 +34,23 @@ export class UnifiedResultSender {
     };
 
     private filterNeedsReviewResults = (results: AxeAnalyzerResult): AxeAnalyzerResult => {
+        const x = results.originalResult.violations.filter(() => true);
+        console.log('og AxeAnalyzerResult violations', x);
+        const y = results.originalResult.incomplete.filter(() => true);
+        console.log('og AxeAnalyzerResult incomplete', y);
+
+        results.originalResult.violations = results.originalResult.violations.filter(
+            v => v.id === 'link-in-text-block',
+        );
+        results.originalResult.incomplete = results.originalResult.incomplete.filter(
+            i =>
+                i.id === 'aria-input-field-name' ||
+                i.id === 'color-contrast' ||
+                i.id === 'th-has-data-cells',
+        );
+
+        console.log('filtered AxeAnalyzerResult', results);
+
         return results;
     };
 
