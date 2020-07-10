@@ -28,9 +28,6 @@ export class PromptChooseDeviceStep extends React.Component<
     constructor(props) {
         super(props);
 
-        const listItems = this.getListItems();
-        this.state = { selectedDevice: listItems.length > 0 ? listItems[0] : null };
-
         this.selection = new Selection({
             onSelectionChanged: () => {
                 const details = this.selection.getSelection();
@@ -40,7 +37,7 @@ export class PromptChooseDeviceStep extends React.Component<
             },
         });
 
-        this.selectItemZeroInList(listItems);
+        this.setInitialListState();
     }
 
     public render(): JSX.Element {
@@ -107,16 +104,23 @@ export class PromptChooseDeviceStep extends React.Component<
 
     private getListItems(): any {
         const devices: DeviceInfo[] = this.props.androidSetupStoreData.availableDevices;
-        const items = devices.map(m => ({ metadata: m }));
-        return items;
+        const listItems = devices.map(m => ({ metadata: m }));
+        return listItems;
     }
 
-    private selectItemZeroInList(items: any): void {
-        if (items.length > 0) {
+    private setInitialListState(): void {
+        const listItems = this.getListItems();
+        let selectedDevice = null;
+
+        if (listItems.length > 0) {
+            // We always select index 0 in the list.
             this.selection.setChangeEvents(false, true);
-            this.selection.setItems(items, false);
+            this.selection.setItems(listItems, false);
             this.selection.selectToIndex(0);
             this.selection.setChangeEvents(true, true);
+            selectedDevice = listItems[0];
         }
+
+        this.state = { selectedDevice: selectedDevice };
     }
 }
