@@ -19,7 +19,7 @@ describe('Details View -> Assessment -> Headings', () => {
 
         headingsPage = (await browser.newAssessment()).detailsViewPage;
 
-        await headingsPage.navigateToTest('Headings');
+        await headingsPage.navigateToTestRequirement('Headings', 'Heading function');
         await headingsPage.waitForVisualHelperState('Off', {
             timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
         });
