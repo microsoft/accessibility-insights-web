@@ -20,7 +20,7 @@ export type ToastState = {
 };
 
 export class Toast extends React.Component<ToastProps, ToastState> {
-    private timeoutId: number;
+    private timeoutId: number | null;
 
     public static defaultProps = {
         timeoutLength: 6000,
@@ -35,7 +35,7 @@ export class Toast extends React.Component<ToastProps, ToastState> {
         this.setState({ toastVisible: true, content });
         this.timeoutId = this.props.deps.windowUtils.setTimeout(() => {
             this.setState({ toastVisible: false, content: null });
-        }, this.props.timeoutLength);
+        }, this.props.timeoutLength ?? Toast.defaultProps.timeoutLength);
     }
 
     public componentWillUnmount(): void {

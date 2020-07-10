@@ -15,6 +15,7 @@ import {
     FileIssueClickTelemetryData,
     InspectTelemetryData,
     IssuesAnalyzerScanTelemetryData,
+    NeedsReviewAnalyzerScanTelemetryData,
     ReportExportFormat,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
@@ -32,6 +33,7 @@ import {
 } from './extension-telemetry-events';
 import {
     ForIssuesAnalyzerScanCallback,
+    ForNeedsReviewAnalyzerScanCallback,
     ForRuleAnalyzerScanCallback,
 } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
@@ -345,6 +347,38 @@ export class TelemetryDataFactory {
 
         return telemetry;
     };
+
+    public forNeedsReviewAnalyzerScan: ForNeedsReviewAnalyzerScanCallback = (
+        analyzerResult,
+        scanDuration,
+        elementsScanned,
+        testName,
+    ) => {
+        const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
+            analyzerResult.originalResult.passes,
+        );
+        const failedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
+            analyzerResult.originalResult.violations,
+        );
+        const incompleteRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
+            analyzerResult.originalResult.incomplete,
+        );
+        const telemetry: NeedsReviewAnalyzerScanTelemetryData = {
+            ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
+            passedRuleResults: JSON.stringify(passedRuleResults),
+            failedRuleResults: JSON.stringify(failedRuleResults),
+            incompleteRuleResults: JSON.stringify(incompleteRuleResults),
+        };
+
+        return telemetry;
+    };
+
+    public forLeftNavPanelExpanded(event: SupportedMouseEvent): BaseTelemetryData {
+        return {
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: this.getTriggeredBy(event),
+        };
+    }
 
     private getTriggeredBy(event: SupportedMouseEvent): TriggeredBy {
         // MouseEvent => event.detail === 0 ? "keypress" : "mouseclick"

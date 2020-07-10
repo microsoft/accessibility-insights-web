@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -66,6 +66,7 @@ export const RESCAN_VISUALIZATION: string = 'rescanVisualization';
 export const EXISTING_TAB_URL_UPDATED: string = 'existingTabUrlUpdated';
 export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
 export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
+export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
@@ -183,6 +184,12 @@ export type IssuesAnalyzerScanTelemetryData = {
     failedRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
+export type NeedsReviewAnalyzerScanTelemetryData = {
+    passedRuleResults: string;
+    failedRuleResults: string;
+    incompleteRuleResults: string;
+} & RuleAnalyzerScanTelemetryData;
+
 export type ValidatePortTelemetryData = {
     port: number;
 };
@@ -213,10 +220,9 @@ export type SetAllUrlsPermissionTelemetryData = {
     permissionState: boolean;
 } & BaseTelemetryData;
 
-export type ScanIncompleteWarningsTelemetryData = Pick<
-    UnifiedScanCompletedPayload,
-    'scanIncompleteWarnings'
->;
+export type ScanIncompleteWarningsTelemetryData = {
+    scanIncompleteWarnings: ScanIncompleteWarningId[];
+};
 
 export type TelemetryData =
     | BaseTelemetryData

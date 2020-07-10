@@ -29,314 +29,145 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
 `;
 
 exports[`IssuesTableTest includes subtitle if specified 1`] = `
-"<div className=\\"issuesTable\\">
+<div
+  className="issuesTable"
+>
   <h1>
     test title
   </h1>
-  <div className=\\"issuesTableSubtitle\\">
-    test subtitle text
+  <div
+    className="issuesTableSubtitle"
+  >
+    <React.Fragment>
+      test subtitle text
+    </React.Fragment>
   </div>
-  <ScanningSpinner isSpinning={true} label=\\"Loading...\\" />
-</div>"
+  <ScanningSpinner
+    isSpinning={true}
+    label="Loading..."
+  />
+</div>
+`;
+
+exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
+<div
+  className="issuesTable"
+>
+  <h1>
+    test title
+  </h1>
+  <div
+    className="issuesTableContent"
+  >
+    <SomeInstancesSection
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          },
+          "visualHelperEnabled": true,
+        }
+      }
+      deps={
+        Object {
+          "getDateFromTimestamp": [Function],
+          "reportGenerator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "assessmentReportHtmlGenerator": undefined,
+            "reportHtmlGenerator": undefined,
+            "reportNameGenerator": undefined,
+          },
+        }
+      }
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+        }
+      }
+      shouldAlertFailuresCount={true}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "gitHub",
+        }
+      }
+    />
+  </div>
+</div>
 `;
 
 exports[`IssuesTableTest spinner for scanning state 1`] = `
-"<div className=\\"issuesTable\\">
+<div
+  className="issuesTable"
+>
   <h1>
     test title
   </h1>
-  <div className=\\"issuesTableContent\\">
-    <ScanningSpinner isSpinning={true} label=\\"Scanning...\\" />
+  <div
+    className="issuesTableContent"
+  >
+    <ScanningSpinner
+      isSpinning={true}
+      label="Scanning..."
+    />
   </div>
-</div>"
+</div>
 `;
 
 exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
-"<div className=\\"issuesTable\\">
-  <h1>
-    test title
-  </h1>
-  <ScanningSpinner isSpinning={true} label=\\"Loading...\\" />
-</div>"
-`;
-
-exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
-"<div className=\\"issuesTable\\">
-  <h1>
-    test title
-  </h1>
-  <div className=\\"issuesTableContent\\">
-    <ScanningSpinner isSpinning={true} label=\\"Loading data...\\" />
-  </div>
-</div>"
-`;
-
-exports[`IssuesTableTest table with 0 issues 1`] = `
 <div
   className="issuesTable"
 >
   <h1>
     test title
   </h1>
-  <div
-    className="issuesTableContent"
-  >
-    <CardsView
-      cardsViewData={
-        Object {
-          "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={
-        Object {
-          "getDateFromTimestamp": [Function],
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-        }
-      }
-      scanMetadata={
-        Object {
-          "targetAppInfo": Object {
-            "name": "app",
-          },
-        }
-      }
-      userConfigurationStoreData={
-        Object {
-          "bugService": "gitHub",
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`IssuesTableTest table with 1 issues 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-  </h1>
-  <div
-    className="issuesTableContent"
-  >
-    <CardsView
-      cardsViewData={
-        Object {
-          "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={
-        Object {
-          "getDateFromTimestamp": [Function],
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-        }
-      }
-      scanMetadata={
-        Object {
-          "targetAppInfo": Object {
-            "name": "app",
-          },
-        }
-      }
-      userConfigurationStoreData={
-        Object {
-          "bugService": "gitHub",
-        }
-      }
-    />
-  </div>
-</div>
-`;
-
-exports[`IssuesTableTest table with 2 issues 1`] = `
-<div
-  className="issuesTable"
->
-  <h1>
-    test title
-  </h1>
-  <div
-    className="issuesTableContent"
-  >
-    <CardsView
-      cardsViewData={
-        Object {
-          "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={
-        Object {
-          "getDateFromTimestamp": [Function],
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-        }
-      }
-      scanMetadata={
-        Object {
-          "targetAppInfo": Object {
-            "name": "app",
-          },
-        }
-      }
-      userConfigurationStoreData={
-        Object {
-          "bugService": "gitHub",
-        }
-      }
-    />
-  </div>
+  <ScanningSpinner
+    isSpinning={true}
+    label="Loading..."
+  />
 </div>
 `;

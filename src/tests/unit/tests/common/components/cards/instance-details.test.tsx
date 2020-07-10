@@ -130,7 +130,7 @@ describe('InstanceDetails', () => {
         },
     );
 
-    it('renders nothing when there is no card row config for the property / no property', () => {
+    it('renders nothing when there is no card row configuration for the property / no property', () => {
         props.result.identifiers = {
             identifier: 'test-id',
             conciseName: 'test-concise-name',

@@ -70,7 +70,9 @@ export abstract class WebExtensionBrowserAdapter
             if (tab) {
                 onResolve(tab);
             } else {
-                onReject();
+                if (onReject != null) {
+                    onReject();
+                }
             }
         });
     }
@@ -90,8 +92,12 @@ export abstract class WebExtensionBrowserAdapter
         return browser.tabs.create({ url, active: true, pinned: false });
     }
 
-    public createTabInNewWindow(url: string): Promise<Tabs.Tab> {
-        return browser.windows.create({ url, focused: true }).then(window => window.tabs[0]);
+    public async createTabInNewWindow(url: string): Promise<Tabs.Tab> {
+        const newWindow = await browser.windows.create({ url, focused: true });
+        if (newWindow.tabs == null) {
+            throw new Error('Browser created a window with no tabs');
+        }
+        return newWindow.tabs[0];
     }
 
     public updateTab(
@@ -110,6 +116,9 @@ export abstract class WebExtensionBrowserAdapter
 
     public async switchToTab(tabId: number): Promise<void> {
         const tab = await this.updateTab(tabId, { active: true });
+        if (tab.windowId == null) {
+            throw new Error('Browser indicated an orphan tab with no windowId');
+        }
         await this.updateWindow(tab.windowId, { focused: true });
     }
 
@@ -133,7 +142,7 @@ export abstract class WebExtensionBrowserAdapter
         return browser.storage.local.remove(key);
     }
 
-    public getRuntimeLastError(): chrome.runtime.LastError {
+    public getRuntimeLastError(): chrome.runtime.LastError | undefined {
         return chrome.runtime.lastError;
     }
 

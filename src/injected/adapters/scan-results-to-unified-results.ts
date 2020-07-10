@@ -51,6 +51,25 @@ const createUnifiedResultsFromScanResults = (
     ];
 };
 
+export const convertScanResultsToNeedsReviewUnifiedResults = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGenerator,
+): UnifiedResult[] => {
+    if (!scanResults) {
+        return [];
+    }
+    return createUnifiedResultsFromNeedsReviewScanResults(scanResults, uuidGenerator);
+};
+
+const createUnifiedResultsFromNeedsReviewScanResults = (
+    scanResults: ScanResults,
+    uuidGenerator: UUIDGenerator,
+): UnifiedResult[] => {
+    return [
+        ...createUnifiedResultsFromRuleResults(scanResults.incomplete, 'unknown', uuidGenerator),
+    ];
+};
+
 const createUnifiedResultsFromRuleResults = (
     ruleResults: RuleResult[],
     status: InstanceResultStatus,

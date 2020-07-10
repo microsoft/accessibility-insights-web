@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
+<CustomizedCommandBarButton
+  ariaLabel="More items"
+  className="commandBarButtonsMenu"
+  menuIconProps={
+    Object {
+      "className": "commandBarButtonsMenuButton",
+      "iconName": "More",
+    }
+  }
+  menuProps={
+    Object {
+      "className": "commandBarButtonsSubmenu",
+      "items": Array [
+        Object {
+          "key": "export report",
+          "onRender": [Function],
+        },
+        Object {
+          "key": "start over",
+          "onRender": [Function],
+        },
+      ],
+    }
+  }
+  role="menu"
+/>
+`;
+
+exports[`CommandBarButtonsMenu renders child buttons 1`] = `
+<div
+  role="menuitem"
+>
+  <React.Fragment />
+</div>
+`;
+
+exports[`CommandBarButtonsMenu renders child buttons 2`] = `
+<div
+  role="menuitem"
+>
+  <React.Fragment />
+</div>
+`;

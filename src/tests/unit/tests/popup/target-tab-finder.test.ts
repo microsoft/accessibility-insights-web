@@ -71,7 +71,7 @@ describe('TargetTabFinderTest', () => {
             setupGetTabIdParamFromUrl(tabId);
             setupGetTabCall();
         } else {
-            setupGetTabIdParamFromUrl(NaN);
+            setupGetTabIdParamFromUrl(null);
             setupTabQueryCall();
         }
 
@@ -97,7 +97,7 @@ describe('TargetTabFinderTest', () => {
             .catch(error => expect(error).toEqual(`Tab with Id ${tabId} not found`));
     });
 
-    function setupGetTabIdParamFromUrl(tabIdValue: number): void {
+    function setupGetTabIdParamFromUrl(tabIdValue: number | null): void {
         urlParserMock
             .setup(p => p.getIntParam(windowStub.location.href, 'tabId'))
             .returns(() => tabIdValue);

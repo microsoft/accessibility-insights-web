@@ -543,6 +543,64 @@ describe('TelemetryDataFactoryTest', () => {
         expect(JSON.parse(actual.passedRuleResults)).toEqual(passedRuleResultsStub);
     });
 
+    test('forNeedsReviewAnalyzerScan', () => {
+        const testName = 'test';
+        const analyzerResultStub = {
+            include: [],
+            exclude: [],
+            originalResult: {
+                passes: [
+                    {
+                        id: 'test',
+                        nodes: [{}, {}],
+                    },
+                ],
+                violations: [
+                    {
+                        id: 'test',
+                        nodes: [{}],
+                    },
+                    {
+                        id: 'test-2',
+                        nodes: [{}],
+                    },
+                ],
+                incomplete: [
+                    {
+                        id: 'test',
+                        nodes: [{}],
+                    },
+                ],
+            },
+        } as AxeAnalyzerResult;
+        const elapsedTime = 50;
+        const elementsScanned = 2;
+        const actual = testObject.forNeedsReviewAnalyzerScan(
+            analyzerResultStub,
+            elapsedTime,
+            elementsScanned,
+            testName,
+        );
+        const passedRuleResultsStub = {
+            test: 2,
+        };
+        const incompleteRuleResultsStub = {
+            test: 1,
+        };
+        const failedRuleResultsStub = {
+            test: 1,
+            'test-2': 1,
+        };
+
+        expect(actual.scanDuration).toBe(elapsedTime);
+        expect(actual.NumberOfElementsScanned).toBe(elementsScanned);
+        expect(actual.include).toBe(analyzerResultStub.include);
+        expect(actual.exclude).toBe(analyzerResultStub.exclude);
+        expect(JSON.parse(actual.passedRuleResults)).toEqual(passedRuleResultsStub);
+        expect(JSON.parse(actual.incompleteRuleResults)).toEqual(incompleteRuleResultsStub);
+        expect(JSON.parse(actual.failedRuleResults)).toEqual(failedRuleResultsStub);
+    });
+
     test('forExportedHtml by keypress', () => {
         const exportedHtml = 'some html string';
         const event = keypressEvent;
@@ -615,6 +673,17 @@ describe('TelemetryDataFactoryTest', () => {
             source: testSource,
             triggeredBy: 'mouseclick',
         };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forLeftNavPanelExpanded', () => {
+        const expected: BaseTelemetryData = {
+            source: TelemetryEventSource.DetailsView,
+            triggeredBy: 'mouseclick',
+        };
+
+        const result = testObject.forLeftNavPanelExpanded(mouseClickEvent);
 
         expect(result).toEqual(expected);
     });

@@ -5,14 +5,16 @@ import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import {
     AndroidSetupStateMachine,
     AndroidSetupStateMachineFactory,
+    AndroidSetupStepTransitionCallback,
     AndroidSetupStoreCallbacks,
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
-import { DeviceInfo } from 'electron/platform/android/android-service-configurator';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 import { It, Mock, Times } from 'typemoq';
 
 const mockableStateMachineFactory = (
+    stepTransition: AndroidSetupStepTransitionCallback,
     storeCallbacks: AndroidSetupStoreCallbacks,
 ): AndroidSetupStateMachine => {
     return null;
@@ -39,7 +41,7 @@ describe('AndroidSetupStore', () => {
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
-            .setup(m => m(It.isAny()))
+            .setup(m => m(It.isAny(), It.isAny()))
             .returns(_ => stateMachineMock.object)
             .verifiable(Times.once());
 
@@ -53,6 +55,7 @@ describe('AndroidSetupStore', () => {
         setupActions.rescan.invoke();
         setupActions.saveAdbPath.invoke('');
         setupActions.setSelectedDevice.invoke({} as DeviceInfo);
+        setupActions.readyToStart.invoke();
 
         stateMachineFactoryMock.verifyAll();
         stateMachineMock.verifyAll();
@@ -68,7 +71,7 @@ describe('AndroidSetupStore', () => {
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
-            .setup(m => m(It.isAny()))
+            .setup(m => m(It.isAny(), It.isAny()))
             .returns(_ => stateMachineMock.object)
             .verifiable(Times.once());
 
@@ -87,18 +90,18 @@ describe('AndroidSetupStore', () => {
         const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
         const expectedData: AndroidSetupStoreData = { currentStepId: 'prompt-choose-device' };
 
-        let storeCallbacks: AndroidSetupStoreCallbacks;
+        let stepTransition: AndroidSetupStepTransitionCallback;
 
         const stateMachineMock = Mock.ofType<AndroidSetupStateMachine>();
         stateMachineMock
             .setup(m => m.invokeAction('cancel', It.isAny()))
-            .callback((action, payload) => storeCallbacks.stepTransition('prompt-choose-device'))
+            .callback((action, payload) => stepTransition('prompt-choose-device'))
             .verifiable(Times.once());
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
-            .setup(m => m(It.isAny()))
-            .callback(sc => (storeCallbacks = sc))
+            .setup(m => m(It.isAny(), It.isAny()))
+            .callback(st => (stepTransition = st))
             .returns(_ => stateMachineMock.object)
             .verifiable(Times.once());
 
@@ -126,8 +129,8 @@ describe('AndroidSetupStore', () => {
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
-            .setup(m => m(It.isAny()))
-            .callback(sc => (storeCallbacks = sc))
+            .setup(m => m(It.isAny(), It.isAny()))
+            .callback((_, sc) => (storeCallbacks = sc))
             .verifiable(Times.once());
 
         const store = new AndroidSetupStore(
@@ -167,8 +170,8 @@ describe('AndroidSetupStore', () => {
 
         const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
         stateMachineFactoryMock
-            .setup(m => m(It.isAny()))
-            .callback(sc => (storeCallbacks = sc))
+            .setup(m => m(It.isAny(), It.isAny()))
+            .callback((_, sc) => (storeCallbacks = sc))
             .verifiable(Times.once());
 
         const store = new AndroidSetupStore(
@@ -178,6 +181,66 @@ describe('AndroidSetupStore', () => {
         store.initialize(initialData);
 
         storeCallbacks.setAvailableDevices(testDevices);
+
+        expect(store.getState()).toEqual(expectedData);
+
+        stateMachineFactoryMock.verifyAll();
+    });
+
+    it('ensure setScanPort function results in store update', () => {
+        const newScanPort = 63000;
+
+        const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
+        const expectedData: AndroidSetupStoreData = {
+            currentStepId: 'detect-adb',
+            scanPort: newScanPort,
+        };
+
+        let storeCallbacks: AndroidSetupStoreCallbacks;
+
+        const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
+        stateMachineFactoryMock
+            .setup(m => m(It.isAny(), It.isAny()))
+            .callback((_, sc) => (storeCallbacks = sc))
+            .verifiable(Times.once());
+
+        const store = new AndroidSetupStore(
+            new AndroidSetupActions(),
+            stateMachineFactoryMock.object,
+        );
+        store.initialize(initialData);
+
+        storeCallbacks.setScanPort(newScanPort);
+
+        expect(store.getState()).toEqual(expectedData);
+
+        stateMachineFactoryMock.verifyAll();
+    });
+
+    it('ensure setApplicationName function results in store update', () => {
+        const appName = 'Star Wars -- Episode Test';
+
+        const initialData: AndroidSetupStoreData = { currentStepId: 'detect-adb' };
+        const expectedData: AndroidSetupStoreData = {
+            currentStepId: 'detect-adb',
+            applicationName: appName,
+        };
+
+        let storeCallbacks: AndroidSetupStoreCallbacks;
+
+        const stateMachineFactoryMock = Mock.ofInstance(mockableStateMachineFactory);
+        stateMachineFactoryMock
+            .setup(m => m(It.isAny(), It.isAny()))
+            .callback((_, sc) => (storeCallbacks = sc))
+            .verifiable(Times.once());
+
+        const store = new AndroidSetupStore(
+            new AndroidSetupActions(),
+            stateMachineFactoryMock.object,
+        );
+        store.initialize(initialData);
+
+        storeCallbacks.setApplicationName(appName);
 
         expect(store.getState()).toEqual(expectedData);
 

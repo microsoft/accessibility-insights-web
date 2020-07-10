@@ -3,6 +3,7 @@
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import {
+    IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
@@ -38,6 +39,7 @@ describe(IpcRendererShim, () => {
             IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
             IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
             IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+            IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
         ];
 
         let ipcHandlers;
@@ -64,17 +66,30 @@ describe(IpcRendererShim, () => {
             expect(callCount).toBe(1);
         });
 
-        it('invoke fromBrowserWindowMaximize action  maximize message from browser', () => {
+        it('invoke fromBrowserWindowMaximize on maximize message from browser', () => {
             let callCount = 0;
             testSubject.fromBrowserWindowMaximize.addListener(() => callCount++);
             ipcHandlers[IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 
-        it('invoke fromBrowserWindowUnmaximize  on unmaximize message from browser', () => {
+        it('invoke fromBrowserWindowUnmaximize on unmaximize message from browser', () => {
             let callCount = 0;
             testSubject.fromBrowserWindowUnmaximize.addListener(() => callCount++);
             ipcHandlers[IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME]();
+            expect(callCount).toBe(1);
+        });
+
+        it('invoke fromBrowserWindowClose on close message from browser, calls closeWindow, is async', async () => {
+            let callCount = 0;
+            ipcRendererMock
+                .setup(m => m.send(IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME))
+                .verifiable(Times.once());
+            testSubject.fromBrowserWindowClose.addAsyncListener(() => {
+                callCount++;
+                return Promise.resolve();
+            });
+            await ipcHandlers[IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME]();
             expect(callCount).toBe(1);
         });
 

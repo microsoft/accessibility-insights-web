@@ -3,10 +3,9 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const promptConnectedStartTesting: AndroidSetupStepConfig = deps => ({
+export const promptConnectedStartTesting: AndroidSetupStepConfig = (stepTransition, deps) => ({
     actions: {
-        rescan: () => {
-            deps.stepTransition('detect-adb');
-        },
+        cancel: () => stepTransition('prompt-choose-device'),
+        rescan: () => stepTransition('detect-devices'),
     },
 });

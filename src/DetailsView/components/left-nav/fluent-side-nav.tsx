@@ -13,6 +13,7 @@ import {
     DetailsViewLeftNavProps,
 } from 'DetailsView/components/left-nav/details-view-left-nav';
 import * as styles from 'DetailsView/components/left-nav/fluent-side-nav.scss';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { INav, PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -22,8 +23,8 @@ export type FluentSideNavProps = Omit<DetailsViewLeftNavProps, 'setNavComponentR
     deps: FluentSideNavDeps;
     tabStoreData: TabStoreData;
     isSideNavOpen: boolean;
-    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    isNarrowMode: boolean;
+    setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export class FluentSideNav extends React.Component<FluentSideNavProps> {
@@ -58,7 +59,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
                     setSideNavOpen={this.props.setSideNavOpen}
                     showFarItems={false}
                     showHeaderTitle={false}
-                    isNarrowMode={this.props.isNarrowMode}
+                    narrowModeStatus={this.props.narrowModeStatus}
                 />
             );
         };
@@ -81,7 +82,9 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
 
         const navBarInSideNavContainer = <div id={styles.sideNavContainer}>{navBar}</div>;
 
-        return this.props.isNarrowMode ? navPanel : navBarInSideNavContainer;
+        return this.props.narrowModeStatus.isHeaderAndNavCollapsed
+            ? navPanel
+            : navBarInSideNavContainer;
     }
 
     protected setNavComponentRef(nav: INav): void {
@@ -90,9 +93,9 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
 
     private isNavPanelConvertedToNavBar(prevProps: FluentSideNavProps): boolean {
         return (
-            prevProps.isNarrowMode === true &&
+            prevProps.narrowModeStatus.isHeaderAndNavCollapsed === true &&
             prevProps.isSideNavOpen === true &&
-            this.props.isNarrowMode === false
+            this.props.narrowModeStatus.isHeaderAndNavCollapsed === false
         );
     }
 

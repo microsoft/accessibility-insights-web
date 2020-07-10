@@ -9,13 +9,11 @@ export const DetectServiceStep = NamedFC<CommonAndroidSetupStepProps>(
     'DetectServiceStep',
     (props: CommonAndroidSetupStepProps) => {
         return (
-            <main>
-                <AndroidSetupSpinnerStep
-                    deps={props.deps}
-                    spinnerLabel="Scanning for devices..."
-                    disableCancel={true}
-                />
-            </main>
+            <AndroidSetupSpinnerStep
+                deps={props.deps}
+                spinnerLabel="Scanning for devices..."
+                disableCancel={true}
+            />
         );
     },
 );

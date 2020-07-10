@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
+import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
@@ -10,14 +11,27 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
 
+const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
+    rules: null,
+    resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
+    telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
+        telemetryFactory.forIssuesAnalyzerScan,
+    key: AdHocTestkeys.Issues,
+    testType: VisualizationType.Issues,
+    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+};
+
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
     testMode: TestMode.Adhoc,
-    getTestView: props => <AdhocIssuesTestView {...props} />,
+    getTestView: props => (
+        <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...props} />
+    ),
     getStoreData: data => data.adhoc.issues,
     enableTest: (data, _) => (data.enabled = true),
     disableTest: data => (data.enabled = false),
@@ -43,17 +57,8 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '01_toggle-issues',
     launchPanelDisplayOrder: 1,
     adhocToolsPanelDisplayOrder: 1,
-    resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     getAnalyzer: provider =>
-        provider.createRuleAnalyzerUnifiedScan({
-            rules: null,
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
-                telemetryFactory.forIssuesAnalyzerScan,
-            key: AdHocTestkeys.Issues,
-            testType: VisualizationType.Issues,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        }),
+        provider.createRuleAnalyzerUnifiedScan(issuesRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) =>

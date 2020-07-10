@@ -24,60 +24,18 @@ body {
     overflow: hidden;
 }
 
-.target-change-dialog-modal {
-    .ms-Overlay {
-        background-color: $neutral-alpha-60;
-    }
-}
-
 .hidden {
     display: none !important;
 }
 
-div.insights-dialog-main-override.target-change-dialog,
-div.insights-dialog-main-override.insights-file-issue-details-dialog-container {
-    border-radius: 6px;
-    box-shadow: 0 0 10px 0 $neutral-alpha-60;
-    .ms-Dialog-title {
-        font-weight: $fontWeightSemiBold;
-    }
-    .target-change-dialog-button-container {
-        display: flex;
-        height: 40px;
-        justify-content: flex-end;
-
-        .action-cancel-button-col {
-            text-align: right;
-            padding-left: 0px;
-            margin-top: 4px;
-            margin-bottom: 24px;
-        }
-        button {
-            padding: 0;
-            height: 32px;
-        }
-        .continue-button {
-            button {
-                width: 140px;
-            }
-        }
-        .restart-button {
-            button {
-                width: 85px;
-            }
-        }
-    }
-}
-
 div.insights-dialog-main-override {
-    width: 25% !important;
-    max-width: 25% !important;
-    min-width: 500px !important;
+    width: 75%;
+    max-width: 500px;
     @media screen and (max-width: 500px) {
-        min-width: 256px !important;
-        width: 95% !important;
-        max-width: 100% !important;
+        min-width: 240px;
+        width: 75%;
     }
+
     user-select: text;
     .start-over-dialog-body {
         font-size: 16px;
@@ -193,6 +151,7 @@ div.insights-file-issue-details-dialog-container {
 #details-container {
     display: flex;
     flex-direction: column;
+    height: 100%;
 
     .ms-Nav-compositeLink a {
         border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
@@ -220,6 +179,15 @@ div.insights-file-issue-details-dialog-container {
             padding-left: 13px !important;
         }
     }
+    .ms-DetailsRow.is-selected {
+        .expanded-property-div,
+        .property-bag-div,
+        .display-name {
+            @media screen and (-ms-high-contrast: active) {
+                color: highlighttext !important;
+            }
+        }
+    }
     .ms-DetailsHeader {
         .content-header {
             > span:first-of-type {
@@ -244,6 +212,7 @@ div.insights-file-issue-details-dialog-container {
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
+        height: 100%;
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
         }
@@ -258,6 +227,11 @@ div.insights-file-issue-details-dialog-container {
             }
             a {
                 padding-right: 0px;
+                &:focus {
+                    @media screen and (-ms-high-contrast: active) {
+                        border: 3px highlighttext solid;
+                    }
+                }
             }
         }
         .ms-Pivot {
@@ -362,6 +336,9 @@ div.insights-file-issue-details-dialog-container {
             font-size: 16px;
             line-height: 24px;
             color: $negative-outcome;
+            @media screen and (-ms-high-contrast: active) {
+                color: inherit;
+            }
         }
         span.collapsible-title {
             padding-left: 0.5vw;
@@ -439,11 +416,11 @@ div.insights-file-issue-details-dialog-container {
         .details-view-body-content-pane {
             display: flex;
             flex-direction: column;
+            height: 100%;
             &.reflow-ui {
                 word-break: break-word;
             }
             width: 100%;
-            padding-bottom: 1px;
             overflow: auto;
             box-sizing: border-box;
             max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));

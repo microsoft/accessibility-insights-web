@@ -219,7 +219,10 @@ describe(DetailsViewContent, () => {
             const rendered = shallow(
                 <DetailsViewContent
                     {...props}
-                    isNarrowMode={false}
+                    narrowModeStatus={{
+                        isHeaderAndNavCollapsed: false,
+                        isCommandBarCollapsed: false,
+                    }}
                     isSideNavOpen={false}
                     setSideNavOpen={() => {}}
                 />,

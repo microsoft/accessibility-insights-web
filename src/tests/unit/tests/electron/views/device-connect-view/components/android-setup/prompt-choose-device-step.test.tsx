@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
+import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
@@ -21,6 +23,26 @@ describe('PromptChooseDeviceStep', () => {
             .withDep('closeApp', closeAppMock.object)
             .withDep('androidSetupActionCreator', actionMessageCreatorMock.object)
             .build();
+
+        props.androidSetupStoreData = {
+            availableDevices: [
+                {
+                    id: '1',
+                    friendlyName: 'Phone 1',
+                    isEmulator: true,
+                },
+                {
+                    id: '2',
+                    friendlyName: 'Phone 2',
+                    isEmulator: false,
+                },
+                {
+                    id: '3',
+                    friendlyName: 'Phone 3',
+                    isEmulator: true,
+                },
+            ],
+        } as AndroidSetupStoreData;
     });
 
     it('renders per snapshot', () => {
@@ -42,11 +64,13 @@ describe('PromptChooseDeviceStep', () => {
         actionMessageCreatorMock.verify(m => m.rescan(), Times.once());
     });
 
-    it('passes next dep through', () => {
+    it('passes setSelectedDevice dep through', () => {
+        const expectedDevice: DeviceInfo = props.androidSetupStoreData.availableDevices[0];
         const stubEvent = {} as React.MouseEvent<HTMLButtonElement>;
-        const rendered = shallow(<PromptChooseDeviceStep {...props} />);
+        const rendered = mount(<PromptChooseDeviceStep {...props} />);
+        rendered.find('DeviceDescription').at(0).simulate('click');
         rendered.find(AndroidSetupStepLayout).prop('rightFooterButtonProps').onClick(stubEvent);
-        actionMessageCreatorMock.verify(m => m.next(), Times.once());
+        actionMessageCreatorMock.verify(m => m.setSelectedDevice(expectedDevice), Times.once());
     });
 
     it('next button becomes enabled after device is selected', () => {

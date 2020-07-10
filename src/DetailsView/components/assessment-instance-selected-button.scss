@@ -5,6 +5,15 @@
 .instance-visibility-button {
     color: $primary-text;
     padding-bottom: 6px;
+    @media screen and (-ms-high-contrast: active) {
+        color: highlighttext !important;
+    }
+}
+
+.instance-visibility-button:focus {
+    @media screen and (-ms-high-contrast: active) {
+        outline: 1px highlighttext solid;
+    }
 }
 
 .test-instance-selected {

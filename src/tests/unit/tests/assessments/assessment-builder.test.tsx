@@ -21,10 +21,10 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
 import { RequirementLink } from '../../../../DetailsView/components/requirement-link';
-import { TestViewProps } from '../../../../DetailsView/components/test-view';
+import { CommonTestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../injected/scanner-utils';
+import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../../../injected/visualization-instance-processor';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 
@@ -34,7 +34,7 @@ describe('AssessmentBuilderTest', () => {
         const analyzerProviderMock = Mock.ofType(AnalyzerProvider);
         const drawerProviderMock = Mock.ofType(DrawerProvider);
         const getInstanceIdentifierMock = Mock.ofInstance(() => null);
-        const testViewPropsStub = {} as TestViewProps;
+        const testViewPropsStub = {} as CommonTestViewProps;
         const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
 
         const requirement: Requirement = {
@@ -146,7 +146,7 @@ describe('AssessmentBuilderTest', () => {
     });
 
     test('Assisted', () => {
-        const testViewPropsStub = {} as TestViewProps;
+        const testViewPropsStub = {} as CommonTestViewProps;
         const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
         const selectedRequirementKey = 'requirement key';
         const providerMock = Mock.ofType(AnalyzerProvider);
@@ -178,9 +178,6 @@ describe('AssessmentBuilderTest', () => {
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
             getDrawer: getDrawerMock.object,
             switchToTargetTabOnScan: true,
-        };
-        const scannerStub = {
-            getAllCompletedInstances: {},
         };
         const telemetryFactoryStub = {
             forAssessmentRequirementScan: {},
@@ -281,9 +278,6 @@ describe('AssessmentBuilderTest', () => {
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
-        expect(config.resultProcessor(scannerStub as ScannerUtils)).toEqual(
-            scannerStub.getAllCompletedInstances,
-        );
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,
         );

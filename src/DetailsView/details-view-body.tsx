@@ -2,15 +2,17 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import * as classNames from 'classnames';
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import * as styles from 'DetailsView/details-view-body.scss';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -63,15 +65,14 @@ export interface DetailsViewBodyProps {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;
-    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
-    isNarrowMode: boolean;
+    setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
+    narrowModeStatus: NarrowModeStatus;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
         const bodyLayoutClassName = classNames({
             'details-view-body-nav-content-layout': true,
-            'narrow-mode': this.props.isNarrowMode,
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
@@ -81,15 +82,23 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
             'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
         });
 
+        const bodyContentContainerClassName = classNames(styles.detailsViewContentPaneContainer, {
+            [styles.narrowMode]: this.props.narrowModeStatus.isHeaderAndNavCollapsed,
+            'reflow-ui': this.props.featureFlagStoreData[FeatureFlags.reflowUI],
+        });
+
         return (
-            <div className="details-view-body">
-                {this.renderCommandBar()}
+            <div className={styles.detailsViewBody}>
+                {this.renderCommandBarUnderHeader()}
                 <div className={bodyLayoutClassName}>
                     {this.renderNavBar()}
-                    <div className={bodyContentClassName}>
-                        {this.getTargetPageHiddenBar()}
-                        <div className="view" role="main">
-                            {this.renderRightPanel()}
+                    <div className={bodyContentContainerClassName}>
+                        {this.renderReflowCommandBar()}
+                        <div className={bodyContentClassName}>
+                            {this.getTargetPageHiddenBar()}
+                            <div className="view" role="main">
+                                {this.renderRightPanel()}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,6 +116,28 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
+    private renderCommandBarUnderHeader(): JSX.Element {
+        return (
+            <FlaggedComponent
+                enableJSXElement={null}
+                disableJSXElement={this.renderCommandBar()}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+            />
+        );
+    }
+
+    private renderReflowCommandBar(): JSX.Element {
+        return (
+            <FlaggedComponent
+                enableJSXElement={this.renderCommandBar()}
+                disableJSXElement={null}
+                featureFlag={FeatureFlags.reflowUI}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+            />
+        );
+    }
+
     private renderNavBar(): JSX.Element {
         return (
             <FluentSideNav
@@ -114,7 +145,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                 isSideNavOpen={this.props.isSideNavOpen}
                 setSideNavOpen={this.props.setSideNavOpen}
                 onRightPanelContentSwitch={() => this.props.setSideNavOpen(false)}
-                isNarrowMode={this.props.isNarrowMode}
+                narrowModeStatus={this.props.narrowModeStatus}
                 {...this.props}
             />
         );

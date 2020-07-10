@@ -21,6 +21,7 @@ exports[` render renders normally 1`] = `
           "copyIssueDetailsClicked": [Function],
           "dispatcher": undefined,
           "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -57,8 +58,13 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
-    isNarrowMode={false}
     isSideNavOpen={false}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+        "isHeaderAndNavCollapsed": false,
+      }
+    }
     selectedPivot={0}
     setSideNavOpen={[Function]}
     tabClosed={false}
@@ -101,6 +107,7 @@ exports[` render renders normally 1`] = `
           "copyIssueDetailsClicked": [Function],
           "dispatcher": undefined,
           "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -161,8 +168,13 @@ exports[` render renders normally 1`] = `
         "logTelemetryToConsole": false,
       }
     }
-    isNarrowMode={false}
     isSideNavOpen={false}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+        "isHeaderAndNavCollapsed": false,
+      }
+    }
     pathSnippetStoreData={
       Object {
         "path": null,
@@ -247,6 +259,13 @@ exports[` render renders normally 1`] = `
           "selectedAxeResultsMap": null,
           "selectedIdToRuleResultMap": null,
         },
+        "needsReview": Object {
+          "fullAxeResultsMap": null,
+          "fullIdToRuleResultMap": null,
+          "scanResult": null,
+          "selectedAxeResultsMap": null,
+          "selectedIdToRuleResultMap": null,
+        },
         "tabStops": Object {
           "tabbedElements": null,
         },
@@ -273,6 +292,9 @@ exports[` render renders normally 1`] = `
               "enabled": false,
             },
             "landmarks": Object {
+              "enabled": false,
+            },
+            "needsReview": Object {
               "enabled": false,
             },
             "tabStops": Object {
@@ -400,6 +422,7 @@ exports[` render renders normally 1`] = `
           "copyIssueDetailsClicked": [Function],
           "dispatcher": undefined,
           "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],

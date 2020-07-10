@@ -20,6 +20,7 @@ exports[`DetailsViewContainer render content render once; should call details vi
         "copyIssueDetailsClicked": [Function],
         "dispatcher": undefined,
         "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
         "removeFailureInstance": [Function],
         "rescanVisualization": [Function],
         "setAllUrlsPermissionState": [Function],

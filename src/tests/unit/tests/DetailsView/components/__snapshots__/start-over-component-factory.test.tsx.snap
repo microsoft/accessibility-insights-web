@@ -3,13 +3,14 @@
 exports[`StartOverComponentFactory getStartOverComponentForAssessments renders 1`] = `
 <StartOverDropdown
   deps={Object {}}
+  dropdownDirection="down"
   requirementKey="test step"
   test={6}
   testName="the title"
 />
 `;
 
-exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanResults is not null, scanning is false => component matches snapshot 1`] = `
+exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanning is false => component matches snapshot 1`] = `
 <InsightsCommandButton
   data-automation-id="start-over"
   disabled={false}
@@ -24,25 +25,10 @@ exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders
 </InsightsCommandButton>
 `;
 
-exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanResults is not null, scanning is true => component matches snapshot 1`] = `
+exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanning is true => component matches snapshot 1`] = `
 <InsightsCommandButton
   data-automation-id="start-over"
   disabled={true}
-  iconProps={
-    Object {
-      "iconName": "Refresh",
-    }
-  }
-  onClick={[Function]}
->
-  Start over
-</InsightsCommandButton>
-`;
-
-exports[`StartOverComponentFactory getStartOverComponentPropsForFastPass renders scanResults is null => component matches snapshot 1`] = `
-<InsightsCommandButton
-  data-automation-id="start-over"
-  disabled={false}
   iconProps={
     Object {
       "iconName": "Refresh",

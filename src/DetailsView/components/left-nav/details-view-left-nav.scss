@@ -9,15 +9,15 @@
         li {
             :global {
                 .is-selected {
-                    background-color: $communication-tint-20;
+                    background-color: $nav-link-selected;
                     a,
                     button {
-                        background-color: $communication-tint-20 !important;
+                        background-color: $nav-link-selected !important;
                     }
                 }
                 .is-expanded,
                 .is-expanded + ul {
-                    background-color: $communication-tint-40;
+                    background-color: $nav-link-expanded;
                     .index-circle {
                         color: $neutral-0;
                         background: $index-circle-background;
@@ -29,7 +29,7 @@
             > div:hover {
                 a,
                 button {
-                    background-color: $nav-link-hover !important;
+                    background-color: $nav-link-hover;
                 }
             }
         }
@@ -40,6 +40,11 @@
     .left-nav {
         max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
         height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+    }
+
+    &:global(.reflow-ui) .left-nav {
+        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+        height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
     }
 }
 

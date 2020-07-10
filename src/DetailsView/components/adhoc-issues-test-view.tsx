@@ -1,29 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FailedInstancesSectionProps } from 'common/components/cards/failed-instances-section';
+import { NeedsReviewInstancesSectionProps } from 'common/components/cards/needs-review-instances-section';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
 } from 'DetailsView/components/scan-incomplete-warning';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
-
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { NamedFC } from '../../common/react/named-fc';
+import { NamedFC, ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
+
+export type InstancesSectionProps = FailedInstancesSectionProps & NeedsReviewInstancesSectionProps;
 
 export type AdhocIssuesTestViewDeps = DetailsListIssuesViewDeps & ScanIncompleteWarningDeps;
 
@@ -35,15 +34,12 @@ export type AdhocIssuesTestViewProps = {
     featureFlagStoreData: FeatureFlagStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
-    visualizationScanResultData: VisualizationScanResultData;
-    visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    issuesSelection: ISelection;
-    issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
+    instancesSection: ReactFCWithDisplayName<InstancesSectionProps>;
 };
 
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(

@@ -135,7 +135,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         }
 
         payload.scanResult.forEach(result => {
-            if (result.status !== 'fail') {
+            if (result.status !== 'fail' && result.status !== 'unknown') {
                 return;
             }
 
