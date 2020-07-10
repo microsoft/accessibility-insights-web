@@ -18,10 +18,12 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
   }
 >
   <React.Fragment>
-    <p>
+    <div
+      className="deviceCount"
+    >
       3
        Android devices or emulators connected
-    </p>
+    </div>
     <CustomizedDefaultButton
       data-automation-id="rescan"
       onClick={[Function]}

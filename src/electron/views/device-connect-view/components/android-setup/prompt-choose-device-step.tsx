@@ -47,7 +47,9 @@ export class PromptChooseDeviceStep extends React.Component<
             headerText: 'Choose which device to use',
             children: (
                 <>
-                    <p>{devices.length} Android devices or emulators connected</p>
+                    <div className={styles.deviceCount}>
+                        {items.length} Android devices or emulators connected
+                    </div>
                     <DefaultButton
                         data-automation-id={'rescan'}
                         text="Rescan"
