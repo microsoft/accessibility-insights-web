@@ -27,7 +27,9 @@ export class PromptChooseDeviceStep extends React.Component<
     private selection: ISelection;
     constructor(props) {
         super(props);
-        this.state = { selectedDevice: null };
+
+        const listItems = this.getListItems();
+        this.state = { selectedDevice: listItems.length > 0 ? listItems[0] : null };
 
         this.selection = new Selection({
             onSelectionChanged: () => {
@@ -37,18 +39,19 @@ export class PromptChooseDeviceStep extends React.Component<
                 }
             },
         });
+
+        this.selectItemZeroInList(listItems);
     }
 
     public render(): JSX.Element {
-        const devices: DeviceInfo[] = this.props.androidSetupStoreData.availableDevices;
-        const items = devices.map(m => ({ metadata: m }));
+        const listItems = this.getListItems();
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Choose which device to use',
             children: (
                 <>
                     <div className={styles.deviceCount}>
-                        {items.length} Android devices or emulators connected
+                        {listItems.length} Android devices or emulators connected
                     </div>
                     <DefaultButton
                         data-automation-id={'rescan'}
@@ -60,7 +63,7 @@ export class PromptChooseDeviceStep extends React.Component<
                         compact={true}
                         ariaLabel="android devices"
                         className={styles.phoneList}
-                        items={items}
+                        items={listItems}
                         selection={this.selection}
                         selectionMode={SelectionMode.single}
                         checkboxVisibility={CheckboxVisibility.always}
@@ -100,5 +103,20 @@ export class PromptChooseDeviceStep extends React.Component<
         };
 
         return <AndroidSetupStepLayout {...layoutProps}></AndroidSetupStepLayout>;
+    }
+
+    private getListItems(): any {
+        const devices: DeviceInfo[] = this.props.androidSetupStoreData.availableDevices;
+        const items = devices.map(m => ({ metadata: m }));
+        return items;
+    }
+
+    private selectItemZeroInList(items: any): void {
+        if (items.length > 0) {
+            this.selection.setChangeEvents(false, true);
+            this.selection.setItems(items, false);
+            this.selection.selectToIndex(0);
+            this.selection.setChangeEvents(true, true);
+        }
     }
 }
