@@ -18,6 +18,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { ExportDialogWithLocalState } from 'DetailsView/components/export-dialog-with-local-state';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -37,6 +38,10 @@ export type DetailsViewCommandBarDeps = {
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
+export type DetailsViewCommandBarState = {
+    isReportExportDialogOpen: boolean;
+};
+
 export type ReportExportPropsFactory = (props: CommandBarProps) => ReportExportProps;
 
 export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
@@ -55,10 +60,18 @@ export interface DetailsViewCommandBarProps {
     scanMetadata: ScanMetadata;
     narrowModeStatus: NarrowModeStatus;
     detailsViewStoreData: DetailsViewStoreData;
-    ReportExportComponent: React.ComponentType<any>;
 }
 
-export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
+export class DetailsViewCommandBar extends React.Component<
+    DetailsViewCommandBarProps,
+    DetailsViewCommandBarState
+> {
+    public constructor(props) {
+        super(props);
+        this.state = {
+            isReportExportDialogOpen: false,
+        };
+    }
     public render(): JSX.Element {
         if (this.props.tabStoreData.isClosed) {
             return null;
@@ -121,14 +134,28 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtonsMenu(): JSX.Element {
-        return <CommandBarButtonsMenu {...this.props} />;
+        return (
+            <CommandBarButtonsMenu
+                {...this.props}
+                renderExportReportComponent={() => this.renderExportComponent()}
+            />
+        );
     }
+
+    private showReportExportDialog = () => this.setState({ isReportExportDialogOpen: true });
+
+    private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
     private renderExportComponent(): JSX.Element {
         const reportExportProps = this.props.switcherNavConfiguration.ReportExportPropsFactory(
             this.props,
         );
-        return <this.props.ReportExportComponent {...reportExportProps} />;
+        return (
+            <ReportExportButton
+                {...reportExportProps}
+                showReportExportDialog={this.showReportExportDialog}
+            />
+        );
     }
 
     private renderExportDialog(): JSX.Element {
@@ -138,7 +165,8 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         return (
             <ExportDialogWithLocalState
                 {...reportExportProps}
-                isOpen={this.props.detailsViewStoreData.isReportExportDialogOpen}
+                isOpen={this.state.isReportExportDialogOpen}
+                dismissExportDialog={this.dismissReportExportDialog}
             />
         );
     }

@@ -8,7 +8,6 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import * as styles from 'DetailsView/details-view-body.scss';
 import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -106,10 +105,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     private renderCommandBar(): JSX.Element {
         const { switcherNavConfiguration } = this.props;
 
-        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
-            ...this.props,
-            ReportExportComponent: ReportExportButton,
-        };
+        const detailsViewCommandBarProps: DetailsViewCommandBarProps = this.props;
 
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }

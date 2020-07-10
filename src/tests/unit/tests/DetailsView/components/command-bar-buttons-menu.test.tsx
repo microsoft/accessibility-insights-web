@@ -10,27 +10,22 @@ import { shallow } from 'enzyme';
 import { IOverflowSetItemProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import {
-    DetailsViewCommandBarProps,
-    // tslint:disable-next-line: ordered-imports
-    ReportExportPropsFactory,
-    StartOverComponentFactory,
-} from '../../../../../DetailsView/components/details-view-command-bar';
+import { StartOverComponentFactory } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('CommandBarButtonsMenu', () => {
-    let reportExportPropsFactory: IMock<ReportExportPropsFactory>;
+    let renderExportReportComponentMock: IMock<() => JSX.Element>;
     let startOverComponentFactory: IMock<StartOverComponentFactory>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
-        reportExportPropsFactory = Mock.ofType<ReportExportPropsFactory>();
+        renderExportReportComponentMock = Mock.ofInstance(() => null);
         startOverComponentFactory = Mock.ofType<StartOverComponentFactory>();
         commandBarButtonsMenuProps = {
             switcherNavConfiguration: {
-                ReportExportPropsFactory: reportExportPropsFactory.object,
                 StartOverComponentFactory: startOverComponentFactory.object,
             } as DetailsViewSwitcherNavConfiguration,
-        } as DetailsViewCommandBarProps;
+            renderExportReportComponent: renderExportReportComponentMock.object,
+        } as CommandBarButtonsMenuProps;
     });
 
     it('renders CommandBarButtonsMenu', () => {
@@ -39,8 +34,8 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders child buttons', () => {
-        reportExportPropsFactory
-            .setup(r => r(commandBarButtonsMenuProps))
+        renderExportReportComponentMock
+            .setup(r => r())
             .returns(() => null)
             .verifiable(Times.once());
 
@@ -61,7 +56,7 @@ describe('CommandBarButtonsMenu', () => {
 
         overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
 
-        reportExportPropsFactory.verifyAll();
+        renderExportReportComponentMock.verifyAll();
         startOverComponentFactory.verifyAll();
     });
 });

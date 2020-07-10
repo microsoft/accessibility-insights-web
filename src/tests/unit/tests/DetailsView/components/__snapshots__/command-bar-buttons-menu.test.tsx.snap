@@ -32,9 +32,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 exports[`CommandBarButtonsMenu renders child buttons 1`] = `
 <div
   role="menuitem"
->
-  <React.Fragment />
-</div>
+/>
 `;
 
 exports[`CommandBarButtonsMenu renders child buttons 2`] = `

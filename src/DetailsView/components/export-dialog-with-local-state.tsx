@@ -2,14 +2,12 @@
 // Licensed under the MIT License.
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ExportDialogWithLocalStateDeps = {
     reportGenerator: ReportGenerator;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ExportDialogDeps;
 
 export interface ExportDialogWithLocalStateProps {
@@ -23,6 +21,7 @@ export interface ExportDialogWithLocalStateProps {
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
     isHidden: boolean;
+    dismissExportDialog: () => void;
 }
 
 interface ExportDialogWithLocalStateState {
@@ -43,10 +42,6 @@ export class ExportDialogWithLocalState extends React.Component<
             exportDescription: '',
         };
     }
-
-    private onDismissExportDialog = () => {
-        this.props.deps.detailsViewActionMessageCreator.dismissReportExportDialog();
-    };
 
     private onExportDescriptionChange = (value: string) => {
         this.setState({ exportDescription: value });
@@ -75,7 +70,7 @@ export class ExportDialogWithLocalState extends React.Component<
                 fileName={this.state.exportName}
                 description={this.state.exportDescription}
                 html={this.state.exportData}
-                onClose={this.onDismissExportDialog}
+                onClose={this.props.dismissExportDialog}
                 onDescriptionChange={this.onExportDescriptionChange}
                 reportExportFormat={reportExportFormat}
                 onExportClick={this.generateHtml}

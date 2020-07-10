@@ -7,8 +7,8 @@ import { ReportExportButtonProps } from 'DetailsView/components/report-export-bu
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 
 export type ReportExportProps = ReportExportComponentProps &
-    ReportExportButtonProps &
-    Omit<ExportDialogWithLocalStateProps, 'isOpen'>;
+    Omit<ReportExportButtonProps, 'showReportExportDialog'> &
+    Omit<ExportDialogWithLocalStateProps, 'isOpen' | 'dismissExportDialog'>;
 
 export function getReportExportPropsForAssessment(props: CommandBarProps): ReportExportProps {
     const {

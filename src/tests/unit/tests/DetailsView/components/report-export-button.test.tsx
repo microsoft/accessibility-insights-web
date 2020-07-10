@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     ReportExportButton,
     ReportExportButtonProps,
@@ -11,10 +10,10 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(ReportExportButton, () => {
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let showDialogMock: IMock<() => void>;
 
     beforeEach(() => {
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+        showDialogMock = Mock.ofInstance(() => null);
     });
 
     it('renders ReportExportButton', () => {
@@ -33,22 +32,18 @@ describe(ReportExportButton, () => {
 
     it('shows export dialog on click', () => {
         const props = getProps();
-        detailsViewActionMessageCreatorMock
-            .setup(d => d.showReportExportDialog())
-            .verifiable(Times.once());
+        showDialogMock.setup(d => d()).verifiable(Times.once());
 
         const wrapper = shallow(<ReportExportButton {...props} />);
         wrapper.simulate('click');
 
-        detailsViewActionMessageCreatorMock.verifyAll();
+        showDialogMock.verifyAll();
     });
 
     function getProps(isHidden: boolean = false): ReportExportButtonProps {
         return {
-            deps: {
-                detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            },
             isHidden,
+            showReportExportDialog: showDialogMock.object,
         };
     }
 });

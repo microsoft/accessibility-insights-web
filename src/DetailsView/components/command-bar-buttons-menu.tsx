@@ -6,7 +6,9 @@ import { CommandBarButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
 
-export type CommandBarButtonsMenuProps = CommandBarProps;
+export type CommandBarButtonsMenuProps = CommandBarProps & {
+    renderExportReportComponent: () => JSX.Element;
+};
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
@@ -14,16 +16,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const overflowItems: IContextualMenuItem[] = [
             {
                 key: 'export report',
-                onRender: () => {
-                    const exportReportProps = props.switcherNavConfiguration.ReportExportPropsFactory(
-                        props,
-                    );
-                    return (
-                        <div role="menuitem">
-                            <props.ReportExportComponent {...exportReportProps} />;
-                        </div>
-                    );
-                },
+                onRender: () => <div role="menuitem">{props.renderExportReportComponent()}</div>,
             },
             {
                 key: 'start over',

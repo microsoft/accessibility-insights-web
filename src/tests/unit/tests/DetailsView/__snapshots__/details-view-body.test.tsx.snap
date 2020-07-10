@@ -314,7 +314,6 @@ exports[`DetailsViewBody render render 1`] = `
       className="detailsViewContentPaneContainer reflow-ui"
     >
       <test
-        ReportExportComponent={[Function]}
         assessmentStoreData={
           Object {
             "assessmentNavState": Object {

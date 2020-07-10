@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     ExportDialogWithLocalState,
     ExportDialogWithLocalStateDeps,
@@ -19,7 +18,7 @@ describe('ExportDialogWithLocalState', () => {
     let htmlGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
-    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
+    let dismissDialogMock: IMock<() => void>;
 
     const exportDescription = 'export description';
     const scanDate = new Date(2019, 5, 28);
@@ -29,14 +28,13 @@ describe('ExportDialogWithLocalState', () => {
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
-        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         deps = {
             reportGenerator: reportGeneratorMock.object,
-            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
         } as ExportDialogWithLocalStateDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
         getDescriptionMock = Mock.ofInstance(() => null);
+        dismissDialogMock = Mock.ofInstance(() => null);
         props = {
             deps,
             reportExportFormat,
@@ -50,6 +48,7 @@ describe('ExportDialogWithLocalState', () => {
             },
             isOpen: true,
             isHidden: false,
+            dismissExportDialog: dismissDialogMock.object,
         };
     });
 
@@ -71,15 +70,13 @@ describe('ExportDialogWithLocalState', () => {
     });
 
     test('dismiss dialog', () => {
-        detailsViewActionMessageCreatorMock
-            .setup(d => d.dismissReportExportDialog())
-            .verifiable(Times.once());
+        dismissDialogMock.setup(d => d()).verifiable(Times.once());
 
         const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
         const exportDialog = wrapper.find(ExportDialog);
         exportDialog.props().onClose();
 
-        detailsViewActionMessageCreatorMock.verifyAll();
+        dismissDialogMock.verifyAll();
     });
 
     test('on dialog opened', () => {
