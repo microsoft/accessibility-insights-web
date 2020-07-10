@@ -56,6 +56,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             if (!isEmpty(propertyConfig)) {
                 const CardRow = propertyConfig.cardRow;
                 ++propertyIndex;
+                // when propertyName is how-to-fix-web then this is a how-to-fix-card-row
                 cardRows.push(
                     <CardRow
                         deps={deps}
@@ -133,4 +134,4 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             </div>
         </div>
     );
-});
+}); // Unified.resolution holds howToFixSummary & instance property bag (string: any)
