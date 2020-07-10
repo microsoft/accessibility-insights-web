@@ -51,11 +51,9 @@ module.exports = function (grunt) {
                 ) {
                     const errorExplanation =
                         'Cannot publish due to extension not being updatable. This is likely due to a previous deployment that is pending review. As such, marking this as partially successful.\n';
-
-                    grunt.log.write(
-                        errorExplanation,
-                        '##vso[task.complete result=SucceededWithIssues;]DONE',
-                    );
+                    const logIssuesMessage = '##vso[task.complete result=SucceededWithIssues;]DONE';
+                    const loggedMessage = errorExplanation + logIssuesMessage;
+                    grunt.log.write(loggedMessage);
                 } else {
                     grunt.fail.fatal(e.errorMsg);
                 }
