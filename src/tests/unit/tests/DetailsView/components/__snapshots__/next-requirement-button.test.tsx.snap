@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NextRequirementButton renders 1`] = `
+<CustomizedDefaultButton
+  onClick={[Function]}
+>
+  <span>
+    <StyledIconBase
+      iconName="ChevronRight"
+    />
+  </span>
+</CustomizedDefaultButton>
+`;

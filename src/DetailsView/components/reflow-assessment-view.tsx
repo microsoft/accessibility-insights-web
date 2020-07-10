@@ -45,6 +45,7 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
             const nextRequirement = props.assessmentTestResult
                 .getRequirementResults()
                 .find(req => req.definition.order === 1).definition;
+
             return (
                 <GettingStartedView
                     deps={props.deps}
@@ -61,6 +62,11 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
             const selectedRequirement: RequirementResult = props.assessmentTestResult.getRequirementResult(
                 props.assessmentNavState.selectedTestSubview,
             );
+
+            const nextRequirement = props.assessmentTestResult
+                .getRequirementResults()
+                .find(req => req.definition.order === selectedRequirement.definition.order + 1)
+                ?.definition;
 
             return (
                 <RequirementView
@@ -80,6 +86,7 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
                     assessmentData={props.assessmentData}
                     currentTarget={props.currentTarget}
                     prevTarget={props.prevTarget}
+                    nextRequirement={nextRequirement}
                 />
             );
         };

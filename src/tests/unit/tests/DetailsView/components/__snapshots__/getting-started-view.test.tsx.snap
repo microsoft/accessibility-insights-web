@@ -14,37 +14,7 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
         some title
       </span>
       <ContentLink
-        deps={
-          Object {
-            "detailsViewActionMessageCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "addPathForValidation": [Function],
-              "cancelStartOver": [Function],
-              "cancelStartOverAllAssessments": [Function],
-              "changeAssessmentVisualizationState": [Function],
-              "changeManualRequirementStatus": [Function],
-              "changeManualTestStatus": [Function],
-              "clearPathSnippetData": [Function],
-              "closePreviewFeaturesPanel": [Function],
-              "closeScopingPanel": [Function],
-              "closeSettingsPanel": [Function],
-              "continuePreviousAssessment": [Function],
-              "copyIssueDetailsClicked": [Function],
-              "dispatcher": undefined,
-              "editFailureInstance": [Function],
-              "leftNavPanelExpanded": [Function],
-              "removeFailureInstance": [Function],
-              "rescanVisualization": [Function],
-              "setAllUrlsPermissionState": [Function],
-              "setFeatureFlag": [Function],
-              "startOverAllAssessments": [Function],
-              "switchToTargetTab": [Function],
-              "telemetryFactory": undefined,
-              "undoManualRequirementStatusChange": [Function],
-              "undoManualTestStatusChange": [Function],
-            },
-          }
-        }
+        deps={Object {}}
         iconName="info"
         reference={
           Object {
@@ -62,15 +32,15 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
       test-getting-started-content
     </div>
   </div>
-  <CustomizedDefaultButton
+  <NextRequirementButton
     className="nextRequirementButton"
-    onClick={[Function]}
-  >
-    <span>
-      <StyledIconBase
-        iconName="ChevronRight"
-      />
-    </span>
-  </CustomizedDefaultButton>
+    currentTest={-1}
+    deps={Object {}}
+    nextRequirement={
+      Object {
+        "key": "some requirement key",
+      }
+    }
+  />
 </div>
 `;
