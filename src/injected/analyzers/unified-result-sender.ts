@@ -35,13 +35,13 @@ export class UnifiedResultSender {
     };
 
     private filterNeedsReviewResults = (results: ScanResults): ScanResults => {
-        results.violations = results.violations.filter(v => v.id === 'link-in-text-block');
-        results.incomplete = results.incomplete.filter(
-            i =>
-                i.id === 'aria-input-field-name' ||
-                i.id === 'color-contrast' ||
-                i.id === 'th-has-data-cells',
+        results.violations = results.violations.filter(
+            v =>
+                v.id !== 'aria-input-field-name' &&
+                v.id !== 'color-contrast' &&
+                v.id !== 'th-has-data-cells',
         );
+        results.incomplete = results.incomplete.filter(i => i.id !== 'link-in-text-block');
 
         return results;
     };

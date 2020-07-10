@@ -47,8 +47,12 @@ describe('sendConvertedResults', () => {
         targetPageTitle: 'title',
         targetPageUrl: 'url',
         timestamp: 'timestamp',
-        violations: [{ id: 'link-in-text-block', nodes: [], description: 'test description' }],
+        violations: [
+            { id: 'test id', nodes: [], description: 'test description' },
+            { id: 'link-in-text-block', nodes: [], description: 'test description' },
+        ],
         incomplete: [
+            { id: 'test id', nodes: [], description: 'test description' },
             { id: 'color-contrast', nodes: [], description: 'test description' },
             { id: 'aria-input-field-name', nodes: [], description: 'test description' },
             { id: 'th-has-data-cells', nodes: [], description: 'test description' },
