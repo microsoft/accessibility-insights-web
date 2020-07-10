@@ -33,7 +33,11 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
             contentActionMessageCreator.openContentPanel(ev, contentPath, contentTitle);
 
         return (
-            <ActionButton iconProps={{ iconName }} onClick={onClick}>
+            <ActionButton
+                iconProps={{ iconName }}
+                onClick={onClick}
+                ariaLabel={'info and examples'}
+            >
                 {children}
             </ActionButton>
         );
