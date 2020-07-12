@@ -38,7 +38,6 @@ describe('RequirementViewTest', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let pathSnippetStoreDataStub: PathSnippetStoreData;
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
-
     beforeEach(() => {
         requirementStub = {
             name: 'test-requirement-name',
