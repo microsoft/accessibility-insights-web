@@ -10,6 +10,7 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'injected/adapters/scan-results-to-unified-rules';
+import { FilterResults } from 'injected/analyzers/filter-results';
 import { MessageDelegate, PostResolveCallback } from 'injected/analyzers/rule-analyzer';
 import { UnifiedResultSender } from 'injected/analyzers/unified-result-sender';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
@@ -28,35 +29,11 @@ describe('sendConvertedResults', () => {
         targetPageTitle: 'title',
         targetPageUrl: 'url',
         timestamp: 'timestamp',
-        violations: [
-            { id: 'test id', nodes: [], description: 'test description' },
-            { id: 'link-in-text-block', nodes: [], description: 'test description' },
-            { id: 'color-contrast', nodes: [], description: 'test description' },
-            { id: 'aria-input-field-name', nodes: [], description: 'test description' },
-            { id: 'th-has-data-cells', nodes: [], description: 'test description' },
-        ],
-        incomplete: [
-            { id: 'test id', nodes: [], description: 'test description' },
-            { id: 'link-in-text-block', nodes: [], description: 'test description' },
-            { id: 'color-contrast', nodes: [], description: 'test description' },
-            { id: 'aria-input-field-name', nodes: [], description: 'test description' },
-            { id: 'th-has-data-cells', nodes: [], description: 'test description' },
-        ],
     } as ScanResults;
     const filteredAxeInputResults = {
-        targetPageTitle: 'title',
-        targetPageUrl: 'url',
-        timestamp: 'timestamp',
-        violations: [
-            { id: 'test id', nodes: [], description: 'test description' },
-            { id: 'link-in-text-block', nodes: [], description: 'test description' },
-        ],
-        incomplete: [
-            { id: 'test id', nodes: [], description: 'test description' },
-            { id: 'color-contrast', nodes: [], description: 'test description' },
-            { id: 'aria-input-field-name', nodes: [], description: 'test description' },
-            { id: 'th-has-data-cells', nodes: [], description: 'test description' },
-        ],
+        targetPageTitle: 'filtered title',
+        targetPageUrl: 'filtered url',
+        timestamp: 'filtered timestamp',
     } as ScanResults;
     const unifiedResults: UnifiedResult[] = [];
     const unifiedRules: UnifiedRule[] = [];
@@ -70,6 +47,7 @@ describe('sendConvertedResults', () => {
     let convertToUnifiedNeedsReviewMock: IMock<ConvertScanResultsToUnifiedResultsDelegate>;
     let convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
+    let filterNeedsReviewResultsMock: IMock<FilterResults>;
 
     beforeEach(() => {
         sendDelegate = Mock.ofType<MessageDelegate>();
@@ -77,6 +55,7 @@ describe('sendConvertedResults', () => {
         convertToUnifiedNeedsReviewMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
         convertToUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>();
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
+        filterNeedsReviewResultsMock = Mock.ofType<FilterResults>();
     });
 
     const automatedChecksTest: UnifiedResultSenderTestDefinition = {
@@ -105,16 +84,20 @@ describe('sendConvertedResults', () => {
             `(
                 'it send results with warnings: $warnings and telemetry: $telemetry',
                 ({ warnings, telemetry }) => {
+                    const inputResults = testDefinition.getInputResults();
                     testDefinition
                         .getConvertResultMock()
-                        .setup(m => m(testDefinition.getInputResults(), uuidGeneratorStub))
+                        .setup(m => m(inputResults, uuidGeneratorStub))
                         .returns(val => unifiedResults);
                     convertToUnifiedRulesMock
-                        .setup(m => m(testDefinition.getInputResults()))
+                        .setup(m => m(inputResults))
                         .returns(val => unifiedRules);
                     scanIncompleteWarningDetectorMock
                         .setup(m => m.detectScanIncompleteWarnings())
                         .returns(() => warnings);
+                    filterNeedsReviewResultsMock
+                        .setup(m => m(axeInputResults))
+                        .returns(val => inputResults);
 
                     const testSubject = new UnifiedResultSender(
                         sendDelegate.object,
@@ -124,6 +107,7 @@ describe('sendConvertedResults', () => {
                         toolInfo,
                         uuidGeneratorStub,
                         scanIncompleteWarningDetectorMock.object,
+                        filterNeedsReviewResultsMock.object,
                     );
 
                     testDefinition.getMethodToTest(testSubject)({
@@ -136,10 +120,10 @@ describe('sendConvertedResults', () => {
                         rules: unifiedRules,
                         toolInfo: toolInfo,
                         targetAppInfo: {
-                            name: 'title',
-                            url: 'url',
+                            name: inputResults.targetPageTitle,
+                            url: inputResults.targetPageUrl,
                         },
-                        timestamp: 'timestamp',
+                        timestamp: inputResults.timestamp,
                         scanIncompleteWarnings: warnings,
                         telemetry,
                     };

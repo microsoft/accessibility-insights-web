@@ -23,6 +23,7 @@ import { VisualizationStateChangeHandler } from 'injected/visualization-state-ch
 
 import { createToolData } from 'common/application-properties-provider';
 import { toolName } from 'content/strings/application';
+import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -299,6 +300,7 @@ export class MainWindowInitializer extends WindowInitializer {
             toolData,
             generateUID,
             scanIncompleteWarningDetector,
+            filterNeedsReviewResults,
         );
 
         const analyzerProvider = new AnalyzerProvider(

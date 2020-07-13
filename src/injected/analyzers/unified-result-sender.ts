@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { FilterResults } from 'injected/analyzers/filter-results';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
@@ -12,6 +13,7 @@ import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-res
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
 import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
+
 export class UnifiedResultSender {
     constructor(
         private readonly sendMessage: MessageDelegate,
@@ -21,6 +23,7 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        private readonly filterNeedsReviewResults: FilterResults,
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
@@ -32,18 +35,6 @@ export class UnifiedResultSender {
             this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToNeedsReviewUnifiedResults,
         );
-    };
-
-    private filterNeedsReviewResults = (results: ScanResults): ScanResults => {
-        results.violations = results.violations.filter(
-            v =>
-                v.id !== 'aria-input-field-name' &&
-                v.id !== 'color-contrast' &&
-                v.id !== 'th-has-data-cells',
-        );
-        results.incomplete = results.incomplete.filter(i => i.id !== 'link-in-text-block');
-
-        return results;
     };
 
     private sendResults = (
