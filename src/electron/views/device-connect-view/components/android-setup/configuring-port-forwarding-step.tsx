@@ -8,6 +8,12 @@ import { CommonAndroidSetupStepProps } from './android-setup-types';
 export const ConfiguringPortForwardingStep = NamedFC<CommonAndroidSetupStepProps>(
     'ConfiguringPortForwardingStep',
     (props: CommonAndroidSetupStepProps) => {
-        return <AndroidSetupSpinnerStep deps={props.deps} spinnerLabel="Configuring ports..." />;
+        return (
+            <AndroidSetupSpinnerStep
+                deps={props.deps}
+                spinnerLabel="Configuring ports..."
+                disableCancel={true}
+            />
+        );
     },
 );
