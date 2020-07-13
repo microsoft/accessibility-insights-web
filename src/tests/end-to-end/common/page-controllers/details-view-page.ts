@@ -31,14 +31,14 @@ export class DetailsViewPage extends Page {
         await this.clickSelector('button[title="Assessment"]');
     }
 
-    public async navigateToTest(testName: string): Promise<void> {
+    public async navigateToTestRequirement(
+        testName: string,
+        requirementName: string,
+    ): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelectorXPath(`//h1[text()="${testName}"]`);
-    }
-
-    public async navigateToRequirement(requirementName: string): Promise<void> {
+        await this.waitForSelectorXPath(`//div[@name="${requirementName}"]`);
         await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
-        await this.waitForSelectorXPath(`//h3[text()="${requirementName}"]`);
+        await this.waitForSelectorXPath(`//h1[text()="${requirementName}"]`);
     }
 
     public async waitForVisualHelperState(
@@ -59,11 +59,12 @@ export class DetailsViewPage extends Page {
 
     public async waitForRequirementStatus(
         requirementName: string,
+        requirementIndex: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
         waitOptions?: Puppeteer.WaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForSelector(
-            detailsViewSelectors.requirementWithStatus(requirementName, status),
+            detailsViewSelectors.requirementWithStatus(requirementName, requirementIndex, status),
             waitOptions,
         );
     }
