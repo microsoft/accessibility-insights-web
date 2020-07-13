@@ -18,7 +18,7 @@ import { getNotificationMessage } from './get-notification-message-for-needs-rev
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells'],
-    resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
+    resultProcessor: (scanner: ScannerUtils) => scanner.getIncompleteInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,
     key: AdHocTestkeys.NeedsReview,
