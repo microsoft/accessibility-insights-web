@@ -15,10 +15,15 @@ export type ResultSectionTitleProps = {
 };
 
 export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
-    const failureTerm = props.badgeCount !== 1 ? 'failures were' : 'failure was';
+    const singularMessageSubject =
+        props.outcomeType === 'review' ? 'instance to review' : 'failure';
+    const pluralMessageSubject =
+        props.outcomeType === 'review' ? 'instances to review' : 'failures';
+    const alertTerm =
+        props.badgeCount !== 1 ? `${pluralMessageSubject} were` : `${singularMessageSubject} was`;
     const alertingFailuresCount = (
         <span role="alert">
-            {props.badgeCount} {failureTerm} detected.
+            {props.badgeCount} {alertTerm} detected.
         </span>
     );
 

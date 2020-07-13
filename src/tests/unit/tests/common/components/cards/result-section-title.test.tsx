@@ -6,9 +6,11 @@ import {
 } from 'common/components/cards/result-section-title';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 
-describe('ResultSectionTitle', () => {
-    describe('renders', () => {
+describe.each(allInstanceOutcomeTypes)(
+    'ResultSectionTitle with outcomeType %s renders',
+    outcomeType => {
         it.each`
             badgeCount | shouldAlertFailuresCount | description
             ${10}      | ${false}                 | ${'with no-alerting'}
@@ -21,11 +23,11 @@ describe('ResultSectionTitle', () => {
                 title: 'test title',
                 badgeCount,
                 shouldAlertFailuresCount,
-                outcomeType: 'pass',
+                outcomeType: outcomeType,
             };
 
             const wrapped = shallow(<ResultSectionTitle {...props} />);
             expect(wrapped.getElement()).toMatchSnapshot();
         });
-    });
-});
+    },
+);
