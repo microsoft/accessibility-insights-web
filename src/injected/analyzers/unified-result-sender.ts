@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
@@ -11,6 +12,7 @@ import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-res
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
 import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
+
 export class UnifiedResultSender {
     constructor(
         private readonly sendMessage: MessageDelegate,
@@ -20,19 +22,29 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        private readonly notificationMessageCreator: NotificationMessageCreator,
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(axeResults, this.convertScanResultsToUnifiedResults);
+        this.sendResults(
+            axeResults,
+            this.convertScanResultsToUnifiedResults,
+            this.notificationMessageCreator.automatedChecksMessage(),
+        );
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(axeResults, this.convertScanResultsToNeedsReviewUnifiedResults);
+        this.sendResults(
+            axeResults,
+            this.convertScanResultsToNeedsReviewUnifiedResults,
+            this.notificationMessageCreator.needsReviewMessage(),
+        );
     };
 
     private sendResults = (
         axeResults: AxeAnalyzerResult,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
+        notificationMessage: string,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -55,7 +67,10 @@ export class UnifiedResultSender {
             },
             scanIncompleteWarnings,
             telemetry,
+            notificationMessage: notificationMessage,
         };
+
+        console.log('payload: ', payload);
 
         this.sendMessage({
             messageType: Messages.UnifiedScan.ScanCompleted,

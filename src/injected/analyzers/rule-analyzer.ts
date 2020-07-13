@@ -71,7 +71,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
     }
 
     protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
-        this.sendScanCompleteResolveMessage(analyzerResult, this.config);
+        this.sendScanCompleteResolveMessage(analyzerResult, this.config); // doesn't change analyzerResult to be what we want so... notifications etc. are with wrong info for NR
         this.postOnResolve(analyzerResult);
     };
 

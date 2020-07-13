@@ -56,7 +56,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) =>
-        getNotificationMessage(selectorMap, warnings),
+        getNotificationMessage(selectorMap, warnings), // not using this
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
