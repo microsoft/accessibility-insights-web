@@ -1,6 +1,338 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultSectionTitle renders with alerting, badgeCount is 0 1`] = `
+exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 0 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      0
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={0}
+      outcomeType="fail"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      1
+       
+      failure was
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={1}
+      outcomeType="fail"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is greater than 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      2
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={2}
+      outcomeType="fail"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType fail renders with no-alerting 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
+      outcomeType="fail"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={15}
+      outcomeType="fail"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 0 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      0
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={0}
+      outcomeType="inapplicable"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      1
+       
+      failure was
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={1}
+      outcomeType="inapplicable"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is greater than 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      2
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={2}
+      outcomeType="inapplicable"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
+      outcomeType="inapplicable"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={15}
+      outcomeType="inapplicable"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 0 1`] = `
 <span
   className="resultSectionTitle"
 >
@@ -36,7 +368,7 @@ exports[`ResultSectionTitle renders with alerting, badgeCount is 0 1`] = `
 </span>
 `;
 
-exports[`ResultSectionTitle renders with alerting, badgeCount is 1 1`] = `
+exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 1 1`] = `
 <span
   className="resultSectionTitle"
 >
@@ -72,7 +404,7 @@ exports[`ResultSectionTitle renders with alerting, badgeCount is 1 1`] = `
 </span>
 `;
 
-exports[`ResultSectionTitle renders with alerting, badgeCount is greater than 1 1`] = `
+exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is greater than 1 1`] = `
 <span
   className="resultSectionTitle"
 >
@@ -108,7 +440,7 @@ exports[`ResultSectionTitle renders with alerting, badgeCount is greater than 1 
 </span>
 `;
 
-exports[`ResultSectionTitle renders with no-alerting 1`] = `
+exports[`ResultSectionTitle with outcomeType pass renders with no-alerting 1`] = `
 <span
   className="resultSectionTitle"
 >
@@ -137,7 +469,7 @@ exports[`ResultSectionTitle renders with no-alerting 1`] = `
 </span>
 `;
 
-exports[`ResultSectionTitle renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
 <span
   className="resultSectionTitle"
 >
@@ -161,6 +493,172 @@ exports[`ResultSectionTitle renders with no-alerting, shouldAlertFailuresCount i
     <OutcomeChip
       count={15}
       outcomeType="pass"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 0 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      0
+       
+      instances to review were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={0}
+      outcomeType="review"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      1
+       
+      instance to review was
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={1}
+      outcomeType="review"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is greater than 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      2
+       
+      instances to review were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={2}
+      outcomeType="review"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with no-alerting 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
+      outcomeType="review"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={15}
+      outcomeType="review"
     />
   </span>
 </span>
