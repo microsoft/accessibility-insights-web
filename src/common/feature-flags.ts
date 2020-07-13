@@ -112,7 +112,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.reflowUI,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Reflow UI',
             displayableDescription:
                 'Enables new UX to allow for better reflow of application content and UI elements.',

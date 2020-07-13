@@ -3,17 +3,16 @@
 import { Requirement } from 'assessments/types/requirement';
 import { NamedFC } from 'common/react/named-fc';
 import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as styles from 'DetailsView/components/getting-started-view.scss';
-import { DefaultButton, Icon } from 'office-ui-fabric-react';
+import {
+    NextRequirementButton,
+    NextRequirementButtonDeps,
+} from 'DetailsView/components/next-requirement-button';
 import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentPageComponent } from 'views/content/content-page';
 
-export type GettingStartedViewDeps = ContentLinkDeps & {
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
-
+export type GettingStartedViewDeps = ContentLinkDeps & NextRequirementButtonDeps;
 export interface GettingStartedViewProps {
     deps: GettingStartedViewDeps;
     gettingStartedContent: JSX.Element;
@@ -24,14 +23,6 @@ export interface GettingStartedViewProps {
 }
 
 export const GettingStartedView = NamedFC<GettingStartedViewProps>('GettingStartedView', props => {
-    const selectNextRequirement = (event: React.MouseEvent<HTMLElement>) => {
-        props.deps.detailsViewActionMessageCreator.selectRequirement(
-            event,
-            props.nextRequirement.key,
-            props.currentTest,
-        );
-    };
-
     return (
         <div className={styles.gettingStartedView}>
             <div>
@@ -42,15 +33,12 @@ export const GettingStartedView = NamedFC<GettingStartedViewProps>('GettingStart
                 <h2 className={styles.gettingStartedTitle}>Getting Started</h2>
                 {props.gettingStartedContent}
             </div>
-            <DefaultButton
-                text={props.nextRequirement.name}
+            <NextRequirementButton
+                nextRequirement={props.nextRequirement}
+                currentTest={props.currentTest}
                 className={styles.nextRequirementButton}
-                onClick={selectNextRequirement}
-            >
-                <span>
-                    <Icon iconName="ChevronRight" />
-                </span>
-            </DefaultButton>
+                deps={props.deps}
+            />
         </div>
     );
 });

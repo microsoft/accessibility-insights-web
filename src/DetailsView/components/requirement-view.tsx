@@ -20,6 +20,7 @@ import {
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
 import { RequirementTableSection } from 'DetailsView/components/left-nav/requirement-table-section';
+import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import {
     RequirementViewTitle,
@@ -53,6 +54,7 @@ export interface RequirementViewProps {
     assessmentData: AssessmentData;
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
+    nextRequirement: Requirement;
 }
 
 export class RequirementView extends React.Component<RequirementViewProps> {
@@ -105,33 +107,43 @@ export class RequirementView extends React.Component<RequirementViewProps> {
 
         return (
             <div className={styles.requirementView}>
-                <RequirementViewTitle
-                    deps={this.props.deps}
-                    name={this.props.requirement.name}
-                    guidanceLinks={this.props.requirement.guidanceLinks}
-                    infoAndExamples={this.props.requirement.infoAndExamples}
-                />
-                <div className={styles.mainContent}>
-                    {this.props.requirement.description}
-                    {visualHelperToggle}
-                    <RequirementInstructions howToTest={this.props.requirement.howToTest} />
-                    <RequirementTableSection
-                        requirement={requirement}
-                        assessmentNavState={this.props.assessmentNavState}
-                        instancesMap={this.props.instancesMap}
-                        manualRequirementResultMap={this.props.manualRequirementResultMap}
-                        assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
-                        assessmentsProvider={this.props.assessmentsProvider}
-                        featureFlagStoreData={this.props.featureFlagStoreData}
-                        pathSnippetStoreData={this.props.pathSnippetStoreData}
-                        scanningInProgress={this.props.scanningInProgress}
-                        selectedRequirementHasVisualHelper={requirementHasVisualHelper}
-                        isRequirementScanned={this.props.isRequirementScanned}
-                        assessmentDefaultMessageGenerator={
-                            this.props.assessmentDefaultMessageGenerator
-                        }
+                <div>
+                    <RequirementViewTitle
+                        deps={this.props.deps}
+                        name={this.props.requirement.name}
+                        guidanceLinks={this.props.requirement.guidanceLinks}
+                        infoAndExamples={this.props.requirement.infoAndExamples}
                     />
+                    <div className={styles.mainContent}>
+                        {this.props.requirement.description}
+                        {visualHelperToggle}
+                        <RequirementInstructions howToTest={this.props.requirement.howToTest} />
+                        <RequirementTableSection
+                            requirement={requirement}
+                            assessmentNavState={this.props.assessmentNavState}
+                            instancesMap={this.props.instancesMap}
+                            manualRequirementResultMap={this.props.manualRequirementResultMap}
+                            assessmentInstanceTableHandler={
+                                this.props.assessmentInstanceTableHandler
+                            }
+                            assessmentsProvider={this.props.assessmentsProvider}
+                            featureFlagStoreData={this.props.featureFlagStoreData}
+                            pathSnippetStoreData={this.props.pathSnippetStoreData}
+                            scanningInProgress={this.props.scanningInProgress}
+                            selectedRequirementHasVisualHelper={requirementHasVisualHelper}
+                            isRequirementScanned={this.props.isRequirementScanned}
+                            assessmentDefaultMessageGenerator={
+                                this.props.assessmentDefaultMessageGenerator
+                            }
+                        />
+                    </div>
                 </div>
+                <NextRequirementButton
+                    deps={this.props.deps}
+                    nextRequirement={this.props.nextRequirement}
+                    currentTest={this.props.assessmentNavState.selectedTestType}
+                    className={styles.nextRequirementButton}
+                />
             </div>
         );
     }
