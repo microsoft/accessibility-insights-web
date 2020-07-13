@@ -101,6 +101,22 @@ export class ScannerUtils {
         return resultsMap;
     };
 
+    public getNeedsReviewInstances = (
+        results: ScanResults,
+    ): DictionaryStringTo<HtmlElementAxeResults> => {
+        const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
+        const ruleResults = results.violations
+            .filter(
+                v =>
+                    v.id !== 'aria-input-field-name' &&
+                    v.id !== 'color-contrast' &&
+                    v.id !== 'th-has-data-cells',
+            )
+            .concat(results.incomplete.filter(i => i.id !== 'link-in-text-block'));
+        this.addFailuresToDictionary(resultsMap, ruleResults);
+        return resultsMap;
+    };
+
     private addPassesToDictionary(
         dictionary: DictionaryStringTo<HtmlElementAxeResults>,
         axeRules: RuleResult[],
