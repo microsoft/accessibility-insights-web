@@ -3,7 +3,6 @@
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
-import { getNotificationMessage } from '../../ad-hoc-visualizations/issues/get-notification-message';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
@@ -15,6 +14,7 @@ import { generateUID } from '../../common/uid-generator';
 import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
+import { getNotificationMessage } from './get-notification-message-for-needs-review';
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells'],
