@@ -31,7 +31,7 @@ describe('Android setup - multiple devices ', () => {
     it('initial component state is correct', async () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
-        expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
+        expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector('rescan'))).toBe(true);
         const devices = await dialog.client.$$(
             getAutomationIdSelector(deviceDescriptionAutomationId),

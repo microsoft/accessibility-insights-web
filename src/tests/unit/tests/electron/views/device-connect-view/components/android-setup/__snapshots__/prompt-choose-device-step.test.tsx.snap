@@ -11,17 +11,19 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
   }
   rightFooterButtonProps={
     Object {
-      "disabled": true,
+      "disabled": false,
       "onClick": [Function],
       "text": "Next",
     }
   }
 >
   <React.Fragment>
-    <p>
+    <div
+      className="deviceCount"
+    >
       3
        Android devices or emulators connected
-    </p>
+    </div>
     <CustomizedDefaultButton
       data-automation-id="rescan"
       onClick={[Function]}
@@ -67,17 +69,50 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
           "_anchoredIndex": 0,
           "_canSelectItem": [Function],
           "_changeEventSuppressionCount": 0,
-          "_exemptedCount": 0,
-          "_exemptedIndices": Object {},
+          "_exemptedCount": 1,
+          "_exemptedIndices": Object {
+            "0": true,
+          },
           "_getKey": [Function],
+          "_hasChanged": false,
           "_isModal": false,
-          "_items": Array [],
-          "_keyToIndexMap": Object {},
+          "_items": Array [
+            Object {
+              "metadata": Object {
+                "friendlyName": "Phone 1",
+                "id": "1",
+                "isEmulator": true,
+              },
+            },
+            Object {
+              "metadata": Object {
+                "friendlyName": "Phone 2",
+                "id": "2",
+                "isEmulator": false,
+              },
+            },
+            Object {
+              "metadata": Object {
+                "friendlyName": "Phone 3",
+                "id": "3",
+                "isEmulator": true,
+              },
+            },
+          ],
+          "_keyToIndexMap": Object {
+            "0": 0,
+            "1": 1,
+            "2": 2,
+          },
           "_onSelectionChanged": [Function],
           "_selectedItems": null,
           "_unselectableCount": 0,
-          "_unselectableIndices": Object {},
-          "count": 0,
+          "_unselectableIndices": Object {
+            "0": false,
+            "1": false,
+            "2": false,
+          },
+          "count": 1,
           "mode": 2,
         }
       }
