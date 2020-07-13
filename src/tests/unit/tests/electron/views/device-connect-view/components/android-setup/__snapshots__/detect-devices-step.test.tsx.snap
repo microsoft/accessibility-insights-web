@@ -12,6 +12,7 @@ exports[`DetectDevicesStep renders 1`] = `
       "startTesting": null,
     }
   }
+  disableCancel={true}
   spinnerLabel="Scanning for devices..."
 />
 `;
