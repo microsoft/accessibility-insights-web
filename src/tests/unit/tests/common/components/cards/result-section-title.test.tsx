@@ -8,7 +8,6 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 
-// describe('ResultSectionTitle', () => {
 describe.each(allInstanceOutcomeTypes)(
     'ResultSectionTitle with outcomeType %s renders',
     outcomeType => {
