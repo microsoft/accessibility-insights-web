@@ -17,6 +17,7 @@ import {
 
 describe('Android setup - prompt-install-service ', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
+    const installButtonId = 'install';
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
@@ -36,12 +37,12 @@ describe('Android setup - prompt-install-service ', () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
-        expect(await dialog.isEnabled(getAutomationIdSelector('install'))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(installButtonId))).toBe(true);
     });
 
     it('install button triggers installation', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector('install'));
+        await dialog.client.click(getAutomationIdSelector(installButtonId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 

@@ -17,6 +17,7 @@ import {
 
 describe('Android setup - prompt-connect-to-device ', () => {
     const defaultDeviceConfig = commonAdbConfigs['multiple-devices'];
+    const detectButtonId = 'detect-device';
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
@@ -36,12 +37,12 @@ describe('Android setup - prompt-connect-to-device ', () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
-        expect(await dialog.isEnabled(getAutomationIdSelector('detect-device'))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(detectButtonId))).toBe(true);
     });
 
     it('detect button triggers new detection', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector('detect-device'));
+        await dialog.client.click(getAutomationIdSelector(detectButtonId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
