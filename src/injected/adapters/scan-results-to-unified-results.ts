@@ -67,6 +67,7 @@ const createUnifiedResultsFromNeedsReviewScanResults = (
 ): UnifiedResult[] => {
     return [
         ...createUnifiedResultsFromRuleResults(scanResults.incomplete, 'unknown', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
     ];
 };
 

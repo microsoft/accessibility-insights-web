@@ -36,4 +36,21 @@ describe('getElectronIconPath', () => {
         configMock.verifyAll();
         pathJoinMock.verifyAll();
     });
+
+    it.each([
+        [`.ico`, OSType.Windows],
+        [`.icns`, OSType.Mac],
+        [`.png`, OSType.Linux],
+    ])('returns undefined for undefined option', (extension: string, os: OSType) => {
+        const configMock = Mock.ofType(FileSystemConfiguration, MockBehavior.Strict);
+        configMock
+            .setup(m => m.getOption('electronIconBaseName'))
+            .returns(_ => undefined)
+            .verifiable();
+
+        const actual = getElectronIconPath(configMock.object, os);
+        expect(actual).toBeUndefined();
+
+        configMock.verifyAll();
+    });
 });

@@ -66,7 +66,7 @@
         "7zip-bin": "^5.0.3",
         "@electron/get": "^1.12.2",
         "@types/applicationinsights-js": "^1.0.7",
-        "@types/chrome": "0.0.119",
+        "@types/chrome": "0.0.120",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^26.0.4",
@@ -76,7 +76,7 @@
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^3.0.1",
         "@types/q": "^1.5.4",
-        "@types/react": "^16.9.41",
+        "@types/react": "^16.9.43",
         "@types/react-copy-to-clipboard": "^4.3.0",
         "@types/react-dom": "^16.9.8",
         "@types/react-helmet": "^6.0.0",
@@ -121,8 +121,8 @@
         "pkg": "^4.4.9",
         "preprocess": "^3.2.0",
         "prettier": "^2.0.5",
-        "puppeteer": "^4.0.1",
-        "react-devtools": "^4.7.0",
+        "puppeteer": "^5.1.0",
+        "react-devtools": "^4.8.1",
         "regenerator-runtime": "^0.13.5",
         "sass-loader": "^9.0.2",
         "script-loader": "0.7.2",
@@ -141,7 +141,7 @@
         "webdriverio": "^4.13.0",
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
-        "webpack-node-externals": "^2.3.0"
+        "webpack-node-externals": "^2.5.0"
     },
     "dependencies": {
         "accessibility-insights-for-android-service-bin": "^1.2.0",

@@ -3,8 +3,10 @@
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
+import { FilterResults } from 'injected/analyzers/filter-results';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
+import { ScanResults } from 'scanner/iruleresults';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../../common/messages';
 import { UUIDGenerator } from '../../common/uid-generator';
@@ -23,11 +25,12 @@ export class UnifiedResultSender {
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly notificationMessageCreator: NotificationMessageCreator,
+        private readonly filterNeedsReviewResults: FilterResults,
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
-            axeResults,
+            axeResults.originalResult,
             this.convertScanResultsToUnifiedResults,
             this.notificationMessageCreator.automatedChecksMessage(),
         );
@@ -35,14 +38,14 @@ export class UnifiedResultSender {
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
-            axeResults,
+            this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToNeedsReviewUnifiedResults,
             this.notificationMessageCreator.needsReviewMessage(),
         );
     };
 
     private sendResults = (
-        axeResults: AxeAnalyzerResult,
+        results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
         notificationMessage: string,
     ) => {
@@ -57,13 +60,13 @@ export class UnifiedResultSender {
         }
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(axeResults.originalResult, this.generateUID),
-            rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
+            scanResult: converter(results, this.generateUID),
+            rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
-            timestamp: axeResults.originalResult.timestamp,
+            timestamp: results.timestamp,
             targetAppInfo: {
-                name: axeResults.originalResult.targetPageTitle,
-                url: axeResults.originalResult.targetPageUrl,
+                name: results.targetPageTitle,
+                url: results.targetPageUrl,
             },
             scanIncompleteWarnings,
             telemetry,
