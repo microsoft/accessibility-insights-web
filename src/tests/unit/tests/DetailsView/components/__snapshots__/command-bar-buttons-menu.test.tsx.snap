@@ -25,7 +25,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
       ],
     }
   }
-  role="menu"
+  role="button"
 />
 `;
 
