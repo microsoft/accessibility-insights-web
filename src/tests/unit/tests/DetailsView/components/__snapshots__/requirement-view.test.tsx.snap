@@ -4,7 +4,79 @@ exports[`RequirementViewTest renders with content from props 1`] = `
 <div
   className="requirementView"
 >
-  <RequirementViewTitle
+  <div>
+    <RequirementViewTitle
+      deps={
+        Object {
+          "assessmentViewUpdateHandler": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          },
+        }
+      }
+      name="test-requirement-name"
+    />
+    <div
+      className="mainContent"
+    >
+      <div>
+        test-description
+      </div>
+      <div>
+        test-visual-helper-toggle
+      </div>
+      <RequirementInstructions
+        howToTest={
+          <p>
+            how-to-test-stub
+          </p>
+        }
+      />
+      <RequirementTableSection
+        assessmentInstanceTableHandler={
+          Object {
+            "changeRequirementStatus": null,
+          }
+        }
+        assessmentNavState={
+          Object {
+            "selectedTestSubview": "test-requirement-name",
+            "selectedTestType": 0,
+          }
+        }
+        assessmentsProvider={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          }
+        }
+        featureFlagStoreData={
+          Object {
+            "some feature flag": true,
+          }
+        }
+        instancesMap={Object {}}
+        isRequirementScanned={true}
+        manualRequirementResultMap={
+          Object {
+            "some manual test step result id": null,
+          }
+        }
+        pathSnippetStoreData={
+          Object {
+            "path": null,
+          }
+        }
+        requirement={
+          Object {
+            "getVisualHelperToggle": [Function],
+          }
+        }
+        selectedRequirementHasVisualHelper={true}
+      />
+    </div>
+  </div>
+  <NextRequirementButton
+    className="nextRequirementButton"
+    currentTest={0}
     deps={
       Object {
         "assessmentViewUpdateHandler": proxy {
@@ -12,65 +84,6 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         },
       }
     }
-    name="test-requirement-name"
   />
-  <div
-    className="mainContent"
-  >
-    <div>
-      test-description
-    </div>
-    <div>
-      test-visual-helper-toggle
-    </div>
-    <RequirementInstructions
-      howToTest={
-        <p>
-          how-to-test-stub
-        </p>
-      }
-    />
-    <RequirementTableSection
-      assessmentInstanceTableHandler={
-        Object {
-          "changeRequirementStatus": null,
-        }
-      }
-      assessmentNavState={
-        Object {
-          "selectedTestSubview": "test-requirement-name",
-          "selectedTestType": 0,
-        }
-      }
-      assessmentsProvider={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        }
-      }
-      featureFlagStoreData={
-        Object {
-          "some feature flag": true,
-        }
-      }
-      instancesMap={Object {}}
-      isRequirementScanned={true}
-      manualRequirementResultMap={
-        Object {
-          "some manual test step result id": null,
-        }
-      }
-      pathSnippetStoreData={
-        Object {
-          "path": null,
-        }
-      }
-      requirement={
-        Object {
-          "getVisualHelperToggle": [Function],
-        }
-      }
-      selectedRequirementHasVisualHelper={true}
-    />
-  </div>
 </div>
 `;

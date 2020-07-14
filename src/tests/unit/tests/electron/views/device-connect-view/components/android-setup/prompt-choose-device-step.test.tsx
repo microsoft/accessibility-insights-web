@@ -68,15 +68,18 @@ describe('PromptChooseDeviceStep', () => {
         const expectedDevice: DeviceInfo = props.androidSetupStoreData.availableDevices[0];
         const stubEvent = {} as React.MouseEvent<HTMLButtonElement>;
         const rendered = mount(<PromptChooseDeviceStep {...props} />);
-        rendered.find('DeviceDescription').at(0).simulate('click');
         rendered.find(AndroidSetupStepLayout).prop('rightFooterButtonProps').onClick(stubEvent);
         actionMessageCreatorMock.verify(m => m.setSelectedDevice(expectedDevice), Times.once());
     });
 
-    it('next button becomes enabled after device is selected', () => {
+    it('next button is disabled on entry if no devices are in list (not expected in production)', () => {
+        props.androidSetupStoreData.availableDevices = [];
         const rendered = mount(<PromptChooseDeviceStep {...props} />);
         expect(rendered.find('button').at(2).props().disabled).toBeTruthy();
-        rendered.find('DeviceDescription').at(0).simulate('click');
+    });
+
+    it('next button is enabled on entry if devices are in list', () => {
+        const rendered = mount(<PromptChooseDeviceStep {...props} />);
         expect(rendered.find('button').at(2).props().disabled).toBeUndefined();
     });
 });

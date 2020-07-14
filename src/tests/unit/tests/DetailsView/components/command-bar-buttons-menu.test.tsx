@@ -59,7 +59,7 @@ describe('CommandBarButtonsMenu', () => {
         expect(overflowItems).toBeDefined();
         expect(overflowItems).toHaveLength(2);
 
-        overflowItems.forEach(item => item.onRender());
+        overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
 
         reportExportComponentFactory.verifyAll();
         startOverComponentFactory.verifyAll();

@@ -26,7 +26,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.manualInstanceDetails]: false,
             [FeatureFlags.debugTools]: false,
             [FeatureFlags.exportReportOptions]: false,
-            [FeatureFlags.reflowUI]: false,
+            [FeatureFlags.reflowUI]: true,
             [FeatureFlags.needsReview]: false,
         };
 

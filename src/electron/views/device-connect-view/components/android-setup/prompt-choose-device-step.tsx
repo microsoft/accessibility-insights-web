@@ -27,7 +27,6 @@ export class PromptChooseDeviceStep extends React.Component<
     private selection: ISelection;
     constructor(props) {
         super(props);
-        this.state = { selectedDevice: null };
 
         this.selection = new Selection({
             onSelectionChanged: () => {
@@ -37,17 +36,20 @@ export class PromptChooseDeviceStep extends React.Component<
                 }
             },
         });
+
+        this.setInitialListState();
     }
 
     public render(): JSX.Element {
-        const devices: DeviceInfo[] = this.props.androidSetupStoreData.availableDevices;
-        const items = devices.map(m => ({ metadata: m }));
+        const listItems = this.getListItems();
 
         const layoutProps: AndroidSetupStepLayoutProps = {
             headerText: 'Choose which device to use',
             children: (
                 <>
-                    <p>{devices.length} Android devices or emulators connected</p>
+                    <div className={styles.deviceCount}>
+                        {listItems.length} Android devices or emulators connected
+                    </div>
                     <DefaultButton
                         data-automation-id={'rescan'}
                         text="Rescan"
@@ -58,7 +60,7 @@ export class PromptChooseDeviceStep extends React.Component<
                         compact={true}
                         ariaLabel="android devices"
                         className={styles.phoneList}
-                        items={items}
+                        items={listItems}
                         selection={this.selection}
                         selectionMode={SelectionMode.single}
                         checkboxVisibility={CheckboxVisibility.always}
@@ -98,5 +100,27 @@ export class PromptChooseDeviceStep extends React.Component<
         };
 
         return <AndroidSetupStepLayout {...layoutProps}></AndroidSetupStepLayout>;
+    }
+
+    private getListItems(): any {
+        const devices: DeviceInfo[] = this.props.androidSetupStoreData.availableDevices;
+        const listItems = devices.map(m => ({ metadata: m }));
+        return listItems;
+    }
+
+    private setInitialListState(): void {
+        const listItems = this.getListItems();
+        let selectedDevice = null;
+
+        if (listItems.length > 0) {
+            // We always select index 0 in the list.
+            this.selection.setChangeEvents(false, true);
+            this.selection.setItems(listItems, false);
+            this.selection.selectToIndex(0);
+            this.selection.setChangeEvents(true, true);
+            selectedDevice = listItems[0];
+        }
+
+        this.state = { selectedDevice: selectedDevice };
     }
 }

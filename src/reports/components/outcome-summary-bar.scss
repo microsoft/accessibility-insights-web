@@ -38,6 +38,7 @@ $outcome-not-applicable-color: $neutral-outcome;
         height: 16px;
         display: flex;
         align-items: center;
+        margin-right: 4px;
     }
     .count {
         font-weight: 600;
@@ -45,12 +46,11 @@ $outcome-not-applicable-color: $neutral-outcome;
     .fail {
         @extend .block;
         @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-color);
-        border-radius: 2px 0 0 2px;
+
         .check-container {
             bottom: -1px;
             margin-right: 8px;
         }
-        margin-right: 4px;
         background-color: $outcome-fail-color;
     }
     .pass {
@@ -62,10 +62,6 @@ $outcome-not-applicable-color: $neutral-outcome;
             margin-left: 4px;
         }
         background-color: $outcome-pass-color;
-        margin-left: 4px;
-        margin-right: 4px;
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
     }
     .inapplicable {
         @extend .block;
@@ -74,7 +70,6 @@ $outcome-not-applicable-color: $neutral-outcome;
             0px,
             $outcome-not-applicable-color
         );
-        border-radius: 0 2px 2px 0;
         .check-container {
             bottom: -1px;
             margin-right: 8px;
@@ -91,8 +86,16 @@ $outcome-not-applicable-color: $neutral-outcome;
         }
         background-color: $outcome-incomplete-summary-background;
         color: $outcome-incomplete-summary-consistent-foreground;
-        margin-right: 5px;
         border: 2px $outcome-incomplete-border-color solid;
         height: 12px;
+    }
+    .summary-bar-left-edge {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    .summary-bar-right-edge {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        margin-right: 0px;
     }
 }

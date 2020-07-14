@@ -12,7 +12,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     }
   >
     <span
-      className="pass"
+      className="pass summary-bar-left-edge"
     >
       <span
         aria-hidden="true"
@@ -48,7 +48,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     }
   >
     <span
-      className="incomplete"
+      className="incomplete summary-bar-right-edge"
     >
       <span
         aria-hidden="true"
@@ -73,7 +73,7 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     }
   >
     <span
-      className="pass"
+      className="pass summary-bar-left-edge"
     >
       <span
         aria-hidden="true"
@@ -109,7 +109,7 @@ exports[`OutcomeSummaryBar show by count 1`] = `
     }
   >
     <span
-      className="incomplete"
+      className="incomplete summary-bar-right-edge"
     >
       <span
         aria-hidden="true"
@@ -134,7 +134,7 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     }
   >
     <span
-      className="pass"
+      className="pass summary-bar-left-edge"
     >
       <span
         aria-hidden="true"
@@ -172,7 +172,7 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     }
   >
     <span
-      className="incomplete"
+      className="incomplete summary-bar-right-edge"
     >
       <span
         aria-hidden="true"

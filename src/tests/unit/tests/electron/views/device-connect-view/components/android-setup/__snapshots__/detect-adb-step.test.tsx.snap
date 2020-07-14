@@ -1,9 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetectAdbStep renders 1`] = `
-<main>
-  <AndroidSetupSpinner
-    label="Loading..."
-  />
-</main>
+<AndroidSetupSpinnerStep
+  deps={
+    Object {
+      "LinkComponent": [Function],
+      "androidSetupActionCreator": null,
+      "androidSetupStepComponentProvider": null,
+      "closeApp": null,
+      "showOpenFileDialog": null,
+      "startTesting": null,
+    }
+  }
+  disableCancel={true}
+  spinnerLabel="Loading..."
+/>
 `;

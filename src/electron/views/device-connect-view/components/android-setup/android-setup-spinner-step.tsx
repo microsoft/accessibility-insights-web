@@ -4,6 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { AndroidSetupSpinner } from 'electron/views/device-connect-view/components/android-setup/android-setup-spinner';
 import * as React from 'react';
+import * as styles from './android-setup-spinner-step.scss';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 
 export type AndroidSetupSpinnerStepDeps = {
@@ -29,6 +30,7 @@ export const AndroidSetupSpinnerStep = NamedFC<AndroidSetupSpinnerStepProps>(
                 text: 'Next',
                 disabled: true,
             },
+            contentClassName: styles.content,
         };
 
         return (

@@ -14,15 +14,22 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const overflowItems: IContextualMenuItem[] = [
             {
                 key: 'export report',
-                onRender: () => props.switcherNavConfiguration.ReportExportComponentFactory(props),
+                onRender: () => (
+                    <div role="menuitem">
+                        {props.switcherNavConfiguration.ReportExportComponentFactory(props)}
+                    </div>
+                ),
             },
             {
                 key: 'start over',
-                onRender: () =>
-                    props.switcherNavConfiguration.StartOverComponentFactory({
-                        ...props,
-                        dropdownDirection: 'left',
-                    }),
+                onRender: () => (
+                    <div role="menuitem">
+                        {props.switcherNavConfiguration.StartOverComponentFactory({
+                            ...props,
+                            dropdownDirection: 'left',
+                        })}
+                    </div>
+                ),
             },
         ];
 
@@ -30,7 +37,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             <CommandBarButton
                 ariaLabel="More items"
                 className={styles.commandBarButtonsMenu}
-                role="menuitem"
+                role="menu"
                 menuIconProps={{
                     iconName: 'More',
                     className: styles.commandBarButtonsMenuButton,
