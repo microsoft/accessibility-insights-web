@@ -40,9 +40,8 @@ export class UnifiedResultSender {
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        const filteredResults = this.filterNeedsReviewResults(axeResults.originalResult);
         this.sendResults(
-            filteredResults,
+            this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToNeedsReviewUnifiedResults,
             this.notificationTextCreator.needsReviewText,
         );
