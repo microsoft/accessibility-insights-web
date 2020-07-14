@@ -31,7 +31,7 @@ export class UnifiedScanResultActionCreator {
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.unifiedScanResultActions.scanCompleted.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(SCAN_INCOMPLETE_WARNINGS, payload);
-        this.notificationCreator.createNotification(payload.notificationMessage);
+        this.notificationCreator.createNotification(payload.notificationText);
     };
 
     private onGetScanCurrentState = (): void => {

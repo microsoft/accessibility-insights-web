@@ -14,7 +14,6 @@ import { generateUID } from '../../common/uid-generator';
 import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
-import { getNotificationMessage } from './get-notification-message-for-needs-review';
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells', 'link-in-text-block'],

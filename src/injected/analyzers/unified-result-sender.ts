@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ToolData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { FilterResults } from 'injected/analyzers/filter-results';
-import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
+import {
+    NotificationTextCreator,
+    TextGenerator,
+} from 'injected/analyzers/notification-text-creator';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
@@ -24,7 +27,7 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
-        private readonly notificationMessageCreator: NotificationMessageCreator,
+        private readonly notificationTextCreator: NotificationTextCreator,
         private readonly filterNeedsReviewResults: FilterResults,
     ) {}
 
@@ -32,7 +35,7 @@ export class UnifiedResultSender {
         this.sendResults(
             axeResults.originalResult,
             this.convertScanResultsToUnifiedResults,
-            this.notificationMessageCreator.automatedChecksMessage(),
+            this.notificationTextCreator.automatedChecksText,
         );
     };
 
@@ -41,14 +44,14 @@ export class UnifiedResultSender {
         this.sendResults(
             filteredResults,
             this.convertScanResultsToNeedsReviewUnifiedResults,
-            this.notificationMessageCreator.needsReviewMessage(filteredResults),
+            this.notificationTextCreator.needsReviewText,
         );
     };
 
     private sendResults = (
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
-        notificationMessage: string,
+        notificationMessage: TextGenerator,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -60,8 +63,10 @@ export class UnifiedResultSender {
             };
         }
 
+        const unifiedResults = converter(results, this.generateUID);
+
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(results, this.generateUID),
+            scanResult: unifiedResults,
             rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
             timestamp: results.timestamp,
@@ -71,10 +76,8 @@ export class UnifiedResultSender {
             },
             scanIncompleteWarnings,
             telemetry,
-            notificationMessage: notificationMessage,
+            notificationText: notificationMessage(unifiedResults),
         };
-
-        console.log('payload: ', payload);
 
         this.sendMessage({
             messageType: Messages.UnifiedScan.ScanCompleted,

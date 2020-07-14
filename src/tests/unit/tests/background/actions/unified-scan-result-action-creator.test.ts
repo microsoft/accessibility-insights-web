@@ -62,7 +62,7 @@ describe('UnifiedScanResultActionCreator', () => {
             Times.once(),
         );
         notificationCreatorMock.verify(
-            handler => handler.createNotification(payload.notificationMessage),
+            handler => handler.createNotification(payload.notificationText),
             Times.once(),
         );
     });

@@ -183,7 +183,7 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
     platformInfo?: PlatformData;
-    notificationMessage?: string;
+    notificationText?: string;
 }
 
 export interface RuleExpandCollapsePayload extends BaseActionPayload {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { createToolData } from 'common/application-properties-provider';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
@@ -10,6 +11,9 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
+import { toolName } from 'content/strings/application';
+import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
+import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -20,11 +24,6 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
-import { createToolData } from 'common/application-properties-provider';
-import { toolName } from 'content/strings/application';
-import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
-// import { notificationMessageCreator } from
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -78,7 +77,6 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
-import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -294,9 +292,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.permissionsStateStoreProxy,
         );
 
-        const notificationMessageCreator = new NotificationMessageCreator(
-            scanIncompleteWarningDetector,
-        );
+        const notificationTextCreator = new NotificationTextCreator(scanIncompleteWarningDetector);
 
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
@@ -306,7 +302,7 @@ export class MainWindowInitializer extends WindowInitializer {
             toolData,
             generateUID,
             scanIncompleteWarningDetector,
-            notificationMessageCreator,
+            notificationTextCreator,
             filterNeedsReviewResults,
         );
 
