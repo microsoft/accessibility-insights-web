@@ -3,7 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
-const { commonAdbConfigs } = require('./common-adb-configs');
+const {
+    commonAdbConfigs,
+    simulateNoDevices,
+    simulateServiceNotInstalled,
+    simulateServiceLacksPermissions,
+    simulatePortForwardingError,
+} = require('./common-adb-configs');
 
 const exists = promisify(fs.exists);
 const writeFile = promisify(fs.writeFile);
@@ -21,10 +27,15 @@ async function setupMockAdb(config) {
     }
 
     await writeFile(configPath, JSON.stringify(config));
+    console.log('Config file has been updated'); // TODO: Remove before merging
 }
 
 module.exports = {
     mockAdbFolder,
     setupMockAdb,
     commonAdbConfigs,
+    simulateNoDevices,
+    simulateServiceNotInstalled,
+    simulateServiceLacksPermissions,
+    simulatePortForwardingError,
 };

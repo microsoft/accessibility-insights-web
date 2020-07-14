@@ -9,6 +9,12 @@ const successfulTestServerContentPath = path.join(
     '../mock-service-for-android/AccessibilityInsights',
 );
 
+const devicesCommandMatch = 'devices';
+const serviceInfoCommandMatch =
+    'shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice';
+const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
+const portForwardingCommandMatch = 'forward tcp:';
+
 function workingDeviceCommands(deviceIds, port) {
     const output = {
         'start-server': {},
@@ -23,16 +29,14 @@ function workingDeviceCommands(deviceIds, port) {
     }
 
     for (const id of deviceIds) {
-        output[`-s ${id} devices`] = cloneDeep(output.devices);
+        output[`-s ${id} ` + devicesCommandMatch] = cloneDeep(output.devices);
         output[`-s ${id} shell getprop ro.product.model`] = {
             stdout: `working mock device (${id})`,
         };
-        output[
-            `-s ${id} shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice`
-        ] = {
+        output[`-s ${id} ` + serviceInfoCommandMatch] = {
             stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
         };
-        output[`-s ${id} shell dumpsys accessibility`] = {
+        output[`-s ${id} ` + serviceIsRunningCommandMatch] = {
             stdout:
                 '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
         };
@@ -40,7 +44,7 @@ function workingDeviceCommands(deviceIds, port) {
             stdout:
                 '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
         };
-        output[`-s ${id} forward tcp:${port} tcp:62442`] = {
+        output[`-s ${id} ` + portForwardingCommandMatch + `${port} tcp:62442`] = {
             startTestServer: {
                 port,
                 path: successfulTestServerContentPath,
@@ -62,10 +66,47 @@ function delayAllCommands(delayMs, commands) {
     return output;
 }
 
+function copyWithDisabledPattern(oldConfig, keyPatternToDisable) {
+    const regex = new RegExp(keyPatternToDisable);
+    const newConfig = {};
+
+    for (const key in oldConfig) {
+        if (regex.test(key)) {
+            newConfig[key] = {
+                stderr: 'Disabled by test config',
+            };
+        } else {
+            newConfig[key] = oldConfig[key];
+        }
+    }
+
+    return newConfig;
+}
+
+function simulateNoDevices(oldConfig) {
+    return copyWithDisabledPattern(oldConfig, devicesCommandMatch + '$');
+}
+
+function simulateServiceNotInstalled(oldConfig) {
+    return copyWithDisabledPattern(oldConfig, serviceInfoCommandMatch + '$');
+}
+
+function simulateServiceLacksPermissions(oldConfig) {
+    return copyWithDisabledPattern(oldConfig, serviceIsRunningCommandMatch);
+}
+
+function simulatePortForwardingError(oldConfig) {
+    return copyWithDisabledPattern(oldConfig, portForwardingCommandMatch);
+}
+
 module.exports = {
     commonAdbConfigs: {
         'single-device': workingDeviceCommands(['device-1'], 62442),
         'multiple-devices': workingDeviceCommands(['device-1', 'device-2', 'emulator-3'], 62442),
         'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
     },
+    simulateNoDevices,
+    simulateServiceNotInstalled,
+    simulateServiceLacksPermissions,
+    simulatePortForwardingError,
 };
