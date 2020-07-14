@@ -11,10 +11,7 @@ import {
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'injected/adapters/scan-results-to-unified-rules';
 import { FilterResults } from 'injected/analyzers/filter-results';
-import {
-    NotificationTextCreator,
-    TextGenerator,
-} from 'injected/analyzers/notification-text-creator';
+import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { MessageDelegate, PostResolveCallback } from 'injected/analyzers/rule-analyzer';
 import { UnifiedResultSender } from 'injected/analyzers/unified-result-sender';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';

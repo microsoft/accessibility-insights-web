@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
-import { ToolData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { FilterResults } from 'injected/analyzers/filter-results';
 import {
     NotificationTextCreator,

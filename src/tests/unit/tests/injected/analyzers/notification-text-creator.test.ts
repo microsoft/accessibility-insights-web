@@ -14,6 +14,12 @@ describe('NotificationTextCreator', () => {
     const testScanIncompletewarnings: ScanIncompleteWarningId[] = [
         'missing-required-cross-origin-permissions',
     ];
+    const congratsText =
+        'Congratulations!\n\nNeeds review found no instances to review on this page.';
+    const warningText =
+        'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\n';
+    const noInstancesText = 'No instances to review found.';
+    const instancesFoundText = 'Needs review found instances to review.';
 
     beforeEach(() => {
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
@@ -23,15 +29,15 @@ describe('NotificationTextCreator', () => {
 
     it.each`
         unifiedResults                            | testScanWarnings                                 | expectedText
-        ${undefined}                              | ${[]}                                            | ${'Congratulations!\n\nNeeds review found no instances to review on this page.'}
-        ${null}                                   | ${[]}                                            | ${'Congratulations!\n\nNeeds review found no instances to review on this page.'}
-        ${[]}                                     | ${[]}                                            | ${'Congratulations!\n\nNeeds review found no instances to review on this page.'}
-        ${undefined}                              | ${testScanIncompletewarnings}                    | ${'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\nNo instances to review found.'}
-        ${null}                                   | ${testScanIncompletewarnings}                    | ${'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\nNo instances to review found.'}
-        ${[]}                                     | ${testScanIncompletewarnings}                    | ${'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\nNo instances to review found.'}
-        ${[unifiedResultStub, unifiedResultStub]} | ${[]}                                            | ${'Needs review found instances to review.'}
-        ${[unifiedResultStub, unifiedResultStub]} | ${testScanIncompletewarnings}                    | ${'There are iframes in the target page. Use FastPass or Assessment to provide additional permissions.\nNeeds review found instances to review.'}
-        ${[unifiedResultStub, unifiedResultStub]} | ${['unsupported-id' as ScanIncompleteWarningId]} | ${'Needs review found instances to review.'}
+        ${undefined}                              | ${[]}                                            | ${congratsText}
+        ${null}                                   | ${[]}                                            | ${congratsText}
+        ${[]}                                     | ${[]}                                            | ${congratsText}
+        ${undefined}                              | ${testScanIncompletewarnings}                    | ${warningText + noInstancesText}
+        ${null}                                   | ${testScanIncompletewarnings}                    | ${warningText + noInstancesText}
+        ${[]}                                     | ${testScanIncompletewarnings}                    | ${warningText + noInstancesText}
+        ${[unifiedResultStub, unifiedResultStub]} | ${[]}                                            | ${instancesFoundText}
+        ${[unifiedResultStub, unifiedResultStub]} | ${testScanIncompletewarnings}                    | ${warningText + instancesFoundText}
+        ${[unifiedResultStub, unifiedResultStub]} | ${['unsupported-id' as ScanIncompleteWarningId]} | ${instancesFoundText}
     `(
         'generates text for needs review with results: $unifiedResults and warnings: $testScanWarnings',
         ({ unifiedResults, testScanWarnings, expectedText }) => {

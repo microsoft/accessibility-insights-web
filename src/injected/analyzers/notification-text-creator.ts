@@ -21,10 +21,10 @@ export class NotificationTextCreator {
             return 'Congratulations!\n\nNeeds review found no instances to review on this page.';
         }
 
-        const baseText = getBaseText(results);
+        const base = getTextBase(results);
         const prefix = getTextPrefix(warnings);
 
-        return `${prefix}${baseText}`;
+        return `${prefix}${base}`;
     };
 }
 
@@ -36,7 +36,7 @@ const getTextPrefix = (warnings: ScanIncompleteWarningId[]): string => {
     return '';
 };
 
-const getBaseText = (results: UnifiedResult[]): string => {
+const getTextBase = (results: UnifiedResult[]): string => {
     return isEmpty(results)
         ? 'No instances to review found.'
         : 'Needs review found instances to review.';
