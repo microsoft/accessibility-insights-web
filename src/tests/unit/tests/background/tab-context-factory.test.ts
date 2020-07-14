@@ -14,6 +14,7 @@ import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
+import { NotificationCreator } from 'common/notification-creator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { UsageLogger } from '../../../../background/usage-logger';
@@ -35,12 +36,14 @@ describe('TabContextFactoryTest', () => {
     let mockBrowserAdapter: IMock<BrowserAdapter>;
     let mockLogger: IMock<Logger>;
     let mockUsageLogger: IMock<UsageLogger>;
+    let mockNotificationCreator: IMock<NotificationCreator>;
 
     beforeEach(() => {
         mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
         mockLogger = Mock.ofType<Logger>();
         mockUsageLogger = Mock.ofType<UsageLogger>();
         mockDetailsViewController = Mock.ofType<ExtensionDetailsViewController>();
+        mockNotificationCreator = Mock.ofType<NotificationCreator>();
     });
 
     it('createInterpreter', () => {
@@ -91,6 +94,7 @@ describe('TabContextFactoryTest', () => {
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
             targetTabControllerMock.object,
+            mockNotificationCreator.object,
             promiseFactoryMock.object,
             mockLogger.object,
             mockUsageLogger.object,
