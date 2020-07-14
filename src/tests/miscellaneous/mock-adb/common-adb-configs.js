@@ -15,7 +15,8 @@ const serviceInfoCommandMatch =
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
 
-function addServiceInstallCommands(id, output) {
+function addInstallServiceCommands(id, output) {
+    // These commands appear in the order that they get called
     output[`-s ${id} shell getprop ro.build.version.sdk`] = {
         stdout: '29',
     };
@@ -73,7 +74,7 @@ function workingDeviceCommands(deviceIds, port) {
             stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
         };
 
-        addServiceInstallCommands(id, output);
+        addInstallServiceCommands(id, output);
 
         output[`-s ${id} ` + serviceIsRunningCommandMatch] = {
             stdout:
