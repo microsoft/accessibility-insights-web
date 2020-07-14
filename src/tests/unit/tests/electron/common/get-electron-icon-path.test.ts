@@ -36,4 +36,27 @@ describe('getElectronIconPath', () => {
         configMock.verifyAll();
         pathJoinMock.verifyAll();
     });
+
+    it.each([
+        [`.ico`, OSType.Windows],
+        [`.icns`, OSType.Mac],
+        [`.png`, OSType.Linux],
+    ])('returns null when config option is not set', (extension: string, os: OSType) => {
+        const configMock = Mock.ofType(FileSystemConfiguration, MockBehavior.Strict);
+        configMock
+            .setup(m => m.getOption('electronIconBaseName'))
+            .returns(_ => undefined)
+            .verifiable();
+
+        const consoleMock = GlobalMock.ofInstance(console.log, 'log', console, MockBehavior.Strict);
+        consoleMock.setup(m => m(It.isAnyString())).verifiable();
+
+        GlobalScope.using(consoleMock).with(() => {
+            const actual = getElectronIconPath(configMock.object, os);
+            expect(actual).toBeNull();
+        });
+
+        configMock.verifyAll();
+        consoleMock.verifyAll();
+    });
 });
