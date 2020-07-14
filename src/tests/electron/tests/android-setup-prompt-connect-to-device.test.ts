@@ -39,23 +39,11 @@ describe('Android setup - prompt-connect-to-device ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector('detect-device'))).toBe(true);
     });
 
-    // it('detect button triggers new detection', async () => {
-    //     await new Promise(resolve => {
-    //         // tslint:disable-next-line: no-string-based-set-timeout
-    //         setTimeout(resolve, 5000);
-    //     });
-    //     await setupMockAdb(multipleDeviceConfig);
-    //     await new Promise(resolve => {
-    //         // tslint:disable-next-line: no-string-based-set-timeout
-    //         setTimeout(resolve, 5000);
-    //     });
-    //     await dialog.client.click(getAutomationIdSelector('detect-device'));
-    //     await new Promise(resolve => {
-    //         // tslint:disable-next-line: no-string-based-set-timeout
-    //         setTimeout(resolve, 5000);
-    //     });
-    //     await dialog.waitForDialogVisible('prompt-choose-device');
-    // });
+    it('detect button triggers new detection', async () => {
+        await setupMockAdb(defaultDeviceConfig);
+        await dialog.client.click(getAutomationIdSelector('detect-device'));
+        await dialog.waitForDialogVisible('prompt-choose-device');
+    });
 
     it.each([true, false])(
         'should pass accessibility validation with highContrastMode=%s',
