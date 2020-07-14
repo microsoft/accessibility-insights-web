@@ -21,6 +21,13 @@ describe(PlatformInfo, () => {
             { platformName: 'linux', osType: OSType.Linux },
             { platformName: 'darwin', osType: OSType.Mac },
             { platformName: 'win32', osType: OSType.Windows },
+            { platformName: 'aix', osType: OSType.Unsupported },
+            { platformName: 'android', osType: OSType.Unsupported },
+            { platformName: 'freebsd', osType: OSType.Unsupported },
+            { platformName: 'openbsd', osType: OSType.Unsupported },
+            { platformName: 'sunos', osType: OSType.Unsupported },
+            { platformName: 'cygwin', osType: OSType.Unsupported },
+            { platformName: 'netbsd', osType: OSType.Unsupported },
         ] as GetOsTestCase[])('validate getOs %o', (testCase: GetOsTestCase) => {
             processMock.setup(p => p.platform).returns(() => testCase.platformName);
 

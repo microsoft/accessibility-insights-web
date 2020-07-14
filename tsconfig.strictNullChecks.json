@@ -35,6 +35,7 @@
         "./src/DetailsView/components/test-status-choice-group.tsx",
         "./src/Devtools/inspect-handler.ts",
         "./src/Devtools/target-page-inspector.ts",
+        "./src/electron/common/get-electron-icon-path.ts",
         "./src/ad-hoc-visualizations/issues/get-notification-message.ts",
         "./src/assessments/audio-video-only/test-steps/test-steps.ts",
         "./src/assessments/auto-pass-if-no-results.ts",
