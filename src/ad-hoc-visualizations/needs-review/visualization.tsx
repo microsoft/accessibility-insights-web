@@ -17,13 +17,8 @@ import { VisualizationInstanceProcessor } from '../../injected/visualization-ins
 import { getNotificationMessage } from './get-notification-message-for-needs-review';
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-<<<<<<< HEAD
-    rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells'],
-    resultProcessor: (scanner: ScannerUtils) => scanner.getNeedsReviewInstances,
-=======
     rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells', 'link-in-text-block'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
->>>>>>> 993566dd91aea3cf1cb1bfd021ad44eab8a87db3
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,
     key: AdHocTestkeys.NeedsReview,
@@ -60,8 +55,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: (selectorMap, key, warnings) =>
-        getNotificationMessage(selectorMap, warnings), // not using this
+    getNotificationMessage: (selectorMap, key, warnings) => null,
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

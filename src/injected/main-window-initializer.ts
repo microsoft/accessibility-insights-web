@@ -24,6 +24,7 @@ import { VisualizationStateChangeHandler } from 'injected/visualization-state-ch
 import { createToolData } from 'common/application-properties-provider';
 import { toolName } from 'content/strings/application';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
+// import { notificationMessageCreator } from
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -77,6 +78,7 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
+import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -292,6 +294,10 @@ export class MainWindowInitializer extends WindowInitializer {
             this.permissionsStateStoreProxy,
         );
 
+        const notificationMessageCreator = new NotificationMessageCreator(
+            scanIncompleteWarningDetector,
+        );
+
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
@@ -300,6 +306,7 @@ export class MainWindowInitializer extends WindowInitializer {
             toolData,
             generateUID,
             scanIncompleteWarningDetector,
+            notificationMessageCreator,
             filterNeedsReviewResults,
         );
 

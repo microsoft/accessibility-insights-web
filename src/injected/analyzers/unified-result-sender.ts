@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
 import { FilterResults } from 'injected/analyzers/filter-results';
+import { NotificationMessageCreator } from 'injected/analyzers/notification-message-creator';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
@@ -37,10 +37,11 @@ export class UnifiedResultSender {
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
+        const filteredResults = this.filterNeedsReviewResults(axeResults.originalResult);
         this.sendResults(
-            this.filterNeedsReviewResults(axeResults.originalResult),
+            filteredResults,
             this.convertScanResultsToNeedsReviewUnifiedResults,
-            this.notificationMessageCreator.needsReviewMessage(),
+            this.notificationMessageCreator.needsReviewMessage(filteredResults),
         );
     };
 
