@@ -27,7 +27,6 @@ async function setupMockAdb(config) {
     }
 
     await writeFile(configPath, JSON.stringify(config));
-    console.log('Config file has been updated'); // TODO: Remove before merging
 }
 
 module.exports = {

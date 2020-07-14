@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const { apkVersionName } = require('accessibility-insights-for-android-service-bin');
+const { apkPath, apkVersionName } = require('accessibility-insights-for-android-service-bin');
 const cloneDeep = require('lodash/cloneDeep');
 const path = require('path');
 
@@ -14,6 +14,42 @@ const serviceInfoCommandMatch =
     'shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice';
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
+
+function addServiceInstallCommands(id, output) {
+    output[`-s ${id} shell getprop ro.build.version.sdk`] = {
+        stdout: '29',
+    };
+    output[`-s ${id} shell getprop ro.build.version.release`] = {
+        stdout: '10',
+    };
+    output[`-s ${id} help`] = {
+        stdout: '--streaming: force streaming APK directly into Package Manager',
+    };
+    output[`-s ${id} features`] = {
+        stdout:
+            'abb_exec\nfixed_push_symlink_timestamp\nabb\nstat_v2\napex\nshell_v2\nfixed_push_mkdir\ncmd',
+    };
+    output[`-s ${id} shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_`] = {
+        stdout: '',
+    };
+    output[`-s ${id} mkdir -p /data/local/tmp/appium_cache`] = {
+        stdout: '',
+        exitCode: 0,
+    };
+    const fullLocalPathToApk = path.join(
+        __dirname,
+        '../../../../drop/electron/unified-dev/product/android-service/android-service.apk', // Future PR: Use regex, especially for hash!
+    );
+    output[
+        `-s ${id} push ${fullLocalPathToApk} /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk`
+    ] = {
+        stdout:
+            'C:\\Users\\dtryon\\source\\repos\\AIWeb\\MyF...ed. 32.0 MB/s (181531 bytes in 0.005s)',
+    };
+    output[`-s ${id} install -r ${fullLocalPathToApk}`] = {
+        stdout: 'Performing Streamed Install\nSuccess\n',
+    };
+}
 
 function workingDeviceCommands(deviceIds, port) {
     const output = {
@@ -36,6 +72,9 @@ function workingDeviceCommands(deviceIds, port) {
         output[`-s ${id} ` + serviceInfoCommandMatch] = {
             stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
         };
+
+        addServiceInstallCommands(id, output);
+
         output[`-s ${id} ` + serviceIsRunningCommandMatch] = {
             stdout:
                 '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',

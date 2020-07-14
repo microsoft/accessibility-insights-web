@@ -39,11 +39,11 @@ describe('Android setup - prompt-install-service ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector('install'))).toBe(true);
     });
 
-    // it('install button triggers installation', async () => {
-    //     await setupMockAdb(defaultDeviceConfig);
-    //     await dialog.client.click(getAutomationIdSelector('install'));
-    //     await dialog.waitForDialogVisible('prompt-connected-start-testing');
-    // });
+    it('install button triggers installation', async () => {
+        await setupMockAdb(defaultDeviceConfig);
+        await dialog.client.click(getAutomationIdSelector('install'));
+        await dialog.waitForDialogVisible('prompt-grant-permissions');
+    });
 
     it.each([true, false])(
         'should pass accessibility validation with highContrastMode=%s',
