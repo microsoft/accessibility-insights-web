@@ -4,6 +4,7 @@ import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
+import { installAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -17,7 +18,6 @@ import {
 
 describe('Android setup - prompt-install-service ', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
-    const installButtonId = 'install';
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
@@ -37,12 +37,12 @@ describe('Android setup - prompt-install-service ', () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
-        expect(await dialog.isEnabled(getAutomationIdSelector(installButtonId))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(installAutomationId))).toBe(true);
     });
 
     it('install button triggers installation', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector(installButtonId));
+        await dialog.client.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 
