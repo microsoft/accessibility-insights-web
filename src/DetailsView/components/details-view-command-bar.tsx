@@ -26,7 +26,7 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponentDeps } from './report-export-component';
-import { ReportExportProps } from './report-export-props-factory';
+import { ReportExportProps } from './report-export-dialog-factory';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;

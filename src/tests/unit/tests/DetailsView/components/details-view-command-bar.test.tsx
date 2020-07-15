@@ -7,7 +7,7 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
-import { ReportExportProps } from 'DetailsView/components/report-export-props-factory';
+import { ReportExportProps } from 'DetailsView/components/report-export-dialog-factory';
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';

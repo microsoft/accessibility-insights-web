@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportExportPropsFactory getReportExportDialogForAssessment expected properties are set 1`] = `
+"<div>
+  <ExportDialogWithLocalState deps={{...}} reportExportFormat=\\"Assessment\\" pageTitle=\\"command-bar-test-tab-title\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} isOpen={true} dismissExportDialog={[Function: proxy]} />
+</div>"
+`;
+
+exports[`ReportExportPropsFactory getReportExportPropsForFastPass scanResults is not null, test is Issues, properties are set 1`] = `
+"<div>
+  <ExportDialogWithLocalState deps={{...}} scanDate={{...}} pageTitle=\\"command-bar-test-tab-title\\" reportExportFormat=\\"AutomatedChecks\\" htmlGenerator={[Function: htmlGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} isOpen={true} dismissExportDialog={[Function: proxy]} />
+</div>"
+`;

@@ -13,9 +13,9 @@ import {
     StartOverComponentFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
-    getReportExportPropsForAssessment,
-    getReportExportPropsForFastPass,
-} from 'DetailsView/components/report-export-props-factory';
+    getReportExportDialogForAssessment,
+    getReportExportDialogForFastPass,
+} from 'DetailsView/components/report-export-dialog-factory';
 import {
     getStartOverComponentForAssessment,
     getStartOverComponentForFastPass,
@@ -84,7 +84,7 @@ const detailsViewSwitcherNavs: {
 } = {
     [DetailsViewPivotType.assessment]: {
         CommandBar: AssessmentCommandBar,
-        ReportExportPropsFactory: getReportExportPropsForAssessment,
+        ReportExportPropsFactory: getReportExportDialogForAssessment,
         StartOverComponentFactory: getStartOverComponentForAssessment,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
@@ -93,7 +93,7 @@ const detailsViewSwitcherNavs: {
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
-        ReportExportPropsFactory: getReportExportPropsForFastPass,
+        ReportExportPropsFactory: getReportExportDialogForFastPass,
         StartOverComponentFactory: getStartOverComponentForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,

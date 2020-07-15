@@ -2,14 +2,17 @@
 // Licensed under the MIT License.
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { ExportDialogWithLocalStateProps } from 'DetailsView/components/export-dialog-with-local-state';
-
-export type ReportExportProps = Omit<
+import {
+    ExportDialogWithLocalState,
     ExportDialogWithLocalStateProps,
-    'isOpen' | 'dismissExportDialog'
->;
+} from 'DetailsView/components/export-dialog-with-local-state';
+import * as React from 'react';
 
-export function getReportExportPropsForAssessment(props: CommandBarProps): ReportExportProps {
+export function getReportExportDialogForAssessment(
+    props: CommandBarProps,
+    isOpen: boolean,
+    dismissExportDialog: () => void,
+): JSX.Element {
     const {
         deps,
         assessmentStoreData,
@@ -18,7 +21,7 @@ export function getReportExportPropsForAssessment(props: CommandBarProps): Repor
         scanMetadata,
     } = props;
     const reportGenerator = deps.reportGenerator;
-    return {
+    const dialogProps: ExportDialogWithLocalStateProps = {
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
@@ -35,10 +38,17 @@ export function getReportExportPropsForAssessment(props: CommandBarProps): Repor
             props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
+        isOpen,
+        dismissExportDialog,
     };
+    return <ExportDialogWithLocalState {...dialogProps} />;
 }
 
-export function getReportExportPropsForFastPass(props: CommandBarProps): ReportExportProps {
+export function getReportExportDialogForFastPass(
+    props: CommandBarProps,
+    isOpen: boolean,
+    dismissExportDialog: () => void,
+): JSX.Element {
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {
@@ -55,7 +65,7 @@ export function getReportExportPropsForFastPass(props: CommandBarProps): ReportE
     const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
-    return {
+    const dialogProps: ExportDialogWithLocalStateProps = {
         deps: deps,
         scanDate: scanDate,
         pageTitle: props.scanMetadata.targetAppInfo.name,
@@ -70,5 +80,9 @@ export function getReportExportPropsForFastPass(props: CommandBarProps): ReportE
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,
+        isOpen,
+        dismissExportDialog,
     };
+
+    return <ExportDialogWithLocalState {...dialogProps} />;
 }

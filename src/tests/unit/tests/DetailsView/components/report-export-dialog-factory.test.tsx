@@ -18,12 +18,14 @@ import {
     DetailsViewCommandBarProps,
 } from 'DetailsView/components/details-view-command-bar';
 import {
-    getReportExportPropsForAssessment,
-    getReportExportPropsForFastPass,
-} from 'DetailsView/components/report-export-props-factory';
+    getReportExportDialogForAssessment,
+    getReportExportDialogForFastPass,
+} from 'DetailsView/components/report-export-dialog-factory';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import * as React from 'react';
 
 describe('ReportExportPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -33,6 +35,7 @@ describe('ReportExportPropsFactory', () => {
     const theDescription = 'test description';
     const theGeneratorOutput = 'generator output';
     const thePageUrl = 'test page url';
+    const isOpen: boolean = true;
 
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let featureFlagStoreData: FeatureFlagStoreData;
@@ -46,13 +49,11 @@ describe('ReportExportPropsFactory', () => {
     let targetAppInfo: TargetAppData;
     let scanMetadata: ScanMetadata;
     let deps: DetailsViewCommandBarDeps;
+    let dismissExportDialogMock: IMock<() => void>;
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        detailsViewActionMessageCreatorMock = Mock.ofType(
-            DetailsViewActionMessageCreator,
-            // MockBehavior.Strict,
-        );
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
@@ -67,6 +68,7 @@ describe('ReportExportPropsFactory', () => {
         } as ScanMetadata;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
+        dismissExportDialogMock = Mock.ofInstance(() => null);
         cardsViewData = null;
         scanResult = null;
         visualizationStoreData = {} as VisualizationStoreData;
@@ -136,30 +138,41 @@ describe('ReportExportPropsFactory', () => {
         scanResult = {} as ScanResults;
     }
 
-    describe('getReportExportPropsForAssessment', () => {
+    function setupNonNullDialogForFastpass(): void {
+        cardsViewData = {} as CardsViewModel;
+        setScanResults();
+        setSelectedFastPassDetailsView(VisualizationType.Issues);
+        setAutomatedChecksReportGenerator();
+    }
+
+    function getDialogWrapper(element: JSX.Element): ShallowWrapper {
+        return shallow(<div>{element}</div>);
+    }
+
+    describe('getReportExportDialogForAssessment', () => {
         test('expected properties are set', () => {
             const props = getProps();
-            const expectedProps = {
-                deps,
-                reportExportFormat: 'Assessment',
-                pageTitle: thePageTitle,
-                scanDate: theDate,
-                featureFlagStoreData,
-            };
+            const wrapper = getDialogWrapper(
+                getReportExportDialogForAssessment(props, isOpen, dismissExportDialogMock.object),
+            );
 
-            const reportExportProps = getReportExportPropsForAssessment(props);
+            expect(wrapper.debug()).toMatchSnapshot();
 
-            expect(reportExportProps).toBeDefined();
-            expect(reportExportProps).toMatchObject(expectedProps);
+            reportGeneratorMock.verifyAll();
+            detailsViewActionMessageCreatorMock.verifyAll();
         });
 
         test('htmlGenerator calls reportGenerator', () => {
             setAssessmentReportGenerator();
             const props = getProps();
 
-            const reportExportProps = getReportExportPropsForAssessment(props);
+            const dialog = getReportExportDialogForAssessment(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
 
-            reportExportProps.htmlGenerator(theDescription);
+            dialog.props.htmlGenerator(theDescription);
 
             reportGeneratorMock.verifyAll();
         });
@@ -171,9 +184,13 @@ describe('ReportExportPropsFactory', () => {
                 .verifiable(Times.once());
             const props = getProps();
 
-            const reportExportProps = getReportExportPropsForAssessment(props);
+            const dialog = getReportExportDialogForAssessment(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
 
-            reportExportProps.updatePersistedDescription(updatedDescription);
+            dialog.props.updatePersistedDescription(updatedDescription);
 
             detailsViewActionMessageCreatorMock.verifyAll();
         });
@@ -181,19 +198,41 @@ describe('ReportExportPropsFactory', () => {
         test('getExportDescription returns description', () => {
             const props = getProps();
 
-            const reportExportProps = getReportExportPropsForAssessment(props);
+            const dialog = getReportExportDialogForAssessment(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
 
-            const exportDescription = reportExportProps.getExportDescription();
+            const exportDescription = dialog.props.getExportDescription();
             expect(exportDescription).toEqual(theDescription);
+        });
+
+        test('dismissExportDialog called', () => {
+            const props = getProps();
+
+            const dialog = getReportExportDialogForAssessment(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
+
+            dialog.props.dismissExportDialog();
+
+            dismissExportDialogMock.verify(d => d(), Times.once());
         });
     });
 
     describe('getReportExportPropsForFastPass', () => {
         test('scanResults is null, props is null', () => {
             const props = getProps();
-            const reportExportProps = getReportExportPropsForFastPass(props);
+            const dialog = getReportExportDialogForFastPass(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
 
-            expect(reportExportProps).toBeNull();
+            expect(dialog).toBeNull();
         });
 
         test('scanResults is not null, test is Tabstop, props is null', () => {
@@ -201,9 +240,13 @@ describe('ReportExportPropsFactory', () => {
             setSelectedFastPassDetailsView(VisualizationType.TabStops);
             const props = getProps();
 
-            const reportExportProps = getReportExportPropsForFastPass(props);
+            const dialog = getReportExportDialogForFastPass(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
 
-            expect(reportExportProps).toBeNull();
+            expect(dialog).toBeNull();
         });
 
         test('scanResults is not null, test is Issues, properties are set', () => {
@@ -211,55 +254,67 @@ describe('ReportExportPropsFactory', () => {
             setScanResults();
             setSelectedFastPassDetailsView(VisualizationType.Issues);
             const props = getProps();
-            const expectedProps = {
-                deps,
-                reportExportFormat: 'AutomatedChecks',
-                pageTitle: thePageTitle,
-                scanDate: theDate,
-                featureFlagStoreData,
-            };
 
-            const reportExportProps = getReportExportPropsForFastPass(props);
-
-            expect(reportExportProps).toMatchObject(expectedProps);
+            const wrapper = getDialogWrapper(
+                getReportExportDialogForFastPass(props, isOpen, dismissExportDialogMock.object),
+            );
+            expect(wrapper.debug()).toMatchSnapshot();
         });
 
         test('htmlGenerator calls reportGenerator', () => {
-            cardsViewData = {} as CardsViewModel;
-            setScanResults();
-            setSelectedFastPassDetailsView(VisualizationType.Issues);
-            setAutomatedChecksReportGenerator();
+            setupNonNullDialogForFastpass();
             const props = getProps();
 
-            const reportExportProps = getReportExportPropsForFastPass(props);
-            reportExportProps.htmlGenerator(theDescription);
+            const dialog = getReportExportDialogForFastPass(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
+
+            dialog.props.htmlGenerator(theDescription);
 
             reportGeneratorMock.verifyAll();
         });
 
         test('updatePersistedDescription returns null', () => {
-            cardsViewData = {} as CardsViewModel;
-            setScanResults();
-            setSelectedFastPassDetailsView(VisualizationType.Issues);
-            setAutomatedChecksReportGenerator();
+            setupNonNullDialogForFastpass();
             const props = getProps();
 
-            const reportExportProps = getReportExportPropsForFastPass(props);
+            const dialog = getReportExportDialogForFastPass(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
 
-            expect(reportExportProps.updatePersistedDescription('test string')).toBeNull();
+            expect(dialog.props.updatePersistedDescription('test string')).toBeNull();
         });
 
         test('getExportDescription returns empty string', () => {
-            cardsViewData = {} as CardsViewModel;
-            setScanResults();
-            setSelectedFastPassDetailsView(VisualizationType.Issues);
-            setAutomatedChecksReportGenerator();
+            setupNonNullDialogForFastpass();
             const props = getProps();
             const expectedDescription = '';
 
-            const reportExportProps = getReportExportPropsForFastPass(props);
+            const dialog = getReportExportDialogForFastPass(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
+            expect(dialog.props.getExportDescription()).toEqual(expectedDescription);
+        });
 
-            expect(reportExportProps.getExportDescription()).toEqual(expectedDescription);
+        test('dismissExportDialog called', () => {
+            setupNonNullDialogForFastpass();
+            const props = getProps();
+
+            const dialog = getReportExportDialogForFastPass(
+                props,
+                isOpen,
+                dismissExportDialogMock.object,
+            );
+
+            dialog.props.dismissExportDialog();
+
+            dismissExportDialogMock.verify(d => d(), Times.once());
         });
     });
 });
