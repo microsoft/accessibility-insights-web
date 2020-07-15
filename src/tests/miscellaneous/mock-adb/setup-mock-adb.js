@@ -6,7 +6,6 @@ const { promisify } = require('util');
 const {
     commonAdbConfigs,
     delayAllCommands,
-    simulateNoDevices,
     simulateNoDevicesConnected,
     simulateServiceNotInstalled,
     simulateServiceInstallationError,
@@ -37,7 +36,6 @@ module.exports = {
     setupMockAdb,
     commonAdbConfigs,
     delayAllCommands,
-    simulateNoDevices,
     simulateNoDevicesConnected,
     simulateServiceNotInstalled,
     simulateServiceInstallationError,

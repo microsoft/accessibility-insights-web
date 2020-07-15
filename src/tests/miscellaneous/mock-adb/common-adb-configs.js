@@ -172,7 +172,6 @@ module.exports = {
         'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
     },
     delayAllCommands,
-    simulateNoDevices,
     simulateNoDevicesConnected,
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
