@@ -106,7 +106,7 @@ function delayAllCommands(delayMs, commands) {
     return output;
 }
 
-function copyWithDisabledPattern(oldConfig, keyPatternToDisable) {
+function cloneWithDisabledPattern(oldConfig, keyPatternToDisable) {
     const regex = new RegExp(keyPatternToDisable);
     const newConfig = {};
 
@@ -124,19 +124,19 @@ function copyWithDisabledPattern(oldConfig, keyPatternToDisable) {
 }
 
 function simulateNoDevices(oldConfig) {
-    return copyWithDisabledPattern(oldConfig, devicesCommandMatch + '$');
+    return cloneWithDisabledPattern(oldConfig, devicesCommandMatch + '$');
 }
 
 function simulateServiceNotInstalled(oldConfig) {
-    return copyWithDisabledPattern(oldConfig, serviceInfoCommandMatch + '$');
+    return cloneWithDisabledPattern(oldConfig, serviceInfoCommandMatch + '$');
 }
 
 function simulateServiceLacksPermissions(oldConfig) {
-    return copyWithDisabledPattern(oldConfig, serviceIsRunningCommandMatch);
+    return cloneWithDisabledPattern(oldConfig, serviceIsRunningCommandMatch);
 }
 
 function simulatePortForwardingError(oldConfig) {
-    return copyWithDisabledPattern(oldConfig, portForwardingCommandMatch);
+    return cloneWithDisabledPattern(oldConfig, portForwardingCommandMatch);
 }
 
 module.exports = {
