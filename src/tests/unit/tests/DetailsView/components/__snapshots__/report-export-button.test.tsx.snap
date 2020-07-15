@@ -12,5 +12,3 @@ exports[` renders ReportExportButton 1`] = `
   Export result
 </InsightsCommandButton>
 `;
-
-exports[` renders ReportExportButton with isHidden = true 1`] = `null`;

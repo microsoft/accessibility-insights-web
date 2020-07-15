@@ -3,12 +3,11 @@
 import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ExportDialogWithLocalStateProps } from 'DetailsView/components/export-dialog-with-local-state';
-import { ReportExportButtonProps } from 'DetailsView/components/report-export-button';
-import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 
-export type ReportExportProps = ReportExportComponentProps &
-    Omit<ReportExportButtonProps, 'showReportExportDialog'> &
-    Omit<ExportDialogWithLocalStateProps, 'isOpen' | 'dismissExportDialog'>;
+export type ReportExportProps = Omit<
+    ExportDialogWithLocalStateProps,
+    'isOpen' | 'dismissExportDialog'
+>;
 
 export function getReportExportPropsForAssessment(props: CommandBarProps): ReportExportProps {
     const {
@@ -36,23 +35,20 @@ export function getReportExportPropsForAssessment(props: CommandBarProps): Repor
             props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
-        isHidden: false,
     };
 }
 
 export function getReportExportPropsForFastPass(props: CommandBarProps): ReportExportProps {
-    let isHidden = false;
-
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {
-        isHidden = true;
+        return null;
     }
 
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
 
     if (selectedTest !== VisualizationType.Issues) {
-        isHidden = true;
+        return null;
     }
 
     const { deps } = props;
@@ -74,6 +70,5 @@ export function getReportExportPropsForFastPass(props: CommandBarProps): ReportE
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,
-        isHidden,
     };
 }

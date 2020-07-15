@@ -11,27 +11,21 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe(ReportExportButton, () => {
     let showDialogMock: IMock<() => void>;
+    let props: ReportExportButtonProps;
 
     beforeEach(() => {
         showDialogMock = Mock.ofInstance(() => null);
+        props = {
+            showReportExportDialog: showDialogMock.object,
+        };
     });
 
     it('renders ReportExportButton', () => {
-        const props = getProps();
-
-        const wrapper = shallow(<ReportExportButton {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    it('renders ReportExportButton with isHidden = true', () => {
-        const props = getProps(true);
-
         const wrapper = shallow(<ReportExportButton {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('shows export dialog on click', () => {
-        const props = getProps();
         showDialogMock.setup(d => d()).verifiable(Times.once());
 
         const wrapper = shallow(<ReportExportButton {...props} />);
@@ -39,11 +33,4 @@ describe(ReportExportButton, () => {
 
         showDialogMock.verifyAll();
     });
-
-    function getProps(isHidden: boolean = false): ReportExportButtonProps {
-        return {
-            isHidden,
-            showReportExportDialog: showDialogMock.object,
-        };
-    }
 });

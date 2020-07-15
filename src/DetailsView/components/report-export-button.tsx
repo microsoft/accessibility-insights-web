@@ -5,15 +5,10 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 export interface ReportExportButtonProps {
-    isHidden: boolean;
     showReportExportDialog: () => void;
 }
 
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
-    if (props.isHidden === true) {
-        return null;
-    }
-
     return (
         <InsightsCommandButton
             iconProps={{ iconName: 'Export' }}

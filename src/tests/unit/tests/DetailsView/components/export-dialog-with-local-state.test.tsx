@@ -47,19 +47,12 @@ describe('ExportDialogWithLocalState', () => {
                 'test-feature-flag': true,
             },
             isOpen: true,
-            isHidden: false,
             dismissExportDialog: dismissDialogMock.object,
         };
     });
 
     test('render with dialog closed', () => {
         props.isOpen = false;
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    test('render with dialog hidden', () => {
-        props.isHidden = true;
         const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });

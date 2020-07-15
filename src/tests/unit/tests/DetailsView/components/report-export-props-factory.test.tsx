@@ -145,7 +145,6 @@ describe('ReportExportPropsFactory', () => {
                 pageTitle: thePageTitle,
                 scanDate: theDate,
                 featureFlagStoreData,
-                isHidden: false,
             };
 
             const reportExportProps = getReportExportPropsForAssessment(props);
@@ -194,7 +193,7 @@ describe('ReportExportPropsFactory', () => {
             const props = getProps();
             const reportExportProps = getReportExportPropsForFastPass(props);
 
-            expect(reportExportProps).toMatchObject({ isHidden: true });
+            expect(reportExportProps).toBeNull();
         });
 
         test('scanResults is not null, test is Tabstop, props is null', () => {
@@ -204,7 +203,7 @@ describe('ReportExportPropsFactory', () => {
 
             const reportExportProps = getReportExportPropsForFastPass(props);
 
-            expect(reportExportProps).toMatchObject({ isHidden: true });
+            expect(reportExportProps).toBeNull();
         });
 
         test('scanResults is not null, test is Issues, properties are set', () => {
@@ -218,7 +217,6 @@ describe('ReportExportPropsFactory', () => {
                 pageTitle: thePageTitle,
                 scanDate: theDate,
                 featureFlagStoreData,
-                isHidden: false,
             };
 
             const reportExportProps = getReportExportPropsForFastPass(props);

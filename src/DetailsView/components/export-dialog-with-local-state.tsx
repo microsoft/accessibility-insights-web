@@ -20,7 +20,6 @@ export interface ExportDialogWithLocalStateProps {
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
-    isHidden: boolean;
     dismissExportDialog: () => void;
 }
 
@@ -57,11 +56,7 @@ export class ExportDialogWithLocalState extends React.Component<
     };
 
     public render(): JSX.Element {
-        const { deps, reportExportFormat, isOpen, featureFlagStoreData, isHidden } = this.props;
-
-        if (isHidden === true) {
-            return null;
-        }
+        const { deps, reportExportFormat, isOpen, featureFlagStoreData } = this.props;
 
         return (
             <ExportDialog

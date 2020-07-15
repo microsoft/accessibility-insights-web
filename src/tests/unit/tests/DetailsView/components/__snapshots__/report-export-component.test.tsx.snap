@@ -40,8 +40,6 @@ exports[`ReportExportComponentTest render 1`] = `
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest render with button hidden 1`] = `null`;
-
 exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
   <InsightsCommandButton
