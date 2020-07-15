@@ -145,7 +145,7 @@ function cloneWithDisabledPattern(oldConfig, keyPatternToDisable) {
     return newConfig;
 }
 
-function simulateNoDevices(oldConfig) {
+function simulateNoDevicesConnected(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, devicesCommandMatch + '$');
 }
 
@@ -171,7 +171,7 @@ module.exports = {
         'multiple-devices': workingDeviceCommands(['device-1', 'device-2', 'emulator-3'], 62442),
         'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
     },
-    simulateNoDevices,
+    simulateNoDevicesConnected,
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
     simulateServiceLacksPermissions,
