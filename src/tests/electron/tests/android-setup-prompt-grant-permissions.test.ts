@@ -57,12 +57,12 @@ describe('Android setup - prompt-grant-permissions', () => {
     });
 
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
-        await setupMockAdb(commonAdbConfigs['slow-single-device']);
+        await setupMockAdb(delayAllCommands(2500, commonAdbConfigs['single-device']));
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
         await a11yTest(true);
         await a11yTest(false);
-        // await dialog.waitForDialogVisible('configuring-port-forwarding');
+        await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
     it.each([true, false])(
