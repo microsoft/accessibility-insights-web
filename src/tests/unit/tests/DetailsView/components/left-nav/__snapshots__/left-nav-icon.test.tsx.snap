@@ -10,7 +10,7 @@ exports[`LeftNavIndexIcon render 1`] = `
 
 exports[`LeftNavStatusIcon render 1`] = `
 <StatusIcon
-  className="dark-gray some class"
+  className="left-nav-icon some class"
   level="test"
   status={0}
 />

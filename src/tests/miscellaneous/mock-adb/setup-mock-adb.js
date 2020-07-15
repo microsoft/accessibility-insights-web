@@ -3,7 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
-const { commonAdbConfigs } = require('./common-adb-configs');
+const {
+    commonAdbConfigs,
+    simulateNoDevices,
+    simulateServiceNotInstalled,
+    simulateServiceLacksPermissions,
+    simulatePortForwardingError,
+} = require('./common-adb-configs');
 
 const exists = promisify(fs.exists);
 const writeFile = promisify(fs.writeFile);
@@ -27,4 +33,8 @@ module.exports = {
     mockAdbFolder,
     setupMockAdb,
     commonAdbConfigs,
+    simulateNoDevices,
+    simulateServiceNotInstalled,
+    simulateServiceLacksPermissions,
+    simulatePortForwardingError,
 };
