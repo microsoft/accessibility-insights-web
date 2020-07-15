@@ -5,6 +5,7 @@ const path = require('path');
 const { promisify } = require('util');
 const {
     commonAdbConfigs,
+    delayAllCommands,
     simulateNoDevicesConnected,
     simulateServiceNotInstalled,
     simulateServiceInstallationError,
@@ -34,6 +35,7 @@ module.exports = {
     mockAdbFolder,
     setupMockAdb,
     commonAdbConfigs,
+    delayAllCommands,
     simulateNoDevicesConnected,
     simulateServiceNotInstalled,
     simulateServiceInstallationError,
