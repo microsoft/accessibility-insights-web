@@ -75,8 +75,7 @@ function addInstallServiceCommands(id, output) {
     output[
         `-s ${id} push ${fullLocalPathToApk} /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk`
     ] = {
-        stdout:
-            'C:\\Users\\dtryon\\source\\repos\\AIWeb\\MyF...ed. 32.0 MB/s (181531 bytes in 0.005s)',
+        stdout: '(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)',
     };
     output[`-s ${id} install -r ${fullLocalPathToApk}`] = {
         stdout: 'Performing Streamed Install\nSuccess\n',
