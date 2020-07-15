@@ -7,6 +7,7 @@ const {
     commonAdbConfigs,
     simulateNoDevicesConnected,
     simulateServiceNotInstalled,
+    simulateServiceInstallationError,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
 } = require('./common-adb-configs');
@@ -35,6 +36,7 @@ module.exports = {
     commonAdbConfigs,
     simulateNoDevicesConnected,
     simulateServiceNotInstalled,
+    simulateServiceInstallationError,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
 };
