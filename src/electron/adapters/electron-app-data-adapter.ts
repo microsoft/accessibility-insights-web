@@ -7,6 +7,6 @@ export class ElectronAppDataAdapter implements AppDataAdapter {
     public constructor(private readonly config: ConfigAccessor) {}
 
     public getVersion = (): string => {
-        return this.config.getOption('unifiedAppVersion');
+        return this.config.getOption('unifiedAppVersion') ?? 'app version not found';
     };
 }

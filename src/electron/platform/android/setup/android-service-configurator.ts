@@ -40,7 +40,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
     };
 
     public hasRequiredServiceVersion = async (): Promise<boolean> => {
-        const installedVersion: string = await this.getInstalledVersion(this.selectedDeviceId);
+        const installedVersion = await this.getInstalledVersion(this.selectedDeviceId);
         if (installedVersion) {
             const targetVersion = (await this.apkLocator.locateBundledApk()).versionName;
             return installedVersion === targetVersion;
@@ -51,7 +51,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
 
     public installRequiredServiceVersion = async (): Promise<void> => {
         const deviceId: string = this.selectedDeviceId; // Prevent changes during execution
-        const installedVersion: string = await this.getInstalledVersion(deviceId);
+        const installedVersion = await this.getInstalledVersion(deviceId);
         const apkInfo = await this.apkLocator.locateBundledApk();
         if (installedVersion) {
             const targetVersion: string = apkInfo.versionName;
@@ -100,7 +100,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
         return await this.adbWrapper.removeTcpForwarding(this.selectedDeviceId, hostPort);
     };
 
-    private async getInstalledVersion(deviceId: string): Promise<string> {
+    private async getInstalledVersion(deviceId: string): Promise<string | undefined> {
         const info: PackageInfo = await this.adbWrapper.getPackageInfo(
             deviceId,
             this.servicePackageName,

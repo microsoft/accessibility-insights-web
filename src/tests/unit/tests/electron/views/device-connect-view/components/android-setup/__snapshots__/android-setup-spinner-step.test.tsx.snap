@@ -2,6 +2,7 @@
 
 exports[`AndroidSetupSpinner renders per snapshot 1`] = `
 <AndroidSetupStepLayout
+  contentClassName="content"
   leftFooterButtonProps={
     Object {
       "disabled": false,

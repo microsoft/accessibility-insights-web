@@ -4,22 +4,27 @@ import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
-import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
+import { detectDeviceAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-connect-to-device-step';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
-import { commonAdbConfigs, setupMockAdb } from '../../miscellaneous/mock-adb/setup-mock-adb';
+import {
+    commonAdbConfigs,
+    setupMockAdb,
+    simulateNoDevices,
+} from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('Android setup - multiple devices ', () => {
+describe('Android setup - prompt-connect-to-device ', () => {
+    const defaultDeviceConfig = commonAdbConfigs['multiple-devices'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(commonAdbConfigs['multiple-devices']);
+        await setupMockAdb(simulateNoDevices(defaultDeviceConfig));
         app = await createApplication({ suppressFirstTimeDialog: true });
-        dialog = await app.openAndroidSetupView('prompt-choose-device');
+        dialog = await app.openAndroidSetupView('prompt-connect-to-device');
     });
 
     afterEach(async () => {
@@ -31,26 +36,16 @@ describe('Android setup - multiple devices ', () => {
     it('initial component state is correct', async () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
-        expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
-        expect(await dialog.isEnabled(getAutomationIdSelector('rescan'))).toBe(true);
-        const devices = await dialog.client.$$(
-            getAutomationIdSelector(deviceDescriptionAutomationId),
-        );
-        expect(devices.length).toBe(3);
-    });
-
-    it('choosing a device changes next button state, selecting next goes to detect-service', async () => {
-        await dialog.client.click(getAutomationIdSelector(deviceDescriptionAutomationId));
-        expect(await dialog.isEnabled(getAutomationIdSelector(rightFooterButtonAutomationId))).toBe(
+        expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
+        expect(await dialog.isEnabled(getAutomationIdSelector(detectDeviceAutomationId))).toBe(
             true,
         );
-        await dialog.client.click(getAutomationIdSelector(rightFooterButtonAutomationId));
-        await dialog.waitForSelector(getAutomationIdSelector('detect-service-content'));
     });
 
-    it('selecting rescan goes to detect-devices', async () => {
-        await dialog.client.click(getAutomationIdSelector('rescan'));
-        await dialog.waitForSelector(getAutomationIdSelector('detect-devices-content'));
+    it('detect button triggers new detection', async () => {
+        await setupMockAdb(defaultDeviceConfig);
+        await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
+        await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it.each([true, false])(

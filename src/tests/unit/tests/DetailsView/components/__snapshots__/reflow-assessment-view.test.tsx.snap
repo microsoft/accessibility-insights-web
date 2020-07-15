@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentViewTest render for gettting started 1`] = `
+exports[`AssessmentViewTest render for getting started 1`] = `
 <React.Fragment>
   <TargetChangeDialog
     deps={Object {}}
@@ -86,6 +86,18 @@ exports[`AssessmentViewTest render for requirement 1`] = `
     }
     isRequirementEnabled={true}
     isRequirementScanned={true}
+    nextRequirement={
+      Object {
+        "description": <div>
+          test-description
+        </div>,
+        "howToTest": <p>
+          how-to-test-stub
+        </p>,
+        "name": "test-requirement-name-2",
+        "order": 2,
+      }
+    }
     pathSnippetStoreData={
       Object {
         "path": null,
@@ -106,6 +118,74 @@ exports[`AssessmentViewTest render for requirement 1`] = `
         </p>,
         "name": "test-requirement-name",
         "order": 1,
+      }
+    }
+    scanningInProgress={true}
+  />
+</React.Fragment>
+`;
+
+exports[`AssessmentViewTest render for requirement where nextRequirement is null 1`] = `
+<React.Fragment>
+  <TargetChangeDialog
+    deps={Object {}}
+    newTab={
+      Object {
+        "id": 5,
+      }
+    }
+    prevTab={
+      Object {
+        "id": 4,
+      }
+    }
+  />
+  <RequirementView
+    assessmentData={Object {}}
+    assessmentInstanceTableHandler={
+      Object {
+        "changeRequirementStatus": null,
+      }
+    }
+    assessmentNavState={
+      Object {
+        "selectedTestSubview": "requirement",
+        "selectedTestType": -1,
+      }
+    }
+    currentTarget={
+      Object {
+        "id": 5,
+      }
+    }
+    deps={Object {}}
+    featureFlagStoreData={
+      Object {
+        "some feature flag": true,
+      }
+    }
+    isRequirementEnabled={true}
+    isRequirementScanned={true}
+    pathSnippetStoreData={
+      Object {
+        "path": null,
+      }
+    }
+    prevTarget={
+      Object {
+        "id": 4,
+      }
+    }
+    requirement={
+      Object {
+        "description": <div>
+          test-description
+        </div>,
+        "howToTest": <p>
+          how-to-test-stub
+        </p>,
+        "name": "test-requirement-name-2",
+        "order": 2,
       }
     }
     scanningInProgress={true}

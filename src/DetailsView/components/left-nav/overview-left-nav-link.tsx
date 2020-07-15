@@ -13,7 +13,7 @@ export const OverviewLeftNavLink = NamedFC<Pick<BaseLeftNavLinkProps, 'link'>>(
         return (
             <span className={styles.leftNavLinkContainer} aria-hidden="true">
                 <span>
-                    <Icon iconName="home" className={css(styles.linkIcon, 'dark-gray')} />
+                    <Icon iconName="home" className={css(styles.linkIcon, 'left-nav-icon')} />
                 </span>
                 <span className="ms-Button-label overview-label">
                     <span className="overview-name">{link.name}</span>

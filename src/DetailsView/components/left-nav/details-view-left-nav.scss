@@ -54,7 +54,7 @@
     z-index: 100;
     background-color: $neutral-0;
     :global {
-        .dark-gray {
+        .left-nav-icon {
             color: $neutral-60;
         }
         .ms-Nav-groupContent {
@@ -118,12 +118,12 @@
                     background-color: $communication-tint-40;
                     border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle
                         $communication-primary;
-                    .ms-Button-label {
+                    .ms-Button-label,
+                    .overview-percent {
                         color: $highlighted-text;
                     }
-                    .overview-percent,
-                    .dark-gray {
-                        color: $overview-percent-selected;
+                    .left-nav-icon {
+                        color: $left-nav-icon;
                     }
                 }
                 a::after,

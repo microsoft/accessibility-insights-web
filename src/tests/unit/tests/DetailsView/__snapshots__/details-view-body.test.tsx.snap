@@ -93,17 +93,7 @@ exports[`DetailsViewBody render render 1`] = `
         }
         featureFlagStoreData={
           Object {
-            "debugTools": false,
-            "exportReportOptions": false,
-            "logTelemetryToConsole": false,
-            "manualInstanceDetails": false,
-            "needsReview": false,
-            "reflowUI": false,
-            "scoping": false,
-            "shadowDialog": false,
-            "showAllAssessments": false,
-            "showAllFeatureFlags": false,
-            "showInstanceVisibility": false,
+            "reflowUI": true,
           }
         }
         isSideNavOpen={false}
@@ -326,22 +316,12 @@ exports[`DetailsViewBody render render 1`] = `
     featureFlag="reflowUI"
     featureFlagStoreData={
       Object {
-        "debugTools": false,
-        "exportReportOptions": false,
-        "logTelemetryToConsole": false,
-        "manualInstanceDetails": false,
-        "needsReview": false,
-        "reflowUI": false,
-        "scoping": false,
-        "shadowDialog": false,
-        "showAllAssessments": false,
-        "showAllFeatureFlags": false,
-        "showInstanceVisibility": false,
+        "reflowUI": true,
       }
     }
   />
   <div
-    className="details-view-body-nav-content-layout"
+    className="details-view-body-nav-content-layout reflow-ui"
   >
     <FluentSideNav
       assessmentStoreData={
@@ -430,17 +410,7 @@ exports[`DetailsViewBody render render 1`] = `
       }
       featureFlagStoreData={
         Object {
-          "debugTools": false,
-          "exportReportOptions": false,
-          "logTelemetryToConsole": false,
-          "manualInstanceDetails": false,
-          "needsReview": false,
-          "reflowUI": false,
-          "scoping": false,
-          "shadowDialog": false,
-          "showAllAssessments": false,
-          "showAllFeatureFlags": false,
-          "showInstanceVisibility": false,
+          "reflowUI": true,
         }
       }
       isSideNavOpen={false}
@@ -661,7 +631,7 @@ exports[`DetailsViewBody render render 1`] = `
       }
     />
     <div
-      className="detailsViewContentPaneContainer"
+      className="detailsViewContentPaneContainer reflow-ui"
     >
       <FlaggedComponent
         disableJSXElement={null}
@@ -753,17 +723,7 @@ exports[`DetailsViewBody render render 1`] = `
             }
             featureFlagStoreData={
               Object {
-                "debugTools": false,
-                "exportReportOptions": false,
-                "logTelemetryToConsole": false,
-                "manualInstanceDetails": false,
-                "needsReview": false,
-                "reflowUI": false,
-                "scoping": false,
-                "shadowDialog": false,
-                "showAllAssessments": false,
-                "showAllFeatureFlags": false,
-                "showInstanceVisibility": false,
+                "reflowUI": true,
               }
             }
             isSideNavOpen={false}
@@ -985,22 +945,12 @@ exports[`DetailsViewBody render render 1`] = `
         featureFlag="reflowUI"
         featureFlagStoreData={
           Object {
-            "debugTools": false,
-            "exportReportOptions": false,
-            "logTelemetryToConsole": false,
-            "manualInstanceDetails": false,
-            "needsReview": false,
-            "reflowUI": false,
-            "scoping": false,
-            "shadowDialog": false,
-            "showAllAssessments": false,
-            "showAllFeatureFlags": false,
-            "showInstanceVisibility": false,
+            "reflowUI": true,
           }
         }
       />
       <div
-        className="details-view-body-content-pane"
+        className="details-view-body-content-pane reflow-ui"
       >
         <TargetPageHiddenBar
           isTargetPageHidden={false}
@@ -1096,17 +1046,7 @@ exports[`DetailsViewBody render render 1`] = `
             }
             featureFlagStoreData={
               Object {
-                "debugTools": false,
-                "exportReportOptions": false,
-                "logTelemetryToConsole": false,
-                "manualInstanceDetails": false,
-                "needsReview": false,
-                "reflowUI": false,
-                "scoping": false,
-                "shadowDialog": false,
-                "showAllAssessments": false,
-                "showAllFeatureFlags": false,
-                "showInstanceVisibility": false,
+                "reflowUI": true,
               }
             }
             isSideNavOpen={false}
