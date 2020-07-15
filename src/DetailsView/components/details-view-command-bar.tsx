@@ -26,7 +26,6 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponentDeps } from './report-export-component';
-import { ReportExportProps } from './report-export-dialog-factory';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
@@ -42,7 +41,11 @@ export type DetailsViewCommandBarState = {
     isReportExportDialogOpen: boolean;
 };
 
-export type ReportExportPropsFactory = (props: CommandBarProps) => ReportExportProps;
+export type ReportExportDialogFactory = (
+    props: CommandBarProps,
+    isOpen: boolean,
+    dismissExportDialog: () => void,
+) => JSX.Element;
 
 export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
@@ -147,27 +150,15 @@ export class DetailsViewCommandBar extends React.Component<
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
     private renderExportComponent(): JSX.Element {
-        const reportExportProps = this.props.switcherNavConfiguration.ReportExportPropsFactory(
-            this.props,
-        );
-        return (
-            <ReportExportButton
-                {...reportExportProps}
-                showReportExportDialog={this.showReportExportDialog}
-            />
-        );
+        // TODO: don't render in certain cases for fastpass
+        return <ReportExportButton showReportExportDialog={this.showReportExportDialog} />;
     }
 
     private renderExportDialog(): JSX.Element {
-        const reportExportProps = this.props.switcherNavConfiguration.ReportExportPropsFactory(
+        return this.props.switcherNavConfiguration.ReportExportDialogFactory(
             this.props,
-        );
-        return (
-            <ExportDialogWithLocalState
-                {...reportExportProps}
-                isOpen={this.state.isReportExportDialogOpen}
-                dismissExportDialog={this.dismissReportExportDialog}
-            />
+            this.state.isReportExportDialogOpen,
+            this.dismissReportExportDialog,
         );
     }
 

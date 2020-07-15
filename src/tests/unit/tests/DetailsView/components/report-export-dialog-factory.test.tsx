@@ -22,12 +22,12 @@ import {
     getReportExportDialogForFastPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import { shallow, ShallowWrapper } from 'enzyme';
+import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import * as React from 'react';
 
-describe('ReportExportPropsFactory', () => {
+describe('ReportExportDialogFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
     const theTimestamp = 'test timestamp';
     const theToolData: ToolData = { applicationProperties: { name: 'some app' } } as ToolData;
@@ -223,7 +223,7 @@ describe('ReportExportPropsFactory', () => {
         });
     });
 
-    describe('getReportExportPropsForFastPass', () => {
+    describe('getReportExportDialogForFastPass', () => {
         test('scanResults is null, props is null', () => {
             const props = getProps();
             const dialog = getReportExportDialogForFastPass(

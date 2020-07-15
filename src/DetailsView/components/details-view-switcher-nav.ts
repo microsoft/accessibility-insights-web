@@ -9,7 +9,7 @@ import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
     CommandBarProps,
-    ReportExportPropsFactory,
+    ReportExportDialogFactory,
     StartOverComponentFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
@@ -57,7 +57,7 @@ type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
 
 export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
-    ReportExportPropsFactory: ReportExportPropsFactory;
+    ReportExportDialogFactory: ReportExportDialogFactory;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -67,7 +67,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
-    ReportExportPropsFactory: ReportExportPropsFactory;
+    ReportExportDialogFactory: ReportExportDialogFactory;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -84,7 +84,7 @@ const detailsViewSwitcherNavs: {
 } = {
     [DetailsViewPivotType.assessment]: {
         CommandBar: AssessmentCommandBar,
-        ReportExportPropsFactory: getReportExportDialogForAssessment,
+        ReportExportDialogFactory: getReportExportDialogForAssessment,
         StartOverComponentFactory: getStartOverComponentForAssessment,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
@@ -93,7 +93,7 @@ const detailsViewSwitcherNavs: {
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
-        ReportExportPropsFactory: getReportExportDialogForFastPass,
+        ReportExportDialogFactory: getReportExportDialogForFastPass,
         StartOverComponentFactory: getStartOverComponentForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,

@@ -7,7 +7,6 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
-import { ReportExportProps } from 'DetailsView/components/report-export-dialog-factory';
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -52,9 +51,7 @@ describe('DetailsViewCommandBar', () => {
         );
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
-            ReportExportPropsFactory: p => {
-                return { isHidden: hideExportButton } as ReportExportProps;
-            },
+            ReportExportDialogFactory: (p, o, d) => null,
             StartOverComponentFactory: p => startOverComponent,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;

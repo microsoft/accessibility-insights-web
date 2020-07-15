@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportExportComponentTest render 1`] = `
+<React.Fragment>
+  <InsightsCommandButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </InsightsCommandButton>
+  <ExportDialog
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
+    description=""
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
+    fileName=""
+    html=""
+    isOpen={false}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+    reportExportFormat="Assessment"
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
+<React.Fragment>
+  <InsightsCommandButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </InsightsCommandButton>
+  <ExportDialog
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
+    description="persisted description"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
+    html=""
+    isOpen={true}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+    reportExportFormat="Assessment"
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions dismiss dialog: dialog should be dismissed 1`] = `
+<React.Fragment>
+  <InsightsCommandButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </InsightsCommandButton>
+  <ExportDialog
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
+    description=""
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
+    html=""
+    isOpen={false}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+    reportExportFormat="Assessment"
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions edit text field: test content with special characters: <> $ " \` ' 1`] = `
+<React.Fragment>
+  <InsightsCommandButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </InsightsCommandButton>
+  <ExportDialog
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
+    description="test content with special characters: <> $ \\" \` '"
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
+    fileName=""
+    html=""
+    isOpen={false}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+    reportExportFormat="Assessment"
+  />
+</React.Fragment>
+`;
