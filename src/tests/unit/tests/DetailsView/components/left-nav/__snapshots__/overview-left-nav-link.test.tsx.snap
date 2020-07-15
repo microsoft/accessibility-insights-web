@@ -7,7 +7,7 @@ exports[`OverviewLeftNavLink renders 1`] = `
 >
   <span>
     <StyledIconBase
-      className="linkIcon dark-gray"
+      className="linkIcon left-nav-icon"
       iconName="home"
     />
   </span>
