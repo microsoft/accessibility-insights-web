@@ -13,7 +13,7 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import {
     commonAdbConfigs,
     setupMockAdb,
-    simulateNoDevices,
+    simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
 describe('Android setup - prompt-connect-to-device ', () => {
@@ -22,7 +22,7 @@ describe('Android setup - prompt-connect-to-device ', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulateNoDevices(defaultDeviceConfig));
+        await setupMockAdb(simulateNoDevicesConnected(defaultDeviceConfig));
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-connect-to-device');
     });
