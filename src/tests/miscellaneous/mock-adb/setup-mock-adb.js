@@ -27,7 +27,7 @@ async function setupMockAdb(config) {
         );
     }
 
-    await writeFile(configPath, JSON.stringify(config));
+    await writeFile(configPath, JSON.stringify(config, null, 2));
 }
 
 module.exports = {
