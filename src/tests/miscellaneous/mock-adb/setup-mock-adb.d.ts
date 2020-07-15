@@ -26,3 +26,4 @@ export function simulateNoDevices(config: MockAdbConfig): MockAdbConfig;
 export function simulatePortForwardingError(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceLacksPermissions(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceNotInstalled(config: MockAdbConfig): MockAdbConfig;
+export function delayAllCommands(delayMs: number, config: MockAdbConfig): MockAdbConfig;
