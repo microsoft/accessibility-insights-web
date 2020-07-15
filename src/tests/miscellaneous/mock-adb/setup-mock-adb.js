@@ -5,8 +5,9 @@ const path = require('path');
 const { promisify } = require('util');
 const {
     commonAdbConfigs,
-    simulateNoDevices,
+    simulateNoDevicesConnected,
     simulateServiceNotInstalled,
+    simulateServiceInstallationError,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
 } = require('./common-adb-configs');
@@ -33,8 +34,9 @@ module.exports = {
     mockAdbFolder,
     setupMockAdb,
     commonAdbConfigs,
-    simulateNoDevices,
+    simulateNoDevicesConnected,
     simulateServiceNotInstalled,
+    simulateServiceInstallationError,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
 };

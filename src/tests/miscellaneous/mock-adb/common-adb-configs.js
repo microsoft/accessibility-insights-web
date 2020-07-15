@@ -14,10 +14,41 @@ const serviceInfoCommandMatch =
     'shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice';
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
+const sdkVersionCommandMatch = 'shell getprop ro.build.version.sdk';
+
+function addDeviceEnumerationCommands(id, output) {
+    output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
+}
+
+function addDeviceDetailCommands(id, output) {
+    // These commands appear in the order that they get called by appium-adb
+    output[`-s ${id} shell getprop ro.product.model`] = {
+        stdout: `working mock device (${id})`,
+    };
+}
+
+function addDetectServiceCommands(id, output) {
+    // These commands appear in the order that they get called by appium-adb
+    output[`-s ${id} ${serviceInfoCommandMatch}`] = {
+        stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
+    };
+}
+
+function addCheckPermissionsCommands(id, output) {
+    // These commands appear in the order that they get called by appium-adb
+    output[`-s ${id} ${serviceIsRunningCommandMatch}`] = {
+        stdout:
+            '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
+    };
+    output[`-s ${id} shell dumpsys media_projection`] = {
+        stdout:
+            '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
+    };
+}
 
 function addInstallServiceCommands(id, output) {
-    // These commands appear in the order that they get called
-    output[`-s ${id} shell getprop ro.build.version.sdk`] = {
+    // These commands appear in the order that they get called by appium-adb
+    output[`-s ${id} ${sdkVersionCommandMatch}`] = {
         stdout: '29',
     };
     output[`-s ${id} shell getprop ro.build.version.release`] = {
@@ -52,6 +83,18 @@ function addInstallServiceCommands(id, output) {
     };
 }
 
+function addPortForwardingCommands(id, output, port) {
+    output[`-s ${id} ${portForwardingCommandMatch}${port} tcp:62442`] = {
+        startTestServer: {
+            port,
+            path: successfulTestServerContentPath,
+        },
+    };
+    output[`-s ${id} forward --remove tcp:${port}`] = {
+        stopTestServer: { port },
+    };
+}
+
 function workingDeviceCommands(deviceIds, port) {
     const output = {
         'start-server': {},
@@ -66,33 +109,12 @@ function workingDeviceCommands(deviceIds, port) {
     }
 
     for (const id of deviceIds) {
-        output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
-        output[`-s ${id} shell getprop ro.product.model`] = {
-            stdout: `working mock device (${id})`,
-        };
-        output[`-s ${id} ${serviceInfoCommandMatch}`] = {
-            stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
-        };
-
+        addDeviceEnumerationCommands(id, output);
+        addDeviceDetailCommands(id, output);
+        addDetectServiceCommands(id, output);
         addInstallServiceCommands(id, output);
-
-        output[`-s ${id} ${serviceIsRunningCommandMatch}`] = {
-            stdout:
-                '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
-        };
-        output[`-s ${id} shell dumpsys media_projection`] = {
-            stdout:
-                '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
-        };
-        output[`-s ${id} ${portForwardingCommandMatch}${port} tcp:62442`] = {
-            startTestServer: {
-                port,
-                path: successfulTestServerContentPath,
-            },
-        };
-        output[`-s ${id} forward --remove tcp:${port}`] = {
-            stopTestServer: { port },
-        };
+        addCheckPermissionsCommands(id, output);
+        addPortForwardingCommands(id, output, port);
     }
 
     return output;
@@ -123,12 +145,16 @@ function cloneWithDisabledPattern(oldConfig, keyPatternToDisable) {
     return newConfig;
 }
 
-function simulateNoDevices(oldConfig) {
+function simulateNoDevicesConnected(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, devicesCommandMatch + '$');
 }
 
 function simulateServiceNotInstalled(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, serviceInfoCommandMatch + '$');
+}
+
+function simulateServiceInstallationError(oldConfig) {
+    return cloneWithDisabledPattern(oldConfig, sdkVersionCommandMatch);
 }
 
 function simulateServiceLacksPermissions(oldConfig) {
@@ -145,7 +171,8 @@ module.exports = {
         'multiple-devices': workingDeviceCommands(['device-1', 'device-2', 'emulator-3'], 62442),
         'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
     },
-    simulateNoDevices,
+    simulateNoDevicesConnected,
+    simulateServiceInstallationError,
     simulateServiceNotInstalled,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
