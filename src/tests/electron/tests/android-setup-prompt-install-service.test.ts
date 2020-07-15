@@ -13,6 +13,7 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import {
     commonAdbConfigs,
     setupMockAdb,
+    simulateServiceInstallationError,
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
@@ -40,10 +41,16 @@ describe('Android setup - prompt-install-service ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(installAutomationId))).toBe(true);
     });
 
-    it('install button triggers installation', async () => {
+    it('install button triggers installation, prompts for permission on success', async () => {
         await setupMockAdb(defaultDeviceConfig);
         await dialog.client.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
+    });
+
+    it('install button triggers installation, prompts correctly on failure', async () => {
+        await setupMockAdb(simulateServiceInstallationError(defaultDeviceConfig));
+        await dialog.client.click(getAutomationIdSelector(installAutomationId));
+        await dialog.waitForDialogVisible('prompt-install-failed');
     });
 
     it.each([true, false])(
