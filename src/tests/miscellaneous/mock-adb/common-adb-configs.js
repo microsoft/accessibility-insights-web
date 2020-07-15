@@ -14,6 +14,7 @@ const serviceInfoCommandMatch =
     'shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice';
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
+const sdkVersionCommandMatch = 'shell getprop ro.build.version.sdk';
 
 function addDeviceEnumerationCommands(id, output) {
     output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
@@ -47,7 +48,7 @@ function addCheckPermissionsCommands(id, output) {
 
 function addInstallServiceCommands(id, output) {
     // These commands appear in the order that they get called by appium-adb
-    output[`-s ${id} shell getprop ro.build.version.sdk`] = {
+    output[`-s ${id} ${sdkVersionCommandMatch}`] = {
         stdout: '29',
     };
     output[`-s ${id} shell getprop ro.build.version.release`] = {
@@ -144,12 +145,16 @@ function cloneWithDisabledPattern(oldConfig, keyPatternToDisable) {
     return newConfig;
 }
 
-function simulateNoDevicesConnected(oldConfig) {
+function simulateNoDevices(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, devicesCommandMatch + '$');
 }
 
 function simulateServiceNotInstalled(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, serviceInfoCommandMatch + '$');
+}
+
+function simulateServiceInstallationError(oldConfig) {
+    return cloneWithDisabledPattern(oldConfig, sdkVersionCommandMatch);
 }
 
 function simulateServiceLacksPermissions(oldConfig) {
@@ -166,7 +171,8 @@ module.exports = {
         'multiple-devices': workingDeviceCommands(['device-1', 'device-2', 'emulator-3'], 62442),
         'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
     },
-    simulateNoDevicesConnected,
+    simulateNoDevices,
+    simulateServiceInstallationError,
     simulateServiceNotInstalled,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
