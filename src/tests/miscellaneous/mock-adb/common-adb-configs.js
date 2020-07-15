@@ -66,17 +66,17 @@ function workingDeviceCommands(deviceIds, port) {
     }
 
     for (const id of deviceIds) {
-        output[`-s ${id} ` + devicesCommandMatch] = cloneDeep(output.devices);
+        output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
         output[`-s ${id} shell getprop ro.product.model`] = {
             stdout: `working mock device (${id})`,
         };
-        output[`-s ${id} ` + serviceInfoCommandMatch] = {
+        output[`-s ${id} ${serviceInfoCommandMatch}`] = {
             stdout: `    versionCode=102000 minSdk=24 targetSdk=28\n    versionName=${apkVersionName}`,
         };
 
         addInstallServiceCommands(id, output);
 
-        output[`-s ${id} ` + serviceIsRunningCommandMatch] = {
+        output[`-s ${id} ${serviceIsRunningCommandMatch}`] = {
             stdout:
                 '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
         };
@@ -84,7 +84,7 @@ function workingDeviceCommands(deviceIds, port) {
             stdout:
                 '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
         };
-        output[`-s ${id} ` + portForwardingCommandMatch + `${port} tcp:62442`] = {
+        output[`-s ${id} ${portForwardingCommandMatch}${port} tcp:62442`] = {
             startTestServer: {
                 port,
                 path: successfulTestServerContentPath,
