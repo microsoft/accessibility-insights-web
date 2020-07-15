@@ -5,7 +5,13 @@ import { NamedFC } from 'common/react/named-fc';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import { outcomeIconMap, outcomeIconMapInverted, OutcomeStats, OutcomeType } from './outcome-type';
+import {
+    outcomeIconMap,
+    outcomeIconMapInverted,
+    OutcomeStats,
+    OutcomeType,
+    outcomeTypeSemantics,
+} from './outcome-type';
 
 export type OutcomeSummaryBarProps = {
     outcomeStats: Partial<OutcomeStats>;
@@ -25,8 +31,20 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
         });
     };
 
+    const getLabel = () => {
+        const { allOutcomeTypes, outcomeStats } = props;
+        const countSuffix = props.countSuffix || '';
+        return allOutcomeTypes
+            .map(outcomeType => {
+                const count = outcomeStats[outcomeType];
+                const outcomePastTense = outcomeTypeSemantics[outcomeType].pastTense;
+                return `${count}${countSuffix} ${outcomePastTense}`;
+            })
+            .join(', ');
+    };
+
     return (
-        <div className="outcome-summary-bar">
+        <div className="outcome-summary-bar" aria-label={getLabel()} role="img">
             {props.allOutcomeTypes.map((outcomeType, index) => {
                 const { iconStyleInverted, countSuffix } = props;
                 const iconMap =
