@@ -2,7 +2,9 @@
 
 exports[`OutcomeSummaryBar render inverted badges 1`] = `
 <div
+  aria-label="42 Passed, 13 Failed, 7 Incomplete"
   className="outcome-summary-bar"
+  role="img"
 >
   <div
     style={
@@ -63,7 +65,9 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
 
 exports[`OutcomeSummaryBar show by count 1`] = `
 <div
+  aria-label="42 Passed, 13 Failed, 7 Incomplete"
   className="outcome-summary-bar"
+  role="img"
 >
   <div
     style={
@@ -124,7 +128,9 @@ exports[`OutcomeSummaryBar show by count 1`] = `
 
 exports[`OutcomeSummaryBar show by percentage 1`] = `
 <div
+  aria-label="42% Passed, 13% Failed, 7% Incomplete"
   className="outcome-summary-bar"
+  role="img"
 >
   <div
     style={
