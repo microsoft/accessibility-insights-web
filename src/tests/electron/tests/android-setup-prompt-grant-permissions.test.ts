@@ -62,7 +62,7 @@ describe('Android setup - prompt-grant-permissions', () => {
         await dialog.waitForDialogVisible('detect-permissions');
         await a11yTest(true);
         await a11yTest(false);
-        await dialog.waitForDialogVisible('configuring-port-forwarding');
+        // await dialog.waitForDialogVisible('configuring-port-forwarding');
     });
 
     it.each([true, false])(
