@@ -53,14 +53,8 @@ describe('Android setup - prompt-install-service ', () => {
         await dialog.waitForDialogVisible('prompt-install-failed');
     });
 
-    it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => {
-            await app.setHighContrastMode(highContrastMode);
-            await app.waitForHighContrastMode(highContrastMode);
-
-            const violations = await scanForAccessibilityIssues(dialog);
-            expect(violations).toStrictEqual([]);
-        },
-    );
+    it('should pass accessibility validation in both contrast modes', async () => {
+        await scanForAccessibilityIssues(app, true);
+        await scanForAccessibilityIssues(app, false);
+    });
 });

@@ -57,24 +57,16 @@ describe('Android setup - prompt-grant-permissions', () => {
     });
 
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
-        await setupMockAdb(delayAllCommands(2500, commonAdbConfigs['single-device']));
+        await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
-        await a11yTest(true);
-        await a11yTest(false);
+        await scanForAccessibilityIssues(app, true);
+        await scanForAccessibilityIssues(app, false);
         await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
-    it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => a11yTest(highContrastMode),
-    );
-
-    const a11yTest = async highContrastMode => {
-        await app.setHighContrastMode(highContrastMode);
-        await app.waitForHighContrastMode(highContrastMode);
-
-        const violations = await scanForAccessibilityIssues(dialog);
-        expect(violations).toStrictEqual([]);
-    };
+    it('should pass accessibility validation in both contrast modes', async () => {
+        await scanForAccessibilityIssues(app, true);
+        await scanForAccessibilityIssues(app, false);
+    });
 });
