@@ -7,10 +7,13 @@ import {
 } from 'DetailsView/components/export-dialog-with-local-state';
 import * as React from 'react';
 
+export type ReportExportDialogFactoryProps = CommandBarProps & {
+    isOpen: boolean;
+    dismissExportDialog: () => void;
+};
+
 export function getReportExportDialogForAssessment(
-    props: CommandBarProps,
-    isOpen: boolean,
-    dismissExportDialog: () => void,
+    props: ReportExportDialogFactoryProps,
 ): JSX.Element {
     const {
         deps,
@@ -18,6 +21,8 @@ export function getReportExportDialogForAssessment(
         assessmentsProvider,
         featureFlagStoreData,
         scanMetadata,
+        isOpen,
+        dismissExportDialog,
     } = props;
     const reportGenerator = deps.reportGenerator;
     const dialogProps: ExportDialogWithLocalStateProps = {
@@ -44,15 +49,13 @@ export function getReportExportDialogForAssessment(
 }
 
 export function getReportExportDialogForFastPass(
-    props: CommandBarProps,
-    isOpen: boolean,
-    dismissExportDialog: () => void,
+    props: ReportExportDialogFactoryProps,
 ): JSX.Element {
     if (props.switcherNavConfiguration.shouldShowReportExportButton(props) !== true) {
         return null;
     }
 
-    const { deps } = props;
+    const { deps, isOpen, dismissExportDialog } = props;
     const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 

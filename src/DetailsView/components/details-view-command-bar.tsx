@@ -16,22 +16,23 @@ import { ReportGenerator } from 'reports/report-generator';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
+import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ReportExportComponentDeps } from './report-export-component';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & ReportExportComponentDeps &
+} & ExportDialogDeps &
     StartOverDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
@@ -40,11 +41,7 @@ export type DetailsViewCommandBarState = {
     isReportExportDialogOpen: boolean;
 };
 
-export type ReportExportDialogFactory = (
-    props: CommandBarProps,
-    isOpen: boolean,
-    dismissExportDialog: () => void,
-) => JSX.Element;
+export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
 
 export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
@@ -156,11 +153,11 @@ export class DetailsViewCommandBar extends React.Component<
     }
 
     private renderExportDialog(): JSX.Element {
-        return this.props.switcherNavConfiguration.ReportExportDialogFactory(
-            this.props,
-            this.state.isReportExportDialogOpen,
-            this.dismissReportExportDialog,
-        );
+        return this.props.switcherNavConfiguration.ReportExportDialogFactory({
+            ...this.props,
+            isOpen: this.state.isReportExportDialogOpen,
+            dismissExportDialog: this.dismissReportExportDialog,
+        });
     }
 
     private renderStartOverComponent(): JSX.Element {

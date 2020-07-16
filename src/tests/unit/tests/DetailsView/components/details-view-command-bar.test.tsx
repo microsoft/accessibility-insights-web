@@ -147,8 +147,6 @@ describe('DetailsViewCommandBar', () => {
     }
 
     function setupReportExportDialogFactory(): void {
-        reportExportDialogFactory
-            .setup(r => r(It.isAny(), It.isAny(), It.isAny()))
-            .returns(() => reportExportDialogStub);
+        reportExportDialogFactory.setup(r => r(It.isAny())).returns(() => reportExportDialogStub);
     }
 });

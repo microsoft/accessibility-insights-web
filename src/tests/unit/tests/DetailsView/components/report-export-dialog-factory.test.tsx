@@ -10,18 +10,14 @@ import {
     ToolData,
 } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import {
-    DetailsViewCommandBarDeps,
-    DetailsViewCommandBarProps,
-} from 'DetailsView/components/details-view-command-bar';
+import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
+    ReportExportDialogFactoryProps,
 } from 'DetailsView/components/report-export-dialog-factory';
 import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
-import { shallow, ShallowWrapper } from 'enzyme';
-import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -63,7 +59,7 @@ describe('ReportExportDialogFactory', () => {
             targetAppInfo: targetAppInfo,
         } as ScanMetadata;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
-        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
+        reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Loose);
         dismissExportDialogMock = Mock.ofInstance(() => null);
         shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
         cardsViewData = null;
@@ -75,7 +71,7 @@ describe('ReportExportDialogFactory', () => {
         } as DetailsViewCommandBarDeps;
     });
 
-    function getProps(): DetailsViewCommandBarProps {
+    function getProps(): ReportExportDialogFactoryProps {
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
         } as DetailsViewSwitcherNavConfiguration;
@@ -88,7 +84,9 @@ describe('ReportExportDialogFactory', () => {
             cardsViewData,
             scanMetadata,
             switcherNavConfiguration,
-        } as DetailsViewCommandBarProps;
+            isOpen,
+            dismissExportDialog: dismissExportDialogMock.object,
+        } as ReportExportDialogFactoryProps;
     }
 
     function setAssessmentReportGenerator(): void {
@@ -112,18 +110,12 @@ describe('ReportExportDialogFactory', () => {
             .returns(() => showReportExportButton);
     }
 
-    function getDialogWrapper(element: JSX.Element): ShallowWrapper {
-        return shallow(<div>{element}</div>);
-    }
-
     describe('getReportExportDialogForAssessment', () => {
         test('expected properties are set', () => {
             const props = getProps();
-            const wrapper = getDialogWrapper(
-                getReportExportDialogForAssessment(props, isOpen, dismissExportDialogMock.object),
-            );
+            const dialog = getReportExportDialogForAssessment(props);
 
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(dialog).toMatchSnapshot();
 
             reportGeneratorMock.verifyAll();
             detailsViewActionMessageCreatorMock.verifyAll();
@@ -133,11 +125,7 @@ describe('ReportExportDialogFactory', () => {
             setAssessmentReportGenerator();
             const props = getProps();
 
-            const dialog = getReportExportDialogForAssessment(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForAssessment(props);
 
             dialog.props.htmlGenerator(theDescription);
 
@@ -151,11 +139,7 @@ describe('ReportExportDialogFactory', () => {
                 .verifiable(Times.once());
             const props = getProps();
 
-            const dialog = getReportExportDialogForAssessment(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForAssessment(props);
 
             dialog.props.updatePersistedDescription(updatedDescription);
 
@@ -165,11 +149,7 @@ describe('ReportExportDialogFactory', () => {
         test('getExportDescription returns description', () => {
             const props = getProps();
 
-            const dialog = getReportExportDialogForAssessment(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForAssessment(props);
 
             const exportDescription = dialog.props.getExportDescription();
             expect(exportDescription).toEqual(theDescription);
@@ -178,11 +158,7 @@ describe('ReportExportDialogFactory', () => {
         test('dismissExportDialog called', () => {
             const props = getProps();
 
-            const dialog = getReportExportDialogForAssessment(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForAssessment(props);
 
             dialog.props.dismissExportDialog();
 
@@ -195,11 +171,7 @@ describe('ReportExportDialogFactory', () => {
             setupShouldShowReportExportButton(false);
             const props = getProps();
 
-            const dialog = getReportExportDialogForFastPass(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForFastPass(props);
 
             expect(dialog).toBeNull();
         });
@@ -208,21 +180,15 @@ describe('ReportExportDialogFactory', () => {
             setupShouldShowReportExportButton(true);
             const props = getProps();
 
-            const wrapper = getDialogWrapper(
-                getReportExportDialogForFastPass(props, isOpen, dismissExportDialogMock.object),
-            );
-            expect(wrapper.debug()).toMatchSnapshot();
+            const dialog = getReportExportDialogForFastPass(props);
+            expect(dialog).toMatchSnapshot();
         });
 
         test('htmlGenerator calls reportGenerator', () => {
             setupShouldShowReportExportButton(true);
             const props = getProps();
 
-            const dialog = getReportExportDialogForFastPass(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForFastPass(props);
 
             dialog.props.htmlGenerator(theDescription);
 
@@ -233,11 +199,7 @@ describe('ReportExportDialogFactory', () => {
             setupShouldShowReportExportButton(true);
             const props = getProps();
 
-            const dialog = getReportExportDialogForFastPass(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForFastPass(props);
 
             expect(dialog.props.updatePersistedDescription('test string')).toBeNull();
         });
@@ -247,11 +209,7 @@ describe('ReportExportDialogFactory', () => {
             const props = getProps();
             const expectedDescription = '';
 
-            const dialog = getReportExportDialogForFastPass(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForFastPass(props);
             expect(dialog.props.getExportDescription()).toEqual(expectedDescription);
         });
 
@@ -259,11 +217,7 @@ describe('ReportExportDialogFactory', () => {
             setupShouldShowReportExportButton(true);
             const props = getProps();
 
-            const dialog = getReportExportDialogForFastPass(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
+            const dialog = getReportExportDialogForFastPass(props);
 
             dialog.props.dismissExportDialog();
 
