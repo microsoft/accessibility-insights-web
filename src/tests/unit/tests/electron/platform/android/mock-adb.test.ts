@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { cloneDeep } from 'lodash';
-import * as os from 'os';
 import * as path from 'path';
 import {
     commonAdbConfigs,
@@ -21,11 +20,11 @@ describe('mock-adb tests match snapshots after normalizing path', () => {
 
     beforeAll(() => {
         const basePath = path.join(__dirname, '../../../../../../..');
-        if (os.platform() === 'win32') {
-            basePathRegEx = new RegExp(basePath.replace(/\\/g, '\\\\'), 'g');
-        } else {
-            basePathRegEx = new RegExp(basePath, 'g');
-        }
+        // We're matching JSON-escaped strings, so we need to escape our target
+        // but remove the leading and trailing quotes
+        const jsonBasePath = JSON.stringify(basePath);
+        const regexTarget = jsonBasePath.substring(1, jsonBasePath.length - 1);
+        basePathRegEx = new RegExp(regexTarget, 'g');
     });
 
     function removeRepoBase(input: string): string {
