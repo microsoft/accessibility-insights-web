@@ -3,6 +3,7 @@
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { SCAN_INCOMPLETE_WARNINGS } from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { Interpreter } from '../interpreter';
 import { UnifiedScanCompletedPayload } from './action-payloads';
@@ -13,6 +14,7 @@ export class UnifiedScanResultActionCreator {
         private readonly interpreter: Interpreter,
         private readonly unifiedScanResultActions: UnifiedScanResultActions,
         private readonly telemetryEventHandler: TelemetryEventHandler,
+        private readonly notificationCreator: NotificationCreator,
     ) {}
 
     public registerCallbacks(): void {
@@ -29,6 +31,7 @@ export class UnifiedScanResultActionCreator {
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.unifiedScanResultActions.scanCompleted.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(SCAN_INCOMPLETE_WARNINGS, payload);
+        this.notificationCreator.createNotification(payload.notificationText);
     };
 
     private onGetScanCurrentState = (): void => {

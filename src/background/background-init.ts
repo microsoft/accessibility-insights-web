@@ -182,6 +182,7 @@ async function initialize(): Promise<void> {
         visualizationConfigurationFactory,
         telemetryEventHandler,
         targetTabController,
+        notificationCreator,
         promiseFactory,
         logger,
         usageLogger,

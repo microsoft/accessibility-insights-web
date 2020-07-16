@@ -3,6 +3,10 @@
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { FilterResults } from 'injected/analyzers/filter-results';
+import {
+    NotificationTextCreator,
+    TextGenerator,
+} from 'injected/analyzers/notification-text-creator';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
@@ -23,23 +27,30 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        private readonly notificationTextCreator: NotificationTextCreator,
         private readonly filterNeedsReviewResults: FilterResults,
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(axeResults.originalResult, this.convertScanResultsToUnifiedResults);
+        this.sendResults(
+            axeResults.originalResult,
+            this.convertScanResultsToUnifiedResults,
+            this.notificationTextCreator.automatedChecksText,
+        );
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
             this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToNeedsReviewUnifiedResults,
+            this.notificationTextCreator.needsReviewText,
         );
     };
 
     private sendResults = (
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
+        notificationMessage: TextGenerator,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -51,8 +62,10 @@ export class UnifiedResultSender {
             };
         }
 
+        const unifiedResults = converter(results, this.generateUID);
+
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(results, this.generateUID),
+            scanResult: unifiedResults,
             rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
             timestamp: results.timestamp,
@@ -62,6 +75,7 @@ export class UnifiedResultSender {
             },
             scanIncompleteWarnings,
             telemetry,
+            notificationText: notificationMessage(unifiedResults),
         };
 
         this.sendMessage({
