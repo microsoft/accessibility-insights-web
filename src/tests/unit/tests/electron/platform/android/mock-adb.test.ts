@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { cloneDeep } from 'lodash';
+import * as os from 'os';
 import * as path from 'path';
 import {
     commonAdbConfigs,
@@ -20,28 +21,40 @@ describe('mock-adb tests match snapshots after normalizing path', () => {
 
     beforeAll(() => {
         const basePath = path.join(__dirname, '../../../../../../..');
-        basePathRegEx = new RegExp(basePath.replace(/\\/g, '\\\\'), 'g');
+        if (os.platform() === 'win32') {
+            basePathRegEx = new RegExp(basePath.replace(/\\/g, '\\\\'), 'g');
+        } else {
+            basePathRegEx = new RegExp(basePath, 'g');
+        }
     });
 
-    function normalizePath(input: string): string {
+    function removeRepoBase(input: string): string {
         return input.replace(basePathRegEx, '.');
     }
 
-    function normalizeAllPaths(config: MockAdbConfig): MockAdbConfig {
+    function convertBackslashToForwardSlash(input: string): string {
+        return input.replace(/\\/g, '/');
+    }
+
+    function standardizePath(input: string): string {
+        return convertBackslashToForwardSlash(removeRepoBase(input));
+    }
+
+    function standardizeAllPaths(config: MockAdbConfig): MockAdbConfig {
         const startTestServer = 'startTestServer';
         const pathKey = 'path';
         const normalizedConfig: MockAdbConfig = {};
 
         Object.keys(config).forEach(key => {
-            const newKey = normalizePath(key);
+            const newKey = standardizePath(key);
             const newItem = cloneDeep(config[key]);
             for (const field of ['stdout', 'stderr']) {
                 if (newItem[field]) {
-                    newItem[field] = normalizePath(newItem[field]);
+                    newItem[field] = standardizePath(newItem[field]);
                 }
             }
             if (newItem[startTestServer] && newItem[startTestServer][pathKey]) {
-                newItem[startTestServer][pathKey] = normalizePath(
+                newItem[startTestServer][pathKey] = standardizePath(
                     newItem[startTestServer][pathKey],
                 );
             }
@@ -54,31 +67,31 @@ describe('mock-adb tests match snapshots after normalizing path', () => {
 
     it.each(definedConfigs)("commonAdbConfigs['%s']", config => {
         const mockAdbConfig = commonAdbConfigs[config];
-        expect(normalizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 
     it.each(definedConfigs)("simulateNoDevicesConnected(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulateNoDevicesConnected(commonAdbConfigs[config]);
-        expect(normalizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 
     it.each(definedConfigs)("simulateServiceNotInstalled(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulateServiceNotInstalled(commonAdbConfigs[config]);
-        expect(normalizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 
     it.each(definedConfigs)("simulateServiceLacksPermissions(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulateServiceLacksPermissions(commonAdbConfigs[config]);
-        expect(normalizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 
     it.each(definedConfigs)("simulateServiceInstallationError(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulateServiceInstallationError(commonAdbConfigs[config]);
-        expect(normalizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 
     it.each(definedConfigs)("simulatePortForwardingError(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulatePortForwardingError(commonAdbConfigs[config]);
-        expect(normalizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 });

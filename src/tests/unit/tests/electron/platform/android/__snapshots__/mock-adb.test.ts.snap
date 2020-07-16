@@ -26,14 +26,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -42,7 +42,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -91,14 +91,14 @@ cmd",
   },
   "-s device-2 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-2 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-2 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -107,7 +107,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
@@ -156,14 +156,14 @@ cmd",
   },
   "-s emulator-3 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s emulator-3 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s emulator-3 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -172,7 +172,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s emulator-3 shell dumpsys accessibility": Object {
@@ -232,14 +232,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -248,7 +248,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -310,7 +310,7 @@ cmd",
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "delayMs": 5000,
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
@@ -318,7 +318,7 @@ cmd",
     "delayMs": 5000,
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "delayMs": 5000,
     "stdout": "Performing Streamed Install
 Success
@@ -329,7 +329,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "delayMs": 5000,
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -396,14 +396,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -412,7 +412,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -457,14 +457,14 @@ cmd",
   },
   "-s device-2 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-2 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-2 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -473,7 +473,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
@@ -518,14 +518,14 @@ cmd",
   },
   "-s emulator-3 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s emulator-3 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s emulator-3 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -534,7 +534,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s emulator-3 shell dumpsys accessibility": Object {
@@ -588,14 +588,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -604,7 +604,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -661,7 +661,7 @@ cmd",
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "delayMs": 5000,
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
@@ -669,7 +669,7 @@ cmd",
     "delayMs": 5000,
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "delayMs": 5000,
     "stdout": "Performing Streamed Install
 Success
@@ -680,7 +680,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "delayMs": 5000,
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -752,7 +752,7 @@ cmd",
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -761,7 +761,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -814,7 +814,7 @@ cmd",
   "-s device-2 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-2 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -823,7 +823,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
@@ -876,7 +876,7 @@ cmd",
   "-s emulator-3 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s emulator-3 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -885,7 +885,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s emulator-3 shell dumpsys accessibility": Object {
@@ -949,7 +949,7 @@ cmd",
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -958,7 +958,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -1024,7 +1024,7 @@ cmd",
     "delayMs": 5000,
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "delayMs": 5000,
     "stdout": "Performing Streamed Install
 Success
@@ -1035,7 +1035,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "delayMs": 5000,
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1106,14 +1106,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1122,7 +1122,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -1171,14 +1171,14 @@ cmd",
   },
   "-s device-2 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-2 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-2 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1187,7 +1187,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
@@ -1236,14 +1236,14 @@ cmd",
   },
   "-s emulator-3 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s emulator-3 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s emulator-3 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1252,7 +1252,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s emulator-3 shell dumpsys accessibility": Object {
@@ -1312,14 +1312,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1328,7 +1328,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -1390,7 +1390,7 @@ cmd",
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "delayMs": 5000,
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
@@ -1398,7 +1398,7 @@ cmd",
     "delayMs": 5000,
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "delayMs": 5000,
     "stdout": "Performing Streamed Install
 Success
@@ -1409,7 +1409,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "delayMs": 5000,
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1479,14 +1479,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1495,7 +1495,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -1544,14 +1544,14 @@ cmd",
   },
   "-s device-2 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-2 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-2 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1560,7 +1560,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
@@ -1609,14 +1609,14 @@ cmd",
   },
   "-s emulator-3 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s emulator-3 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s emulator-3 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1625,7 +1625,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s emulator-3 shell dumpsys accessibility": Object {
@@ -1685,14 +1685,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1701,7 +1701,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -1763,7 +1763,7 @@ cmd",
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "delayMs": 5000,
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
@@ -1771,7 +1771,7 @@ cmd",
     "delayMs": 5000,
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "delayMs": 5000,
     "stdout": "Performing Streamed Install
 Success
@@ -1782,7 +1782,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "delayMs": 5000,
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1852,14 +1852,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1868,7 +1868,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -1916,14 +1916,14 @@ cmd",
   },
   "-s device-2 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-2 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-2 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1932,7 +1932,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
@@ -1980,14 +1980,14 @@ cmd",
   },
   "-s emulator-3 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s emulator-3 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s emulator-3 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -1996,7 +1996,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s emulator-3 shell dumpsys accessibility": Object {
@@ -2055,14 +2055,14 @@ cmd",
   },
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
   "-s device-1 help": Object {
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "stdout": "Performing Streamed Install
 Success
 ",
@@ -2071,7 +2071,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
@@ -2132,7 +2132,7 @@ cmd",
   "-s device-1 forward tcp:62442 tcp:62442": Object {
     "delayMs": 5000,
     "startTestServer": Object {
-      "path": ".\\\\src\\\\tests\\\\miscellaneous\\\\mock-service-for-android\\\\AccessibilityInsights",
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
       "port": 62442,
     },
   },
@@ -2140,7 +2140,7 @@ cmd",
     "delayMs": 5000,
     "stdout": "--streaming: force streaming APK directly into Package Manager",
   },
-  "-s device-1 install -r .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk": Object {
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
     "delayMs": 5000,
     "stdout": "Performing Streamed Install
 Success
@@ -2151,7 +2151,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push .\\\\drop\\\\electron\\\\unified-dev\\\\product\\\\android-service\\\\android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
+  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
     "delayMs": 5000,
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
