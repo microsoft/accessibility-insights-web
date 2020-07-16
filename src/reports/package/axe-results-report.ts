@@ -8,6 +8,7 @@ import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-resul
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
 
+import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { ReportHtmlGenerator } from '../report-html-generator';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
@@ -18,6 +19,7 @@ export type AxeResultsReportDeps = {
     getUnifiedResults: typeof convertScanResultsToUnifiedResults;
     getCards: typeof getCardViewData;
     getUUID: UUIDGenerator;
+    getResolution: ResolutionCreator;
 };
 
 export class AxeResultsReport implements AccessibilityInsightsReport.Report {
@@ -28,7 +30,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
     ) { }
 
     public asHTML(): string {
-        const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, getUUID, reportHtmlGenerator } = this.deps;
+        const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, getUUID, getResolution, reportHtmlGenerator } = this.deps;
         const { results, description, scanContext: { pageTitle } } = this.parameters;
 
         const scanDate = new Date(results.timestamp);
@@ -37,7 +39,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
 
         const unifiedRules = getUnifiedRules(scanResults);
 
-        const unifiedResults = getUnifiedResults(scanResults, getUUID);
+        const unifiedResults = getUnifiedResults(scanResults, getUUID, getResolution);
 
         const cardSelectionViewData: CardSelectionViewData = {
             selectedResultUids: [],

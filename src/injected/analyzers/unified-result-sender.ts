@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { FilterResults } from 'injected/analyzers/filter-results';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
@@ -22,24 +23,32 @@ export class UnifiedResultSender {
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
         private readonly toolData: ToolData,
         private readonly generateUID: UUIDGenerator,
+        private readonly createResolution: ResolutionCreator,
+        //
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly filterNeedsReviewResults: FilterResults,
     ) {}
 
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
-        this.sendResults(axeResults.originalResult, this.convertScanResultsToUnifiedResults);
+        this.sendResults(
+            axeResults.originalResult,
+            this.convertScanResultsToUnifiedResults,
+            this.createFixResolution,
+        );
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
             this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToNeedsReviewUnifiedResults,
+            this.createCheckResolution,
         );
     };
 
     private sendResults = (
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
+        createResolution: ResolutionCreator,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -52,7 +61,7 @@ export class UnifiedResultSender {
         }
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(results, this.generateUID),
+            scanResult: converter(results, this.generateUID, createResolution),
             rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
             timestamp: results.timestamp,

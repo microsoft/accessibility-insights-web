@@ -17,6 +17,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { forOwn } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, Times } from 'typemoq';
+import { getResolution } from 'injected/adapters/resolution-creator';
 
 interface UnifiedResultSenderTestDefinition {
     getMethodToTest: (testSubject: UnifiedResultSender) => PostResolveCallback;
@@ -40,6 +41,7 @@ describe('sendConvertedResults', () => {
     const toolInfo = {} as ToolData;
 
     const uuidGeneratorStub = () => null;
+    const getResolutionStub = () => null;
     const testScanIncompleteWarningId = 'test-scan-incomplete-warning';
 
     let sendDelegate: IMock<MessageDelegate>;
@@ -87,7 +89,7 @@ describe('sendConvertedResults', () => {
                     const inputResults = testDefinition.getInputResults();
                     testDefinition
                         .getConvertResultMock()
-                        .setup(m => m(inputResults, uuidGeneratorStub))
+                        .setup(m => m(inputResults, uuidGeneratorStub, getResolutionStub))
                         .returns(val => unifiedResults);
                     convertToUnifiedRulesMock
                         .setup(m => m(inputResults))
@@ -106,6 +108,7 @@ describe('sendConvertedResults', () => {
                         convertToUnifiedRulesMock.object,
                         toolInfo,
                         uuidGeneratorStub,
+                        getResolutionStub,
                         scanIncompleteWarningDetectorMock.object,
                         filterNeedsReviewResultsMock.object,
                     );

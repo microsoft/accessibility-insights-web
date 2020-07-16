@@ -14,14 +14,7 @@ Array [
       "identifier": "target1;id1",
     },
     "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [
-          "any-test-message",
-        ],
-        "none": Array [],
-      },
-      "howToFixSummary": "how to fix 1",
+      "howToFixSummary": "how to fix",
     },
     "ruleId": "id1",
     "status": "fail",
@@ -37,14 +30,7 @@ Array [
       "identifier": "target2;id2",
     },
     "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [],
-        "none": Array [
-          "none-test-message",
-        ],
-      },
-      "howToFixSummary": "how to fix 2",
+      "howToFixSummary": "how to fix",
     },
     "ruleId": "id1",
     "status": "fail",
@@ -60,14 +46,7 @@ Array [
       "identifier": "target3;id3",
     },
     "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [
-          "all-test-message",
-        ],
-        "any": Array [],
-        "none": Array [],
-      },
-      "howToFixSummary": "how to fix 3",
+      "howToFixSummary": "how to fix",
     },
     "ruleId": "id2",
     "status": "fail",
@@ -83,12 +62,7 @@ Array [
       "identifier": "passTarget1;passTarget2",
     },
     "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [],
-        "none": Array [],
-      },
-      "howToFixSummary": undefined,
+      "howToFixSummary": "how to fix",
     },
     "ruleId": "test",
     "status": "pass",
@@ -110,14 +84,7 @@ Array [
       "css-selector": "incompleteTarget1",
       "identifier": "incompleteTarget1",
     },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [],
-        "none": Array [],
-      },
-      "howToFixSummary": undefined,
-    },
+    "resolution": undefined,
     "ruleId": "test2",
     "status": "unknown",
     "uid": "gguid-mock-stub",
@@ -131,16 +98,7 @@ Array [
       "css-selector": "target1;id1",
       "identifier": "target1;id1",
     },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [
-          "any-test-message",
-        ],
-        "none": Array [],
-      },
-      "howToFixSummary": "how to fix 1",
-    },
+    "resolution": undefined,
     "ruleId": "id1",
     "status": "fail",
     "uid": "gguid-mock-stub",
@@ -154,16 +112,7 @@ Array [
       "css-selector": "target2;id2",
       "identifier": "target2;id2",
     },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [],
-        "any": Array [],
-        "none": Array [
-          "none-test-message",
-        ],
-      },
-      "howToFixSummary": "how to fix 2",
-    },
+    "resolution": undefined,
     "ruleId": "id1",
     "status": "fail",
     "uid": "gguid-mock-stub",
@@ -177,16 +126,7 @@ Array [
       "css-selector": "target3;id3",
       "identifier": "target3;id3",
     },
-    "resolution": Object {
-      "how-to-fix-web": Object {
-        "all": Array [
-          "all-test-message",
-        ],
-        "any": Array [],
-        "none": Array [],
-      },
-      "howToFixSummary": "how to fix 3",
-    },
+    "resolution": undefined,
     "ruleId": "id2",
     "status": "fail",
     "uid": "gguid-mock-stub",

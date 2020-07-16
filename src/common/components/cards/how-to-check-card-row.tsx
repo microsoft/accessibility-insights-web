@@ -5,13 +5,20 @@ import { CardRowProps } from '../../../common/configs/unified-result-property-co
 import { NamedFC } from '../../../common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
 
+export interface HowToCheckWebPropertyData {
+    checkText: string;
+}
+
+export interface HowToFixWebCardRowProps extends CardRowProps {
+    propertyData: HowToCheckWebPropertyData;
+}
 export const HowToCheckWebCardRow = NamedFC<CardRowProps>(
     'HowToCheckWebCardRow',
     ({ ...props }) => {
         return (
             <SimpleCardRow
                 label="How to check"
-                content="content for how to check"
+                content={props.propertyData}
                 rowKey={`how-to-check-row-${props.index}`}
             />
         );

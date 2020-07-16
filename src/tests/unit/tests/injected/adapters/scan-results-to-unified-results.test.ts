@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times, It } from 'typemoq';
 
+import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { generateUID } from '../../../../../common/uid-generator';
 import {
     convertScanResultsToNeedsReviewUnifiedResults,
@@ -11,6 +12,7 @@ import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ScanResults to Unified Results Test', () => {
     let generateGuidMock: IMock<() => string>;
+    let resolutionCreatorMock: IMock<ResolutionCreator>;
 
     beforeEach(() => {
         const guidStub = 'gguid-mock-stub';
@@ -19,30 +21,51 @@ describe('ScanResults to Unified Results Test', () => {
             .setup(ggm => ggm())
             .returns(() => guidStub)
             .verifiable(Times.atLeastOnce());
+        resolutionCreatorMock = Mock.ofType<ResolutionCreator>();
     });
+
     const nullIdentifiers = [null, undefined, {}];
+
+    const howToFixUnifiedResolution = { howToFixSummary: 'how to fix' };
+    const howToCheckUnifiedResolution = { howToFixSummary: 'how to check' };
+
     test.each(nullIdentifiers)(
         'convertScanResultsToUnifiedResults provides a defined UnifiedResult instance %s',
         scanResultStub => {
             const unifiedResults = convertScanResultsToUnifiedResults(
                 scanResultStub as ScanResults,
                 generateGuidMock.object,
+                resolutionCreatorMock.object,
             );
             expect(unifiedResults).toBeDefined();
         },
     );
 
     test('conversion works fine when there is no data in scanresults', () => {
+        resolutionCreatorMock
+            .setup(m => m('how-to-fix', It.isAny()))
+            .returns(val => howToFixUnifiedResolution);
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
         expect(
-            convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object),
+            convertScanResultsToUnifiedResults(
+                scanResultsStub,
+                generateGuidMock.object,
+                resolutionCreatorMock.object,
+            ),
         ).toMatchSnapshot();
     });
 
     test('conversion works with filled up passes and failures value in scan results', () => {
+        resolutionCreatorMock
+            .setup(m => m('how-to-fix', It.isAny()))
+            .returns(val => howToFixUnifiedResolution);
         const scanResultsStub: ScanResults = createTestResults();
         expect(
-            convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object),
+            convertScanResultsToUnifiedResults(
+                scanResultsStub,
+                generateGuidMock.object,
+                resolutionCreatorMock.object,
+            ),
         ).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
@@ -53,22 +76,37 @@ describe('ScanResults to Unified Results Test', () => {
             const unifiedResults = convertScanResultsToNeedsReviewUnifiedResults(
                 scanResultStub as ScanResults,
                 generateGuidMock.object,
+                resolutionCreatorMock.object,
             );
             expect(unifiedResults).toBeDefined();
         },
     );
 
     test('needs review conversion works fine when there is no data in scanresults', () => {
+        resolutionCreatorMock
+            .setup(m => m('how-to-check', It.isAny()))
+            .returns(val => howToCheckUnifiedResolution);
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
         expect(
-            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
+            convertScanResultsToNeedsReviewUnifiedResults(
+                scanResultsStub,
+                generateGuidMock.object,
+                resolutionCreatorMock.object,
+            ),
         ).toMatchSnapshot();
     });
 
     test('needs review conversion works with filled up passes, failures and incomplete values in scan results', () => {
+        resolutionCreatorMock
+            .setup(m => m('how-to-check', It.isAny()))
+            .returns(val => howToCheckUnifiedResolution);
         const scanResultsStub: ScanResults = createTestResultsWithIncompletes();
         expect(
-            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
+            convertScanResultsToNeedsReviewUnifiedResults(
+                scanResultsStub,
+                generateGuidMock.object,
+                resolutionCreatorMock.object,
+            ),
         ).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });

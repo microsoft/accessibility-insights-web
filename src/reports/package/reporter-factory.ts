@@ -3,6 +3,7 @@
 import { createToolData } from 'common/application-properties-provider';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
+import { getResolution } from 'injected/adapters/resolution-creator';
 import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
@@ -85,6 +86,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUnifiedResults: convertScanResultsToUnifiedResults,
         getCards: getCardViewData,
         getUUID: generateUID,
+        getResolution: getResolution,
     };
 
     return new AxeResultsReport(deps, parameters, toolData);

@@ -77,6 +77,7 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
+import { getResolution } from 'injected/adapters/resolution-creator';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -299,6 +300,7 @@ export class MainWindowInitializer extends WindowInitializer {
             convertScanResultsToUnifiedRules,
             toolData,
             generateUID,
+            getResolution,
             scanIncompleteWarningDetector,
             filterNeedsReviewResults,
         );
