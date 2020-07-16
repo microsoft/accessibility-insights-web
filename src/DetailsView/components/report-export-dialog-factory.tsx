@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ExportDialogWithLocalState,
@@ -49,15 +48,7 @@ export function getReportExportDialogForFastPass(
     isOpen: boolean,
     dismissExportDialog: () => void,
 ): JSX.Element {
-    const scanResult = props.visualizationScanResultData.issues.scanResult;
-
-    if (!scanResult) {
-        return null;
-    }
-
-    const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
-
-    if (selectedTest !== VisualizationType.Issues) {
+    if (props.switcherNavConfiguration.shouldShowReportExportButton(props) !== true) {
         return null;
     }
 

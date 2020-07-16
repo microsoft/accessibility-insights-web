@@ -9,23 +9,21 @@ import {
     TargetAppData,
     ToolData,
 } from 'common/types/store-data/unified-data-interface';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     DetailsViewCommandBarDeps,
     DetailsViewCommandBarProps,
 } from 'DetailsView/components/details-view-command-bar';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
 } from 'DetailsView/components/report-export-dialog-factory';
+import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { ScanResults } from 'scanner/iruleresults';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportExportDialogFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -42,14 +40,12 @@ describe('ReportExportDialogFactory', () => {
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
-    let visualizationScanResultData: VisualizationScanResultData;
-    let visualizationStoreData: VisualizationStoreData;
     let cardsViewData: CardsViewModel;
-    let scanResult: ScanResults;
     let targetAppInfo: TargetAppData;
     let scanMetadata: ScanMetadata;
     let deps: DetailsViewCommandBarDeps;
     let dismissExportDialogMock: IMock<() => void>;
+    let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -69,9 +65,8 @@ describe('ReportExportDialogFactory', () => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         dismissExportDialogMock = Mock.ofInstance(() => null);
+        shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
         cardsViewData = null;
-        scanResult = null;
-        visualizationStoreData = {} as VisualizationStoreData;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             getCurrentDate: () => theDate,
@@ -81,21 +76,18 @@ describe('ReportExportDialogFactory', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        visualizationScanResultData = {
-            issues: {
-                scanResult: scanResult,
-            },
-        } as VisualizationScanResultData;
+        const switcherNavConfiguration = {
+            shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
+        } as DetailsViewSwitcherNavConfiguration;
 
         return {
             deps,
             featureFlagStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
-            visualizationScanResultData,
-            visualizationStoreData,
             cardsViewData,
             scanMetadata,
+            switcherNavConfiguration,
         } as DetailsViewCommandBarProps;
     }
 
@@ -114,35 +106,10 @@ describe('ReportExportDialogFactory', () => {
             .verifiable(Times.once());
     }
 
-    function setAutomatedChecksReportGenerator(): void {
-        reportGeneratorMock
-            .setup(reportGenerator =>
-                reportGenerator.generateFastPassAutomatedChecksReport(
-                    theDate,
-                    cardsViewData,
-                    theDescription,
-                    scanMetadata,
-                ),
-            )
-            .returns(() => theGeneratorOutput)
-            .verifiable(Times.once());
-    }
-
-    function setSelectedFastPassDetailsView(test: VisualizationType): void {
-        visualizationStoreData = {
-            selectedFastPassDetailsView: test,
-        } as VisualizationStoreData;
-    }
-
-    function setScanResults(): void {
-        scanResult = {} as ScanResults;
-    }
-
-    function setupNonNullDialogForFastpass(): void {
-        cardsViewData = {} as CardsViewModel;
-        setScanResults();
-        setSelectedFastPassDetailsView(VisualizationType.Issues);
-        setAutomatedChecksReportGenerator();
+    function setupShouldShowReportExportButton(showReportExportButton: boolean): void {
+        shouldShowReportExportButtonMock
+            .setup(s => s(It.isAny()))
+            .returns(() => showReportExportButton);
     }
 
     function getDialogWrapper(element: JSX.Element): ShallowWrapper {
@@ -224,20 +191,8 @@ describe('ReportExportDialogFactory', () => {
     });
 
     describe('getReportExportDialogForFastPass', () => {
-        test('scanResults is null, props is null', () => {
-            const props = getProps();
-            const dialog = getReportExportDialogForFastPass(
-                props,
-                isOpen,
-                dismissExportDialogMock.object,
-            );
-
-            expect(dialog).toBeNull();
-        });
-
-        test('scanResults is not null, test is Tabstop, props is null', () => {
-            setScanResults();
-            setSelectedFastPassDetailsView(VisualizationType.TabStops);
+        test('renders as null when shouldShowReportExportButton returns falls', () => {
+            setupShouldShowReportExportButton(false);
             const props = getProps();
 
             const dialog = getReportExportDialogForFastPass(
@@ -249,10 +204,8 @@ describe('ReportExportDialogFactory', () => {
             expect(dialog).toBeNull();
         });
 
-        test('scanResults is not null, test is Issues, properties are set', () => {
-            cardsViewData = {} as CardsViewModel;
-            setScanResults();
-            setSelectedFastPassDetailsView(VisualizationType.Issues);
+        test('expected properties are set', () => {
+            setupShouldShowReportExportButton(true);
             const props = getProps();
 
             const wrapper = getDialogWrapper(
@@ -262,7 +215,7 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('htmlGenerator calls reportGenerator', () => {
-            setupNonNullDialogForFastpass();
+            setupShouldShowReportExportButton(true);
             const props = getProps();
 
             const dialog = getReportExportDialogForFastPass(
@@ -277,7 +230,7 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('updatePersistedDescription returns null', () => {
-            setupNonNullDialogForFastpass();
+            setupShouldShowReportExportButton(true);
             const props = getProps();
 
             const dialog = getReportExportDialogForFastPass(
@@ -290,7 +243,7 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('getExportDescription returns empty string', () => {
-            setupNonNullDialogForFastpass();
+            setupShouldShowReportExportButton(true);
             const props = getProps();
             const expectedDescription = '';
 
@@ -303,7 +256,7 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('dismissExportDialog called', () => {
-            setupNonNullDialogForFastpass();
+            setupShouldShowReportExportButton(true);
             const props = getProps();
 
             const dialog = getReportExportDialogForFastPass(

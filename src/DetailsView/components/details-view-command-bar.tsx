@@ -16,7 +16,6 @@ import { ReportGenerator } from 'reports/report-generator';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
-import { ExportDialogWithLocalState } from 'DetailsView/components/export-dialog-with-local-state';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
@@ -150,8 +149,10 @@ export class DetailsViewCommandBar extends React.Component<
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
     private renderExportComponent(): JSX.Element {
-        // TODO: don't render in certain cases for fastpass
-        return <ReportExportButton showReportExportDialog={this.showReportExportDialog} />;
+        if (this.props.switcherNavConfiguration.shouldShowReportExportButton(this.props) === true) {
+            return <ReportExportButton showReportExportDialog={this.showReportExportDialog} />;
+        }
+        return null;
     }
 
     private renderExportDialog(): JSX.Element {

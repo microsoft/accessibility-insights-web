@@ -15,7 +15,6 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
     </StyledTooltipHostBase>
   </div>
   <CommandBarButtonsMenu deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} renderExportReportComponent={[Function: renderExportReportComponent]} />
-  <ExportDialogWithLocalState isHidden={true} isOpen={false} dismissExportDialog={[Function]} />
 </div>"
 `;
 
@@ -34,12 +33,14 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton isHidden={false} showReportExportDialog={[Function]} />
+    <ReportExportButton showReportExportDialog={[Function]} />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
   </div>
-  <ExportDialogWithLocalState isHidden={false} isOpen={false} dismissExportDialog={[Function]} />
+  <div>
+    Export dialog
+  </div>
 </div>"
 `;
 
@@ -58,9 +59,11 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton isHidden={false} showReportExportDialog={[Function]} />
+    <ReportExportButton showReportExportDialog={[Function]} />
   </div>
-  <ExportDialogWithLocalState isHidden={false} isOpen={false} dismissExportDialog={[Function]} />
+  <div>
+    Export dialog
+  </div>
 </div>"
 `;
 
@@ -79,9 +82,11 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton isHidden={true} showReportExportDialog={[Function]} />
+    <ReportExportButton showReportExportDialog={[Function]} />
   </div>
-  <ExportDialogWithLocalState isHidden={true} isOpen={true} dismissExportDialog={[Function]} />
+  <div>
+    Export dialog
+  </div>
 </div>"
 `;
 
@@ -100,12 +105,13 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton isHidden={true} showReportExportDialog={[Function]} />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
   </div>
-  <ExportDialogWithLocalState isHidden={true} isOpen={false} dismissExportDialog={[Function]} />
+  <div>
+    Export dialog
+  </div>
 </div>"
 `;
 
@@ -123,9 +129,8 @@ exports[`DetailsViewCommandBar renders without export button, without start over
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
-  <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton isHidden={true} showReportExportDialog={[Function]} />
+  <div>
+    Export dialog
   </div>
-  <ExportDialogWithLocalState isHidden={true} isOpen={false} dismissExportDialog={[Function]} />
 </div>"
 `;

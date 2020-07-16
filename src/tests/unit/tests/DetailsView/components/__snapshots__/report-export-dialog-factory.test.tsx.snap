@@ -6,7 +6,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
 </div>"
 `;
 
-exports[`ReportExportDialogFactory getReportExportDialogForFastPass scanResults is not null, test is Issues, properties are set 1`] = `
+exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected properties are set 1`] = `
 "<div>
   <ExportDialogWithLocalState deps={{...}} scanDate={{...}} pageTitle=\\"command-bar-test-tab-title\\" reportExportFormat=\\"AutomatedChecks\\" htmlGenerator={[Function: htmlGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} isOpen={true} dismissExportDialog={[Function: proxy]} />
 </div>"

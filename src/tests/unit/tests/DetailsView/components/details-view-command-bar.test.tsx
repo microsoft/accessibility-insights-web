@@ -10,35 +10,39 @@ import {
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import {
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
+    ReportExportDialogFactory,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';
     const thePageUrl = 'command-bar-test-url';
+    const reportExportDialogStub = <div>Export dialog</div>;
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
-    let hideExportButton: boolean;
+    let showReportExportButton: boolean;
+    let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(
             DetailsViewActionMessageCreator,
             MockBehavior.Loose,
         );
+        reportExportDialogFactory = Mock.ofType<ReportExportDialogFactory>();
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
         isCommandBarCollapsed = false;
-        hideExportButton = true;
+        showReportExportButton = true;
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -51,7 +55,8 @@ describe('DetailsViewCommandBar', () => {
         );
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
-            ReportExportDialogFactory: (p, o, d) => null,
+            ReportExportDialogFactory: reportExportDialogFactory.object,
+            shouldShowReportExportButton: p => showReportExportButton,
             StartOverComponentFactory: p => startOverComponent,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
@@ -108,6 +113,7 @@ describe('DetailsViewCommandBar', () => {
 
     test('renders with report export dialog open', () => {
         const props = getProps();
+        setupReportExportDialogFactory();
 
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
         rendered.setState({ isReportExportDialogOpen: true });
@@ -116,15 +122,15 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
-        if (renderExportResults) {
-            hideExportButton = false;
-        }
+        showReportExportButton = renderExportResults;
 
         if (renderStartOver) {
             startOverComponent = <ActionButton>Start Over Component</ActionButton>;
         }
 
+        setupReportExportDialogFactory();
         const props = getProps();
+
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
@@ -138,5 +144,11 @@ describe('DetailsViewCommandBar', () => {
 
     function getTestSubject(): DetailsViewCommandBar {
         return new DetailsViewCommandBar(getProps());
+    }
+
+    function setupReportExportDialogFactory(): void {
+        reportExportDialogFactory
+            .setup(r => r(It.isAny(), It.isAny(), It.isAny()))
+            .returns(() => reportExportDialogStub);
     }
 });
