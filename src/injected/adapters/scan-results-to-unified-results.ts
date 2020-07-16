@@ -46,8 +46,8 @@ const createUnifiedResultsFromScanResults = (
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
     return [
-        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
-        ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator, true),
+        ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator, true),
     ];
 };
 
@@ -66,8 +66,18 @@ const createUnifiedResultsFromNeedsReviewScanResults = (
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] => {
     return [
-        ...createUnifiedResultsFromRuleResults(scanResults.incomplete, 'unknown', uuidGenerator),
-        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(
+            scanResults.incomplete,
+            'unknown',
+            uuidGenerator,
+            false,
+        ),
+        ...createUnifiedResultsFromRuleResults(
+            scanResults.violations,
+            'fail',
+            uuidGenerator,
+            false,
+        ),
     ];
 };
 
@@ -75,9 +85,10 @@ const createUnifiedResultsFromRuleResults = (
     ruleResults: RuleResult[],
     status: InstanceResultStatus,
     uuidGenerator: UUIDGenerator,
+    fix: boolean,
 ): UnifiedResult[] => {
     const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
-        createUnifiedResultsFromRuleResult(result, status, uuidGenerator),
+        createUnifiedResultsFromRuleResult(result, status, uuidGenerator, fix),
     );
 
     return flatMap(unifiedResultFromRuleResults);
@@ -87,6 +98,7 @@ const createUnifiedResultsFromRuleResult = (
     ruleResult: RuleResult,
     status: InstanceResultStatus,
     uuidGenerator: UUIDGenerator,
+    fix: boolean,
 ): UnifiedResult[] => {
     return ruleResult.nodes.map(node => {
         const data: RuleResultData = {
@@ -94,7 +106,7 @@ const createUnifiedResultsFromRuleResult = (
             ruleID: ruleResult.id,
         };
 
-        return createUnifiedResultFromNode(node, data, uuidGenerator);
+        return createUnifiedResultFromNode(node, data, uuidGenerator, fix);
     });
 };
 
@@ -102,6 +114,7 @@ const createUnifiedResultFromNode = (
     nodeResult: AxeNodeResult,
     ruleResultData: RuleResultData,
     uuidGenerator: UUIDGenerator,
+    fix: boolean,
 ): UnifiedResult => {
     return createUnifiedResult(
         {
@@ -116,10 +129,15 @@ const createUnifiedResultFromNode = (
             failureSummary: nodeResult.failureSummary,
         },
         uuidGenerator,
+        fix,
     );
 };
 
-const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGenerator): UnifiedResult => {
+const createUnifiedResult = (
+    data: CreationData,
+    uuidGenerator: UUIDGenerator,
+    fix: boolean,
+): UnifiedResult => {
     return {
         uid: uuidGenerator(),
         status: data.status,
@@ -132,13 +150,24 @@ const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGenerator): 
         descriptors: {
             snippet: data.snippet,
         },
-        resolution: {
+        resolution: getResolution(fix, data),
+    } as UnifiedResult;
+};
+
+const getResolution = (fix: boolean, data: CreationData) => {
+    if (fix) {
+        return {
             howToFixSummary: data.failureSummary,
             'how-to-fix-web': {
                 any: data.howToFix.oneOf,
                 none: data.howToFix.none,
                 all: data.howToFix.all,
             },
-        },
-    } as UnifiedResult;
+        };
+    } else {
+        return {
+            howToFixSummary: data.failureSummary,
+            'how-to-check-web': 123,
+        };
+    }
 };

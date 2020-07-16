@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ClassNameCardRow } from 'common/components/cards/class-name-card-row';
 import { ContentDescriptionCardRow } from 'common/components/cards/content-description-card-row';
-
+import { HowToCheckWebCardRow } from 'common/components/cards/how-to-check-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
 import { HowToFixAndroidCardRow } from '../components/cards/how-to-fix-android-card-row';
 import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
@@ -14,6 +14,7 @@ import { ReactFCWithDisplayName } from '../react/named-fc';
 export type PropertyType =
     | 'css-selector'
     | 'how-to-fix-web'
+    | 'how-to-check-web'
     | 'snippet'
     | 'className'
     | 'contentDescription'
@@ -22,6 +23,7 @@ export type PropertyType =
 export const AllPropertyTypes: PropertyType[] = [
     'css-selector',
     'how-to-fix-web',
+    'how-to-check-web',
     'snippet',
     'className',
     'contentDescription',
@@ -45,6 +47,10 @@ export interface PropertyConfiguration {
 
 export const howToFixConfiguration: PropertyConfiguration = {
     cardRow: HowToFixWebCardRow,
+};
+
+export const howToCheckConfiguration: PropertyConfiguration = {
+    cardRow: HowToCheckWebCardRow,
 };
 
 export const howToFixAndroidConfiguration: PropertyConfiguration = {
@@ -77,6 +83,7 @@ export type PropertyIdToConfigurationMap = {
 const propertyIdToConfigurationMap: PropertyIdToConfigurationMap = {
     'css-selector': cssSelectorConfiguration,
     'how-to-fix-web': howToFixConfiguration,
+    'how-to-check-web': howToCheckConfiguration,
     howToFixFormat: howToFixAndroidConfiguration,
     snippet: snippetConfiguration,
     className: classNameConfiguration,
