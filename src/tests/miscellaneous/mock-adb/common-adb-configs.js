@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const { apkPath, apkVersionName } = require('accessibility-insights-for-android-service-bin');
+const { apkVersionName } = require('accessibility-insights-for-android-service-bin');
 const _ = require('lodash');
 const cloneDeep = require('lodash/cloneDeep');
 const path = require('path');
@@ -172,6 +172,7 @@ module.exports = {
         'multiple-devices': workingDeviceCommands(['device-1', 'device-2', 'emulator-3'], 62442),
         'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
     },
+    delayAllCommands,
     simulateNoDevicesConnected,
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
