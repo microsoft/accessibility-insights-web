@@ -188,7 +188,15 @@ Success
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -265,7 +273,7 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -354,7 +362,7 @@ Success
     "delayMs": 5000,
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -547,7 +555,15 @@ Success
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -618,7 +634,7 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -702,7 +718,7 @@ Success
     "delayMs": 5000,
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -895,7 +911,15 @@ Success
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -969,7 +993,7 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1054,7 +1078,7 @@ Success
     "delayMs": 5000,
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1259,7 +1283,15 @@ Success
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1336,7 +1368,7 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1424,7 +1456,7 @@ Success
     "delayMs": 5000,
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1629,7 +1661,15 @@ Success
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1706,7 +1746,7 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -1794,7 +1834,7 @@ Success
     "delayMs": 5000,
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1996,7 +2036,15 @@ Success
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -2072,7 +2120,7 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
@@ -2159,7 +2207,7 @@ Success
     "delayMs": 5000,
     "stdout": "",
   },
-  "PUSH PLACEHOLDER - MATCH IS VIA REGEX": Object {
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",

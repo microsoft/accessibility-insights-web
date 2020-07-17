@@ -72,7 +72,7 @@ function addInstallServiceCommands(id, output) {
         __dirname,
         '../../../../drop/electron/unified-dev/product/android-service/android-service.apk',
     );
-    output['PUSH PLACEHOLDER - MATCH IS VIA REGEX'] = {
+    output[`PUSH PLACEHOLDER for '${id}' - MATCH IS VIA REGEX`] = {
         regexTarget: `^-s ${id} push .*android-service.apk /data/local/tmp/appium_cache`,
         stdout: '(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)',
     };
