@@ -9,7 +9,11 @@ import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
-import { commonAdbConfigs, setupMockAdb } from '../../miscellaneous/mock-adb/setup-mock-adb';
+import {
+    commonAdbConfigs,
+    setupMockAdb,
+    simulateNoDevicesConnected,
+} from '../../miscellaneous/mock-adb/setup-mock-adb';
 
 describe('Android setup - locate adb', () => {
     let app: AppController;
@@ -36,7 +40,7 @@ describe('Android setup - locate adb', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
 
-        await setupMockAdb(commonAdbConfigs['slow-single-device']);
+        await setupMockAdb(simulateNoDevicesConnected(commonAdbConfigs['slow-single-device']));
         await dialog.client.click('input[type="text"]');
         await dialog.client.keys(`${(global as any).rootDir}/drop/mock-adb`);
 
@@ -44,7 +48,7 @@ describe('Android setup - locate adb', () => {
         await dialog.client.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-adb');
         await scanForAccessibilityIssuesInAllModes(app);
-        await dialog.waitForDialogVisible('detect-devices');
+        await dialog.waitForDialogVisible('prompt-connect-to-device');
     });
 
     it('should pass accessibility validation in both contrast modes', async () => {
