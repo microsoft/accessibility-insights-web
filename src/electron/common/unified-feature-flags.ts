@@ -6,7 +6,6 @@ export class UnifiedFeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly exportReport = 'exportReport';
-    public static readonly adbSetupView = 'adbSetupView';
 }
 
 export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
@@ -35,14 +34,6 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
             displayableDescription: 'Show the export report button on the automated checks window',
             isPreviewFeature: false,
             forceDefault: true,
-        },
-        {
-            id: UnifiedFeatureFlags.adbSetupView,
-            defaultValue: true,
-            displayableName: 'Enable the new adb experience',
-            displayableDescription: 'Enable the new adb setup and installation experience',
-            isPreviewFeature: false,
-            forceDefault: false,
         },
     ];
 }

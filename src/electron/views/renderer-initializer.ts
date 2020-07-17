@@ -438,7 +438,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const androidSetupStartListener = new AndroidSetupStartListener(
             userConfigurationStore,
             androidSetupStore,
-            featureFlagStore,
             androidSetupActionCreator,
         );
         androidSetupStartListener.initialize();

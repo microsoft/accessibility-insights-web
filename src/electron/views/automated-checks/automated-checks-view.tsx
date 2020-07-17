@@ -30,7 +30,6 @@ import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
@@ -153,15 +152,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     }
 
     private getConnectedDeviceName(): string {
-        return this.props.featureFlagStoreData[UnifiedFeatureFlags.adbSetupView]
-            ? this.props.androidSetupStoreData.selectedDevice?.friendlyName
-            : this.props.deviceStoreData.connectedDevice;
+        return this.props.androidSetupStoreData.selectedDevice?.friendlyName;
     }
 
     private getScanPort(): number {
-        return this.props.featureFlagStoreData[UnifiedFeatureFlags.adbSetupView]
-            ? this.props.androidSetupStoreData.scanPort
-            : this.props.deviceStoreData.port;
+        return this.props.androidSetupStoreData.scanPort;
     }
 
     private renderDeviceDisconnected(): JSX.Element {
