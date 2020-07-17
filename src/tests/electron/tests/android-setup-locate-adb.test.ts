@@ -6,7 +6,7 @@ import {
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
-import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
+import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { commonAdbConfigs, setupMockAdb } from '../../miscellaneous/mock-adb/setup-mock-adb';
@@ -46,7 +46,6 @@ describe('Android setup - locate adb', () => {
     });
 
     it('should pass accessibility validation in both contrast modes', async () => {
-        await scanForAccessibilityIssues(app, true);
-        await scanForAccessibilityIssues(app, false);
+        await scanForAccessibilityIssuesInAllModes(app);
     });
 });

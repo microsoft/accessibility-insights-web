@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createApplication } from 'tests/electron/common/create-application';
-import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
+import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { CommonSelectors } from 'tests/end-to-end/common/element-identifiers/common-selectors';
@@ -92,8 +92,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
         });
 
         it('should pass accessibility validation in both contrast modes', async () => {
-            await scanForAccessibilityIssues(app, true);
-            await scanForAccessibilityIssues(app, false);
+            await scanForAccessibilityIssuesInAllModes(app);
         });
     });
 });

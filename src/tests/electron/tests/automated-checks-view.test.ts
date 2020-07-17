@@ -7,7 +7,7 @@ import {
     AutomatedChecksViewSelectors,
     ScreenshotViewSelectors,
 } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
-import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
+import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
@@ -73,8 +73,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should pass accessibility validation in both contrast modes', async () => {
-        await scanForAccessibilityIssues(app, true);
-        await scanForAccessibilityIssues(app, false);
+        await scanForAccessibilityIssuesInAllModes(app);
     });
 
     async function assertExpandedRuleGroup(

@@ -7,7 +7,7 @@ import {
 import { detectDeviceAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-connect-to-device-step';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
-import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
+import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import {
@@ -49,7 +49,6 @@ describe('Android setup - prompt-connect-to-device ', () => {
     });
 
     it('should pass accessibility validation in both contrast modes', async () => {
-        await scanForAccessibilityIssues(app, true);
-        await scanForAccessibilityIssues(app, false);
+        await scanForAccessibilityIssuesInAllModes(app);
     });
 });

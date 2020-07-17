@@ -10,7 +10,12 @@ import {
 
 declare var axe;
 
-export async function scanForAccessibilityIssues(
+export async function scanForAccessibilityIssuesInAllModes(app: AppController): Promise<void> {
+    await scanForAccessibilityIssues(app, true);
+    await scanForAccessibilityIssues(app, false);
+}
+
+async function scanForAccessibilityIssues(
     app: AppController,
     enableHighContrast: boolean,
 ): Promise<void> {
