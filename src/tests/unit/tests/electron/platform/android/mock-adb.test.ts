@@ -14,7 +14,7 @@ import {
 } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
 describe('mock-adb tests match snapshots after normalizing path', () => {
-    const definedConfigs = ['single-device', 'multiple-devices', 'slow-single-device'];
+    const definedConfigs = Object.getOwnPropertyNames(commonAdbConfigs);
     // This regex is used to replace the root of the local repo with '.'
     let basePathRegEx: RegExp;
 
