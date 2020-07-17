@@ -7,7 +7,7 @@ import {
 import { tryAgainAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
-import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
+import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import {
@@ -57,24 +57,14 @@ describe('Android setup - prompt-grant-permissions', () => {
     });
 
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
-        await setupMockAdb(delayAllCommands(2500, commonAdbConfigs['single-device']));
+        await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
-        await a11yTest(true);
-        await a11yTest(false);
+        await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
-    it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => a11yTest(highContrastMode),
-    );
-
-    const a11yTest = async highContrastMode => {
-        await app.setHighContrastMode(highContrastMode);
-        await app.waitForHighContrastMode(highContrastMode);
-
-        const violations = await scanForAccessibilityIssues(dialog);
-        expect(violations).toStrictEqual([]);
-    };
+    it('should pass accessibility validation in both contrast modes', async () => {
+        await scanForAccessibilityIssuesInAllModes(app);
+    });
 });
