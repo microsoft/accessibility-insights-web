@@ -31,18 +31,20 @@ describe('Android setup - locate adb', () => {
         }
     });
 
-    it('respects user-provided adb location', async () => {
+    it('respects user-provided adb location, detect-adb passes a11y check', async () => {
         const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
 
-        await setupMockAdb(commonAdbConfigs['single-device']);
+        await setupMockAdb(commonAdbConfigs['slow-single-device']);
         await dialog.client.click('input[type="text"]');
         await dialog.client.keys(`${(global as any).rootDir}/drop/mock-adb`);
 
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
         await dialog.client.click(getAutomationIdSelector(nextId));
-        await dialog.waitForDialogVisible('prompt-connected-start-testing');
+        await dialog.waitForDialogVisible('detect-adb');
+        await scanForAccessibilityIssuesInAllModes(app);
+        await dialog.waitForDialogVisible('detect-devices');
     });
 
     it('should pass accessibility validation in both contrast modes', async () => {
