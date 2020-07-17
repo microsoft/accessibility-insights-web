@@ -28,9 +28,16 @@ setupMockAdb(config)
     .then(() => {
         console.log('Successfully set up mock adb in folder:\n');
         console.log(mockAdbFolder);
-        console.log('\n...supporting the following commands:\n');
+        console.log('\n...supporting the following exact commands:\n');
         for (const command of Object.keys(config)) {
             console.log(`  adb [-P port] ${command}`);
+        }
+        console.log('\n...and the following regular expressions:\n');
+        for (const value of Object.values(config)) {
+            const regexTarget = value.regexTarget;
+            if (regexTarget) {
+                console.log(`  adb [-P port] ${regexTarget}`);
+            }
         }
     })
     .catch(e => {
