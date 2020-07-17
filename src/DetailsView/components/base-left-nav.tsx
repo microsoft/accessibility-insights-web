@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { INav, INavLink, Nav } from 'office-ui-fabric-react';
+import { NamedFC } from 'common/react/named-fc';
+import { Button, INav, INavButtonProps, INavLink, Nav } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type onBaseLeftNavItemClick = (
@@ -40,6 +41,7 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
                         links,
                     },
                 ]}
+                linkAs={LinkButton}
                 onRenderLink={this.onRenderLink}
                 onLinkClick={this.onNavLinkClick}
                 styles={{
@@ -63,3 +65,21 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
         return link.onRenderNavLink(link);
     };
 }
+
+interface BaseNavButtonProps extends INavButtonProps {
+    link: BaseLeftNavLink;
+}
+
+const LinkButton = NamedFC<BaseNavButtonProps>('LinkButton', props => {
+    const link = props.link;
+    return (
+        <Button
+            aria-expanded={link.isExpanded}
+            tabIndex={0}
+            title={link.title}
+            onClick={e => link.onClickNavLink(e as any, link)}
+        >
+            {link.onRenderNavLink(link)}
+        </Button>
+    );
+});
