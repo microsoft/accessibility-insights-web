@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const { apkVersionName } = require('accessibility-insights-for-android-service-bin');
-const _ = require('lodash');
 const cloneDeep = require('lodash/cloneDeep');
 const path = require('path');
 
@@ -74,9 +73,7 @@ function addInstallServiceCommands(id, output) {
         '../../../../drop/electron/unified-dev/product/android-service/android-service.apk',
     );
     output['PUSH PLACEHOLDER - MATCH IS VIA REGEX'] = {
-        regexTarget: _.escapeRegExp(
-            `-s ${id} push ${fullLocalPathToApk} /data/local/tmp/appium_cache`,
-        ),
+        regexTarget: `^-s ${id} push .*android-service.apk /data/local/tmp/appium_cache`,
         stdout: '(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)',
     };
     output[`-s ${id} install -r ${fullLocalPathToApk}`] = {
