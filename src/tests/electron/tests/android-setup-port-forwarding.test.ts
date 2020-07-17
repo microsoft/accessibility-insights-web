@@ -56,7 +56,7 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
         await dialog.waitForDialogVisible('prompt-configuring-port-forwarding-failed');
     });
 
-    it('try again moves on if permissions are granted; configuring-port-forwarding a11y test', async () => {
+    it('try again moves on if port forwarded properly; configuring-port-forwarding a11y test', async () => {
         await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('configuring-port-forwarding');
