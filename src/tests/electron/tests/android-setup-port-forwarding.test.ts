@@ -64,7 +64,7 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
         await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
-    it('should pass accessibility validation in both contrast modes', async () => {
+    it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 });
