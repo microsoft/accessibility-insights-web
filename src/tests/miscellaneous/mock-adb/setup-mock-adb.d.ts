@@ -4,6 +4,7 @@ export const mockAdbFolder: string;
 
 export type MockAdbConfig = {
     [inputCommand: string]: {
+        regexTarget?: string;
         stdout?: string;
         stderr?: string;
         exitCode?: number;

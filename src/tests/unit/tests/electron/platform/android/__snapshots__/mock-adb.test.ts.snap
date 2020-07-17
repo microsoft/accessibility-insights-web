@@ -42,9 +42,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -106,9 +103,6 @@ Success
   "-s device-2 mkdir -p /data/local/tmp/appium_cache": Object {
     "exitCode": 0,
     "stdout": "",
-  },
-  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -172,9 +166,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -196,6 +187,18 @@ Success
   },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -248,9 +251,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -272,6 +272,10 @@ Success
   },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -329,10 +333,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "delayMs": 5000,
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -361,6 +361,11 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "delayMs": 5000,
@@ -411,9 +416,6 @@ Success
   "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
     "exitCode": 0,
     "stdout": "",
-  },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -473,9 +475,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -534,9 +533,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -558,6 +554,18 @@ Success
   },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stderr": "Disabled by test config",
@@ -604,9 +612,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -628,6 +633,10 @@ Success
   },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stderr": "Disabled by test config",
@@ -680,10 +689,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "delayMs": 5000,
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -712,6 +717,11 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stderr": "Disabled by test config",
@@ -760,9 +770,6 @@ Success
   "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
     "exitCode": 0,
     "stdout": "",
-  },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -823,9 +830,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -885,9 +889,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -909,6 +910,18 @@ Success
   },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -958,9 +971,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -982,6 +992,10 @@ Success
   },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -1035,10 +1049,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "delayMs": 5000,
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -1067,6 +1077,11 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "delayMs": 5000,
@@ -1122,9 +1137,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1186,9 +1198,6 @@ Success
   "-s device-2 mkdir -p /data/local/tmp/appium_cache": Object {
     "exitCode": 0,
     "stdout": "",
-  },
-  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -1252,9 +1261,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1276,6 +1282,18 @@ Success
   },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -1328,9 +1346,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1352,6 +1367,10 @@ Success
   },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -1409,10 +1428,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "delayMs": 5000,
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -1440,6 +1455,11 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "delayMs": 5000,
@@ -1494,9 +1514,6 @@ Success
   "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
     "exitCode": 0,
     "stdout": "",
-  },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
@@ -1560,9 +1577,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-2 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1625,9 +1639,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1649,6 +1660,18 @@ Success
   },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -1701,9 +1724,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1725,6 +1745,10 @@ Success
   },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -1782,10 +1806,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "delayMs": 5000,
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1813,6 +1833,11 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "delayMs": 5000,
@@ -1867,9 +1892,6 @@ Success
   "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
     "exitCode": 0,
     "stdout": "",
-  },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -1932,9 +1954,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-2 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1996,9 +2015,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s emulator-3 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -2019,6 +2035,18 @@ Success
   },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -2071,9 +2099,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -2094,6 +2119,10 @@ Success
   },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "stdout": "List of devices attached
@@ -2151,10 +2180,6 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
-  "-s device-1 push ./drop/electron/unified-dev/product/android-service/android-service.apk /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk": Object {
-    "delayMs": 5000,
-    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
-  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -2181,6 +2206,11 @@ Success
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
   },
   "devices": Object {
     "delayMs": 5000,

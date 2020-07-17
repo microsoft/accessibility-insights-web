@@ -70,11 +70,10 @@ function addInstallServiceCommands(id, output) {
     };
     const fullLocalPathToApk = path.join(
         __dirname,
-        '../../../../drop/electron/unified-dev/product/android-service/android-service.apk', // Future PR: Use regex, especially for hash!
+        '../../../../drop/electron/unified-dev/product/android-service/android-service.apk',
     );
-    output[
-        `-s ${id} push ${fullLocalPathToApk} /data/local/tmp/appium_cache/b9bb63afe96d3f7ca079fd18a82b1be5e4bb59e1.apk`
-    ] = {
+    output[`PUSH PLACEHOLDER for '${id}' - MATCH IS VIA REGEX`] = {
+        regexTarget: `^-s ${id} push .*android-service.apk /data/local/tmp/appium_cache`,
         stdout: '(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)',
     };
     output[`-s ${id} install -r ${fullLocalPathToApk}`] = {
