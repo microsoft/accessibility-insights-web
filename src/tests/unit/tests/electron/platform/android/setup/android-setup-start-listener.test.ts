@@ -28,6 +28,36 @@ describe('AndroidSetupStartListener', () => {
         },
     );
 
+    it('sends ready-to-start when initial state is not ready but changed state is', () => {
+        testWhetherReadyToStartFired(
+            {
+                stepId: 'wait-to-start',
+                isFirstTimeTelemetry: true,
+            },
+            {
+                stepId: 'detect-adb',
+                isFirstTimeTelemetry: true,
+            },
+            false,
+            true,
+        );
+    });
+
+    it('does not send ready-to-start twice (because listeners are removed)', () => {
+        testWhetherReadyToStartFired(
+            {
+                stepId: 'wait-to-start',
+                isFirstTimeTelemetry: true,
+            },
+            {
+                stepId: 'detect-adb',
+                isFirstTimeTelemetry: true,
+            },
+            true,
+            false,
+        );
+    });
+
     function testWhetherReadyToStartFired(
         initialState: ReadyToStartState,
         changedState: ReadyToStartState,
