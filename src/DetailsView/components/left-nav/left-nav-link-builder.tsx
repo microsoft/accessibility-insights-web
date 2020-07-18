@@ -221,9 +221,6 @@ export class LeftNavLinkBuilder {
             ...baselink,
             status,
             title: `${index}: ${name} (${narratorTestStatus})`,
-            // title: `${index}: ${name} (${narratorTestStatus}) ${
-            //     isExpanded ? 'expanded' : 'collapsed'
-            // }`,
             links: [gettingStartedLink, ...requirementLinks],
             isExpanded: isExpanded,
             testType: assessment.visualizationType,
