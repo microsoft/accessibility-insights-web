@@ -1,11 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-button.nav-link-button {
-    &:hover,
-    &:active,
-    &:focus,
-    &:active:hover {
-        text-decoration: none;
+a,
+button {
+    &.nav-link-button {
+        &:hover,
+        &:active,
+        &:focus,
+        &:active:hover {
+            text-decoration: none;
+        }
     }
 }

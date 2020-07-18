@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavLinkButton renders 1`] = `
+exports[`NavLinkButton renders as anchor tag 1`] = `
+<StyledLinkBase
+  aria-expanded={true}
+  className="navLinkButton some class name"
+  href="#"
+  onClick={[Function]}
+  title="some title"
+/>
+`;
+
+exports[`NavLinkButton renders as button element 1`] = `
 <StyledLinkBase
   aria-expanded={true}
   className="navLinkButton some class name"

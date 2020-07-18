@@ -7,22 +7,33 @@ import {
 import { NavLinkButton, NavLinkButtonProps } from 'DetailsView/components/nav-link-button';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 describe('NavLinkButton', () => {
-    test('renders', () => {
-        const onClickNavLinkMock = Mock.ofType<onBaseLeftNavItemClick>();
-        const onRenderNavLink = Mock.ofType<onBaseLeftNavItemRender>();
-        const props: NavLinkButtonProps = {
+    let onClickNavLinkMock: IMock<onBaseLeftNavItemClick>;
+    let onRenderNavLinkMock: IMock<onBaseLeftNavItemRender>;
+    let props: NavLinkButtonProps;
+    beforeEach(() => {
+        onClickNavLinkMock = Mock.ofType<onBaseLeftNavItemClick>();
+        onRenderNavLinkMock = Mock.ofType<onBaseLeftNavItemRender>();
+        props = {
             link: {
                 isExpanded: true,
                 title: 'some title',
                 onClickNavLink: onClickNavLinkMock.object,
-                onRenderNavLink: onRenderNavLink.object,
+                onRenderNavLink: onRenderNavLinkMock.object,
             },
             className: 'some class name',
         } as NavLinkButtonProps;
+    });
 
+    test('renders as button element', () => {
+        const testSubject = shallow(<NavLinkButton {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    test('renders as anchor tag', () => {
+        props.link.forceAnchor = true;
         const testSubject = shallow(<NavLinkButton {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });
