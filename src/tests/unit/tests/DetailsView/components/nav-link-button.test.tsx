@@ -32,8 +32,14 @@ describe('NavLinkButton', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    test('renders as anchor tag', () => {
+    test('renders with href set', () => {
         props.link.forceAnchor = true;
+        const testSubject = shallow(<NavLinkButton {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with using name instead of title', () => {
+        props.link.name = 'some name';
         const testSubject = shallow(<NavLinkButton {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });

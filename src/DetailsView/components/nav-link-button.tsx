@@ -15,10 +15,10 @@ export const NavLinkButton = NamedFC<NavLinkButtonProps>('NavLinkButton', props 
     return (
         <Link
             aria-expanded={link.isExpanded}
-            title={link.title}
+            title={link.title || link.name}
             onClick={e => link.onClickNavLink(e, link)}
             className={css(styles.navLinkButton, props.className)}
-            href={link.forceAnchor === true ? '#' : undefined}
+            href={link.forceAnchor === true ? 'javascript:void(0)' : undefined}
         >
             {link.onRenderNavLink(link)}
         </Link>
