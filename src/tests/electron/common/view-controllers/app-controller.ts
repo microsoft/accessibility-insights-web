@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { Application } from 'spectron';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
@@ -38,7 +37,6 @@ export class AppController {
     public async openAndroidSetupView(
         step: AndroidSetupStepId,
     ): Promise<AndroidSetupViewController> {
-        await this.setFeatureFlag(UnifiedFeatureFlags.adbSetupView, true);
         const androidSetupController = new AndroidSetupViewController(this.client);
         await androidSetupController.waitForDialogVisible(step);
         return androidSetupController;
