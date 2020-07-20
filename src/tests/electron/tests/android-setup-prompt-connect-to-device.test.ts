@@ -12,6 +12,7 @@ import { AndroidSetupViewController } from 'tests/electron/common/view-controlle
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import {
     commonAdbConfigs,
+    delayAllCommands,
     setupMockAdb,
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
@@ -48,7 +49,15 @@ describe('Android setup - prompt-connect-to-device ', () => {
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
-    it('should pass accessibility validation in both contrast modes', async () => {
+    it('detect device spinner should pass accessibility validation an all contrast modes', async () => {
+        await setupMockAdb(delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)));
+        await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
+        await dialog.waitForDialogVisible('detect-devices');
+        await scanForAccessibilityIssuesInAllModes(app);
+        await dialog.waitForDialogVisible('prompt-connect-to-device'); // Let mock-adb finish
+    });
+
+    it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 });
