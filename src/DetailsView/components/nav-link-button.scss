@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/common.scss';
+a,
+button {
+    &.nav-link-button {
+        width: calc(100% - #{$pivotItemLeftBorderWidth});
+        &:hover,
+        &:active,
+        &:focus,
+        &:active:hover {
+            text-decoration: none;
+        }
+    }
+}
