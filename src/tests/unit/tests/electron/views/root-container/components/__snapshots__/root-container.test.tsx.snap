@@ -15,11 +15,6 @@ exports[`RootContainer renders with routeId = deviceConnectView 1`] = `
       },
     }
   }
-  deviceStoreData={
-    Object {
-      "port": 111,
-    }
-  }
   scanStoreData={
     Object {
       "status": 2,
@@ -57,11 +52,6 @@ exports[`RootContainer renders with routeId = resultsView 1`] = `
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "stores": undefined,
       },
-    }
-  }
-  deviceStoreData={
-    Object {
-      "port": 111,
     }
   }
   scanStoreData={

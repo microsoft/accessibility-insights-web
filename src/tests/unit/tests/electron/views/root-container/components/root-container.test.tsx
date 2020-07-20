@@ -23,7 +23,7 @@ describe('RootContainer', () => {
         storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(BaseClientStoresHub);
 
         deps = { storesHub: storeHubMock.object } as RootContainerDeps;
-        props = {
+        props = ({
             deps,
             storeState: {
                 windowStateStoreData: {
@@ -32,9 +32,6 @@ describe('RootContainer', () => {
                 },
                 userConfigurationStoreData: {
                     isFirstTime: false,
-                },
-                deviceStoreData: {
-                    port: 111,
                 },
                 scanStoreData: {
                     status: ScanStatus.Completed,
@@ -46,7 +43,7 @@ describe('RootContainer', () => {
                     rules: {},
                 },
             },
-        } as RootContainerProps;
+        } as unknown) as RootContainerProps;
     });
 
     describe('renders', () => {
