@@ -6,7 +6,6 @@ import {
     TelemetryPermissionDialogDeps,
 } from 'common/components/telemetry-permission-dialog';
 import { NamedFC } from 'common/react/named-fc';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
@@ -25,7 +24,6 @@ export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
     windowStateStoreData: WindowStateStoreData;
-    featureFlagStoreData: FeatureFlagStoreData;
     androidSetupStoreData: AndroidSetupStoreData;
 };
 
