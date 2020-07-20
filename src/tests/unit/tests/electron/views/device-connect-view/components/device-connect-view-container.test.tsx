@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
@@ -18,9 +17,6 @@ describe('DeviceConnectViewContainer', () => {
             deps,
             userConfigurationStoreData: {
                 isFirstTime: true,
-            },
-            deviceStoreData: {
-                deviceConnectState: DeviceConnectState.Default,
             },
             windowStateStoreData: {
                 currentWindowState: 'customSize',

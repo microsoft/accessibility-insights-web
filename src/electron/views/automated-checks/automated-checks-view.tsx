@@ -20,7 +20,6 @@ import {
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
@@ -52,7 +51,6 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
 export type AutomatedChecksViewProps = {
     deps: AutomatedChecksViewDeps;
     scanStoreData: ScanStoreData;
-    deviceStoreData: DeviceStoreData;
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
