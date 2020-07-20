@@ -40,8 +40,8 @@ describe('Android setup - prompt-install-service-failed ', () => {
     });
 
     it('initial component state is correct', async () => {
-        const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
-        expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
+        const [cancel, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+        expect(await dialog.isEnabled(getAutomationIdSelector(cancel))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(tryAgainAutomationId))).toBe(true);
     });
@@ -56,6 +56,11 @@ describe('Android setup - prompt-install-service-failed ', () => {
         await setupMockAdb(simulateServiceInstallationError(defaultDeviceConfig));
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('prompt-install-failed');
+    });
+
+    it('cancel button returns to choose device step', async () => {
+        await dialog.client.click(getAutomationIdSelector(leftFooterButtonAutomationId));
+        await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
