@@ -13,6 +13,6 @@ exports[`DetectServiceStep renders 1`] = `
     }
   }
   disableCancel={true}
-  spinnerLabel="Scanning for devices..."
+  spinnerLabel="Detecting service..."
 />
 `;
