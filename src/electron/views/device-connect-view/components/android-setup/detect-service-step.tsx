@@ -11,7 +11,7 @@ export const DetectServiceStep = NamedFC<CommonAndroidSetupStepProps>(
         return (
             <AndroidSetupSpinnerStep
                 deps={props.deps}
-                spinnerLabel="Scanning for devices..."
+                spinnerLabel="Detecting service..."
                 disableCancel={true}
             />
         );
