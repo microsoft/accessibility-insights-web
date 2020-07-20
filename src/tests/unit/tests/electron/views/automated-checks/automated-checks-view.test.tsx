@@ -48,10 +48,6 @@ describe('AutomatedChecksView', () => {
                     isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 },
                 scanStoreData: {},
-                deviceStoreData: {
-                    port: 62442,
-                    connectedDevice: 'Device name from deviceStoreData',
-                },
                 androidSetupStoreData: {
                     scanPort: 63000,
                     selectedDevice: {
@@ -134,7 +130,6 @@ describe('AutomatedChecksView', () => {
                     isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 },
                 cardSelectionStoreData,
-                deviceStoreData: {},
                 androidSetupStoreData: {},
                 scanStoreData: {
                     status: ScanStatus.Completed,

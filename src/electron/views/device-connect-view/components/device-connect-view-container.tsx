@@ -12,14 +12,11 @@ import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-d
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { AndroidSetupStepContainer } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-container';
 import * as React from 'react';
-import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { WindowTitle, WindowTitleDeps } from '../../common/window-title/window-title';
 import { AndroidSetupPageDeps } from './android-setup/android-setup-types';
-import { DeviceConnectBodyDeps } from './device-connect-body';
 import * as styles from './device-connect-view-container.scss';
 
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
-    DeviceConnectBodyDeps &
     WindowTitleDeps &
     HeaderIconDeps &
     AndroidSetupPageDeps;
@@ -27,7 +24,6 @@ export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
-    deviceStoreData: DeviceStoreData;
     windowStateStoreData: WindowStateStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     androidSetupStoreData: AndroidSetupStoreData;

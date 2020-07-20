@@ -131,7 +131,6 @@ import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
 import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
 import { DeviceActions } from '../flux/action/device-actions';
-import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import {
@@ -196,9 +195,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             indexedDBInstance,
         );
         userConfigurationStore.initialize();
-
-        const deviceStore = new DeviceStore(deviceActions);
-        deviceStore.initialize();
 
         const interpreter = new Interpreter();
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
@@ -273,7 +269,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const storesHub = new BaseClientStoresHub<RootContainerState>([
             userConfigurationStore,
-            deviceStore,
             windowStateStore,
             scanStore,
             unifiedScanResultStore,
@@ -501,7 +496,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,
             userConfigurationStore,
-            deviceStore,
             userConfigMessageCreator,
             windowStateActionCreator,
             dropdownClickHandler,

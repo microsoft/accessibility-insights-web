@@ -19,9 +19,6 @@ describe('DeviceConnectViewContainer', () => {
             userConfigurationStoreData: {
                 isFirstTime: true,
             },
-            deviceStoreData: {
-                deviceConnectState: DeviceConnectState.Default,
-            },
             windowStateStoreData: {
                 currentWindowState: 'customSize',
                 routeId: 'deviceConnectView',

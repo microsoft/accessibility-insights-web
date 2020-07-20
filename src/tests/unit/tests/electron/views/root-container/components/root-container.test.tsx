@@ -33,9 +33,6 @@ describe('RootContainer', () => {
                 userConfigurationStoreData: {
                     isFirstTime: false,
                 },
-                deviceStoreData: {
-                    port: 111,
-                },
                 scanStoreData: {
                     status: ScanStatus.Completed,
                 },

@@ -32,11 +32,6 @@ exports[`DeviceConnectViewContainer renders 1`] = `
           }
         }
         deps={Object {}}
-        deviceStoreData={
-          Object {
-            "deviceConnectState": 0,
-          }
-        }
         userConfigurationStoreData={
           Object {
             "isFirstTime": true,
