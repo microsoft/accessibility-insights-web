@@ -7,7 +7,7 @@ import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = CommandBarProps & {
-    renderExportReportComponent: () => JSX.Element;
+    renderExportReportButton: () => JSX.Element;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
@@ -16,7 +16,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         const overflowItems: IContextualMenuItem[] = [
             {
                 key: 'export report',
-                onRender: () => <div role="menuitem">{props.renderExportReportComponent()}</div>,
+                onRender: () => <div role="menuitem">{props.renderExportReportButton()}</div>,
             },
             {
                 key: 'start over',

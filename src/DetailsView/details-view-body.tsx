@@ -105,7 +105,9 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     private renderCommandBar(): JSX.Element {
         const { switcherNavConfiguration } = this.props;
 
-        const detailsViewCommandBarProps: DetailsViewCommandBarProps = this.props;
+        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
+            ...this.props,
+        };
 
         return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }

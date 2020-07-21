@@ -13,7 +13,6 @@ import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
-import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
@@ -58,7 +57,6 @@ export interface DetailsViewCommandBarProps {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
     narrowModeStatus: NarrowModeStatus;
-    detailsViewStoreData: DetailsViewStoreData;
 }
 
 export class DetailsViewCommandBar extends React.Component<
@@ -136,7 +134,7 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 {...this.props}
-                renderExportReportComponent={() => this.renderExportComponent()}
+                renderExportReportButton={this.renderExportComponent}
             />
         );
     }
@@ -145,12 +143,15 @@ export class DetailsViewCommandBar extends React.Component<
 
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
-    private renderExportComponent(): JSX.Element {
-        if (this.props.switcherNavConfiguration.shouldShowReportExportButton(this.props) === true) {
+    private renderExportComponent = () => {
+        const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
+            this.props,
+        );
+        if (showButton) {
             return <ReportExportButton showReportExportDialog={this.showReportExportDialog} />;
         }
         return null;
-    }
+    };
 
     private renderExportDialog(): JSX.Element {
         return this.props.switcherNavConfiguration.ReportExportDialogFactory({

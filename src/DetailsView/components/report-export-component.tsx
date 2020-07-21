@@ -73,7 +73,6 @@ export class ReportExportComponent extends React.Component<
     public render(): JSX.Element {
         const { deps, reportExportFormat } = this.props;
         const { isOpen, exportName, exportDescription, exportData } = this.state;
-
         return (
             <>
                 <InsightsCommandButton

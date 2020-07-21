@@ -7,7 +7,9 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
+import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { shallow } from 'enzyme';
+import { isNil } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
@@ -113,7 +115,7 @@ describe('DetailsViewCommandBar', () => {
 
     test('renders with report export dialog open', () => {
         const props = getProps();
-        setupReportExportDialogFactory();
+        setupReportExportDialogFactory({ isOpen: true });
 
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
         rendered.setState({ isReportExportDialogOpen: true });
@@ -128,7 +130,7 @@ describe('DetailsViewCommandBar', () => {
             startOverComponent = <ActionButton>Start Over Component</ActionButton>;
         }
 
-        setupReportExportDialogFactory();
+        setupReportExportDialogFactory({ isOpen: false });
         const props = getProps();
 
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
@@ -146,7 +148,10 @@ describe('DetailsViewCommandBar', () => {
         return new DetailsViewCommandBar(getProps());
     }
 
-    function setupReportExportDialogFactory(): void {
-        reportExportDialogFactory.setup(r => r(It.isAny())).returns(() => reportExportDialogStub);
+    function setupReportExportDialogFactory(
+        expectedProps?: Partial<ReportExportDialogFactoryProps>,
+    ): void {
+        const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
+        reportExportDialogFactory.setup(r => r(argMatcher)).returns(() => reportExportDialogStub);
     }
 });

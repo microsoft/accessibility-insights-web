@@ -24,7 +24,7 @@ describe('CommandBarButtonsMenu', () => {
             switcherNavConfiguration: {
                 StartOverComponentFactory: startOverComponentFactory.object,
             } as DetailsViewSwitcherNavConfiguration,
-            renderExportReportComponent: renderExportReportComponentMock.object,
+            renderExportReportButton: renderExportReportComponentMock.object,
         } as CommandBarButtonsMenuProps;
     });
 
