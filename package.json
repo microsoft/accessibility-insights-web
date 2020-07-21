@@ -88,7 +88,7 @@
         "app-builder-lib": "^22.8.0",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "codecov": "^3.7.1",
-        "commander": "^5.1.0",
+        "commander": "^6.0.0",
         "core-js-bundle": "^3.6.5",
         "cross-env": "^7.0.2",
         "css-loader": "^3.6.0",
