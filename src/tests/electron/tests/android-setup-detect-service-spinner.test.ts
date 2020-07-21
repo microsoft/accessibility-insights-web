@@ -19,6 +19,7 @@ describe('Android setup - detect-service', () => {
             delayAllCommands(3000, simulateServiceNotInstalled(defaultDeviceConfig)),
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
+        await app.openAndroidSetupView('detect-service');
     });
 
     afterEach(async () => {
