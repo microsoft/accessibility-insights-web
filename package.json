@@ -87,7 +87,7 @@
         "@types/uuid": "^8.0.0",
         "app-builder-lib": "^22.6.1",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
-        "codecov": "^3.7.0",
+        "codecov": "^3.7.1",
         "commander": "^5.1.0",
         "core-js-bundle": "^3.6.5",
         "cross-env": "^7.0.2",
