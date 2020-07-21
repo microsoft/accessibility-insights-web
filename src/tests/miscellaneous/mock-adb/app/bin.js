@@ -9,6 +9,30 @@ const {
     tryHandleAsPortForwardServer,
 } = require('./port-forward-server.js');
 
+function resultFromCommand(config, inputCommand) {
+    // First option: exact match
+    if (config[inputCommand]) {
+        return config[inputCommand];
+    }
+
+    // Second option: regex match
+    Object.values(config).forEach(value => {
+        const regexTarget = value.regexTarget;
+        if (regexTarget) {
+            const regex = new RegExp(regexTarget);
+            if (regex.test(inputCommand)) {
+                return value;
+            }
+        }
+    });
+
+    // default result (error)
+    return {
+        exitCode: 1,
+        stderr: `unrecognized command: ${inputCommand}`,
+    };
+}
+
 async function main() {
     if (await tryHandleAsPortForwardServer(process.argv)) {
         return;
@@ -32,12 +56,8 @@ async function main() {
     }
 
     const inputCommand = process.argv.slice(ignoredPrefixArgs).join(' ');
-    const defaultResult = {
-        exitCode: 1,
-        stderr: `unrecognized command: ${inputCommand}`,
-    };
 
-    const result = config[inputCommand] != undefined ? config[inputCommand] : defaultResult;
+    const result = resultFromCommand(config, inputCommand);
 
     if (result.delayMs != undefined) {
         await new Promise(resolve => {

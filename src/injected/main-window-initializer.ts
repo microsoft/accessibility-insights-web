@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { createToolData } from 'common/application-properties-provider';
 import { EnumHelper } from 'common/enum-helper';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
@@ -10,6 +11,10 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
+import { toolName } from 'content/strings/application';
+import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
+import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
+import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
 import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
 import { FocusChangeHandler } from 'injected/focus-change-handler';
@@ -21,10 +26,6 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
-import { createToolData } from 'common/application-properties-provider';
-import { toolName } from 'content/strings/application';
-import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
-import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -296,12 +297,15 @@ export class MainWindowInitializer extends WindowInitializer {
             getCheckResolution,
         );
 
+        const notificationTextCreator = new NotificationTextCreator(scanIncompleteWarningDetector);
+
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedRules,
             toolData,
             convertScanResultsToUnifiedResults,
             scanIncompleteWarningDetector,
+            notificationTextCreator,
             filterNeedsReviewResults,
         );
 

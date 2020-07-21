@@ -1,19 +1,36 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { source as axeCoreSource } from 'axe-core';
+import { AppController } from 'tests/electron/common/view-controllers/app-controller';
+import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import {
     prettyPrintAxeViolations,
     PrintableAxeResult,
 } from 'tests/end-to-end/common/pretty-print-axe-violations';
-import { ViewController } from './view-controllers/view-controller';
 
 declare var axe;
 
-export async function scanForAccessibilityIssues(
-    view: ViewController,
+export async function scanForAccessibilityIssuesInAllModes(app: AppController): Promise<void> {
+    await scanForAccessibilityIssues(app, true);
+    await scanForAccessibilityIssues(app, false);
+}
+
+async function scanForAccessibilityIssues(
+    app: AppController,
+    enableHighContrast: boolean,
+): Promise<void> {
+    await app.setHighContrastMode(enableHighContrast);
+    await app.waitForHighContrastMode(enableHighContrast);
+
+    const violations = await runAxeScan(app.client);
+    expect(violations).toStrictEqual([]);
+}
+
+async function runAxeScan(
+    spectronClient: SpectronAsyncClient,
     selector?: string,
 ): Promise<PrintableAxeResult[]> {
-    await injectAxeIfUndefined(view);
+    await injectAxeIfUndefined(spectronClient);
 
     const axeRunOptions = {
         runOnly: {
@@ -22,7 +39,7 @@ export async function scanForAccessibilityIssues(
         },
     };
 
-    const executeOutput = await view.client.executeAsync(
+    const executeOutput = await spectronClient.executeAsync(
         (options, selectorInEvaluate, done) => {
             const elementContext =
                 selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
@@ -46,12 +63,12 @@ export async function scanForAccessibilityIssues(
     return prettyPrintAxeViolations(axeResults);
 }
 
-async function injectAxeIfUndefined(view: ViewController): Promise<void> {
-    const axeIsUndefined = await view.client.execute(() => {
+async function injectAxeIfUndefined(spectronClient: SpectronAsyncClient): Promise<void> {
+    const axeIsUndefined = await spectronClient.execute(() => {
         return (window as any).axe === undefined;
     });
 
     if (axeIsUndefined) {
-        await view.client.execute(axeCoreSource);
+        await spectronClient.execute(axeCoreSource);
     }
 }

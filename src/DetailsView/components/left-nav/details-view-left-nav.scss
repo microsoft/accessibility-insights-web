@@ -102,7 +102,6 @@
                 border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
                 border-top: 0px;
                 border-bottom: 0px;
-                text-align: center;
             }
             .ms-Button-label {
                 color: $neutral-100;
@@ -111,6 +110,7 @@
                 color: $secondary-text;
                 background: $neutral-0;
                 border-color: $neutral-20;
+                text-align: center;
             }
             &.is-selected {
                 a,

@@ -13,7 +13,6 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
-import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import {
@@ -38,7 +37,6 @@ export type RootContainerProps = {
 export type RootContainerState = {
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
-    deviceStoreData: DeviceStoreData;
     scanStoreData: ScanStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;

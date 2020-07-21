@@ -9,6 +9,7 @@ import {
     ScanIncompleteWarningsTelemetryData,
 } from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
@@ -20,9 +21,11 @@ import {
 
 describe('UnifiedScanResultActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let notificationCreatorMock: IMock<NotificationCreator>;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
+        notificationCreatorMock = Mock.ofType<NotificationCreator>();
     });
 
     it('should handle ScanCompleted message', () => {
@@ -48,6 +51,7 @@ describe('UnifiedScanResultActionCreator', () => {
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            notificationCreatorMock.object,
         );
 
         testSubject.registerCallbacks();
@@ -55,6 +59,10 @@ describe('UnifiedScanResultActionCreator', () => {
         scanCompletedMock.verifyAll();
         telemetryEventHandlerMock.verify(
             handler => handler.publishTelemetry(SCAN_INCOMPLETE_WARNINGS, payload),
+            Times.once(),
+        );
+        notificationCreatorMock.verify(
+            handler => handler.createNotification(payload.notificationText),
             Times.once(),
         );
     });
@@ -73,6 +81,7 @@ describe('UnifiedScanResultActionCreator', () => {
             interpreterMock.object,
             actionsMock.object,
             telemetryEventHandlerMock.object,
+            notificationCreatorMock.object,
         );
 
         testSubject.registerCallbacks();

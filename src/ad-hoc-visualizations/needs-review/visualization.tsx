@@ -3,7 +3,6 @@
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
-import { getNotificationMessage } from '../../ad-hoc-visualizations/issues/get-notification-message';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
@@ -55,8 +54,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
     getIdentifier: () => AdHocTestkeys.NeedsReview,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
-    getNotificationMessage: (selectorMap, key, warnings) =>
-        getNotificationMessage(selectorMap, warnings),
+    getNotificationMessage: (selectorMap, key, warnings) => null,
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,

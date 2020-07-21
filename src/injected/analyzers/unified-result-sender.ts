@@ -4,6 +4,10 @@ import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { FilterResults } from 'injected/analyzers/filter-results';
+import {
+    NotificationTextCreator,
+    TextGenerator,
+} from 'injected/analyzers/notification-text-creator';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
@@ -25,6 +29,7 @@ export class UnifiedResultSender {
         private readonly toolData: ToolData,
         private readonly convertScanResultsToUnifiedResults: ConvertScanResultsToUnifiedResults,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        private readonly notificationTextCreator: NotificationTextCreator,
         private readonly filterNeedsReviewResults: FilterResults,
     ) {}
 
@@ -32,6 +37,7 @@ export class UnifiedResultSender {
         this.sendResults(
             axeResults.originalResult,
             this.convertScanResultsToUnifiedResults.automatedChecksConversion,
+            this.notificationTextCreator.automatedChecksText,
         );
     };
 
@@ -39,12 +45,14 @@ export class UnifiedResultSender {
         this.sendResults(
             this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToUnifiedResults.needsReviewConversion,
+            this.notificationTextCreator.needsReviewText,
         );
     };
 
     private sendResults = (
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
+        notificationMessage: TextGenerator,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -56,8 +64,10 @@ export class UnifiedResultSender {
             };
         }
 
+        const unifiedResults = converter(results);
+
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(results),
+            scanResult: unifiedResults,
             rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
             timestamp: results.timestamp,
@@ -67,6 +77,7 @@ export class UnifiedResultSender {
             },
             scanIncompleteWarnings,
             telemetry,
+            notificationText: notificationMessage(unifiedResults),
         };
 
         this.sendMessage({

@@ -7,12 +7,13 @@ import {
 import { installAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
-import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
+import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import {
     commonAdbConfigs,
     setupMockAdb,
+    simulateServiceInstallationError,
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
@@ -40,20 +41,19 @@ describe('Android setup - prompt-install-service ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(installAutomationId))).toBe(true);
     });
 
-    it('install button triggers installation', async () => {
+    it('install button triggers installation, prompts for permission on success', async () => {
         await setupMockAdb(defaultDeviceConfig);
         await dialog.client.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 
-    it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => {
-            await app.setHighContrastMode(highContrastMode);
-            await app.waitForHighContrastMode(highContrastMode);
+    it('install button triggers installation, prompts correctly on failure', async () => {
+        await setupMockAdb(simulateServiceInstallationError(defaultDeviceConfig));
+        await dialog.client.click(getAutomationIdSelector(installAutomationId));
+        await dialog.waitForDialogVisible('prompt-install-failed');
+    });
 
-            const violations = await scanForAccessibilityIssues(dialog);
-            expect(violations).toStrictEqual([]);
-        },
-    );
+    it('should pass accessibility validation in both contrast modes', async () => {
+        await scanForAccessibilityIssuesInAllModes(app);
+    });
 });

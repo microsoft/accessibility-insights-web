@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavLinkButton renders as button element 1`] = `
+<StyledLinkBase
+  aria-expanded={true}
+  className="navLinkButton some class name"
+  onClick={[Function]}
+  title="some title"
+/>
+`;
+
+exports[`NavLinkButton renders with href set 1`] = `
+<StyledLinkBase
+  aria-expanded={true}
+  className="navLinkButton some class name"
+  href="javascript:void(0)"
+  onClick={[Function]}
+  title="some title"
+/>
+`;
+
+exports[`NavLinkButton renders with using name instead of title 1`] = `
+<StyledLinkBase
+  aria-expanded={true}
+  className="navLinkButton some class name"
+  onClick={[Function]}
+  title="some title"
+/>
+`;

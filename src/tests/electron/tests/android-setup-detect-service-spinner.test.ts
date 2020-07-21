@@ -3,13 +3,23 @@
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
+import {
+    commonAdbConfigs,
+    delayAllCommands,
+    setupMockAdb,
+    simulateServiceNotInstalled,
+} from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('first time dialog', () => {
+describe('Android setup - detect-service', () => {
+    const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
 
     beforeEach(async () => {
-        app = await createApplication({ suppressFirstTimeDialog: false });
-        await app.openDeviceConnectionDialog();
+        await setupMockAdb(
+            delayAllCommands(3000, simulateServiceNotInstalled(defaultDeviceConfig)),
+        );
+        app = await createApplication({ suppressFirstTimeDialog: true });
+        await app.openAndroidSetupView('detect-service');
     });
 
     afterEach(async () => {

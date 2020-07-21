@@ -269,7 +269,9 @@ exports[`report package integration with issues 1`] = `
           Summary
         </h2>
         <div
+          aria-label="26 Failed, 20 Passed, 49 Not applicable"
           class="outcome-summary-bar"
+          role="img"
         >
           <div
             style="flex-grow:26"
@@ -7513,7 +7515,9 @@ exports[`report package integration with no issues 1`] = `
           Summary
         </h2>
         <div
+          aria-label="0 Failed, 45 Passed, 30 Not applicable"
           class="outcome-summary-bar"
+          role="img"
         >
           <div
             style="flex-grow:0"
