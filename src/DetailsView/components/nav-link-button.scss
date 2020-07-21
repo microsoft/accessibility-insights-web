@@ -6,6 +6,7 @@ button {
     &.nav-link-button {
         width: calc(100% - #{$pivotItemLeftBorderWidth});
         padding-left: unset;
+        padding-right: unset;
         &:hover,
         &:active,
         &:focus,
