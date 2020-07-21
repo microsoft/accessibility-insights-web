@@ -10,7 +10,10 @@ import { ScanResults } from 'scanner/iruleresults';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../../common/messages';
 import { UUIDGenerator } from '../../common/uid-generator';
-import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-results-to-unified-results';
+import {
+    ConvertScanResultsToUnifiedResults,
+    ConvertScanResultsToUnifiedResultsDelegate,
+} from '../adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
 import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
@@ -18,13 +21,9 @@ import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
 export class UnifiedResultSender {
     constructor(
         private readonly sendMessage: MessageDelegate,
-        private readonly convertScanResultsToUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
-        private readonly convertScanResultsToNeedsReviewUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
         private readonly convertScanResultsToUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
         private readonly toolData: ToolData,
-        private readonly generateUID: UUIDGenerator,
-        private readonly createResolution: ResolutionCreator,
-        //
+        private readonly convertScanResultsToUnifiedResults: ConvertScanResultsToUnifiedResults,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly filterNeedsReviewResults: FilterResults,
     ) {}
@@ -32,23 +31,20 @@ export class UnifiedResultSender {
     public sendAutomatedChecksResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
             axeResults.originalResult,
-            this.convertScanResultsToUnifiedResults,
-            this.createFixResolution,
+            this.convertScanResultsToUnifiedResults.automatedChecksConversion,
         );
     };
 
     public sendNeedsReviewResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendResults(
             this.filterNeedsReviewResults(axeResults.originalResult),
-            this.convertScanResultsToNeedsReviewUnifiedResults,
-            this.createCheckResolution,
+            this.convertScanResultsToUnifiedResults.needsReviewConversion,
         );
     };
 
     private sendResults = (
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
-        createResolution: ResolutionCreator,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -61,7 +57,7 @@ export class UnifiedResultSender {
         }
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: converter(results, this.generateUID, createResolution),
+            scanResult: converter(results),
             rules: this.convertScanResultsToUnifiedRules(results),
             toolInfo: this.toolData,
             timestamp: results.timestamp,

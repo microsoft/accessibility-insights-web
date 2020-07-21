@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanResults to Unified Results Test conversion works fine when there is no data in scanresults 1`] = `Array []`;
+exports[`ScanResults to Unified Results Test automaticChecksConversion works fine when there is no data in scanresults 1`] = `Array []`;
 
-exports[`ScanResults to Unified Results Test conversion works with filled up passes and failures value in scan results 1`] = `
+exports[`ScanResults to Unified Results Test automaticChecksConversion works with filled up passes and failures value in scan results 1`] = `
 Array [
   Object {
     "descriptors": Object {
@@ -14,7 +14,8 @@ Array [
       "identifier": "target1;id1",
     },
     "resolution": Object {
-      "howToFixSummary": "how to fix",
+      "howToFixSummary": "how to fix 1",
+      "test fix resolution": Object {},
     },
     "ruleId": "id1",
     "status": "fail",
@@ -30,7 +31,8 @@ Array [
       "identifier": "target2;id2",
     },
     "resolution": Object {
-      "howToFixSummary": "how to fix",
+      "howToFixSummary": "how to fix 2",
+      "test fix resolution": Object {},
     },
     "ruleId": "id1",
     "status": "fail",
@@ -46,7 +48,8 @@ Array [
       "identifier": "target3;id3",
     },
     "resolution": Object {
-      "howToFixSummary": "how to fix",
+      "howToFixSummary": "how to fix 3",
+      "test fix resolution": Object {},
     },
     "ruleId": "id2",
     "status": "fail",
@@ -62,7 +65,8 @@ Array [
       "identifier": "passTarget1;passTarget2",
     },
     "resolution": Object {
-      "howToFixSummary": "how to fix",
+      "howToFixSummary": undefined,
+      "test fix resolution": Object {},
     },
     "ruleId": "test",
     "status": "pass",
@@ -71,9 +75,9 @@ Array [
 ]
 `;
 
-exports[`ScanResults to Unified Results Test needs review conversion works fine when there is no data in scanresults 1`] = `Array []`;
+exports[`ScanResults to Unified Results Test needsReviewConversion works fine when there is no data in scanresults 1`] = `Array []`;
 
-exports[`ScanResults to Unified Results Test needs review conversion works with filled up passes, failures and incomplete values in scan results 1`] = `
+exports[`ScanResults to Unified Results Test needsReviewConversion works with filled up passes, failures and incomplete values in scan results 1`] = `
 Array [
   Object {
     "descriptors": Object {
@@ -84,7 +88,10 @@ Array [
       "css-selector": "incompleteTarget1",
       "identifier": "incompleteTarget1",
     },
-    "resolution": undefined,
+    "resolution": Object {
+      "howToFixSummary": undefined,
+      "test check resolution": Object {},
+    },
     "ruleId": "test2",
     "status": "unknown",
     "uid": "gguid-mock-stub",
@@ -98,7 +105,10 @@ Array [
       "css-selector": "target1;id1",
       "identifier": "target1;id1",
     },
-    "resolution": undefined,
+    "resolution": Object {
+      "howToFixSummary": "how to fix 1",
+      "test check resolution": Object {},
+    },
     "ruleId": "id1",
     "status": "fail",
     "uid": "gguid-mock-stub",
@@ -112,7 +122,10 @@ Array [
       "css-selector": "target2;id2",
       "identifier": "target2;id2",
     },
-    "resolution": undefined,
+    "resolution": Object {
+      "howToFixSummary": "how to fix 2",
+      "test check resolution": Object {},
+    },
     "ruleId": "id1",
     "status": "fail",
     "uid": "gguid-mock-stub",
@@ -126,7 +139,10 @@ Array [
       "css-selector": "target3;id3",
       "identifier": "target3;id3",
     },
-    "resolution": undefined,
+    "resolution": Object {
+      "howToFixSummary": "how to fix 3",
+      "test check resolution": Object {},
+    },
     "ruleId": "id2",
     "status": "fail",
     "uid": "gguid-mock-stub",

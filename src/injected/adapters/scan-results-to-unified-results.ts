@@ -13,8 +13,6 @@ import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-fil
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (
     scanResults: ScanResults,
-    uuidGenerator: UUIDGenerator,
-    getResolution: ResolutionCreator,
 ) => UnifiedResult[];
 
 interface RuleResultData {
@@ -22,19 +20,129 @@ interface RuleResultData {
     ruleID: string;
 }
 
-export interface CreationData extends RuleResultData {
-    cssSelector: string;
-    failureSummary: string;
-    snippet: string;
-    howToFix: {
-        oneOf: string[];
-        none: string[];
-        all: string[];
+// export interface CreationData extends RuleResultData {
+//     cssSelector: string;
+//     failureSummary: string;
+//     snippet: string;
+//     howToFix: {
+//         oneOf: string[];
+//         none: string[];
+//         all: string[];
+//     };
+// }
+
+export class ConvertScanResultsToUnifiedResults {
+    constructor(
+        private uuidGenerator: UUIDGenerator,
+        private getFixResolution: ResolutionCreator,
+        private getCheckResolution: ResolutionCreator,
+    ) {}
+
+    public automatedChecksConversion: ConvertScanResultsToUnifiedResultsDelegate = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        if (!scanResults) {
+            return [];
+        }
+        return this.automatedChecksCreateUnifiedResultsFromScanResults(scanResults);
+    };
+
+    private automatedChecksCreateUnifiedResultsFromScanResults = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        return [
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.violations,
+                'fail',
+                this.getFixResolution,
+            ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.passes,
+                'pass',
+                this.getFixResolution,
+            ),
+        ];
+    };
+
+    public needsReviewConversion: ConvertScanResultsToUnifiedResultsDelegate = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        if (!scanResults) {
+            return [];
+        }
+        return this.needsReviewCreateUnifiedResultsFromScanResults(scanResults);
+    };
+
+    private needsReviewCreateUnifiedResultsFromScanResults = (
+        scanResults: ScanResults,
+    ): UnifiedResult[] => {
+        return [
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.incomplete,
+                'unknown',
+                this.getCheckResolution,
+            ),
+            ...this.createUnifiedResultsFromRuleResults(
+                scanResults.violations,
+                'fail',
+                this.getCheckResolution,
+            ),
+        ];
+    };
+
+    private createUnifiedResultsFromRuleResults = (
+        ruleResults: RuleResult[],
+        status: InstanceResultStatus,
+        getResolution: ResolutionCreator,
+    ): UnifiedResult[] => {
+        const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
+            this.createUnifiedResultsFromRuleResult(result, status, getResolution),
+        );
+
+        return flatMap(unifiedResultFromRuleResults);
+    };
+
+    private createUnifiedResultsFromRuleResult = (
+        ruleResult: RuleResult,
+        status: InstanceResultStatus,
+        getResolution: ResolutionCreator,
+    ): UnifiedResult[] => {
+        return ruleResult.nodes.map(node => {
+            const data: RuleResultData = {
+                status: status,
+                ruleID: ruleResult.id,
+            };
+
+            return this.createUnifiedResultFromNode(node, data, getResolution);
+        });
+    };
+
+    private createUnifiedResultFromNode = (
+        nodeResult: AxeNodeResult,
+        ruleResultData: RuleResultData,
+        getResolution: ResolutionCreator,
+    ): UnifiedResult => {
+        const cssSelector = nodeResult.target.join(';');
+        return {
+            uid: this.uuidGenerator(),
+            status: ruleResultData.status,
+            ruleId: ruleResultData.ruleID,
+            identifiers: {
+                identifier: cssSelector,
+                conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
+                'css-selector': cssSelector,
+            },
+            descriptors: {
+                snippet: nodeResult.snippet || nodeResult.html,
+            },
+            resolution: {
+                howToFixSummary: nodeResult.failureSummary,
+                ...getResolution({ id: ruleResultData.ruleID, nodeResult: nodeResult }),
+            },
+        };
     };
 }
-
-export type ResolutionType = 'how-to-fix' | 'how-to-check';
-
+/*
 export const convertScanResultsToUnifiedResults = (
     // AC
     scanResults: ScanResults,
@@ -58,14 +166,12 @@ const createUnifiedResultsFromScanResults = (
             'fail',
             uuidGenerator,
             getResolution,
-            'how-to-fix',
         ),
         ...createUnifiedResultsFromRuleResults(
             scanResults.passes,
             'pass',
             uuidGenerator,
             getResolution,
-            'how-to-fix',
         ),
     ];
 };
@@ -73,7 +179,7 @@ const createUnifiedResultsFromScanResults = (
 export const convertScanResultsToNeedsReviewUnifiedResults = (
     scanResults: ScanResults,
     uuidGenerator: UUIDGenerator,
-    getCheckResolution: ResolutionCreator,
+    getResolution: ResolutionCreator,
 ): UnifiedResult[] => {
     if (!scanResults) {
         return [];
@@ -96,14 +202,12 @@ const createUnifiedResultsFromNeedsReviewScanResults = (
             'unknown',
             uuidGenerator,
             getResolution,
-            'how-to-check',
         ),
         ...createUnifiedResultsFromRuleResults(
             scanResults.violations,
             'fail',
             uuidGenerator,
             getResolution,
-            'how-to-check',
         ),
     ];
 };
@@ -113,16 +217,9 @@ const createUnifiedResultsFromRuleResults = (
     status: InstanceResultStatus,
     uuidGenerator: UUIDGenerator,
     getResolution: ResolutionCreator,
-    resolutionType: ResolutionType,
 ): UnifiedResult[] => {
     const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
-        createUnifiedResultsFromRuleResult(
-            result,
-            status,
-            uuidGenerator,
-            getResolution,
-            resolutionType,
-        ),
+        createUnifiedResultsFromRuleResult(result, status, uuidGenerator, getResolution),
     );
 
     return flatMap(unifiedResultFromRuleResults);
@@ -133,7 +230,6 @@ const createUnifiedResultsFromRuleResult = (
     status: InstanceResultStatus,
     uuidGenerator: UUIDGenerator,
     getResolution: ResolutionCreator,
-    resolutionType: ResolutionType,
 ): UnifiedResult[] => {
     return ruleResult.nodes.map(node => {
         const data: RuleResultData = {
@@ -141,13 +237,7 @@ const createUnifiedResultsFromRuleResult = (
             ruleID: ruleResult.id,
         };
 
-        return createUnifiedResultFromNode(
-            node,
-            data,
-            uuidGenerator,
-            getResolution,
-            resolutionType,
-        );
+        return createUnifiedResultFromNode(node, data, uuidGenerator, getResolution);
     });
 };
 
@@ -156,7 +246,6 @@ const createUnifiedResultFromNode = (
     ruleResultData: RuleResultData,
     uuidGenerator: UUIDGenerator,
     getResolution: ResolutionCreator,
-    resolutionType: ResolutionType,
 ): UnifiedResult => {
     const cssSelector = nodeResult.target.join(';');
     return {
@@ -173,7 +262,7 @@ const createUnifiedResultFromNode = (
         },
         resolution: {
             howToFixSummary: nodeResult.failureSummary,
-            ...getResolution(resolutionType, { ruleResultData.ruleID, nodeResult }),
+            ...getResolution({ id: ruleResultData.ruleID, nodeResult: nodeResult }),
         },
     };
 
@@ -219,3 +308,4 @@ const createUnifiedResultFromNode = (
 //         },
 //     } as UnifiedResult;
 // };
+*/

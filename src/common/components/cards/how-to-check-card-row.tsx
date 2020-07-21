@@ -9,7 +9,7 @@ export interface HowToCheckWebPropertyData {
     checkText: string;
 }
 
-export interface HowToFixWebCardRowProps extends CardRowProps {
+export interface HowToCheckWebCardRowProps extends CardRowProps {
     propertyData: HowToCheckWebPropertyData;
 }
 export const HowToCheckWebCardRow = NamedFC<CardRowProps>(

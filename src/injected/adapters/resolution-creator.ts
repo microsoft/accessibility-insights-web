@@ -1,40 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
-import { ResolutionType } from 'injected/adapters/scan-results-to-unified-results';
+import { DictionaryStringTo } from 'types/common-types';
 import { AxeNodeResult } from '../../scanner/iruleresults';
 
-export type ResolutionCreator = (
-    resolution: ResolutionType,
-    data: ResolutionCreatorData,
-) => UnifiedResolution;
+export type ResolutionCreator = (data: ResolutionCreatorData) => DictionaryStringTo<any>; // any?
 
-interface ResolutionCreatorData {
+export interface ResolutionCreatorData {
     id: string;
     nodeResult: AxeNodeResult;
 }
 
-// split into two, one for fix and one for change.  Pass both into unified result sender, change up report & mocks, main window initializer too
-export const getResolution: ResolutionCreator = (
-    resolution: ResolutionType,
-    data: ResolutionCreatorData,
-) => {
-    if (resolution === 'how-to-check') {
-        return {
-            howToFixSummary: data.failureSummary,
-            'how-to-check-web': getHowToCheckTest(data.ruleID),
-        };
-    } else {
-        return {
-            howToFixSummary: data.failureSummary,
-            'how-to-fix-web': {
-                any: data.howToFix.oneOf,
-                none: data.howToFix.none,
-                all: data.howToFix.all,
-            },
-        };
-    }
+export const getFixResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
+    return {
+        'how-to-fix-web': {
+            any: data.nodeResult.any.map(checkResult => checkResult.message),
+            none: data.nodeResult.none.map(checkResult => checkResult.message),
+            all: data.nodeResult.all.map(checkResult => checkResult.message),
+        },
+    };
+};
+
+export const getCheckResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
+    return {
+        'how-to-check-web': getHowToCheckTest(data.id),
+    };
 };
 
 const getHowToCheckTest = (ruleID: string) => {

@@ -23,6 +23,7 @@ import { VisualizationStateChangeHandler } from 'injected/visualization-state-ch
 
 import { createToolData } from 'common/application-properties-provider';
 import { toolName } from 'content/strings/application';
+import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
@@ -54,10 +55,7 @@ import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
 import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
-import {
-    convertScanResultsToNeedsReviewUnifiedResults,
-    convertScanResultsToUnifiedResults,
-} from './adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResults } from './adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from './adapters/scan-results-to-unified-rules';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
@@ -77,7 +75,6 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
-import { getResolution } from 'injected/adapters/resolution-creator';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -293,14 +290,17 @@ export class MainWindowInitializer extends WindowInitializer {
             this.permissionsStateStoreProxy,
         );
 
+        const convertScanResultsToUnifiedResults = new ConvertScanResultsToUnifiedResults(
+            generateUID,
+            getFixResolution,
+            getCheckResolution,
+        );
+
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
-            convertScanResultsToUnifiedResults,
-            convertScanResultsToNeedsReviewUnifiedResults,
             convertScanResultsToUnifiedRules,
             toolData,
-            generateUID,
-            getResolution,
+            convertScanResultsToUnifiedResults,
             scanIncompleteWarningDetector,
             filterNeedsReviewResults,
         );

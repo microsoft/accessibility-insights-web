@@ -14,7 +14,7 @@ import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';
 import { Mock, MockBehavior } from 'typemoq';
-import { getResolution } from 'injected/adapters/resolution-creator';
+import { getFixResolution } from 'injected/adapters/resolution-creator';
 
 describe('AxeResultReport', () => {
     const reportDateTime = new Date(2019, 10, 23, 15, 35, 0);
@@ -60,7 +60,7 @@ describe('AxeResultReport', () => {
 
     const mockResults = Mock.ofType<UnifiedResult[]>();
     const mockGetResults = Mock.ofType<typeof convertScanResultsToUnifiedResults>(null, MockBehavior.Strict);
-    mockGetResults.setup(fn => fn(mockScanResults.object, generateUID, getResolution)).returns(() => mockResults.object);
+    mockGetResults.setup(fn => fn(mockScanResults.object, generateUID, getFixResolution)).returns(() => mockResults.object);
 
     const emptyCardSelectionViewData: CardSelectionViewData = {
         selectedResultUids: [],
@@ -85,7 +85,7 @@ describe('AxeResultReport', () => {
         getUnifiedResults: mockGetResults.object,
         getCards: mockGetCards.object,
         getUUID: generateUID,
-        getResolution: getResolution,
+        getResolution: getFixResolution,
     };
 
     it('returns HTML', () => {
