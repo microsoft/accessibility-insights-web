@@ -135,7 +135,7 @@
         "ts-loader": "^8.0.1",
         "tslint": "^5.20.1",
         "tslint-microsoft-contrib": "6.2.0",
-        "typed-scss-modules": "^2.0.0",
+        "typed-scss-modules": "^2.0.1",
         "typemoq": "^2.1.0",
         "typescript": "^3.9.7",
         "webdriverio": "^4.13.0",
