@@ -96,6 +96,15 @@ describe('ClientUtilsTest', () => {
         expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
     });
 
+    test('matchesSelector: no match function, returns false', () => {
+        const elementStub = {} as ElementMatcher;
+
+        const selector1 = 'selector1';
+        const selector2 = 'selector2';
+
+        expect(testObject.matchesSelector(elementStub, 'test-string')).toBe(false);
+    });
+
     test('getOffset', () => {
         const initialScrollX = 10;
         const initialScrollY = 20;
