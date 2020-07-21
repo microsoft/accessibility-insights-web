@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
-import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResultsDelegate, ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
@@ -76,12 +76,13 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
         ruleToLinkConfiguration,
     );
+    const getUnifiedResults = new ConvertScanResultsToUnifiedResults().automatedChecksConversion;
 
     const deps: AxeResultsReportDeps = {
         reportHtmlGenerator,
         resultDecorator,
         getUnifiedRules: convertScanResultsToUnifiedRules,
-        getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
+        getUnifiedResults: Convert,
         getCards: getCardViewData,
     };
 

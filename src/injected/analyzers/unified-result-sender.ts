@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { FilterResults } from 'injected/analyzers/filter-results';
 import {
     NotificationTextCreator,
@@ -13,7 +12,6 @@ import { isEmpty } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
 import { UnifiedScanCompletedPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../../common/messages';
-import { UUIDGenerator } from '../../common/uid-generator';
 import {
     ConvertScanResultsToUnifiedResults,
     ConvertScanResultsToUnifiedResultsDelegate,

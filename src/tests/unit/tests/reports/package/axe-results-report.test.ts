@@ -5,8 +5,6 @@ import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { generateUID } from 'common/uid-generator';
-import { getFixResolution } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AxeReportParameters } from 'reports/package/accessibilityInsightsReport';
