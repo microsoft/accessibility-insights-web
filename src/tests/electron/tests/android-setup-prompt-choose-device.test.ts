@@ -26,12 +26,13 @@ const [closeId, nextId, rescanId] = [
 ];
 
 describe('Android setup - prompt-choose-device (multiple devices)', () => {
+    const multipleDescription = 'prompt-choose-device-multiple';
     const defaultDeviceConfig: MockAdbConfig = commonAdbConfigs['multiple-devices'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(defaultDeviceConfig);
+        await setupMockAdb(defaultDeviceConfig, multipleDescription, 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-choose-device');
     });
@@ -55,6 +56,8 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     it('selecting next goes to detect-service', async () => {
         await setupMockAdb(
             delayAllCommands(1000, simulateServiceNotInstalled(defaultDeviceConfig)),
+            multipleDescription,
+            'next',
         );
         await dialog.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-service');
@@ -62,7 +65,11 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     });
 
     it('selecting rescan goes to detect-devices', async () => {
-        await setupMockAdb(delayAllCommands(100, defaultDeviceConfig));
+        await setupMockAdb(
+            delayAllCommands(100, defaultDeviceConfig),
+            multipleDescription,
+            'rescan',
+        );
         await dialog.click(getAutomationIdSelector(rescanId));
         await dialog.waitForDialogVisible('detect-devices');
         await dialog.waitForDialogVisible('prompt-choose-device'); // Let mock-adb complete
@@ -74,6 +81,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
 });
 
 describe('Android setup - prompt-choose-device (single device)', () => {
+    const singleDescription = 'prompt-choose-device-single';
     const defaultDeviceConfig: MockAdbConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
@@ -82,7 +90,11 @@ describe('Android setup - prompt-choose-device (single device)', () => {
         // Getting here requires going past the dialog then pressing
         // the cancel button to circle back
         const cancelId = leftFooterButtonAutomationId;
-        await setupMockAdb(simulateServiceNotInstalled(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateServiceNotInstalled(defaultDeviceConfig),
+            singleDescription,
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-install-service');
         await dialog.click(getAutomationIdSelector(cancelId));
