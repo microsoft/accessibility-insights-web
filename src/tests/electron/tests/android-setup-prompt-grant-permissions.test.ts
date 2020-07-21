@@ -17,7 +17,8 @@ import {
     simulateServiceLacksPermissions,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('Android setup - prompt-grant-permissions', () => {
+const description = 'prompt-grant-permissions';
+describe(`Android setup - ${description}`, () => {
     const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
@@ -42,7 +43,7 @@ describe('Android setup - prompt-grant-permissions', () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(commonAdbConfigs['multiple-devices']);
+        await setupMockAdb(commonAdbConfigs['multiple-devices'], description, 'cancel');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -50,6 +51,8 @@ describe('Android setup - prompt-grant-permissions', () => {
     it('try again returns here if permissions are not granted', async () => {
         await setupMockAdb(
             delayAllCommands(5000, simulateServiceLacksPermissions(defaultDeviceConfig)),
+            description,
+            'try again returns here',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
@@ -57,7 +60,11 @@ describe('Android setup - prompt-grant-permissions', () => {
     });
 
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
-        await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
+        await setupMockAdb(
+            delayAllCommands(2500, defaultDeviceConfig),
+            description,
+            'try again moves on',
+        );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
         await scanForAccessibilityIssuesInAllModes(app);

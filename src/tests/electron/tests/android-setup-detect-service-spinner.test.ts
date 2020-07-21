@@ -10,15 +10,16 @@ import {
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const testDescription = 'Android setup - detect-service';
-describe(testDescription, () => {
+const description = 'detect-service-spinner';
+describe(`Android setup - ${description}`, () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
 
     beforeEach(async () => {
         await setupMockAdb(
             delayAllCommands(3000, simulateServiceNotInstalled(defaultDeviceConfig)),
-            testDescription,
+            description,
+            'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
         await app.openAndroidSetupView('detect-service');

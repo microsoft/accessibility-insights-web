@@ -17,7 +17,8 @@ import {
     simulatePortForwardingError,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
+const description = 'prompt-configuring-port-forwarding-failed';
+describe(`Android setup - ${description}`, () => {
     const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
@@ -42,7 +43,7 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(commonAdbConfigs['multiple-devices']);
+        await setupMockAdb(commonAdbConfigs['multiple-devices'], description, 'cancel test');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -50,6 +51,8 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
     it('try again returns here if port forwarding still fails', async () => {
         await setupMockAdb(
             delayAllCommands(2500, simulatePortForwardingError(defaultDeviceConfig)),
+            description,
+            'try again returns here',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('configuring-port-forwarding');
@@ -57,7 +60,11 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
     });
 
     it('try again moves on if port forwarded properly; configuring-port-forwarding a11y test', async () => {
-        await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
+        await setupMockAdb(
+            delayAllCommands(2500, defaultDeviceConfig),
+            description,
+            'try again moves on',
+        );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('configuring-port-forwarding');
         await scanForAccessibilityIssuesInAllModes(app);

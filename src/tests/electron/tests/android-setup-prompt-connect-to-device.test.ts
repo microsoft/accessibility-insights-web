@@ -17,7 +17,8 @@ import {
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('Android setup - prompt-connect-to-device ', () => {
+const description = 'prompt-connect-to-device';
+describe(`Android setup - ${description}`, () => {
     const defaultDeviceConfig = commonAdbConfigs['multiple-devices'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
@@ -44,13 +45,17 @@ describe('Android setup - prompt-connect-to-device ', () => {
     });
 
     it('detect button triggers new detection', async () => {
-        await setupMockAdb(defaultDeviceConfig);
+        await setupMockAdb(defaultDeviceConfig, description, 'triggers new detection');
         await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('detect device spinner should pass accessibility validation an all contrast modes', async () => {
-        await setupMockAdb(delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)));
+        await setupMockAdb(
+            delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)),
+            description,
+            'spinner a11y',
+        );
         await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await scanForAccessibilityIssuesInAllModes(app);
