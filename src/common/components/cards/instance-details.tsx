@@ -133,4 +133,4 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             </div>
         </div>
     );
-}); // Unified.resolution holds howToFixSummary & instance property bag (string: any)
+});

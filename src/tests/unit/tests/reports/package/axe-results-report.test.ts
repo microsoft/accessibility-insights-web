@@ -84,8 +84,6 @@ describe('AxeResultReport', () => {
         getUnifiedRules: mockGetRules.object,
         getUnifiedResults: mockGetResults.object,
         getCards: mockGetCards.object,
-        getUUID: generateUID,
-        getResolution: getFixResolution,
     };
 
     it('returns HTML', () => {
