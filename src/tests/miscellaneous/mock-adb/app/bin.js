@@ -48,7 +48,15 @@ async function main() {
     const configContent = fs.readFileSync(configPath);
     const config = JSON.parse(configContent);
 
-    const outputFile = path.join(path.dirname(process.execPath), 'mock_adb_output.json');
+    const currentContext = fs.readFileSync(
+        path.join(runtimeDirname, 'latestAdbContext.txt'),
+        'utf-8',
+    );
+
+    const outputDir = path.join(path.dirname(process.execPath), 'logs', currentContext);
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    const outputFile = path.join(outputDir, 'mock_adb_output.json');
 
     let ignoredPrefixArgs = 2; // node.exe bin.js
     if (process.argv[2] === '-P') {
@@ -83,6 +91,9 @@ async function main() {
     result.input = process.argv;
     result.inputCommand = inputCommand;
     fs.writeFileSync(outputFile, JSON.stringify(result, null, '    '), { flag: 'a' });
+
+    const outputConfigFile = path.join(outputDir, 'mock_adb_config.json');
+    fs.copyFileSync(configPath, outputConfigFile);
 
     if (result.exitCode != undefined) {
         process.exit(result.exitCode);
