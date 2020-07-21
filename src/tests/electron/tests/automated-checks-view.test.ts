@@ -10,6 +10,7 @@ import {
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
+import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
 
 describe('AutomatedChecksView', () => {
@@ -17,6 +18,7 @@ describe('AutomatedChecksView', () => {
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
+        await setupMockAdb(commonAdbConfigs['single-device']);
         app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForScreenshotViewVisible();
