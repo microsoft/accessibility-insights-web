@@ -5,6 +5,7 @@ import {
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -21,7 +22,7 @@ import {
 const [closeId, nextId, rescanId] = [
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
-    'rescan', // TODO: Why doesn't rescanAutomationId work here?
+    rescanAutomationId,
 ];
 
 describe('Android setup - prompt-choose-device (multiple devices)', () => {
