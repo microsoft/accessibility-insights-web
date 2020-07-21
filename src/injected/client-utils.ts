@@ -41,10 +41,13 @@ export class ClientUtils {
     }
 
     public matchesSelector(element: ElementMatcher, selectorString: string): boolean {
+        const defaultMatch: typeof element.matches = (_: string) => false;
+
         const selector = (
             element.matches ||
             element.webkitMatchesSelector ||
-            element.msMatchesSelector
+            element.msMatchesSelector ||
+            defaultMatch
         ).bind(element);
 
         return selector(selectorString);
