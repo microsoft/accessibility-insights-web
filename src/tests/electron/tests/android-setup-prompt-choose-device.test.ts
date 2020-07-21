@@ -18,9 +18,14 @@ import {
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
+const [closeId, nextId, rescanId] = [
+    leftFooterButtonAutomationId,
+    rightFooterButtonAutomationId,
+    'rescan', // TODO: Why doesn't rescanAutomationId work here?
+];
+
 describe('Android setup - prompt-choose-device (multiple devices)', () => {
     const defaultDeviceConfig: MockAdbConfig = commonAdbConfigs['multiple-devices'];
-    const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
@@ -39,7 +44,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     it('initial component state is correct', async () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
-        expect(await dialog.isEnabled(getAutomationIdSelector('rescan'))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(rescanId))).toBe(true);
         const devices = await dialog.client.$$(
             getAutomationIdSelector(deviceDescriptionAutomationId),
         );
@@ -50,19 +55,52 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
         await setupMockAdb(
             delayAllCommands(1000, simulateServiceNotInstalled(defaultDeviceConfig)),
         );
-        await dialog.client.click(getAutomationIdSelector(nextId));
+        await dialog.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-service');
         await dialog.waitForDialogVisible('prompt-install-service'); // Let mock-adb complete
     });
 
     it('selecting rescan goes to detect-devices', async () => {
         await setupMockAdb(delayAllCommands(100, defaultDeviceConfig));
-        await dialog.client.click(getAutomationIdSelector('rescan'));
+        await dialog.click(getAutomationIdSelector(rescanId));
         await dialog.waitForDialogVisible('detect-devices');
         await dialog.waitForDialogVisible('prompt-choose-device'); // Let mock-adb complete
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
+    });
+});
+
+describe('Android setup - prompt-choose-device (single device)', () => {
+    const defaultDeviceConfig: MockAdbConfig = commonAdbConfigs['single-device'];
+    let app: AppController;
+    let dialog: AndroidSetupViewController;
+
+    beforeEach(async () => {
+        // Getting here requires going past the dialog then pressing
+        // the cancel button to circle back
+        const cancelId = leftFooterButtonAutomationId;
+        await setupMockAdb(simulateServiceNotInstalled(defaultDeviceConfig));
+        app = await createApplication({ suppressFirstTimeDialog: true });
+        dialog = await app.openAndroidSetupView('prompt-install-service');
+        await dialog.click(getAutomationIdSelector(cancelId));
+        await dialog.waitForDialogVisible('prompt-choose-device');
+    });
+
+    afterEach(async () => {
+        if (app != null) {
+            await app.stop();
+        }
+    });
+
+    it('initial component state is correct', async () => {
+        expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(rescanId))).toBe(true);
+        const devices = await dialog.client.$$(
+            getAutomationIdSelector(deviceDescriptionAutomationId),
+        );
+        expect(devices.length).toBe(1);
     });
 });
