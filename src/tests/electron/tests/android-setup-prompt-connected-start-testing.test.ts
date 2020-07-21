@@ -45,26 +45,26 @@ describe('Android setup - prompt-connected-start-testing', () => {
 
     it('goes to prompt-choose-device upon cancel', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector(cancelId));
+        await dialog.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('goes to detect-devices upon rescan (same devices)', async () => {
         await setupMockAdb(delayAllCommands(50, defaultDeviceConfig));
-        await dialog.client.click(getAutomationIdSelector(rescanAutomationId));
+        await dialog.click(getAutomationIdSelector(rescanAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
     it('goes to detect-devices upon rescan (different devices)', async () => {
         await setupMockAdb(delayAllCommands(100, commonAdbConfigs['multiple-devices']));
-        await dialog.client.click(getAutomationIdSelector(rescanAutomationId));
+        await dialog.click(getAutomationIdSelector(rescanAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('goes to automated checks upon start testing', async () => {
-        await dialog.client.click(getAutomationIdSelector(startTestingId));
+        await dialog.click(getAutomationIdSelector(startTestingId));
         await app.waitForAutomatedChecksView();
     });
 

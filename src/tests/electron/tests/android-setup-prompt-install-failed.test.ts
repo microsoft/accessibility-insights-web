@@ -48,18 +48,18 @@ describe('Android setup - prompt-install-service-failed ', () => {
 
     it('try again button triggers installation, prompts for permission on success', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 
     it('install button triggers installation, prompts correctly on failure', async () => {
         await setupMockAdb(simulateServiceInstallationError(defaultDeviceConfig));
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('prompt-install-failed');
     });
 
     it('cancel button returns to choose device step', async () => {
-        await dialog.client.click(getAutomationIdSelector(leftFooterButtonAutomationId));
+        await dialog.click(getAutomationIdSelector(leftFooterButtonAutomationId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
@@ -71,7 +71,7 @@ describe('Android setup - prompt-install-service-failed ', () => {
         await setupMockAdb(
             delayAllCommands(3000, simulateServiceInstallationError(defaultDeviceConfig)),
         );
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('installing-service');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-install-failed'); // Let mock-adb finish

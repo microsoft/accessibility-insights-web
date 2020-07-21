@@ -43,7 +43,7 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
 
     it('goes to prompt-choose-device upon cancel', async () => {
         await setupMockAdb(commonAdbConfigs['multiple-devices']);
-        await dialog.client.click(getAutomationIdSelector(cancelId));
+        await dialog.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
@@ -51,14 +51,14 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
         await setupMockAdb(
             delayAllCommands(2500, simulatePortForwardingError(defaultDeviceConfig)),
         );
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('configuring-port-forwarding');
         await dialog.waitForDialogVisible('prompt-configuring-port-forwarding-failed');
     });
 
     it('try again moves on if port forwarded properly; configuring-port-forwarding a11y test', async () => {
         await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('configuring-port-forwarding');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connected-start-testing');

@@ -43,7 +43,7 @@ describe('Android setup - prompt-grant-permissions', () => {
 
     it('goes to prompt-choose-device upon cancel', async () => {
         await setupMockAdb(commonAdbConfigs['multiple-devices']);
-        await dialog.client.click(getAutomationIdSelector(cancelId));
+        await dialog.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
@@ -51,14 +51,14 @@ describe('Android setup - prompt-grant-permissions', () => {
         await setupMockAdb(
             delayAllCommands(5000, simulateServiceLacksPermissions(defaultDeviceConfig)),
         );
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
         await setupMockAdb(delayAllCommands(2500, defaultDeviceConfig));
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connected-start-testing');

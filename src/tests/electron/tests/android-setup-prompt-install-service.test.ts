@@ -43,13 +43,13 @@ describe('Android setup - prompt-install-service ', () => {
 
     it('install button triggers installation, prompts for permission on success', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector(installAutomationId));
+        await dialog.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 
     it('install button triggers installation, prompts correctly on failure', async () => {
         await setupMockAdb(simulateServiceInstallationError(defaultDeviceConfig));
-        await dialog.client.click(getAutomationIdSelector(installAutomationId));
+        await dialog.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-install-failed');
     });
 

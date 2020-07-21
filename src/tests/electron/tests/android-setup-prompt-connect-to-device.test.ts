@@ -45,13 +45,13 @@ describe('Android setup - prompt-connect-to-device ', () => {
 
     it('detect button triggers new detection', async () => {
         await setupMockAdb(defaultDeviceConfig);
-        await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
+        await dialog.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('detect device spinner should pass accessibility validation an all contrast modes', async () => {
         await setupMockAdb(delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)));
-        await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
+        await dialog.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connect-to-device'); // Let mock-adb finish

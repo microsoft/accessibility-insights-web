@@ -41,11 +41,11 @@ describe('Android setup - locate adb', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
 
         await setupMockAdb(simulateNoDevicesConnected(commonAdbConfigs['slow-single-device']));
-        await dialog.client.click('input[type="text"]');
+        await dialog.click('input[type="text"]');
         await dialog.client.keys(`${(global as any).rootDir}/drop/mock-adb`);
 
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
-        await dialog.client.click(getAutomationIdSelector(nextId));
+        await dialog.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-adb');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connect-to-device');
