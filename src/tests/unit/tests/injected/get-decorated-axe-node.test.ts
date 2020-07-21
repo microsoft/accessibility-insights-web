@@ -74,9 +74,6 @@ describe('GetDecoratedAxeNodeResult', () => {
             helpUrl: unifiedRule.url,
             html: unifiedResult.descriptors.snippet,
             id: unifiedResult.uid,
-            any: [],
-            all: [],
-            none: [],
         };
 
         expect(getDecoratedAxeNode(unifiedResult, unifiedRule, selectorStub)).toEqual(
