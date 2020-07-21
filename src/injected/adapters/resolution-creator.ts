@@ -4,7 +4,7 @@
 import { DictionaryStringTo } from 'types/common-types';
 import { AxeNodeResult } from '../../scanner/iruleresults';
 
-export type ResolutionCreator = (data: ResolutionCreatorData) => DictionaryStringTo<any>; // any?
+export type ResolutionCreator = (data: ResolutionCreatorData) => DictionaryStringTo<any>;
 
 export interface ResolutionCreatorData {
     id: string;

@@ -6,7 +6,8 @@ import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
-import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
+import { getFixResolution } from 'injected/adapters/resolution-creator';
+import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AxeReportParameters } from 'reports/package/accessibilityInsightsReport';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
@@ -14,7 +15,6 @@ import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { ResultDecorator } from 'scanner/result-decorator';
 import { Mock, MockBehavior } from 'typemoq';
-import { getFixResolution } from 'injected/adapters/resolution-creator';
 
 describe('AxeResultReport', () => {
     const reportDateTime = new Date(2019, 10, 23, 15, 35, 0);
@@ -59,8 +59,8 @@ describe('AxeResultReport', () => {
     mockGetRules.setup(fn => fn(mockScanResults.object)).returns(() => mockRules.object);
 
     const mockResults = Mock.ofType<UnifiedResult[]>();
-    const mockGetResults = Mock.ofType<typeof convertScanResultsToUnifiedResults>(null, MockBehavior.Strict);
-    mockGetResults.setup(fn => fn(mockScanResults.object, generateUID, getFixResolution)).returns(() => mockResults.object);
+    const mockGetResults = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>(null, MockBehavior.Strict);
+    mockGetResults.setup(fn => fn(mockScanResults.object)).returns(() => mockResults.object);
 
     const emptyCardSelectionViewData: CardSelectionViewData = {
         selectedResultUids: [],
