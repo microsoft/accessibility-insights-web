@@ -53,7 +53,7 @@ describe('Android setup - prompt-install-service ', () => {
         await dialog.waitForDialogVisible('prompt-install-failed');
     });
 
-    it('should pass accessibility validation in both contrast modes', async () => {
+    it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 });
