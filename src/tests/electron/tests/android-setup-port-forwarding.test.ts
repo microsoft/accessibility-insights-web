@@ -43,7 +43,7 @@ describe(`Android setup - ${description}`, () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(commonAdbConfigs['multiple-devices'], description, 'cancel test');
+        await setupMockAdb(commonAdbConfigs['multiple-devices'], description, 'cancel');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });

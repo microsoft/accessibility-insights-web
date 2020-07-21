@@ -28,8 +28,7 @@ async function setupMockAdb(config, ...contextIds) {
         );
     }
 
-    const contextPath = path.join(...contextIds) || 'default';
-    await writeFile(path.join(mockAdbFolder, 'latestAdbContext.txt'), contextPath);
+    await writeFile(path.join(mockAdbFolder, 'latestAdbContext.txt'), path.join(...contextIds));
     await writeFile(configPath, JSON.stringify(config, null, 2 /*spaces per indent*/));
 }
 
