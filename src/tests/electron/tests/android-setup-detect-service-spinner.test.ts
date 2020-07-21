@@ -29,6 +29,7 @@ describe('Android setup - detect-service', () => {
     });
 
     it('should pass accessibility validation in both contrast modes', async () => {
+        expect(true).toBeFalsy(); // on purpose to trigger logs
         await scanForAccessibilityIssuesInAllModes(app);
     });
 });
