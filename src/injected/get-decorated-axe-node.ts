@@ -27,7 +27,10 @@ export const getDecoratedAxeNode: GetDecoratedAxeNodeCallback = (unifiedResult, 
 };
 
 function getCheckData(unifiedResult: UnifiedResult): CheckData {
-    return formatHowToFixData(unifiedResult.resolution['how-to-fix-web']);
+    if (unifiedResult.resolution['how-to-fix-web']) {
+        return formatHowToFixData(unifiedResult.resolution['how-to-fix-web']);
+    }
+    return { any: [], none: [], all: [] }; // 'how-to-check-web'
 }
 
 function formatHowToFixData(howToFixData: HowToFixWebPropertyData): CheckData {
