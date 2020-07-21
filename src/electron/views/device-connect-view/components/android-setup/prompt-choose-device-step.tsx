@@ -16,6 +16,8 @@ import { CommonAndroidSetupStepProps } from './android-setup-types';
 import { DeviceDescription } from './device-description';
 import * as styles from './prompt-choose-device-step.scss';
 
+export const rescanAutomationId: string = 'rescan';
+
 export type PromptChooseDeviceStepState = {
     selectedDevice: DeviceInfo;
 };
@@ -51,7 +53,7 @@ export class PromptChooseDeviceStep extends React.Component<
                         {listItems.length} Android devices or emulators connected
                     </div>
                     <DefaultButton
-                        data-automation-id={'rescan'}
+                        data-automation-id={rescanAutomationId}
                         text="Rescan"
                         onClick={this.props.deps.androidSetupActionCreator.rescan}
                     />

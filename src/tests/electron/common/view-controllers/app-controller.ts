@@ -48,6 +48,10 @@ export class AppController {
         );
         await androidSetupViewController.startTesting();
 
+        return this.waitForAutomatedChecksView();
+    }
+
+    public async waitForAutomatedChecksView(): Promise<AutomatedChecksViewController> {
         const automatedChecksView = new AutomatedChecksViewController(this.client);
         await automatedChecksView.waitForViewVisible();
 
