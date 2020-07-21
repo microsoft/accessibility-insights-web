@@ -54,11 +54,7 @@ describe('GetDecoratedAxeNodeResult', () => {
         const unifiedResult: UnifiedResult = exampleUnifiedResult;
         unifiedResult.resolution = {
             howToFixSummary: 'sample how to fix summary',
-            'how-to-fix-web': {
-                any: [],
-                none: [],
-                all: [],
-            },
+            'how-to-check-web': 'sample how to check text',
         };
         const unifiedRule: UnifiedRule = {
             id: 'some rule',
