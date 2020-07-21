@@ -12,6 +12,14 @@ export interface AdHocToolsPanelProps {
     diagnosticViewToggleFactory: DiagnosticViewToggleFactory;
 }
 
+const toggleShouldNotHaveDivider = (
+    index: number,
+    totalRows: number,
+    toggles: JSX.Element[],
+): boolean => {
+    return (index + 1) % totalRows === 0 || index === toggles.length - 1;
+};
+
 export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', props => {
     const getTogglesWithDividers = () => {
         const toggles = props.diagnosticViewToggleFactory.createTogglesForAdHocToolsPanel();
@@ -25,7 +33,7 @@ export const AdHocToolsPanel = NamedFC<AdHocToolsPanelProps>('AdHocToolsPanel', 
         const totalRows = 3;
 
         const result = flatMap(toggles, (toggle, index) => {
-            if ((index + 1) % totalRows === 0 || index === toggles.length - 1) {
+            if (toggleShouldNotHaveDivider(index, totalRows, toggles)) {
                 return [toggle];
             }
 
