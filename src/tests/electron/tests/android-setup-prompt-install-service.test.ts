@@ -17,6 +17,8 @@ import {
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
+const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
 describe('Android setup - prompt-install-service ', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
@@ -35,8 +37,7 @@ describe('Android setup - prompt-install-service ', () => {
     });
 
     it('initial component state is correct', async () => {
-        const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
-        expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(cancelId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(installAutomationId))).toBe(true);
     });

@@ -17,8 +17,9 @@ import {
     simulatePortForwardingError,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
+const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
 describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
-    const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;

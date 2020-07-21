@@ -17,7 +17,8 @@ export class AndroidSetupViewController extends ViewController {
 
     // validates and starts scanning
     public async startTesting(): Promise<void> {
-        await this.client.waitForEnabled(getAutomationIdSelector(rightFooterButtonAutomationId));
-        await this.client.click(getAutomationIdSelector(rightFooterButtonAutomationId));
+        const startTestingId = rightFooterButtonAutomationId;
+        await this.client.waitForEnabled(getAutomationIdSelector(startTestingId));
+        await this.client.click(getAutomationIdSelector(startTestingId));
     }
 }

@@ -15,6 +15,8 @@ import {
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
+const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
 describe('Android setup - locate adb', () => {
     let app: AppController;
     let dialog: AndroidSetupViewController;
@@ -36,7 +38,6 @@ describe('Android setup - locate adb', () => {
     });
 
     it('respects user-provided adb location, detect-adb passes a11y check', async () => {
-        const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
 

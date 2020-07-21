@@ -17,6 +17,8 @@ import {
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
+const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
 describe('Android setup - prompt-connect-to-device ', () => {
     const defaultDeviceConfig = commonAdbConfigs['multiple-devices'];
     let app: AppController;
@@ -35,7 +37,6 @@ describe('Android setup - prompt-connect-to-device ', () => {
     });
 
     it('initial component state is correct', async () => {
-        const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(detectDeviceAutomationId))).toBe(

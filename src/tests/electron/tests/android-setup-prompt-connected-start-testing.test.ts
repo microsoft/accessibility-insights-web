@@ -16,11 +16,9 @@ import {
     setupMockAdb,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
+const [cancelId, startTestingId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
 describe('Android setup - prompt-connected-start-testing', () => {
-    const [cancelId, startTestingId] = [
-        leftFooterButtonAutomationId,
-        rightFooterButtonAutomationId,
-    ];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
