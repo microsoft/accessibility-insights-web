@@ -2,15 +2,16 @@
 // Licensed under the MIT License.
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
+import { ResolutionCreator } from 'injected/adapters/resolution-creator';
+import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
+import { DictionaryStringTo } from 'types/common-types';
 import { generateUID } from '../../../../../common/uid-generator';
-import {
-    convertScanResultsToNeedsReviewUnifiedResults,
-    convertScanResultsToUnifiedResults,
-} from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ScanResults to Unified Results Test', () => {
     let generateGuidMock: IMock<() => string>;
+    let fixResolutionCreatorMock: IMock<ResolutionCreator>;
+    let checkResolutionCreatorMock: IMock<ResolutionCreator>;
 
     beforeEach(() => {
         const guidStub = 'gguid-mock-stub';
@@ -19,59 +20,98 @@ describe('ScanResults to Unified Results Test', () => {
             .setup(ggm => ggm())
             .returns(() => guidStub)
             .verifiable(Times.atLeastOnce());
+        fixResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
+        checkResolutionCreatorMock = Mock.ofType<ResolutionCreator>();
     });
+
     const nullIdentifiers = [null, undefined, {}];
+
+    const fixResolutionStub: DictionaryStringTo<any> = { 'test fix resolution': {} };
+    const checkResolutionStub: DictionaryStringTo<any> = { 'test check resolution': {} };
+
     test.each(nullIdentifiers)(
-        'convertScanResultsToUnifiedResults provides a defined UnifiedResult instance %s',
+        'automatedChecksConversion provides a defined UnifiedResult instance %s',
         scanResultStub => {
-            const unifiedResults = convertScanResultsToUnifiedResults(
+            const testSubject = getTestSubject();
+            const unifiedResults = testSubject.automatedChecksConversion(
                 scanResultStub as ScanResults,
-                generateGuidMock.object,
             );
             expect(unifiedResults).toBeDefined();
         },
     );
 
-    test('conversion works fine when there is no data in scanresults', () => {
+    test('automaticChecksConversion works fine when there is no data in scanresults', () => {
+        const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
-        expect(
-            convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object),
-        ).toMatchSnapshot();
+        expect(testSubject.automatedChecksConversion(scanResultsStub)).toMatchSnapshot();
     });
 
-    test('conversion works with filled up passes and failures value in scan results', () => {
+    test('automaticChecksConversion works with filled up passes and failures value in scan results', () => {
+        setupResolutionMock(fixResolutionCreatorMock, 'test', passingNode, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node1, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node2, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id2', node3, fixResolutionStub);
+
+        const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResults();
-        expect(
-            convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object),
-        ).toMatchSnapshot();
+        expect(testSubject.automatedChecksConversion(scanResultsStub)).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
 
     test.each(nullIdentifiers)(
-        'convertScanResultsToNeedsReviewUnifiedResults provides a defined UnifiedResult instance %s',
+        'needsReviewConversion provides a defined UnifiedResult instance %s',
         scanResultStub => {
-            const unifiedResults = convertScanResultsToNeedsReviewUnifiedResults(
-                scanResultStub as ScanResults,
-                generateGuidMock.object,
-            );
+            const testSubject = getTestSubject();
+            const unifiedResults = testSubject.needsReviewConversion(scanResultStub as ScanResults);
             expect(unifiedResults).toBeDefined();
         },
     );
 
-    test('needs review conversion works fine when there is no data in scanresults', () => {
+    test('needsReviewConversion works fine when there is no data in scanresults', () => {
+        const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
-        expect(
-            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
-        ).toMatchSnapshot();
+        expect(testSubject.needsReviewConversion(scanResultsStub)).toMatchSnapshot();
     });
 
-    test('needs review conversion works with filled up passes, failures and incomplete values in scan results', () => {
+    test('needsReviewConversion works with filled up passes, failures and incomplete values in scan results', () => {
+        setupResolutionMock(checkResolutionCreatorMock, 'test', passingNode, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'id1', node1, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'id1', node2, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'id2', node3, checkResolutionStub);
+        setupResolutionMock(
+            checkResolutionCreatorMock,
+            'test2',
+            incompleteNode,
+            checkResolutionStub,
+        );
+
+        const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResultsWithIncompletes();
-        expect(
-            convertScanResultsToNeedsReviewUnifiedResults(scanResultsStub, generateGuidMock.object),
-        ).toMatchSnapshot();
+        expect(testSubject.needsReviewConversion(scanResultsStub)).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
+
+    function setupResolutionMock(
+        mock: IMock<ResolutionCreator>,
+        id: string,
+        nodeResult: AxeNodeResult,
+        resolutionStub: DictionaryStringTo<any>,
+    ): void {
+        mock.setup(m =>
+            m({
+                id: id,
+                nodeResult: nodeResult,
+            }),
+        ).returns(() => resolutionStub);
+    }
+
+    function getTestSubject(): ConvertScanResultsToUnifiedResults {
+        return new ConvertScanResultsToUnifiedResults(
+            generateGuidMock.object,
+            fixResolutionCreatorMock.object,
+            checkResolutionCreatorMock.object,
+        );
+    }
 
     function createTestResultsWithNoData(): ScanResults {
         return {

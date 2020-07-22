@@ -5,8 +5,7 @@ import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { generateUID } from 'common/uid-generator';
-import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AxeReportParameters } from 'reports/package/accessibilityInsightsReport';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
@@ -58,8 +57,8 @@ describe('AxeResultReport', () => {
     mockGetRules.setup(fn => fn(mockScanResults.object)).returns(() => mockRules.object);
 
     const mockResults = Mock.ofType<UnifiedResult[]>();
-    const mockGetResults = Mock.ofType<typeof convertScanResultsToUnifiedResults>(null, MockBehavior.Strict);
-    mockGetResults.setup(fn => fn(mockScanResults.object, generateUID)).returns(() => mockResults.object);
+    const mockGetResults = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>(null, MockBehavior.Strict);
+    mockGetResults.setup(fn => fn(mockScanResults.object)).returns(() => mockResults.object);
 
     const emptyCardSelectionViewData: CardSelectionViewData = {
         selectedResultUids: [],
@@ -83,7 +82,6 @@ describe('AxeResultReport', () => {
         getUnifiedRules: mockGetRules.object,
         getUnifiedResults: mockGetResults.object,
         getCards: mockGetCards.object,
-        getUUID: generateUID,
     };
 
     it('returns HTML', () => {

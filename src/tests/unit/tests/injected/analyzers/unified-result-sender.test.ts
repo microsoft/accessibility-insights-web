@@ -8,7 +8,7 @@ import {
     UnifiedResult,
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
-import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'injected/adapters/scan-results-to-unified-rules';
 import { FilterResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
@@ -21,8 +21,11 @@ import { IMock, Mock, Times } from 'typemoq';
 
 interface UnifiedResultSenderTestDefinition {
     getMethodToTest: (testSubject: UnifiedResultSender) => PostResolveCallback;
-    getConvertResultMock: () => IMock<ConvertScanResultsToUnifiedResultsDelegate>;
     getInputResults: () => ScanResults;
+    setupConverterMock: (
+        mock: IMock<ConvertScanResultsToUnifiedResults>,
+        input: ScanResults,
+    ) => void;
     getNotificationText: () => string;
     setupNotificationTextCreatorMock: (mock: IMock<NotificationTextCreator>) => void;
 }
@@ -42,34 +45,32 @@ describe('sendConvertedResults', () => {
     const unifiedRules: UnifiedRule[] = [];
     const toolInfo = {} as ToolData;
 
-    const uuidGeneratorStub = () => null;
     const testScanIncompleteWarningId = 'test-scan-incomplete-warning';
 
     const automatedChecksText = 'automated checks notification text';
     const needsReviewText = 'needs review notification text';
 
     let sendDelegate: IMock<MessageDelegate>;
-    let convertToUnifiedMock: IMock<ConvertScanResultsToUnifiedResultsDelegate>;
-    let convertToUnifiedNeedsReviewMock: IMock<ConvertScanResultsToUnifiedResultsDelegate>;
     let convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
     let filterNeedsReviewResultsMock: IMock<FilterResults>;
+    let convertToUnifiedResultsMock: IMock<ConvertScanResultsToUnifiedResults>;
     let notificationTextCreatorMock: IMock<NotificationTextCreator>;
 
     beforeEach(() => {
         sendDelegate = Mock.ofType<MessageDelegate>();
-        convertToUnifiedMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
-        convertToUnifiedNeedsReviewMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
         convertToUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>();
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         filterNeedsReviewResultsMock = Mock.ofType<FilterResults>();
+        convertToUnifiedResultsMock = Mock.ofType<ConvertScanResultsToUnifiedResults>();
         notificationTextCreatorMock = Mock.ofType<NotificationTextCreator>();
     });
 
     const automatedChecksTest: UnifiedResultSenderTestDefinition = {
         getMethodToTest: testSubject => testSubject.sendAutomatedChecksResults,
-        getConvertResultMock: () => convertToUnifiedMock,
         getInputResults: () => axeInputResults,
+        setupConverterMock: (mock: IMock<ConvertScanResultsToUnifiedResults>, input: ScanResults) =>
+            mock.setup(m => m.automatedChecksConversion(input)).returns(() => unifiedResults),
         getNotificationText: () => automatedChecksText,
         setupNotificationTextCreatorMock: (mock: IMock<NotificationTextCreator>) =>
             mock
@@ -79,8 +80,9 @@ describe('sendConvertedResults', () => {
 
     const needsReviewTest: UnifiedResultSenderTestDefinition = {
         getMethodToTest: testSubject => testSubject.sendNeedsReviewResults,
-        getConvertResultMock: () => convertToUnifiedNeedsReviewMock,
         getInputResults: () => filteredAxeInputResults,
+        setupConverterMock: (mock: IMock<ConvertScanResultsToUnifiedResults>, input: ScanResults) =>
+            mock.setup(m => m.needsReviewConversion(input)).returns(() => unifiedResults),
         getNotificationText: () => needsReviewText,
         setupNotificationTextCreatorMock: (mock: IMock<NotificationTextCreator>) =>
             mock.setup(m => m.needsReviewText(unifiedResults)).returns(() => needsReviewText),
@@ -101,10 +103,7 @@ describe('sendConvertedResults', () => {
                 'it send results with warnings: $warnings and telemetry: $telemetry',
                 ({ warnings, telemetry }) => {
                     const inputResults = testDefinition.getInputResults();
-                    testDefinition
-                        .getConvertResultMock()
-                        .setup(m => m(inputResults, uuidGeneratorStub))
-                        .returns(val => unifiedResults);
+                    testDefinition.setupConverterMock(convertToUnifiedResultsMock, inputResults);
                     convertToUnifiedRulesMock
                         .setup(m => m(inputResults))
                         .returns(val => unifiedRules);
@@ -120,11 +119,9 @@ describe('sendConvertedResults', () => {
 
                     const testSubject = new UnifiedResultSender(
                         sendDelegate.object,
-                        convertToUnifiedMock.object,
-                        convertToUnifiedNeedsReviewMock.object,
                         convertToUnifiedRulesMock.object,
                         toolInfo,
-                        uuidGeneratorStub,
+                        convertToUnifiedResultsMock.object,
                         scanIncompleteWarningDetectorMock.object,
                         notificationTextCreatorMock.object,
                         filterNeedsReviewResultsMock.object,
