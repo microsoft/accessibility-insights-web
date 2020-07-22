@@ -5,6 +5,7 @@ import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/automation-ids';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -25,7 +26,11 @@ describe('Android setup - prompt-install-service ', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulateServiceNotInstalled(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateServiceNotInstalled(defaultDeviceConfig),
+            path.basename(__filename),
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-install-service');
     });
@@ -43,13 +48,17 @@ describe('Android setup - prompt-install-service ', () => {
     });
 
     it('install button triggers installation, prompts for permission on success', async () => {
-        await setupMockAdb(defaultDeviceConfig);
+        await setupMockAdb(defaultDeviceConfig, path.basename(__filename), 'install successful');
         await dialog.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
 
     it('install button triggers installation, prompts correctly on failure', async () => {
-        await setupMockAdb(simulateServiceInstallationError(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateServiceInstallationError(defaultDeviceConfig),
+            path.basename(__filename),
+            'install failed',
+        );
         await dialog.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-install-failed');
     });

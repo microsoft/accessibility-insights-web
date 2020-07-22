@@ -8,5 +8,5 @@ import { testResourceServerConfig } from './test-resource-server-config';
 export default async function (): Promise<void> {
     testResourceServer.startServer(testResourceServerConfig);
 
-    await setupMockAdb(commonAdbConfigs['single-device']);
+    await setupMockAdb(commonAdbConfigs['single-device'], 'global-setup');
 }
