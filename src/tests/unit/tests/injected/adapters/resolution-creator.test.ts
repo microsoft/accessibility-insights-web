@@ -10,7 +10,7 @@ import {
 describe('ResolutionCreator', () => {
     it('outputs correct fix resolution with no data', () => {
         const resolutionCreatorDataStub: ResolutionCreatorData = {
-            id: 'test id',
+            id: 'rule id',
             nodeResult: {
                 any: [],
                 all: [],
@@ -34,7 +34,7 @@ describe('ResolutionCreator', () => {
 
     it('outputs correct fix resolution with data', () => {
         const resolutionCreatorDataStub: ResolutionCreatorData = {
-            id: 'test id',
+            id: 'rule id',
             nodeResult: {
                 any: [
                     { id: null, message: 'any 1 message', data: null },
@@ -59,16 +59,15 @@ describe('ResolutionCreator', () => {
         expect(actual).toEqual(expected);
     });
 
-    //
     it.each([
         'aria-input-field-name',
         'color-contrast',
         'link-in-text-block',
         'th-has-data-cells',
-        'bogus test id',
-    ])('outputs correct check resolution with id=%s', testId => {
+        'bogus rule id',
+    ])('outputs correct check resolution with id=%s', ruleId => {
         const resolutionCreatorDataStub: ResolutionCreatorData = {
-            id: testId,
+            id: ruleId,
             nodeResult: {
                 any: [],
                 all: [],
@@ -79,7 +78,7 @@ describe('ResolutionCreator', () => {
         };
 
         const expected = {
-            'how-to-check-web': testId,
+            'how-to-check-web': ruleId,
         };
 
         const actual = getCheckResolution(resolutionCreatorDataStub);

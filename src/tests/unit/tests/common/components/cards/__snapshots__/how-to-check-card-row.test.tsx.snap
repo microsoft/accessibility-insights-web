@@ -9,7 +9,7 @@ exports[`HowToCheckWebCardRow renders 1`] = `
       <HowToCheckText
         id={
           Object {
-            "checkText": "test text",
+            "ruleId": "test text",
           }
         }
       />

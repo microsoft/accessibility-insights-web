@@ -8,7 +8,7 @@ import * as styles from './how-to-check-card-row.scss';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface HowToCheckWebPropertyData {
-    checkText: string;
+    ruleId: string;
 }
 
 export interface HowToCheckWebCardRowProps extends CardRowProps {
