@@ -6,6 +6,7 @@ import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';
@@ -59,7 +60,7 @@ describe('PromptChooseDeviceStep', () => {
 
     it('passes rescan dep through', () => {
         const rendered = shallow(<PromptChooseDeviceStep {...props} />);
-        const rescanButton = rendered.find({ 'data-automation-id': 'rescan' });
+        const rescanButton = rendered.find({ 'data-automation-id': rescanAutomationId });
         rescanButton.simulate('click');
         actionMessageCreatorMock.verify(m => m.rescan(), Times.once());
     });
