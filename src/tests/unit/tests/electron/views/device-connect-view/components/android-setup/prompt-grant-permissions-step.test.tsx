@@ -3,10 +3,8 @@
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
-import {
-    PromptGrantPermissionsStep,
-    tryAgainAutomationId,
-} from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
+import { PromptGrantPermissionsStep } from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
+import { tryAgainAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';

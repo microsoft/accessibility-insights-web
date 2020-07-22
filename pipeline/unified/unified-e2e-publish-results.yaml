@@ -13,3 +13,9 @@ steps:
       condition: failed() # because the detailed chrome logs are ~150MB and uploading them takes ~30s
       continueOnError: true
       displayName: publish electron e2e screenshots and extended logs
+
+    - publish: '$(System.DefaultWorkingDirectory)/drop/mock-adb/logs'
+      artifact: '$(Agent.JobName)-mock-adb'
+      condition: failed()
+      continueOnError: true
+      displayName: publish mock adb folder

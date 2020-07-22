@@ -24,7 +24,7 @@ if (config == undefined) {
     exitWithUsage();
 }
 
-setupMockAdb(config)
+setupMockAdb(config, 'default')
     .then(() => {
         console.log('Successfully set up mock adb in folder:\n');
         console.log(mockAdbFolder);

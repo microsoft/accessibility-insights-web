@@ -9,10 +9,10 @@ import * as styles from 'electron/views/device-connect-view/components/android-s
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
-export const rescanAutomationId = 'prompt-connected-start-testing-rescan-button';
 export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptConnectedStartTestingStep',
     (props: CommonAndroidSetupStepProps) => {

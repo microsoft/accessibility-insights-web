@@ -163,13 +163,26 @@ function simulatePortForwardingError(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, portForwardingCommandMatch);
 }
 
+const physicalDeviceName1 = 'device-1';
+const physicalDeviceName2 = 'device-2';
+const emulatorDeviceName = 'emulator-3';
+
 module.exports = {
     commonAdbConfigs: {
-        'single-device': workingDeviceCommands(['device-1'], 62442),
-        'multiple-devices': workingDeviceCommands(['device-1', 'device-2', 'emulator-3'], 62442),
-        'slow-single-device': delayAllCommands(5000, workingDeviceCommands(['device-1'], 62442)),
+        'single-device': workingDeviceCommands([physicalDeviceName1], 62442),
+        'multiple-devices': workingDeviceCommands(
+            [physicalDeviceName1, physicalDeviceName2, emulatorDeviceName],
+            62442,
+        ),
+        'slow-single-device': delayAllCommands(
+            5000,
+            workingDeviceCommands([physicalDeviceName1], 62442),
+        ),
     },
     delayAllCommands,
+    physicalDeviceName1,
+    physicalDeviceName2,
+    emulatorDeviceName,
     simulateNoDevicesConnected,
     simulateServiceInstallationError,
     simulateServiceNotInstalled,

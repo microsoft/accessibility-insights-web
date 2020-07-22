@@ -19,7 +19,11 @@ export type MockAdbConfig = {
     };
 };
 
-export async function setupMockAdb(config: MockAdbConfig): Promise<void>;
+export async function setupMockAdb(
+    config: MockAdbConfig,
+    logFolderName: string,
+    ...extraLogNames: string[]
+): Promise<void>;
 
 export type CommonAdbConfigName = 'single-device';
 export const commonAdbConfigs: { [configName in CommonAdbConfigName]: MockAdbConfig };
@@ -29,3 +33,6 @@ export function simulateServiceLacksPermissions(config: MockAdbConfig): MockAdbC
 export function simulateServiceNotInstalled(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceInstallationError(config: MockAdbConfig): MockAdbConfig;
 export function delayAllCommands(delayMs: number, config: MockAdbConfig): MockAdbConfig;
+export const emulatorDeviceName: string;
+export const physicalDeviceName1: string;
+export const physicalDeviceName2: string;

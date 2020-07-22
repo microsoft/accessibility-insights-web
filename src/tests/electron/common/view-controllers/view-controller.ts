@@ -52,6 +52,13 @@ export abstract class ViewController {
         return await this.screenshotOnError(async () => this.client.isEnabled(selector));
     }
 
+    public async itemTextIncludesTarget(selector: string, target: string): Promise<boolean> {
+        return await this.screenshotOnError(async () => {
+            const itemText: string = await this.client.getText(selector);
+            return itemText.includes(target);
+        });
+    }
+
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
         return await screenshotOnError(
             path =>

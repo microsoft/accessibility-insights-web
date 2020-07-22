@@ -36,7 +36,8 @@ Most of the functionality of Unified relies on connecting to a device running th
 
 ```sh
 # This sets up mock-adb to respond as if a single physical device is connected with a working
-# and current install of Accessibility Insights for Android Service.
+# and current install of Accessibility Insights for Android Service. You can find logs for mock-adb
+# in drop\mock-adb\logs\default
 yarn mock-adb single-device
 
 # Start the app like normal. During the "connect a device" flow where it asks you where to find

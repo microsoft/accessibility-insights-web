@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import {
     CheckboxVisibility,
     DefaultButton,
@@ -15,8 +16,6 @@ import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-s
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import { DeviceDescription } from './device-description';
 import * as styles from './prompt-choose-device-step.scss';
-
-export const rescanAutomationId: string = 'rescan';
 
 export type PromptChooseDeviceStepState = {
     selectedDevice: DeviceInfo;
