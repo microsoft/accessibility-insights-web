@@ -58,7 +58,7 @@ describe('Android setup - prompt-install-service-failed ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(tryAgainAutomationId))).toBe(true);
         expect(
-            await dialog.itemTextContainsTarget(
+            await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 physicalDeviceName1,
             ),

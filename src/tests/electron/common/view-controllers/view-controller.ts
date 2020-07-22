@@ -52,10 +52,10 @@ export abstract class ViewController {
         return await this.screenshotOnError(async () => this.client.isEnabled(selector));
     }
 
-    public async itemTextContainsTarget(selector: string, target: string): Promise<boolean> {
+    public async itemTextIncludesTarget(selector: string, target: string): Promise<boolean> {
         return await this.screenshotOnError(async () => {
             const itemText: string = await this.client.getText(selector);
-            return itemText.indexOf(target) >= 0;
+            return itemText.includes(target);
         });
     }
 

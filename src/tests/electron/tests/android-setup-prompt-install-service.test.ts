@@ -48,7 +48,7 @@ describe('Android setup - prompt-install-service ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(installAutomationId))).toBe(true);
         expect(
-            await dialog.itemTextContainsTarget(
+            await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 physicalDeviceName1,
             ),

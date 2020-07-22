@@ -74,7 +74,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
         await dialog.waitForDialogVisible('detect-service');
         await dialog.waitForDialogVisible('prompt-install-service');
         expect(
-            await dialog.itemTextContainsTarget(
+            await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 emulatorDeviceName, // Emulators are listed first
             ),
@@ -97,7 +97,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
         await dialog.waitForDialogVisible('detect-service');
         await dialog.waitForDialogVisible('prompt-install-service');
         expect(
-            await dialog.itemTextContainsTarget(
+            await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 physicalDeviceName1,
             ),

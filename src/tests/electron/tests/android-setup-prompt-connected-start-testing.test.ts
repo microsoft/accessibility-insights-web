@@ -44,13 +44,13 @@ describe('Android setup - prompt-connected-start-testing', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(startTestingId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(rescanAutomationId))).toBe(true);
         expect(
-            await dialog.itemTextContainsTarget(
+            await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 physicalDeviceName1,
             ),
         ).toBe(true);
         expect(
-            await dialog.itemTextContainsTarget(
+            await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 expectedRunningApp,
             ),
