@@ -8,13 +8,12 @@ import { CommonSelectors } from 'tests/end-to-end/common/element-identifiers/com
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'Settings Panel';
-describe(`AutomatedChecksView -> ${description}`, () => {
+describe('AutomatedChecksView -> Settings Panel', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(commonAdbConfigs['single-device'], description, 'beforeEach');
+        await setupMockAdb(commonAdbConfigs['single-device'], __filename, 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForViewVisible();

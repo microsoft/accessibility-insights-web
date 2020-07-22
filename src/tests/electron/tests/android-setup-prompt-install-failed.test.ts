@@ -19,8 +19,7 @@ import {
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'prompt-install-service-failed';
-describe(`Android setup - ${description}`, () => {
+describe('Android setup - prompt-install-service-failed', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
@@ -28,7 +27,7 @@ describe(`Android setup - ${description}`, () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateServiceNotInstalled(defaultDeviceConfig),
-            description,
+            __filename,
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -36,7 +35,7 @@ describe(`Android setup - ${description}`, () => {
 
         await setupMockAdb(
             simulateServiceInstallationError(defaultDeviceConfig),
-            description,
+            __filename,
             'beforeEach',
         );
         await dialog.click(getAutomationIdSelector(installAutomationId));
@@ -57,7 +56,7 @@ describe(`Android setup - ${description}`, () => {
     });
 
     it('try again button triggers installation, prompts for permission on success', async () => {
-        await setupMockAdb(defaultDeviceConfig, description, 'try again to permissions');
+        await setupMockAdb(defaultDeviceConfig, __filename, 'try again to permissions');
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
@@ -65,7 +64,7 @@ describe(`Android setup - ${description}`, () => {
     it('install button triggers installation, prompts correctly on failure', async () => {
         await setupMockAdb(
             simulateServiceInstallationError(defaultDeviceConfig),
-            description,
+            __filename,
             'install button to install failed',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
@@ -84,7 +83,7 @@ describe(`Android setup - ${description}`, () => {
     it('installing service spinner should pass accessibility validation in all contrast modes', async () => {
         await setupMockAdb(
             delayAllCommands(3000, simulateServiceInstallationError(defaultDeviceConfig)),
-            description,
+            __filename,
             'install spinner accessibility',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));

@@ -15,8 +15,7 @@ import {
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'locate-adb';
-describe(`Android setup - ${description}`, () => {
+describe('Android setup - locate-adb', () => {
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
@@ -43,7 +42,7 @@ describe(`Android setup - ${description}`, () => {
 
         await setupMockAdb(
             simulateNoDevicesConnected(commonAdbConfigs['slow-single-device']),
-            description,
+            __filename,
             'respects user-provided location',
         );
         await dialog.client.click('input[type="text"]');

@@ -17,8 +17,7 @@ import {
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'prompt-install-service';
-describe(`Android setup - ${description}`, () => {
+describe('Android setup - prompt-install-service', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
@@ -26,7 +25,7 @@ describe(`Android setup - ${description}`, () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateServiceNotInstalled(defaultDeviceConfig),
-            description,
+            __filename,
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -47,7 +46,7 @@ describe(`Android setup - ${description}`, () => {
     });
 
     it('install button triggers installation, prompts for permission on success', async () => {
-        await setupMockAdb(defaultDeviceConfig, description, 'install successful');
+        await setupMockAdb(defaultDeviceConfig, __filename, 'install successful');
         await dialog.client.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
@@ -55,7 +54,7 @@ describe(`Android setup - ${description}`, () => {
     it('install button triggers installation, prompts correctly on failure', async () => {
         await setupMockAdb(
             simulateServiceInstallationError(defaultDeviceConfig),
-            description,
+            __filename,
             'install failed',
         );
         await dialog.client.click(getAutomationIdSelector(installAutomationId));

@@ -32,7 +32,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(defaultDeviceConfig, multipleDescription, 'beforeEach');
+        await setupMockAdb(defaultDeviceConfig, __filename, multipleDescription, 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-choose-device');
     });
@@ -56,6 +56,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     it('selecting next goes to detect-service', async () => {
         await setupMockAdb(
             delayAllCommands(1000, simulateServiceNotInstalled(defaultDeviceConfig)),
+            __filename,
             multipleDescription,
             'next',
         );
@@ -67,6 +68,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     it('selecting rescan goes to detect-devices', async () => {
         await setupMockAdb(
             delayAllCommands(100, defaultDeviceConfig),
+            __filename,
             multipleDescription,
             'rescan',
         );
@@ -92,6 +94,7 @@ describe('Android setup - prompt-choose-device (single device)', () => {
         const cancelId = leftFooterButtonAutomationId;
         await setupMockAdb(
             simulateServiceNotInstalled(defaultDeviceConfig),
+            __filename,
             singleDescription,
             'beforeEach',
         );

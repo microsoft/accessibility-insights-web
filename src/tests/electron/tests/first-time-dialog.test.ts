@@ -5,12 +5,11 @@ import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'first time dialog';
-describe(description, () => {
+describe('first time dialog', () => {
     let app: AppController;
 
     beforeEach(async () => {
-        await setupMockAdb(commonAdbConfigs['single-device'], description, 'beforeEach');
+        await setupMockAdb(commonAdbConfigs['single-device'], __filename, 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: false });
         await app.openDeviceConnectionDialog();
     });

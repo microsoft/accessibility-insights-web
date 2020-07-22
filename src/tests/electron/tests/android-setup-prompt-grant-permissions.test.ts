@@ -17,8 +17,7 @@ import {
     simulateServiceLacksPermissions,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'prompt-grant-permissions';
-describe(`Android setup - ${description}`, () => {
+describe('Android setup - prompt-grant-permissions', () => {
     const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
@@ -27,7 +26,7 @@ describe(`Android setup - ${description}`, () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateServiceLacksPermissions(defaultDeviceConfig),
-            description,
+            __filename,
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -47,7 +46,7 @@ describe(`Android setup - ${description}`, () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(commonAdbConfigs['multiple-devices'], description, 'cancel');
+        await setupMockAdb(commonAdbConfigs['multiple-devices'], __filename, 'cancel');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -55,7 +54,7 @@ describe(`Android setup - ${description}`, () => {
     it('try again returns here if permissions are not granted', async () => {
         await setupMockAdb(
             delayAllCommands(5000, simulateServiceLacksPermissions(defaultDeviceConfig)),
-            description,
+            __filename,
             'try again returns here',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
@@ -66,7 +65,7 @@ describe(`Android setup - ${description}`, () => {
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
         await setupMockAdb(
             delayAllCommands(2500, defaultDeviceConfig),
-            description,
+            __filename,
             'try again moves on',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));

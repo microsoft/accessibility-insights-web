@@ -16,8 +16,7 @@ import {
     setupMockAdb,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const description = 'prompt-connected-start-testing';
-describe(`Android setup - ${description}`, () => {
+describe('Android setup - prompt-connected-start-testing', () => {
     const [cancelId, startTestingId] = [
         leftFooterButtonAutomationId,
         rightFooterButtonAutomationId,
@@ -27,7 +26,7 @@ describe(`Android setup - ${description}`, () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(defaultDeviceConfig, description, 'beforeEach');
+        await setupMockAdb(defaultDeviceConfig, __filename, 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-connected-start-testing');
     });
@@ -45,7 +44,7 @@ describe(`Android setup - ${description}`, () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(defaultDeviceConfig, description, 'cancel');
+        await setupMockAdb(defaultDeviceConfig, __filename, 'cancel');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -53,7 +52,7 @@ describe(`Android setup - ${description}`, () => {
     it('goes to detect-devices upon rescan (same devices)', async () => {
         await setupMockAdb(
             delayAllCommands(50, defaultDeviceConfig),
-            description,
+            __filename,
             'rescan same devices',
         );
         await dialog.client.click(getAutomationIdSelector(rescanAutomationId));
@@ -64,7 +63,7 @@ describe(`Android setup - ${description}`, () => {
     it('goes to detect-devices upon rescan (different devices)', async () => {
         await setupMockAdb(
             delayAllCommands(100, commonAdbConfigs['multiple-devices']),
-            description,
+            __filename,
             'rescan different devices',
         );
         await dialog.client.click(getAutomationIdSelector(rescanAutomationId));

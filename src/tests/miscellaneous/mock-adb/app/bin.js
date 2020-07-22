@@ -8,6 +8,8 @@ const {
     stopDetachedPortForwardServer,
     tryHandleAsPortForwardServer,
 } = require('./port-forward-server.js');
+const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
+const { EOL } = require('os');
 
 function resultFromCommand(config, inputCommand) {
     // First option: exact match
@@ -42,21 +44,21 @@ async function main() {
     // Use path.dirname(process.execPath) instead for it to look for the file at runtime
     const runtimeDirname = path.dirname(process.execPath);
 
-    const defaultConfigPath = path.join(runtimeDirname, 'mock_adb_config.json');
+    const defaultConfigPath = path.join(runtimeDirname, fileWithMockAdbConfig);
     const configPath = process.env['MOCK_ADB_CONFIG'] || defaultConfigPath;
 
     const configContent = fs.readFileSync(configPath);
     const config = JSON.parse(configContent);
 
     const currentContext = fs.readFileSync(
-        path.join(runtimeDirname, 'latestAdbContext.txt'),
+        path.join(runtimeDirname, fileWithExpectedLoggingPath),
         'utf-8',
     );
 
-    const outputDir = path.join(path.dirname(process.execPath), 'logs', currentContext);
-    fs.mkdirSync(outputDir, { recursive: true });
+    const outputLogsDir = path.join(path.dirname(process.execPath), 'logs', currentContext);
+    fs.mkdirSync(outputLogsDir, { recursive: true });
 
-    const outputFile = path.join(outputDir, 'mock_adb_output.json');
+    const outputFile = path.join(outputLogsDir, 'mock_adb_output.json');
 
     let ignoredPrefixArgs = 2; // node.exe bin.js
     if (process.argv[2] === '-P') {
@@ -90,9 +92,9 @@ async function main() {
 
     result.input = process.argv;
     result.inputCommand = inputCommand;
-    fs.writeFileSync(outputFile, JSON.stringify(result, null, '    '), { flag: 'a' });
+    fs.writeFileSync(outputFile, JSON.stringify(result, null, '    ') + EOL, { flag: 'a' });
 
-    const outputConfigFile = path.join(outputDir, 'mock_adb_config.json');
+    const outputConfigFile = path.join(outputLogsDir, fileWithMockAdbConfig);
     fs.copyFileSync(configPath, outputConfigFile);
 
     if (result.exitCode != undefined) {
