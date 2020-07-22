@@ -31,7 +31,7 @@ const [closeId, nextId, rescanId] = [
 describe('Android setup - prompt-choose-device (multiple devices)', () => {
     const multipleDescription = 'prompt-choose-device-multiple';
     const defaultDeviceConfig: MockAdbConfig = commonAdbConfigs['multiple-devices'];
-    const downArrowKey = '\uE015'; // Reference: https://w3c.github.io/webdriver/#keyboard-actions
+    const downArrowKey = '\uE015'; // "ArrowDown" value from https://w3c.github.io/webdriver/#keyboard-actions
 
     let app: AppController;
     let dialog: AndroidSetupViewController;
