@@ -10,6 +10,7 @@ import * as React from 'react';
 export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;
     dismissExportDialog: () => void;
+    afterDialogDismissed: () => void;
 };
 
 export function getReportExportDialogForAssessment(
@@ -23,6 +24,7 @@ export function getReportExportDialogForAssessment(
         scanMetadata,
         isOpen,
         dismissExportDialog,
+        afterDialogDismissed,
     } = props;
     const reportGenerator = deps.reportGenerator;
     const dialogProps: ExportDialogWithLocalStateProps = {
@@ -44,6 +46,7 @@ export function getReportExportDialogForAssessment(
         featureFlagStoreData: props.featureFlagStoreData,
         isOpen,
         dismissExportDialog,
+        afterDialogDismissed,
     };
     return <ExportDialogWithLocalState {...dialogProps} />;
 }
@@ -55,7 +58,7 @@ export function getReportExportDialogForFastPass(
         return null;
     }
 
-    const { deps, isOpen, dismissExportDialog } = props;
+    const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
     const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
@@ -76,6 +79,7 @@ export function getReportExportDialogForFastPass(
         featureFlagStoreData: props.featureFlagStoreData,
         isOpen,
         dismissExportDialog,
+        afterDialogDismissed,
     };
 
     return <ExportDialogWithLocalState {...dialogProps} />;

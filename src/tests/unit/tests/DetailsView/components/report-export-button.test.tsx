@@ -6,6 +6,7 @@ import {
     ReportExportButtonProps,
 } from 'DetailsView/components/report-export-button';
 import { shallow } from 'enzyme';
+import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -17,6 +18,7 @@ describe(ReportExportButton, () => {
         showDialogMock = Mock.ofInstance(() => null);
         props = {
             showReportExportDialog: showDialogMock.object,
+            buttonRef: {} as React.RefObject<IButton>,
         };
     });
 

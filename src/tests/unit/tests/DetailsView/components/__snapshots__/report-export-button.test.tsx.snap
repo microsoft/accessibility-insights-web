@@ -2,6 +2,7 @@
 
 exports[` renders ReportExportButton 1`] = `
 <InsightsCommandButton
+  componentRef={Object {}}
   iconProps={
     Object {
       "iconName": "Export",

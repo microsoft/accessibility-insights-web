@@ -7,7 +7,7 @@ import {
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
-import { IOverflowSetItemProps } from 'office-ui-fabric-react';
+import { IButton, IOverflowSetItemProps, RefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { StartOverComponentFactory } from '../../../../../DetailsView/components/details-view-command-bar';
@@ -25,6 +25,7 @@ describe('CommandBarButtonsMenu', () => {
                 StartOverComponentFactory: startOverComponentFactory.object,
             } as DetailsViewSwitcherNavConfiguration,
             renderExportReportButton: renderExportReportComponentMock.object,
+            buttonRef: {} as RefObject<IButton>,
         } as CommandBarButtonsMenuProps;
     });
 

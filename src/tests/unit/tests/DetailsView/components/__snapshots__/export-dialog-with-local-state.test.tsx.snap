@@ -2,6 +2,7 @@
 
 exports[`ExportDialogWithLocalState clicking export on the dialog should trigger generateHtml with the current exportDescription 1`] = `
 <ExportDialog
+  afterDismissed={[Function]}
   deps={
     Object {
       "reportGenerator": proxy {
@@ -30,6 +31,7 @@ exports[`ExportDialogWithLocalState clicking export on the dialog should trigger
 
 exports[`ExportDialogWithLocalState edit text field: test content with special characters: <> $ " \` ' 1`] = `
 <ExportDialog
+  afterDismissed={[Function]}
   deps={
     Object {
       "reportGenerator": proxy {
@@ -58,6 +60,7 @@ exports[`ExportDialogWithLocalState edit text field: test content with special c
 
 exports[`ExportDialogWithLocalState on dialog opened 1`] = `
 <ExportDialog
+  afterDismissed={[Function]}
   deps={
     Object {
       "reportGenerator": proxy {
@@ -86,6 +89,7 @@ exports[`ExportDialogWithLocalState on dialog opened 1`] = `
 
 exports[`ExportDialogWithLocalState render with dialog closed 1`] = `
 <ExportDialog
+  afterDismissed={[Function]}
   deps={
     Object {
       "reportGenerator": proxy {
@@ -114,6 +118,7 @@ exports[`ExportDialogWithLocalState render with dialog closed 1`] = `
 
 exports[`ExportDialogWithLocalState render with dialog open 1`] = `
 <ExportDialog
+  afterDismissed={[Function]}
   deps={
     Object {
       "reportGenerator": proxy {

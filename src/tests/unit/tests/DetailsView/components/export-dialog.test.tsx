@@ -26,6 +26,7 @@ describe('ExportDialog', () => {
     const reportExportServiceProvider = Mock.ofType<ReportExportServiceProvider>();
     const eventStub = 'event stub' as any;
     const onExportClickMock = Mock.ofInstance(() => {});
+    const afterDismissedMock = Mock.ofInstance(() => null);
     let props: ExportDialogProps;
 
     beforeEach(() => {
@@ -53,6 +54,7 @@ describe('ExportDialog', () => {
             reportExportFormat: 'Assessment',
             onExportClick: onExportClickMock.object,
             featureFlagStoreData: {},
+            afterDismissed: afterDismissedMock.object,
         };
     });
 

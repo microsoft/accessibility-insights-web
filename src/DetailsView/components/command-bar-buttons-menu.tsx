@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { CommandBarButton, IContextualMenuItem } from 'office-ui-fabric-react';
+import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = CommandBarProps & {
     renderExportReportButton: () => JSX.Element;
+    buttonRef?: IRefObject<IButton>;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
@@ -41,6 +42,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                     className: styles.commandBarButtonsMenuButton,
                 }}
                 menuProps={{ items: overflowItems, className: styles.commandBarButtonsSubmenu }}
+                componentRef={props.buttonRef}
             />
         );
     },

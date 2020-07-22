@@ -42,6 +42,7 @@ describe('ReportExportDialogFactory', () => {
     let deps: DetailsViewCommandBarDeps;
     let dismissExportDialogMock: IMock<() => void>;
     let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
+    let afterDialogDismissedMock: IMock<() => void>;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -61,6 +62,7 @@ describe('ReportExportDialogFactory', () => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Loose);
         dismissExportDialogMock = Mock.ofInstance(() => null);
+        afterDialogDismissedMock = Mock.ofInstance(() => null);
         shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
         cardsViewData = null;
         deps = {
@@ -86,6 +88,7 @@ describe('ReportExportDialogFactory', () => {
             switcherNavConfiguration,
             isOpen,
             dismissExportDialog: dismissExportDialogMock.object,
+            afterDialogDismissed: afterDialogDismissedMock.object,
         } as ReportExportDialogFactoryProps;
     }
 
@@ -164,6 +167,16 @@ describe('ReportExportDialogFactory', () => {
 
             dismissExportDialogMock.verify(d => d(), Times.once());
         });
+
+        test('afterDialogDismissed called', () => {
+            const props = getProps();
+
+            const dialog = getReportExportDialogForAssessment(props);
+
+            dialog.props.afterDialogDismissed();
+
+            afterDialogDismissedMock.verify(d => d(), Times.once());
+        });
     });
 
     describe('getReportExportDialogForFastPass', () => {
@@ -222,6 +235,16 @@ describe('ReportExportDialogFactory', () => {
             dialog.props.dismissExportDialog();
 
             dismissExportDialogMock.verify(d => d(), Times.once());
+        });
+
+        test('afterDialogDismissed called', () => {
+            const props = getProps();
+
+            const dialog = getReportExportDialogForAssessment(props);
+
+            dialog.props.afterDialogDismissed();
+
+            afterDialogDismissedMock.verify(d => d(), Times.once());
         });
     });
 });

@@ -14,7 +14,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
-  <CommandBarButtonsMenu deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} renderExportReportButton={[Function]} />
+  <CommandBarButtonsMenu deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} renderExportReportButton={[Function]} buttonRef={[Function: buttonRef]} />
 </div>"
 `;
 
@@ -33,7 +33,7 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton showReportExportDialog={[Function]} />
+    <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
@@ -59,7 +59,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton showReportExportDialog={[Function]} />
+    <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
   </div>
   <div>
     Export dialog
@@ -82,7 +82,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     </StyledTooltipHostBase>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton showReportExportDialog={[Function]} />
+    <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
   </div>
   <div>
     Export dialog

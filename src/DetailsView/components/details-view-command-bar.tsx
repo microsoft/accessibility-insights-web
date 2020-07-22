@@ -9,7 +9,7 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
-import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
+import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
@@ -63,6 +63,8 @@ export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
     DetailsViewCommandBarState
 > {
+    private exportDialogCloseFocus?: IButton;
+
     public constructor(props) {
         super(props);
         this.state = {
@@ -115,7 +117,7 @@ export class DetailsViewCommandBar extends React.Component<
     }
 
     private renderCommandButtons(): JSX.Element {
-        const reportExportElement: JSX.Element = this.renderExportComponent();
+        const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverComponent();
 
         if (reportExportElement || startOverElement) {
@@ -134,7 +136,8 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 {...this.props}
-                renderExportReportButton={this.renderExportComponent}
+                renderExportReportButton={this.renderExportButton}
+                buttonRef={ref => (this.exportDialogCloseFocus = ref)}
             />
         );
     }
@@ -143,12 +146,19 @@ export class DetailsViewCommandBar extends React.Component<
 
     private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
 
-    private renderExportComponent = () => {
+    private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
+
+    private renderExportButton = () => {
         const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
             this.props,
         );
         if (showButton) {
-            return <ReportExportButton showReportExportDialog={this.showReportExportDialog} />;
+            return (
+                <ReportExportButton
+                    showReportExportDialog={this.showReportExportDialog}
+                    buttonRef={ref => (this.exportDialogCloseFocus = ref)}
+                />
+            );
         }
         return null;
     };
@@ -158,6 +168,7 @@ export class DetailsViewCommandBar extends React.Component<
             ...this.props,
             isOpen: this.state.isReportExportDialogOpen,
             dismissExportDialog: this.dismissReportExportDialog,
+            afterDialogDismissed: this.focusReportExportButton,
         });
     }
 

@@ -21,6 +21,7 @@ export interface ExportDialogWithLocalStateProps {
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
     dismissExportDialog: () => void;
+    afterDialogDismissed: () => void;
 }
 
 interface ExportDialogWithLocalStateState {
@@ -70,6 +71,7 @@ export class ExportDialogWithLocalState extends React.Component<
                 reportExportFormat={reportExportFormat}
                 onExportClick={this.generateHtml}
                 featureFlagStoreData={featureFlagStoreData}
+                afterDismissed={this.props.afterDialogDismissed}
             />
         );
     }

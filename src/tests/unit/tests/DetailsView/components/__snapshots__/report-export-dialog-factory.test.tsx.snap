@@ -2,6 +2,7 @@
 
 exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected properties are set 1`] = `
 <ExportDialogWithLocalState
+  afterDialogDismissed={[Function]}
   deps={
     Object {
       "detailsViewActionMessageCreator": proxy {
@@ -55,6 +56,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
 
 exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected properties are set 1`] = `
 <ExportDialogWithLocalState
+  afterDialogDismissed={[Function]}
   deps={
     Object {
       "detailsViewActionMessageCreator": proxy {

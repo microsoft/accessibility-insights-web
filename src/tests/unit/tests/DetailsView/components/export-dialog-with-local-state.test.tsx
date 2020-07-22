@@ -19,6 +19,7 @@ describe('ExportDialogWithLocalState', () => {
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
     let dismissDialogMock: IMock<() => void>;
+    let afterDialogDismissedMock: IMock<() => void>;
 
     const exportDescription = 'export description';
     const scanDate = new Date(2019, 5, 28);
@@ -35,6 +36,7 @@ describe('ExportDialogWithLocalState', () => {
         updateDescriptionMock = Mock.ofInstance(value => null);
         getDescriptionMock = Mock.ofInstance(() => null);
         dismissDialogMock = Mock.ofInstance(() => null);
+        afterDialogDismissedMock = Mock.ofInstance(() => null);
         props = {
             deps,
             reportExportFormat,
@@ -48,6 +50,7 @@ describe('ExportDialogWithLocalState', () => {
             },
             isOpen: true,
             dismissExportDialog: dismissDialogMock.object,
+            afterDialogDismissed: afterDialogDismissedMock.object,
         };
     });
 
@@ -70,6 +73,16 @@ describe('ExportDialogWithLocalState', () => {
         exportDialog.props().onClose();
 
         dismissDialogMock.verifyAll();
+    });
+
+    test('afterDialogDismissed', () => {
+        afterDialogDismissedMock.setup(d => d()).verifiable(Times.once());
+
+        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const exportDialog = wrapper.find(ExportDialog);
+        exportDialog.props().afterDismissed();
+
+        afterDialogDismissedMock.verifyAll();
     });
 
     test('on dialog opened', () => {
