@@ -49,4 +49,35 @@ describe('GetDecoratedAxeNodeResult', () => {
             expectedResult,
         );
     });
+
+    test('gets relevant node with no how-to-fix data', () => {
+        const unifiedResult: UnifiedResult = exampleUnifiedResult;
+        unifiedResult.resolution = {
+            howToFixSummary: 'sample how to fix summary',
+            'how-to-check-web': 'sample how to check text',
+        };
+        const unifiedRule: UnifiedRule = {
+            id: 'some rule',
+            guidance: [{} as GuidanceLink],
+            description: 'some description',
+            url: 'some url',
+        };
+        const selectorStub = 'some selector';
+
+        const expectedResult = {
+            status: false,
+            ruleId: unifiedResult.ruleId,
+            failureSummary: unifiedResult.resolution.howToFixSummary,
+            selector: selectorStub,
+            guidanceLinks: unifiedRule.guidance,
+            help: unifiedRule.description,
+            helpUrl: unifiedRule.url,
+            html: unifiedResult.descriptors.snippet,
+            id: unifiedResult.uid,
+        };
+
+        expect(getDecoratedAxeNode(unifiedResult, unifiedRule, selectorStub)).toEqual(
+            expectedResult,
+        );
+    });
 });

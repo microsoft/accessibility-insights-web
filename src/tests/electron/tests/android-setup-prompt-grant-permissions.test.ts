@@ -3,8 +3,8 @@
 import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
-} from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
-import { tryAgainAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
+    tryAgainAutomationId,
+} from 'electron/views/device-connect-view/components/automation-ids';
 import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -17,8 +17,10 @@ import {
     setupMockAdb,
     simulateServiceLacksPermissions,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
+
+const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
 describe('Android setup - prompt-grant-permissions', () => {
-    const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
@@ -51,7 +53,7 @@ describe('Android setup - prompt-grant-permissions', () => {
             path.basename(__filename),
             'cancel',
         );
-        await dialog.client.click(getAutomationIdSelector(cancelId));
+        await dialog.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
@@ -61,7 +63,7 @@ describe('Android setup - prompt-grant-permissions', () => {
             path.basename(__filename),
             'try again returns here',
         );
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
@@ -72,13 +74,13 @@ describe('Android setup - prompt-grant-permissions', () => {
             path.basename(__filename),
             'try again moves on',
         );
-        await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
+        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('detect-permissions');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
-    it('should pass accessibility validation in both contrast modes', async () => {
+    it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 });

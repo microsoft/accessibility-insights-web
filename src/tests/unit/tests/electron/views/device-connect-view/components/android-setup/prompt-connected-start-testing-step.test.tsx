@@ -4,10 +4,8 @@ import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupStepLayout } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from 'electron/views/device-connect-view/components/android-setup/android-setup-types';
-import {
-    PromptConnectedStartTestingStep,
-    rescanAutomationId,
-} from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
+import { PromptConnectedStartTestingStep } from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { AndroidSetupStepPropsBuilder } from 'tests/unit/common/android-setup-step-props-builder';

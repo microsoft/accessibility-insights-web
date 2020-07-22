@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import {
     leftFooterButtonAutomationId,
+    rescanAutomationId,
     rightFooterButtonAutomationId,
-} from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
-import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
-import { rescanAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
+} from 'electron/views/device-connect-view/components/automation-ids';
 import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';

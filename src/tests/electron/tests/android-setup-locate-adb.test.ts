@@ -3,7 +3,7 @@
 import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
-} from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
+} from 'electron/views/device-connect-view/components/automation-ids';
 import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -16,7 +16,9 @@ import {
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('Android setup - locate-adb', () => {
+const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+
+describe('Android setup - locate adb', () => {
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
@@ -37,7 +39,6 @@ describe('Android setup - locate-adb', () => {
     });
 
     it('respects user-provided adb location, detect-adb passes a11y check', async () => {
-        const [closeId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
 
@@ -46,17 +47,17 @@ describe('Android setup - locate-adb', () => {
             path.basename(__filename),
             'respects user-provided location',
         );
-        await dialog.client.click('input[type="text"]');
+        await dialog.click('input[type="text"]');
         await dialog.client.keys(`${(global as any).rootDir}/drop/mock-adb`);
 
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(true);
-        await dialog.client.click(getAutomationIdSelector(nextId));
+        await dialog.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-adb');
         await scanForAccessibilityIssuesInAllModes(app);
         await dialog.waitForDialogVisible('prompt-connect-to-device');
     });
 
-    it('should pass accessibility validation in both contrast modes', async () => {
+    it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 });

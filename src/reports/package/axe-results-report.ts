@@ -3,8 +3,7 @@
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
-import { UUIDGenerator } from 'common/uid-generator';
-import { convertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { ResultDecorator } from 'scanner/result-decorator';
 
@@ -15,9 +14,8 @@ export type AxeResultsReportDeps = {
     reportHtmlGenerator: ReportHtmlGenerator;
     resultDecorator: ResultDecorator;
     getUnifiedRules: typeof convertScanResultsToUnifiedRules;
-    getUnifiedResults: typeof convertScanResultsToUnifiedResults;
+    getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate;
     getCards: typeof getCardViewData;
-    getUUID: UUIDGenerator;
 };
 
 export class AxeResultsReport implements AccessibilityInsightsReport.Report {
@@ -28,7 +26,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
     ) { }
 
     public asHTML(): string {
-        const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, getUUID, reportHtmlGenerator } = this.deps;
+        const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, reportHtmlGenerator } = this.deps;
         const { results, description, scanContext: { pageTitle } } = this.parameters;
 
         const scanDate = new Date(results.timestamp);
@@ -37,7 +35,7 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
 
         const unifiedRules = getUnifiedRules(scanResults);
 
-        const unifiedResults = getUnifiedResults(scanResults, getUUID);
+        const unifiedResults = getUnifiedResults(scanResults);
 
         const cardSelectionViewData: CardSelectionViewData = {
             selectedResultUids: [],
