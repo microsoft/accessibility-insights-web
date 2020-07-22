@@ -2,6 +2,11 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
+import {
+    leftFooterButtonAutomationId,
+    moreInfoLinkAutomationId,
+    rightFooterButtonAutomationId,
+} from 'electron/views/device-connect-view/components/automation-ids';
 import { DefaultButton, IButtonProps, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './android-setup-step-layout.scss';
@@ -15,9 +20,6 @@ export type AndroidSetupStepLayoutProps = {
     leftFooterButtonProps: AndroidSetupFooterButtonProps;
     rightFooterButtonProps: AndroidSetupFooterButtonProps;
 };
-export const moreInfoLinkAutomationId = 'more-info-link';
-export const leftFooterButtonAutomationId = 'android-left-footer-button';
-export const rightFooterButtonAutomationId = 'android-right-footer-button';
 
 export const AndroidSetupStepLayout = NamedFC<AndroidSetupStepLayoutProps>(
     'AndroidSetupStepLayout',
