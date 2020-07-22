@@ -25,7 +25,11 @@ describe(`Android setup - ${description}`, () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulatePortForwardingError(defaultDeviceConfig));
+        await setupMockAdb(
+            simulatePortForwardingError(defaultDeviceConfig),
+            description,
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-configuring-port-forwarding-failed');
     });

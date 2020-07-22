@@ -24,7 +24,11 @@ export type MockAdbContext = {
     id: string;
 };
 
-export async function setupMockAdb(config: MockAdbConfig, ...contextIds: string[]): Promise<void>;
+export async function setupMockAdb(
+    config: MockAdbConfig,
+    logFolderName: string,
+    ...extraLogNames: string[]
+): Promise<void>;
 
 export type CommonAdbConfigName = 'single-device';
 export const commonAdbConfigs: { [configName in CommonAdbConfigName]: MockAdbConfig };
