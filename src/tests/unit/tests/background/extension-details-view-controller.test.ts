@@ -221,6 +221,35 @@ describe('ExtensionDetailsViewController', () => {
         browserAdapterMock.verifyAll();
     });
 
+    test('showDetailsView after details tab has # at end', async () => {
+        const targetTabId = 5;
+        const detailsViewTabId = 10;
+
+        setupCreateDetailsView(targetTabId, detailsViewTabId);
+
+        // call show details once
+        await testSubject.showDetailsView(targetTabId);
+
+        browserAdapterMock.reset();
+
+        // update details tab
+        const extensionId = 'ext_id';
+        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        onUpdateTabCallback(
+            detailsViewTabId,
+            { url: 'chromeExt://ext_Id/detailsView/detailsView.html?tabId=' + targetTabId + '#' },
+            null,
+        );
+
+        setupCreateDetailsViewForAnyUrl(Times.never());
+        setupSwitchToTab(detailsViewTabId);
+
+        // call show details second time
+        await testSubject.showDetailsView(targetTabId);
+
+        browserAdapterMock.verifyAll();
+    });
+
     test('showDetailsView after details tab title update', async () => {
         const targetTabId = 5;
         const detailsViewTabId = 10;
