@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
@@ -13,6 +14,7 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import {
     commonAdbConfigs,
     delayAllCommands,
+    physicalDeviceName1,
     setupMockAdb,
     simulatePortForwardingError,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
@@ -40,6 +42,12 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(cancelId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(tryAgainAutomationId))).toBe(true);
+        expect(
+            await dialog.itemTextContainsTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                physicalDeviceName1,
+            ),
+        ).toBe(true);
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {

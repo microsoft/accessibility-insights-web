@@ -29,3 +29,6 @@ export function simulateServiceLacksPermissions(config: MockAdbConfig): MockAdbC
 export function simulateServiceNotInstalled(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceInstallationError(config: MockAdbConfig): MockAdbConfig;
 export function delayAllCommands(delayMs: number, config: MockAdbConfig): MockAdbConfig;
+export const physicalDeviceName1: string;
+export const physicalDeviceName2: string;
+export const emulatorDeviceName: string;

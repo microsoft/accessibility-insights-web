@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import {
     leftFooterButtonAutomationId,
     rescanAutomationId,
@@ -13,10 +14,12 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import {
     commonAdbConfigs,
     delayAllCommands,
+    physicalDeviceName1,
     setupMockAdb,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
 const [cancelId, startTestingId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+const expectedRunningApp = 'com.google.android.apps.messaging';
 
 describe('Android setup - prompt-connected-start-testing', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
@@ -39,6 +42,18 @@ describe('Android setup - prompt-connected-start-testing', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(cancelId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(startTestingId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(rescanAutomationId))).toBe(true);
+        expect(
+            await dialog.itemTextContainsTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                physicalDeviceName1,
+            ),
+        ).toBe(true);
+        expect(
+            await dialog.itemTextContainsTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                expectedRunningApp,
+            ),
+        ).toBe(true);
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {

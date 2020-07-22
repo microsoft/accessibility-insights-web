@@ -14,7 +14,9 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import {
     commonAdbConfigs,
     delayAllCommands,
+    emulatorDeviceName,
     MockAdbConfig,
+    physicalDeviceName1,
     setupMockAdb,
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
@@ -52,13 +54,19 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
         expect(devices.length).toBe(3);
     });
 
-    it('selecting next goes to detect-service', async () => {
+    it('selecting next goes to detect-service with default selection', async () => {
         await setupMockAdb(
             delayAllCommands(1000, simulateServiceNotInstalled(defaultDeviceConfig)),
         );
         await dialog.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-service');
         await dialog.waitForDialogVisible('prompt-install-service'); // Let mock-adb complete
+        expect(
+            await dialog.itemTextContainsTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                emulatorDeviceName, // Emulators are listed first
+            ),
+        ).toBe(true);
     });
 
     it('selecting rescan goes to detect-devices', async () => {
