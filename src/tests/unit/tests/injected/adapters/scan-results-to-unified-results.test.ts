@@ -47,8 +47,10 @@ describe('ScanResults to Unified Results Test', () => {
     });
 
     test('automaticChecksConversion works with filled up passes and failures value in scan results', () => {
-        setupPass(fixResolutionCreatorMock, fixResolutionStub);
-        setupFail(fixResolutionCreatorMock, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'test', passingNode, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node1, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id1', node2, fixResolutionStub);
+        setupResolutionMock(fixResolutionCreatorMock, 'id2', node3, fixResolutionStub);
 
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResults();
@@ -72,38 +74,22 @@ describe('ScanResults to Unified Results Test', () => {
     });
 
     test('needsReviewConversion works with filled up passes, failures and incomplete values in scan results', () => {
-        setupPass(checkResolutionCreatorMock, checkResolutionStub);
-        setupFail(checkResolutionCreatorMock, checkResolutionStub);
-        setupIncomplete(checkResolutionCreatorMock, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'test', passingNode, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'id1', node1, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'id1', node2, checkResolutionStub);
+        setupResolutionMock(checkResolutionCreatorMock, 'id2', node3, checkResolutionStub);
+        setupResolutionMock(
+            checkResolutionCreatorMock,
+            'test2',
+            incompleteNode,
+            checkResolutionStub,
+        );
 
         const testSubject = getTestSubject();
         const scanResultsStub: ScanResults = createTestResultsWithIncompletes();
         expect(testSubject.needsReviewConversion(scanResultsStub)).toMatchSnapshot();
         generateGuidMock.verifyAll();
     });
-
-    function setupPass(
-        mock: IMock<ResolutionCreator>,
-        resolutionStub: DictionaryStringTo<any>,
-    ): void {
-        setupResolutionMock(mock, 'test', passingNode, resolutionStub);
-    }
-
-    function setupFail(
-        mock: IMock<ResolutionCreator>,
-        resolutionStub: DictionaryStringTo<any>,
-    ): void {
-        setupResolutionMock(mock, 'id1', node1, resolutionStub);
-        setupResolutionMock(mock, 'id1', node2, resolutionStub);
-        setupResolutionMock(mock, 'id2', node3, resolutionStub);
-    }
-
-    function setupIncomplete(
-        mock: IMock<ResolutionCreator>,
-        resolutionStub: DictionaryStringTo<any>,
-    ): void {
-        setupResolutionMock(mock, 'test2', incompleteNode, resolutionStub);
-    }
 
     function setupResolutionMock(
         mock: IMock<ResolutionCreator>,
