@@ -19,11 +19,6 @@ export type MockAdbConfig = {
     };
 };
 
-export type MockAdbContext = {
-    basePath: string;
-    id: string;
-};
-
 export async function setupMockAdb(
     config: MockAdbConfig,
     logFolderName: string,
