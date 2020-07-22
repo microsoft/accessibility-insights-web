@@ -15,6 +15,7 @@ const {
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
 } = require('./common-adb-configs');
+const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('./common-file-names.js');
 
 const exists = promisify(fs.exists);
 const writeFile = promisify(fs.writeFile);
@@ -22,15 +23,19 @@ const writeFile = promisify(fs.writeFile);
 const mockAdbFolder = path.join(__dirname, '../../../../drop/mock-adb');
 
 const binPath = path.join(mockAdbFolder, process.platform === 'win32' ? 'adb.exe' : 'adb');
-const configPath = path.join(mockAdbFolder, 'mock_adb_config.json');
+const configPath = path.join(mockAdbFolder, fileWithMockAdbConfig);
 
-async function setupMockAdb(config) {
+async function setupMockAdb(config, logFolderName, ...extraLogNames) {
     if (!(await exists(binPath))) {
         throw new Error(
             `Could not find mock-adb executable at expected path "${binPath}", try rebuilding with yarn build:mock-adb`,
         );
     }
 
+    await writeFile(
+        path.join(mockAdbFolder, fileWithExpectedLoggingPath),
+        path.join(logFolderName, ...extraLogNames),
+    );
     await writeFile(configPath, JSON.stringify(config, null, 2 /*spaces per indent*/));
 }
 

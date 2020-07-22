@@ -4,6 +4,7 @@ import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/automation-ids';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -41,7 +42,11 @@ describe('Android setup - locate adb', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(closeId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
 
-        await setupMockAdb(simulateNoDevicesConnected(commonAdbConfigs['slow-single-device']));
+        await setupMockAdb(
+            simulateNoDevicesConnected(commonAdbConfigs['slow-single-device']),
+            path.basename(__filename),
+            'respects user-provided location',
+        );
         await dialog.click('input[type="text"]');
         await dialog.client.keys(`${(global as any).rootDir}/drop/mock-adb`);
 

@@ -5,6 +5,7 @@ import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/automation-ids';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -25,7 +26,11 @@ describe('Android setup - prompt-connect-to-device ', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulateNoDevicesConnected(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateNoDevicesConnected(defaultDeviceConfig),
+            path.basename(__filename),
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-connect-to-device');
     });
@@ -45,13 +50,21 @@ describe('Android setup - prompt-connect-to-device ', () => {
     });
 
     it('detect button triggers new detection', async () => {
-        await setupMockAdb(defaultDeviceConfig);
+        await setupMockAdb(
+            defaultDeviceConfig,
+            path.basename(__filename),
+            'triggers new detection',
+        );
         await dialog.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('detect device spinner should pass accessibility validation an all contrast modes', async () => {
-        await setupMockAdb(delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)));
+        await setupMockAdb(
+            delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)),
+            path.basename(__filename),
+            'spinner a11y',
+        );
         await dialog.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await scanForAccessibilityIssuesInAllModes(app);
