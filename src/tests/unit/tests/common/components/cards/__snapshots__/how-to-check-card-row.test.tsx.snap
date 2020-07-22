@@ -3,9 +3,17 @@
 exports[`HowToCheckWebCardRow renders 1`] = `
 <SimpleCardRow
   content={
-    Object {
-      "checkText": "test text",
-    }
+    <div
+      className="howToCheckContent"
+    >
+      <HowToCheckText
+        id={
+          Object {
+            "checkText": "test text",
+          }
+        }
+      />
+    </div>
   }
   label="How to check"
   rowKey="how-to-check-row-123"

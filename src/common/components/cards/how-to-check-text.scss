@@ -1,0 +1,17 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.color-contrast-text-no-bullet {
+    padding-left: 0;
+    list-style: none;
+    li:not(:last-child) {
+        margin-bottom: 4px;
+    }
+}
+
+.color-contrast-text-yes-bullet {
+    padding-left: 16px;
+    li {
+        list-style-type: disc;
+        margin-bottom: 4px;
+    }
+}
