@@ -5,13 +5,13 @@ import {
     DeviceDescription,
     DeviceDescriptionProps,
 } from 'electron/views/device-connect-view/components/android-setup/device-description';
+import { tryAgainAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 import * as styles from './prompt-grant-permissions-step.scss';
 
-export const tryAgainAutomationId = 'try-again';
 export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptGrantPermissionsStep',
     (props: CommonAndroidSetupStepProps) => {
