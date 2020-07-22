@@ -14,7 +14,7 @@ steps:
       continueOnError: true
       displayName: publish electron e2e screenshots and extended logs
 
-    - publish: '$(System.DefaultWorkingDirectory)/drop/mock-adb'
+    - publish: '$(System.DefaultWorkingDirectory)/drop/mock-adb/logs'
       artifact: '$(Agent.JobName)-mock-adb'
       condition: failed()
       continueOnError: true
