@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import { installAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
 import {
     leftFooterButtonAutomationId,
@@ -15,6 +16,7 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import {
     commonAdbConfigs,
     delayAllCommands,
+    physicalDeviceName1,
     setupMockAdb,
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
@@ -55,6 +57,12 @@ describe('Android setup - prompt-install-service-failed ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(cancelId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(tryAgainAutomationId))).toBe(true);
+        expect(
+            await dialog.itemTextIncludesTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                physicalDeviceName1,
+            ),
+        ).toBe(true);
     });
 
     it('try again button triggers installation, prompts for permission on success', async () => {

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import { installAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
 import {
     leftFooterButtonAutomationId,
@@ -13,6 +14,7 @@ import { AndroidSetupViewController } from 'tests/electron/common/view-controlle
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import {
     commonAdbConfigs,
+    physicalDeviceName1,
     setupMockAdb,
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
@@ -45,6 +47,12 @@ describe('Android setup - prompt-install-service ', () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(cancelId))).toBe(true);
         expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
         expect(await dialog.isEnabled(getAutomationIdSelector(installAutomationId))).toBe(true);
+        expect(
+            await dialog.itemTextIncludesTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                physicalDeviceName1,
+            ),
+        ).toBe(true);
     });
 
     it('install button triggers installation, prompts for permission on success', async () => {
