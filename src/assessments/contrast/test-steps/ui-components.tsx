@@ -42,9 +42,9 @@ const howToTest: JSX.Element = (
                 disabled or selected, no mouseover or input focus).
             </li>
             <li>
-                Use <WindowsContrastCheckerAppLink /> (or the <MacContrastCheckerAppLink /> if
-                you're testing on a Mac) to verify that the following visual information (if
-                present) has a contrast ratio of at least 3:1 against the adjacent background:
+                Use <WindowsContrastCheckerAppLink /> (or the <MacContrastCheckerAppLink /> if you
+                are testing on a Mac) to verify that the following visual information (if present)
+                has a contrast ratio of at least 3:1 against the adjacent background:
                 <ol>
                     <li>Any visual information that's needed to identify the component</li>
                     <ol>
