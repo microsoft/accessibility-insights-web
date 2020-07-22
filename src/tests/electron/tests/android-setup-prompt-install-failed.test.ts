@@ -26,7 +26,11 @@ describe(`Android setup - ${description}`, () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulateServiceNotInstalled(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateServiceNotInstalled(defaultDeviceConfig),
+            description,
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-install-service');
 

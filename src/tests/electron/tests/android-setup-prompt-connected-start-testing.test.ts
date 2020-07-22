@@ -16,7 +16,8 @@ import {
     setupMockAdb,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-describe('Android setup - prompt-connected-start-testing', () => {
+const description = 'prompt-connected-start-testing';
+describe(`Android setup - ${description}`, () => {
     const [cancelId, startTestingId] = [
         leftFooterButtonAutomationId,
         rightFooterButtonAutomationId,
@@ -26,7 +27,7 @@ describe('Android setup - prompt-connected-start-testing', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(defaultDeviceConfig);
+        await setupMockAdb(defaultDeviceConfig, description, 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-connected-start-testing');
     });
@@ -44,20 +45,28 @@ describe('Android setup - prompt-connected-start-testing', () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(defaultDeviceConfig);
+        await setupMockAdb(defaultDeviceConfig, description, 'cancel');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
     it('goes to detect-devices upon rescan (same devices)', async () => {
-        await setupMockAdb(delayAllCommands(50, defaultDeviceConfig));
+        await setupMockAdb(
+            delayAllCommands(50, defaultDeviceConfig),
+            description,
+            'rescan same devices',
+        );
         await dialog.client.click(getAutomationIdSelector(rescanAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
     it('goes to detect-devices upon rescan (different devices)', async () => {
-        await setupMockAdb(delayAllCommands(100, commonAdbConfigs['multiple-devices']));
+        await setupMockAdb(
+            delayAllCommands(100, commonAdbConfigs['multiple-devices']),
+            description,
+            'rescan different devices',
+        );
         await dialog.client.click(getAutomationIdSelector(rescanAutomationId));
         await dialog.waitForDialogVisible('detect-devices');
         await dialog.waitForDialogVisible('prompt-choose-device');

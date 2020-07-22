@@ -25,7 +25,11 @@ describe(`Android setup - ${description}`, () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulateServiceLacksPermissions(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateServiceLacksPermissions(defaultDeviceConfig),
+            description,
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-grant-permissions');
     });

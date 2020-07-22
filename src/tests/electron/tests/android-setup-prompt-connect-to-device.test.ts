@@ -24,7 +24,11 @@ describe(`Android setup - ${description}`, () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(simulateNoDevicesConnected(defaultDeviceConfig));
+        await setupMockAdb(
+            simulateNoDevicesConnected(defaultDeviceConfig),
+            description,
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-connect-to-device');
     });
