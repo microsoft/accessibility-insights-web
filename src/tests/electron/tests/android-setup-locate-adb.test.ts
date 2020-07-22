@@ -4,6 +4,7 @@ import {
     leftFooterButtonAutomationId,
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -42,7 +43,7 @@ describe('Android setup - locate-adb', () => {
 
         await setupMockAdb(
             simulateNoDevicesConnected(commonAdbConfigs['slow-single-device']),
-            __filename,
+            path.basename(__filename),
             'respects user-provided location',
         );
         await dialog.client.click('input[type="text"]');

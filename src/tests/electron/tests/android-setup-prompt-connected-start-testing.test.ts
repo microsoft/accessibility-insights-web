@@ -5,6 +5,7 @@ import {
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { rescanAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -15,7 +16,6 @@ import {
     delayAllCommands,
     setupMockAdb,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
-
 describe('Android setup - prompt-connected-start-testing', () => {
     const [cancelId, startTestingId] = [
         leftFooterButtonAutomationId,
@@ -26,7 +26,7 @@ describe('Android setup - prompt-connected-start-testing', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(defaultDeviceConfig, __filename, 'beforeEach');
+        await setupMockAdb(defaultDeviceConfig, path.basename(__filename), 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-connected-start-testing');
     });
@@ -44,7 +44,7 @@ describe('Android setup - prompt-connected-start-testing', () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(defaultDeviceConfig, __filename, 'cancel');
+        await setupMockAdb(defaultDeviceConfig, path.basename(__filename), 'cancel');
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -52,7 +52,7 @@ describe('Android setup - prompt-connected-start-testing', () => {
     it('goes to detect-devices upon rescan (same devices)', async () => {
         await setupMockAdb(
             delayAllCommands(50, defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'rescan same devices',
         );
         await dialog.client.click(getAutomationIdSelector(rescanAutomationId));
@@ -63,7 +63,7 @@ describe('Android setup - prompt-connected-start-testing', () => {
     it('goes to detect-devices upon rescan (different devices)', async () => {
         await setupMockAdb(
             delayAllCommands(100, commonAdbConfigs['multiple-devices']),
-            __filename,
+            path.basename(__filename),
             'rescan different devices',
         );
         await dialog.client.click(getAutomationIdSelector(rescanAutomationId));

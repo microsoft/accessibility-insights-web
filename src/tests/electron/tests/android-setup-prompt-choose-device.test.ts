@@ -6,6 +6,7 @@ import {
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import { rescanAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -32,7 +33,12 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(defaultDeviceConfig, __filename, multipleDescription, 'beforeEach');
+        await setupMockAdb(
+            defaultDeviceConfig,
+            path.basename(__filename),
+            multipleDescription,
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         dialog = await app.openAndroidSetupView('prompt-choose-device');
     });
@@ -56,7 +62,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     it('selecting next goes to detect-service', async () => {
         await setupMockAdb(
             delayAllCommands(1000, simulateServiceNotInstalled(defaultDeviceConfig)),
-            __filename,
+            path.basename(__filename),
             multipleDescription,
             'next',
         );
@@ -68,7 +74,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
     it('selecting rescan goes to detect-devices', async () => {
         await setupMockAdb(
             delayAllCommands(100, defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             multipleDescription,
             'rescan',
         );
@@ -94,7 +100,7 @@ describe('Android setup - prompt-choose-device (single device)', () => {
         const cancelId = leftFooterButtonAutomationId;
         await setupMockAdb(
             simulateServiceNotInstalled(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             singleDescription,
             'beforeEach',
         );

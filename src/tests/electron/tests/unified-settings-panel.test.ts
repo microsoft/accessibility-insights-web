@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
@@ -7,13 +8,16 @@ import { AutomatedChecksViewController } from 'tests/electron/common/view-contro
 import { CommonSelectors } from 'tests/end-to-end/common/element-identifiers/common-selectors';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
-
 describe('AutomatedChecksView -> Settings Panel', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(commonAdbConfigs['single-device'], __filename, 'beforeEach');
+        await setupMockAdb(
+            commonAdbConfigs['single-device'],
+            path.basename(__filename),
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForViewVisible();

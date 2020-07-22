@@ -5,6 +5,7 @@ import {
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { installAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -16,7 +17,6 @@ import {
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
-
 describe('Android setup - prompt-install-service', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
@@ -25,7 +25,7 @@ describe('Android setup - prompt-install-service', () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateServiceNotInstalled(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -46,7 +46,7 @@ describe('Android setup - prompt-install-service', () => {
     });
 
     it('install button triggers installation, prompts for permission on success', async () => {
-        await setupMockAdb(defaultDeviceConfig, __filename, 'install successful');
+        await setupMockAdb(defaultDeviceConfig, path.basename(__filename), 'install successful');
         await dialog.client.click(getAutomationIdSelector(installAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
@@ -54,7 +54,7 @@ describe('Android setup - prompt-install-service', () => {
     it('install button triggers installation, prompts correctly on failure', async () => {
         await setupMockAdb(
             simulateServiceInstallationError(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'install failed',
         );
         await dialog.client.click(getAutomationIdSelector(installAutomationId));

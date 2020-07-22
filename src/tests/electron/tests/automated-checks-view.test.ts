@@ -12,13 +12,16 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
-
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(commonAdbConfigs['single-device'], __filename, 'beforeEach');
+        await setupMockAdb(
+            commonAdbConfigs['single-device'],
+            path.basename(__filename),
+            'beforeEach',
+        );
         app = await createApplication({ suppressFirstTimeDialog: true });
         automatedChecksView = await app.openAutomatedChecksView();
         await automatedChecksView.waitForScreenshotViewVisible();

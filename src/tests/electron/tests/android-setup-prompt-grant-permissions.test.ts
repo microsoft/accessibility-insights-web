@@ -5,6 +5,7 @@ import {
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { tryAgainAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-grant-permissions-step';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -16,7 +17,6 @@ import {
     setupMockAdb,
     simulateServiceLacksPermissions,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
-
 describe('Android setup - prompt-grant-permissions', () => {
     const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
@@ -26,7 +26,7 @@ describe('Android setup - prompt-grant-permissions', () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateServiceLacksPermissions(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -46,7 +46,11 @@ describe('Android setup - prompt-grant-permissions', () => {
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(commonAdbConfigs['multiple-devices'], __filename, 'cancel');
+        await setupMockAdb(
+            commonAdbConfigs['multiple-devices'],
+            path.basename(__filename),
+            'cancel',
+        );
         await dialog.client.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -54,7 +58,7 @@ describe('Android setup - prompt-grant-permissions', () => {
     it('try again returns here if permissions are not granted', async () => {
         await setupMockAdb(
             delayAllCommands(5000, simulateServiceLacksPermissions(defaultDeviceConfig)),
-            __filename,
+            path.basename(__filename),
             'try again returns here',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
@@ -65,7 +69,7 @@ describe('Android setup - prompt-grant-permissions', () => {
     it('try again moves on if permissions are granted; detect-permissions a11y test', async () => {
         await setupMockAdb(
             delayAllCommands(2500, defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'try again moves on',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));

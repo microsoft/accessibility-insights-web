@@ -5,6 +5,7 @@ import {
     rightFooterButtonAutomationId,
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { detectDeviceAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-connect-to-device-step';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -16,7 +17,6 @@ import {
     setupMockAdb,
     simulateNoDevicesConnected,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
-
 describe('Android setup - prompt-connect-to-device ', () => {
     const defaultDeviceConfig = commonAdbConfigs['multiple-devices'];
     let app: AppController;
@@ -25,7 +25,7 @@ describe('Android setup - prompt-connect-to-device ', () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateNoDevicesConnected(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -48,7 +48,11 @@ describe('Android setup - prompt-connect-to-device ', () => {
     });
 
     it('detect button triggers new detection', async () => {
-        await setupMockAdb(defaultDeviceConfig, __filename, 'triggers new detection');
+        await setupMockAdb(
+            defaultDeviceConfig,
+            path.basename(__filename),
+            'triggers new detection',
+        );
         await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
@@ -56,7 +60,7 @@ describe('Android setup - prompt-connect-to-device ', () => {
     it('detect device spinner should pass accessibility validation an all contrast modes', async () => {
         await setupMockAdb(
             delayAllCommands(3000, simulateNoDevicesConnected(defaultDeviceConfig)),
-            __filename,
+            path.basename(__filename),
             'spinner a11y',
         );
         await dialog.client.click(getAutomationIdSelector(detectDeviceAutomationId));

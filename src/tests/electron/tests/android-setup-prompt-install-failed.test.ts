@@ -6,6 +6,7 @@ import {
 } from 'electron/views/device-connect-view/components/android-setup/android-setup-step-layout';
 import { tryAgainAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-configuring-port-forwarding-failed-step';
 import { installAutomationId } from 'electron/views/device-connect-view/components/android-setup/prompt-install-service-step';
+import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -18,7 +19,6 @@ import {
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
-
 describe('Android setup - prompt-install-service-failed', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
@@ -27,7 +27,7 @@ describe('Android setup - prompt-install-service-failed', () => {
     beforeEach(async () => {
         await setupMockAdb(
             simulateServiceNotInstalled(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
@@ -35,7 +35,7 @@ describe('Android setup - prompt-install-service-failed', () => {
 
         await setupMockAdb(
             simulateServiceInstallationError(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'beforeEach',
         );
         await dialog.click(getAutomationIdSelector(installAutomationId));
@@ -56,7 +56,11 @@ describe('Android setup - prompt-install-service-failed', () => {
     });
 
     it('try again button triggers installation, prompts for permission on success', async () => {
-        await setupMockAdb(defaultDeviceConfig, __filename, 'try again to permissions');
+        await setupMockAdb(
+            defaultDeviceConfig,
+            path.basename(__filename),
+            'try again to permissions',
+        );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
         await dialog.waitForDialogVisible('prompt-grant-permissions');
     });
@@ -64,7 +68,7 @@ describe('Android setup - prompt-install-service-failed', () => {
     it('install button triggers installation, prompts correctly on failure', async () => {
         await setupMockAdb(
             simulateServiceInstallationError(defaultDeviceConfig),
-            __filename,
+            path.basename(__filename),
             'install button to install failed',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
@@ -83,7 +87,7 @@ describe('Android setup - prompt-install-service-failed', () => {
     it('installing service spinner should pass accessibility validation in all contrast modes', async () => {
         await setupMockAdb(
             delayAllCommands(3000, simulateServiceInstallationError(defaultDeviceConfig)),
-            __filename,
+            path.basename(__filename),
             'install spinner accessibility',
         );
         await dialog.client.click(getAutomationIdSelector(tryAgainAutomationId));
