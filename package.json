@@ -72,7 +72,7 @@
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^26.0.5",
         "@types/jsdom": "^16.2.3",
-        "@types/lodash": "^4.14.157",
+        "@types/lodash": "^4.14.158",
         "@types/make-dir": "^2.1.0",
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^3.0.1",
