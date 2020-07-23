@@ -66,20 +66,12 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         featureFlagStoreData,
     );
 
-    const switcher = (
-        <Switcher
-            deps={props.deps}
-            pivotKey={props.selectedPivot}
-            styles={leftNavSwitcherStyleNames}
-        />
-    );
-
     const leftNav: JSX.Element = (
         <div className={`${styles.leftNav} main-nav`}>
-            <FlaggedComponent
-                featureFlag={FeatureFlags[FeatureFlags.reflowUI]}
-                featureFlagStoreData={featureFlagStoreData}
-                enableJSXElement={switcher}
+            <Switcher
+                deps={props.deps}
+                pivotKey={props.selectedPivot}
+                styles={leftNavSwitcherStyleNames}
             />
             <switcherNavConfiguration.LeftNav
                 deps={deps}

@@ -100,10 +100,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <>
                     <NarrowModeDetector
-                        isNarrowModeEnabled={
-                            this.hasStores() &&
-                            this.props.storeState.featureFlagStoreData[FeatureFlags.reflowUI]
-                        }
+                        isNarrowModeEnabled={this.hasStores()}
                         Component={Header}
                         childrenProps={headerProps}
                     />

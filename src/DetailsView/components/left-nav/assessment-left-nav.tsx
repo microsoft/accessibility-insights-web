@@ -90,28 +90,16 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
         ),
     );
 
-    if (featureFlagStoreData[FeatureFlags.reflowUI]) {
-        links = links.concat(
-            leftNavLinkBuilder.buildReflowAssessmentTestLinks(
-                deps,
-                assessmentsProvider,
-                assessmentsData,
-                1,
-                expandedTest,
-                onRightPanelContentSwitch,
-            ),
-        );
-    } else {
-        links = links.concat(
-            leftNavLinkBuilder.buildAssessmentTestLinks(
-                deps,
-                navLinkHandler.onAssessmentTestClick,
-                assessmentsProvider,
-                assessmentsData,
-                1,
-            ),
-        );
-    }
+    links = links.concat(
+        leftNavLinkBuilder.buildReflowAssessmentTestLinks(
+            deps,
+            assessmentsProvider,
+            assessmentsData,
+            1,
+            expandedTest,
+            onRightPanelContentSwitch,
+        ),
+    );
 
     return (
         <BaseLeftNav

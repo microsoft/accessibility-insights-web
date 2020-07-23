@@ -47,24 +47,6 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
         );
     };
 
-    const getItems = () => {
-        const switcher = (
-            <Switcher
-                deps={props.deps}
-                pivotKey={props.selectedPivot}
-                styles={headerSwitcherStyleNames}
-            />
-        );
-        return (
-            <FlaggedComponent
-                featureFlag={FeatureFlags[FeatureFlags.reflowUI]}
-                featureFlagStoreData={props.featureFlagStoreData}
-                enableJSXElement={null}
-                disableJSXElement={switcher}
-            />
-        );
-    };
-
     const getFarItems = () => {
         return <GearMenuButton deps={props.deps} featureFlagData={props.featureFlagStoreData} />;
     };
@@ -72,7 +54,7 @@ export const InteractiveHeader = NamedFC<InteractiveHeaderProps>('InteractiveHea
     return (
         <Header
             deps={props.deps}
-            items={getItems()}
+            items={null}
             farItems={getFarItems()}
             navMenu={getNavMenu()}
             showHeaderTitle={props.showHeaderTitle}

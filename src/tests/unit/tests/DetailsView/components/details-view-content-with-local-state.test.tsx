@@ -22,7 +22,7 @@ describe(DetailsViewContentWithLocalState, () => {
     test('render', () => {
         const props = {
             storeState: {
-                featureFlagStoreData: { [FeatureFlags.reflowUI]: false },
+                featureFlagStoreData: {},
             } as any,
         } as DetailsViewContentWithLocalStateProps;
         const wrapper = shallow(<DetailsViewContentWithLocalState {...props} />);
@@ -35,7 +35,7 @@ describe(DetailsViewContentWithLocalState, () => {
         beforeEach(() => {
             props = {
                 storeState: {
-                    featureFlagStoreData: { [FeatureFlags.reflowUI]: true },
+                    featureFlagStoreData: {},
                 } as any,
                 deps: {
                     detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,

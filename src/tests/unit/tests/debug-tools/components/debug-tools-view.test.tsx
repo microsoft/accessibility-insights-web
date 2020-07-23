@@ -33,9 +33,6 @@ describe('DebugToolsView', () => {
                 userConfigurationStoreData: {
                     isFirstTime: true,
                 } as UserConfigurationStoreData,
-                featureFlagStoreData: {
-                    reflowUI: true,
-                } as FeatureFlagStoreData,
             } as DebugToolsViewState;
 
             const wrapped = shallow(<DebugTools deps={deps} storeState={storeState} />);

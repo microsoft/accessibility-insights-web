@@ -31,9 +31,7 @@ export class DetailsViewContentWithLocalState extends React.Component<
         return (
             <>
                 <NarrowModeDetector
-                    isNarrowModeEnabled={
-                        this.props.storeState.featureFlagStoreData[FeatureFlags.reflowUI]
-                    }
+                    isNarrowModeEnabled={true}
                     Component={DetailsViewContent}
                     childrenProps={{
                         ...this.props,
