@@ -4,10 +4,10 @@ import { ElectronExternalLink } from 'electron/views/device-connect-view/compone
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { forOwn } from 'lodash';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { forOwn } from 'lodash';
 
 describe('GuidanceLinksTest', () => {
     const testLink1 = {
