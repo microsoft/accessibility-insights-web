@@ -216,24 +216,6 @@ div.insights-file-issue-details-dialog-container {
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
         }
-        .details-view-test-nav-area {
-            box-sizing: border-box;
-            max-height: calc(
-                100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
-            );
-            .ms-Nav-groupContent,
-            .ms-Nav-navItems {
-                margin-bottom: 0px;
-            }
-            a {
-                padding-right: 0px;
-                &:focus {
-                    @media screen and (-ms-high-contrast: active) {
-                        border: 3px highlighttext solid;
-                    }
-                }
-            }
-        }
         .ms-Pivot {
             border-bottom: 1px solid $neutral-8;
             padding-left: 12px;
