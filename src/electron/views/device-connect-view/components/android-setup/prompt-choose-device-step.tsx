@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import {
     CheckboxVisibility,
     DefaultButton,
@@ -51,7 +52,7 @@ export class PromptChooseDeviceStep extends React.Component<
                         {listItems.length} Android devices or emulators connected
                     </div>
                     <DefaultButton
-                        data-automation-id={'rescan'}
+                        data-automation-id={rescanAutomationId}
                         text="Rescan"
                         onClick={this.props.deps.androidSetupActionCreator.rescan}
                     />

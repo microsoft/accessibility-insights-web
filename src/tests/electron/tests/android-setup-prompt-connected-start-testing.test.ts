@@ -3,8 +3,8 @@
 import { deviceDescriptionAutomationId } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import {
     leftFooterButtonAutomationId,
+    rescanAutomationId,
     rightFooterButtonAutomationId,
-    tryAgainAutomationId,
 } from 'electron/views/device-connect-view/components/automation-ids';
 import * as path from 'path';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
@@ -17,24 +17,20 @@ import {
     delayAllCommands,
     physicalDeviceName1,
     setupMockAdb,
-    simulatePortForwardingError,
 } from '../../miscellaneous/mock-adb/setup-mock-adb';
 
-const [cancelId, nextId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+const [cancelId, startTestingId] = [leftFooterButtonAutomationId, rightFooterButtonAutomationId];
+const expectedRunningApp = 'com.google.android.apps.messaging';
 
-describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
+describe('Android setup - prompt-connected-start-testing', () => {
     const defaultDeviceConfig = commonAdbConfigs['single-device'];
     let app: AppController;
     let dialog: AndroidSetupViewController;
 
     beforeEach(async () => {
-        await setupMockAdb(
-            simulatePortForwardingError(defaultDeviceConfig),
-            path.basename(__filename),
-            'beforeEach',
-        );
+        await setupMockAdb(defaultDeviceConfig, path.basename(__filename), 'beforeEach');
         app = await createApplication({ suppressFirstTimeDialog: true });
-        dialog = await app.openAndroidSetupView('prompt-configuring-port-forwarding-failed');
+        dialog = await app.openAndroidSetupView('prompt-connected-start-testing');
     });
 
     afterEach(async () => {
@@ -45,47 +41,53 @@ describe('Android setup - prompt-configuring-port-forwarding-failed', () => {
 
     it('initial component state is correct', async () => {
         expect(await dialog.isEnabled(getAutomationIdSelector(cancelId))).toBe(true);
-        expect(await dialog.isEnabled(getAutomationIdSelector(nextId))).toBe(false);
-        expect(await dialog.isEnabled(getAutomationIdSelector(tryAgainAutomationId))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(startTestingId))).toBe(true);
+        expect(await dialog.isEnabled(getAutomationIdSelector(rescanAutomationId))).toBe(true);
         expect(
             await dialog.itemTextIncludesTarget(
                 getAutomationIdSelector(deviceDescriptionAutomationId),
                 physicalDeviceName1,
             ),
         ).toBe(true);
+        expect(
+            await dialog.itemTextIncludesTarget(
+                getAutomationIdSelector(deviceDescriptionAutomationId),
+                expectedRunningApp,
+            ),
+        ).toBe(true);
     });
 
     it('goes to prompt-choose-device upon cancel', async () => {
-        await setupMockAdb(
-            commonAdbConfigs['multiple-devices'],
-            path.basename(__filename),
-            'cancel',
-        );
+        await setupMockAdb(defaultDeviceConfig, path.basename(__filename), 'cancel');
         await dialog.click(getAutomationIdSelector(cancelId));
         await dialog.waitForDialogVisible('prompt-choose-device');
     });
 
-    it('try again returns here if port forwarding still fails', async () => {
+    it('goes to detect-devices upon rescan (same devices)', async () => {
         await setupMockAdb(
-            delayAllCommands(2500, simulatePortForwardingError(defaultDeviceConfig)),
+            delayAllCommands(50, defaultDeviceConfig),
             path.basename(__filename),
-            'try again returns here',
+            'rescan same devices',
         );
-        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
-        await dialog.waitForDialogVisible('configuring-port-forwarding');
-        await dialog.waitForDialogVisible('prompt-configuring-port-forwarding-failed');
+        await dialog.click(getAutomationIdSelector(rescanAutomationId));
+        await dialog.waitForDialogVisible('detect-devices');
+        await dialog.waitForDialogVisible('prompt-connected-start-testing');
     });
 
-    it('try again moves on if port forwarded properly; configuring-port-forwarding a11y test', async () => {
+    it('goes to detect-devices upon rescan (different devices)', async () => {
         await setupMockAdb(
-            delayAllCommands(2500, defaultDeviceConfig),
+            delayAllCommands(100, commonAdbConfigs['multiple-devices']),
             path.basename(__filename),
-            'try again moves on',
+            'rescan different devices',
         );
-        await dialog.click(getAutomationIdSelector(tryAgainAutomationId));
-        await dialog.waitForDialogVisible('configuring-port-forwarding');
-        await scanForAccessibilityIssuesInAllModes(app);
-        await dialog.waitForDialogVisible('prompt-connected-start-testing');
+        await dialog.click(getAutomationIdSelector(rescanAutomationId));
+        await dialog.waitForDialogVisible('detect-devices');
+        await dialog.waitForDialogVisible('prompt-choose-device');
+    });
+
+    it('goes to automated checks upon start testing', async () => {
+        await dialog.click(getAutomationIdSelector(startTestingId));
+        await app.waitForAutomatedChecksView();
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {

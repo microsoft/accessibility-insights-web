@@ -12,6 +12,7 @@ import { PermissionsStateStoreData } from 'common/types/store-data/permissions-s
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
 import { toolName } from 'content/strings/application';
+import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { filterNeedsReviewResults } from 'injected/analyzers/filter-results';
 import { NotificationTextCreator } from 'injected/analyzers/notification-text-creator';
 import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
@@ -24,6 +25,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
+
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -54,10 +56,7 @@ import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
 import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
-import {
-    convertScanResultsToNeedsReviewUnifiedResults,
-    convertScanResultsToUnifiedResults,
-} from './adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResults } from './adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from './adapters/scan-results-to-unified-rules';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
@@ -292,15 +291,19 @@ export class MainWindowInitializer extends WindowInitializer {
             this.permissionsStateStoreProxy,
         );
 
+        const convertScanResultsToUnifiedResults = new ConvertScanResultsToUnifiedResults(
+            generateUID,
+            getFixResolution,
+            getCheckResolution,
+        );
+
         const notificationTextCreator = new NotificationTextCreator(scanIncompleteWarningDetector);
 
         const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
-            convertScanResultsToUnifiedResults,
-            convertScanResultsToNeedsReviewUnifiedResults,
             convertScanResultsToUnifiedRules,
             toolData,
-            generateUID,
+            convertScanResultsToUnifiedResults,
             scanIncompleteWarningDetector,
             notificationTextCreator,
             filterNeedsReviewResults,

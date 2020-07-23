@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowToCheckWebCardRow renders 1`] = `
+<SimpleCardRow
+  content={
+    <HowToCheckText
+      id={
+        Object {
+          "ruleId": "test text",
+        }
+      }
+    />
+  }
+  label="How to check"
+  rowKey="how-to-check-row-123"
+/>
+`;
