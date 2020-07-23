@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
 import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
