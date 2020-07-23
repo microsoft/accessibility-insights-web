@@ -157,7 +157,7 @@
         "lodash": "^4.17.19",
         "moment": "^2.27.0",
         "office-ui-fabric-react": "7.98.0",
-        "portfinder": "^1.0.26",
+        "portfinder": "^1.0.27",
         "q": "1.5.1",
         "react": "^16.13.1",
         "react-copy-to-clipboard": "^5.0.2",
