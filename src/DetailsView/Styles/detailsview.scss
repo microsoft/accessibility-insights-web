@@ -218,6 +218,7 @@ div.insights-file-issue-details-dialog-container {
         }
         .details-view-test-nav-area {
             box-sizing: border-box;
+            overflow-x: hidden;
             max-height: calc(
                 100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
             );
