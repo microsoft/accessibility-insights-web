@@ -21,7 +21,7 @@ yarn mock-adb single-device
 # as part of yarn build:unified, but you can rebuild it with yarn build:mock-adb if necessary.
 yarn start:unified
 
-# Alternatively, this script sets the env-var ANDROID_SDK_ROOT to point at drop\mock-adb\ when
+# Alternatively, this script sets the env-var ANDROID_HOME to point at drop\mock-adb\ when
 # running the app. You can also delete the stored adb location in the Application tab of devtools.
 yarn start:unified:mock-adb
 ```
