@@ -56,7 +56,7 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             changeInfo.url != null &&
             !changeInfo.url
                 .toLocaleLowerCase()
-                .endsWith(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
+                .includes(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
         );
     }
 

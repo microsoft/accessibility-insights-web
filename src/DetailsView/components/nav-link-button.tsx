@@ -18,7 +18,7 @@ export const NavLinkButton = NamedFC<NavLinkButtonProps>('NavLinkButton', props 
             title={link.title || link.name}
             onClick={e => link.onClickNavLink(e, link)}
             className={css(styles.navLinkButton, props.className)}
-            href={link.forceAnchor === true ? 'javascript:void(0)' : undefined}
+            href={link.forceAnchor === true ? '#' : undefined}
         >
             {link.onRenderNavLink(link)}
         </Link>
