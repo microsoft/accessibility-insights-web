@@ -10,6 +10,7 @@
 **/*.nsh
 **/*.png
 **/*.snap
+**/*.md
 **/Dockerfile
 
 .DS_Store
