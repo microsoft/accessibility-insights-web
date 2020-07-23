@@ -59,13 +59,8 @@ describe('ResolutionCreator', () => {
         expect(actual).toEqual(expected);
     });
 
-    it.each([
-        'aria-input-field-name',
-        'color-contrast',
-        'link-in-text-block',
-        'th-has-data-cells',
-        'bogus rule id',
-    ])('outputs correct check resolution with id=%s', ruleId => {
+    it('outputs correct check resolution', () => {
+        const ruleId = 'test rule id';
         const resolutionCreatorDataStub: ResolutionCreatorData = {
             id: ruleId,
             nodeResult: {

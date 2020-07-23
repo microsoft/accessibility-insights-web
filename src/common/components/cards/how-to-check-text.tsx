@@ -30,8 +30,8 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
         }
         case 'color-contrast': {
             checkText = (
-                <>
-                    <ul className={styles.colorContrastTextYesBullet}>
+                <div classname={styles.combinationLists}>
+                    <ul className={styles.multiLineTextYesBullet}>
                         <li list-style-type="disc">
                             If the text is intended to be invisible, it passes.
                         </li>
@@ -49,7 +49,7 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                             gradient, test an area where contrast appears to be lowest.
                         </li>
                     </ul>
-                    <ul className={styles.colorContrastTextNoBullet}>
+                    <ul className={styles.multiLineTextNoBullet}>
                         <li>
                             For detailed test instructions, see{' '}
                             <b>
@@ -58,25 +58,30 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                             .
                         </li>
                     </ul>
-                </>
+                </div>
             );
             break;
         }
         case 'link-in-text-block': {
             checkText = (
-                <div>
-                    Manually verify that the link text EITHER has a contrast ratio of at least 3:1
-                    compared to surrounding text OR has a distinct visual style (such as underlined,
-                    bolded, or italicized). To measure contrast, use{' '}
-                    <a href="https://go.microsoft.com/fwlink/?linkid=2075365">
-                        Accessibility Insights for Windows
-                    </a>{' '}
-                    (or the{' '}
-                    <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">
-                        Colour Contrast Analyser
-                    </a>{' '}
-                    if you're testing on a Mac).
-                </div>
+                <ul className={styles.multiLineTextNoBullet}>
+                    <li>
+                        Manually verify that the link text EITHER has a contrast ratio of at least
+                        3:1 compared to surrounding text OR has a distinct visual style (such as
+                        underlined, bolded, or italicized).
+                    </li>
+                    <li>
+                        To measure contrast, use{' '}
+                        <a href="https://go.microsoft.com/fwlink/?linkid=2075365">
+                            Accessibility Insights for Windows
+                        </a>{' '}
+                        (or the{' '}
+                        <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+                            Colour Contrast Analyser
+                        </a>{' '}
+                        if you're testing on a Mac).
+                    </li>
+                </ul>
             );
             break;
         }
