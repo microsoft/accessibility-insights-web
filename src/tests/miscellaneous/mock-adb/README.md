@@ -5,7 +5,7 @@ Licensed under the MIT License.
 
 ## mock-adb
 
-This directory contains the implementation for a mock-adb (Android Debug Bridge) executable. The unified product leverages adb to setup a test Android device. We use mock-adb in two ways:
+This directory contains the implementation for a `mock-adb` (Android Debug Bridge) executable. The unified product leverages `adb` to setup a test Android device. We use `mock-adb` in two ways:
 * during end-to-end tests that exercise the Android setup process
 * during development if you prefer to use a mock device/emulator
 
