@@ -28,12 +28,12 @@ yarn start:unified:mock-adb
 
 ### Debugging issues with mock-adb
 
-You can find mock-adb logs in drop\mock-adb\logs. Each folder contains two files:
-* mock_adb_config.json - the configuration used by mock-adb to control its behavior
-* mock_adb_output.json - the input and output for each invocation of mock-adb
+You can find `mock-adb` logs in `drop\mock-adb\logs`. Each folder contains two files:
+* `mock_adb_config.json` - the configuration used by `mock-adb` to control its behavior
+* `mock_adb_output.json` - the input and output for each invocation of `mock-adb`
 
 In the remote build, these logs are uploaded as artifacts if any end-to-end tests fail.
 
 ### Implementation
 
-mock-adb's implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/master/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
+The `mock-adb` implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/master/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.

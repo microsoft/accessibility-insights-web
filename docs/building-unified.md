@@ -34,7 +34,7 @@ Most of the functionality of Unified relies on connecting to a device running th
 
 #### Using a mock device
 
-See guidance [here](..\src\tests\miscellaneous\mock-adb\README.md).
+See guidance [here](../src/tests/miscellaneous/mock-adb/README.md).
 
 #### Connecting to a real device/emulator
 
