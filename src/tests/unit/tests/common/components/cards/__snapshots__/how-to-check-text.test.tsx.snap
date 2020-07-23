@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowToCheckWebText renders with id=aria-input-field-name 1`] = `
+<div>
+  Inspect the element using the
+   
+  <a
+    href="https://developers.google.com/web/updates/2018/01/devtools"
+  >
+    Accessibility pane in the browser Developer Tools
+  </a>
+   
+  to verify that the field's accessible name is complete without its associated
+   
+  <b>
+    &lt;
+    label
+    &gt;
+  </b>
+  .
+</div>
+`;
+
+exports[`HowToCheckWebText renders with id=bogus-name 1`] = `null`;
+
+exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
+<div
+  classname="combinationLists"
+>
+  <ul
+    className="multiLineTextYesBullet"
+  >
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be invisible, it passes.
+    </li>
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be visible, use
+       
+      <a
+        href="https://go.microsoft.com/fwlink/?linkid=2075365"
+      >
+        Accessibility Insights for Windows
+      </a>
+       
+      (or the
+       
+      <a
+        href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+      >
+        Colour Contrast Analyser
+      </a>
+       
+      if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
+    </li>
+  </ul>
+  <ul
+    className="multiLineTextNoBullet"
+  >
+    <li>
+      For detailed test instructions, see
+       
+      <b>
+        Assessment 
+        &gt;
+         Text legibility 
+        &gt;
+         Contrast
+      </b>
+      .
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`HowToCheckWebText renders with id=link-in-text-block 1`] = `
+<ul
+  className="multiLineTextNoBullet"
+>
+  <li>
+    Manually verify that the link text EITHER has a contrast ratio of at least 3:1 compared to surrounding text OR has a distinct visual style (such as underlined, bolded, or italicized).
+  </li>
+  <li>
+    To measure contrast, use
+     
+    <a
+      href="https://go.microsoft.com/fwlink/?linkid=2075365"
+    >
+      Accessibility Insights for Windows
+    </a>
+     
+    (or the
+     
+    <a
+      href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+    >
+      Colour Contrast Analyser
+    </a>
+     
+    if you're testing on a Mac).
+  </li>
+</ul>
+`;
+
+exports[`HowToCheckWebText renders with id=th-has-data-cells 1`] = `
+<div>
+  Examine the header cell in the context of the table to verify that it has no data cells.
+</div>
+`;
