@@ -21,9 +21,14 @@ export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps
     }
 
     const renderLinks = (): JSX.Element[] => {
-        return links.map((link, index) => {
-            return renderLink(link, index, links.length);
+        const linksToRender = getLinksWithoutBestPracticeWhenWCAGPresent();
+        return linksToRender.map((link, index) => {
+            return renderLink(link, index, linksToRender.length);
         });
+    };
+
+    const getLinksWithoutBestPracticeWhenWCAGPresent = (): HyperlinkDefinition[] => {
+        return links.length === 1 ? links : links.filter(link => link.text !== 'Best Practice');
     };
 
     const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {
