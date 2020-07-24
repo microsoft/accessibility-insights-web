@@ -1,0 +1,19 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+.details-view-test-nav-area {
+    box-sizing: border-box;
+    overflow-x: hidden;
+    max-height: calc(
+        100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
+    );
+    a {
+        padding-right: 0px;
+        &:focus {
+            @media screen and (-ms-high-contrast: active) {
+                border: 3px highlighttext solid;
+            }
+        }
+    }
+}

@@ -39,9 +39,13 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         title: 'Needs review',
         subtitle: (
             <>
-                <i>Needs review</i> automated checks will highlight elements that might have an
-                accessibility issue. Examine each instance to determine if there is an accessibility
-                issue.
+                Sometimes automated checks identify <i>possible</i> accessibility problems that need
+                to be reviewed and verified by a human. Because most accessibility problems can only
+                be discovered through manual testing, we recommend an{' '}
+                <a href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">
+                    assessment
+                </a>
+                .
             </>
         ),
         enableMessage: 'Running needs review checks...',
