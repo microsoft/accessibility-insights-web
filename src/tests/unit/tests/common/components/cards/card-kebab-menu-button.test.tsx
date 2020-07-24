@@ -113,6 +113,8 @@ describe('CardKebabMenuButtonTest', () => {
             enableTelemetry: true,
             isFirstTime: true,
             adbLocation: null,
+            windowWasMaximized: null,
+            lastWindowBounds: null,
         };
 
         issueFilingServiceProviderMock

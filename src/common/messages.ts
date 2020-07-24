@@ -100,6 +100,7 @@ export class Messages {
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
         SetAdbLocationConfig: `${messagePrefix}/userConfig/setAdbLocationConfig`,
+        SaveWindowBounds: `${messagePrefix}/userConfig/saveWindowBounds`,
     };
 
     public static readonly Popup = {

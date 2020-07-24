@@ -3,6 +3,7 @@
 
 import { Action } from 'common/flux/action';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -29,6 +30,8 @@ describe(WindowFrameListener, () => {
         testSubject = new WindowFrameListener(
             windowStateActionsCreatorMock.object,
             ipcRendererShimMock.object,
+            userConfigMessageCreatorMock.object,
+            windowStateStoreMock.object,
         );
     });
 
@@ -56,10 +59,12 @@ describe(WindowFrameListener, () => {
         maximizeEvent.invoke();
     });
 
-    it('register listeners during initialize', () => {
-        setupForListenerInitialization();
-        testSubject.initialize();
-    });
+    // it('register listeners during initialize', () => {
+    //     setupForListenerInitialization();
+    //     let resizeCallback: Function;
+    //     setupVerifiableWindowEventCallback('resize', cb => (resizeCallback = cb));
+    //     testSubject.initialize();
+    // });
 
     describe('validate states in response to events', () => {
         let actualState;
@@ -86,6 +91,37 @@ describe(WindowFrameListener, () => {
         it('set state to fullscreen on fullscreeen event', () => {
             enterFullScreenEvent.invoke();
             expect(actualState.currentWindowState).toBe('fullScreen');
+        });
+
+        it('validate window size is saved on resize when routeId is not deviceConnectView', () => {
+            const windowStoreDataStub = {
+                routeId: 'resultsView',
+            } as WindowStateStoreData;
+
+            browserWindowMock.setup(b => b.getSize()).returns(() => [600, 400]);
+            windowStateStoreMock.setup(w => w.getState()).returns(() => windowStoreDataStub);
+            userConfigMessageCreatorMock
+                .setup(u => u.saveLastWindowSize({ width: 600, height: 400 }))
+                .verifiable(Times.once());
+
+            resizeCallback();
+
+            userConfigMessageCreatorMock.verifyAll();
+        });
+
+        it('validate window size is not saved on resize when routeId is deviceConnectView', () => {
+            const windowStoreDataStub = {
+                routeId: 'deviceConnectView',
+            } as WindowStateStoreData;
+
+            windowStateStoreMock.setup(w => w.getState()).returns(() => windowStoreDataStub);
+            userConfigMessageCreatorMock
+                .setup(u => u.saveLastWindowSize(It.isAny()))
+                .verifiable(Times.never());
+
+            resizeCallback();
+
+            userConfigMessageCreatorMock.verifyAll();
         });
     });
 });

@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Rectangle } from 'electron';
+
+// Licensed under the MIT License.
 export interface UserConfigurationStoreData {
     isFirstTime: boolean;
     enableTelemetry: boolean;
@@ -14,6 +17,9 @@ export interface UserConfigurationStoreData {
 
     // null if the path to adb is unknown
     adbLocation: string | null;
+
+    windowWasMaximized: boolean;
+    lastWindowBounds: Rectangle;
 }
 
 export interface IssueFilingServicePropertiesMap {
@@ -21,3 +27,8 @@ export interface IssueFilingServicePropertiesMap {
 }
 
 export type IssueFilingServiceProperties = Object;
+
+export interface WindowSize {
+    width: number;
+    height: number;
+}

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -34,6 +35,11 @@ export class UserConfigurationActionCreator {
     public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) =>
         this.userConfigActions.saveIssueFilingSettings.invoke(payload);
 
-    public setAdbLocation = (adbLocation: string) =>
+    public setAdbLocation = (adbLocation: string) => {
         this.userConfigActions.setAdbLocation.invoke(adbLocation, this.currentScope);
+    };
+
+    public saveWindowBounds = (payload: SaveWindowBoundsPayload) => {
+        this.userConfigActions.saveWindowBounds.invoke(payload);
+    };
 }

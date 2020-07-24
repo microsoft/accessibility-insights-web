@@ -1,14 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
-import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
-import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue, Rectangle } from 'electron';
+import {
+    SetSizePayload,
+    WindowBoundsPayload,
+} from 'electron/flux/action/window-frame-actions-payloads';
 import { AsyncAction } from 'electron/ipc/async-action';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
@@ -32,6 +36,10 @@ export class IpcRendererShim {
             this.onEnterFullScreen,
         );
         this.ipcRenderer.on(IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME, this.onClose);
+        this.ipcRenderer.on(
+            IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
+            (_, windowBoundsPayload) => this.onWindowBoundsChanged(windowBoundsPayload),
+        );
     }
 
     private onMaximize = (): void => {
@@ -51,11 +59,16 @@ export class IpcRendererShim {
         this.closeWindow();
     };
 
+    private onWindowBoundsChanged = (payload: WindowBoundsPayload): void => {
+        this.fromBrowserWindowWindowBoundsChanged.invoke(payload, this.invokeScope);
+    };
+
     // Listen to these events to receive data sent TO renderer process
     public readonly fromBrowserWindowClose = new AsyncAction();
     public readonly fromBrowserWindowMaximize = new Action<void>();
     public readonly fromBrowserWindowUnmaximize = new Action<void>();
     public readonly fromBrowserWindowEnterFullScreen = new Action<void>();
+    public readonly fromBrowserWindowWindowBoundsChanged = new Action<WindowBoundsPayload>();
 
     public getAppPath = async (): Promise<string> => {
         return await this.ipcRenderer.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME);

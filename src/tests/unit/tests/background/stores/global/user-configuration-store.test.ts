@@ -36,6 +36,8 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
+            windowWasMaximized: null,
+            lastWindowBounds: null,
         };
         defaultStoreData = {
             enableTelemetry: false,
@@ -45,6 +47,8 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
+            windowWasMaximized: null,
+            lastWindowBounds: null,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -94,6 +98,8 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             lastSelectedHighContrast: false,
+            windowWasMaximized: null,
+            lastWindowBounds: null,
             ...persisted,
         } as UserConfigurationStoreData;
         const testSubject = new UserConfigurationStore(
@@ -187,6 +193,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    windowWasMaximized: null,
+                    lastWindowBounds: null,
                 };
 
                 const expectedState: UserConfigurationStoreData = {
@@ -197,6 +205,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    windowWasMaximized: null,
+                    lastWindowBounds: null,
                 };
 
                 indexDbStrictMock
@@ -234,6 +244,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    windowWasMaximized: null,
+                    lastWindowBounds: null,
                 };
 
                 const setHighContrastData: SetHighContrastModePayload = {
@@ -248,6 +260,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    windowWasMaximized: null,
+                    lastWindowBounds: null,
                 };
 
                 indexDbStrictMock
@@ -285,6 +299,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    windowWasMaximized: null,
+                    lastWindowBounds: null,
                 };
 
                 const setNativeHighContrastData: SetNativeHighContrastModePayload = {
@@ -299,6 +315,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    windowWasMaximized: null,
+                    lastWindowBounds: null,
                 };
 
                 indexDbStrictMock
@@ -327,6 +345,8 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: {},
                 adbLocation: null,
+                windowWasMaximized: null,
+                lastWindowBounds: null,
             };
 
             const setIssueFilingServiceData: SetIssueFilingServicePayload = {
@@ -369,6 +389,8 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
                 adbLocation: null,
+                windowWasMaximized: null,
+                lastWindowBounds: null,
             };
 
             const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {

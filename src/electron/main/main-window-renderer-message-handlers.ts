@@ -10,12 +10,17 @@ import {
     OpenDialogOptions,
     OpenDialogReturnValue,
 } from 'electron';
-import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { Rectangle } from 'electron';
+import {
+    SetSizePayload,
+    WindowBoundsPayload,
+} from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -84,6 +89,8 @@ export class MainWindowRendererMessageHandlers {
             { eventName: 'enter-full-screen', eventHandler: this.onEnterFullScreenFromMainWindow },
             { eventName: 'leave-full-screen', eventHandler: this.onLeaveFullScreenFromMainWindow },
             { eventName: 'close', eventHandler: e => this.onCloseFromMainWindow(e) },
+            { eventName: 'resize', eventHandler: this.onWindowBoundsChanged },
+            { eventName: 'move', eventHandler: this.onWindowBoundsChanged },
         ];
     }
 
@@ -182,5 +189,20 @@ export class MainWindowRendererMessageHandlers {
         } else {
             this.onUnmaximizeFromMainWindow();
         }
+    };
+
+    private onWindowBoundsChanged = (): void => {
+        const isMaximized: boolean = this.browserWindow.isMaximized();
+
+        const payload: WindowBoundsPayload = {
+            isMaximized: isMaximized,
+            windowBounds: isMaximized ? null : this.browserWindow.getBounds(),
+        };
+
+        console.log(`********* New bounds: ${JSON.stringify(payload)} \n`);
+        this.browserWindow.webContents.send(
+            IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
+            payload,
+        );
     };
 }
