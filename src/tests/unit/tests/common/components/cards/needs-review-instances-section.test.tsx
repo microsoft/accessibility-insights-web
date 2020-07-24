@@ -13,20 +13,8 @@ import * as React from 'react';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('NeedsReviewInstancesSection', () => {
-    const resultsWithFailures: CardRuleResultsByStatus = {
-        fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
-        pass: [],
-        inapplicable: [],
-        unknown: [],
-    };
     const resultsWithUnknowns: CardRuleResultsByStatus = {
         fail: [],
-        pass: [],
-        inapplicable: [],
-        unknown: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
-    };
-    const resultsWithFailuresAndUnknowns: CardRuleResultsByStatus = {
-        fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
         pass: [],
         inapplicable: [],
         unknown: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
@@ -46,14 +34,12 @@ describe('NeedsReviewInstancesSection', () => {
 
     describe('renders', () => {
         it.each`
-            results                                      | shouldAlertFailuresCount | description
-            ${{ cards: resultsWithFailures }}            | ${undefined}             | ${'with failures'}
-            ${{ cards: resultsWithUnknowns }}            | ${undefined}             | ${'with unknowns'}
-            ${{ cards: resultsWithFailuresAndUnknowns }} | ${undefined}             | ${'with failures and unknowns'}
-            ${null}                                      | ${undefined}             | ${'null results'}
-            ${{ cards: null }}                           | ${undefined}             | ${'null cards property'}
-            ${{ cards: nonEmptyResults }}                | ${true}                  | ${'with alerting on'}
-            ${{ cards: nonEmptyResults }}                | ${false}                 | ${'with alerting off'}
+            results                           | shouldAlertFailuresCount | description
+            ${{ cards: resultsWithUnknowns }} | ${undefined}             | ${'with unknowns'}
+            ${null}                           | ${undefined}             | ${'null results'}
+            ${{ cards: null }}                | ${undefined}             | ${'null cards property'}
+            ${{ cards: nonEmptyResults }}     | ${true}                  | ${'with alerting on'}
+            ${{ cards: nonEmptyResults }}     | ${false}                 | ${'with alerting off'}
         `('$description', ({ results, shouldAlertFailuresCount }) => {
             const props = {
                 deps: {} as NeedsReviewInstancesSectionDeps,

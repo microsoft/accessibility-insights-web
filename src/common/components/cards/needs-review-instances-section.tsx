@@ -30,19 +30,15 @@ export const NeedsReviewInstancesSection = NamedFC<NeedsReviewInstancesSectionPr
             return null;
         }
 
-        const count =
-            cardsViewData.cards.fail.reduce((total, rule) => {
-                return total + rule.nodes.length;
-            }, 0) +
-            cardsViewData.cards.unknown.reduce((total, rule) => {
-                return total + rule.nodes.length;
-            }, 0);
+        const count = cardsViewData.cards.unknown.reduce((total, rule) => {
+            return total + rule.nodes.length;
+        }, 0);
 
         return (
             <ResultSection
                 deps={deps}
                 title="Instances to review"
-                results={[...cardsViewData.cards.fail, ...cardsViewData.cards.unknown]}
+                results={cardsViewData.cards.unknown}
                 containerClassName={null}
                 outcomeType="review"
                 badgeCount={count}
