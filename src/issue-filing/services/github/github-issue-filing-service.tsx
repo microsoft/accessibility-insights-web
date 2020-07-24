@@ -49,7 +49,7 @@ const settingsForm = NamedFC<SettingsFormProps<GitHubIssueFilingSettings>>(
         return (
             <TextField
                 className="issue-setting"
-                label="Enter desired GitHub issues link:"
+                label="Enter your GitHub issues URL"
                 onChange={onGitHubRepositoryChange}
                 value={isEmpty(props.settings) ? '' : props.settings.repository}
                 placeholder="https://github.com/owner/repo/issues"
