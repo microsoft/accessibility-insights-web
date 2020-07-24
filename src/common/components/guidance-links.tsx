@@ -28,7 +28,7 @@ export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps
     };
 
     const getLinksWithoutBestPracticeWhenWCAGPresent = (): HyperlinkDefinition[] => {
-        return links.length === 1 ? links : links.filter(link => link !== BestPractice);
+        return links.length === 1 ? links : links.filter(link => link.text !== BestPractice.text);
     };
 
     const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {
