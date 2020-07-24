@@ -3,8 +3,8 @@
 import { LinkComponentType } from 'common/types/link-component-type';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
+import { BestPractice } from 'scanner/rule-to-links-mappings';
 import { HyperlinkDefinition } from 'views/content/content-page';
-
 import { NamedFC } from '../react/named-fc';
 
 export interface GuidanceLinksProps {
@@ -28,7 +28,7 @@ export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps
     };
 
     const getLinksWithoutBestPracticeWhenWCAGPresent = (): HyperlinkDefinition[] => {
-        return links.length === 1 ? links : links.filter(link => link.text !== 'Best Practice');
+        return links.length === 1 ? links : links.filter(link => link !== BestPractice);
     };
 
     const renderLink = (link: HyperlinkDefinition, index: number, length: number): JSX.Element => {

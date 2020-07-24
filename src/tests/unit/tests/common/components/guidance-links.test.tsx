@@ -5,6 +5,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { forOwn } from 'lodash';
+import { BestPractice } from 'scanner/rule-to-links-mappings';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
@@ -17,10 +18,6 @@ describe('GuidanceLinksTest', () => {
     const testLink2 = {
         text: 'text2',
         href: 'https://url2',
-    } as HyperlinkDefinition;
-    const bestPracticeLink = {
-        text: 'Best Practice',
-        href: '',
     } as HyperlinkDefinition;
 
     test('links is null', () => {
@@ -48,9 +45,9 @@ describe('GuidanceLinksTest', () => {
     const testCases = {
         'one regular link': [testLink1],
         'two regular links': [testLink1, testLink2],
-        'one best practice link': [bestPracticeLink],
+        'one best practice link': [BestPractice],
         'best practice and regular links (excludes BEST PRACTICE)': [
-            bestPracticeLink,
+            BestPractice,
             testLink1,
             testLink2,
         ],

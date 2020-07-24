@@ -11,7 +11,7 @@ export interface GuidanceLink {
     tags?: GuidanceTag[];
 }
 
-const BestPractice: HyperlinkDefinition = {
+export const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',
     href: '',
 };
