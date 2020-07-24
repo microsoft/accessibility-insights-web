@@ -14,6 +14,5 @@ export const filterNeedsReviewResults = (results: ScanResults): ScanResults => {
     );
     results.incomplete = results.incomplete.filter(i => i.id !== 'link-in-text-block');
 
-    console.log('results: ', results);
     return results;
 };
