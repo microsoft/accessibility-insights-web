@@ -1,12 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
-import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import {
+    SetSizePayload,
+    WindowBoundsPayload,
+} from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
@@ -40,6 +44,7 @@ describe(IpcRendererShim, () => {
             IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
             IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
             IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
+            IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
         ];
 
         let ipcHandlers;
@@ -77,6 +82,17 @@ describe(IpcRendererShim, () => {
             let callCount = 0;
             testSubject.fromBrowserWindowUnmaximize.addListener(() => callCount++);
             ipcHandlers[IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME]();
+            expect(callCount).toBe(1);
+        });
+
+        it('invoke fromBrowserWindowWindowBoundsChanged on windowBoundsChanged message from browser', () => {
+            const payload: WindowBoundsPayload = {
+                isMaximized: true,
+                windowBounds: { x: 1, y: 2, width: 100, height: 200 },
+            };
+            let callCount = 0;
+            testSubject.fromBrowserWindowWindowBoundsChanged.addListener(() => callCount++);
+            ipcHandlers[IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME](payload);
             expect(callCount).toBe(1);
         });
 

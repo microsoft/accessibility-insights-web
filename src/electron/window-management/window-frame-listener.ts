@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { WindowBoundsPayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { WindowStateActionCreator } from '../flux/action-creator/window-state-action-creator';
-import { WindowBoundsPayload } from 'electron/flux/action/window-frame-actions-payloads';
 
 export class WindowFrameListener {
     constructor(

@@ -227,6 +227,8 @@ exports[` render renders normally 1`] = `
         "enableTelemetry": true,
         "isFirstTime": false,
         "lastSelectedHighContrast": false,
+        "lastWindowBounds": null,
+        "windowWasMaximized": null,
       }
     }
     visualizationScanResultData={
@@ -493,6 +495,8 @@ exports[` render renders normally 1`] = `
         "enableTelemetry": true,
         "isFirstTime": false,
         "lastSelectedHighContrast": false,
+        "lastWindowBounds": null,
+        "windowWasMaximized": null,
       }
     }
   />

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { Rectangle } from 'electron';
 import { RoutePayload } from '../action/route-payloads';
 import { WindowStateActions } from '../action/window-state-actions';
@@ -30,10 +31,17 @@ export class WindowStateActionCreator {
     }
 
     private setWindowBoundsFromSavedWindowBounds(): void {
-        const windowBounds: Rectangle = this.userConfigurationStore.getState().lastWindowBounds;
-        if (windowBounds !== null) {
-            this.windowFrameActionCreator.setWindowBounds(windowBounds);
-        } else {
+        const state: UserConfigurationStoreData = this.userConfigurationStore.getState();
+        const windowWasMaximized: boolean = state.windowWasMaximized;
+        const lastWindowBounds: Rectangle = state.lastWindowBounds;
+
+        // Fully restoring the previous state means setting the stored bounds
+        // (if we have them), THEN maximizing unless we explicitly shouldn't
+
+        if (lastWindowBounds) {
+            this.windowFrameActionCreator.setWindowBounds(lastWindowBounds);
+        }
+        if (!lastWindowBounds || windowWasMaximized !== false) {
             this.windowFrameActionCreator.maximize();
         }
     }

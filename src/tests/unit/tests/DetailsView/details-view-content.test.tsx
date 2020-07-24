@@ -154,6 +154,8 @@ describe(DetailsViewContent, () => {
                 bugService: 'gitHub',
                 bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
                 adbLocation: null,
+                windowWasMaximized: null,
+                lastWindowBounds: null,
             };
 
             const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
