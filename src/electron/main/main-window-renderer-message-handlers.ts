@@ -13,7 +13,7 @@ import {
 import { Rectangle } from 'electron';
 import {
     SetSizePayload,
-    WindowBoundsPayload,
+    WindowBoundsChangedPayload,
 } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
@@ -194,7 +194,7 @@ export class MainWindowRendererMessageHandlers {
     private onWindowBoundsChanged = (): void => {
         const isMaximized: boolean = this.browserWindow.isMaximized();
 
-        const payload: WindowBoundsPayload = {
+        const payload: WindowBoundsChangedPayload = {
             isMaximized: isMaximized,
             windowBounds: isMaximized ? null : this.browserWindow.getBounds(),
         };

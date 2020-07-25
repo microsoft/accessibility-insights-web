@@ -8,7 +8,7 @@ export interface SetSizePayload {
     height: number;
 }
 
-export interface WindowBoundsPayload {
+export interface WindowBoundsChangedPayload {
     isMaximized: boolean;
     windowBounds?: Rectangle;
 }

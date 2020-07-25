@@ -5,7 +5,7 @@ import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
 import { Action } from 'common/flux/action';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { WindowBoundsPayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { WindowBoundsChangedPayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
@@ -102,7 +102,7 @@ describe(WindowFrameListener, () => {
     });
 
     describe('validate responses to changes to windows bounds', () => {
-        const payload: WindowBoundsPayload = {
+        const payload: WindowBoundsChangedPayload = {
             isMaximized: false,
             windowBounds: {
                 x: 100,

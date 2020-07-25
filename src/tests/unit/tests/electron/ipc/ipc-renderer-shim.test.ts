@@ -3,7 +3,7 @@
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
 import {
     SetSizePayload,
-    WindowBoundsPayload,
+    WindowBoundsChangedPayload,
 } from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
@@ -86,7 +86,7 @@ describe(IpcRendererShim, () => {
         });
 
         it('invoke fromBrowserWindowWindowBoundsChanged on windowBoundsChanged message from browser', () => {
-            const payload: WindowBoundsPayload = {
+            const payload: WindowBoundsChangedPayload = {
                 isMaximized: true,
                 windowBounds: { x: 1, y: 2, width: 100, height: 200 },
             };

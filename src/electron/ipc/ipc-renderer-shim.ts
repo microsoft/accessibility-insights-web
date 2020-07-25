@@ -4,7 +4,7 @@ import { Action } from 'common/flux/action';
 import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue, Rectangle } from 'electron';
 import {
     SetSizePayload,
-    WindowBoundsPayload,
+    WindowBoundsChangedPayload,
 } from 'electron/flux/action/window-frame-actions-payloads';
 import { AsyncAction } from 'electron/ipc/async-action';
 import {
@@ -59,7 +59,7 @@ export class IpcRendererShim {
         this.closeWindow();
     };
 
-    private onWindowBoundsChanged = (payload: WindowBoundsPayload): void => {
+    private onWindowBoundsChanged = (payload: WindowBoundsChangedPayload): void => {
         this.fromBrowserWindowWindowBoundsChanged.invoke(payload, this.invokeScope);
     };
 
@@ -68,7 +68,7 @@ export class IpcRendererShim {
     public readonly fromBrowserWindowMaximize = new Action<void>();
     public readonly fromBrowserWindowUnmaximize = new Action<void>();
     public readonly fromBrowserWindowEnterFullScreen = new Action<void>();
-    public readonly fromBrowserWindowWindowBoundsChanged = new Action<WindowBoundsPayload>();
+    public readonly fromBrowserWindowWindowBoundsChanged = new Action<WindowBoundsChangedPayload>();
 
     public getAppPath = async (): Promise<string> => {
         return await this.ipcRenderer.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME);

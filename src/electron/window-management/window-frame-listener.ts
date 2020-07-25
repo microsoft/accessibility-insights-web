@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { WindowBoundsPayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { WindowBoundsChangedPayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { WindowStateActionCreator } from '../flux/action-creator/window-state-action-creator';
@@ -36,7 +36,7 @@ export class WindowFrameListener {
         this.windowStateActionsCreator.setWindowState({ currentWindowState: 'customSize' });
     };
 
-    private onWindowBoundsChanged = (payload: WindowBoundsPayload): void => {
+    private onWindowBoundsChanged = (payload: WindowBoundsChangedPayload): void => {
         if (this.windowStateStore.getState().routeId === 'deviceConnectView') {
             return;
         }
