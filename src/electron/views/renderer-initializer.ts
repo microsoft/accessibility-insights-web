@@ -493,7 +493,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
-            windowFrameActionCreator.maximize();
         };
 
         const deps: RootContainerRendererDeps = {

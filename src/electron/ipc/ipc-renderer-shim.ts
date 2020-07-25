@@ -20,6 +20,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 
@@ -103,6 +104,13 @@ export class IpcRendererShim {
         this.ipcRenderer.send(
             IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
             sizePayload,
+        );
+    };
+
+    public setWindowBounds = (windowBounds: Rectangle): void => {
+        this.ipcRenderer.send(
+            IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
+            windowBounds,
         );
     };
 }

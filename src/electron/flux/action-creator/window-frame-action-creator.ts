@@ -13,7 +13,7 @@ export class WindowFrameActionCreator {
     }
 
     public setWindowBounds(windowBounds: Rectangle): void {
-        // TODO
+        this.windowFrameActions.setWindowBounds.invoke(windowBounds);
     }
 
     public maximize(): void {

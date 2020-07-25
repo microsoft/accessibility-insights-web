@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { Action } from 'common/flux/action';
+import { Rectangle } from 'electron';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 
 export class WindowFrameActions {
@@ -10,4 +11,5 @@ export class WindowFrameActions {
     public readonly restore = new Action<void>();
     public readonly close = new Action<void>();
     public readonly setWindowSize = new Action<SetSizePayload>();
+    public readonly setWindowBounds = new Action<Rectangle>();
 }

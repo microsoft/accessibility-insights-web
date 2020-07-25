@@ -27,6 +27,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 
@@ -80,6 +81,10 @@ export class MainWindowRendererMessageHandlers {
             {
                 eventName: IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
                 eventHandler: this.onSetSizeAndCenterFromRenderer,
+            },
+            {
+                eventName: IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onSetWindowBoundsFromRenderer,
             },
         ];
 
@@ -144,9 +149,13 @@ export class MainWindowRendererMessageHandlers {
         this.browserWindow.close();
     };
 
-    private onSetSizeAndCenterFromRenderer = (event: IpcMainEvent, args: SetSizePayload): void => {
+    private onSetSizeAndCenterFromRenderer = (_: IpcMainEvent, args: SetSizePayload): void => {
         this.browserWindow.setSize(args.width, args.height);
         this.browserWindow.center();
+    };
+
+    private onSetWindowBoundsFromRenderer = (_: IpcMainEvent, windowBounds: Rectangle): void => {
+        this.browserWindow.setBounds(windowBounds);
     };
 
     private handleGetAppPathFromRenderer = async (): Promise<string> => {
@@ -199,7 +208,6 @@ export class MainWindowRendererMessageHandlers {
             windowBounds: isMaximized ? null : this.browserWindow.getBounds(),
         };
 
-        console.log(`********* New bounds: ${JSON.stringify(payload)} \n`);
         this.browserWindow.webContents.send(
             IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
             payload,

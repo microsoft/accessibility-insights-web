@@ -6,6 +6,7 @@ import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-fr
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { IMock, Mock, Times } from 'typemoq';
+import { Rectangle } from 'electron';
 
 describe(WindowFrameActionCreator, () => {
     let windowFrameActionsMock: IMock<WindowFrameActions>;
@@ -82,5 +83,24 @@ describe(WindowFrameActionCreator, () => {
         testSubject.close();
 
         closeActionMock.verifyAll();
+    });
+
+    it('calling setWindowBounds invokes setWindowBounds action', () => {
+        const windowBounds: Rectangle = {
+            x: 123,
+            y: 456,
+            height: 78,
+            width: 89,
+        };
+        const setWindowBoundsActionMock = Mock.ofType<Action<Rectangle>>();
+
+        windowFrameActionsMock
+            .setup(actions => actions.setWindowBounds)
+            .returns(() => setWindowBoundsActionMock.object);
+        setWindowBoundsActionMock.setup(s => s.invoke(windowBounds)).verifiable(Times.once());
+
+        testSubject.setWindowBounds(windowBounds);
+
+        setWindowBoundsActionMock.verifyAll();
     });
 });
