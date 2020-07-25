@@ -4,13 +4,13 @@
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Action } from 'common/flux/action';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { Rectangle } from 'electron';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { RoutePayload } from 'electron/flux/action/route-payloads';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Rectangle } from 'electron';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowStateActionCreator, () => {
     let windowStateActionsMock: IMock<WindowStateActions>;

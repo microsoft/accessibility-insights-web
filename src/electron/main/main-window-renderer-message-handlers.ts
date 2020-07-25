@@ -205,7 +205,7 @@ export class MainWindowRendererMessageHandlers {
 
         const payload: WindowBoundsChangedPayload = {
             isMaximized: isMaximized,
-            windowBounds: isMaximized ? null : this.browserWindow.getBounds(),
+            windowBounds: isMaximized ? undefined : this.browserWindow.getBounds(),
         };
 
         this.browserWindow.webContents.send(

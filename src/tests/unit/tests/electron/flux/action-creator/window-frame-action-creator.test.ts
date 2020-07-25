@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 
 import { Action } from 'common/flux/action';
+import { Rectangle } from 'electron';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { IMock, Mock, Times } from 'typemoq';
-import { Rectangle } from 'electron';
 
 describe(WindowFrameActionCreator, () => {
     let windowFrameActionsMock: IMock<WindowFrameActions>;
