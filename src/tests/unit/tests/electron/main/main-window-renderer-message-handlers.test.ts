@@ -22,10 +22,13 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
 } from 'electron/ipc/ipc-channel-names';
 import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-renderer-message-handlers';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { Rectangle } from 'electron';
 
 describe(MainWindowRendererMessageHandlers, () => {
     const close = 'close';
@@ -45,6 +48,7 @@ describe(MainWindowRendererMessageHandlers, () => {
         IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+        IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     ];
 
     const windowEventNames = [close, maximize, unmaximize, enterFullScreen, leaveFullScreen];
@@ -204,6 +208,22 @@ describe(MainWindowRendererMessageHandlers, () => {
             mainWindowMock.setup(b => b.center()).verifiable(Times.once());
 
             ipcListeners[IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME](
+                stubIpcMainEvent,
+                payload,
+            );
+        });
+
+        it('setSizeAndCenter sets the correct size and centers the browserWindow', () => {
+            const payload: Rectangle = {
+                x: 50,
+                y: 60,
+                width: 100,
+                height: 300,
+            };
+
+            mainWindowMock.setup(b => b.setBounds(payload)).verifiable(Times.once());
+
+            ipcListeners[IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME](
                 stubIpcMainEvent,
                 payload,
             );
