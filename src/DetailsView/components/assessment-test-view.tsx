@@ -3,7 +3,10 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { ReflowAssessmentView } from 'DetailsView/components/reflow-assessment-view';
+import {
+    ReflowAssessmentView,
+    ReflowAssessmentViewDeps,
+} from 'DetailsView/components/reflow-assessment-view';
 import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
@@ -18,9 +21,8 @@ import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { AssessmentViewDeps } from './assessment-view';
 
-export type AssessmentTestViewDeps = AssessmentViewDeps &
+export type AssessmentTestViewDeps = ReflowAssessmentViewDeps &
     ScanIncompleteWarningDeps & {
         assessmentsProvider: AssessmentsProvider;
         assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
