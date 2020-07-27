@@ -8,14 +8,19 @@ import {
     IpcMainEvent,
     OpenDialogOptions,
     OpenDialogReturnValue,
+    Rectangle,
     WebContents,
 } from 'electron';
-import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import {
+    SetSizePayload,
+    WindowBoundsChangedPayload,
+} from 'electron/flux/action/window-frame-actions-payloads';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -24,11 +29,9 @@ import {
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
-    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
 } from 'electron/ipc/ipc-channel-names';
 import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-renderer-message-handlers';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Rectangle } from 'electron';
 
 describe(MainWindowRendererMessageHandlers, () => {
     const close = 'close';
@@ -36,6 +39,8 @@ describe(MainWindowRendererMessageHandlers, () => {
     const unmaximize = 'unmaximize';
     const enterFullScreen = 'enter-full-screen';
     const leaveFullScreen = 'leave-full-screen';
+    const resize = 'resize';
+    const move = 'move';
 
     const ipcChannelHandlerNames = [
         IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
@@ -51,7 +56,15 @@ describe(MainWindowRendererMessageHandlers, () => {
         IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     ];
 
-    const windowEventNames = [close, maximize, unmaximize, enterFullScreen, leaveFullScreen];
+    const windowEventNames = [
+        close,
+        maximize,
+        unmaximize,
+        enterFullScreen,
+        leaveFullScreen,
+        resize,
+        move,
+    ];
 
     let mainWindowMock: IMock<BrowserWindow>;
     let ipcMainMock: IMock<IpcMain>;
@@ -354,5 +367,41 @@ describe(MainWindowRendererMessageHandlers, () => {
             // Simulate the second call
             windowHandlers[close](electronEventMock.object);
         });
+
+        it.each`
+            eventName | isMaximized
+            ${resize} | ${false}
+            ${resize} | ${true}
+            ${move}   | ${false}
+            ${move}   | ${true}
+        `(
+            'BrowserWindow $eventName triggers message with correct payload (isMaximized:$isMaximized)',
+            ({ eventName, isMaximized }) => {
+                const testBounds: Rectangle = { x: 20, y: 40, height: 200, width: 400 };
+                const payload: WindowBoundsChangedPayload = {
+                    isMaximized: isMaximized,
+                    windowBounds: isMaximized ? undefined : testBounds,
+                };
+
+                mainWindowMock
+                    .setup(m => m.isMaximized())
+                    .returns(() => isMaximized)
+                    .verifiable(Times.once());
+
+                if (!isMaximized) {
+                    mainWindowMock
+                        .setup(m => m.getBounds())
+                        .returns(() => testBounds)
+                        .verifiable(Times.once());
+                }
+                webContentsMock
+                    .setup(b =>
+                        b.send(IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME, payload),
+                    )
+                    .verifiable(Times.once());
+
+                windowHandlers[eventName](electronEventMock.object);
+            },
+        );
     });
 });

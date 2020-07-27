@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -464,6 +465,52 @@ describe('UserConfigurationStoreTest', () => {
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
+
+    test.each`
+        isMaximized | hasBounds | expectBoundsSet
+        ${false}    | ${false}  | ${false}
+        ${false}    | ${true}   | ${true}
+        ${true}     | ${false}  | ${false}
+        ${true}     | ${true}   | ${false}
+    `(
+        'saveLastWindowBounds isMaximized:$isMaximized, hasBounds:$hasBounds',
+        ({ isMaximized, hasBounds, expectBoundsSet }) => {
+            const payload: SaveWindowBoundsPayload = {
+                isMaximized: isMaximized,
+                windowBounds: hasBounds ? { x: 5, y: 15, height: 30, width: 50 } : null,
+            };
+
+            const storeTester = createStoreToTestAction('saveWindowBounds');
+            initialStoreData = {
+                isFirstTime: false,
+                enableTelemetry: false,
+                enableHighContrast: false,
+                lastSelectedHighContrast: false,
+                bugService: 'none',
+                bugServicePropertiesMap: {},
+                adbLocation: null,
+                windowWasMaximized: null,
+                lastWindowBounds: null,
+            };
+
+            const expectedState: UserConfigurationStoreData = {
+                ...initialStoreData,
+                windowWasMaximized: payload.isMaximized,
+                lastWindowBounds: expectBoundsSet ? payload.windowBounds : null,
+            };
+
+            indexDbStrictMock
+                .setup(i =>
+                    i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                )
+                .verifiable(Times.once());
+
+            storeTester
+                .withActionParam(payload)
+                .withPostListenerMock(indexDbStrictMock)
+                .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+        },
+    );
 
     function createStoreToTestAction(
         actionName: keyof UserConfigurationActions,

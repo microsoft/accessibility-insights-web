@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveWindowBoundsPayload,
     SetAdbLocationPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
@@ -148,6 +149,24 @@ describe('UserConfigMessageCreator', () => {
         };
 
         testSubject.setAdbLocation(adbLocation);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
+    });
+
+    it('dispatches message for saveWindowBounds', () => {
+        const payload: SaveWindowBoundsPayload = {
+            isMaximized: false,
+            windowBounds: { x: 5, y: 10, height: 50, width: 60 },
+        };
+        const expectedMessage: Message = {
+            messageType: Messages.UserConfig.SaveWindowBounds,
+            payload,
+        };
+
+        testSubject.saveWindowBounds(payload);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(expectedMessage),

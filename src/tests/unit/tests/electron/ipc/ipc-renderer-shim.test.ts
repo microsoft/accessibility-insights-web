@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
+import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue, Rectangle } from 'electron';
 import {
     SetSizePayload,
     WindowBoundsChangedPayload,
@@ -18,6 +18,7 @@ import {
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
@@ -165,6 +166,25 @@ describe(IpcRendererShim, () => {
             testSubject.setSizeAndCenterWindow({ height: expectedHeight, width: expectedWidth });
             expect(actualHeight).toBe(expectedHeight);
             expect(actualWidth).toBe(expectedWidth);
+        });
+
+        it('setWindowBounds sends correct ipc message with correct payload', () => {
+            const expectedBounds: Rectangle = { x: 40, y: 30, width: 200, height: 100 };
+            let actualBounds: Rectangle = null;
+
+            ipcRendererMock
+                .setup(b =>
+                    b.send(
+                        IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
+                        It.isAny(),
+                    ),
+                )
+                .callback((_: string, args: Rectangle) => {
+                    actualBounds = args;
+                })
+                .verifiable(Times.once());
+            testSubject.setWindowBounds(expectedBounds);
+            expect(actualBounds).toStrictEqual(expectedBounds);
         });
 
         describe('getAppPath', () => {
