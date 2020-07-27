@@ -1,22 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` renders with reflow feature flag disabled 1`] = `
-<BaseLeftNav
-  links={
-    Array [
-      Object {
-        "status": 1,
-      },
-      Object {
-        "status": 1,
-      },
-    ]
-  }
-  selectedKey="some key"
-  setNavComponentRef={[Function]}
-/>
-`;
-
 exports[` renders with reflow feature flag enabled 1`] = `
 <BaseLeftNav
   links={

@@ -37,9 +37,6 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
     }
     state={
       Object {
-        "featureFlagStoreData": Object {
-          "reflowUI": true,
-        },
         "userConfigurationStoreData": Object {
           "isFirstTime": true,
         },
@@ -57,9 +54,6 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
     }
     storeState={
       Object {
-        "featureFlagStoreData": Object {
-          "reflowUI": true,
-        },
         "userConfigurationStoreData": Object {
           "isFirstTime": true,
         },

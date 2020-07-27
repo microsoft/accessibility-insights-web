@@ -9,26 +9,7 @@ exports[`InteractiveHeader render: isNavCollapsed equals false 1`] = `
       featureFlagData={null}
     />
   }
-  items={
-    <FlaggedComponent
-      disableJSXElement={
-        <Switcher
-          deps={null}
-          pivotKey={2}
-          styles={
-            Object {
-              "dropdownClassName": "headerSwitcherDropdown",
-              "dropdownOptionClassName": "switcherDropdownOption",
-              "switcherClassName": "headerSwitcher",
-            }
-          }
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="reflowUI"
-      featureFlagStoreData={null}
-    />
-  }
+  items={null}
   narrowModeStatus={
     Object {
       "isHeaderAndNavCollapsed": false,
@@ -47,26 +28,7 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
       featureFlagData={null}
     />
   }
-  items={
-    <FlaggedComponent
-      disableJSXElement={
-        <Switcher
-          deps={null}
-          pivotKey={2}
-          styles={
-            Object {
-              "dropdownClassName": "headerSwitcherDropdown",
-              "dropdownOptionClassName": "switcherDropdownOption",
-              "switcherClassName": "headerSwitcher",
-            }
-          }
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="reflowUI"
-      featureFlagStoreData={null}
-    />
-  }
+  items={null}
   narrowModeStatus={
     Object {
       "isHeaderAndNavCollapsed": true,
@@ -102,34 +64,7 @@ exports[`InteractiveHeader render: tabClosed equals false 1`] = `
       }
     />
   }
-  items={
-    <FlaggedComponent
-      disableJSXElement={
-        <Switcher
-          deps={
-            Object {
-              "dropdownClickHandler": Object {},
-            }
-          }
-          pivotKey={2}
-          styles={
-            Object {
-              "dropdownClassName": "headerSwitcherDropdown",
-              "dropdownOptionClassName": "switcherDropdownOption",
-              "switcherClassName": "headerSwitcher",
-            }
-          }
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="reflowUI"
-      featureFlagStoreData={
-        Object {
-          "test-flag": true,
-        }
-      }
-    />
-  }
+  items={null}
   narrowModeStatus={
     Object {
       "isHeaderAndNavCollapsed": false,
