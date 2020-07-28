@@ -14,6 +14,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { WindowState } from 'electron/flux/types/window-state';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
@@ -466,20 +467,13 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    test.each`
-        windowState      | hasBounds | expectBoundsSet
-        ${'normal'}      | ${false}  | ${false}
-        ${'normal'}      | ${true}   | ${true}
-        ${'maximized'}   | ${false}  | ${false}
-        ${'maximized'}   | ${true}   | ${false}
-        ${'full-screen'} | ${true}   | ${false}
-        ${'full-screen'} | ${true}   | ${false}
-    `(
-        'saveLastWindowBounds windowState:$windowState, hasBounds:$hasBounds',
-        ({ windowState, hasBounds, expectBoundsSet }) => {
+    test.each(['normal', 'maximized', 'full-screen'])(
+        'saveLastWindowBounds windowState:$windowState',
+        windowState => {
+            const expectBoundsSet: boolean = windowState === 'normal';
             const payload: SaveWindowBoundsPayload = {
-                windowState: windowState,
-                windowBounds: hasBounds ? { x: 5, y: 15, height: 30, width: 50 } : null,
+                windowState: windowState as WindowState,
+                windowBounds: { x: 5, y: 15, height: 30, width: 50 },
             };
 
             const storeTester = createStoreToTestAction('saveWindowBounds');

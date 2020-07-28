@@ -209,5 +209,5 @@ export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
 
 export interface SaveWindowBoundsPayload extends BaseActionPayload {
     windowState: WindowState;
-    windowBounds?: Rectangle;
+    windowBounds: Rectangle;
 }
