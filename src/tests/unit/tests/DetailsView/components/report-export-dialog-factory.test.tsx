@@ -22,7 +22,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportExportDialogFactory', () => {
-    const theDate = new Date(2019, 2, 12, 9, 0);
+    const theDate = new Date(Date.UTC(2019, 2, 12, 9, 0));
     const theTimestamp = 'test timestamp';
     const theToolData: ToolData = { applicationProperties: { name: 'some app' } } as ToolData;
     const thePageTitle = 'command-bar-test-tab-title';
