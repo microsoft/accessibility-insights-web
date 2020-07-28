@@ -37,7 +37,7 @@ export class WindowStateActionCreator {
         const lastWindowBounds: Rectangle = state.lastWindowBounds;
 
         // Fully restoring the previous state means setting the stored bounds
-        // (if we have them), THEN maximizing unless we explicitly shouldn't
+        // (if we have them), THEN setting maximize or full screen
 
         if (lastWindowBounds) {
             this.windowFrameActionCreator.setWindowBounds(lastWindowBounds);
