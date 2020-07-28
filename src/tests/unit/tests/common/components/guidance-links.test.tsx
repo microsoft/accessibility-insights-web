@@ -4,10 +4,22 @@ import { ElectronExternalLink } from 'electron/views/device-connect-view/compone
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { forOwn } from 'lodash';
+import { BestPractice } from 'scanner/rule-to-links-mappings';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 
 describe('GuidanceLinksTest', () => {
+    const testLink1 = {
+        text: 'text1',
+        href: 'https://url1',
+    } as HyperlinkDefinition;
+    const testLink2 = {
+        text: 'text2',
+        href: 'https://url2',
+    } as HyperlinkDefinition;
+
     test('links is null', () => {
         const props: GuidanceLinksProps = {
             links: null,
@@ -30,34 +42,32 @@ describe('GuidanceLinksTest', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
-    test('links is not null', () => {
-        const props: GuidanceLinksProps = {
-            links: [
-                {
-                    text: 'text1',
-                    href: 'https://url1',
-                },
-                {
-                    text: 'text2',
-                    href: 'https://url2',
-                },
-            ],
-            classNameForDiv: 'className',
-            LinkComponent: ElectronExternalLink,
-        };
+    const testCases = {
+        'one regular link': [testLink1],
+        'two regular links': [testLink1, testLink2],
+        'one best practice link': [BestPractice],
+        'best practice and regular links (excludes BEST PRACTICE)': [
+            BestPractice,
+            testLink1,
+            testLink2,
+        ],
+    };
+    forOwn(testCases, (testCase, testName) => {
+        test('links is not null and correct with ' + testName, () => {
+            const props: GuidanceLinksProps = {
+                links: testCase,
+                classNameForDiv: 'className',
+                LinkComponent: ElectronExternalLink,
+            };
 
-        const rendered = shallow(<GuidanceLinks {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+            const rendered = shallow(<GuidanceLinks {...props} />);
+            expect(rendered.debug()).toMatchSnapshot();
+        });
     });
 
     test('linkComponentType is defined as ElectronExternalLink', () => {
         const props: GuidanceLinksProps = {
-            links: [
-                {
-                    text: 'text1',
-                    href: 'https://url1',
-                },
-            ],
+            links: [testLink1],
             LinkComponent: ElectronExternalLink,
         };
 
@@ -67,12 +77,7 @@ describe('GuidanceLinksTest', () => {
 
     test('link click -> event propagation stoped', () => {
         const props: GuidanceLinksProps = {
-            links: [
-                {
-                    text: 'text1',
-                    href: 'https://url1',
-                },
-            ],
+            links: [testLink1],
             classNameForDiv: 'className',
             LinkComponent: NewTabLink,
         };

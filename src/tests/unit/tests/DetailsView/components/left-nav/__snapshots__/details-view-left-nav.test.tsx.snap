@@ -4,26 +4,20 @@ exports[` should render from switcher nav 1`] = `
 <div
   className="leftNav main-nav"
 >
-  <FlaggedComponent
-    enableJSXElement={
-      <Switcher
-        deps={
-          Object {
-            "assessmentsProvider": Object {},
-            "assessmentsProviderWithFeaturesEnabled": [Function],
-          }
-        }
-        styles={
-          Object {
-            "dropdownClassName": "leftNavSwitcherDropdown",
-            "dropdownOptionClassName": "switcherDropdownOption",
-            "switcherClassName": "leftNavSwitcher",
-          }
-        }
-      />
+  <Switcher
+    deps={
+      Object {
+        "assessmentsProvider": Object {},
+        "assessmentsProviderWithFeaturesEnabled": [Function],
+      }
     }
-    featureFlag="reflowUI"
-    featureFlagStoreData={Object {}}
+    styles={
+      Object {
+        "dropdownClassName": "leftNavSwitcherDropdown",
+        "dropdownOptionClassName": "switcherDropdownOption",
+        "switcherClassName": "leftNavSwitcher",
+      }
+    }
   />
   <test
     assessmentsData={

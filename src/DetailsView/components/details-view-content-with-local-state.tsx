@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewContent } from 'DetailsView/components/details-view-content';
 import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
@@ -31,9 +30,7 @@ export class DetailsViewContentWithLocalState extends React.Component<
         return (
             <>
                 <NarrowModeDetector
-                    isNarrowModeEnabled={
-                        this.props.storeState.featureFlagStoreData[FeatureFlags.reflowUI]
-                    }
+                    isNarrowModeEnabled={true}
                     Component={DetailsViewContent}
                     childrenProps={{
                         ...this.props,

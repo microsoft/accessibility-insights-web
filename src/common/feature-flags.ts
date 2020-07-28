@@ -13,7 +13,6 @@ export class FeatureFlags {
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
-    public static readonly reflowUI = 'reflowUI';
     public static readonly exportReportOptions = 'exportReportOptions';
     public static readonly needsReview = 'needsReview';
 }
@@ -108,15 +107,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
-            forceDefault: false,
-        },
-        {
-            id: FeatureFlags.reflowUI,
-            defaultValue: true,
-            displayableName: 'Reflow UI',
-            displayableDescription:
-                'Enables new UX to allow for better reflow of application content and UI elements.',
-            isPreviewFeature: false,
             forceDefault: false,
         },
         {

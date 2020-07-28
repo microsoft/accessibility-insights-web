@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewContentProps } from 'DetailsView/components/details-view-content';
 import {
@@ -22,7 +21,7 @@ describe(DetailsViewContentWithLocalState, () => {
     test('render', () => {
         const props = {
             storeState: {
-                featureFlagStoreData: { [FeatureFlags.reflowUI]: false },
+                featureFlagStoreData: {},
             } as any,
         } as DetailsViewContentWithLocalStateProps;
         const wrapper = shallow(<DetailsViewContentWithLocalState {...props} />);
@@ -35,7 +34,7 @@ describe(DetailsViewContentWithLocalState, () => {
         beforeEach(() => {
             props = {
                 storeState: {
-                    featureFlagStoreData: { [FeatureFlags.reflowUI]: true },
+                    featureFlagStoreData: {},
                 } as any,
                 deps: {
                     detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,

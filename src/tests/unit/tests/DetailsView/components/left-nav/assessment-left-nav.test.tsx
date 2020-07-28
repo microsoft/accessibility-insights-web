@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
 import { VisualizationType } from 'common/types/visualization-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -76,8 +75,6 @@ describe(AssessmentLeftNav, () => {
     });
 
     it('renders with reflow feature flag enabled', () => {
-        props.featureFlagStoreData[FeatureFlags.reflowUI] = true;
-
         leftNavLinkBuilderMock
             .setup(lnlbm =>
                 lnlbm.buildReflowAssessmentTestLinks(
@@ -87,25 +84,6 @@ describe(AssessmentLeftNav, () => {
                     1,
                     expandedTest,
                     onRightPanelContentSwitch,
-                ),
-            )
-            .returns(() => [linkStub]);
-
-        const actual = shallow(<AssessmentLeftNav {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-
-    it('renders with reflow feature flag disabled', () => {
-        props.featureFlagStoreData[FeatureFlags.reflowUI] = false;
-
-        leftNavLinkBuilderMock
-            .setup(lnlbm =>
-                lnlbm.buildAssessmentTestLinks(
-                    deps,
-                    navLinkHandlerMock.onAssessmentTestClick,
-                    assessmentsProviderStub,
-                    assessmentsDataStub,
-                    1,
                 ),
             )
             .returns(() => [linkStub]);
