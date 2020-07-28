@@ -11,5 +11,5 @@ export interface SetSizePayload {
 
 export interface WindowBoundsChangedPayload {
     windowState: WindowState;
-    windowBounds?: Rectangle;
+    windowBounds: Rectangle;
 }
