@@ -12,6 +12,7 @@ import {
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -115,6 +116,13 @@ describe(IpcRendererShim, () => {
                 .setup(b => b.send(IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME))
                 .verifiable(Times.once());
             testSubject.initializeWindow();
+        });
+
+        it('enterFullScreen sends correct ipc message', () => {
+            ipcRendererMock
+                .setup(b => b.send(IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME))
+                .verifiable(Times.once());
+            testSubject.enterFullScreen();
         });
 
         it('maximizeWindow sends correct ipc message', () => {
