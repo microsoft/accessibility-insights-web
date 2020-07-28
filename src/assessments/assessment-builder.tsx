@@ -18,7 +18,6 @@ import {
     AssessmentInstanceTable,
 } from 'DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
-import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import {
@@ -69,11 +68,6 @@ export class AssessmentBuilder {
             requirement.renderInstanceTableHeader = AssessmentBuilder.renderInstanceTableHeader;
         }
 
-        if (!requirement.renderRequirementDescription) {
-            requirement.renderRequirementDescription =
-                AssessmentBuilder.renderRequirementDescription;
-        }
-
         if (!requirement.getDefaultMessage) {
             requirement.getDefaultMessage = defaultMessageGenerator =>
                 defaultMessageGenerator.getNoMatchingInstanceMessage;
@@ -113,10 +107,6 @@ export class AssessmentBuilder {
         items: AssessmentInstanceRowData[],
     ): JSX.Element {
         return table.renderDefaultInstanceTableHeader(items);
-    }
-
-    private static renderRequirementDescription(requirementLink: RequirementLink): JSX.Element {
-        return requirementLink.renderRequirementDescriptionWithIndex();
     }
 
     private static enableTest(scanData: ScanData, payload: AssessmentToggleActionPayload): void {
