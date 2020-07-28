@@ -28,8 +28,3 @@ export interface IssueFilingServicePropertiesMap {
 }
 
 export type IssueFilingServiceProperties = Object;
-
-export interface WindowSize {
-    width: number;
-    height: number;
-}
