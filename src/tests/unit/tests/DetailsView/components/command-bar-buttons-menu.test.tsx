@@ -37,7 +37,7 @@ describe('CommandBarButtonsMenu', () => {
     it('renders child buttons', () => {
         renderExportReportComponentMock
             .setup(r => r())
-            .returns(() => null)
+            .returns(() => <>Report export button</>)
             .verifiable(Times.once());
 
         const startOverFactoryProps: StartOverFactoryProps = {
@@ -46,7 +46,7 @@ describe('CommandBarButtonsMenu', () => {
         };
         startOverComponentFactory
             .setup(s => s(startOverFactoryProps))
-            .returns(() => <></>)
+            .returns(() => <>Start over button</>)
             .verifiable(Times.once());
 
         const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);

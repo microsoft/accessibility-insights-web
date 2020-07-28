@@ -33,13 +33,19 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 exports[`CommandBarButtonsMenu renders child buttons 1`] = `
 <div
   role="menuitem"
-/>
+>
+  <React.Fragment>
+    Report export button
+  </React.Fragment>
+</div>
 `;
 
 exports[`CommandBarButtonsMenu renders child buttons 2`] = `
 <div
   role="menuitem"
 >
-  <React.Fragment />
+  <React.Fragment>
+    Start over button
+  </React.Fragment>
 </div>
 `;
