@@ -6,7 +6,7 @@ import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { isMatch } from 'lodash';
 import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { Messages } from '../../../../../common/messages';
