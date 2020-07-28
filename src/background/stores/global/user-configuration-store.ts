@@ -124,7 +124,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     private onSaveLastWindowBounds = (payload: SaveWindowBoundsPayload): void => {
         this.state.lastWindowState = payload.windowState;
 
-        // Retain the previously saved bounds only if the window is in a normal state
+        // Retain these bounds only if the window is in a normal state
         if (payload.windowState === 'normal') {
             this.state.lastWindowBounds = payload.windowBounds;
         }

@@ -38,7 +38,6 @@ export class WindowStateActionCreator {
 
         // Fully restoring the previous state means setting the stored bounds
         // (if we have them), THEN setting maximize or full screen
-
         if (lastWindowBounds) {
             this.windowFrameActionCreator.setWindowBounds(lastWindowBounds);
         }

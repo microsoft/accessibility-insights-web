@@ -73,6 +73,11 @@ describe(WindowFrameListener, () => {
         maximizeEvent.invoke();
     });
 
+    it('register listeners during initialize', () => {
+        setupForListenerInitialization();
+        testSubject.initialize();
+    });
+
     describe('validate states in response to events', () => {
         let actualState;
 
@@ -122,7 +127,7 @@ describe(WindowFrameListener, () => {
             ipcRendererShimMock.verifyAll();
         });
 
-        it('window size is saved on resize when routeId is not deviceConnectView', () => {
+        it('window size is saved when routeId is not deviceConnectView', () => {
             const windowStoreDataStub = {
                 routeId: 'resultsView',
             } as WindowStateStoreData;
@@ -137,7 +142,7 @@ describe(WindowFrameListener, () => {
             windowBoundsChangedEvent.invoke(payload);
         });
 
-        it('window size is saved on resize when routeId is deviceConnectView', () => {
+        it('window size is not saved when routeId is deviceConnectView', () => {
             const windowStoreDataStub = {
                 routeId: 'deviceConnectView',
             } as WindowStateStoreData;

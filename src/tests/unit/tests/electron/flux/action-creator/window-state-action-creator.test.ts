@@ -116,7 +116,7 @@ describe(WindowStateActionCreator, () => {
         });
 
         it.each(['normal', 'maximized', 'full-screen'])(
-            'sets window size if lastWindowBounds is specified and windowState is %s',
+            'sets window size correctly if lastWindowBounds is specified and windowState is %s',
             lastWindowState => {
                 setRouteNonDeviceViewCore(lastWindowState as WindowState, {
                     x: 150,
@@ -128,7 +128,7 @@ describe(WindowStateActionCreator, () => {
         );
 
         it.each(['normal', 'maximized', 'full-screen'])(
-            'sets window size if lastWindowBounds is null and windowState is %s',
+            'sets window size correctly if lastWindowBounds is null and windowState is %s',
             lastWindowState => {
                 setRouteNonDeviceViewCore(lastWindowState as WindowState, null);
             },
