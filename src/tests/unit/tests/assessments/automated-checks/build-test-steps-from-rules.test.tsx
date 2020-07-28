@@ -17,7 +17,6 @@ import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
 } from '../../../../../DetailsView/components/assessment-instance-table';
-import { RequirementLink } from '../../../../../DetailsView/components/requirement-link';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
@@ -123,16 +122,6 @@ describe('buildTestStepsFromRules', () => {
 
         expect(actual.renderInstanceTableHeader).toBeDefined();
         expect(actual.renderInstanceTableHeader({} as AssessmentInstanceTable, [])).toBeNull();
-
-        const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
-        const descriptionStub = <div>descriptionWithoutIndexStub</div>;
-        linkMock
-            .setup(lm => lm.renderRequirementDescriptionWithoutIndex())
-            .returns(() => descriptionStub)
-            .verifiable(Times.once());
-        expect(actual.renderRequirementDescription).toBeDefined();
-        expect(actual.renderRequirementDescription(linkMock.object)).toBe(descriptionStub);
-        linkMock.verifyAll();
 
         expect(actual.columnsConfig).toHaveLength(2);
         expect(actual.columnsConfig[0].key).toBe('path');
