@@ -4,7 +4,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
 <React.Fragment>
   <StyledTextFieldBase
     className="issue-setting"
-    label="Enter the desired Azure Boards project link:"
+    label="Enter your Azure Boards project URL"
     onChange={[Function]}
     placeholder="https://dev.azure.com/org/project"
     value=""
@@ -34,7 +34,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
 <React.Fragment>
   <StyledTextFieldBase
     className="issue-setting"
-    label="Enter the desired Azure Boards project link:"
+    label="Enter your Azure Boards project URL"
     onChange={[Function]}
     placeholder="https://dev.azure.com/org/project"
     value="some project URL"

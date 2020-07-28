@@ -57,7 +57,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
             <>
                 <TextField
                     className="issue-setting"
-                    label="Enter the desired Azure Boards project link:"
+                    label="Enter your Azure Boards project URL"
                     value={props.settings ? props.settings.projectURL : ''}
                     placeholder="https://dev.azure.com/org/project"
                     onChange={onProjectURLChange}

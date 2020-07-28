@@ -3,7 +3,7 @@
 exports[`GithubIssueFilingServiceTest settingsForm renders 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
-  label="Enter desired GitHub issues link:"
+  label="Enter your GitHub issues URL"
   onChange={[Function]}
   placeholder="https://github.com/owner/repo/issues"
   value="repo"
