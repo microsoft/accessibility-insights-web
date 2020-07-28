@@ -88,7 +88,7 @@ describe(IpcRendererShim, () => {
 
         it('invoke fromBrowserWindowWindowBoundsChanged on windowBoundsChanged message from browser', () => {
             const payload: WindowBoundsChangedPayload = {
-                isMaximized: true,
+                windowState: 'normal',
                 windowBounds: { x: 1, y: 2, width: 100, height: 200 },
             };
             let callCount = 0;

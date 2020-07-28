@@ -22,6 +22,7 @@ import {
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -54,6 +55,7 @@ describe(MainWindowRendererMessageHandlers, () => {
         IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
         IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
+        IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
     ];
 
     const windowEventNames = [
@@ -242,6 +244,14 @@ describe(MainWindowRendererMessageHandlers, () => {
             );
         });
 
+        it('setFullScreen calls setFullScreen(true) on the browserWindow', () => {
+            mainWindowMock.setup(b => b.setFullScreen(true)).verifiable(Times.once());
+
+            ipcListeners[IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME](
+                stubIpcMainEvent,
+            );
+        });
+
         it('uses app.getAppPath to handle GET_APP_PATH', async () => {
             const stubAppPath = 'stub app path';
             appMock
@@ -369,31 +379,38 @@ describe(MainWindowRendererMessageHandlers, () => {
         });
 
         it.each`
-            eventName | isMaximized
-            ${resize} | ${false}
-            ${resize} | ${true}
-            ${move}   | ${false}
-            ${move}   | ${true}
+            eventName | windowState
+            ${resize} | ${'normal'}
+            ${resize} | ${'maximized'}
+            ${resize} | ${'full-screen'}
+            ${move}   | ${'normal'}
+            ${move}   | ${'maximized'}
+            ${move}   | ${'full-screen'}
         `(
-            'BrowserWindow $eventName triggers message with correct payload (isMaximized:$isMaximized)',
-            ({ eventName, isMaximized }) => {
+            'BrowserWindow $eventName triggers message with correct payload (windowState:$windowState)',
+            ({ eventName, windowState }) => {
                 const testBounds: Rectangle = { x: 20, y: 40, height: 200, width: 400 };
                 const payload: WindowBoundsChangedPayload = {
-                    isMaximized: isMaximized,
-                    windowBounds: isMaximized ? undefined : testBounds,
+                    windowState: windowState,
+                    windowBounds: testBounds,
                 };
 
                 mainWindowMock
-                    .setup(m => m.isMaximized())
-                    .returns(() => isMaximized)
+                    .setup(m => m.isFullScreen())
+                    .returns(() => windowState === 'full-screen')
+                    .verifiable(Times.once());
+                mainWindowMock
+                    .setup(m => m.getBounds())
+                    .returns(() => testBounds)
                     .verifiable(Times.once());
 
-                if (!isMaximized) {
+                if (windowState !== 'full-screen') {
                     mainWindowMock
-                        .setup(m => m.getBounds())
-                        .returns(() => testBounds)
+                        .setup(m => m.isMaximized())
+                        .returns(() => windowState === 'maximized')
                         .verifiable(Times.once());
                 }
+
                 webContentsMock
                     .setup(b =>
                         b.send(IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME, payload),

@@ -154,7 +154,7 @@ describe(DetailsViewContent, () => {
                 bugService: 'gitHub',
                 bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
                 adbLocation: null,
-                windowWasMaximized: null,
+                lastWindowState: null,
                 lastWindowBounds: null,
             };
 

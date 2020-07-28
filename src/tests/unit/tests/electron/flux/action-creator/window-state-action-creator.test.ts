@@ -10,6 +10,7 @@ import { WindowStateActionCreator } from 'electron/flux/action-creator/window-st
 import { RoutePayload } from 'electron/flux/action/route-payloads';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
+import { WindowState } from 'electron/flux/types/window-state';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowStateActionCreator, () => {
@@ -39,7 +40,7 @@ describe(WindowStateActionCreator, () => {
             routeId: 'resultsView',
         };
         const userConfigStoreDataStub = {
-            windowWasMaximized: null,
+            lastWindowState: null,
             lastWindowBounds: null,
         } as UserConfigurationStoreData;
 
@@ -114,35 +115,36 @@ describe(WindowStateActionCreator, () => {
             windowFrameActionCreatorMock.verifyAll();
         });
 
-        it.each([undefined, false, true])(
-            'sets window size if lastWindowBounds is specified and windowWasMaximized is %s',
-            windowWasMaximized => {
-                setRouteNonDeviceViewCore(
-                    windowWasMaximized,
-                    { x: 150, y: 200, height: 400, width: 900 },
-                    true,
-                    windowWasMaximized !== false,
-                );
+        it.each(['normal', 'maximized', 'full-screen'])(
+            'sets window size if lastWindowBounds is specified and windowState is %s',
+            lastWindowState => {
+                setRouteNonDeviceViewCore(lastWindowState as WindowState, {
+                    x: 150,
+                    y: 200,
+                    height: 400,
+                    width: 900,
+                });
             },
         );
 
-        it.each([undefined, true, false])(
-            'maximizes window if lastWindowBounds is null and windowWasMaximized is %s',
-            windowWasMaximized => {
-                setRouteNonDeviceViewCore(windowWasMaximized, null, false, true);
+        it.each(['normal', 'maximized', 'full-screen'])(
+            'sets window size if lastWindowBounds is null and windowState is %s',
+            lastWindowState => {
+                setRouteNonDeviceViewCore(lastWindowState as WindowState, null);
             },
         );
 
         function setRouteNonDeviceViewCore(
-            windowWasMaximized: boolean,
+            lastWindowState: WindowState,
             lastWindowBounds: Rectangle,
-            shouldCallSetBounds: boolean,
-            shouldCallMaximize: boolean,
         ): void {
             const userConfigStoreDataStub = ({
-                windowWasMaximized: windowWasMaximized,
+                lastWindowState: lastWindowState,
                 lastWindowBounds: lastWindowBounds,
             } as unknown) as UserConfigurationStoreData;
+            const shouldSetBounds: boolean = lastWindowBounds !== null;
+            const shouldMaximize: boolean = lastWindowState === 'maximized';
+            const shouldEnterFullScreen: boolean = lastWindowState === 'full-screen';
 
             let callbackCount = 0;
 
@@ -150,20 +152,26 @@ describe(WindowStateActionCreator, () => {
                 .setup(u => u.getState())
                 .returns(() => userConfigStoreDataStub)
                 .verifiable(Times.once());
-
             windowFrameActionCreatorMock
                 .setup(w => w.setWindowBounds(userConfigStoreDataStub.lastWindowBounds))
                 .callback(() => {
                     expect(callbackCount++).toBe(0);
                 })
-                .verifiable(shouldCallSetBounds ? Times.once() : Times.never());
+                .verifiable(shouldSetBounds ? Times.once() : Times.never());
 
             windowFrameActionCreatorMock
                 .setup(x => x.maximize())
                 .callback(() => {
-                    expect(callbackCount++).toBe(shouldCallSetBounds ? 1 : 0);
+                    expect(callbackCount++).toBe(shouldSetBounds ? 1 : 0);
                 })
-                .verifiable(shouldCallMaximize ? Times.once() : Times.never());
+                .verifiable(shouldMaximize ? Times.once() : Times.never());
+
+            windowFrameActionCreatorMock
+                .setup(x => x.enterFullScreen())
+                .callback(() => {
+                    expect(callbackCount++).toBe(shouldSetBounds ? 1 : 0);
+                })
+                .verifiable(shouldEnterFullScreen ? Times.once() : Times.never());
 
             testSubject.setRoute(testPayload);
         }

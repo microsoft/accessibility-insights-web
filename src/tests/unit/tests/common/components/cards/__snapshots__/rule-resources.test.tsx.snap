@@ -3,7 +3,7 @@
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: [Function] {
+  linkComponent: [Function (anonymous)] {
     [length]: 1,
     [name]: '',
     displayName: 'ElectronExternalLink'
@@ -47,7 +47,7 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: [Function] {
+  linkComponent: [Function (anonymous)] {
     [length]: 1,
     [name]: '',
     displayName: 'ElectronExternalLink'
@@ -103,7 +103,11 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: null,
-  linkComponent: [Function] { [length]: 1, [name]: '', displayName: 'NewTabLink' }
+  linkComponent: [Function (anonymous)] {
+    [length]: 1,
+    [name]: '',
+    displayName: 'NewTabLink'
+  }
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -143,7 +147,7 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: [Function] {
+  linkComponent: [Function (anonymous)] {
     [length]: 1,
     [name]: '',
     displayName: 'ElectronExternalLink'
@@ -153,7 +157,11 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: [Function] { [length]: 1, [name]: '', displayName: 'NewTabLink' }
+  linkComponent: [Function (anonymous)] {
+    [length]: 1,
+    [name]: '',
+    displayName: 'NewTabLink'
+  }
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -195,5 +203,9 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: null,
   guidanceLinks: null,
-  linkComponent: [Function] { [length]: 1, [name]: '', displayName: 'NewTabLink' }
+  linkComponent: [Function (anonymous)] {
+    [length]: 1,
+    [name]: '',
+    displayName: 'NewTabLink'
+  }
 } 1`] = `null`;

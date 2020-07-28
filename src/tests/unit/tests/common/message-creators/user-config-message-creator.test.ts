@@ -158,8 +158,8 @@ describe('UserConfigMessageCreator', () => {
 
     it('dispatches message for saveWindowBounds', () => {
         const payload: SaveWindowBoundsPayload = {
-            isMaximized: false,
-            windowBounds: { x: 5, y: 10, height: 50, width: 60 },
+            windowState: 'full-screen',
+            windowBounds: undefined,
         };
         const expectedMessage: Message = {
             messageType: Messages.UserConfig.SaveWindowBounds,

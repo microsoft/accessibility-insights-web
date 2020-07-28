@@ -33,7 +33,7 @@ describe('GetPersistedDataTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
-            windowWasMaximized: null,
+            lastWindowState: null,
             lastWindowBounds: null,
         };
         installationData = {

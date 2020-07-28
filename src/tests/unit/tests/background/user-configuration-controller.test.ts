@@ -45,7 +45,7 @@ describe('UserConfigurationController', () => {
 
     it('saveWindowBounds sends the expected interpreter message', () => {
         const payload: SaveWindowBoundsPayload = {
-            isMaximized: false,
+            windowState: 'maximized',
             windowBounds: { x: 1, y: 2, width: 10, height: 20 },
         };
 

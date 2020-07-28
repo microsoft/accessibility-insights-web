@@ -23,6 +23,7 @@ import { IssueFilingServiceProperties } from 'common/types/store-data/user-confi
 import { VisualizationType } from 'common/types/visualization-type';
 import { FailureInstanceData } from 'DetailsView/components/failure-instance-panel-control';
 import { Rectangle } from 'electron';
+import { WindowState } from 'electron/flux/types/window-state';
 import { TabStopEvent } from 'injected/tab-stops-listener';
 import { LaunchPanelType } from 'popup/components/popup-view';
 
@@ -207,6 +208,6 @@ export interface SetAllUrlsPermissionStatePayload extends BaseActionPayload {
 export type ExistingTabUpdatedPayload = BaseActionPayload & Tab;
 
 export interface SaveWindowBoundsPayload extends BaseActionPayload {
-    isMaximized: boolean;
+    windowState: WindowState;
     windowBounds?: Rectangle;
 }

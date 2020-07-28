@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Rectangle } from 'electron';
+import { WindowState } from 'electron/flux/types/window-state';
 
 // Licensed under the MIT License.
 export interface UserConfigurationStoreData {
@@ -18,7 +19,7 @@ export interface UserConfigurationStoreData {
     // null if the path to adb is unknown
     adbLocation: string | null;
 
-    windowWasMaximized: boolean;
+    lastWindowState: WindowState;
     lastWindowBounds: Rectangle;
 }
 

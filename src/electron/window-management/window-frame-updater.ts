@@ -12,6 +12,7 @@ export class WindowFrameUpdater {
     ) {}
 
     public initialize(): void {
+        this.windowFrameActions.enterFullScreen.addListener(this.onEnterFullScreen);
         this.windowFrameActions.maximize.addListener(this.onMaximize);
         this.windowFrameActions.minimize.addListener(this.onMinimize);
         this.windowFrameActions.restore.addListener(this.onRestore);
@@ -19,6 +20,10 @@ export class WindowFrameUpdater {
         this.windowFrameActions.setWindowSize.addListener(this.onSetSize);
         this.windowFrameActions.setWindowBounds.addListener(this.onSetWindowBounds);
     }
+
+    private onEnterFullScreen = (): void => {
+        this.ipcRendererShim.enterFullScreen();
+    };
 
     private onMaximize = (): void => {
         this.ipcRendererShim.maximizeWindow();

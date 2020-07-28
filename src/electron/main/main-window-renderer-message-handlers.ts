@@ -15,6 +15,7 @@ import {
     SetSizePayload,
     WindowBoundsChangedPayload,
 } from 'electron/flux/action/window-frame-actions-payloads';
+import { WindowState } from 'electron/flux/types/window-state';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
@@ -22,6 +23,7 @@ import {
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
@@ -62,6 +64,10 @@ export class MainWindowRendererMessageHandlers {
         ];
 
         this.ipcMainListeners = [
+            {
+                eventName: IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onFullScreenFromRenderer,
+            },
             {
                 eventName: IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
                 eventHandler: this.onMaximizeFromRenderer,
@@ -128,6 +134,10 @@ export class MainWindowRendererMessageHandlers {
             this.browserWindow.removeListener(callback.eventName as any, callback.eventHandler);
         });
     }
+
+    private onFullScreenFromRenderer = (): void => {
+        this.browserWindow.setFullScreen(true);
+    };
 
     private onMaximizeFromRenderer = (): void => {
         this.browserWindow.maximize();
@@ -201,11 +211,15 @@ export class MainWindowRendererMessageHandlers {
     };
 
     private onWindowBoundsChanged = (): void => {
-        const isMaximized: boolean = this.browserWindow.isMaximized();
+        const windowState: WindowState = this.browserWindow.isFullScreen()
+            ? 'full-screen'
+            : this.browserWindow.isMaximized()
+            ? 'maximized'
+            : 'normal';
 
         const payload: WindowBoundsChangedPayload = {
-            isMaximized: isMaximized,
-            windowBounds: isMaximized ? undefined : this.browserWindow.getBounds(),
+            windowState: windowState,
+            windowBounds: this.browserWindow.getBounds(),
         };
 
         this.browserWindow.webContents.send(

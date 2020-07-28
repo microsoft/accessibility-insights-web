@@ -42,7 +42,7 @@ export class WindowFrameListener {
         }
 
         const actionPayload: SaveWindowBoundsPayload = {
-            isMaximized: payload.isMaximized,
+            windowState: payload.windowState,
             windowBounds: payload.windowBounds,
         };
 

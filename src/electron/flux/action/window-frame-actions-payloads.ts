@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { Rectangle } from 'electron';
+import { WindowState } from 'electron/flux/types/window-state';
 
 export interface SetSizePayload {
     width: number;
@@ -9,6 +10,6 @@ export interface SetSizePayload {
 }
 
 export interface WindowBoundsChangedPayload {
-    isMaximized: boolean;
+    windowState: WindowState;
     windowBounds?: Rectangle;
 }

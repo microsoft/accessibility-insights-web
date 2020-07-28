@@ -16,6 +16,10 @@ export class WindowFrameActionCreator {
         this.windowFrameActions.setWindowBounds.invoke(windowBounds);
     }
 
+    public enterFullScreen(): void {
+        this.windowFrameActions.enterFullScreen.invoke();
+    }
+
     public maximize(): void {
         this.windowFrameActions.maximize.invoke();
     }

@@ -37,7 +37,7 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
-            windowWasMaximized: null,
+            lastWindowState: null,
             lastWindowBounds: null,
         };
         defaultStoreData = {
@@ -48,7 +48,7 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
-            windowWasMaximized: null,
+            lastWindowState: null,
             lastWindowBounds: null,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
@@ -99,7 +99,7 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             lastSelectedHighContrast: false,
-            windowWasMaximized: null,
+            lastWindowState: null,
             lastWindowBounds: null,
             ...persisted,
         } as UserConfigurationStoreData;
@@ -194,7 +194,7 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
-                    windowWasMaximized: null,
+                    lastWindowState: null,
                     lastWindowBounds: null,
                 };
 
@@ -206,7 +206,7 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
-                    windowWasMaximized: null,
+                    lastWindowState: null,
                     lastWindowBounds: null,
                 };
 
@@ -245,7 +245,7 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
-                    windowWasMaximized: null,
+                    lastWindowState: null,
                     lastWindowBounds: null,
                 };
 
@@ -261,7 +261,7 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
-                    windowWasMaximized: null,
+                    lastWindowState: null,
                     lastWindowBounds: null,
                 };
 
@@ -300,7 +300,7 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
-                    windowWasMaximized: null,
+                    lastWindowState: null,
                     lastWindowBounds: null,
                 };
 
@@ -316,7 +316,7 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
-                    windowWasMaximized: null,
+                    lastWindowState: null,
                     lastWindowBounds: null,
                 };
 
@@ -346,7 +346,7 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: {},
                 adbLocation: null,
-                windowWasMaximized: null,
+                lastWindowState: null,
                 lastWindowBounds: null,
             };
 
@@ -390,7 +390,7 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
                 adbLocation: null,
-                windowWasMaximized: null,
+                lastWindowState: null,
                 lastWindowBounds: null,
             };
 
@@ -467,16 +467,18 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test.each`
-        isMaximized | hasBounds | expectBoundsSet
-        ${false}    | ${false}  | ${false}
-        ${false}    | ${true}   | ${true}
-        ${true}     | ${false}  | ${false}
-        ${true}     | ${true}   | ${false}
+        windowState      | hasBounds | expectBoundsSet
+        ${'normal'}      | ${false}  | ${false}
+        ${'normal'}      | ${true}   | ${true}
+        ${'maximized'}   | ${false}  | ${false}
+        ${'maximized'}   | ${true}   | ${false}
+        ${'full-screen'} | ${true}   | ${false}
+        ${'full-screen'} | ${true}   | ${false}
     `(
-        'saveLastWindowBounds isMaximized:$isMaximized, hasBounds:$hasBounds',
-        ({ isMaximized, hasBounds, expectBoundsSet }) => {
+        'saveLastWindowBounds windowState:$windowState, hasBounds:$hasBounds',
+        ({ windowState, hasBounds, expectBoundsSet }) => {
             const payload: SaveWindowBoundsPayload = {
-                isMaximized: isMaximized,
+                windowState: windowState,
                 windowBounds: hasBounds ? { x: 5, y: 15, height: 30, width: 50 } : null,
             };
 
@@ -489,13 +491,13 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: {},
                 adbLocation: null,
-                windowWasMaximized: null,
+                lastWindowState: null,
                 lastWindowBounds: null,
             };
 
             const expectedState: UserConfigurationStoreData = {
                 ...initialStoreData,
-                windowWasMaximized: payload.isMaximized,
+                lastWindowState: payload.windowState,
                 lastWindowBounds: expectBoundsSet ? payload.windowBounds : null,
             };
 

@@ -26,7 +26,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         bugServicePropertiesMap: {},
         adbLocation: null,
         lastWindowBounds: null,
-        windowWasMaximized: null,
+        lastWindowState: null,
     };
 
     constructor(
@@ -122,10 +122,10 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     };
 
     private onSaveLastWindowBounds = (payload: SaveWindowBoundsPayload): void => {
-        this.state.windowWasMaximized = payload.isMaximized;
+        this.state.lastWindowState = payload.windowState;
 
-        // Retain the previously saved bounds if the window is maximized
-        if (!payload.isMaximized) {
+        // Retain the previously saved bounds only if the window is in a normal state
+        if (payload.windowState === 'normal') {
             this.state.lastWindowBounds = payload.windowBounds;
         }
 

@@ -32,7 +32,7 @@ describe('IssueFilingSettings', () => {
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
             adbLocation: null,
-            windowWasMaximized: null,
+            lastWindowState: null,
             lastWindowBounds: null,
         };
         testIssueFilingServiceStub = {

@@ -228,7 +228,7 @@ exports[` render renders normally 1`] = `
         "isFirstTime": false,
         "lastSelectedHighContrast": false,
         "lastWindowBounds": null,
-        "windowWasMaximized": null,
+        "lastWindowState": null,
       }
     }
     visualizationScanResultData={
@@ -496,7 +496,7 @@ exports[` render renders normally 1`] = `
         "isFirstTime": false,
         "lastSelectedHighContrast": false,
         "lastWindowBounds": null,
-        "windowWasMaximized": null,
+        "lastWindowState": null,
       }
     }
   />

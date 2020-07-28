@@ -103,7 +103,7 @@ describe(WindowFrameListener, () => {
 
     describe('validate responses to changes to windows bounds', () => {
         const payload: WindowBoundsChangedPayload = {
-            isMaximized: false,
+            windowState: 'normal',
             windowBounds: {
                 x: 100,
                 y: 200,

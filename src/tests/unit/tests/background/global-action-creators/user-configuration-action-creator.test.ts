@@ -135,7 +135,7 @@ describe('UserConfigurationActionCreator', () => {
 
     it('should SaveWindowBounds message', () => {
         const payload: SaveWindowBoundsPayload = {
-            isMaximized: false,
+            windowState: 'normal',
             windowBounds: { x: 10, y: 20, height: 100, width: 150 },
         };
 
