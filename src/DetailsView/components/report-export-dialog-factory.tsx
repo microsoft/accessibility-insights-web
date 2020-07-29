@@ -1,23 +1,33 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
-    ReportExportComponent,
-    ReportExportComponentProps,
-} from 'DetailsView/components/report-export-component';
+    ExportDialogWithLocalState,
+    ExportDialogWithLocalStateProps,
+} from 'DetailsView/components/export-dialog-with-local-state';
 import * as React from 'react';
 
-export function getReportExportComponentForAssessment(props: CommandBarProps): JSX.Element {
+export type ReportExportDialogFactoryProps = CommandBarProps & {
+    isOpen: boolean;
+    dismissExportDialog: () => void;
+    afterDialogDismissed: () => void;
+};
+
+export function getReportExportDialogForAssessment(
+    props: ReportExportDialogFactoryProps,
+): JSX.Element {
     const {
         deps,
         assessmentStoreData,
         assessmentsProvider,
         featureFlagStoreData,
         scanMetadata,
+        isOpen,
+        dismissExportDialog,
+        afterDialogDismissed,
     } = props;
     const reportGenerator = deps.reportGenerator;
-    const reportExportComponentProps: ReportExportComponentProps = {
+    const dialogProps: ExportDialogWithLocalStateProps = {
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
@@ -34,29 +44,25 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
             props.deps.detailsViewActionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
         featureFlagStoreData: props.featureFlagStoreData,
+        isOpen,
+        dismissExportDialog,
+        afterDialogDismissed,
     };
-
-    return <ReportExportComponent {...reportExportComponentProps} />;
+    return <ExportDialogWithLocalState {...dialogProps} />;
 }
 
-export function getReportExportComponentForFastPass(props: CommandBarProps): JSX.Element {
-    const scanResult = props.visualizationScanResultData.issues.scanResult;
-
-    if (!scanResult) {
+export function getReportExportDialogForFastPass(
+    props: ReportExportDialogFactoryProps,
+): JSX.Element {
+    if (props.switcherNavConfiguration.shouldShowReportExportButton(props) !== true) {
         return null;
     }
 
-    const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
-
-    if (selectedTest !== VisualizationType.Issues) {
-        return null;
-    }
-
-    const { deps } = props;
+    const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
     const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
-    const reportExportComponentProps: ReportExportComponentProps = {
+    const dialogProps: ExportDialogWithLocalStateProps = {
         deps: deps,
         scanDate: scanDate,
         pageTitle: props.scanMetadata.targetAppInfo.name,
@@ -71,7 +77,10 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,
+        isOpen,
+        dismissExportDialog,
+        afterDialogDismissed,
     };
 
-    return <ReportExportComponent {...reportExportComponentProps} />;
+    return <ExportDialogWithLocalState {...dialogProps} />;
 }

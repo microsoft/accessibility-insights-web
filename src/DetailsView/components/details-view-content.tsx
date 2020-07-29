@@ -123,6 +123,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
+                unifiedScanResultStoreData={storeState.unifiedScanResultStoreData}
             />
         );
     };

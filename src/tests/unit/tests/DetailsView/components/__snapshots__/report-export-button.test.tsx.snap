@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders ReportExportButton 1`] = `
+<InsightsCommandButton
+  componentRef={Object {}}
+  iconProps={
+    Object {
+      "iconName": "Export",
+    }
+  }
+  onClick={[Function]}
+>
+  Export result
+</InsightsCommandButton>
+`;

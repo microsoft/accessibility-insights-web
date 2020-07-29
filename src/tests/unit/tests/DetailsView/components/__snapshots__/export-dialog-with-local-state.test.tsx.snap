@@ -1,0 +1,146 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExportDialogWithLocalState clicking export on the dialog should trigger generateHtml with the current exportDescription 1`] = `
+<ExportDialog
+  afterDismissed={[Function]}
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  description=""
+  featureFlagStoreData={
+    Object {
+      "test-feature-flag": true,
+    }
+  }
+  fileName=""
+  html="test html"
+  isOpen={true}
+  onClose={[Function]}
+  onDescriptionChange={[Function]}
+  onExportClick={[Function]}
+  reportExportFormat="Assessment"
+/>
+`;
+
+exports[`ExportDialogWithLocalState edit text field: test content with special characters: <> $ " \` ' 1`] = `
+<ExportDialog
+  afterDismissed={[Function]}
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  description="test content with special characters: <> $ \\" \` '"
+  featureFlagStoreData={
+    Object {
+      "test-feature-flag": true,
+    }
+  }
+  fileName=""
+  html=""
+  isOpen={true}
+  onClose={[Function]}
+  onDescriptionChange={[Function]}
+  onExportClick={[Function]}
+  reportExportFormat="Assessment"
+/>
+`;
+
+exports[`ExportDialogWithLocalState on dialog opened 1`] = `
+<ExportDialog
+  afterDismissed={[Function]}
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  description="export description"
+  featureFlagStoreData={
+    Object {
+      "test-feature-flag": true,
+    }
+  }
+  fileName="export name"
+  html=""
+  isOpen={true}
+  onClose={[Function]}
+  onDescriptionChange={[Function]}
+  onExportClick={[Function]}
+  reportExportFormat="Assessment"
+/>
+`;
+
+exports[`ExportDialogWithLocalState render with dialog closed 1`] = `
+<ExportDialog
+  afterDismissed={[Function]}
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  description=""
+  featureFlagStoreData={
+    Object {
+      "test-feature-flag": true,
+    }
+  }
+  fileName=""
+  html=""
+  isOpen={false}
+  onClose={[Function]}
+  onDescriptionChange={[Function]}
+  onExportClick={[Function]}
+  reportExportFormat="Assessment"
+/>
+`;
+
+exports[`ExportDialogWithLocalState render with dialog open 1`] = `
+<ExportDialog
+  afterDismissed={[Function]}
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  description=""
+  featureFlagStoreData={
+    Object {
+      "test-feature-flag": true,
+    }
+  }
+  fileName=""
+  html=""
+  isOpen={true}
+  onClose={[Function]}
+  onDescriptionChange={[Function]}
+  onExportClick={[Function]}
+  reportExportFormat="Assessment"
+/>
+`;

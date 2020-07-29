@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected properties are set 1`] = `
+<ExportDialogWithLocalState
+  afterDialogDismissed={[Function]}
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "getCurrentDate": [Function],
+      "getDateFromTimestamp": [Function],
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  dismissExportDialog={[Function]}
+  featureFlagStoreData={Object {}}
+  getExportDescription={[Function]}
+  htmlGenerator={[Function]}
+  isOpen={true}
+  pageTitle="command-bar-test-tab-title"
+  reportExportFormat="Assessment"
+  scanDate={2019-03-12T09:00:00.000Z}
+  updatePersistedDescription={[Function]}
+/>
+`;
+
+exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected properties are set 1`] = `
+<ExportDialogWithLocalState
+  afterDialogDismissed={[Function]}
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "getCurrentDate": [Function],
+      "getDateFromTimestamp": [Function],
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+    }
+  }
+  dismissExportDialog={[Function]}
+  featureFlagStoreData={Object {}}
+  getExportDescription={[Function]}
+  htmlGenerator={[Function]}
+  isOpen={true}
+  pageTitle="command-bar-test-tab-title"
+  reportExportFormat="AutomatedChecks"
+  scanDate={2019-03-12T09:00:00.000Z}
+  updatePersistedDescription={[Function]}
+/>
+`;

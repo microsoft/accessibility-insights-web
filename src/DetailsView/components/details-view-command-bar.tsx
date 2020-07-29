@@ -3,38 +3,46 @@
 import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
-import { ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
+import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { ReportExportButton } from 'DetailsView/components/report-export-button';
+import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ReportExportComponentDeps } from './report-export-component';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & ReportExportComponentDeps &
+} & ExportDialogDeps &
     StartOverDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
-export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
+export type DetailsViewCommandBarState = {
+    isReportExportDialogOpen: boolean;
+};
+
+export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
 
 export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
@@ -46,14 +54,25 @@ export interface DetailsViewCommandBarProps {
     assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
-    visualizationScanResultData: VisualizationScanResultData;
+    unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
     narrowModeStatus: NarrowModeStatus;
 }
 
-export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
+export class DetailsViewCommandBar extends React.Component<
+    DetailsViewCommandBarProps,
+    DetailsViewCommandBarState
+> {
+    private exportDialogCloseFocus?: IButton;
+
+    public constructor(props) {
+        super(props);
+        this.state = {
+            isReportExportDialogOpen: false,
+        };
+    }
     public render(): JSX.Element {
         if (this.props.tabStoreData.isClosed) {
             return null;
@@ -63,6 +82,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             <div className={styles.detailsViewCommandBar}>
                 {this.renderTargetPageInfo()}
                 {this.renderFarItems()}
+                {this.renderExportDialog()}
             </div>
         );
     }
@@ -99,7 +119,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtons(): JSX.Element {
-        const reportExportElement: JSX.Element = this.renderExportComponent();
+        const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverComponent();
 
         if (reportExportElement || startOverElement) {
@@ -115,11 +135,44 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtonsMenu(): JSX.Element {
-        return <CommandBarButtonsMenu {...this.props} />;
+        return (
+            <CommandBarButtonsMenu
+                {...this.props}
+                renderExportReportButton={this.renderExportButton}
+                buttonRef={ref => (this.exportDialogCloseFocus = ref)}
+            />
+        );
     }
 
-    private renderExportComponent(): JSX.Element {
-        return this.props.switcherNavConfiguration.ReportExportComponentFactory(this.props);
+    private showReportExportDialog = () => this.setState({ isReportExportDialogOpen: true });
+
+    private dismissReportExportDialog = () => this.setState({ isReportExportDialogOpen: false });
+
+    private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
+
+    private renderExportButton = () => {
+        const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
+            this.props,
+        );
+
+        if (!showButton) {
+            return null;
+        }
+        return (
+            <ReportExportButton
+                showReportExportDialog={this.showReportExportDialog}
+                buttonRef={ref => (this.exportDialogCloseFocus = ref)}
+            />
+        );
+    };
+
+    private renderExportDialog(): JSX.Element {
+        return this.props.switcherNavConfiguration.ReportExportDialogFactory({
+            ...this.props,
+            isOpen: this.state.isReportExportDialogOpen,
+            dismissExportDialog: this.dismissReportExportDialog,
+            afterDialogDismissed: this.focusReportExportButton,
+        });
     }
 
     private renderStartOverComponent(): JSX.Element {
