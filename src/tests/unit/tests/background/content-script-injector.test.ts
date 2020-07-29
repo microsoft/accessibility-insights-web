@@ -47,11 +47,13 @@ describe('ContentScriptInjector', () => {
         });
 
         it('rejects if a timeout occurs', async () => {
+            const timeoutError = new Error('artificial timeout');
+
             promiseFactoryMock
                 .setup(factory => factory.timeout(It.isAny(), It.isAny()))
-                .returns(() => Promise.reject('artificial timeout'));
+                .returns(() => Promise.reject(timeoutError));
 
-            await expect(testSubject.injectScripts(testTabId)).rejects.toBe('artificial timeout');
+            await expect(testSubject.injectScripts(testTabId)).rejects.toThrowError(timeoutError);
         });
     });
 
