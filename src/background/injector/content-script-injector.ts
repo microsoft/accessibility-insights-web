@@ -25,13 +25,13 @@ export class ContentScriptInjector {
         // We need the JS to be injected before we can continue (ie, before we resolve the promise),
         // because the tab can't receive other messages until that's done, but it's okay for the CSS
         // to keep loading in the background after-the-fact, so it's fire-and-forget.
-        this.injectCssFilesInBackground(tabId);
-        const injectJs = this.injectJsFilesInOrder(tabId);
+        this.startInjectingCssFiles(tabId);
+        const injectJsPromise = this.injectJsFilesInOrder(tabId);
 
-        await this.promiseFactory.timeout(injectJs, ContentScriptInjector.timeoutInMilliSec);
+        await this.promiseFactory.timeout(injectJsPromise, ContentScriptInjector.timeoutInMilliSec);
     }
 
-    private injectCssFilesInBackground(tabId: number): void {
+    private startInjectingCssFiles(tabId: number): void {
         ContentScriptInjector.cssFiles.forEach(file => this.injectCssFile(tabId, file));
     }
 
