@@ -8,7 +8,7 @@ import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = CommandBarProps & {
     renderExportReportButton: () => JSX.Element;
-    buttonRef?: IRefObject<IButton>;
+    buttonRef: IRefObject<IButton>;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(

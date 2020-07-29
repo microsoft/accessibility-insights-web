@@ -43,6 +43,7 @@ describe('ReportExportDialogFactory', () => {
     let dismissExportDialogMock: IMock<() => void>;
     let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
     let afterDialogDismissedMock: IMock<() => void>;
+    let props: ReportExportDialogFactoryProps;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -71,14 +72,11 @@ describe('ReportExportDialogFactory', () => {
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => theDate,
         } as DetailsViewCommandBarDeps;
-    });
-
-    function getProps(): ReportExportDialogFactoryProps {
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
         } as DetailsViewSwitcherNavConfiguration;
 
-        return {
+        props = {
             deps,
             featureFlagStoreData,
             assessmentStoreData,
@@ -90,7 +88,7 @@ describe('ReportExportDialogFactory', () => {
             dismissExportDialog: dismissExportDialogMock.object,
             afterDialogDismissed: afterDialogDismissedMock.object,
         } as ReportExportDialogFactoryProps;
-    }
+    });
 
     function setAssessmentReportGenerator(): void {
         reportGeneratorMock
@@ -115,7 +113,6 @@ describe('ReportExportDialogFactory', () => {
 
     describe('getReportExportDialogForAssessment', () => {
         test('expected properties are set', () => {
-            const props = getProps();
             const dialog = getReportExportDialogForAssessment(props);
 
             expect(dialog).toMatchSnapshot();
@@ -126,7 +123,6 @@ describe('ReportExportDialogFactory', () => {
 
         test('htmlGenerator calls reportGenerator', () => {
             setAssessmentReportGenerator();
-            const props = getProps();
 
             const dialog = getReportExportDialogForAssessment(props);
 
@@ -140,7 +136,6 @@ describe('ReportExportDialogFactory', () => {
             detailsViewActionMessageCreatorMock
                 .setup(d => d.addResultDescription(updatedDescription))
                 .verifiable(Times.once());
-            const props = getProps();
 
             const dialog = getReportExportDialogForAssessment(props);
 
@@ -150,8 +145,6 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('getExportDescription returns description', () => {
-            const props = getProps();
-
             const dialog = getReportExportDialogForAssessment(props);
 
             const exportDescription = dialog.props.getExportDescription();
@@ -159,8 +152,6 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('dismissExportDialog called', () => {
-            const props = getProps();
-
             const dialog = getReportExportDialogForAssessment(props);
 
             dialog.props.dismissExportDialog();
@@ -169,8 +160,6 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('afterDialogDismissed called', () => {
-            const props = getProps();
-
             const dialog = getReportExportDialogForAssessment(props);
 
             dialog.props.afterDialogDismissed();
@@ -182,8 +171,6 @@ describe('ReportExportDialogFactory', () => {
     describe('getReportExportDialogForFastPass', () => {
         test('renders as null when shouldShowReportExportButton returns falls', () => {
             setupShouldShowReportExportButton(false);
-            const props = getProps();
-
             const dialog = getReportExportDialogForFastPass(props);
 
             expect(dialog).toBeNull();
@@ -191,16 +178,12 @@ describe('ReportExportDialogFactory', () => {
 
         test('expected properties are set', () => {
             setupShouldShowReportExportButton(true);
-            const props = getProps();
-
             const dialog = getReportExportDialogForFastPass(props);
             expect(dialog).toMatchSnapshot();
         });
 
         test('htmlGenerator calls reportGenerator', () => {
             setupShouldShowReportExportButton(true);
-            const props = getProps();
-
             const dialog = getReportExportDialogForFastPass(props);
 
             dialog.props.htmlGenerator(theDescription);
@@ -210,8 +193,6 @@ describe('ReportExportDialogFactory', () => {
 
         test('updatePersistedDescription returns null', () => {
             setupShouldShowReportExportButton(true);
-            const props = getProps();
-
             const dialog = getReportExportDialogForFastPass(props);
 
             expect(dialog.props.updatePersistedDescription('test string')).toBeNull();
@@ -219,7 +200,6 @@ describe('ReportExportDialogFactory', () => {
 
         test('getExportDescription returns empty string', () => {
             setupShouldShowReportExportButton(true);
-            const props = getProps();
             const expectedDescription = '';
 
             const dialog = getReportExportDialogForFastPass(props);
@@ -228,7 +208,6 @@ describe('ReportExportDialogFactory', () => {
 
         test('dismissExportDialog called', () => {
             setupShouldShowReportExportButton(true);
-            const props = getProps();
 
             const dialog = getReportExportDialogForFastPass(props);
 
@@ -238,8 +217,6 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('afterDialogDismissed called', () => {
-            const props = getProps();
-
             const dialog = getReportExportDialogForAssessment(props);
 
             dialog.props.afterDialogDismissed();

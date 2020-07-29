@@ -152,15 +152,16 @@ export class DetailsViewCommandBar extends React.Component<
         const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
             this.props,
         );
-        if (showButton) {
-            return (
-                <ReportExportButton
-                    showReportExportDialog={this.showReportExportDialog}
-                    buttonRef={ref => (this.exportDialogCloseFocus = ref)}
-                />
-            );
+
+        if (!showButton) {
+            return null;
         }
-        return null;
+        return (
+            <ReportExportButton
+                showReportExportDialog={this.showReportExportDialog}
+                buttonRef={ref => (this.exportDialogCloseFocus = ref)}
+            />
+        );
     };
 
     private renderExportDialog(): JSX.Element {
