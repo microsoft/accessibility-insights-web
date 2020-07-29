@@ -77,14 +77,28 @@ export abstract class WebExtensionBrowserAdapter
         });
     }
 
+    private verifyPathCompatibility(path: string): void {
+        const looksRelative = !path.startsWith('/') && !path.includes('://');
+        if (looksRelative) {
+            throw new Error(
+                `Relative path ${path} is unsafe to use here because Firefox and Chromium ` +
+                    'interpret it differently. Firefox treats it as relative to the containing ' +
+                    'page, but Chromium treats it as relative to the extension root. Use a path ' +
+                    'like /relative/to/ext/root.js to get consistent cross-browser behavior.',
+            );
+        }
+    }
+
     public executeScriptInTab(
         tabId: number,
         details: ExtensionTypes.InjectDetails,
     ): Promise<any[]> {
+        this.verifyPathCompatibility(details.file);
         return browser.tabs.executeScript(tabId, details);
     }
 
     public insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
+        this.verifyPathCompatibility(details.file);
         return browser.tabs.insertCSS(tabId, details);
     }
 

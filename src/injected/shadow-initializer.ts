@@ -6,8 +6,8 @@ import { HTMLElementUtils } from './../common/html-element-utils';
 import { rootContainerId } from './constants';
 
 export class ShadowInitializer {
-    public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
-    public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
+    public static readonly injectedCssPath: string = '/injected/styles/default/injected.css';
+    public static readonly generatedBundleInjectedCssPath: string = '/bundle/injected.css';
 
     constructor(
         private browserAdapter: BrowserAdapter,
