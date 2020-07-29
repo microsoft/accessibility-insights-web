@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
@@ -11,12 +14,11 @@ import {
     shouldShowReportExportButtonForAssessment,
     shouldShowReportExportButtonForFastpass,
 } from 'DetailsView/components/should-show-report-export-button';
-import { ScanResults } from 'scanner/iruleresults';
 
 describe('ReportExportDialogFactory', () => {
-    let visualizationScanResultData: VisualizationScanResultData;
+    let unifiedScanResultStoreData: UnifiedScanResultStoreData;
     let visualizationStoreData: VisualizationStoreData;
-    let scanResult: ScanResults;
+    let scanResult: UnifiedResult[];
 
     beforeEach(() => {
         scanResult = null;
@@ -24,14 +26,12 @@ describe('ReportExportDialogFactory', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        visualizationScanResultData = {
-            issues: {
-                scanResult: scanResult,
-            },
-        } as VisualizationScanResultData;
+        unifiedScanResultStoreData = {
+            results: scanResult,
+        } as UnifiedScanResultStoreData;
 
         return {
-            visualizationScanResultData,
+            unifiedScanResultStoreData,
             visualizationStoreData,
         } as DetailsViewCommandBarProps;
     }
@@ -43,7 +43,7 @@ describe('ReportExportDialogFactory', () => {
     }
 
     function setScanResults(): void {
-        scanResult = {} as ScanResults;
+        scanResult = [];
     }
 
     describe('shouldShowReportExportButtonForAssessment', () => {

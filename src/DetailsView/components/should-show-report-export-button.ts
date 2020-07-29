@@ -11,7 +11,7 @@ export function shouldShowReportExportButtonForAssessment(props: CommandBarProps
 }
 
 export function shouldShowReportExportButtonForFastpass(props: CommandBarProps): boolean {
-    const scanResult = props.visualizationScanResultData.issues.scanResult;
+    const scanResult = props.unifiedScanResultStoreData.results;
 
     if (!scanResult) {
         return false;

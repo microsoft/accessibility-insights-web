@@ -3,7 +3,6 @@
 import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
@@ -13,7 +12,10 @@ import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -52,7 +54,7 @@ export interface DetailsViewCommandBarProps {
     assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
-    visualizationScanResultData: VisualizationScanResultData;
+    unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
