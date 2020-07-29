@@ -77,8 +77,8 @@ export abstract class WebExtensionBrowserAdapter
         });
     }
 
-    private verifyPathCompatibility(path: string): void {
-        const looksRelative = !path.startsWith('/') && !path.includes('://');
+    private verifyPathCompatibility(path?: string): void {
+        const looksRelative = path != null && !path.startsWith('/') && !path.includes('://');
         if (looksRelative) {
             throw new Error(
                 `Relative path ${path} is unsafe to use here because Firefox and Chromium ` +
