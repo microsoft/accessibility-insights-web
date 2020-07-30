@@ -2,7 +2,7 @@
 
 exports[`AssessmentReportSummary render Correct composition 1`] = `
 <div
-  className="assessment-report-summary"
+  className="assessmentReportSummary"
 >
   <h2>
     Summary
@@ -18,7 +18,7 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
     countSuffix="%"
   />
   <h3
-    className="test-details-text"
+    className="testDetailsText"
   >
     Test details
   </h3>
