@@ -25,7 +25,9 @@ export class ExtensionDetailsViewController implements DetailsViewController {
             return;
         }
 
-        const tab = await this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId));
+        const tab = await this.browserAdapter.createTabInNewWindow(
+            this.getRelativeDetailsUrl(targetTabId),
+        );
 
         if (tab?.id != null) {
             this.tabIdToDetailsViewMap[targetTabId] = tab.id;
@@ -52,20 +54,23 @@ export class ExtensionDetailsViewController implements DetailsViewController {
     };
 
     private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
-        return (
-            changeInfo.url != null &&
-            !changeInfo.url
-                .toLocaleLowerCase()
-                .includes(this.getDetailsUrlWithExtensionId(targetTabId).toLocaleLowerCase())
-        );
+        if (changeInfo.url == null) {
+            return false;
+        }
+
+        const normalizedNewUrl = changeInfo.url.toLocaleLowerCase();
+        const expectedDetailsUrl = this.getAbsoluteDetailsUrl(targetTabId);
+        const normalizedExpectedDetailsUrl = expectedDetailsUrl.toLocaleLowerCase();
+
+        return !normalizedNewUrl.startsWith(normalizedExpectedDetailsUrl);
     }
 
-    private getDetailsUrl(tabId: number): string {
+    private getRelativeDetailsUrl(tabId: number): string {
         return `/DetailsView/detailsView.html?tabId=${tabId}`;
     }
 
-    private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this.browserAdapter.getRunTimeId()}${this.getDetailsUrl(tabId)}`;
+    private getAbsoluteDetailsUrl(tabId: number): string {
+        return this.browserAdapter.getUrl(this.getRelativeDetailsUrl(tabId));
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number | null {
