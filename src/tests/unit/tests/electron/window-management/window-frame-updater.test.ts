@@ -33,9 +33,9 @@ describe(WindowFrameUpdater, () => {
         });
 
         it('invokes enterFullScreen', () => {
-            ipcRendererShimMock.setup(b => b.maximizeWindow()).verifiable(Times.once());
+            ipcRendererShimMock.setup(b => b.enterFullScreen()).verifiable(Times.once());
 
-            windowFrameActions.maximize.invoke(null);
+            windowFrameActions.enterFullScreen.invoke(null);
         });
 
         it('invokes maximize', () => {
