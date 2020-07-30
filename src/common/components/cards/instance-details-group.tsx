@@ -43,7 +43,7 @@ export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>(
             <ul
                 data-automation-id={ruleContentAutomationId}
                 className={styles.instanceDetailsList}
-                aria-label="failed instances with path, snippet and how to fix information"
+                aria-label="instances with path, snippet and how to resolve information"
             >
                 {nodes.map((node, index) => (
                     <li key={`instance-details-${index}`}>
