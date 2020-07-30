@@ -1,21 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
-import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue } from 'electron';
-import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { IpcRenderer, OpenDialogOptions, OpenDialogReturnValue, Rectangle } from 'electron';
+import {
+    SetSizePayload,
+    WindowBoundsChangedPayload,
+} from 'electron/flux/action/window-frame-actions-payloads';
 import { AsyncAction } from 'electron/ipc/async-action';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 
@@ -32,6 +38,10 @@ export class IpcRendererShim {
             this.onEnterFullScreen,
         );
         this.ipcRenderer.on(IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME, this.onClose);
+        this.ipcRenderer.on(
+            IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
+            (_, windowBoundsPayload) => this.onWindowBoundsChanged(windowBoundsPayload),
+        );
     }
 
     private onMaximize = (): void => {
@@ -51,11 +61,16 @@ export class IpcRendererShim {
         this.closeWindow();
     };
 
+    private onWindowBoundsChanged = (payload: WindowBoundsChangedPayload): void => {
+        this.fromBrowserWindowWindowBoundsChanged.invoke(payload, this.invokeScope);
+    };
+
     // Listen to these events to receive data sent TO renderer process
     public readonly fromBrowserWindowClose = new AsyncAction();
     public readonly fromBrowserWindowMaximize = new Action<void>();
     public readonly fromBrowserWindowUnmaximize = new Action<void>();
     public readonly fromBrowserWindowEnterFullScreen = new Action<void>();
+    public readonly fromBrowserWindowWindowBoundsChanged = new Action<WindowBoundsChangedPayload>();
 
     public getAppPath = async (): Promise<string> => {
         return await this.ipcRenderer.invoke(IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME);
@@ -68,6 +83,10 @@ export class IpcRendererShim {
     // Call these methods to send data FROM renderer process
     public initializeWindow = (): void => {
         this.ipcRenderer.send(IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME);
+    };
+
+    public enterFullScreen = (): void => {
+        this.ipcRenderer.send(IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME);
     };
 
     public maximizeWindow = (): void => {
@@ -90,6 +109,13 @@ export class IpcRendererShim {
         this.ipcRenderer.send(
             IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
             sizePayload,
+        );
+    };
+
+    public setWindowBounds = (windowBounds: Rectangle): void => {
+        this.ipcRenderer.send(
+            IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
+            windowBounds,
         );
     };
 }

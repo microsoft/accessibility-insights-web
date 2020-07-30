@@ -10,18 +10,26 @@ import {
     OpenDialogOptions,
     OpenDialogReturnValue,
 } from 'electron';
-import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
+import { Rectangle } from 'electron';
+import {
+    SetSizePayload,
+    WindowBoundsChangedPayload,
+} from 'electron/flux/action/window-frame-actions-payloads';
+import { WindowState } from 'electron/flux/types/window-state';
 import {
     IPC_FROMBROWSERWINDOW_CLOSE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_ENTERFULLSCREEN_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_MAXIMIZE_CHANNEL_NAME,
     IPC_FROMBROWSERWINDOW_UNMAXIMIZE_CHANNEL_NAME,
+    IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
     IPC_FROMRENDERER_CLOSE_BROWSERWINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_GET_APP_PATH_CHANNEL_NAME,
     IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_MINIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_RESTORE_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
+    IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
     IPC_FROMRENDERER_SHOW_OPEN_FILE_DIALOG,
 } from 'electron/ipc/ipc-channel-names';
 
@@ -57,6 +65,10 @@ export class MainWindowRendererMessageHandlers {
 
         this.ipcMainListeners = [
             {
+                eventName: IPC_FROMRENDERER_FULL_SCREEN_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onFullScreenFromRenderer,
+            },
+            {
                 eventName: IPC_FROMRENDERER_MAXIMIZE_BROWSER_WINDOW_CHANNEL_NAME,
                 eventHandler: this.onMaximizeFromRenderer,
             },
@@ -76,6 +88,10 @@ export class MainWindowRendererMessageHandlers {
                 eventName: IPC_FROMRENDERER_SETSIZEANDCENTER_BROWSER_WINDOW_CHANNEL_NAME,
                 eventHandler: this.onSetSizeAndCenterFromRenderer,
             },
+            {
+                eventName: IPC_FROMRENDERER_SETWINDOWBOUNDS_BROWSER_WINDOW_CHANNEL_NAME,
+                eventHandler: this.onSetWindowBoundsFromRenderer,
+            },
         ];
 
         this.browserWindowCallbacks = [
@@ -84,6 +100,8 @@ export class MainWindowRendererMessageHandlers {
             { eventName: 'enter-full-screen', eventHandler: this.onEnterFullScreenFromMainWindow },
             { eventName: 'leave-full-screen', eventHandler: this.onLeaveFullScreenFromMainWindow },
             { eventName: 'close', eventHandler: e => this.onCloseFromMainWindow(e) },
+            { eventName: 'resize', eventHandler: this.onWindowBoundsChanged },
+            { eventName: 'move', eventHandler: this.onWindowBoundsChanged },
         ];
     }
 
@@ -117,6 +135,10 @@ export class MainWindowRendererMessageHandlers {
         });
     }
 
+    private onFullScreenFromRenderer = (): void => {
+        this.browserWindow.setFullScreen(true);
+    };
+
     private onMaximizeFromRenderer = (): void => {
         this.browserWindow.maximize();
     };
@@ -137,9 +159,13 @@ export class MainWindowRendererMessageHandlers {
         this.browserWindow.close();
     };
 
-    private onSetSizeAndCenterFromRenderer = (event: IpcMainEvent, args: SetSizePayload): void => {
+    private onSetSizeAndCenterFromRenderer = (_: IpcMainEvent, args: SetSizePayload): void => {
         this.browserWindow.setSize(args.width, args.height);
         this.browserWindow.center();
+    };
+
+    private onSetWindowBoundsFromRenderer = (_: IpcMainEvent, windowBounds: Rectangle): void => {
+        this.browserWindow.setBounds(windowBounds);
     };
 
     private handleGetAppPathFromRenderer = async (): Promise<string> => {
@@ -182,5 +208,23 @@ export class MainWindowRendererMessageHandlers {
         } else {
             this.onUnmaximizeFromMainWindow();
         }
+    };
+
+    private onWindowBoundsChanged = (): void => {
+        const windowState: WindowState = this.browserWindow.isFullScreen()
+            ? 'full-screen'
+            : this.browserWindow.isMaximized()
+            ? 'maximized'
+            : 'normal';
+
+        const payload: WindowBoundsChangedPayload = {
+            windowState: windowState,
+            windowBounds: this.browserWindow.getBounds(),
+        };
+
+        this.browserWindow.webContents.send(
+            IPC_FROMBROWSERWINDOW_WINDOWBOUNDSCHANGED_CHANNEL_NAME,
+            payload,
+        );
     };
 }

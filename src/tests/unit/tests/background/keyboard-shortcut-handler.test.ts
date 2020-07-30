@@ -101,6 +101,8 @@ describe('KeyboardShortcutHandler', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
             });
 
