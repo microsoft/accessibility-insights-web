@@ -28,87 +28,56 @@ describe('Details View -> Assessment -> Reflow', () => {
         }
     });
 
-    describe('With command bar collapsed', () => {
-        beforeEach(async () => {
-            const width = narrowModeThresholds.collapseCommandBarThreshold - 1;
+    const commandBarButtonSelector = detailsViewSelectors.commandBarMenuButton;
+    const commandBarWindowWidth = narrowModeThresholds.collapseCommandBarThreshold - 1;
+    const hamburgerButtonSelector = detailsViewSelectors.assessmentNavHamburgerButton;
+    const hamburgerButtonWindowWidth = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
+
+    describe.each`
+        componentName           | componentSelector           | width
+        ${'command bar button'} | ${commandBarButtonSelector} | ${commandBarWindowWidth}
+        ${'hamburger button'}   | ${hamburgerButtonSelector}  | ${hamburgerButtonWindowWidth}
+    `('With $componentName visible', ({ componentName, componentSelector, width }) => {
+        beforeAll(async () => {
             await detailsViewPage.setViewport(width, height);
-            await detailsViewPage.waitForSelector(detailsViewSelectors.commandBarMenuButton);
+            await detailsViewPage.waitForSelector(componentSelector);
         });
 
         it.each([true, false])(
             `should pass accessibility validation with high contrast mode=%s`,
             async highContrastMode => {
-                await browser.setHighContrastMode(highContrastMode);
-
-                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-                expect(results).toHaveLength(0);
+                await scanForA11yIssuesWithHighContrast(highContrastMode);
             },
         );
 
-        it.each([true, false])(
-            `should pass accessibility validation with command bar menu open and high contrast mode=%s`,
-            async highContrastMode => {
-                await browser.setHighContrastMode(highContrastMode);
+        describe(`with ${componentName} expanded`, () => {
+            beforeAll(async () => {
+                await expandButton(componentSelector, true);
+            });
 
-                await detailsViewPage.clickSelector(detailsViewSelectors.commandBarMenuButton);
-                await detailsViewPage.waitForSelector(
-                    detailsViewSelectors.commandBarMenuButtonExpanded(true),
-                );
+            afterAll(async () => {
+                await expandButton(componentSelector, false);
+            });
 
-                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-                expect(results).toHaveLength(0);
-
-                // Close menu before next test
-                await detailsViewPage.clickSelector(detailsViewSelectors.commandBarMenuButton);
-                await detailsViewPage.waitForSelector(
-                    detailsViewSelectors.commandBarMenuButtonExpanded(false),
-                );
-            },
-        );
-    });
-
-    describe('With left nav collapsed', () => {
-        beforeEach(async () => {
-            const width = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
-            await detailsViewPage.setViewport(width, height);
-            await detailsViewPage.waitForSelector(
-                detailsViewSelectors.assessmentNavHamburgerButton,
+            it.each([true, false])(
+                `should pass accessibility validation with command bar menu open and high contrast mode=%s`,
+                async highContrastMode => {
+                    await scanForA11yIssuesWithHighContrast(highContrastMode);
+                },
             );
         });
-
-        it.each([true, false])(
-            `should pass accessibility validation with high contrast mode=%s`,
-            async highContrastMode => {
-                await browser.setHighContrastMode(highContrastMode);
-
-                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-                expect(results).toHaveLength(0);
-            },
-        );
-
-        it.each([true, false])(
-            `should pass accessibility validation with hamburger menu panel open and high contrast mode=%s`,
-            async highContrastMode => {
-                await browser.setHighContrastMode(highContrastMode);
-
-                await detailsViewPage.clickSelector(
-                    detailsViewSelectors.assessmentNavHamburgerButton,
-                );
-                await detailsViewPage.waitForSelector(
-                    detailsViewSelectors.assessmentNavHamburgerButtonExpanded(true),
-                );
-
-                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-                expect(results).toHaveLength(0);
-
-                // Close panel before next test
-                await detailsViewPage.clickSelector(
-                    detailsViewSelectors.assessmentNavHamburgerButton,
-                );
-                await detailsViewPage.waitForSelector(
-                    detailsViewSelectors.assessmentNavHamburgerButtonExpanded(false),
-                );
-            },
-        );
     });
+
+    async function scanForA11yIssuesWithHighContrast(highContrastMode: boolean): Promise<void> {
+        await browser.setHighContrastMode(highContrastMode);
+        await detailsViewPage.waitForHighContrastMode(highContrastMode);
+
+        const results = await scanForAccessibilityIssues(detailsViewPage, '*');
+        expect(results).toHaveLength(0);
+    }
+
+    async function expandButton(buttonSelector: string, expanded: boolean): Promise<void> {
+        await detailsViewPage.clickSelector(buttonSelector);
+        await detailsViewPage.waitForSelector(`${buttonSelector}[aria-expanded=${expanded}]`);
+    }
 });
