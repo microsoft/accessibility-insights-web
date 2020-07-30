@@ -329,6 +329,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const windowStateActionCreator = new WindowStateActionCreator(
             windowStateActions,
             windowFrameActionCreator,
+            userConfigurationStore,
         );
         const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
 
@@ -367,6 +368,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
             ipcRendererShim,
+            userConfigMessageCreator,
+            windowStateStore,
         );
         windowFrameListener.initialize();
 
@@ -490,7 +493,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
-            windowFrameActionCreator.maximize();
         };
 
         const deps: RootContainerRendererDeps = {

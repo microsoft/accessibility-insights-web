@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { Rectangle } from 'electron';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 
@@ -9,6 +10,14 @@ export class WindowFrameActionCreator {
 
     public setWindowSize(size: SetSizePayload): void {
         this.windowFrameActions.setWindowSize.invoke(size);
+    }
+
+    public setWindowBounds(windowBounds: Rectangle): void {
+        this.windowFrameActions.setWindowBounds.invoke(windowBounds);
+    }
+
+    public enterFullScreen(): void {
+        this.windowFrameActions.enterFullScreen.invoke();
     }
 
     public maximize(): void {
