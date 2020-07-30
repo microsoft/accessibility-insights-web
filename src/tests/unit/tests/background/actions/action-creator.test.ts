@@ -19,6 +19,7 @@ import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
@@ -49,7 +50,6 @@ import { forOwn } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
