@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedFC } from 'common/react/named-fc';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
@@ -16,19 +17,22 @@ export type StartOverDialogDeps = {
 
 export interface StartOverDialogProps {
     deps: StartOverDialogDeps;
-    testName: string;
-    test: VisualizationType;
-    requirementKey: string;
+    assessmentStoreData: AssessmentStoreData;
+    assessmentsProvider: AssessmentsProvider;
     dialogState: StartOverDialogState;
     setDialogState: DialogStateSetter;
 }
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
-    const { dialogState, deps, test, testName, requirementKey, setDialogState } = props;
+    const { dialogState, deps, assessmentStoreData, assessmentsProvider, setDialogState } = props;
 
     if (dialogState === 'none') {
         return null;
     }
+
+    const test = assessmentStoreData.assessmentNavState.selectedTestType;
+    const testName = assessmentsProvider.forType(test).title;
+    const requirementKey = assessmentStoreData.assessmentNavState.selectedTestSubview;
 
     const closeDialog = () => setDialogState('none');
 

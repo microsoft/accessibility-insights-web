@@ -13,9 +13,9 @@ import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-vie
 import {
     getStartOverComponentForAssessment,
     getStartOverComponentForFastPass,
+    StartOverFactoryDeps,
     StartOverFactoryProps,
 } from 'DetailsView/components/start-over-component-factory';
-import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
@@ -38,7 +38,7 @@ describe('StartOverComponentFactory', () => {
     });
 
     function getProps(isForAssessment: boolean): StartOverFactoryProps {
-        const deps = {} as StartOverDeps;
+        const deps = {} as StartOverFactoryDeps;
 
         let visualizationStoreData: VisualizationStoreData = null;
         let selectedTestType: VisualizationType = null;

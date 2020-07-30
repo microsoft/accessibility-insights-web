@@ -4,6 +4,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import {
     DialogStateSetter,
     StartOverDialog,
@@ -17,6 +20,8 @@ describe('StartOverDialog', () => {
     let props: StartOverDialogProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let setDialogStateMock: IMock<DialogStateSetter>;
+    let assessmentsProviderMock: IMock<AssessmentsProvider>;
+    let assessmentStoreData: AssessmentStoreData;
 
     const event = {
         currentTarget: 'test target',
@@ -24,17 +29,27 @@ describe('StartOverDialog', () => {
     const testName = 'test name';
     const test = -1 as VisualizationType;
     const requirementKey = 'test key';
+    const assessmentStub = {
+        title: testName,
+    } as Assessment;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         setDialogStateMock = Mock.ofInstance(() => null);
+        assessmentsProviderMock = Mock.ofType<AssessmentsProvider>();
+        assessmentsProviderMock.setup(ap => ap.forType(test)).returns(() => assessmentStub);
+        assessmentStoreData = {
+            assessmentNavState: {
+                selectedTestSubview: requirementKey,
+                selectedTestType: test,
+            },
+        } as AssessmentStoreData;
         props = {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
-            testName,
-            test,
-            requirementKey,
+            assessmentStoreData,
+            assessmentsProvider: assessmentsProviderMock.object,
             setDialogState: setDialogStateMock.object,
         } as StartOverDialogProps;
     });

@@ -7,7 +7,6 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { StartOverDeps } from 'DetailsView/components/start-over-dropdown';
 import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -24,7 +23,16 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
-import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
+import {
+    StartOverFactoryDeps,
+    StartOverFactoryProps,
+} from 'DetailsView/components/start-over-component-factory';
+import {
+    StartOverDialog,
+    StartOverDialogProps,
+    StartOverDialogState,
+} from 'DetailsView/components/start-over-dialog';
+import { DropdownDirection } from 'DetailsView/components/start-over-dropdown';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -37,12 +45,13 @@ export type DetailsViewCommandBarDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ExportDialogDeps &
-    StartOverDeps;
+    StartOverFactoryDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type DetailsViewCommandBarState = {
     isReportExportDialogOpen: boolean;
+    startOverDialogState: StartOverDialogState;
 };
 
 export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
@@ -76,6 +85,7 @@ export class DetailsViewCommandBar extends React.Component<
         super(props);
         this.state = {
             isReportExportDialogOpen: false,
+            startOverDialogState: 'none',
         };
     }
     public render(): JSX.Element {
@@ -88,6 +98,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderTargetPageInfo()}
                 {this.renderFarItems()}
                 {this.renderExportDialog()}
+                {this.renderStartOverDialog()}
             </div>
         );
     }
@@ -125,7 +136,7 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
-        const startOverElement: JSX.Element = this.renderStartOverComponent();
+        const startOverElement: JSX.Element = this.renderStartOverComponent('down');
 
         if (reportExportElement || startOverElement) {
             return (
@@ -142,8 +153,8 @@ export class DetailsViewCommandBar extends React.Component<
     private renderCommandButtonsMenu(): JSX.Element {
         return (
             <CommandBarButtonsMenu
-                {...this.props}
                 renderExportReportButton={this.renderExportButton}
+                renderStartOverButton={this.renderStartOverComponent}
                 buttonRef={ref => (this.exportDialogCloseFocus = ref)}
             />
         );
@@ -187,11 +198,26 @@ export class DetailsViewCommandBar extends React.Component<
         });
     }
 
-    private renderStartOverComponent(): JSX.Element {
+    private setStartOverDialogState = (dialogState: StartOverDialogState) => {
+        this.setState({ startOverDialogState: dialogState });
+    };
+
+    private renderStartOverComponent = (dropdownDirection: DropdownDirection) => {
         const startOverFactoryProps: StartOverFactoryProps = {
             ...this.props,
-            dropdownDirection: 'down',
+            dropdownDirection,
+            setDialogState: this.setStartOverDialogState,
         };
         return this.props.switcherNavConfiguration.StartOverComponentFactory(startOverFactoryProps);
+    };
+
+    private renderStartOverDialog(): JSX.Element {
+        const dialogProps: StartOverDialogProps = {
+            ...this.props,
+            dialogState: this.state.startOverDialogState,
+            setDialogState: this.setStartOverDialogState,
+        };
+
+        return <StartOverDialog {...dialogProps} />;
     }
 }
