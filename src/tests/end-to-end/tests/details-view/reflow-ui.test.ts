@@ -40,10 +40,7 @@ describe('Details View -> Assessment -> Reflow', () => {
             async highContrastMode => {
                 await browser.setHighContrastMode(highContrastMode);
 
-                const results = await scanForAccessibilityIssues(
-                    detailsViewPage,
-                    detailsViewSelectors.mainContent,
-                );
+                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
                 expect(results).toHaveLength(0);
             },
         );
@@ -58,10 +55,7 @@ describe('Details View -> Assessment -> Reflow', () => {
                     detailsViewSelectors.commandBarMenuButtonExpanded(true),
                 );
 
-                const results = await scanForAccessibilityIssues(
-                    detailsViewPage,
-                    detailsViewSelectors.mainContent,
-                );
+                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
                 expect(results).toHaveLength(0);
 
                 // Close menu before next test
@@ -87,10 +81,7 @@ describe('Details View -> Assessment -> Reflow', () => {
             async highContrastMode => {
                 await browser.setHighContrastMode(highContrastMode);
 
-                const results = await scanForAccessibilityIssues(
-                    detailsViewPage,
-                    detailsViewSelectors.mainContent,
-                );
+                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
                 expect(results).toHaveLength(0);
             },
         );
@@ -107,10 +98,7 @@ describe('Details View -> Assessment -> Reflow', () => {
                     detailsViewSelectors.assessmentNavHamburgerButtonExpanded(true),
                 );
 
-                const results = await scanForAccessibilityIssues(
-                    detailsViewPage,
-                    detailsViewSelectors.mainContent,
-                );
+                const results = await scanForAccessibilityIssues(detailsViewPage, '*');
                 expect(results).toHaveLength(0);
 
                 // Close panel before next test
