@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/common.scss';
 
 .overview-help-container {
     padding-top: 20px;
@@ -13,7 +13,8 @@
 }
 
 .help-heading {
-    font-size: 17px;
+    @include h3;
+
     padding: 0px;
     margin-block-end: 1em;
     margin-inline-start: 0px;

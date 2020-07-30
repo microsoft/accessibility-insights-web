@@ -245,6 +245,7 @@ div.insights-file-issue-details-dialog-container {
             align-items: center;
             h2 {
                 font-weight: $normalTitleFontWeight;
+                font-size: 17px;
             }
         }
         .collapsible-content {
@@ -283,17 +284,6 @@ div.insights-file-issue-details-dialog-container {
                     font-size: 21px;
                     color: $neutral-100;
                 }
-                h2 {
-                    font-size: 17px;
-                    color: $neutral-100;
-                }
-                h3 {
-                    margin: 0px;
-                    padding-top: 4px;
-                    font-size: 14px;
-                    color: $neutral-100;
-                    font-weight: $fontWeightSemiBold;
-                }
                 b {
                     font-weight: 600;
                 }
@@ -309,53 +299,6 @@ div.insights-file-issue-details-dialog-container {
                     }
                     .ms-Toggle-innerContainer {
                         margin: 10px 0px 10px 0px;
-                    }
-                }
-                .overview {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    padding-left: 32px;
-                    .overview-text-summary-section {
-                        display: flex;
-                        flex-direction: column;
-                        flex: 1 1 50%;
-                        align-items: flex-start;
-                        width: 90%;
-                        margin-right: 32px;
-                        .assessment-report-summary {
-                            margin-top: 40px;
-                            width: 100%;
-                            h2 {
-                                font-weight: 600;
-                                line-height: 32px;
-                                font-size: 21px;
-                                letter-spacing: -0.02em;
-                                color: $primary-text;
-                                margin: 0px;
-                            }
-                            h3 {
-                                margin: 16px 0px 21px 0px;
-                                padding: 0;
-                            }
-                            .assessment-summary-details {
-                                .test-summary {
-                                    padding: 12px 10px;
-                                    .test-summary-display-name {
-                                        font-family: $semiBoldFontFamily;
-                                        font-size: 14px;
-                                        line-height: 20px;
-                                        font-weight: 600;
-                                    }
-                                }
-                            }
-                            .test-details-text {
-                                font-weight: 600;
-                                line-height: 24px;
-                                font-size: 17px;
-                                color: $primary-text;
-                            }
-                        }
                     }
                 }
             }
