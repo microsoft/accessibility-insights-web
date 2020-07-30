@@ -7,7 +7,8 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
-export type DialogState = 'none' | 'assessment' | 'test';
+export type StartOverDialogState = 'none' | 'assessment' | 'test';
+export type DialogStateSetter = (dialogState: StartOverDialogState) => void;
 
 export type StartOverDialogDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -18,16 +19,18 @@ export interface StartOverDialogProps {
     testName: string;
     test: VisualizationType;
     requirementKey: string;
-    dialogState: DialogState;
-    closeDialog: () => {};
+    dialogState: StartOverDialogState;
+    setDialogState: DialogStateSetter;
 }
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
-    const { dialogState, deps, test, testName, requirementKey, closeDialog } = props;
+    const { dialogState, deps, test, testName, requirementKey, setDialogState } = props;
 
     if (dialogState === 'none') {
         return null;
     }
+
+    const closeDialog = () => setDialogState('none');
 
     const onStartTestOver = (event: React.MouseEvent<any>): void => {
         deps.detailsViewActionMessageCreator.startOverTest(event, test);

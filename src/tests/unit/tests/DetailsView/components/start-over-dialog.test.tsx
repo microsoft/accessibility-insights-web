@@ -5,9 +5,10 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {
-    DialogState,
+    DialogStateSetter,
     StartOverDialog,
     StartOverDialogProps,
+    StartOverDialogState,
 } from 'DetailsView/components/start-over-dialog';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -15,7 +16,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 describe('StartOverDialog', () => {
     let props: StartOverDialogProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let closeDialogMock: IMock<() => void>;
+    let setDialogStateMock: IMock<DialogStateSetter>;
 
     const event = {
         currentTarget: 'test target',
@@ -26,7 +27,7 @@ describe('StartOverDialog', () => {
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
-        closeDialogMock = Mock.ofInstance(() => null);
+        setDialogStateMock = Mock.ofInstance(() => null);
         props = {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
@@ -34,11 +35,11 @@ describe('StartOverDialog', () => {
             testName,
             test,
             requirementKey,
-            closeDialog: closeDialogMock.object,
+            setDialogState: setDialogStateMock.object,
         } as StartOverDialogProps;
     });
 
-    it.each(['none', 'test', 'assessment'] as DialogState[])(
+    it.each(['none', 'test', 'assessment'] as StartOverDialogState[])(
         'renders when dialogState = %s',
         dialogState => {
             props.dialogState = dialogState;
@@ -58,26 +59,26 @@ describe('StartOverDialog', () => {
             detailsViewActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOver(event, test, requirementKey))
                 .verifiable(Times.once());
-            closeDialogMock.setup(cd => cd()).verifiable(Times.once());
+            setDialogStateMock.setup(cd => cd('none')).verifiable(Times.once());
 
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onCancelButtonClick')(event);
 
             detailsViewActionMessageCreatorMock.verifyAll();
-            closeDialogMock.verifyAll();
+            setDialogStateMock.verifyAll();
         });
 
         it('start over test', () => {
             detailsViewActionMessageCreatorMock
                 .setup(creator => creator.startOverTest(event, test))
                 .verifiable(Times.once());
-            closeDialogMock.setup(cd => cd()).verifiable(Times.once());
+            setDialogStateMock.setup(cd => cd('none')).verifiable(Times.once());
 
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onPrimaryButtonClick')(event);
 
             detailsViewActionMessageCreatorMock.verifyAll();
-            closeDialogMock.verifyAll();
+            setDialogStateMock.verifyAll();
         });
     });
 
@@ -90,26 +91,26 @@ describe('StartOverDialog', () => {
             detailsViewActionMessageCreatorMock
                 .setup(creator => creator.cancelStartOverAllAssessments(event))
                 .verifiable(Times.once());
-            closeDialogMock.setup(cd => cd()).verifiable(Times.once());
+            setDialogStateMock.setup(cd => cd('none')).verifiable(Times.once());
 
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onCancelButtonClick')(event);
 
             detailsViewActionMessageCreatorMock.verifyAll();
-            closeDialogMock.verifyAll();
+            setDialogStateMock.verifyAll();
         });
 
         it('start over assessment', () => {
             detailsViewActionMessageCreatorMock
                 .setup(creator => creator.startOverAllAssessments(event))
                 .verifiable(Times.once());
-            closeDialogMock.setup(cd => cd()).verifiable(Times.once());
+            setDialogStateMock.setup(cd => cd('none')).verifiable(Times.once());
 
             const wrapper = shallow(<StartOverDialog {...props} />);
             wrapper.prop('onPrimaryButtonClick')(event);
 
             detailsViewActionMessageCreatorMock.verifyAll();
-            closeDialogMock.verifyAll();
+            setDialogStateMock.verifyAll();
         });
     });
 });
