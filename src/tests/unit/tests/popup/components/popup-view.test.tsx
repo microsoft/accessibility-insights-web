@@ -80,6 +80,8 @@ describe('PopupView', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
+            lastWindowState: null,
+            lastWindowBounds: null,
         };
 
         beforeEach(() => {

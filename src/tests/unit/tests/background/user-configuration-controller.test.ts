@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 
+import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
 import { Interpreter } from 'background/interpreter';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { Message } from 'common/message';
@@ -41,4 +42,18 @@ describe('UserConfigurationController', () => {
             interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
         },
     );
+
+    it('saveWindowBounds sends the expected interpreter message', () => {
+        const payload: SaveWindowBoundsPayload = {
+            windowState: 'maximized',
+            windowBounds: { x: 1, y: 2, width: 10, height: 20 },
+        };
+
+        const expectedMessage: Message = {
+            messageType: Messages.UserConfig.SaveWindowBounds,
+            payload: payload,
+        };
+        testSubject.saveWindowBounds(payload);
+        interpreterMock.verify(i => i.interpret(expectedMessage), Times.once());
+    });
 });

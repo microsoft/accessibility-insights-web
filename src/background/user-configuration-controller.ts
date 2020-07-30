@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
-import { SetHighContrastModePayload, SetTelemetryStatePayload } from './actions/action-payloads';
+import {
+    SaveWindowBoundsPayload,
+    SetHighContrastModePayload,
+    SetTelemetryStatePayload,
+} from './actions/action-payloads';
 import { Interpreter } from './interpreter';
 
 export class UserConfigurationController {
@@ -28,6 +32,14 @@ export class UserConfigurationController {
             messageType: Messages.UserConfig.SetTelemetryConfig,
             payload: payload,
             tabId: null,
+        };
+        this.interpreter.interpret(message);
+    }
+
+    public saveWindowBounds(payload: SaveWindowBoundsPayload): void {
+        const message: Message = {
+            messageType: Messages.UserConfig.SaveWindowBounds,
+            payload: payload,
         };
         this.interpreter.interpret(message);
     }

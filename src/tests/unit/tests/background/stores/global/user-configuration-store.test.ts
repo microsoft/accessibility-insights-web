@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -13,6 +14,7 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { WindowState } from 'electron/flux/types/window-state';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
@@ -36,6 +38,8 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
+            lastWindowState: null,
+            lastWindowBounds: null,
         };
         defaultStoreData = {
             enableTelemetry: false,
@@ -45,6 +49,8 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             adbLocation: null,
+            lastWindowState: null,
+            lastWindowBounds: null,
         };
         indexDbStrictMock = Mock.ofType<IndexedDBAPI>();
     });
@@ -94,6 +100,8 @@ describe('UserConfigurationStoreTest', () => {
             bugService: 'none',
             bugServicePropertiesMap: {},
             lastSelectedHighContrast: false,
+            lastWindowState: null,
+            lastWindowBounds: null,
             ...persisted,
         } as UserConfigurationStoreData;
         const testSubject = new UserConfigurationStore(
@@ -187,6 +195,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
 
                 const expectedState: UserConfigurationStoreData = {
@@ -197,6 +207,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
 
                 indexDbStrictMock
@@ -234,6 +246,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
 
                 const setHighContrastData: SetHighContrastModePayload = {
@@ -248,6 +262,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
 
                 indexDbStrictMock
@@ -285,6 +301,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
 
                 const setNativeHighContrastData: SetNativeHighContrastModePayload = {
@@ -299,6 +317,8 @@ describe('UserConfigurationStoreTest', () => {
                     bugService: 'none',
                     bugServicePropertiesMap: {},
                     adbLocation: null,
+                    lastWindowState: null,
+                    lastWindowBounds: null,
                 };
 
                 indexDbStrictMock
@@ -327,6 +347,8 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: {},
                 adbLocation: null,
+                lastWindowState: null,
+                lastWindowBounds: null,
             };
 
             const setIssueFilingServiceData: SetIssueFilingServicePayload = {
@@ -369,6 +391,8 @@ describe('UserConfigurationStoreTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: initialMapState,
                 adbLocation: null,
+                lastWindowState: null,
+                lastWindowBounds: null,
             };
 
             const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {
@@ -442,6 +466,47 @@ describe('UserConfigurationStoreTest', () => {
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
+
+    test.each(['normal', 'maximized', 'full-screen'])(
+        'saveLastWindowBounds windowState:$windowState',
+        windowState => {
+            const expectBoundsSet: boolean = windowState === 'normal';
+            const payload: SaveWindowBoundsPayload = {
+                windowState: windowState as WindowState,
+                windowBounds: { x: 5, y: 15, height: 30, width: 50 },
+            };
+
+            const storeTester = createStoreToTestAction('saveWindowBounds');
+            initialStoreData = {
+                isFirstTime: false,
+                enableTelemetry: false,
+                enableHighContrast: false,
+                lastSelectedHighContrast: false,
+                bugService: 'none',
+                bugServicePropertiesMap: {},
+                adbLocation: null,
+                lastWindowState: null,
+                lastWindowBounds: null,
+            };
+
+            const expectedState: UserConfigurationStoreData = {
+                ...initialStoreData,
+                lastWindowState: payload.windowState,
+                lastWindowBounds: expectBoundsSet ? payload.windowBounds : null,
+            };
+
+            indexDbStrictMock
+                .setup(i =>
+                    i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
+                )
+                .verifiable(Times.once());
+
+            storeTester
+                .withActionParam(payload)
+                .withPostListenerMock(indexDbStrictMock)
+                .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+        },
+    );
 
     function createStoreToTestAction(
         actionName: keyof UserConfigurationActions,
