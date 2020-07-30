@@ -110,11 +110,6 @@ describe(WindowStateActionCreator, () => {
                 .verifiable(Times.once());
         });
 
-        afterEach(() => {
-            setRouteActionMock.verifyAll();
-            windowFrameActionCreatorMock.verifyAll();
-        });
-
         it.each(['normal', 'maximized', 'full-screen'])(
             'sets window size correctly if lastWindowBounds is specified and windowState is %s',
             lastWindowState => {
@@ -174,6 +169,9 @@ describe(WindowStateActionCreator, () => {
                 .verifiable(shouldEnterFullScreen ? Times.once() : Times.never());
 
             testSubject.setRoute(testPayload);
+
+            setRouteActionMock.verifyAll();
+            windowFrameActionCreatorMock.verifyAll();
         }
     });
 });
