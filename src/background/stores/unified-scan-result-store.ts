@@ -29,6 +29,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
     protected addActionListeners(): void {
         this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.unifiedScanResultActions.startScan.addListener(this.onScanStarted);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
@@ -40,6 +41,11 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;
+        this.emitChanged();
+    };
+
+    private onScanStarted = (): void => {
+        this.state = this.getDefaultState();
         this.emitChanged();
     };
 }

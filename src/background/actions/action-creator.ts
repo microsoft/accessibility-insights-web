@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -45,6 +46,7 @@ export class ActionCreator {
     };
     private inspectActions: InspectActions;
     private cardSelectionActions: CardSelectionActions;
+    private unifiedScanResultActions: UnifiedScanResultActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -61,6 +63,7 @@ export class ActionCreator {
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
         this.cardSelectionActions = actionHub.cardSelectionActions;
+        this.unifiedScanResultActions = actionHub.scanResultActions;
     }
 
     public registerCallbacks(): void {
@@ -361,6 +364,7 @@ export class ActionCreator {
     private onRescanVisualization = (payload: RescanVisualizationPayload) => {
         this.visualizationActions.disableVisualization.invoke(payload.test);
         this.visualizationActions.enableVisualization.invoke(payload);
+        this.unifiedScanResultActions.startScan.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 
