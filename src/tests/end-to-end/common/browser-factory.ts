@@ -38,9 +38,15 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
 
     const playwrightBrowser = await launchNewBrowser(browserInstanceId, devExtensionPath);
 
+    // It would be good to try out using a persistent browser and creating a context per test,
+    // rather than creating a browser per test. Doing a 1:1 browser:context mapping for now to
+    // simplify the initial migration from Puppeteer to Playwright.
+    const playwrightContext = await playwrightBrowser.newContext();
+
     const browser = new Browser(
         browserInstanceId,
         playwrightBrowser,
+        playwrightContext,
         manifestOveride.restoreOriginalManifest,
     );
 
