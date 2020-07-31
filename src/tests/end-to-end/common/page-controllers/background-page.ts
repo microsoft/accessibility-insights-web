@@ -41,8 +41,8 @@ export class BackgroundPage extends Page {
     }
 }
 
-export function isBackgroundPageTarget(target: Playwright.Target): boolean {
-    return target.type() === 'background_page' && isBackgroundPageUrl(target.url());
+export function hasBackgroundPageUrl(page: Playwright.Page): boolean {
+    return isBackgroundPageUrl(page.url());
 }
 
 export function isBackgroundPageUrl(url: string): boolean {
