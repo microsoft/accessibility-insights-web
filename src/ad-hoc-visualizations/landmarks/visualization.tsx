@@ -31,7 +31,7 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Landmarks,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.landmarks,
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: (data, _) => (data.adhoc.landmarks.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {

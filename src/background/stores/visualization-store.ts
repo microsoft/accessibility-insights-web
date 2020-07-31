@@ -191,7 +191,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             }
 
             this.state.injectingInProgress = true;
-            configuration.enableTest(scanData, payload);
+            configuration.enableTest(this.state.tests, payload);
         }
         this.emitChanged();
     }

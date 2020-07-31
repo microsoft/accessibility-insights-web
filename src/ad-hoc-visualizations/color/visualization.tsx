@@ -30,7 +30,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Color,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.color,
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: (data, _) => (data.adhoc.color.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {

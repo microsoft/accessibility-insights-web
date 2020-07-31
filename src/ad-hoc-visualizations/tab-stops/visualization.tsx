@@ -30,7 +30,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.TabStops,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc.tabStops,
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: (data, _) => (data.adhoc.tabStops.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {

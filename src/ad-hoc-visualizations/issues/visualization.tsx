@@ -33,7 +33,10 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
         <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...props} />
     ),
     getStoreData: data => data.adhoc.issues,
-    enableTest: (data, _) => (data.enabled = true),
+    enableTest: (data, _) => {
+        data.adhoc.issues.enabled = true;
+        data.adhoc[AdHocTestkeys.NeedsReview].enabled = false;
+    },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {

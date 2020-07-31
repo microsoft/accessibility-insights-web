@@ -12,7 +12,11 @@ import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    ScanData,
+    TestsEnabledState,
+} from 'common/types/store-data/visualization-store-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
@@ -175,10 +179,17 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
+        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
+            data.assessments[`${key}Assessment`];
+
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
-            getStoreData: data => data.assessments[`${key}Assessment`],
-            enableTest: AssessmentBuilder.enableTest,
+            getStoreData: getStoreData,
+            enableTest: (data, payload) =>
+                AssessmentBuilder.enableTest(
+                    getStoreData(data),
+                    payload as AssessmentToggleActionPayload,
+                ),
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
@@ -263,6 +274,9 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
+        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
+            data.assessments[assessment.storeDataKey];
+
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getAssessmentData: data => data.assessments[key],
@@ -271,8 +285,12 @@ export class AssessmentBuilder {
                 thisAssessment.fullAxeResultsMap = selectorMap;
                 thisAssessment.generatedAssessmentInstancesMap = instanceMap;
             },
-            getStoreData: data => data.assessments[assessment.storeDataKey],
-            enableTest: AssessmentBuilder.enableTest,
+            getStoreData: getStoreData,
+            enableTest: (data, payload) =>
+                AssessmentBuilder.enableTest(
+                    getStoreData(data),
+                    payload as AssessmentToggleActionPayload,
+                ),
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             telemetryProcessor: factory => factory.forAssessmentRequirementScan,
