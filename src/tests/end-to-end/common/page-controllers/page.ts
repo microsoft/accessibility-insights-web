@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { includes } from 'lodash';
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
 
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
@@ -22,10 +22,10 @@ export type PageOptions = {
 };
 
 export class Page {
-    constructor(protected readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(protected readonly underlyingPage: Playwright.Page, options?: PageOptions) {
         function forceEventFailure(eventDescription: string): void {
             forceTestFailure(
-                `Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
+                `Playwright.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
             );
         }
 
@@ -114,9 +114,9 @@ export class Page {
         await this.screenshotOnError(async () => await this.underlyingPage.bringToFront());
     }
 
-    public async evaluate(fn: Puppeteer.EvaluateFn, ...args: any[]): Promise<any> {
+    public async evaluate(fn: Playwright.EvaluateFn, ...args: any[]): Promise<any> {
         const timeout = DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS;
-        // We don't wrap this in screenshotOnError because Puppeteer serializes evaluate() and
+        // We don't wrap this in screenshotOnError because Playwright serializes evaluate() and
         // screenshot() such that screenshot() will always time out if evaluate is still running.
         return await promiseFactory.timeout(this.underlyingPage.evaluate(fn, ...args), timeout);
     }
@@ -144,8 +144,8 @@ export class Page {
 
     public async waitForSelector(
         selector: string,
-        options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.ElementHandle<Element>> {
+        options?: Playwright.WaitForSelectorOptions,
+    ): Promise<Playwright.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitForSelector(selector, {
@@ -155,7 +155,7 @@ export class Page {
         );
     }
 
-    public async waitForSelectorXPath(xpath: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForSelectorXPath(xpath: string): Promise<Playwright.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitForXPath(xpath, {
@@ -164,7 +164,7 @@ export class Page {
         );
     }
 
-    public async waitForId(id: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForId(id: string): Promise<Playwright.ElementHandle<Element>> {
         return this.waitForSelector(`#${id}`);
     }
 
@@ -191,10 +191,10 @@ export class Page {
     }
 
     public async waitForDescendentSelector(
-        parentElement: Puppeteer.ElementHandle<Element>,
+        parentElement: Playwright.ElementHandle<Element>,
         descendentSelector: string,
-        options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.JSHandle> {
+        options?: Playwright.WaitForSelectorOptions,
+    ): Promise<Playwright.JSHandle> {
         options = {
             timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             ...options,
@@ -211,7 +211,7 @@ export class Page {
 
     public async waitForShadowRootOfSelector(
         selector: string,
-    ): Promise<Puppeteer.ElementHandle<Element>> {
+    ): Promise<Playwright.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             const shadowRootHandle = await this.underlyingPage.waitForFunction(
                 selectorInEval => {
@@ -237,31 +237,31 @@ export class Page {
     }
 
     public async clickDescendentSelector(
-        parentElement: Puppeteer.ElementHandle<Element>,
+        parentElement: Playwright.ElementHandle<Element>,
         descendentSelector: string,
-        options?: Puppeteer.WaitForSelectorOptions,
+        options?: Playwright.PageWaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForDescendentSelector(parentElement, descendentSelector, options);
         const element = await this.getDescendentSelectorElement(parentElement, descendentSelector);
         await this.clickElementHandle(element);
     }
 
-    public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
+    public async clickElementHandle(element: Playwright.ElementHandle<Element>): Promise<void> {
         await this.screenshotOnError(async () => {
             await element.click({ delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
         });
     }
 
     public async getDescendentSelectorElement(
-        parentElement: Puppeteer.ElementHandle<Element>,
+        parentElement: Playwright.ElementHandle<Element>,
         descendentSelector: string,
-    ): Promise<Puppeteer.ElementHandle<Element>> {
+    ): Promise<Playwright.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             return await parentElement.$(descendentSelector);
         });
     }
 
-    public async getSelectorElement(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async getSelectorElement(selector: string): Promise<Playwright.ElementHandle<Element>> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$(selector);
         });
@@ -269,7 +269,7 @@ export class Page {
 
     public async getSelectorElements(
         selector: string,
-    ): Promise<Puppeteer.ElementHandle<Element>[]> {
+    ): Promise<Playwright.ElementHandle<Element>[]> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$$(selector);
         });

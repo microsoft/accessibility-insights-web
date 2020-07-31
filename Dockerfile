@@ -1,18 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+# reference: https://github.com/microsoft/playwright/tree/master/docs/docker
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-# We use Puppeteer, not Cypress; however, Cypress's docker images are up to date baselines that already contain both node and
-# the system dependencies required to run headful Chromium, so we use them to avoid the performance hit of having our own
-# build agents running apt-get for all those dependencies.
-FROM cypress/base:12.16.1
-
-RUN apt-get update && \
-    apt-get install --no-install-recommends -y \
-    libgbm1 \
-    && rm -rf /var/lib/apt/lists/*
+FROM mcr.microsoft.com/playwright:bionic
 
 RUN npm install -g yarn@1.22.4
 

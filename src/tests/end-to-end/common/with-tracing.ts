@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
 import { prepareTestResultFilePath } from 'tests/end-to-end/common/prepare-test-result-file-path';
 
-async function startTracing(tracing: Puppeteer.Tracing): Promise<string> {
+async function startTracing(tracing: Playwright.Tracing): Promise<string> {
     const traceFilePath = await prepareTestResultFilePath('tracing', 'json');
     await tracing.start({ path: traceFilePath, screenshots: true });
     return traceFilePath;
 }
 
 async function stopTracing(
-    tracing: Puppeteer.Tracing,
+    tracing: Playwright.Tracing,
     traceFilePath: string,
     logLabel: string,
 ): Promise<void> {
@@ -21,7 +21,7 @@ async function stopTracing(
 }
 
 export async function withTracing<T>(
-    tracing: Puppeteer.Tracing,
+    tracing: Playwright.Tracing,
     wrappedFunction: () => Promise<T>,
 ): Promise<T> {
     const traceFilePath = await startTracing(tracing);

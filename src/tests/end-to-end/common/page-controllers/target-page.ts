@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ElementHandle } from 'puppeteer';
-import * as Puppeteer from 'puppeteer';
+import { ElementHandle } from 'playwright';
+import * as Playwright from 'playwright';
 
 import { formatChildElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { getTestResourceUrl } from '../test-resources';
@@ -28,7 +28,7 @@ export function targetPageUrl(options?: TargetPageUrlOptions): string {
 
 export class TargetPage extends Page {
     constructor(
-        underlyingPage: Puppeteer.Page,
+        underlyingPage: Playwright.Page,
         public readonly tabId: number,
         options?: PageOptions,
     ) {
@@ -37,8 +37,8 @@ export class TargetPage extends Page {
 
     public async waitForSelectorInShadowRoot(
         selector: string,
-        options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.JSHandle<any>> {
+        options?: Playwright.WaitForSelectorOptions,
+    ): Promise<Playwright.JSHandle<any>> {
         const shadowRoot = await this.waitForShadowRoot();
         return this.waitForDescendentSelector(shadowRoot, selector, options);
     }

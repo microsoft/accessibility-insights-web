@@ -3,8 +3,8 @@
 
 // How long to allow an entire test to execute
 //
-// We want this to be greater than default timeout of puppeteer's waitFor* functions (30s),
-// because test failures of the form "such and such puppeteer operation timed out" are much
+// We want this to be greater than default timeout of Playwright's waitFor* functions (30s),
+// because test failures of the form "such and such Playwright operation timed out" are much
 // more actionable than test failures of the form "such and such test timed out".
 //
 // Every other default timeout should be lower than this!

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
     detailsViewSelectors,
@@ -9,7 +9,7 @@ import {
 import { Page, PageOptions } from './page';
 
 export class DetailsViewPage extends Page {
-    constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(underlyingPage: Playwright.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }
 
@@ -55,7 +55,7 @@ export class DetailsViewPage extends Page {
 
     public async waitForVisualHelperState(
         state: 'On' | 'Off' | 'disabled',
-        waitOptions?: Puppeteer.WaitForSelectorOptions,
+        waitOptions?: Playwright.WaitForSelectorOptions,
     ): Promise<void> {
         const selectorStateSuffix = {
             On: ':not([disabled])[aria-checked="true"]',
@@ -73,7 +73,7 @@ export class DetailsViewPage extends Page {
         requirementName: string,
         requirementIndex: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
-        waitOptions?: Puppeteer.WaitForSelectorOptions,
+        waitOptions?: Playwright.WaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForSelector(
             detailsViewSelectors.requirementWithStatus(requirementName, requirementIndex, status),

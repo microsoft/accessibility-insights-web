@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
 import { BackgroundPage, isBackgroundPageTarget } from './page-controllers/background-page';
@@ -16,7 +16,7 @@ export class Browser {
 
     constructor(
         private readonly browserInstanceId: string,
-        private readonly underlyingBrowser: Puppeteer.Browser,
+        private readonly underlyingBrowser: Playwright.Browser,
         private readonly onClose?: () => Promise<void>,
     ) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
@@ -163,7 +163,7 @@ function onBrowserDisconnected(): void {
             - BrowserController's browser instance was .close() or .disconnect()ed without going through BrowserController.tearDown()
             - Chromium crashed (this is most commonly an out-of-memory issue)`;
 
-    // This is best-effort - in many/most cases, a disconnected browser will cause an async puppeteer operation in
+    // This is best-effort - in many/most cases, a disconnected browser will cause an async Playwright operation in
     // progress to fail (causing a test failure with a less useful error message) before this handler gets called.
     forceTestFailure(errorMessage);
 }
