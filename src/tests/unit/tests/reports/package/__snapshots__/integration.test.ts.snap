@@ -698,7 +698,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -919,7 +919,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -1483,7 +1483,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -1698,7 +1698,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -2232,7 +2232,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -3598,7 +3598,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -3812,7 +3812,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
@@ -4026,7 +4026,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                 </div>
                 <ul
-                  aria-label="failed instances with path, snippet and how to fix information"
+                  aria-label="instances with path, snippet and how to resolve information"
                   class="instanceDetailsList"
                   data-automation-id="cards-rule-content"
                 >
