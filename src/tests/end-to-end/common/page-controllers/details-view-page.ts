@@ -31,6 +31,11 @@ export class DetailsViewPage extends Page {
         await this.clickSelector('button[title="Assessment"]');
     }
 
+    public async closeNavTestLink(testName: string): Promise<void> {
+        await this.clickSelector(detailsViewSelectors.testNavLink(testName));
+        await this.waitForSelectorToDisappear(detailsViewSelectors.gettingStartedNavLink);
+    }
+
     public async navigateToTestRequirement(
         testName: string,
         requirementName: string,
@@ -39,6 +44,13 @@ export class DetailsViewPage extends Page {
         await this.waitForSelectorXPath(`//div[@name="${requirementName}"]`);
         await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
         await this.waitForSelectorXPath(`//h1[text()="${requirementName}"]`);
+    }
+
+    public async navigateToGettingStarted(testName: string): Promise<void> {
+        await this.clickSelector(detailsViewSelectors.testNavLink(testName));
+        await this.waitForSelectorXPath(`//div[@name="Getting Started"]`);
+        await this.clickSelector(detailsViewSelectors.gettingStartedNavLink);
+        await this.waitForSelectorXPath(`//h1/span[text()="${testName}"]`);
     }
 
     public async waitForVisualHelperState(

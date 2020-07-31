@@ -20,6 +20,7 @@ export const detailsViewSelectors = {
 
     testNavLink: (testName: string): string => `div [name="${testName}"]`,
     requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
+    gettingStartedNavLink: 'div [name="Getting Started"]',
 
     visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
 
@@ -36,6 +37,15 @@ export const detailsViewSelectors = {
     settingsButton: 'button[name="Settings"]',
 
     automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
+
+    commandBarMenuButton: 'button[aria-label="More items"]',
+    commandBarMenuButtonExpanded: (expanded: boolean) =>
+        `button[aria-label="More items"][aria-expanded=${expanded}`,
+
+    assessmentNavHamburgerButton:
+        'button[aria-label="Assessment - all tests and requirements list"]',
+    assessmentNavHamburgerButtonExpanded: (expanded: boolean) =>
+        `button[aria-label="Assessment - all tests and requirements list"][aria-expanded=${expanded}]`,
 };
 
 export const fastPassAutomatedChecksSelectors = {
