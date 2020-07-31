@@ -18,6 +18,7 @@ import {
     ToolData,
     UnifiedResult,
     UnifiedRule,
+    UnifiedScanTestType,
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -186,6 +187,7 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     screenshotData?: ScreenshotData;
     platformInfo?: PlatformData;
     notificationText?: string;
+    testType: UnifiedScanTestType;
 }
 
 export interface RuleExpandCollapsePayload extends BaseActionPayload {
