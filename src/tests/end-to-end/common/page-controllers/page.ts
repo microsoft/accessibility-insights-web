@@ -33,18 +33,6 @@ export class Page {
             return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
         }
 
-        underlyingPage.on('error', error => {
-            if (
-                error.stack &&
-                error.stack.includes('Page crashed!') &&
-                options &&
-                options.onPageCrash
-            ) {
-                options.onPageCrash();
-            }
-
-            forceEventFailure(`'error': ${serializeError(error)}`);
-        });
         underlyingPage.on('pageerror', error => {
             if (
                 error.message.startsWith(
