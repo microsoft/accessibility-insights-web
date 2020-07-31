@@ -17,6 +17,7 @@ export class Browser {
     constructor(
         private readonly browserInstanceId: string,
         private readonly underlyingBrowser: Playwright.Browser,
+        private readonly underlyingContext: Playwright.BrowserContext,
         private readonly onClose?: () => Promise<void>,
     ) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
@@ -57,7 +58,6 @@ export class Browser {
 
     public async newTargetPage(urlOptions?: TargetPageUrlOptions): Promise<TargetPage> {
         const underlyingPage = await this.underlyingBrowser.newPage();
-        await underlyingPage.bringToFront();
         const tabId = await this.getActivePageTabId();
         const targetPage = new TargetPage(underlyingPage, tabId);
         this.pages.push(targetPage);
@@ -97,10 +97,9 @@ export class Browser {
 
     public async waitForDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
         const expectedUrl = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
-        const underlyingTarget = await this.underlyingBrowser.waitForTarget(
-            t => t.url().toLowerCase() === expectedUrl.toLowerCase(),
-        );
-        const underlyingPage = await underlyingTarget.page();
+        const isMatch = (p: Playwright.Page) => p.url().toLowerCase() === expectedUrl.toLowerCase();
+
+        const underlyingPage = await this.waitForVisiblePageMatching(isMatch);
         const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
         this.pages.push(page);
         return page;
@@ -139,6 +138,25 @@ export class Browser {
                     resolve(tabs[0].id),
                 );
             });
+        });
+    }
+
+    private async waitForVisiblePageMatching(
+        predicate: (candidate: Playwright.Page) => boolean,
+    ): Promise<Playwright.Page> {
+        const existingMatches = this.underlyingContext.pages().filter(predicate);
+        if (existingMatches.length > 0) {
+            return existingMatches[0];
+        }
+
+        return await new Promise(resolve => {
+            const onNewPage = async newPage => {
+                if (predicate(newPage)) {
+                    this.underlyingContext.off('page', onNewPage);
+                    resolve(newPage);
+                }
+            };
+            this.underlyingContext.on('page', onNewPage);
         });
     }
 
