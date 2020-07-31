@@ -6,7 +6,7 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from 'DetailsView/components/details-view-right-panel';
-import { DialogStateSetter } from 'DetailsView/components/start-over-dialog';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import {
     DropdownDirection,
     StartOverDropdown,
@@ -25,7 +25,7 @@ export type StartOverFactoryProps = {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
     dropdownDirection: DropdownDirection;
-    setDialogState: DialogStateSetter;
+    openDialog: (dialogType: StartOverDialogType) => void;
 };
 
 export function getStartOverComponentForAssessment(props: StartOverFactoryProps): JSX.Element {
@@ -35,7 +35,7 @@ export function getStartOverComponentForAssessment(props: StartOverFactoryProps)
         testName: test.title,
         rightPanelConfiguration: props.rightPanelConfiguration,
         dropdownDirection: props.dropdownDirection,
-        setDialogState: props.setDialogState,
+        openDialog: props.openDialog,
     };
 
     return <StartOverDropdown {...startOverProps} />;

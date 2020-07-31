@@ -5,7 +5,7 @@ import { ContextualMenu, DirectionalHint, IContextualMenuItem } from 'office-ui-
 import * as React from 'react';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { DialogStateSetter } from 'DetailsView/components/start-over-dialog';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 
 export interface StartOverState {
@@ -17,7 +17,7 @@ export interface StartOverProps {
     testName: string;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     dropdownDirection: DropdownDirection;
-    setDialogState: DialogStateSetter;
+    openDialog: (dialogType: StartOverDialogType) => void;
 }
 
 const dropdownDirections = {
@@ -100,11 +100,11 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     private onStartOverTestMenu = (): void => {
-        this.props.setDialogState('test');
+        this.props.openDialog('test');
     };
 
     private onStartOverAllTestsMenu = (): void => {
-        this.props.setDialogState('assessment');
+        this.props.openDialog('assessment');
     };
 
     private openDropdown = (event): void => {

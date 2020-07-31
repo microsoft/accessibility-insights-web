@@ -8,8 +8,9 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 
-export type StartOverDialogState = 'none' | 'assessment' | 'test';
-export type DialogStateSetter = (dialogState: StartOverDialogState) => void;
+export type StartOverDialogType = 'assessment' | 'test';
+export const dialogClosedState = 'none';
+export type StartOverDialogState = StartOverDialogType | typeof dialogClosedState;
 
 export type StartOverDialogDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -20,11 +21,11 @@ export interface StartOverDialogProps {
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
     dialogState: StartOverDialogState;
-    setDialogState: DialogStateSetter;
+    dismissDialog: () => void;
 }
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
-    const { dialogState, deps, assessmentStoreData, assessmentsProvider, setDialogState } = props;
+    const { dialogState, deps, assessmentStoreData, assessmentsProvider, dismissDialog } = props;
 
     if (dialogState === 'none') {
         return null;
@@ -34,26 +35,24 @@ export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', 
     const testName = assessmentsProvider.forType(test).title;
     const requirementKey = assessmentStoreData.assessmentNavState.selectedTestSubview;
 
-    const closeDialog = () => setDialogState('none');
-
     const onStartTestOver = (event: React.MouseEvent<any>): void => {
         deps.detailsViewActionMessageCreator.startOverTest(event, test);
-        closeDialog();
+        dismissDialog();
     };
 
     const onStartOverAllTests = (event: React.MouseEvent<any>): void => {
         deps.detailsViewActionMessageCreator.startOverAllAssessments(event);
-        closeDialog();
+        dismissDialog();
     };
 
     const onCancelStartOver = (event: React.MouseEvent<any>) => {
         deps.detailsViewActionMessageCreator.cancelStartOver(event, test, requirementKey);
-        closeDialog();
+        dismissDialog();
     };
 
     const onCancelStartOverAllTests = (event: React.MouseEvent<any>) => {
         deps.detailsViewActionMessageCreator.cancelStartOverAllAssessments(event);
-        closeDialog();
+        dismissDialog();
     };
 
     const dialogPropsOptions = {

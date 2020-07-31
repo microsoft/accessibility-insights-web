@@ -28,9 +28,11 @@ import {
     StartOverFactoryProps,
 } from 'DetailsView/components/start-over-component-factory';
 import {
+    dialogClosedState,
     StartOverDialog,
     StartOverDialogProps,
     StartOverDialogState,
+    StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
 import { DropdownDirection } from 'DetailsView/components/start-over-dropdown';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -198,15 +200,18 @@ export class DetailsViewCommandBar extends React.Component<
         });
     }
 
-    private setStartOverDialogState = (dialogState: StartOverDialogState) => {
+    private showStartOverDialog = (dialogState: StartOverDialogType) => {
         this.setState({ startOverDialogState: dialogState });
     };
+
+    private dismissStartOverDialog = () =>
+        this.setState({ startOverDialogState: dialogClosedState });
 
     private renderStartOverComponent = (dropdownDirection: DropdownDirection) => {
         const startOverFactoryProps: StartOverFactoryProps = {
             ...this.props,
             dropdownDirection,
-            setDialogState: this.setStartOverDialogState,
+            openDialog: this.showStartOverDialog,
         };
         return this.props.switcherNavConfiguration.StartOverComponentFactory(startOverFactoryProps);
     };
@@ -215,7 +220,7 @@ export class DetailsViewCommandBar extends React.Component<
         const dialogProps: StartOverDialogProps = {
             ...this.props,
             dialogState: this.state.startOverDialogState,
-            setDialogState: this.setStartOverDialogState,
+            dismissDialog: this.dismissStartOverDialog,
         };
 
         return <StartOverDialog {...dialogProps} />;

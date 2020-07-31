@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { DialogStateSetter } from 'DetailsView/components/start-over-dialog';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import {
     StartOverDropdown,
@@ -15,21 +15,21 @@ import {
 
 describe('StartOverDropdownTest', () => {
     let defaultProps: StartOverProps;
-    let setDialogStateMock: IMock<DialogStateSetter>;
+    let openDialogMock: IMock<(dialogType: StartOverDialogType) => void>;
 
     const event = {
         currentTarget: 'test target',
     } as React.MouseEvent<any>;
 
     beforeEach(() => {
-        setDialogStateMock = Mock.ofInstance(() => null);
+        openDialogMock = Mock.ofInstance(() => null);
         defaultProps = {
             testName: 'test name',
             rightPanelConfiguration: {
                 GetStartOverContextualMenuItemKeys: () => ['assessment', 'test'],
             } as DetailsRightPanelConfiguration,
             dropdownDirection: 'down',
-            setDialogState: setDialogStateMock.object,
+            openDialog: openDialogMock.object,
         };
     });
 
@@ -67,7 +67,7 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should open the start test over dialog', () => {
-        setDialogStateMock.setup(sds => sds('test')).verifiable(Times.once());
+        openDialogMock.setup(sds => sds('test')).verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(InsightsCommandButton).simulate('click', event);
@@ -77,11 +77,11 @@ describe('StartOverDropdownTest', () => {
             .find(elem => elem.key === 'test')
             .onClick();
 
-        setDialogStateMock.verifyAll();
+        openDialogMock.verifyAll();
     });
 
     it('should open the start assessment over dialog', () => {
-        setDialogStateMock.setup(sds => sds('assessment')).verifiable(Times.once());
+        openDialogMock.setup(sds => sds('assessment')).verifiable(Times.once());
 
         const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(InsightsCommandButton).simulate('click', event);
@@ -91,7 +91,7 @@ describe('StartOverDropdownTest', () => {
             .find(elem => elem.key === 'assessment')
             .onClick();
 
-        setDialogStateMock.verifyAll();
+        openDialogMock.verifyAll();
     });
 
     it('should dismiss the contextMenu', () => {
