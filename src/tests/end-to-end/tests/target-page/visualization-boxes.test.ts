@@ -38,7 +38,6 @@ describe('Target Page visualization boxes', () => {
 
             await targetPage.waitForSelectorInShadowRoot(
                 TargetPageInjectedComponentSelectors.insightsVisualizationBox,
-                { visible: true },
             );
 
             const results = await scanForAccessibilityIssues(

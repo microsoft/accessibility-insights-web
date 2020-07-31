@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Playwright from 'playwright';
+import { WaitForSelectorOptions } from 'tests/end-to-end/common/playwright-option-types';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
     detailsViewSelectors,
@@ -55,7 +56,7 @@ export class DetailsViewPage extends Page {
 
     public async waitForVisualHelperState(
         state: 'On' | 'Off' | 'disabled',
-        waitOptions?: Playwright.WaitForSelectorOptions,
+        waitOptions?: WaitForSelectorOptions,
     ): Promise<void> {
         const selectorStateSuffix = {
             On: ':not([disabled])[aria-checked="true"]',
@@ -73,7 +74,7 @@ export class DetailsViewPage extends Page {
         requirementName: string,
         requirementIndex: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
-        waitOptions?: Playwright.WaitForSelectorOptions,
+        waitOptions?: WaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForSelector(
             detailsViewSelectors.requirementWithStatus(requirementName, requirementIndex, status),
