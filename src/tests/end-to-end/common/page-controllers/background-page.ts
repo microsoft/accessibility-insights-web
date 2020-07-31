@@ -18,6 +18,7 @@ export class BackgroundPage extends Page {
                 const initialized = window.insightsUserConfiguration != undefined;
                 return initialized;
             },
+            null,
             { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, polling: POLLING_INTERVAL_MS },
         );
     }

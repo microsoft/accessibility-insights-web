@@ -3,7 +3,8 @@
 import { ElementHandle } from 'playwright';
 import * as Playwright from 'playwright';
 
-import { formatChildElementForSnapshot } from 'tests/common/element-snapshot-formatter';
+import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
+import { WaitForSelectorOptions } from 'tests/end-to-end/common/playwright-option-types';
 import { getTestResourceUrl } from '../test-resources';
 import { Page, PageOptions } from './page';
 
@@ -37,23 +38,23 @@ export class TargetPage extends Page {
 
     public async waitForSelectorInShadowRoot(
         selector: string,
-        options?: Playwright.WaitForSelectorOptions,
+        options?: WaitForSelectorOptions,
     ): Promise<Playwright.JSHandle<any>> {
-        const shadowRoot = await this.waitForShadowRoot();
-        return this.waitForDescendentSelector(shadowRoot, selector, options);
+        return await this.waitForSelector('#insights-shadow-host ' + selector, options);
     }
 
     public async clickSelectorInShadowRoot(selector: string): Promise<void> {
-        const shadowRoot = await this.waitForShadowRoot();
-        await this.clickDescendentSelector(shadowRoot, selector, { visible: true });
+        await this.clickSelector('#insights-shadow-host ' + selector);
     }
 
     public async waitForShadowRoot(): Promise<ElementHandle<Element>> {
-        return await this.waitForShadowRootOfSelector('#insights-shadow-host');
+        return await this.waitForSelector('#insights-shadow-host #insights-shadow-container');
     }
 
     public async waitForShadowRootHtmlSnapshot(): Promise<Node> {
-        const shadowRoot = await this.waitForShadowRoot();
-        return await formatChildElementForSnapshot(shadowRoot, '#insights-shadow-container');
+        return await formatPageElementForSnapshot(
+            this,
+            '#insights-shadow-host #insights-shadow-container',
+        );
     }
 }
