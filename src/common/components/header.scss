@@ -12,7 +12,7 @@
     align-content: stretch;
 
     background-color: $ada-brand-color;
-    height: $detailsViewHeaderBarHeight;
+    min-height: $detailsViewHeaderBarHeight;
     width: 100%;
 
     :global(.header-icon) {
