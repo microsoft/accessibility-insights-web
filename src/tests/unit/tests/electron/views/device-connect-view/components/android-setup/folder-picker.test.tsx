@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { OpenDialogOptions } from 'electron';
 import {
     FolderPicker,
@@ -10,7 +11,6 @@ import { PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { Logger } from 'common/logging/logger';
 
 describe('FolderPicker', () => {
     let loggerMock: IMock<Logger>;
