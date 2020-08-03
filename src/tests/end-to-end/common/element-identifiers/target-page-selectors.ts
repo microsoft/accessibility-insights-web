@@ -4,7 +4,7 @@ export const TargetPageInjectedComponentSelectors = {
     insightsRootContainer: '#accessibility-insights-root-container',
     failureLabel: '.failure-label',
     issueDialog: '.insights-dialog-main-container',
-    insightsVisualizationBox: '.insights-highlight-container',
+    insightsVisualizationContainer: '.insights-highlight-container',
     tabStopVisulizationStart: '.insights-tab-stops',
 };
 

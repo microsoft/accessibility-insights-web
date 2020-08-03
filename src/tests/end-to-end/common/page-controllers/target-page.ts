@@ -48,7 +48,9 @@ export class TargetPage extends Page {
     }
 
     public async waitForShadowRoot(): Promise<ElementHandle<Element>> {
-        return await this.waitForSelector('#insights-shadow-host #insights-shadow-container');
+        return await this.waitForSelector('#insights-shadow-host #insights-shadow-container', {
+            state: 'attached',
+        });
     }
 
     public async waitForShadowRootHtmlSnapshot(): Promise<Node> {
