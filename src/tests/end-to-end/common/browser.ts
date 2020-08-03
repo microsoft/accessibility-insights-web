@@ -4,7 +4,11 @@ import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
-import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
+import {
+    BackgroundPage,
+    hasBackgroundPageUrl,
+    isBackgroundPageUrl,
+} from './page-controllers/background-page';
 import { ContentPage, contentPageRelativeUrl } from './page-controllers/content-page';
 import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/details-view-page';
 import { Page } from './page-controllers/page';
@@ -37,17 +41,7 @@ export class Browser {
             return this.memoizedBackgroundPage;
         }
 
-        const apiSupported = (this.underlyingBrowserContext as any).backgroundPages != undefined;
-        if (!apiSupported) {
-            // Tracking issue for native Playwright support: https://github.com/microsoft/playwright/issues/2874
-            // Suggested workaround for Firefox: https://github.com/microsoft/playwright/issues/2644#issuecomment-647842059
-            throw new Error("Don't know how to query for backgroundPages() in non-Chromium");
-        }
-
-        const allBackgroundPages = (this
-            .underlyingBrowserContext as ChromiumBrowserContext).backgroundPages();
-
-        const ourBackgroundPage = allBackgroundPages.filter(hasBackgroundPageUrl)[0];
+        const ourBackgroundPage = await this.waitForBackgroundPageMatching(hasBackgroundPageUrl);
 
         this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
             onPageCrash: this.onPageCrash,
@@ -146,6 +140,35 @@ export class Browser {
                     resolve(tabs[0].id),
                 );
             });
+        });
+    }
+
+    private async waitForBackgroundPageMatching(
+        predicate: (candidate: Playwright.Page) => boolean,
+    ): Promise<Playwright.Page> {
+        const apiSupported = (this.underlyingBrowserContext as any).backgroundPages != undefined;
+        if (!apiSupported) {
+            // Tracking issue for native Playwright support: https://github.com/microsoft/playwright/issues/2874
+            // Suggested workaround for Firefox: https://github.com/microsoft/playwright/issues/2644#issuecomment-647842059
+            throw new Error("Don't know how to query for backgroundPages() in non-Chromium");
+        }
+        const context = this.underlyingBrowserContext as ChromiumBrowserContext;
+
+        const allBackgroundPages = context.backgroundPages();
+
+        const existingMatches = allBackgroundPages.filter(hasBackgroundPageUrl);
+        if (existingMatches.length > 0) {
+            return existingMatches[0];
+        }
+
+        return await new Promise(resolve => {
+            const onNewPage = async newPage => {
+                if (predicate(newPage)) {
+                    context.off('backgroundpage', onNewPage);
+                    resolve(newPage);
+                }
+            };
+            context.on('backgroundpage', onNewPage);
         });
     }
 
