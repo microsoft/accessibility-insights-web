@@ -3,6 +3,7 @@
 exports[`OverviewContainer component is defined and matches snapshot 1`] = `
 <div
   className="overview"
+  data-automation-id="overviewContainerAutomationId"
 >
   <TargetChangeDialog
     deps={
@@ -29,7 +30,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
     prevTab={Object {}}
   />
   <section
-    className="overview-text-summary-section"
+    className="overviewTextSummarySection"
   >
     <OverviewHeading />
     <AssessmentReportSummary />

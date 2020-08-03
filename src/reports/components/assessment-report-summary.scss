@@ -1,20 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/fonts.scss';
+@import '../../common/styles/common.scss';
 
 .assessment-report-summary {
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
-    h2 {
+    width: 100%;
+
+    > h2 {
         font-family: $fontFamily;
         font-size: 21px;
         margin: 0px;
         line-height: 32px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: $primary-text;
+        margin: 0px;
     }
-    h3 {
+
+    .test-details-text {
+        @include h3;
+
+        line-height: 24px;
+        color: $primary-text;
         font-family: $fontFamily;
-        font-size: 17px;
         margin: 16px 0px 21px 0px;
     }
 }
