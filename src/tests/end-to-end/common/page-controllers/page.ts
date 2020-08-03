@@ -12,7 +12,6 @@ import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { screenshotOnError } from '../screenshot-on-error';
 import {
-    DEFAULT_CLICK_HOVER_DELAY_MS,
     DEFAULT_CLICK_MOUSEUP_DELAY_MS,
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,

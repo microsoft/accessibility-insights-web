@@ -3,10 +3,7 @@
 import { narrowModeThresholds } from 'DetailsView/components/narrow-mode-detector';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import {
-    detailsViewSelectors,
-    navMenuSelectors,
-} from '../../common/element-identifiers/details-view-selectors';
+import { navMenuSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
