@@ -3,7 +3,7 @@
 import { Page } from '../end-to-end/common/page-controllers/page';
 
 export async function formatPageElementForSnapshot(page: Page, selector: string): Promise<Node> {
-    const outerHtml = await page.getOuterHTMLOfSelector(selector);
+    const outerHtml = await page.getOuterHTMLOfSelector(selector, { state: 'attached' });
     return formatHtmlForSnapshot(outerHtml);
 }
 

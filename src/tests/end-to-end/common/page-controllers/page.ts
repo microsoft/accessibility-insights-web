@@ -215,10 +215,14 @@ export class Page {
         });
     }
 
-    public async getOuterHTMLOfSelector(selector: string): Promise<string> {
+    public async getOuterHTMLOfSelector(
+        selector: string,
+        options?: WaitForSelectorOptions,
+    ): Promise<string> {
         return await this.screenshotOnError(async () => {
             const element = await this.underlyingPage.waitForSelector(selector, {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+                ...options,
             });
             return await this.underlyingPage.evaluate(el => el.outerHTML, element);
         });
