@@ -16,26 +16,29 @@ import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
 
+const issuesTestKey = AdHocTestkeys.Issues;
+const needsReviewTestKey = AdHocTestkeys.NeedsReview;
+
 const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: null,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forIssuesAnalyzerScan,
-    key: AdHocTestkeys.Issues,
+    key: issuesTestKey,
     testType: VisualizationType.Issues,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
-    key: AdHocTestkeys.Issues,
+    key: issuesTestKey,
     testMode: TestMode.Adhoc,
     getTestView: props => (
         <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...props} />
     ),
-    getStoreData: data => data.adhoc.issues,
+    getStoreData: data => data.adhoc[issuesTestKey],
     enableTest: (data, _) => {
-        data.adhoc.issues.enabled = true;
-        data.adhoc[AdHocTestkeys.NeedsReview].enabled = false;
+        data.adhoc[issuesTestKey].enabled = true;
+        data.adhoc[needsReviewTestKey].enabled = false;
     },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
@@ -62,7 +65,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 1,
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScan(issuesRuleAnalyzerConfiguration),
-    getIdentifier: () => AdHocTestkeys.Issues,
+    getIdentifier: () => issuesTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) =>
         getNotificationMessage(selectorMap, warnings),
