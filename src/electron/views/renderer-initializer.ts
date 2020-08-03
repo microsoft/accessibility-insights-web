@@ -526,6 +526,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             closeApp: ipcRendererShim.closeWindow,
             startTesting: startTesting,
             showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
+            logger,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
