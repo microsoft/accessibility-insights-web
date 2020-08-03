@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
+import * as styles from 'reports/components/assessment-summary-details.scss';
 import { AssessmentSummaryReportModel } from '../assessment-report-model';
 import { OutcomeChipSet } from './outcome-chip-set';
 import { OutcomeIconSet } from './outcome-icon-set';
@@ -13,8 +13,8 @@ export interface AssessmentSummaryDetailsProps {
 export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryDetailsProps> {
     public render(): JSX.Element {
         return (
-            <div role="table" className="assessment-summary-details">
-                <div role="rowgroup" className="assessment-summary-details-body">
+            <div role="table" className={styles.assessmentSummaryDetails}>
+                <div role="rowgroup" className={styles.assessmentSummaryDetailsBody}>
                     {this.getTestDetailsList(this.props.testSummaries)}
                 </div>
             </div>
@@ -22,21 +22,21 @@ export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryD
     }
 
     private getTestDetailsList(summaries: AssessmentSummaryReportModel[]): JSX.Element[] {
-        return summaries.map(testSummary => (
+        return summaries.map(summary => (
             <div
                 role="row"
-                key={testSummary.displayName}
-                className="assessment-summary-details-row"
+                key={summary.displayName}
+                className={styles.assessmentSummaryDetailsRow}
             >
-                <div className="test-summary">
-                    <div role="cell" className="test-summary-display-name">
-                        {testSummary.displayName}
+                <div className={styles.testSummary}>
+                    <div role="cell" className={styles.testSummaryDisplayName}>
+                        {summary.displayName}
                     </div>
-                    <div role="cell" className="test-summary-status">
-                        {testSummary.pass + testSummary.incomplete + testSummary.fail > 7 ? (
-                            <OutcomeChipSet {...testSummary} />
+                    <div role="cell" className={styles.testSummaryStatus}>
+                        {summary.pass + summary.incomplete + summary.fail > 7 ? (
+                            <OutcomeChipSet {...summary} />
                         ) : (
-                            <OutcomeIconSet {...testSummary} />
+                            <OutcomeIconSet {...summary} />
                         )}
                     </div>
                 </div>

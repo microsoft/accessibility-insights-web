@@ -2,28 +2,28 @@
 
 exports[`AssessmentSummaryDetails render Correct composition 1`] = `
 <div
-  className="assessment-summary-details"
+  className="assessmentSummaryDetails"
   role="table"
 >
   <div
-    className="assessment-summary-details-body"
+    className="assessmentSummaryDetailsBody"
     role="rowgroup"
   >
     <div
-      className="assessment-summary-details-row"
+      className="assessmentSummaryDetailsRow"
       role="row"
     >
       <div
-        className="test-summary"
+        className="testSummary"
       >
         <div
-          className="test-summary-display-name"
+          className="testSummaryDisplayName"
           role="cell"
         >
           Assessment1
         </div>
         <div
-          className="test-summary-status"
+          className="testSummaryStatus"
           role="cell"
         >
           <OutcomeIconSet
@@ -36,20 +36,20 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
       </div>
     </div>
     <div
-      className="assessment-summary-details-row"
+      className="assessmentSummaryDetailsRow"
       role="row"
     >
       <div
-        className="test-summary"
+        className="testSummary"
       >
         <div
-          className="test-summary-display-name"
+          className="testSummaryDisplayName"
           role="cell"
         >
           Assessment2
         </div>
         <div
-          className="test-summary-status"
+          className="testSummaryStatus"
           role="cell"
         >
           <OutcomeIconSet
@@ -67,28 +67,28 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
 
 exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1`] = `
 <div
-  className="assessment-summary-details"
+  className="assessmentSummaryDetails"
   role="table"
 >
   <div
-    className="assessment-summary-details-body"
+    className="assessmentSummaryDetailsBody"
     role="rowgroup"
   >
     <div
-      className="assessment-summary-details-row"
+      className="assessmentSummaryDetailsRow"
       role="row"
     >
       <div
-        className="test-summary"
+        className="testSummary"
       >
         <div
-          className="test-summary-display-name"
+          className="testSummaryDisplayName"
           role="cell"
         >
           test
         </div>
         <div
-          className="test-summary-status"
+          className="testSummaryStatus"
           role="cell"
         >
           <OutcomeChipSet
@@ -106,28 +106,28 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1
 
 exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1`] = `
 <div
-  className="assessment-summary-details"
+  className="assessmentSummaryDetails"
   role="table"
 >
   <div
-    className="assessment-summary-details-body"
+    className="assessmentSummaryDetailsBody"
     role="rowgroup"
   >
     <div
-      className="assessment-summary-details-row"
+      className="assessmentSummaryDetailsRow"
       role="row"
     >
       <div
-        className="test-summary"
+        className="testSummary"
       >
         <div
-          className="test-summary-display-name"
+          className="testSummaryDisplayName"
           role="cell"
         >
           test
         </div>
         <div
-          className="test-summary-status"
+          className="testSummaryStatus"
           role="cell"
         >
           <OutcomeIconSet

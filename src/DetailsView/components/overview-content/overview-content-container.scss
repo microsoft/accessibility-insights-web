@@ -10,3 +10,18 @@
         margin-bottom: 40px;
     }
 }
+
+.overview {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-left: 32px;
+    .overview-text-summary-section {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 50%;
+        align-items: flex-start;
+        width: 90%;
+        margin-right: 32px;
+    }
+}

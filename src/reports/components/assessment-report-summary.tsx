@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
+import * as styles from 'reports/components/assessment-report-summary.scss';
 import { OverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
 import { OutcomeSummaryBar } from './outcome-summary-bar';
@@ -14,14 +14,14 @@ export interface AssessmentReportSummaryProps {
 export class AssessmentReportSummary extends React.Component<AssessmentReportSummaryProps> {
     public render(): JSX.Element {
         return (
-            <div className="assessment-report-summary">
+            <div className={styles.assessmentReportSummary}>
                 <h2>Summary</h2>
                 <OutcomeSummaryBar
                     outcomeStats={this.props.summary.byPercentage}
                     countSuffix="%"
                     allOutcomeTypes={allRequirementOutcomeTypes}
                 />
-                <h3 className="test-details-text">Test details</h3>
+                <h3 className={styles.testDetailsText}>Test details</h3>
                 {this.renderDetails()}
             </div>
         );
