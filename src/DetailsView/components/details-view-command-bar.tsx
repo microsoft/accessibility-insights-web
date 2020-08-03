@@ -82,6 +82,7 @@ export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarState
 > {
     private exportDialogCloseFocus?: IButton;
+    private startOverDialogCloseFocus?: IButton;
 
     public constructor(props) {
         super(props);
@@ -157,7 +158,10 @@ export class DetailsViewCommandBar extends React.Component<
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
                 renderStartOverButton={this.renderStartOverComponent}
-                buttonRef={ref => (this.exportDialogCloseFocus = ref)}
+                buttonRef={ref => {
+                    this.exportDialogCloseFocus = ref;
+                    this.startOverDialogCloseFocus = ref;
+                }}
             />
         );
     }
@@ -204,14 +208,18 @@ export class DetailsViewCommandBar extends React.Component<
         this.setState({ startOverDialogState: dialogState });
     };
 
-    private dismissStartOverDialog = () =>
+    private dismissStartOverDialog = () => {
         this.setState({ startOverDialogState: dialogClosedState });
+    };
+
+    private focusStartOverButton = () => this.startOverDialogCloseFocus?.focus();
 
     private renderStartOverComponent = (dropdownDirection: DropdownDirection) => {
         const startOverFactoryProps: StartOverFactoryProps = {
             ...this.props,
             dropdownDirection,
             openDialog: this.showStartOverDialog,
+            buttonRef: ref => (this.startOverDialogCloseFocus = ref),
         };
         return this.props.switcherNavConfiguration.StartOverComponentFactory(startOverFactoryProps);
     };
@@ -221,6 +229,7 @@ export class DetailsViewCommandBar extends React.Component<
             ...this.props,
             dialogState: this.state.startOverDialogState,
             dismissDialog: this.dismissStartOverDialog,
+            afterDialogDismissed: this.focusStartOverButton,
         };
 
         return <StartOverDialog {...dialogProps} />;

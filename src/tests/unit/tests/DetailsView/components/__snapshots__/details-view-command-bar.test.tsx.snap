@@ -15,7 +15,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
     </StyledTooltipHostBase>
   </div>
   <CommandBarButtonsMenu renderExportReportButton={[Function]} renderStartOverButton={[Function]} buttonRef={[Function: buttonRef]} />
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -71,7 +71,7 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -124,7 +124,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -177,7 +177,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -198,7 +198,7 @@ exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -219,7 +219,7 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"test\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"test\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -271,7 +271,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;
 
@@ -316,6 +316,6 @@ exports[`DetailsViewCommandBar renders without export button, without start over
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} afterDialogDismissed={[Function]} />
 </div>"
 `;

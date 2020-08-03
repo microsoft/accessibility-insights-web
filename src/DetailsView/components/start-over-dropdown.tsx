@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
-import { ContextualMenu, DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react';
+import {
+    ContextualMenu,
+    DirectionalHint,
+    IButton,
+    IContextualMenuItem,
+    IRefObject,
+} from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
@@ -18,6 +24,7 @@ export interface StartOverProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
+    buttonRef: IRefObject<IButton>;
 }
 
 const dropdownDirections = {
@@ -56,6 +63,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
                     menuIconProps={{
                         iconName: dropdownDirections[direction].iconName,
                     }}
+                    componentRef={this.props.buttonRef}
                 />
                 {this.renderContextMenu()}
             </div>

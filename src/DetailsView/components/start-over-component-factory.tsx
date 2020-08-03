@@ -12,6 +12,7 @@ import {
     StartOverDropdown,
     StartOverProps,
 } from 'DetailsView/components/start-over-dropdown';
+import { IButton, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type StartOverFactoryDeps = {
@@ -26,6 +27,7 @@ export type StartOverFactoryProps = {
     visualizationStoreData: VisualizationStoreData;
     dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
+    buttonRef: IRefObject<IButton>;
 };
 
 export function getStartOverComponentForAssessment(props: StartOverFactoryProps): JSX.Element {
@@ -36,6 +38,7 @@ export function getStartOverComponentForAssessment(props: StartOverFactoryProps)
         rightPanelConfiguration: props.rightPanelConfiguration,
         dropdownDirection: props.dropdownDirection,
         openDialog: props.openDialog,
+        buttonRef: props.buttonRef,
     };
 
     return <StartOverDropdown {...startOverProps} />;

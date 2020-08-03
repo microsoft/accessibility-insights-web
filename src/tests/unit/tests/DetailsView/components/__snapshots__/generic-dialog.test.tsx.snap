@@ -11,3 +11,15 @@ exports[`GenericDialogTest should render 1`] = `
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>"
 `;
+
+exports[`GenericDialogTest should render with isHidden=true 1`] = `
+"<StyledWithResponsiveMode hidden={true} onDismiss={[Function: onCancelButtonClick]} dialogContentProps={{...}} modalProps={{...}}>
+  <div className=\\"start-over-dialog-body\\">
+    test message
+  </div>
+  <StyledDialogFooterBase>
+    <CustomizedPrimaryButton onClick={[Function: onPrimaryButtonClick]} text=\\"test primary text\\" />
+    <CustomizedDefaultButton onClick={[Function: onCancelButtonClick]} text=\\"Cancel\\" autoFocus={true} />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>"
+`;

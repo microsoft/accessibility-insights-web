@@ -19,6 +19,7 @@ describe('StartOverDialog', () => {
     let props: StartOverDialogProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let dismissDialogMock: IMock<() => void>;
+    let afterDialogDismissedMock: IMock<() => void>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let assessmentStoreData: AssessmentStoreData;
 
@@ -35,6 +36,7 @@ describe('StartOverDialog', () => {
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         dismissDialogMock = Mock.ofInstance(() => null);
+        afterDialogDismissedMock = Mock.ofInstance(() => null);
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>();
         assessmentsProviderMock.setup(ap => ap.forType(test)).returns(() => assessmentStub);
         assessmentStoreData = {
@@ -50,6 +52,7 @@ describe('StartOverDialog', () => {
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             dismissDialog: dismissDialogMock.object,
+            afterDialogDismissed: afterDialogDismissedMock.object,
         } as StartOverDialogProps;
     });
 
@@ -63,6 +66,16 @@ describe('StartOverDialog', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         },
     );
+
+    it('afterDialogDismissed is called', () => {
+        props.dialogState = 'none';
+
+        const wrapper = shallow(<StartOverDialog {...props} />);
+        wrapper.prop('afterDismissed')();
+
+        detailsViewActionMessageCreatorMock.verifyAll();
+        dismissDialogMock.verifyAll();
+    });
 
     describe('with dialogState = test', () => {
         beforeEach(() => {
