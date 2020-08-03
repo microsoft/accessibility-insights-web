@@ -6,4 +6,5 @@ import { UnifiedScanCompletedPayload } from './action-payloads';
 export class UnifiedScanResultActions {
     public readonly scanCompleted = new Action<UnifiedScanCompletedPayload>();
     public readonly getCurrentState = new Action();
+    public readonly startScan = new Action();
 }

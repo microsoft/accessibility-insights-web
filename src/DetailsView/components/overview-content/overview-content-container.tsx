@@ -54,6 +54,8 @@ export interface OverviewContainerProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
+export const overviewContainerAutomationId = 'overviewContainerAutomationId';
+
 export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
     const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
     const {
@@ -78,9 +80,9 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
     );
 
     return (
-        <div className="overview">
+        <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>
             <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
-            <section className="overview-text-summary-section">
+            <section className={styles.overviewTextSummarySection}>
                 <OverviewHeading />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
