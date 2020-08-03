@@ -4,11 +4,7 @@ import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
-import {
-    BackgroundPage,
-    hasBackgroundPageUrl,
-    isBackgroundPageUrl,
-} from './page-controllers/background-page';
+import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
 import { ContentPage, contentPageRelativeUrl } from './page-controllers/content-page';
 import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/details-view-page';
 import { Page } from './page-controllers/page';
