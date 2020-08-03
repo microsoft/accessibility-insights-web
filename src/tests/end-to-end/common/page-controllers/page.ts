@@ -174,9 +174,12 @@ export class Page {
             await this.underlyingPage.waitForSelector(selector, {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             });
-            await this.underlyingPage.hover(selector);
-            await this.underlyingPage.waitForTimeout(DEFAULT_CLICK_HOVER_DELAY_MS);
-            await this.underlyingPage.click(selector, { delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
+            // await this.underlyingPage.hover(selector);
+            // await this.underlyingPage.waitForTimeout(DEFAULT_CLICK_HOVER_DELAY_MS);
+            await this.underlyingPage.click(selector, {
+                delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS,
+                timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+            });
         });
     }
 

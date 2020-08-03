@@ -3,7 +3,10 @@
 import { narrowModeThresholds } from 'DetailsView/components/narrow-mode-detector';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
+import {
+    detailsViewSelectors,
+    navMenuSelectors,
+} from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
@@ -28,19 +31,19 @@ describe('Details View -> Assessment -> Reflow', () => {
         }
     });
 
-    const commandBarButtonSelector = detailsViewSelectors.commandBarMenuButton;
+    const { commandBarMenuButtonSelectors, hamburgerMenuButtonSelectors } = navMenuSelectors;
+
     const commandBarWindowWidth = narrowModeThresholds.collapseCommandBarThreshold - 1;
-    const hamburgerButtonSelector = detailsViewSelectors.assessmentNavHamburgerButton;
     const hamburgerButtonWindowWidth = narrowModeThresholds.collapseHeaderAndNavThreshold - 1;
 
     describe.each`
-        componentName           | componentSelector           | width
-        ${'command bar button'} | ${commandBarButtonSelector} | ${commandBarWindowWidth}
-        ${'hamburger button'}   | ${hamburgerButtonSelector}  | ${hamburgerButtonWindowWidth}
-    `('With $componentName visible', ({ componentName, componentSelector, width }) => {
+        componentName           | componentSelectors               | width
+        ${'command bar button'} | ${commandBarMenuButtonSelectors} | ${commandBarWindowWidth}
+        ${'hamburger button'}   | ${hamburgerMenuButtonSelectors}  | ${hamburgerButtonWindowWidth}
+    `('With $componentName visible', ({ componentName, componentSelectors, width }) => {
         beforeAll(async () => {
             await detailsViewPage.setViewport(width, height);
-            await detailsViewPage.waitForSelector(componentSelector);
+            await detailsViewPage.waitForSelector(componentSelectors.collapsed);
         });
 
         it.each([true, false])(
@@ -52,11 +55,11 @@ describe('Details View -> Assessment -> Reflow', () => {
 
         describe(`with ${componentName} expanded`, () => {
             beforeAll(async () => {
-                await expandButton(componentSelector, true);
+                await setButtonExpandedState(componentSelectors, true);
             });
 
             afterAll(async () => {
-                await expandButton(componentSelector, false);
+                await setButtonExpandedState(componentSelectors, false);
             });
 
             it.each([true, false])(
@@ -76,8 +79,13 @@ describe('Details View -> Assessment -> Reflow', () => {
         expect(results).toHaveLength(0);
     }
 
-    async function expandButton(buttonSelector: string, expanded: boolean): Promise<void> {
-        await detailsViewPage.clickSelector(buttonSelector);
-        await detailsViewPage.waitForSelector(`${buttonSelector}[aria-expanded=${expanded}]`);
+    async function setButtonExpandedState(
+        buttonSelectors: { expanded: string; collapsed: string },
+        expanded: boolean,
+    ): Promise<void> {
+        const oldSelector = expanded ? buttonSelectors.collapsed : buttonSelectors.expanded;
+        const newSelector = expanded ? buttonSelectors.expanded : buttonSelectors.collapsed;
+        await detailsViewPage.clickSelector(oldSelector);
+        await detailsViewPage.waitForSelector(newSelector);
     }
 });
