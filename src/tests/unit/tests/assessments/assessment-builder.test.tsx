@@ -4,6 +4,7 @@ import { AssessmentBuilder } from 'assessments/assessment-builder';
 import { AssistedAssessment, ManualAssessment } from 'assessments/types/iassessment';
 import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { Requirement } from 'assessments/types/requirement';
+import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
 import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { cloneDeep } from 'lodash';
@@ -101,6 +102,15 @@ describe('AssessmentBuilderTest', () => {
         const scanData = { enabled: true, stepStatus: { key: true } } as AssessmentScanData;
         const vizStoreData = { assessments: { manualAssessmentKeyAssessment: scanData } } as any;
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
+
+        const testRequirement = 'testRequirement';
+        config.enableTest(vizStoreData, {
+            requirement: testRequirement,
+        } as AssessmentToggleActionPayload);
+        expect(vizStoreData.assessments.manualAssessmentKeyAssessment.enabled).toBe(true);
+        expect(
+            vizStoreData.assessments.manualAssessmentKeyAssessment.stepStatus[testRequirement],
+        ).toBe(true);
 
         expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement.key);
         expect(config.visualizationInstanceProcessor()).toBe(
@@ -273,6 +283,13 @@ describe('AssessmentBuilderTest', () => {
 
         config.getAnalyzer(providerMock.object, requirement5.key);
         config.getDrawer(drawerProviderMock.object, requirement5.key);
+
+        const testRequirement = 'testRequirement';
+        config.enableTest(vizStoreData, {
+            requirement: testRequirement,
+        } as AssessmentToggleActionPayload);
+        expect(vizStoreData.assessments.headingsAssessment.enabled).toBe(true);
+        expect(vizStoreData.assessments.headingsAssessment.stepStatus[testRequirement]).toBe(true);
 
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(

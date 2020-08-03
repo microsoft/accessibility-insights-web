@@ -16,22 +16,23 @@ import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 const { guidance } = content.headings;
+const headingsTestKey = AdHocTestkeys.Headings;
 
 const headingsRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['heading-order'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
-    key: AdHocTestkeys.Headings,
+    key: headingsTestKey,
     testType: VisualizationType.Headings,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
 export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
-    key: AdHocTestkeys.Headings,
+    key: headingsTestKey,
     testMode: TestMode.Adhoc,
-    getStoreData: data => data.adhoc.headings,
-    enableTest: data => (data.enabled = true),
+    getStoreData: data => data.adhoc[headingsTestKey],
+    enableTest: data => (data.adhoc[headingsTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
@@ -44,7 +45,7 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     launchPanelDisplayOrder: 3,
     adhocToolsPanelDisplayOrder: 3,
     getAnalyzer: provider => provider.createRuleAnalyzer(headingsRuleAnalyzerConfiguration),
-    getIdentifier: () => AdHocTestkeys.Headings,
+    getIdentifier: () => headingsTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No headings found' : null),
     getDrawer: provider => provider.createHeadingsDrawer(),

@@ -16,22 +16,23 @@ import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 const { guidance } = content.landmarks;
+const landmarksTestKey = AdHocTestkeys.Landmarks;
 
 const landmarkRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['unique-landmark'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
-    key: AdHocTestkeys.Landmarks,
+    key: landmarksTestKey,
     testType: VisualizationType.Landmarks,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
 export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
-    key: AdHocTestkeys.Landmarks,
+    key: landmarksTestKey,
     testMode: TestMode.Adhoc,
-    getStoreData: data => data.adhoc.landmarks,
-    enableTest: (data, _) => (data.enabled = true),
+    getStoreData: data => data.adhoc[landmarksTestKey],
+    enableTest: (data, _) => (data.adhoc[landmarksTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
@@ -44,7 +45,7 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     launchPanelDisplayOrder: 2,
     adhocToolsPanelDisplayOrder: 4,
     getAnalyzer: provider => provider.createRuleAnalyzer(landmarkRuleAnalyzerConfiguration),
-    getIdentifier: () => AdHocTestkeys.Landmarks,
+    getIdentifier: () => landmarksTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => (isEmpty(selectorMap) ? 'No landmarks found' : null),
     getDrawer: provider => provider.createLandmarksDrawer(),
