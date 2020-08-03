@@ -2,7 +2,7 @@
 
 exports[`GenericDialogTest should render 1`] = `
 "<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onCancelButtonClick]} dialogContentProps={{...}} modalProps={{...}}>
-  <div className=\\"start-over-dialog-body\\">
+  <div className=\\"dialogBody\\">
     test message
   </div>
   <StyledDialogFooterBase>
