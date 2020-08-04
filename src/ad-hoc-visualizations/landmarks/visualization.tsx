@@ -34,6 +34,7 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     enableTest: (data, _) => (data.enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
+    shouldShowExportReport: () => false,
     displayableData: {
         title: 'Landmarks',
         enableMessage: 'Finding landmarks...',
