@@ -187,7 +187,6 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     screenshotData?: ScreenshotData;
     platformInfo?: PlatformData;
     notificationText?: string;
-    testType: UnifiedScanTestType;
 }
 
 export interface RuleExpandCollapsePayload extends BaseActionPayload {

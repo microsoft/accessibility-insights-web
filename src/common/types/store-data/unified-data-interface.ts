@@ -67,10 +67,7 @@ export interface UnifiedScanResultStoreData {
     timestamp?: string;
     scanIncompleteWarnings?: ScanIncompleteWarningId[];
     screenshotData?: ScreenshotData;
-    testType: UnifiedScanTestType;
 }
-
-export type UnifiedScanTestType = 'automatedChecks' | 'needsReview';
 
 export interface InstancePropertyBag {
     [property: string]: any;

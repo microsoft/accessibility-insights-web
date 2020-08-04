@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ScanIncompleteWarningsTelemetryData } from 'common/extension-telemetry-events';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { UnifiedScanTestType } from 'common/types/store-data/unified-data-interface';
 import { FilterResults } from 'injected/analyzers/filter-results';
 import {
     NotificationTextCreator,
@@ -37,7 +36,6 @@ export class UnifiedResultSender {
             axeResults.originalResult,
             this.convertScanResultsToUnifiedResults.automatedChecksConversion,
             this.notificationTextCreator.automatedChecksText,
-            'automatedChecks',
         );
     };
 
@@ -46,7 +44,6 @@ export class UnifiedResultSender {
             this.filterNeedsReviewResults(axeResults.originalResult),
             this.convertScanResultsToUnifiedResults.needsReviewConversion,
             this.notificationTextCreator.needsReviewText,
-            'needsReview',
         );
     };
 
@@ -54,7 +51,6 @@ export class UnifiedResultSender {
         results: ScanResults,
         converter: ConvertScanResultsToUnifiedResultsDelegate,
         notificationMessage: TextGenerator,
-        testRun: UnifiedScanTestType,
     ) => {
         const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
@@ -80,7 +76,6 @@ export class UnifiedResultSender {
             scanIncompleteWarnings,
             telemetry,
             notificationText: notificationMessage(unifiedResults),
-            testType: testRun,
         };
 
         this.sendMessage({

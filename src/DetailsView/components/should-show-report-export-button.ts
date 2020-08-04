@@ -19,10 +19,7 @@ export function shouldShowReportExportButtonForFastpass(props: CommandBarProps):
 
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
 
-    if (
-        selectedTest !== VisualizationType.Issues ||
-        props.unifiedScanResultStoreData.testType !== 'automatedChecks'
-    ) {
+    if (selectedTest !== VisualizationType.Issues) {
         return false;
     }
 
