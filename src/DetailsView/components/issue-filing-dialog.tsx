@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ToolData } from 'common/types/store-data/unified-data-interface';
+import * as styles from 'DetailsView/components/common-dialog-styles.scss';
 import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
-
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
@@ -79,7 +79,7 @@ export class IssueFilingDialog extends React.Component<
                 }}
                 modalProps={{
                     isBlocking: false,
-                    containerClassName: 'insights-dialog-main-override',
+                    containerClassName: styles.insightsDialogMainOverride,
                     className: 'issue-filing-dialog',
                 }}
                 onDismiss={onClose}

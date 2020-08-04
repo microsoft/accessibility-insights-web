@@ -53,10 +53,6 @@ export abstract class WebExtensionBrowserAdapter
         chrome.windows.onFocusChanged.addListener(callback);
     }
 
-    public getRunTimeId(): string {
-        return chrome.runtime.id;
-    }
-
     public tabsQuery(query: Tabs.QueryQueryInfoType): Promise<Tabs.Tab[]> {
         return browser.tabs.query(query);
     }

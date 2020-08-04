@@ -19,6 +19,7 @@ import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { ExtensionDetailsViewController } from 'background/extension-details-view-controller';
@@ -757,6 +758,7 @@ describe('ActionCreatorTest', () => {
         };
         const disableActionName = 'disableVisualization';
         const enableActionName = 'enableVisualization';
+        const startScanActionName = 'startScan';
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [
@@ -765,8 +767,10 @@ describe('ActionCreatorTest', () => {
             ])
             .setupActionOnVisualizationActions(disableActionName)
             .setupActionOnVisualizationActions(enableActionName)
+            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
             .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
+            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
 
@@ -940,6 +944,7 @@ class ActionCreatorValidator {
     private visualizationActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private devToolsActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private cardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private unifiedScanResultActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private visualizationScanResultActionsContainerMock = Mock.ofType(
         VisualizationScanResultActions,
@@ -952,6 +957,7 @@ class ActionCreatorValidator {
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
     private cardSelectionActionsContainerMock = Mock.ofType(CardSelectionActions);
+    private unifiedScanResultsActionsContainerMock = Mock.ofType(UnifiedScanResultActions);
     private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
@@ -980,6 +986,7 @@ class ActionCreatorValidator {
         inspectActions: this.inspectActionsContainerMock.object,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
         cardSelectionActions: this.cardSelectionActionsContainerMock.object,
+        scanResultActions: this.unifiedScanResultsActionsContainerMock.object,
     } as ActionHub;
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(
@@ -1085,6 +1092,18 @@ class ActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.inspectActionsMock,
+        );
+        return this;
+    }
+
+    public setupUnifiedScanResultActionWithInvokeParameter(
+        actionName: keyof UnifiedScanResultActions,
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
+        this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.unifiedScanResultActionsMocks,
         );
         return this;
     }
@@ -1203,6 +1222,17 @@ class ActionCreatorValidator {
 
     public setupActionsOnInspectActions(actionName: keyof InspectActions): ActionCreatorValidator {
         this.setupAction(actionName, this.inspectActionsMock, this.inspectActionsContainerMock);
+        return this;
+    }
+
+    public setupActionOnUnifiedScanResultActions(
+        actionName: keyof UnifiedScanResultActions,
+    ): ActionCreatorValidator {
+        this.setupAction(
+            actionName,
+            this.unifiedScanResultActionsMocks,
+            this.unifiedScanResultsActionsContainerMock,
+        );
         return this;
     }
 

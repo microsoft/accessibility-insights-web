@@ -147,7 +147,9 @@ describe('ExtensionDetailsViewController', () => {
         browserAdapterMock.reset();
 
         // update details tab
-        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => 'ext_id');
+        browserAdapterMock
+            .setup(adapter => adapter.getUrl(It.isAny()))
+            .returns(suffix => `browser://mock_ext_id${suffix}`);
 
         onUpdateTabCallback(
             detailsViewTabId,
@@ -176,8 +178,10 @@ describe('ExtensionDetailsViewController', () => {
         browserAdapterMock.reset();
 
         // update details tab
-        const extensionId = 'ext_id';
-        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        browserAdapterMock
+            .setup(adapter => adapter.getUrl(It.isAny()))
+            .returns(suffix => `browser://mock_ext_id${suffix}`);
+
         onUpdateTabCallback(
             detailsViewTabId,
             { url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90' },
@@ -204,11 +208,13 @@ describe('ExtensionDetailsViewController', () => {
         browserAdapterMock.reset();
 
         // update details tab
-        const extensionId = 'ext_id';
-        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        browserAdapterMock
+            .setup(adapter => adapter.getUrl(It.isAny()))
+            .returns(suffix => `browser://mock_ext_id${suffix}`);
+
         onUpdateTabCallback(
             detailsViewTabId,
-            { url: 'chromeExt://ext_Id/detailsView/detailsView.html?tabId=' + targetTabId },
+            { url: 'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId },
             null,
         );
 
@@ -233,11 +239,16 @@ describe('ExtensionDetailsViewController', () => {
         browserAdapterMock.reset();
 
         // update details tab
-        const extensionId = 'ext_id';
-        browserAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        browserAdapterMock
+            .setup(adapter => adapter.getUrl(It.isAny()))
+            .returns(suffix => `browser://mock_ext_id${suffix}`);
+
         onUpdateTabCallback(
             detailsViewTabId,
-            { url: 'chromeExt://ext_Id/detailsView/detailsView.html?tabId=' + targetTabId + '#' },
+            {
+                url:
+                    'browser://MOCK_EXT_ID/detailsView/detailsView.html?tabId=' + targetTabId + '#',
+            },
             null,
         );
 

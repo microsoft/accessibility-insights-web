@@ -8,6 +8,7 @@ exports[`DetectServiceStep renders 1`] = `
       "androidSetupActionCreator": null,
       "androidSetupStepComponentProvider": null,
       "closeApp": null,
+      "logger": null,
       "showOpenFileDialog": null,
       "startTesting": null,
     }

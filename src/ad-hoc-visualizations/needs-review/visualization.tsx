@@ -15,24 +15,30 @@ import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-t
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
+const needsReviewTestKey = AdHocTestkeys.NeedsReview;
+const issuesTestKey = AdHocTestkeys.Issues;
+
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells', 'link-in-text-block'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,
-    key: AdHocTestkeys.NeedsReview,
+    key: needsReviewTestKey,
     testType: VisualizationType.NeedsReview,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
-    key: AdHocTestkeys.NeedsReview,
+    key: needsReviewTestKey,
     testMode: TestMode.Adhoc,
     getTestView: props => (
         <AdhocIssuesTestView instancesSection={NeedsReviewInstancesSection} {...props} />
     ),
-    getStoreData: data => data.adhoc.needsReview,
-    enableTest: data => (data.enabled = true),
+    getStoreData: data => data.adhoc[needsReviewTestKey],
+    enableTest: data => {
+        data.adhoc[needsReviewTestKey].enabled = true;
+        data.adhoc[issuesTestKey].enabled = false;
+    },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
@@ -57,7 +63,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
-    getIdentifier: () => AdHocTestkeys.NeedsReview,
+    getIdentifier: () => needsReviewTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) => null,
     getDrawer: provider => provider.createHighlightBoxDrawer(),

@@ -1,9 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
-import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
+import * as styles from 'DetailsView/components/common-dialog-styles.scss';
+import {
+    DefaultButton,
+    Dialog,
+    DialogFooter,
+    DialogType,
+    PrimaryButton,
+} from 'office-ui-fabric-react';
 import * as React from 'react';
-
 import { NamedFC } from '../../common/react/named-fc';
 
 export type GenericDialogProps = {
@@ -34,10 +39,10 @@ export const GenericDialog = NamedFC<GenericDialogProps>('GenericDialog', props 
             }}
             modalProps={{
                 isBlocking: false,
-                containerClassName: 'insights-dialog-main-override',
+                containerClassName: styles.insightsDialogMainOverride,
             }}
         >
-            <div className={'start-over-dialog-body'}>{messageText}</div>
+            <div className={styles.dialogBody}>{messageText}</div>
             <DialogFooter>
                 <PrimaryButton onClick={onPrimaryButtonClick} text={primaryButtonText} />
                 <DefaultButton onClick={onCancelButtonClick} text={'Cancel'} autoFocus={true} />
