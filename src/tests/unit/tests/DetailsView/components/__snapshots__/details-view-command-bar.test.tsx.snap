@@ -28,113 +28,6 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
 </div>"
 `;
 
-exports[`DetailsViewCommandBar renders with export button, with start over 1`] = `
-<div
-  className="detailsViewCommandBar"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
-    >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
-      >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-    <CustomizedActionButton>
-      Start Over Component
-    </CustomizedActionButton>
-  </div>
-  <div>
-    Export dialog
-  </div>
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
-<div
-  className="detailsViewCommandBar"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
-    >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
-      >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <ReportExportButton
-      buttonRef={[Function]}
-      showReportExportDialog={[Function]}
-    />
-  </div>
-  <div>
-    Export dialog
-  </div>
-</div>
-`;
-
 exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 <div
   className="detailsViewCommandBar"
@@ -179,7 +72,191 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 </div>
 `;
 
-exports[`DetailsViewCommandBar renders without export button, with start over 1`] = `
+exports[`DetailsViewCommandBar renders with start over = false, enabled = false, shouldShowExportReport = false 1`] = `
+<div
+  className="detailsViewCommandBar"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <StyledTooltipHostBase
+      content="Switch to target page: command-bar-test-tab-title"
+      styles={
+        Object {
+          "root": Object {
+            "display": "inline-block",
+            "minWidth": 0,
+          },
+        }
+      }
+    >
+      <StyledLinkBase
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        className="insights-link targetPageLink"
+        onClick={[Function]}
+        role="link"
+      >
+        <span
+          className="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div>
+    Export dialog
+  </div>
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with start over = false, enabled = false, shouldShowExportReport = true 1`] = `
+<div
+  className="detailsViewCommandBar"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <StyledTooltipHostBase
+      content="Switch to target page: command-bar-test-tab-title"
+      styles={
+        Object {
+          "root": Object {
+            "display": "inline-block",
+            "minWidth": 0,
+          },
+        }
+      }
+    >
+      <StyledLinkBase
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        className="insights-link targetPageLink"
+        onClick={[Function]}
+        role="link"
+      >
+        <span
+          className="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div>
+    Export dialog
+  </div>
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with start over = false, enabled = true, shouldShowExportReport = false 1`] = `
+<div
+  className="detailsViewCommandBar"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <StyledTooltipHostBase
+      content="Switch to target page: command-bar-test-tab-title"
+      styles={
+        Object {
+          "root": Object {
+            "display": "inline-block",
+            "minWidth": 0,
+          },
+        }
+      }
+    >
+      <StyledLinkBase
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        className="insights-link targetPageLink"
+        onClick={[Function]}
+        role="link"
+      >
+        <span
+          className="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div>
+    Export dialog
+  </div>
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with start over = false, enabled = true, shouldShowExportReport = true 1`] = `
+<div
+  className="detailsViewCommandBar"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <StyledTooltipHostBase
+      content="Switch to target page: command-bar-test-tab-title"
+      styles={
+        Object {
+          "root": Object {
+            "display": "inline-block",
+            "minWidth": 0,
+          },
+        }
+      }
+    >
+      <StyledLinkBase
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        className="insights-link targetPageLink"
+        onClick={[Function]}
+        role="link"
+      >
+        <span
+          className="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <ReportExportButton
+      buttonRef={[Function]}
+      showReportExportDialog={[Function]}
+    />
+  </div>
+  <div>
+    Export dialog
+  </div>
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with start over = true, enabled = false, shouldShowExportReport = false 1`] = `
 <div
   className="detailsViewCommandBar"
 >
@@ -230,7 +307,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
 </div>
 `;
 
-exports[`DetailsViewCommandBar renders without export button, without start over 1`] = `
+exports[`DetailsViewCommandBar renders with start over = true, enabled = false, shouldShowExportReport = true 1`] = `
 <div
   className="detailsViewCommandBar"
 >
@@ -267,6 +344,119 @@ exports[`DetailsViewCommandBar renders without export button, without start over
         </span>
       </StyledLinkBase>
     </StyledTooltipHostBase>
+  </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <CustomizedActionButton>
+      Start Over Component
+    </CustomizedActionButton>
+  </div>
+  <div>
+    Export dialog
+  </div>
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with start over = true, enabled = true, shouldShowExportReport = false 1`] = `
+<div
+  className="detailsViewCommandBar"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <StyledTooltipHostBase
+      content="Switch to target page: command-bar-test-tab-title"
+      styles={
+        Object {
+          "root": Object {
+            "display": "inline-block",
+            "minWidth": 0,
+          },
+        }
+      }
+    >
+      <StyledLinkBase
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        className="insights-link targetPageLink"
+        onClick={[Function]}
+        role="link"
+      >
+        <span
+          className="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <CustomizedActionButton>
+      Start Over Component
+    </CustomizedActionButton>
+  </div>
+  <div>
+    Export dialog
+  </div>
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with start over = true, enabled = true, shouldShowExportReport = true 1`] = `
+<div
+  className="detailsViewCommandBar"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <StyledTooltipHostBase
+      content="Switch to target page: command-bar-test-tab-title"
+      styles={
+        Object {
+          "root": Object {
+            "display": "inline-block",
+            "minWidth": 0,
+          },
+        }
+      }
+    >
+      <StyledLinkBase
+        aria-label="Switch to target page: command-bar-test-tab-title"
+        className="insights-link targetPageLink"
+        onClick={[Function]}
+        role="link"
+      >
+        <span
+          className="targetPageTitle"
+        >
+          command-bar-test-tab-title
+        </span>
+      </StyledLinkBase>
+    </StyledTooltipHostBase>
+  </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <ReportExportButton
+      buttonRef={[Function]}
+      showReportExportDialog={[Function]}
+    />
+    <CustomizedActionButton>
+      Start Over Component
+    </CustomizedActionButton>
   </div>
   <div>
     Export dialog

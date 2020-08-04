@@ -186,12 +186,20 @@ describe('ReportExportDialogFactory', () => {
     });
 
     describe('getReportExportDialogForFastPass', () => {
-        test('renders as null when shouldShowReportExportButton returns falls', () => {
-            setupShouldShowReportExportButton(true, false);
-            const dialog = getReportExportDialogForFastPass(props);
+        test.each`
+            enabled  | shouldShow
+            ${true}  | ${false}
+            ${false} | ${true}
+            ${false} | ${false}
+        `(
+            'renders as null when shouldShowReportExportButton returns false with test enabled = $enabled and shouldShowExportReport = $shouldShow',
+            ({ enabled, shouldShow }) => {
+                setupShouldShowReportExportButton(enabled, shouldShow);
+                const dialog = getReportExportDialogForFastPass(props);
 
-            expect(dialog).toBeNull();
-        });
+                expect(dialog).toBeNull();
+            },
+        );
 
         test('expected properties are set', () => {
             setupShouldShowReportExportButton(true, true);

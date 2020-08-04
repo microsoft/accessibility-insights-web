@@ -42,12 +42,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: unifiedScanResultStoreData => {
-        if (!unifiedScanResultStoreData.results) {
-            return false;
-        }
-        return true;
-    },
+    shouldShowExportReport: data => data.results != undefined,
     displayableData: {
         title: 'Automated checks',
         subtitle: (

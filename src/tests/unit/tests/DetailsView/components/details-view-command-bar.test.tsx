@@ -100,21 +100,23 @@ describe('DetailsViewCommandBar', () => {
         } as DetailsViewCommandBarProps;
     }
 
-    test('renders with export button, with start over', () => {
-        testOnPivot(true, true);
-    });
-
-    test('renders without export button, without start over', () => {
-        testOnPivot(false, false);
-    });
-
-    test('renders with export button, without start over', () => {
-        testOnPivot(true, false);
-    });
-
-    test('renders without export button, with start over', () => {
-        testOnPivot(false, true);
-    });
+    test.each`
+        startOver | enabled  | shouldShow
+        ${true}   | ${true}  | ${true}
+        ${true}   | ${true}  | ${false}
+        ${true}   | ${false} | ${true}
+        ${true}   | ${false} | ${false}
+        ${false}  | ${true}  | ${true}
+        ${false}  | ${true}  | ${false}
+        ${false}  | ${false} | ${true}
+        ${false}  | ${false} | ${false}
+    `(
+        'renders with start over = $startOver, enabled = $enabled, shouldShowExportReport = $shouldShow',
+        ({ startOver, enabled, shouldShow }) => {
+            const renderExportResults = enabled && shouldShow;
+            testOnPivot(renderExportResults, startOver);
+        },
+    );
 
     test('renders null when tab closed', () => {
         tabStoreData.isClosed = true;
