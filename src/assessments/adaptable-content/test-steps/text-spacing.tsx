@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TextLegibilityTestStep } from 'assessments/text-legibility/test-steps/test-step';
+import { TextLegibilityTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
-import * as content from 'content/test/text-legibility/text-spacing';
+import * as content from 'content/test/adaptable-content/text-spacing';
 import * as React from 'react';
 
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';

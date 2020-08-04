@@ -10,7 +10,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
-import * as content from 'content/test/text-legibility/contrast';
+import * as content from 'content/test/adaptable-content/contrast';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
