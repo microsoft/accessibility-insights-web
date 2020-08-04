@@ -513,6 +513,10 @@ exports[`DetailsViewBody render render 1`] = `
                 },
               },
               "assessments": Object {
+                "adaptableContentAssessment": Object {
+                  "enabled": false,
+                  "stepStatus": Object {},
+                },
                 "audioVideoOnlyAssessment": Object {
                   "enabled": false,
                   "stepStatus": Object {},
@@ -597,150 +601,13 @@ exports[`DetailsViewBody render render 1`] = `
                   "enabled": false,
                   "stepStatus": Object {},
                 },
-                "textLegibilityAssessment": Object {
-                  "enabled": false,
-                  "stepStatus": Object {},
-                },
                 "timedEventsAssessment": Object {
                   "enabled": false,
                   "stepStatus": Object {},
                 },
-<<<<<<< HEAD
-              }
-            }
-            visualizationStoreData={
-              Object {
-                "focusedTarget": null,
-                "injectingInProgress": null,
-                "injectingStarted": false,
-                "scanning": null,
-                "selectedAdhocDetailsView": 1,
-                "selectedDetailsViewPivot": 0,
-                "selectedFastPassDetailsView": 1,
-                "tests": Object {
-                  "adhoc": Object {
-                    "color": Object {
-                      "enabled": false,
-                    },
-                    "headings": Object {
-                      "enabled": false,
-                    },
-                    "issues": Object {
-                      "enabled": false,
-                    },
-                    "landmarks": Object {
-                      "enabled": false,
-                    },
-                    "needsReview": Object {
-                      "enabled": false,
-                    },
-                    "tabStops": Object {
-                      "enabled": false,
-                    },
-                  },
-                  "assessments": Object {
-                    "adaptableContentAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "audioVideoOnlyAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "automatedChecks": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "colorSensoryAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "contrastAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "customWidgetsAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "errorsAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "headingsAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "imageAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "keyboardInteractionAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "landmarksAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "languageAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "linksAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "liveMultimediaAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "nativeWidgetsAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "pageAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "parsingAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "pointerMotionAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "prerecordedMultimediaAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "repetitiveContentAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "semanticsAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "sequenceAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "timedEventsAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                    "visibleFocusOrderAssessment": Object {
-                      "enabled": false,
-                      "stepStatus": Object {},
-                    },
-                  },
-=======
                 "visibleFocusOrderAssessment": Object {
                   "enabled": false,
                   "stepStatus": Object {},
->>>>>>> master
                 },
               },
             },
