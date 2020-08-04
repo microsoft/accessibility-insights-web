@@ -8,7 +8,7 @@ import * as reflow from './reflow';
 import * as resizeText from './resize-text';
 import * as textSpacing from './text-spacing';
 
-export const textLegibility = {
+export const adaptableContent = {
     guidance,
     contrast,
     resizeText,

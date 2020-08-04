@@ -16,7 +16,7 @@ import { TextSpacing } from './test-steps/text-spacing';
 
 const key = 'textLegibility';
 const title = 'Text legibility';
-const { guidance } = content.textLegibility;
+const { guidance } = content.adaptableContent;
 
 const gettingStarted: JSX.Element = (
     <React.Fragment>
