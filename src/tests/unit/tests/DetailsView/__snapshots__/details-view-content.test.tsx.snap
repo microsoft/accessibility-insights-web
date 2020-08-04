@@ -302,6 +302,10 @@ exports[` render renders normally 1`] = `
             },
           },
           "assessments": Object {
+            "adaptableContentAssessment": Object {
+              "enabled": false,
+              "stepStatus": Object {},
+            },
             "audioVideoOnlyAssessment": Object {
               "enabled": false,
               "stepStatus": Object {},
@@ -383,10 +387,6 @@ exports[` render renders normally 1`] = `
               "stepStatus": Object {},
             },
             "sequenceAssessment": Object {
-              "enabled": false,
-              "stepStatus": Object {},
-            },
-            "textLegibilityAssessment": Object {
               "enabled": false,
               "stepStatus": Object {},
             },

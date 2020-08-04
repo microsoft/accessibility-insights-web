@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export enum TextLegibilityTestStep {
+export enum AdaptableContentTestStep {
     highContrastMode = 'highContrastMode',
     resizeText = 'resizeText',
     contrast = 'contrast',

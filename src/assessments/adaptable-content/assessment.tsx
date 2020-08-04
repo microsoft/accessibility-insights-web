@@ -14,8 +14,8 @@ import { Reflow } from './test-steps/reflow';
 import { ResizeText } from './test-steps/resize-text';
 import { TextSpacing } from './test-steps/text-spacing';
 
-const key = 'textLegibility';
-const title = 'Text legibility';
+const key = 'adaptableContent';
+const title = 'Adaptable content';
 const { guidance } = content.adaptableContent;
 
 const gettingStarted: JSX.Element = (
@@ -41,9 +41,9 @@ const gettingStarted: JSX.Element = (
     </React.Fragment>
 );
 
-export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
+export const AdaptableContentAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
-    visualizationType: VisualizationType.TextLegibility,
+    visualizationType: VisualizationType.AdaptableContent,
     title,
     gettingStarted,
     guidance,
@@ -56,5 +56,5 @@ export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
         TextSpacing,
         HoverFocusContent,
     ],
-    storeDataKey: 'textLegibilityAssessment',
+    storeDataKey: 'adaptableContentAssessment',
 });

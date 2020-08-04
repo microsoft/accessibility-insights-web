@@ -21,7 +21,7 @@ export enum VisualizationType {
     LiveMultimediaAssessment,
     VisibleFocusOrderAssessment,
     ImagesAssessment,
-    TextLegibility,
+    AdaptableContent,
     LinksAssessment,
     NativeWidgets,
     CustomWidgets,

@@ -4,7 +4,7 @@ import { create, GuidanceTitle, React } from '../../common';
 
 export const guidance = create(({ Markup, Link }) => (
     <>
-        <GuidanceTitle name={'Text legibility'} />
+        <GuidanceTitle name={'Adaptable content'} />
         <h2>Why it matters</h2>
         <p>
             Everyone benefits when text is presented in a way that makes it easy to read. Most people find it easier to read text when it is

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TextLegibilityTestStep } from 'assessments/adaptable-content/test-steps/test-step';
+import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
@@ -67,7 +67,7 @@ const textSpacingHowToTest: JSX.Element = (
 );
 
 export const TextSpacing: Requirement = {
-    key: TextLegibilityTestStep.textSpacing,
+    key: AdaptableContentTestStep.textSpacing,
     name: 'Text spacing',
     description: textSpacingDescription,
     howToTest: textSpacingHowToTest,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { TextLegibilityTestStep } from 'assessments/adaptable-content/test-steps/test-step';
+import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/reflow';
@@ -42,7 +42,7 @@ const reflowHowToTest: JSX.Element = (
 );
 
 export const Reflow: Requirement = {
-    key: TextLegibilityTestStep.reflow,
+    key: AdaptableContentTestStep.reflow,
     name: 'Reflow',
     description: reflowDescription,
     howToTest: reflowHowToTest,

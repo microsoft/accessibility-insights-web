@@ -1,29 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PropertyBagColumnRendererFactory } from 'assessments/common/property-bag-column-renderer-factory';
-import {
-    MacContrastCheckerAppLink,
-    WindowsContrastCheckerAppLink,
-} from 'common/components/contrast-checker-app-links';
+import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
 import { ContrastPropertyBag } from 'common/types/property-bag/contrast';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
-import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/adaptable-content/contrast';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
+
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import {
-    NoValue,
-    PropertyBagColumnRendererConfig,
-} from '../../common/property-bag-column-renderer';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
-import { TextLegibilityTestStep } from './test-step';
+import { AdaptableContentTestStep } from './test-step';
 
 const contrastDescription: JSX.Element = <span>Text elements must have sufficient contrast.</span>;
 
@@ -63,7 +58,7 @@ const contrastHowToTest: JSX.Element = (
     </div>
 );
 
-const key = TextLegibilityTestStep.contrast;
+const key = AdaptableContentTestStep.contrast;
 
 const propertyBagConfig: PropertyBagColumnRendererConfig<ContrastPropertyBag>[] = [
     {
@@ -78,7 +73,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ContrastPropertyBag>[] 
 ];
 
 export const Contrast: Requirement = {
-    key: TextLegibilityTestStep.contrast,
+    key: AdaptableContentTestStep.contrast,
     name: 'Contrast',
     description: contrastDescription,
     howToTest: contrastHowToTest,
@@ -98,7 +93,7 @@ export const Contrast: Requirement = {
             AnalyzerConfigurationFactory.forScanner({
                 rules: ['text-contrast'],
                 key,
-                testType: VisualizationType.TextLegibility,
+                testType: VisualizationType.AdaptableContent,
                 resultProcessor: (scanner: ScannerUtils) => scanner.getIncompleteInstances,
             }),
         ),

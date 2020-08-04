@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AdaptableContentAssessment } from './adaptable-content/assessment';
 import { AssessmentsProviderImpl } from './assessments-provider';
 import { AudioVideoOnlyAssessment } from './audio-video-only/assessment';
 import { AutomatedChecks } from './automated-checks/assessment';
@@ -22,7 +23,6 @@ import { PrerecordedMultimediaAssessment } from './prerecorded-multimedia/assess
 import { RepetitiveContentAssessment } from './repetitive-content/assessment';
 import { SemanticsAssessment } from './semantics/assessment';
 import { SequenceAssessment } from './sequence/assessment';
-import { TextLegibilityAssessment } from './adaptable-content/assessment';
 import { TimedEventsAssessment } from './timed-events/assessment';
 import { AssessmentsProvider } from './types/assessments-provider';
 import { VisibleFocusOrderAssessment } from './visible-focus-order/assessment';
@@ -44,7 +44,7 @@ export const Assessments: AssessmentsProvider = AssessmentsProviderImpl.Create([
     ImagesAssessment,
     LanguageAssessment,
     ColorSensoryAssessment,
-    TextLegibilityAssessment,
+    AdaptableContentAssessment,
     AudioVideoOnlyAssessment,
     PrerecordedMultimediaAssessment,
     LiveMultimediaAssessment,

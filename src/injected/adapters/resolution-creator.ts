@@ -37,7 +37,7 @@ const getHowToCheckTest = (ruleID: string) => {
         }
         case 'color-contrast': {
             checkText =
-                "If the text is intended to be invisible, it passes.\nIf the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyser if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.\nFor detailed test instructions, see Assessment > Text legibility > Contrast.";
+                "If the text is intended to be invisible, it passes.\nIf the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyser if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.\nFor detailed test instructions, see Assessment > Adaptable content > Contrast.";
             break;
         }
         case 'link-in-text-block': {
