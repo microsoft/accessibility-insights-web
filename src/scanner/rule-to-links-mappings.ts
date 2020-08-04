@@ -11,7 +11,7 @@ export interface GuidanceLink {
     tags?: GuidanceTag[];
 }
 
-const BestPractice: HyperlinkDefinition = {
+export const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',
     href: '',
 };
@@ -51,7 +51,7 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'th-has-data-cells': [link.WCAG_1_3_1],
     'aria-roles': [link.WCAG_1_3_1, link.WCAG_4_1_1, link.WCAG_4_1_2],
     'aria-valid-attr-value': [link.WCAG_4_1_1, link.WCAG_4_1_2],
-    'link-in-text-block': [BestPractice],
+    'link-in-text-block': [BestPractice, link.WCAG_1_4_1],
     'color-contrast': [link.WCAG_1_4_3],
     'meta-viewport-large': [BestPractice],
     'meta-viewport': [BestPractice],

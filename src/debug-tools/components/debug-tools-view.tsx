@@ -5,7 +5,6 @@ import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
 } from 'common/components/with-store-subscription';
-import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import {
     CurrentView,
@@ -43,7 +42,7 @@ export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps
     return (
         <div className={styles.debugToolsContainer}>
             <NarrowModeDetector
-                isNarrowModeEnabled={storeState.featureFlagStoreData[FeatureFlags.reflowUI]}
+                isNarrowModeEnabled={true}
                 Component={Header}
                 childrenProps={headerProps}
             />

@@ -18,11 +18,6 @@ describe('Details View -> Assessment -> Headings', () => {
         });
 
         headingsPage = (await browser.newAssessment()).detailsViewPage;
-
-        await headingsPage.navigateToTestRequirement('Headings', 'Heading function');
-        await headingsPage.waitForVisualHelperState('Off', {
-            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
-        });
     });
 
     afterAll(async () => {
@@ -32,17 +27,54 @@ describe('Details View -> Assessment -> Headings', () => {
         }
     });
 
-    it.each([true, false])(
-        'should pass accessibility validation with highContrastMode=%s',
-        async highContrastMode => {
-            await browser.setHighContrastMode(highContrastMode);
-            await headingsPage.waitForHighContrastMode(highContrastMode);
+    describe('Requirement page', () => {
+        beforeAll(async () => {
+            await headingsPage.navigateToTestRequirement('Headings', 'Heading function');
+            await headingsPage.waitForVisualHelperState('Off', {
+                timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            });
+        });
 
-            const results = await scanForAccessibilityIssues(
-                headingsPage,
-                detailsViewSelectors.mainContent,
-            );
-            expect(results).toHaveLength(0);
-        },
-    );
+        afterAll(async () => {
+            await headingsPage.closeNavTestLink('Headings');
+        });
+
+        it.each([true, false])(
+            'should pass accessibility validation with highContrastMode=%s',
+            async highContrastMode => {
+                await browser.setHighContrastMode(highContrastMode);
+                await headingsPage.waitForHighContrastMode(highContrastMode);
+
+                const results = await scanForAccessibilityIssues(
+                    headingsPage,
+                    detailsViewSelectors.mainContent,
+                );
+                expect(results).toHaveLength(0);
+            },
+        );
+    });
+
+    describe('Getting started page', () => {
+        beforeAll(async () => {
+            await headingsPage.navigateToGettingStarted('Headings');
+        });
+
+        afterAll(async () => {
+            await headingsPage.closeNavTestLink('Headings');
+        });
+
+        it.each([true, false])(
+            'Getting started page should pass accessibility validation with highContrastMode=%s',
+            async highContrastMode => {
+                await browser.setHighContrastMode(highContrastMode);
+                await headingsPage.waitForHighContrastMode(highContrastMode);
+
+                const results = await scanForAccessibilityIssues(
+                    headingsPage,
+                    detailsViewSelectors.mainContent,
+                );
+                expect(results).toHaveLength(0);
+            },
+        );
+    });
 });

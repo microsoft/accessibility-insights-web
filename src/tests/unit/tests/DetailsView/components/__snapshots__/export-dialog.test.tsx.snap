@@ -37,6 +37,7 @@ exports[`ExportDialog renders with open false 1`] = `
     Object {
       "containerClassName": "exportDialog",
       "isBlocking": false,
+      "onDismissed": [Function],
     }
   }
   onDismiss={[Function]}
@@ -106,6 +107,7 @@ exports[`ExportDialog renders with open true 1`] = `
     Object {
       "containerClassName": "exportDialog",
       "isBlocking": false,
+      "onDismissed": [Function],
     }
   }
   onDismiss={[Function]}

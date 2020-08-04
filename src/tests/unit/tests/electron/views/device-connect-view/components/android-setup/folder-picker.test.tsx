@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { OpenDialogOptions } from 'electron';
 import {
     FolderPicker,
@@ -12,12 +13,15 @@ import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('FolderPicker', () => {
+    let loggerMock: IMock<Logger>;
     let props: FolderPickerProps;
 
     beforeEach(() => {
+        loggerMock = Mock.ofType<Logger>();
         props = {
             deps: {
                 showOpenFileDialog: null,
+                logger: loggerMock.object,
             },
             instructionsText: 'some instructions',
             value: '/path/to/folder',
@@ -81,22 +85,27 @@ describe('FolderPicker', () => {
         });
 
         // This is an unexpected case; cancellation of the dialog is not an error
-        it('does not invoke onChange if showOpenFileDialog throws an error', () => {
+        it('does not invoke onChange if showOpenFileDialog throws an error', async () => {
+            const showOpenFileDialogError = new Error('mock error from showOpenFileDialog');
             showOpenFileDialogMock
                 .setup(m => m(expectedShowOpenFileDialogOptions))
-                .returns(() => Promise.reject(new Error('unexpected error')))
+                .returns(() => Promise.reject(showOpenFileDialogError))
                 .verifiable(Times.once());
 
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            jest.runAllTimers();
+            await tick();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m(It.isAny()), Times.never());
+            loggerMock.verify(
+                m => m.error(It.is(msg => msg.includes(showOpenFileDialogError.message))),
+                Times.once(),
+            );
         });
 
-        it('does not invoke onChange if showOpenFileDialog returns in a cancelled state', () => {
+        it('does not invoke onChange if showOpenFileDialog returns in a cancelled state', async () => {
             showOpenFileDialogMock
                 .setup(m => m(expectedShowOpenFileDialogOptions))
                 .returns(() => Promise.resolve({ canceled: true, filePaths: ['/path/to/adb'] }))
@@ -105,13 +114,13 @@ describe('FolderPicker', () => {
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            jest.runAllTimers();
+            await tick();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m(It.isAny()), Times.never());
         });
 
-        it('does not invoke onChange if showOpenFileDialog returns without any selected folders', () => {
+        it('does not invoke onChange if showOpenFileDialog returns without any selected folders', async () => {
             showOpenFileDialogMock
                 .setup(m => m(expectedShowOpenFileDialogOptions))
                 .returns(() => Promise.resolve({ canceled: false, filePaths: [] }))
@@ -120,7 +129,7 @@ describe('FolderPicker', () => {
             const rendered = shallow(<FolderPicker {...props} />);
             rendered.find(PrimaryButton).prop('onClick')(stubMouseEvent);
 
-            jest.runAllTimers();
+            await tick();
 
             showOpenFileDialogMock.verifyAll();
             onChangeMock.verify(m => m(It.isAny()), Times.never());

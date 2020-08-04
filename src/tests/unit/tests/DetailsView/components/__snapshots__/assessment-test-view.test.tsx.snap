@@ -11,92 +11,42 @@ exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
     test={-1}
     warningConfiguration={Object {}}
   />
-  <FlaggedComponent
-    disableJSXElement={
-      <AssessmentView
-        assessmentData={Object {}}
-        assessmentInstanceTableHandler={Object {}}
-        assessmentNavState={
-          Object {
-            "selectedTestSubview": "step",
-            "selectedTestType": -1,
-          }
-        }
-        assessmentTestResult={
-          AssessmentTestResult {
-            "assessmentProvider": undefined,
-            "data": Object {},
-            "deps": Object {
-              "getRequirementsResults": [Function],
-              "outcomeStatsFromManualTestStatus": [Function],
-            },
-            "visualizationType": -1,
-          }
-        }
-        currentTarget={
-          Object {
-            "id": -2,
-            "title": "test title",
-            "url": "test url",
-          }
-        }
-        deps={
-          Object {
-            "detailsViewActionMessageCreator": Object {},
-          }
-        }
-        featureFlagStoreData={Object {}}
-        isScanning={false}
-        pathSnippetStoreData={Object {}}
-        selectedRequirementIsEnabled={false}
-        switcherNavConfiguration={
-          Object {
-            "warningConfiguration": Object {},
-          }
-        }
-      />
+  <ReflowAssessmentView
+    assessmentData={Object {}}
+    assessmentInstanceTableHandler={Object {}}
+    assessmentNavState={
+      Object {
+        "selectedTestSubview": "step",
+        "selectedTestType": -1,
+      }
     }
-    enableJSXElement={
-      <ReflowAssessmentView
-        assessmentData={Object {}}
-        assessmentInstanceTableHandler={Object {}}
-        assessmentNavState={
-          Object {
-            "selectedTestSubview": "step",
-            "selectedTestType": -1,
-          }
-        }
-        assessmentTestResult={
-          AssessmentTestResult {
-            "assessmentProvider": undefined,
-            "data": Object {},
-            "deps": Object {
-              "getRequirementsResults": [Function],
-              "outcomeStatsFromManualTestStatus": [Function],
-            },
-            "visualizationType": -1,
-          }
-        }
-        currentTarget={
-          Object {
-            "id": -2,
-            "title": "test title",
-            "url": "test url",
-          }
-        }
-        deps={
-          Object {
-            "detailsViewActionMessageCreator": Object {},
-          }
-        }
-        featureFlagStoreData={Object {}}
-        pathSnippetStoreData={Object {}}
-        scanningInProgress={false}
-        selectedRequirementIsEnabled={false}
-      />
+    assessmentTestResult={
+      AssessmentTestResult {
+        "assessmentProvider": undefined,
+        "data": Object {},
+        "deps": Object {
+          "getRequirementsResults": [Function],
+          "outcomeStatsFromManualTestStatus": [Function],
+        },
+        "visualizationType": -1,
+      }
     }
-    featureFlag="reflowUI"
+    currentTarget={
+      Object {
+        "id": -2,
+        "title": "test title",
+        "url": "test url",
+      }
+    }
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {},
+      }
+    }
     featureFlagStoreData={Object {}}
+    pathSnippetStoreData={Object {}}
+    scanningInProgress={false}
+    selectedRequirementIsEnabled={false}
   />
 </React.Fragment>
 `;
@@ -112,92 +62,42 @@ exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
     test={-1}
     warningConfiguration={Object {}}
   />
-  <FlaggedComponent
-    disableJSXElement={
-      <AssessmentView
-        assessmentData={Object {}}
-        assessmentInstanceTableHandler={Object {}}
-        assessmentNavState={
-          Object {
-            "selectedTestSubview": "step",
-            "selectedTestType": -1,
-          }
-        }
-        assessmentTestResult={
-          AssessmentTestResult {
-            "assessmentProvider": undefined,
-            "data": Object {},
-            "deps": Object {
-              "getRequirementsResults": [Function],
-              "outcomeStatsFromManualTestStatus": [Function],
-            },
-            "visualizationType": -1,
-          }
-        }
-        currentTarget={
-          Object {
-            "id": -2,
-            "title": "test title",
-            "url": "test url",
-          }
-        }
-        deps={
-          Object {
-            "detailsViewActionMessageCreator": Object {},
-          }
-        }
-        featureFlagStoreData={Object {}}
-        isScanning={true}
-        pathSnippetStoreData={Object {}}
-        selectedRequirementIsEnabled={false}
-        switcherNavConfiguration={
-          Object {
-            "warningConfiguration": Object {},
-          }
-        }
-      />
+  <ReflowAssessmentView
+    assessmentData={Object {}}
+    assessmentInstanceTableHandler={Object {}}
+    assessmentNavState={
+      Object {
+        "selectedTestSubview": "step",
+        "selectedTestType": -1,
+      }
     }
-    enableJSXElement={
-      <ReflowAssessmentView
-        assessmentData={Object {}}
-        assessmentInstanceTableHandler={Object {}}
-        assessmentNavState={
-          Object {
-            "selectedTestSubview": "step",
-            "selectedTestType": -1,
-          }
-        }
-        assessmentTestResult={
-          AssessmentTestResult {
-            "assessmentProvider": undefined,
-            "data": Object {},
-            "deps": Object {
-              "getRequirementsResults": [Function],
-              "outcomeStatsFromManualTestStatus": [Function],
-            },
-            "visualizationType": -1,
-          }
-        }
-        currentTarget={
-          Object {
-            "id": -2,
-            "title": "test title",
-            "url": "test url",
-          }
-        }
-        deps={
-          Object {
-            "detailsViewActionMessageCreator": Object {},
-          }
-        }
-        featureFlagStoreData={Object {}}
-        pathSnippetStoreData={Object {}}
-        scanningInProgress={true}
-        selectedRequirementIsEnabled={false}
-      />
+    assessmentTestResult={
+      AssessmentTestResult {
+        "assessmentProvider": undefined,
+        "data": Object {},
+        "deps": Object {
+          "getRequirementsResults": [Function],
+          "outcomeStatsFromManualTestStatus": [Function],
+        },
+        "visualizationType": -1,
+      }
     }
-    featureFlag="reflowUI"
+    currentTarget={
+      Object {
+        "id": -2,
+        "title": "test title",
+        "url": "test url",
+      }
+    }
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": Object {},
+      }
+    }
     featureFlagStoreData={Object {}}
+    pathSnippetStoreData={Object {}}
+    scanningInProgress={true}
+    selectedRequirementIsEnabled={false}
   />
 </React.Fragment>
 `;

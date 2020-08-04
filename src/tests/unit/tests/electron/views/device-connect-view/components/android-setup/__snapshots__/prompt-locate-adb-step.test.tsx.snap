@@ -31,6 +31,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation not
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
         "closeApp": null,
+        "logger": null,
         "showOpenFileDialog": null,
         "startTesting": null,
       }
@@ -73,6 +74,7 @@ exports[`PromptLocateAdbStep rendering renders per snapshot with adbLocation set
         "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": null,
         "closeApp": null,
+        "logger": null,
         "showOpenFileDialog": null,
         "startTesting": null,
       }

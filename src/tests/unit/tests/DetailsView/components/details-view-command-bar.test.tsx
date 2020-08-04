@@ -7,38 +7,44 @@ import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
+import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { shallow } from 'enzyme';
+import { isNil } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import {
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
+    ReportExportDialogFactory,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';
     const thePageUrl = 'command-bar-test-url';
+    const reportExportDialogStub = <div>Export dialog</div>;
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
-    let reportExportComponent: JSX.Element;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
+    let showReportExportButton: boolean;
+    let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(
             DetailsViewActionMessageCreator,
             MockBehavior.Loose,
         );
+        reportExportDialogFactory = Mock.ofType<ReportExportDialogFactory>();
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
-        reportExportComponent = null;
         isCommandBarCollapsed = false;
+        showReportExportButton = true;
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -51,7 +57,8 @@ describe('DetailsViewCommandBar', () => {
         );
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
-            ReportExportComponentFactory: p => reportExportComponent,
+            ReportExportDialogFactory: reportExportDialogFactory.object,
+            shouldShowReportExportButton: p => showReportExportButton,
             StartOverComponentFactory: p => startOverComponent,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
@@ -106,16 +113,26 @@ describe('DetailsViewCommandBar', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
+    test('renders with report export dialog open', () => {
+        const props = getProps();
+        setupReportExportDialogFactory({ isOpen: true });
+
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isReportExportDialogOpen: true });
+
+        expect(rendered.debug()).toMatchSnapshot();
+    });
+
     function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
-        if (renderExportResults) {
-            reportExportComponent = <ActionButton>Report Export Component</ActionButton>;
-        }
+        showReportExportButton = renderExportResults;
 
         if (renderStartOver) {
             startOverComponent = <ActionButton>Start Over Component</ActionButton>;
         }
 
+        setupReportExportDialogFactory({ isOpen: false });
         const props = getProps();
+
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
@@ -129,5 +146,12 @@ describe('DetailsViewCommandBar', () => {
 
     function getTestSubject(): DetailsViewCommandBar {
         return new DetailsViewCommandBar(getProps());
+    }
+
+    function setupReportExportDialogFactory(
+        expectedProps?: Partial<ReportExportDialogFactoryProps>,
+    ): void {
+        const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
+        reportExportDialogFactory.setup(r => r(argMatcher)).returns(() => reportExportDialogStub);
     }
 });

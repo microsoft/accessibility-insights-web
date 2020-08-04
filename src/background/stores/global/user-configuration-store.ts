@@ -6,6 +6,7 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     SaveIssueFilingSettingsPayload,
+    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -24,6 +25,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         bugService: 'none',
         bugServicePropertiesMap: {},
         adbLocation: null,
+        lastWindowBounds: null,
+        lastWindowState: null,
     };
 
     constructor(
@@ -63,6 +66,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
             this.onSetIssueFilingServiceProperty,
         );
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
+        this.userConfigActions.saveWindowBounds.addListener(this.onSaveLastWindowBounds);
     }
 
     private onSetAdbLocation = (location: string): void => {
@@ -114,6 +118,17 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
+        this.saveAndEmitChanged();
+    };
+
+    private onSaveLastWindowBounds = (payload: SaveWindowBoundsPayload): void => {
+        this.state.lastWindowState = payload.windowState;
+
+        // Retain these bounds only if the window is in a normal state
+        if (payload.windowState === 'normal') {
+            this.state.lastWindowBounds = payload.windowBounds;
+        }
+
         this.saveAndEmitChanged();
     };
 

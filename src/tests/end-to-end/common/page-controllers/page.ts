@@ -316,6 +316,10 @@ export class Page {
         return await withTracing(this.underlyingPage.tracing, wrappedFunction);
     }
 
+    public async setViewport(width: number, height: number): Promise<void> {
+        await this.underlyingPage.setViewport({ width, height });
+    }
+
     private async screenshotOnError<T>(wrappedFunction: () => Promise<T>): Promise<T> {
         return await screenshotOnError(
             path => this.underlyingPage.screenshot({ path, fullPage: true }),

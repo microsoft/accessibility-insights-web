@@ -13,7 +13,7 @@ describe('HowToCheckWebCardRow', () => {
             deps: null,
             index: 123,
             propertyData: {
-                checkText: 'test text',
+                ruleId: 'test text',
             },
         };
 

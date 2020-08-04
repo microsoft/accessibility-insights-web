@@ -65,7 +65,7 @@ describe('DetailsViewBody', () => {
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
-                ReportExportComponentFactory: p => null,
+                ReportExportDialogFactory: p => null,
                 StartOverComponentFactory: p => null,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
@@ -104,7 +104,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
-                featureFlagStoreData: { reflowUI: true } as FeatureFlagStoreData,
+                featureFlagStoreData: {} as FeatureFlagStoreData,
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryStub,
                 clickHandlerFactory: clickHandlerFactoryStub,

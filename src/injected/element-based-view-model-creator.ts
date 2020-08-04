@@ -61,7 +61,7 @@ export class ElementBasedViewModelCreator {
                 : {};
 
             resultDictionary[identifier] = {
-                isFailure: true,
+                isFailure: unifiedResult.status === 'fail',
                 isVisualizationEnabled: true,
                 target: this.getTarget(unifiedResult),
                 ruleResults: {

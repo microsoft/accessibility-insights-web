@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import {
     DebugTools,
@@ -33,9 +32,6 @@ describe('DebugToolsView', () => {
                 userConfigurationStoreData: {
                     isFirstTime: true,
                 } as UserConfigurationStoreData,
-                featureFlagStoreData: {
-                    reflowUI: true,
-                } as FeatureFlagStoreData,
             } as DebugToolsViewState;
 
             const wrapped = shallow(<DebugTools deps={deps} storeState={storeState} />);

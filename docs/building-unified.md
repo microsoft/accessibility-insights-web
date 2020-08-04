@@ -34,17 +34,7 @@ Most of the functionality of Unified relies on connecting to a device running th
 
 #### Using a mock device
 
-```sh
-# This sets up mock-adb to respond as if a single physical device is connected with a working
-# and current install of Accessibility Insights for Android Service. You can find logs for mock-adb
-# in drop\mock-adb\logs\default
-yarn mock-adb single-device
-
-# Start the app like normal. During the "connect a device" flow where it asks you where to find
-# ADB, use the path C:\path\to\repo\drop\mock-adb - this folder should have been produced already
-# as part of yarn build:unified, but you can rebuild it with yarn build:mock-adb if necessary.
-yarn start:unified
-```
+See guidance [here](../src/tests/miscellaneous/mock-adb/README.md).
 
 #### Connecting to a real device/emulator
 

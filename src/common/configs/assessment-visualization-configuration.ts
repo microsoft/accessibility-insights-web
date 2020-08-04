@@ -22,7 +22,7 @@ export interface AssessmentVisualizationConfiguration {
     key: string;
     getTestView: (props: CommonTestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
-    enableTest: (data: ScanData, payload: ToggleActionPayload) => void;
+    enableTest: (data: TestsEnabledState, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;
     getTestStatus: (data: ScanData, step?: string) => boolean;
     getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;

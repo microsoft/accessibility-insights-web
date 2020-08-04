@@ -73,7 +73,7 @@ export class ConvertScanResultsToUnifiedResults {
             ),
             ...this.createUnifiedResultsFromRuleResults(
                 scanResults.violations,
-                'fail',
+                'unknown',
                 this.getCheckResolution,
             ),
         ];

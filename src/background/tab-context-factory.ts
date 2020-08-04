@@ -134,7 +134,7 @@ export class TabContextFactory {
         );
 
         const injectorController = new InjectorController(
-            new ContentScriptInjector(browserAdapter, this.promiseFactory),
+            new ContentScriptInjector(browserAdapter, this.promiseFactory, this.logger),
             storeHub.visualizationStore,
             interpreter,
             storeHub.tabStore,

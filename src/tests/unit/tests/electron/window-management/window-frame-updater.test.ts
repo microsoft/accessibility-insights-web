@@ -32,6 +32,12 @@ describe(WindowFrameUpdater, () => {
             testSubject.initialize();
         });
 
+        it('invokes enterFullScreen', () => {
+            ipcRendererShimMock.setup(b => b.enterFullScreen()).verifiable(Times.once());
+
+            windowFrameActions.enterFullScreen.invoke(null);
+        });
+
         it('invokes maximize', () => {
             ipcRendererShimMock.setup(b => b.maximizeWindow()).verifiable(Times.once());
 

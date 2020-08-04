@@ -4,14 +4,14 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
+    ReflowAssessmentView,
+    ReflowAssessmentViewDeps,
+} from 'DetailsView/components/reflow-assessment-view';
+import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
 } from 'DetailsView/components/scan-incomplete-warning';
 import * as React from 'react';
-
-import { FlaggedComponent } from 'common/components/flagged-component';
-import { FeatureFlags } from 'common/feature-flags';
-import { ReflowAssessmentView } from 'DetailsView/components/reflow-assessment-view';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
@@ -21,9 +21,8 @@ import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { AssessmentView, AssessmentViewDeps } from './assessment-view';
 
-export type AssessmentTestViewDeps = AssessmentViewDeps &
+export type AssessmentTestViewDeps = ReflowAssessmentViewDeps &
     ScanIncompleteWarningDeps & {
         assessmentsProvider: AssessmentsProvider;
         assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
@@ -64,8 +63,14 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             assessmentData,
         );
 
-        const renderReflowAssessmentView = (): JSX.Element => {
-            return (
+        return (
+            <>
+                <ScanIncompleteWarning
+                    deps={deps}
+                    warnings={assessmentData.scanIncompleteWarnings}
+                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
+                    test={assessmentNavState.selectedTestType}
+                />
                 <ReflowAssessmentView
                     deps={deps}
                     currentTarget={currentTarget}
@@ -79,42 +84,6 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                     assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
                     featureFlagStoreData={props.featureFlagStoreData}
                     pathSnippetStoreData={props.pathSnippetStoreData}
-                />
-            );
-        };
-        const renderAssessmentView = (): JSX.Element => {
-            return (
-                <AssessmentView
-                    deps={deps}
-                    isScanning={isScanning}
-                    selectedRequirementIsEnabled={selectedRequirementIsEnabled}
-                    assessmentNavState={assessmentNavState}
-                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                    assessmentData={assessmentData}
-                    currentTarget={currentTarget}
-                    prevTarget={prevTarget}
-                    assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
-                    assessmentTestResult={assessmentTestResult}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    pathSnippetStoreData={props.pathSnippetStoreData}
-                    switcherNavConfiguration={props.switcherNavConfiguration}
-                />
-            );
-        };
-
-        return (
-            <>
-                <ScanIncompleteWarning
-                    deps={deps}
-                    warnings={assessmentData.scanIncompleteWarnings}
-                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
-                    test={assessmentNavState.selectedTestType}
-                />
-                <FlaggedComponent
-                    enableJSXElement={renderReflowAssessmentView()}
-                    disableJSXElement={renderAssessmentView()}
-                    featureFlag={FeatureFlags.reflowUI}
-                    featureFlagStoreData={props.featureFlagStoreData}
                 />
             </>
         );

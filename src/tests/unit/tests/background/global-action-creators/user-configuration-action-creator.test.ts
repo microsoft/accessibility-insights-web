@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SaveWindowBoundsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
@@ -130,6 +131,24 @@ describe('UserConfigurationActionCreator', () => {
         testSubject.setAdbLocation(expectedAdbLocation);
 
         setAdbLocationConfigMock.verifyAll();
+    });
+
+    it('should SaveWindowBounds message', () => {
+        const payload: SaveWindowBoundsPayload = {
+            windowState: 'normal',
+            windowBounds: { x: 10, y: 20, height: 100, width: 150 },
+        };
+
+        const saveWindowBoundsActionMock = createActionMock(payload);
+        const actionsMock = createActionsMock(
+            'saveWindowBounds',
+            saveWindowBoundsActionMock.object,
+        );
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+
+        testSubject.saveWindowBounds(payload);
+
+        saveWindowBoundsActionMock.verifyAll();
     });
 
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(

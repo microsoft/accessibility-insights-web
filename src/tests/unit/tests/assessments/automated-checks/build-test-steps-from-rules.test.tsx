@@ -6,7 +6,7 @@ import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { isMatch } from 'lodash';
 import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { Messages } from '../../../../../common/messages';
@@ -17,7 +17,6 @@ import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
 } from '../../../../../DetailsView/components/assessment-instance-table';
-import { RequirementLink } from '../../../../../DetailsView/components/requirement-link';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
@@ -123,16 +122,6 @@ describe('buildTestStepsFromRules', () => {
 
         expect(actual.renderInstanceTableHeader).toBeDefined();
         expect(actual.renderInstanceTableHeader({} as AssessmentInstanceTable, [])).toBeNull();
-
-        const linkMock = Mock.ofType(RequirementLink, MockBehavior.Strict);
-        const descriptionStub = <div>descriptionWithoutIndexStub</div>;
-        linkMock
-            .setup(lm => lm.renderRequirementDescriptionWithoutIndex())
-            .returns(() => descriptionStub)
-            .verifiable(Times.once());
-        expect(actual.renderRequirementDescription).toBeDefined();
-        expect(actual.renderRequirementDescription(linkMock.object)).toBe(descriptionStub);
-        linkMock.verifyAll();
 
         expect(actual.columnsConfig).toHaveLength(2);
         expect(actual.columnsConfig[0].key).toBe('path');

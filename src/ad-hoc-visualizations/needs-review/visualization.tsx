@@ -15,33 +15,43 @@ import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-t
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
+const needsReviewTestKey = AdHocTestkeys.NeedsReview;
+const issuesTestKey = AdHocTestkeys.Issues;
+
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells', 'link-in-text-block'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,
-    key: AdHocTestkeys.NeedsReview,
+    key: needsReviewTestKey,
     testType: VisualizationType.NeedsReview,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
-    key: AdHocTestkeys.NeedsReview,
+    key: needsReviewTestKey,
     testMode: TestMode.Adhoc,
     getTestView: props => (
         <AdhocIssuesTestView instancesSection={NeedsReviewInstancesSection} {...props} />
     ),
-    getStoreData: data => data.adhoc.needsReview,
-    enableTest: data => (data.enabled = true),
+    getStoreData: data => data.adhoc[needsReviewTestKey],
+    enableTest: data => {
+        data.adhoc[needsReviewTestKey].enabled = true;
+        data.adhoc[issuesTestKey].enabled = false;
+    },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
         title: 'Needs review',
         subtitle: (
             <>
-                <i>Needs review</i> automated checks will highlight elements that might have an
-                accessibility issue. Examine each instance to determine if there is an accessibility
-                issue.
+                Sometimes automated checks identify <i>possible</i> accessibility problems that need
+                to be reviewed and verified by a human. Because most accessibility problems can only
+                be discovered through manual testing, we recommend an{' '}
+                <a href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">
+                    assessment
+                </a>
+                .
             </>
         ),
         enableMessage: 'Running needs review checks...',
@@ -52,7 +62,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>
         provider.createRuleAnalyzerUnifiedScanForNeedsReview(needsReviewRuleAnalyzerConfiguration),
-    getIdentifier: () => AdHocTestkeys.NeedsReview,
+    getIdentifier: () => needsReviewTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: (selectorMap, key, warnings) => null,
     getDrawer: provider => provider.createHighlightBoxDrawer(),

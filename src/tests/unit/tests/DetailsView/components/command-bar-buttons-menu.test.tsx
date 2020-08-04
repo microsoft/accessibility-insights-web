@@ -7,30 +7,26 @@ import {
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
-import { IOverflowSetItemProps } from 'office-ui-fabric-react';
+import { IButton, IOverflowSetItemProps, RefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import {
-    DetailsViewCommandBarProps,
-    // tslint:disable-next-line: ordered-imports
-    ReportExportComponentFactory,
-    StartOverComponentFactory,
-} from '../../../../../DetailsView/components/details-view-command-bar';
+import { StartOverComponentFactory } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('CommandBarButtonsMenu', () => {
-    let reportExportComponentFactory: IMock<ReportExportComponentFactory>;
+    let renderExportReportComponentMock: IMock<() => JSX.Element>;
     let startOverComponentFactory: IMock<StartOverComponentFactory>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
-        reportExportComponentFactory = Mock.ofType<ReportExportComponentFactory>();
+        renderExportReportComponentMock = Mock.ofInstance(() => null);
         startOverComponentFactory = Mock.ofType<StartOverComponentFactory>();
         commandBarButtonsMenuProps = {
             switcherNavConfiguration: {
-                ReportExportComponentFactory: reportExportComponentFactory.object,
                 StartOverComponentFactory: startOverComponentFactory.object,
             } as DetailsViewSwitcherNavConfiguration,
-        } as DetailsViewCommandBarProps;
+            renderExportReportButton: renderExportReportComponentMock.object,
+            buttonRef: {} as RefObject<IButton>,
+        } as CommandBarButtonsMenuProps;
     });
 
     it('renders CommandBarButtonsMenu', () => {
@@ -39,9 +35,9 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders child buttons', () => {
-        reportExportComponentFactory
-            .setup(r => r(commandBarButtonsMenuProps))
-            .returns(() => <></>)
+        renderExportReportComponentMock
+            .setup(r => r())
+            .returns(() => <>Report export button</>)
             .verifiable(Times.once());
 
         const startOverFactoryProps: StartOverFactoryProps = {
@@ -50,7 +46,7 @@ describe('CommandBarButtonsMenu', () => {
         };
         startOverComponentFactory
             .setup(s => s(startOverFactoryProps))
-            .returns(() => <></>)
+            .returns(() => <>Start over button</>)
             .verifiable(Times.once());
 
         const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
@@ -61,7 +57,7 @@ describe('CommandBarButtonsMenu', () => {
 
         overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
 
-        reportExportComponentFactory.verifyAll();
+        renderExportReportComponentMock.verifyAll();
         startOverComponentFactory.verifyAll();
     });
 });

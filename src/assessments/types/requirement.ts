@@ -13,7 +13,6 @@ import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
 } from 'DetailsView/components/assessment-instance-table';
-import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { Analyzer } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
@@ -69,7 +68,6 @@ export interface Requirement {
         table: AssessmentInstanceTable,
         items: AssessmentInstanceRowData[],
     ) => JSX.Element;
-    renderRequirementDescription?: (requirementLink: RequirementLink) => JSX.Element;
 }
 
 export type VisualHelperToggleConfigDeps = {

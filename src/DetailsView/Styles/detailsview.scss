@@ -6,8 +6,6 @@
 @import '../../views/content/content.scss';
 @import '../../reports/components/outcome.scss';
 @import '../../reports/components/assessment-report-header.scss';
-@import '../../reports/components/assessment-report-summary.scss';
-@import '../../reports/components/assessment-summary-details.scss';
 @import '../../common/components/toast.scss';
 @import '../../common/components/guidance-tags.scss';
 
@@ -28,20 +26,6 @@ body {
     display: none !important;
 }
 
-div.insights-dialog-main-override {
-    width: 75%;
-    max-width: 500px;
-    @media screen and (max-width: 500px) {
-        min-width: 240px;
-        width: 75%;
-    }
-
-    user-select: text;
-    .start-over-dialog-body {
-        font-size: 16px;
-    }
-}
-
 .issue-filing-dialog {
     .ms-Dialog-title {
         font-size: 21px;
@@ -55,18 +39,6 @@ div.insights-dialog-main-override {
         font-weight: 400;
         font-size: 15px;
         color: $secondary-text;
-    }
-}
-
-div.insights-file-issue-details-dialog-container {
-    max-width: 370px;
-
-    .ms-Dialog-content p {
-        margin-block-start: 4px;
-    }
-
-    .ms-Dialog-actions {
-        margin-top: 24px;
     }
 }
 
@@ -216,120 +188,9 @@ div.insights-file-issue-details-dialog-container {
         &.reflow-ui {
             grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
         }
-        .details-view-test-nav-area {
-            box-sizing: border-box;
-            max-height: calc(
-                100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
-            );
-            .ms-Nav-groupContent,
-            .ms-Nav-navItems {
-                margin-bottom: 0px;
-            }
-            a {
-                padding-right: 0px;
-                &:focus {
-                    @media screen and (-ms-high-contrast: active) {
-                        border: 3px highlighttext solid;
-                    }
-                }
-            }
-        }
         .ms-Pivot {
             border-bottom: 1px solid $neutral-8;
             padding-left: 12px;
-        }
-        .test-step-nav {
-            width: 400px;
-            .ms-Nav-link {
-                padding-left: calc(24px - #{$pivotItemLeftBorderWidth});
-                padding-top: 10px;
-                padding-bottom: 10px;
-                height: fit-content !important;
-                .ms-Icon-placeHolder {
-                    display: none;
-                }
-            }
-            .ms-Nav-groupContent,
-            .ms-Nav-navItems {
-                margin-bottom: 0px;
-            }
-        }
-        .test-step-view {
-            padding-left: 0.75vw;
-            padding-right: 0.75vw;
-            padding-bottom: 3.5vw;
-            .test-step-title-container {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                vertical-align: middle;
-                padding-top: 1vw;
-                .test-step-view-title {
-                    font-size: 17px;
-                    padding-top: 0px;
-                    display: inline-block;
-                }
-            }
-            .visual-helper {
-                display: flex;
-                vertical-align: middle;
-                flex-direction: row;
-                padding-top: 1.5vh;
-                padding-bottom: 1.1vh;
-                flex-wrap: wrap;
-                &-text {
-                    padding-right: 0.9vh;
-                    padding-bottom: 0.9vh;
-                    font-family: $fontFamily;
-                    font-size: 14px;
-                    line-height: normal;
-                }
-                .ms-Toggle {
-                    margin-bottom: 0;
-                }
-            }
-            .test-step-instructions-header {
-                font-size: 14px;
-                font-weight: $normalTitleFontWeight;
-            }
-            .no-matching-elements {
-                font-weight: bold;
-            }
-            .is-disabled.visual-helper-toggle {
-                .ms-Toggle-stateText {
-                    color: $secondary-text;
-                }
-            }
-            .test-step-choice-group-container {
-                margin-left: 8px;
-                margin-bottom: 4px;
-                margin-top: 20px;
-            }
-            .master-visualization-column-header-selected {
-                background-color: $communication-primary;
-                color: $neutral-0;
-                display: inline;
-            }
-            .property-bag-container {
-                display: flex;
-                flex-direction: column;
-                font-size: 14px;
-                line-height: 24px;
-                * + *.property-bag-div {
-                    margin-top: 4px;
-                }
-                .property-bag-div {
-                    color: $secondary-text;
-                    .expanded-property-div {
-                        margin-left: 20px;
-                    }
-                    .display-name {
-                        color: $neutral-80;
-                    }
-                    white-space: normal;
-                }
-            }
         }
         .remove-button {
             margin-left: 12px;
@@ -356,62 +217,12 @@ div.insights-file-issue-details-dialog-container {
             align-items: center;
             h2 {
                 font-weight: $normalTitleFontWeight;
+                font-size: 17px;
             }
         }
         .collapsible-content {
             overflow: hidden;
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
-        }
-        .test-step-nav {
-            z-index: 100;
-            background-color: $neutral-0;
-            .index-circle {
-                border: 1px solid;
-                display: inline-block;
-                border-radius: 50%;
-                border: 1px solid;
-                width: 1.5em;
-                line-height: 1.5em;
-                padding: 0.07em;
-                margin-top: 0.23em;
-            }
-            .test-name {
-                padding-left: 10%;
-                display: inline-block;
-            }
-            .ms-Nav-navItems {
-                margin-top: 0px !important;
-            }
-            .ms-Nav-compositeLink {
-                .ms-Button-label {
-                    color: $neutral-100;
-                }
-                &.is-selected {
-                    a {
-                        background-color: $communication-tint-40;
-                    }
-                    a::after {
-                        border-left: 0px;
-                    }
-                    .ms-Button-label {
-                        color: $always-black;
-                    }
-                    .index-circle {
-                        color: $neutral-0;
-                        background: $index-circle-background;
-                        border-color: $neutral-0;
-                    }
-                }
-            }
-            .ms-Pivot-text {
-                font-size: $fontSizeS;
-            }
-            .ms-Pivot-icon {
-                font-size: 9px;
-            }
-            button {
-                text-align: left;
-            }
         }
         .details-view-body-content-pane {
             display: flex;
@@ -445,17 +256,6 @@ div.insights-file-issue-details-dialog-container {
                     font-size: 21px;
                     color: $neutral-100;
                 }
-                h2 {
-                    font-size: 17px;
-                    color: $neutral-100;
-                }
-                h3 {
-                    margin: 0px;
-                    padding-top: 4px;
-                    font-size: 14px;
-                    color: $neutral-100;
-                    font-weight: $fontWeightSemiBold;
-                }
                 b {
                     font-weight: 600;
                 }
@@ -471,53 +271,6 @@ div.insights-file-issue-details-dialog-container {
                     }
                     .ms-Toggle-innerContainer {
                         margin: 10px 0px 10px 0px;
-                    }
-                }
-                .overview {
-                    display: flex;
-                    flex-direction: row;
-                    flex-wrap: wrap;
-                    padding-left: 32px;
-                    .overview-text-summary-section {
-                        display: flex;
-                        flex-direction: column;
-                        flex: 1 1 50%;
-                        align-items: flex-start;
-                        width: 90%;
-                        margin-right: 32px;
-                        .assessment-report-summary {
-                            margin-top: 40px;
-                            width: 100%;
-                            h2 {
-                                font-weight: 600;
-                                line-height: 32px;
-                                font-size: 21px;
-                                letter-spacing: -0.02em;
-                                color: $primary-text;
-                                margin: 0px;
-                            }
-                            h3 {
-                                margin: 16px 0px 21px 0px;
-                                padding: 0;
-                            }
-                            .assessment-summary-details {
-                                .test-summary {
-                                    padding: 12px;
-                                    .test-summary-display-name {
-                                        font-family: $semiBoldFontFamily;
-                                        font-size: 14px;
-                                        line-height: 20px;
-                                        font-weight: 600;
-                                    }
-                                }
-                            }
-                            .test-details-text {
-                                font-weight: 600;
-                                line-height: 24px;
-                                font-size: 17px;
-                                color: $primary-text;
-                            }
-                        }
                     }
                 }
             }

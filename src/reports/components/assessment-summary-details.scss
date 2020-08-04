@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
+@import '../../common/styles/common.scss';
 
 .assessment-summary-details {
     display: flex;
@@ -26,7 +25,7 @@
             .test-summary {
                 display: flex;
                 width: 98%;
-                padding: 2% 1% 2% 1%;
+                padding: 12px 10px;
                 justify-content: space-between;
                 border-bottom: $neutral-alpha-8 solid 1px;
             }
@@ -34,12 +33,15 @@
             .test-summary-status {
                 display: flex;
                 align-items: center;
+                white-space: nowrap;
             }
 
             .test-summary-display-name {
                 font-family: $semiBoldFontFamily;
                 font-size: 14px;
                 line-height: 20px;
+                white-space: nowrap;
+                font-weight: 600;
             }
         }
     }

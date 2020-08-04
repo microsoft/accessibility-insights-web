@@ -110,7 +110,7 @@ Array [
       "test check resolution": Object {},
     },
     "ruleId": "id1",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -127,7 +127,7 @@ Array [
       "test check resolution": Object {},
     },
     "ruleId": "id1",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -144,7 +144,7 @@ Array [
       "test check resolution": Object {},
     },
     "ruleId": "id2",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
 ]

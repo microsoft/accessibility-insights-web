@@ -15,22 +15,23 @@ import { VisualizationInstanceProcessor } from 'injected/visualization-instance-
 import * as React from 'react';
 
 const { guidance } = content.color;
+const colorTestKey = AdHocTestkeys.Color;
 
 const colorRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: ['select-body'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
-    key: AdHocTestkeys.Color,
+    key: colorTestKey,
     testType: VisualizationType.Color,
     analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
 };
 
 export const ColorAdHocVisualization: VisualizationConfiguration = {
     getTestView: props => <AdhocStaticTestView {...props} />,
-    key: AdHocTestkeys.Color,
+    key: colorTestKey,
     testMode: TestMode.Adhoc,
-    getStoreData: data => data.adhoc.color,
-    enableTest: (data, _) => (data.enabled = true),
+    getStoreData: data => data.adhoc[colorTestKey],
+    enableTest: (data, _) => (data.adhoc[colorTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     displayableData: {
@@ -43,7 +44,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,
     getAnalyzer: provider => provider.createRuleAnalyzer(colorRuleAnalyzerConfiguration),
-    getIdentifier: () => AdHocTestkeys.Color,
+    getIdentifier: () => colorTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,
     getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),

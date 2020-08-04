@@ -59,7 +59,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
                 targetAppInfo,
             );
 
-            const kebabMenuAriaLabel: string = `More Actions for card ${result.identifiers.identifier} in rule ${rule.id}`;
+            const kebabMenuAriaLabel: string = `More Actions for failure instance ${result.identifiers.identifier} in rule ${rule.id}`;
             return (
                 <CardKebabMenuButton
                     deps={deps}

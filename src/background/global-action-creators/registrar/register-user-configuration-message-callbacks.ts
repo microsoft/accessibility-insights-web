@@ -42,4 +42,8 @@ export const registerUserConfigurationMessageCallback = (
         Messages.UserConfig.SetAdbLocationConfig,
         payload => userConfigurationActionCreator.setAdbLocation(payload.adbLocation),
     );
+    interpreter.registerTypeToPayloadCallback(
+        Messages.UserConfig.SaveWindowBounds,
+        userConfigurationActionCreator.saveWindowBounds,
+    );
 };

@@ -63,9 +63,7 @@ describe('DetailsViewContainer', () => {
                     tabStoreData: {
                         isClosed: true,
                     },
-                    featureFlagStoreData: {
-                        reflowUI: true,
-                    } as FeatureFlagStoreData,
+                    featureFlagStoreData: {} as FeatureFlagStoreData,
                 },
                 deps: {
                     storesHub: storesHubMock.object,
@@ -91,9 +89,7 @@ describe('DetailsViewContainer', () => {
                     permissionsStateStoreData: {
                         hasAllUrlAndFilePermissions: false,
                     },
-                    featureFlagStoreData: {
-                        reflowUI: true,
-                    } as FeatureFlagStoreData,
+                    featureFlagStoreData: {} as FeatureFlagStoreData,
                 },
                 deps: {
                     storesHub: storesHubMock.object,

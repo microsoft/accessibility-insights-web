@@ -24,6 +24,7 @@ export interface ExportDialogProps {
     reportExportFormat: ReportExportFormat;
     onExportClick: () => void;
     featureFlagStoreData: FeatureFlagStoreData;
+    afterDismissed?: () => void;
 }
 
 export interface ExportDialogDeps {
@@ -126,6 +127,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
             modalProps={{
                 isBlocking: false,
                 containerClassName: styles.exportDialog,
+                onDismissed: props.afterDismissed,
             }}
         >
             <TextField

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { reflowAssessmentTestKeyGenerator } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { IMock, Mock } from 'typemoq';
@@ -31,7 +30,6 @@ describe('getTestviewKey', () => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProviderImpl>();
         generateReflowAssessmentTestKeyMock = Mock.ofType<reflowAssessmentTestKeyGenerator>();
         featureFlagStoreData = {};
-        featureFlagStoreData[FeatureFlags.reflowUI] = false;
 
         props = {
             deps: {
@@ -51,16 +49,8 @@ describe('getTestviewKey', () => {
         expect(getTestViewKey(props)).toEqual(expectedKey);
     });
 
-    it('with reflow flag disabled', () => {
+    it('with reflow', () => {
         assessmentsProviderMock.setup(a => a.isValidType(visualizationType)).returns(() => true);
-        const expectedKey = VisualizationType[visualizationType];
-
-        expect(getTestViewKey(props)).toEqual(expectedKey);
-    });
-
-    it('with reflow flag enabled', () => {
-        assessmentsProviderMock.setup(a => a.isValidType(visualizationType)).returns(() => true);
-        featureFlagStoreData[FeatureFlags.reflowUI] = true;
         const expectedKey = 'expected key';
         generateReflowAssessmentTestKeyMock
             .setup(g => g(visualizationType, selectedSubview))

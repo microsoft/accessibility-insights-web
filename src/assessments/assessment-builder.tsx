@@ -12,13 +12,16 @@ import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { InstanceIdToInstanceDataMap } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
+import {
+    AssessmentScanData,
+    ScanData,
+    TestsEnabledState,
+} from 'common/types/store-data/visualization-store-data';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
 } from 'DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
-import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import {
@@ -69,11 +72,6 @@ export class AssessmentBuilder {
             requirement.renderInstanceTableHeader = AssessmentBuilder.renderInstanceTableHeader;
         }
 
-        if (!requirement.renderRequirementDescription) {
-            requirement.renderRequirementDescription =
-                AssessmentBuilder.renderRequirementDescription;
-        }
-
         if (!requirement.getDefaultMessage) {
             requirement.getDefaultMessage = defaultMessageGenerator =>
                 defaultMessageGenerator.getNoMatchingInstanceMessage;
@@ -113,10 +111,6 @@ export class AssessmentBuilder {
         items: AssessmentInstanceRowData[],
     ): JSX.Element {
         return table.renderDefaultInstanceTableHeader(items);
-    }
-
-    private static renderRequirementDescription(requirementLink: RequirementLink): JSX.Element {
-        return requirementLink.renderRequirementDescriptionWithIndex();
     }
 
     private static enableTest(scanData: ScanData, payload: AssessmentToggleActionPayload): void {
@@ -185,10 +179,17 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
+        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
+            data.assessments[`${key}Assessment`];
+
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
-            getStoreData: data => data.assessments[`${key}Assessment`],
-            enableTest: AssessmentBuilder.enableTest,
+            getStoreData: getStoreData,
+            enableTest: (data, payload) =>
+                AssessmentBuilder.enableTest(
+                    getStoreData(data),
+                    payload as AssessmentToggleActionPayload,
+                ),
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
@@ -273,6 +274,9 @@ export class AssessmentBuilder {
             return requirementConfig.getNotificationMessage(selectorMap);
         };
 
+        const getStoreData: (data: TestsEnabledState) => ScanData = data =>
+            data.assessments[assessment.storeDataKey];
+
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
             getTestView: props => <AssessmentTestView {...props} />,
             getAssessmentData: data => data.assessments[key],
@@ -281,8 +285,12 @@ export class AssessmentBuilder {
                 thisAssessment.fullAxeResultsMap = selectorMap;
                 thisAssessment.generatedAssessmentInstancesMap = instanceMap;
             },
-            getStoreData: data => data.assessments[assessment.storeDataKey],
-            enableTest: AssessmentBuilder.enableTest,
+            getStoreData: getStoreData,
+            enableTest: (data, payload) =>
+                AssessmentBuilder.enableTest(
+                    getStoreData(data),
+                    payload as AssessmentToggleActionPayload,
+                ),
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             telemetryProcessor: factory => factory.forAssessmentRequirementScan,

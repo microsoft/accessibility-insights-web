@@ -22102,9 +22102,23 @@ exports[`Guidance Content pages test/nativeWidgets/guidance matches the snapshot
     <div
       class="content"
     >
-      <h1>
-        Native widgets
-      </h1>
+      <p>
+        A page must provide a keyboard-accessible method to bypass repetitive content.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Web pages typically have blocks of content that repeat across multiple pages, such as banners and site navigation menus. A person who uses a mouse can visually skim past that repeated content to access a link or other control within the primary content with a single click. Similarly, a bypass mechanism allows keyboard users to navigate directly to the page’s main content. Otherwise, reaching the primary content could require dozens of keystrokes. People with limited mobility could find this task difficult or painful, and people who use screen readers could find it tedious to listen as each repeated element is announced.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I navigate content and interfaces using a screen reader and a keyboard. Repeated blocks of navigation and content force me to 're-read' everything as I work back and forth over the interface to complete a task or, enjoy content. Allow me a way to 'bypass' repetitive blocks of navigation and content via keyboard commands, skip links, and WAI-ARIA regions."
+        </em>
+      </p>
       <h2>
         Why it matters
       </h2>
