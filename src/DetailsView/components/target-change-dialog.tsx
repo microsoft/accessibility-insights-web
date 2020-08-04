@@ -7,6 +7,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { Tab } from 'common/itab';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { UrlParser } from 'common/url-parser';
+import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
 import * as styles from 'DetailsView/components/target-change-dialog.scss';
 import { isEmpty } from 'lodash';
 import { DefaultButton, DialogFooter, DialogType, Link, TooltipHost } from 'office-ui-fabric-react';
@@ -40,7 +41,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
                 modalProps={{
                     className: styles.targetChangeDialogModal,
                     containerClassName: css(
-                        'insights-dialog-main-override',
+                        commonDialogStyles.insightsDialogMainOverride,
                         styles.targetChangeDialog,
                     ),
                     subtitleAriaId: 'target-change-dialog-description',

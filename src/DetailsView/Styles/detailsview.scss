@@ -26,20 +26,6 @@ body {
     display: none !important;
 }
 
-div.insights-dialog-main-override {
-    width: 75%;
-    max-width: 500px;
-    @media screen and (max-width: 500px) {
-        min-width: 240px;
-        width: 75%;
-    }
-
-    user-select: text;
-    .start-over-dialog-body {
-        font-size: 16px;
-    }
-}
-
 .issue-filing-dialog {
     .ms-Dialog-title {
         font-size: 21px;
@@ -53,18 +39,6 @@ div.insights-dialog-main-override {
         font-weight: 400;
         font-size: 15px;
         color: $secondary-text;
-    }
-}
-
-div.insights-file-issue-details-dialog-container {
-    max-width: 370px;
-
-    .ms-Dialog-content p {
-        margin-block-start: 4px;
-    }
-
-    .ms-Dialog-actions {
-        margin-top: 24px;
     }
 }
 
