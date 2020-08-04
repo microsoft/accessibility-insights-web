@@ -15,13 +15,11 @@ import {
 import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
-// import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
     ReportExportDialogFactoryProps,
 } from 'DetailsView/components/report-export-dialog-factory';
-// import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -49,7 +47,6 @@ describe('ReportExportDialogFactory', () => {
     let scanMetadata: ScanMetadata;
     let deps: DetailsViewCommandBarDeps;
     let dismissExportDialogMock: IMock<() => void>;
-    // let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
     let afterDialogDismissedMock: IMock<() => void>;
     let props: ReportExportDialogFactoryProps;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
@@ -74,7 +71,6 @@ describe('ReportExportDialogFactory', () => {
         reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Loose);
         dismissExportDialogMock = Mock.ofInstance(() => null);
         afterDialogDismissedMock = Mock.ofInstance(() => null);
-        // shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
         cardsViewData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
@@ -82,9 +78,6 @@ describe('ReportExportDialogFactory', () => {
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => theDate,
         } as DetailsViewCommandBarDeps;
-        // const switcherNavConfiguration = {
-        //     //     shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
-        // } as DetailsViewSwitcherNavConfiguration;
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         visualizationConfigurationMock = Mock.ofType<VisualizationConfiguration>();
         visualizationConfigurationFactoryMock
@@ -98,7 +91,6 @@ describe('ReportExportDialogFactory', () => {
             assessmentsProvider: assessmentsProviderMock.object,
             cardsViewData,
             scanMetadata,
-            // switcherNavConfiguration,
             isOpen,
             dismissExportDialog: dismissExportDialogMock.object,
             afterDialogDismissed: afterDialogDismissedMock.object,
@@ -125,9 +117,6 @@ describe('ReportExportDialogFactory', () => {
     }
 
     function setupShouldShowReportExportButton(enabled: boolean, shouldShow: boolean): void {
-        // shouldShowReportExportButtonMock
-        //     .setup(s => s(It.isAny()))
-        //     .returns(() => showReportExportButton);
         visualizationConfigurationMock
             .setup(m => m.getStoreData(visualizationStoreData.tests))
             .returns(() => scanDataStub);
