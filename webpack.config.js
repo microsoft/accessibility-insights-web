@@ -68,8 +68,9 @@ const scssRule = (useHash = true) => ({
             options: {
                 modules: {
                     localIdentName: '[local]' + (useHash ? '--[hash:base64:5]' : ''),
+                    namedExport: true,
+                    exportLocalsConvention: 'camelCaseOnly',
                 },
-                localsConvention: 'camelCaseOnly',
             },
         },
         'sass-loader',
