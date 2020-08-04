@@ -21,7 +21,7 @@ import {
     ReportExportDialogFactoryProps,
 } from 'DetailsView/components/report-export-dialog-factory';
 import { ReportGenerator } from 'reports/report-generator';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportExportDialogFactory', () => {
     const theDate = new Date(Date.UTC(2019, 2, 12, 9, 0));

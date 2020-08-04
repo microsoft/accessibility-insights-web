@@ -113,8 +113,8 @@ describe('DetailsViewCommandBar', () => {
     `(
         'renders with start over = $startOver, enabled = $enabled, shouldShowExportReport = $shouldShow',
         ({ startOver, enabled, shouldShow }) => {
-            const renderExportResults = enabled && shouldShow;
-            testOnPivot(renderExportResults, startOver);
+            setupVisualizationConfigurationMock(enabled, shouldShow);
+            testOnPivot(startOver);
         },
     );
 
@@ -143,9 +143,7 @@ describe('DetailsViewCommandBar', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
-        setupVisualizationConfigurationMock(renderExportResults, renderExportResults);
-
+    function testOnPivot(renderStartOver: boolean): void {
         if (renderStartOver) {
             startOverComponent = <ActionButton>Start Over Component</ActionButton>;
         }
