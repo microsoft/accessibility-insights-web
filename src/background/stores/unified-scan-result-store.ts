@@ -21,7 +21,6 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
             scanIncompleteWarnings: null,
             screenshotData: null,
             platformInfo: null,
-            testType: null,
         };
 
         return defaultValue;
@@ -41,7 +40,6 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;
-        this.state.testType = payload.testType;
         this.emitChanged();
     };
 }

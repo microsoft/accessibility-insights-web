@@ -17,7 +17,7 @@ import {
     getReportExportDialogForFastPass,
     ReportExportDialogFactoryProps,
 } from 'DetailsView/components/report-export-dialog-factory';
-import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
+// import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -41,7 +41,7 @@ describe('ReportExportDialogFactory', () => {
     let scanMetadata: ScanMetadata;
     let deps: DetailsViewCommandBarDeps;
     let dismissExportDialogMock: IMock<() => void>;
-    let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
+    // let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
     let afterDialogDismissedMock: IMock<() => void>;
     let props: ReportExportDialogFactoryProps;
 
@@ -64,7 +64,7 @@ describe('ReportExportDialogFactory', () => {
         reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Loose);
         dismissExportDialogMock = Mock.ofInstance(() => null);
         afterDialogDismissedMock = Mock.ofInstance(() => null);
-        shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
+        // shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
         cardsViewData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
@@ -73,7 +73,7 @@ describe('ReportExportDialogFactory', () => {
             getDateFromTimestamp: value => theDate,
         } as DetailsViewCommandBarDeps;
         const switcherNavConfiguration = {
-            shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
+            //     shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
         } as DetailsViewSwitcherNavConfiguration;
 
         props = {
@@ -106,9 +106,9 @@ describe('ReportExportDialogFactory', () => {
     }
 
     function setupShouldShowReportExportButton(showReportExportButton: boolean): void {
-        shouldShowReportExportButtonMock
-            .setup(s => s(It.isAny()))
-            .returns(() => showReportExportButton);
+        // shouldShowReportExportButtonMock
+        //     .setup(s => s(It.isAny()))
+        //     .returns(() => showReportExportButton);
     }
 
     describe('getReportExportDialogForAssessment', () => {
