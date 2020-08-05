@@ -77,7 +77,7 @@ export const CSS_MODULE_HASH_REPLACEMENT = '{{CSS_MODULE_HASH}}';
 // Our webpack config adds generated suffixes of form "--abc12" to the end of class names defined in
 // CSS. This normalizes them to avoid causing E2Es to fail for unrelated style changes.
 export function normalizeCssModuleClassName(className: string): string {
-    const cssModuleClassNameMatcher = /^([\w-]+--)[A-Za-z0-9+\/=-]{5}$/;
+    const cssModuleClassNameMatcher = /^([\w-]+--)[A-Za-z0-9+\/=\-_]{5}$/;
 
     return className.replace(cssModuleClassNameMatcher, `$1${CSS_MODULE_HASH_REPLACEMENT}`);
 }

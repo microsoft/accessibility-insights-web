@@ -54,6 +54,8 @@ describe('element-snapshot-formatter', () => {
             ${'no-numbers'}      | ${'no-numbers'}
             ${'first'}           | ${'first'}
             ${'my-class--Fs0Df'} | ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`}
+            ${'my-class--Fs_Df'} | ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`}
+            ${'my-class--Fs-Df'} | ${`my-class--${CSS_MODULE_HASH_REPLACEMENT}`}
             ${'my-class-Fs0Df'}  | ${'my-class-Fs0Df'}
         `(
             'from "$actualClassName" to "$expectedClassName"',
