@@ -115,7 +115,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'Needs review',
             displayableDescription:
                 'Enable a new test to show automated check rules that might have an accessibility issue and need to be reviewed.',
-            isPreviewFeature: false,
+            isPreviewFeature: true,
             forceDefault: false,
         },
     ];
