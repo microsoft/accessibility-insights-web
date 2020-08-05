@@ -34,6 +34,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     enableTest: (data, _) => (data.adhoc[tabStopsTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
+    shouldShowExportReport: () => false,
     displayableData: {
         title: 'Tab stops',
         enableMessage: 'Start pressing Tab to start visualizing tab stops.',

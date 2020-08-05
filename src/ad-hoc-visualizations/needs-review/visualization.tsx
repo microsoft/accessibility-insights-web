@@ -41,6 +41,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
+    shouldShowExportReport: () => false,
     displayableData: {
         title: 'Needs review',
         subtitle: (

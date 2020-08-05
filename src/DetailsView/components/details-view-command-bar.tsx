@@ -12,10 +12,12 @@ import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import {
     ScanMetadata,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
+import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -59,6 +61,8 @@ export interface DetailsViewCommandBarProps {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
     narrowModeStatus: NarrowModeStatus;
+    visualizationConfigurationFactory: VisualizationConfigurationFactory;
+    selectedTest: VisualizationType;
 }
 
 export class DetailsViewCommandBar extends React.Component<
@@ -151,9 +155,14 @@ export class DetailsViewCommandBar extends React.Component<
     private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
 
     private renderExportButton = () => {
-        const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
-            this.props,
+        const config = this.props.visualizationConfigurationFactory.getConfiguration(
+            this.props.selectedTest,
         );
+        const scanData = config.getStoreData(this.props.visualizationStoreData.tests);
+        const isEnabled = config.getTestStatus(scanData);
+
+        const showButton =
+            config.shouldShowExportReport(this.props.unifiedScanResultStoreData) && isEnabled;
 
         if (!showButton) {
             return null;
