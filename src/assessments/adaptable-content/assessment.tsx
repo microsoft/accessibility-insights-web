@@ -14,7 +14,7 @@ import { Reflow } from './test-steps/reflow';
 import { ResizeText } from './test-steps/resize-text';
 import { TextSpacing } from './test-steps/text-spacing';
 
-const key = 'adaptableContent';
+const key = 'textLegibility';
 const title = 'Adaptable content';
 const { guidance } = content.adaptableContent;
 
