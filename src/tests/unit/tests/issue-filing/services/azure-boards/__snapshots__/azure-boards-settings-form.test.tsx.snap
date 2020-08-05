@@ -10,7 +10,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
     value=""
   />
   <StyledWithResponsiveMode
-    label="File issue details in:"
+    label="Select a field for issue details"
     onChange={[Function]}
     options={
       Array [
@@ -40,7 +40,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
     value="some project URL"
   />
   <StyledWithResponsiveMode
-    label="File issue details in:"
+    label="Select a field for issue details"
     onChange={[Function]}
     options={
       Array [
