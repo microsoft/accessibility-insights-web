@@ -65,7 +65,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
                 <Dropdown
                     options={options}
                     placeholder="Select an option"
-                    label="File issue details in:"
+                    label="Select a field for issue details"
                     onChange={onIssueDetailLocationChange}
                     selectedKey={props.settings ? props.settings.issueDetailsField : null}
                 />

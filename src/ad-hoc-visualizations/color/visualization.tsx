@@ -34,6 +34,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     enableTest: (data, _) => (data.adhoc[colorTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
+    shouldShowExportReport: () => false,
     displayableData: {
         title: 'Color',
         enableMessage: 'Changing color to greyscale...',

@@ -4,11 +4,11 @@ exports[`HowToCheckWebText renders with id=aria-input-field-name 1`] = `
 <div>
   Inspect the element using the
    
-  <a
+  <NewTabLink
     href="https://developers.google.com/web/updates/2018/01/devtools"
   >
     Accessibility pane in the browser Developer Tools
-  </a>
+  </NewTabLink>
    
   to verify that the field's accessible name is complete without its associated
    
@@ -40,19 +40,19 @@ exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
     >
       If the text is intended to be visible, use
        
-      <a
+      <NewTabLink
         href="https://go.microsoft.com/fwlink/?linkid=2075365"
       >
         Accessibility Insights for Windows
-      </a>
+      </NewTabLink>
        
       (or the
        
-      <a
+      <NewTabLink
         href="https://developer.paciellogroup.com/resources/contrastanalyser/"
       >
         Colour Contrast Analyser
-      </a>
+      </NewTabLink>
        
       if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
     </li>
@@ -86,19 +86,19 @@ exports[`HowToCheckWebText renders with id=link-in-text-block 1`] = `
   <li>
     To measure contrast, use
      
-    <a
+    <NewTabLink
       href="https://go.microsoft.com/fwlink/?linkid=2075365"
     >
       Accessibility Insights for Windows
-    </a>
+    </NewTabLink>
      
     (or the
      
-    <a
+    <NewTabLink
       href="https://developer.paciellogroup.com/resources/contrastanalyser/"
     >
       Colour Contrast Analyser
-    </a>
+    </NewTabLink>
      
     if you're testing on a Mac).
   </li>

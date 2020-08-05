@@ -54,7 +54,14 @@ export function getReportExportDialogForAssessment(
 export function getReportExportDialogForFastPass(
     props: ReportExportDialogFactoryProps,
 ): JSX.Element {
-    if (props.switcherNavConfiguration.shouldShowReportExportButton(props) !== true) {
+    const config = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
+    const scanData = config.getStoreData(props.visualizationStoreData.tests);
+    const isEnabled = config.getTestStatus(scanData);
+
+    const shouldShowExportReportButton =
+        config.shouldShowExportReport(props.unifiedScanResultStoreData) && isEnabled;
+
+    if (shouldShowExportReportButton !== true) {
         return null;
     }
 

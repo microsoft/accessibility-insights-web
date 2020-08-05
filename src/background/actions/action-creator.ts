@@ -43,6 +43,7 @@ export class ActionCreator {
         [VisualizationType.Issues]: TelemetryEvents.AUTOMATED_CHECKS_TOGGLE,
         [VisualizationType.Landmarks]: TelemetryEvents.LANDMARKS_TOGGLE,
         [VisualizationType.TabStops]: TelemetryEvents.TABSTOPS_TOGGLE,
+        [VisualizationType.NeedsReview]: TelemetryEvents.NEEDS_REVIEW_TOGGLE,
     };
     private inspectActions: InspectActions;
     private cardSelectionActions: CardSelectionActions;
@@ -353,6 +354,7 @@ export class ActionCreator {
     private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {
         const telemetryEvent = this.adHocTestTypeToTelemetryEvent[payload.test];
         this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
+        this.unifiedScanResultActions.startScan.invoke(null);
 
         if (payload.enabled) {
             this.visualizationActions.enableVisualization.invoke(payload);
