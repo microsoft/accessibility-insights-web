@@ -2,7 +2,6 @@
 
 exports[`StartOverDialog renders when dialogState = assessment 1`] = `
 <GenericDialog
-  afterDismissed={[Function]}
   isHidden={false}
   messageText="Starting over will clear all existing results from the Assessment. This will clear results and progress of all tests and requirements. Are you sure you want to start over?"
   onCancelButtonClick={[Function]}
@@ -12,18 +11,10 @@ exports[`StartOverDialog renders when dialogState = assessment 1`] = `
 />
 `;
 
-exports[`StartOverDialog renders when dialogState = none 1`] = `
-<GenericDialog
-  afterDismissed={[Function]}
-  isHidden={true}
-  primaryButtonText="Start over"
-  title="Start over"
-/>
-`;
+exports[`StartOverDialog renders when dialogState = none 1`] = `null`;
 
 exports[`StartOverDialog renders when dialogState = test 1`] = `
 <GenericDialog
-  afterDismissed={[Function]}
   isHidden={false}
   messageText="Starting over will clear all existing results from the test name test. Are you sure you want to start over?"
   onCancelButtonClick={[Function]}

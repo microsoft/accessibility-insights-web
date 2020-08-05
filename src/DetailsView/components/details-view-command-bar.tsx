@@ -212,7 +212,19 @@ export class DetailsViewCommandBar extends React.Component<
         this.setState({ startOverDialogState: dialogClosedState });
     };
 
-    private focusStartOverButton = () => this.startOverDialogCloseFocus?.focus();
+    private startOverDialogClosed(state: DetailsViewCommandBarState): boolean {
+        return state.startOverDialogState === 'none';
+    }
+
+    public componentDidUpdate(prevProps, prevState): void {
+        // Setting focus after closing the Report Export dialog is handled in the
+        // afterDialogDismissed prop, which is called after the closing animation.
+        // Since the start over dialog does not play the closing animation (due
+        // to flickering issues), we set focus here instead.
+        if (this.startOverDialogClosed(this.state) && !this.startOverDialogClosed(prevState)) {
+            this.startOverDialogCloseFocus?.focus();
+        }
+    }
 
     private renderStartOverComponent = (dropdownDirection: DropdownDirection) => {
         const startOverFactoryProps: StartOverFactoryProps = {
@@ -229,7 +241,6 @@ export class DetailsViewCommandBar extends React.Component<
             ...this.props,
             dialogState: this.state.startOverDialogState,
             dismissDialog: this.dismissStartOverDialog,
-            afterDialogDismissed: this.focusStartOverButton,
         };
 
         return <StartOverDialog {...dialogProps} />;

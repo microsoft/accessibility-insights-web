@@ -17,8 +17,6 @@ export type GenericDialogProps = {
     messageText: string;
     title: string;
     primaryButtonText: string;
-    isHidden?: boolean;
-    afterDismissed?: () => void;
 };
 
 export const GenericDialog = NamedFC<GenericDialogProps>('GenericDialog', props => {
@@ -28,13 +26,11 @@ export const GenericDialog = NamedFC<GenericDialogProps>('GenericDialog', props 
         messageText,
         title,
         primaryButtonText,
-        isHidden,
-        afterDismissed,
     } = props;
 
     return (
         <Dialog
-            hidden={!!isHidden}
+            hidden={false}
             onDismiss={onCancelButtonClick}
             dialogContentProps={{
                 type: DialogType.normal,
@@ -44,7 +40,6 @@ export const GenericDialog = NamedFC<GenericDialogProps>('GenericDialog', props 
             modalProps={{
                 isBlocking: false,
                 containerClassName: styles.insightsDialogMainOverride,
-                onDismissed: afterDismissed,
             }}
         >
             <div className={styles.dialogBody}>{messageText}</div>

@@ -22,11 +22,14 @@ export interface StartOverDialogProps {
     assessmentsProvider: AssessmentsProvider;
     dialogState: StartOverDialogState;
     dismissDialog: () => void;
-    afterDialogDismissed: () => void;
 }
 
 export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', props => {
     const { dialogState, deps, assessmentStoreData, assessmentsProvider, dismissDialog } = props;
+
+    if (dialogState === dialogClosedState) {
+        return null;
+    }
 
     const test = assessmentStoreData.assessmentNavState.selectedTestType;
     const testName = assessmentsProvider.forType(test).title;
@@ -72,7 +75,6 @@ export const StartOverDialog = NamedFC<StartOverDialogProps>('StartOverDialog', 
         ...dialogPropsOptions[dialogState],
         title: 'Start over',
         primaryButtonText: 'Start over',
-        afterDismissed: props.afterDialogDismissed,
         isHidden: props.dialogState === dialogClosedState,
     };
 
