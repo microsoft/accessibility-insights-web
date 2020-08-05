@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
@@ -49,9 +50,9 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
                 Sometimes automated checks identify <i>possible</i> accessibility problems that need
                 to be reviewed and verified by a human. Because most accessibility problems can only
                 be discovered through manual testing, we recommend an{' '}
-                <a href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">
+                <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">
                     assessment
-                </a>
+                </NewTabLink>
                 .
             </>
         ),

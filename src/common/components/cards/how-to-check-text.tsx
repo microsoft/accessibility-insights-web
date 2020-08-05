@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import * as styles from './how-to-check-text.scss';
@@ -16,9 +17,9 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
             checkText = (
                 <div>
                     Inspect the element using the{' '}
-                    <a href="https://developers.google.com/web/updates/2018/01/devtools">
+                    <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">
                         Accessibility pane in the browser Developer Tools
-                    </a>{' '}
+                    </NewTabLink>{' '}
                      to verify that the field's accessible name is complete without its associated{' '}
                     <b>
                         {'<'}label{'>'}
@@ -37,13 +38,13 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                         </li>
                         <li list-style-type="disc">
                             If the text is intended to be visible, use{' '}
-                            <a href="https://go.microsoft.com/fwlink/?linkid=2075365">
+                            <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">
                                 Accessibility Insights for Windows
-                            </a>{' '}
+                            </NewTabLink>{' '}
                             (or the{' '}
-                            <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+                            <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">
                                 Colour Contrast Analyser
-                            </a>{' '}
+                            </NewTabLink>{' '}
                             if you're testing on a Mac) to manually verify that it has sufficient
                             contrast compared to the background. If the background is an image or
                             gradient, test an area where contrast appears to be lowest.
@@ -72,13 +73,13 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                     </li>
                     <li>
                         To measure contrast, use{' '}
-                        <a href="https://go.microsoft.com/fwlink/?linkid=2075365">
+                        <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">
                             Accessibility Insights for Windows
-                        </a>{' '}
+                        </NewTabLink>{' '}
                         (or the{' '}
-                        <a href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+                        <NewTabLink href="https://developer.paciellogroup.com/resources/contrastanalyser/">
                             Colour Contrast Analyser
-                        </a>{' '}
+                        </NewTabLink>{' '}
                         if you're testing on a Mac).
                     </li>
                 </ul>
