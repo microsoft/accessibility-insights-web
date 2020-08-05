@@ -12,7 +12,7 @@ export class ReportExportServiceProvider {
         return this.services;
     }
 
-    public forKey(key: ReportExportServiceKey): ReportExportService {
+    public forKey(key: ReportExportServiceKey): ReportExportService | undefined {
         return this.services.find(service => service.key === key);
     }
 }

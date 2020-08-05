@@ -6,7 +6,7 @@ export type MarkupFormatter = {
     link(href: string, text?: string): string;
     sectionHeader(text: string): string;
     howToFixSection(failureSummary: string): string;
-    sectionHeaderSeparator(): string;
-    footerSeparator(): string;
+    sectionHeaderSeparator(): string | null;
+    footerSeparator(): string | null;
     sectionSeparator(): string;
 };

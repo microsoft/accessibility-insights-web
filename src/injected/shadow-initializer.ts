@@ -38,7 +38,7 @@ export class ShadowInitializer {
 
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
 
-        rootContainer.appendChild(shadowHostElement);
+        rootContainer?.appendChild(shadowHostElement);
 
         return shadowHostElement;
     }
