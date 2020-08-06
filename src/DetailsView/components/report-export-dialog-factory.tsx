@@ -5,6 +5,7 @@ import {
     ExportDialogWithLocalState,
     ExportDialogWithLocalStateProps,
 } from 'DetailsView/components/export-dialog-with-local-state';
+import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import * as React from 'react';
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
@@ -54,7 +55,18 @@ export function getReportExportDialogForAssessment(
 export function getReportExportDialogForFastPass(
     props: ReportExportDialogFactoryProps,
 ): JSX.Element {
-    if (props.switcherNavConfiguration.shouldShowReportExportButton(props) !== true) {
+    const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
+        visualizationConfigurationFactory: props.visualizationConfigurationFactory,
+        selectedTest: props.selectedTest,
+        unifiedScanResultStoreData: props.unifiedScanResultStoreData,
+        visualizationStoreData: props.visualizationStoreData,
+    };
+
+    if (
+        props.switcherNavConfiguration.shouldShowReportExportButton(
+            shouldShowReportExportButtonProps,
+        ) !== true
+    ) {
         return null;
     }
 

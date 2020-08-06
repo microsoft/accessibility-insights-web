@@ -17,7 +17,10 @@ import {
     getReportExportDialogForFastPass,
     ReportExportDialogFactoryProps,
 } from 'DetailsView/components/report-export-dialog-factory';
-import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
+import {
+    ShouldShowReportExportButton,
+    ShouldShowReportExportButtonProps,
+} from 'DetailsView/components/should-show-report-export-button';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -44,6 +47,7 @@ describe('ReportExportDialogFactory', () => {
     let shouldShowReportExportButtonMock: IMock<ShouldShowReportExportButton>;
     let afterDialogDismissedMock: IMock<() => void>;
     let props: ReportExportDialogFactoryProps;
+    let shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -88,6 +92,13 @@ describe('ReportExportDialogFactory', () => {
             dismissExportDialog: dismissExportDialogMock.object,
             afterDialogDismissed: afterDialogDismissedMock.object,
         } as ReportExportDialogFactoryProps;
+
+        shouldShowReportExportButtonProps = {
+            visualizationConfigurationFactory: props.visualizationConfigurationFactory,
+            selectedTest: props.selectedTest,
+            unifiedScanResultStoreData: props.unifiedScanResultStoreData,
+            visualizationStoreData: props.visualizationStoreData,
+        } as ShouldShowReportExportButtonProps;
     });
 
     function setAssessmentReportGenerator(): void {
@@ -106,7 +117,9 @@ describe('ReportExportDialogFactory', () => {
     }
 
     function setupShouldShowReportExportButton(showReportExportButton: boolean): void {
-        shouldShowReportExportButtonMock.setup(s => s(props)).returns(() => showReportExportButton);
+        shouldShowReportExportButtonMock
+            .setup(s => s(shouldShowReportExportButtonProps))
+            .returns(() => showReportExportButton);
     }
 
     describe('getReportExportDialogForAssessment', () => {
