@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { adaptableContent } from './adaptable-content';
 import { audioVideoOnly } from './audio-video-only';
 import { automatedChecks } from './automated-checks';
 import { contrast } from './contrast';
@@ -22,7 +23,6 @@ import { repetitiveContent } from './repetitive-content';
 import { semantics } from './semantics';
 import { sensory } from './sensory';
 import { sequence } from './sequence';
-import { textLegibility } from './text-legibility';
 import { timedEvents } from './timed-events';
 
 export const test = {
@@ -42,7 +42,7 @@ export const test = {
     sensory,
     semantics,
     sequence,
-    textLegibility,
+    adaptableContent,
     timedEvents,
     nativeWidgets,
     customWidgets,

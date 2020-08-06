@@ -34,7 +34,7 @@ const howToTest: JSX.Element = (
             <Markup.Emphasis>
                 Note: Contrast requirements for text within a UI component or graphic are covered in{' '}
                 <Markup.Term>Automated checks</Markup.Term> and{' '}
-                <Markup.Term>Text legibility.</Markup.Term>
+                <Markup.Term>Adaptable content.</Markup.Term>
             </Markup.Emphasis>
         </p>
         <p>

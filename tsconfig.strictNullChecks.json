@@ -65,7 +65,7 @@
         "./src/assessments/repetitive-content/test-steps/test-steps.ts",
         "./src/assessments/semantics/test-steps/test-steps.ts",
         "./src/assessments/sequence/test-steps/test-steps.ts",
-        "./src/assessments/text-legibility/test-steps/test-step.ts",
+        "./src/assessments/adaptable-content/test-steps/test-step.ts",
         "./src/assessments/timed-events/test-steps/test-steps.ts",
         "./src/assessments/visible-focus-order/test-steps/test-steps.ts",
         "./src/background/IndexedDBDataKeys.ts",
