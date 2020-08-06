@@ -201,7 +201,6 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: this.getInstanceIdentifier(requirements),
-            shouldShowExportReport: () => true,
         };
 
         this.buildRequirementReportDescription(requirements);
@@ -306,7 +305,6 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
-            shouldShowExportReport: () => true,
         } as AssessmentVisualizationConfiguration;
 
         AssessmentBuilder.buildRequirementReportDescription(requirements);

@@ -17,6 +17,11 @@ import {
     getReportExportDialogForFastPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
+    ShouldShowReportExportButton,
+    shouldShowReportExportButtonForAssessment,
+    shouldShowReportExportButtonForFastpass,
+} from 'DetailsView/components/should-show-report-export-button';
+import {
     getStartOverComponentForAssessment,
     getStartOverComponentForFastPass,
 } from 'DetailsView/components/start-over-component-factory';
@@ -58,6 +63,7 @@ type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
 export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportDialogFactory: ReportExportDialogFactory;
+    shouldShowReportExportButton: ShouldShowReportExportButton;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -68,6 +74,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportDialogFactory: ReportExportDialogFactory;
+    shouldShowReportExportButton: ShouldShowReportExportButton;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -85,6 +92,7 @@ const detailsViewSwitcherNavs: {
     [DetailsViewPivotType.assessment]: {
         CommandBar: AssessmentCommandBar,
         ReportExportDialogFactory: getReportExportDialogForAssessment,
+        shouldShowReportExportButton: shouldShowReportExportButtonForAssessment,
         StartOverComponentFactory: getStartOverComponentForAssessment,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
@@ -94,6 +102,7 @@ const detailsViewSwitcherNavs: {
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportDialogFactory: getReportExportDialogForFastPass,
+        shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
         StartOverComponentFactory: getStartOverComponentForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,

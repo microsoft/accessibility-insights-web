@@ -112,7 +112,6 @@ describe('AssessmentBuilderTest', () => {
             vizStoreData.assessments.manualAssessmentKeyAssessment.stepStatus[testRequirement],
         ).toBe(true);
 
-        expect(config.shouldShowExportReport(null)).toBe(true);
         expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement.key);
         expect(config.visualizationInstanceProcessor()).toBe(
             VisualizationInstanceProcessor.nullProcessor,
@@ -292,7 +291,6 @@ describe('AssessmentBuilderTest', () => {
         expect(vizStoreData.assessments.headingsAssessment.enabled).toBe(true);
         expect(vizStoreData.assessments.headingsAssessment.stepStatus[testRequirement]).toBe(true);
 
-        expect(config.shouldShowExportReport(null)).toBe(true);
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,

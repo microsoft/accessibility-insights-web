@@ -3,7 +3,6 @@
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { CommonTestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
@@ -49,5 +48,4 @@ export interface AssessmentVisualizationConfiguration {
     getInstanceIdentiferGenerator: (
         testStep?: string,
     ) => (instance: UniquelyIdentifiableInstances) => string;
-    shouldShowExportReport: (unifiedScanResultStoreData: UnifiedScanResultStoreData) => boolean;
 }

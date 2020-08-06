@@ -155,14 +155,9 @@ export class DetailsViewCommandBar extends React.Component<
     private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
 
     private renderExportButton = () => {
-        const config = this.props.visualizationConfigurationFactory.getConfiguration(
-            this.props.selectedTest,
+        const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
+            this.props,
         );
-        const scanData = config.getStoreData(this.props.visualizationStoreData.tests);
-        const isEnabled = config.getTestStatus(scanData);
-
-        const showButton =
-            config.shouldShowExportReport(this.props.unifiedScanResultStoreData) && isEnabled;
 
         if (!showButton) {
             return null;
