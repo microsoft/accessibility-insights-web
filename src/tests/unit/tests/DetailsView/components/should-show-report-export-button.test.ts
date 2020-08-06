@@ -3,12 +3,7 @@
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import {
-    ScanData,
-    TestsEnabledState,
-    VisualizationStoreData,
-} from 'common/types/store-data/visualization-store-data';
-import { VisualizationType } from 'common/types/visualization-type';
+import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import {
     CommandBarProps,
     DetailsViewCommandBarProps,

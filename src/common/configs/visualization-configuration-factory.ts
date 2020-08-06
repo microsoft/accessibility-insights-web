@@ -56,6 +56,7 @@ export class VisualizationConfigurationFactory {
                     toggleLabel: null,
                     linkToDetailsViewText: null,
                 },
+                shouldShowExportReport: null,
             };
             const config = assessment.getVisualizationConfiguration();
             return { ...config, ...defaults };

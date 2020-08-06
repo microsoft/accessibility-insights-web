@@ -19,7 +19,7 @@ import {
 } from 'DetailsView/components/report-export-dialog-factory';
 import { ShouldShowReportExportButton } from 'DetailsView/components/should-show-report-export-button';
 import { ReportGenerator } from 'reports/report-generator';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportExportDialogFactory', () => {
     const theDate = new Date(Date.UTC(2019, 2, 12, 9, 0));
@@ -106,9 +106,7 @@ describe('ReportExportDialogFactory', () => {
     }
 
     function setupShouldShowReportExportButton(showReportExportButton: boolean): void {
-        shouldShowReportExportButtonMock
-            .setup(s => s(It.isAny()))
-            .returns(() => showReportExportButton);
+        shouldShowReportExportButtonMock.setup(s => s(props)).returns(() => showReportExportButton);
     }
 
     describe('getReportExportDialogForAssessment', () => {
