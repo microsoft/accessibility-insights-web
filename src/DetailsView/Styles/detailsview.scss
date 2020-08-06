@@ -259,20 +259,6 @@ body {
                 b {
                     font-weight: 600;
                 }
-                .details-view-toggle {
-                    margin-bottom: 0;
-                    margin-top: 12px;
-                    height: 40px;
-                    background-color: $neutral-4;
-                    .ms-Toggle-label {
-                        float: left;
-                        margin: 5px 8px 5px 8px;
-                        color: $neutral-100;
-                    }
-                    .ms-Toggle-innerContainer {
-                        margin: 10px 0px 10px 0px;
-                    }
-                }
             }
         }
     }
