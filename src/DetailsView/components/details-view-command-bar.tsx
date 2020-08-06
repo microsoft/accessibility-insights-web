@@ -23,6 +23,7 @@ import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -155,14 +156,16 @@ export class DetailsViewCommandBar extends React.Component<
     private focusReportExportButton = () => this.exportDialogCloseFocus?.focus();
 
     private renderExportButton = () => {
-        const config = this.props.visualizationConfigurationFactory.getConfiguration(
-            this.props.selectedTest,
-        );
-        const scanData = config.getStoreData(this.props.visualizationStoreData.tests);
-        const isEnabled = config.getTestStatus(scanData);
+        const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
+            visualizationConfigurationFactory: this.props.visualizationConfigurationFactory,
+            selectedTest: this.props.selectedTest,
+            unifiedScanResultStoreData: this.props.unifiedScanResultStoreData,
+            visualizationStoreData: this.props.visualizationStoreData,
+        };
 
-        const showButton =
-            config.shouldShowExportReport(this.props.unifiedScanResultStoreData) && isEnabled;
+        const showButton = this.props.switcherNavConfiguration.shouldShowReportExportButton(
+            shouldShowReportExportButtonProps,
+        );
 
         if (!showButton) {
             return null;
