@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientUtils } from '../client-utils';
+
 import { DialogRenderer } from '../dialog-renderer';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
@@ -17,12 +17,10 @@ export interface StyleComputer {
 
 export class HeadingFormatter extends FailureInstanceFormatter {
     private styleComputer: StyleComputer;
-    private clientUtils: ClientUtils;
 
-    constructor(styleComputer: StyleComputer, clientUtils: ClientUtils) {
+    constructor(styleComputer: StyleComputer) {
         super();
         this.styleComputer = styleComputer;
-        this.clientUtils = clientUtils;
     }
 
     public static headingStyles: { [level: string]: HeadingStyleConfiguration } = {
@@ -105,7 +103,7 @@ export class HeadingFormatter extends FailureInstanceFormatter {
     }
 
     private isHTag(element: HTMLElement): boolean {
-        return this.clientUtils.matchesSelector(element, 'h1,h2,h3,h4,h5,h6');
+        return element.matches('h1,h2,h3,h4,h5,h6');
     }
 
     private getHTagLevel(element: HTMLElement): string {

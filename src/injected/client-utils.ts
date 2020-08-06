@@ -14,12 +14,6 @@ export interface BoundRectAccessor {
     getBoundingClientRect: () => ClientRectOffset;
 }
 
-export interface ElementMatcher {
-    matches?: (selector: string) => boolean;
-    webkitMatchesSelector?: (selector: string) => boolean;
-    msMatchesSelector?: (selector: string) => boolean;
-}
-
 export class ClientUtils {
     private scroll: ScrollAccessor;
 
@@ -38,19 +32,5 @@ export class ClientUtils {
             left: elementRect.left + this.scroll.scrollX,
             top: elementRect.top + this.scroll.scrollY,
         };
-    }
-
-    public matchesSelector(element: ElementMatcher, selectorString: string): boolean {
-        // create a default match function so the selector is not possibly bound to a null function
-        const defaultMatch = (_: string) => false;
-
-        const selector = (
-            element.matches ||
-            element.webkitMatchesSelector ||
-            element.msMatchesSelector ||
-            defaultMatch
-        ).bind(element);
-
-        return selector(selectorString);
     }
 }

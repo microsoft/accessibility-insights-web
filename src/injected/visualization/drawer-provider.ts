@@ -85,7 +85,7 @@ export class DrawerProvider {
     }
 
     public createHeadingsDrawer(): Drawer {
-        const formatter = new HeadingFormatter(window, this.clientUtils);
+        const formatter = new HeadingFormatter(window);
         return this.createDrawer('insights-heading', formatter);
     }
 
