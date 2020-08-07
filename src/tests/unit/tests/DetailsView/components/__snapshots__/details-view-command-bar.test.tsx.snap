@@ -71,8 +71,70 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
-</div>"
+  <StartOverDialog
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+      }
+    }
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      Object {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "ReportExportDialogFactory": [Function],
+        "StartOverComponentFactory": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
 `;
 
 exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
@@ -124,8 +186,70 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
-</div>"
+  <StartOverDialog
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+      }
+    }
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      Object {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "ReportExportDialogFactory": [Function],
+        "StartOverComponentFactory": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
 `;
 
 exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
@@ -177,8 +301,70 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
-</div>"
+  <StartOverDialog
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+      }
+    }
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      Object {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "ReportExportDialogFactory": [Function],
+        "StartOverComponentFactory": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
 `;
 
 exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
@@ -271,8 +457,70 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
-</div>"
+  <StartOverDialog
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+      }
+    }
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      Object {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "ReportExportDialogFactory": [Function],
+        "StartOverComponentFactory": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
 `;
 
 exports[`DetailsViewCommandBar renders without export button, without start over 1`] = `
@@ -316,6 +564,68 @@ exports[`DetailsViewCommandBar renders without export button, without start over
   <div>
     Export dialog
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
-</div>"
+  <StartOverDialog
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+      }
+    }
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      Object {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "ReportExportDialogFactory": [Function],
+        "StartOverComponentFactory": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
 `;

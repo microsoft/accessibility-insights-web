@@ -37,7 +37,7 @@ describe('DetailsViewCommandBar', () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Loose,
         );
-        reportExportDialogFactory = Mock.ofType<ReportExportDialogFactory>();
+        reportExportDialogFactory = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
