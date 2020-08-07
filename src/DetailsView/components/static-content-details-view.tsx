@@ -34,7 +34,7 @@ export const StaticContentDetailsView = NamedFC<StaticContentDetailsViewProps>(
                     checked={props.visualizationEnabled}
                     onClick={props.onToggleClick}
                     label={props.toggleLabel}
-                    className="details-view-toggle"
+                    className={styles.detailsViewToggle}
                     visualizationName={props.title}
                 />
                 <ContentInclude deps={props.deps} content={props.content} />
