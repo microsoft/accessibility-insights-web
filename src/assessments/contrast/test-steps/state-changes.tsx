@@ -25,7 +25,9 @@ import { Requirement } from '../../types/requirement';
 import { ContrastTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>Any visual effect that indicates a component's state must have sufficient contrast.</span>
+    <span>
+        Any visual information that indicates a component's state must have sufficient contrast.
+    </span>
 );
 
 const howToTest: JSX.Element = (
