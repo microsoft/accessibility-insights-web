@@ -100,10 +100,6 @@ export class Page {
         await this.screenshotOnError(async () => await this.underlyingPage.close());
     }
 
-    public async bringToFront(): Promise<void> {
-        // noop (not supported by Playwright)
-    }
-
     public async evaluate<R, Arg>(fn: PageFunction<Arg, R>, arg?: Arg): Promise<R> {
         const timeout = DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS;
         // We don't wrap this in screenshotOnError because Playwright serializes evaluate() and

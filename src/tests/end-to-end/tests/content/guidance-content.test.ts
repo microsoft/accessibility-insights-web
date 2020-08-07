@@ -46,7 +46,6 @@ describe('Guidance Content pages', () => {
             'has no accessibility issues with highContrastMode=%s',
             async highContrastMode => {
                 await browser.setHighContrastMode(highContrastMode);
-                await contentPage.bringToFront();
                 await contentPage.waitForHighContrastMode(highContrastMode);
 
                 const results = await scanForAccessibilityIssues(contentPage, '*');

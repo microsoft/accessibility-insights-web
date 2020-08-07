@@ -32,8 +32,6 @@ describe('Target Page issue dialog', () => {
         await popupPage.gotoAdhocPanel();
         await popupPage.enableToggleByAriaLabel('Automated checks');
 
-        await targetPage.bringToFront();
-
         await targetPage.clickSelectorInShadowRoot(
             TargetPageInjectedComponentSelectors.failureLabel,
         );

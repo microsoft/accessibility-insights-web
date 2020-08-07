@@ -32,7 +32,6 @@ describe('Tab stops visualization', () => {
         await popupPage.gotoAdhocPanel();
         await popupPage.enableToggleByAriaLabel('Tab stops');
 
-        await targetPage.bringToFront();
         await targetPage.waitForShadowRoot();
 
         // Should highlight first element with a transparent circle

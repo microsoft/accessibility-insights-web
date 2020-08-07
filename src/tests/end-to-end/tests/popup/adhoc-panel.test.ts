@@ -19,7 +19,6 @@ describe('Popup -> Ad-hoc tools', () => {
         });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.bringToFront();
     });
 
     afterEach(async () => {
@@ -69,7 +68,6 @@ describe('Popup -> Ad-hoc tools', () => {
             await popupPage.gotoAdhocPanel();
             await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
-            await targetPage.bringToFront();
             expect(await targetPage.waitForShadowRootHtmlSnapshot()).toMatchSnapshot();
         },
     );

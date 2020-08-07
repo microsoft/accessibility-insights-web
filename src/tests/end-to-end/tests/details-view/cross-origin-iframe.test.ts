@@ -121,7 +121,6 @@ describe('scanning', () => {
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
 
         fastPassAutomatedChecks = await openAutomatedChecks();
-        await fastPassAutomatedChecks.bringToFront();
     }
 
     async function openAutomatedChecks(): Promise<DetailsViewPage> {
