@@ -1,12 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as styles from 'common/components/selector-input-list.scss';
 import * as Enzyme from 'enzyme';
-import { DefaultButton, IconButton } from 'office-ui-fabric-react';
-import { List } from 'office-ui-fabric-react';
-import { ITextField, TextField } from 'office-ui-fabric-react';
+import {
+    DefaultButton,
+    FocusZone,
+    IconButton,
+    ITextField,
+    List,
+    TextField,
+} from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     SelectorInputList,
     SelectorInputListProps,
@@ -345,9 +350,9 @@ describe('SelectorInputListTest', () => {
         result: Enzyme.ShallowWrapper<any, any>,
         props: SelectorInputListProps,
     ): void {
-        const textbox = result.find('.selector-input-field');
+        const textbox = result.find('.' + styles.selectorInputField);
         const selectors = result.find(List);
-        const title = result.find('.selector-input-title');
+        const title = result.find('.' + styles.selectorInputTitle);
         expect(title.getElement().props.children).toBe(props.title);
         expect(textbox.getElement().props.ariaLabel).toBe(props.subtitle);
         expect(selectors.getElement().props.items).toBe(props.items);
@@ -388,7 +393,7 @@ describe('SelectorInputListTest', () => {
         const button = createdRow.find(IconButton);
         button.simulate('click');
         selectorMock.verifyAll();
-        expect(result.find('.selector-focus-zone')).toBeDefined();
+        expect(result.find(FocusZone)).toBeDefined();
     }
 
     function genericChangeInspectionModeTests(
