@@ -42,16 +42,16 @@ export class DetailsViewPage extends Page {
         requirementName: string,
     ): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelectorXPath(`//div[@name="${requirementName}"]`);
+        await this.waitForSelector(`//div[@name="${requirementName}"]`);
         await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
-        await this.waitForSelectorXPath(`//h1[text()="${requirementName}"]`);
+        await this.waitForSelector(`//h1[text()="${requirementName}"]`);
     }
 
     public async navigateToGettingStarted(testName: string): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelectorXPath(`//div[@name="Getting Started"]`);
+        await this.waitForSelector(`//div[@name="Getting Started"]`);
         await this.clickSelector(detailsViewSelectors.gettingStartedNavLink);
-        await this.waitForSelectorXPath(`//h1/span[text()="${testName}"]`);
+        await this.waitForSelector(`//h1/span[text()="${testName}"]`);
     }
 
     public async waitForVisualHelperState(

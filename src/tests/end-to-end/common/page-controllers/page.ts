@@ -108,28 +108,6 @@ export class Page {
         return await promiseFactory.timeout(evalPromise, timeout);
     }
 
-    public async getMatchingElements<T>(
-        selector: string,
-        elementProperty?: keyof Element,
-    ): Promise<T[]> {
-        return await this.screenshotOnError(
-            async () =>
-                await this.evaluate(
-                    ([selectorInEvaluate, elementPropertyInEvaluate]) => {
-                        const elements = Array.from(document.querySelectorAll(selectorInEvaluate));
-                        return elements.map(element => element[elementPropertyInEvaluate]);
-                    },
-                    [selector, elementProperty],
-                ),
-        );
-    }
-
-    public async waitForDuration(durationMs: number): Promise<void> {
-        await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForTimeout(durationMs),
-        );
-    }
-
     public async waitForSelector(
         selector: string,
         options?: WaitForSelectorOptions,
@@ -143,44 +121,16 @@ export class Page {
         );
     }
 
-    public async waitForSelectorXPath(xpath: string): Promise<Playwright.ElementHandle<Element>> {
-        return await this.screenshotOnError(
-            async () =>
-                await this.underlyingPage.waitForSelector(xpath, {
-                    timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
-                }),
-        );
-    }
-
-    public async waitForId(id: string): Promise<Playwright.ElementHandle<Element>> {
-        return this.waitForSelector(`#${id}`);
-    }
-
-    public async waitForSelectorToAppear(selector: string): Promise<void> {
-        await this.waitForSelector(selector);
-    }
-
     public async waitForSelectorToDisappear(selector: string): Promise<void> {
         await this.waitForSelector(selector, { state: 'detached' });
     }
 
     public async clickSelector(selector: string): Promise<void> {
         await this.screenshotOnError(async () => {
-            await this.underlyingPage.waitForSelector(selector, {
-                timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
-            });
-            // await this.underlyingPage.hover(selector);
-            // await this.underlyingPage.waitForTimeout(DEFAULT_CLICK_HOVER_DELAY_MS);
             await this.underlyingPage.click(selector, {
                 delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS,
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             });
-        });
-    }
-
-    public async clickElementHandle(element: Playwright.ElementHandle<Element>): Promise<void> {
-        await this.screenshotOnError(async () => {
-            await element.click({ delay: DEFAULT_CLICK_MOUSEUP_DELAY_MS });
         });
     }
 
@@ -227,11 +177,9 @@ export class Page {
     }
 
     public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
-        if (expectedHighContrastMode) {
-            await this.waitForSelectorToAppear(CommonSelectors.highContrastThemeSelector);
-        } else {
-            await this.waitForSelectorToDisappear(CommonSelectors.highContrastThemeSelector);
-        }
+        await this.waitForSelector(CommonSelectors.highContrastThemeSelector, {
+            state: expectedHighContrastMode ? 'visible' : 'detached',
+        });
     }
 
     public async injectScriptFile(filePath: string): Promise<void> {
