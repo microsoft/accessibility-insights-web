@@ -8,6 +8,10 @@ import {
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import {
+    StartOverComponentFactory,
+    StartOverFactoryProps,
+} from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { isNil } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react';
@@ -15,6 +19,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import {
+    CommandBarProps,
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
     ReportExportDialogFactory,
@@ -31,6 +36,7 @@ describe('DetailsViewCommandBar', () => {
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
+    let getStartOverComponent: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(
@@ -38,6 +44,7 @@ describe('DetailsViewCommandBar', () => {
             MockBehavior.Loose,
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
+        getStartOverComponent = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
@@ -59,7 +66,9 @@ describe('DetailsViewCommandBar', () => {
             CommandBar: CommandBarStub,
             ReportExportDialogFactory: reportExportDialogFactory.object,
             shouldShowReportExportButton: p => showReportExportButton,
-            StartOverComponentFactory: p => startOverComponent,
+            StartOverComponentFactory: {
+                getStartOverComponent: getStartOverComponent.object,
+            } as StartOverComponentFactory,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
         const scanMetadata = {
@@ -148,8 +157,9 @@ describe('DetailsViewCommandBar', () => {
             startOverComponent = <ActionButton>Start Over Component</ActionButton>;
         }
 
-        setupReportExportDialogFactory({ isOpen: false });
         const props = getProps();
+        setupStartOverButtonFactory(props);
+        setupReportExportDialogFactory({ isOpen: false });
 
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
@@ -171,5 +181,12 @@ describe('DetailsViewCommandBar', () => {
     ): void {
         const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
         reportExportDialogFactory.setup(r => r(argMatcher)).returns(() => reportExportDialogStub);
+    }
+
+    function setupStartOverButtonFactory(props: CommandBarProps): void {
+        const expectedProps = props as Partial<StartOverFactoryProps>;
+        getStartOverComponent
+            .setup(g => g(It.isObjectWith(expectedProps)))
+            .returns(() => startOverComponent);
     }
 });

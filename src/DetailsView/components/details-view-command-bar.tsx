@@ -23,10 +23,7 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
-import {
-    StartOverFactoryDeps,
-    StartOverFactoryProps,
-} from 'DetailsView/components/start-over-component-factory';
+import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
     dialogClosedState,
     StartOverDialog,
@@ -34,7 +31,6 @@ import {
     StartOverDialogState,
     StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
-import { DropdownDirection } from 'DetailsView/components/start-over-dropdown';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -57,8 +53,6 @@ export type DetailsViewCommandBarState = {
 };
 
 export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
-
-export type StartOverComponentFactory = (props: StartOverFactoryProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -139,7 +133,7 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
-        const startOverElement: JSX.Element = this.renderStartOverComponent('down');
+        const startOverElement: JSX.Element = this.renderStartOverButton();
 
         if (reportExportElement || startOverElement) {
             return (
@@ -157,7 +151,10 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
-                renderStartOverButton={this.renderStartOverComponent}
+                getStartOverProps={this.getStartOverProps}
+                startOverComponentFactory={
+                    this.props.switcherNavConfiguration.StartOverComponentFactory
+                }
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
                     this.startOverDialogCloseFocus = ref;
@@ -226,14 +223,18 @@ export class DetailsViewCommandBar extends React.Component<
         }
     }
 
-    private renderStartOverComponent = (dropdownDirection: DropdownDirection) => {
-        const startOverFactoryProps: StartOverFactoryProps = {
+    private renderStartOverButton = () => {
+        return this.props.switcherNavConfiguration.StartOverComponentFactory.getStartOverComponent(
+            this.getStartOverProps(),
+        );
+    };
+
+    private getStartOverProps = () => {
+        return {
             ...this.props,
-            dropdownDirection,
             openDialog: this.showStartOverDialog,
             buttonRef: ref => (this.startOverDialogCloseFocus = ref),
         };
-        return this.props.switcherNavConfiguration.StartOverComponentFactory(startOverFactoryProps);
     };
 
     private renderStartOverDialog(): JSX.Element {
