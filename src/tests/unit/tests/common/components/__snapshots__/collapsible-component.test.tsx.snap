@@ -2,21 +2,20 @@
 
 exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = `
 <div
-  className="collapsible-component"
+  className=""
 >
   <CustomizedActionButton
     aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
-        "class": "collapsible-icon",
         "iconName": "ChevronDown",
       }
     }
     onClick={[Function]}
   >
     <span
-      className="collapsible-title"
+      className="collapsibleTitle"
     >
       <div>
         Some header
@@ -24,7 +23,7 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
     </span>
   </CustomizedActionButton>
   <div
-    className="content-class-name collapsible-content"
+    className="content-class-name collapsibleContent"
   >
     <div>
       Some content
@@ -35,21 +34,20 @@ exports[`CollapsibleComponentTest render expanded with content-class-name 1`] = 
 
 exports[`CollapsibleComponentTest render expanded without content-class-name 1`] = `
 <div
-  className="collapsible-component"
+  className=""
 >
   <CustomizedActionButton
     aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
-        "class": "collapsible-icon",
         "iconName": "ChevronDown",
       }
     }
     onClick={[Function]}
   >
     <span
-      className="collapsible-title"
+      className="collapsibleTitle"
     >
       <div>
         Some header
@@ -57,7 +55,7 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsible-content"
+    className="collapsibleContent"
   >
     <div>
       Some content
@@ -68,21 +66,20 @@ exports[`CollapsibleComponentTest render expanded without content-class-name 1`]
 
 exports[`CollapsibleComponentTest render with container-class-name 1`] = `
 <div
-  className="a-container collapsible-component"
+  className="a-container"
 >
   <CustomizedActionButton
     aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
-        "class": "collapsible-icon",
         "iconName": "ChevronDown",
       }
     }
     onClick={[Function]}
   >
     <span
-      className="collapsible-title"
+      className="collapsibleTitle"
     >
       <div>
         Some header
@@ -90,7 +87,39 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsible-content"
+    className="collapsibleContent"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentTest render without container-class-name 1`] = `
+<div
+  className=""
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsibleTitle"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsibleContent"
   >
     <div>
       Some content
@@ -101,21 +130,20 @@ exports[`CollapsibleComponentTest render with container-class-name 1`] = `
 
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1`] = `
 <div
-  className="collapsible-component"
+  className=""
 >
   <CustomizedActionButton
     aria-expanded={false}
     className="collapsible"
     iconProps={
       Object {
-        "class": "collapsible-icon",
         "iconName": "ChevronRight",
       }
     }
     onClick={[Function]}
   >
     <span
-      className="collapsible-title"
+      className="collapsibleTitle"
     >
       <div>
         Some header
@@ -127,21 +155,20 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: collapsed 1
 
 exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`] = `
 <div
-  className="collapsible-component"
+  className=""
 >
   <CustomizedActionButton
     aria-expanded={true}
     className="collapsible"
     iconProps={
       Object {
-        "class": "collapsible-icon",
         "iconName": "ChevronDown",
       }
     }
     onClick={[Function]}
   >
     <span
-      className="collapsible-title"
+      className="collapsibleTitle"
     >
       <div>
         Some header
@@ -149,7 +176,7 @@ exports[`CollapsibleComponentTest toggle from expanded to collapsed: expanded 1`
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsible-content"
+    className="collapsibleContent"
   >
     <div>
       Some content
