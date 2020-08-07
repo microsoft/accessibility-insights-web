@@ -37,7 +37,7 @@ describe('DetailsViewCommandBar', () => {
             DetailsViewActionMessageCreator,
             MockBehavior.Loose,
         );
-        reportExportDialogFactory = Mock.ofType<ReportExportDialogFactory>();
+        reportExportDialogFactory = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
@@ -121,6 +121,24 @@ describe('DetailsViewCommandBar', () => {
         rendered.setState({ isReportExportDialogOpen: true });
 
         expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with start test over dialog open', () => {
+        const props = getProps();
+
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ startOverDialogState: 'test' });
+
+        expect(rendered.debug()).toMatchSnapshot();
+    });
+
+    test('renders with start assessment over dialog open', () => {
+        const props = getProps();
+
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ startOverDialogState: 'assessment' });
+
+        expect(rendered.debug()).toMatchSnapshot();
     });
 
     function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {

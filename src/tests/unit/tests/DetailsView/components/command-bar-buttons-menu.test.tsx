@@ -4,27 +4,25 @@ import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
-import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { StartOverFactoryProps } from 'DetailsView/components/start-over-component-factory';
+import { DropdownDirection } from 'DetailsView/components/start-over-dropdown';
 import { shallow } from 'enzyme';
 import { IButton, IOverflowSetItemProps, RefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import { StartOverComponentFactory } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('CommandBarButtonsMenu', () => {
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
-    let startOverComponentFactory: IMock<StartOverComponentFactory>;
+    let renderStartOverComponentMock: IMock<(dropdownDirection: DropdownDirection) => JSX.Element>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
         renderExportReportComponentMock = Mock.ofInstance(() => null);
-        startOverComponentFactory = Mock.ofType<StartOverComponentFactory>();
+        renderStartOverComponentMock = Mock.ofType<
+            (dropdownDirection: DropdownDirection) => JSX.Element
+        >();
         commandBarButtonsMenuProps = {
-            switcherNavConfiguration: {
-                StartOverComponentFactory: startOverComponentFactory.object,
-            } as DetailsViewSwitcherNavConfiguration,
             renderExportReportButton: renderExportReportComponentMock.object,
+            renderStartOverButton: renderStartOverComponentMock.object,
             buttonRef: {} as RefObject<IButton>,
         } as CommandBarButtonsMenuProps;
     });
@@ -40,12 +38,8 @@ describe('CommandBarButtonsMenu', () => {
             .returns(() => <>Report export button</>)
             .verifiable(Times.once());
 
-        const startOverFactoryProps: StartOverFactoryProps = {
-            ...commandBarButtonsMenuProps,
-            dropdownDirection: 'left',
-        };
-        startOverComponentFactory
-            .setup(s => s(startOverFactoryProps))
+        renderStartOverComponentMock
+            .setup(s => s('left'))
             .returns(() => <>Start over button</>)
             .verifiable(Times.once());
 
@@ -58,6 +52,6 @@ describe('CommandBarButtonsMenu', () => {
         overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
 
         renderExportReportComponentMock.verifyAll();
-        startOverComponentFactory.verifyAll();
+        renderStartOverComponentMock.verifyAll();
     });
 });

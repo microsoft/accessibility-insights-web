@@ -2,10 +2,7 @@
 
 exports[`StartOverComponentFactory getStartOverComponentForAssessments renders 1`] = `
 <StartOverDropdown
-  deps={Object {}}
   dropdownDirection="down"
-  requirementKey="test step"
-  test={6}
   testName="the title"
 />
 `;
