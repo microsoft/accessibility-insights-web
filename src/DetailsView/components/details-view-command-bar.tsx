@@ -152,10 +152,7 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
-                getStartOverProps={this.getStartOverProps}
-                startOverComponentFactory={
-                    this.props.switcherNavConfiguration.StartOverComponentFactory
-                }
+                getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
                     this.startOverDialogCloseFocus = ref;
@@ -225,9 +222,17 @@ export class DetailsViewCommandBar extends React.Component<
     }
 
     private renderStartOverButton = () => {
-        return this.props.switcherNavConfiguration.StartOverComponentFactory.getStartOverComponent(
-            this.getStartOverProps(),
-        );
+        const startOverProps = this.getStartOverProps();
+        const startOverComponentFactory = this.props.switcherNavConfiguration
+            .StartOverComponentFactory;
+        return startOverComponentFactory.getStartOverComponent(startOverProps);
+    };
+
+    private getStartOverMenuItem = () => {
+        const startOverProps = this.getStartOverProps();
+        const startOverComponentFactory = this.props.switcherNavConfiguration
+            .StartOverComponentFactory;
+        return startOverComponentFactory.getStartOverMenuItem(startOverProps);
     };
 
     private getStartOverProps = () => {

@@ -4,10 +4,7 @@ import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
-import {
-    StartOverFactoryProps,
-    StartOverMenuItem,
-} from 'DetailsView/components/start-over-component-factory';
+import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { IButton, IOverflowSetItemProps, RefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -15,21 +12,15 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('CommandBarButtonsMenu', () => {
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
-    let getStartOverMenuItemMock: IMock<(props: StartOverFactoryProps) => StartOverMenuItem>;
-    let getStartOverPropsMock: IMock<() => StartOverFactoryProps>;
+    let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
         renderExportReportComponentMock = Mock.ofInstance(() => null);
         getStartOverMenuItemMock = Mock.ofInstance(() => null);
-        getStartOverPropsMock = Mock.ofInstance(() => null);
         commandBarButtonsMenuProps = {
             renderExportReportButton: renderExportReportComponentMock.object,
-            startOverComponentFactory: {
-                getStartOverComponent: null,
-                getStartOverMenuItem: getStartOverMenuItemMock.object,
-            },
-            getStartOverProps: getStartOverPropsMock.object,
+            getStartOverMenuItem: getStartOverMenuItemMock.object,
             buttonRef: {} as RefObject<IButton>,
         } as CommandBarButtonsMenuProps;
     });
@@ -63,13 +54,11 @@ describe('CommandBarButtonsMenu', () => {
     }
 
     function setupStartOverMenuItem(): void {
-        const startOverProps = {} as StartOverFactoryProps;
         const startOverMenuItem = {
             onRender: () => <>Start over button</>,
         };
-        getStartOverPropsMock.setup(g => g()).returns(() => startOverProps);
         getStartOverMenuItemMock
-            .setup(s => s(startOverProps))
+            .setup(s => s())
             .returns(() => startOverMenuItem)
             .verifiable(Times.once());
     }

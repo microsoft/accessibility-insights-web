@@ -85,7 +85,7 @@ describe('StartOverComponentFactory', () => {
             const menuItem = AssessmentStartOverFactory.getStartOverMenuItem(props);
             const rendered = shallow(menuItem.onRender());
 
-            expect(rendered).toMatchSnapshot();
+            expect(rendered.getElement()).toMatchSnapshot();
         });
     });
 
@@ -130,26 +130,21 @@ describe('StartOverComponentFactory', () => {
                     });
                 });
 
-                describe('user interaction', () => {
-                    it('handles action button on click properly', () => {
-                        const event = new EventStubFactory().createKeypressEvent() as any;
+                it('handles action button on click properly', () => {
+                    const event = new EventStubFactory().createKeypressEvent() as any;
 
-                        const actionMessageCreatorMock = Mock.ofType<
-                            DetailsViewActionMessageCreator
-                        >();
+                    const actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
 
-                        const props = getProps(false);
-                        props.deps.detailsViewActionMessageCreator =
-                            actionMessageCreatorMock.object;
+                    const props = getProps(false);
+                    props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
-                        const item = getComponentOrMenuItem(props);
-                        clickComponentOrMenuItem(item, event);
+                    const item = getComponentOrMenuItem(props);
+                    clickComponentOrMenuItem(item, event);
 
-                        actionMessageCreatorMock.verify(
-                            creator => creator.rescanVisualization(theTestType, event),
-                            Times.once(),
-                        );
-                    });
+                    actionMessageCreatorMock.verify(
+                        creator => creator.rescanVisualization(theTestType, event),
+                        Times.once(),
+                    );
                 });
             },
         );

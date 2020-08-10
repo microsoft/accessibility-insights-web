@@ -7,7 +7,16 @@ exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverCompon
 />
 `;
 
-exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem 1`] = `ShallowWrapper {}`;
+exports[`StartOverComponentFactory AssessmentStartOverFactory getStartOverMenuItem 1`] = `
+<div
+  role="menuitem"
+>
+  <StartOverDropdown
+    dropdownDirection="left"
+    testName="the title"
+  />
+</div>
+`;
 
 exports[`StartOverComponentFactory FastpassStartOverFactory getStartOverComponent renders scanning is false => component matches snapshot 1`] = `
 <InsightsCommandButton

@@ -14,7 +14,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function]} getStartOverProps={[Function]} startOverComponentFactory={{...}} buttonRef={[Function: buttonRef]} />
+  <CommandBarButtonsMenu renderExportReportButton={[Function]} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
   <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
 </div>"
 `;
