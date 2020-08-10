@@ -35,6 +35,9 @@ export class ShadowInitializer {
 
     private createShadowHost(): HTMLElement {
         const rootContainer = this.htmlElementUtils.querySelector(`#${rootContainerId}`);
+        if (rootContainer == null) {
+            throw Error('expected rootContainer to be defined and not null');
+        }
 
         const shadowHostElement = this.createDivWithId('insights-shadow-host');
 

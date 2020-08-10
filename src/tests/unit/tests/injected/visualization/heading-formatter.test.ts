@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
-import { ClientUtils } from '../../../../../injected/client-utils';
 import { AssessmentVisualizationInstance } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { DrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import {
@@ -22,7 +21,7 @@ describe('HeadingFormatterTests', () => {
         styleComputer = {
             getComputedStyle: window.getComputedStyle,
         };
-        testSubject = new HeadingFormatter(styleComputer, new ClientUtils(window));
+        testSubject = new HeadingFormatter(styleComputer);
         sandbox = document.createElement('div');
         document.body.appendChild(sandbox);
         failedInstanceResult = { isFailure: true } as AssessmentVisualizationInstance;
@@ -142,10 +141,7 @@ describe('HeadingFormatterTests', () => {
 
     test('verifyHideHiddenHeading', () => {
         const headingElement = createHeadingWithInnerText(`<h1 hidden="true">HEADING</h1>`);
-        const formatter = new HeadingFormatter(
-            createDisplayNoneStyleComputer(),
-            new ClientUtils(window),
-        );
+        const formatter = new HeadingFormatter(createDisplayNoneStyleComputer());
         const config = formatter.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
@@ -163,10 +159,7 @@ describe('HeadingFormatterTests', () => {
 
     test('verifyHideHiddenNoValueHeading', () => {
         const headingElement = createHeadingWithInnerText(`<h1 hidden>HEADING</h1>`);
-        const formatter = new HeadingFormatter(
-            createDisplayNoneStyleComputer(),
-            new ClientUtils(window),
-        );
+        const formatter = new HeadingFormatter(createDisplayNoneStyleComputer());
         const config = formatter.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);
@@ -200,10 +193,7 @@ describe('HeadingFormatterTests', () => {
         const headingElement = createHeadingWithInnerText(
             `<h1 hidden aria-hidden="false">HEADING</h1>`,
         );
-        const formatter = new HeadingFormatter(
-            createDisplayNoneStyleComputer(),
-            new ClientUtils(window),
-        );
+        const formatter = new HeadingFormatter(createDisplayNoneStyleComputer());
         const config = formatter.getDrawerConfiguration(headingElement, null);
 
         expect(config.showVisualization).toBe(false);

@@ -6,7 +6,6 @@ import {
     BoundRectAccessor,
     ClientRectOffset,
     ClientUtils,
-    ElementMatcher,
     ScrollAccessor,
 } from '../../../injected/client-utils';
 
@@ -28,72 +27,6 @@ describe('ClientUtilsTest', () => {
     beforeEach(() => {
         scrollGetterMock = Mock.ofType<ScrollAccessor>(ScrollAccessorStub);
         testObject = new ClientUtils(scrollGetterMock.object);
-    });
-
-    test('matchesSelector: msMatchesSelector', () => {
-        const matchesMock = Mock.ofInstance((selector: string) => {
-            return true;
-        });
-        const elementStub = {
-            msMatchesSelector: matchesMock.object,
-        } as ElementMatcher;
-
-        const selector1 = 'selector1';
-        const selector2 = 'selector2';
-
-        const matches1 = true;
-        const matches2 = false;
-
-        matchesMock.setup(m => m(selector1)).returns(() => matches1);
-
-        matchesMock.setup(m => m(selector2)).returns(() => matches2);
-
-        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
-        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
-    });
-
-    test('matchesSelector: webkitMatchesSelector', () => {
-        const matchesMock = Mock.ofInstance((selector: string) => {
-            return true;
-        });
-        const elementStub: ElementMatcher = {
-            webkitMatchesSelector: matchesMock.object,
-        };
-
-        const selector1 = 'selector1';
-        const selector2 = 'selector2';
-
-        const matches1 = true;
-        const matches2 = false;
-
-        matchesMock.setup(m => m(selector1)).returns(() => matches1);
-
-        matchesMock.setup(m => m(selector2)).returns(() => matches2);
-
-        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
-        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
-    });
-
-    test('matchesSelector: matches', () => {
-        const matchesMock = Mock.ofInstance((selector: string) => {
-            return true;
-        });
-        const elementStub = {
-            matches: matchesMock.object,
-        } as ElementMatcher;
-
-        const selector1 = 'selector1';
-        const selector2 = 'selector2';
-
-        const matches1 = true;
-        const matches2 = false;
-
-        matchesMock.setup(m => m(selector1)).returns(() => matches1);
-
-        matchesMock.setup(m => m(selector2)).returns(() => matches2);
-
-        expect(testObject.matchesSelector(elementStub, selector1)).toEqual(matches1);
-        expect(testObject.matchesSelector(elementStub, selector2)).toEqual(matches2);
     });
 
     test('getOffset', () => {
