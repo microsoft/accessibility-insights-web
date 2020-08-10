@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InsightsWindowExtensions } from 'common/insights-window-extensions';
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { Page, PageOptions } from './page';
 
@@ -18,6 +18,7 @@ export class BackgroundPage extends Page {
                 const initialized = window.insightsUserConfiguration != undefined;
                 return initialized;
             },
+            null,
             { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, polling: POLLING_INTERVAL_MS },
         );
     }
@@ -36,13 +37,13 @@ export class BackgroundPage extends Page {
         }, enableTelemetry);
     }
 
-    constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(underlyingPage: Playwright.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }
 }
 
-export function isBackgroundPageTarget(target: Puppeteer.Target): boolean {
-    return target.type() === 'background_page' && isBackgroundPageUrl(target.url());
+export function hasBackgroundPageUrl(page: Playwright.Page): boolean {
+    return isBackgroundPageUrl(page.url());
 }
 
 export function isBackgroundPageUrl(url: string): boolean {

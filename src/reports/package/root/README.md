@@ -29,7 +29,7 @@ import { reporterFactory } from "accessibility-insights-report";
 test('my accessibility test', async () => {
     // This example uses axe-puppeteer, but you can use any axe-based library
     // that outputs axe scan results in the default axe output format
-    const testPage: Puppeteer.Page = /* ... set up your test page ... */;
+    const testPage: Playwright.Page = /* ... set up your test page ... */;
     const axeResults: Axe.AxeResults = await new AxePuppeteer(testPage).analyze();
 
     // Construct the reporter object from the factory

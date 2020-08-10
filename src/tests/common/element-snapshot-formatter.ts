@@ -1,19 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ElementHandle } from 'puppeteer';
 import { Page } from '../end-to-end/common/page-controllers/page';
 
 export async function formatPageElementForSnapshot(page: Page, selector: string): Promise<Node> {
-    const outerHtml = await page.getOuterHTMLOfSelector(selector);
+    const outerHtml = await page.getOuterHTMLOfSelector(selector, { state: 'attached' });
     return formatHtmlForSnapshot(outerHtml);
-}
-
-export async function formatChildElementForSnapshot(
-    rootElement: ElementHandle<Element>,
-    childSelector: string,
-): Promise<Node> {
-    const childOuterHtml = await rootElement.$eval(childSelector, el => el.outerHTML);
-    return formatHtmlForSnapshot(childOuterHtml);
 }
 
 export function formatHtmlForSnapshot(htmlString: string): Node {

@@ -10,12 +10,7 @@ module.exports = {
     displayName: 'e2e tests',
     globalSetup: `${currentDir}/setup/global-setup.ts`,
     globalTeardown: `${currentDir}/setup/global-teardown.ts`,
-    moduleFileExtensions: [
-        'ts',
-        'tsx',
-        'json', // adding json, since puppeteer.launch throws error - refer https://github.com/GoogleChrome/puppeteer/issues/2754
-        'js',
-    ],
+    moduleFileExtensions: ['ts', 'tsx', 'json', 'js'],
     rootDir: rootDir,
     roots: [currentDir],
     reporters: [

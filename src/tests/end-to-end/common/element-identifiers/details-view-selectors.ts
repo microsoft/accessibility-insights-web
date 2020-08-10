@@ -38,15 +38,23 @@ export const detailsViewSelectors = {
     settingsButton: 'button[name="Settings"]',
 
     automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
+};
 
-    commandBarMenuButton: 'button[aria-label="More items"]',
-    commandBarMenuButtonExpanded: (expanded: boolean) =>
-        `button[aria-label="More items"][aria-expanded=${expanded}`,
+export const navMenuSelectors = {
+    commandBarMenuButtonSelectors: {
+        collapsed: 'button[aria-label="More items"][aria-expanded=false]',
+        expanded: 'button[aria-label="More items"][aria-expanded=true]',
+    },
 
-    assessmentNavHamburgerButton:
-        'button[aria-label="Assessment - all tests and requirements list"]',
-    assessmentNavHamburgerButtonExpanded: (expanded: boolean) =>
-        `button[aria-label="Assessment - all tests and requirements list"][aria-expanded=${expanded}]`,
+    hamburgerMenuButtonSelectors: {
+        collapsed:
+            'button[aria-label="Assessment - all tests and requirements list"][aria-expanded=false]',
+        // Note: in the expanded state, the hamburger menu opens a modal dialog panel which hides the
+        // original menu button, but which has a second identical menu button overlaid. [role="dialog"]
+        // causes tests to interact with the dialog's copy (the one on top that the user would see).
+        expanded:
+            '[role="dialog"] button[aria-label="Assessment - all tests and requirements list"][aria-expanded=true]',
+    },
 };
 
 export const fastPassAutomatedChecksSelectors = {

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
+import { WaitForSelectorOptions } from 'tests/end-to-end/common/playwright-option-types';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
     detailsViewSelectors,
@@ -9,7 +10,7 @@ import {
 import { Page, PageOptions } from './page';
 
 export class DetailsViewPage extends Page {
-    constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(underlyingPage: Playwright.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }
 
@@ -41,21 +42,21 @@ export class DetailsViewPage extends Page {
         requirementName: string,
     ): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelectorXPath(`//div[@name="${requirementName}"]`);
+        await this.waitForSelector(`//div[@name="${requirementName}"]`);
         await this.clickSelector(detailsViewSelectors.requirementNavLink(requirementName));
-        await this.waitForSelectorXPath(`//h1[text()="${requirementName}"]`);
+        await this.waitForSelector(`//h1[text()="${requirementName}"]`);
     }
 
     public async navigateToGettingStarted(testName: string): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelectorXPath(`//div[@name="Getting Started"]`);
+        await this.waitForSelector(`//div[@name="Getting Started"]`);
         await this.clickSelector(detailsViewSelectors.gettingStartedNavLink);
-        await this.waitForSelectorXPath(`//h1/span[text()="${testName}"]`);
+        await this.waitForSelector(`//h1/span[text()="${testName}"]`);
     }
 
     public async waitForVisualHelperState(
         state: 'On' | 'Off' | 'disabled',
-        waitOptions?: Puppeteer.WaitForSelectorOptions,
+        waitOptions?: WaitForSelectorOptions,
     ): Promise<void> {
         const selectorStateSuffix = {
             On: ':not([disabled])[aria-checked="true"]',
@@ -73,7 +74,7 @@ export class DetailsViewPage extends Page {
         requirementName: string,
         requirementIndex: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
-        waitOptions?: Puppeteer.WaitForSelectorOptions,
+        waitOptions?: WaitForSelectorOptions,
     ): Promise<void> {
         await this.waitForSelector(
             detailsViewSelectors.requirementWithStatus(requirementName, requirementIndex, status),

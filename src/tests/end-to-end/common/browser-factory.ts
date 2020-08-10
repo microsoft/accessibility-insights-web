@@ -4,7 +4,7 @@ import { allOriginsPattern } from 'background/browser-permissions-tracker';
 import { generateUID } from 'common/uid-generator';
 import * as fs from 'fs';
 import * as path from 'path';
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
 import { ManifestOveride } from 'tests/end-to-end/common/manifest-overide';
 import * as util from 'util';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
@@ -36,11 +36,16 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     addPermissions(extensionOptions, manifestOveride);
     await manifestOveride.write();
 
-    const puppeteerBrowser = await launchNewBrowser(browserInstanceId, devExtensionPath);
+    const userDataDir = await setupUserDataDir(browserInstanceId);
+
+    // It would be good to try out using a persistent browser and creating a context per test,
+    // rather than creating a browser per test. Doing a 1:1 browser:context mapping for now to
+    // simplify the initial migration from Puppeteer to Playwright.
+    const playwrightContext = await launchNewBrowserContext(userDataDir, devExtensionPath);
 
     const browser = new Browser(
         browserInstanceId,
-        puppeteerBrowser,
+        playwrightContext,
         manifestOveride.restoreOriginalManifest,
     );
 
@@ -76,7 +81,7 @@ const addPermissions = (
     switch (addExtraPermissionsToManifest) {
         case 'fake-activeTab':
             // we need to add localhost origin permission in order to fake activeTab
-            // the main reason is puppeteer lacks an API to activate the extension
+            // the main reason is Playwright (like Puppeteer) lacks an API to activate the extension
             // via clicking the extenion icon (on the toolbar) or sending the extension shortcut
             // see https://github.com/puppeteer/puppeteer/issues/2486 for more details
             manifestOveride.addTemporaryPermission(
@@ -92,15 +97,11 @@ const addPermissions = (
     }
 };
 
-async function launchNewBrowser(
-    browserInstanceId: string,
-    extensionPath: string,
-): Promise<Puppeteer.Browser> {
-    // It's important that we verify this before calling Puppeteer.launch because its behavior if the
-    // extension can't be loaded is "the Chromium instance hangs with an alert and everything on Puppeteer's
-    // end shows up as a generic timeout error with no meaningful logging".
-    await verifyExtensionIsBuilt(extensionPath);
-
+async function setupUserDataDir(browserInstanceId: string): Promise<string> {
+    // For reasons we haven't fully root caused, allowing Playwright to use its default userDataDir location based on fs.mkdtemp
+    // causes inconsistent page crashes on the Pipelines hosted Windows build agents. We suspect there may be some overaggressive
+    // cleanup task removing the temp directories. Using a userDataDir in our test-results directory instead of the system %TEMP%
+    // directory seems to prevent the crashes.
     const browserLogDir = browserLogPath(browserInstanceId);
     const userDataDir = path.join(browserLogDir, 'userDataDir');
 
@@ -108,8 +109,21 @@ async function launchNewBrowser(
     // --enable-logging flag we pass to launch() below from producing the log file it's supposed to.
     await util.promisify(fs.mkdir)(userDataDir, { recursive: true });
 
-    const browser = await Puppeteer.launch({
-        // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
+    return userDataDir;
+}
+
+async function launchNewBrowserContext(
+    userDataDir: string,
+    extensionPath: string,
+): Promise<Playwright.BrowserContext> {
+    // It's important that we verify this *before* launch because its behavior if the extension
+    // can't be loaded is "the Chromium instance hangs with an alert and everything on Playwright's
+    // end shows up as a generic timeout error with no meaningful logging".
+    await verifyExtensionIsBuilt(extensionPath);
+
+    const context = await Playwright.chromium.launchPersistentContext(userDataDir, {
+        // Headless doesn't support extensions
+        // see https://playwright.dev/#version=v1.2.0&path=docs%2Fapi.md&q=working-with-chrome-extensions
         headless: false,
         defaultViewport: null,
         args: [
@@ -128,12 +142,7 @@ async function launchNewBrowser(
             '--v=1',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
-        // For reasons we haven't fully root caused, allowing Puppeteer to use its default userDataDir location based on fs.mkdtemp
-        // causes inconsistent page crashes on the Pipelines hosted Windows build agents. We suspect there may be some overaggressive
-        // cleanup task removing the temp directories. Using a userDataDir in our test-results directory instead of the system %TEMP%
-        // directory seems to prevent the crashes.
-        userDataDir: userDataDir,
     });
 
-    return browser;
+    return context;
 }

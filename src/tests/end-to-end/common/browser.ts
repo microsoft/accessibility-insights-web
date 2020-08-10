@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
+import * as Playwright from 'playwright';
+import { ChromiumBrowserContext } from 'playwright';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
-import { BackgroundPage, isBackgroundPageTarget } from './page-controllers/background-page';
+import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
 import { ContentPage, contentPageRelativeUrl } from './page-controllers/content-page';
 import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/details-view-page';
 import { Page } from './page-controllers/page';
@@ -16,10 +17,10 @@ export class Browser {
 
     constructor(
         private readonly browserInstanceId: string,
-        private readonly underlyingBrowser: Puppeteer.Browser,
+        private readonly underlyingBrowserContext: Playwright.BrowserContext,
         private readonly onClose?: () => Promise<void>,
     ) {
-        underlyingBrowser.on('disconnected', onBrowserDisconnected);
+        underlyingBrowserContext.on('close', onBrowserDisconnected);
     }
 
     public async close(): Promise<void> {
@@ -27,8 +28,8 @@ export class Browser {
             await this.onClose();
         }
 
-        this.underlyingBrowser.removeListener('disconnected', onBrowserDisconnected);
-        await this.underlyingBrowser.close();
+        this.underlyingBrowserContext.removeListener('close', onBrowserDisconnected);
+        await this.underlyingBrowserContext.close();
     }
 
     public async backgroundPage(): Promise<BackgroundPage> {
@@ -36,11 +37,9 @@ export class Browser {
             return this.memoizedBackgroundPage;
         }
 
-        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(
-            isBackgroundPageTarget,
-        );
+        const ourBackgroundPage = await this.waitForBackgroundPageMatching(hasBackgroundPageUrl);
 
-        this.memoizedBackgroundPage = new BackgroundPage(await backgroundPageTarget.page(), {
+        this.memoizedBackgroundPage = new BackgroundPage(ourBackgroundPage, {
             onPageCrash: this.onPageCrash,
         });
 
@@ -48,7 +47,7 @@ export class Browser {
     }
 
     public async newPage(url: string): Promise<Page> {
-        const underlyingPage = await this.underlyingBrowser.newPage();
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
         const page = new Page(underlyingPage, { onPageCrash: this.onPageCrash });
         this.pages.push(page);
         await page.goto(url);
@@ -56,8 +55,7 @@ export class Browser {
     }
 
     public async newTargetPage(urlOptions?: TargetPageUrlOptions): Promise<TargetPage> {
-        const underlyingPage = await this.underlyingBrowser.newPage();
-        await underlyingPage.bringToFront();
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
         const tabId = await this.getActivePageTabId();
         const targetPage = new TargetPage(underlyingPage, tabId);
         this.pages.push(targetPage);
@@ -66,7 +64,7 @@ export class Browser {
     }
 
     public async newPopupPage(targetPage: TargetPage): Promise<PopupPage> {
-        const underlyingPage = await this.underlyingBrowser.newPage();
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
         const page = new PopupPage(underlyingPage, { onPageCrash: this.onPageCrash });
         const url = await this.getExtensionUrl(popupPageRelativeUrl(targetPage.tabId));
         this.pages.push(page);
@@ -75,7 +73,7 @@ export class Browser {
     }
 
     public async newDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
-        const underlyingPage = await this.underlyingBrowser.newPage();
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
         const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
         const url = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
         this.pages.push(page);
@@ -97,17 +95,16 @@ export class Browser {
 
     public async waitForDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
         const expectedUrl = await this.getExtensionUrl(detailsViewRelativeUrl(targetPage.tabId));
-        const underlyingTarget = await this.underlyingBrowser.waitForTarget(
-            t => t.url().toLowerCase() === expectedUrl.toLowerCase(),
-        );
-        const underlyingPage = await underlyingTarget.page();
+        const isMatch = (p: Playwright.Page) => p.url().toLowerCase() === expectedUrl.toLowerCase();
+
+        const underlyingPage = await this.waitForVisiblePageMatching(isMatch);
         const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
         this.pages.push(page);
         return page;
     }
 
     public async newContentPage(contentPath: string): Promise<ContentPage> {
-        const underlyingPage = await this.underlyingBrowser.newPage();
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
         const page = new ContentPage(underlyingPage, { onPageCrash: this.onPageCrash });
         const url = await this.getExtensionUrl(contentPageRelativeUrl(contentPath));
         this.pages.push(page);
@@ -142,6 +139,54 @@ export class Browser {
         });
     }
 
+    private async waitForBackgroundPageMatching(
+        predicate: (candidate: Playwright.Page) => boolean,
+    ): Promise<Playwright.Page> {
+        const apiSupported = (this.underlyingBrowserContext as any).backgroundPages != undefined;
+        if (!apiSupported) {
+            // Tracking issue for native Playwright support: https://github.com/microsoft/playwright/issues/2874
+            // Suggested workaround for Firefox: https://github.com/microsoft/playwright/issues/2644#issuecomment-647842059
+            throw new Error("Don't know how to query for backgroundPages() in non-Chromium");
+        }
+        const context = this.underlyingBrowserContext as ChromiumBrowserContext;
+
+        const allBackgroundPages = context.backgroundPages();
+
+        const existingMatches = allBackgroundPages.filter(hasBackgroundPageUrl);
+        if (existingMatches.length > 0) {
+            return existingMatches[0];
+        }
+
+        return await new Promise(resolve => {
+            const onNewPage = async newPage => {
+                if (predicate(newPage)) {
+                    context.off('backgroundpage', onNewPage);
+                    resolve(newPage);
+                }
+            };
+            context.on('backgroundpage', onNewPage);
+        });
+    }
+
+    private async waitForVisiblePageMatching(
+        predicate: (candidate: Playwright.Page) => boolean,
+    ): Promise<Playwright.Page> {
+        const existingMatches = this.underlyingBrowserContext.pages().filter(predicate);
+        if (existingMatches.length > 0) {
+            return existingMatches[0];
+        }
+
+        return await new Promise(resolve => {
+            const onNewPage = async newPage => {
+                if (predicate(newPage)) {
+                    this.underlyingBrowserContext.off('page', onNewPage);
+                    resolve(newPage);
+                }
+            };
+            this.underlyingBrowserContext.on('page', onNewPage);
+        });
+    }
+
     private async getExtensionUrl(relativePath: string): Promise<string> {
         const backgroundPage = await this.backgroundPage();
         const pageUrl = backgroundPage.url();
@@ -163,7 +208,7 @@ function onBrowserDisconnected(): void {
             - BrowserController's browser instance was .close() or .disconnect()ed without going through BrowserController.tearDown()
             - Chromium crashed (this is most commonly an out-of-memory issue)`;
 
-    // This is best-effort - in many/most cases, a disconnected browser will cause an async puppeteer operation in
+    // This is best-effort - in many/most cases, a disconnected browser will cause an async Playwright operation in
     // progress to fail (causing a test failure with a less useful error message) before this handler gets called.
     forceTestFailure(errorMessage);
 }

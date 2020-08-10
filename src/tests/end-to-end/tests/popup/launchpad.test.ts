@@ -17,7 +17,6 @@ describe('Popup -> Launch Pad', () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.bringToFront();
         await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
     });
 
