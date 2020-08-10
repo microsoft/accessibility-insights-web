@@ -14,9 +14,17 @@ export const addEventListenerForCollapsibleSection = function (doc: Document): v
 
     for (let index = 0; index < collapsibles.length; index++) {
         const container = collapsibles.item(index);
-        const button = container.querySelector('.collapsible-control');
+        const button = container?.querySelector('.collapsible-control');
+        if (button == null) {
+            continue;
+        }
+
         button.addEventListener('click', function (): void {
-            const content = button.parentElement.nextElementSibling as HTMLElement;
+            const content = button.parentElement?.nextElementSibling as HTMLElement;
+            if (content == null) {
+                throw Error(`Expected button element's parent to have a next sibling`);
+            }
+
             const wasExpandedBefore =
                 button.getAttribute('aria-expanded') === 'false' ? false : true;
             const isExpandedAfter = !wasExpandedBefore;
@@ -25,9 +33,9 @@ export const addEventListenerForCollapsibleSection = function (doc: Document): v
             content.setAttribute('aria-hidden', !isExpandedAfter + '');
 
             if (isExpandedAfter) {
-                container.classList.remove('collapsed');
+                container!.classList.remove('collapsed');
             } else {
-                container.classList.add('collapsed');
+                container!.classList.add('collapsed');
             }
         });
     }

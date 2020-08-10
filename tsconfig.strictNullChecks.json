@@ -238,6 +238,7 @@
         "./src/reports/components/instance-outcome-type.ts",
         "./src/reports/components/report-head.tsx",
         "./src/reports/components/report-sections/body-section.tsx",
+        "./src/reports/components/report-sections/collapsible-script-provider.tsx",
         "./src/reports/components/report-sections/content-container.tsx",
         "./src/reports/components/report-sections/report-footer.tsx",
         "./src/reports/components/report-sections/title-section.tsx",
