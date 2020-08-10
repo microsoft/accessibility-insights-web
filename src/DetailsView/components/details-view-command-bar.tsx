@@ -75,8 +75,8 @@ export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
     DetailsViewCommandBarState
 > {
-    private exportDialogCloseFocus?: IButton;
-    private startOverDialogCloseFocus?: IButton;
+    public exportDialogCloseFocus?: IButton;
+    public startOverDialogCloseFocus?: IButton;
 
     public constructor(props) {
         super(props);
@@ -85,6 +85,7 @@ export class DetailsViewCommandBar extends React.Component<
             startOverDialogState: 'none',
         };
     }
+
     public render(): JSX.Element {
         if (this.props.tabStoreData.isClosed) {
             return null;

@@ -14,9 +14,9 @@ import {
 } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { isNil } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react';
+import { ActionButton, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import {
     CommandBarProps,
@@ -36,7 +36,7 @@ describe('DetailsViewCommandBar', () => {
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
-    let getStartOverComponent: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
+    let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(
@@ -44,7 +44,7 @@ describe('DetailsViewCommandBar', () => {
             MockBehavior.Loose,
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
-        getStartOverComponent = Mock.ofInstance(props => null);
+        getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
@@ -67,7 +67,7 @@ describe('DetailsViewCommandBar', () => {
             ReportExportDialogFactory: reportExportDialogFactory.object,
             shouldShowReportExportButton: p => showReportExportButton,
             StartOverComponentFactory: {
-                getStartOverComponent: getStartOverComponent.object,
+                getStartOverComponent: getStartOverComponentMock.object,
             } as StartOverComponentFactory,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
@@ -150,6 +150,112 @@ describe('DetailsViewCommandBar', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
+    describe('Button focus', () => {
+        let focusRef: IButton;
+        let focusFunctionMock: IMock<() => void>;
+
+        beforeEach(() => {
+            focusFunctionMock = Mock.ofInstance(() => null);
+            focusRef = {
+                focus: focusFunctionMock.object,
+            } as IButton;
+        });
+
+        test('set export button ref', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<DetailsViewCommandBar {...props} />);
+
+            let instance = wrapper.instance() as DetailsViewCommandBar;
+            expect(instance.exportDialogCloseFocus).toBeUndefined();
+
+            const exportButton = wrapper.find('ReportExportButton');
+            const setRef = exportButton.prop('buttonRef') as (ref: IButton) => void;
+            setRef(focusRef);
+
+            instance = wrapper.instance() as DetailsViewCommandBar;
+            expect(instance.exportDialogCloseFocus).toBe(focusRef);
+        });
+
+        test('set start over button ref', () => {
+            const props = getProps();
+
+            let startOverFactoryProps: StartOverFactoryProps;
+            getStartOverComponentMock
+                .setup(g => g(It.isAny()))
+                .callback(startOverProps => (startOverFactoryProps = startOverProps));
+
+            const wrapper = shallow(<DetailsViewCommandBar {...props} />);
+
+            let instance = wrapper.instance() as DetailsViewCommandBar;
+            expect(instance.startOverDialogCloseFocus).toBeUndefined();
+
+            expect(startOverFactoryProps).toBeDefined();
+            const setRef = startOverFactoryProps.buttonRef as (ref: IButton) => void;
+            setRef(focusRef);
+
+            instance = wrapper.instance() as DetailsViewCommandBar;
+            expect(instance.startOverDialogCloseFocus).toBe(focusRef);
+        });
+
+        test('set ... menu button ref', () => {
+            isCommandBarCollapsed = true;
+            const props = getProps();
+
+            const wrapper = shallow(<DetailsViewCommandBar {...props} />);
+
+            let instance = wrapper.instance() as DetailsViewCommandBar;
+            expect(instance.exportDialogCloseFocus).toBeUndefined();
+            expect(instance.startOverDialogCloseFocus).toBeUndefined();
+
+            const commandBarButtonsMenu = wrapper.find('CommandBarButtonsMenu');
+            const setRef = commandBarButtonsMenu.prop('buttonRef') as (ref: IButton) => void;
+            setRef(focusRef);
+
+            instance = wrapper.instance() as DetailsViewCommandBar;
+            expect(instance.exportDialogCloseFocus).toBe(focusRef);
+            expect(instance.startOverDialogCloseFocus).toBe(focusRef);
+        });
+
+        test('focus export report button', () => {
+            const props = getProps();
+
+            let reportExportDialogFactoryProps: ReportExportDialogFactoryProps;
+            reportExportDialogFactory
+                .setup(r => r(It.isAny()))
+                .callback(p => (reportExportDialogFactoryProps = p));
+
+            const wrapper = shallow(<DetailsViewCommandBar {...props} />);
+            wrapper.setState({ isReportExportDialogOpen: true });
+
+            const instance = wrapper.instance() as DetailsViewCommandBar;
+            instance.exportDialogCloseFocus = focusRef;
+
+            focusFunctionMock.setup(f => f()).verifiable(Times.once());
+
+            reportExportDialogFactoryProps.afterDialogDismissed();
+
+            focusFunctionMock.verifyAll();
+        });
+
+        test('focus start over button', () => {
+            const props = getProps();
+
+            const wrapper = shallow(<DetailsViewCommandBar {...props} />);
+            wrapper.setState({ startOverDialogState: 'test' });
+
+            const instance = wrapper.instance() as DetailsViewCommandBar;
+            instance.startOverDialogCloseFocus = focusRef;
+
+            focusFunctionMock.setup(f => f()).verifiable(Times.once());
+
+            wrapper.setState({ startOverDialogState: 'none' });
+            wrapper.update();
+
+            focusFunctionMock.verifyAll();
+        });
+    });
+
     function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
         showReportExportButton = renderExportResults;
 
@@ -185,7 +291,7 @@ describe('DetailsViewCommandBar', () => {
 
     function setupStartOverButtonFactory(props: CommandBarProps): void {
         const expectedProps = props as Partial<StartOverFactoryProps>;
-        getStartOverComponent
+        getStartOverComponentMock
             .setup(g => g(It.isObjectWith(expectedProps)))
             .returns(() => startOverComponent);
     }
