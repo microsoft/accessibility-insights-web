@@ -4,47 +4,33 @@
 @import '../../../common/styles/colors.scss';
 @import '../../../common/styles/common.scss';
 
-:global(.reflow-ui) {
-    .left-nav {
-        li {
-            :global {
-                .is-selected {
-                    background-color: $nav-link-selected;
-                    a,
-                    button {
-                        background-color: $nav-link-selected !important;
-                    }
-                }
-                .is-expanded,
-                .is-expanded + ul {
-                    background-color: $nav-link-expanded;
-                    .index-circle {
-                        color: $neutral-0;
-                        background: $index-circle-background;
-                        border-color: $neutral-0;
-                    }
-                }
-            }
-
-            > div:hover {
+.left-nav {
+    li {
+        :global {
+            .is-selected {
+                background-color: $nav-link-selected;
                 a,
                 button {
-                    background-color: $nav-link-hover;
+                    background-color: $nav-link-selected !important;
+                }
+            }
+            .is-expanded,
+            .is-expanded + ul {
+                background-color: $nav-link-expanded;
+                .index-circle {
+                    color: $neutral-0;
+                    background: $index-circle-background;
+                    border-color: $neutral-0;
                 }
             }
         }
-    }
-}
 
-:global(.details-view-body-nav-content-layout) {
-    .left-nav {
-        max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-        height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-    }
-
-    &:global(.reflow-ui) .left-nav {
-        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
-        height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+        > div:hover {
+            a,
+            button {
+                background-color: $nav-link-hover;
+            }
+        }
     }
 }
 
@@ -53,6 +39,9 @@
     border-right: 1px solid $neutral-8;
     z-index: 100;
     background-color: $neutral-0;
+    max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+    height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+
     :global {
         .left-nav-icon {
             color: $neutral-60;
