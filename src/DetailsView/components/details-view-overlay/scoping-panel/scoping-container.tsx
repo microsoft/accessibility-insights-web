@@ -9,6 +9,7 @@ import { ScopingActionMessageCreator } from 'common/message-creators/scoping-act
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import * as React from 'react';
+import * as styles from './scoping-container.scss';
 
 export interface ScopingContainerProps {
     featureFlagData: FeatureFlagStoreData;
@@ -65,8 +66,10 @@ export class ScopingContainer extends React.Component<ScopingContainerProps> {
 
     public render(): JSX.Element {
         return (
-            <div className="scoping-container">
-                <div className="scoping-description">{ScopingContainer.renderInstructions}</div>
+            <div>
+                <div className={styles.scopingDescription}>
+                    {ScopingContainer.renderInstructions}
+                </div>
                 <SelectorInputList
                     title={'Include'}
                     subtitle={'Insert selectors you want included in your scan'}

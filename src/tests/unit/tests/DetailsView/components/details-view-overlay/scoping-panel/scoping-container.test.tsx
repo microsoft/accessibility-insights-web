@@ -10,6 +10,7 @@ import {
     ScopingContainer,
     ScopingContainerProps,
 } from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container';
+import * as styles from 'DetailsView/components/details-view-overlay/scoping-panel/scoping-container.scss';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -24,6 +25,7 @@ describe('ScopingContainerTest', () => {
 
     test('constructor', () => {
         const testSubject = new ScopingContainer({} as ScopingContainerProps);
+
         expect(testSubject).toBeDefined();
     });
 
@@ -43,14 +45,12 @@ describe('ScopingContainerTest', () => {
         };
 
         const wrapper = Enzyme.shallow(<ScopingContainer {...props} />);
-        const container = wrapper.find('.scoping-container');
-        expect(container.exists()).toBe(true);
 
-        const description = container.find('.scoping-description');
+        const description = wrapper.find('.' + styles.scopingDescription);
         expect(description.exists()).toBe(true);
         expect(description.contains(ScopingContainer.renderInstructions)).toBe(true);
 
-        const selectorLists = container.find(SelectorInputList);
+        const selectorLists = wrapper.find(SelectorInputList);
         expect(selectorLists.length).toBe(2);
 
         const includeList = selectorLists.first();

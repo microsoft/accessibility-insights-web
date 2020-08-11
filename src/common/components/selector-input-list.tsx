@@ -1,10 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as styles from 'common/components/selector-input-list.scss';
 import * as _ from 'lodash/index';
-import { DefaultButton, IconButton } from 'office-ui-fabric-react';
-import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react';
-import { List } from 'office-ui-fabric-react';
-import { ITextField, TextField } from 'office-ui-fabric-react';
+import {
+    DefaultButton,
+    FocusZone,
+    FocusZoneDirection,
+    IconButton,
+    ITextField,
+    List,
+    TextField,
+} from 'office-ui-fabric-react';
 import * as React from 'react';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
 
@@ -58,21 +64,21 @@ export class SelectorInputList extends React.Component<
 
     public render(): JSX.Element {
         return (
-            <div className="selector-input-list">
-                <h2 className="selector-input-title">{this.props.title}</h2>
+            <div className={styles.selectorInputList}>
+                <h2 className={styles.selectorInputTitle}>{this.props.title}</h2>
                 {this.props.instructions}
-                <div className="selector-input-add">
+                <div className={styles.selectorInputAdd}>
                     <TextField
-                        className="selector-input-field"
+                        className={styles.selectorInputField}
                         ariaLabel={this.props.subtitle}
                         componentRef={this.setTextField}
                         value={this.state.value}
                         onChange={this.updateFieldValueValidState}
                         placeholder="Enter element selector here"
                     />
-                    <div className="add-selector-buttons">
+                    <div className={styles.addSelectorButtons}>
                         <DefaultButton
-                            className="textbox-add-selector-button"
+                            className={styles.textboxAddSelectorButton}
                             iconProps={{ iconName: 'add' }}
                             onClick={this.addSelector}
                             disabled={!this.state.isTextFieldValueValid}
@@ -81,15 +87,14 @@ export class SelectorInputList extends React.Component<
                         <IconButton
                             iconProps={{
                                 iconName: 'scopeTemplate',
-                                className: 'inspect-add-selector-button',
                             }}
                             onClick={this.onChangeSelectorHandler}
                         />
                     </div>
                 </div>
-                <FocusZone className="selector-focus-zone" direction={FocusZoneDirection.vertical}>
+                <FocusZone direction={FocusZoneDirection.vertical}>
                     <List
-                        className="selector-list"
+                        className={styles.selectorList}
                         items={this.props.items}
                         onRenderCell={this.onRenderCell}
                     />
@@ -104,12 +109,12 @@ export class SelectorInputList extends React.Component<
 
     private onRenderCell = (item: string[]): JSX.Element => {
         return (
-            <div className="selector-input-itemCell" data-is-focusable={true}>
-                <div className="selector-input-itemContent">
-                    <div className="selector-input-itemName">{this.renderItemName(item)}</div>
+            <div className={styles.selectorInputItemCell} data-is-focusable={true}>
+                <div className={styles.selectorInputItemContent}>
+                    <div>{this.renderItemName(item)}</div>
                     <IconButton
-                        className="delete-selector-button"
-                        iconProps={{ iconName: 'cancel', className: 'delete-selector-icon' }}
+                        className={styles.deleteSelectorButton}
+                        iconProps={{ iconName: 'cancel', className: styles.deleteSelectorIcon }}
                         onClick={this.getDeleteSelectorHandler(item)}
                     />
                 </div>
