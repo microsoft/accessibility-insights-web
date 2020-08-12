@@ -4044,10 +4044,10 @@ electron-download@^4.1.1:
     semver "^5.4.1"
     sumchecker "^2.0.2"
 
-electron-log@^4.2.2:
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.2.2.tgz#b358dc6d1e4772465609ee3d8ad9f594d9e742c8"
-  integrity sha512-lBpLh1Q8qayrTxFIrTPcNjSHsosvUfOYyZ8glhiLcx7zCNPDGuj8+nXlEaaSS6LRiQQbLgLG+wKpuvztNzBIrA==
+electron-log@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.2.3.tgz#09adbf156ae80012a13f765aa4d444b1a1a9ea83"
+  integrity sha512-QU4uZyBaSwbo/KiSWdWCeQSc0gQEpsfUIz/L3nEl9HzSXHOjhyFLyytk4/kBT9yYvJNHIS4E9F3dD4+SIc8vMA==
 
 electron-publish@22.8.0:
   version "22.8.0"
