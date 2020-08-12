@@ -1,0 +1,30 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../common/styles/common.scss';
+
+span.collapsible-title {
+    padding-left: 0.5vw;
+}
+
+.collapsible {
+    padding: 0;
+    cursor: pointer;
+    width: 100%;
+    border: none;
+    outline: none;
+    line-height: 0.25px;
+    background-color: $neutral-0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    h2 {
+        font-weight: $normalTitleFontWeight;
+        font-size: 17px;
+    }
+}
+
+.collapsible-content {
+    overflow: hidden;
+    padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
+}

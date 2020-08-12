@@ -74,12 +74,12 @@ export interface DetailsViewBodyProps {
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
         const bodyLayoutClassName = classNames({
-            'details-view-body-nav-content-layout': true,
+            [styles.detailsViewBodyNavContentLayout]: true,
             'reflow-ui': true,
         });
 
         const bodyContentClassName = classNames({
-            'details-view-body-content-pane': true,
+            [styles.detailsViewBodyContentPane]: true,
             'reflow-ui': true,
         });
 
@@ -96,7 +96,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                         {this.renderCommandBar()}
                         <div className={bodyContentClassName}>
                             {this.getTargetPageHiddenBar()}
-                            <div className="view" role="main">
+                            <div className={styles.view} role="main">
                                 {this.renderRightPanel()}
                             </div>
                         </div>

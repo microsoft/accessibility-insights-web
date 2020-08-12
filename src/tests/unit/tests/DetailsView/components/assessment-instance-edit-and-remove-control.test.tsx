@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon } from 'office-ui-fabric-react';
-import { Link } from 'office-ui-fabric-react';
+import * as styles from 'DetailsView/components/assessment-instance-edit-and-remove-control.scss';
+import { Icon, Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
@@ -62,7 +61,10 @@ describe('AssessmentInstanceRemoveButton', () => {
                     assessmentsProvider={props.assessmentsProvider}
                     featureFlagStoreData={featureFlagStoreData}
                 />
-                <Link className="remove-button" onClick={testSubject.getOnRemoveButtonClicked()}>
+                <Link
+                    className={styles.removeButton}
+                    onClick={testSubject.getOnRemoveButtonClicked()}
+                >
                     <Icon iconName="delete" ariaLabel={'delete instance'} />
                 </Link>
             </div>

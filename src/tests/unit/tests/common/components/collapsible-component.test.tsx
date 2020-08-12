@@ -46,7 +46,7 @@ describe('CollapsibleComponentTest', () => {
         };
 
         const result = shallow(<CollapsibleComponent {...props} />);
-        expect(result.hasClass('collapsible-component')).toBe(true);
+        expect(result.getElement()).toMatchSnapshot();
     });
 
     test('toggle from expanded to collapsed', () => {

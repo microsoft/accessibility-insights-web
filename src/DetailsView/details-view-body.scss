@@ -22,3 +22,60 @@
         width: 100%;
     }
 }
+
+.details-view-body-nav-content-layout {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: stretch;
+    padding-left: 0px;
+    padding-right: 0px;
+    grid-template-columns: $detailsViewLeftNavWidth 1fr;
+    grid-template-rows: 1fr;
+    width: 100%;
+    min-height: 0;
+    height: 100%;
+    grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+
+    :global(.ms-Pivot) {
+        border-bottom: 1px solid $neutral-8;
+        padding-left: 12px;
+    }
+
+    .details-view-body-content-pane {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        word-break: break-word;
+        width: 100%;
+        overflow: auto;
+        box-sizing: border-box;
+        max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+        > div {
+            width: 100%;
+            height: auto;
+        }
+        :global(.ms-MessageBar-icon) i {
+            margin-left: 12px;
+            color: $secondary-text;
+        }
+        .view {
+            flex-grow: 1;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            h1 {
+                margin: 0px;
+                font-weight: $fontWeightSemiBold;
+                font-size: 21px;
+                color: $neutral-100;
+            }
+            b {
+                font-weight: 600;
+            }
+        }
+    }
+}

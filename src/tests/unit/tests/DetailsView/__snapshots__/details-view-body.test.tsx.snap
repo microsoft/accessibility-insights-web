@@ -5,7 +5,7 @@ exports[`DetailsViewBody render render 1`] = `
   className="detailsViewBody"
 >
   <div
-    className="details-view-body-nav-content-layout reflow-ui"
+    className="detailsViewBodyNavContentLayout reflow-ui"
   >
     <FluentSideNav
       assessmentStoreData={
@@ -615,7 +615,7 @@ exports[`DetailsViewBody render render 1`] = `
         }
       />
       <div
-        className="details-view-body-content-pane reflow-ui"
+        className="detailsViewBodyContentPane reflow-ui"
       >
         <TargetPageHiddenBar
           isTargetPageHidden={false}
