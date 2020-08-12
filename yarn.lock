@@ -3171,11 +3171,6 @@ commander@^2.12.1, commander@^2.19.0, commander@^2.20.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
 
-commander@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-5.1.0.tgz#46abbd1652f8e059bddaef99bbdcb2ad9cf179ae"
-  integrity sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
-
 commander@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-6.0.0.tgz#2b270da94f8fb9014455312f829a1129dbf8887e"
@@ -7130,10 +7125,15 @@ jimp@^0.10.0:
     core-js "^3.4.1"
     regenerator-runtime "^0.13.3"
 
-jpeg-js@^0.3.4, jpeg-js@^0.3.7:
+jpeg-js@^0.3.4:
   version "0.3.7"
   resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.3.7.tgz#471a89d06011640592d314158608690172b1028d"
   integrity sha512-9IXdWudL61npZjvLuVe/ktHiA41iE8qFyLB+4VDTblEsWBzeg8WQTlktdUK4CdncUqtUgUg0bbOmTE2bKBKaBQ==
+
+jpeg-js@^0.4.0:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.4.1.tgz#937a3ae911eb6427f151760f8123f04c8bfe6ef7"
+  integrity sha512-jA55yJiB5tCXEddos8JBbvW+IMrqY0y1tjjx9KNVtA+QPmu7ND5j0zkKopClpUTsaETL135uOM2XfcYG4XRjmw==
 
 js-base64@^2.1.8:
   version "2.5.1"
@@ -9012,16 +9012,15 @@ pkg@^4.4.9:
     resolve "^1.15.1"
     stream-meter "^1.0.4"
 
-playwright@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.2.1.tgz#9c6758668ff9776b162f8174a2d972265540cd5b"
-  integrity sha512-wD5WZ3rNvmXq+W4qhwykrm8J7VGYsjMjdC2WjZb4B4r7j/IFzq6EhliD+ZBIl+HOymFNsTwPZYhXy7IqeC2+YQ==
+playwright@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.3.0.tgz#8c33ed29bc0c7d97f82f8322e99be6d7f0d9ff67"
+  integrity sha512-W3mwXv2XNFugbepSZTZxI314WfI1SAjdZBEeGOu8S5KnPz4RSlunUFgXn6496o8lobPmORLcJ9VTSGyiFfGpaw==
   dependencies:
-    commander "^5.1.0"
     debug "^4.1.1"
     extract-zip "^2.0.0"
     https-proxy-agent "^5.0.0"
-    jpeg-js "^0.3.7"
+    jpeg-js "^0.4.0"
     mime "^2.4.4"
     pngjs "^5.0.0"
     progress "^2.0.3"
