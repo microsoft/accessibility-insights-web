@@ -37,7 +37,6 @@ export const ContentLink = NamedFC<ContentLinkProps>(
             <NewTabLink
                 href={`/insights.html#/content/${contentPath}`}
                 title="Guidance"
-                aria-label="Guidance"
                 onClick={ev => openContentPage(ev, contentPath)}
             >
                 {icon}
