@@ -156,7 +156,7 @@ describe('RuleInformationProvider', () => {
             'High',
         );
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.includeThisResult(ruleResult)).toBe(false); // Revert to true when color contrast is re-enabled
+        expect(ruleInformation.includeThisResult(ruleResult)).toBe(true);
     });
 
     test('ColorContrast includeThisResult returns false when confidence is defined but not High', () => {
