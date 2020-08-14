@@ -154,7 +154,7 @@
         "electron-log": "^4.2.3",
         "electron-updater": "^4.3.4",
         "idb-keyval": "^3.2.0",
-        "lodash": "^4.17.19",
+        "lodash": "^4.17.20",
         "moment": "^2.27.0",
         "office-ui-fabric-react": "7.98.0",
         "portfinder": "^1.0.28",
