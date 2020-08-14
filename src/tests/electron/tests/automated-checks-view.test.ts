@@ -39,7 +39,7 @@ describe('AutomatedChecksView', () => {
 
     it('displays automated checks results collapsed by default', async () => {
         const ruleGroups = await automatedChecksView.queryRuleGroups();
-        expect(ruleGroups).toHaveLength(4);
+        expect(ruleGroups).toHaveLength(3);
 
         const collapsibleContentElements = await automatedChecksView.queryRuleGroupContents();
         expect(collapsibleContentElements).toHaveLength(0);
@@ -51,7 +51,7 @@ describe('AutomatedChecksView', () => {
     }
 
     it('supports expanding and collapsing rule groups', async () => {
-        expect(await countHighlightBoxes()).toBe(5);
+        expect(await countHighlightBoxes()).toBe(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
@@ -145,7 +145,6 @@ describe('AutomatedChecksView', () => {
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
             { width: 10.7407, height: 6.04167, top: 10.4167, left: 13.4259 },
             { width: 48.6111, height: 4.94792, top: 23.5417, left: 25.6481 },
-            { width: 49.8148, height: 16.4063, top: 30.1042, left: 0 },
         ]);
     });
 
