@@ -508,6 +508,21 @@ module.exports = function (grunt) {
             fileset.from = fileset.from.replace(/TARGET_SPECIFIC_PRODUCT_DIR/g, productDir);
         }
 
+        // Manually copying the license files is a workaround for electron-builder #1495.
+        // On win/linux builds these are automatically included, but in Mac they are omitted.
+        if (process.platform === 'darwin') {
+            config.extraFiles.push(
+                {
+                    from: 'node_modules/electron/dist/LICENSE',
+                    to: 'LICENSE.electron.txt',
+                },
+                {
+                    from: 'node_modules/electron/dist/LICENSES.chromium.html',
+                    to: 'LICENSES.chromium.html',
+                },
+            );
+        }
+
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
         grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);

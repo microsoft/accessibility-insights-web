@@ -25,12 +25,6 @@ extraResources:
 extraFiles:
     - from: 'TARGET_SPECIFIC_PRODUCT_DIR'
       filter: ['LICENSE', 'NOTICE.*']
-    # Manually copying the license files is a workaround for electron-builder #1495.
-    # On win/linux builds these are automatically included, but in Mac they are apparently omitted.
-    - from: 'node_modules/electron/dist/LICENSE'
-      to: 'LICENSE.electron.txt'
-    - from: 'node_modules/electron/dist/LICENSES.chromium.html'
-      to: 'LICENSES.chromium.html'
 
 extraMetadata:
     main: product/bundle/main.bundle.js
