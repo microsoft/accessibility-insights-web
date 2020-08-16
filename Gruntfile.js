@@ -365,6 +365,12 @@ module.exports = function (grunt) {
                             dest: dropExtensionPath,
                             expand: true,
                         },
+                        {
+                            cwd: '.',
+                            src: ['LICENSE'],
+                            dest: dropExtensionPath,
+                            expand: true,
+                        },
                         ...productCategorySpecificCopyFiles,
                     ],
                 },
@@ -471,6 +477,7 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('configure-electron-builder', function () {
         grunt.task.requires('drop:' + this.target);
         const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
+        const productDir = `${dropPath}/product`;
 
         const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
         const srcElectronBuilderConfigFile = path.join(
@@ -486,7 +493,6 @@ module.exports = function (grunt) {
         config.appId = appId;
         config.directories.app = dropPath;
         config.directories.output = `${dropPath}/packed`;
-        config.extraResources[0].from = `${dropPath}/product/android-service`;
         config.extraMetadata.version = version;
         config.win.icon = `src/${electronIconBaseName}.ico`;
         // electron-builder infers the linux icon from the mac one
@@ -497,6 +503,10 @@ module.exports = function (grunt) {
         // This is necessary for the AppImage to display using our brand icon
         // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
         config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
+
+        for (fileset of [...config.extraResources, ...config.extraFiles]) {
+            fileset.from = fileset.from.replace(/TARGET_SPECIFIC_PRODUCT_DIR/g, productDir);
+        }
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
