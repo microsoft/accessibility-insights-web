@@ -10,11 +10,16 @@ pr: # pr does not trigger CI builds
         include:
             - '*' # must quote since "*" is a YAML reserved character; we want a string
 
+variables:
+    windowsImage: 'windows-2019'
+    macImage: 'macOS-10.15'
+    linuxImage: 'ubuntu-18.04'
+
 jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.15'
+          vmImage: $(linuxImage)
 
       steps:
           - template: pipeline/install-node-prerequisites.yaml
@@ -69,7 +74,7 @@ jobs:
 
     - job: 'publish_build_drops'
       pool:
-          vmImage: 'ubuntu-18.04'
+          vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
@@ -101,9 +106,9 @@ jobs:
             displayName: publish drop
             timeoutInMinutes: 5
 
-    - job: 'e2e_web_mac'
+    - job: 'e2e_web_linux'
       pool:
-          vmImage: macOS-10.15
+          vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/e2e-test-from-agent.yaml
@@ -111,7 +116,7 @@ jobs:
 
     - job: 'e2e_unified_mac'
       pool:
-          vmImage: macOS-10.15
+          vmImage: $(macImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
@@ -119,7 +124,7 @@ jobs:
 
     - job: 'e2e_unified_linux'
       pool:
-          vmImage: ubuntu-18.04
+          vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-linux.yaml
@@ -127,7 +132,7 @@ jobs:
 
     - job: 'e2e_unified_windows'
       pool:
-          vmImage: windows-2019
+          vmImage: $(windowsImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
