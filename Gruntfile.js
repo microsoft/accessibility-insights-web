@@ -287,6 +287,10 @@ module.exports = function (grunt) {
         if (productCategory === 'electron') {
             productCategorySpecificCopyFiles.push(
                 {
+                    src: 'src/electron/resources/license_en.txt',
+                    dest: `${dropExtensionPath}/LICENSE`,
+                },
+                {
                     src: androidServiceBin.apkPath,
                     // This should be kept in sync with android-service-apk.ts
                     dest: path.join(dropExtensionPath, 'android-service', 'android-service.apk'),
@@ -300,6 +304,11 @@ module.exports = function (grunt) {
                     ),
                 },
             );
+        } else {
+            productCategorySpecificCopyFiles.push({
+                src: 'LICENSE',
+                dest: `${dropExtensionPath}/LICENSE`,
+            });
         }
 
         grunt.config.merge({
@@ -362,12 +371,6 @@ module.exports = function (grunt) {
                         {
                             cwd: extensionPath,
                             src: ['**/*.html'],
-                            dest: dropExtensionPath,
-                            expand: true,
-                        },
-                        {
-                            cwd: '.',
-                            src: ['LICENSE'],
                             dest: dropExtensionPath,
                             expand: true,
                         },
