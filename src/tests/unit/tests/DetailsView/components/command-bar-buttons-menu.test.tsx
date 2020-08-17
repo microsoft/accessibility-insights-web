@@ -4,7 +4,7 @@ import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
 } from 'DetailsView/components/command-bar-buttons-menu';
-import { DropdownDirection } from 'DetailsView/components/start-over-dropdown';
+import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import { IButton, IOverflowSetItemProps, RefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -12,17 +12,15 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('CommandBarButtonsMenu', () => {
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
-    let renderStartOverComponentMock: IMock<(dropdownDirection: DropdownDirection) => JSX.Element>;
+    let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
         renderExportReportComponentMock = Mock.ofInstance(() => null);
-        renderStartOverComponentMock = Mock.ofType<
-            (dropdownDirection: DropdownDirection) => JSX.Element
-        >();
+        getStartOverMenuItemMock = Mock.ofInstance(() => null);
         commandBarButtonsMenuProps = {
             renderExportReportButton: renderExportReportComponentMock.object,
-            renderStartOverButton: renderStartOverComponentMock.object,
+            getStartOverMenuItem: getStartOverMenuItemMock.object,
             buttonRef: {} as RefObject<IButton>,
         } as CommandBarButtonsMenuProps;
     });
@@ -33,15 +31,8 @@ describe('CommandBarButtonsMenu', () => {
     });
 
     it('renders child buttons', () => {
-        renderExportReportComponentMock
-            .setup(r => r())
-            .returns(() => <>Report export button</>)
-            .verifiable(Times.once());
-
-        renderStartOverComponentMock
-            .setup(s => s('left'))
-            .returns(() => <>Start over button</>)
-            .verifiable(Times.once());
+        setupExportReportMenuItem();
+        setupStartOverMenuItem();
 
         const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
         const renderedProps = wrapper.getElement().props;
@@ -52,6 +43,23 @@ describe('CommandBarButtonsMenu', () => {
         overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
 
         renderExportReportComponentMock.verifyAll();
-        renderStartOverComponentMock.verifyAll();
+        getStartOverMenuItemMock.verifyAll();
     });
+
+    function setupExportReportMenuItem(): void {
+        renderExportReportComponentMock
+            .setup(r => r())
+            .returns(() => <>Report export button</>)
+            .verifiable(Times.once());
+    }
+
+    function setupStartOverMenuItem(): void {
+        const startOverMenuItem = {
+            onRender: () => <>Start over button</>,
+        };
+        getStartOverMenuItemMock
+            .setup(s => s())
+            .returns(() => startOverMenuItem)
+            .verifiable(Times.once());
+    }
 });

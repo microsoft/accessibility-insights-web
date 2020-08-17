@@ -10,7 +10,6 @@ import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-chec
 import {
     CommandBarProps,
     ReportExportDialogFactory,
-    StartOverComponentFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportDialogForAssessment,
@@ -22,8 +21,9 @@ import {
     shouldShowReportExportButtonForFastpass,
 } from 'DetailsView/components/should-show-report-export-button';
 import {
-    getStartOverComponentForAssessment,
-    getStartOverComponentForFastPass,
+    AssessmentStartOverFactory,
+    FastpassStartOverFactory,
+    StartOverComponentFactory,
 } from 'DetailsView/components/start-over-component-factory';
 import {
     assessmentWarningConfiguration,
@@ -93,7 +93,7 @@ const detailsViewSwitcherNavs: {
         CommandBar: AssessmentCommandBar,
         ReportExportDialogFactory: getReportExportDialogForAssessment,
         shouldShowReportExportButton: shouldShowReportExportButtonForAssessment,
-        StartOverComponentFactory: getStartOverComponentForAssessment,
+        StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
@@ -103,7 +103,7 @@ const detailsViewSwitcherNavs: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportDialogFactory: getReportExportDialogForFastPass,
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
-        StartOverComponentFactory: getStartOverComponentForFastPass,
+        StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,

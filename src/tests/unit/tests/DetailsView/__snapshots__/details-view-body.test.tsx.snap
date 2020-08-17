@@ -121,7 +121,7 @@ exports[`DetailsViewBody render render 1`] = `
           "CommandBar": [Function],
           "LeftNav": [Function],
           "ReportExportDialogFactory": [Function],
-          "StartOverComponentFactory": [Function],
+          "StartOverComponentFactory": Object {},
         }
       }
       tabStoreData={
@@ -425,7 +425,7 @@ exports[`DetailsViewBody render render 1`] = `
             "CommandBar": [Function],
             "LeftNav": [Function],
             "ReportExportDialogFactory": [Function],
-            "StartOverComponentFactory": [Function],
+            "StartOverComponentFactory": Object {},
           }
         }
         tabStoreData={
@@ -736,7 +736,7 @@ exports[`DetailsViewBody render render 1`] = `
                 "CommandBar": [Function],
                 "LeftNav": [Function],
                 "ReportExportDialogFactory": [Function],
-                "StartOverComponentFactory": [Function],
+                "StartOverComponentFactory": Object {},
               }
             }
             tabStoreData={

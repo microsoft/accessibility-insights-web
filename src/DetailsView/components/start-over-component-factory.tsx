@@ -12,8 +12,9 @@ import {
     StartOverDropdown,
     StartOverProps,
 } from 'DetailsView/components/start-over-dropdown';
-import { IButton, IRefObject } from 'office-ui-fabric-react';
+import { IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
+import * as styles from './start-over-menu-item.scss';
 
 export type StartOverFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -25,18 +26,45 @@ export type StartOverFactoryProps = {
     assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
-    dropdownDirection: DropdownDirection;
     openDialog: (dialogType: StartOverDialogType) => void;
     buttonRef: IRefObject<IButton>;
 };
 
-export function getStartOverComponentForAssessment(props: StartOverFactoryProps): JSX.Element {
+export type StartOverMenuItem = Omit<IContextualMenuItem, 'key'>;
+
+export interface StartOverComponentFactory {
+    getStartOverComponent: (props: StartOverFactoryProps) => JSX.Element;
+    getStartOverMenuItem: (props: StartOverFactoryProps) => StartOverMenuItem;
+}
+
+export const AssessmentStartOverFactory: StartOverComponentFactory = {
+    getStartOverComponent: props => getStartOverComponentForAssessment(props, 'down'),
+    getStartOverMenuItem: props => {
+        return {
+            onRender: () => (
+                <div role="menuitem">{getStartOverComponentForAssessment(props, 'left')}</div>
+            ),
+        };
+    },
+};
+
+export const FastpassStartOverFactory: StartOverComponentFactory = {
+    getStartOverComponent: props => {
+        return <InsightsCommandButton {...getStartOverPropsForFastPass(props)} />;
+    },
+    getStartOverMenuItem: getStartOverPropsForFastPass,
+};
+
+export function getStartOverComponentForAssessment(
+    props: StartOverFactoryProps,
+    dropdownDirection: DropdownDirection,
+): JSX.Element {
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.assessmentsProvider.forType(selectedTest);
     const startOverProps: StartOverProps = {
         testName: test.title,
         rightPanelConfiguration: props.rightPanelConfiguration,
-        dropdownDirection: props.dropdownDirection,
+        dropdownDirection,
         openDialog: props.openDialog,
         buttonRef: props.buttonRef,
     };
@@ -46,20 +74,16 @@ export function getStartOverComponentForAssessment(props: StartOverFactoryProps)
 
 export const startOverAutomationId = 'start-over';
 
-export function getStartOverComponentForFastPass(props: StartOverFactoryProps): JSX.Element {
+export function getStartOverPropsForFastPass(props: StartOverFactoryProps): StartOverMenuItem {
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const detailsViewActionMessageCreator = props.deps.detailsViewActionMessageCreator;
 
-    return (
-        <InsightsCommandButton
-            iconProps={{ iconName: 'Refresh' }}
-            onClick={event =>
-                detailsViewActionMessageCreator.rescanVisualization(selectedTest, event)
-            }
-            disabled={props.visualizationStoreData.scanning !== null}
-            data-automation-id={startOverAutomationId}
-        >
-            Start over
-        </InsightsCommandButton>
-    );
+    return {
+        iconProps: { iconName: 'Refresh', className: styles.startOverMenuItemIcon },
+        onClick: event => detailsViewActionMessageCreator.rescanVisualization(selectedTest, event),
+        disabled: props.visualizationStoreData.scanning !== null,
+        'data-automation-id': startOverAutomationId,
+        text: 'Start over',
+        className: styles.startOverMenuItem,
+    };
 }

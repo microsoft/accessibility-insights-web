@@ -10,6 +10,7 @@ import * as React from 'react';
 
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -66,7 +67,7 @@ describe('DetailsViewBody', () => {
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
                 ReportExportDialogFactory: p => null,
-                StartOverComponentFactory: p => null,
+                StartOverComponentFactory: {} as StartOverComponentFactory,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryStub = {} as VisualizationConfigurationFactory;

@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { DropdownDirection } from 'DetailsView/components/start-over-dropdown';
+import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
-    renderStartOverButton: (dropdownDirection: DropdownDirection) => JSX.Element;
+    getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
 
@@ -22,7 +22,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             },
             {
                 key: 'start over',
-                onRender: () => <div role="menuitem">{props.renderStartOverButton('left')}</div>,
+                ...props.getStartOverMenuItem(),
             },
         ];
 
