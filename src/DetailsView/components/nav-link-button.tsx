@@ -12,10 +12,12 @@ export interface NavLinkButtonProps extends INavButtonProps {
 
 export const NavLinkButton = NamedFC<NavLinkButtonProps>('NavLinkButton', props => {
     const link = props.link;
+    const titleAndAriaLabel = link.title || link.name;
     return (
         <Link
+            aria-label={titleAndAriaLabel}
             aria-expanded={link.isExpanded}
-            title={link.title || link.name}
+            title={titleAndAriaLabel}
             onClick={e => link.onClickNavLink(e, link)}
             className={css(styles.navLinkButton, props.className)}
             href={link.forceAnchor === true ? '#' : undefined}

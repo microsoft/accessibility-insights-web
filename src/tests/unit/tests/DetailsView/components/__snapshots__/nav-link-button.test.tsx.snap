@@ -3,6 +3,7 @@
 exports[`NavLinkButton renders as button element 1`] = `
 <StyledLinkBase
   aria-expanded={true}
+  aria-label="some title"
   className="navLinkButton some class name"
   onClick={[Function]}
   title="some title"
@@ -12,6 +13,7 @@ exports[`NavLinkButton renders as button element 1`] = `
 exports[`NavLinkButton renders with href set 1`] = `
 <StyledLinkBase
   aria-expanded={true}
+  aria-label="some title"
   className="navLinkButton some class name"
   href="#"
   onClick={[Function]}
@@ -22,6 +24,7 @@ exports[`NavLinkButton renders with href set 1`] = `
 exports[`NavLinkButton renders with using name instead of title 1`] = `
 <StyledLinkBase
   aria-expanded={true}
+  aria-label="some title"
   className="navLinkButton some class name"
   onClick={[Function]}
   title="some title"
