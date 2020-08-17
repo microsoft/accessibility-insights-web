@@ -14,7 +14,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function]} renderStartOverButton={[Function]} buttonRef={[Function: buttonRef]} />
+  <CommandBarButtonsMenu renderExportReportButton={[Function]} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
   <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
 </div>"
 `;
@@ -123,7 +123,9 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
-        "StartOverComponentFactory": [Function],
+        "StartOverComponentFactory": Object {
+          "getStartOverComponent": [Function],
+        },
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -238,7 +240,9 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
-        "StartOverComponentFactory": [Function],
+        "StartOverComponentFactory": Object {
+          "getStartOverComponent": [Function],
+        },
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -353,7 +357,9 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
-        "StartOverComponentFactory": [Function],
+        "StartOverComponentFactory": Object {
+          "getStartOverComponent": [Function],
+        },
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -509,7 +515,9 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
-        "StartOverComponentFactory": [Function],
+        "StartOverComponentFactory": Object {
+          "getStartOverComponent": [Function],
+        },
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -616,7 +624,9 @@ exports[`DetailsViewCommandBar renders without export button, without start over
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
-        "StartOverComponentFactory": [Function],
+        "StartOverComponentFactory": Object {
+          "getStartOverComponent": [Function],
+        },
         "shouldShowReportExportButton": [Function],
       }
     }

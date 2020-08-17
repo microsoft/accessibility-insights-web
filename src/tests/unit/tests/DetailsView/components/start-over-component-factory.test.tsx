@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { NamedFC } from 'common/react/named-fc';
 import {
     AssessmentNavState,
     AssessmentStoreData,
@@ -11,13 +10,14 @@ import { VisualizationStoreData } from 'common/types/store-data/visualization-st
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
-    getStartOverComponentForAssessment,
-    getStartOverComponentForFastPass,
+    AssessmentStartOverFactory,
+    FastpassStartOverFactory,
     StartOverFactoryDeps,
     StartOverFactoryProps,
+    StartOverMenuItem,
 } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
-import * as React from 'react';
+import { IContextualMenuItem } from 'office-ui-fabric-react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -25,7 +25,6 @@ describe('StartOverComponentFactory', () => {
     const theTitle = 'the title';
     const theTestStep = 'test step';
     const theTestType = VisualizationType.ColorSensoryAssessment;
-    const dropdownDirection = 'down';
 
     let assessment: Readonly<Assessment>;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
@@ -70,58 +69,93 @@ describe('StartOverComponentFactory', () => {
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationStoreData,
-            dropdownDirection,
         } as StartOverFactoryProps;
     }
 
-    describe('getStartOverComponentForAssessments', () => {
-        it('renders', () => {
+    describe('AssessmentStartOverFactory', () => {
+        it('getStartOverComponent', () => {
             const props = getProps(true);
-            const rendered = getStartOverComponentForAssessment(props);
+            const rendered = AssessmentStartOverFactory.getStartOverComponent(props);
 
             expect(rendered).toMatchSnapshot();
         });
+
+        it('getStartOverMenuItem', () => {
+            const props = getProps(true);
+            const menuItem = AssessmentStartOverFactory.getStartOverMenuItem(props);
+            const rendered = shallow(menuItem.onRender());
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
     });
 
-    describe('getStartOverComponentPropsForFastPass', () => {
-        describe('renders', () => {
-            test('scanning is false => component matches snapshot', () => {
-                const props = getProps(false);
-                const rendered = getStartOverComponentForFastPass(props);
+    describe('FastpassStartOverFactory', () => {
+        describe.each([
+            [
+                'getStartOverComponent',
+                FastpassStartOverFactory.getStartOverComponent,
+                clickStartOverButton,
+            ],
+            [
+                'getStartOverMenuItem',
+                FastpassStartOverFactory.getStartOverMenuItem,
+                clickStartOverMenuItem,
+            ],
+        ])(
+            '%s',
+            (
+                testName: string,
+                getComponentOrMenuItem: (
+                    props: StartOverFactoryProps,
+                ) => JSX.Element | StartOverMenuItem,
+                clickComponentOrMenuItem: (
+                    item: JSX.Element | StartOverMenuItem,
+                    event: any,
+                ) => void,
+            ) => {
+                describe('renders', () => {
+                    test('scanning is false => component matches snapshot', () => {
+                        const props = getProps(false);
+                        const item = getComponentOrMenuItem(props);
 
-                expect(rendered).toMatchSnapshot();
-            });
+                        expect(item).toMatchSnapshot();
+                    });
 
-            test('scanning is true => component matches snapshot', () => {
-                scanning = 'some string';
-                const props = getProps(false);
-                const rendered = getStartOverComponentForFastPass(props);
+                    test('scanning is true => component matches snapshot', () => {
+                        scanning = 'some string';
+                        const props = getProps(false);
+                        const item = getComponentOrMenuItem(props);
 
-                expect(rendered).toMatchSnapshot();
-            });
-        });
+                        expect(item).toMatchSnapshot();
+                    });
+                });
 
-        describe('user interaction', () => {
-            it('handles action button on click properly', () => {
-                const event = new EventStubFactory().createKeypressEvent() as any;
+                it('handles action button on click properly', () => {
+                    const event = new EventStubFactory().createKeypressEvent() as any;
 
-                const actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
+                    const actionMessageCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
 
-                const props = getProps(false);
-                props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
+                    const props = getProps(false);
+                    props.deps.detailsViewActionMessageCreator = actionMessageCreatorMock.object;
 
-                const Wrapper = NamedFC<StartOverFactoryProps>(
-                    'WrappedStartOver',
-                    getStartOverComponentForFastPass,
-                );
-                const wrapped = shallow(<Wrapper {...props} />);
-                wrapped.simulate('click', event);
+                    const item = getComponentOrMenuItem(props);
+                    clickComponentOrMenuItem(item, event);
 
-                actionMessageCreatorMock.verify(
-                    creator => creator.rescanVisualization(theTestType, event),
-                    Times.once(),
-                );
-            });
-        });
+                    actionMessageCreatorMock.verify(
+                        creator => creator.rescanVisualization(theTestType, event),
+                        Times.once(),
+                    );
+                });
+            },
+        );
+
+        function clickStartOverButton(startOverButton: JSX.Element, event: any): void {
+            const wrapped = shallow(startOverButton);
+            wrapped.simulate('click', event);
+        }
+
+        function clickStartOverMenuItem(startOverMenuItem: IContextualMenuItem, event: any): void {
+            startOverMenuItem.onClick(event);
+        }
     });
 });

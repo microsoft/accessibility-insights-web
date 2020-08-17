@@ -21,7 +21,6 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
         },
         Object {
           "key": "start over",
-          "onRender": [Function],
         },
       ],
     }
@@ -41,11 +40,7 @@ exports[`CommandBarButtonsMenu renders child buttons 1`] = `
 `;
 
 exports[`CommandBarButtonsMenu renders child buttons 2`] = `
-<div
-  role="menuitem"
->
-  <React.Fragment>
-    Start over button
-  </React.Fragment>
-</div>
+<React.Fragment>
+  Start over button
+</React.Fragment>
 `;
