@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as axe from 'axe-core';
-import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
+import { GlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { cssContentConfiguration } from '../../../../../scanner/custom-rules/css-content-rule';
 
 describe('verify meaningful semantic configs', () => {
@@ -26,12 +26,7 @@ describe('verify matches', () => {
         window,
         MockBehavior.Strict,
     );
-    const axeVisibilityMock = GlobalMock.ofInstance(
-        axe.commons.dom.isVisible,
-        'isVisible',
-        axe.commons.dom,
-        MockBehavior.Strict,
-    );
+    const axeVisibilityMock = Mock.ofInstance(n => true, MockBehavior.Strict);
 
     beforeEach(() => {
         divElementFixture = document.createElement('div');
@@ -70,7 +65,16 @@ describe('verify matches', () => {
                 .returns(style => ({ content: 'test' } as CSSStyleDeclaration))
                 .verifiable(Times.atLeastOnce());
 
-            testSemantics(divElementFixture, isVisibleParam);
+            withAxeCommonsMocked(
+                'dom',
+                {
+                    isVisible: axeVisibilityMock.object,
+                },
+                () => {
+                    testSemantics(divElementFixture, isVisibleParam);
+                },
+                [getComputedStyleMock],
+            );
         },
     );
 
@@ -98,16 +102,21 @@ describe('verify matches', () => {
                 )
                 .verifiable(Times.atLeastOnce());
 
-            testSemantics(divElementFixture, testCaseParameters.testExpectation);
+            withAxeCommonsMocked(
+                'dom',
+                {
+                    isVisible: axeVisibilityMock.object,
+                },
+                () => {
+                    testSemantics(divElementFixture, testCaseParameters.testExpectation);
+                },
+                [getComputedStyleMock],
+            );
         },
     );
 
     function testSemantics(elements: HTMLElement, expectedResult: boolean): void {
-        let result: boolean;
-
-        GlobalScope.using(getComputedStyleMock, axeVisibilityMock).with(() => {
-            result = cssContentConfiguration.rule.matches(elements, null);
-        });
+        const result = cssContentConfiguration.rule.matches(elements, null);
         expect(result).toBe(expectedResult);
     }
 });
