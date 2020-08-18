@@ -48,7 +48,7 @@ describe('Details View -> Assessment -> Reflow', () => {
             async highContrastMode => {
                 await scanForA11yIssuesWithHighContrast(
                     highContrastMode,
-                    componentName == 'hamburger button' ? 0 : 1,
+                    componentName === 'hamburger button' ? 0 : 1,
                 );
             },
         );
