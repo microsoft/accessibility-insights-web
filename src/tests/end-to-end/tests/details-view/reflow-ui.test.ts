@@ -73,7 +73,7 @@ describe('Details View -> Assessment -> Reflow', () => {
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-        expect(results).toHaveLength(0);
+        expect(results).toHaveLength(1);
     }
 
     async function setButtonExpandedState(

@@ -29,7 +29,7 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'image-redundant-alt': [BestPractice],
     'input-image-alt': [link.WCAG_1_1_1],
     'object-alt': [link.WCAG_1_1_1],
-    'link-name': [link.WCAG_2_4_4, link.WCAG_4_1_2],
+    'link-name': [/*link.WCAG_2_4_4, link.WCAG_4_1_2*/ BestPractice],
     'audio-caption': [link.WCAG_1_2_1],
     'video-caption': [link.WCAG_1_2_2],
     'video-description': [link.WCAG_1_2_5],

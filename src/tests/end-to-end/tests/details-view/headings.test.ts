@@ -73,7 +73,7 @@ describe('Details View -> Assessment -> Headings', () => {
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                expect(results).toHaveLength(0);
+                expect(results).toHaveLength(1);
             },
         );
     });
