@@ -42,6 +42,7 @@ describe('AxeUtils', () => {
                 withAxeCommonsMocked('text', { accessibleText: accessibleTextMock.object }, () => {
                     AxeUtils.getAccessibleText(elementStub, isLabelledByContext);
                 });
+                accessibleTextMock.verifyAll();
             },
         );
     });

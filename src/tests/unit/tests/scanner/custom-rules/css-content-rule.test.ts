@@ -71,7 +71,8 @@ describe('verify matches', () => {
                     isVisible: axeVisibilityMock.object,
                 },
                 () => {
-                    testSemantics(divElementFixture, isVisibleParam);
+                    const result = cssContentConfiguration.rule.matches(divElementFixture, null);
+                    expect(result).toBe(isVisibleParam);
                 },
                 [getComputedStyleMock],
             );
@@ -108,15 +109,11 @@ describe('verify matches', () => {
                     isVisible: axeVisibilityMock.object,
                 },
                 () => {
-                    testSemantics(divElementFixture, testCaseParameters.testExpectation);
+                    const result = cssContentConfiguration.rule.matches(divElementFixture, null);
+                    expect(result).toBe(testCaseParameters.testExpectation);
                 },
                 [getComputedStyleMock],
             );
         },
     );
-
-    function testSemantics(elements: HTMLElement, expectedResult: boolean): void {
-        const result = cssContentConfiguration.rule.matches(elements, null);
-        expect(result).toBe(expectedResult);
-    }
 });
