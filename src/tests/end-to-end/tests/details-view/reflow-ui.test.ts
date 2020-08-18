@@ -79,6 +79,9 @@ describe('Details View -> Assessment -> Reflow', () => {
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, '*');
+        // Note: long-term, expectedFailures should always be 0 and it should not
+        // be passed in as a parameter. It's here as a temporary workaround for
+        // issue https://github.com/dequelabs/axe-core/issues/2459
         expect(results).toHaveLength(expectedFailures);
     }
 
