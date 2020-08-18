@@ -46,7 +46,10 @@ describe('Details View -> Assessment -> Reflow', () => {
         it.each([true, false])(
             `should pass accessibility validation with high contrast mode=%s`,
             async highContrastMode => {
-                await scanForA11yIssuesWithHighContrast(highContrastMode);
+                await scanForA11yIssuesWithHighContrast(
+                    highContrastMode,
+                    componentName == 'hamburger button' ? 0 : 1,
+                );
             },
         );
 
@@ -62,18 +65,21 @@ describe('Details View -> Assessment -> Reflow', () => {
             it.each([true, false])(
                 `should pass accessibility validation with command bar menu open and high contrast mode=%s`,
                 async highContrastMode => {
-                    await scanForA11yIssuesWithHighContrast(highContrastMode);
+                    await scanForA11yIssuesWithHighContrast(highContrastMode, 1);
                 },
             );
         });
     });
 
-    async function scanForA11yIssuesWithHighContrast(highContrastMode: boolean): Promise<void> {
+    async function scanForA11yIssuesWithHighContrast(
+        highContrastMode: boolean,
+        expectedFailures: number,
+    ): Promise<void> {
         await browser.setHighContrastMode(highContrastMode);
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-        expect(results).toHaveLength(1);
+        expect(results).toHaveLength(expectedFailures);
     }
 
     async function setButtonExpandedState(
