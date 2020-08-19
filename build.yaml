@@ -44,7 +44,7 @@ jobs:
             displayName: check for strictNullChecks violations
             timeoutInMinutes: 5
 
-          - script: yarn test --ci
+          - script: yarn test --ci --runInBand
             displayName: run unit tests
             timeoutInMinutes: 10
 
