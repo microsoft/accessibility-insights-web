@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock } from 'typemoq';
-
 import { uniqueLandmarkConfiguration } from '../../../../../scanner/custom-rules/unique-landmark';
 
 declare let axe;
@@ -16,11 +14,6 @@ describe('axe.Check: unique-landmark', () => {
             this._data = d;
         },
     };
-    const axeLabelFunctionBackup: (node: Element) => string = axe.commons.aria.label;
-    const labelFunctionMock: IMock<(node: Element) => string> = Mock.ofInstance((node: Element) => {
-        return '';
-    });
-
     beforeEach(() => {
         check = axe._audit.defaultConfig.checks.find(elem => {
             return elem.id === 'unique-landmark';
@@ -28,12 +21,9 @@ describe('axe.Check: unique-landmark', () => {
 
         fixture = createTestFixture('test-fixture', '');
         checkContext._data = null;
-        axe.commons.aria.label = labelFunctionMock.object;
     });
 
     afterEach(() => {
-        axe.commons.aria.label = axeLabelFunctionBackup;
-        labelFunctionMock.reset();
         fixture.remove();
     });
 
@@ -45,11 +35,9 @@ describe('axe.Check: unique-landmark', () => {
         fixture.innerHTML = `
             <div role="banner" id="landmark1" aria-label="header landmark"></div>
             `;
+        axe._tree = axe.utils.getFlattenedTree(fixture);
 
         const node = fixture.querySelector('#landmark1');
-
-        labelFunctionMock.setup(lfm => lfm(node)).returns(() => 'header landmark');
-
         expectCheckTrue(node);
         expect(checkContext._data).toEqual({
             role: 'banner',
@@ -59,13 +47,12 @@ describe('axe.Check: unique-landmark', () => {
 
     it('set role & label for html5 element', () => {
         fixture.innerHTML = `
-            <div id="sectionLabel">section landmark</sectionLabel>
+            <div id="sectionLabel">section landmark</div>
             <section id="landmark1" aria-labelledby="sectionLabel"></section>
             `;
+        axe._tree = axe.utils.getFlattenedTree(fixture);
 
         const node = fixture.querySelector('#landmark1');
-        labelFunctionMock.setup(lfm => lfm(node)).returns(() => 'section landmark');
-
         expectCheckTrue(node);
         expect(checkContext._data).toEqual({
             role: 'region',
@@ -76,16 +63,11 @@ describe('axe.Check: unique-landmark', () => {
     it('should exclude hidden landmarks for unique check', () => {
         fixture.innerHTML = `
             <div role="banner" id="landmark1" style="display:none">landmark1</div>
-            <div role="banner" id="landmark2">landmark2</div>
+            <div role="banner" id="landmark2" aria-label="header landmark">landmark2</div>
             `;
 
+        axe._tree = axe.utils.getFlattenedTree(fixture);
         const node = fixture.querySelector('#landmark2');
-        const expectedNode: Element = fixture.querySelector('#landmark1');
-
-        labelFunctionMock.setup(lfm => lfm(node)).returns(() => null);
-        labelFunctionMock
-            .setup(lfm => lfm(It.isObjectWith(expectedNode)))
-            .returns(() => 'header landmark');
 
         expectCheckTrue(node);
     });
@@ -94,28 +76,18 @@ describe('axe.Check: unique-landmark', () => {
         let duplicateLandmark1: Element;
         let duplicateLandmark2: Element;
         let uniqueLandmark: Element;
-        const duplicateLandmarkLabel = 'duplicate landmark';
 
         beforeEach(() => {
             fixture.innerHTML = `
-            <div role="banner" id="landmark1">landmark1</div>
-            <div role="banner" id="landmark2">landmark2</div>
-            <div role="banner" id="landmark3">landmark3</div>
+            <div role="banner" id="landmark1" aria-label="duplicate">landmark1</div>
+            <div role="banner" id="landmark2" aria-label="duplicate">landmark2</div>
+            <div role="banner" id="landmark3" aria-label="some other landmark">landmark3</div>
             `;
 
+            axe._tree = axe.utils.getFlattenedTree(fixture);
             duplicateLandmark1 = fixture.querySelector('#landmark1');
             duplicateLandmark2 = fixture.querySelector('#landmark2');
             uniqueLandmark = fixture.querySelector('#landmark3');
-
-            labelFunctionMock
-                .setup(lfm => lfm(duplicateLandmark1))
-                .returns(() => duplicateLandmarkLabel);
-            labelFunctionMock
-                .setup(lfm => lfm(duplicateLandmark2))
-                .returns(() => duplicateLandmarkLabel);
-            labelFunctionMock
-                .setup(lfm => lfm(uniqueLandmark))
-                .returns(() => 'some other landmark');
         });
 
         it('false for duplicate landmark', () => {

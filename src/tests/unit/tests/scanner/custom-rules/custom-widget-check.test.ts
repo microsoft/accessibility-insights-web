@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 import { difference, map } from 'lodash';
-import { Mock, MockBehavior } from 'typemoq';
-
 import { customWidgetConfiguration } from '../../../../../scanner/custom-rules/custom-widget';
 import { ICheckConfiguration } from '../../../../../scanner/iruleresults';
 
@@ -26,18 +24,8 @@ describe('custom-widget check', () => {
 });
 
 describe('custom-widget check', () => {
-    const axeTextFunctionBackup: (node: Element) => string = axe.commons.text.accessibleText;
-    const textFunctionMock = Mock.ofInstance((node: Element, isLabelledByContext: boolean) => {
-        return '';
-    }, MockBehavior.Strict);
-
     beforeEach(() => {
         context._data = null;
-    });
-
-    afterEach(() => {
-        axe.commons.text.accessibleText = axeTextFunctionBackup;
-        textFunctionMock.reset();
     });
 
     it('creates expected data object', () => {
@@ -74,15 +62,11 @@ describe('custom-widget check', () => {
 
     it('returns accessibleName data', () => {
         fixture.innerHTML = `
-            <div id="myElement" />
+            <div id="myElement" />my text
             `;
+        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
 
         const node = fixture.querySelector('#myElement');
-
-        axe.commons.text.accessibleText = textFunctionMock.object;
-
-        textFunctionMock.setup(m => m(node, false)).returns(() => 'my text');
-
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
         expect(context._data.accessibleName).toEqual('my text');
     });

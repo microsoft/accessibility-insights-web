@@ -25,7 +25,9 @@ describe('unique-landmark', () => {
     });
 
     it('should not match because not a landmark', () => {
-        const node = document.createElement('h1');
+        fixture.innerHTML = `<h1>header</h1>`;
+        const node = fixture.querySelector(`h1`);
+        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
         expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(false);
     });
 

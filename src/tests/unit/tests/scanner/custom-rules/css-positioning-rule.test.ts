@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as axe from 'axe-core';
-import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
+import { GlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { cssPositioningConfiguration } from '../../../../../scanner/custom-rules/css-positioning-rule';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
@@ -24,12 +24,7 @@ describe('verify evaluate', () => {
         window,
         MockBehavior.Strict,
     );
-    const axeVisibilityMock = GlobalMock.ofInstance(
-        axe.commons.dom.isVisible,
-        'isVisible',
-        axe.commons.dom,
-        MockBehavior.Strict,
-    );
+    const axeVisibilityMock = Mock.ofInstance(n => true, MockBehavior.Strict);
 
     beforeEach(() => {
         getComputedStyleMock.reset();
@@ -111,10 +106,16 @@ describe('verify evaluate', () => {
             )
             .verifiable(Times.once());
 
-        let result: boolean;
-        GlobalScope.using(getComputedStyleMock, axeVisibilityMock).with(() => {
-            result = cssPositioningConfiguration.rule.matches(nodeStyleStub, null);
-        });
-        expect(result).toBe(expectedResult);
+        withAxeCommonsMocked(
+            'dom',
+            {
+                isVisible: axeVisibilityMock.object,
+            },
+            () => {
+                const result = cssPositioningConfiguration.rule.matches(nodeStyleStub, null);
+                expect(result).toBe(expectedResult);
+            },
+            [getComputedStyleMock],
+        );
     }
 });
