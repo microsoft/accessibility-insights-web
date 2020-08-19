@@ -118,7 +118,8 @@ export class RuleInformationProvider {
     }
 
     private includeColorContrastResult = (ruleResultsData: RuleResultsData): boolean => {
-        return ruleResultsData.props['Confidence in Color Detection'] === 'High';
+        return false; // Temporarily disable color contrast rule
+        // return ruleResultsData.props['Confidence in Color Detection'] === 'High';
     };
 
     private includeAllResults = (ruleResultsData: RuleResultsData): boolean => {
