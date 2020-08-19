@@ -287,6 +287,10 @@ module.exports = function (grunt) {
         if (productCategory === 'electron') {
             productCategorySpecificCopyFiles.push(
                 {
+                    src: 'src/electron/resources/license_en.txt',
+                    dest: `${dropExtensionPath}/LICENSE`,
+                },
+                {
                     src: androidServiceBin.apkPath,
                     // This should be kept in sync with android-service-apk.ts
                     dest: path.join(dropExtensionPath, 'android-service', 'android-service.apk'),
@@ -300,6 +304,11 @@ module.exports = function (grunt) {
                     ),
                 },
             );
+        } else {
+            productCategorySpecificCopyFiles.push({
+                src: 'LICENSE',
+                dest: `${dropExtensionPath}/LICENSE`,
+            });
         }
 
         grunt.config.merge({
@@ -471,6 +480,7 @@ module.exports = function (grunt) {
     grunt.registerMultiTask('configure-electron-builder', function () {
         grunt.task.requires('drop:' + this.target);
         const { dropPath, electronIconBaseName, fullName, appId, publishUrl } = this.data;
+        const productDir = `${dropPath}/product`;
 
         const outElectronBuilderConfigFile = path.join(dropPath, 'electron-builder.yml');
         const srcElectronBuilderConfigFile = path.join(
@@ -486,7 +496,6 @@ module.exports = function (grunt) {
         config.appId = appId;
         config.directories.app = dropPath;
         config.directories.output = `${dropPath}/packed`;
-        config.extraResources[0].from = `${dropPath}/product/android-service`;
         config.extraMetadata.version = version;
         config.win.icon = `src/${electronIconBaseName}.ico`;
         // electron-builder infers the linux icon from the mac one
@@ -497,6 +506,25 @@ module.exports = function (grunt) {
         // This is necessary for the AppImage to display using our brand icon
         // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
         config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
+
+        for (fileset of [...config.extraResources, ...config.extraFiles]) {
+            fileset.from = fileset.from.replace(/TARGET_SPECIFIC_PRODUCT_DIR/g, productDir);
+        }
+
+        // Manually copying the license files is a workaround for electron-builder #1495.
+        // On win/linux builds these are automatically included, but in Mac they are omitted.
+        if (process.platform === 'darwin') {
+            config.extraFiles.push(
+                {
+                    from: 'node_modules/electron/dist/LICENSE',
+                    to: 'LICENSE.electron.txt',
+                },
+                {
+                    from: 'node_modules/electron/dist/LICENSES.chromium.html',
+                    to: 'LICENSES.chromium.html',
+                },
+            );
+        }
 
         const configFileContent = yaml.safeDump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
