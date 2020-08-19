@@ -25,7 +25,7 @@ describe('InjectionActionCreator', () => {
         injectionStartedMock.verifyAll();
     });
 
-    it.only('handles InjectionCompleted message', () => {
+    it('handles InjectionCompleted message', () => {
         const injectionCompletedMock = createActionMock<void>(null);
         const actionsMock = createActionsMock('injectionCompleted', injectionCompletedMock.object);
         const interpreterMock = createInterpreterMock(
