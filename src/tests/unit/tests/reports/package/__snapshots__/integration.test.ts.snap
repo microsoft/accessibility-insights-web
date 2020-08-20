@@ -269,7 +269,7 @@ exports[`report package integration with issues 1`] = `
           Summary
         </h2>
         <div
-          aria-label="26 Failed, 20 Passed, 49 Not applicable"
+          aria-label="26 Failed, 19 Passed, 45 Not applicable"
           class="outcome-summary-bar"
           role="img"
         >
@@ -305,7 +305,7 @@ exports[`report package integration with issues 1`] = `
             </span>
           </div>
           <div
-            style="flex-grow:20"
+            style="flex-grow:19"
           >
             <span
               class="pass"
@@ -332,11 +332,11 @@ exports[`report package integration with issues 1`] = `
                   </svg>
                 </span>
               </span>
-              20
+              19
             </span>
           </div>
           <div
-            style="flex-grow:49"
+            style="flex-grow:45"
           >
             <span
               class="inapplicable summary-bar-right-edge"
@@ -372,7 +372,7 @@ exports[`report package integration with issues 1`] = `
                   </svg>
                 </span>
               </span>
-              49
+              45
             </span>
           </div>
         </div>
@@ -4140,7 +4140,7 @@ exports[`report package integration with issues 1`] = `
                   <span
                     class="screen-reader-only"
                   >
-                    Passed checks 20
+                    Passed checks 19
                   </span>
                   <span
                     aria-hidden="true"
@@ -4154,7 +4154,7 @@ exports[`report package integration with issues 1`] = `
                   >
                     <span
                       class="outcome-chip outcome-chip-pass"
-                      title="20 Passed"
+                      title="19 Passed"
                     >
                       <span
                         class="icon"
@@ -4189,12 +4189,12 @@ exports[`report package integration with issues 1`] = `
                         class="count"
                         data-automation-id="count"
                       >
-                         20
+                         19
                       </span>
                       <span
                         class="screen-reader-only"
                       >
-                        20 Passed
+                        19 Passed
                       </span>
                     </span>
                   </span>
@@ -4294,45 +4294,6 @@ exports[`report package integration with issues 1`] = `
                         New for WCAG 2.1
                       </span>
                     </span>
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="passed-rule-checkboxgroup-description"
-                        aria-label="rule checkboxgroup"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/checkboxgroup?application=webdriverjs"
-                        target="_blank"
-                      >
-                        checkboxgroup
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="passed-rule-checkboxgroup-description"
-                    >
-                      Ensures related &lt;input type="checkbox"&gt; elements have a group and that the group designation is consistent
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
-                    </span>
-                    )
                   </div>
                 </div>
                 <div
@@ -5036,7 +4997,7 @@ exports[`report package integration with issues 1`] = `
                   <span
                     class="screen-reader-only"
                   >
-                    Not applicable checks 49
+                    Not applicable checks 45
                   </span>
                   <span
                     aria-hidden="true"
@@ -5050,7 +5011,7 @@ exports[`report package integration with issues 1`] = `
                   >
                     <span
                       class="outcome-chip outcome-chip-inapplicable"
-                      title="49 Not applicable"
+                      title="45 Not applicable"
                     >
                       <span
                         class="icon"
@@ -5088,12 +5049,12 @@ exports[`report package integration with issues 1`] = `
                         class="count"
                         data-automation-id="count"
                       >
-                         49
+                         45
                       </span>
                       <span
                         class="screen-reader-only"
                       >
-                        49 Not applicable
+                        45 Not applicable
                       </span>
                     </span>
                   </span>
@@ -5281,45 +5242,6 @@ exports[`report package integration with issues 1`] = `
                       id="not-applicable-rule-aria-allowed-role-description"
                     >
                       Ensures role attribute has an appropriate value for the element
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="not-applicable-rule-aria-dpub-role-fallback-description"
-                        aria-label="rule aria-dpub-role-fallback"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/aria-dpub-role-fallback?application=webdriverjs"
-                        target="_blank"
-                      >
-                        aria-dpub-role-fallback
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-aria-dpub-role-fallback-description"
-                    >
-                      Ensures unsupported DPUB roles are only used on elements with implicit fallback roles
                     </span>
                     (
                     <span
@@ -6516,45 +6438,6 @@ exports[`report package integration with issues 1`] = `
                       class="rule-details-id"
                     >
                       <a
-                        aria-describedby="not-applicable-rule-layout-table-description"
-                        aria-label="rule layout-table"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/layout-table?application=webdriverjs"
-                        target="_blank"
-                      >
-                        layout-table
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-layout-table-description"
-                    >
-                      Ensures presentational &lt;table&gt; elements do not use &lt;th&gt;, &lt;caption&gt; elements or the summary attribute
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
                         aria-describedby="not-applicable-rule-marquee-description"
                         aria-label="rule marquee"
                         class="ms-Link insights-link root-000"
@@ -6740,45 +6623,6 @@ exports[`report package integration with issues 1`] = `
                       >
                         WCAG 1.1.1
                       </a>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="not-applicable-rule-radiogroup-description"
-                        aria-label="rule radiogroup"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/radiogroup?application=webdriverjs"
-                        target="_blank"
-                      >
-                        radiogroup
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-radiogroup-description"
-                    >
-                      Ensures related &lt;input type="radio"&gt; elements have a group and that the group designation is consistent
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
                     </span>
                     )
                   </div>
@@ -7095,46 +6939,6 @@ exports[`report package integration with issues 1`] = `
                         target="_blank"
                       >
                         WCAG 1.2.2
-                      </a>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="not-applicable-rule-video-description-description"
-                        aria-label="rule video-description"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/video-description?application=webdriverjs"
-                        target="_blank"
-                      >
-                        video-description
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-video-description-description"
-                    >
-                      Ensures &lt;video&gt; elements have audio descriptions
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <a
-                        class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded"
-                        target="_blank"
-                      >
-                        WCAG 1.2.5
                       </a>
                     </span>
                     )
@@ -7473,7 +7277,7 @@ exports[`report package integration with no issues 1`] = `
           Summary
         </h2>
         <div
-          aria-label="0 Failed, 45 Passed, 30 Not applicable"
+          aria-label="0 Failed, 44 Passed, 26 Not applicable"
           class="outcome-summary-bar"
           role="img"
         >
@@ -7509,7 +7313,7 @@ exports[`report package integration with no issues 1`] = `
             </span>
           </div>
           <div
-            style="flex-grow:45"
+            style="flex-grow:44"
           >
             <span
               class="pass"
@@ -7536,11 +7340,11 @@ exports[`report package integration with no issues 1`] = `
                   </svg>
                 </span>
               </span>
-              45
+              44
             </span>
           </div>
           <div
-            style="flex-grow:30"
+            style="flex-grow:26"
           >
             <span
               class="inapplicable summary-bar-right-edge"
@@ -7576,7 +7380,7 @@ exports[`report package integration with no issues 1`] = `
                   </svg>
                 </span>
               </span>
-              30
+              26
             </span>
           </div>
         </div>
@@ -7815,7 +7619,7 @@ exports[`report package integration with no issues 1`] = `
                   <span
                     class="screen-reader-only"
                   >
-                    Passed checks 45
+                    Passed checks 44
                   </span>
                   <span
                     aria-hidden="true"
@@ -7829,7 +7633,7 @@ exports[`report package integration with no issues 1`] = `
                   >
                     <span
                       class="outcome-chip outcome-chip-pass"
-                      title="45 Passed"
+                      title="44 Passed"
                     >
                       <span
                         class="icon"
@@ -7864,12 +7668,12 @@ exports[`report package integration with no issues 1`] = `
                         class="count"
                         data-automation-id="count"
                       >
-                         45
+                         44
                       </span>
                       <span
                         class="screen-reader-only"
                       >
-                        45 Passed
+                        44 Passed
                       </span>
                     </span>
                   </span>
@@ -8416,45 +8220,6 @@ exports[`report package integration with no issues 1`] = `
                       >
                         WCAG 2.4.1
                       </a>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="passed-rule-checkboxgroup-description"
-                        aria-label="rule checkboxgroup"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/checkboxgroup?application=webdriverjs"
-                        target="_blank"
-                      >
-                        checkboxgroup
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="passed-rule-checkboxgroup-description"
-                    >
-                      Ensures related &lt;input type="checkbox"&gt; elements have a group and that the group designation is consistent
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
                     </span>
                     )
                   </div>
@@ -9763,7 +9528,7 @@ exports[`report package integration with no issues 1`] = `
                   <span
                     class="screen-reader-only"
                   >
-                    Not applicable checks 30
+                    Not applicable checks 26
                   </span>
                   <span
                     aria-hidden="true"
@@ -9777,7 +9542,7 @@ exports[`report package integration with no issues 1`] = `
                   >
                     <span
                       class="outcome-chip outcome-chip-inapplicable"
-                      title="30 Not applicable"
+                      title="26 Not applicable"
                     >
                       <span
                         class="icon"
@@ -9815,12 +9580,12 @@ exports[`report package integration with no issues 1`] = `
                         class="count"
                         data-automation-id="count"
                       >
-                         30
+                         26
                       </span>
                       <span
                         class="screen-reader-only"
                       >
-                        30 Not applicable
+                        26 Not applicable
                       </span>
                     </span>
                   </span>
@@ -9930,45 +9695,6 @@ exports[`report package integration with no issues 1`] = `
                       >
                         WCAG 4.1.2
                       </a>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="not-applicable-rule-aria-dpub-role-fallback-description"
-                        aria-label="rule aria-dpub-role-fallback"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/aria-dpub-role-fallback?application=webdriverjs"
-                        target="_blank"
-                      >
-                        aria-dpub-role-fallback
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-aria-dpub-role-fallback-description"
-                    >
-                      Ensures unsupported DPUB roles are only used on elements with implicit fallback roles
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
                     </span>
                     )
                   </div>
@@ -10517,45 +10243,6 @@ exports[`report package integration with no issues 1`] = `
                       class="rule-details-id"
                     >
                       <a
-                        aria-describedby="not-applicable-rule-layout-table-description"
-                        aria-label="rule layout-table"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/layout-table?application=webdriverjs"
-                        target="_blank"
-                      >
-                        layout-table
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-layout-table-description"
-                    >
-                      Ensures presentational &lt;table&gt; elements do not use &lt;th&gt;, &lt;caption&gt; elements or the summary attribute
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
                         aria-describedby="not-applicable-rule-marquee-description"
                         aria-label="rule marquee"
                         class="ms-Link insights-link root-000"
@@ -10741,45 +10428,6 @@ exports[`report package integration with no issues 1`] = `
                       >
                         WCAG 1.1.1
                       </a>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="not-applicable-rule-radiogroup-description"
-                        aria-label="rule radiogroup"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/radiogroup?application=webdriverjs"
-                        target="_blank"
-                      >
-                        radiogroup
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-radiogroup-description"
-                    >
-                      Ensures related &lt;input type="radio"&gt; elements have a group and that the group designation is consistent
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <button
-                        class="ms-Link insights-link root-000"
-                        type="button"
-                      >
-                        BEST PRACTICE
-                      </button>
                     </span>
                     )
                   </div>
@@ -11017,46 +10665,6 @@ exports[`report package integration with no issues 1`] = `
                         target="_blank"
                       >
                         WCAG 1.2.2
-                      </a>
-                    </span>
-                    )
-                  </div>
-                </div>
-                <div
-                  class="rule-detail"
-                >
-                  <div>
-                     
-                    <span
-                      class="rule-details-id"
-                    >
-                      <a
-                        aria-describedby="not-applicable-rule-video-description-description"
-                        aria-label="rule video-description"
-                        class="ms-Link insights-link root-000"
-                        href="https://dequeuniversity.com/rules/axe/3.3/video-description?application=webdriverjs"
-                        target="_blank"
-                      >
-                        video-description
-                      </a>
-                    </span>
-                    : 
-                    <span
-                      class="rule-details-description"
-                      id="not-applicable-rule-video-description-description"
-                    >
-                      Ensures &lt;video&gt; elements have audio descriptions
-                    </span>
-                    (
-                    <span
-                      class="guidance-links"
-                    >
-                      <a
-                        class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded"
-                        target="_blank"
-                      >
-                        WCAG 1.2.5
                       </a>
                     </span>
                     )
