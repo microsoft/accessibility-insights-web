@@ -46,7 +46,7 @@ jobs:
 
           - script: yarn test --ci
             displayName: run unit tests
-            timeoutInMinutes: 10
+            timeoutInMinutes: 15
 
           - task: PublishTestResults@2
             inputs:
