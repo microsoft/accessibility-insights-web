@@ -21,15 +21,6 @@ export const scanNoIssues = {
             tags: ['cat.text-alternatives', 'wcag2a', 'wcag111', 'section508', 'section508.22.a'],
         },
         {
-            description: 'Ensures unsupported DPUB roles are only used on elements with implicit fallback roles',
-            help: 'Unsupported DPUB ARIA roles should be used on elements with implicit fallback roles',
-            helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/aria-dpub-role-fallback?application=webdriverjs',
-            id: 'aria-dpub-role-fallback',
-            impact: null,
-            nodes: [],
-            tags: ['cat.aria', 'wcag2a', 'wcag131'],
-        },
-        {
             description: 'Ensures aria-hidden elements do not contain focusable elements',
             help: 'ARIA hidden element must not contain focusable elements',
             helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/aria-hidden-focus?application=webdriverjs',
@@ -147,15 +138,6 @@ export const scanNoIssues = {
             tags: ['cat.semantics', 'best-practice'],
         },
         {
-            description: 'Ensures presentational <table> elements do not use <th>, <caption> elements or the summary attribute',
-            help: 'Layout tables must not use data table elements',
-            helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/layout-table?application=webdriverjs',
-            id: 'layout-table',
-            impact: null,
-            nodes: [],
-            tags: ['cat.semantics', 'wcag2a', 'wcag131'],
-        },
-        {
             description: 'Ensures <marquee> elements are not used',
             help: '<marquee> elements are deprecated and must not be used',
             helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/marquee?application=webdriverjs',
@@ -199,15 +181,6 @@ export const scanNoIssues = {
             impact: null,
             nodes: [],
             tags: ['cat.text-alternatives', 'wcag2a', 'wcag111', 'section508', 'section508.22.a'],
-        },
-        {
-            description: 'Ensures related <input type="radio"> elements have a group and that the group designation is consistent',
-            help: 'Radio inputs with the same name attribute value must be part of a group',
-            helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/radiogroup?application=webdriverjs',
-            id: 'radiogroup',
-            impact: null,
-            nodes: [],
-            tags: ['cat.forms', 'best-practice'],
         },
         {
             description: "Ensures [role='img'] elements have alternate text",
@@ -262,15 +235,6 @@ export const scanNoIssues = {
             impact: null,
             nodes: [],
             tags: ['cat.text-alternatives', 'wcag2a', 'wcag122', 'section508', 'section508.22.a'],
-        },
-        {
-            description: 'Ensures <video> elements have audio descriptions',
-            help: '<video> elements must have an audio description track',
-            helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/video-description?application=webdriverjs',
-            id: 'video-description',
-            impact: null,
-            nodes: [],
-            tags: ['cat.text-alternatives', 'wcag2aa', 'wcag125', 'section508', 'section508.22.b'],
         },
     ],
     incomplete: [
@@ -3004,196 +2968,6 @@ export const scanNoIssues = {
                 },
             ],
             tags: ['cat.keyboard', 'wcag2a', 'wcag241', 'section508', 'section508.22.o'],
-        },
-        {
-            description: 'Ensures related <input type="checkbox"> elements have a group and that the group designation is consistent',
-            help: 'Checkbox inputs with the same name attribute value must be part of a group',
-            helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/checkboxgroup?application=webdriverjs',
-            id: 'checkboxgroup',
-            impact: null,
-            nodes: [
-                {
-                    all: [],
-                    any: [
-                        {
-                            data: {
-                                name: 'major_cs',
-                                type: 'checkbox',
-                            },
-                            id: 'group-labelledby',
-                            impact: 'critical',
-                            message:
-                                'Elements with the name "major_cs" have both a shared label, and a unique label, referenced through aria-labelledby',
-                            relatedNodes: [],
-                        },
-                        {
-                            data: {
-                                name: 'major_cs',
-                                type: 'checkbox',
-                            },
-                            id: 'fieldset',
-                            impact: 'critical',
-                            message: 'Element is contained in a fieldset',
-                            relatedNodes: [],
-                        },
-                    ],
-                    html: '<input type="checkbox" name="major_cs" id="cs">',
-                    impact: null,
-                    none: [],
-                    target: ['#cs'],
-                },
-                {
-                    all: [],
-                    any: [
-                        {
-                            data: {
-                                name: 'major_eng',
-                                type: 'checkbox',
-                            },
-                            id: 'group-labelledby',
-                            impact: 'critical',
-                            message:
-                                'Elements with the name "major_eng" have both a shared label, and a unique label, referenced through aria-labelledby',
-                            relatedNodes: [],
-                        },
-                        {
-                            data: {
-                                name: 'major_eng',
-                                type: 'checkbox',
-                            },
-                            id: 'fieldset',
-                            impact: 'critical',
-                            message: 'Element is contained in a fieldset',
-                            relatedNodes: [],
-                        },
-                    ],
-                    html: '<input type="checkbox" name="major_eng" id="eng">',
-                    impact: null,
-                    none: [],
-                    target: ['#eng'],
-                },
-                {
-                    all: [],
-                    any: [
-                        {
-                            data: {
-                                name: 'major_econ',
-                                type: 'checkbox',
-                            },
-                            id: 'group-labelledby',
-                            impact: 'critical',
-                            message:
-                                'Elements with the name "major_econ" have both a shared label, and a unique label, referenced through aria-labelledby',
-                            relatedNodes: [],
-                        },
-                        {
-                            data: {
-                                name: 'major_econ',
-                                type: 'checkbox',
-                            },
-                            id: 'fieldset',
-                            impact: 'critical',
-                            message: 'Element is contained in a fieldset',
-                            relatedNodes: [],
-                        },
-                    ],
-                    html: '<input type="checkbox" name="major_econ" id="eco">',
-                    impact: null,
-                    none: [],
-                    target: ['#eco'],
-                },
-                {
-                    all: [],
-                    any: [
-                        {
-                            data: {
-                                name: 'major_phy',
-                                type: 'checkbox',
-                            },
-                            id: 'group-labelledby',
-                            impact: 'critical',
-                            message:
-                                'Elements with the name "major_phy" have both a shared label, and a unique label, referenced through aria-labelledby',
-                            relatedNodes: [],
-                        },
-                        {
-                            data: {
-                                name: 'major_phy',
-                                type: 'checkbox',
-                            },
-                            id: 'fieldset',
-                            impact: 'critical',
-                            message: 'Element is contained in a fieldset',
-                            relatedNodes: [],
-                        },
-                    ],
-                    html: '<input type="checkbox" name="major_phy" id="phy">',
-                    impact: null,
-                    none: [],
-                    target: ['#phy'],
-                },
-                {
-                    all: [],
-                    any: [
-                        {
-                            data: {
-                                name: 'major_psy',
-                                type: 'checkbox',
-                            },
-                            id: 'group-labelledby',
-                            impact: 'critical',
-                            message:
-                                'Elements with the name "major_psy" have both a shared label, and a unique label, referenced through aria-labelledby',
-                            relatedNodes: [],
-                        },
-                        {
-                            data: {
-                                name: 'major_psy',
-                                type: 'checkbox',
-                            },
-                            id: 'fieldset',
-                            impact: 'critical',
-                            message: 'Element is contained in a fieldset',
-                            relatedNodes: [],
-                        },
-                    ],
-                    html: '<input type="checkbox" name="major_psy" id="psy">',
-                    impact: null,
-                    none: [],
-                    target: ['#psy'],
-                },
-                {
-                    all: [],
-                    any: [
-                        {
-                            data: {
-                                name: 'major_sp',
-                                type: 'checkbox',
-                            },
-                            id: 'group-labelledby',
-                            impact: 'critical',
-                            message:
-                                'Elements with the name "major_sp" have both a shared label, and a unique label, referenced through aria-labelledby',
-                            relatedNodes: [],
-                        },
-                        {
-                            data: {
-                                name: 'major_sp',
-                                type: 'checkbox',
-                            },
-                            id: 'fieldset',
-                            impact: 'critical',
-                            message: 'Element is contained in a fieldset',
-                            relatedNodes: [],
-                        },
-                    ],
-                    html: '<input type="checkbox" name="major_sp" id="spa">',
-                    impact: null,
-                    none: [],
-                    target: ['#spa'],
-                },
-            ],
-            tags: ['cat.forms', 'best-practice'],
         },
         {
             description: 'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
