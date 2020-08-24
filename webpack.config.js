@@ -13,10 +13,6 @@ const commonPlugins = [
         maxChunks: 1, // Must be greater than or equal to one
         minChunkSize: 1000000,
     }),
-    // Be warned: this plugin supports tslint, but enabling it here causes webpack to occasionally
-    // process.exit(0) in the middle of execution on mac build machines, resulting in difficult to
-    // debug build failures. We aren't quite sure why this is yet, but until it's root caused, keep
-    // tslint separate from webpack.
     new ForkTsCheckerWebpackPlugin(),
     new CaseSensitivePathsPlugin(),
     new MiniCssExtractPlugin({
