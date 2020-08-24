@@ -23,11 +23,7 @@
         "noStrictGenericChecks": false,
         "allowJs": false,
         "typeRoots": ["node_modules/@types"],
-        "plugins": [
-            {
-                "name": "tslint-language-service"
-            }
-        ],
+        "plugins": [],
         "baseUrl": "./src",
         "forceConsistentCasingInFileNames": true
     },
