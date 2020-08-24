@@ -45,7 +45,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <span id="original">The quick brown fox jumps over the lazy dog.</span>
             …
             <span id="translation"> El rápido zorro marrón salta sobre el perro perezoso.</span>`}
-            passText={<p>The passage has the correct language attribute (Latin American Spanish).</p>}
+            passText={<p>The passage has the correct language attribute: Spanish (Latin America).</p>}
             passExample={`<html lang="en-US>
             …
             <body>

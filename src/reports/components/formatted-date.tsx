@@ -50,7 +50,7 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
 
     private getTimeZone(date: Date): string {
         const timeString = date
-            .toLocaleTimeString('en-us', { timeZoneName: 'short' })
+            .toLocaleTimeString(undefined, { timeZoneName: 'short' })
             .replace(/\u200E/g, '');
         return timeString.substr(timeString.lastIndexOf(' ') + 1);
     }
