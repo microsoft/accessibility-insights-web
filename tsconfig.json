@@ -27,5 +27,5 @@
         "baseUrl": "./src",
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx"]
+    "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "src/**/*.js"]
 }
