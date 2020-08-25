@@ -14,7 +14,11 @@ export class LaunchPanelHeaderClickHandler {
         if (item == null) {
             return;
         }
+
         const url: string = item.data;
+
+        // the following warning is thrown incorrectly because the call to 'open' is not on the file system
+        // eslint-disable-next-line security/detect-non-literal-fs-filename
         popupWindow.open(url);
     }
 

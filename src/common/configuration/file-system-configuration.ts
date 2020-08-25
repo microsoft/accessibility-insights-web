@@ -29,6 +29,8 @@ export class FileSystemConfiguration implements ConfigAccessor, ConfigMutator {
 
     public reset(): ConfigMutator {
         try {
+            // The following warning is disabled because this.configJsonPath is a string literal whose value is set differently only for unit tests
+            // eslint-disable-next-line security/detect-non-literal-fs-filename
             const configJsonRawContent = fs.readFileSync(this.configJsonPath).toString();
             const configJson = JSON.parse(configJsonRawContent);
             this.config = defaultsDeep(configJson, defaults);

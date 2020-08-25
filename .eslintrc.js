@@ -61,11 +61,6 @@ module.exports = {
         'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',
         'security/detect-object-injection': 'off',
-        'security/detect-non-literal-regexp': 'off',
-        'security/detect-non-literal-fs-filename': 'off',
-        'security/detect-unsafe-regex': 'off',
-        'security/detect-child-process': 'off',
-        'security/detect-eval-with-expression': 'off',
         'prefer-const': 'off',
         'no-irregular-whitespace': 'off',
         'no-prototype-builtins': 'off',
@@ -79,4 +74,17 @@ module.exports = {
         'no-extra-boolean-cast': 'off',
         'prefer-spread': 'off',
     },
+    overrides: [
+        {
+            files: ['src/tests/**/*'],
+            rules: {
+                // Disable those errors and warnings which are not a threat to test code because the code is not run in production environments
+                'security/detect-non-literal-regexp': 'off',
+                'security/detect-non-literal-fs-filename': 'off',
+                'security/detect-unsafe-regex': 'off',
+                'security/detect-child-process': 'off',
+                'security/detect-eval-with-expression': 'off',
+            },
+        },
+    ],
 };
