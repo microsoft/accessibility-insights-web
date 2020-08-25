@@ -2,12 +2,12 @@
 
 exports[`FormattedDate render end of last millennium 1`] = `
 <React.Fragment>
-  1999-12-31 11:59 PM FTZ
+  1999-12-31T23:59:59.000-05:00
 </React.Fragment>
 `;
 
 exports[`FormattedDate render start of this millennium 1`] = `
 <React.Fragment>
-  2000-01-01 12:00 AM FTZ
+  2000-01-01T00:00:00.000-05:00
 </React.Fragment>
 `;
