@@ -18263,7 +18263,7 @@ exports[`Guidance Content pages test/language/languageOfParts/infoAndExamples ma
             </h3>
           </div>
           <p>
-            The passage has the correct language attribute (Latin American Spanish).
+            The passage has the correct language attribute: Spanish (Latin America).
           </p>
         </div>
         <div
