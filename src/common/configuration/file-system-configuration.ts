@@ -13,25 +13,27 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 
+export type ReadFileSync = () => Buffer;
+
 // Note: this is resolved relative to the bundled js file, not the src layout
-const defaultConfigJsonPath = path.join(__dirname, '../insights.config.json');
+const defaultConfigPath = path.join(__dirname, '../insights.config.json');
+// eslint-disable-next-line security/detect-non-literal-fs-filename
+const defaultReadFileSync: ReadFileSync = () => fs.readFileSync(defaultConfigPath);
 
 // Appropriate for contexts without a DOM but with access to the fs module
 // (eg, electron main process)
 export class FileSystemConfiguration implements ConfigAccessor, ConfigMutator {
-    private readonly configJsonPath: string;
+    private readonly readFileSync: ReadFileSync;
     public config: InsightsConfiguration;
 
-    constructor(configJsonPath?: string) {
-        this.configJsonPath = configJsonPath ?? defaultConfigJsonPath;
+    constructor(readFileSync?: ReadFileSync) {
+        this.readFileSync = readFileSync ?? defaultReadFileSync;
         this.reset();
     }
 
     public reset(): ConfigMutator {
         try {
-            // The following warning is disabled because this.configJsonPath is a string literal whose value is set differently only for unit tests
-            // eslint-disable-next-line security/detect-non-literal-fs-filename
-            const configJsonRawContent = fs.readFileSync(this.configJsonPath).toString();
+            const configJsonRawContent = this.readFileSync().toString();
             const configJson = JSON.parse(configJsonRawContent);
             this.config = defaultsDeep(configJson, defaults);
         } catch (e) {
