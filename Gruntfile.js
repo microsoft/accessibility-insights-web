@@ -442,14 +442,14 @@ module.exports = function (grunt) {
             name: config.options.fullName,
             description: config.options.extensionDescription,
             icons: {
-                '16': config.options.icon16,
-                '48': config.options.icon48,
-                '128': config.options.icon128,
+                16: config.options.icon16,
+                48: config.options.icon48,
+                128: config.options.icon128,
             },
             browser_action: {
                 default_icon: {
-                    '20': config.options.icon16,
-                    '40': config.options.icon48,
+                    20: config.options.icon16,
+                    40: config.options.icon48,
                 },
             },
         });
