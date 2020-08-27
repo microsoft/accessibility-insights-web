@@ -43,6 +43,9 @@ export class HTTPQueryBuilder {
 
         const fullUrl = `${this.baseUrl}?${queryParameters}`;
 
+        // The following warning is thrown incorrectly because the call to 'truncate' is not on the file system
+        // see bug: https://github.com/nodesecurity/eslint-plugin-security/issues/54
+        // eslint-disable-next-line security/detect-non-literal-fs-filename
         return this.truncate(fullUrl);
     }
 

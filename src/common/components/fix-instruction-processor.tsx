@@ -11,11 +11,14 @@ type ColorMatch = {
 export class FixInstructionProcessor {
     private readonly colorValueMatcher = `(#[0-9a-f]{6})`;
     private readonly foregroundColorText = 'foreground color: ';
+    // the following warnings can be disabled because the values are actually constant strings and the string template is used merely for ease of reading
+    // eslint-disable-next-line security/detect-non-literal-regexp
     private readonly foregroundRegExp = new RegExp(
         `${this.foregroundColorText}${this.colorValueMatcher}`,
         'i',
     );
     private readonly backgroundColorText = 'background color: ';
+    // eslint-disable-next-line security/detect-non-literal-regexp
     private readonly backgroundRegExp = new RegExp(
         `${this.backgroundColorText}${this.colorValueMatcher}`,
         'i',
