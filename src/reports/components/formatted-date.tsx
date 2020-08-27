@@ -13,8 +13,7 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
     }
 
     private formatDateTime(date: Date): string {
-        const keepTimeZoneOffset = true;
-        const momentDate = moment(this.props.date);
-        return momentDate.toISOString(keepTimeZoneOffset);
+        let momentDate = moment(this.props.date);
+        return momentDate.toLocaleString();
     }
 }
