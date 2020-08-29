@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import { IRuleConfiguration, ICheckConfiguration } from '../scanner/iruleresults';
+import {
+    IRuleConfiguration,
+    ICheckConfiguration,
+    RuleConfiguration,
+} from '../scanner/iruleresults';
 
 declare module 'axe-core/axe' {
     const commons: {
@@ -26,10 +30,8 @@ declare module 'axe-core/axe' {
     };
 
     const _audit: {
-        defaultConfig: {
-            rules: IRuleConfiguration[];
-            checks: ICheckConfiguration[];
-        };
+        rules: IRuleConfiguration[];
+        checks: { [checkId: string]: ICheckConfiguration };
     };
 
     const version: string;

@@ -9,6 +9,7 @@ export const textContrastConfiguration: RuleConfiguration = {
         {
             id: 'text-contrast',
             evaluate: evaluateTextContrast,
+            options: AxeUtils.getOptionsFromCheck('color-contrast'),
         },
     ],
     rule: {

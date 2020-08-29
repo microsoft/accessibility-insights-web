@@ -240,7 +240,7 @@ describe('custom-widget check', () => {
 });
 
 function getCheck(checkId: string): ICheckConfiguration {
-    return axe._audit.defaultConfig.checks.find(elem => elem.id === checkId);
+    return axe._audit.checks[checkId];
 }
 
 function createTestFixture(id: string, content: string): HTMLDivElement {
