@@ -1249,10 +1249,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-resize-detector@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@types/react-resize-detector/-/react-resize-detector-4.2.0.tgz#ee8802e25cfb34439aa7f52626932ea62dc5792e"
-  integrity sha512-y5PPThHUrBGxMhLDNn0BRWglKr84y+gQHvzkyKxF8aW3pox4IySC33V8AOu7ReS0JR1X1dKQgWeF8IOkGrbeBg==
+"@types/react-resize-detector@^5.0.0":
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/@types/react-resize-detector/-/react-resize-detector-5.0.0.tgz#18ac4e6d518581bec6345845b7f08232f4cca8a5"
+  integrity sha512-JTqR0G+RcC6Guqi/JXQBq3jewflumUGd4fDUucmZN9L1d8TZuRHzDTtrmgYWrgLvRTBTV6FjegmLeV1UnrIuzw==
   dependencies:
     "@types/react" "*"
 
