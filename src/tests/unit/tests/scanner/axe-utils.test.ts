@@ -12,6 +12,10 @@ describe('AxeUtils', () => {
             expect(AxeUtils.getMatchesFromRule('color-contrast')).toBeDefined();
         });
 
+        it('color-contrast matches should be a function', () => {
+            expect(AxeUtils.getMatchesFromRule('color-contrast')).toHaveProperty('call');
+        });
+
         it('should fail if rule does not exist', () => {
             expect(() => AxeUtils.getMatchesFromRule('fake-rule')).toThrow();
         });
@@ -22,8 +26,22 @@ describe('AxeUtils', () => {
             expect(AxeUtils.getEvaluateFromCheck('color-contrast')).toBeDefined();
         });
 
+        it('color-contrast evaluate should be a function', () => {
+            expect(AxeUtils.getEvaluateFromCheck('color-contrast')).toHaveProperty('call');
+        });
+
         it('should fail if rule does not exist', () => {
             expect(() => AxeUtils.getEvaluateFromCheck('fake-rule')).toThrow();
+        });
+    });
+
+    describe('getOptionsFromCheck', () => {
+        it('should find color-contrast rule', () => {
+            expect(AxeUtils.getOptionsFromCheck('color-contrast')).toBeDefined();
+        });
+
+        it('should fail if rule does not exist', () => {
+            expect(() => AxeUtils.getOptionsFromCheck('fake-rule')).toThrow();
         });
     });
 
