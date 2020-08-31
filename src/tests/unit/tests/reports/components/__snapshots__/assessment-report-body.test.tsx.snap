@@ -37,6 +37,13 @@ exports[`AssessmentReportBody render 1`] = `
     }
   />
   <AssessmentScanDetails
+    deps={
+      Object {
+        "outcomeTypeSemanticsFromTestStatus": Object {
+          "stub": "outcomeTypeSemanticsFromTestStatus",
+        },
+      }
+    }
     description="test-description"
     details={
       Object {
