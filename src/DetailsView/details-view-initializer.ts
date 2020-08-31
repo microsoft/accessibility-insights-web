@@ -12,6 +12,7 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { ThemeInnerState } from 'common/components/theme';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { Globalization } from 'common/globalization';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -322,11 +323,19 @@ if (tabId != null) {
                 getPropertyConfiguration,
             );
 
+            // Represents the language in which pages are to be displayed
+            // For the time being, content is only in English
+            const globalization: Globalization = {
+                languageCode: 'en-us',
+            };
+
             const assessmentReportHtmlGeneratorDeps = {
                 outcomeTypeSemanticsFromTestStatus,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 LinkComponent: NewTabLink,
+                globalization,
             };
+
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,

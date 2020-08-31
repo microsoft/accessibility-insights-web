@@ -6,9 +6,12 @@ import { UrlIcon } from 'common/icons/url-icon';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { ScanDetailsReportModel } from '../assessment-report-model';
-import { FormattedDate } from './formatted-date';
+import { FormattedDate, FormattedDateDeps } from './formatted-date';
+
+export type AssessmentScanDetailsDeps = FormattedDateDeps;
 
 export interface AssessmentScanDetailsProps {
+    deps: AssessmentScanDetailsDeps;
     details: ScanDetailsReportModel;
     description: string;
 }
@@ -38,7 +41,10 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                                 <DateIcon />
                             </td>
                             <td>
-                                <FormattedDate date={this.props.details.reportDate} />
+                                <FormattedDate
+                                    deps={this.props.deps}
+                                    date={this.props.details.reportDate}
+                                />
                             </td>
                         </tr>
                         <tr>

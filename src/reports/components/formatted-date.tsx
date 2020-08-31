@@ -1,9 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as moment from 'moment';
+import { Globalization } from 'common/globalization';
+import * as Moment from 'moment';
 import * as React from 'react';
 
+export type FormattedDateDeps = {
+    globalization: Globalization;
+};
+
 export interface FormattedDateProps {
+    deps: FormattedDateDeps;
     date: Date;
 }
 
@@ -13,7 +19,8 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
     }
 
     private formatDateTime(date: Date): string {
-        let momentDate = moment(this.props.date);
-        return momentDate.toLocaleString();
+        const moment = Moment.utc(this.props.date);
+        const localMoment = moment.locale(this.props.deps.globalization.languageCode);
+        return localMoment.format('L LTS [UTC]Z');
     }
 }

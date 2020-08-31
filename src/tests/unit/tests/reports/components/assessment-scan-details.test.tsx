@@ -3,18 +3,25 @@
 import { ScanDetailsReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentScanDetails,
+    AssessmentScanDetailsDeps,
     AssessmentScanDetailsProps,
 } from 'reports/components/assessment-scan-details';
 
 describe('AssessmentScanDetails', () => {
     describe('render', () => {
         test('Correct composition', () => {
+            const deps: AssessmentScanDetailsDeps = {
+                globalization: {
+                    languageCode: 'en-us',
+                },
+            };
             const detailsModel: ScanDetailsReportModel = {
                 targetPage: 'test-target-page',
                 url: 'https://test-url/path/',
                 reportDate: new Date(Date.UTC(2018, 9, 22, 12, 29)),
             };
             const props: AssessmentScanDetailsProps = {
+                deps,
                 details: detailsModel,
                 description: 'test-description',
             };

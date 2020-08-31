@@ -1,13 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FormattedDate render German format 1`] = `
+<React.Fragment>
+  31.12.1999 23:59:59 UTC+00:00
+</React.Fragment>
+`;
+
 exports[`FormattedDate render end of last millennium 1`] = `
 <React.Fragment>
-  Fri Dec 31 1999 23:59:59 GMT-0500
+  12/31/1999 11:59:59 PM UTC+00:00
 </React.Fragment>
 `;
 
 exports[`FormattedDate render start of this millennium 1`] = `
 <React.Fragment>
-  Sat Jan 01 2000 00:00:00 GMT-0500
+  01/01/2000 12:00:00 AM UTC+00:00
 </React.Fragment>
 `;
