@@ -26,36 +26,33 @@ declare namespace AccessibilityInsightsReport {
         durationSeconds: number,
     }
 
-    export type FailedScanResult = {
-        url: string, // Should we have pageTitle? Maybe for accessibile link names?
+    export type SummaryScanResult = {
+        url: string,
         numFailures: number,
         reportLocation: string,
     }
 
-    export type PassedScanResult = {
-        url: string,
-        reportLocation: string,
-    }
-
-    export type UnscannableScanResult = {
+    export type SummaryScanError = {
         url: string,
         errorType: string,
-        errorDescription: string, // Link to error log?
+        errorDescription: string,
     }
 
-    export type CrawlSummaryReportParameters = {
+    export type SummaryReportParameters = {
         serviceName: string;
+        axeVersion: string;
+        userAgent: string;
         crawlDetails: CrawlSummaryDetails;
         results: {
-            failed: FailedScanResult[],
-            passed: PassedScanResult[],
-            unscannable: UnscannableScanResult[],
+            failed: SummaryScanResult[],
+            passed: SummaryScanResult[],
+            unscannable: SummaryScanError[],
         }
     };
 
     export type Reporter = {
         fromAxeResult: (parameters: AxeReportParameters) => Report;
-        fromCrawlResults: (parameters: CrawlSummaryReportParameters) => Report;
+        fromSummaryResults: (parameters: SummaryReportParameters) => Report;
     };
 
     export type ReporterFactory = () => Reporter;

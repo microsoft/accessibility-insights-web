@@ -24,8 +24,9 @@ import { getPropertyConfiguration } from '../../common/configs/unified-result-pr
 import { DateProvider } from '../../common/date-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
-import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
+import { AxeReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
+import { SummaryResultsReport } from 'reports/package/summary-results-report';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
@@ -91,9 +92,22 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     return new AxeResultsReport(deps, parameters, toolData);
 };
 
+const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
+    const { serviceName, axeVersion, userAgent } = parameters;
+
+    const toolData = createToolData(
+        serviceName,
+        '',
+        'axe-core',
+        axeVersion,
+        userAgent,
+    );
+    return new SummaryResultsReport(parameters, toolData);
+};
+
 initializeFabricIcons();
 
 export const reporterFactory: ReporterFactory = () => {
 
-    return new Reporter(axeResultsReportGenerator);
+    return new Reporter(axeResultsReportGenerator, summaryResultsReportGenerator);
 };
