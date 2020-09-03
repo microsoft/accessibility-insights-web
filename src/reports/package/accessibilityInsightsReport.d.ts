@@ -19,8 +19,43 @@ declare namespace AccessibilityInsightsReport {
         scanContext: ScanContext;
     }
 
+    export type CrawlSummaryDetails = {
+        baseUrl: string,
+        scanStart: Date,
+        scanComplete: Date,
+        durationSeconds: number,
+    }
+
+    export type FailedScanResult = {
+        url: string, // Should we have pageTitle? Maybe for accessibile link names?
+        numFailures: number,
+        reportLocation: string,
+    }
+
+    export type PassedScanResult = {
+        url: string,
+        reportLocation: string,
+    }
+
+    export type UnscannableScanResult = {
+        url: string,
+        errorType: string,
+        errorDescription: string, // Link to error log?
+    }
+
+    export type CrawlSummaryReportParameters = {
+        serviceName: string;
+        crawlDetails: CrawlSummaryDetails;
+        results: {
+            failed: FailedScanResult[],
+            passed: PassedScanResult[],
+            unscannable: UnscannableScanResult[],
+        }
+    };
+
     export type Reporter = {
         fromAxeResult: (parameters: AxeReportParameters) => Report;
+        fromCrawlResults: (parameters: CrawlSummaryReportParameters) => Report;
     };
 
     export type ReporterFactory = () => Reporter;
