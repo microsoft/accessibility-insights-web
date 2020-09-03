@@ -101,6 +101,22 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
+    sectionFactory={
+      Object {
+        "BodySection": [Function],
+        "ContentContainer": [Function],
+        "DetailsSection": [Function],
+        "FailedInstancesSection": [Function],
+        "FooterSection": [Function],
+        "FooterText": [Function],
+        "HeaderSection": [Function],
+        "NotApplicableChecksSection": [Function],
+        "PassedChecksSection": [Function],
+        "ResultsContainer": [Function],
+        "SummarySection": [Function],
+        "TitleSection": [Function],
+      }
+    }
     shouldAlertFailuresCount={false}
     targetAppInfo={
       Object {
@@ -224,6 +240,22 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
+      sectionFactory={
+        Object {
+          "BodySection": [Function],
+          "ContentContainer": [Function],
+          "DetailsSection": [Function],
+          "FailedInstancesSection": [Function],
+          "FooterSection": [Function],
+          "FooterText": [Function],
+          "HeaderSection": [Function],
+          "NotApplicableChecksSection": [Function],
+          "PassedChecksSection": [Function],
+          "ResultsContainer": [Function],
+          "SummarySection": [Function],
+          "TitleSection": [Function],
+        }
+      }
       shouldAlertFailuresCount={false}
       targetAppInfo={
         Object {
@@ -343,6 +375,22 @@ exports[`ReportBody renders 1`] = `
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
           "violations": Array [],
+        }
+      }
+      sectionFactory={
+        Object {
+          "BodySection": [Function],
+          "ContentContainer": [Function],
+          "DetailsSection": [Function],
+          "FailedInstancesSection": [Function],
+          "FooterSection": [Function],
+          "FooterText": [Function],
+          "HeaderSection": [Function],
+          "NotApplicableChecksSection": [Function],
+          "PassedChecksSection": [Function],
+          "ResultsContainer": [Function],
+          "SummarySection": [Function],
+          "TitleSection": [Function],
         }
       }
       shouldAlertFailuresCount={false}
@@ -466,6 +514,22 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
+      sectionFactory={
+        Object {
+          "BodySection": [Function],
+          "ContentContainer": [Function],
+          "DetailsSection": [Function],
+          "FailedInstancesSection": [Function],
+          "FooterSection": [Function],
+          "FooterText": [Function],
+          "HeaderSection": [Function],
+          "NotApplicableChecksSection": [Function],
+          "PassedChecksSection": [Function],
+          "ResultsContainer": [Function],
+          "SummarySection": [Function],
+          "TitleSection": [Function],
+        }
+      }
       shouldAlertFailuresCount={false}
       targetAppInfo={
         Object {
@@ -585,6 +649,22 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        sectionFactory={
+          Object {
+            "BodySection": [Function],
+            "ContentContainer": [Function],
+            "DetailsSection": [Function],
+            "FailedInstancesSection": [Function],
+            "FooterSection": [Function],
+            "FooterText": [Function],
+            "HeaderSection": [Function],
+            "NotApplicableChecksSection": [Function],
+            "PassedChecksSection": [Function],
+            "ResultsContainer": [Function],
+            "SummarySection": [Function],
+            "TitleSection": [Function],
           }
         }
         shouldAlertFailuresCount={false}
@@ -708,6 +788,22 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
+        sectionFactory={
+          Object {
+            "BodySection": [Function],
+            "ContentContainer": [Function],
+            "DetailsSection": [Function],
+            "FailedInstancesSection": [Function],
+            "FooterSection": [Function],
+            "FooterText": [Function],
+            "HeaderSection": [Function],
+            "NotApplicableChecksSection": [Function],
+            "PassedChecksSection": [Function],
+            "ResultsContainer": [Function],
+            "SummarySection": [Function],
+            "TitleSection": [Function],
+          }
+        }
         shouldAlertFailuresCount={false}
         targetAppInfo={
           Object {
@@ -827,6 +923,22 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        sectionFactory={
+          Object {
+            "BodySection": [Function],
+            "ContentContainer": [Function],
+            "DetailsSection": [Function],
+            "FailedInstancesSection": [Function],
+            "FooterSection": [Function],
+            "FooterText": [Function],
+            "HeaderSection": [Function],
+            "NotApplicableChecksSection": [Function],
+            "PassedChecksSection": [Function],
+            "ResultsContainer": [Function],
+            "SummarySection": [Function],
+            "TitleSection": [Function],
           }
         }
         shouldAlertFailuresCount={false}
@@ -951,6 +1063,22 @@ exports[`ReportBody renders 1`] = `
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
           "violations": Array [],
+        }
+      }
+      sectionFactory={
+        Object {
+          "BodySection": [Function],
+          "ContentContainer": [Function],
+          "DetailsSection": [Function],
+          "FailedInstancesSection": [Function],
+          "FooterSection": [Function],
+          "FooterText": [Function],
+          "HeaderSection": [Function],
+          "NotApplicableChecksSection": [Function],
+          "PassedChecksSection": [Function],
+          "ResultsContainer": [Function],
+          "SummarySection": [Function],
+          "TitleSection": [Function],
         }
       }
       shouldAlertFailuresCount={false}
