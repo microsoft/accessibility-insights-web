@@ -21,7 +21,6 @@ export interface DetailsGroup extends IGroup {
 
 export class IssuesTableHandler {
     public getListProps(failedRules: RuleResult[]): ListProps {
-        let listProps: ListProps;
         const groups: DetailsGroup[] = [];
         const items: DetailsRowData[] = [];
         let instanceCount: number = 0;
@@ -46,11 +45,9 @@ export class IssuesTableHandler {
             });
         });
 
-        listProps = {
+        return {
             groups: groups,
             items: items,
         };
-
-        return listProps;
     }
 }

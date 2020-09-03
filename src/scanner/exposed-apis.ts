@@ -20,7 +20,7 @@ import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
 
-export let scan = (
+export const scan = (
     options: ScanOptions,
     successCallback: (results: ScanResults) => void,
     errorCallback: (results: Error) => void,
@@ -47,11 +47,11 @@ export let scan = (
     launcher.runScan(axeResponseHandler);
 };
 
-export let getVersion = (): string => {
+export const getVersion = (): string => {
     return axe.version;
 };
 
-export let getDefaultRules = (): ScannerRuleInfo[] => {
+export const getDefaultRules = (): ScannerRuleInfo[] => {
     const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
     const helpUrlGetter = new HelpUrlGetter(configuration);
     return getRules(

@@ -61,7 +61,6 @@ module.exports = {
         'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',
         'security/detect-object-injection': 'off',
-        'prefer-const': 'off',
         'no-irregular-whitespace': 'off',
         'no-prototype-builtins': 'off',
         'no-empty': 'off',

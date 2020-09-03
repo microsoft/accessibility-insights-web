@@ -3,7 +3,7 @@
 import { AxeNodeResult, AxeRule } from './iruleresults';
 
 export namespace Processor {
-    export let suppressedMessages = [
+    export const suppressedMessages = [
         // add messages to suppress here. Remove comment when non-empty.
     ].map(normalizeText);
 
