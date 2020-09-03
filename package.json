@@ -70,7 +70,7 @@
         "@types/chrome": "0.0.122",
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
-        "@types/jest": "^26.0.12",
+        "@types/jest": "^26.0.13",
         "@types/jsdom": "^16.2.4",
         "@types/lodash": "^4.14.161",
         "@types/make-dir": "^2.1.0",
