@@ -92,7 +92,7 @@ export class DetailsViewCommandBar extends React.Component<
         }
 
         return (
-            <div className={styles.detailsViewCommandBar}>
+            <div className={styles.detailsViewCommandBar} role="region" aria-label="command bar">
                 {this.renderTargetPageInfo()}
                 {this.renderFarItems()}
                 {this.renderExportDialog()}

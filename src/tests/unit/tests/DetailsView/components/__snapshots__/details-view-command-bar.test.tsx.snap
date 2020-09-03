@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = `
-"<div className=\\"detailsViewCommandBar\\">
+"<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
   <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
@@ -21,7 +21,9 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
 
 exports[`DetailsViewCommandBar renders with export button, with start over 1`] = `
 <div
+  aria-label="command bar"
   className="detailsViewCommandBar"
+  role="region"
 >
   <div
     aria-labelledby="switch-to-target"
@@ -141,7 +143,9 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
 
 exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
 <div
+  aria-label="command bar"
   className="detailsViewCommandBar"
+  role="region"
 >
   <div
     aria-labelledby="switch-to-target"
@@ -258,7 +262,9 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
 
 exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 <div
+  aria-label="command bar"
   className="detailsViewCommandBar"
+  role="region"
 >
   <div
     aria-labelledby="switch-to-target"
@@ -374,7 +380,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 `;
 
 exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
-"<div className=\\"detailsViewCommandBar\\">
+"<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
   <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
@@ -395,7 +401,7 @@ exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`
 `;
 
 exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
-"<div className=\\"detailsViewCommandBar\\">
+"<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
   <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
     <span id=\\"switch-to-target\\">
       Target page: 
@@ -417,7 +423,9 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
 
 exports[`DetailsViewCommandBar renders without export button, with start over 1`] = `
 <div
+  aria-label="command bar"
   className="detailsViewCommandBar"
+  role="region"
 >
   <div
     aria-labelledby="switch-to-target"
@@ -533,7 +541,9 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
 
 exports[`DetailsViewCommandBar renders without export button, without start over 1`] = `
 <div
+  aria-label="command bar"
   className="detailsViewCommandBar"
+  role="region"
 >
   <div
     aria-labelledby="switch-to-target"

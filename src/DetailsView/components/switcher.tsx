@@ -78,7 +78,11 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
 
     public render(): JSX.Element {
         return (
-            <div className={this.props.styles.switcherClassName}>
+            <div
+                className={this.props.styles.switcherClassName}
+                role="region"
+                aria-label="activity"
+            >
                 <Dropdown
                     className={this.props.styles.dropdownClassName}
                     ariaLabel="select activity"
