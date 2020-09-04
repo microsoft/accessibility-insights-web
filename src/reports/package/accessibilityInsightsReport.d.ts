@@ -38,16 +38,18 @@ declare namespace AccessibilityInsightsReport {
         errorDescription: string,
     }
 
+    export type SummaryScanResults = {
+        failed: SummaryScanResult[],
+        passed: SummaryScanResult[],
+        unscannable: SummaryScanError[],
+    };
+
     export type SummaryReportParameters = {
         serviceName: string;
         axeVersion: string;
         userAgent: string;
         crawlDetails: CrawlSummaryDetails;
-        results: {
-            failed: SummaryScanResult[],
-            passed: SummaryScanResult[],
-            unscannable: SummaryScanError[],
-        }
+        results: SummaryScanResults;
     };
 
     export type Reporter = {

@@ -1,0 +1,117 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { NullComponent } from 'common/components/null-component';
+import { DateProvider } from 'common/date-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import * as React from 'react';
+import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
+import {
+    CrawlSummaryDetails,
+    SummaryScanResults,
+} from 'reports/package/accessibilityInsightsReport';
+import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
+
+describe('ReportHtmlGenerator', () => {
+    test('generateHtml', () => {
+        const pageTitle: string = 'page-title';
+        const baseUrl: string = 'https://page-url/';
+
+        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
+
+        const sectionFactoryMock = Mock.ofType<ReportSectionFactory<SummaryReportSectionProps>>();
+
+        const toolData: ToolData = {
+            scanEngineProperties: {
+                name: 'engine-name',
+                version: 'engine-version',
+            },
+            applicationProperties: {
+                name: 'app-name',
+                version: 'app-version',
+                environmentName: 'environmentName',
+            },
+        };
+
+        const getScriptMock = Mock.ofInstance(() => '');
+
+        const targetAppInfo = {
+            name: pageTitle,
+            url: baseUrl,
+        };
+
+        const scanMetadata = {
+            toolData: toolData,
+            targetAppInfo: targetAppInfo,
+        } as ScanMetadata;
+
+        const scanDetails: CrawlSummaryDetails = {
+            baseUrl: baseUrl,
+            scanStart: new Date(2020, 1, 2, 3),
+            scanComplete: new Date(2020, 4, 5, 6),
+            durationSeconds: 42,
+        };
+
+        const results: SummaryScanResults = {
+            failed: [
+                {
+                    url: `${baseUrl}/failed`,
+                    numFailures: 1,
+                    reportLocation: 'failed report link',
+                },
+            ],
+            passed: [
+                {
+                    url: `${baseUrl}/passed`,
+                    numFailures: 0,
+                    reportLocation: 'passed report link',
+                },
+            ],
+            unscannable: [
+                {
+                    url: `${baseUrl}/error`,
+                    errorType: 'error name',
+                    errorDescription: 'error description',
+                },
+            ],
+        };
+
+        const sectionProps: ReportBodyProps<SummaryReportSectionProps> = {
+            sectionFactory: sectionFactoryMock.object,
+            toUtcString: getUTCStringFromDateStub,
+            getCollapsibleScript: getScriptMock.object,
+            scanMetadata,
+            scanDetails,
+            results,
+        };
+
+        const headElement: JSX.Element = <NullComponent />;
+        const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
+
+        const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
+        sectionFactoryMock.setup(mock => mock.HeadSection).returns(() => NullComponent);
+        rendererMock
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(headElement)))
+            .returns(() => '<head-markup />')
+            .verifiable(Times.once());
+        rendererMock
+            .setup(r => r.renderToStaticMarkup(It.isObjectWith(bodyElement)))
+            .returns(() => '<body-markup />')
+            .verifiable(Times.once());
+
+        const testObject = new SummaryReportHtmlGenerator(
+            sectionFactoryMock.object,
+            rendererMock.object,
+            getScriptMock.object,
+            getUTCStringFromDateStub,
+        );
+
+        const actual = testObject.generateHtml(scanDetails, scanMetadata, results);
+
+        expect(actual).toMatchSnapshot();
+    });
+});

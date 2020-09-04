@@ -1,25 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeResults } from 'axe-core';
-import { CardSelectionViewData } from 'common/get-card-selection-view-data';
-import { getCardViewData } from 'common/rule-based-view-model-provider';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { ToolData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { ConvertScanResultsToUnifiedResultsDelegate } from 'injected/adapters/scan-results-to-unified-results';
-import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
-import { AxeReportParameters, SummaryReportParameters, CrawlSummaryDetails, SummaryScanResult, SummaryScanError } from 'reports/package/accessibilityInsightsReport';
-import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
-import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ScanResults } from 'scanner/iruleresults';
-import { ResultDecorator } from 'scanner/result-decorator';
-import { Mock, MockBehavior } from 'typemoq';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { SummaryReportParameters, CrawlSummaryDetails, SummaryScanResult, SummaryScanError, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
+import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
+import { Mock } from 'typemoq';
 
 describe('SummaryResultsReport', () => {
     const baseUrl = 'https://the.page';
     const toolDataStub: ToolData = {
         applicationProperties: { name: 'some app' },
     } as ToolData;
+    const targetAppInfoStub = {
+        name: null,
+        url: baseUrl,
+    };
+    const scanMetadataStub = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfoStub,
+        timestamp: null,
+    };
 
     const crawlDetails: CrawlSummaryDetails = {
         baseUrl: baseUrl,
@@ -28,44 +28,51 @@ describe('SummaryResultsReport', () => {
         durationSeconds: 42,
     };
 
-    const failedScanResults: SummaryScanResult[] = [
-        {
-            url: `${baseUrl}/failed`,
-            numFailures: 1,
-            reportLocation: 'failed report link',
-        }
-    ];
-    const passedScanResults: SummaryScanResult[] = [
-        {
-            url: `${baseUrl}/passed`,
-            numFailures: 0,
-            reportLocation: 'passed report link',
-        }
-    ];
-    const scanErrors: SummaryScanError[] = [
-        {
-            url: `${baseUrl}/error`,
-            errorType: 'error name',
-            errorDescription: 'error description',
-        }
-    ];
+    const results: SummaryScanResults  = {
+        failed: [
+            {
+                url: `${baseUrl}/failed`,
+                numFailures: 1,
+                reportLocation: 'failed report link',
+            }
+        ],
+        passed: [
+            {
+                url: `${baseUrl}/passed`,
+                numFailures: 0,
+                reportLocation: 'passed report link',
+            }
+        ],
+        unscannable: [
+            {
+                url: `${baseUrl}/error`,
+                errorType: 'error name',
+                errorDescription: 'error description',
+            }
+        ]
+    };
 
     const parameters: SummaryReportParameters = {
         serviceName: 'service name',
         axeVersion: 'axe version',
         userAgent: 'browser spec',
         crawlDetails,
-        results: {
-            failed: failedScanResults,
-            passed: passedScanResults,
-            unscannable: scanErrors,
-        }
+        results,
     };
 
     const expectedHTML = '<div>The Report!</div>';
 
+    const mockHtmlGenerator = Mock.ofType<SummaryReportHtmlGenerator>();
+    mockHtmlGenerator
+        .setup(hg => hg.generateHtml(crawlDetails, scanMetadataStub, results))
+        .returns(() => expectedHTML);
+
+    const deps = {
+        reportHtmlGenerator: mockHtmlGenerator.object,
+    }
+
     it('returns HTML', () => {
-        const report = new SummaryResultsReport(parameters, toolDataStub);
+        const report = new SummaryResultsReport(deps, parameters, toolDataStub);
 
         const html = report.asHTML();
 

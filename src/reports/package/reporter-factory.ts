@@ -27,6 +27,8 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags
 import { AxeReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
+import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
@@ -102,7 +104,24 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
         axeVersion,
         userAgent,
     );
-    return new SummaryResultsReport(parameters, toolData);
+
+    const sectionFactory = {
+        ...SummaryReportSectionFactory,
+        FooterTextForService,
+    };
+
+    const reportHtmlGenerator = new SummaryReportHtmlGenerator(
+        sectionFactory,
+        new ReactStaticRenderer(),
+        getDefaultAddListenerForCollapsibleSection,
+        DateProvider.getUTCStringFromDate,
+    );
+
+    const deps = {
+        reportHtmlGenerator,
+    }
+
+    return new SummaryResultsReport(deps, parameters, toolData);
 };
 
 initializeFabricIcons();
