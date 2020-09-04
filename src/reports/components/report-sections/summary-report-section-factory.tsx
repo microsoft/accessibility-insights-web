@@ -13,6 +13,7 @@ import {
     SummaryScanResults,
 } from 'reports/package/accessibilityInsightsReport';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { NullComponent } from 'common/components/null-component';
 
 export type SummaryReportSectionProps = {
     scanDetails: CrawlSummaryDetails;
@@ -26,14 +27,14 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     HeadSection: ReportHead,
     BodySection,
     ContentContainer,
-    HeaderSection: null,
+    HeaderSection: NullComponent,
     TitleSection,
-    SummarySection: null,
-    DetailsSection: null,
+    SummarySection: NullComponent,
+    DetailsSection: NullComponent,
     ResultsContainer,
-    FailedInstancesSection: null,
-    PassedChecksSection: null,
-    NotApplicableChecksSection: null,
+    FailedInstancesSection: NullComponent,
+    PassedChecksSection: NullComponent,
+    NotApplicableChecksSection: NullComponent,
     FooterSection: ReportFooter,
     FooterText,
 };
