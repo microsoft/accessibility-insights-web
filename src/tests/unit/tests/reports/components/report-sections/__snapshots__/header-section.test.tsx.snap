@@ -18,7 +18,7 @@ exports[`HeaderSection renders 1`] = `
     <div
       className="targetPage"
     >
-      Target page: 
+      Target page: 
       <NewTabLinkWithConfirmationDialog
         href="url://page"
         title="page-title"

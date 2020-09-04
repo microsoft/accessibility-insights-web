@@ -16,7 +16,7 @@ exports[`GuidanceLinksTest links is not null and correct with best practice and 
     TEXT1
   </ElectronExternalLink>
   <span>
-    , 
+    , 
   </span>
   <ElectronExternalLink href=\\"https://url2\\" onClick={[Function: onClick]}>
     TEXT2
@@ -46,7 +46,7 @@ exports[`GuidanceLinksTest links is not null and correct with two regular links 
     TEXT1
   </ElectronExternalLink>
   <span>
-    , 
+    , 
   </span>
   <ElectronExternalLink href=\\"https://url2\\" onClick={[Function: onClick]}>
     TEXT2
