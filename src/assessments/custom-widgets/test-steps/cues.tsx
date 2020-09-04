@@ -22,7 +22,7 @@ import { CustomWidgetsTestStep } from './test-steps';
 
 const cuesDescription: JSX.Element = (
     <span>
-        If a custom widget adopts certain interactive states, it must communicate those states
+        If a custom widget adopts certain interactive states, it must communicate those states
         programmatically.
     </span>
 );

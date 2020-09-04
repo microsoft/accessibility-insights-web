@@ -4,7 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <p>Pre-recorded multimedia content must have captions.</p>
+        <p>Pre-recorded multimedia content must have captions.</p>
 
         <h2>Why it matters</h2>
         <p>

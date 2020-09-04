@@ -27,21 +27,21 @@ export const infoAndExamples = create(({ Markup }) => (
         />
         <h2>More examples</h2>
 
-        <h3>WCAG success criteria </h3>
+        <h3>WCAG success criteria </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html">
                 Understanding Success Criterion 3.2.1: On Focus
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Sufficient techniques </h3>
+        <h3>Sufficient techniques </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G107">
                 Using "activate" rather than "focus" as a trigger for changes of context
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Common failures </h3>
+        <h3>Common failures </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F52">
                 Failure due to opening a new window as soon as a new page is loaded without prior warning
@@ -51,7 +51,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Best practices </h3>
+        <h3>Best practices </h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G200">
                 Opening new windows and tabs from a link only when necessary

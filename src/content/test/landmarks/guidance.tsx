@@ -30,7 +30,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                        Turn on the <Markup.Term>Landmarks</Markup.Term> visual helper, then zoom out so you can see the entire page. If you
+                        Turn on the <Markup.Term>Landmarks</Markup.Term> visual helper, then zoom out so you can see the entire page. If you
                         see any visible content (like text, images, or controls) outside the dashed borders, that’s a failure.
                     </li>
                     <li>
@@ -52,8 +52,8 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>An automated check will fail if the page contains more than one main landmark.</li>
                     <li>
                         Exception: If the page contains nested document or application roles, each one can have its own{' '}
-                        <Markup.Term>banner</Markup.Term>, <Markup.Term>main</Markup.Term> and <Markup.Term>contentinfo</Markup.Term>
-                         landmarks.
+                        <Markup.Term>banner</Markup.Term>, <Markup.Term>main</Markup.Term> and <Markup.Term>contentinfo</Markup.Term>
+                        landmarks.
                     </li>
                 </ul>
 
@@ -67,7 +67,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                        In the visual helper, accessible labels (<Markup.Term>aria-label</Markup.Term> or{' '}
+                        In the visual helper, accessible labels (<Markup.Term>aria-label</Markup.Term> or{' '}
                         <Markup.Term>aria-labelledby</Markup.Term>) are enclosed in quotes.
                     </li>
                     <li>
@@ -88,7 +88,7 @@ export const guidance = create(({ Markup, Link }) => (
                 <h3>Provide a visible label for any form landmarks. (best practice)</h3>
                 <ul>
                     <li>
-                        Use <Markup.Term>aria-labelledby</Markup.Term> to programmatically associate the visible label with the landmark.
+                        Use <Markup.Term>aria-labelledby</Markup.Term> to programmatically associate the visible label with the landmark.
                     </li>
                 </ul>
                 <h3>Use Native html sectioning elements where possible. (best practice)</h3>
@@ -125,8 +125,8 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>An automated check will fail if the page contains more than one banner or contentinfo landmark.</li>
                     <li>An automated check will fail if a banner, contentinfo, or main landmark is nested within another landmark.</li>
                     <li>
-                        Exception: If the page contains nested document or application roles, each one can have its
-                        own banner, main and contentinfo landmarks.
+                        Exception: If the page contains nested document or application roles, each one can have its own banner, main and
+                        contentinfo landmarks.
                     </li>
                 </ul>
             </Markup.Dont>

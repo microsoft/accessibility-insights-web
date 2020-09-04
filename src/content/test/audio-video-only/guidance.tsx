@@ -43,13 +43,13 @@ export const guidance = create(({ Markup, Link }) => (
 
         <h2>Learn more</h2>
 
-        <h3>Provide an alternative for audio-only content </h3>
+        <h3>Provide an alternative for audio-only content </h3>
         <Markup.Links>
             <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
             <Link.WCAG21TechniquesG158 />
         </Markup.Links>
 
-        <h3>Provide an alternative for video-only content </h3>
+        <h3>Provide an alternative for video-only content </h3>
         <Markup.Links>
             <Link.WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded />
             <Link.WCAG21TechniquesG159 />

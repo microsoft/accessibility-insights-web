@@ -12,7 +12,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>Why it matters</h2>
         <p>
             The semantic elements in a data table communicate relationships between cells and row or column headers. Applying{' '}
-            <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> suppresses those semantics.
+            <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> suppresses those semantics.
         </p>
         <p>
             When the semantics in a data table are suppressed, critical relationships are hidden from people who use assistive technologies.
@@ -30,7 +30,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     Do use <Markup.Code>role="presentation"</Markup.Code> on layout tables.
                 </li>
                 <li>
-                    Do not use <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> on any of these
+                    Do not use <Markup.Code>role="presentation"</Markup.Code> or <Markup.Code>role="none"</Markup.Code> on any of these
                     semantic elements in a data table:
                     <ul>
                         <li>

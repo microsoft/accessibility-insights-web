@@ -50,7 +50,7 @@ forStrictNullCheckEligibleFiles(repoRoot, () => {}, { includeTests }).then(async
     for (const pair of out) {
         console.log(
             toFormattedFilePath(pair[0]),
-            // + (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
+            // + (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
         );
     }
 });

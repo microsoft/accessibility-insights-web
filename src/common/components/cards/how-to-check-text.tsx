@@ -20,7 +20,7 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                     <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">
                         Accessibility pane in the browser Developer Tools
                     </NewTabLink>{' '}
-                     to verify that the field's accessible name is complete without its associated{' '}
+                    to verify that the field's accessible name is complete without its associated{' '}
                     <b>
                         {'<'}label{'>'}
                     </b>

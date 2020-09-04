@@ -28,7 +28,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                          If captions are missing, add them.
+                        If captions are missing, add them.
                         <ul>
                             <li>Use closed captions (visible on demand) if possible.</li>
                             <li>
@@ -38,7 +38,7 @@ export const guidance = create(({ Markup, Link }) => (
                     </li>
 
                     <li>
-                          Make sure the captions provide an accurate and complete description of the audio content:
+                        Make sure the captions provide an accurate and complete description of the audio content:
                         <ul>
                             <li>Include all speech.</li>
                             <li>Identify the speakers.</li>
@@ -52,7 +52,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                          Use any of these approaches:
+                        Use any of these approaches:
                         <ul>
                             <li>Build the audio description into the video’s main soundtrack.</li>
                             <li>Make another video with the audio description.</li>
@@ -60,8 +60,8 @@ export const guidance = create(({ Markup, Link }) => (
                         </ul>
                     </li>
                     <li>
-                          Make sure the audio description includes important visual details that cannot be understood from the main
-                        soundtrack alone, such as:
+                        Make sure the audio description includes important visual details that cannot be understood from the main soundtrack
+                        alone, such as:
                         <ul>
                             <li>Actions</li>
                             <li>Characters</li>
@@ -71,7 +71,7 @@ export const guidance = create(({ Markup, Link }) => (
                         </ul>
                     </li>
                     <li>
-                          Make sure the audio description is synchronized with the video content.
+                        Make sure the audio description is synchronized with the video content.
                         <ul>
                             <li>Ideally, narrate events “real time,” as they happen onscreen.</li>
                         </ul>
@@ -85,7 +85,7 @@ export const guidance = create(({ Markup, Link }) => (
                     Don’t let captions obscure any meaningful visual content. (<Link.WCAG_1_2_2 />)
                 </h3>
                 <ul>
-                    <li>  Adjust the position or timing of the captions to avoid a conflict.</li>
+                    <li> Adjust the position or timing of the captions to avoid a conflict.</li>
                 </ul>
                 <h3>
                     Don’t let the audio description talk over any meaningful audio content.(
