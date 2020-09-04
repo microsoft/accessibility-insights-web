@@ -27,7 +27,7 @@ export const infoAndExamples = create(({ Markup }) => (
         />
 
         <h2>More examples</h2>
-        <h3>Success criteria </h3>
+        <h3>Success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html">
                 Understanding Success Criterion 2.1.1: Keyboard

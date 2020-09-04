@@ -67,8 +67,8 @@ export const guidance = create(({ Markup, Link }) => (
                     <Link.WCAG_3_2_1 />, <Link.WCAG_3_2_2 />)
                 </h3>
                 <ul>
-                    <li> All users, but especially those who can't see the entire page simultaneously, are likely to be disoriented.</li>
-                    <li> Instead, leave the user in control by providing a separate mechanism for triggering the change of context.</li>
+                    <li>All users, but especially those who can't see the entire page simultaneously, are likely to be disoriented.</li>
+                    <li>Instead, leave the user in control by providing a separate mechanism for triggering the change of context.</li>
                 </ul>
 
                 <h3>

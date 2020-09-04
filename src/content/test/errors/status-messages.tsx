@@ -15,7 +15,7 @@ export const infoAndExamples = create(({ Markup }) => (
         </p>
 
         <h2>How to fix</h2>
-        <p>Ensure any status message that's displayed as visible text has the appropriate ARIA role: </p>
+        <p>Ensure any status message that's displayed as visible text has the appropriate ARIA role:</p>
         <ul>
             <li>
                 If the status message contains important, time-sensitive information that should be communicated to users immediately

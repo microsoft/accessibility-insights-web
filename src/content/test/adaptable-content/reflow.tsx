@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <li> People with reading disabilities that make it difficult to visually track long lines of text</li>
             <li> People with motor disabilities who find scrolling difficult</li>
         </ul>
-        <h2>How to fix </h2>
+        <h2>How to fix</h2>
         <p>
             Use responsive web design to ensure page content reflows to fit within the window whenever the viewport narrows or the text size
             changes.

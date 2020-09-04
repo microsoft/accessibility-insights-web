@@ -32,7 +32,7 @@ export const infoAndExamples = create(({ Markup }) => (
             }
         />
 
-        <h2>More examples </h2>
+        <h2>More examples</h2>
 
         <h3>WCAG success criteria</h3>
         <Markup.Links>

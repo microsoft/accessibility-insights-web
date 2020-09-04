@@ -49,19 +49,19 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>More examples</h2>
 
-        <h3>WCAG success criteria </h3>
+        <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/on-input.html">
                 Understanding Success Criterion 3.2.2: On Input
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Sufficient techniques </h3>
+        <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G80">
                 Providing a submit button to initiate a change of context
             </Markup.HyperLink>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H32">Providing submit buttons </Markup.HyperLink>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H32">Providing submit buttons</Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/html/H84">
                 Using a button with a select element to perform an action
             </Markup.HyperLink>
@@ -73,7 +73,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Common failures </h3>
+        <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F36">
                 Failure due to automatically submitting a form and presenting new content without prior warning when the last field in the
@@ -85,7 +85,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Best practices </h3>
+        <h3>Best practices</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G201">
                 Giving users advanced warning when opening a new window

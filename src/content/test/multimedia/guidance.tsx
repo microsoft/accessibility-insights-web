@@ -85,7 +85,7 @@ export const guidance = create(({ Markup, Link }) => (
                     Don’t let captions obscure any meaningful visual content. (<Link.WCAG_1_2_2 />)
                 </h3>
                 <ul>
-                    <li> Adjust the position or timing of the captions to avoid a conflict.</li>
+                    <li>Adjust the position or timing of the captions to avoid a conflict.</li>
                 </ul>
                 <h3>
                     Don’t let the audio description talk over any meaningful audio content.(
