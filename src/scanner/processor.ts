@@ -3,6 +3,7 @@
 import { AxeNodeResult, AxeRule } from './iruleresults';
 
 export namespace Processor {
+    // eslint-disable-next-line prefer-const
     export let suppressedMessages = [
         // add messages to suppress here. Remove comment when non-empty.
     ].map(normalizeText);

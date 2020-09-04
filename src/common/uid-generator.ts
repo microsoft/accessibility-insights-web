@@ -4,4 +4,4 @@ import { v4 } from 'uuid';
 
 export type UUIDGenerator = () => string;
 
-export let generateUID: UUIDGenerator = v4;
+export const generateUID: UUIDGenerator = v4;

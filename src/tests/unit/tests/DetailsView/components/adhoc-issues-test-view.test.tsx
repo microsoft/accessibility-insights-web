@@ -28,8 +28,10 @@ describe('AdhocIssuesTestView', () => {
         scanning: 'test-scanning',
     } as VisualizationStoreData;
 
-    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
-    getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
+    const getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData> = Mock.ofInstance(
+        () => null,
+        MockBehavior.Strict,
+    );
 
     const displayableDataStub = {
         title: 'test title',
