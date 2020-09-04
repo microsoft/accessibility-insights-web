@@ -9,13 +9,17 @@ export type ImageCodedAs = 'Decorative' | 'Meaningful';
 export function getMatchesFromRule(
     ruleId: string,
 ): ((node: any, virtualNode: any) => boolean) | undefined {
-    return axe._audit.defaultConfig.rules.filter(rule => rule.id === ruleId)[0].matches;
+    return axe._audit.rules.filter(rule => rule.id === ruleId)[0].matches;
 }
 
 export function getEvaluateFromCheck(
     checkId: string,
 ): (node: any, options: any, virtualNode: any, context: any) => boolean {
-    return axe._audit.defaultConfig.checks.filter(check => check.id === checkId)[0].evaluate;
+    return axe._audit.checks[checkId].evaluate;
+}
+
+export function getOptionsFromCheck(checkId: string): any {
+    return axe._audit.checks[checkId].options;
 }
 
 export function getAccessibleText(node: HTMLElement, isLabelledByContext: boolean): string {

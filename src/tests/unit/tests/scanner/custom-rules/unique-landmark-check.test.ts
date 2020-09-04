@@ -15,9 +15,7 @@ describe('axe.Check: unique-landmark', () => {
         },
     };
     beforeEach(() => {
-        check = axe._audit.defaultConfig.checks.find(elem => {
-            return elem.id === 'unique-landmark';
-        });
+        check = axe._audit.checks['unique-landmark'];
 
         fixture = createTestFixture('test-fixture', '');
         checkContext._data = null;
