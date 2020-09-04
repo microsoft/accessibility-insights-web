@@ -52,7 +52,7 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>An automated check will fail if the page contains more than one main landmark.</li>
                     <li>
                         Exception: If the page contains nested document or application roles, each one can have its own{' '}
-                        <Markup.Term>banner</Markup.Term>, <Markup.Term>main</Markup.Term> and <Markup.Term>contentinfo</Markup.Term>
+                        <Markup.Term>banner</Markup.Term>, <Markup.Term>main</Markup.Term> and <Markup.Term>contentinfo</Markup.Term>{' '}
                         landmarks.
                     </li>
                 </ul>
