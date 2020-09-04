@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
-import { productName } from 'content/strings/application';
-import { BrandWhite } from 'icons/brand/white/brand-white';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import * as styles from './header-section.scss';
+import { HeaderBar } from 'reports/components/header-bar';
+import { productName } from 'content/strings/application';
 
 export interface HeaderSectionProps {
     targetAppInfo: TargetAppData;
@@ -15,10 +15,7 @@ export interface HeaderSectionProps {
 export const HeaderSection = NamedFC<HeaderSectionProps>('HeaderSection', ({ targetAppInfo }) => {
     return (
         <header>
-            <div className={styles.reportHeaderBar}>
-                <BrandWhite />
-                <div className={styles.headerText}>{productName}</div>
-            </div>
+            <HeaderBar headerText={productName} />
             <div className={styles.reportHeaderCommandBar}>
                 <div className={styles.targetPage}>
                     Target page:&nbsp;

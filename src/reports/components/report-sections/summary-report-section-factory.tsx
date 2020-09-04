@@ -14,6 +14,7 @@ import {
 } from 'reports/package/accessibilityInsightsReport';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { NullComponent } from 'common/components/null-component';
+import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 
 export type SummaryReportSectionProps = {
     scanDetails: CrawlSummaryDetails;
@@ -27,7 +28,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     HeadSection: ReportHead,
     BodySection,
     ContentContainer,
-    HeaderSection: NullComponent,
+    HeaderSection: SummaryReportHeaderSection,
     TitleSection,
     SummarySection: NullComponent,
     DetailsSection: NullComponent,
