@@ -25,7 +25,8 @@ module.exports = function (grunt) {
     const mockAdbAppPath = path.resolve('./src/tests/miscellaneous/mock-adb/app');
     const mockAdbBinSrcPath = path.join(mockAdbAppPath, 'bin.js');
     const mockAdbBinFilename = process.platform === 'win32' ? 'adb.exe' : 'adb';
-    const mockAdbBinOutPath = path.join('drop', 'mock-adb', mockAdbBinFilename);
+    const mockAdbDropPath = path.join('drop', 'mock-adb');
+    const mockAdbBinOutPath = path.join(mockAdbDropPath, mockAdbBinFilename);
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -44,6 +45,10 @@ module.exports = function (grunt) {
         },
         clean: {
             intermediates: ['dist', extensionPath],
+            'mock-adb': mockAdbDropPath,
+            'package-report': packageReportDropPath,
+            'package-ui': packageUIDropPath,
+            scss: path.join('src', '**/*.scss.d.ts'),
         },
         concurrent: {
             'webpack-all': ['exec:webpack-dev', 'exec:webpack-unified', 'exec:webpack-prod'],
@@ -334,9 +339,6 @@ module.exports = function (grunt) {
             },
             clean: {
                 [targetName]: dropPath,
-                'package-report': packageReportDropPath,
-                'package-ui': packageUIDropPath,
-                scss: path.join('src', '**/*.scss.d.ts'),
             },
             'embed-styles': {
                 [targetName]: {

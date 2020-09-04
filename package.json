@@ -24,6 +24,8 @@
         "build:package:ui": "grunt build-package-ui",
         "build:prod": "grunt build-prod",
         "change-log": "node ./tools/get-change-log-for-release.js",
+        "clean": "grunt clean:*",
+        "clean:mock-adb": "grunt clean:mock-adb",
         "copyright:check": "license-check-and-add check -f copyright-header.config.json",
         "copyright:fix": "license-check-and-add add -f copyright-header.config.json",
         "download:electron-mirror": "node ./pipeline/scripts/download-electron-mirror.js",
