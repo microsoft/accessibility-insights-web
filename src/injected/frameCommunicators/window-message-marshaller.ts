@@ -26,7 +26,7 @@ export class WindowMessageMarshaller {
         }
         try {
             data = JSON.parse(serializedData);
-            // tslint:disable-next-line:no-empty
+            // eslint-disable-next-line no-empty
         } catch (ex) {}
 
         if (!this.isMessageOurs(data)) {
