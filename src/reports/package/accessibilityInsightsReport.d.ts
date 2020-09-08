@@ -19,8 +19,42 @@ declare namespace AccessibilityInsightsReport {
         scanContext: ScanContext;
     }
 
+    export type CrawlSummaryDetails = {
+        baseUrl: string,
+        scanStart: Date,
+        scanComplete: Date,
+        durationSeconds: number,
+    }
+
+    export type SummaryScanResult = {
+        url: string,
+        numFailures: number,
+        reportLocation: string,
+    }
+
+    export type SummaryScanError = {
+        url: string,
+        errorType: string,
+        errorDescription: string,
+    }
+
+    export type SummaryScanResults = {
+        failed: SummaryScanResult[],
+        passed: SummaryScanResult[],
+        unscannable: SummaryScanError[],
+    };
+
+    export type SummaryReportParameters = {
+        serviceName: string;
+        axeVersion: string;
+        userAgent: string;
+        crawlDetails: CrawlSummaryDetails;
+        results: SummaryScanResults;
+    };
+
     export type Reporter = {
         fromAxeResult: (parameters: AxeReportParameters) => Report;
+        fromSummaryResults: (parameters: SummaryReportParameters) => Report;
     };
 
     export type ReporterFactory = () => Reporter;

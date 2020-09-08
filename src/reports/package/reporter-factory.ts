@@ -24,8 +24,11 @@ import { getPropertyConfiguration } from '../../common/configs/unified-result-pr
 import { DateProvider } from '../../common/date-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
-import { AxeReportParameters, ReporterFactory } from './accessibilityInsightsReport';
+import { AxeReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
+import { SummaryResultsReport } from 'reports/package/summary-results-report';
+import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
@@ -91,9 +94,39 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     return new AxeResultsReport(deps, parameters, toolData);
 };
 
+const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
+    const { serviceName, axeVersion, userAgent } = parameters;
+
+    const toolData = createToolData(
+        serviceName,
+        '',
+        'axe-core',
+        axeVersion,
+        userAgent,
+    );
+
+    const sectionFactory = {
+        ...SummaryReportSectionFactory,
+        FooterTextForService,
+    };
+
+    const reportHtmlGenerator = new SummaryReportHtmlGenerator(
+        sectionFactory,
+        new ReactStaticRenderer(),
+        getDefaultAddListenerForCollapsibleSection,
+        DateProvider.getUTCStringFromDate,
+    );
+
+    const deps = {
+        reportHtmlGenerator,
+    }
+
+    return new SummaryResultsReport(deps, parameters, toolData);
+};
+
 initializeFabricIcons();
 
 export const reporterFactory: ReporterFactory = () => {
 
-    return new Reporter(axeResultsReportGenerator);
+    return new Reporter(axeResultsReportGenerator, summaryResultsReportGenerator);
 };

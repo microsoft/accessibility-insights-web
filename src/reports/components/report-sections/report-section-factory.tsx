@@ -29,18 +29,18 @@ export type SectionProps = {
     scanMetadata: ScanMetadata;
 };
 
-export type ReportSectionFactory = {
+export type ReportSectionFactory<SectionPropsType = SectionProps> = {
     HeadSection: ReactFCWithDisplayName;
     BodySection: ReactFCWithDisplayName;
     ContentContainer: ReactFCWithDisplayName;
-    HeaderSection: ReactFCWithDisplayName<SectionProps>;
+    HeaderSection: ReactFCWithDisplayName<SectionPropsType>;
     TitleSection: ReactFCWithDisplayName;
-    SummarySection: ReactFCWithDisplayName<SectionProps>;
-    DetailsSection: ReactFCWithDisplayName<SectionProps>;
-    ResultsContainer: ReactFCWithDisplayName<SectionProps>;
-    FailedInstancesSection: ReactFCWithDisplayName<SectionProps>;
-    PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
-    NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
+    SummarySection: ReactFCWithDisplayName<SectionPropsType>;
+    DetailsSection: ReactFCWithDisplayName<SectionPropsType>;
+    ResultsContainer: ReactFCWithDisplayName<SectionPropsType>;
+    FailedInstancesSection: ReactFCWithDisplayName<SectionPropsType>;
+    PassedChecksSection: ReactFCWithDisplayName<SectionPropsType>;
+    NotApplicableChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     FooterSection: ReactFCWithDisplayName;
-    FooterText: ReactFCWithDisplayName<Pick<SectionProps, 'scanMetadata'>>;
+    FooterText: ReactFCWithDisplayName<SectionPropsType>;
 };
