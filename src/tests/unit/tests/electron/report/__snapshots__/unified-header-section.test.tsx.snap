@@ -2,15 +2,8 @@
 
 exports[`HeaderSection renders 1`] = `
 <header>
-  <div
-    className="reportHeaderBar"
-  >
-    <BrandWhite />
-    <div
-      className="headerText"
-    >
-      Accessibility Insights for Android
-    </div>
-  </div>
+  <HeaderBar
+    headerText="Accessibility Insights for Android"
+  />
 </header>
 `;
