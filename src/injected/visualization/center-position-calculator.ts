@@ -131,7 +131,7 @@ export class CenterPositionCalculator {
             let deltaY: number;
 
             switch (shape) {
-                case 'default':
+                case 'default': {
                     const minHeight = this.drawerUtils.getContainerHeight(
                         offset,
                         dom,
@@ -149,9 +149,10 @@ export class CenterPositionCalculator {
                     deltaX = minWidth / 2;
                     deltaY = minHeight / 2;
                     break;
+                }
 
                 case 'rect':
-                case 'poly':
+                case 'poly': {
                     let sumX = 0;
                     let sumY = 0;
 
@@ -166,6 +167,7 @@ export class CenterPositionCalculator {
                     deltaX = sumX / (coords.length / 2);
                     deltaY = sumY / (coords.length / 2);
                     break;
+                }
 
                 case 'circle':
                     deltaX = parseInt(coords[0], 10);
