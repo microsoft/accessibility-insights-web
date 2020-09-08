@@ -15,6 +15,8 @@ import {
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { NullComponent } from 'common/components/null-component';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
+import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
+import { SummaryReportHead } from 'reports/components/summary-report-head';
 
 export type SummaryReportSectionProps = {
     scanDetails: CrawlSummaryDetails;
@@ -25,12 +27,12 @@ export type SummaryReportSectionProps = {
 };
 
 export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSectionProps> = {
-    HeadSection: ReportHead,
+    HeadSection: SummaryReportHead,
     BodySection,
     ContentContainer,
     HeaderSection: SummaryReportHeaderSection,
     TitleSection,
-    SummarySection: NullComponent,
+    SummarySection: SummaryReportSummarySection,
     DetailsSection: NullComponent,
     ResultsContainer,
     FailedInstancesSection: NullComponent,

@@ -1,0 +1,309 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SummaryReportSummarySection BaseSummarySection: failure only 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    2
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 2,
+        "inapplicable": 0,
+        "pass": 0,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={3}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;
+
+exports[`SummaryReportSummarySection BaseSummarySection: failures + passes only 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    4
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 2,
+        "inapplicable": 0,
+        "pass": 2,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={3}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;
+
+exports[`SummaryReportSummarySection BaseSummarySection: failures + unscannable + passes 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    7
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 2,
+        "inapplicable": 3,
+        "pass": 2,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={3}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;
+
+exports[`SummaryReportSummarySection BaseSummarySection: failures + unscannable only 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    5
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 2,
+        "inapplicable": 3,
+        "pass": 0,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={3}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;
+
+exports[`SummaryReportSummarySection BaseSummarySection: passes only 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    2
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 0,
+        "inapplicable": 0,
+        "pass": 2,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={0}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;
+
+exports[`SummaryReportSummarySection BaseSummarySection: unscannable + passes only 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    5
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 0,
+        "inapplicable": 3,
+        "pass": 2,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={0}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;
+
+exports[`SummaryReportSummarySection BaseSummarySection: unscannable only 1`] = `
+<div
+  className="summary-report-summary-section"
+>
+  <React.Fragment>
+    <h2>
+      URLs
+    </h2>
+    3
+     total URLs discovered
+  </React.Fragment>
+  <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "fail",
+        "inapplicable",
+        "pass",
+      ]
+    }
+    iconStyleInverted={true}
+    outcomeStats={
+      Object {
+        "fail": 0,
+        "inapplicable": 3,
+        "pass": 0,
+        "review": 0,
+      }
+    }
+  />
+  <div
+    className="failure-instances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={0}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
+</div>
+`;

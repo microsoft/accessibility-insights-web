@@ -160,8 +160,8 @@ exports[`SummarySection BaseSummarySection: not applicable only 1`] = `
     outcomeStats={
       Object {
         "fail": 0,
-        "inapplicable": 0,
-        "pass": 2,
+        "inapplicable": 3,
+        "pass": 0,
         "review": 0,
       }
     }

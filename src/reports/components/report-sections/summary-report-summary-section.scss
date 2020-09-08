@@ -1,0 +1,19 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import './common-mixins.scss';
+
+.summary-report-summary-section {
+    @include boxShadow();
+
+    background-color: $neutral-0;
+    padding: 20px;
+    margin-bottom: 24px;
+
+    h2 {
+        margin-bottom: 16px !important;
+    }
+    .failure-instances {
+        margin-top: 40px;
+    }
+}
