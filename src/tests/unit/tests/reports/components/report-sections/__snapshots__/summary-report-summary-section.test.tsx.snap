@@ -15,19 +15,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: failure only 1`] = `
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 2,
-        "inapplicable": 0,
         "pass": 0,
-        "review": 0,
+        "unscannable": 0,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"
@@ -59,19 +59,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: failures + passes only 
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 2,
-        "inapplicable": 0,
         "pass": 2,
-        "review": 0,
+        "unscannable": 0,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"
@@ -103,19 +103,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: failures + unscannable 
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 2,
-        "inapplicable": 3,
         "pass": 2,
-        "review": 0,
+        "unscannable": 3,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"
@@ -147,19 +147,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: failures + unscannable 
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 2,
-        "inapplicable": 3,
         "pass": 0,
-        "review": 0,
+        "unscannable": 3,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"
@@ -191,19 +191,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: passes only 1`] = `
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 0,
-        "inapplicable": 0,
         "pass": 2,
-        "review": 0,
+        "unscannable": 0,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"
@@ -235,19 +235,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: unscannable + passes on
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 0,
-        "inapplicable": 3,
         "pass": 2,
-        "review": 0,
+        "unscannable": 3,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"
@@ -279,19 +279,19 @@ exports[`SummaryReportSummarySection BaseSummarySection: unscannable only 1`] = 
     allOutcomeTypes={
       Array [
         "fail",
-        "inapplicable",
         "pass",
+        "unscannable",
       ]
     }
     iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 0,
-        "inapplicable": 3,
         "pass": 0,
-        "review": 0,
+        "unscannable": 3,
       }
     }
+    textLabel={true}
   />
   <div
     className="failure-instances"

@@ -7,6 +7,7 @@ import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { OutcomeChip } from 'reports/components/outcome-chip';
+import { allUrlOutcomeTypes, UrlOutcomeType } from 'reports/components/url-outcome-type';
 
 export const SummaryReportSummarySection = NamedFC<SummaryReportSectionProps>(
     'BaseSummarySection',
@@ -29,18 +30,18 @@ export const SummaryReportSummarySection = NamedFC<SummaryReportSectionProps>(
         };
 
         const getSummaryBar = () => {
-            const countSummary: { [type in InstanceOutcomeType]: number } = {
+            const countSummary: { [type in UrlOutcomeType]: number } = {
                 fail: numFailed,
                 pass: numPassed,
-                inapplicable: numUnscannable,
-                review: 0, // never used
+                unscannable: numUnscannable,
             };
 
             return (
                 <OutcomeSummaryBar
                     outcomeStats={countSummary}
                     iconStyleInverted={true}
-                    allOutcomeTypes={['fail', 'inapplicable', 'pass']}
+                    allOutcomeTypes={allUrlOutcomeTypes}
+                    textLabel={true}
                 />
             );
         };

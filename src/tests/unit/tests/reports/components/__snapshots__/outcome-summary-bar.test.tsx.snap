@@ -191,3 +191,81 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
   </div>
 </div>
 `;
+
+exports[`OutcomeSummaryBar show with text label 1`] = `
+<div
+  aria-label="42 Passed, 13 Failed, 7 Incomplete"
+  className="outcome-summary-bar"
+  role="img"
+>
+  <div
+    style={
+      Object {
+        "flexGrow": 42,
+      }
+    }
+  >
+    <span
+      className="pass summary-bar-left-edge"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CheckIcon />
+      </span>
+      42
+      <div
+        className="label"
+      >
+         Passed
+      </div>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 13,
+      }
+    }
+  >
+    <span
+      className="fail"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CrossIcon />
+      </span>
+      13
+      <div
+        className="label"
+      >
+         Failed
+      </div>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 7,
+      }
+    }
+  >
+    <span
+      className="incomplete summary-bar-right-edge"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CircleIcon />
+      </span>
+      7
+      <div
+        className="label"
+      >
+         Incomplete
+      </div>
+    </span>
+  </div>
+</div>
+`;

@@ -37,4 +37,11 @@ describe('OutcomeSummaryBar', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('show with text label', () => {
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, textLabel: true };
+        const wrapper = shallow(<OutcomeSummaryBar {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
