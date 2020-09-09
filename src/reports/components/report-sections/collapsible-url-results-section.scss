@@ -1,0 +1,13 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.url-result-section {
+    padding-bottom: 58px;
+
+    .title-container[aria-level='3'] {
+        .collapsible-control::before {
+            position: relative;
+            bottom: 2px;
+            margin-right: 14px;
+        }
+    }
+}

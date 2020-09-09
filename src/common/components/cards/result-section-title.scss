@@ -23,8 +23,17 @@
         }
     }
 
-    .title {
+    .title-h2 {
         @include text-style-title-s;
+        margin-right: 6px;
+        color: $primary-text;
+    }
+
+    .title-h3 {
+        font-family: $semiBoldFontFamily;
+        font-weight: $fontWeightSemiBold;
+        font-size: 15px;
+        line-height: 20px;
         margin-right: 6px;
         color: $primary-text;
     }

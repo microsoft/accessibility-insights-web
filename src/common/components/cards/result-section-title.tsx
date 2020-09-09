@@ -11,7 +11,13 @@ export type ResultSectionTitleProps = {
     title: string;
     badgeCount: number;
     outcomeType: InstanceOutcomeType;
+    titleSize: keyof typeof titleClassNames;
     shouldAlertFailuresCount?: boolean;
+};
+
+const titleClassNames = {
+    large: styles.titleH2,
+    medium: styles.titleH3,
 };
 
 export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
@@ -33,7 +39,7 @@ export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectio
                 {props.title}{' '}
                 {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
             </span>
-            <span className={styles.title} aria-hidden="true">
+            <span className={titleClassNames[props.titleSize]} aria-hidden="true">
                 {props.title}
             </span>
             <span className={styles.outcomeChipContainer} aria-hidden="true">

@@ -14,6 +14,12 @@ import { SummaryReportSummarySection } from 'reports/components/report-sections/
 import { SummaryReportHead } from 'reports/components/summary-report-head';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { ResultsByUrlContainer } from 'reports/components/report-sections/results-by-url-container';
+import {
+    FailedUrlsSection,
+    FailedUrlsSectionDeps,
+} from 'reports/components/report-sections/failed-urls-section';
+
+export type SectionDeps = FailedUrlsSectionDeps;
 
 export type ScanTimespan = {
     scanStart: Date;
@@ -22,6 +28,7 @@ export type ScanTimespan = {
 };
 
 export type SummaryReportSectionProps = {
+    deps: SectionDeps;
     scanTimespan: ScanTimespan;
     toUtcString: (date: Date) => string;
     secondsToTimeString: (seconds: number) => string;
@@ -39,7 +46,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     SummarySection: SummaryReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
     ResultsContainer: ResultsByUrlContainer,
-    FailedInstancesSection: NullComponent,
+    FailedInstancesSection: FailedUrlsSection,
     PassedChecksSection: NullComponent,
     NotApplicableChecksSection: NullComponent,
     FooterSection: ReportFooter,

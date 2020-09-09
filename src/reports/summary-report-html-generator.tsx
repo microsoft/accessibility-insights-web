@@ -4,6 +4,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
+import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import { ReportSectionFactory } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 import {
@@ -30,6 +31,9 @@ export class SummaryReportHtmlGenerator {
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: SummaryReportSectionProps = {
+            deps: {
+                collapsibleControl: ReportCollapsibleContainerControl,
+            },
             scanTimespan,
             scanMetadata,
             results,
