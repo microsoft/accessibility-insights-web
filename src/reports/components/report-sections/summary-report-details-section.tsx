@@ -14,7 +14,7 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
         const createListItem = (label: string, content: string | JSX.Element) => (
             <li>
                 <span className="label">{`${label} `}</span>
-                <span className={'text'}>{content}</span>
+                <span className="text">{content}</span>
             </li>
         );
 
@@ -23,9 +23,9 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
         const duration = secondsToTimeString(scanTimespan.durationSeconds);
 
         return (
-            <div className="scan-details-section">
+            <div className="crawl-details-section">
                 <h2>Scan details</h2>
-                <ul className="details-section-list">
+                <ul className="crawl-details-section-list">
                     {createListItem(
                         'Target url',
                         <NewTabLinkWithConfirmationDialog

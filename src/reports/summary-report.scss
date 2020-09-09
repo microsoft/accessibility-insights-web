@@ -12,12 +12,12 @@
 @import './components/report-sections/body-section.scss';
 @import './components/report-sections/common-mixins.scss';
 @import './components/report-sections/content-container.scss';
-@import './components/report-sections/details-section.scss';
 @import './components/report-sections/footer-section.scss';
 @import './components/report-sections/header-section.scss';
 @import './components/report-sections/title-section.scss';
 @import './components/report-sections/results-container.scss';
 @import './components/report-sections/summary-report-summary-section.scss';
+@import './components/report-sections/summary-report-details-section.scss';
 
 $outcome-pass-summary-color: $positive-outcome;
 $outcome-fail-summary-color: $negative-outcome;
