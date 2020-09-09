@@ -18,6 +18,7 @@ export class SummaryReportHtmlGenerator {
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
+        private readonly secondsToTimeStringConverter: (seconds: number) => string,
     ) {}
 
     public generateHtml(
@@ -33,6 +34,7 @@ export class SummaryReportHtmlGenerator {
             scanMetadata,
             results,
             toUtcString: this.utcDateConverter,
+            secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
         };
 

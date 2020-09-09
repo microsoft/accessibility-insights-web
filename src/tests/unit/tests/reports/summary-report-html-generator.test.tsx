@@ -21,6 +21,7 @@ describe('ReportHtmlGenerator', () => {
         const baseUrl: string = 'https://page-url/';
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
+        const getTimeStringFromSecondsStub: typeof DateProvider.getTimeStringFromSeconds = () => '';
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory<SummaryReportSectionProps>>();
 
@@ -81,6 +82,7 @@ describe('ReportHtmlGenerator', () => {
         const sectionProps: ReportBodyProps<SummaryReportSectionProps> = {
             sectionFactory: sectionFactoryMock.object,
             toUtcString: getUTCStringFromDateStub,
+            secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
             scanTimespan,
@@ -106,6 +108,7 @@ describe('ReportHtmlGenerator', () => {
             rendererMock.object,
             getScriptMock.object,
             getUTCStringFromDateStub,
+            getTimeStringFromSecondsStub,
         );
 
         const actual = testObject.generateHtml(scanTimespan, scanMetadata, results);

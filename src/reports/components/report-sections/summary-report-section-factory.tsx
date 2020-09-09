@@ -13,6 +13,7 @@ import { NullComponent } from 'common/components/null-component';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
+import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 
 export type ScanTimespan = {
     scanStart: Date;
@@ -23,6 +24,7 @@ export type ScanTimespan = {
 export type SummaryReportSectionProps = {
     scanTimespan: ScanTimespan;
     toUtcString: (date: Date) => string;
+    secondsToTimeString: (seconds: number) => string;
     getCollapsibleScript: () => string;
     scanMetadata: ScanMetadata;
     results: SummaryScanResults;
@@ -35,7 +37,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     HeaderSection: SummaryReportHeaderSection,
     TitleSection,
     SummarySection: SummaryReportSummarySection,
-    DetailsSection: NullComponent,
+    DetailsSection: SummaryReportDetailsSection,
     ResultsContainer,
     FailedInstancesSection: NullComponent,
     PassedChecksSection: NullComponent,
