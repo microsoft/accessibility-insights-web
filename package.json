@@ -70,7 +70,7 @@
         "@electron/get": "^1.12.2",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.122",
-        "@types/enzyme": "^3.10.5",
+        "@types/enzyme": "^3.10.6",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^26.0.13",
         "@types/jsdom": "^16.2.4",
