@@ -1,0 +1,33 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
+@import '../../common/styles/fonts.scss';
+
+.report-header-bar {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+
+    background-color: $ada-brand-color;
+    height: $detailsViewHeaderBarHeight;
+    width: 100%;
+
+    :global(.header-icon) {
+        flex-shrink: 0;
+        margin-left: 16px;
+        height: 22px;
+        width: 22px;
+    }
+
+    .header-text {
+        margin-left: 8px;
+
+        color: $header-bar-title-color;
+
+        flex-shrink: 1;
+        @include ellipsedText();
+        @include text-style-header-s;
+    }
+}
