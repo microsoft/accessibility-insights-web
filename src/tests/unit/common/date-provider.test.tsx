@@ -31,4 +31,19 @@ describe('DateProviderTest', () => {
         const date = new Date(timestamp);
         expect(DateProvider.getUTCStringFromDate(date)).toBe('2019-05-30 11:57 PM UTC');
     });
+
+    test.each([
+        [0, 0, 12, '00:00:12'],
+        [0, 12, 34, '00:12:34'],
+        [1, 23, 45, '01:23:45'],
+        [25, 0, 1, '25:00:01'],
+        [100, 1, 2, '100:01:02'],
+    ])('Get %s as string', (hours, minutes, seconds, expectedTime) => {
+        const timeAsSeconds = timeToSeconds(hours, minutes, seconds);
+        expect(DateProvider.getTimeStringFromSeconds(timeAsSeconds)).toBe(expectedTime);
+    });
+
+    function timeToSeconds(hours: number, minutes: number, seconds: number): number {
+        return hours * 3600 + minutes * 60 + seconds;
+    }
 });
