@@ -6,7 +6,7 @@ export const infoAndExamples = create(({ Markup }) => (
     <>
         <p>If a non-text CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing.</p>
 
-        <h2>Why it matters </h2>
+        <h2>Why it matters</h2>
         <p>
             A traditional CAPTCHA requires the user to perform a visual task that's intended to be easy for humans but difficult for robots.
             Unfortunately, such a task can be impossible for people with visual disabilities, with the result that they're denied access.
@@ -14,7 +14,7 @@ export const infoAndExamples = create(({ Markup }) => (
             human.
         </p>
 
-        <h2>How to fix </h2>
+        <h2>How to fix</h2>
         <p>Wherever a non-text CAPTCHA is used:</p>
         <ul>
             <li>Good: Provide both visual and auditory CAPTCHAs.</li>

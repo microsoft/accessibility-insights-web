@@ -46,7 +46,7 @@ const tableSemanticsHowToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                Use the Web Developer browser extension to reveal elements with ARIA roles (
+                Use the Web Developer browser extension to reveal elements with ARIA roles (
                 <Markup.Term>Information {'>'} Display ARIA Roles</Markup.Term>).
             </li>
             <li>

@@ -17,7 +17,7 @@ const { guidance } = content.automatedChecks;
 const gettingStarted: JSX.Element = (
     <p>
         {title} automated accessibility checks can detect some of the most common accessibility
-        issues, depending on the complexity of the site or the app​​​lication.
+        issues, depending on the complexity of the site or the application.
     </p>
 );
 

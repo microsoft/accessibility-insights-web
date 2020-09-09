@@ -51,7 +51,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>
-                         For example, a button should indicate what action it will initiate. A text field should indicate what type of data
+                        For example, a button should indicate what action it will initiate. A text field should indicate what type of data
                         is expected and whether a specific format is required.
                     </li>
                 </ul>

@@ -22,7 +22,7 @@ const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
             In general, larger fonts and ample spacing make it easier to read text, especially for
-            people with low vision, dyslexia, or presbyopia. A 2018 study found that 1.8 billion
+            people with low vision, dyslexia, or presbyopia. A 2018 study found that 1.8 billion
             people worldwide have presbyopia. (All people are affected by presbyopia to some degree
             as they age.)
         </p>

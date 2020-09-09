@@ -27,7 +27,7 @@ export const guidance = create(({ Markup, Link }) => (
                     <Link.WCAG_2_1_1 />)
                 </h3>
                 <ul>
-                    <li>Users must be able to reach every interactive interface component on the page unless the component is disabled.</li>
+                    <li>Users must be able to reach every interactive interface component on the page unless the component is disabled.</li>
                     <li>Interactive interface components include links, buttons, form fields and other input controls.</li>
                     <li>
                         <Markup.Term>Tab</Markup.Term> and <Markup.Term>Shift+Tab</Markup.Term> should allow users to navigate between
@@ -67,8 +67,8 @@ export const guidance = create(({ Markup, Link }) => (
                     <Link.WCAG_3_2_1 />, <Link.WCAG_3_2_2 />)
                 </h3>
                 <ul>
-                    <li> All users, but especially those who can't see the entire page simultaneously, are likely to be disoriented.</li>
-                    <li> Instead, leave the user in control by providing a separate mechanism for triggering the change of context.</li>
+                    <li>All users, but especially those who can't see the entire page simultaneously, are likely to be disoriented.</li>
+                    <li>Instead, leave the user in control by providing a separate mechanism for triggering the change of context.</li>
                 </ul>
 
                 <h3>

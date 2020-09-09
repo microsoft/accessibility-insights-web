@@ -50,15 +50,15 @@ const roleStatePropertyHowToTest: JSX.Element = (
                 design pattern:
                 <ul>
                     <li>
-                        For a composite widget, use the Accessibility Tree to verify the role
-                        hierarchy. (For example, verify that a menuitem exists for each option in
-                        a menubar.)
+                        For a composite widget, use the Accessibility Tree to verify the role
+                        hierarchy. (For example, verify that a menuitem exists for each option in a
+                        menubar.)
                     </li>
                     <li>
                         View the widget's ARIA Attributes while you interact with it to verify that
                         required properties update according to spec. (For example, when a tree node
-                        in a tree view is expanded, aria-expanded is "true" and when it isn't
-                        expanded, it is "false".)
+                        in a tree view is expanded, aria-expanded is "true" and when it isn't
+                        expanded, it is "false".)
                     </li>
                 </ul>
             </li>

@@ -68,21 +68,21 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>More examples</h2>
 
-        <h3>WCAG success criteria </h3>
+        <h3>WCAG success criteria</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html">
                 Understanding Success Criterion 2.1.2: No Keyboard Trap
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Sufficient techniques </h3>
+        <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G21">
                 Ensuring that users are not trapped in content
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Common failures </h3>
+        <h3>Common failures</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F10">
                 Failure of Success Criterion 2.1.2 due to combining multiple content formats in a way that traps users inside one format

@@ -238,7 +238,7 @@ export const guidance = create(({ Markup, Link }) => (
         <h5>Alternatives for CAPTCHA images</h5>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G143">
-                Providing a text alternative that describes the purpose of the CAPTCHA {' '}
+                Providing a text alternative that describes the purpose of the CAPTCHA{' '}
             </Markup.HyperLink>
         </Markup.Links>
 

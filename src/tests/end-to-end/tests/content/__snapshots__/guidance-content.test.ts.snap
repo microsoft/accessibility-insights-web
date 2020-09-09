@@ -2770,7 +2770,7 @@ exports[`Guidance Content pages test/adaptableContent/reflow/infoAndExamples mat
         </li>
       </ul>
       <h2>
-        How to fix 
+        How to fix
       </h2>
       <p>
         Use responsive web design to ensure page content reflows to fit within the window whenever the viewport narrows or the text size changes.
@@ -3899,7 +3899,7 @@ exports[`Guidance Content pages test/audioVideoOnly/guidance matches the snapsho
         Learn more
       </h2>
       <h3>
-        Provide an alternative for audio-only content 
+        Provide an alternative for audio-only content
       </h3>
       <div
         class="content-hyperlinks"
@@ -3920,7 +3920,7 @@ exports[`Guidance Content pages test/audioVideoOnly/guidance matches the snapsho
         </a>
       </div>
       <h3>
-        Provide an alternative for video-only content 
+        Provide an alternative for video-only content
       </h3>
       <div
         class="content-hyperlinks"
@@ -8906,7 +8906,7 @@ exports[`Guidance Content pages test/errors/statusMessages/infoAndExamples match
         How to fix
       </h2>
       <p>
-        Ensure any status message that's displayed as visible text has the appropriate ARIA role: 
+        Ensure any status message that's displayed as visible text has the appropriate ARIA role:
       </p>
       <ul>
         <li>
@@ -12035,13 +12035,13 @@ exports[`Guidance Content pages test/images/captchas/infoAndExamples matches the
         If a non-text CAPTCHA is used, alternative methods must be provided for both users without vision and users without hearing.
       </p>
       <h2>
-        Why it matters 
+        Why it matters
       </h2>
       <p>
         A traditional CAPTCHA requires the user to perform a visual task that's intended to be easy for humans but difficult for robots. Unfortunately, such a task can be impossible for people with visual disabilities, with the result that they're denied access. Providing an alternative CAPTCHA (such as text or auditory) increases the likelihood that users will be able to prove they're human.
       </p>
       <h2>
-        How to fix 
+        How to fix
       </h2>
       <p>
         Wherever a non-text CAPTCHA is used:
@@ -12787,7 +12787,7 @@ exports[`Guidance Content pages test/images/guidance matches the snapshot 1`] = 
           href="https://www.w3.org/WAI/WCAG21/Techniques/general/G143"
           target="_blank"
         >
-          Providing a text alternative that describes the purpose of the CAPTCHA  
+          Providing a text alternative that describes the purpose of the CAPTCHA 
         </a>
       </div>
       <h4>
@@ -14447,7 +14447,7 @@ exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] 
             </h3>
             <ul>
               <li>
-                Users must be able to reach every interactive interface component on the page unless the component is disabled.
+                Users must be able to reach every interactive interface component on the page unless the component is disabled.
               </li>
               <li>
                 Interactive interface components include links, buttons, form fields and other input controls.
@@ -14566,10 +14566,10 @@ exports[`Guidance Content pages test/keyboard/guidance matches the snapshot 1`] 
             </h3>
             <ul>
               <li>
-                 All users, but especially those who can't see the entire page simultaneously, are likely to be disoriented.
+                All users, but especially those who can't see the entire page simultaneously, are likely to be disoriented.
               </li>
               <li>
-                 Instead, leave the user in control by providing a separate mechanism for triggering the change of context.
+                Instead, leave the user in control by providing a separate mechanism for triggering the change of context.
               </li>
             </ul>
             <h3>
@@ -15577,7 +15577,7 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
         More examples
       </h2>
       <h3>
-        WCAG success criteria 
+        WCAG success criteria
       </h3>
       <div
         class="content-hyperlinks"
@@ -15591,7 +15591,7 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
         </a>
       </div>
       <h3>
-        Sufficient techniques 
+        Sufficient techniques
       </h3>
       <div
         class="content-hyperlinks"
@@ -15605,7 +15605,7 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
         </a>
       </div>
       <h3>
-        Common failures 
+        Common failures
       </h3>
       <div
         class="content-hyperlinks"
@@ -15739,7 +15739,7 @@ exports[`Guidance Content pages test/keyboard/noKeystrokeTimings/infoAndExamples
         More examples
       </h2>
       <h3>
-        Success criteria 
+        Success criteria
       </h3>
       <div
         class="content-hyperlinks"
@@ -15877,7 +15877,7 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
         More examples
       </h2>
       <h3>
-        WCAG success criteria 
+        WCAG success criteria
       </h3>
       <div
         class="content-hyperlinks"
@@ -15891,7 +15891,7 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
         </a>
       </div>
       <h3>
-        Sufficient techniques 
+        Sufficient techniques
       </h3>
       <div
         class="content-hyperlinks"
@@ -15905,7 +15905,7 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
         </a>
       </div>
       <h3>
-        Common failures 
+        Common failures
       </h3>
       <div
         class="content-hyperlinks"
@@ -15926,7 +15926,7 @@ exports[`Guidance Content pages test/keyboard/onFocus/infoAndExamples matches th
         </a>
       </div>
       <h3>
-        Best practices 
+        Best practices
       </h3>
       <div
         class="content-hyperlinks"
@@ -16142,7 +16142,7 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
         More examples
       </h2>
       <h3>
-        WCAG success criteria 
+        WCAG success criteria
       </h3>
       <div
         class="content-hyperlinks"
@@ -16156,7 +16156,7 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
         </a>
       </div>
       <h3>
-        Sufficient techniques 
+        Sufficient techniques
       </h3>
       <div
         class="content-hyperlinks"
@@ -16173,7 +16173,7 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
           href="https://www.w3.org/WAI/WCAG21/Techniques/html/H32"
           target="_blank"
         >
-          Providing submit buttons 
+          Providing submit buttons
         </a>
         <a
           class="ms-Link insights-link root-000"
@@ -16198,7 +16198,7 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
         </a>
       </div>
       <h3>
-        Common failures 
+        Common failures
       </h3>
       <div
         class="content-hyperlinks"
@@ -16219,7 +16219,7 @@ exports[`Guidance Content pages test/keyboard/onInput/infoAndExamples matches th
         </a>
       </div>
       <h3>
-        Best practices 
+        Best practices
       </h3>
       <div
         class="content-hyperlinks"
@@ -16337,11 +16337,11 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
             </h3>
             <ul>
               <li>
-                Turn on the 
+                Turn on the 
                 <strong>
                   Landmarks
                 </strong>
-                 visual helper, then zoom out so you can see the entire page. If you see any visible content (like text, images, or controls) outside the dashed borders, that’s a failure.
+                 visual helper, then zoom out so you can see the entire page. If you see any visible content (like text, images, or controls) outside the dashed borders, that’s a failure.
               </li>
               <li>
                 An automated check will fail if the page uses landmarks and some visible content is not contained within a landmark.
@@ -16553,15 +16553,15 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
                 <strong>
                   banner
                 </strong>
-                , 
+                , 
                 <strong>
                   main
                 </strong>
-                 and 
+                 and 
                 <strong>
                   contentinfo
                 </strong>
-                landmarks.
+                 landmarks.
               </li>
             </ul>
             <h3>
@@ -16600,7 +16600,7 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
                 <strong>
                   aria-label
                 </strong>
-                 or 
+                 or 
                 <strong>
                   aria-labelledby
                 </strong>
@@ -16639,11 +16639,11 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
             </h3>
             <ul>
               <li>
-                Use 
+                Use 
                 <strong>
                   aria-labelledby
                 </strong>
-                 to programmatically associate the visible label with the landmark.
+                 to programmatically associate the visible label with the landmark.
               </li>
             </ul>
             <h3>
@@ -16733,7 +16733,7 @@ exports[`Guidance Content pages test/landmarks/guidance matches the snapshot 1`]
                 An automated check will fail if a banner, contentinfo, or main landmark is nested within another landmark.
               </li>
               <li>
-                Exception: If the page contains nested document or application roles, each one can have its own banner, main and contentinfo landmarks.
+                Exception: If the page contains nested document or application roles, each one can have its own banner, main and contentinfo landmarks.
               </li>
             </ul>
           </div>
@@ -20122,7 +20122,7 @@ exports[`Guidance Content pages test/multimedia/captions/infoAndExamples matches
       class="content"
     >
       <p>
-        Pre-recorded multimedia content must have captions.
+        Pre-recorded multimedia content must have captions.
       </p>
       <h2>
         Why it matters
@@ -20529,7 +20529,7 @@ exports[`Guidance Content pages test/multimedia/guidance matches the snapshot 1`
             </h3>
             <ul>
               <li>
-                  Adjust the position or timing of the captions to avoid a conflict.
+                Adjust the position or timing of the captions to avoid a conflict.
               </li>
             </ul>
             <h3>
@@ -29722,7 +29722,7 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
         >
           role="presentation"
         </span>
-         or 
+         or 
         <span
           class="insights-code"
         >
@@ -29751,13 +29751,13 @@ exports[`Guidance Content pages test/semantics/tableSemantics/infoAndExamples ma
            on layout tables.
         </li>
         <li>
-          Do not use 
+          Do not use 
           <span
             class="insights-code"
           >
             role="presentation"
           </span>
-           or 
+           or 
           <span
             class="insights-code"
           >
@@ -32738,7 +32738,7 @@ exports[`Guidance Content pages test/timedEvents/audioControl/infoAndExamples ma
         </div>
       </div>
       <h2>
-        More examples 
+        More examples
       </h2>
       <h3>
         WCAG success criteria
@@ -32928,7 +32928,7 @@ exports[`Guidance Content pages test/timedEvents/autoUpdatingContent/infoAndExam
         </div>
       </div>
       <h2>
-        More examples 
+        More examples
       </h2>
       <h3>
         WCAG success criteria
