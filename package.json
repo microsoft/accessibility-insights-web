@@ -122,7 +122,7 @@
         "js-yaml": "^3.14.0",
         "license-check-and-add": "^3.0.4",
         "make-dir": "^3.1.0",
-        "mini-css-extract-plugin": "0.11.0",
+        "mini-css-extract-plugin": "0.11.1",
         "node-sass": "^4.14.1",
         "npm-run-all": "^4.1.5",
         "pkg": "^4.4.9",
