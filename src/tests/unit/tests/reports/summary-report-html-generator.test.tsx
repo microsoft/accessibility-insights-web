@@ -2,18 +2,17 @@
 // Licensed under the MIT License.
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import {
-    CrawlSummaryDetails,
-    SummaryScanResults,
-} from 'reports/package/accessibilityInsightsReport';
+    SummaryReportSectionProps,
+    ScanTimespan,
+} from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 
 describe('ReportHtmlGenerator', () => {
@@ -49,8 +48,7 @@ describe('ReportHtmlGenerator', () => {
             targetAppInfo: targetAppInfo,
         } as ScanMetadata;
 
-        const scanDetails: CrawlSummaryDetails = {
-            baseUrl: baseUrl,
+        const scanTimespan: ScanTimespan = {
             scanStart: new Date(2020, 1, 2, 3),
             scanComplete: new Date(2020, 4, 5, 6),
             durationSeconds: 42,
@@ -85,7 +83,7 @@ describe('ReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
-            scanDetails,
+            scanTimespan,
             results,
         };
 
@@ -110,7 +108,7 @@ describe('ReportHtmlGenerator', () => {
             getUTCStringFromDateStub,
         );
 
-        const actual = testObject.generateHtml(scanDetails, scanMetadata, results);
+        const actual = testObject.generateHtml(scanTimespan, scanMetadata, results);
 
         expect(actual).toMatchSnapshot();
     });
