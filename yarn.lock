@@ -1704,10 +1704,10 @@ accepts@~1.3.7:
     mime-types "~2.1.24"
     negotiator "0.6.2"
 
-accessibility-insights-for-android-service-bin@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/accessibility-insights-for-android-service-bin/-/accessibility-insights-for-android-service-bin-1.2.0.tgz#41a6921e6d104cdad68c6c5c4cf81958bfb65cf4"
-  integrity sha512-eCklspRjeCP5WUkdoeAFikujzvZLQk8FOyZa568/8GESVDgE4bS16E3RVJpQoEwUxM1TWSGRWP70KshZQuOdAg==
+accessibility-insights-for-android-service-bin@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/accessibility-insights-for-android-service-bin/-/accessibility-insights-for-android-service-bin-1.2.1.tgz#f8a6cdd9aef4ca8e61f86cd54a52938269ec3bf9"
+  integrity sha512-gXKaKRYEubVEeBkqYteMQZdyx9zD5VEnECK9R3yWsECmdTp+KJMWwONL0b4niCm2V4AH+3quo9by+kPfeTUIcg==
 
 acorn-globals@^6.0.0:
   version "6.0.0"

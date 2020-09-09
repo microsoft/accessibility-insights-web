@@ -50,7 +50,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -112,7 +112,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -174,7 +174,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -259,7 +259,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -344,7 +344,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -425,7 +425,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -483,7 +483,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -541,7 +541,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -620,7 +620,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -700,7 +700,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -779,7 +779,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -838,7 +838,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -897,7 +897,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -979,7 +979,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1060,7 +1060,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -1145,7 +1145,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1207,7 +1207,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1269,7 +1269,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1354,7 +1354,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1439,7 +1439,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -1523,7 +1523,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1585,7 +1585,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1647,7 +1647,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1732,7 +1732,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1816,7 +1816,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.0",
+    versionName=1.2.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,

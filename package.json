@@ -149,7 +149,7 @@
         "webpack-node-externals": "^2.5.2"
     },
     "dependencies": {
-        "accessibility-insights-for-android-service-bin": "^1.2.0",
+        "accessibility-insights-for-android-service-bin": "^1.2.1",
         "appium-adb": "^8.7.1",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "4.0.1",
