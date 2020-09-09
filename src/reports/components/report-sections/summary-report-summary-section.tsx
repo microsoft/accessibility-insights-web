@@ -32,8 +32,8 @@ export const SummaryReportSummarySection = NamedFC<SummaryReportSectionProps>(
         const getSummaryBar = () => {
             const countSummary: { [type in UrlOutcomeType]: number } = {
                 fail: numFailed,
-                pass: numPassed,
                 unscannable: numUnscannable,
+                pass: numPassed,
             };
 
             return (

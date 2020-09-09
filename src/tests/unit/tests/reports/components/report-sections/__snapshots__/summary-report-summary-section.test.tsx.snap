@@ -15,8 +15,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: failure only 1`] = `
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
@@ -59,8 +59,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: failures + passes only 
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
@@ -103,8 +103,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: failures + unscannable 
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
@@ -147,8 +147,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: failures + unscannable 
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
@@ -191,8 +191,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: passes only 1`] = `
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
@@ -235,8 +235,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: unscannable + passes on
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
@@ -279,8 +279,8 @@ exports[`SummaryReportSummarySection BaseSummarySection: unscannable only 1`] = 
     allOutcomeTypes={
       Array [
         "fail",
-        "pass",
         "unscannable",
+        "pass",
       ]
     }
     iconStyleInverted={true}
