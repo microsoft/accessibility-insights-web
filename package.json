@@ -95,7 +95,7 @@
         "commander": "^6.1.0",
         "core-js-bundle": "^3.6.5",
         "cross-env": "^7.0.2",
-        "css-loader": "^4.2.2",
+        "css-loader": "^4.3.0",
         "electron-builder": "^22.8.0",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.4",
