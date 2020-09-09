@@ -5,7 +5,6 @@ import { ContentContainer } from './content-container';
 import { FooterText } from './footer-text';
 import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
-import { ResultsContainer } from './results-container';
 import { TitleSection } from './title-section';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -14,6 +13,7 @@ import { SummaryReportHeaderSection } from 'reports/components/report-sections/s
 import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
+import { ResultsByUrlContainer } from 'reports/components/report-sections/results-by-url-container';
 
 export type ScanTimespan = {
     scanStart: Date;
@@ -38,7 +38,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     TitleSection,
     SummarySection: SummaryReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
-    ResultsContainer,
+    ResultsContainer: ResultsByUrlContainer,
     FailedInstancesSection: NullComponent,
     PassedChecksSection: NullComponent,
     NotApplicableChecksSection: NullComponent,
