@@ -3,14 +3,14 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { OutcomeChip } from '../../../reports/components/outcome-chip';
 import * as styles from './result-section-title.scss';
+import { OutcomeType } from 'reports/components/outcome-type';
 
 export type ResultSectionTitleProps = {
     title: string;
     badgeCount: number;
-    outcomeType: InstanceOutcomeType;
+    outcomeType: OutcomeType;
     titleSize: keyof typeof titleClassNames;
     shouldAlertFailuresCount?: boolean;
 };

@@ -1,28 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import {
-    FailedUrlsSection,
-    FailedUrlsSectionDeps,
-} from 'reports/components/report-sections/failed-urls-section';
-import { SummaryScanResult, SummaryScanError } from 'reports/package/accessibilityInsightsReport';
+import { SummaryScanError, SummaryScanResult } from 'reports/package/accessibilityInsightsReport';
 import { shallow } from 'enzyme';
+import {
+    PassedUrlsSectionDeps,
+    PassedUrlsSection,
+} from 'reports/components/report-sections/passed-urls-section';
 
-describe(FailedUrlsSection, () => {
+describe(PassedUrlsSection, () => {
     const failed = [{}] as SummaryScanResult[];
     const passed = [{}, {}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];
 
     it('renders', () => {
         const props = {
-            deps: {} as FailedUrlsSectionDeps,
+            deps: {} as PassedUrlsSectionDeps,
             results: {
                 failed,
                 passed,
                 unscannable,
             },
         };
-        const wrapper = shallow(<FailedUrlsSection {...props} />);
+        const wrapper = shallow(<PassedUrlsSection {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

@@ -18,6 +18,8 @@ import {
     FailedUrlsSection,
     FailedUrlsSectionDeps,
 } from 'reports/components/report-sections/failed-urls-section';
+import { PassedUrlsSection } from 'reports/components/report-sections/passed-urls-section';
+import { NotScannedUrlsSection } from 'reports/components/report-sections/not-scanned-urls-section';
 
 export type SectionDeps = FailedUrlsSectionDeps;
 
@@ -47,8 +49,8 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     DetailsSection: SummaryReportDetailsSection,
     ResultsContainer: ResultsByUrlContainer,
     FailedInstancesSection: FailedUrlsSection,
-    PassedChecksSection: NullComponent,
-    NotApplicableChecksSection: NullComponent,
+    PassedChecksSection: PassedUrlsSection,
+    NotApplicableChecksSection: NotScannedUrlsSection,
     FooterSection: ReportFooter,
     FooterText,
 };

@@ -2,10 +2,10 @@
 
 exports[` renders 1`] = `
 <CollapsibleResultSection
-  badgeCount={1}
-  containerId="failed-urls-section"
+  badgeCount={3}
+  containerId="not-scanned-urls-section"
   deps={Object {}}
-  outcomeType="fail"
-  title="Failed URLs"
+  outcomeType="unscannable"
+  title="Not scanned URLs"
 />
 `;
