@@ -3,8 +3,9 @@
 
 // @ts-check
 const path = require('path');
+const process = require('process');
 const { repoRoot } = require('./config');
-const { forStrictNullCheckEligibleFiles, forEachFileInSrc } = require('./eligible-file-finder');
+const { getUncheckedLeafFiles, getAllTsFiles } = require('./eligible-file-finder');
 const { getImportsForFile } = require('./import-finder');
 
 const srcRoot = path.join(repoRoot, 'src');
@@ -14,20 +15,17 @@ let filter;
 let printDependedOnCount = true;
 let includeTests = false;
 
-if (false) {
-    // Generate test files listing
-    sort = false;
-    filter = x => x.endsWith('.test.ts');
-    printDependedOnCount = false;
-    includeTests = true;
-}
+// For test files only:
+//   includeTests = true;
+//   filter = x => x.endsWith('.test.ts');
+async function main() {
+    const eligibleFiles = await getUncheckedLeafFiles(repoRoot, { includeTests });
 
-forStrictNullCheckEligibleFiles(repoRoot, () => {}, { includeTests }).then(async eligibleFiles => {
     const eligibleSet = new Set(eligibleFiles);
 
     const dependedOnCount = new Map(eligibleFiles.map(file => [file, 0]));
 
-    for (const file of await forEachFileInSrc(srcRoot)) {
+    for (const file of await getAllTsFiles(srcRoot)) {
         if (eligibleSet.has(file)) {
             // Already added
             continue;
@@ -49,14 +47,18 @@ forStrictNullCheckEligibleFiles(repoRoot, () => {}, { includeTests }).then(async
     }
     for (const pair of out) {
         console.log(
-            toFormattedFilePath(pair[0]),
-            // + (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
+            toFormattedFilePath(pair[0]) +
+                (printDependedOnCount ? ` — Depended on by **${pair[1]}** files` : ''),
         );
     }
-});
+}
 
 function toFormattedFilePath(file) {
-    // return `"./${path.relative(srcRoot, file)}",`;
     const relativePath = path.relative(srcRoot, file).replace(/\\/g, '/');
     return `"./src/${relativePath}",`;
 }
+
+main().catch(error => {
+    console.error(error.stack);
+    process.exit(1);
+});
