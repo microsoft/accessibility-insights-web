@@ -278,6 +278,8 @@
         "./src/tests/unit/mock-helpers/port-on-message-mock.ts",
         "./src/tests/unit/tests/assessments/common/renderer-wrapper.tsx",
         "./src/tests/unit/tests/electron/flux/action-creator/scan-result-example.ts",
+        "./src/tests/unit/tests/scanner/custom-rules-configuration-stub.ts",
+        "./src/tests/unit/tests/scanner/mock-axe-utils.ts",
         "./src/views/content/guidance-title.tsx"
     ],
     "include": [
