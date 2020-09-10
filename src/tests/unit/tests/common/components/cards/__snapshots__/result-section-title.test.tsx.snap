@@ -20,7 +20,7 @@ exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -56,7 +56,7 @@ exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -92,7 +92,7 @@ exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -121,7 +121,7 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting 1`] =
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -150,7 +150,7 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shou
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -160,6 +160,35 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shou
   >
     <OutcomeChip
       count={15}
+      outcomeType="fail"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, titleSize=medium 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="titleH3"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
       outcomeType="fail"
     />
   </span>
@@ -186,7 +215,7 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting,
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -222,7 +251,7 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting,
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -258,7 +287,7 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting,
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -287,7 +316,7 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerti
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -316,7 +345,7 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerti
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -326,6 +355,35 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerti
   >
     <OutcomeChip
       count={15}
+      outcomeType="inapplicable"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, titleSize=medium 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="titleH3"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
       outcomeType="inapplicable"
     />
   </span>
@@ -352,7 +410,7 @@ exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -388,7 +446,7 @@ exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -424,7 +482,7 @@ exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -453,7 +511,7 @@ exports[`ResultSectionTitle with outcomeType pass renders with no-alerting 1`] =
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -482,7 +540,7 @@ exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shou
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -492,6 +550,35 @@ exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shou
   >
     <OutcomeChip
       count={15}
+      outcomeType="pass"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, titleSize=medium 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="titleH3"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
       outcomeType="pass"
     />
   </span>
@@ -518,7 +605,7 @@ exports[`ResultSectionTitle with outcomeType review renders with alerting, badge
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -554,7 +641,7 @@ exports[`ResultSectionTitle with outcomeType review renders with alerting, badge
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -590,7 +677,7 @@ exports[`ResultSectionTitle with outcomeType review renders with alerting, badge
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -619,7 +706,7 @@ exports[`ResultSectionTitle with outcomeType review renders with no-alerting 1`]
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -648,7 +735,7 @@ exports[`ResultSectionTitle with outcomeType review renders with no-alerting, sh
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="titleH2"
   >
     test title
   </span>
@@ -658,6 +745,35 @@ exports[`ResultSectionTitle with outcomeType review renders with no-alerting, sh
   >
     <OutcomeChip
       count={15}
+      outcomeType="review"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with no-alerting, titleSize=medium 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="titleH3"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={10}
       outcomeType="review"
     />
   </span>

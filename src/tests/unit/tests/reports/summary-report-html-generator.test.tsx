@@ -14,6 +14,7 @@ import {
 } from 'reports/components/report-sections/summary-report-section-factory';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
+import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
@@ -54,8 +55,12 @@ describe('ReportHtmlGenerator', () => {
             scanComplete: new Date(2020, 4, 5, 6),
             durationSeconds: 42,
         };
+        const deps = {
+            collapsibleControl: ReportCollapsibleContainerControl,
+        };
 
         const results: SummaryScanResults = {
+            deps,
             failed: [
                 {
                     url: `${baseUrl}/failed`,
@@ -80,6 +85,7 @@ describe('ReportHtmlGenerator', () => {
         };
 
         const sectionProps: ReportBodyProps<SummaryReportSectionProps> = {
+            deps,
             sectionFactory: sectionFactoryMock.object,
             toUtcString: getUTCStringFromDateStub,
             secondsToTimeString: getTimeStringFromSecondsStub,
