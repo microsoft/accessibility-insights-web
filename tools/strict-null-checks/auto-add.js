@@ -7,28 +7,25 @@ const fs = require('fs');
 const child_process = require('child_process');
 const config = require('./config');
 const { forStrictNullCheckEligibleFiles } = require('./eligible-file-finder');
+const { collapseCompletedDirectories } = require('./collapse-completed-directories');
+const { writeTsconfigSync } = require('./write-tsconfig');
 
 const repoRoot = config.repoRoot;
+const tscPath = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
+const tsconfigPath = path.join(repoRoot, config.targetTsconfig);
 
 const buildCompletePattern = /Found (\d+) errors?\. Watching for file changes\./gi;
 
 forStrictNullCheckEligibleFiles(repoRoot, () => {}).then(async files => {
-    const tscPath = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
-    const tsconfigPath = path.join(repoRoot, config.targetTsconfig);
-
     const child = child_process.spawn('node', [tscPath, '-p', tsconfigPath, '--watch']);
     for (const file of files) {
         await tryAutoAddStrictNulls(child, tsconfigPath, file);
     }
     child.kill();
+
+    console.log('Collapsing full completed directories into "includes" patterns...');
+    collapseCompletedDirectories(tsconfigPath);
 });
-
-function writeTsconfigSync(tsconfigPath, content) {
-    let serializedContent = JSON.stringify(content, null, '    ');
-    serializedContent += '\n';
-
-    fs.writeFileSync(tsconfigPath, serializedContent);
-}
 
 function tryAutoAddStrictNulls(child, tsconfigPath, file) {
     return new Promise(resolve => {
