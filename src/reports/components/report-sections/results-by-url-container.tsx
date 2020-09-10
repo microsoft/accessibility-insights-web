@@ -11,8 +11,10 @@ export const ResultsByUrlContainer = NamedFC<ResultsByUrlContainerProps>(
     ({ children, getCollapsibleScript }) => {
         return (
             <>
-                <div className="results-container">
-                    <h2>Results by URL</h2>
+                <div className="url-results-container">
+                    <div className="results-heading">
+                        <h2>Results by URL</h2>
+                    </div>
                     {children}
                 </div>
                 {/* tslint:disable-next-line: react-no-dangerous-html */}
