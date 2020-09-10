@@ -10,14 +10,19 @@ const { getImportsForFile } = require('./import-finder');
 
 const srcRoot = path.join(repoRoot, 'src');
 
-let sort = true;
+if (process.argv.includes('--help')) {
+    console.log('yarn null:find [--sort=name|count] [--show-count] [--include-tests]');
+    process.exit(0);
+}
+let sortBy = process.argv.includes('--sort=name') ? 'name' : 'count';
 let filter;
-let printDependedOnCount = true;
-let includeTests = false;
+let printDependedOnCount = process.argv.includes('--show-count');
+let includeTests = process.argv.includes('--include-tests');
 
 // For test files only:
 //   includeTests = true;
 //   filter = x => x.endsWith('.test.ts');
+
 async function main() {
     const eligibleFiles = await getUncheckedLeafFiles(repoRoot, { includeTests });
 
@@ -42,8 +47,10 @@ async function main() {
     if (filter) {
         out = out.filter(x => filter(x[0]));
     }
-    if (sort) {
+    if (sortBy === 'count') {
         out = out.sort((a, b) => b[1] - a[1]);
+    } else if (sortBy === 'name') {
+        out = out.sort((a, b) => a[0].localeCompare(b[0]));
     }
     for (const pair of out) {
         console.log(

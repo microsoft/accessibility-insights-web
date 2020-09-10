@@ -54,25 +54,14 @@ async function getUncheckedLeafFiles(repoRoot, options) {
         .filter(file => !checkedFiles.has(file))
         .filter(file => !config.skippedFiles.has(path.relative(srcRoot, file)));
 
-    return allUncheckedFiles.filter(file => {
+    const uncheckedFileSet = new Set(allUncheckedFiles);
+
+    const areAllImportsChecked = file => {
         const allImports = getMemoizedImportsForFile(file, srcRoot);
+        return !allImports.some(imp => uncheckedFileSet.has(imp));
+    };
 
-        const nonCheckedImports = allImports
-            .filter(x => x !== file)
-            .filter(imp => {
-                if (checkedFiles.has(imp)) {
-                    return false;
-                }
-                // Don't treat cycles as blocking
-                const impImports = getMemoizedImportsForFile(imp, srcRoot);
-                return (
-                    impImports.filter(x => x !== file).filter(x => !checkedFiles.has(x)).length !==
-                    0
-                );
-            });
-
-        return nonCheckedImports.length === 0;
-    });
+    return allUncheckedFiles.filter(areAllImportsChecked);
 }
 
 async function getCheckedFiles(tsconfigDir) {
