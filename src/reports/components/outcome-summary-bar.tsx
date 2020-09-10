@@ -18,6 +18,7 @@ export type OutcomeSummaryBarProps = {
     allOutcomeTypes: OutcomeType[];
     iconStyleInverted?: boolean;
     countSuffix?: string;
+    textLabel?: boolean;
 };
 
 export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', props => {
@@ -43,6 +44,14 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
             .join(', ');
     };
 
+    const getTextLabel = (outcomeType: OutcomeType) => {
+        if (props.textLabel !== true) {
+            return null;
+        }
+        const outcomePastTense = outcomeTypeSemantics[outcomeType].pastTense;
+        return <div className={'label'}>{` ${outcomePastTense}`}</div>;
+    };
+
     return (
         <div className="outcome-summary-bar" aria-label={getLabel()} role="img">
             {props.allOutcomeTypes.map((outcomeType, index) => {
@@ -51,6 +60,7 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
                     iconStyleInverted === true ? outcomeIconMapInverted : outcomeIconMap;
                 const outcomeIcon = iconMap[outcomeType];
                 const count = props.outcomeStats[outcomeType];
+                const outcomePastTense = outcomeTypeSemantics[outcomeType].pastTense;
 
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>
@@ -58,6 +68,7 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
                             <span aria-hidden="true">{outcomeIcon}</span>
                             {count}
                             {countSuffix}
+                            {getTextLabel(outcomeType)}
                         </span>
                     </div>
                 );

@@ -42,8 +42,8 @@ describe('SummarySection', () => {
             {
                 cards: {
                     fail: noViolations,
-                    pass: passes,
-                    inapplicable: noNonApplicable,
+                    pass: noPasses,
+                    inapplicable: nonApplicable,
                 },
             } as CardsViewModel,
         ],

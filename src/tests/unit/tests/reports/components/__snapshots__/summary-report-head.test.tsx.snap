@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SummaryReportHead renders 1`] = `
+<head>
+  <meta
+    charSet="UTF-8"
+  />
+  <title>
+    Accessibility Insights for Web
+     automated checks result
+  </title>
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<<CSS:../reports/summary-report.css>>",
+      }
+    }
+  />
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<<CSS:detailsView.css>>",
+      }
+    }
+  />
+</head>
+`;
