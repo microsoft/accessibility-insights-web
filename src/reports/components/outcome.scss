@@ -74,7 +74,8 @@ $outcome-count-border-size: 1.5px;
         @include cross-icon-styles($outcome-chip-icon-size, 0px, $outcome-fail-color);
         @include outcome-chip-color($outcome-fail-color);
     }
-    &.outcome-chip-inapplicable {
+    &.outcome-chip-inapplicable,
+    &.outcome-chip-unscannable {
         @include inapplicable-icon-styles($outcome-chip-icon-size, 0px);
         @include outcome-chip-color($outcome-inapplicable-color);
     }
