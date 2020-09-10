@@ -16,8 +16,8 @@ export type ResultSectionTitleProps = {
 };
 
 const titleClassNames = {
-    large: styles.titleH2,
-    medium: styles.titleH3,
+    title: styles.title,
+    heading: styles.heading,
 };
 
 export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {

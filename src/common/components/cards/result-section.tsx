@@ -31,7 +31,7 @@ export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props 
             data-automation-id={resultSectionAutomationId}
         >
             <h2>
-                <ResultSectionTitle {...props} titleSize="large" />
+                <ResultSectionTitle {...props} titleSize="title" />
             </h2>
             <ResultSectionContent {...props} />
         </div>

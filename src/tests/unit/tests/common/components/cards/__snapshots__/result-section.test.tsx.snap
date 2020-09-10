@@ -10,7 +10,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <false> 1`] = `
       containerClassName="result-section-class-name"
       deps={Object {}}
       shouldAlertFailuresCount={false}
-      titleSize="large"
+      titleSize="title"
     />
   </h2>
   <ResultSectionContent
@@ -31,7 +31,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <true> 1`] = `
       containerClassName="result-section-class-name"
       deps={Object {}}
       shouldAlertFailuresCount={true}
-      titleSize="large"
+      titleSize="title"
     />
   </h2>
   <ResultSectionContent
@@ -51,7 +51,7 @@ exports[`ResultSection renders with shouldAlertFailureCount = <undefined> 1`] = 
     <ResultSectionTitle
       containerClassName="result-section-class-name"
       deps={Object {}}
-      titleSize="large"
+      titleSize="title"
     />
   </h2>
   <ResultSectionContent

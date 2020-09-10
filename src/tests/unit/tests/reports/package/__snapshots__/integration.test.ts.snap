@@ -515,7 +515,7 @@ exports[`report package integration with issues 1`] = `
               </span>
               <span
                 aria-hidden="true"
-                class="titleH000"
+                class="title"
               >
                 Failed instances
               </span>
@@ -4144,7 +4144,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span
                     aria-hidden="true"
-                    class="titleH000"
+                    class="title"
                   >
                     Passed checks
                   </span>
@@ -5001,7 +5001,7 @@ exports[`report package integration with issues 1`] = `
                   </span>
                   <span
                     aria-hidden="true"
-                    class="titleH000"
+                    class="title"
                   >
                     Not applicable checks
                   </span>
@@ -7523,7 +7523,7 @@ exports[`report package integration with no issues 1`] = `
               </span>
               <span
                 aria-hidden="true"
-                class="titleH000"
+                class="title"
               >
                 Failed instances
               </span>
@@ -7623,7 +7623,7 @@ exports[`report package integration with no issues 1`] = `
                   </span>
                   <span
                     aria-hidden="true"
-                    class="titleH000"
+                    class="title"
                   >
                     Passed checks
                   </span>
@@ -9532,7 +9532,7 @@ exports[`report package integration with no issues 1`] = `
                   </span>
                   <span
                     aria-hidden="true"
-                    class="titleH000"
+                    class="title"
                   >
                     Not applicable checks
                   </span>
