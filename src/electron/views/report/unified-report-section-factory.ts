@@ -29,4 +29,5 @@ export const UnifiedReportSectionFactory: ReportSectionFactory = {
     NotApplicableChecksSection: NullComponent,
     FooterSection: ReportFooter,
     FooterText: FooterTextForUnified,
+    resultSectionsOrder: ['failed', 'passed', 'notApplicable'],
 };

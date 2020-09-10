@@ -29,4 +29,5 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     NotApplicableChecksSection,
     FooterSection: ReportFooter,
     FooterText,
+    resultSectionsOrder: ['failed', 'passed', 'notApplicable'],
 };

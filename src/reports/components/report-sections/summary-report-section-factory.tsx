@@ -53,4 +53,5 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     NotApplicableChecksSection: NotScannedUrlsSection,
     FooterSection: ReportFooter,
     FooterText,
+    resultSectionsOrder: ['failed', 'notApplicable', 'passed'],
 };

@@ -115,6 +115,11 @@ exports[`ReportBody renders 1`] = `
         "ResultsContainer": [Function],
         "SummarySection": [Function],
         "TitleSection": [Function],
+        "resultSectionsOrder": Array [
+          "failed",
+          "passed",
+          "notApplicable",
+        ],
       }
     }
     shouldAlertFailuresCount={false}
@@ -254,6 +259,11 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
+          "resultSectionsOrder": Array [
+            "failed",
+            "passed",
+            "notApplicable",
+          ],
         }
       }
       shouldAlertFailuresCount={false}
@@ -391,6 +401,11 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
+          "resultSectionsOrder": Array [
+            "failed",
+            "passed",
+            "notApplicable",
+          ],
         }
       }
       shouldAlertFailuresCount={false}
@@ -528,6 +543,11 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
+          "resultSectionsOrder": Array [
+            "failed",
+            "passed",
+            "notApplicable",
+          ],
         }
       }
       shouldAlertFailuresCount={false}
@@ -665,6 +685,11 @@ exports[`ReportBody renders 1`] = `
             "ResultsContainer": [Function],
             "SummarySection": [Function],
             "TitleSection": [Function],
+            "resultSectionsOrder": Array [
+              "failed",
+              "passed",
+              "notApplicable",
+            ],
           }
         }
         shouldAlertFailuresCount={false}
@@ -802,6 +827,11 @@ exports[`ReportBody renders 1`] = `
             "ResultsContainer": [Function],
             "SummarySection": [Function],
             "TitleSection": [Function],
+            "resultSectionsOrder": Array [
+              "failed",
+              "passed",
+              "notApplicable",
+            ],
           }
         }
         shouldAlertFailuresCount={false}
@@ -939,6 +969,11 @@ exports[`ReportBody renders 1`] = `
             "ResultsContainer": [Function],
             "SummarySection": [Function],
             "TitleSection": [Function],
+            "resultSectionsOrder": Array [
+              "failed",
+              "passed",
+              "notApplicable",
+            ],
           }
         }
         shouldAlertFailuresCount={false}
@@ -1079,6 +1114,11 @@ exports[`ReportBody renders 1`] = `
           "ResultsContainer": [Function],
           "SummarySection": [Function],
           "TitleSection": [Function],
+          "resultSectionsOrder": Array [
+            "failed",
+            "passed",
+            "notApplicable",
+          ],
         }
       }
       shouldAlertFailuresCount={false}
