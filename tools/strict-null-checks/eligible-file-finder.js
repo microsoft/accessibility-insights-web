@@ -54,11 +54,9 @@ async function getUncheckedLeafFiles(repoRoot, options) {
         .filter(file => !checkedFiles.has(file))
         .filter(file => !config.skippedFiles.has(path.relative(srcRoot, file)));
 
-    const uncheckedFileSet = new Set(allUncheckedFiles);
-
     const areAllImportsChecked = file => {
         const allImports = getMemoizedImportsForFile(file, srcRoot);
-        return !allImports.some(imp => uncheckedFileSet.has(imp));
+        return allImports.every(imp => checkedFiles.has(imp));
     };
 
     return allUncheckedFiles.filter(areAllImportsChecked);

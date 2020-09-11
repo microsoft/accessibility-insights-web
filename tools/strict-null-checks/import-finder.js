@@ -12,7 +12,7 @@ module.exports.getImportsForFile = function getImportsForFile(parentFilePath, sr
         .map(importedFile => importedFile.fileName)
         .filter(fileName => !/\.scss$/.test(fileName)) // remove css imports
         .filter(fileName => /\//.test(fileName)) // remove node modules (the import must contain '/')
-        .filter(fileName => !/^(@uifabric|lodash|react-dom)\//.test(fileName)) // remove node module usages with slashes in name
+        .filter(fileName => !/^(@uifabric|lodash|react-dom|axe-core)\//.test(fileName)) // remove node module usages with slashes in name
         .map(fileName => {
             if (/(^\.\/)|(^\.\.\/)/.test(fileName)) {
                 return path.join(path.dirname(parentFilePath), fileName);
@@ -20,7 +20,7 @@ module.exports.getImportsForFile = function getImportsForFile(parentFilePath, sr
             return path.join(srcRoot, fileName);
         })
         .map(filePathWithoutExtension => {
-            for (const ext of ['ts', 'tsx', 'js', 'jsx', 'd.ts']) {
+            for (const ext of ['ts', 'tsx', 'd.ts', 'js', 'jsx']) {
                 const candidate = `${filePathWithoutExtension}.${ext}`;
                 if (fs.existsSync(candidate)) {
                     return candidate;
