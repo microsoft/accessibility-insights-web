@@ -239,8 +239,12 @@
         "./src/scanner/axe-options.ts",
         "./src/scanner/axe-rule-overrides.ts",
         "./src/scanner/axe-utils.ts",
+        "./src/scanner/custom-rules/css-content-rule.ts",
+        "./src/scanner/custom-rules/heading-rule.ts",
         "./src/scanner/document-utils.ts",
+        "./src/scanner/help-url-getter.ts",
         "./src/scanner/iruleresults.d.ts",
+        "./src/scanner/processor.ts",
         "./src/scanner/scan-options.ts",
         "./src/tests/common/get-automation-id-selector.ts",
         "./src/tests/electron/common/element-identifiers/common-selectors.ts",
@@ -278,6 +282,7 @@
         "./src/tests/unit/mock-helpers/port-on-message-mock.ts",
         "./src/tests/unit/tests/assessments/common/renderer-wrapper.tsx",
         "./src/tests/unit/tests/electron/flux/action-creator/scan-result-example.ts",
+        "./src/tests/unit/tests/scanner/custom-rules-configuration-stub.ts",
         "./src/views/content/guidance-title.tsx"
     ],
     "include": [
