@@ -19,7 +19,11 @@ exports[` renders 1`] = `
         >
           https://url.com/1
         </NewTabLink>,
-        "error description 1",
+        <NewTabLink
+          href="error log file 1"
+        >
+          error description 1
+        </NewTabLink>,
       ],
       Array [
         "type2",
@@ -28,7 +32,11 @@ exports[` renders 1`] = `
         >
           https://url.com/2
         </NewTabLink>,
-        "error description 2",
+        <NewTabLink
+          href="error log file 2"
+        >
+          error description 2
+        </NewTabLink>,
       ],
       Array [
         "type3",
@@ -37,7 +45,11 @@ exports[` renders 1`] = `
         >
           https://url.com/3
         </NewTabLink>,
-        "error description 3",
+        <NewTabLink
+          href="error log file 3"
+        >
+          error description 3
+        </NewTabLink>,
       ],
     ]
   }

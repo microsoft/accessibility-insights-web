@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { SummaryReportParameters, CrawlSummaryDetails, SummaryScanResult, SummaryScanError, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
+import { SummaryReportParameters, CrawlSummaryDetails, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 import { Mock } from 'typemoq';
@@ -55,6 +55,7 @@ describe('SummaryResultsReport', () => {
                 url: `${baseUrl}/error`,
                 errorType: 'error name',
                 errorDescription: 'error description',
+                errorLogLocation: 'error log file',
             }
         ]
     };

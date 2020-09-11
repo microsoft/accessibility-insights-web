@@ -14,7 +14,7 @@
 
     th,
     td {
-        border: 1px solid $neutral-alpha-20;
+        border: 1px solid $neutral-20;
         padding: 16px 8px 16px 8px;
     }
 
@@ -23,7 +23,12 @@
         background-color: $neutral-6;
     }
 
+    thead tr :first-child {
+        width: 172px;
+    }
+
     td {
         background-color: $neutral-0;
+        overflow-wrap: break-word;
     }
 }

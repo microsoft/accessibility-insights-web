@@ -17,9 +17,10 @@ export const UrlErrorsTable = NamedFC<UrlErrorsTableProps>('UrlErrorsTable', pro
     const headers = ['Error type', 'URL', 'Error description'];
 
     const rows = errors.map(scanError => {
-        const { errorDescription, errorType, url } = scanError;
+        const { errorDescription, errorType, url, errorLogLocation } = scanError;
         const urlLink = <NewTabLink href={url}>{url}</NewTabLink>;
-        return [errorType, urlLink, errorDescription];
+        const errorLogLink = <NewTabLink href={errorLogLocation}>{errorDescription}</NewTabLink>;
+        return [errorType, urlLink, errorLogLink];
     });
 
     return <SummaryResultsTable columnHeaders={headers} rows={rows} id={props.id} />;
