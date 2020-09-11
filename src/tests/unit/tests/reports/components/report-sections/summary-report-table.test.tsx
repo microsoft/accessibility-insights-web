@@ -11,7 +11,9 @@ describe(SummaryResultsTable, () => {
             ['cell1', 'cell2', <div>cell3</div>],
             ['cell4', 'cell5', <div>cell6</div>],
         ];
-        const wrapped = shallow(<SummaryResultsTable columnHeaders={headings} rows={rows} />);
+        const wrapped = shallow(
+            <SummaryResultsTable columnHeaders={headings} rows={rows} id="table-id" />,
+        );
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });

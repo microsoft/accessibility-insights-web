@@ -24,7 +24,7 @@ describe(UrlErrorsTable, () => {
             },
         ];
 
-        const wrapper = shallow(<UrlErrorsTable errors={errors} />);
+        const wrapper = shallow(<UrlErrorsTable errors={errors} id="table-id" />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

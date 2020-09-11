@@ -13,6 +13,7 @@ exports[` renders 1`] = `
           Object {},
         ]
       }
+      id="not-scanned-urls-table"
     />
   }
   deps={Object {}}

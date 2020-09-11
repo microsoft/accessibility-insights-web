@@ -9,6 +9,7 @@ exports[` renders 1`] = `
       "Error description",
     ]
   }
+  id="table-id"
   rows={
     Array [
       Array [

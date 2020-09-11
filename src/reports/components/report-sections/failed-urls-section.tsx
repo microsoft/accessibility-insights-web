@@ -20,7 +20,7 @@ export type FailedUrlsSectionProps = {
 export const FailedUrlsSection = NamedFC<FailedUrlsSectionProps>(
     'FailedUrlsSection',
     ({ results, deps }) => {
-        const table = <UrlScanResultsTable results={results.failed} />;
+        const table = <UrlScanResultsTable results={results.failed} id="failed-urls-table" />;
 
         return (
             <CollapsibleUrlResultSection

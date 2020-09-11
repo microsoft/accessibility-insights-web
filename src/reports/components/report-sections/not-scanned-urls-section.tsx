@@ -20,7 +20,7 @@ export type NotScannedUrlsSectionProps = {
 export const NotScannedUrlsSection = NamedFC<NotScannedUrlsSectionProps>(
     'NotScannedUrlsSection',
     ({ results, deps }) => {
-        const table = <UrlErrorsTable errors={results.unscannable} />;
+        const table = <UrlErrorsTable errors={results.unscannable} id="not-scanned-urls-table" />;
         return (
             <CollapsibleUrlResultSection
                 deps={deps}

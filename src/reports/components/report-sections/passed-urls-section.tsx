@@ -20,7 +20,7 @@ export type PassedUrlsSectionProps = {
 export const PassedUrlsSection = NamedFC<PassedUrlsSectionProps>(
     'PassedUrlsSection',
     ({ results, deps }) => {
-        const table = <UrlScanResultsTable results={results.passed} />;
+        const table = <UrlScanResultsTable results={results.passed} id="passed-urls-table" />;
         return (
             <CollapsibleUrlResultSection
                 deps={deps}

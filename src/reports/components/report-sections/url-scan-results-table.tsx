@@ -8,6 +8,7 @@ import { SummaryResultsTable } from 'reports/components/report-sections/summary-
 
 export type UrlScanResultsTableProps = {
     results: SummaryScanResult[];
+    id: string;
 };
 
 export const UrlScanResultsTable = NamedFC<UrlScanResultsTableProps>(
@@ -30,6 +31,6 @@ export const UrlScanResultsTable = NamedFC<UrlScanResultsTableProps>(
             return [`${result.numFailures}`, urlLink, reportLink];
         });
 
-        return <SummaryResultsTable columnHeaders={headers} rows={rows} />;
+        return <SummaryResultsTable columnHeaders={headers} rows={rows} id={props.id} />;
     },
 );

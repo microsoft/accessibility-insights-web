@@ -8,16 +8,25 @@ export type TableRow = (string | JSX.Element)[];
 export type SummaryResultsTableProps = {
     columnHeaders: string[];
     rows: TableRow[];
+    id: string;
 };
 
 export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
     'SummaryResultsTable',
     props => {
+        const getHeaderId = (colIndex: number) => {
+            return `${props.id}-header${colIndex}`;
+        };
+
         const getTableHeaders = () => {
             return (
                 <tr>
                     {props.columnHeaders.map((header, index) => {
-                        return <th key={index}>{header}</th>;
+                        return (
+                            <th key={index} id={getHeaderId(index)}>
+                                {header}
+                            </th>
+                        );
                     })}
                 </tr>
             );
@@ -27,7 +36,11 @@ export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
             return (
                 <tr key={index}>
                     {row.map((item, index) => {
-                        return <td key={index}>{item}</td>;
+                        return (
+                            <td key={index} headers={getHeaderId(index)}>
+                                {item}
+                            </td>
+                        );
                     })}
                 </tr>
             );
@@ -38,7 +51,7 @@ export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
         };
 
         return (
-            <table className="summary-results-table">
+            <table className="summary-results-table" id={props.id}>
                 <thead>{getTableHeaders()}</thead>
                 <tbody>{getTableRows()}</tbody>
             </table>

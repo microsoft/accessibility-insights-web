@@ -8,6 +8,7 @@ import { SummaryResultsTable } from 'reports/components/report-sections/summary-
 
 export type UrlErrorsTableProps = {
     errors: SummaryScanError[];
+    id: string;
 };
 
 export const UrlErrorsTable = NamedFC<UrlErrorsTableProps>('UrlErrorsTable', props => {
@@ -21,5 +22,5 @@ export const UrlErrorsTable = NamedFC<UrlErrorsTableProps>('UrlErrorsTable', pro
         return [errorType, urlLink, errorDescription];
     });
 
-    return <SummaryResultsTable columnHeaders={headers} rows={rows} />;
+    return <SummaryResultsTable columnHeaders={headers} rows={rows} id={props.id} />;
 });

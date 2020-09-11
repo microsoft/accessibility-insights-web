@@ -24,7 +24,7 @@ describe(UrlScanResultsTable, () => {
             },
         ];
 
-        const wrapper = shallow(<UrlScanResultsTable results={results} />);
+        const wrapper = shallow(<UrlScanResultsTable results={results} id="table-id" />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
