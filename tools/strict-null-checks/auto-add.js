@@ -14,51 +14,92 @@ const repoRoot = config.repoRoot;
 const tscPath = path.join(repoRoot, 'node_modules', 'typescript', 'bin', 'tsc');
 const tsconfigPath = path.join(repoRoot, config.targetTsconfig);
 
-const buildCompletePattern = /Found (\d+) errors?\. Watching for file changes\./gi;
+async function main() {
+    console.log('## Initializing tsc --watch process...');
+    const tscWatchProcess = child_process.spawn('node', [tscPath, '-p', tsconfigPath, '--watch']);
+    await waitForBuildComplete(tscWatchProcess);
 
-getUncheckedLeafFiles(repoRoot).then(async files => {
-    const child = child_process.spawn('node', [tscPath, '-p', tsconfigPath, '--watch']);
-    for (const file of files) {
-        await tryAutoAddStrictNulls(child, tsconfigPath, file);
+    const alreadyAttempted = new Set();
+
+    for (let pass = 1; ; pass += 1) {
+        let successesThisPass = 0;
+        const uncheckedLeafFiles = await getUncheckedLeafFiles(repoRoot);
+        const candidateFiles = uncheckedLeafFiles.filter(f => !alreadyAttempted.has(f));
+        const candidateCount = candidateFiles.length;
+        console.log(`## Starting pass ${pass} with ${candidateCount} candidate files`);
+
+        for (const file of candidateFiles) {
+            const succeeded = await tryAutoAddStrictNulls(tscWatchProcess, tsconfigPath, file);
+            alreadyAttempted.add(file);
+            if (succeeded) {
+                successesThisPass += 1;
+            }
+        }
+
+        console.log(`### Finished pass ${pass} (added ${successesThisPass}/${candidateCount})`);
+        if (successesThisPass === 0) {
+            break;
+        }
     }
-    child.kill();
 
-    console.log('Collapsing full completed directories into "includes" patterns...');
+    console.log('## Stopping tsc --watch process...');
+    tscWatchProcess.kill();
+
+    console.log('## Collapsing fully null-checked directories into "include" patterns...');
     collapseCompletedDirectories(tsconfigPath);
-});
+}
 
-function tryAutoAddStrictNulls(child, tsconfigPath, file) {
+async function tryAutoAddStrictNulls(child, tsconfigPath, file) {
+    const relativeFilePath = path.relative(repoRoot, file).replace(/\\/g, '/');
+    console.log(`Trying to auto add '${relativeFilePath}'`);
+
+    const originalConfig = JSON.parse(fs.readFileSync(tsconfigPath).toString());
+    originalConfig.files = Array.from(new Set(originalConfig.files.sort()));
+
+    // Config on accept
+    const newConfig = Object.assign({}, originalConfig);
+    newConfig.files = Array.from(
+        new Set(originalConfig.files.concat('./' + relativeFilePath).sort()),
+    );
+
+    const buildCompetePromise = waitForBuildComplete(child);
+
+    writeTsconfigSync(tsconfigPath, newConfig);
+
+    const errorCount = await buildCompetePromise;
+    const success = errorCount === 0;
+    if (success) {
+        console.log(`Success`);
+    } else {
+        console.log(`Errors (x${errorCount}), skipped`);
+        writeTsconfigSync(tsconfigPath, originalConfig);
+    }
+
+    return success;
+}
+
+const buildCompletePattern = /Found (\d+) errors?\. Watching for file changes\./gi;
+async function waitForBuildComplete(tscWatchProcess) {
+    const match = await waitForStdoutMatching(tscWatchProcess, buildCompletePattern);
+    const errorCount = +match[1];
+    return errorCount;
+}
+
+async function waitForStdoutMatching(child, pattern) {
     return new Promise(resolve => {
-        const relativeFilePath = path.relative(repoRoot, file).replace(/\\/g, '/');
-        console.log(`Trying to auto add '${relativeFilePath}'`);
-
-        const originalConfig = JSON.parse(fs.readFileSync(tsconfigPath).toString());
-        originalConfig.files = Array.from(new Set(originalConfig.files.sort()));
-
-        // Config on accept
-        const newConfig = Object.assign({}, originalConfig);
-        newConfig.files = Array.from(
-            new Set(originalConfig.files.concat('./' + relativeFilePath).sort()),
-        );
-
         const listener = data => {
             const textOut = data.toString();
-            const match = buildCompletePattern.exec(textOut);
+            const match = pattern.exec(textOut);
             if (match) {
-                const errorCount = +match[1];
-                if (errorCount === 0) {
-                    console.log(`Success`);
-                } else {
-                    console.log(`Errors (x${errorCount}), skipped`);
-                    writeTsconfigSync(tsconfigPath, originalConfig);
-                }
-
                 child.stdout.removeListener('data', listener);
-                resolve();
+                resolve(match);
             }
         };
         child.stdout.on('data', listener);
-
-        writeTsconfigSync(tsconfigPath, newConfig);
     });
 }
+
+main().catch(error => {
+    console.error(error.stack);
+    process.exit(1);
+});
