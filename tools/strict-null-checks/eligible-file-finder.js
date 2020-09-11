@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 
 // @ts-check
+const fs = require('fs');
 const path = require('path');
-const { getImportsForFile } = require('./import-finder');
+const { getMemoizedImportsForFile } = require('./import-finder');
 const glob = require('glob');
 const config = require('./config');
 
@@ -34,16 +35,6 @@ const getAllTsFiles = (srcRoot, options) => {
  * @param {{ includeTests: boolean }} [options]
  */
 async function getUncheckedLeafFiles(repoRoot, options) {
-    const imports = new Map();
-    const getMemoizedImportsForFile = (file, srcRoot) => {
-        if (imports.has(file)) {
-            return imports.get(file);
-        }
-        const importList = getImportsForFile(file, srcRoot);
-        imports.set(file, importList);
-        return importList;
-    };
-
     const srcRoot = path.join(repoRoot, 'src');
 
     const checkedFiles = await getCheckedFiles(repoRoot);
@@ -63,7 +54,8 @@ async function getUncheckedLeafFiles(repoRoot, options) {
 }
 
 async function getCheckedFiles(tsconfigDir) {
-    const tsconfigContent = require(path.join(tsconfigDir, config.targetTsconfig));
+    const tsconfigPath = path.join(tsconfigDir, config.targetTsconfig);
+    const tsconfigContent = JSON.parse(fs.readFileSync(tsconfigPath).toString());
 
     const set = new Set(
         tsconfigContent.files.map(f => path.join(tsconfigDir, f).replace(/\\/g, '/')),

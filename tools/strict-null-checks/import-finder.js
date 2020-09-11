@@ -6,7 +6,17 @@ const path = require('path');
 const ts = require('typescript');
 const fs = require('fs');
 
-module.exports.getImportsForFile = function getImportsForFile(parentFilePath, srcRoot) {
+const imports = new Map();
+const getMemoizedImportsForFile = (file, srcRoot) => {
+    if (imports.has(file)) {
+        return imports.get(file);
+    }
+    const importList = getImportsForFile(file, srcRoot);
+    imports.set(file, importList);
+    return importList;
+};
+
+function getImportsForFile(parentFilePath, srcRoot) {
     const fileInfo = ts.preProcessFile(fs.readFileSync(parentFilePath).toString());
     return fileInfo.importedFiles
         .map(importedFile => importedFile.fileName)
@@ -43,4 +53,9 @@ module.exports.getImportsForFile = function getImportsForFile(parentFilePath, sr
             }
             return filePath;
         });
+}
+
+module.exports = {
+    getImportsForFile,
+    getMemoizedImportsForFile,
 };
