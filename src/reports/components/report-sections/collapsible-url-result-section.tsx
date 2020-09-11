@@ -19,7 +19,7 @@ export type CollapsibleUrlResultSectionProps = Omit<ResultSectionTitleProps, 'ti
 };
 
 export const CollapsibleUrlResultSection = NamedFC<CollapsibleUrlResultSectionProps>(
-    'CollapsibleResultSection',
+    'CollapsibleUrlResultSection',
     props => {
         const { containerId, deps } = props;
         const CollapsibleContent = deps.collapsibleControl({

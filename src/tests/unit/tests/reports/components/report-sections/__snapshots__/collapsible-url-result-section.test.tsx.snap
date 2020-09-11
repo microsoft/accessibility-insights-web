@@ -3,5 +3,9 @@
 exports[`CollapsibleUrlResultSection renders 1`] = `
 <div
   className="url-result-section"
-/>
+>
+  <div>
+    Collapsible component
+  </div>
+</div>
 `;
