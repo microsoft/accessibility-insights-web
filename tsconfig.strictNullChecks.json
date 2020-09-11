@@ -113,6 +113,7 @@
         "./src/common/components/expand-collapse-left-nav-hamburger-button.tsx",
         "./src/common/components/external-link.tsx",
         "./src/common/components/fix-instruction-processor.tsx",
+        "./src/common/components/flagged-component.tsx",
         "./src/common/components/header-icon.tsx",
         "./src/common/components/header.tsx",
         "./src/common/components/issue-filing-needs-settings-help-text.tsx",

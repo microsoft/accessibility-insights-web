@@ -12,7 +12,7 @@ export interface FlaggedComponentProps {
 }
 
 export class FlaggedComponent extends React.Component<FlaggedComponentProps> {
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         const flagName = this.props.featureFlag;
 
         if (this.props.featureFlagStoreData != null && this.props.featureFlagStoreData[flagName]) {
