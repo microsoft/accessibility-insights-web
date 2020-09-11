@@ -151,6 +151,7 @@
         "./src/common/navigator-utils.ts",
         "./src/common/platform.ts",
         "./src/common/state-dispatcher.ts",
+        "./src/common/store-proxy.ts",
         "./src/common/stores/base-client-stores-hub.ts",
         "./src/common/stores/client-stores-hub.ts",
         "./src/common/stores/store-names.ts",
