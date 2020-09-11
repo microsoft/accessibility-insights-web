@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders 1`] = `
+<table
+  className="summary-results-table"
+>
+  <thead>
+    <tr>
+      <th>
+        heading1
+      </th>
+      <th>
+        heading2
+      </th>
+      <th>
+        heading3
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        cell1
+      </td>
+      <td>
+        cell2
+      </td>
+      <td>
+        <div>
+          cell3
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        cell4
+      </td>
+      <td>
+        cell5
+      </td>
+      <td>
+        <div>
+          cell6
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
