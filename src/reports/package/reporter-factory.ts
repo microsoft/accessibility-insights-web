@@ -115,6 +115,7 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
         new ReactStaticRenderer(),
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,
+        DateProvider.getTimeStringFromSeconds,
     );
 
     const deps = {

@@ -1,0 +1,39 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/colors.scss';
+@import './common-mixins.scss';
+@import '../../../common/styles/fonts.scss';
+
+.crawl-details-section {
+    @include boxShadow();
+
+    background-color: $neutral-0;
+    padding: 20px;
+
+    .crawl-details-section-list {
+        list-style: none;
+        font-size: 14px;
+        line-height: 20px;
+        padding-left: 0px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        margin-block-end: 0px;
+
+        li {
+            display: inline-block;
+        }
+    }
+
+    .text,
+    .label {
+        word-break: break-all;
+        color: $neutral-55;
+    }
+
+    .label {
+        font-weight: $fontWeightSemiBold;
+    }
+}

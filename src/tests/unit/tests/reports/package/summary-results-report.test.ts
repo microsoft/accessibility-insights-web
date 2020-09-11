@@ -8,11 +8,12 @@ import { Mock } from 'typemoq';
 
 describe('SummaryResultsReport', () => {
     const baseUrl = 'https://the.page';
+    const basePageTitle = 'page title';
     const toolDataStub: ToolData = {
         applicationProperties: { name: 'some app' },
     } as ToolData;
     const targetAppInfoStub = {
-        name: null,
+        name: basePageTitle,
         url: baseUrl,
     };
     const scanMetadataStub = {
@@ -21,11 +22,17 @@ describe('SummaryResultsReport', () => {
         timestamp: null,
     };
 
-    const crawlDetails: CrawlSummaryDetails = {
-        baseUrl: baseUrl,
+    
+    const scanTimespan = {
         scanStart: new Date(2019, 1, 2, 3),
         scanComplete: new Date(2019, 4, 5, 6),
         durationSeconds: 42,
+    };
+
+    const crawlDetails: CrawlSummaryDetails = {
+        baseUrl: baseUrl,
+        basePageTitle: basePageTitle,
+        ...scanTimespan
     };
 
     const results: SummaryScanResults  = {
@@ -64,7 +71,7 @@ describe('SummaryResultsReport', () => {
 
     const mockHtmlGenerator = Mock.ofType<SummaryReportHtmlGenerator>();
     mockHtmlGenerator
-        .setup(hg => hg.generateHtml(crawlDetails, scanMetadataStub, results))
+        .setup(hg => hg.generateHtml(scanTimespan, scanMetadataStub, results))
         .returns(() => expectedHTML);
 
     const deps = {

@@ -21,6 +21,7 @@ declare namespace AccessibilityInsightsReport {
 
     export type CrawlSummaryDetails = {
         baseUrl: string,
+        basePageTitle: string,
         scanStart: Date,
         scanComplete: Date,
         durationSeconds: number,

@@ -7,19 +7,24 @@ import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
 import { ResultsContainer } from './results-container';
 import { TitleSection } from './title-section';
-import {
-    CrawlSummaryDetails,
-    SummaryScanResults,
-} from 'reports/package/accessibilityInsightsReport';
+import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { NullComponent } from 'common/components/null-component';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
+import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
+
+export type ScanTimespan = {
+    scanStart: Date;
+    scanComplete: Date;
+    durationSeconds: number;
+};
 
 export type SummaryReportSectionProps = {
-    scanDetails: CrawlSummaryDetails;
+    scanTimespan: ScanTimespan;
     toUtcString: (date: Date) => string;
+    secondsToTimeString: (seconds: number) => string;
     getCollapsibleScript: () => string;
     scanMetadata: ScanMetadata;
     results: SummaryScanResults;
@@ -32,7 +37,7 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     HeaderSection: SummaryReportHeaderSection,
     TitleSection,
     SummarySection: SummaryReportSummarySection,
-    DetailsSection: NullComponent,
+    DetailsSection: SummaryReportDetailsSection,
     ResultsContainer,
     FailedInstancesSection: NullComponent,
     PassedChecksSection: NullComponent,

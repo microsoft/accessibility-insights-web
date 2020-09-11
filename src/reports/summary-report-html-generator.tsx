@@ -1,28 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
-import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { NewTabLink } from 'common/components/new-tab-link';
-import { NullComponent } from 'common/components/null-component';
-import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
-import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
-import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
-import {
-    ReportSectionFactory,
-    SectionDeps,
-    SectionProps,
-} from './components/report-sections/report-section-factory';
+import { ReportSectionFactory } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
-import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import {
-    CrawlSummaryDetails,
-    SummaryScanResults,
-} from 'reports/package/accessibilityInsightsReport';
+    SummaryReportSectionProps,
+    ScanTimespan,
+} from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 
 export class SummaryReportHtmlGenerator {
     constructor(
@@ -30,10 +18,11 @@ export class SummaryReportHtmlGenerator {
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
+        private readonly secondsToTimeStringConverter: (seconds: number) => string,
     ) {}
 
     public generateHtml(
-        scanDetails: CrawlSummaryDetails,
+        scanTimespan: ScanTimespan,
         scanMetadata: ScanMetadata,
         results: SummaryScanResults,
     ): string {
@@ -41,10 +30,11 @@ export class SummaryReportHtmlGenerator {
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: SummaryReportSectionProps = {
-            scanDetails,
+            scanTimespan,
             scanMetadata,
             results,
             toUtcString: this.utcDateConverter,
+            secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
         };
 

@@ -3,6 +3,7 @@
 import {  ToolData, ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
+import { ScanTimespan } from 'reports/components/report-sections/summary-report-section-factory';
 
 export type SummaryResultsReportDeps = {
     reportHtmlGenerator: SummaryReportHtmlGenerator;
@@ -20,7 +21,7 @@ export class SummaryResultsReport implements AccessibilityInsightsReport.Report 
         const { results, crawlDetails } = this.parameters;
 
         const targetAppInfo = {
-            name: null,
+            name: crawlDetails.basePageTitle,
             url: crawlDetails.baseUrl,
         };
 
@@ -30,8 +31,14 @@ export class SummaryResultsReport implements AccessibilityInsightsReport.Report 
             timestamp: null,
         };
 
+        const timespan: ScanTimespan = {
+            scanStart: crawlDetails.scanStart,
+            scanComplete: crawlDetails.scanComplete,
+            durationSeconds: crawlDetails.durationSeconds,
+        }
+
         const html = reportHtmlGenerator.generateHtml(
-            crawlDetails,
+            timespan,
             scanMetadata,
             results,
         );
