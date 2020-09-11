@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 
 // @ts-check
+const fs = require('fs');
 const path = require('path');
-const { getImportsForFile } = require('./import-finder');
+const { getMemoizedImportsForFile } = require('./import-finder');
 const glob = require('glob');
 const config = require('./config');
 
@@ -11,7 +12,7 @@ const config = require('./config');
  * @param {string} srcRoot
  * @param {{ includeTests: boolean }} [options]
  */
-const forEachFileInSrc = (srcRoot, options) => {
+const getAllTsFiles = (srcRoot, options) => {
     return new Promise((resolve, reject) => {
         glob(`${srcRoot}/**/*.@(ts|tsx)`, (err, files) => {
             if (err) {
@@ -31,57 +32,30 @@ const forEachFileInSrc = (srcRoot, options) => {
 
 /**
  * @param {string} repoRoot
- * @param {(file: string) => void} forEach
  * @param {{ includeTests: boolean }} [options]
  */
-async function forStrictNullCheckEligibleFiles(repoRoot, forEach, options) {
+async function getUncheckedLeafFiles(repoRoot, options) {
     const srcRoot = path.join(repoRoot, 'src');
 
     const checkedFiles = await getCheckedFiles(repoRoot);
 
-    const imports = new Map();
-    const getMemoizedImportsForFile = (file, srcRoot) => {
-        if (imports.has(file)) {
-            return imports.get(file);
-        }
-        const importList = getImportsForFile(file, srcRoot);
-        imports.set(file, importList);
-        return importList;
+    const allFiles = await getAllTsFiles(srcRoot, options);
+
+    const allUncheckedFiles = allFiles
+        .filter(file => !checkedFiles.has(file))
+        .filter(file => !config.skippedFiles.has(path.relative(srcRoot, file)));
+
+    const areAllImportsChecked = file => {
+        const allImports = getMemoizedImportsForFile(file, srcRoot);
+        return allImports.every(imp => checkedFiles.has(imp));
     };
 
-    const files = await forEachFileInSrc(srcRoot, options);
-
-    return files
-        .filter(file => !checkedFiles.has(file))
-        .filter(file => !config.skippedFiles.has(path.relative(srcRoot, file)))
-        .filter(file => {
-            const allProjImports = getMemoizedImportsForFile(file, srcRoot);
-
-            const nonCheckedImports = allProjImports
-                .filter(x => x !== file)
-                .filter(imp => {
-                    if (checkedFiles.has(imp)) {
-                        return false;
-                    }
-                    // Don't treat cycles as blocking
-                    const impImports = getMemoizedImportsForFile(imp, srcRoot);
-                    return (
-                        impImports.filter(x => x !== file).filter(x => !checkedFiles.has(x))
-                            .length !== 0
-                    );
-                });
-
-            const isEdge = nonCheckedImports.length === 0;
-
-            if (isEdge) {
-                forEach(file);
-            }
-            return isEdge;
-        });
+    return allUncheckedFiles.filter(areAllImportsChecked);
 }
 
 async function getCheckedFiles(tsconfigDir) {
-    const tsconfigContent = require(path.join(tsconfigDir, config.targetTsconfig));
+    const tsconfigPath = path.join(tsconfigDir, config.targetTsconfig);
+    const tsconfigContent = JSON.parse(fs.readFileSync(tsconfigPath).toString());
 
     const set = new Set(
         tsconfigContent.files.map(f => path.join(tsconfigDir, f).replace(/\\/g, '/')),
@@ -105,7 +79,7 @@ async function getCheckedFiles(tsconfigDir) {
 }
 
 module.exports = {
-    forEachFileInSrc,
-    forStrictNullCheckEligibleFiles,
+    getAllTsFiles,
+    getUncheckedLeafFiles,
     getCheckedFiles,
 };

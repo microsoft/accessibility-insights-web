@@ -3,12 +3,12 @@
 
 // @ts-check
 const { repoRoot } = require('./config');
-const { getCheckedFiles, forEachFileInSrc } = require('./eligible-file-finder');
+const { getCheckedFiles, getAllTsFiles } = require('./eligible-file-finder');
 
 async function main() {
     const datestamp = new Date().toDateString();
     const doneCount = (await getCheckedFiles(repoRoot)).size;
-    const totalCount = (await forEachFileInSrc(`${repoRoot}/src`)).length;
+    const totalCount = (await getAllTsFiles(`${repoRoot}/src`)).length;
     const percentage = 100 * (doneCount / totalCount);
     const formattedPercentage = percentage.toFixed(0) + '%';
 
