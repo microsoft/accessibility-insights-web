@@ -6,7 +6,10 @@ import { NamedFC } from 'common/react/named-fc';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import { SectionProps } from 'reports/components/report-sections/report-section-factory';
+import {
+    SectionProps,
+    ReportSectionFactory,
+} from 'reports/components/report-sections/report-section-factory';
 import { Mock } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
@@ -109,7 +112,8 @@ describe('ReportBody', () => {
             NotApplicableChecksSection: NotApplicableChecks,
             FooterSection: Footer,
             FooterText,
-        };
+            resultSectionsOrder: ['failed', 'passed', 'notApplicable'],
+        } as ReportSectionFactory;
 
         return sectionFactoryStub;
     };

@@ -15,7 +15,7 @@ import * as styles from './result-section.scss';
 export type ResultSectionDeps = ResultSectionContentDeps;
 
 export type ResultSectionProps = ResultSectionContentProps &
-    ResultSectionTitleProps & {
+    Omit<ResultSectionTitleProps, 'titleSize'> & {
         containerClassName: string;
         deps: ResultSectionDeps;
     };
@@ -31,7 +31,7 @@ export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props 
             data-automation-id={resultSectionAutomationId}
         >
             <h2>
-                <ResultSectionTitle {...props} />
+                <ResultSectionTitle {...props} titleSize="title" />
             </h2>
             <ResultSectionContent {...props} />
         </div>

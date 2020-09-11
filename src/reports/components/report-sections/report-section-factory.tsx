@@ -29,6 +29,12 @@ export type SectionProps = {
     scanMetadata: ScanMetadata;
 };
 
+export const ResultSectionTypes = {
+    failed: 'FailedInstancesSection',
+    passed: 'PassedChecksSection',
+    notApplicable: 'NotApplicableChecksSection',
+};
+
 export type ReportSectionFactory<SectionPropsType = SectionProps> = {
     HeadSection: ReactFCWithDisplayName;
     BodySection: ReactFCWithDisplayName;
@@ -43,4 +49,5 @@ export type ReportSectionFactory<SectionPropsType = SectionProps> = {
     NotApplicableChecksSection: ReactFCWithDisplayName<SectionPropsType>;
     FooterSection: ReactFCWithDisplayName;
     FooterText: ReactFCWithDisplayName<SectionPropsType>;
+    resultSectionsOrder: (keyof typeof ResultSectionTypes)[];
 };

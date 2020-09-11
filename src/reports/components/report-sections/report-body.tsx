@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ReportSectionFactory, SectionProps } from './report-section-factory';
+import { ReportSectionFactory, SectionProps, ResultSectionTypes } from './report-section-factory';
 
 export type ReportBodyProps<SectionPropsType = SectionProps> = {
     sectionFactory: ReportBodySectionFactory<SectionPropsType>;
@@ -27,12 +27,17 @@ export class ReportBody<SectionPropsType = SectionProps> extends React.Component
             SummarySection,
             DetailsSection,
             ResultsContainer,
-            FailedInstancesSection,
-            PassedChecksSection,
-            NotApplicableChecksSection,
             FooterSection,
             FooterText,
+            resultSectionsOrder,
         } = sectionFactory;
+
+        const getResultSections = () => {
+            return resultSectionsOrder.map((sectionKey, i) => {
+                const ResultsSection = sectionFactory[ResultSectionTypes[sectionKey]];
+                return <ResultsSection key={i} {...sectionProps} />;
+            });
+        };
 
         return (
             <BodySection>
@@ -41,11 +46,7 @@ export class ReportBody<SectionPropsType = SectionProps> extends React.Component
                     <TitleSection />
                     <SummarySection {...sectionProps} />
                     <DetailsSection {...sectionProps} />
-                    <ResultsContainer {...sectionProps}>
-                        <FailedInstancesSection {...sectionProps} />
-                        <PassedChecksSection {...sectionProps} />
-                        <NotApplicableChecksSection {...sectionProps} />
-                    </ResultsContainer>
+                    <ResultsContainer {...sectionProps}>{getResultSections()}</ResultsContainer>
                 </ContentContainer>
                 <FooterSection>
                     <FooterText {...sectionProps} />

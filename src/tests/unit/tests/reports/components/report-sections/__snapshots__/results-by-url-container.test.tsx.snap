@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsByUrlContainer renders 1`] = `
+<React.Fragment>
+  <div
+    className="url-results-container"
+  >
+    <div
+      className="results-heading"
+    >
+      <h2>
+        Results by URL
+      </h2>
+    </div>
+    <div>
+      1
+    </div>
+    <div
+      id="2"
+    >
+      2
+    </div>
+  </div>
+  <script
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "test script",
+      }
+    }
+  />
+</React.Fragment>
+`;

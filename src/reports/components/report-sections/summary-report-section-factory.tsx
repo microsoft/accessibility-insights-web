@@ -5,7 +5,6 @@ import { ContentContainer } from './content-container';
 import { FooterText } from './footer-text';
 import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
-import { ResultsContainer } from './results-container';
 import { TitleSection } from './title-section';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -14,6 +13,15 @@ import { SummaryReportHeaderSection } from 'reports/components/report-sections/s
 import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
+import { ResultsByUrlContainer } from 'reports/components/report-sections/results-by-url-container';
+import {
+    FailedUrlsSection,
+    FailedUrlsSectionDeps,
+} from 'reports/components/report-sections/failed-urls-section';
+import { PassedUrlsSection } from 'reports/components/report-sections/passed-urls-section';
+import { NotScannedUrlsSection } from 'reports/components/report-sections/not-scanned-urls-section';
+
+export type SectionDeps = FailedUrlsSectionDeps;
 
 export type ScanTimespan = {
     scanStart: Date;
@@ -22,6 +30,7 @@ export type ScanTimespan = {
 };
 
 export type SummaryReportSectionProps = {
+    deps: SectionDeps;
     scanTimespan: ScanTimespan;
     toUtcString: (date: Date) => string;
     secondsToTimeString: (seconds: number) => string;
@@ -38,10 +47,11 @@ export const SummaryReportSectionFactory: ReportSectionFactory<SummaryReportSect
     TitleSection,
     SummarySection: SummaryReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
-    ResultsContainer,
-    FailedInstancesSection: NullComponent,
-    PassedChecksSection: NullComponent,
-    NotApplicableChecksSection: NullComponent,
+    ResultsContainer: ResultsByUrlContainer,
+    FailedInstancesSection: FailedUrlsSection,
+    PassedChecksSection: PassedUrlsSection,
+    NotApplicableChecksSection: NotScannedUrlsSection,
     FooterSection: ReportFooter,
     FooterText,
+    resultSectionsOrder: ['failed', 'notApplicable', 'passed'],
 };

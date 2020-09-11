@@ -15,7 +15,7 @@ export type CollapsibleResultSectionDeps = {
 } & RulesOnlyDeps;
 
 export type CollapsibleResultSectionProps = RulesOnlyProps &
-    ResultSectionTitleProps & {
+    Omit<ResultSectionTitleProps, 'titleSize'> & {
         deps: CollapsibleResultSectionDeps;
         containerId: string;
         containerClassName: string;
@@ -27,7 +27,7 @@ export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
         const { containerClassName, containerId, deps } = props;
         const CollapsibleContent = deps.collapsibleControl({
             id: containerId,
-            header: <ResultSectionTitle {...props} />,
+            header: <ResultSectionTitle {...props} titleSize="title" />,
             content: <RulesOnly {...props} />,
             headingLevel: 2,
             deps: null,

@@ -12,18 +12,20 @@ describe.each(allInstanceOutcomeTypes)(
     'ResultSectionTitle with outcomeType %s renders',
     outcomeType => {
         it.each`
-            badgeCount | shouldAlertFailuresCount | description
-            ${10}      | ${false}                 | ${'with no-alerting'}
-            ${15}      | ${undefined}             | ${'with no-alerting, shouldAlertFailuresCount is undefined'}
-            ${0}       | ${true}                  | ${'with alerting, badgeCount is 0'}
-            ${1}       | ${true}                  | ${'with alerting, badgeCount is 1'}
-            ${2}       | ${true}                  | ${'with alerting, badgeCount is greater than 1'}
-        `('$description', ({ badgeCount, shouldAlertFailuresCount }) => {
+            badgeCount | shouldAlertFailuresCount | titleSize    | description
+            ${10}      | ${false}                 | ${'title'}   | ${'with no-alerting'}
+            ${15}      | ${undefined}             | ${'title'}   | ${'with no-alerting, shouldAlertFailuresCount is undefined'}
+            ${0}       | ${true}                  | ${'title'}   | ${'with alerting, badgeCount is 0'}
+            ${1}       | ${true}                  | ${'title'}   | ${'with alerting, badgeCount is 1'}
+            ${2}       | ${true}                  | ${'title'}   | ${'with alerting, badgeCount is greater than 1'}
+            ${10}      | ${false}                 | ${'heading'} | ${'with no-alerting, titleSize=heading'}
+        `('$description', ({ badgeCount, shouldAlertFailuresCount, titleSize }) => {
             const props: ResultSectionTitleProps = {
                 title: 'test title',
                 badgeCount,
                 shouldAlertFailuresCount,
                 outcomeType: outcomeType,
+                titleSize,
             };
 
             const wrapped = shallow(<ResultSectionTitle {...props} />);

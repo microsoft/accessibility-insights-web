@@ -29,6 +29,15 @@
         color: $primary-text;
     }
 
+    .heading {
+        font-family: $semiBoldFontFamily;
+        font-weight: $fontWeightSemiBold;
+        font-size: 15px;
+        line-height: 20px;
+        margin-right: 6px;
+        color: $primary-text;
+    }
+
     .outcome-chip-container {
         display: flex;
         height: 16px;
