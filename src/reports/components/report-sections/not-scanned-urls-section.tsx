@@ -8,6 +8,7 @@ import {
     CollapsibleUrlResultSection,
     CollapsibleUrlResultSectionDeps,
 } from 'reports/components/report-sections/collapsible-url-result-section';
+import { UrlErrorsTable } from 'reports/components/report-sections/url-errors-table';
 
 export type NotScannedUrlsSectionDeps = CollapsibleUrlResultSectionDeps;
 
@@ -19,6 +20,7 @@ export type NotScannedUrlsSectionProps = {
 export const NotScannedUrlsSection = NamedFC<NotScannedUrlsSectionProps>(
     'NotScannedUrlsSection',
     ({ results, deps }) => {
+        const table = <UrlErrorsTable errors={results.unscannable} />;
         return (
             <CollapsibleUrlResultSection
                 deps={deps}
@@ -26,6 +28,7 @@ export const NotScannedUrlsSection = NamedFC<NotScannedUrlsSectionProps>(
                 outcomeType="unscannable"
                 badgeCount={results.unscannable.length}
                 containerId="not-scanned-urls-section"
+                content={table}
             />
         );
     },
