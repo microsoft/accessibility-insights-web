@@ -25,7 +25,6 @@ import { AssessmentTestView } from 'DetailsView/components/assessment-test-view'
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import {
-    PropertyBags,
     VisualizationInstanceProcessor,
     VisualizationInstanceProcessorCallback,
 } from 'injected/visualization-instance-processor';

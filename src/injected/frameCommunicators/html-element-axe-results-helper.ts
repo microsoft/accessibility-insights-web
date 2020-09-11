@@ -5,7 +5,6 @@ import { HTMLElementUtils } from '../../common/html-element-utils';
 import { Logger } from '../../common/logging/logger';
 import { DictionaryStringTo } from '../../types/common-types';
 import { HtmlElementAxeResults } from '../scanner-utils';
-import { PartialTabOrderPropertyBag, TabOrderPropertyBag } from '../tab-order-property-bag';
 
 export interface HTMLIFrameResult {
     frame: HTMLIFrameElement;
@@ -19,7 +18,7 @@ export interface AxeResultsWithFrameLevel extends HtmlElementAxeResults {
 export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
     isFailure: boolean;
     isVisualizationEnabled: boolean;
-    propertyBag?: PartialTabOrderPropertyBag | TabOrderPropertyBag;
+    propertyBag?: any;
 }
 
 export class HtmlElementAxeResultsHelper {
