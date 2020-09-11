@@ -8,6 +8,7 @@ import {
     CollapsibleUrlResultSection,
     CollapsibleUrlResultSectionDeps,
 } from 'reports/components/report-sections/collapsible-url-result-section';
+import { UrlScanResultsTable } from 'reports/components/report-sections/url-scan-results-table';
 
 export type PassedUrlsSectionDeps = CollapsibleUrlResultSectionDeps;
 
@@ -19,6 +20,7 @@ export type PassedUrlsSectionProps = {
 export const PassedUrlsSection = NamedFC<PassedUrlsSectionProps>(
     'PassedUrlsSection',
     ({ results, deps }) => {
+        const table = <UrlScanResultsTable results={results.passed} />;
         return (
             <CollapsibleUrlResultSection
                 deps={deps}
@@ -26,6 +28,7 @@ export const PassedUrlsSection = NamedFC<PassedUrlsSectionProps>(
                 outcomeType="pass"
                 badgeCount={results.passed.length}
                 containerId="passed-urls-section"
+                content={table}
             />
         );
     },

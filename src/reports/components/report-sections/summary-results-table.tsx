@@ -1,5 +1,3 @@
-import { TableHeaders } from 'assessments/semantics/test-steps/table-headers';
-import { NullComponent } from 'common/components/null-component';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
