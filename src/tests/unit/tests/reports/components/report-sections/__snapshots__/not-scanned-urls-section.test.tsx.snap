@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[` renders 1`] = `
-<CollapsibleResultSection
+<CollapsibleUrlResultSection
   badgeCount={3}
   containerId="not-scanned-urls-section"
   deps={Object {}}
