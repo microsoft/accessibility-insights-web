@@ -33,6 +33,7 @@
         "./src/Devtools/target-page-inspector.ts",
         "./src/ad-hoc-visualizations/issues/get-notification-message.ts",
         "./src/assessments/adaptable-content/test-steps/test-step.ts",
+        "./src/assessments/assessment-default-message-generator.tsx",
         "./src/assessments/audio-video-only/test-steps/test-steps.ts",
         "./src/assessments/auto-pass-if-no-results.ts",
         "./src/assessments/color/test-steps/test-steps.tsx",
