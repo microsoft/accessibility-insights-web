@@ -324,10 +324,8 @@ export class AssessmentBuilder {
 
     private static getVisualizationInstanceProcessor(
         requirements: Requirement[],
-    ): (requirement: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> {
-        return (
-            requirementKey: string,
-        ): VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags> => {
+    ): (requirement: string) => VisualizationInstanceProcessorCallback {
+        return (requirementKey: string): VisualizationInstanceProcessorCallback => {
             const requirementConfig = AssessmentBuilder.getRequirementConfig(
                 requirements,
                 requirementKey,

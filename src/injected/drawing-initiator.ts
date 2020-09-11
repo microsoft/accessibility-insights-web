@@ -8,10 +8,7 @@ import {
     AssessmentVisualizationInstance,
     AxeResultsWithFrameLevel,
 } from './frameCommunicators/html-element-axe-results-helper';
-import {
-    PropertyBags,
-    VisualizationInstanceProcessorCallback,
-} from './visualization-instance-processor';
+import { VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
 
 export class DrawingInitiator {
     private drawingController: DrawingController;
@@ -25,7 +22,7 @@ export class DrawingInitiator {
         featureFlagStoreData: FeatureFlagStoreData,
         selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
         configId: string,
-        processor: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>,
+        processor: VisualizationInstanceProcessorCallback,
     ): void {
         if (selectorMap == null) {
             return;
