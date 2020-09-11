@@ -333,6 +333,7 @@
         "./src/tests/end-to-end/common/element-identifiers/target-page-selectors.ts",
         "./src/tests/end-to-end/common/force-test-failure.ts",
         "./src/tests/end-to-end/common/manifest-overide.ts",
+        "./src/tests/end-to-end/common/page-controllers/page.ts",
         "./src/tests/end-to-end/common/playwright-option-types.ts",
         "./src/tests/end-to-end/common/prepare-test-result-file-path.ts",
         "./src/tests/end-to-end/common/pretty-print-axe-violations.ts",
