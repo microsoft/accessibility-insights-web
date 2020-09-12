@@ -9,6 +9,6 @@ export type GettingStartedNavLinkProps = {};
 export const GettingStartedNavLink = NamedFC<GettingStartedNavLinkProps>(
     'GettingStartedNavLink',
     _ => {
-        return <span className={styles.gettingStarted}>Getting Started</span>;
+        return <span className={styles.gettingStarted}>Getting started</span>;
     },
 );

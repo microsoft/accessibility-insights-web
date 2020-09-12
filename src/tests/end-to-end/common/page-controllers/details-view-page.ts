@@ -49,7 +49,7 @@ export class DetailsViewPage extends Page {
 
     public async navigateToGettingStarted(testName: string): Promise<void> {
         await this.clickSelector(detailsViewSelectors.testNavLink(testName));
-        await this.waitForSelector(`//div[@name="Getting Started"]`);
+        await this.waitForSelector(`//div[@name="Getting started"]`);
         await this.clickSelector(detailsViewSelectors.gettingStartedNavLink);
         await this.waitForSelector(`//h1/span[text()="${testName}"]`);
     }

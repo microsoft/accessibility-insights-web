@@ -272,7 +272,7 @@ export class LeftNavLinkBuilder {
         return {
             testType,
             ...this.buildBaseLink(
-                'Getting Started',
+                'Getting started',
                 generateReflowAssessmentTestKey(testType, gettingStartedSubview),
                 0,
                 renderGettingStartedLink,

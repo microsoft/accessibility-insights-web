@@ -331,7 +331,7 @@ describe('LeftNavBuilder', () => {
                     testType: visualizationType,
                 };
                 const expectedGettingStartedLink = {
-                    name: 'Getting Started',
+                    name: 'Getting started',
                     key: `${VisualizationType[visualizationType]}: ${gettingStartedSubview}`,
                     forceAnchor: true,
                     url: '',

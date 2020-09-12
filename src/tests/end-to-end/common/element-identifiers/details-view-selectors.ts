@@ -21,7 +21,7 @@ export const detailsViewSelectors = {
 
     testNavLink: (testName: string): string => `div [name="${testName}"]`,
     requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
-    gettingStartedNavLink: 'div [name="Getting Started"]',
+    gettingStartedNavLink: 'div [name="Getting started"]',
 
     visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
 
