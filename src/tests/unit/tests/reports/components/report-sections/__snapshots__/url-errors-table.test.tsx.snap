@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders 1`] = `
+<SummaryResultsTable
+  columnHeaders={
+    Array [
+      "Error type",
+      "URL",
+      "Error description",
+    ]
+  }
+  id="table-id"
+  rows={
+    Array [
+      Array [
+        "type1",
+        <NewTabLink
+          href="https://url.com/1"
+        >
+          https://url.com/1
+        </NewTabLink>,
+        <NewTabLink
+          href="error log file 1"
+        >
+          error description 1
+        </NewTabLink>,
+      ],
+      Array [
+        "type2",
+        <NewTabLink
+          href="https://url.com/2"
+        >
+          https://url.com/2
+        </NewTabLink>,
+        <NewTabLink
+          href="error log file 2"
+        >
+          error description 2
+        </NewTabLink>,
+      ],
+      Array [
+        "type3",
+        <NewTabLink
+          href="https://url.com/3"
+        >
+          https://url.com/3
+        </NewTabLink>,
+        <NewTabLink
+          href="error log file 3"
+        >
+          error description 3
+        </NewTabLink>,
+      ],
+    ]
+  }
+/>
+`;

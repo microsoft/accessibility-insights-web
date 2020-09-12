@@ -37,6 +37,7 @@ declare namespace AccessibilityInsightsReport {
         url: string,
         errorType: string,
         errorDescription: string,
+        errorLogLocation: string,
     }
 
     export type SummaryScanResults = {

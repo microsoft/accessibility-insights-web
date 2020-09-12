@@ -4,6 +4,17 @@ exports[` renders 1`] = `
 <CollapsibleUrlResultSection
   badgeCount={2}
   containerId="passed-urls-section"
+  content={
+    <UrlScanResultsTable
+      id="passed-urls-table"
+      results={
+        Array [
+          Object {},
+          Object {},
+        ]
+      }
+    />
+  }
   deps={Object {}}
   outcomeType="pass"
   title="Passed URLs"

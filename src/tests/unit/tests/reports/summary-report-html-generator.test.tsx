@@ -80,6 +80,7 @@ describe('ReportHtmlGenerator', () => {
                     url: `${baseUrl}/error`,
                     errorType: 'error name',
                     errorDescription: 'error description',
+                    errorLogLocation: 'error log file',
                 },
             ],
         };

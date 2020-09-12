@@ -1,0 +1,34 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
+
+.summary-results-table {
+    width: 100%;
+    margin: 0px;
+    text-align: left;
+    border-spacing: 0px;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 20px;
+
+    th,
+    td {
+        border: 1px solid $neutral-20;
+        padding: 16px 8px 16px 8px;
+    }
+
+    th {
+        font-weight: $fontWeightSemiBold;
+        background-color: $neutral-6;
+    }
+
+    thead tr :first-child {
+        width: 172px;
+    }
+
+    td {
+        background-color: $neutral-0;
+        overflow-wrap: break-word;
+    }
+}

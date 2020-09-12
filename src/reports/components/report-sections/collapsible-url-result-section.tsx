@@ -7,7 +7,6 @@ import {
 } from 'common/components/cards/result-section-title';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { NullComponent } from 'common/components/null-component';
 
 export type CollapsibleUrlResultSectionDeps = {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
@@ -16,16 +15,17 @@ export type CollapsibleUrlResultSectionDeps = {
 export type CollapsibleUrlResultSectionProps = Omit<ResultSectionTitleProps, 'titleSize'> & {
     deps: CollapsibleUrlResultSectionDeps;
     containerId: string;
+    content: JSX.Element;
 };
 
 export const CollapsibleUrlResultSection = NamedFC<CollapsibleUrlResultSectionProps>(
     'CollapsibleUrlResultSection',
     props => {
-        const { containerId, deps } = props;
+        const { containerId, deps, content } = props;
         const CollapsibleContent = deps.collapsibleControl({
             id: containerId,
             header: <ResultSectionTitle {...props} titleSize="heading" />,
-            content: <NullComponent />,
+            content,
             headingLevel: 3,
             deps: null,
         });

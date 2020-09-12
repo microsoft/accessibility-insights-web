@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders 1`] = `
+<SummaryResultsTable
+  columnHeaders={
+    Array [
+      "# failure instances (6)",
+      "URL",
+      "Link to report",
+    ]
+  }
+  id="table-id"
+  rows={
+    Array [
+      Array [
+        "1",
+        <NewTabLink
+          href="https://url.com/1"
+        >
+          https://url.com/1
+        </NewTabLink>,
+        <NewTabLink
+          aria-label="Report for https://url.com/1"
+          href="report location 1"
+        >
+          Report
+        </NewTabLink>,
+      ],
+      Array [
+        "2",
+        <NewTabLink
+          href="https://url.com/2"
+        >
+          https://url.com/2
+        </NewTabLink>,
+        <NewTabLink
+          aria-label="Report for https://url.com/2"
+          href="report location 2"
+        >
+          Report
+        </NewTabLink>,
+      ],
+      Array [
+        "3",
+        <NewTabLink
+          href="https://url.com/3"
+        >
+          https://url.com/3
+        </NewTabLink>,
+        <NewTabLink
+          aria-label="Report for https://url.com/3"
+          href="report location 3"
+        >
+          Report
+        </NewTabLink>,
+      ],
+    ]
+  }
+/>
+`;

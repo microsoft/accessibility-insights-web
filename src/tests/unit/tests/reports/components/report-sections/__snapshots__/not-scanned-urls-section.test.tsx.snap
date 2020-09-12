@@ -4,6 +4,18 @@ exports[` renders 1`] = `
 <CollapsibleUrlResultSection
   badgeCount={3}
   containerId="not-scanned-urls-section"
+  content={
+    <UrlErrorsTable
+      errors={
+        Array [
+          Object {},
+          Object {},
+          Object {},
+        ]
+      }
+      id="not-scanned-urls-table"
+    />
+  }
   deps={Object {}}
   outcomeType="unscannable"
   title="Not scanned URLs"

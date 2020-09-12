@@ -20,6 +20,7 @@ describe('CollapsibleUrlResultSection', () => {
                 collapsibleControl: collapsibleControlMock.object,
             },
             containerId,
+            content: <div>Content</div>,
         } as CollapsibleUrlResultSectionProps;
 
         const expectedCollapsibleControlProps: Partial<CollapsibleComponentCardsProps> = {
