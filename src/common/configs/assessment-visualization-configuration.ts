@@ -6,10 +6,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CommonTestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
-import {
-    PropertyBags,
-    VisualizationInstanceProcessorCallback,
-} from '../../injected/visualization-instance-processor';
+import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
 import { Drawer } from '../../injected/visualization/drawer';
 import { DrawerProvider } from '../../injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -35,9 +32,7 @@ export interface AssessmentVisualizationConfiguration {
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
     getAnalyzer: (analyzerProvider: AnalyzerProvider, testStep?: string) => Analyzer;
     getIdentifier: (testStep?: string) => string;
-    visualizationInstanceProcessor: (
-        testStep?: string,
-    ) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
+    visualizationInstanceProcessor: (testStep?: string) => VisualizationInstanceProcessorCallback;
     getNotificationMessage: (
         selectorMap: DictionaryStringTo<any>,
         testStep?: string,

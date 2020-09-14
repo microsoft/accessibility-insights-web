@@ -16,10 +16,7 @@ import {
 import { Analyzer } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
-import {
-    PropertyBags,
-    VisualizationInstanceProcessorCallback,
-} from 'injected/visualization-instance-processor';
+import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { Drawer } from 'injected/visualization/drawer';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { IColumn } from 'office-ui-fabric-react';
@@ -50,10 +47,7 @@ export interface Requirement {
     // present for the purposes of instance lists or getInitialManualTestStatus. By default, all
     // results support visualization.
     isVisualizationSupportedForResult?: (result: DecoratedAxeNodeResult) => boolean;
-    visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<
-        PropertyBags,
-        PropertyBags
-    >;
+    visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => Drawer;
     getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
     doNotScanByDefault?: boolean;

@@ -10,10 +10,7 @@ import {
 } from '../../../../injected/drawing-controller';
 import { DrawingInitiator } from '../../../../injected/drawing-initiator';
 import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import {
-    PropertyBags,
-    VisualizationInstanceProcessorCallback,
-} from '../../../../injected/visualization-instance-processor';
+import { VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
@@ -22,7 +19,7 @@ class DrawingControllerStub extends DrawingController {
 
 describe('DrawingInitiatorTest', () => {
     let drawingControllerMock: IMock<DrawingController>;
-    let processorMock: IMock<VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>>;
+    let processorMock: IMock<VisualizationInstanceProcessorCallback>;
     let testObject: DrawingInitiator;
 
     beforeEach(() => {
