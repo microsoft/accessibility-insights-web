@@ -4,6 +4,6 @@ exports[`GettingStartedNavLink renders 1`] = `
 <span
   className="gettingStarted"
 >
-  Getting Started
+  Getting started
 </span>
 `;

@@ -26,7 +26,7 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
     <h2
       className="gettingStartedTitle"
     >
-      Getting Started
+      Getting started
     </h2>
     <div>
       test-getting-started-content
