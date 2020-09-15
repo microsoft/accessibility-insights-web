@@ -21,6 +21,7 @@
         "./src/DetailsView/components/left-nav/test-view-left-nav-link.tsx",
         "./src/DetailsView/components/narrow-mode-detector.tsx",
         "./src/DetailsView/components/nav-link-button.tsx",
+        "./src/DetailsView/components/no-content-available/no-content-available-view.tsx",
         "./src/DetailsView/components/no-content-available/no-content-available.tsx",
         "./src/DetailsView/components/no-displayable-preview-features-message.tsx",
         "./src/DetailsView/components/overview-content/overview-heading.tsx",
@@ -382,6 +383,7 @@
         "./src/tests/unit/tests/injected/visualization/drawer-utils-mock-builder.ts",
         "./src/tests/unit/tests/scanner/custom-rules-configuration-stub.ts",
         "./src/tests/unit/tests/scanner/mock-axe-utils.ts",
+        "./src/views/content/content-view.tsx",
         "./src/views/content/guidance-title.tsx",
         "./src/views/page/page.tsx"
     ],
