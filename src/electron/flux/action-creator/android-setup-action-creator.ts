@@ -13,5 +13,5 @@ export class AndroidSetupActionCreator {
     public saveAdbPath = (newAdbPath: string) => this.setupActions.saveAdbPath.invoke(newAdbPath);
     public setSelectedDevice = (device: DeviceInfo) =>
         this.setupActions.setSelectedDevice.invoke(device);
-    public readyToStart = () => this.setupActions.readyToStart.invoke(null, this.scope);
+    public readyToStart = () => this.setupActions.readyToStart.invoke(undefined, this.scope);
 }

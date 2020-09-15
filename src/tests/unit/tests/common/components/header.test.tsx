@@ -7,6 +7,10 @@ import { Header, HeaderDeps } from 'common/components/header';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 
 describe('Header', () => {
+    const stubNarrowModeStatus = {
+        isHeaderAndNavCollapsed: false,
+    } as NarrowModeStatus;
+
     it('renders per snapshot', () => {
         const applicationTitle = 'THE_APPLICATION_TITLE';
         const deps = {
@@ -14,7 +18,7 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
-        const wrapper = shallow(<Header deps={deps} />);
+        const wrapper = shallow(<Header deps={deps} narrowModeStatus={stubNarrowModeStatus} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
@@ -25,7 +29,9 @@ describe('Header', () => {
                 applicationTitle,
             },
         } as HeaderDeps;
-        const wrapper = shallow(<Header deps={deps} showHeaderTitle={false} />);
+        const wrapper = shallow(
+            <Header deps={deps} showHeaderTitle={false} narrowModeStatus={stubNarrowModeStatus} />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
@@ -41,6 +47,7 @@ describe('Header', () => {
                 deps={deps}
                 farItems={<div>THis is far items!</div>}
                 showFarItems={showFarItems}
+                narrowModeStatus={stubNarrowModeStatus}
             />,
         );
         expect(wrapper.getElement()).toMatchSnapshot();
