@@ -16,7 +16,7 @@ export type HeaderProps = {
     navMenu?: JSX.Element;
     showHeaderTitle?: boolean;
     showFarItems?: boolean;
-    narrowModeStatus?: NarrowModeStatus;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export const Header = NamedFC<HeaderProps>('Header', props => {

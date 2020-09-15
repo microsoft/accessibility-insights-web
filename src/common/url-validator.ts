@@ -5,7 +5,10 @@ import { BrowserAdapter } from './browser-adapters/browser-adapter';
 export class UrlValidator {
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
-    public async isSupportedUrl(url: string): Promise<boolean> {
+    public async isSupportedUrl(url?: string): Promise<boolean> {
+        if (url == null) {
+            return false;
+        }
         const lowerCasedUrl: string = url.toLowerCase();
         if (lowerCasedUrl.startsWith('http://') || lowerCasedUrl.startsWith('https://')) {
             return this.hasSupportedPrefix(lowerCasedUrl);

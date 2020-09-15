@@ -45,15 +45,15 @@ export class IpcRendererShim {
     }
 
     private onMaximize = (): void => {
-        this.fromBrowserWindowMaximize.invoke(null, this.invokeScope);
+        this.fromBrowserWindowMaximize.invoke(undefined, this.invokeScope);
     };
 
     private onEnterFullScreen = (): void => {
-        this.fromBrowserWindowEnterFullScreen.invoke(null, this.invokeScope);
+        this.fromBrowserWindowEnterFullScreen.invoke(undefined, this.invokeScope);
     };
 
     private onUnmaximize = (): void => {
-        this.fromBrowserWindowUnmaximize.invoke(null, this.invokeScope);
+        this.fromBrowserWindowUnmaximize.invoke(undefined, this.invokeScope);
     };
 
     private onClose = async (): Promise<void> => {
