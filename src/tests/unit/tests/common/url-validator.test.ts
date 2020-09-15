@@ -20,6 +20,8 @@ describe('UrlValidatorTest', () => {
         ['http://domain-with-no-trailing-slash', true],
         ['http:/oops', false],
         ['oops_http://example.com', false],
+        [null, false],
+        [undefined, false],
     ];
 
     beforeEach(() => {
