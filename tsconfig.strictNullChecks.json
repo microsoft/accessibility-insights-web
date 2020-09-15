@@ -311,6 +311,7 @@
         "./src/scanner/custom-rules/header-rule.ts",
         "./src/scanner/custom-rules/heading-rule.ts",
         "./src/scanner/custom-rules/link-purpose.ts",
+        "./src/scanner/custom-rules/native-widgets-default.ts",
         "./src/scanner/custom-rules/page-title.ts",
         "./src/scanner/custom-rules/text-contrast.ts",
         "./src/scanner/custom-rules/unique-landmark.ts",
