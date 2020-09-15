@@ -279,6 +279,7 @@
         "./src/reports/components/header-bar.tsx",
         "./src/reports/components/inline-image.tsx",
         "./src/reports/components/instance-outcome-type.ts",
+        "./src/reports/components/new-tab-link-confirmation-dialog.tsx",
         "./src/reports/components/report-head.tsx",
         "./src/reports/components/report-sections/body-section.tsx",
         "./src/reports/components/report-sections/collapsible-script-provider.tsx",
