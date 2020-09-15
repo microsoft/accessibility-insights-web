@@ -8,10 +8,15 @@ import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-resul
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
+import { ReporterHeaderSection } from 'reports/components/report-sections/reporter-header-section';
+import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
+import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 import { CheckMessageTransformer } from 'scanner/check-message-transformer';
 import { configuration } from 'scanner/custom-rule-configurations';
 import { DocumentUtils } from 'scanner/document-utils';
@@ -26,9 +31,6 @@ import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { AxeReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
-import { SummaryResultsReport } from 'reports/package/summary-results-report';
-import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
-import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const {
@@ -57,9 +59,10 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         userAgent,
     );
 
-    const sectionFactory = {
+    const sectionFactory: ReportSectionFactory<SectionProps> = {
         ...AutomatedChecksReportSectionFactory,
         FooterTextForService,
+        HeaderSection: ReporterHeaderSection,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
