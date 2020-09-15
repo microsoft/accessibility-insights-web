@@ -136,7 +136,7 @@ export class Browser {
                     resolve(tabs[0].id),
                 );
             });
-        });
+        }, null);
     }
 
     private async waitForBackgroundPageMatching(

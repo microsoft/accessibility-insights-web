@@ -46,7 +46,7 @@ export class BaseClientStoresHub<T> implements ClientStoresHub<T> {
         });
     }
 
-    public getAllStoreData(): T {
+    public getAllStoreData(): T | null {
         if (!this.hasStores()) {
             return null;
         }

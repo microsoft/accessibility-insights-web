@@ -17,10 +17,10 @@ export type IMessageGenerator = (
 export type IGetMessageGenerator = (
     generator: AssessmentDefaultMessageGenerator,
 ) => IMessageGenerator;
-export interface DefaultMessageInterface {
+export type DefaultMessageInterface = {
     message: JSX.Element;
     instanceCount: number;
-}
+} | null;
 
 function failingInstances(result: TestStepResult): boolean {
     return result.status !== ManualTestStatus.PASS;

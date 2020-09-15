@@ -12,10 +12,10 @@ import { StoreUpdateMessage } from './types/store-update-message';
 export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     private state: TState;
     private storeId: string;
-    private tabId: number;
+    private tabId?: number;
     private browserAdapter: BrowserAdapter;
 
-    constructor(storeId: string, browserAdapter: BrowserAdapter, tabId: number = null) {
+    constructor(storeId: string, browserAdapter: BrowserAdapter, tabId?: number) {
         super();
         this.storeId = storeId;
         this.browserAdapter = browserAdapter;

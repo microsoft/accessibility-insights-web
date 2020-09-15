@@ -30,7 +30,7 @@ export async function scanForAccessibilityIssues(
 async function injectAxeIfUndefined(page: Page): Promise<void> {
     const axeIsUndefined = await page.evaluate(() => {
         return (window as any).axe === undefined;
-    });
+    }, null);
 
     if (axeIsUndefined) {
         await page.injectScriptFile(

@@ -50,11 +50,12 @@ export class Page {
             forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
         });
         underlyingPage.on('requestfailed', request => {
+            const failure = request.failure()!;
             const url = request.url();
             // Checking for 'fonts' and 'icons' in url as a workaround for #923
             if (!includes(url, 'fonts') && !includes(url, 'icons')) {
                 forceEventFailure(
-                    `'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`,
+                    `'requestfailed' from '${url}' with errorText: ${failure.errorText}`,
                 );
             }
         });
@@ -100,7 +101,7 @@ export class Page {
         await this.screenshotOnError(async () => await this.underlyingPage.close());
     }
 
-    public async evaluate<R, Arg>(fn: PageFunction<Arg, R>, arg?: Arg): Promise<R> {
+    public async evaluate<R, Arg>(fn: PageFunction<Arg, R>, arg: Arg): Promise<R> {
         const timeout = DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS;
         // We don't wrap this in screenshotOnError because Playwright serializes evaluate() and
         // screenshot() such that screenshot() will always time out if evaluate is still running.
@@ -111,7 +112,7 @@ export class Page {
     public async waitForSelector(
         selector: string,
         options?: WaitForSelectorOptions,
-    ): Promise<Playwright.ElementHandle<Element>> {
+    ): Promise<Playwright.ElementHandle<Element> | null> {
         return await this.screenshotOnError(
             async () =>
                 await this.underlyingPage.waitForSelector(selector, {
@@ -134,7 +135,9 @@ export class Page {
         });
     }
 
-    public async getSelectorElement(selector: string): Promise<Playwright.ElementHandle<Element>> {
+    public async getSelectorElement(
+        selector: string,
+    ): Promise<Playwright.ElementHandle<Element> | null> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$(selector);
         });
@@ -167,12 +170,17 @@ export class Page {
         selector: string,
         options?: WaitForSelectorOptions,
     ): Promise<string> {
+        if (options?.state === 'hidden' || options?.state === 'detached') {
+            throw new Error("Cannot get properties about selectors that shouldn't be there");
+        }
         return await this.screenshotOnError(async () => {
             const element = await this.underlyingPage.waitForSelector(selector, {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
                 ...options,
             });
-            return await this.underlyingPage.evaluate(el => el.outerHTML, element);
+            // element! is safe because we verified that options.state is not one of the options
+            // that can result in waitForSelector returning null
+            return await this.underlyingPage.evaluate(el => el.outerHTML, element!);
         });
     }
 
