@@ -34,7 +34,6 @@ describe('FormattedDate', () => {
             const actual = formattedDate.render();
 
             expect(actual.props.children).toBe(expected);
-            expect(actual).toMatchSnapshot();
         }
     });
 

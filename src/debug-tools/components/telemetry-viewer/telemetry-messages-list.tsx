@@ -90,5 +90,5 @@ export const onRenderTimestamp = (
 ): JSX.Element => <span>{dateFormatter(item.timestamp)}</span>;
 
 export const defaultDateFormatter: DateFormatter = timestamp =>
-    // untested line: moment is sensitive to the host machine time zone
-    DateTime.fromMillis(timestamp).toFormat('YYYY-MMM-DD HH:mm:ss.S');
+    // untested line: toLocal() is sensitive to the host machine time zone
+    DateTime.fromMillis(timestamp).toLocal().toISO();
