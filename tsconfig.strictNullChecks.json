@@ -203,6 +203,7 @@
         "./src/electron/ipc/ipc-channel-names.ts",
         "./src/electron/ipc/ipc-message-dispatcher.ts",
         "./src/electron/ipc/ipc-message-receiver.ts",
+        "./src/electron/ipc/ipc-renderer-shim.ts",
         "./src/electron/main/main-window-config.ts",
         "./src/electron/main/main-window-renderer-message-handlers.ts",
         "./src/electron/platform/android/adb-wrapper.ts",
