@@ -29,7 +29,12 @@ export class TargetTabFinder {
         if (tabIdInUrl == null) {
             return this.browserAdapter
                 .tabsQuery({ active: true, currentWindow: true })
-                .then(tabs => tabs.pop());
+                .then(tabs => {
+                    if (tabs.length === 0) {
+                        throw new Error('No active tabs found for current window');
+                    }
+                    return tabs.pop()!;
+                });
         } else {
             return new Promise((resolve, reject) => {
                 this.browserAdapter.getTab(

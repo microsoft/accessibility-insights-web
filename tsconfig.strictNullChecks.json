@@ -282,6 +282,7 @@
         "./src/popup/components/header.tsx",
         "./src/popup/components/launch-pad-item-row.tsx",
         "./src/popup/incompatible-browser-renderer.tsx",
+        "./src/popup/target-tab-finder.ts",
         "./src/reports/assessment-report.styles.ts",
         "./src/reports/automated-checks-report.styles.ts",
         "./src/reports/components/assessment-report-body-header.tsx",
