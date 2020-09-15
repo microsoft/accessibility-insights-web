@@ -72,7 +72,7 @@ describe(AndroidSetupActionCreator, () => {
     });
 
     it('invokes readyToStart action on readyToStart', () => {
-        const readyToStartMock = createActionMock<void>(null, 'AndroidSetupActionCreator');
+        const readyToStartMock = createActionMock<void>(undefined, 'AndroidSetupActionCreator');
         androidSetupActionsMock
             .setup(actions => actions.readyToStart)
             .returns(() => readyToStartMock.object);
