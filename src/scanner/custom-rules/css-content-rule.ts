@@ -29,14 +29,14 @@ function pageHasElementsWithPseudoSelectors(node: HTMLElement): boolean {
     return pseudoElements.length > 0;
 }
 
-function getAllPseudoElements(node: HTMLElement): HTMLElement[] {
+function getAllPseudoElements(node: HTMLElement): Element[] {
     const elements = node.querySelectorAll('*');
 
     const hasContent = styles => {
         return styles && styles.content !== 'none';
     };
 
-    const pseudoElements = [];
+    const pseudoElements: Element[] = [];
     for (let index = 0; index < elements.length; index++) {
         const element = elements.item(index);
         const beforeStyles = window.getComputedStyle(element, ':before');

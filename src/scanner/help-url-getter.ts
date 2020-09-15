@@ -10,7 +10,7 @@ export class HelpUrlGetter {
         return customHelpUrl || axeHelpUrl;
     }
 
-    private getCustomHelpUrl(ruleId: string): string {
+    private getCustomHelpUrl(ruleId: string): string | null {
         for (let index = 0; index < this.ruleConfigs.length; index++) {
             const config = this.ruleConfigs[index];
             if (config.rule.id === ruleId && config.rule.helpUrl != null) {

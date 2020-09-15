@@ -21,8 +21,8 @@ export const headingConfiguration: RuleConfiguration = {
 
 function evaluateCodedHeadings(node: HTMLElement, options: any): boolean {
     const headingText: string = node.innerText;
-    let headingLevel: number;
-    const ariaHeadingLevel: string = node.getAttribute('aria-level');
+    let headingLevel: number | undefined;
+    const ariaHeadingLevel: string | null = node.getAttribute('aria-level');
     if (ariaHeadingLevel !== null) {
         headingLevel = parseInt(ariaHeadingLevel, 10);
     } else {

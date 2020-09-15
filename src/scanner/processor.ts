@@ -12,7 +12,10 @@ export namespace Processor {
         // add messages to suppress here. Remove comment when non-empty.
     ].map(normalizeText);
 
-    export function suppressChecksByMessages(rule: AxeRule, removeEmptyRules = true): AxeRule {
+    export function suppressChecksByMessages(
+        rule: AxeRule,
+        removeEmptyRules = true,
+    ): AxeRule | null {
         rule.nodes = rule.nodes.filter((nodeResult: AxeNodeResult) => {
             nodeResult.any = nodeResult.any.filter((check: any) => {
                 const checkShown =
