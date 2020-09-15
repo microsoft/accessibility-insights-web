@@ -43,7 +43,7 @@ export class TargetTabFinder {
                         resolve(tab);
                     },
                     () => {
-                        reject(`Tab with Id ${tabIdInUrl} not found`);
+                        reject(new Error(`Tab with Id ${tabIdInUrl} not found`));
                     },
                 );
             });
