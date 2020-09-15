@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 
 export class DateProvider {
     public static getDateFromTimestamp(timestamp: string): Date {
@@ -17,17 +17,12 @@ export class DateProvider {
 
     public static getUTCStringFromDate(date: Date): string {
         const utcDateTime = DateTime.fromJSDate(date, { zone: 'utc' });
-        return utcDateTime.toFormat('YYYY-MM-DD h:mm A z');
+        return utcDateTime.toFormat('yyyy-MM-dd h:mm a z');
     }
 
     public static getTimeStringFromSeconds(seconds: number): string {
-        const localTime = DateTime.local();
-        const startOfDay = localTime.startOf('day');
-        const endTime = startOfDay.plus({ seconds });
-        const minsAndSecs = endTime.toFormat('mm:ss');
-        const hours = `${endTime.diff(startOfDay, 'hours')}`.padStart(2, '0');
-
-        return `${hours}:${minsAndSecs}`;
+        const duration = Duration.fromObject({ seconds });
+        return duration.toFormat('hh:mm:ss');
     }
 
     private static getDateFromDateString(timestamp: string): Date {
