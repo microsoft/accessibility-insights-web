@@ -40,7 +40,7 @@ const addConfirmOnClickHandler = function (
     doc: Document,
     confirmCallback: ConfirmType,
 ): void {
-    const targetPageLink = doc.getElementById(linkId)!; // only used when linkId is known to exist
+    const targetPageLink = doc.getElementById(linkId)!;
     targetPageLink.addEventListener('click', function (event): void {
         const result = confirmCallback(
             'Are you sure you want to navigate away from the Accessibility Insights report?\n' +
