@@ -3,6 +3,7 @@
 exports[`AssessmentReport render 1`] = `
 <React.Fragment>
   <HeaderSection
+    headerText="Accessibility Insights for Web"
     targetAppInfo={
       Object {
         "name": "title",

@@ -3,30 +3,33 @@
 import { NamedFC } from 'common/react/named-fc';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
+import { HeaderBar } from 'reports/components/header-bar';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import * as styles from './header-section.scss';
-import { HeaderBar } from 'reports/components/header-bar';
-import { productName } from 'content/strings/application';
 
 export interface HeaderSectionProps {
     targetAppInfo: TargetAppData;
+    headerText: string;
 }
 
-export const HeaderSection = NamedFC<HeaderSectionProps>('HeaderSection', ({ targetAppInfo }) => {
-    return (
-        <header>
-            <HeaderBar headerText={productName} />
-            <div className={styles.reportHeaderCommandBar}>
-                <div className={styles.targetPage}>
-                    Target page:&nbsp;
-                    <NewTabLinkWithConfirmationDialog
-                        href={targetAppInfo.url}
-                        title={targetAppInfo.name}
-                    >
-                        {targetAppInfo.name}
-                    </NewTabLinkWithConfirmationDialog>
+export const HeaderSection = NamedFC<HeaderSectionProps>(
+    'HeaderSection',
+    ({ targetAppInfo, headerText }) => {
+        return (
+            <header>
+                <HeaderBar headerText={headerText} />
+                <div className={styles.reportHeaderCommandBar}>
+                    <div className={styles.targetPage}>
+                        Target page:&nbsp;
+                        <NewTabLinkWithConfirmationDialog
+                            href={targetAppInfo.url}
+                            title={targetAppInfo.name}
+                        >
+                            {targetAppInfo.name}
+                        </NewTabLinkWithConfirmationDialog>
+                    </div>
                 </div>
-            </div>
-        </header>
-    );
-});
+            </header>
+        );
+    },
+);

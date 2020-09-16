@@ -10,7 +10,9 @@ describe('HeaderSection', () => {
             name: 'page-title',
             url: 'url://page',
         };
-        const wrapper = shallow(<HeaderSection targetAppInfo={targetAppInfo} />);
+        const wrapper = shallow(
+            <HeaderSection targetAppInfo={targetAppInfo} headerText={'some header text'} />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

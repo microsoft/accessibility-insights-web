@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { productName } from 'content/strings/application';
 import * as React from 'react';
-
 import { ReportModel } from '../assessment-report-model';
 import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
@@ -27,7 +27,7 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
 
         return (
             <React.Fragment>
-                <HeaderSection targetAppInfo={targetAppInfo} />
+                <HeaderSection targetAppInfo={targetAppInfo} headerText={productName} />
                 <AssessmentReportBody
                     deps={this.props.deps}
                     data={this.props.data}

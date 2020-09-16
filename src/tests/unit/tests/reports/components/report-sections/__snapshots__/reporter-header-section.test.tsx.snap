@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksHeaderSection renders 1`] = `
+exports[`ReporterHeaderSection renders 1`] = `
 <HeaderSection
-  headerText="Accessibility Insights for Web"
+  headerText="Accessibility Insights"
   targetAppInfo={
     Object {
       "name": "page-title",

@@ -215,7 +215,7 @@ exports[`report package integration with issues 1`] = `
       <div
         class="headerText"
       >
-        Accessibility Insights for Web
+        Accessibility Insights
       </div>
     </div>
     <div
@@ -7223,7 +7223,7 @@ exports[`report package integration with no issues 1`] = `
       <div
         class="headerText"
       >
-        Accessibility Insights for Web
+        Accessibility Insights
       </div>
     </div>
     <div

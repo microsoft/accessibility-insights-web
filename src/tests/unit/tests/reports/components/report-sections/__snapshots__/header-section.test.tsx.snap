@@ -3,7 +3,7 @@
 exports[`HeaderSection renders 1`] = `
 <header>
   <HeaderBar
-    headerText="Accessibility Insights for Web"
+    headerText="some header text"
   />
   <div
     className="reportHeaderCommandBar"
