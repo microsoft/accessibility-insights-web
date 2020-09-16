@@ -20,12 +20,8 @@
 
     line-height: 20px;
 
-    overflow-wrap: break-word;
-    * {
-        // Without width:100%, nested decendants (eg, the "More information" link) won't
-        // respect break-word since the element width will adjust to fit the largest word
-        width: 100%;
-    }
+    word-wrap: break-word;
+    word-break: break-word;
 
     .more-resources-title {
         font-family: $semiBoldFontFamily;
