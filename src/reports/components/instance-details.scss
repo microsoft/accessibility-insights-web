@@ -46,85 +46,62 @@
 .report-instance-table {
     background: $neutral-0;
 
-    display: table;
     table-layout: fixed;
     @include fill-available-width;
 
     border-radius: inherit;
+    border-collapse: collapse;
 
-    th {
-        padding: 12px 20px;
-
-        vertical-align: top;
-    }
-
-    .row {
-        top: calc(50% - 20px / 2);
-        border-bottom: 0.5px solid $neutral-10;
-    }
-
-    .row:last-child {
-        border-bottom: none;
-    }
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
-.report-instance-table .label {
+.row {
+    top: calc(50% - 20px / 2);
+
+    border-bottom: 0.5px solid $neutral-10;
+    &:last-child {
+        border-bottom: none;
+    }
+
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.label {
+    flex-basis: 70px;
+    flex-shrink: 1;
+    flex-grow: 0;
+
+    //padding: 12px 20px;
+    padding: 6px 20px 14px 20px;
+    vertical-align: top;
+
     font-size: 14px;
     line-height: 20px;
     font-family: $semiBoldFontFamily;
     color: $primary-text;
     text-align: left;
-    width: 70px;
 }
 
-.report-instance-table .instance-list-row-content {
+.instance-list-row-content {
+    flex-basis: 120px;
+    flex-shrink: 1;
+    flex-grow: 1;
+
     color: $secondary-text;
-    padding: 12px 20px;
+    //padding: 12px 20px;
+    padding: 6px 20px 14px 20px;
     font-size: 14px;
     line-height: 20px;
     align-items: flex-end;
     display: flex;
 }
 
-.report-instance-table .instance-list-row-content.content-snipppet {
+.instance-list-row-content.content-snipppet {
     font-family: Consolas, Segoe UI, Courier New, monospace;
     white-space: normal;
     word-wrap: break-word;
     word-break: break-word;
-}
-
-table.report-instance-table {
-    border-collapse: collapse;
-    overflow-x: auto;
-    word-break: break-word;
-}
-
-@media screen and (max-width: 480px) {
-    .report-instance-table tr {
-        display: block;
-    }
-
-    .report-instance-table td {
-        display: block;
-
-        .label {
-            text-align: left;
-        }
-
-        .instance-list-row-content {
-            text-align: right;
-        }
-    }
-
-    .report-instance-table td::before {
-        float: left;
-    }
-
-    .report-instance-table .label {
-        padding: 14px 20px 6px 20px;
-    }
-
-    .report-instance-table .instance-list-row-content {
-        padding: 6px 20px 14px 20px;
-    }
 }
