@@ -85,8 +85,8 @@
     .label {
         // This functions as the width of the label; it is sized to match the widest
         // text we know the label to render in actual usage (currently "Class Name"),
-        // plus 8px of fudge-factor to account for differences in fonts across browsers/OS
-        flex-basis: 78px;
+        // plus 4px of fudge-factor to account for differences in fonts across browsers/OS
+        flex-basis: 74px;
         flex-shrink: 1;
         flex-grow: 0;
 
