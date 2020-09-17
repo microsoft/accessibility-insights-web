@@ -20,6 +20,9 @@
 
     line-height: 20px;
 
+    overflow-wrap: break-word;
+    word-break: break-word;
+
     .more-resources-title {
         font-family: $semiBoldFontFamily;
     }

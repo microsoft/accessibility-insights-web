@@ -9,7 +9,7 @@
     align-items: center;
 
     background-color: $neutral-2;
-    height: 48px;
+    min-height: 48px;
 
     padding-left: 12px;
 
@@ -31,6 +31,9 @@
         label {
             color: $secondary-text;
             font-size: $fontSizeM;
+
+            overflow-wrap: break-word;
+            word-break: break-word;
         }
     }
 }
