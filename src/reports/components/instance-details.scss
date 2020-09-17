@@ -61,10 +61,20 @@
         flex-direction: row;
         flex-wrap: wrap;
 
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 14px;
+        // The padding on the parent and margins on the children are coupled; they
+        // are intended to produce the desired spacing regardless of whether the children
+        // are presented side-by-side or wrapped
+        padding-top: 2px;
         padding-bottom: 14px;
+        padding-left: 0px;
+        padding-right: 20px;
+        > * {
+            margin-top: 12px;
+            margin-bottom: 0px;
+            margin-left: 20px;
+            margin-right: 0px;
+            padding: 0;
+        }
 
         border-bottom: 0.5px solid $neutral-10;
         &:last-child {
@@ -72,16 +82,11 @@
         }
     }
 
-    .label,
-    .instance-list-row-content {
-        margin-top: 12px;
-        margin-bottom: 12px;
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-
     .label {
-        flex-basis: 70px;
+        // This functions as the width of the label; it is sized to match the widest
+        // text we know the label to render in actual usage (currently "Class Name"),
+        // plus 8px of fudge-factor to account for differences in fonts across browsers/OS
+        flex-basis: 78px;
         flex-shrink: 1;
         flex-grow: 0;
 

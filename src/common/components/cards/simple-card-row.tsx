@@ -20,9 +20,7 @@ export const SimpleCardRow = NamedFC<SimpleCardRowProps>(
 
         return (
             <tr className={styles.row} key={rowKey}>
-                <th className={css(styles.label, 'report-instance-table-label-overrides')}>
-                    {givenLabel}
-                </th>
+                <th className={styles.label}>{givenLabel}</th>
                 <td className={contentStyling}>{content}</td>
             </tr>
         );
