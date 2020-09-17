@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { DebugToolsTelemetryMessage } from 'debug-tools/controllers/telemetry-listener';
 import { isEmpty } from 'lodash';
-import * as moment from 'moment';
+import { DateTime } from 'luxon';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -90,5 +90,5 @@ export const onRenderTimestamp = (
 ): JSX.Element => <span>{dateFormatter(item.timestamp)}</span>;
 
 export const defaultDateFormatter: DateFormatter = timestamp =>
-    // untested line: moment is sensitive to the host machine time zone
-    moment(timestamp).format('YYYY-MMM-DD HH:mm:ss.S');
+    // untested line: toLocal() is sensitive to the host machine time zone
+    DateTime.fromMillis(timestamp).toLocal().toISO();
