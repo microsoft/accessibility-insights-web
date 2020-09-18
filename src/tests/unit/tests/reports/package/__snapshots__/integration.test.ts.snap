@@ -745,7 +745,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -966,7 +966,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;a href="#"&gt;About&lt;/a&gt;
                                 </td>
@@ -1074,7 +1074,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;a href="#"&gt;Academics&lt;/a&gt;
                                 </td>
@@ -1182,7 +1182,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;a href="#"&gt;Admissions&lt;/a&gt;
                                 </td>
@@ -1290,7 +1290,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;a href="#"&gt;Visitors&lt;/a&gt;
                                 </td>
@@ -1530,7 +1530,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -1745,7 +1745,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;img src="images/slide2.jpg"&gt;
                                 </td>
@@ -1843,7 +1843,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;img src="images/arrow-left.png"&gt;
                                 </td>
@@ -1941,7 +1941,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;img src="images/arrow-right.png"&gt;
                                 </td>
@@ -2039,7 +2039,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;img src="images/captcha.png"&gt;
                                 </td>
@@ -2279,7 +2279,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="name"&gt;
                                 </td>
@@ -2374,7 +2374,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="email"&gt;
                                 </td>
@@ -2469,7 +2469,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="city"&gt;
                                 </td>
@@ -2564,7 +2564,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="state"&gt;
                                 </td>
@@ -2659,7 +2659,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="zip"&gt;
                                 </td>
@@ -2754,7 +2754,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="country"&gt;
                                 </td>
@@ -2849,7 +2849,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_cs"&gt;
                                 </td>
@@ -2944,7 +2944,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_eng"&gt;
                                 </td>
@@ -3039,7 +3039,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_econ"&gt;
                                 </td>
@@ -3134,7 +3134,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_phy"&gt;
                                 </td>
@@ -3229,7 +3229,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_psy"&gt;
                                 </td>
@@ -3324,7 +3324,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_sp"&gt;
                                 </td>
@@ -3419,7 +3419,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;input type="text" name="captcha"&gt;
                                 </td>
@@ -3645,7 +3645,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -3859,7 +3859,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -4073,7 +4073,7 @@ exports[`report package integration with issues 1`] = `
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="instanceListRowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
