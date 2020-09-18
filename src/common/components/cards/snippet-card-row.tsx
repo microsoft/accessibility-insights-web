@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 import { GetLabelledStringPropertyCardRow } from './get-labelled-string-property-card-row';
 
-import { contentSnipppet } from '../../../reports/components/instance-details.scss';
+import * as styles from './snippet-card-row.scss';
 
-export const SnippetCardRow = GetLabelledStringPropertyCardRow('Snippet', contentSnipppet);
+export const SnippetCardRow = GetLabelledStringPropertyCardRow('Snippet', styles.snippet);
