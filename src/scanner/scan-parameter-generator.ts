@@ -1,11 +1,11 @@
+import { DictionaryStringTo } from 'types/common-types';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxeOptions, AxeScanContext } from './axe-options';
-import { RuleSifter } from './rule-sifter';
 import { ScanOptions } from './scan-options';
 
 export class ScanParameterGenerator {
-    constructor(private ruleSifter: RuleSifter) {}
+    constructor(private rulesIncluded: DictionaryStringTo<boolean>) {}
 
     public getAxeEngineOptions(options: ScanOptions): AxeOptions {
         const result: AxeOptions = {
@@ -17,7 +17,9 @@ export class ScanParameterGenerator {
         };
 
         if (options == null || options.testsToRun == null) {
-            result.runOnly.values = this.ruleSifter.getSiftedRules().map(rule => rule.id);
+            result.runOnly.values = Object.keys(this.rulesIncluded).filter(
+                id => this.rulesIncluded[id],
+            );
         } else {
             result.runOnly.values = options.testsToRun;
         }
