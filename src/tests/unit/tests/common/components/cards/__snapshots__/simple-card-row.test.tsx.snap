@@ -5,12 +5,12 @@ exports[`SimpleCardRow renders 1`] = `
   className="row"
 >
   <th
-    className="label report-instance-table-label-overrides"
+    className="rowLabel"
   >
     test label
   </th>
   <td
-    className="instanceListRowContent"
+    className="rowContent"
   >
     test content
   </td>
@@ -22,12 +22,12 @@ exports[`SimpleCardRow renders with correct styling with extra class name 1`] = 
   className="row"
 >
   <th
-    className="label report-instance-table-label-overrides"
+    className="rowLabel"
   >
     test label
   </th>
   <td
-    className="instanceListRowContent test class name"
+    className="rowContent test class name"
   >
     test content
   </td>

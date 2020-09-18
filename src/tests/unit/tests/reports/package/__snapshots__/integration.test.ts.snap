@@ -726,12 +726,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   html
                                 </td>
@@ -740,12 +740,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -754,12 +754,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -947,12 +947,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   li:nth-child(1) &gt; a[href="\\#"]
                                 </td>
@@ -961,12 +961,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;a href="#"&gt;About&lt;/a&gt;
                                 </td>
@@ -975,12 +975,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1055,12 +1055,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   li:nth-child(2) &gt; a[href="\\#"]
                                 </td>
@@ -1069,12 +1069,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;a href="#"&gt;Academics&lt;/a&gt;
                                 </td>
@@ -1083,12 +1083,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1163,12 +1163,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   li:nth-child(3) &gt; a[href="\\#"]
                                 </td>
@@ -1177,12 +1177,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;a href="#"&gt;Admissions&lt;/a&gt;
                                 </td>
@@ -1191,12 +1191,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1271,12 +1271,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   li:nth-child(4) &gt; a[href="\\#"]
                                 </td>
@@ -1285,12 +1285,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;a href="#"&gt;Visitors&lt;/a&gt;
                                 </td>
@@ -1299,12 +1299,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1511,12 +1511,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   html
                                 </td>
@@ -1525,12 +1525,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -1539,12 +1539,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1726,12 +1726,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   img[src$="slide2\\.jpg"]
                                 </td>
@@ -1740,12 +1740,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;img src="images/slide2.jpg"&gt;
                                 </td>
@@ -1754,12 +1754,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1824,12 +1824,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   img[src$="arrow-left\\.png"]
                                 </td>
@@ -1838,12 +1838,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;img src="images/arrow-left.png"&gt;
                                 </td>
@@ -1852,12 +1852,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -1922,12 +1922,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   img[src$="arrow-right\\.png"]
                                 </td>
@@ -1936,12 +1936,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;img src="images/arrow-right.png"&gt;
                                 </td>
@@ -1950,12 +1950,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2020,12 +2020,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   img[src$="captcha\\.png"]
                                 </td>
@@ -2034,12 +2034,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;img src="images/captcha.png"&gt;
                                 </td>
@@ -2048,12 +2048,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2260,12 +2260,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="name"]
                                 </td>
@@ -2274,12 +2274,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="name"&gt;
                                 </td>
@@ -2288,12 +2288,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2355,12 +2355,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="email"]
                                 </td>
@@ -2369,12 +2369,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="email"&gt;
                                 </td>
@@ -2383,12 +2383,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2450,12 +2450,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="city"]
                                 </td>
@@ -2464,12 +2464,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="city"&gt;
                                 </td>
@@ -2478,12 +2478,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2545,12 +2545,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="state"]
                                 </td>
@@ -2559,12 +2559,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="state"&gt;
                                 </td>
@@ -2573,12 +2573,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2640,12 +2640,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="zip"]
                                 </td>
@@ -2654,12 +2654,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="zip"&gt;
                                 </td>
@@ -2668,12 +2668,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2735,12 +2735,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="country"]
                                 </td>
@@ -2749,12 +2749,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="country"&gt;
                                 </td>
@@ -2763,12 +2763,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2830,12 +2830,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="major_cs"]
                                 </td>
@@ -2844,12 +2844,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_cs"&gt;
                                 </td>
@@ -2858,12 +2858,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -2925,12 +2925,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="major_eng"]
                                 </td>
@@ -2939,12 +2939,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_eng"&gt;
                                 </td>
@@ -2953,12 +2953,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3020,12 +3020,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="major_econ"]
                                 </td>
@@ -3034,12 +3034,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_econ"&gt;
                                 </td>
@@ -3048,12 +3048,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3115,12 +3115,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="major_phy"]
                                 </td>
@@ -3129,12 +3129,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_phy"&gt;
                                 </td>
@@ -3143,12 +3143,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3210,12 +3210,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="major_psy"]
                                 </td>
@@ -3224,12 +3224,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_psy"&gt;
                                 </td>
@@ -3238,12 +3238,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3305,12 +3305,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="major_sp"]
                                 </td>
@@ -3319,12 +3319,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="checkbox" name="major_sp"&gt;
                                 </td>
@@ -3333,12 +3333,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3400,12 +3400,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   input[name="captcha"]
                                 </td>
@@ -3414,12 +3414,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;input type="text" name="captcha"&gt;
                                 </td>
@@ -3428,12 +3428,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3626,12 +3626,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   html
                                 </td>
@@ -3640,12 +3640,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -3654,12 +3654,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -3840,12 +3840,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   html
                                 </td>
@@ -3854,12 +3854,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -3868,12 +3868,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"
@@ -4054,12 +4054,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Path
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   html
                                 </td>
@@ -4068,12 +4068,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   Snippet
                                 </th>
                                 <td
-                                  class="instanceListRowContent contentSnipppet"
+                                  class="rowContent snippet"
                                 >
                                   &lt;html class="deque-axe-is-ready"&gt;
                                 </td>
@@ -4082,12 +4082,12 @@ exports[`report package integration with issues 1`] = `
                                 class="row"
                               >
                                 <th
-                                  class="label report-instance-table-label-overrides"
+                                  class="rowLabel"
                                 >
                                   How to fix
                                 </th>
                                 <td
-                                  class="instanceListRowContent"
+                                  class="rowContent"
                                 >
                                   <div
                                     class="howToFixContent"

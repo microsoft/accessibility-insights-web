@@ -51,80 +51,60 @@
     @include fill-available-width;
 
     border-radius: inherit;
+    border-collapse: collapse;
 
-    th {
-        padding: 12px 20px;
-
-        vertical-align: top;
-    }
+    overflow-wrap: break-word;
+    word-break: break-word;
 
     .row {
-        top: calc(50% - 20px / 2);
+        display: flex;
+        flex-wrap: wrap;
+
+        // The padding on the parent and margins on the children are coupled; they
+        // are intended to produce the desired spacing regardless of whether the children
+        // are presented side-by-side or wrapped
+        padding-top: 2px;
+        padding-bottom: 14px;
+        padding-left: 0px;
+        padding-right: 20px;
+        > * {
+            margin-top: 12px;
+            margin-bottom: 0px;
+            margin-left: 20px;
+            margin-right: 0px;
+            padding: 0;
+        }
+
         border-bottom: 0.5px solid $neutral-10;
-    }
-
-    .row:last-child {
-        border-bottom: none;
-    }
-}
-
-.report-instance-table .label {
-    font-size: 14px;
-    line-height: 20px;
-    font-family: $semiBoldFontFamily;
-    color: $primary-text;
-    text-align: left;
-    width: 70px;
-}
-
-.report-instance-table .instance-list-row-content {
-    color: $secondary-text;
-    padding: 12px 20px;
-    font-size: 14px;
-    line-height: 20px;
-    align-items: flex-end;
-    display: flex;
-}
-
-.report-instance-table .instance-list-row-content.content-snipppet {
-    font-family: Consolas, Segoe UI, Courier New, monospace;
-    white-space: normal;
-    word-wrap: break-word;
-    word-break: break-word;
-}
-
-table.report-instance-table {
-    border-collapse: collapse;
-    overflow-x: auto;
-    word-break: break-word;
-}
-
-@media screen and (max-width: 480px) {
-    .report-instance-table tr {
-        display: block;
-    }
-
-    .report-instance-table td {
-        display: block;
-
-        .label {
-            text-align: left;
-        }
-
-        .instance-list-row-content {
-            text-align: right;
+        &:last-child {
+            border-bottom: none;
         }
     }
 
-    .report-instance-table td::before {
-        float: left;
+    .row-label {
+        // This functions as the width of the label; it is sized to match the widest
+        // text we know the label to render in actual usage (currently "How to check"),
+        // plus 4px of fudge-factor to account for differences in fonts across browsers/OS
+        flex-basis: 90px;
+        flex-shrink: 1;
+        flex-grow: 0;
+
+        font-size: 14px;
+        line-height: 20px;
+        font-family: $semiBoldFontFamily;
+        color: $primary-text;
+        text-align: left;
     }
 
-    .report-instance-table .label {
-        padding: 14px 20px 6px 20px;
-    }
+    .row-content {
+        flex-basis: 200px;
+        flex-shrink: 1;
+        flex-grow: 1;
 
-    .report-instance-table .instance-list-row-content {
-        padding: 6px 20px 14px 20px;
+        color: $secondary-text;
+        font-size: 14px;
+        line-height: 20px;
+        align-items: flex-end;
+        display: flex;
     }
 }
