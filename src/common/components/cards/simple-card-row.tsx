@@ -16,11 +16,11 @@ export interface SimpleCardRowProps {
 export const SimpleCardRow = NamedFC<SimpleCardRowProps>(
     'SimpleCardRow',
     ({ label: givenLabel, content, rowKey, contentClassName }) => {
-        const contentStyling = css(styles.instanceListRowContent, contentClassName);
+        const contentStyling = css(styles.rowContent, contentClassName);
 
         return (
             <tr className={styles.row} key={rowKey}>
-                <th className={styles.label}>{givenLabel}</th>
+                <th className={styles.rowLabel}>{givenLabel}</th>
                 <td className={contentStyling}>{content}</td>
             </tr>
         );

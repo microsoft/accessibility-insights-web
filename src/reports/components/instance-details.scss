@@ -81,7 +81,7 @@
         }
     }
 
-    .label {
+    .row-label {
         // This functions as the width of the label; it is sized to match the widest
         // text we know the label to render in actual usage (currently "How to check"),
         // plus 4px of fudge-factor to account for differences in fonts across browsers/OS
@@ -96,7 +96,7 @@
         text-align: left;
     }
 
-    .instance-list-row-content {
+    .row-content {
         flex-basis: 200px;
         flex-shrink: 1;
         flex-grow: 1;
