@@ -6,7 +6,7 @@ exports[`report package integration with issues 1`] = `
     charset="UTF-8"
   />
   <title>
-    Accessibility Insights for Web automated checks result
+    Accessibility Insights automated checks result
   </title>
   <style>
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
@@ -7014,7 +7014,7 @@ exports[`report package integration with no issues 1`] = `
     charset="UTF-8"
   />
   <title>
-    Accessibility Insights for Web automated checks result
+    Accessibility Insights automated checks result
   </title>
   <style>
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
