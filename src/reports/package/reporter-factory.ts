@@ -62,7 +62,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
 
     const sectionFactory: ReportSectionFactory<SectionProps> = {
         ...AutomatedChecksReportSectionFactory,
-        FooterTextForService,
+        FooterText: FooterTextForService,
         HeaderSection: ReporterHeaderSection,
         HeadSection: ReporterHead,
     };
@@ -112,7 +112,7 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
 
     const sectionFactory = {
         ...SummaryReportSectionFactory,
-        FooterTextForService,
+        FooterText: FooterTextForService,
     };
 
     const reportHtmlGenerator = new SummaryReportHtmlGenerator(
