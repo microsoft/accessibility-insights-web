@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>Coded headers must be used correctly.</p>
 
@@ -13,6 +13,10 @@ export const infoAndExamples = create(({ Markup }) => (
             assistive technologies can't report these relationships. When a <Markup.Emphasis>layout</Markup.Emphasis> table has coded
             headers, assistive technologies report relationships between cells that don't actually exist. Some users are likely to find the
             table's content confusing.
+        </p>
+        <h3>From a user's perspective</h3>
+        <p>
+            <Link.HeadingsVideo>This short video</Link.HeadingsVideo> shows an example of a table with incorrect markup header cells and how this makes it difficult for screen reader users to identify their location in the table.
         </p>
 
         <h2>How to fix</h2>

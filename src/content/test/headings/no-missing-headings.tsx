@@ -10,6 +10,11 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             People with good vision can quickly scan a page to identify headings based solely on their appearance, such as large or bold
             font, preceding white space, or indentation. Users of assistive technologies can't find headings that aren't properly coded.
         </p>
+        <h3>From a user's perspective</h3>
+        <p>
+            <Link.HeadingsVideo>This short video</Link.HeadingsVideo> shows an example of a website with visually apparent headings and the impact for screen reader users, since screen readers will not be able to locate the headings.
+        </p>
+
         <h2>How to fix</h2>
         <p>
             Re-implement using a heading tag. (You could add role="heading" to a different element, but the{' '}

@@ -15,6 +15,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 information."
             </Markup.Emphasis>
         </p>
+        <p>
+            <Link.FormLabelsVideo>This video</Link.FormLabelsVideo> explains how screen reader users are impacted when the label and the form element are not programmatically related, which makes it difficult for the user to know what information they should input.
+        </p>
+
         <h2>How to fix</h2>
         <p>
             Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button
