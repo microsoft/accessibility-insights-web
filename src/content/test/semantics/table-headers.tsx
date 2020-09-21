@@ -16,7 +16,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         </p>
         <h3>From a user's perspective</h3>
         <p>
-            <Link.HeadingsVideo>This short video</Link.HeadingsVideo> shows an example of a table with incorrect markup header cells and how this makes it difficult for screen reader users to identify their location in the table.
+            <Link.HeadingsVideo>This short video</Link.HeadingsVideo> shows an example of a table with incorrect markup header cells and how
+            this makes it difficult for screen reader users to identify their location in the table.
         </p>
 
         <h2>How to fix</h2>

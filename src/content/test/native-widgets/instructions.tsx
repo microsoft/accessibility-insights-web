@@ -14,10 +14,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         </p>
         <h3>From a user's perspective</h3>
         <p>
-            <Link.VoiceControlVideo>This short video</Link.VoiceControlVideo> shows how users of voice control use the label text to interact with a control.
+            <Link.VoiceControlVideo>This short video</Link.VoiceControlVideo> shows how users of voice control use the label text to
+            interact with a control.
         </p>
         <p>
-            <Link.FormLabelsVideo>This other video</Link.FormLabelsVideo> explains how screen reader users are impacted when the label and the form element are not programmatically related. 
+            <Link.FormLabelsVideo>This other video</Link.FormLabelsVideo> explains how screen reader users are impacted when the label and
+            the form element are not programmatically related.
         </p>
         <h2>How to fix</h2>
         <p>Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.</p>
