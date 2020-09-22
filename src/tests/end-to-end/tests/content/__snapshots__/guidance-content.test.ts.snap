@@ -5464,9 +5464,9 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
           href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
           target="_blank"
         >
-          This video
+          This short video on form labels
         </a>
-         explains how screen reader users are impacted when the label and the form element are not programmatically related, which makes it difficult for the user to know what information they should input.
+         shows how programmatically related labels help people who use screen readers.
       </p>
       <h2>
         How to fix
@@ -6512,9 +6512,9 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
           href="https://www.youtube.com/watch?v=bAFzL-dOzu0"
           target="_blank"
         >
-          This short video
+          This short vide on voice control
         </a>
-         shows how users of voice control use the label text to interact with a control.
+         shows how programmatically related labels help people who use voice control.
       </p>
       <p>
         <a
@@ -6522,9 +6522,9 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
           href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
           target="_blank"
         >
-          This other video
+          This short video on form labels
         </a>
-         explains how screen reader users are impacted when the label and the form element are not programmatically related.
+         shows how programmatically related labels help people who use screen readers.
       </p>
       <h2>
         How to fix
@@ -11842,9 +11842,9 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
           href="https://www.youtube.com/watch?v=S0pJcYyxBWo"
           target="_blank"
         >
-          This short video
+          This short video on headings
         </a>
-         shows an example of a website with visually apparent headings and the impact for screen reader users, since screen readers will not be able to locate the headings.
+         shows how programmatically related headings help people who use screen readers.
       </p>
       <h2>
         How to fix
@@ -21882,9 +21882,9 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
           href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
           target="_blank"
         >
-          This video
+          This short video on form labels
         </a>
-         explains how screen reader users are impacted when the label and the form element are not programmatically related, which makes it difficult for the user to know what information they should input.
+         shows how programmatically related labels help people who use screen readers.
       </p>
       <h2>
         How to fix
@@ -22760,9 +22760,9 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
           href="https://www.youtube.com/watch?v=bAFzL-dOzu0"
           target="_blank"
         >
-          This short video
+          This short video on voice control
         </a>
-         shows how users of voice control use the label text to interact with a control.
+         shows how programmatically related labels help people who use voice control.
       </p>
       <p>
         <a
@@ -22770,9 +22770,9 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
           href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
           target="_blank"
         >
-          This other video
+          This short video on form labels
         </a>
-         explains how screen reader users are impacted when the label and the form element are not programmatically related.
+         shows how programmatically related labels help people who use screen readers.
       </p>
       <h2>
         How to fix
@@ -28099,9 +28099,9 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
           href="https://www.youtube.com/watch?v=S0pJcYyxBWo"
           target="_blank"
         >
-          This short video
+          This short video on tables
         </a>
-         shows an example of a table with incorrect markup header cells and how this makes it difficult for screen reader users to identify their location in the table.
+         shows how correct table markup helps people who use screen reader.
       </p>
       <h2>
         How to fix

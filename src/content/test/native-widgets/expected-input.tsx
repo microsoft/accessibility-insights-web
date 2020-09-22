@@ -16,8 +16,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             </Markup.Emphasis>
         </p>
         <p>
-            <Link.FormLabelsVideo>This video</Link.FormLabelsVideo> explains how screen reader users are impacted when the label and the
-            form element are not programmatically related, which makes it difficult for the user to know what information they should input.
+            <Link.FormLabelsVideo>This short video on form labels</Link.FormLabelsVideo> shows how programmatically related labels help
+            people who use screen readers.
         </p>
         <h2>How to fix</h2>
         <p>

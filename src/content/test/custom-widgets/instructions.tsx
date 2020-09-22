@@ -15,12 +15,12 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>From a user's perspective</h3>
         <p>
-            <Link.VoiceControlVideo>This short video</Link.VoiceControlVideo> shows how users of voice control use the label text to
-            interact with a control.
+            <Link.VoiceControlVideo>This short vide on voice control</Link.VoiceControlVideo> shows how programmatically related labels help
+            people who use voice control.
         </p>
         <p>
-            <Link.FormLabelsVideo>This other video</Link.FormLabelsVideo> explains how screen reader users are impacted when the label and
-            the form element are not programmatically related.
+            <Link.FormLabelsVideo>This short video on form labels</Link.FormLabelsVideo> shows how programmatically related labels help
+            people who use screen readers.
         </p>
 
         <h2>How to fix</h2>

@@ -12,8 +12,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         </p>
         <h3>From a user's perspective</h3>
         <p>
-            <Link.HeadingsVideo>This short video</Link.HeadingsVideo> shows an example of a website with visually apparent headings and the
-            impact for screen reader users, since screen readers will not be able to locate the headings.
+            <Link.HeadingsVideo>This short video on headings</Link.HeadingsVideo> shows how programmatically related headings help people
+            who use screen readers.
         </p>
 
         <h2>How to fix</h2>
