@@ -239,7 +239,7 @@ class GlobalActionCreatorValidator {
             .setup(x => x.registerTypeToPayloadCallback(It.isValue(expectedType), It.isAny()))
             .callback((messageType, callback) => {
                 if (callbackParams) {
-                    callback.apply(null, callbackParams);
+                    callback(...callbackParams);
                 } else {
                     callback();
                 }

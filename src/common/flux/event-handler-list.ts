@@ -18,7 +18,14 @@ export class EventHandlerList<TSender, TEventArgs> {
     }
 
     public invokeHandlers(sender?: TSender, eventArgs?: TEventArgs): void {
-        const handlersCopy = Array.apply(null, this.handlers);
+        if (sender == null) {
+            return;
+        }
+        if (eventArgs == null) {
+            return;
+        }
+
+        const handlersCopy = [...this.handlers];
 
         handlersCopy.forEach(handler => handler(sender, eventArgs));
     }

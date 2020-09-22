@@ -48,7 +48,7 @@ import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 
-declare var window: AutoChecker & Window;
+declare let window: AutoChecker & Window;
 
 export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
