@@ -5458,6 +5458,16 @@ exports[`Guidance Content pages test/customWidgets/expectedInput/infoAndExamples
           "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
         </em>
       </p>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
+          target="_blank"
+        >
+          This video
+        </a>
+         explains how screen reader users are impacted when the label and the form element are not programmatically related, which makes it difficult for the user to know what information they should input.
+      </p>
       <h2>
         How to fix
       </h2>
@@ -6492,6 +6502,29 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
       </h2>
       <p>
         People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=bAFzL-dOzu0"
+          target="_blank"
+        >
+          This short video
+        </a>
+         shows how users of voice control use the label text to interact with a control.
+      </p>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
+          target="_blank"
+        >
+          This other video
+        </a>
+         explains how screen reader users are impacted when the label and the form element are not programmatically related.
       </p>
       <h2>
         How to fix
@@ -11799,6 +11832,19 @@ exports[`Guidance Content pages test/headings/noMissingHeadings/infoAndExamples 
       </h2>
       <p>
         People with good vision can quickly scan a page to identify headings based solely on their appearance, such as large or bold font, preceding white space, or indentation. Users of assistive technologies can't find headings that aren't properly coded.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=S0pJcYyxBWo"
+          target="_blank"
+        >
+          This short video
+        </a>
+         shows an example of a website with visually apparent headings and the impact for screen reader users, since screen readers will not be able to locate the headings.
       </p>
       <h2>
         How to fix
@@ -21830,6 +21876,16 @@ exports[`Guidance Content pages test/nativeWidgets/expectedInput/infoAndExamples
           "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
         </em>
       </p>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
+          target="_blank"
+        >
+          This video
+        </a>
+         explains how screen reader users are impacted when the label and the form element are not programmatically related, which makes it difficult for the user to know what information they should input.
+      </p>
       <h2>
         How to fix
       </h2>
@@ -22694,6 +22750,29 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
       </h2>
       <p>
         People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=bAFzL-dOzu0"
+          target="_blank"
+        >
+          This short video
+        </a>
+         shows how users of voice control use the label text to interact with a control.
+      </p>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=Mki-ZknCrB4"
+          target="_blank"
+        >
+          This other video
+        </a>
+         explains how screen reader users are impacted when the label and the form element are not programmatically related.
       </p>
       <h2>
         How to fix
@@ -28010,6 +28089,19 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
           layout
         </em>
          table has coded headers, assistive technologies report relationships between cells that don't actually exist. Some users are likely to find the table's content confusing.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.youtube.com/watch?v=S0pJcYyxBWo"
+          target="_blank"
+        >
+          This short video
+        </a>
+         shows an example of a table with incorrect markup header cells and how this makes it difficult for screen reader users to identify their location in the table.
       </p>
       <h2>
         How to fix
