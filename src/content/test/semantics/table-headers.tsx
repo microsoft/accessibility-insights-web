@@ -17,7 +17,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>From a user's perspective</h3>
         <p>
             <Link.HeadingsVideo>This short video on tables</Link.HeadingsVideo> shows how correct table markup helps people who use screen
-            reader.
+            readers.
         </p>
 
         <h2>How to fix</h2>
