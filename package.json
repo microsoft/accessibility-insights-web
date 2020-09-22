@@ -138,7 +138,7 @@
         "source-map-loader": "^1.1.0",
         "spectron": "^10.0.1",
         "terser-webpack-plugin": "^4.2.2",
-        "ts-jest": "^26.3.0",
+        "ts-jest": "^26.4.0",
         "ts-loader": "^8.0.4",
         "typed-scss-modules": "^3.1.0",
         "typemoq": "^2.1.0",
