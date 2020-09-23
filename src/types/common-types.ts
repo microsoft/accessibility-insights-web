@@ -9,5 +9,5 @@ export interface DictionaryNumberTo<T> {
 }
 
 export interface FunctionPPR<TParam1, TParam2, TResult> {
-    (param1: TParam1, param2: TParam2): TResult;
+    (param1: TParam1, param2?: TParam2): TResult;
 }

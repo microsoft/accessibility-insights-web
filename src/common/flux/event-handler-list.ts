@@ -17,14 +17,7 @@ export class EventHandlerList<TSender, TEventArgs> {
         }
     }
 
-    public invokeHandlers(sender?: TSender, eventArgs?: TEventArgs): void {
-        if (sender == null) {
-            return;
-        }
-        if (eventArgs == null) {
-            return;
-        }
-
+    public invokeHandlers(sender: TSender, eventArgs?: TEventArgs): void {
         const handlersCopy = [...this.handlers];
 
         handlersCopy.forEach(handler => handler(sender, eventArgs));
