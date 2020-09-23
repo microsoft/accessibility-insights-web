@@ -25,7 +25,7 @@ exports[`HowToCheckWebText renders with id=bogus-name 1`] = `null`;
 
 exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
 <div
-  classname="combinationLists"
+  className="combinationLists"
 >
   <ul
     className="multiLineTextYesBullet"

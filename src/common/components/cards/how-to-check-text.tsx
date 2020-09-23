@@ -31,7 +31,7 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
         }
         case 'color-contrast': {
             checkText = (
-                <div classname={styles.combinationLists}>
+                <div className={styles.combinationLists}>
                     <ul className={styles.multiLineTextYesBullet}>
                         <li list-style-type="disc">
                             If the text is intended to be invisible, it passes.
