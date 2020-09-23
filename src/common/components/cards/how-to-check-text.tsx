@@ -34,10 +34,11 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                 <div className={styles.combinationLists}>
                     <ul className={styles.multiLineTextYesBullet}>
                         <li list-style-type="disc">
-                            If the text is intended to be invisible, it passes.
+                            If the instance is an icon or other non-text content, ignore it. This
+                            rule applies only to text.
                         </li>
                         <li list-style-type="disc">
-                            If the text is intended to be visible, use{' '}
+                            If the instance is text, use{' '}
                             <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">
                                 Accessibility Insights for Windows
                             </NewTabLink>{' '}
@@ -54,7 +55,7 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                         <li>
                             For detailed test instructions, see{' '}
                             <b>
-                                Assessment {'>'} Text legibility {'>'} Contrast
+                                Assessment {'>'} Adaptable content {'>'} Contrast
                             </b>
                             .
                         </li>
