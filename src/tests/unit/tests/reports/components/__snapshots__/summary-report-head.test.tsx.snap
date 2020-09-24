@@ -6,7 +6,7 @@ exports[`SummaryReportHead renders 1`] = `
     charSet="UTF-8"
   />
   <title>
-    Accessibility Insights for Web
+    Accessibility Insights
      automated checks result
   </title>
   <style

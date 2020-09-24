@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
-import { ReportHead } from 'reports/components/report-head';
+import { WebReportHead } from 'reports/components/report-head';
 import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
@@ -16,7 +16,7 @@ import { AllOutcomesSummarySection } from './summary-section';
 import { TitleSection } from './title-section';
 
 export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
-    HeadSection: ReportHead,
+    HeadSection: WebReportHead,
     BodySection,
     ContentContainer,
     HeaderSection: AutomatedChecksHeaderSection,

@@ -6,6 +6,7 @@ import { generateUID } from 'common/uid-generator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
+import { ReporterHead } from 'reports/components/report-head';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
@@ -61,8 +62,9 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
 
     const sectionFactory: ReportSectionFactory<SectionProps> = {
         ...AutomatedChecksReportSectionFactory,
-        FooterTextForService,
+        FooterText: FooterTextForService,
         HeaderSection: ReporterHeaderSection,
+        HeadSection: ReporterHead,
     };
 
     const reportHtmlGenerator = new ReportHtmlGenerator(
@@ -110,7 +112,7 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
 
     const sectionFactory = {
         ...SummaryReportSectionFactory,
-        FooterTextForService,
+        FooterText: FooterTextForService,
     };
 
     const reportHtmlGenerator = new SummaryReportHtmlGenerator(
