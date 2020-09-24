@@ -15,8 +15,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 
         <h3>From a user's perspective</h3>
         <p>
-            <Link.VoiceControlVideo>This short vide on voice control</Link.VoiceControlVideo> shows how programmatically related labels help
-            people who use voice control.
+            <Link.VoiceControlVideo>This short video on voice control</Link.VoiceControlVideo> shows how programmatically related labels
+            help people who use voice control.
         </p>
         <p>
             <Link.FormLabelsVideo>This short video on form labels</Link.FormLabelsVideo> shows how programmatically related labels help

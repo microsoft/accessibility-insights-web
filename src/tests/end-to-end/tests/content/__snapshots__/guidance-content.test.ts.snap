@@ -6512,7 +6512,7 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
           href="https://www.youtube.com/watch?v=bAFzL-dOzu0"
           target="_blank"
         >
-          This short vide on voice control
+          This short video on voice control
         </a>
          shows how programmatically related labels help people who use voice control.
       </p>
@@ -28096,7 +28096,7 @@ exports[`Guidance Content pages test/semantics/headers/infoAndExamples matches t
       <p>
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.youtube.com/watch?v=S0pJcYyxBWo"
+          href="https://www.youtube.com/watch?v=I2meEap25UA"
           target="_blank"
         >
           This short video on tables
