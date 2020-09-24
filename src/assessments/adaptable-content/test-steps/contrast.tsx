@@ -38,9 +38,15 @@ const contrastHowToTest: JSX.Element = (
         <TestAutomaticallyPassedNotice />
         <ol>
             <li>
-                Examine each instance in the target page to identify an area where the text and
-                background are most likely to have a low contrast ratio (e.g., white text on a light
-                gray background).
+                Examine each instance in the target page to determine whether it is text. (Because
+                icons are assessed in
+                <Markup.Term> Contrast {'>'} Graphics </Markup.Term>, they can be marked as{' '}
+                <Markup.Term> Pass </Markup.Term> in this test.)
+            </li>
+            <li>
+                Examine each text instance to identify an area where the text and background are
+                most likely to have a low contrast ratio (e.g., white text on a light gray
+                background).
             </li>
             <li>
                 Use <WindowsContrastCheckerAppLink /> to test the contrast at that area. (If you are
