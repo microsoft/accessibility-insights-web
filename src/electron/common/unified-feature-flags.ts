@@ -6,6 +6,7 @@ export class UnifiedFeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly exportReport = 'exportReport';
+    public static readonly leftNavBar = 'leftNavBar';
 }
 
 export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
@@ -34,6 +35,14 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
             displayableDescription: 'Show the export report button on the automated checks window',
             isPreviewFeature: false,
             forceDefault: true,
+        },
+        {
+            id: UnifiedFeatureFlags.leftNavBar,
+            defaultValue: false,
+            displayableName: 'Show left navigation bar',
+            displayableDescription: 'Show the left navigation bar in the automated checks window',
+            isPreviewFeature: false,
+            forceDefault: false,
         },
     ];
 }
