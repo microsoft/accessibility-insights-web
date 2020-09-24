@@ -20,6 +20,7 @@
         "build:mock-adb": "grunt exec:pkg-mock-adb",
         "build:unified": "grunt build-unified",
         "build:unified:all": "grunt build-unified-all",
+        "build:unified:canary": "grunt build-unified-canary",
         "build:package:report": "grunt build-package-report",
         "build:package:ui": "grunt build-package-ui",
         "build:prod": "grunt build-prod",
