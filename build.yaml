@@ -68,7 +68,7 @@ jobs:
             displayName: publish code coverage
             timeoutInMinutes: 5
 
-          - bash: bash <(curl -s https://codecov.io/bash)
+          - bash: bash <(curl --retry 5 --retry-delay 2 --connect-timeout 2 -s https://codecov.io/bash)
             displayName: Publish code coverage to codecov via codecov-bash
             env:
                 CODECOV_TOKEN: $(CODECOV_TOKEN)
