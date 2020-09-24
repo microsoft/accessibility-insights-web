@@ -680,15 +680,11 @@ module.exports = function (grunt) {
         'build-assets',
         'drop:unified-dev',
     ]);
-    grunt.registerTask('build-unified-all', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'exec:pkg-mock-adb',
-        'exec:webpack-unified',
-        'build-assets',
-        'drop:unified-dev',
-        'unified-release-drops',
+    grunt.registerTask('build-unified-canary', [
+        'build-unified',
+        'unified-release-drop:unified-canary',
     ]);
+    grunt.registerTask('build-unified-all', ['build-unified', 'unified-release-drops']);
     grunt.registerTask('build-package-report', [
         'clean:intermediates',
         'exec:generate-scss-typings',
