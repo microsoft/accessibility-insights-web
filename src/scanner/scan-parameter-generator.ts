@@ -1,3 +1,4 @@
+import { RuleIncluded } from 'scanner/get-rule-inclusions';
 import { DictionaryStringTo } from 'types/common-types';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
@@ -5,7 +6,7 @@ import { AxeOptions, AxeScanContext } from './axe-options';
 import { ScanOptions } from './scan-options';
 
 export class ScanParameterGenerator {
-    constructor(private rulesIncluded: DictionaryStringTo<boolean>) {}
+    constructor(private rulesIncluded: DictionaryStringTo<RuleIncluded>) {}
 
     public getAxeEngineOptions(options: ScanOptions): AxeOptions {
         const result: AxeOptions = {
@@ -18,7 +19,7 @@ export class ScanParameterGenerator {
 
         if (options == null || options.testsToRun == null) {
             result.runOnly.values = Object.keys(this.rulesIncluded).filter(
-                id => this.rulesIncluded[id],
+                id => this.rulesIncluded[id].status === 'included',
             );
         } else {
             result.runOnly.values = options.testsToRun;
