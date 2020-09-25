@@ -5,6 +5,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import * as styles from './how-to-check-text.scss';
+import * as Markup from '../../../assessments/markup';
 
 export interface HowToCheckTextProps {
     id: string;
@@ -31,13 +32,14 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
         }
         case 'color-contrast': {
             checkText = (
-                <div classname={styles.combinationLists}>
+                <div className={styles.combinationLists}>
                     <ul className={styles.multiLineTextYesBullet}>
                         <li list-style-type="disc">
-                            If the text is intended to be invisible, it passes.
+                            If the instance is an icon or other non-text content, ignore it. This
+                            rule applies only to text.
                         </li>
                         <li list-style-type="disc">
-                            If the text is intended to be visible, use{' '}
+                            If the instance is text, use{' '}
                             <NewTabLink href="https://go.microsoft.com/fwlink/?linkid=2075365">
                                 Accessibility Insights for Windows
                             </NewTabLink>{' '}
@@ -53,9 +55,9 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                     <ul className={styles.multiLineTextNoBullet}>
                         <li>
                             For detailed test instructions, see{' '}
-                            <b>
-                                Assessment {'>'} Text legibility {'>'} Contrast
-                            </b>
+                            <Markup.Term>
+                                Assessment {'>'} Adaptable content {'>'} Contrast
+                            </Markup.Term>
                             .
                         </li>
                     </ul>
