@@ -14,11 +14,11 @@ import { ScanResults } from './iruleresults';
 import { Launcher } from './launcher';
 import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
-import { RuleSifter } from './rule-sifter';
 import { ruleToLinkConfiguration } from './rule-to-links-mappings';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
+import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
 
 export const scan = (
     options: ScanOptions,
@@ -28,8 +28,12 @@ export const scan = (
     options = options || {};
 
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
-    const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
-    const scanParameterGenerator = new ScanParameterGenerator(ruleSifter);
+    const ruleIncludedStatus = getRuleInclusions(
+        axe._audit.rules,
+        ruleToLinkConfiguration,
+        explicitRuleOverrides,
+    );
+    const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
     const resultDecorator = new ResultDecorator(
@@ -52,12 +56,17 @@ export const getVersion = (): string => {
 };
 
 export const getDefaultRules = (): ScannerRuleInfo[] => {
-    const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
     const helpUrlGetter = new HelpUrlGetter(configuration);
+    const ruleIncludedStatus = getRuleInclusions(
+        axe._audit.rules,
+        ruleToLinkConfiguration,
+        explicitRuleOverrides,
+    );
     return getRules(
         axe,
         (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
-        ruleSifter,
+        ruleIncludedStatus,
+        ruleToLinkConfiguration,
     );
 };
 

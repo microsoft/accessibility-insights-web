@@ -1,13 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, MockBehavior } from 'typemoq';
 
+import { RuleIncluded } from 'scanner/get-rule-inclusions';
+import { Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 import { AxeOptions } from '../../../../scanner/axe-options';
-import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
 import { ScanOptions } from '../../../../scanner/scan-options';
 import { ScanParameterGenerator } from '../../../../scanner/scan-parameter-generator';
 
 describe('ScanParameterGenerator', () => {
+    const includedRulesStub: DictionaryStringTo<RuleIncluded> = {
+        'rule-a': {
+            status: 'included',
+        },
+        'rule-b': {
+            status: 'included',
+        },
+    };
+    const testObject = new ScanParameterGenerator(includedRulesStub);
+
     describe('constructor', () => {
         it('should construct the generator', () => {
             const generator = new ScanParameterGenerator(null);
@@ -16,28 +27,6 @@ describe('ScanParameterGenerator', () => {
     });
 
     describe('getAxeEngineOptions', () => {
-        let siftedRulesStub: RuleWithA11YCriteria[];
-        let sifterMock: IMock<RuleSifter>;
-        let testObject: ScanParameterGenerator;
-
-        beforeEach(() => {
-            siftedRulesStub = [
-                {
-                    id: 'rule-a',
-                    a11yCriteria: [],
-                },
-                {
-                    id: 'rule-b',
-                    a11yCriteria: [],
-                },
-            ];
-
-            sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            sifterMock.setup(ms => ms.getSiftedRules()).returns(() => siftedRulesStub);
-
-            testObject = new ScanParameterGenerator(sifterMock.object);
-        });
-
         it('should handle options being null', () => {
             const expectedAxeOptions: AxeOptions = {
                 restoreScroll: true,
@@ -87,44 +76,34 @@ describe('ScanParameterGenerator', () => {
 
     describe('getContext', () => {
         it('should return the dom when options are null', () => {
-            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMock.object);
             const options: ScanOptions = {
                 testsToRun: ['throwaway-property'],
             };
             const domStub = Mock.ofInstance(document).object;
-            expect(generator.getContext(domStub, options)).toEqual(domStub);
+            expect(testObject.getContext(domStub, options)).toEqual(domStub);
         });
         it('should return the dom when options are not context related', () => {
-            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMock.object);
             const domStub = Mock.ofInstance(document).object;
-            expect(generator.getContext(domStub, null)).toEqual(domStub);
+            expect(testObject.getContext(domStub, null)).toEqual(domStub);
         });
         it('should return selector when set in options', () => {
-            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMock.object);
             const options: ScanOptions = {
                 selector: 'test-selector',
                 testsToRun: ['throwaway-property'],
             };
             const returnedContext = 'test-selector';
-            expect(generator.getContext(null, options)).toEqual(returnedContext);
+            expect(testObject.getContext(null, options)).toEqual(returnedContext);
         });
         it('should return dom when set in options', () => {
-            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMock.object);
             const documentStub = Mock.ofInstance(document);
             const options: ScanOptions = {
                 dom: documentStub.object,
                 testsToRun: ['throwaway-property'],
             };
             const returnedContext = documentStub.object;
-            expect(generator.getContext(null, options)).toEqual(returnedContext);
+            expect(testObject.getContext(null, options)).toEqual(returnedContext);
         });
         it('should return the include/exclude set in options', () => {
-            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMock.object);
             const options: ScanOptions = {
                 include: [['include']],
                 exclude: [['exclude']],
@@ -134,11 +113,9 @@ describe('ScanParameterGenerator', () => {
                 include: [['include']],
                 exclude: [['exclude']],
             };
-            expect(generator.getContext(null, options)).toEqual(returnedContext);
+            expect(testObject.getContext(null, options)).toEqual(returnedContext);
         });
         it('should check in order for contexts: dom > selector > include/exclude', () => {
-            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMock.object);
             const documentNodeListStub = Mock.ofInstance(document.childNodes);
 
             const domFirstOptions: ScanOptions = {
@@ -156,8 +133,8 @@ describe('ScanParameterGenerator', () => {
             };
             const selectorFirstReturnedContext = 'test-selector';
 
-            expect(generator.getContext(null, domFirstOptions)).toEqual(domFirstReturnedContext);
-            expect(generator.getContext(null, selectorFirstOptions)).toEqual(
+            expect(testObject.getContext(null, domFirstOptions)).toEqual(domFirstReturnedContext);
+            expect(testObject.getContext(null, selectorFirstOptions)).toEqual(
                 selectorFirstReturnedContext,
             );
         });

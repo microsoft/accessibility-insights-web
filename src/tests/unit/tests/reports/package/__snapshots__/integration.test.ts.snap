@@ -4762,12 +4762,23 @@ exports[`report package integration with issues 1`] = `
                     <span
                       class="guidance-links"
                     >
-                      <button
+                      <a
                         class="ms-Link insights-link root-000"
-                        type="button"
+                        href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
+                        target="_blank"
                       >
-                        BEST PRACTICE
-                      </button>
+                        WCAG 2.4.4
+                      </a>
+                      <span>
+                        , 
+                      </span>
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                        target="_blank"
+                      >
+                        WCAG 4.1.2
+                      </a>
                     </span>
                     )
                   </div>
@@ -9136,12 +9147,23 @@ exports[`report package integration with no issues 1`] = `
                     <span
                       class="guidance-links"
                     >
-                      <button
+                      <a
                         class="ms-Link insights-link root-000"
-                        type="button"
+                        href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
+                        target="_blank"
                       >
-                        BEST PRACTICE
-                      </button>
+                        WCAG 2.4.4
+                      </a>
+                      <span>
+                        , 
+                      </span>
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
+                        target="_blank"
+                      >
+                        WCAG 4.1.2
+                      </a>
                     </span>
                     )
                   </div>

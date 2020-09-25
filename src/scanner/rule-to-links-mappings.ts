@@ -29,7 +29,7 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'image-redundant-alt': [BestPractice],
     'input-image-alt': [link.WCAG_1_1_1],
     'object-alt': [link.WCAG_1_1_1],
-    'link-name': [/*link.WCAG_2_4_4, link.WCAG_4_1_2*/ BestPractice], // Temporary workaround for issue https://github.com/dequelabs/axe-core/issues/2459
+    'link-name': [link.WCAG_2_4_4, link.WCAG_4_1_2],
     'audio-caption': [link.WCAG_1_2_1],
     'video-caption': [link.WCAG_1_2_2],
     'aria-required-children': [link.WCAG_1_3_1],

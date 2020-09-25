@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
+import { RuleIncluded } from 'scanner/get-rule-inclusions';
 
-import { findIndex } from 'lodash';
-import { RuleSifter } from './rule-sifter';
+import { DictionaryStringTo } from 'types/common-types';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { ScannerRuleInfo } from './scanner-rule-info';
 
 interface ExpectedGetRuleObject {
@@ -15,26 +16,19 @@ interface ExpectedGetRuleObject {
 export function getRules(
     axe: typeof Axe,
     urlGenerator: (ruleId: string, axeHelpUrl: string) => string,
-    ruleSifter: RuleSifter,
+    ruleIncludedStatus: DictionaryStringTo<RuleIncluded>,
+    ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>,
 ): ScannerRuleInfo[] {
-    const defaultRules = ruleSifter.getSiftedRules();
     const allRules = axe.getRules() as ExpectedGetRuleObject[];
 
-    return allRules.reduce((filteredArray: ScannerRuleInfo[], rule) => {
-        const ruleInfoIndex = findIndex(defaultRules, ruleInfo => ruleInfo.id === rule.ruleId);
-        const foundRuleInfo = defaultRules[ruleInfoIndex];
-
-        if (foundRuleInfo) {
-            filteredArray.push({
-                id: rule.ruleId,
-                url: urlGenerator(rule.ruleId, rule.helpUrl),
-                help: resolveHelp(rule.help),
-                a11yCriteria: foundRuleInfo.a11yCriteria,
-            });
-        }
-
-        return filteredArray;
-    }, []);
+    return allRules
+        .filter(rule => ruleIncludedStatus[rule.ruleId].status === 'included')
+        .map(rule => ({
+            id: rule.ruleId,
+            url: urlGenerator(rule.ruleId, rule.helpUrl),
+            help: resolveHelp(rule.help),
+            a11yCriteria: ruleToLinkConfiguration[rule.ruleId],
+        }));
 }
 
 function resolveHelp(help: string | Function): string {
