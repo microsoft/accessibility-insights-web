@@ -1,3 +1,4 @@
+import { FlaggedComponent } from 'common/components/flagged-component';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
@@ -18,6 +19,7 @@ import {
     SettingsPanel,
     SettingsPanelDeps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
@@ -121,9 +123,10 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.automatedChecksPanelContainer}>
+                    {this.renderExtendedCommandBar(cardsViewData, scanMetadata)}
                     <div className={styles.automatedChecksPanelLayout}>
                         <div className={styles.mainContentWrapper}>
-                            {this.renderCommandBar(cardsViewData, scanMetadata)}
+                            {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
                             <main>
                                 <HeaderSection />
                                 {primaryContent}
@@ -163,6 +166,34 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 featureFlagStoreData={this.props.featureFlagStoreData}
                 cardsViewData={cardsViewData}
                 scanMetadata={scanMetadata}
+            />
+        );
+    }
+
+    private renderExtendedCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <FlaggedComponent
+                featureFlag={UnifiedFeatureFlags.leftNavBar}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={this.renderCommandBar(cardsViewData, scanMetadata)}
+                disableJSXElement={null}
+            />
+        );
+    }
+
+    private renderOriginalCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <FlaggedComponent
+                featureFlag={UnifiedFeatureFlags.leftNavBar}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={null}
+                disableJSXElement={this.renderCommandBar(cardsViewData, scanMetadata)}
             />
         );
     }
