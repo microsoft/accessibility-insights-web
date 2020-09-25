@@ -20,6 +20,7 @@ import {
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
@@ -28,8 +29,6 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
-
-import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
@@ -121,22 +120,17 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     pageTitle={'Automated checks'}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
-                <div className={styles.automatedChecksPanelLayout}>
-                    <div className={styles.mainContentWrapper}>
-                        <CommandBar
-                            deps={this.props.deps}
-                            scanPort={this.getScanPort()}
-                            scanStoreData={this.props.scanStoreData}
-                            featureFlagStoreData={this.props.featureFlagStoreData}
-                            cardsViewData={cardsViewData}
-                            scanMetadata={scanMetadata}
-                        />
-                        <main>
-                            <HeaderSection />
-                            {primaryContent}
-                        </main>
+                <div className={styles.automatedChecksPanelContainer}>
+                    <div className={styles.automatedChecksPanelLayout}>
+                        <div className={styles.mainContentWrapper}>
+                            {this.renderCommandBar(cardsViewData, scanMetadata)}
+                            <main>
+                                <HeaderSection />
+                                {primaryContent}
+                            </main>
+                        </div>
+                        {optionalSidePanel}
                     </div>
-                    {optionalSidePanel}
                 </div>
                 <SettingsPanel
                     layerClassName={styles.settingsPanelLayerHost}
@@ -155,6 +149,22 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private getScanPort(): number {
         return this.props.androidSetupStoreData.scanPort;
+    }
+
+    private renderCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <CommandBar
+                deps={this.props.deps}
+                scanPort={this.getScanPort()}
+                scanStoreData={this.props.scanStoreData}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                cardsViewData={cardsViewData}
+                scanMetadata={scanMetadata}
+            />
+        );
     }
 
     private renderDeviceDisconnected(): JSX.Element {
