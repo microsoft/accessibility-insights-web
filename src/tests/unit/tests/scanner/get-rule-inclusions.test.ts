@@ -90,7 +90,7 @@ describe('getRuleInclusions', () => {
     });
 
     it('matches snapshotted list of production rules', () => {
-        AxeRuleOverrides.override(axe); // might be nice to only override for assessment rule/checks & do the explicit rule changes elsewhere
+        AxeRuleOverrides.override(axe);
         const inclusions = getRuleInclusions(
             axe._audit.rules,
             ruleToLinkConfiguration,

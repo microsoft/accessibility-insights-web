@@ -54,7 +54,6 @@ function getRuleIncludedConfig(
     }
 
     if (ruleToLinksMap[rule.id].includes(BestPractice)) {
-        // should we use Axe's mappings here?
         return {
             status: 'excluded',
             reason: 'rule maps to BestPractice',
