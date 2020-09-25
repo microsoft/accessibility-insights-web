@@ -1,7 +1,7 @@
-import { RuleIncluded } from 'scanner/get-rule-inclusions';
-import { DictionaryStringTo } from 'types/common-types';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RuleIncluded } from 'scanner/get-rule-inclusions';
+import { DictionaryStringTo } from 'types/common-types';
 import { AxeOptions, AxeScanContext } from './axe-options';
 import { ScanOptions } from './scan-options';
 
