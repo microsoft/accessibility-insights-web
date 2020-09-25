@@ -63,13 +63,13 @@ exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
     <li>
       For detailed test instructions, see
        
-      <b>
+      <Term>
         Assessment 
         &gt;
          Adaptable content 
         &gt;
          Contrast
-      </b>
+      </Term>
       .
     </li>
   </ul>

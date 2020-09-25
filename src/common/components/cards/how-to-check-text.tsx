@@ -5,6 +5,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import * as styles from './how-to-check-text.scss';
+import * as Markup from '../../../assessments/markup';
 
 export interface HowToCheckTextProps {
     id: string;
@@ -54,9 +55,9 @@ export const HowToCheckText = NamedFC<HowToCheckTextProps>('HowToCheckText', pro
                     <ul className={styles.multiLineTextNoBullet}>
                         <li>
                             For detailed test instructions, see{' '}
-                            <b>
+                            <Markup.Term>
                                 Assessment {'>'} Adaptable content {'>'} Contrast
-                            </b>
+                            </Markup.Term>
                             .
                         </li>
                     </ul>
