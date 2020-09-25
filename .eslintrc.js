@@ -61,12 +61,7 @@ module.exports = {
         'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',
         'security/detect-object-injection': 'off',
-        'no-irregular-whitespace': 'off',
         'no-prototype-builtins': 'off',
-        'no-var': 'off',
-        'no-regex-spaces': 'off',
-        'no-extra-boolean-cast': 'off',
-        'prefer-spread': 'off',
     },
     overrides: [
         {

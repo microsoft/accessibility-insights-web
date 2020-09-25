@@ -139,7 +139,7 @@ import {
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 
-declare var window: Window & {
+declare let window: Window & {
     insightsUserConfiguration: UserConfigurationController;
     featureFlagsController: FeatureFlagsController;
 };

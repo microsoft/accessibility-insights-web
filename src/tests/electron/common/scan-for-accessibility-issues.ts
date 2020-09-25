@@ -8,7 +8,7 @@ import {
     PrintableAxeResult,
 } from 'tests/end-to-end/common/pretty-print-axe-violations';
 
-declare var axe;
+declare let axe;
 
 export async function scanForAccessibilityIssuesInAllModes(app: AppController): Promise<void> {
     await scanForAccessibilityIssues(app, true);
