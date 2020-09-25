@@ -103,7 +103,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         <div
             data-automation-id={instanceCardAutomationId}
             className={instanceDetailsCardContainerStyling}
-            role="table"
         >
             <div
                 className={instanceDetailsCardStyling}
@@ -112,9 +111,8 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 onKeyDown={cardKeyPressHandler}
                 aria-selected={result.isSelected}
                 aria-label={cardAriaLabel}
-                role="row"
             >
-                <div role="gridcell">
+                <div>
                     <table className={reportInstanceTable}>
                         <tbody>
                             {renderCardRowsForPropertyBag(result.identifiers)}
