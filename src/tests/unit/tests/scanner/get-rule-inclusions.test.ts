@@ -27,7 +27,6 @@ describe('getRuleInclusions', () => {
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'included',
-                reason: null,
             },
             'axe-disabled': {
                 status: 'excluded',

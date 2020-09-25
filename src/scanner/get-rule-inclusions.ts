@@ -63,6 +63,5 @@ function getRuleIncludedConfig(
 
     return {
         status: 'included',
-        reason: null,
     };
 }

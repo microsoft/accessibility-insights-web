@@ -1,9 +1,9 @@
-import { RuleIncluded } from 'scanner/get-rule-inclusions';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, MockBehavior } from 'typemoq';
-import { DictionaryStringTo } from 'types/common-types';
 
+import { RuleIncluded } from 'scanner/get-rule-inclusions';
+import { Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 import { AxeOptions } from '../../../../scanner/axe-options';
 import { ScanOptions } from '../../../../scanner/scan-options';
 import { ScanParameterGenerator } from '../../../../scanner/scan-parameter-generator';

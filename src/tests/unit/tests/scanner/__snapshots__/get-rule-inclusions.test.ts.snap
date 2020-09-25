@@ -7,11 +7,9 @@ Object {
     "status": "excluded",
   },
   "area-alt": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-allowed-attr": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-allowed-role": Object {
@@ -19,75 +17,57 @@ Object {
     "status": "excluded",
   },
   "aria-hidden-body": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-hidden-focus": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-input-field-name": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-required-attr": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-required-children": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-required-parent": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-roledescription": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-roles": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-toggle-field-name": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-valid-attr": Object {
-    "reason": null,
     "status": "included",
   },
   "aria-valid-attr-value": Object {
-    "reason": null,
     "status": "included",
   },
   "audio-caption": Object {
-    "reason": null,
     "status": "included",
   },
   "autocomplete-valid": Object {
-    "reason": null,
     "status": "included",
   },
   "avoid-inline-spacing": Object {
-    "reason": null,
     "status": "included",
   },
   "blink": Object {
-    "reason": null,
     "status": "included",
   },
   "button-name": Object {
-    "reason": null,
     "status": "included",
   },
   "bypass": Object {
-    "reason": null,
     "status": "included",
   },
   "color-contrast": Object {
-    "reason": null,
     "status": "included",
   },
   "css-orientation-lock": Object {
@@ -95,27 +75,21 @@ Object {
     "status": "excluded",
   },
   "definition-list": Object {
-    "reason": null,
     "status": "included",
   },
   "dlitem": Object {
-    "reason": null,
     "status": "included",
   },
   "document-title": Object {
-    "reason": null,
     "status": "included",
   },
   "duplicate-id": Object {
-    "reason": null,
     "status": "included",
   },
   "duplicate-id-active": Object {
-    "reason": null,
     "status": "included",
   },
   "duplicate-id-aria": Object {
-    "reason": null,
     "status": "included",
   },
   "empty-heading": Object {
@@ -135,7 +109,6 @@ Object {
     "status": "excluded",
   },
   "frame-title": Object {
-    "reason": null,
     "status": "included",
   },
   "frame-title-unique": Object {
@@ -151,15 +124,12 @@ Object {
     "status": "excluded",
   },
   "html-has-lang": Object {
-    "reason": null,
     "status": "included",
   },
   "html-lang-valid": Object {
-    "reason": null,
     "status": "included",
   },
   "html-xml-lang-mismatch": Object {
-    "reason": null,
     "status": "included",
   },
   "identical-links-same-purpose": Object {
@@ -167,7 +137,6 @@ Object {
     "status": "excluded",
   },
   "image-alt": Object {
-    "reason": null,
     "status": "included",
   },
   "image-redundant-alt": Object {
@@ -175,15 +144,12 @@ Object {
     "status": "excluded",
   },
   "input-button-name": Object {
-    "reason": null,
     "status": "included",
   },
   "input-image-alt": Object {
-    "reason": null,
     "status": "included",
   },
   "label": Object {
-    "reason": null,
     "status": "included",
   },
   "label-content-name-mismatch": Object {
@@ -239,19 +205,15 @@ Object {
     "status": "excluded",
   },
   "list": Object {
-    "reason": null,
     "status": "included",
   },
   "listitem": Object {
-    "reason": null,
     "status": "included",
   },
   "marquee": Object {
-    "reason": null,
     "status": "included",
   },
   "meta-refresh": Object {
-    "reason": null,
     "status": "included",
   },
   "meta-viewport": Object {
@@ -267,7 +229,6 @@ Object {
     "status": "excluded",
   },
   "object-alt": Object {
-    "reason": null,
     "status": "included",
   },
   "p-as-heading": Object {
@@ -283,7 +244,6 @@ Object {
     "status": "excluded",
   },
   "role-img-alt": Object {
-    "reason": null,
     "status": "included",
   },
   "scope-attr-valid": Object {
@@ -295,7 +255,6 @@ Object {
     "status": "excluded",
   },
   "server-side-image-map": Object {
-    "reason": null,
     "status": "included",
   },
   "skip-link": Object {
@@ -303,7 +262,6 @@ Object {
     "status": "excluded",
   },
   "svg-img-alt": Object {
-    "reason": null,
     "status": "included",
   },
   "tabindex": Object {
@@ -323,19 +281,15 @@ Object {
     "status": "excluded",
   },
   "td-headers-attr": Object {
-    "reason": null,
     "status": "included",
   },
   "th-has-data-cells": Object {
-    "reason": null,
     "status": "included",
   },
   "valid-lang": Object {
-    "reason": null,
     "status": "included",
   },
   "video-caption": Object {
-    "reason": null,
     "status": "included",
   },
 }
