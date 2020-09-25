@@ -18,7 +18,7 @@ import { ruleToLinkConfiguration } from './rule-to-links-mappings';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
-import { getRuleInclusions } from 'scanner/get-rule-inclusions';
+import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
 
 export const scan = (
     options: ScanOptions,
@@ -28,7 +28,11 @@ export const scan = (
     options = options || {};
 
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
-    const ruleIncludedStatus = getRuleInclusions(axe, ruleToLinkConfiguration);
+    const ruleIncludedStatus = getRuleInclusions(
+        axe._audit.rules,
+        ruleToLinkConfiguration,
+        explicitRuleOverrides,
+    );
     console.log(ruleIncludedStatus);
     const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
@@ -54,7 +58,11 @@ export const getVersion = (): string => {
 
 export const getDefaultRules = (): ScannerRuleInfo[] => {
     const helpUrlGetter = new HelpUrlGetter(configuration);
-    const ruleIncludedStatus = getRuleInclusions(axe, ruleToLinkConfiguration);
+    const ruleIncludedStatus = getRuleInclusions(
+        axe._audit.rules,
+        ruleToLinkConfiguration,
+        explicitRuleOverrides,
+    );
     return getRules(
         axe,
         (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),

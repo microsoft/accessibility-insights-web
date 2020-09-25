@@ -4,7 +4,6 @@
 import { BestPractice } from 'scanner/rule-to-links-mappings';
 import { DictionaryStringTo } from 'types/common-types';
 import { HyperlinkDefinition } from 'views/content/content-page';
-import * as Axe from 'axe-core';
 import { IRuleConfiguration } from 'scanner/iruleresults';
 
 export interface RuleIncluded {
@@ -12,7 +11,7 @@ export interface RuleIncluded {
     excludedReason: string | null;
 }
 
-const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
+export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     'link-name': {
         status: 'excluded',
         excludedReason: 'temporarily excluded because of false positive (axe-core@2459)',
@@ -20,13 +19,14 @@ const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
 };
 
 export const getRuleInclusions = (
-    axe: typeof Axe,
+    ruleset: IRuleConfiguration[],
     ruleToLinksMap: DictionaryStringTo<HyperlinkDefinition[]>,
+    ruleOverrides: DictionaryStringTo<RuleIncluded>,
 ): DictionaryStringTo<RuleIncluded> => {
     return Object.assign(
         {},
-        ...axe._audit.rules.map(r => ({
-            [r.id]: getRuleIncludedConfig(r, ruleToLinksMap),
+        ...ruleset.map(r => ({
+            [r.id]: getRuleIncludedConfig(r, ruleToLinksMap, ruleOverrides),
         })),
     );
 };
@@ -34,9 +34,10 @@ export const getRuleInclusions = (
 function getRuleIncludedConfig(
     rule: IRuleConfiguration,
     ruleToLinksMap: DictionaryStringTo<HyperlinkDefinition[]>,
+    ruleOverrides: DictionaryStringTo<RuleIncluded>,
 ): RuleIncluded {
-    if (explicitRuleOverrides.hasOwnProperty(rule.id)) {
-        return explicitRuleOverrides[rule.id];
+    if (ruleOverrides.hasOwnProperty(rule.id)) {
+        return ruleOverrides[rule.id];
     }
 
     if (!rule.enabled) {

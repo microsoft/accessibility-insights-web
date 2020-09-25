@@ -1,0 +1,342 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
+Object {
+  "accesskeys": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "area-alt": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-allowed-attr": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-allowed-role": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "aria-hidden-body": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-hidden-focus": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-input-field-name": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-required-attr": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-required-children": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-required-parent": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-roledescription": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-roles": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-toggle-field-name": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-valid-attr": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "aria-valid-attr-value": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "audio-caption": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "autocomplete-valid": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "avoid-inline-spacing": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "blink": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "button-name": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "bypass": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "color-contrast": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "css-orientation-lock": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "definition-list": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "dlitem": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "document-title": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "duplicate-id": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "duplicate-id-active": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "duplicate-id-aria": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "empty-heading": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "focus-order-semantics": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "form-field-multiple-labels": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "frame-tested": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "frame-title": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "frame-title-unique": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "heading-order": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "hidden-content": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "html-has-lang": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "html-lang-valid": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "html-xml-lang-mismatch": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "identical-links-same-purpose": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "image-alt": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "image-redundant-alt": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "input-button-name": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "input-image-alt": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "label": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "label-content-name-mismatch": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "label-title-only": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-banner-is-top-level": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-complementary-is-top-level": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-contentinfo-is-top-level": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-main-is-top-level": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-no-duplicate-banner": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-no-duplicate-contentinfo": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-no-duplicate-main": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-one-main": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "landmark-unique": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "link-in-text-block": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "link-name": Object {
+    "excludedReason": "temporarily excluded because of false positive (axe-core@2459)",
+    "status": "excluded",
+  },
+  "list": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "listitem": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "marquee": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "meta-refresh": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "meta-viewport": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "meta-viewport-large": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "no-autoplay-audio": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "object-alt": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "p-as-heading": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "page-has-heading-one": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "region": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "role-img-alt": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "scope-attr-valid": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "scrollable-region-focusable": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "server-side-image-map": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "skip-link": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "svg-img-alt": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "tabindex": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "table-duplicate-name": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "table-fake-caption": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "td-has-header": Object {
+    "excludedReason": "rule maps to BestPractice",
+    "status": "excluded",
+  },
+  "td-headers-attr": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "th-has-data-cells": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "valid-lang": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+  "video-caption": Object {
+    "excludedReason": null,
+    "status": "included",
+  },
+}
+`;

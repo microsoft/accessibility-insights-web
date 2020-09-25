@@ -1,24 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
+import { RuleIncluded } from 'scanner/get-rule-inclusions';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { getRules } from '../../../../scanner/get-rules';
-import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
 import { ScannerRuleInfo } from '../../../../scanner/scanner-rule-info';
 
 describe('getDefaultRules', () => {
     let getHelpUrlMock: IMock<(rule: string, axeHelpUrl: string) => string>;
     let urlStub: string;
-    let ruleSifterMock: IMock<RuleSifter>;
     let a11yCriteriaStub: HyperlinkDefinition;
 
     beforeEach(() => {
         urlStub = 'test url';
         a11yCriteriaStub = {} as HyperlinkDefinition;
         getHelpUrlMock = Mock.ofInstance(rule => null, MockBehavior.Strict);
-        ruleSifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
     });
 
     it('should return default rules', () => {
@@ -57,29 +56,35 @@ describe('getDefaultRules', () => {
             },
         ];
 
-        const siftedRulesStub: RuleWithA11YCriteria[] = [
-            {
-                id: ruleStubOne.ruleId,
-                a11yCriteria: [a11yCriteriaStub],
+        const ruleToLinkStub: DictionaryStringTo<HyperlinkDefinition[]> = Object.assign(
+            {},
+            ...rulesStub.map(r => ({ [r.ruleId]: [a11yCriteriaStub] })),
+        );
+        const ruleIncludedStub: DictionaryStringTo<RuleIncluded> = {
+            [ruleStubOne.ruleId]: {
+                status: 'included',
+                excludedReason: null,
             },
-            {
-                id: ruleStubTwo.ruleId,
-                a11yCriteria: [a11yCriteriaStub],
+            [ruleStubTwo.ruleId]: {
+                status: 'included',
+                excludedReason: null,
             },
-        ];
+            [ruleStubThree.ruleId]: {
+                status: 'excluded',
+                excludedReason: 'no guidance link mapping',
+            },
+        };
 
         getRulesMock
             .setup(grm => grm())
             .returns(() => rulesStub)
             .verifiable();
 
-        ruleSifterMock.setup(rsm => rsm.getSiftedRules()).returns(() => siftedRulesStub);
-
         getHelpUrlMock.setup(gchm => gchm(ruleStubOne.ruleId, It.isAny())).returns(() => urlStub);
 
         getHelpUrlMock.setup(gchm => gchm(ruleStubTwo.ruleId, It.isAny())).returns(() => urlStub);
 
-        const actual = getRules(axeStub, getHelpUrlMock.object, ruleSifterMock.object);
+        const actual = getRules(axeStub, getHelpUrlMock.object, ruleIncludedStub, ruleToLinkStub);
 
         expect(actual).toEqual(expected);
         getRulesMock.verifyAll();
