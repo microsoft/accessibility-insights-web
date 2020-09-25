@@ -20,7 +20,9 @@ export const SimpleCardRow = NamedFC<SimpleCardRowProps>(
 
         return (
             <tr className={styles.row} key={rowKey}>
-                <th className={styles.rowLabel}>{givenLabel}</th>
+                <th className={styles.rowLabel} scope="row">
+                    {givenLabel}
+                </th>
                 <td className={contentStyling}>{content}</td>
             </tr>
         );
