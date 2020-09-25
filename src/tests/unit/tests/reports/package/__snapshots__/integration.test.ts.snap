@@ -236,15 +236,14 @@ exports[`report package integration with issues 1`] = `
         </a>
         <script>
           (function (linkId, doc, confirmCallback) {
-    const targetPageLink = doc.getElementById(linkId);
-    targetPageLink.addEventListener('click', function (event) {
-        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
-            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
-            'Cancel to stay on the current page.');
-        if (result === false) {
-            event.preventDefault();
-        }
-    });
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
 })("new-tab-link-with-confirmation-dialog__1", document, confirm);
         </script>
       </div>
@@ -424,15 +423,14 @@ exports[`report package integration with issues 1`] = `
               </a>
               <script>
                 (function (linkId, doc, confirmCallback) {
-    const targetPageLink = doc.getElementById(linkId);
-    targetPageLink.addEventListener('click', function (event) {
-        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
-            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
-            'Cancel to stay on the current page.');
-        if (result === false) {
-            event.preventDefault();
-        }
-    });
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
 })("new-tab-link-with-confirmation-dialog__2", document, confirm);
               </script>
             </span>
@@ -4764,23 +4762,12 @@ exports[`report package integration with issues 1`] = `
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 2.4.4
-                      </a>
-                      <span>
-                        , 
-                      </span>
-                      <a
-                        class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                        target="_blank"
-                      >
-                        WCAG 4.1.2
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -6964,31 +6951,37 @@ exports[`report package integration with issues 1`] = `
       </div>
       <script>
         (function (doc) {
-    const collapsibles = doc.getElementsByClassName('collapsible-container');
-    for (let index = 0; index &lt; collapsibles.length; index++) {
-        const container = collapsibles.item(index);
-        const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
-        if (button == null) {
-            continue;
-        }
-        button.addEventListener('click', function () {
-            var _a;
-            const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
-            if (content == null) {
-                throw Error(\`Expected button element's parent to have a next sibling\`);
-            }
-            const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
-            const isExpandedAfter = !wasExpandedBefore;
-            button.setAttribute('aria-expanded', isExpandedAfter + '');
-            content.setAttribute('aria-hidden', !isExpandedAfter + '');
-            if (isExpandedAfter) {
-                container.classList.remove('collapsed');
-            }
-            else {
-                container.classList.add('collapsed');
-            }
-        });
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
+  for (let index = 0; index &lt; collapsibles.length; index++) {
+    const container = collapsibles.item(index);
+    const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
+
+    if (button == null) {
+      continue;
     }
+
+    button.addEventListener('click', function () {
+      var _a;
+
+      const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
+
+      if (content == null) {
+        throw Error(\`Expected button element's parent to have a next sibling\`);
+      }
+
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+      const isExpandedAfter = !wasExpandedBefore;
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
+      if (isExpandedAfter) {
+        container.classList.remove('collapsed');
+      } else {
+        container.classList.add('collapsed');
+      }
+    });
+  }
 })(document)
       </script>
     </div>
@@ -7251,15 +7244,14 @@ exports[`report package integration with no issues 1`] = `
         </a>
         <script>
           (function (linkId, doc, confirmCallback) {
-    const targetPageLink = doc.getElementById(linkId);
-    targetPageLink.addEventListener('click', function (event) {
-        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
-            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
-            'Cancel to stay on the current page.');
-        if (result === false) {
-            event.preventDefault();
-        }
-    });
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
 })("new-tab-link-with-confirmation-dialog__3", document, confirm);
         </script>
       </div>
@@ -7439,15 +7431,14 @@ exports[`report package integration with no issues 1`] = `
               </a>
               <script>
                 (function (linkId, doc, confirmCallback) {
-    const targetPageLink = doc.getElementById(linkId);
-    targetPageLink.addEventListener('click', function (event) {
-        const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' +
-            'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' +
-            'Cancel to stay on the current page.');
-        if (result === false) {
-            event.preventDefault();
-        }
-    });
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
 })("new-tab-link-with-confirmation-dialog__4", document, confirm);
               </script>
             </span>
@@ -9145,23 +9136,12 @@ exports[`report package integration with no issues 1`] = `
                     <span
                       class="guidance-links"
                     >
-                      <a
+                      <button
                         class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
-                        target="_blank"
+                        type="button"
                       >
-                        WCAG 2.4.4
-                      </a>
-                      <span>
-                        , 
-                      </span>
-                      <a
-                        class="ms-Link insights-link root-000"
-                        href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
-                        target="_blank"
-                      >
-                        WCAG 4.1.2
-                      </a>
+                        BEST PRACTICE
+                      </button>
                     </span>
                     )
                   </div>
@@ -10697,31 +10677,37 @@ exports[`report package integration with no issues 1`] = `
       </div>
       <script>
         (function (doc) {
-    const collapsibles = doc.getElementsByClassName('collapsible-container');
-    for (let index = 0; index &lt; collapsibles.length; index++) {
-        const container = collapsibles.item(index);
-        const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
-        if (button == null) {
-            continue;
-        }
-        button.addEventListener('click', function () {
-            var _a;
-            const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
-            if (content == null) {
-                throw Error(\`Expected button element's parent to have a next sibling\`);
-            }
-            const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
-            const isExpandedAfter = !wasExpandedBefore;
-            button.setAttribute('aria-expanded', isExpandedAfter + '');
-            content.setAttribute('aria-hidden', !isExpandedAfter + '');
-            if (isExpandedAfter) {
-                container.classList.remove('collapsed');
-            }
-            else {
-                container.classList.add('collapsed');
-            }
-        });
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
+  for (let index = 0; index &lt; collapsibles.length; index++) {
+    const container = collapsibles.item(index);
+    const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
+
+    if (button == null) {
+      continue;
     }
+
+    button.addEventListener('click', function () {
+      var _a;
+
+      const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
+
+      if (content == null) {
+        throw Error(\`Expected button element's parent to have a next sibling\`);
+      }
+
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+      const isExpandedAfter = !wasExpandedBefore;
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
+      if (isExpandedAfter) {
+        container.classList.remove('collapsed');
+      } else {
+        container.classList.add('collapsed');
+      }
+    });
+  }
 })(document)
       </script>
     </div>
