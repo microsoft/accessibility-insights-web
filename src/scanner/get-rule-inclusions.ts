@@ -6,10 +6,9 @@ import { DictionaryStringTo } from 'types/common-types';
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { IRuleConfiguration } from 'scanner/iruleresults';
 
-export interface RuleIncluded {
-    status: 'included' | 'excluded';
-    reason: string | null;
-}
+export type RuleIncluded =
+    | { status: 'included'; reason?: string }
+    | { status: 'excluded'; reason: string };
 
 export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     'link-name': {
