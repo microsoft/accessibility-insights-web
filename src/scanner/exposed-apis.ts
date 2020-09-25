@@ -33,7 +33,6 @@ export const scan = (
         ruleToLinkConfiguration,
         explicitRuleOverrides,
     );
-    console.log(ruleIncludedStatus);
     const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
