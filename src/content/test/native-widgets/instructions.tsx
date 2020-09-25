@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <p>If a native widget has visible label or instructions, they must be programmatically related to it.</p>
 
@@ -11,6 +11,15 @@ export const infoAndExamples = create(({ Markup }) => (
             People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual
             characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's
             label and instructions must be programmatically related to it.
+        </p>
+        <h3>From a user's perspective</h3>
+        <p>
+            <Link.VoiceControlVideo>This short video on voice control</Link.VoiceControlVideo> shows how programmatically related labels
+            help people who use voice control.
+        </p>
+        <p>
+            <Link.FormLabelsVideo>This short video on form labels</Link.FormLabelsVideo> shows how programmatically related labels help
+            people who use screen readers.
         </p>
 
         <h2>How to fix</h2>
