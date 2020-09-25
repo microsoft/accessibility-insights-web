@@ -23,6 +23,7 @@ describe('FeatureFlagsTest', () => {
             [UnifiedFeatureFlags.logTelemetryToConsole]: false,
             [UnifiedFeatureFlags.showAllFeatureFlags]: false,
             [UnifiedFeatureFlags.exportReport]: true,
+            [UnifiedFeatureFlags.leftNavBar]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
@@ -35,7 +36,7 @@ describe('FeatureFlagsTest', () => {
         });
     });
 
-    test('all feature flag have a corresponding feature flag value', () => {
+    test('all feature flags have a corresponding feature flag value', () => {
         const featureFlags = keys(UnifiedFeatureFlags).sort();
         const featureFlagValueKeys = keys(featureFlagValues).sort();
 
