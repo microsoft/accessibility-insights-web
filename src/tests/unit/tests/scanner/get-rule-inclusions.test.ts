@@ -27,11 +27,11 @@ describe('getRuleInclusions', () => {
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'included',
-                excludedReason: null,
+                reason: null,
             },
             'axe-disabled': {
                 status: 'excluded',
-                excludedReason: 'disabled in axe config',
+                reason: 'disabled in axe config',
             },
         });
     });
@@ -41,7 +41,7 @@ describe('getRuleInclusions', () => {
         const fakeOverrides: DictionaryStringTo<RuleIncluded> = {
             'axe-enabled': {
                 status: 'excluded',
-                excludedReason: overrideReason,
+                reason: overrideReason,
             },
         };
 
@@ -49,11 +49,11 @@ describe('getRuleInclusions', () => {
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'excluded',
-                excludedReason: overrideReason,
+                reason: overrideReason,
             },
             'axe-disabled': {
                 status: 'excluded',
-                excludedReason: 'disabled in axe config',
+                reason: 'disabled in axe config',
             },
         });
     });
@@ -63,11 +63,11 @@ describe('getRuleInclusions', () => {
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'excluded',
-                excludedReason: 'no guidance link mapping',
+                reason: 'no guidance link mapping',
             },
             'axe-disabled': {
                 status: 'excluded',
-                excludedReason: 'disabled in axe config',
+                reason: 'disabled in axe config',
             },
         });
     });
@@ -81,11 +81,11 @@ describe('getRuleInclusions', () => {
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'excluded',
-                excludedReason: 'rule maps to BestPractice',
+                reason: 'rule maps to BestPractice',
             },
             'axe-disabled': {
                 status: 'excluded',
-                excludedReason: 'disabled in axe config',
+                reason: 'disabled in axe config',
             },
         });
     });

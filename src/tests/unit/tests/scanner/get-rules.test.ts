@@ -63,15 +63,15 @@ describe('getDefaultRules', () => {
         const ruleIncludedStub: DictionaryStringTo<RuleIncluded> = {
             [ruleStubOne.ruleId]: {
                 status: 'included',
-                excludedReason: null,
+                reason: null,
             },
             [ruleStubTwo.ruleId]: {
                 status: 'included',
-                excludedReason: null,
+                reason: null,
             },
             [ruleStubThree.ruleId]: {
                 status: 'excluded',
-                excludedReason: 'no guidance link mapping',
+                reason: 'no guidance link mapping',
             },
         };
 

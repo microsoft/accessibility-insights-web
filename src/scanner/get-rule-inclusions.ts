@@ -8,13 +8,13 @@ import { IRuleConfiguration } from 'scanner/iruleresults';
 
 export interface RuleIncluded {
     status: 'included' | 'excluded';
-    excludedReason: string | null;
+    reason: string | null;
 }
 
 export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     'link-name': {
         status: 'excluded',
-        excludedReason: 'temporarily excluded because of false positive (axe-core@2459)',
+        reason: 'temporarily excluded because of false positive (axe-core@2459)',
     },
 };
 
@@ -43,14 +43,14 @@ function getRuleIncludedConfig(
     if (!rule.enabled) {
         return {
             status: 'excluded',
-            excludedReason: 'disabled in axe config',
+            reason: 'disabled in axe config',
         };
     }
 
     if (!ruleToLinksMap.hasOwnProperty(rule.id)) {
         return {
             status: 'excluded',
-            excludedReason: 'no guidance link mapping',
+            reason: 'no guidance link mapping',
         };
     }
 
@@ -58,12 +58,12 @@ function getRuleIncludedConfig(
         // should we use Axe's mappings here?
         return {
             status: 'excluded',
-            excludedReason: 'rule maps to BestPractice',
+            reason: 'rule maps to BestPractice',
         };
     }
 
     return {
         status: 'included',
-        excludedReason: null,
+        reason: null,
     };
 }
