@@ -25,7 +25,7 @@ exports[`HowToCheckWebText renders with id=bogus-name 1`] = `null`;
 
 exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
 <div
-  classname="combinationLists"
+  className="combinationLists"
 >
   <ul
     className="multiLineTextYesBullet"
@@ -33,12 +33,12 @@ exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
     <li
       list-style-type="disc"
     >
-      If the text is intended to be invisible, it passes.
+      If the instance is an icon or other non-text content, ignore it. This rule applies only to text.
     </li>
     <li
       list-style-type="disc"
     >
-      If the text is intended to be visible, use
+      If the instance is text, use
        
       <NewTabLink
         href="https://go.microsoft.com/fwlink/?linkid=2075365"
@@ -63,13 +63,13 @@ exports[`HowToCheckWebText renders with id=color-contrast 1`] = `
     <li>
       For detailed test instructions, see
        
-      <b>
+      <Term>
         Assessment 
         &gt;
-         Text legibility 
+         Adaptable content 
         &gt;
          Contrast
-      </b>
+      </Term>
       .
     </li>
   </ul>

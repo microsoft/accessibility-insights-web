@@ -5,7 +5,7 @@ import * as Playwright from 'playwright';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 import { Page, PageOptions } from './page';
 
-declare var window: Window & InsightsWindowExtensions;
+declare let window: Window & InsightsWindowExtensions;
 
 // We can't use the default polling behavior of waitForFunction with the background page
 // because it is based on animation frames, which don't run in the background page.

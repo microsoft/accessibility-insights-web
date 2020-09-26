@@ -15,6 +15,10 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 information."
             </Markup.Emphasis>
         </p>
+        <p>
+            <Link.FormLabelsVideo>This short video on form labels</Link.FormLabelsVideo> shows how programmatically related labels help
+            people who use screen readers.
+        </p>
         <h2>How to fix</h2>
         <p>
             Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button

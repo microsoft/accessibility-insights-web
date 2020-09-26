@@ -44,7 +44,7 @@ import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UsageLogger } from './usage-logger';
 import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
-declare var window: Window & InsightsWindowExtensions;
+declare let window: Window & InsightsWindowExtensions;
 
 async function initialize(): Promise<void> {
     const userAgentParser = new UAParser(window.navigator.userAgent);

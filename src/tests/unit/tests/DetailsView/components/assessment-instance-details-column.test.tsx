@@ -84,7 +84,7 @@ describe('AssessmentInstanceDetailsColumn', () => {
         props: AssessmentInstanceDetailsColumnProps,
     ): void {
         const hasLabel = wrapper.find(`.${styles.assessmentInstanceLabel}`).exists();
-        !!props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
+        props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
         expect(wrapper.find(TooltipHost).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).props().content).toEqual(props.textContent);
         expect(wrapper.find(TooltipHost).props().id).toEqual(props.tooltipId);

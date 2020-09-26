@@ -21,7 +21,7 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
 
     const howToFixSection = (failureSummary: string): string => {
         return escape(failureSummary)
-            .replace(/\n  /g, '<br>- ')
+            .replace(/\n {2}/g, '<br>- ')
             .replace(/\n /g, '<br> ')
             .replace(/\n/g, '<br>');
     };

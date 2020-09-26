@@ -1261,7 +1261,7 @@ class ActionCreatorValidator {
             )
             .callback((messageType, callback) => {
                 if (callbackParams) {
-                    callback.apply(null, callbackParams);
+                    callback(...callbackParams);
                 } else {
                     callback();
                 }

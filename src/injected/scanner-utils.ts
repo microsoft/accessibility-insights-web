@@ -8,7 +8,7 @@ import { GuidanceLink } from '../scanner/rule-to-links-mappings';
 import { ScanOptions } from '../scanner/scan-options';
 import { DictionaryStringTo } from '../types/common-types';
 
-declare var axe: any;
+declare let axe: any;
 
 export type DecoratedAxeNodeResult = {
     status: boolean;

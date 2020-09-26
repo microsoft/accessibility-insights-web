@@ -65,6 +65,10 @@ export const link = {
     WCAG_4_1_2: guidanceLinkTo('WCAG 4.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html'),
     WCAG_4_1_3: guidanceLinkTo('WCAG 4.1.3', 'https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html', [guidanceTags.WCAG_2_1]),
     BingoBakery: linkTo('Bingo Bakery Video', 'https://go.microsoft.com/fwlink/?linkid=2080372'),
+    VoiceControlVideo: linkTo('Voice Control Video', 'https://www.youtube.com/watch?v=bAFzL-dOzu0'),
+    TablesVideo: linkTo('Tables Video', 'https://www.youtube.com/watch?v=I2meEap25UA'),
+    HeadingsVideo: linkTo('Headings Video', 'https://www.youtube.com/watch?v=S0pJcYyxBWo'),
+    FormLabelsVideo: linkTo('Form Labels Video', 'https://www.youtube.com/watch?v=Mki-ZknCrB4'),
     IdentifyHeadings: linkTo('Techniques for WCAG 2.0: Using h1-h6 to identify headings', 'https://www.w3.org/TR/WCAG20-TECHS/H42.html'),
     LandmarkRegions: linkTo(
         'WAI-ARIA Authoring Practices 1.1: Landmark Regions',
