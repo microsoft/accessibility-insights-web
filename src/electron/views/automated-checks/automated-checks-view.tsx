@@ -123,7 +123,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.automatedChecksPanelContainer}>
-                    {this.renderExtendedCommandBar(cardsViewData, scanMetadata)}
+                    {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
                     <div className={styles.automatedChecksPanelLayout}>
                         <div className={styles.mainContentWrapper}>
                             {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
@@ -170,7 +170,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderExtendedCommandBar(
+    private renderExpandedCommandBar(
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
     ): JSX.Element {
