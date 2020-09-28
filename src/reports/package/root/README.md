@@ -11,7 +11,7 @@ self-contained HTML files in the same format as
 
 ## Usage
 
-Before using accessibility-insights-report, you will need to run an [axe](https://github.com/dequelabs/axe-core) accessibility scan to produce some axe results to convert. Typically, you would do this by using an axe integration library for your favorite browser automation tool ([@axe-core/puppeteer](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/puppeteer), [@axe-core/webdriverjs-webdriverjs](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverjs), [cypress-axe](https://github.com/avanslaars/cypress-axe)).
+Before using accessibility-insights-report, you will need to run an [axe](https://github.com/dequelabs/axe-core) accessibility scan to produce some axe results to convert. Typically, you would do this by using an axe integration library for your favorite browser automation tool ([@axe-core/puppeteer](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/puppeteer), [@axe-core/webdriverjs](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverjs), [cypress-axe](https://github.com/avanslaars/cypress-axe)).
 
 accessibility-insights-report exports a factory that can be used to create a report object and output its results as HTML.
 
