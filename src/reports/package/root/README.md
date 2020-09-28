@@ -11,38 +11,49 @@ self-contained HTML files in the same format as
 
 ## Usage
 
-Before using accessibility-insights-report, you will need to run an [axe](https://github.com/dequelabs/axe-core) accessibility scan to produce some axe results to convert. Typically, you would do this by using an axe integration library for your favorite browser automation tool ([axe-puppeteer](https://github.com/dequelabs/axe-puppeteer), [axe-webdriverjs](https://github.com/dequelabs/axe-webdriverjs), [cypress-axe](https://github.com/avanslaars/cypress-axe)).
+Before using accessibility-insights-report, you will need to run an [axe](https://github.com/dequelabs/axe-core) accessibility scan to produce some axe results to convert. Typically, you would do this by using an axe integration library for your favorite browser automation tool ([@axe-core/puppeteer](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/puppeteer), [@axe-core/webdriverjs-webdriverjs](https://github.com/dequelabs/axe-core-npm/tree/develop/packages/webdriverjs), [cypress-axe](https://github.com/avanslaars/cypress-axe)).
 
 accessibility-insights-report exports a factory that can be used to create a report object and output its results as HTML.
 
 Use it like this:
 
 ```ts
-import * as Axe from 'axe';
-import * as AxePuppeteer from 'axe-puppeteer';
+import { reporterFactory } from "accessibility-insights-report";
+import * as Axe from 'axe-core';
+import { AxePuppeteer } from '@axe-core/puppeteer';
 import * as fs from 'fs';
-import * as Puppeteer from 'puppeteer'
+import * as Puppeteer from 'puppeteer';
 import * as util from 'util';
 
-import { reporterFactory } from "accessibility-insights-report";
-
 test('my accessibility test', async () => {
-    // This example uses axe-puppeteer, but you can use any axe-based library
+    // This example uses @axe-core/puppeteer, but you can use any axe-based library
     // that outputs axe scan results in the default axe output format
-    const testPage: Playwright.Page = /* ... set up your test page ... */;
-    const axeResults: Axe.AxeResults = await new AxePuppeteer(testPage).analyze();
+    const browser = await Puppeteer.launch();
+    const testPage = await browser.newPage();
+    await testPage.setBypassCSP(true);
+    await testPage.goto('https://www.example.com');
+
+    const results: Axe.AxeResults = await new AxePuppeteer(testPage).analyze();
 
     // Construct the reporter object from the factory
     const reporter = reporterFactory();
 
     // Perform the conversion
-    const html = reporter.fromAxeResult(axeResults).asHTML();
+    const html = reporter.fromAxeResult({
+        results,
+        description: "description of report",
+        serviceName: "service name",
+        scanContext: {
+            pageTitle: await testPage.title(),
+        }
+    }).asHTML();
 
     // Output the HTML file for offline viewing in any modern browser
     await util.promisify(fs.writeFile)(
-        './test-results/my-accessibility-test.html',
+        'my-accessibility-test.html',
         JSON.stringify(html),
         { encoding: 'utf8' });
+    await browser.close();
 }
 ```
 
