@@ -8,16 +8,27 @@ exports[`CommandBar renders does not create report export when scan metadata is 
   <div
     className="items"
   >
-    <InsightsCommandButton
-      data-automation-id="command-button-refresh"
-      disabled={true}
-      iconProps={
+    <FlaggedComponent
+      disableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={true}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="leftNavBar"
+      featureFlagStoreData={
         Object {
-          "iconName": "Refresh",
+          "somefeatureflag": true,
         }
       }
-      onClick={[Function]}
-      text="Start over"
     />
   </div>
   <div
@@ -26,6 +37,28 @@ exports[`CommandBar renders does not create report export when scan metadata is 
     <FlaggedComponent
       enableJSXElement={null}
       featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={true}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      featureFlag="leftNavBar"
       featureFlagStoreData={
         Object {
           "somefeatureflag": true,
@@ -56,16 +89,27 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   <div
     className="items"
   >
-    <InsightsCommandButton
-      data-automation-id="command-button-refresh"
-      disabled={false}
-      iconProps={
+    <FlaggedComponent
+      disableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="leftNavBar"
+      featureFlagStoreData={
         Object {
-          "iconName": "Refresh",
+          "somefeatureflag": true,
         }
       }
-      onClick={[Function]}
-      text="Start over"
     />
   </div>
   <div
@@ -100,6 +144,28 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
         />
       }
       featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      featureFlag="leftNavBar"
       featureFlagStoreData={
         Object {
           "somefeatureflag": true,
@@ -130,16 +196,27 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   <div
     className="items"
   >
-    <InsightsCommandButton
-      data-automation-id="command-button-refresh"
-      disabled={false}
-      iconProps={
+    <FlaggedComponent
+      disableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="leftNavBar"
+      featureFlagStoreData={
         Object {
-          "iconName": "Refresh",
+          "somefeatureflag": true,
         }
       }
-      onClick={[Function]}
-      text="Start over"
     />
   </div>
   <div
@@ -174,6 +251,28 @@ exports[`CommandBar renders while status is <Default> 1`] = `
         />
       }
       featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      featureFlag="leftNavBar"
       featureFlagStoreData={
         Object {
           "somefeatureflag": true,
@@ -204,16 +303,27 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   <div
     className="items"
   >
-    <InsightsCommandButton
-      data-automation-id="command-button-refresh"
-      disabled={false}
-      iconProps={
+    <FlaggedComponent
+      disableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="leftNavBar"
+      featureFlagStoreData={
         Object {
-          "iconName": "Refresh",
+          "somefeatureflag": true,
         }
       }
-      onClick={[Function]}
-      text="Start over"
     />
   </div>
   <div
@@ -254,6 +364,28 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
         }
       }
     />
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={false}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      featureFlag="leftNavBar"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
     <InsightsCommandButton
       ariaLabel="settings"
       className="settingsGearButton"
@@ -278,16 +410,27 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   <div
     className="items"
   >
-    <InsightsCommandButton
-      data-automation-id="command-button-refresh"
-      disabled={true}
-      iconProps={
+    <FlaggedComponent
+      disableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={true}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      enableJSXElement={null}
+      featureFlag="leftNavBar"
+      featureFlagStoreData={
         Object {
-          "iconName": "Refresh",
+          "somefeatureflag": true,
         }
       }
-      onClick={[Function]}
-      text="Start over"
     />
   </div>
   <div
@@ -322,6 +465,28 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
         />
       }
       featureFlag="exportReport"
+      featureFlagStoreData={
+        Object {
+          "somefeatureflag": true,
+        }
+      }
+    />
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <InsightsCommandButton
+          data-automation-id="command-button-refresh"
+          disabled={true}
+          iconProps={
+            Object {
+              "iconName": "Refresh",
+            }
+          }
+          onClick={[Function]}
+          text="Start over"
+        />
+      }
+      featureFlag="leftNavBar"
       featureFlagStoreData={
         Object {
           "somefeatureflag": true,
