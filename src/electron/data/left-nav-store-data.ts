@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type LeftNavStoreData<KeyT> = {
-    selectedKey: KeyT;
+import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
+
+export type LeftNavStoreData = {
+    selectedKey: LeftNavItemKey;
 };
