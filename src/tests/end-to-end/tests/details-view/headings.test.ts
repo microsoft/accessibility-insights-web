@@ -73,9 +73,7 @@ describe('Details View -> Assessment -> Headings', () => {
                     headingsPage,
                     detailsViewSelectors.mainContent,
                 );
-                // Note: long-term, length should be 0. The 1 is here as a temporary workaround
-                // for issue https://github.com/dequelabs/axe-core/issues/2459
-                expect(results).toHaveLength(1);
+                expect(results).toHaveLength(0);
             },
         );
     });

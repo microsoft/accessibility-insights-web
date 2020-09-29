@@ -46,10 +46,7 @@ describe('Details View -> Assessment -> Reflow', () => {
         it.each([true, false])(
             `should pass accessibility validation with high contrast mode=%s`,
             async highContrastMode => {
-                await scanForA11yIssuesWithHighContrast(
-                    highContrastMode,
-                    componentName === 'hamburger button' ? 0 : 1,
-                );
+                await scanForA11yIssuesWithHighContrast(highContrastMode);
             },
         );
 
@@ -65,24 +62,18 @@ describe('Details View -> Assessment -> Reflow', () => {
             it.each([true, false])(
                 `should pass accessibility validation with command bar menu open and high contrast mode=%s`,
                 async highContrastMode => {
-                    await scanForA11yIssuesWithHighContrast(highContrastMode, 1);
+                    await scanForA11yIssuesWithHighContrast(highContrastMode);
                 },
             );
         });
     });
 
-    async function scanForA11yIssuesWithHighContrast(
-        highContrastMode: boolean,
-        expectedFailures: number,
-    ): Promise<void> {
+    async function scanForA11yIssuesWithHighContrast(highContrastMode: boolean): Promise<void> {
         await browser.setHighContrastMode(highContrastMode);
         await detailsViewPage.waitForHighContrastMode(highContrastMode);
 
         const results = await scanForAccessibilityIssues(detailsViewPage, '*');
-        // Note: long-term, expectedFailures should always be 0 and it should not
-        // be passed in as a parameter. It's here as a temporary workaround for
-        // issue https://github.com/dequelabs/axe-core/issues/2459
-        expect(results).toHaveLength(expectedFailures);
+        expect(results).toHaveLength(0);
     }
 
     async function setButtonExpandedState(
