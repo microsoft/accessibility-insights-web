@@ -4,7 +4,6 @@ import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
@@ -72,11 +71,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             userConfigurationStoreData,
         } = this.props;
         const { rules, results, toolInfo } = unifiedScanResultStoreData;
+
         const cardSelectionViewData = deps.getCardSelectionViewData(
             cardSelectionStoreData,
             unifiedScanResultStoreData,
             deps.isResultHighlightUnavailable,
         );
+
         const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
         deps.toolData = toolInfo;
 
@@ -89,36 +90,8 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             highlightedResultUids,
         );
 
-        const scanMetadata: ScanMetadata =
-            status !== ScanStatus.Completed
-                ? null
-                : {
-                      timestamp: unifiedScanResultStoreData.timestamp,
-                      toolData: unifiedScanResultStoreData.toolInfo,
-                      targetAppInfo: unifiedScanResultStoreData.targetAppInfo,
-                      deviceName: unifiedScanResultStoreData.platformInfo.deviceName,
-                  };
+        const scanMetadata: ScanMetadata = this.getScanMetadata(status, unifiedScanResultStoreData);
 
-        return this.renderLayout(
-            cardsViewData,
-            scanMetadata,
-            <TestView
-                deps={deps}
-                scanStatus={status}
-                scanMetadata={scanMetadata}
-                userConfigurationStoreData={userConfigurationStoreData}
-                cardsViewData={cardsViewData}
-            />,
-            <ScreenshotView viewModel={screenshotViewModel} />,
-        );
-    }
-
-    private renderLayout(
-        cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetadata,
-        mainContent: JSX.Element,
-        screenshotPanel: JSX.Element,
-    ): JSX.Element {
         return (
             <div
                 className={styles.automatedChecksView}
@@ -139,9 +112,17 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                             cardsViewData={cardsViewData}
                             scanMetadata={scanMetadata}
                         />
-                        <main>{mainContent}</main>
+                        <main>
+                            <TestView
+                                deps={deps}
+                                scanStatus={status}
+                                scanMetadata={scanMetadata}
+                                userConfigurationStoreData={userConfigurationStoreData}
+                                cardsViewData={cardsViewData}
+                            />
+                        </main>
                     </div>
-                    {screenshotPanel}
+                    {<ScreenshotView viewModel={screenshotViewModel} />}
                     {this.renderDeviceDisconnected()}
                 </div>
                 <SettingsPanel
@@ -161,6 +142,20 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private getScanPort(): number {
         return this.props.androidSetupStoreData.scanPort;
+    }
+
+    private getScanMetadata(
+        status: ScanStatus,
+        unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    ): ScanMetadata {
+        return status !== ScanStatus.Completed
+            ? null
+            : {
+                  timestamp: unifiedScanResultStoreData.timestamp,
+                  toolData: unifiedScanResultStoreData.toolInfo,
+                  targetAppInfo: unifiedScanResultStoreData.targetAppInfo,
+                  deviceName: unifiedScanResultStoreData.platformInfo.deviceName,
+              };
     }
 
     private renderDeviceDisconnected(): JSX.Element {
