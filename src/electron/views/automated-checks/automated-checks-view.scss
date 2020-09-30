@@ -19,6 +19,12 @@
     -webkit-app-region: no-drag;
     background-color: $neutral-2;
 
+    .automated-checks-panel-container {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
     .automated-checks-panel-layout {
         display: flex;
         flex-grow: 1;

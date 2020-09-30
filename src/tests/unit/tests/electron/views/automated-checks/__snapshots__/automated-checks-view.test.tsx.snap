@@ -27,63 +27,12 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
     pageTitle="Automated checks"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={
-          Object {
-            "cards": Object {
-              "fail": Array [
-                Object {
-                  "id": "test-fail-id",
-                },
-              ],
-            },
-          }
-        }
-        deps={
-          Object {
-            "getCardSelectionViewData": [Function],
-            "getCardsViewData": [Function],
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "screenshotViewModelProvider": [Function],
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanMetadata={
-          Object {
-            "deviceName": "TEST DEVICE",
-            "targetAppInfo": Object {
-              "name": "test-target-app-name",
-            },
-            "timestamp": "test timestamp",
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanStoreData={
-          Object {
-            "status": 2,
-          }
-        }
-      />
-      <main>
-        <TestView
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
           cardsViewData={
             Object {
               "cards": Object {
@@ -127,24 +76,141 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               },
             }
           }
-          scanStatus={2}
-          userConfigurationStoreData={
+          scanStoreData={
             Object {
-              "isFirstTime": false,
+              "status": 2,
             }
           }
         />
-      </main>
-    </div>
-    <ScreenshotView
-      viewModel={
-        Object {
-          "screenshotData": Object {
-            "base64PngData": "this should appear in snapshotted ScreenshotView props",
-          },
-        }
       }
+      featureFlag="leftNavBar"
     />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              deps={
+                Object {
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={
+                Object {
+                  "deviceName": "TEST DEVICE",
+                  "targetAppInfo": Object {
+                    "name": "test-target-app-name",
+                  },
+                  "timestamp": "test timestamp",
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanStoreData={
+                Object {
+                  "status": 2,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <TestView
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            deps={
+              Object {
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanMetadata={
+              Object {
+                "deviceName": "TEST DEVICE",
+                "targetAppInfo": Object {
+                  "name": "test-target-app-name",
+                },
+                "timestamp": "test timestamp",
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanStatus={2}
+            userConfigurationStoreData={
+              Object {
+                "isFirstTime": false,
+              }
+            }
+          />
+        </main>
+      </div>
+      <ScreenshotView
+        viewModel={
+          Object {
+            "screenshotData": Object {
+              "base64PngData": "this should appear in snapshotted ScreenshotView props",
+            },
+          }
+        }
+      />
+    </div>
   </div>
   <SettingsPanel
     deps={
@@ -203,50 +269,12 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
     pageTitle="Automated checks"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={
-          Object {
-            "cards": Object {
-              "fail": Array [
-                Object {
-                  "id": "test-fail-id",
-                },
-              ],
-            },
-          }
-        }
-        deps={
-          Object {
-            "getCardSelectionViewData": [Function],
-            "getCardsViewData": [Function],
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "screenshotViewModelProvider": [Function],
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanMetadata={null}
-        scanStoreData={
-          Object {
-            "status": 3,
-          }
-        }
-      />
-      <main>
-        <TestView
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
           cardsViewData={
             Object {
               "cards": Object {
@@ -277,28 +305,119 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
             }
           }
           scanMetadata={null}
-          scanStatus={3}
-          userConfigurationStoreData={
+          scanStoreData={
             Object {
-              "isFirstTime": false,
+              "status": 3,
             }
           }
         />
-      </main>
-    </div>
-    <ScreenshotView
-      viewModel={
-        Object {
-          "screenshotData": Object {
-            "base64PngData": "this should appear in snapshotted ScreenshotView props",
-          },
-        }
       }
+      featureFlag="leftNavBar"
     />
-    <DeviceDisconnectedPopup
-      onConnectNewDevice={[Function]}
-      onRescanDevice={[Function]}
-    />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              deps={
+                Object {
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanStoreData={
+                Object {
+                  "status": 3,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <TestView
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            deps={
+              Object {
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanMetadata={null}
+            scanStatus={3}
+            userConfigurationStoreData={
+              Object {
+                "isFirstTime": false,
+              }
+            }
+          />
+        </main>
+      </div>
+      <ScreenshotView
+        viewModel={
+          Object {
+            "screenshotData": Object {
+              "base64PngData": "this should appear in snapshotted ScreenshotView props",
+            },
+          }
+        }
+      />
+      <DeviceDisconnectedPopup
+        onConnectNewDevice={[Function]}
+        onRescanDevice={[Function]}
+      />
+    </div>
   </div>
   <SettingsPanel
     deps={
@@ -357,50 +476,12 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
     pageTitle="Automated checks"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={
-          Object {
-            "cards": Object {
-              "fail": Array [
-                Object {
-                  "id": "test-fail-id",
-                },
-              ],
-            },
-          }
-        }
-        deps={
-          Object {
-            "getCardSelectionViewData": [Function],
-            "getCardsViewData": [Function],
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "screenshotViewModelProvider": [Function],
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanMetadata={null}
-        scanStoreData={
-          Object {
-            "status": 1,
-          }
-        }
-      />
-      <main>
-        <TestView
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
           cardsViewData={
             Object {
               "cards": Object {
@@ -431,24 +512,115 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
             }
           }
           scanMetadata={null}
-          scanStatus={1}
-          userConfigurationStoreData={
+          scanStoreData={
             Object {
-              "isFirstTime": false,
+              "status": 1,
             }
           }
         />
-      </main>
-    </div>
-    <ScreenshotView
-      viewModel={
-        Object {
-          "screenshotData": Object {
-            "base64PngData": "this should appear in snapshotted ScreenshotView props",
-          },
-        }
       }
+      featureFlag="leftNavBar"
     />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              deps={
+                Object {
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanStoreData={
+                Object {
+                  "status": 1,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <TestView
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            deps={
+              Object {
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanMetadata={null}
+            scanStatus={1}
+            userConfigurationStoreData={
+              Object {
+                "isFirstTime": false,
+              }
+            }
+          />
+        </main>
+      </div>
+      <ScreenshotView
+        viewModel={
+          Object {
+            "screenshotData": Object {
+              "base64PngData": "this should appear in snapshotted ScreenshotView props",
+            },
+          }
+        }
+      />
+    </div>
   </div>
   <SettingsPanel
     deps={
@@ -507,50 +679,12 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
     pageTitle="Automated checks"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={
-          Object {
-            "cards": Object {
-              "fail": Array [
-                Object {
-                  "id": "test-fail-id",
-                },
-              ],
-            },
-          }
-        }
-        deps={
-          Object {
-            "getCardSelectionViewData": [Function],
-            "getCardsViewData": [Function],
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "screenshotViewModelProvider": [Function],
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanMetadata={null}
-        scanStoreData={
-          Object {
-            "status": undefined,
-          }
-        }
-      />
-      <main>
-        <TestView
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
           cardsViewData={
             Object {
               "cards": Object {
@@ -581,23 +715,114 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
             }
           }
           scanMetadata={null}
-          userConfigurationStoreData={
+          scanStoreData={
             Object {
-              "isFirstTime": false,
+              "status": undefined,
             }
           }
         />
-      </main>
-    </div>
-    <ScreenshotView
-      viewModel={
-        Object {
-          "screenshotData": Object {
-            "base64PngData": "this should appear in snapshotted ScreenshotView props",
-          },
-        }
       }
+      featureFlag="leftNavBar"
     />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              deps={
+                Object {
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanStoreData={
+                Object {
+                  "status": undefined,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <TestView
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            deps={
+              Object {
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanMetadata={null}
+            userConfigurationStoreData={
+              Object {
+                "isFirstTime": false,
+              }
+            }
+          />
+        </main>
+      </div>
+      <ScreenshotView
+        viewModel={
+          Object {
+            "screenshotData": Object {
+              "base64PngData": "this should appear in snapshotted ScreenshotView props",
+            },
+          }
+        }
+      />
+    </div>
   </div>
   <SettingsPanel
     deps={

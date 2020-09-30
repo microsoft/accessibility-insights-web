@@ -1,3 +1,4 @@
+import { FlaggedComponent } from 'common/components/flagged-component';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -16,6 +17,7 @@ import {
     SettingsPanel,
     SettingsPanelDeps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
@@ -30,6 +32,7 @@ import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screensho
 import * as React from 'react';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 
 export const automatedChecksViewAutomationId = 'automated-checks-view';
 
@@ -102,28 +105,24 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     pageTitle={'Automated checks'}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
-                <div className={styles.automatedChecksPanelLayout}>
-                    <div className={styles.mainContentWrapper}>
-                        <CommandBar
-                            deps={this.props.deps}
-                            scanPort={this.getScanPort()}
-                            scanStoreData={this.props.scanStoreData}
-                            featureFlagStoreData={this.props.featureFlagStoreData}
-                            cardsViewData={cardsViewData}
-                            scanMetadata={scanMetadata}
-                        />
-                        <main>
-                            <TestView
-                                deps={deps}
-                                scanStatus={status}
-                                scanMetadata={scanMetadata}
-                                userConfigurationStoreData={userConfigurationStoreData}
-                                cardsViewData={cardsViewData}
-                            />
-                        </main>
+                <div className={styles.automatedChecksPanelContainer}>
+                    {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
+                    <div className={styles.automatedChecksPanelLayout}>
+                        <div className={styles.mainContentWrapper}>
+                            {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
+                            <main>
+                                <TestView
+                                    deps={deps}
+                                    scanStatus={status}
+                                    scanMetadata={scanMetadata}
+                                    userConfigurationStoreData={userConfigurationStoreData}
+                                    cardsViewData={cardsViewData}
+                                />
+                            </main>
+                        </div>
+                        {<ScreenshotView viewModel={screenshotViewModel} />}
+                        {this.renderDeviceDisconnected()}
                     </div>
-                    {<ScreenshotView viewModel={screenshotViewModel} />}
-                    {this.renderDeviceDisconnected()}
                 </div>
                 <SettingsPanel
                     layerClassName={styles.settingsPanelLayerHost}
@@ -156,6 +155,50 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                   targetAppInfo: unifiedScanResultStoreData.targetAppInfo,
                   deviceName: unifiedScanResultStoreData.platformInfo.deviceName,
               };
+    }
+
+    private renderCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <CommandBar
+                deps={this.props.deps}
+                scanPort={this.getScanPort()}
+                scanStoreData={this.props.scanStoreData}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                cardsViewData={cardsViewData}
+                scanMetadata={scanMetadata}
+            />
+        );
+    }
+
+    private renderExpandedCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <FlaggedComponent
+                featureFlag={UnifiedFeatureFlags.leftNavBar}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={this.renderCommandBar(cardsViewData, scanMetadata)}
+                disableJSXElement={null}
+            />
+        );
+    }
+
+    private renderOriginalCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <FlaggedComponent
+                featureFlag={UnifiedFeatureFlags.leftNavBar}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={null}
+                disableJSXElement={this.renderCommandBar(cardsViewData, scanMetadata)}
+            />
+        );
     }
 
     private renderDeviceDisconnected(): JSX.Element {

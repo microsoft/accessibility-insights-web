@@ -1,6 +1,4 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type LeftNavStoreData<KeyT> = {
-    selectedKey: KeyT;
-};
+export type TestKey = 'automated-checks' | 'needs-review';
