@@ -27,64 +27,12 @@ exports[`AutomatedChecksView renders as expected when status scan <Completed> 1`
     pageTitle="Automated checks"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={
-          Object {
-            "cards": Object {
-              "fail": Array [
-                Object {
-                  "id": "test-fail-id",
-                },
-              ],
-            },
-          }
-        }
-        deps={
-          Object {
-            "getCardSelectionViewData": [Function],
-            "getCardsViewData": [Function],
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "screenshotViewModelProvider": [Function],
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanMetadata={
-          Object {
-            "deviceName": "TEST DEVICE",
-            "targetAppInfo": Object {
-              "name": "test-target-app-name",
-            },
-            "timestamp": "test timestamp",
-            "toolData": Object {
-              "applicationProperties": Object {
-                "name": "some app",
-              },
-            },
-          }
-        }
-        scanStoreData={
-          Object {
-            "status": 2,
-          }
-        }
-      />
-      <main>
-        <HeaderSection />
-        <CardsView
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
           cardsViewData={
             Object {
               "cards": Object {
@@ -128,23 +76,141 @@ exports[`AutomatedChecksView renders as expected when status scan <Completed> 1`
               },
             }
           }
-          userConfigurationStoreData={
+          scanStoreData={
             Object {
-              "isFirstTime": false,
+              "status": 2,
             }
           }
         />
-      </main>
-    </div>
-    <ScreenshotView
-      viewModel={
-        Object {
-          "screenshotData": Object {
-            "base64PngData": "this should appear in snapshotted ScreenshotView props",
-          },
-        }
       }
+      featureFlag="leftNavBar"
     />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              deps={
+                Object {
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={
+                Object {
+                  "deviceName": "TEST DEVICE",
+                  "targetAppInfo": Object {
+                    "name": "test-target-app-name",
+                  },
+                  "timestamp": "test timestamp",
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanStoreData={
+                Object {
+                  "status": 2,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <HeaderSection />
+          <CardsView
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            deps={
+              Object {
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanMetadata={
+              Object {
+                "deviceName": "TEST DEVICE",
+                "targetAppInfo": Object {
+                  "name": "test-target-app-name",
+                },
+                "timestamp": "test timestamp",
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            userConfigurationStoreData={
+              Object {
+                "isFirstTime": false,
+              }
+            }
+          />
+        </main>
+      </div>
+      <ScreenshotView
+        viewModel={
+          Object {
+            "screenshotData": Object {
+              "base64PngData": "this should appear in snapshotted ScreenshotView props",
+            },
+          }
+        }
+      />
+    </div>
   </div>
   <SettingsPanel
     deps={
@@ -202,45 +268,87 @@ exports[`AutomatedChecksView renders as expected when status scan <Failed> 1`] =
     windowStateStoreData="window state store data"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={null}
-        deps={
-          Object {
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "windowStateActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "userConfigurationStore": undefined,
-              "windowFrameActionCreator": undefined,
-              "windowStateActions": undefined,
-            },
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
+          cardsViewData={null}
+          deps={
+            Object {
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "windowStateActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "userConfigurationStore": undefined,
+                "windowFrameActionCreator": undefined,
+                "windowStateActions": undefined,
+              },
+            }
           }
-        }
-        scanMetadata={null}
-        scanPort={63000}
-        scanStoreData={
-          Object {
-            "status": 3,
+          scanMetadata={null}
+          scanPort={63000}
+          scanStoreData={
+            Object {
+              "status": 3,
+            }
           }
-        }
-      />
-      <main>
-        <HeaderSection />
-        <DeviceDisconnectedPopup
-          deviceName="Device name from androidSetupStoreData"
-          onConnectNewDevice={[Function]}
-          onRescanDevice={[Function]}
         />
-      </main>
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={null}
+              deps={
+                Object {
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "windowStateActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "userConfigurationStore": undefined,
+                    "windowFrameActionCreator": undefined,
+                    "windowStateActions": undefined,
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanPort={63000}
+              scanStoreData={
+                Object {
+                  "status": 3,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <HeaderSection />
+          <DeviceDisconnectedPopup
+            deviceName="Device name from androidSetupStoreData"
+            onConnectNewDevice={[Function]}
+            onRescanDevice={[Function]}
+          />
+        </main>
+      </div>
     </div>
   </div>
   <SettingsPanel
@@ -293,45 +401,87 @@ exports[`AutomatedChecksView renders as expected when status scan <Scanning> 1`]
     windowStateStoreData="window state store data"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={null}
-        deps={
-          Object {
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "windowStateActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "userConfigurationStore": undefined,
-              "windowFrameActionCreator": undefined,
-              "windowStateActions": undefined,
-            },
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
+          cardsViewData={null}
+          deps={
+            Object {
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "windowStateActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "userConfigurationStore": undefined,
+                "windowFrameActionCreator": undefined,
+                "windowStateActions": undefined,
+              },
+            }
           }
-        }
-        scanMetadata={null}
-        scanPort={63000}
-        scanStoreData={
-          Object {
-            "status": 1,
+          scanMetadata={null}
+          scanPort={63000}
+          scanStoreData={
+            Object {
+              "status": 1,
+            }
           }
-        }
-      />
-      <main>
-        <HeaderSection />
-        <ScanningSpinner
-          aria-live="assertive"
-          isSpinning={true}
-          label="Scanning..."
         />
-      </main>
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={null}
+              deps={
+                Object {
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "windowStateActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "userConfigurationStore": undefined,
+                    "windowFrameActionCreator": undefined,
+                    "windowStateActions": undefined,
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanPort={63000}
+              scanStoreData={
+                Object {
+                  "status": 1,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <HeaderSection />
+          <ScanningSpinner
+            aria-live="assertive"
+            isSpinning={true}
+            label="Scanning..."
+          />
+        </main>
+      </div>
     </div>
   </div>
   <SettingsPanel
@@ -384,45 +534,87 @@ exports[`AutomatedChecksView renders as expected when status scan <undefined> 1`
     windowStateStoreData="window state store data"
   />
   <div
-    className="automatedChecksPanelLayout"
+    className="automatedChecksPanelContainer"
   >
-    <div
-      className="mainContentWrapper"
-    >
-      <CommandBar
-        cardsViewData={null}
-        deps={
-          Object {
-            "isResultHighlightUnavailable": [Function],
-            "scanActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
-              "scanActions": undefined,
-            },
-            "windowStateActionCreator": proxy {
-              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "userConfigurationStore": undefined,
-              "windowFrameActionCreator": undefined,
-              "windowStateActions": undefined,
-            },
+    <FlaggedComponent
+      disableJSXElement={null}
+      enableJSXElement={
+        <CommandBar
+          cardsViewData={null}
+          deps={
+            Object {
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "windowStateActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "userConfigurationStore": undefined,
+                "windowFrameActionCreator": undefined,
+                "windowStateActions": undefined,
+              },
+            }
           }
-        }
-        scanMetadata={null}
-        scanPort={63000}
-        scanStoreData={
-          Object {
-            "status": undefined,
+          scanMetadata={null}
+          scanPort={63000}
+          scanStoreData={
+            Object {
+              "status": undefined,
+            }
           }
-        }
-      />
-      <main>
-        <HeaderSection />
-        <ScanningSpinner
-          aria-live="assertive"
-          isSpinning={false}
-          label="Scanning..."
         />
-      </main>
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="automatedChecksPanelLayout"
+    >
+      <div
+        className="mainContentWrapper"
+      >
+        <FlaggedComponent
+          disableJSXElement={
+            <CommandBar
+              cardsViewData={null}
+              deps={
+                Object {
+                  "isResultHighlightUnavailable": [Function],
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "windowStateActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "userConfigurationStore": undefined,
+                    "windowFrameActionCreator": undefined,
+                    "windowStateActions": undefined,
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanPort={63000}
+              scanStoreData={
+                Object {
+                  "status": undefined,
+                }
+              }
+            />
+          }
+          enableJSXElement={null}
+          featureFlag="leftNavBar"
+        />
+        <main>
+          <HeaderSection />
+          <ScanningSpinner
+            aria-live="assertive"
+            isSpinning={false}
+            label="Scanning..."
+          />
+        </main>
+      </div>
     </div>
   </div>
   <SettingsPanel
