@@ -11,9 +11,9 @@ export type RuleIncluded =
     | { status: 'excluded'; reason: string };
 
 export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
-    'link-name': {
-        status: 'excluded',
-        reason: 'temporarily excluded because of false positive (axe-core@2459)',
+    'audio-caption': {
+        status: 'included',
+        reason: 'for parity with video-caption, which axe-core includes by default',
     },
 };
 

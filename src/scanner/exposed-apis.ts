@@ -4,7 +4,6 @@ import * as axe from 'axe-core';
 
 import { AxeConfigurator } from './axe-configurator';
 import { AxeResponseHandler } from './axe-response-handler';
-import { AxeRuleOverrides } from './axe-rule-overrides';
 import { CheckMessageTransformer } from './check-message-transformer';
 import { configuration } from './custom-rule-configurations';
 import { DocumentUtils } from './document-utils';
@@ -69,7 +68,5 @@ export const getDefaultRules = (): ScannerRuleInfo[] => {
         ruleToLinkConfiguration,
     );
 };
-
-AxeRuleOverrides.override(axe);
 
 new AxeConfigurator().configureAxe(axe, configuration);
