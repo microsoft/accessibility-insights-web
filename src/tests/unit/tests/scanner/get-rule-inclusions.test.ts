@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import { AxeRuleOverrides } from 'scanner/axe-rule-overrides';
 import {
     explicitRuleOverrides,
     getRuleInclusions,
@@ -90,7 +89,6 @@ describe('getRuleInclusions', () => {
     });
 
     it('matches snapshotted list of production rules', () => {
-        AxeRuleOverrides.override(axe);
         const inclusions = getRuleInclusions(
             axe._audit.rules,
             ruleToLinkConfiguration,

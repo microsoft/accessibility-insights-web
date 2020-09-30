@@ -50,6 +50,7 @@ Object {
     "status": "included",
   },
   "audio-caption": Object {
+    "reason": "for parity with video-caption, which axe-core includes by default",
     "status": "included",
   },
   "autocomplete-valid": Object {
@@ -201,8 +202,7 @@ Object {
     "status": "excluded",
   },
   "link-name": Object {
-    "reason": "temporarily excluded because of false positive (axe-core@2459)",
-    "status": "excluded",
+    "status": "included",
   },
   "list": Object {
     "status": "included",
@@ -251,8 +251,7 @@ Object {
     "status": "excluded",
   },
   "scrollable-region-focusable": Object {
-    "reason": "rule maps to BestPractice",
-    "status": "excluded",
+    "status": "included",
   },
   "server-side-image-map": Object {
     "status": "included",

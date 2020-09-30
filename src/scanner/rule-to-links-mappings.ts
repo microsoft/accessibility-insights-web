@@ -23,7 +23,7 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'input-button-name': [link.WCAG_4_1_2],
     'landmark-unique': [BestPractice],
     'role-img-alt': [link.WCAG_1_1_1],
-    'scrollable-region-focusable': [link.WCAG_2_1_1, BestPractice],
+    'scrollable-region-focusable': [link.WCAG_2_1_1],
     'area-alt': [link.WCAG_1_1_1, link.WCAG_2_4_4, link.WCAG_4_1_2],
     'image-alt': [link.WCAG_1_1_1],
     'image-redundant-alt': [BestPractice],
