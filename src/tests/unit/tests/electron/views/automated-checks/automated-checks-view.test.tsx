@@ -21,7 +21,6 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
-import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import {
     AutomatedChecksView,
@@ -35,143 +34,120 @@ import * as React from 'react';
 import { Mock, Times } from 'typemoq';
 
 describe('AutomatedChecksView', () => {
-    describe('renders as expected', () => {
-        let bareMinimumProps: AutomatedChecksViewProps;
-        let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
+    let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
+    let props: AutomatedChecksViewProps;
+    let screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
+    let getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
+    let getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
 
-        beforeEach(() => {
-            isResultHighlightUnavailableStub = () => null;
-            bareMinimumProps = {
-                deps: {
-                    windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
-                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    isResultHighlightUnavailable: isResultHighlightUnavailableStub,
-                },
-                scanStoreData: {},
-                androidSetupStoreData: {
-                    scanPort: 63000,
-                    selectedDevice: {
-                        friendlyName: 'Device name from androidSetupStoreData',
-                    },
-                },
-                detailsViewStoreData: {
-                    currentPanel: { isSettingsOpen: false },
-                },
-                windowStateStoreData: 'window state store data' as any,
-            } as AutomatedChecksViewProps;
-        });
+    beforeEach(() => {
+        isResultHighlightUnavailableStub = () => null;
+        const cardSelectionStoreData = {} as CardSelectionStoreData;
+        const resultsHighlightStatus = {
+            'highlighted-uid-1': 'visible',
+            'not-highlighted-uid-1': 'hidden',
+        } as ResultsHighlightStatus;
+        const timeStampStub = 'test timestamp';
+        const toolDataStub: ToolData = {
+            applicationProperties: { name: 'some app' },
+        } as ToolData;
 
-        const scanStatuses = [
-            undefined,
-            ScanStatus[ScanStatus.Scanning],
-            ScanStatus[ScanStatus.Failed],
-        ];
+        const cardSelectionViewDataStub = {
+            resultsHighlightStatus: resultsHighlightStatus,
+        } as CardSelectionViewData;
+        const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
+        const resultsStub = [
+            { uid: 'highlighted-uid-1' },
+            { uid: 'not-highlighted-uid-1' },
+        ] as UnifiedResult[];
+        const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
+            targetAppInfo: {
+                name: 'test-target-app-name',
+            },
+            rules: rulesStub,
+            results: resultsStub,
+            toolInfo: toolDataStub,
+            timestamp: timeStampStub,
+            platformInfo: {
+                deviceName: 'TEST DEVICE',
+            } as PlatformData,
+        };
 
-        it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
-            bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
+        const ruleResultsByStatusStub = {
+            fail: [{ id: 'test-fail-id' } as CardRuleResult],
+        } as CardRuleResultsByStatus;
+        const cardsViewData = {
+            cards: ruleResultsByStatusStub,
+        } as CardsViewModel;
+        const screenshotViewModelStub = {
+            screenshotData: {
+                base64PngData: 'this should appear in snapshotted ScreenshotView props',
+            },
+        } as ScreenshotViewModel;
 
-            const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+        screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
+        getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
+        getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
 
-        it('when status scan <Completed>', () => {
-            const cardSelectionStoreData = {} as CardSelectionStoreData;
-            const resultsHighlightStatus = {
-                'highlighted-uid-1': 'visible',
-                'not-highlighted-uid-1': 'hidden',
-            } as ResultsHighlightStatus;
-            const timeStampStub = 'test timestamp';
-            const toolDataStub: ToolData = {
-                applicationProperties: { name: 'some app' },
-            } as ToolData;
+        props = {
+            deps: {
+                scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                getCardsViewData: getUnifiedRuleResultsMock.object,
+                getCardSelectionViewData: getCardSelectionViewDataMock.object,
+                screenshotViewModelProvider: screenshotViewModelProviderMock.object,
+                isResultHighlightUnavailable: isResultHighlightUnavailableStub,
+            },
+            cardSelectionStoreData,
+            androidSetupStoreData: {},
+            scanStoreData: {},
+            userConfigurationStoreData: {
+                isFirstTime: false,
+            },
+            detailsViewStoreData: {
+                currentPanel: {},
+            },
+            unifiedScanResultStoreData,
+        } as AutomatedChecksViewProps;
 
-            const cardSelectionViewDataStub = {
-                resultsHighlightStatus: resultsHighlightStatus,
-            } as CardSelectionViewData;
-            const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
-            const resultsStub = [
-                { uid: 'highlighted-uid-1' },
-                { uid: 'not-highlighted-uid-1' },
-            ] as UnifiedResult[];
-            const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
-                targetAppInfo: {
-                    name: 'test-target-app-name',
-                },
-                rules: rulesStub,
-                results: resultsStub,
-                toolInfo: toolDataStub,
-                timestamp: timeStampStub,
-                platformInfo: {
-                    deviceName: 'TEST DEVICE',
-                } as PlatformData,
-            };
+        getCardSelectionViewDataMock
+            .setup(getData =>
+                getData(
+                    cardSelectionStoreData,
+                    unifiedScanResultStoreData,
+                    isResultHighlightUnavailableStub,
+                ),
+            )
+            .returns(() => cardSelectionViewDataStub)
+            .verifiable(Times.once());
 
-            const ruleResultsByStatusStub = {
-                fail: [{ id: 'test-fail-id' } as CardRuleResult],
-            } as CardRuleResultsByStatus;
-            const cardsViewData = {
-                cards: ruleResultsByStatusStub,
-            } as CardsViewModel;
-            const screenshotViewModelStub = {
-                screenshotData: {
-                    base64PngData: 'this should appear in snapshotted ScreenshotView props',
-                },
-            } as ScreenshotViewModel;
-            const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
-            const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
-            const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
+        getUnifiedRuleResultsMock
+            .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
+            .returns(() => cardsViewData)
+            .verifiable(Times.once());
 
-            const props: AutomatedChecksViewProps = {
-                deps: {
-                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    getCardsViewData: getUnifiedRuleResultsMock.object,
-                    getCardSelectionViewData: getCardSelectionViewDataMock.object,
-                    screenshotViewModelProvider: screenshotViewModelProviderMock.object,
-                    isResultHighlightUnavailable: isResultHighlightUnavailableStub,
-                },
-                cardSelectionStoreData,
-                androidSetupStoreData: {},
-                scanStoreData: {
-                    status: ScanStatus.Completed,
-                },
-                userConfigurationStoreData: {
-                    isFirstTime: false,
-                },
-                detailsViewStoreData: {
-                    currentPanel: {},
-                },
-                unifiedScanResultStoreData,
-            } as AutomatedChecksViewProps;
+        screenshotViewModelProviderMock
+            .setup(provider => provider(unifiedScanResultStoreData, ['highlighted-uid-1']))
+            .returns(() => screenshotViewModelStub)
+            .verifiable(Times.once());
+    });
 
-            getCardSelectionViewDataMock
-                .setup(getData =>
-                    getData(
-                        cardSelectionStoreData,
-                        unifiedScanResultStoreData,
-                        isResultHighlightUnavailableStub,
-                    ),
-                )
-                .returns(() => cardSelectionViewDataStub)
-                .verifiable(Times.once());
+    const scanStatuses = [
+        undefined,
+        ScanStatus[ScanStatus.Scanning],
+        ScanStatus[ScanStatus.Failed],
+        ScanStatus[ScanStatus.Completed],
+    ];
 
-            getUnifiedRuleResultsMock
-                .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
-                .returns(() => cardsViewData)
-                .verifiable(Times.once());
+    it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
+        props.scanStoreData.status = ScanStatus[scanStatusName];
 
-            screenshotViewModelProviderMock
-                .setup(provider => provider(unifiedScanResultStoreData, ['highlighted-uid-1']))
-                .returns(() => screenshotViewModelStub)
-                .verifiable(Times.once());
+        const wrapped = shallow(<AutomatedChecksView {...props} />);
 
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
+        expect(wrapped.getElement()).toMatchSnapshot();
 
-            expect(wrapped.getElement()).toMatchSnapshot();
-
-            getCardSelectionViewDataMock.verifyAll();
-            getUnifiedRuleResultsMock.verifyAll();
-            screenshotViewModelProviderMock.verifyAll();
-        });
+        getCardSelectionViewDataMock.verifyAll();
+        getUnifiedRuleResultsMock.verifyAll();
+        screenshotViewModelProviderMock.verifyAll();
     });
 
     it('triggers scan when first mounted', () => {
@@ -179,19 +155,8 @@ describe('AutomatedChecksView', () => {
 
         const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
         scanActionCreatorMock.setup(creator => creator.scan(scanPort)).verifiable(Times.once());
-
-        const props: AutomatedChecksViewProps = {
-            deps: {
-                scanActionCreator: scanActionCreatorMock.object,
-            },
-            scanStoreData: {},
-            androidSetupStoreData: {
-                scanPort,
-            },
-            detailsViewStoreData: {
-                currentPanel: {},
-            },
-        } as AutomatedChecksViewProps;
+        props.deps.scanActionCreator = scanActionCreatorMock.object;
+        props.androidSetupStoreData.scanPort = scanPort;
 
         shallow(<AutomatedChecksView {...props} />);
 
@@ -203,22 +168,9 @@ describe('AutomatedChecksView', () => {
             const scanPort = 11111;
 
             const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
-
-            const props: AutomatedChecksViewProps = {
-                deps: {
-                    scanActionCreator: scanActionCreatorMock.object,
-                },
-                scanStoreData: {
-                    status: ScanStatus.Failed,
-                },
-                androidSetupStoreData: {
-                    scanPort,
-                },
-                detailsViewStoreData: {
-                    currentPanel: {},
-                },
-            } as AutomatedChecksViewProps;
-
+            props.deps.scanActionCreator = scanActionCreatorMock.object;
+            props.scanStoreData.status = ScanStatus.Failed;
+            props.androidSetupStoreData.scanPort = scanPort;
             const wrapped = shallow(<AutomatedChecksView {...props} />);
 
             scanActionCreatorMock.reset(); // this mock is used on componentDidMount, which is not in the scope of this unit test

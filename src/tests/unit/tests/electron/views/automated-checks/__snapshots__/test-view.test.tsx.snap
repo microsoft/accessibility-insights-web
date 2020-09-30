@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestView when status scan <Completed> 1`] = `
+<React.Fragment>
+  <HeaderSection />
+  <CardsView
+    cardsViewData={
+      Object {
+        "visualHelperEnabled": true,
+      }
+    }
+    deps={Object {}}
+    scanMetadata={
+      Object {
+        "timestamp": "some time",
+      }
+    }
+    userConfigurationStoreData={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
+</React.Fragment>
+`;
+
+exports[`TestView when status scan <Failed> 1`] = `
+<React.Fragment>
+  <HeaderSection />
+  <ScanningSpinner
+    aria-live="assertive"
+    isSpinning={false}
+    label="Scanning..."
+  />
+</React.Fragment>
+`;
+
+exports[`TestView when status scan <Scanning> 1`] = `
+<React.Fragment>
+  <HeaderSection />
+  <ScanningSpinner
+    aria-live="assertive"
+    isSpinning={true}
+    label="Scanning..."
+  />
+</React.Fragment>
+`;
+
+exports[`TestView when status scan <undefined> 1`] = `
+<React.Fragment>
+  <HeaderSection />
+  <ScanningSpinner
+    aria-live="assertive"
+    isSpinning={false}
+    label="Scanning..."
+  />
+</React.Fragment>
+`;
