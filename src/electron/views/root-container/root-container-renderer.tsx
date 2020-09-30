@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Theme, ThemeDeps } from 'common/components/theme';
+import { LeftNavDeps } from 'electron/views/left-nav/left.nav-deps';
 import {
     PlatformBodyClassModifier,
     PlatformBodyClassModifierDeps,
@@ -14,7 +15,8 @@ import * as ReactDOM from 'react-dom';
 
 export type RootContainerRendererDeps = RootContainerDeps &
     ThemeDeps &
-    PlatformBodyClassModifierDeps;
+    PlatformBodyClassModifierDeps &
+    LeftNavDeps;
 
 export class RootContainerRenderer {
     constructor(

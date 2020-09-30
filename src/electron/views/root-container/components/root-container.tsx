@@ -24,6 +24,7 @@ import {
     DeviceConnectViewContainerDeps,
 } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
+import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 
 export type RootContainerDeps = WithStoreSubscriptionDeps<RootContainerState> &
     DeviceConnectViewContainerDeps &
@@ -43,6 +44,7 @@ export type RootContainerState = {
     detailsViewStoreData: DetailsViewStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     androidSetupStoreData: AndroidSetupStoreData;
+    leftNavStoreData: LeftNavStoreData;
 };
 
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {

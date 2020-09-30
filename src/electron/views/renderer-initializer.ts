@@ -56,16 +56,20 @@ import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-m
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
+import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
 import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
+import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
+import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
@@ -73,6 +77,7 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
+import { androidAssessmentConfigs } from 'electron/platform/android/assessments/android-assessment-configs';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
@@ -161,6 +166,8 @@ const sidePanelActions = new SidePanelActions();
 const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
+const leftNavActions = new LeftNavActions();
+
 const ipcRendererShim = new IpcRendererShim(ipcRenderer);
 ipcRendererShim.initialize();
 
@@ -264,6 +271,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         );
         featureFlagStore.initialize();
 
+        const leftNavStore = new LeftNavStore(leftNavActions);
+        leftNavStore.initialize({ selectedKey: 'overview' });
+
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
@@ -276,6 +286,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             detailsViewStore,
             featureFlagStore,
             androidSetupStore,
+            leftNavStore,
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
@@ -319,6 +330,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         androidSetupTelemetrySender.initialize();
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
+
+        const leftNavActionCreator = new LeftNavActionCreator(leftNavActions);
+        const leftNavItems = createLeftNavItems(androidAssessmentConfigs, leftNavActionCreator);
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
@@ -527,6 +541,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             startTesting: startTesting,
             showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
             logger,
+            leftNavItems,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
