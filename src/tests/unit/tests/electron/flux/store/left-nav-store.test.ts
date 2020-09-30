@@ -16,7 +16,9 @@ describe('LeftNavStore', () => {
     });
 
     it('returns default state', () => {
-        const store = new LeftNavStore(null);
+        const actions = new LeftNavActions();
+        const store = new LeftNavStore(actions);
+        store.initialize();
 
         expect(store.getState()).toMatchSnapshot();
     });

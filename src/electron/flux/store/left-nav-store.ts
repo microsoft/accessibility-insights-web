@@ -15,7 +15,7 @@ export class LeftNavStore extends BaseStoreImpl<LeftNavStoreData> {
 
     public getDefaultState(): LeftNavStoreData {
         return {
-            selectedKey: 'overview',
+            selectedKey: 'automated-checks',
         };
     }
 
