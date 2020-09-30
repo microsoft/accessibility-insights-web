@@ -23,5 +23,14 @@ export const UrlErrorsTable = NamedFC<UrlErrorsTableProps>('UrlErrorsTable', pro
         return [errorType, urlLink, errorLogLink];
     });
 
-    return <SummaryResultsTable columnHeaders={headers} rows={rows} id={props.id} />;
+    const columnIsUrl = [false, true, false];
+
+    return (
+        <SummaryResultsTable
+            columnHeaders={headers}
+            rows={rows}
+            id={props.id}
+            columnIsUrl={columnIsUrl}
+        />
+    );
 });

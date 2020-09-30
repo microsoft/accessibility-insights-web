@@ -31,6 +31,15 @@ export const UrlScanResultsTable = NamedFC<UrlScanResultsTableProps>(
             return [`${result.numFailures}`, urlLink, reportLink];
         });
 
-        return <SummaryResultsTable columnHeaders={headers} rows={rows} id={props.id} />;
+        const columnIsUrl = [false, true, false];
+
+        return (
+            <SummaryResultsTable
+                columnHeaders={headers}
+                rows={rows}
+                id={props.id}
+                columnIsUrl={columnIsUrl}
+            />
+        );
     },
 );

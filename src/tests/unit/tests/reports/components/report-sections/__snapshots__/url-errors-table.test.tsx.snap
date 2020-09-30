@@ -9,6 +9,13 @@ exports[` renders 1`] = `
       "Error description",
     ]
   }
+  columnIsUrl={
+    Array [
+      false,
+      true,
+      false,
+    ]
+  }
   id="table-id"
   rows={
     Array [

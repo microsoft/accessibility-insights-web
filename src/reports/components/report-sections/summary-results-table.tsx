@@ -9,6 +9,7 @@ export type SummaryResultsTableProps = {
     columnHeaders: string[];
     rows: TableRow[];
     id: string;
+    columnIsUrl: boolean[];
 };
 
 export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
@@ -32,12 +33,17 @@ export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
             );
         };
 
-        const getRow = (row: TableRow, index: number) => {
+        const getRow = (row: TableRow, rowIndex: number) => {
             return (
-                <tr key={index}>
-                    {row.map((item, index) => {
+                <tr key={rowIndex}>
+                    {row.map((item, colIndex) => {
+                        const className = props.columnIsUrl[colIndex] ? 'url-cell' : 'text-cell';
                         return (
-                            <td key={index} headers={getHeaderId(index)}>
+                            <td
+                                key={colIndex}
+                                headers={getHeaderId(colIndex)}
+                                className={className}
+                            >
                                 {item}
                             </td>
                         );

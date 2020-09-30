@@ -11,8 +11,14 @@ describe(SummaryResultsTable, () => {
             ['cell1', 'cell2', <div>cell3</div>],
             ['cell4', 'cell5', <div>cell6</div>],
         ];
+        const columnIsUrl = [false, true, false];
         const wrapped = shallow(
-            <SummaryResultsTable columnHeaders={headings} rows={rows} id="table-id" />,
+            <SummaryResultsTable
+                columnHeaders={headings}
+                rows={rows}
+                id="table-id"
+                columnIsUrl={columnIsUrl}
+            />,
         );
         expect(wrapped.getElement()).toMatchSnapshot();
     });
