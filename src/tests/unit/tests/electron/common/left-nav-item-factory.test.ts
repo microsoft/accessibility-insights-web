@@ -1,16 +1,16 @@
-import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
-import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
-import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AssessmentConfig } from 'electron/types/assessment-config';
+import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
+import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
+import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
+import { TestConfig } from 'electron/types/test-config';
 import { LeftNavItem } from 'electron/types/left-nav-item';
 import { Mock, MockBehavior } from 'typemoq';
 
 describe('left nav item factory', () => {
     it('creates array of LeftNavItem objects as expected', () => {
-        const configs: AssessmentConfig[] = [
+        const configs: TestConfig[] = [
             {
                 key: 'automated-checks',
                 title: 'my title1',
@@ -42,7 +42,7 @@ describe('left nav item factory', () => {
     });
 
     it('calls action creator as expected', () => {
-        const configs: AssessmentConfig[] = [
+        const configs: TestConfig[] = [
             {
                 key: 'automated-checks',
                 title: 'my title1',

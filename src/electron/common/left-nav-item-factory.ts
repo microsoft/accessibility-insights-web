@@ -2,18 +2,18 @@ import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-acti
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AssessmentConfig } from 'electron/types/assessment-config';
+import { TestConfig } from 'electron/types/test-config';
 import { LeftNavItem } from 'electron/types/left-nav-item';
 
 export const createLeftNavItems = (
-    configs: AssessmentConfig[],
+    configs: TestConfig[],
     actionCreator: LeftNavActionCreator,
 ): LeftNavItem[] => {
     return configs.map(config => createLeftNavItem(config, actionCreator));
 };
 
 const createLeftNavItem = (
-    config: AssessmentConfig,
+    config: TestConfig,
     actionCreator: LeftNavActionCreator,
 ): LeftNavItem => {
     return {

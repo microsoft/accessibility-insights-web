@@ -3,7 +3,7 @@
 
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 
-export type AssessmentConfig = {
+export type TestConfig = {
     key: LeftNavItemKey;
     title: string;
 };

@@ -77,7 +77,7 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
-import { androidAssessmentConfigs } from 'electron/platform/android/assessments/android-assessment-configs';
+import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
@@ -272,7 +272,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         featureFlagStore.initialize();
 
         const leftNavStore = new LeftNavStore(leftNavActions);
-        leftNavStore.initialize({ selectedKey: 'overview' });
+        leftNavStore.initialize({ selectedKey: 'automated-checks' });
 
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
@@ -332,7 +332,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
         const leftNavActionCreator = new LeftNavActionCreator(leftNavActions);
-        const leftNavItems = createLeftNavItems(androidAssessmentConfigs, leftNavActionCreator);
+        const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
