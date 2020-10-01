@@ -27,16 +27,19 @@ exports[` renders 1`] = `
   <tbody>
     <tr>
       <td
+        className="text-cell"
         headers="table-id-header0"
       >
         cell1
       </td>
       <td
+        className="url-cell"
         headers="table-id-header1"
       >
         cell2
       </td>
       <td
+        className="text-cell"
         headers="table-id-header2"
       >
         <div>
@@ -46,16 +49,19 @@ exports[` renders 1`] = `
     </tr>
     <tr>
       <td
+        className="text-cell"
         headers="table-id-header0"
       >
         cell4
       </td>
       <td
+        className="url-cell"
         headers="table-id-header1"
       >
         cell5
       </td>
       <td
+        className="text-cell"
         headers="table-id-header2"
       >
         <div>

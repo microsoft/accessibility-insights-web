@@ -4,7 +4,10 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { SummaryScanResult } from '../../package/accessibilityInsightsReport';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { SummaryResultsTable } from 'reports/components/report-sections/summary-results-table';
+import {
+    SummaryResultsTable,
+    TableColumn,
+} from 'reports/components/report-sections/summary-results-table';
 
 export type UrlScanResultsTableProps = {
     results: SummaryScanResult[];
@@ -18,7 +21,11 @@ export const UrlScanResultsTable = NamedFC<UrlScanResultsTableProps>(
         let failureInstances = 0;
         results.forEach(result => (failureInstances += result.numFailures));
 
-        const headers = [`# failure instances (${failureInstances})`, 'URL', 'Link to report'];
+        const columns: TableColumn[] = [
+            { header: `# failure instances (${failureInstances})`, contentType: 'text' },
+            { header: 'URL', contentType: 'url' },
+            { header: 'Link to report', contentType: 'text' },
+        ];
 
         const rows = results.map(result => {
             const { url, reportLocation, numFailures } = result;
@@ -31,6 +38,6 @@ export const UrlScanResultsTable = NamedFC<UrlScanResultsTableProps>(
             return [`${result.numFailures}`, urlLink, reportLink];
         });
 
-        return <SummaryResultsTable columnHeaders={headers} rows={rows} id={props.id} />;
+        return <SummaryResultsTable columns={columns} rows={rows} id={props.id} />;
     },
 );

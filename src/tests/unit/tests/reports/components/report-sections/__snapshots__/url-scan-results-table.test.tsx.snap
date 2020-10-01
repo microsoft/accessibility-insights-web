@@ -2,11 +2,20 @@
 
 exports[` renders 1`] = `
 <SummaryResultsTable
-  columnHeaders={
+  columns={
     Array [
-      "# failure instances (6)",
-      "URL",
-      "Link to report",
+      Object {
+        "contentType": "text",
+        "header": "# failure instances (6)",
+      },
+      Object {
+        "contentType": "url",
+        "header": "URL",
+      },
+      Object {
+        "contentType": "text",
+        "header": "Link to report",
+      },
     ]
   }
   id="table-id"
