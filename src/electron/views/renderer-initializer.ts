@@ -272,7 +272,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         featureFlagStore.initialize();
 
         const leftNavStore = new LeftNavStore(leftNavActions);
-        leftNavStore.initialize({ selectedKey: 'automated-checks' });
+        leftNavStore.initialize();
 
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
