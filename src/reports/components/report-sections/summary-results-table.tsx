@@ -3,29 +3,42 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
+const cellClassNames = {
+    text: 'text-cell',
+    url: 'url-cell',
+};
+
+type CellContentType = keyof typeof cellClassNames;
+
+export type TableColumn = {
+    header: string;
+    contentType: CellContentType;
+};
+
 export type TableRow = (string | JSX.Element)[];
 
 export type SummaryResultsTableProps = {
-    columnHeaders: string[];
     rows: TableRow[];
+    columns: TableColumn[];
     id: string;
-    columnIsUrl: boolean[];
 };
 
 export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
     'SummaryResultsTable',
     props => {
+        const { id, columns, rows } = props;
+
         const getHeaderId = (colIndex: number) => {
-            return `${props.id}-header${colIndex}`;
+            return `${id}-header${colIndex}`;
         };
 
         const getTableHeaders = () => {
             return (
                 <tr>
-                    {props.columnHeaders.map((header, index) => {
+                    {columns.map((column, index) => {
                         return (
                             <th key={index} id={getHeaderId(index)}>
-                                {header}
+                                {column.header}
                             </th>
                         );
                     })}
@@ -33,16 +46,20 @@ export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
             );
         };
 
+        const getCellClassName = (colIndex: number) => {
+            const contentType = columns[colIndex].contentType;
+            return cellClassNames[contentType];
+        };
+
         const getRow = (row: TableRow, rowIndex: number) => {
             return (
                 <tr key={rowIndex}>
                     {row.map((item, colIndex) => {
-                        const className = props.columnIsUrl[colIndex] ? 'url-cell' : 'text-cell';
                         return (
                             <td
                                 key={colIndex}
                                 headers={getHeaderId(colIndex)}
-                                className={className}
+                                className={getCellClassName(colIndex)}
                             >
                                 {item}
                             </td>
@@ -53,11 +70,11 @@ export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
         };
 
         const getTableRows = () => {
-            return props.rows.map(getRow);
+            return rows.map(getRow);
         };
 
         return (
-            <table className="summary-results-table" id={props.id}>
+            <table className="summary-results-table" id={id}>
                 <thead>{getTableHeaders()}</thead>
                 <tbody>{getTableRows()}</tbody>
             </table>
