@@ -29,26 +29,31 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
   <div
     className="applicationView"
   >
-    <LeftNav
-      deps={
-        Object {
-          "getCardSelectionViewData": [Function],
-          "getCardsViewData": [Function],
-          "isResultHighlightUnavailable": [Function],
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "scanActions": undefined,
-          },
-          "screenshotViewModelProvider": [Function],
-          "toolData": Object {
-            "applicationProperties": Object {
-              "name": "some app",
-            },
-          },
-        }
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          selectedKey="automated-checks"
+        />
       }
-      selectedKey="automated-checks"
+      featureFlag="leftNavBar"
     />
     <div
       className="automatedChecksPanelContainer"
@@ -296,26 +301,31 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
   <div
     className="applicationView"
   >
-    <LeftNav
-      deps={
-        Object {
-          "getCardSelectionViewData": [Function],
-          "getCardsViewData": [Function],
-          "isResultHighlightUnavailable": [Function],
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "scanActions": undefined,
-          },
-          "screenshotViewModelProvider": [Function],
-          "toolData": Object {
-            "applicationProperties": Object {
-              "name": "some app",
-            },
-          },
-        }
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          selectedKey="automated-checks"
+        />
       }
-      selectedKey="automated-checks"
+      featureFlag="leftNavBar"
     />
     <div
       className="automatedChecksPanelContainer"
@@ -528,26 +538,31 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
   <div
     className="applicationView"
   >
-    <LeftNav
-      deps={
-        Object {
-          "getCardSelectionViewData": [Function],
-          "getCardsViewData": [Function],
-          "isResultHighlightUnavailable": [Function],
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "scanActions": undefined,
-          },
-          "screenshotViewModelProvider": [Function],
-          "toolData": Object {
-            "applicationProperties": Object {
-              "name": "some app",
-            },
-          },
-        }
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          selectedKey="automated-checks"
+        />
       }
-      selectedKey="automated-checks"
+      featureFlag="leftNavBar"
     />
     <div
       className="automatedChecksPanelContainer"
@@ -756,26 +771,31 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
   <div
     className="applicationView"
   >
-    <LeftNav
-      deps={
-        Object {
-          "getCardSelectionViewData": [Function],
-          "getCardsViewData": [Function],
-          "isResultHighlightUnavailable": [Function],
-          "scanActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "scanActions": undefined,
-          },
-          "screenshotViewModelProvider": [Function],
-          "toolData": Object {
-            "applicationProperties": Object {
-              "name": "some app",
-            },
-          },
-        }
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          selectedKey="automated-checks"
+        />
       }
-      selectedKey="automated-checks"
+      featureFlag="leftNavBar"
     />
     <div
       className="automatedChecksPanelContainer"

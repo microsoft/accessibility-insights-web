@@ -110,7 +110,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.applicationView}>
-                    <LeftNav deps={deps} selectedKey={this.props.leftNavStoreData.selectedKey} />
+                    {this.getLeftNav()}
                     <div className={styles.automatedChecksPanelContainer}>
                         {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
                         <div className={styles.automatedChecksPanelLayout}>
@@ -139,6 +139,21 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     userConfigStoreState={this.props.userConfigurationStoreData}
                 />
             </div>
+        );
+    }
+
+    private getLeftNav(): JSX.Element {
+        return (
+            <FlaggedComponent
+                featureFlag={UnifiedFeatureFlags.leftNavBar}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={
+                    <LeftNav
+                        deps={this.props.deps}
+                        selectedKey={this.props.leftNavStoreData.selectedKey}
+                    />
+                }
+            />
         );
     }
 
