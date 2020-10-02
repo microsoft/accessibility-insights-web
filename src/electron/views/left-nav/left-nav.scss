@@ -14,5 +14,16 @@
         align-items: center;
         height: 40px;
         border-bottom: 1px solid $neutral-alpha-8;
+
+        .rocket-icon {
+            padding-left: 16px;
+            padding-right: 16px;
+            font-size: 18px;
+        }
+
+        h3 {
+            font-size: 17px;
+            font-weight: 600;
+        }
     }
 }
