@@ -3,8 +3,11 @@
 
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 
-export type TestConfig = {
-    key: LeftNavItemKey;
+export type ContentPageInfo = {
     title: string;
     description: JSX.Element;
+};
+
+export type ContentPagesInfo = {
+    [key in keyof LeftNavItemKey]: ContentPageInfo;
 };
