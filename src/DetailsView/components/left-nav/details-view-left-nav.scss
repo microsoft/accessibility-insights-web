@@ -17,11 +17,6 @@
             .is-expanded,
             .is-expanded + ul {
                 background-color: $nav-link-expanded;
-                .index-circle {
-                    color: $neutral-0;
-                    background: $index-circle-background;
-                    border-color: $neutral-0;
-                }
             }
         }
 
@@ -68,20 +63,6 @@
             line-height: 16px;
             font-size: 12px;
         }
-        .index-circle {
-            border: 1px solid;
-            display: inline-block;
-            border-radius: 50%;
-            border: 1px solid;
-            width: 1.5em;
-            line-height: 1.5em;
-            padding: 0.07em;
-            margin-top: 0.23em;
-        }
-        .test-name {
-            padding-left: 10%;
-            display: inline-block;
-        }
         .ms-Nav-navItems {
             margin-top: 0px !important;
         }
@@ -94,12 +75,6 @@
             }
             .ms-Button-label {
                 color: $neutral-100;
-            }
-            .index-circle {
-                color: $secondary-text;
-                background: $neutral-0;
-                border-color: $neutral-20;
-                text-align: center;
             }
             &.is-selected {
                 a,
@@ -121,11 +96,6 @@
                 }
                 .ms-Button-label {
                     color: $always-black;
-                }
-                .index-circle {
-                    color: $neutral-0;
-                    background: $index-circle-background;
-                    border-color: $neutral-0;
                 }
             }
         }

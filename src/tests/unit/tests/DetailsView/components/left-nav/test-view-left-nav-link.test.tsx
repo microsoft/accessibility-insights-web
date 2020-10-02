@@ -19,7 +19,6 @@ describe('TestViewLeftNavLink', () => {
         };
 
         const wrapper = shallow(<TestViewLeftNavLink {...props} />);
-
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

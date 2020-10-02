@@ -9,7 +9,7 @@ exports[`TestViewLeftNavLink renders 1`] = `
     test-props-renderIcon
   </i>
   <span
-    className="ms-Button-label test-name"
+    className="testName"
   >
     test-props-link-name
   </span>

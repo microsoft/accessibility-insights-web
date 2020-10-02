@@ -28,6 +28,11 @@ export const LeftNav = NamedFC<LeftNavProps>('LeftNav', props => {
         onClickNavLink: item.onSelect,
         onRenderNavLink: deps.navLinkRenderer.renderVisualizationLink,
         url: '',
+        index: index + 1,
+        iconProps: {
+            className: 'hidden',
+        },
+        forceAnchor: true,
     }));
 
     return (
