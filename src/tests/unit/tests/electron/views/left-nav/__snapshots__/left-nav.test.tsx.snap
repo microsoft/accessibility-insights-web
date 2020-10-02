@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LeftNav render 1`] = `
+<div
+  className="leftNav"
+>
+  <div
+    className="headerContainer"
+  >
+    FastPass
+  </div>
+  <BaseLeftNav
+    links={
+      Array [
+        Object {
+          "key": "automated-checks",
+          "name": "some display name",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "url": "",
+        },
+        Object {
+          "key": "needs-review",
+          "name": "some display name 2",
+          "onClickNavLink": [Function],
+          "onRenderNavLink": [Function],
+          "url": "",
+        },
+      ]
+    }
+    selectedKey="automated-checks"
+  />
+</div>
+`;

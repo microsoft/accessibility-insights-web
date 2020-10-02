@@ -5,6 +5,7 @@ import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { DetailsViewStoreData } from 'common/types/store-data/details-view-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
@@ -21,24 +22,26 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
 import { TestView } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
+import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
 
 export const automatedChecksViewAutomationId = 'automated-checks-view';
 
 export type AutomatedChecksViewDeps = CommandBarDeps &
     TitleBarDeps &
     CardsViewDeps &
+    LeftNavDeps &
     SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
@@ -58,6 +61,7 @@ export type AutomatedChecksViewProps = {
     detailsViewStoreData: DetailsViewStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     androidSetupStoreData: AndroidSetupStoreData;
+    leftNavStoreData: LeftNavStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
@@ -105,23 +109,26 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     pageTitle={'Automated checks'}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
-                <div className={styles.automatedChecksPanelContainer}>
-                    {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
-                    <div className={styles.automatedChecksPanelLayout}>
-                        <div className={styles.mainContentWrapper}>
-                            {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
-                            <main>
-                                <TestView
-                                    deps={deps}
-                                    scanStatus={status}
-                                    scanMetadata={scanMetadata}
-                                    userConfigurationStoreData={userConfigurationStoreData}
-                                    cardsViewData={cardsViewData}
-                                />
-                            </main>
+                <div className={styles.applicationView}>
+                    {this.getLeftNav()}
+                    <div className={styles.automatedChecksPanelContainer}>
+                        {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
+                        <div className={styles.automatedChecksPanelLayout}>
+                            <div className={styles.mainContentWrapper}>
+                                {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
+                                <main>
+                                    <TestView
+                                        deps={deps}
+                                        scanStatus={status}
+                                        scanMetadata={scanMetadata}
+                                        userConfigurationStoreData={userConfigurationStoreData}
+                                        cardsViewData={cardsViewData}
+                                    />
+                                </main>
+                            </div>
+                            {<ScreenshotView viewModel={screenshotViewModel} />}
+                            {this.renderDeviceDisconnected()}
                         </div>
-                        {<ScreenshotView viewModel={screenshotViewModel} />}
-                        {this.renderDeviceDisconnected()}
                     </div>
                 </div>
                 <SettingsPanel
@@ -132,6 +139,21 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                     userConfigStoreState={this.props.userConfigurationStoreData}
                 />
             </div>
+        );
+    }
+
+    private getLeftNav(): JSX.Element {
+        return (
+            <FlaggedComponent
+                featureFlag={UnifiedFeatureFlags.leftNavBar}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={
+                    <LeftNav
+                        deps={this.props.deps}
+                        selectedKey={this.props.leftNavStoreData.selectedKey}
+                    />
+                }
+            />
         );
     }
 

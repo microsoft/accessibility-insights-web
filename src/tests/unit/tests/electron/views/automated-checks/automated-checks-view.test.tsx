@@ -32,6 +32,7 @@ import { screenshotViewModelProvider } from 'electron/views/screenshot/screensho
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 
 describe('AutomatedChecksView', () => {
     let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
@@ -72,6 +73,9 @@ describe('AutomatedChecksView', () => {
                 deviceName: 'TEST DEVICE',
             } as PlatformData,
         };
+        const leftNavStoreData: LeftNavStoreData = {
+            selectedKey: 'automated-checks',
+        };
 
         const ruleResultsByStatusStub = {
             fail: [{ id: 'test-fail-id' } as CardRuleResult],
@@ -107,6 +111,7 @@ describe('AutomatedChecksView', () => {
                 currentPanel: {},
             },
             unifiedScanResultStoreData,
+            leftNavStoreData,
         } as AutomatedChecksViewProps;
 
         getCardSelectionViewDataMock

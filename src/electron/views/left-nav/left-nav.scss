@@ -1,0 +1,18 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/common.scss';
+
+.left-nav {
+    display: flex;
+    flex-direction: column;
+    width: 249px;
+    border-right: 1px solid $neutral-alpha-8;
+    height: 100%;
+
+    .header-container {
+        display: flex;
+        align-items: center;
+        height: 40px;
+        border-bottom: 1px solid $neutral-alpha-8;
+    }
+}

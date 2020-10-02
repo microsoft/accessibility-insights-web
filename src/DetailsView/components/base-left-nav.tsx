@@ -15,7 +15,7 @@ export type onBaseLeftNavItemRender = (link: BaseLeftNavLink) => JSX.Element;
 export type BaseLeftNavProps = {
     selectedKey: string;
     links: BaseLeftNavLink[];
-    setNavComponentRef: (nav: INav) => void;
+    setNavComponentRef?: (nav: INav) => void;
 };
 
 export interface BaseLeftNavLink extends INavLink {

@@ -51,6 +51,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
+import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { ipcRenderer, shell } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
@@ -77,7 +78,6 @@ import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
-import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
@@ -92,6 +92,7 @@ import { AndroidSetupStartListener } from 'electron/platform/android/setup/andro
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
+import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
@@ -542,6 +543,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
             logger,
             leftNavItems,
+            navLinkRenderer: new NavLinkRenderer(),
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

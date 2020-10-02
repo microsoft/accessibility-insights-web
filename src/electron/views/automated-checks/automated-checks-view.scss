@@ -19,29 +19,34 @@
     -webkit-app-region: no-drag;
     background-color: $neutral-2;
 
-    .automated-checks-panel-container {
+    .application-view {
         display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
+        height: calc(100% - (#{$mac-title-height}));
 
-    .automated-checks-panel-layout {
-        display: flex;
-        flex-grow: 1;
-        overflow: hidden;
-        main {
-            margin-top: 16px;
-            margin-bottom: 16px;
-            margin-left: 24px;
-            margin-right: 24px;
+        .automated-checks-panel-container {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
-        .main-content-wrapper {
-            width: 70%;
+
+        .automated-checks-panel-layout {
+            display: flex;
             flex-grow: 1;
-            flex-shrink: 1;
-            flex-basis: auto;
-            overflow: auto;
-            min-width: 220px;
+            overflow: hidden;
+            main {
+                margin-top: 16px;
+                margin-bottom: 16px;
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+            .main-content-wrapper {
+                width: 70%;
+                flex-grow: 1;
+                flex-shrink: 1;
+                flex-basis: auto;
+                overflow: auto;
+                min-width: 220px;
+            }
         }
     }
 }
