@@ -3,8 +3,13 @@
 @import '../../../common/styles/colors.scss';
 @import '../common/window-title/window-title-const.scss';
 
-:global(.is-mac-os) .settings-panel-layer-host {
-    top: $mac-title-height !important;
+:global(.is-mac-os) {
+    .settings-panel-layer-host {
+        top: $mac-title-height !important;
+    }
+    .application-view {
+        height: calc(100% - (#{$mac-title-height}));
+    }
 }
 .settings-panel-layer-host {
     top: $default-title-height !important;
@@ -21,7 +26,7 @@
 
     .application-view {
         display: flex;
-        height: calc(100% - (#{$mac-title-height}));
+        height: calc(100% - (#{$default-title-height}));
 
         .automated-checks-panel-container {
             display: flex;
