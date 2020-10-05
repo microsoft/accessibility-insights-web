@@ -1,6 +1,6 @@
-import { FlaggedComponent } from 'common/components/flagged-component';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
