@@ -15,14 +15,3 @@ export const automatedChecksTestConfig: TestConfig = {
         </>
     ),
 };
-
-export const needsReviewTestConfig: TestConfig = {
-    key: 'needs-review',
-    title: 'Needs review',
-    description: (
-        <>
-            Sometimes automated checks identify <i>possible</i> accessibility problems that need to
-            be reviewed and verified by a human.
-        </>
-    ),
-};
