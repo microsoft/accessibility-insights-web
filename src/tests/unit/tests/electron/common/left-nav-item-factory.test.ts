@@ -14,11 +14,11 @@ describe('left nav item factory', () => {
             {
                 key: 'automated-checks',
                 title: 'my title1',
-            },
+            } as TestConfig,
             {
                 key: 'needs-review',
                 title: 'my title2',
-            },
+            } as TestConfig,
         ];
 
         const expectedItems: LeftNavItem[] = [
@@ -46,7 +46,7 @@ describe('left nav item factory', () => {
             {
                 key: 'automated-checks',
                 title: 'my title1',
-            },
+            } as TestConfig,
         ];
 
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);

@@ -144,6 +144,7 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
+import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 
 declare let window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -334,6 +335,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
 
         const leftNavActionCreator = new LeftNavActionCreator(leftNavActions);
         const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
+        const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
             deviceActions,
@@ -543,6 +545,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             showOpenFileDialog: ipcRendererShim.showOpenFileDialog,
             logger,
             leftNavItems,
+            contentPagesInfo,
             navLinkRenderer: new NavLinkRenderer(),
         };
 
