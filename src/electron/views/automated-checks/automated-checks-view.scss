@@ -3,11 +3,21 @@
 @import '../../../common/styles/colors.scss';
 @import '../common/window-title/window-title-const.scss';
 
-:global(.is-mac-os) .settings-panel-layer-host {
-    top: $mac-title-height !important;
+:global(.is-mac-os) {
+    .settings-panel-layer-host {
+        top: $mac-title-height !important;
+    }
+    .application-view {
+        height: calc(100% - (#{$mac-title-height}));
+    }
 }
 .settings-panel-layer-host {
     top: $default-title-height !important;
+}
+
+.application-view {
+    display: flex;
+    height: calc(100% - (#{$default-title-height}));
 }
 
 .automated-checks-view {
@@ -19,34 +29,29 @@
     -webkit-app-region: no-drag;
     background-color: $neutral-2;
 
-    .application-view {
+    .automated-checks-panel-container {
         display: flex;
-        height: calc(100% - (#{$mac-title-height}));
+        flex-direction: column;
+        overflow: hidden;
+    }
 
-        .automated-checks-panel-container {
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
+    .automated-checks-panel-layout {
+        display: flex;
+        flex-grow: 1;
+        overflow: hidden;
+        main {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            margin-left: 24px;
+            margin-right: 24px;
         }
-
-        .automated-checks-panel-layout {
-            display: flex;
+        .main-content-wrapper {
+            width: 70%;
             flex-grow: 1;
-            overflow: hidden;
-            main {
-                margin-top: 16px;
-                margin-bottom: 16px;
-                margin-left: 24px;
-                margin-right: 24px;
-            }
-            .main-content-wrapper {
-                width: 70%;
-                flex-grow: 1;
-                flex-shrink: 1;
-                flex-basis: auto;
-                overflow: auto;
-                min-width: 220px;
-            }
+            flex-shrink: 1;
+            flex-basis: auto;
+            overflow: auto;
+            min-width: 220px;
         }
     }
 }

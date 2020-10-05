@@ -2,7 +2,7 @@
 
 exports[`LeftNavIndexIcon render 1`] = `
 <span
-  className="index-circle"
+  className="indexCircle"
 >
   1
 </span>

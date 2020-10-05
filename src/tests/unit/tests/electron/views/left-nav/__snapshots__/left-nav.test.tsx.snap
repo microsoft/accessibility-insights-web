@@ -7,12 +7,23 @@ exports[`LeftNav render 1`] = `
   <div
     className="headerContainer"
   >
-    FastPass
+    <StyledIconBase
+      className="rocketIcon"
+      iconName="Rocket"
+    />
+    <h3>
+      FastPass
+    </h3>
   </div>
   <BaseLeftNav
     links={
       Array [
         Object {
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 1,
           "key": "automated-checks",
           "name": "some display name",
           "onClickNavLink": [Function],
@@ -20,6 +31,11 @@ exports[`LeftNav render 1`] = `
           "url": "",
         },
         Object {
+          "forceAnchor": true,
+          "iconProps": Object {
+            "className": "hidden",
+          },
+          "index": 2,
           "key": "needs-review",
           "name": "some display name 2",
           "onClickNavLink": [Function],
