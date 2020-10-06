@@ -1,5 +1,137 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AutomatedChecksView right content panel info changes when left nav selected key changes 1`] = `
+<TestView
+  cardsViewData={
+    Object {
+      "cards": Object {
+        "fail": Array [
+          Object {
+            "id": "test-fail-id",
+          },
+        ],
+      },
+    }
+  }
+  deps={
+    Object {
+      "contentPagesInfo": Object {
+        "automated-checks": Object {
+          "description": <React.Fragment>
+            test 
+            automated-checks
+             description
+          </React.Fragment>,
+          "title": "test-automated-checks-title",
+        },
+        "needs-review": Object {
+          "description": <React.Fragment>
+            test 
+            needs-review
+             description
+          </React.Fragment>,
+          "title": "test-needs-review-title",
+        },
+      },
+      "getCardSelectionViewData": [Function],
+      "getCardsViewData": [Function],
+      "isResultHighlightUnavailable": [Function],
+      "scanActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "deviceActions": undefined,
+        "scanActions": undefined,
+      },
+      "screenshotViewModelProvider": [Function],
+      "toolData": Object {
+        "applicationProperties": Object {
+          "name": "some app",
+        },
+      },
+    }
+  }
+  description={
+    <React.Fragment>
+      test 
+      needs-review
+       description
+    </React.Fragment>
+  }
+  scanMetadata={null}
+  title="test-needs-review-title"
+  userConfigurationStoreData={
+    Object {
+      "isFirstTime": false,
+    }
+  }
+/>
+`;
+
+exports[`AutomatedChecksView right content panel info renders with default/initial value 1`] = `
+<TestView
+  cardsViewData={
+    Object {
+      "cards": Object {
+        "fail": Array [
+          Object {
+            "id": "test-fail-id",
+          },
+        ],
+      },
+    }
+  }
+  deps={
+    Object {
+      "contentPagesInfo": Object {
+        "automated-checks": Object {
+          "description": <React.Fragment>
+            test 
+            automated-checks
+             description
+          </React.Fragment>,
+          "title": "test-automated-checks-title",
+        },
+        "needs-review": Object {
+          "description": <React.Fragment>
+            test 
+            needs-review
+             description
+          </React.Fragment>,
+          "title": "test-needs-review-title",
+        },
+      },
+      "getCardSelectionViewData": [Function],
+      "getCardsViewData": [Function],
+      "isResultHighlightUnavailable": [Function],
+      "scanActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "deviceActions": undefined,
+        "scanActions": undefined,
+      },
+      "screenshotViewModelProvider": [Function],
+      "toolData": Object {
+        "applicationProperties": Object {
+          "name": "some app",
+        },
+      },
+    }
+  }
+  description={
+    <React.Fragment>
+      test 
+      automated-checks
+       description
+    </React.Fragment>
+  }
+  scanMetadata={null}
+  title="test-automated-checks-title"
+  userConfigurationStoreData={
+    Object {
+      "isFirstTime": false,
+    }
+  }
+/>
+`;
+
 exports[`AutomatedChecksView when status scan <Completed> 1`] = `
 <div
   className="automatedChecksView"
@@ -8,6 +140,24 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
   <TitleBar
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -24,7 +174,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
         },
       }
     }
-    pageTitle="Automated checks"
+    pageTitle="test-automated-checks-title"
   />
   <div
     className="applicationView"
@@ -34,6 +184,24 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
         <LeftNav
           deps={
             Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "title": "test-needs-review-title",
+                },
+              },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
               "isResultHighlightUnavailable": [Function],
@@ -75,6 +243,24 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
             }
             deps={
               Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "title": "test-needs-review-title",
+                  },
+                },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
                 "isResultHighlightUnavailable": [Function],
@@ -136,6 +322,24 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 }
                 deps={
                   Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "title": "test-needs-review-title",
+                      },
+                    },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
                     "isResultHighlightUnavailable": [Function],
@@ -191,6 +395,24 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               }
               deps={
                 Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "title": "test-needs-review-title",
+                    },
+                  },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
                   "isResultHighlightUnavailable": [Function],
@@ -207,6 +429,13 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                   },
                 }
               }
+              description={
+                <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>
+              }
               scanMetadata={
                 Object {
                   "deviceName": "TEST DEVICE",
@@ -222,6 +451,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 }
               }
               scanStatus={2}
+              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -245,6 +475,24 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -280,6 +528,24 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
   <TitleBar
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -296,7 +562,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
         },
       }
     }
-    pageTitle="Automated checks"
+    pageTitle="test-automated-checks-title"
   />
   <div
     className="applicationView"
@@ -306,6 +572,24 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
         <LeftNav
           deps={
             Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "title": "test-needs-review-title",
+                },
+              },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
               "isResultHighlightUnavailable": [Function],
@@ -347,6 +631,24 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
             }
             deps={
               Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "title": "test-needs-review-title",
+                  },
+                },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
                 "isResultHighlightUnavailable": [Function],
@@ -395,6 +697,24 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                 }
                 deps={
                   Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "title": "test-needs-review-title",
+                      },
+                    },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
                     "isResultHighlightUnavailable": [Function],
@@ -437,6 +757,24 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               }
               deps={
                 Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "title": "test-needs-review-title",
+                    },
+                  },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
                   "isResultHighlightUnavailable": [Function],
@@ -453,8 +791,16 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                   },
                 }
               }
+              description={
+                <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>
+              }
               scanMetadata={null}
               scanStatus={3}
+              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -482,6 +828,24 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -517,6 +881,24 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
   <TitleBar
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -533,7 +915,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
         },
       }
     }
-    pageTitle="Automated checks"
+    pageTitle="test-automated-checks-title"
   />
   <div
     className="applicationView"
@@ -543,6 +925,24 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
         <LeftNav
           deps={
             Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "title": "test-needs-review-title",
+                },
+              },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
               "isResultHighlightUnavailable": [Function],
@@ -584,6 +984,24 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
             }
             deps={
               Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "title": "test-needs-review-title",
+                  },
+                },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
                 "isResultHighlightUnavailable": [Function],
@@ -632,6 +1050,24 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                 }
                 deps={
                   Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "title": "test-needs-review-title",
+                      },
+                    },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
                     "isResultHighlightUnavailable": [Function],
@@ -674,6 +1110,24 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               }
               deps={
                 Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "title": "test-needs-review-title",
+                    },
+                  },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
                   "isResultHighlightUnavailable": [Function],
@@ -690,8 +1144,16 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                   },
                 }
               }
+              description={
+                <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>
+              }
               scanMetadata={null}
               scanStatus={1}
+              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -715,6 +1177,24 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -750,6 +1230,24 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
   <TitleBar
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -766,7 +1264,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
         },
       }
     }
-    pageTitle="Automated checks"
+    pageTitle="test-automated-checks-title"
   />
   <div
     className="applicationView"
@@ -776,6 +1274,24 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
         <LeftNav
           deps={
             Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "title": "test-needs-review-title",
+                },
+              },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
               "isResultHighlightUnavailable": [Function],
@@ -817,6 +1333,24 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
             }
             deps={
               Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "title": "test-needs-review-title",
+                  },
+                },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
                 "isResultHighlightUnavailable": [Function],
@@ -865,6 +1399,24 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                 }
                 deps={
                   Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "title": "test-needs-review-title",
+                      },
+                    },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
                     "isResultHighlightUnavailable": [Function],
@@ -907,6 +1459,24 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               }
               deps={
                 Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "title": "test-needs-review-title",
+                    },
+                  },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
                   "isResultHighlightUnavailable": [Function],
@@ -923,7 +1493,15 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                   },
                 }
               }
+              description={
+                <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>
+              }
               scanMetadata={null}
+              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -947,6 +1525,24 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
   <SettingsPanel
     deps={
       Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "title": "test-needs-review-title",
+          },
+        },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
         "isResultHighlightUnavailable": [Function],
