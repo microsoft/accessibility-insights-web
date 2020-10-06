@@ -24,8 +24,15 @@ export type TestViewProps = {
 } & HeaderSectionProps;
 
 export const TestView = NamedFC<TestViewProps>('TestView', props => {
-    const { scanStatus, scanMetadata, cardsViewData, userConfigurationStoreData, deps } = props;
-    const { title, description } = props;
+    const {
+        scanStatus,
+        scanMetadata,
+        cardsViewData,
+        userConfigurationStoreData,
+        deps,
+        title,
+        description,
+    } = props;
 
     if (scanStatus !== ScanStatus.Completed) {
         return (
