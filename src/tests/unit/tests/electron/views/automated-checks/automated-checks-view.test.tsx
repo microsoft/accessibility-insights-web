@@ -94,7 +94,7 @@ describe('AutomatedChecksView', () => {
             },
         } as ScreenshotViewModel;
 
-        const contentPagesInfo = createContentPagesInfoStub();
+        const contentPagesInfo = createContentPagesInfo();
 
         screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
         getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
@@ -144,7 +144,7 @@ describe('AutomatedChecksView', () => {
             .verifiable(Times.once());
     });
 
-    const createContentPagesInfoStub = (): ContentPagesInfo => {
+    const createContentPagesInfo = (): ContentPagesInfo => {
         const leftNavItemKeys: LeftNavItemKey[] = ['automated-checks', 'needs-review'];
         const contentPagesInfo = {} as ContentPagesInfo;
         leftNavItemKeys.forEach(
