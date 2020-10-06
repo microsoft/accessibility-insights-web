@@ -5,6 +5,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { HeaderSectionProps } from 'electron/views/automated-checks/components/header-section';
 import { TestView, TestViewDeps, TestViewProps } from 'electron/views/automated-checks/test-view';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -14,6 +15,7 @@ describe('TestView', () => {
     let scanMetadataStub: ScanMetadata;
     let cardsViewDataStub: CardsViewModel;
     let userConfigurationStoreDataStub: UserConfigurationStoreData;
+    let headerSectionProps: HeaderSectionProps;
 
     beforeEach(() => {
         scanMetadataStub = {
@@ -25,6 +27,9 @@ describe('TestView', () => {
         userConfigurationStoreDataStub = {
             isFirstTime: false,
         } as UserConfigurationStoreData;
+        headerSectionProps = {
+            title: 'some title',
+        } as HeaderSectionProps;
     });
 
     const scanStatuses = [
@@ -41,6 +46,7 @@ describe('TestView', () => {
             userConfigurationStoreData: userConfigurationStoreDataStub,
             cardsViewData: cardsViewDataStub,
             scanStatus: ScanStatus[scanStatusName],
+            ...headerSectionProps,
         };
 
         const testSubject = shallow(<TestView {...props} />);
