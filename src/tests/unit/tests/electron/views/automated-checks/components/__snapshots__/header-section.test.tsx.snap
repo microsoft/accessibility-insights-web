@@ -7,12 +7,14 @@ exports[`HeaderSection renders 1`] = `
   <h1
     className="title"
   >
-    Automated checks
+    test-title
   </h1>
   <p
     className="subtitle"
   >
-    Automated checks can detect some common accessibility problems such as missing or invalid properties. But most accessibility problems can only be discovered through manual testing.
+    <React.Fragment>
+      test-description
+    </React.Fragment>
   </p>
 </div>
 `;
