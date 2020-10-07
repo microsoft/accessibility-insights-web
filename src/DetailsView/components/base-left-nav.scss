@@ -5,14 +5,34 @@
 .details-view-test-nav-area {
     box-sizing: border-box;
     overflow-x: hidden;
-    max-height: calc(
-        100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight}
-    );
     a {
         padding-right: 0px;
         &:focus {
             @media screen and (-ms-high-contrast: active) {
                 border: 3px highlighttext solid;
+            }
+        }
+    }
+
+    li {
+        :global {
+            .is-selected {
+                background-color: $nav-link-selected;
+                a,
+                button {
+                    background-color: $nav-link-selected !important;
+                }
+            }
+            .is-expanded,
+            .is-expanded + ul {
+                background-color: $nav-link-expanded;
+            }
+        }
+
+        :global(.ms-Nav-compositeLink):hover {
+            a,
+            button {
+                background-color: $nav-link-hover;
             }
         }
     }
