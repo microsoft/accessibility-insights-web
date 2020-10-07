@@ -3,7 +3,11 @@
 exports[`TestView when status scan <Completed> 1`] = `
 <React.Fragment>
   <HeaderSection
-    title="some title"
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
   />
   <CardsView
     cardsViewData={
@@ -29,7 +33,11 @@ exports[`TestView when status scan <Completed> 1`] = `
 exports[`TestView when status scan <Failed> 1`] = `
 <React.Fragment>
   <HeaderSection
-    title="some title"
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
   />
   <ScanningSpinner
     aria-live="assertive"
@@ -42,7 +50,11 @@ exports[`TestView when status scan <Failed> 1`] = `
 exports[`TestView when status scan <Scanning> 1`] = `
 <React.Fragment>
   <HeaderSection
-    title="some title"
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
   />
   <ScanningSpinner
     aria-live="assertive"
@@ -55,7 +67,11 @@ exports[`TestView when status scan <Scanning> 1`] = `
 exports[`TestView when status scan <undefined> 1`] = `
 <React.Fragment>
   <HeaderSection
-    title="some title"
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
   />
   <ScanningSpinner
     aria-live="assertive"
