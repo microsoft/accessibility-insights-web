@@ -27,7 +27,6 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { HeaderSectionProps } from 'electron/views/automated-checks/components/header-section';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
 import { TestView } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
@@ -103,7 +102,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
         const scanMetadata: ScanMetadata = this.getScanMetadata(status, unifiedScanResultStoreData);
 
-        const headerSectionProps: HeaderSectionProps = this.getHeaderSectionProps();
+        const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
 
         return (
             <div
@@ -112,7 +111,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             >
                 <TitleBar
                     deps={this.props.deps}
-                    pageTitle={headerSectionProps.title}
+                    pageTitle={contentPageInfo.title}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.applicationView}>
@@ -129,7 +128,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                                         scanMetadata={scanMetadata}
                                         userConfigurationStoreData={userConfigurationStoreData}
                                         cardsViewData={cardsViewData}
-                                        {...headerSectionProps}
+                                        contentPageInfo={contentPageInfo}
                                     />
                                 </main>
                             </div>
@@ -164,16 +163,9 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private getHeaderSectionProps(): HeaderSectionProps {
+    private getContentPageInfo(): ContentPageInfo {
         const leftNavSelectedKey = this.props.leftNavStoreData.selectedKey;
-        const contentPageInfo: ContentPageInfo = this.props.deps.contentPagesInfo[
-            leftNavSelectedKey
-        ];
-
-        return {
-            title: contentPageInfo.title,
-            description: contentPageInfo.description,
-        };
+        return this.props.deps.contentPagesInfo[leftNavSelectedKey];
     }
 
     private getConnectedDeviceName(): string {

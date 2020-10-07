@@ -9,9 +9,12 @@ import * as React from 'react';
 
 describe('HeaderSection', () => {
     const props: HeaderSectionProps = {
-        title: 'test-title',
-        description: <>test-description</>,
+        contentPageInfo: {
+            title: 'test-title',
+            description: <>test-description</>,
+        },
     };
+
     it('renders', () => {
         const wrapper = shallow(<HeaderSection {...props} />);
 

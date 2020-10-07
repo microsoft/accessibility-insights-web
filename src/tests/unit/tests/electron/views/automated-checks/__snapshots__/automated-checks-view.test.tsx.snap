@@ -13,6 +13,16 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
       },
     }
   }
+  contentPageInfo={
+    Object {
+      "description": <React.Fragment>
+        test 
+        needs-review
+         description
+      </React.Fragment>,
+      "title": "test-needs-review-title",
+    }
+  }
   deps={
     Object {
       "contentPagesInfo": Object {
@@ -49,15 +59,7 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
       },
     }
   }
-  description={
-    <React.Fragment>
-      test 
-      needs-review
-       description
-    </React.Fragment>
-  }
   scanMetadata={null}
-  title="test-needs-review-title"
   userConfigurationStoreData={
     Object {
       "isFirstTime": false,
@@ -79,6 +81,16 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
       },
     }
   }
+  contentPageInfo={
+    Object {
+      "description": <React.Fragment>
+        test 
+        automated-checks
+         description
+      </React.Fragment>,
+      "title": "test-automated-checks-title",
+    }
+  }
   deps={
     Object {
       "contentPagesInfo": Object {
@@ -115,15 +127,7 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
       },
     }
   }
-  description={
-    <React.Fragment>
-      test 
-      automated-checks
-       description
-    </React.Fragment>
-  }
   scanMetadata={null}
-  title="test-automated-checks-title"
   userConfigurationStoreData={
     Object {
       "isFirstTime": false,
@@ -393,6 +397,16 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                   },
                 }
               }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                }
+              }
               deps={
                 Object {
                   "contentPagesInfo": Object {
@@ -429,13 +443,6 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                   },
                 }
               }
-              description={
-                <React.Fragment>
-                  test 
-                  automated-checks
-                   description
-                </React.Fragment>
-              }
               scanMetadata={
                 Object {
                   "deviceName": "TEST DEVICE",
@@ -451,7 +458,6 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 }
               }
               scanStatus={2}
-              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -755,6 +761,16 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                   },
                 }
               }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                }
+              }
               deps={
                 Object {
                   "contentPagesInfo": Object {
@@ -791,16 +807,8 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                   },
                 }
               }
-              description={
-                <React.Fragment>
-                  test 
-                  automated-checks
-                   description
-                </React.Fragment>
-              }
               scanMetadata={null}
               scanStatus={3}
-              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -1108,6 +1116,16 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                   },
                 }
               }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                }
+              }
               deps={
                 Object {
                   "contentPagesInfo": Object {
@@ -1144,16 +1162,8 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                   },
                 }
               }
-              description={
-                <React.Fragment>
-                  test 
-                  automated-checks
-                   description
-                </React.Fragment>
-              }
               scanMetadata={null}
               scanStatus={1}
-              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -1457,6 +1467,16 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                   },
                 }
               }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "title": "test-automated-checks-title",
+                }
+              }
               deps={
                 Object {
                   "contentPagesInfo": Object {
@@ -1493,15 +1513,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                   },
                 }
               }
-              description={
-                <React.Fragment>
-                  test 
-                  automated-checks
-                   description
-                </React.Fragment>
-              }
               scanMetadata={null}
-              title="test-automated-checks-title"
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
