@@ -13,13 +13,10 @@ import {
 } from 'electron/views/root-container/components/root-container';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { ContentPanelDeps } from '../left-nav/content-panel-deps';
 
 export type RootContainerRendererDeps = RootContainerDeps &
     ThemeDeps &
-    PlatformBodyClassModifierDeps &
-    LeftNavDeps &
-    ContentPanelDeps;
+    PlatformBodyClassModifierDeps;
 
 export class RootContainerRenderer {
     constructor(

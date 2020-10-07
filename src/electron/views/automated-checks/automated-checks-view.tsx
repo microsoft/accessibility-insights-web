@@ -1,6 +1,6 @@
-import { FlaggedComponent } from 'common/components/flagged-component';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
@@ -26,9 +26,11 @@ import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import { ContentPageInfo } from 'electron/types/content-page-info';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
 import { TestView } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
+import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -42,6 +44,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
     TitleBarDeps &
     CardsViewDeps &
     LeftNavDeps &
+    ContentPanelDeps &
     SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
@@ -99,6 +102,8 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
         const scanMetadata: ScanMetadata = this.getScanMetadata(status, unifiedScanResultStoreData);
 
+        const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
+
         return (
             <div
                 className={styles.automatedChecksView}
@@ -106,7 +111,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             >
                 <TitleBar
                     deps={this.props.deps}
-                    pageTitle={'Automated checks'}
+                    pageTitle={contentPageInfo.title}
                     windowStateStoreData={this.props.windowStateStoreData}
                 ></TitleBar>
                 <div className={styles.applicationView}>
@@ -123,6 +128,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                                         scanMetadata={scanMetadata}
                                         userConfigurationStoreData={userConfigurationStoreData}
                                         cardsViewData={cardsViewData}
+                                        contentPageInfo={contentPageInfo}
                                     />
                                 </main>
                             </div>
@@ -155,6 +161,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 }
             />
         );
+    }
+
+    private getContentPageInfo(): ContentPageInfo {
+        const leftNavSelectedKey = this.props.leftNavStoreData.selectedKey;
+        return this.props.deps.contentPagesInfo[leftNavSelectedKey];
     }
 
     private getConnectedDeviceName(): string {

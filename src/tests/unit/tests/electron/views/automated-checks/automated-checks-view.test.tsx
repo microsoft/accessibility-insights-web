@@ -21,20 +21,25 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { ContentPagesInfo } from 'electron/types/content-page-info';
+import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import {
     AutomatedChecksView,
     AutomatedChecksViewProps,
 } from 'electron/views/automated-checks/automated-checks-view';
+import { TitleBar } from 'electron/views/automated-checks/components/title-bar';
+import { TestView } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 
 describe('AutomatedChecksView', () => {
+    const initialSelectedKey: LeftNavItemKey = 'automated-checks';
     let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
     let props: AutomatedChecksViewProps;
     let screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
@@ -74,7 +79,7 @@ describe('AutomatedChecksView', () => {
             } as PlatformData,
         };
         const leftNavStoreData: LeftNavStoreData = {
-            selectedKey: 'automated-checks',
+            selectedKey: initialSelectedKey,
         };
 
         const ruleResultsByStatusStub = {
@@ -89,6 +94,8 @@ describe('AutomatedChecksView', () => {
             },
         } as ScreenshotViewModel;
 
+        const contentPagesInfo = createContentPagesInfo();
+
         screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
         getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
         getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
@@ -100,6 +107,7 @@ describe('AutomatedChecksView', () => {
                 getCardSelectionViewData: getCardSelectionViewDataMock.object,
                 screenshotViewModelProvider: screenshotViewModelProviderMock.object,
                 isResultHighlightUnavailable: isResultHighlightUnavailableStub,
+                contentPagesInfo: contentPagesInfo,
             },
             cardSelectionStoreData,
             androidSetupStoreData: {},
@@ -136,6 +144,20 @@ describe('AutomatedChecksView', () => {
             .verifiable(Times.once());
     });
 
+    const createContentPagesInfo = (): ContentPagesInfo => {
+        const leftNavItemKeys: LeftNavItemKey[] = ['automated-checks', 'needs-review'];
+        const contentPagesInfo = {} as ContentPagesInfo;
+        leftNavItemKeys.forEach(
+            key =>
+                (contentPagesInfo[key] = {
+                    title: `test-${key}-title`,
+                    description: <>test {key} description</>,
+                }),
+        );
+
+        return contentPagesInfo;
+    };
+
     const scanStatuses = [
         undefined,
         ScanStatus[ScanStatus.Scanning],
@@ -166,6 +188,29 @@ describe('AutomatedChecksView', () => {
         shallow(<AutomatedChecksView {...props} />);
 
         scanActionCreatorMock.verifyAll();
+    });
+
+    describe('right content panel info', () => {
+        it('renders with default/initial value', () => {
+            const expectedTitle = `test-${initialSelectedKey}-title`;
+
+            const wrapped = shallow(<AutomatedChecksView {...props} />);
+
+            expect(wrapped.find(TitleBar).props().pageTitle).toEqual(expectedTitle);
+            expect(wrapped.find(TestView).getElement()).toMatchSnapshot();
+        });
+
+        it('changes when left nav selected key changes', () => {
+            const changedSelectedKey = 'needs-review';
+            const expectedTitle = `test-${changedSelectedKey}-title`;
+
+            props.leftNavStoreData.selectedKey = changedSelectedKey;
+
+            const wrapped = shallow(<AutomatedChecksView {...props} />);
+
+            expect(wrapped.find(TitleBar).props().pageTitle).toEqual(expectedTitle);
+            expect(wrapped.find(TestView).getElement()).toMatchSnapshot();
+        });
     });
 
     describe('DeviceDisconnectedPopup event handlers', () => {

@@ -8,6 +8,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { ContentPageInfo } from 'electron/types/content-page-info';
 import { HeaderSection } from 'electron/views/automated-checks/components/header-section';
 import * as React from 'react';
 
@@ -18,15 +19,23 @@ export type TestViewProps = {
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
+    contentPageInfo: ContentPageInfo;
 };
 
 export const TestView = NamedFC<TestViewProps>('TestView', props => {
-    const { scanStatus, scanMetadata, cardsViewData, userConfigurationStoreData, deps } = props;
+    const {
+        scanStatus,
+        scanMetadata,
+        cardsViewData,
+        userConfigurationStoreData,
+        deps,
+        contentPageInfo,
+    } = props;
 
     if (scanStatus !== ScanStatus.Completed) {
         return (
             <>
-                <HeaderSection />
+                <HeaderSection contentPageInfo={contentPageInfo} />
                 <ScanningSpinner
                     isSpinning={scanStatus === ScanStatus.Scanning}
                     label="Scanning..."
@@ -38,7 +47,7 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
 
     return (
         <>
-            <HeaderSection />
+            <HeaderSection contentPageInfo={contentPageInfo} />
             <CardsView
                 deps={deps}
                 scanMetadata={scanMetadata}
