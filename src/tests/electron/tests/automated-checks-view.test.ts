@@ -80,7 +80,7 @@ describe('AutomatedChecksView', () => {
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
-    it('left nav allows to change between tests', async () => {
+    it('should pass accessibility validation when left nav is showing', async () => {
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
         await scanForAccessibilityIssuesInAllModes(app);
