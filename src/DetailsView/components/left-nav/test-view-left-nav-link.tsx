@@ -6,11 +6,17 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { BaseLeftNavLinkProps } from '../base-left-nav';
 
+export const testViewLeftNavLinkAutomationId = 'test-view-left-nav-link';
+
 export const TestViewLeftNavLink = NamedFC<BaseLeftNavLinkProps>(
     'TestViewLeftNavLink',
     ({ link, renderIcon }) => {
         return (
-            <span className={commonStyles.leftNavLinkContainer} aria-hidden="true">
+            <span
+                data-automation-id={testViewLeftNavLinkAutomationId}
+                className={commonStyles.leftNavLinkContainer}
+                aria-hidden="true"
+            >
                 {renderIcon(link)}
                 <span className={styles.testName}>{link.name}</span>
             </span>

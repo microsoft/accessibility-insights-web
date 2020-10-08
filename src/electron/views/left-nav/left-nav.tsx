@@ -20,6 +20,8 @@ export type LeftNavProps = {
     selectedKey: LeftNavItemKey;
 };
 
+export const leftNavAutomationId = 'left-nav';
+
 export const LeftNav = NamedFC<LeftNavProps>('LeftNav', props => {
     const { deps } = props;
     const leftLinkItems: BaseLeftNavLink[] = deps.leftNavItems.map((item, index) => ({
@@ -36,7 +38,7 @@ export const LeftNav = NamedFC<LeftNavProps>('LeftNav', props => {
     }));
 
     return (
-        <div className={styles.leftNav}>
+        <div data-automation-id={leftNavAutomationId} className={styles.leftNav}>
             <div className={styles.headerContainer}>
                 <Icon iconName={'Rocket'} className={styles.rocketIcon} />
                 <h3>FastPass</h3>

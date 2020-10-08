@@ -3,6 +3,7 @@
 exports[`LeftNav render 1`] = `
 <div
   className="leftNav"
+  data-automation-id="left-nav"
 >
   <div
     className="headerContainer"

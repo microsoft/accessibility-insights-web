@@ -4,6 +4,7 @@ exports[`TestViewLeftNavLink renders 1`] = `
 <span
   aria-hidden="true"
   className="leftNavLinkContainer"
+  data-automation-id="test-view-left-nav-link"
 >
   <i>
     test-props-renderIcon
