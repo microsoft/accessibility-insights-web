@@ -4,8 +4,10 @@ import { collapsibleButtonAutomationId } from 'common/components/cards/collapsib
 import { instanceCardAutomationId } from 'common/components/cards/instance-details';
 import { ruleContentAutomationId } from 'common/components/cards/instance-details-group';
 import { ruleGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { testViewLeftNavLinkAutomationId } from 'DetailsView/components/left-nav/test-view-left-nav-link';
 import { automatedChecksViewAutomationId } from 'electron/views/automated-checks/automated-checks-view';
 import { commandButtonSettingsId } from 'electron/views/automated-checks/components/command-bar';
+import { leftNavAutomationId } from 'electron/views/left-nav/left-nav';
 import { highlightBoxAutomationId } from 'electron/views/screenshot/highlight-box';
 import { screenshotImageAutomationId } from 'electron/views/screenshot/screenshot';
 import { screenshotViewAutomationId } from 'electron/views/screenshot/screenshot-view';
@@ -18,6 +20,7 @@ export const AutomatedChecksViewSelectors = {
     mainContainer: getAutomationIdSelector(automatedChecksViewAutomationId),
     ruleGroup: getAutomationIdSelector(ruleGroupAutomationId),
     ruleContent: getAutomationIdSelector(ruleContentAutomationId),
+    leftNav: getAutomationIdSelector(leftNavAutomationId),
 
     nthRuleGroupCollapseExpandButton: (position: number) =>
         `${nthRuleGroup(position)} ${getAutomationIdSelector(collapsibleButtonAutomationId)}`,
@@ -25,6 +28,11 @@ export const AutomatedChecksViewSelectors = {
         `${nthRuleGroup(position)} ${getAutomationIdSelector(cardsRuleIdAutomationId)}`,
     nthRuleGroupInstances: (position: number) =>
         `${nthRuleGroup(position)} ${getAutomationIdSelector(instanceCardAutomationId)}`,
+
+    nthTestInLeftNav: (position: number) =>
+        `${getAutomationIdSelector(
+            leftNavAutomationId,
+        )} li:nth-of-type(${position}) ${getAutomationIdSelector(testViewLeftNavLinkAutomationId)}`,
 
     settingsButton: getAutomationIdSelector(commandButtonSettingsId),
 };
