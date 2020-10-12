@@ -172,7 +172,7 @@
         "react-resize-detector": "^5.2.0",
         "react-router-dom": "^5.2.0",
         "ua-parser-js": "^0.7.22",
-        "uuid": "^8.3.0",
+        "uuid": "^8.3.1",
         "webextension-polyfill-ts": "^0.20.0"
     },
     "resolutions": {
