@@ -58,6 +58,7 @@ export function initializeFabricIcons(): void {
             play: '\uE768',
             refresh: '\uE72C',
             rocket: '\uF3B3',
+            save: '\uE74E',
             scopeTemplate: '\uF2B0',
             search: '\uE721',
             send: '\uE724',

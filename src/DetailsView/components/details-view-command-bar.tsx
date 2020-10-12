@@ -22,6 +22,7 @@ import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -135,11 +136,13 @@ export class DetailsViewCommandBar extends React.Component<
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
+        const saveAssessmentElement: JSX.Element = this.renderSaveAssessmentButton();
 
-        if (reportExportElement || startOverElement) {
+        if (reportExportElement || saveAssessmentElement || startOverElement ) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
+                    {saveAssessmentElement}
                     {startOverElement}
                 </div>
             );
@@ -152,6 +155,7 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
+                renderSaveAssessmentButton={this.renderSaveAssessmentButton}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
@@ -197,6 +201,13 @@ export class DetailsViewCommandBar extends React.Component<
             dismissExportDialog: this.dismissReportExportDialog,
             afterDialogDismissed: this.focusReportExportButton,
         });
+    }
+
+    private renderSaveAssessmentButton = () =>  {
+        return (
+            <SaveAssessmentButton
+            />
+        );
     }
 
     private showStartOverDialog = (dialogState: StartOverDialogType) => {

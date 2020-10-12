@@ -8,6 +8,7 @@ import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
+    renderSaveAssessmentButton: () => JSX.Element;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
 };
@@ -19,6 +20,10 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             {
                 key: 'export report',
                 onRender: () => <div role="menuitem">{props.renderExportReportButton()}</div>,
+            },
+            {
+                key: 'save assessment',
+                onRender: () => <div role="menuitem">{props.renderSaveAssessmentButton()}</div>,
             },
             {
                 key: 'start over',
