@@ -389,10 +389,11 @@
         "./src/tests/unit/tests/electron/platform/android/setup/steps/actions-tester.ts",
         "./src/tests/unit/tests/injected/visualization/drawer-utils-mock-builder.ts",
         "./src/tests/unit/tests/scanner/custom-rules-configuration-stub.ts",
+        "./src/tests/unit/tests/scanner/helpers.ts",
         "./src/tests/unit/tests/scanner/mock-axe-utils.ts",
         "./src/views/content/content-view.tsx",
         "./src/views/content/guidance-title.tsx",
-        "./src/views/page/page.tsx"
+        "./src/views/page/page.tsx"        
     ],
     "include": [
         "src/Devtools/**/*",
