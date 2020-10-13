@@ -14,20 +14,14 @@ export class AndroidSetupStepPropsBuilder extends BaseDataBuilder<CommonAndroidS
         super();
         this.data = {
             userConfigurationStoreData: {
-                adbLocation: undefined,
+                adbLocation: null,
             } as UserConfigurationStoreData,
             androidSetupStoreData: {
                 currentStepId: stepId,
             },
             deps: {
-                LinkComponent: props => <a {...props} />,
-                androidSetupActionCreator: null,
-                androidSetupStepComponentProvider: null,
-                closeApp: null,
-                startTesting: null,
-                showOpenFileDialog: null,
-                logger: null,
-            },
+                LinkComponent: props => <a {...props} />
+            } as AndroidSetupPageDeps,
         };
     }
 
