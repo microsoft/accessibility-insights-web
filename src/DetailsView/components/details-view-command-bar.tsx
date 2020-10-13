@@ -206,6 +206,7 @@ export class DetailsViewCommandBar extends React.Component<
     private renderSaveAssessmentButton = () =>  {
         return (
             <SaveAssessmentButton
+                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }

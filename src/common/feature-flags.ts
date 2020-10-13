@@ -15,6 +15,7 @@ export class FeatureFlags {
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
     public static readonly needsReview = 'needsReview';
+    public static readonly saveAndLoadAssessment = 'saveAndLoadAssessment';
 }
 
 export interface FeatureFlagDetail {
@@ -115,6 +116,15 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'Needs review',
             displayableDescription:
                 'Enable a new test to show automated check rules that might have an accessibility issue and need to be reviewed.',
+            isPreviewFeature: true,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.saveAndLoadAssessment,
+            defaultValue: false,
+            displayableName: 'Save / Load Assessment',
+            displayableDescription:
+                'Enables saving and loading assessments.',
             isPreviewFeature: true,
             forceDefault: false,
         },
