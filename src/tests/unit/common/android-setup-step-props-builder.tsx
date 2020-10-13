@@ -20,7 +20,7 @@ export class AndroidSetupStepPropsBuilder extends BaseDataBuilder<CommonAndroidS
                 currentStepId: stepId,
             },
             deps: {
-                LinkComponent: props => <a {...props} />
+                LinkComponent: props => <a {...props} />,
             } as AndroidSetupPageDeps,
         };
     }
