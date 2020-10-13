@@ -341,8 +341,6 @@
         "./src/scanner/processor.ts",
         "./src/scanner/role-utils.ts",
         "./src/scanner/scan-options.ts",
-        "./src/tests/common/element-snapshot-formatter.ts",
-        "./src/tests/common/get-automation-id-selector.ts",
         "./src/tests/electron/common/element-identifiers/common-selectors.ts",
         "./src/tests/electron/common/view-controllers/android-setup-view-controller.ts",
         "./src/tests/electron/common/view-controllers/codecs-test-view-controller.ts",
@@ -400,7 +398,7 @@
         "./src/tests/unit/tests/scanner/mock-axe-utils.ts",
         "./src/views/content/content-view.tsx",
         "./src/views/content/guidance-title.tsx",
-        "./src/views/page/page.tsx"        
+        "./src/views/page/page.tsx"
     ],
     "include": [
         "src/Devtools/**/*",
@@ -436,6 +434,7 @@
         "src/packages/accessibility-insights-ui/root/**/*",
         "src/report-export/**/*",
         "src/reports/package/root/**/*",
+        "src/tests/common/**/*",
         "src/tests/end-to-end/setup/**/*",
         "src/tests/end-to-end/test-resources/**/*",
         "src/tests/miscellaneous/codecs/**/*",
