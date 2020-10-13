@@ -19,7 +19,7 @@ exports[`Head renders 1`] = `
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<<CSS:detailsView.css>>",
+        "__html": "some style sheet",
       }
     }
   />
@@ -28,12 +28,22 @@ exports[`Head renders 1`] = `
 
 exports[`ReporterHead renders 1`] = `
 <Head
+  bundledStyles={
+    Object {
+      "styleSheet": "<<CSS:../../package/report/bundle/report.css>>",
+    }
+  }
   titlePreface="Accessibility Insights"
 />
 `;
 
 exports[`WebReportHead renders 1`] = `
 <Head
+  bundledStyles={
+    Object {
+      "styleSheet": "<<CSS:detailsView.css>>",
+    }
+  }
   titlePreface="Accessibility Insights for Web"
 />
 `;
