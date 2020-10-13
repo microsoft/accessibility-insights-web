@@ -11,6 +11,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import * as styles from 'DetailsView/components/adhoc-issues-test-view.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     ScanIncompleteWarning,
@@ -45,21 +46,11 @@ export type AdhocIssuesTestViewProps = {
 export const AdhocIssuesTestView = NamedFC<AdhocIssuesTestViewProps>(
     'AdhocIssuesTestView',
     props => {
-        if (props.tabStoreData.isChanged) {
-            return createTargetPageChangedView(props);
-        }
+        const view = props.tabStoreData.isChanged
+            ? createTargetPageChangedView(props)
+            : createTestView(props);
 
-        return (
-            <>
-                <ScanIncompleteWarning
-                    deps={props.deps}
-                    warnings={props.scanIncompleteWarnings}
-                    warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
-                    test={props.selectedTest}
-                />
-                <DetailsListIssuesView {...props} />
-            </>
-        );
+        return <div className={styles.issuesTestView}>{view}</div>;
     },
 );
 
@@ -78,5 +69,19 @@ function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Eleme
             toggleClickHandler={clickHandler}
             featureFlagStoreData={props.featureFlagStoreData}
         />
+    );
+}
+
+function createTestView(props: AdhocIssuesTestViewProps): JSX.Element {
+    return (
+        <>
+            <ScanIncompleteWarning
+                deps={props.deps}
+                warnings={props.scanIncompleteWarnings}
+                warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
+                test={props.selectedTest}
+            />
+            <DetailsListIssuesView {...props} />
+        </>
     );
 }
