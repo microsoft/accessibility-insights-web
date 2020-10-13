@@ -341,6 +341,7 @@
         "./src/scanner/processor.ts",
         "./src/scanner/role-utils.ts",
         "./src/scanner/scan-options.ts",
+        "./src/tests/common/element-snapshot-formatter.ts",
         "./src/tests/common/get-automation-id-selector.ts",
         "./src/tests/electron/common/element-identifiers/common-selectors.ts",
         "./src/tests/electron/common/view-controllers/android-setup-view-controller.ts",
