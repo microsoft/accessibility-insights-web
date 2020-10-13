@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as styles from 'DetailsView/components/common-dialog-styles.scss';
+import * as issueFilingDialogStyles from 'DetailsView/components/issue-filing-dialog.scss';
 import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -80,7 +81,7 @@ export class IssueFilingDialog extends React.Component<
                 modalProps={{
                     isBlocking: false,
                     containerClassName: styles.insightsDialogMainOverride,
-                    className: 'issue-filing-dialog',
+                    className: issueFilingDialogStyles.issueFilingDialog,
                 }}
                 onDismiss={onClose}
             >
