@@ -360,6 +360,7 @@
         "./src/tests/end-to-end/common/page-controllers/content-page.ts",
         "./src/tests/end-to-end/common/page-controllers/page.ts",
         "./src/tests/end-to-end/common/page-controllers/popup-page.ts",
+        "./src/tests/end-to-end/common/page-controllers/target-page.ts",
         "./src/tests/end-to-end/common/playwright-option-types.ts",
         "./src/tests/end-to-end/common/prepare-test-result-file-path.ts",
         "./src/tests/end-to-end/common/pretty-print-axe-violations.ts",
