@@ -13,20 +13,15 @@ exports[`AndroidSetupStepContainer passes common props and deps through 1`] = `
     deps={
       Object {
         "LinkComponent": [Function],
-        "androidSetupActionCreator": null,
         "androidSetupStepComponentProvider": Object {
           "detect-adb": [Function],
           "prompt-locate-adb": [Function],
         },
-        "closeApp": null,
-        "logger": null,
-        "showOpenFileDialog": null,
-        "startTesting": null,
       }
     }
     userConfigurationStoreData={
       Object {
-        "adbLocation": undefined,
+        "adbLocation": null,
       }
     }
   />
