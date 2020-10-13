@@ -378,6 +378,7 @@
         "./src/tests/unit/common/node-list-builder.ts",
         "./src/tests/unit/common/sample-test-data.ts",
         "./src/tests/unit/common/simulated-browser-adapter.ts",
+        "./src/tests/unit/common/store-tester.ts",
         "./src/tests/unit/common/test-document-creator.ts",
         "./src/tests/unit/common/tick.ts",
         "./src/tests/unit/common/typemoq-helper.ts",

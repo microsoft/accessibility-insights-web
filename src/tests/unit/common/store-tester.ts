@@ -78,7 +78,7 @@ export class StoreTester<TStoreData, TActions> {
         return actionsMock;
     }
 
-    private createActionMock(): IMock<Action<{}>> {
+    private createActionMock(): IMock<Action<unknown>> {
         const actionMock = Mock.ofType(Action);
 
         actionMock
