@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
 
 .radio-button-group {
     float: left;
@@ -18,8 +18,8 @@
             margin-top: 0px !important;
         }
         .ms-ChoiceField-wrapper.is-inFocus .ms-ChoiceField-field {
-            @media screen and (-ms-high-contrast: active) {
-                outline: 3px highlighttext solid !important;
+            @include ms-high-contrast-override {
+                outline: 3px HighlightText solid !important;
             }
         }
         .ms-ChoiceField:nth-of-type(1) {
@@ -33,6 +33,13 @@
                 .ms-ChoiceField-field::before,
                 .ms-ChoiceField-field::after {
                     border-color: $positive-outcome;
+
+                    // See #3435
+                    @include ms-high-contrast-override {
+                        forced-color-adjust: none;
+                        border-color: Highlight;
+                        background-color: HighlightText;
+                    }
                 }
             }
         }
@@ -41,6 +48,13 @@
                 .ms-ChoiceField-field::before,
                 .ms-ChoiceField-field::after {
                     border-color: $negative-outcome;
+
+                    // See #3435
+                    @include ms-high-contrast-override {
+                        forced-color-adjust: none;
+                        border-color: Highlight;
+                        background-color: HighlightText;
+                    }
                 }
             }
         }
@@ -55,7 +69,7 @@
         line-height: 24px;
         color: $neutral-100;
         @media screen and (-ms-high-contrast: active) {
-            color: highlighttext !important;
+            color: HighlightText !important;
         }
     }
 }
@@ -63,6 +77,6 @@
 .undo-button:focus,
 .undo-button-icon:focus {
     @media screen and (-ms-high-contrast: active) {
-        outline: 1px highlighttext solid !important;
+        outline: 1px HighlightText solid !important;
     }
 }
