@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
 import * as React from 'react';
-import * as bundledStyles from '../../DetailsView/bundled-details-view-styles';
+import * as bundledStyles from '../bundled-reporter-styles';
 import * as summaryReportStyles from '../summary-report.styles';
 
 export const SummaryReportHead = NamedFC('SummaryReportHead', () => {

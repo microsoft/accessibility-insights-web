@@ -12,7 +12,7 @@ exports[`report package integration with issues 1`] = `
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:detailsView.css&gt;&gt;
+    &lt;&lt;CSS:../../package/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
@@ -7031,7 +7031,7 @@ exports[`report package integration with no issues 1`] = `
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:detailsView.css&gt;&gt;
+    &lt;&lt;CSS:../../package/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
