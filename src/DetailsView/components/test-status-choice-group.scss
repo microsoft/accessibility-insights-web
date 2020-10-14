@@ -68,7 +68,7 @@
         font-size: 16px;
         line-height: 24px;
         color: $neutral-100;
-        @media screen and (-ms-high-contrast: active) {
+        @include ms-high-contrast-override {
             color: HighlightText !important;
         }
     }
@@ -76,7 +76,7 @@
 
 .undo-button:focus,
 .undo-button-icon:focus {
-    @media screen and (-ms-high-contrast: active) {
+    @include ms-high-contrast-override {
         outline: 1px HighlightText solid !important;
     }
 }
