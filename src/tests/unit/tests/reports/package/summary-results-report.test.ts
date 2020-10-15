@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { SummaryReportParameters, CrawlSummaryDetails, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
+import { ScanSummaryDetails, SummaryReportParameters, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 import { Mock } from 'typemoq';
@@ -29,7 +29,7 @@ describe('SummaryResultsReport', () => {
         durationSeconds: 42,
     };
 
-    const crawlDetails: CrawlSummaryDetails = {
+    const scanDetails: ScanSummaryDetails = {
         baseUrl: baseUrl,
         basePageTitle: basePageTitle,
         ...scanTimespan
@@ -64,7 +64,7 @@ describe('SummaryResultsReport', () => {
         serviceName: 'service name',
         axeVersion: 'axe version',
         userAgent: 'browser spec',
-        crawlDetails,
+        scanDetails: scanDetails,
         results,
     };
 

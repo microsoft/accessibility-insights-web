@@ -19,7 +19,7 @@ declare namespace AccessibilityInsightsReport {
         scanContext: ScanContext;
     }
 
-    export type CrawlSummaryDetails = {
+    export type ScanSummaryDetails = {
         baseUrl: string,
         basePageTitle: string,
         scanStart: Date,
@@ -50,7 +50,7 @@ declare namespace AccessibilityInsightsReport {
         serviceName: string,
         axeVersion: string,
         userAgent: string,
-        crawlDetails: CrawlSummaryDetails,
+        scanDetails: ScanSummaryDetails,
         results: SummaryScanResults,
     };
 
@@ -83,7 +83,7 @@ declare namespace AccessibilityInsightsReport {
         serviceName: string,
         axeVersion: string,
         userAgent: string,
-        crawlDetails: CrawlSummaryDetails,
+        scanDetails: ScanSummaryDetails,
         results: CombinedReportResults,
     }
 
