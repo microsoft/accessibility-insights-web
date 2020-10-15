@@ -18,11 +18,11 @@ export class SummaryResultsReport implements AccessibilityInsightsReport.Report 
 
     public asHTML(): string {
         const reportHtmlGenerator = this.deps.reportHtmlGenerator;
-        const { results, crawlDetails } = this.parameters;
+        const { results, scanDetails } = this.parameters;
 
         const targetAppInfo = {
-            name: crawlDetails.basePageTitle,
-            url: crawlDetails.baseUrl,
+            name: scanDetails.basePageTitle,
+            url: scanDetails.baseUrl,
         };
 
         const scanMetadata: ScanMetadata = {
@@ -32,9 +32,9 @@ export class SummaryResultsReport implements AccessibilityInsightsReport.Report 
         };
 
         const timespan: ScanTimespan = {
-            scanStart: crawlDetails.scanStart,
-            scanComplete: crawlDetails.scanComplete,
-            durationSeconds: crawlDetails.durationSeconds,
+            scanStart: scanDetails.scanStart,
+            scanComplete: scanDetails.scanComplete,
+            durationSeconds: scanDetails.durationSeconds,
         }
 
         const html = reportHtmlGenerator.generateHtml(

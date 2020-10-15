@@ -1,8 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeReportParameters, SummaryReportParameters } from 'reports/package/accessibilityInsightsReport';
+import {
+    AxeReportParameters,
+    CombinedReportParameters,
+    SummaryReportParameters
+} from 'reports/package/accessibilityInsightsReport';
 import { AxeResultsReport } from 'reports/package/axe-results-report';
-import { AxeResultsReportGenerator, Reporter, SummaryResultsReportGenerator } from 'reports/package/reporter';
+import {
+    AxeResultsReportGenerator,
+    Reporter,
+    SummaryResultsReportGenerator
+} from 'reports/package/reporter';
 import { Mock, IMock } from 'typemoq';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 
@@ -14,6 +22,7 @@ describe('Reporter', () => {
     
     const axeReportParameters = {} as AxeReportParameters;
     const summaryReportParameters = {} as SummaryReportParameters;
+    const combinedReportParameters = {} as CombinedReportParameters;
 
     let reporter: Reporter;
 
@@ -40,5 +49,10 @@ describe('Reporter', () => {
     it('returns a SummaryResultsReport', () => {
         const report = reporter.fromSummaryResults(summaryReportParameters);
         expect(report).toBe(mockSummaryReport.object);
+    });
+
+    it('returns a CombinedResultsReport', () => {
+        const report = reporter.fromCombinedResults(combinedReportParameters);
+        expect(report).toBeNull();
     });
 });

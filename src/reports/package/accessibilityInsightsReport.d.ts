@@ -19,7 +19,7 @@ declare namespace AccessibilityInsightsReport {
         scanContext: ScanContext;
     }
 
-    export type CrawlSummaryDetails = {
+    export type ScanSummaryDetails = {
         baseUrl: string,
         basePageTitle: string,
         scanStart: Date,
@@ -47,16 +47,51 @@ declare namespace AccessibilityInsightsReport {
     };
 
     export type SummaryReportParameters = {
-        serviceName: string;
-        axeVersion: string;
-        userAgent: string;
-        crawlDetails: CrawlSummaryDetails;
-        results: SummaryScanResults;
+        serviceName: string,
+        axeVersion: string,
+        userAgent: string,
+        scanDetails: ScanSummaryDetails,
+        results: SummaryScanResults,
     };
+
+    export type AxeRuleData = {
+        ruleId: string,
+        tags: string[],
+        description: string,
+        ruleUrl: string
+    }
+
+    export type FailureData = {
+        urls: string[],
+        elementSelector: string,
+        snippet: string,
+        fix: string,
+        rule: AxeRuleData
+    };
+
+    export interface ResultsGroup {
+        key: string,
+        failed: FailureData[],
+        passed?: AxeRuleData,
+        notApplicable?: AxeRuleData,
+    }
+
+    export type CombinedReportResults = {
+        resultsByRule: ResultsGroup[],
+    }
+
+    export type CombinedReportParameters = {
+        serviceName: string,
+        axeVersion: string,
+        userAgent: string,
+        scanDetails: ScanSummaryDetails,
+        results: CombinedReportResults,
+    }
 
     export type Reporter = {
         fromAxeResult: (parameters: AxeReportParameters) => Report;
         fromSummaryResults: (parameters: SummaryReportParameters) => Report;
+        fromCombinedResults: (parameters: CombinedReportParameters) => Report;
     };
 
     export type ReporterFactory = () => Reporter;
