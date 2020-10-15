@@ -37,6 +37,8 @@ import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screensho
 import * as React from 'react';
 import * as styles from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
+import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 
 export const automatedChecksViewAutomationId = 'automated-checks-view';
 
@@ -154,9 +156,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 featureFlag={UnifiedFeatureFlags.leftNavBar}
                 featureFlagStoreData={this.props.featureFlagStoreData}
                 enableJSXElement={
-                    <LeftNav
+                    <FluentLeftNav
                         deps={this.props.deps}
                         selectedKey={this.props.leftNavStoreData.selectedKey}
+                        narrowModeStatus={{ isHeaderAndNavCollapsed: true } as NarrowModeStatus}
+                        isNavOpen={true}
                     />
                 }
             />

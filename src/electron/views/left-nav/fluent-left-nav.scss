@@ -1,0 +1,29 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/common.scss';
+@import '../common/window-title/window-title-const.scss';
+.left-nav-panel {
+    :global(.ms-Panel-main) {
+        width: $detailsViewReflowLeftNavWidth;
+    }
+    :global(.ms-Panel-content) {
+        padding: 0px;
+    }
+    .title-bar-lookalike {
+        width: 100%;
+        background: $ada-brand-color;
+        height: $default-title-height;
+    }
+    :global(.ms-Overlay) {
+        top: $default-title-height;
+    }
+}
+
+:global(.is-mac-os) {
+    .title-bar-lookalike {
+        height: $mac-title-height;
+    }
+    :global(.ms-Overlay) {
+        top: $mac-title-height;
+    }
+}
