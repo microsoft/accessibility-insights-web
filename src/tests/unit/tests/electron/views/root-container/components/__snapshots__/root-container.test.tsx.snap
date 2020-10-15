@@ -40,40 +40,34 @@ exports[`RootContainer renders with routeId = deviceConnectView 1`] = `
 `;
 
 exports[`RootContainer renders with routeId = resultsView 1`] = `
-<AutomatedChecksView
-  cardSelectionStoreData={
+<NarrowModeDetector
+  Component={[Function]}
+  childrenProps={
     Object {
-      "rules": Object {},
-    }
-  }
-  deps={
-    Object {
-      "storesHub": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "stores": undefined,
+      "cardSelectionStoreData": Object {
+        "rules": Object {},
+      },
+      "deps": Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      },
+      "scanStoreData": Object {
+        "status": 2,
+      },
+      "unifiedScanResultStoreData": Object {
+        "rules": Array [],
+      },
+      "userConfigurationStoreData": Object {
+        "isFirstTime": false,
+      },
+      "windowStateStoreData": Object {
+        "currentWindowState": "customSize",
+        "routeId": "resultsView",
       },
     }
   }
-  scanStoreData={
-    Object {
-      "status": 2,
-    }
-  }
-  unifiedScanResultStoreData={
-    Object {
-      "rules": Array [],
-    }
-  }
-  userConfigurationStoreData={
-    Object {
-      "isFirstTime": false,
-    }
-  }
-  windowStateStoreData={
-    Object {
-      "currentWindowState": "customSize",
-      "routeId": "resultsView",
-    }
-  }
+  isNarrowModeEnabled={true}
 />
 `;
