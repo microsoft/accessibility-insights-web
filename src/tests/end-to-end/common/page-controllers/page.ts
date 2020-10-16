@@ -32,7 +32,9 @@ export class Page {
         }
 
         function serializeError(error: Error): string {
-            return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
+            return `[Error]{name: '${error.name}', message: '${JSON.stringify(
+                error.message,
+            )}', stack: '${error.stack}'}`;
         }
 
         underlyingPage.on('pageerror', error => {
