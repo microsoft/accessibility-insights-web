@@ -58,11 +58,21 @@ const tsRule = {
 const scssRule = (useHash = true) => ({
     test: /\.scss$/,
     use: [
-        MiniCssExtractPlugin.loader,
+        {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+                esModule: true,
+                modules: {
+                    namedExport: true,
+                },
+            },
+        },
         {
             loader: 'css-loader',
             options: {
+                esModule: true,
                 modules: {
+                    namedExport: true,
                     localIdentName: '[local]' + (useHash ? '--[hash:base64:5]' : ''),
                     exportLocalsConvention: 'camelCaseOnly',
                 },
