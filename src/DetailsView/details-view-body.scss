@@ -15,7 +15,7 @@
     box-sizing: border-box;
     max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
     &:global(.reflow-ui) {
-        width: calc(100vw - (#{$detailsViewReflowLeftNavWidth}));
+        width: calc(100vw - (#{$reflowLeftNavWidth}));
         max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
     }
     &.narrow-mode {
@@ -36,7 +36,7 @@
     width: 100%;
     min-height: 0;
     height: 100%;
-    grid-template-columns: $detailsViewReflowLeftNavWidth 1fr;
+    grid-template-columns: $reflowLeftNavWidth 1fr;
 
     :global(.ms-Pivot) {
         border-bottom: 1px solid $neutral-8;
