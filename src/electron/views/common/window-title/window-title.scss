@@ -16,7 +16,7 @@
         font-size: 12px;
     }
 
-    .header-icon {
+    :global(.header-icon) {
         height: 12px;
     }
 }

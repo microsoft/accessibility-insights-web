@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FluentLeftNav render left nav by itself 1`] = `
+<LeftNav
+  deps={Object {}}
+  selectedKey="automated-checks"
+/>
+`;
+
+exports[`FluentLeftNav render left nav inside panel 1`] = `
+<GenericPanel
+  className="leftNavPanel"
+  hasCloseButton={false}
+  isLightDismiss={true}
+  isOpen={true}
+  layerProps={
+    Object {
+      "className": "leftNavPanelHost",
+    }
+  }
+  onRenderNavigation={[Function]}
+  onRenderNavigationContent={[Function]}
+  type={8}
+>
+  <LeftNav
+    deps={Object {}}
+    selectedKey="automated-checks"
+  />
+</GenericPanel>
+`;
