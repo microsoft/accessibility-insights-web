@@ -64,8 +64,8 @@ const scssRule = (useHash = true) => ({
                 esModule: true,
                 modules: {
                     namedExport: true,
-                }
-            }
+                },
+            },
         },
         {
             loader: 'css-loader',
