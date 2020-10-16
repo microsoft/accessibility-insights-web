@@ -18,6 +18,7 @@ import {
     SettingsPanel,
     SettingsPanelDeps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -65,6 +66,7 @@ export type AutomatedChecksViewProps = {
     featureFlagStoreData: FeatureFlagStoreData;
     androidSetupStoreData: AndroidSetupStoreData;
     leftNavStoreData: LeftNavStoreData;
+    narrowModeStatus: NarrowModeStatus;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
