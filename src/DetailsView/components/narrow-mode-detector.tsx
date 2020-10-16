@@ -11,7 +11,9 @@ export type NarrowModeStatus = {
 
 export type NarrowModeDetectorProps<P = { narrowModeStatus: NarrowModeStatus }> = {
     isNarrowModeEnabled: boolean;
-    Component: ReactFCWithDisplayName<P & { narrowModeStatus: NarrowModeStatus }>;
+    Component:
+        | ReactFCWithDisplayName<P & { narrowModeStatus: NarrowModeStatus }>
+        | React.ComponentClass<P & { narrowModeStatus: NarrowModeStatus }>;
     childrenProps: P;
 };
 
