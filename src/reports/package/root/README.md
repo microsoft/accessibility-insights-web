@@ -54,7 +54,7 @@ test('my accessibility test', async () => {
         JSON.stringify(html),
         { encoding: 'utf8' });
     await browser.close();
-}
+});
 ```
 
 ## Contributing
