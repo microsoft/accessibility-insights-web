@@ -14,7 +14,7 @@ exports[` renders 1`] = `
       <span
         className="label"
       >
-        Target url 
+        Target site 
       </span>
       <span
         className="text"
