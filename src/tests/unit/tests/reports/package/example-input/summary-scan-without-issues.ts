@@ -8,8 +8,8 @@ export const summaryScanWithoutIssues: SummaryReportParameters = {
     scanDetails: {
         basePageTitle: 'Mock base without failures or unscannables',
         baseUrl: 'https://example.com/mock-base-url',
-        scanStart: new Date(2020, 1, 2, 3, 4, 5), // Jan 2 2020, 03:04:05am
-        scanComplete: new Date(2020, 1, 2, 4, 4, 5), // Jan 2 2020, 04:04:05am
+        scanStart: new Date(Date.UTC(2020, 1, 2, 3, 4, 5)), // Jan 2 2020, 03:04:05am
+        scanComplete: new Date(Date.UTC(2020, 1, 2, 4, 4, 5)), // Jan 2 2020, 04:04:05am
         durationSeconds: 1 * 60 * 60,
     },
     userAgent: 'Mock user agent',
