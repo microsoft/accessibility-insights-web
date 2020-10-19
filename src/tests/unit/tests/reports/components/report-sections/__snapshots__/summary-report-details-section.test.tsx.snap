@@ -31,7 +31,7 @@ exports[` renders 1`] = `
       <span
         className="label"
       >
-        Scan start 
+        Scans started 
       </span>
       <span
         className="text"
@@ -43,7 +43,7 @@ exports[` renders 1`] = `
       <span
         className="label"
       >
-        Scan complete 
+        Scans completed 
       </span>
       <span
         className="text"

@@ -35,8 +35,8 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
                     )}
-                    {createListItem('Scan start', scanStartUTC)}
-                    {createListItem('Scan complete', scanCompleteUTC)}
+                    {createListItem('Scans started', scanStartUTC)}
+                    {createListItem('Scans completed', scanCompleteUTC)}
                     {createListItem('Duration', duration)}
                 </ul>
             </div>
