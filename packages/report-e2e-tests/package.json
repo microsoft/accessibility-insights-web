@@ -6,7 +6,7 @@
         "build": "tsc",
         "lint": "eslint -c ../../.eslintrc.js --ext .ts ./",
         "lint:fix": "eslint --fix -c ../../.eslintrc.js --ext .ts ./",
-        "test": "jest --colors"
+        "test": "jest --colors --runInBand"
     },
     "repository": "git+https://github.com/microsoft/accessibility-insights-web.git",
     "author": "Microsoft",

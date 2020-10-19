@@ -48,6 +48,10 @@ jobs:
             displayName: run unit tests
             timeoutInMinutes: 15
 
+          - script: yarn test:report --ci
+            displayName: run report package tests
+            timeoutInMinutes: 5
+
           - task: PublishTestResults@2
             inputs:
                 testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
