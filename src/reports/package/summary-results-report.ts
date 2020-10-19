@@ -3,7 +3,7 @@
 import {  ToolData, ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
-import { ScanTimespan } from 'reports/components/report-sections/summary-report-section-factory';
+import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 
 export type SummaryResultsReportDeps = {
     reportHtmlGenerator: SummaryReportHtmlGenerator;

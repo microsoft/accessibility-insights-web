@@ -3,7 +3,7 @@
 
 import { CombinedReportHtmlGenerator } from "reports/combined-report-html-generator";
 import { CombinedResultsReport } from "reports/package/combined-results-report";
-import { IMock, Mock } from "typemoq";
+import { IMock, It, Mock } from "typemoq";
 
 describe('CombinedResultsReport', () => {
     const expectedHtml = '';
@@ -22,7 +22,7 @@ describe('CombinedResultsReport', () => {
     });
 
     it('returns HTML', () => {
-        reportHtmlGeneratorMock.setup(rhg => rhg.generateHtml()).returns(() => expectedHtml);
+        reportHtmlGeneratorMock.setup(rhg => rhg.generateHtml(It.isAny(), It.isAny())).returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();
 

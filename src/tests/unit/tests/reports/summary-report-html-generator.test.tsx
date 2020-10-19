@@ -8,13 +8,11 @@ import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    SummaryReportSectionProps,
-    ScanTimespan,
-} from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
+import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {

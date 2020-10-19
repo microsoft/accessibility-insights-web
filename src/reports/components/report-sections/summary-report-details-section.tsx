@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { NamedFC } from 'common/react/named-fc';
-import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-props';
+import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 
 export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps>(
     'SummaryReportDetailsSection',
