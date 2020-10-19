@@ -12,7 +12,7 @@ We plan to gradually convert the repository into a Lerna/Yarn Workspaces based m
 how [accessibility-insights-service](https://github.com/microsoft/accessibility-insights-service) is
 structured.
 
-## Short-term (~3 months) planned package layout
+## Short-term (~Dec 2020) planned package layout
 
 At minimum, we plan to use individual packages for each individually released project:
 
@@ -29,7 +29,7 @@ package API boundaries. For example:
 
 * `/packages/report-e2e-tests`: End-to-end tests of the `report` package APIs
 
-## Longer term plans
+## Longer term (2021+) plans
 
 Some functionality of web/unified may gradually get extracted to separate packages
 for the purposes of improving build time/encapsulation; for example, some of the subdirectories
@@ -41,7 +41,7 @@ this or not, but in the interest of keeping it easy, we want to lean towards usi
 decisions between the two of them for "directory layout", "which tools run repo-wide vs
 per-package", etc.
 
-## Current package layout
+## Current (Oct 2020) package layout
 
 * `/src/packages/accessibility-insights-ui/root`: current home of future `/packages/ui`
 * `/src/reports/package/root`: current home of future `/packages/report`
