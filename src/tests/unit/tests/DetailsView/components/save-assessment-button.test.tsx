@@ -4,14 +4,12 @@ import * as React from 'react';
 import { shallow } from 'enzyme';
 
 import {
-    SaveAssessmentButton,
-    SaveAssessmentButtonProps,
+    SaveAssessmentButton
 } from 'DetailsView/components/save-assessment-button';
 
 describe('SaveAssessmentButton', () => {
     it('should render per the snapshot', () => {
-        const props = { featureFlagStoreData: { 'stub-for-flagged-component': true } };
-        const rendered = shallow(<SaveAssessmentButton {...props} />);
+        const rendered = shallow(<SaveAssessmentButton />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });

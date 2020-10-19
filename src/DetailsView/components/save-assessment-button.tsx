@@ -15,8 +15,8 @@ export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonPr
     public render(): JSX.Element {
         return (
             <InsightsCommandButton iconProps={{ iconName: 'Save' }}>
-                        Save assessment
+                Save assessment
             </InsightsCommandButton>
-         )
+        )
     }
 }

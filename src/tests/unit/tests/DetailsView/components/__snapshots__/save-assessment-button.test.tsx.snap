@@ -1,23 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SaveAssessmentButton should render per the snapshot 1`] = `
-<FlaggedComponent
-  enableJSXElement={
-    <InsightsCommandButton
-      iconProps={
-        Object {
-          "iconName": "Save",
-        }
-      }
-    >
-      Save assessment
-    </InsightsCommandButton>
-  }
-  featureFlag="saveAndLoadAssessment"
-  featureFlagStoreData={
+<InsightsCommandButton
+  iconProps={
     Object {
-      "stub-for-flagged-component": true,
+      "iconName": "Save",
     }
   }
-/>
+>
+  Save assessment
+</InsightsCommandButton>
 `;
