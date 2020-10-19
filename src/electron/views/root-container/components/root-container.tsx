@@ -26,11 +26,15 @@ import {
 } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
-import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
+import {
+    NarrowModeDetector,
+    NarrowModeDetectorDeps,
+} from 'DetailsView/components/narrow-mode-detector';
 
 export type RootContainerDeps = WithStoreSubscriptionDeps<RootContainerState> &
     DeviceConnectViewContainerDeps &
-    AutomatedChecksViewDeps;
+    AutomatedChecksViewDeps &
+    NarrowModeDetectorDeps;
 
 export type RootContainerProps = {
     deps: RootContainerDeps;
@@ -60,6 +64,7 @@ export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerI
     if (storeState.windowStateStoreData.routeId === 'resultsView') {
         return (
             <NarrowModeDetector
+                deps={props.deps}
                 isNarrowModeEnabled={true}
                 Component={AutomatedChecksView}
                 childrenProps={childProps}
