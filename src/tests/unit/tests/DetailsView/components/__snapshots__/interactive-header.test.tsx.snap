@@ -36,6 +36,7 @@ exports[`InteractiveHeader render: isNavCollapsed equals true 1`] = `
   }
   navMenu={
     <test-nav-menu
+      className="navMenu"
       isSideNavOpen={false}
       setSideNavOpen={null}
     />

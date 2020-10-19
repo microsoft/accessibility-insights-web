@@ -4,7 +4,7 @@ exports[`LeftNavHamburgerButton renders per snapshot 1`] = `
 <CustomizedIconButton
   aria-expanded={false}
   ariaLabel="test-aria-label"
-  className="leftNavHamburgerButton"
+  className="leftNavHamburgerButton some-class"
   iconProps={
     Object {
       "iconName": "GlobalNavButton",

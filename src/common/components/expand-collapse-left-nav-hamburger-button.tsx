@@ -8,6 +8,7 @@ import * as React from 'react';
 export type ExpandCollpaseLeftNavButtonProps = {
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    className?: string;
 };
 
 export const AssessmentLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButtonProps>(
@@ -19,6 +20,7 @@ export const AssessmentLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavBut
                 ariaLabel={ariaLabel}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
+                className={props.className}
             />
         );
     },
@@ -33,6 +35,7 @@ export const FastPassLeftNavHamburgerButton = NamedFC<ExpandCollpaseLeftNavButto
                 ariaLabel={ariaLabel}
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
+                className={props.className}
             />
         );
     },
