@@ -12,8 +12,10 @@
 /extension/
 /test-results/
 /package/
-/drop/
+bundle/
+drop/
 *.scss.d.ts
+
 # Dependency directories
 node_modules/
 .DS_STORE

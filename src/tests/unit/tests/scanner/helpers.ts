@@ -35,11 +35,11 @@ export function testNativeWidgetConfiguration(
     );
     expect(result.rule.id).toEqual(ruleId);
     expect(result.rule.any).toHaveLength(1);
-    expect(result.rule.any[0]).toEqual(checkId);
+    expect(result.rule.any![0]).toEqual(checkId);
     expect(result.rule.none).toHaveLength(1);
-    expect(result.rule.none[0]).toEqual('has-widget-role');
+    expect(result.rule.none![0]).toEqual('has-widget-role');
     expect(result.rule.all).toHaveLength(1);
-    expect(result.rule.all[0]).toBe('valid-role-if-present');
+    expect(result.rule.all![0]).toBe('valid-role-if-present');
     expect(result.checks).toHaveLength(2);
     expect(result.checks[0].id).toEqual(checkId);
     expect(result.checks[0].evaluate).toEqual(expectedEvaluate || evaluateNativeWidget);

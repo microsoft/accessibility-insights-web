@@ -6,7 +6,7 @@ import { BaseDataBuilder } from './base-data-builder';
 export class AssessmentDataBuilder extends BaseDataBuilder<AssessmentData> {
     constructor() {
         super();
-        this.data.fullAxeResultsMap = null;
-        this.data.testStepStatus = null;
+        this.data.fullAxeResultsMap = {};
+        this.data.testStepStatus = {};
     }
 }

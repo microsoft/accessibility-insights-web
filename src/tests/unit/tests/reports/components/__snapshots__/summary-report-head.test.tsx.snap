@@ -19,7 +19,7 @@ exports[`SummaryReportHead renders 1`] = `
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<<CSS:../../package/report/bundle/report.css>>",
+        "__html": "<<CSS:../../packages/report/bundle/report.css>>",
       }
     }
   />

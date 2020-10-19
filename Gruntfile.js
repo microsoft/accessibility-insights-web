@@ -14,11 +14,11 @@ module.exports = function (grunt) {
 
     const extensionPath = 'extension';
 
-    const packageReportPath = path.join('package', 'report');
+    const packageReportPath = path.join('packages', 'report');
     const packageReportBundlePath = path.join(packageReportPath, 'bundle');
     const packageReportDropPath = path.join(packageReportPath, 'drop');
 
-    const packageUIPath = path.join('package', 'ui');
+    const packageUIPath = path.join('packages', 'ui');
     const packageUIBundlePath = path.join(packageUIPath, 'bundle');
     const packageUIDropPath = path.join(packageUIPath, 'drop');
 
