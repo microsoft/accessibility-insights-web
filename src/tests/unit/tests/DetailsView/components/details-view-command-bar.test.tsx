@@ -8,6 +8,7 @@ import {
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import { SaveAssessmentButton, SaveAssessmentButtonProps } from 'DetailsView/components/save-assessment-button';
 import {
     StartOverComponentFactory,
     StartOverFactoryProps,
@@ -32,10 +33,12 @@ describe('DetailsViewCommandBar', () => {
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
+    let saveAssessmentButton: JSX.Element;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
+    let saveAssessmentButtonMock: IMock<(Props: SaveAssessmentButtonProps) => JSX.Element>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -44,12 +47,14 @@ describe('DetailsViewCommandBar', () => {
             MockBehavior.Loose,
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
+        saveAssessmentButtonMock = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
+        saveAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });

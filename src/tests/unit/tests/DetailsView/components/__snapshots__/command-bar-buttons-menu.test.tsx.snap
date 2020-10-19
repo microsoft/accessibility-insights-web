@@ -16,7 +16,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
       "className": "commandBarButtonsSubmenu",
       "items": Array [
         Object {
-          "key": "export report",
+          "key": "save assessment",
           "onRender": [Function],
         },
         Object {
@@ -29,7 +29,23 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 />
 `;
 
-exports[`CommandBarButtonsMenu renders child buttons 1`] = `
+exports[`CommandBarButtonsMenu renders child buttons with the exception of child behind feature flag: render export report menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  <React.Fragment>
+    Save assessment button
+  </React.Fragment>
+</div>
+`;
+
+exports[`CommandBarButtonsMenu renders child buttons with the exception of child behind feature flag: render save assessment menuitem 1`] = `
+<React.Fragment>
+  Start over button
+</React.Fragment>
+`;
+
+exports[`CommandBarButtonsMenu renders child buttons: render export report menuitem 1`] = `
 <div
   role="menuitem"
 >
@@ -39,7 +55,17 @@ exports[`CommandBarButtonsMenu renders child buttons 1`] = `
 </div>
 `;
 
-exports[`CommandBarButtonsMenu renders child buttons 2`] = `
+exports[`CommandBarButtonsMenu renders child buttons: render save assessment menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  <React.Fragment>
+    Save assessment button
+  </React.Fragment>
+</div>
+`;
+
+exports[`CommandBarButtonsMenu renders child buttons: render start over menuitem 1`] = `
 <React.Fragment>
   Start over button
 </React.Fragment>

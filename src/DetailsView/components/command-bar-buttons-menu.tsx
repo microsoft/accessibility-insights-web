@@ -5,31 +5,45 @@ import { StartOverMenuItem } from 'DetailsView/components/start-over-component-f
 import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './command-bar-buttons-menu.scss';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { FeatureFlags } from 'common/feature-flags';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
-    renderSaveAssessmentButton: () => JSX.Element;
+    renderSaveAssessmentButton: () => JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
+    featureFlagStoreData: FeatureFlagStoreData;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
-        const overflowItems: IContextualMenuItem[] = [
-            {
+        const possibleSaveAssessmentButton = props.renderSaveAssessmentButton();
+        const exportButton = props.renderExportReportButton();
+        const overflowItems: IContextualMenuItem[] = []
+
+            overflowItems.push(
+                {
                 key: 'export report',
-                onRender: () => <div role="menuitem">{props.renderExportReportButton()}</div>,
-            },
-            {
-                key: 'save assessment',
-                onRender: () => <div role="menuitem">{props.renderSaveAssessmentButton()}</div>,
-            },
-            {
-                key: 'start over',
-                ...props.getStartOverMenuItem(),
-            },
-        ];
+                onRender: () => <div role="menuitem">{exportButton}</div>,
+             }
+            );
+            if ( props.featureFlagStoreData[FeatureFlags.saveAndLoadAssessment] )
+                {
+               overflowItems.push(
+                {
+                    key: 'save assessment',
+                    onRender: () => <div role="menuitem">{possibleSaveAssessmentButton}</div>,
+                }
+               )
+           }
+           overflowItems.push(
+                {
+                    key: 'start over',
+                    ...props.getStartOverMenuItem(),
+                }
+            );
 
         return (
             <CommandBarButton

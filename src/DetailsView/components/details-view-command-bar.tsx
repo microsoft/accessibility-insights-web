@@ -34,6 +34,8 @@ import {
 } from 'DetailsView/components/start-over-dialog';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { FeatureFlags } from 'common/feature-flags';
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -136,9 +138,9 @@ export class DetailsViewCommandBar extends React.Component<
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
-        const saveAssessmentElement: JSX.Element = this.renderSaveAssessmentButton();
+        const saveAssessmentElement: JSX.Element | null = this.renderSaveAssessmentButton();
 
-        if (reportExportElement || saveAssessmentElement || startOverElement ) {
+        if (reportExportElement || saveAssessmentElement || startOverElement) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
@@ -161,6 +163,7 @@ export class DetailsViewCommandBar extends React.Component<
                     this.exportDialogCloseFocus = ref;
                     this.startOverDialogCloseFocus = ref;
                 }}
+                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }
@@ -203,13 +206,16 @@ export class DetailsViewCommandBar extends React.Component<
         });
     }
 
-    private renderSaveAssessmentButton = () =>  {
+    private renderSaveAssessmentButton = (): JSX.Element | null => {
         return (
-            <SaveAssessmentButton
+            <FlaggedComponent
+                featureFlag={FeatureFlags.saveAndLoadAssessment}
                 featureFlagStoreData={this.props.featureFlagStoreData}
-            />
-        );
-    }
+                enableJSXElement={
+                    <SaveAssessmentButton />
+                }
+        />);
+    };
 
     private showStartOverDialog = (dialogState: StartOverDialogType) => {
         this.setState({ startOverDialogState: dialogState });

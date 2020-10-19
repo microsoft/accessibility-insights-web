@@ -9,21 +9,14 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { FlaggedComponent } from 'common/components/flagged-component';
 
 export interface SaveAssessmentButtonProps {
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const SaveAssessmentButton = NamedFC<SaveAssessmentButtonProps>('SaveAssessmentButton', props => {
-    return (
-        <FlaggedComponent
-            featureFlag={FeatureFlags.saveAndLoadAssessment}
-            featureFlagStoreData={props.featureFlagStoreData}
-            enableJSXElement={
-                <InsightsCommandButton
-                    iconProps={{ iconName: 'Save'}}
-                >
-                    Save assessment
-                </InsightsCommandButton>
-            }
-        />
-    );
-});
+export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonProps> {
+    public render(): JSX.Element {
+        return (
+            <InsightsCommandButton iconProps={{ iconName: 'Save' }}>
+                        Save assessment
+            </InsightsCommandButton>
+         )
+    }
+}
