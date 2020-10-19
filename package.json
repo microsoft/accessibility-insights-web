@@ -11,6 +11,9 @@
         "node": ">=12.16.1",
         "yarn": "^1.22.4"
     },
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
         "ada-cat": "grunt ada-cat",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:unified",
