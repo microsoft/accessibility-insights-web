@@ -44,8 +44,8 @@ export class ReportBody<SectionPropsType = SectionProps> extends React.Component
                 <HeaderSection {...sectionProps} />
                 <ContentContainer>
                     <TitleSection />
-                    <SummarySection {...sectionProps} />
                     <DetailsSection {...sectionProps} />
+                    <SummarySection {...sectionProps} />
                     <ResultsContainer {...sectionProps}>{getResultSections()}</ResultsContainer>
                 </ContentContainer>
                 <FooterSection>
