@@ -20,9 +20,6 @@ module.exports = {
     testMatch: [`${currentDir}/**/*.test.(ts|tsx|js)`],
     reporters: [
         'default',
-        [
-            'jest-junit',
-            { outputDirectory: '.', outputName: `${resultDir}/junit.xml` },
-        ],
+        ['jest-junit', { outputDirectory: '.', outputName: `${resultDir}/junit.xml` }],
     ],
 };
