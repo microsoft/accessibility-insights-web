@@ -167,7 +167,7 @@
         "q": "1.5.1",
         "react": "^16.14.0",
         "react-copy-to-clipboard": "^5.0.2",
-        "react-dom": "^16.13.1",
+        "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^5.2.0",
         "react-router-dom": "^5.2.0",
