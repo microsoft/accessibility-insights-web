@@ -26,6 +26,7 @@ export const contentViewFactory = ({ applicationTitle }: UIOptions) => {
         },
         storesHub: null,
         storesActionCreator: null,
+        getNarrowModeThresholds: null,
     };
 
     return NamedFC('ContentView', props => (
