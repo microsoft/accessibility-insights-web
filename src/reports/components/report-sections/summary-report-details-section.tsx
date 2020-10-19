@@ -27,7 +27,7 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
                 <h2>Scan details</h2>
                 <ul className="crawl-details-section-list">
                     {createListItem(
-                        'Target url',
+                        'Target site',
                         <NewTabLinkWithConfirmationDialog
                             href={scanMetadata.targetAppInfo.url}
                             title={scanMetadata.targetAppInfo.name}
@@ -35,8 +35,8 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
                     )}
-                    {createListItem('Scan start', scanStartUTC)}
-                    {createListItem('Scan complete', scanCompleteUTC)}
+                    {createListItem('Scans started', scanStartUTC)}
+                    {createListItem('Scans completed', scanCompleteUTC)}
                     {createListItem('Duration', duration)}
                 </ul>
             </div>
