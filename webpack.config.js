@@ -188,7 +188,7 @@ const packageReportConfig = {
     mode: 'development',
     devtool: false,
     output: {
-        path: path.join(__dirname, 'package/report/bundle'),
+        path: path.join(__dirname, 'packages/report/bundle'),
         filename: '[name].bundle.js',
         pathinfo: false,
         library: '[name]',
@@ -209,7 +209,7 @@ const packageUIConfig = {
     mode: 'development',
     devtool: false,
     output: {
-        path: path.join(__dirname, 'package/ui/bundle'),
+        path: path.join(__dirname, 'packages/ui/bundle'),
         filename: '[name].bundle.js',
         pathinfo: false,
         library: '[name]',

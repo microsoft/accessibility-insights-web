@@ -30,7 +30,7 @@ exports[`ReporterHead renders 1`] = `
 <Head
   bundledStyles={
     Object {
-      "styleSheet": "<<CSS:../../package/report/bundle/report.css>>",
+      "styleSheet": "<<CSS:../../packages/report/bundle/report.css>>",
     }
   }
   titlePreface="Accessibility Insights"

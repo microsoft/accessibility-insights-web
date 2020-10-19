@@ -12,7 +12,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:../../package/report/bundle/report.css&gt;&gt;
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
@@ -7031,7 +7031,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input withou
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:../../package/report/bundle/report.css&gt;&gt;
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
@@ -10768,7 +10768,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
     &lt;&lt;CSS:../reports/summary-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:../../package/report/bundle/report.css&gt;&gt;
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
@@ -11814,7 +11814,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
     &lt;&lt;CSS:../reports/summary-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:../../package/report/bundle/report.css&gt;&gt;
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
