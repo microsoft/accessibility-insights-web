@@ -13,6 +13,7 @@
 /test-results/
 /package/
 bundle/
+dist/
 drop/
 *.scss.d.ts
 

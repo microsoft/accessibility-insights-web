@@ -1,5 +1,6 @@
 {
     "name": "accessibility-insights-web",
+    "private": true,
     "version": "1.0.0",
     "description": "Accessibility Insights for Web",
     "license": "MIT",
