@@ -60,4 +60,4 @@ jobs:
             inputs:
                 command: 'publish'
                 publishEndpoint: 'npmjs.com (accessibility-insights-team)'
-                workingDir: '$(System.DefaultWorkingDirectory)/package/${{ parameters.suffix }}/drop'
+                workingDir: '$(System.DefaultWorkingDirectory)/packages/${{ parameters.suffix }}/drop'
