@@ -11183,7 +11183,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
             <span
               class="label"
             >
-              Target site
+              Target site 
             </span>
             <span
               class="text"
@@ -11215,7 +11215,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
             <span
               class="label"
             >
-              Scans started
+              Scans started 
             </span>
             <span
               class="text"
@@ -11227,7 +11227,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
             <span
               class="label"
             >
-              Scans completed
+              Scans completed 
             </span>
             <span
               class="text"
@@ -12229,7 +12229,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
             <span
               class="label"
             >
-              Target site
+              Target site 
             </span>
             <span
               class="text"
@@ -12261,7 +12261,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
             <span
               class="label"
             >
-              Scans started
+              Scans started 
             </span>
             <span
               class="text"
@@ -12273,7 +12273,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
             <span
               class="label"
             >
-              Scans completed
+              Scans completed 
             </span>
             <span
               class="text"
