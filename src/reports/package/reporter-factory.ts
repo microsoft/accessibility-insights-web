@@ -6,6 +6,7 @@ import { generateUID } from 'common/uid-generator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
 import { ConvertScanResultsToUnifiedResults } from 'injected/adapters/scan-results-to-unified-results';
 import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results-to-unified-rules';
+import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
@@ -13,6 +14,7 @@ import { ReporterHeaderSection } from 'reports/components/report-sections/report
 import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
 import { ReporterHead } from 'reports/components/reporter-automated-check-head';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
+import { CombinedResultsReport } from 'reports/package/combined-results-report';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
@@ -130,9 +132,22 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
     return new SummaryResultsReport(deps, parameters, toolData);
 };
 
+const combinedResultsReportGenerator = () => {
+    const reportHtmlGenerator = new CombinedReportHtmlGenerator();
+    const deps = {
+        reportHtmlGenerator,
+    }
+
+    return new CombinedResultsReport(deps);
+}
+
 initializeFabricIcons();
 
 export const reporterFactory: ReporterFactory = () => {
 
-    return new Reporter(axeResultsReportGenerator, summaryResultsReportGenerator);
+    return new Reporter(
+        axeResultsReportGenerator,
+        summaryResultsReportGenerator,
+        combinedResultsReportGenerator
+    );
 };
