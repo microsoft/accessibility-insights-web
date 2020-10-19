@@ -7,13 +7,16 @@ import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 
-
 export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
     'SummaryReportDetailsSection',
     props => {
         const { scanMetadata, scanTimespan, toUtcString, secondsToTimeString } = props;
 
-        const createListItem = (label: string, content: string | JSX.Element, icon?: JSX.Element) => (
+        const createListItem = (
+            label: string,
+            content: string | JSX.Element,
+            icon?: JSX.Element,
+        ) => (
             <li>
                 <span className="icon" aria-hidden="true">
                     {icon}
@@ -39,7 +42,7 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
                         >
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
-                        <UrlIcon />
+                        <UrlIcon />,
                     )}
                     {createListItem('Scans started', scanStartUTC, <DateIcon />)}
                     {createListItem('Scans completed', scanCompleteUTC)}
