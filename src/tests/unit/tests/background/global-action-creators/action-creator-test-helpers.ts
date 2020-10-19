@@ -7,7 +7,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 export const createActionMock = <Payload>(
     payload: Payload,
-    scope: string = null,
+    scope?: string,
 ): IMock<Action<Payload>> => {
     const actionMock = Mock.ofType<Action<Payload>>(Action);
     if (scope) {

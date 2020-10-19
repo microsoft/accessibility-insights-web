@@ -87,10 +87,12 @@ function normalizeExtensionUrls(htmlString: string): string {
 // separately to allow some tolerance for this sort of environmental variance.
 function normalizeEnvironmentSensitivePositionStyles(absolutelyPositionedElement: Element): void {
     const originalInlineStyle = absolutelyPositionedElement.getAttribute('style');
-    const sanitizedInlineStyle = originalInlineStyle.replace(
-        // eslint-disable-next-line no-useless-escape
-        /((top|left|min-width|min-height):\s*)([\-0-9.]+)(px)/g,
-        '$1{{ENVIRONMENT_SENSITIVE_POSITION}}$4',
-    );
-    absolutelyPositionedElement.setAttribute('style', sanitizedInlineStyle);
+    if (originalInlineStyle != null) {
+        const sanitizedInlineStyle = originalInlineStyle.replace(
+            // eslint-disable-next-line no-useless-escape
+            /((top|left|min-width|min-height):\s*)([\-0-9.]+)(px)/g,
+            '$1{{ENVIRONMENT_SENSITIVE_POSITION}}$4',
+        );
+        absolutelyPositionedElement.setAttribute('style', sanitizedInlineStyle);
+    }
 }
