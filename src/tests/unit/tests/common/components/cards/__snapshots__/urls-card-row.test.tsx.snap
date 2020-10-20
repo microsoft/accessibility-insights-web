@@ -3,22 +3,24 @@
 exports[`UrlsCardRow renders 1`] = `
 <SimpleCardRow
   content={
-    <div>
-      <div>
+    <ul
+      class="urlsRowContent"
+    >
+      <li>
         <NewTabLink
           href="https://www.test.com"
         >
           https://www.test.com
         </NewTabLink>
-      </div>
-      <div>
+      </li>
+      <li>
         <NewTabLink
           href="https://www.test.com/more/tests"
         >
           https://www.test.com/more/tests
         </NewTabLink>
-      </div>
-    </div>
+      </li>
+    </ul>
   }
   label="URL"
   rowKey="urls-row--1"

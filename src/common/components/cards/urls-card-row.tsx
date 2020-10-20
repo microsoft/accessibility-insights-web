@@ -6,6 +6,7 @@ import * as React from 'react';
 import { CardRowProps } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
+import * as styles from './urls-card-row.scss';
 
 export interface UrlsCardRowProps extends CardRowProps {
     propertyData: string[];
@@ -14,13 +15,13 @@ export interface UrlsCardRowProps extends CardRowProps {
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
     const renderUrlContent = () => {
         return (
-            <div>
+            <ul class={styles.urlsRowContent}>
                 {props.propertyData.map((url, index) => (
-                    <div key={`urls-${index}`}>
+                    <li key={`urls-${index}`}>
                         <NewTabLink href={url}>{url}</NewTabLink>
-                    </div>
+                    </li>
                 ))}
-            </div>
+            </ul>
         );
     };
 
