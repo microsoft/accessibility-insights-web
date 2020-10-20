@@ -14,13 +14,13 @@ import {
     CardRowProps,
     PropertyConfiguration,
 } from 'common/configs/unified-result-property-configurations';
-import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
+    focused,
     hiddenHighlightButton,
     instanceDetailsCard,
 } from 'reports/components/instance-details.scss';
@@ -87,6 +87,21 @@ describe('InstanceDetails', () => {
         button.simulate('click', eventStub);
         expect(stopPropagationMock).toHaveBeenCalled();
         cardSelectionMessageCreatorMock.verifyAll();
+    });
+
+    it('applies focused styling on card when hidden highlight button is focused', () => {
+        setupGetPropertyConfigByIdMock();
+        const testSubject = shallow(<InstanceDetails {...props} />);
+
+        const wrapper = shallow(<InstanceDetails {...props} />);
+        const button = wrapper.find(`.${hiddenHighlightButton}`);
+        expect(button.length).toBe(1);
+
+        button.prop('onFocus')({} as any);
+        expect(wrapper.find(`.${focused}`).length).toBe(1);
+
+        button.prop('onBlur')({} as any);
+        expect(wrapper.find(`.${focused}`).length).toBe(0);
     });
 
     it('does not dispatch the card selection message when card is clicked if highlighting is not supported', () => {
