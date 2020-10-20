@@ -12,16 +12,20 @@ export type UrlsCardRowDeps = CardRowDeps & {
     LinkComponent: LinkComponentType;
 };
 
+export interface UrlsPropertyData {
+    urls: string[];
+}
+
 export interface UrlsCardRowProps extends CardRowProps {
     deps: UrlsCardRowDeps;
-    propertyData: string[];
+    propertyData: UrlsPropertyData;
 }
 
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
     const renderUrlContent = () => {
         return (
             <ul class={styles.urlsRowContent}>
-                {props.propertyData.map((url, index) => (
+                {props.propertyData.urls.map((url, index) => (
                     <li key={`urls-${index}`}>
                         <deps.LinkComponent href={url}>{url}</deps.LinkComponent>
                     </li>

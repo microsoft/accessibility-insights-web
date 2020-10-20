@@ -13,7 +13,7 @@ import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-lin
 describe('UrlsCardRow', () => {
     it('renders', () => {
         const props: UrlsCardRowProps = {
-            propertyData: ['https://www.test.com', 'https://www.test.com/more/tests'],
+            propertyData: { urls: ['https://www.test.com', 'https://www.test.com/more/tests'] },
             deps: {
                 LinkComponent: NewTabLinkWithConfirmationDialog,
             } as UrlsCardRowDeps,
