@@ -105,7 +105,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             <button
                 onClick={cardClickHandler}
                 className={hiddenHighlightButton}
-                aria-label={`highlight failure instance card ${cardAriaLabel}`}
+                aria-label={`highlight ${cardAriaLabel}`}
                 aria-pressed={result.isSelected}
                 onFocus={() => setCardFocus(true)}
                 onBlur={() => setCardFocus(false)}

@@ -20,7 +20,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
         </tbody>
       </table>
       <button
-        aria-label="highlight failure instance card test-id"
+        aria-label="highlight test-id"
         aria-pressed={true}
         className="hiddenHighlightButton"
         onBlur={[Function]}
@@ -90,7 +90,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
         </tbody>
       </table>
       <button
-        aria-label="highlight failure instance card test-id"
+        aria-label="highlight test-id"
         aria-pressed={false}
         className="hiddenHighlightButton"
         onBlur={[Function]}
@@ -248,7 +248,7 @@ exports[`InstanceDetails renders 1`] = `
         </tbody>
       </table>
       <button
-        aria-label="highlight failure instance card body img"
+        aria-label="highlight body img"
         className="hiddenHighlightButton"
         onBlur={[Function]}
         onClick={[Function]}
@@ -329,7 +329,7 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
         </tbody>
       </table>
       <button
-        aria-label="highlight failure instance card test-id"
+        aria-label="highlight test-id"
         className="hiddenHighlightButton"
         onBlur={[Function]}
         onClick={[Function]}
