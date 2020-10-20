@@ -8,8 +8,7 @@ import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { FlaggedComponent } from 'common/components/flagged-component';
 
-export interface SaveAssessmentButtonProps {
-}
+export interface SaveAssessmentButtonProps {}
 
 export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonProps> {
     public render(): JSX.Element {
@@ -17,6 +16,6 @@ export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonPr
             <InsightsCommandButton iconProps={{ iconName: 'Save' }}>
                 Save assessment
             </InsightsCommandButton>
-        )
+        );
     }
 }

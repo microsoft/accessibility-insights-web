@@ -8,7 +8,10 @@ import {
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
-import { SaveAssessmentButton, SaveAssessmentButtonProps } from 'DetailsView/components/save-assessment-button';
+import {
+    SaveAssessmentButton,
+    SaveAssessmentButtonProps,
+} from 'DetailsView/components/save-assessment-button';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     StartOverComponentFactory,
@@ -140,9 +143,9 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with save assessment button', () => {
-            const rendered = shallow(<SaveAssessmentButton />);
-            expect(rendered.getElement()).toMatchSnapshot();
-        });
+        const rendered = shallow(<SaveAssessmentButton />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 
     test('renders with start test over dialog open', () => {
         const props = getProps();

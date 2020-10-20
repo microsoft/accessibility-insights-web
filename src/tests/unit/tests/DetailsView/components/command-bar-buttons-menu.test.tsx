@@ -40,8 +40,8 @@ describe('CommandBarButtonsMenu', () => {
         setupSaveAssessmentMenuItem();
         setupStartOverMenuItem();
 
-        commandBarButtonsMenuProps.featureFlagStoreData = { saveAndLoadAssessment: true  }
-        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps}/>);
+        commandBarButtonsMenuProps.featureFlagStoreData = { saveAndLoadAssessment: true };
+        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
         const renderedProps = wrapper.getElement().props;
         const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
 

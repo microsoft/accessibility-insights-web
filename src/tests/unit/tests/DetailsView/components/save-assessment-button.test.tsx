@@ -3,9 +3,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import {
-    SaveAssessmentButton
-} from 'DetailsView/components/save-assessment-button';
+import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 
 describe('SaveAssessmentButton', () => {
     it('should render per the snapshot', () => {

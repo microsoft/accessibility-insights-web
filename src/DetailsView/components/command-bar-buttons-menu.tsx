@@ -21,29 +21,22 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     props => {
         const possibleSaveAssessmentButton = props.renderSaveAssessmentButton();
         const exportButton = props.renderExportReportButton();
-        const overflowItems: IContextualMenuItem[] = []
+        const overflowItems: IContextualMenuItem[] = [];
 
-            overflowItems.push(
-                {
-                key: 'export report',
-                onRender: () => <div role="menuitem">{exportButton}</div>,
-                }
-            );
-            if ( props.featureFlagStoreData[FeatureFlags.saveAndLoadAssessment] )
-                {
-                overflowItems.push(
-                    {
-                    key: 'save assessment',
-                    onRender: () => <div role="menuitem">{possibleSaveAssessmentButton}</div>,
-                    }
-                )
-            };
-                overflowItems.push(
-                    {
-                    key: 'start over',
-                    ...props.getStartOverMenuItem(),
-                    }
-            );
+        overflowItems.push({
+            key: 'export report',
+            onRender: () => <div role="menuitem">{exportButton}</div>,
+        });
+        if (props.featureFlagStoreData[FeatureFlags.saveAndLoadAssessment]) {
+            overflowItems.push({
+                key: 'save assessment',
+                onRender: () => <div role="menuitem">{possibleSaveAssessmentButton}</div>,
+            });
+        }
+        overflowItems.push({
+            key: 'start over',
+            ...props.getStartOverMenuItem(),
+        });
 
         return (
             <CommandBarButton

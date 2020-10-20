@@ -211,10 +211,9 @@ export class DetailsViewCommandBar extends React.Component<
             <FlaggedComponent
                 featureFlag={FeatureFlags.saveAndLoadAssessment}
                 featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={
-                    <SaveAssessmentButton />
-                }
-        />);
+                enableJSXElement={<SaveAssessmentButton />}
+            />
+        );
     };
 
     private showStartOverDialog = (dialogState: StartOverDialogType) => {
