@@ -27,22 +27,22 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
                 {
                 key: 'export report',
                 onRender: () => <div role="menuitem">{exportButton}</div>,
-             }
+                }
             );
             if ( props.featureFlagStoreData[FeatureFlags.saveAndLoadAssessment] )
                 {
-               overflowItems.push(
-                {
+                overflowItems.push(
+                    {
                     key: 'save assessment',
                     onRender: () => <div role="menuitem">{possibleSaveAssessmentButton}</div>,
-                }
-               )
-           }
-           overflowItems.push(
-                {
+                    }
+                )
+            };
+                overflowItems.push(
+                    {
                     key: 'start over',
                     ...props.getStartOverMenuItem(),
-                }
+                    }
             );
 
         return (

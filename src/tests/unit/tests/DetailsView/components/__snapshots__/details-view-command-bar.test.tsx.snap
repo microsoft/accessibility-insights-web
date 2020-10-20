@@ -14,8 +14,8 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function]} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <CommandBarButtonsMenu renderExportReportButton={[Function]} renderSaveAssessmentButton={[Function]} featureFlagStoreData={{...}} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
 </div>"
 `;
 
@@ -66,6 +66,11 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
       buttonRef={[Function]}
       showReportExportDialog={[Function]}
     />
+    <FlaggedComponent
+      enableJSXElement={<SaveAssessmentButton />}
+      featureFlag="saveAndLoadAssessment"
+      featureFlagStoreData={Object {}}
+    />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
@@ -107,6 +112,7 @@ exports[`DetailsViewCommandBar renders with export button, with start over 1`] =
     }
     dialogState="none"
     dismissDialog={[Function]}
+    featureFlagStoreData={Object {}}
     narrowModeStatus={
       Object {
         "isCommandBarCollapsed": false,
@@ -188,6 +194,11 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
       buttonRef={[Function]}
       showReportExportDialog={[Function]}
     />
+    <FlaggedComponent
+      enableJSXElement={<SaveAssessmentButton />}
+      featureFlag="saveAndLoadAssessment"
+      featureFlagStoreData={Object {}}
+    />
   </div>
   <div>
     Export dialog
@@ -226,6 +237,7 @@ exports[`DetailsViewCommandBar renders with export button, without start over 1`
     }
     dialogState="none"
     dismissDialog={[Function]}
+    featureFlagStoreData={Object {}}
     narrowModeStatus={
       Object {
         "isCommandBarCollapsed": false,
@@ -307,6 +319,11 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
       buttonRef={[Function]}
       showReportExportDialog={[Function]}
     />
+    <FlaggedComponent
+      enableJSXElement={<SaveAssessmentButton />}
+      featureFlag="saveAndLoadAssessment"
+      featureFlagStoreData={Object {}}
+    />
   </div>
   <div>
     Export dialog
@@ -345,6 +362,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     dialogState="none"
     dismissDialog={[Function]}
+    featureFlagStoreData={Object {}}
     narrowModeStatus={
       Object {
         "isCommandBarCollapsed": false,
@@ -379,6 +397,18 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 </div>
 `;
 
+exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
+<InsightsCommandButton
+  iconProps={
+    Object {
+      "iconName": "Save",
+    }
+  }
+>
+  Save assessment
+</InsightsCommandButton>
+`;
+
 exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`] = `
 "<div className=\\"detailsViewCommandBar\\" role=\\"region\\" aria-label=\\"command bar\\">
   <div className=\\"detailsViewTargetPage\\" aria-labelledby=\\"switch-to-target\\">
@@ -395,8 +425,9 @@ exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`
   </div>
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
+    <FlaggedComponent featureFlag=\\"saveAndLoadAssessment\\" featureFlagStoreData={{...}} enableJSXElement={{...}} />
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} />
 </div>"
 `;
 
@@ -416,8 +447,9 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
   </div>
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
+    <FlaggedComponent featureFlag=\\"saveAndLoadAssessment\\" featureFlagStoreData={{...}} enableJSXElement={{...}} />
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"test\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"test\\" dismissDialog={[Function]} />
 </div>"
 `;
 
@@ -464,6 +496,11 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
   <div
     className="detailsViewCommandButtons"
   >
+    <FlaggedComponent
+      enableJSXElement={<SaveAssessmentButton />}
+      featureFlag="saveAndLoadAssessment"
+      featureFlagStoreData={Object {}}
+    />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
@@ -505,6 +542,7 @@ exports[`DetailsViewCommandBar renders without export button, with start over 1`
     }
     dialogState="none"
     dismissDialog={[Function]}
+    featureFlagStoreData={Object {}}
     narrowModeStatus={
       Object {
         "isCommandBarCollapsed": false,
@@ -579,6 +617,15 @@ exports[`DetailsViewCommandBar renders without export button, without start over
       </StyledLinkBase>
     </StyledTooltipHostBase>
   </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <FlaggedComponent
+      enableJSXElement={<SaveAssessmentButton />}
+      featureFlag="saveAndLoadAssessment"
+      featureFlagStoreData={Object {}}
+    />
+  </div>
   <div>
     Export dialog
   </div>
@@ -616,6 +663,7 @@ exports[`DetailsViewCommandBar renders without export button, without start over
     }
     dialogState="none"
     dismissDialog={[Function]}
+    featureFlagStoreData={Object {}}
     narrowModeStatus={
       Object {
         "isCommandBarCollapsed": false,

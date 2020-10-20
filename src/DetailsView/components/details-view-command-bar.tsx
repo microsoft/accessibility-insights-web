@@ -158,12 +158,12 @@ export class DetailsViewCommandBar extends React.Component<
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
                 renderSaveAssessmentButton={this.renderSaveAssessmentButton}
+                featureFlagStoreData={this.props.featureFlagStoreData}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
                     this.startOverDialogCloseFocus = ref;
                 }}
-                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }
