@@ -1758,7 +1758,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -1849,7 +1849,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -1940,7 +1940,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -2173,7 +2173,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -2261,7 +2261,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -2349,7 +2349,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -3053,7 +3053,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -3141,7 +3141,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -3229,7 +3229,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -3448,7 +3448,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -3655,7 +3655,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
@@ -3862,7 +3862,7 @@ exports[`report package API fromAxeResult matches snapshot for scan input with i
                     >
                       <div
                         class="instanceDetailsCard"
-                        >
+                      >
                         <div>
                           <table
                             class="reportInstanceTable"
