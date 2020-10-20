@@ -3,31 +3,6 @@
 module.exports = {
     clearMocks: true,
     collectCoverage: true,
-    displayName: '<should be overriden by individual jest.configs>',
-    globals: {
-        'ts-jest': {
-            tsConfig: '<rootDir>/tsconfig.json',
-        },
-    },
-    moduleDirectories: ['node_modules'],
-    moduleFileExtensions: ['ts', 'js', 'json'],
-    moduleNameMapper: {
-        'office-ui-fabric-react/lib/(.*)$': 'office-ui-fabric-react/lib-commonjs/$1',
-        '@uifabric/utilities': '@uifabric/utilities/lib-commonjs',
-        '@uifabric/styling': '@uifabric/styling/lib-commonjs',
-        /* Using proxy to handle css modules, as per: https://jestjs.io/docs/en/webpack#mocking-css-modules */
-        '\\.(scss)$': 'identity-obj-proxy',
-    },
-    // This ensures that failures in beforeAll/beforeEach result in dependent tests not trying to run.
-    // See https://github.com/facebook/jest/issues/2713
-    testRunner: 'jest-circus/runner',
-    transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
-    },
-    testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
-    testPathIgnorePatterns: ['/dist/', '/out/'],
-    coverageDirectory: '<rootDir>/test-results/unit/coverage',
-    coverageReporters: ['text', 'lcov', 'cobertura'],
     collectCoverageFrom: [
         '<rootDir>/**/*.js',
         '<rootDir>/**/*.ts',
@@ -43,6 +18,23 @@ module.exports = {
         '!<rootDir>/**/node_modules/**',
         '!<rootDir>/**/test-results/**',
     ],
+    coverageDirectory: '<rootDir>/test-results/unit/coverage',
+    coverageReporters: ['text', 'lcov', 'cobertura'],
+    displayName: '<should be overriden by individual jest.configs>',
+    globals: {
+        'ts-jest': {
+            tsConfig: '<rootDir>/tsconfig.json',
+        },
+    },
+    moduleDirectories: ['node_modules'],
+    moduleFileExtensions: ['ts', 'js', 'json'],
+    moduleNameMapper: {
+        'office-ui-fabric-react/lib/(.*)$': 'office-ui-fabric-react/lib-commonjs/$1',
+        '@uifabric/utilities': '@uifabric/utilities/lib-commonjs',
+        '@uifabric/styling': '@uifabric/styling/lib-commonjs',
+        /* Using proxy to handle css modules, as per: https://jestjs.io/docs/en/webpack#mocking-css-modules */
+        '\\.(scss)$': 'identity-obj-proxy',
+    },
     reporters: [
         'default',
         [
@@ -54,4 +46,12 @@ module.exports = {
         ],
     ],
     testEnvironment: 'node',
+    testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
+    testPathIgnorePatterns: ['/dist/', '/out/'],
+    // This ensures that failures in beforeAll/beforeEach result in dependent tests not trying to run.
+    // See https://github.com/facebook/jest/issues/2713
+    testRunner: 'jest-circus/runner',
+    transform: {
+        '^.+\\.(ts|tsx)$': 'ts-jest',
+    },
 };
