@@ -14,7 +14,7 @@ import { TitleSection } from './title-section';
 
 export type CombinedReportSectionProps = BaseSummaryReportSectionProps;
 
-export const SummaryReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {
+export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSectionProps> = {
     HeadSection: SummaryReportHead,
     BodySection,
     ContentContainer,

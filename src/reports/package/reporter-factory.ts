@@ -9,6 +9,7 @@ import { convertScanResultsToUnifiedRules } from 'injected/adapters/scan-results
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { CombinedReportSectionFactory } from 'reports/components/report-sections/combined-report-section-factory';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
 import { ReporterHeaderSection } from 'reports/components/report-sections/reporter-header-section';
 import { SummaryReportSectionFactory } from 'reports/components/report-sections/summary-report-section-factory';
@@ -32,7 +33,7 @@ import { getPropertyConfiguration } from '../../common/configs/unified-result-pr
 import { DateProvider } from '../../common/date-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
-import { AxeReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
+import { AxeReportParameters, CombinedReportParameters, ReporterFactory, SummaryReportParameters } from './accessibilityInsightsReport';
 import { Reporter } from './reporter';
 
 const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
@@ -112,13 +113,8 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
         userAgent,
     );
 
-    const sectionFactory = {
-        ...SummaryReportSectionFactory,
-        FooterText: FooterTextForService,
-    };
-
     const reportHtmlGenerator = new SummaryReportHtmlGenerator(
-        sectionFactory,
+        SummaryReportSectionFactory,
         new ReactStaticRenderer(),
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,
@@ -132,13 +128,29 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
     return new SummaryResultsReport(deps, parameters, toolData);
 };
 
-const combinedResultsReportGenerator = () => {
-    const reportHtmlGenerator = new CombinedReportHtmlGenerator();
+const combinedResultsReportGenerator = (parameters: CombinedReportParameters) => {
+    const { serviceName, axeVersion, userAgent } = parameters;
+
+    const toolData = createToolData(
+        serviceName,
+        '',
+        'axe-core',
+        axeVersion,
+        userAgent,
+    );
+
+    const reportHtmlGenerator = new CombinedReportHtmlGenerator(
+        CombinedReportSectionFactory,
+        new ReactStaticRenderer(),
+        getDefaultAddListenerForCollapsibleSection,
+        DateProvider.getUTCStringFromDate,
+        DateProvider.getTimeStringFromSeconds,
+    );
     const deps = {
         reportHtmlGenerator,
     }
 
-    return new CombinedResultsReport(deps);
+    return new CombinedResultsReport(deps, parameters, toolData);
 }
 
 initializeFabricIcons();
