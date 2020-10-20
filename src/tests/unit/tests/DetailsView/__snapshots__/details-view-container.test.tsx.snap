@@ -65,6 +65,14 @@ exports[`DetailsViewContainer render content show NoContentAvailable when stores
         },
       }
     }
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
     isNarrowModeEnabled={false}
   />
   <NoContentAvailable />
@@ -85,6 +93,14 @@ exports[`DetailsViewContainer render content show NoContentAvailable when target
         },
       }
     }
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
     isNarrowModeEnabled={true}
   />
   <NoContentAvailable />
@@ -102,6 +118,14 @@ exports[`DetailsViewContainer render content shows NoContentAvailable when targe
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "stores": undefined,
           },
+        },
+      }
+    }
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
         },
       }
     }

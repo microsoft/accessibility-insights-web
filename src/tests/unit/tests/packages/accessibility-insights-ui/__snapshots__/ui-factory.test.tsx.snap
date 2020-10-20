@@ -4,6 +4,7 @@ exports[`UIFactory exports ContentView 1`] = `
 <Content
   deps={
     Object {
+      "getNarrowModeThresholds": null,
       "storeActionMessageCreator": Object {
         "getAllStates": [Function],
       },

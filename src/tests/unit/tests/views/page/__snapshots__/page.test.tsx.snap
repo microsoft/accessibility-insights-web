@@ -9,6 +9,7 @@ exports[`page view renders 1`] = `
         "deps": Object {},
       }
     }
+    deps={Object {}}
     isNarrowModeEnabled={true}
   />
   <main>
