@@ -3,10 +3,9 @@
 
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ScanTimespan, ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
-import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
@@ -39,16 +38,17 @@ describe('CombinedReportHtmlGenerator', () => {
         url: baseUrl,
     };
 
-    const scanMetadata = {
-        toolData: toolData,
-        targetAppInfo: targetAppInfo,
-    } as ScanMetadata;
-
     const scanTimespan: ScanTimespan = {
         scanStart: new Date(2020, 1, 2, 3),
         scanComplete: new Date(2020, 4, 5, 6),
         durationSeconds: 42,
     };
+
+    const scanMetadata = {
+        toolData: toolData,
+        targetAppInfo: targetAppInfo,
+        timespan: scanTimespan,
+    } as ScanMetadata;
 
     let getScriptMock: IMock<() => string>;
     let sectionFactoryMock: IMock<ReportSectionFactory<CombinedReportSectionProps>>;
@@ -75,7 +75,6 @@ describe('CombinedReportHtmlGenerator', () => {
             secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
-            scanTimespan,
         };
 
         const headElement: JSX.Element = <NullComponent />;
@@ -91,7 +90,7 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(scanTimespan, scanMetadata);
+        const html = testSubject.generateHtml(scanMetadata);
 
         expect(html).toMatchSnapshot();
     });

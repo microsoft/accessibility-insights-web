@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ScanTimespan, ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
@@ -12,7 +12,6 @@ import { SummaryReportSectionProps } from 'reports/components/report-sections/su
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
-import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
@@ -43,16 +42,18 @@ describe('ReportHtmlGenerator', () => {
             url: baseUrl,
         };
 
-        const scanMetadata = {
-            toolData: toolData,
-            targetAppInfo: targetAppInfo,
-        } as ScanMetadata;
-
         const scanTimespan: ScanTimespan = {
             scanStart: new Date(2020, 1, 2, 3),
             scanComplete: new Date(2020, 4, 5, 6),
             durationSeconds: 42,
         };
+
+        const scanMetadata = {
+            toolData: toolData,
+            targetAppInfo: targetAppInfo,
+            timespan: scanTimespan,
+        } as ScanMetadata;
+
         const deps = {
             collapsibleControl: ReportCollapsibleContainerControl,
         };
@@ -90,7 +91,6 @@ describe('ReportHtmlGenerator', () => {
             secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
-            scanTimespan,
             results,
         };
 
@@ -116,7 +116,7 @@ describe('ReportHtmlGenerator', () => {
             getTimeStringFromSecondsStub,
         );
 
-        const actual = testObject.generateHtml(scanTimespan, scanMetadata, results);
+        const actual = testObject.generateHtml(scanMetadata, results);
 
         expect(actual).toMatchSnapshot();
     });

@@ -9,7 +9,6 @@ import { ReportSectionFactory } from './components/report-sections/report-sectio
 import { ReactStaticRenderer } from './react-static-renderer';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
-import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 
 export class SummaryReportHtmlGenerator {
     constructor(
@@ -21,7 +20,6 @@ export class SummaryReportHtmlGenerator {
     ) {}
 
     public generateHtml(
-        scanTimespan: ScanTimespan,
         scanMetadata: ScanMetadata,
         results: SummaryScanResults,
     ): string {
@@ -32,7 +30,6 @@ export class SummaryReportHtmlGenerator {
             deps: {
                 collapsibleControl: ReportCollapsibleContainerControl,
             },
-            scanTimespan,
             scanMetadata,
             results,
             toUtcString: this.utcDateConverter,

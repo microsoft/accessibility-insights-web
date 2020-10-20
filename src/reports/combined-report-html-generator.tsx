@@ -3,7 +3,6 @@
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
-import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { CombinedReportSectionProps } from './components/report-sections/combined-report-section-factory';
 import { ReportSectionFactory } from './components/report-sections/report-section-factory';
@@ -18,12 +17,11 @@ export class CombinedReportHtmlGenerator {
         private readonly secondsToTimeStringConverter: (seconds: number) => string,
     ) {}
 
-    public generateHtml(scanTimespan: ScanTimespan, scanMetadata: ScanMetadata): string {
+    public generateHtml(scanMetadata: ScanMetadata): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: CombinedReportSectionProps = {
-            scanTimespan,
             scanMetadata,
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,

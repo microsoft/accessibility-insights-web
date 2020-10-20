@@ -16,17 +16,15 @@ describe('SummaryResultsReport', () => {
         name: basePageTitle,
         url: baseUrl,
     };
-    const scanMetadataStub = {
-        toolData: toolDataStub,
-        targetAppInfo: targetAppInfoStub,
-        timestamp: null,
-    };
-
-    
     const scanTimespan = {
         scanStart: new Date(2019, 1, 2, 3),
         scanComplete: new Date(2019, 4, 5, 6),
         durationSeconds: 42,
+    };
+    const scanMetadataStub = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfoStub,
+        timespan: scanTimespan,
     };
 
     const scanDetails: ScanSummaryDetails = {
@@ -72,7 +70,7 @@ describe('SummaryResultsReport', () => {
 
     const mockHtmlGenerator = Mock.ofType<SummaryReportHtmlGenerator>();
     mockHtmlGenerator
-        .setup(hg => hg.generateHtml(scanTimespan, scanMetadataStub, results))
+        .setup(hg => hg.generateHtml(scanMetadataStub, results))
         .returns(() => expectedHTML);
 
     const deps = {

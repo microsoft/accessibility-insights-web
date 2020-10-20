@@ -21,22 +21,22 @@ describe('CombinedResultsReport', () => {
         name: basePageTitle,
         url: baseUrl,
     };
-    const scanMetadataStub = {
-        toolData: toolDataStub,
-        targetAppInfo: targetAppInfoStub,
-        timestamp: null,
-    };
-    
-    const scanTimespan = {
+    const scanTimespanStub = {
         scanStart: new Date(2019, 1, 2, 3),
         scanComplete: new Date(2019, 4, 5, 6),
         durationSeconds: 42,
     };
+    const scanMetadataStub = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfoStub,
+        timespan: scanTimespanStub,
+    };
+    
 
     const scanDetails: ScanSummaryDetails = {
         baseUrl: baseUrl,
         basePageTitle: basePageTitle,
-        ...scanTimespan
+        ...scanTimespanStub
     };
 
     const results = {} as CombinedReportResults;
@@ -61,7 +61,7 @@ describe('CombinedResultsReport', () => {
     });
 
     it('returns HTML', () => {
-        reportHtmlGeneratorMock.setup(rhg => rhg.generateHtml(scanTimespan, scanMetadataStub)).returns(() => expectedHtml);
+        reportHtmlGeneratorMock.setup(rhg => rhg.generateHtml(scanMetadataStub)).returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();
 
