@@ -5,10 +5,8 @@ import * as React from 'react';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { IMock, Mock } from 'typemoq';
-import {
-    ScanTimespan,
-    SummaryReportSectionProps,
-} from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
+import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 
 describe(SummaryReportDetailsSection, () => {
     const scanStart = new Date(0, 1, 2, 3);
