@@ -3,8 +3,8 @@
 import * as React from 'react';
 
 import { shallow } from 'enzyme';
-import { CardRowDeps } from '../../../../../../common/configs/unified-result-property-configurations';
 import { UrlsCardRow, UrlsCardRowProps } from 'common/components/cards/urls-card-row';
+import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 
 describe('UrlsCardRow', () => {
     it('renders', () => {

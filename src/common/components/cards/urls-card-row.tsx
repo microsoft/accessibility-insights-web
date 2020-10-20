@@ -3,8 +3,8 @@
 import { NewTabLink } from 'common/components/new-tab-link';
 import * as React from 'react';
 
-import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
-import { NamedFC } from '../../../common/react/named-fc';
+import { CardRowProps } from 'common/configs/unified-result-property-configurations';
+import { NamedFC } from 'common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface UrlsCardRowProps extends CardRowProps {
