@@ -12,7 +12,7 @@ export interface ScanEngineProperties {
 
 export interface ApplicationProperties {
     name: string;
-    version: string;
+    version?: string;
     environmentName?: string;
 }
 

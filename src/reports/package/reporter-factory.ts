@@ -56,10 +56,10 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const fixInstructionProcessor = new FixInstructionProcessor();
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -106,10 +106,10 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
     const { serviceName, axeVersion, userAgent } = parameters;
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -132,10 +132,10 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
     const { serviceName, axeVersion, userAgent } = parameters;
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
