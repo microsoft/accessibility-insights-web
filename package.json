@@ -1,5 +1,6 @@
 {
     "name": "accessibility-insights-web",
+    "private": true,
     "version": "1.0.0",
     "description": "Accessibility Insights for Web",
     "license": "MIT",
@@ -11,6 +12,9 @@
         "node": ">=12.16.1",
         "yarn": "^1.22.4"
     },
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
         "ada-cat": "grunt ada-cat",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:unified",
@@ -55,6 +59,7 @@
         "test:e2e:docker:run": "docker run -t accessibility-insights-web-e2e",
         "test:e2e:docker": "npm-run-all --serial test:e2e:docker:build \"test:e2e:docker:run {@}\" --",
         "test:unified": "cross-env --max-old-space-size=16384 jest --projects src/tests/electron --runInBand --forceExit --detectOpenHandles",
+        "test:report:e2e": "lerna --scope accessibility-insights-report-e2e-tests run test",
         "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:all": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:web": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser",
@@ -121,6 +126,7 @@
         "jest-circus": "^26.6.0",
         "jest-junit": "^12.0.0",
         "js-yaml": "^3.14.0",
+        "lerna": "^3.22.1",
         "license-check-and-add": "^3.0.4",
         "make-dir": "^3.1.0",
         "mini-css-extract-plugin": "1.0.0",
