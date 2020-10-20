@@ -12,13 +12,16 @@
     width: fill-available;
 }
 
+.hidden-highlight-button {
+    opacity: 0;
+}
+
 .instance-details-card {
     border-radius: 4px;
     border: 1px solid $card-border;
     outline-style: 'border-style';
     box-shadow: 0px 0.6px 1.8px $box-shadow-108, 0px 3.2px 7.2px $box-shadow-132;
     margin-bottom: 16px;
-    cursor: pointer;
     @include fill-available-width;
 }
 
@@ -30,16 +33,20 @@
     border: 1px solid transparent;
 }
 
-.instance-details-card:focus {
+.instance-details-card.focused {
     outline: 2px solid $primary-text;
     outline-offset: 2px;
 }
 
-.instance-details-card.selected:focus {
+.instance-details-card.selected.focused {
     outline-offset: 8px;
 }
 
-.instance-details-card:hover {
+.instance-details-card.interactive {
+    cursor: pointer;
+}
+
+.instance-details-card.interactive:hover {
     box-shadow: 0px 8px 10px $box-shadow-108, 0px 8px 10px $box-shadow-132;
 }
 

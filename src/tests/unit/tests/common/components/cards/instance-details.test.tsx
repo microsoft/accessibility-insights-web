@@ -20,7 +20,10 @@ import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { instanceDetailsCard } from 'reports/components/instance-details.scss';
+import {
+    hiddenHighlightButton,
+    instanceDetailsCard,
+} from 'reports/components/instance-details.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { exampleUnifiedResult } from './sample-view-model-data';
@@ -63,20 +66,26 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
-    it('dispatches the card selection message when card is clicked', () => {
+    it.each([
+        ['card', instanceDetailsCard],
+        ['hidden highlight button', hiddenHighlightButton],
+    ])('dispatches the card selection message when %s is clicked', (_, className) => {
         setupGetPropertyConfigByIdMock();
-        const eventStub = {} as React.SyntheticEvent;
+        const stopPropagationMock = jest.fn();
+        const eventStub = {
+            stopPropagation: stopPropagationMock,
+        } as any;
 
         cardSelectionMessageCreatorMock
             .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), eventStub))
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find(`.${instanceDetailsCard}`);
-        expect(divElem.length).toBe(1);
+        const button = wrapper.find(`.${className}`);
+        expect(button.length).toBe(1);
 
-        divElem.simulate('click', eventStub);
-
+        button.simulate('click', eventStub);
+        expect(stopPropagationMock).toHaveBeenCalled();
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
@@ -104,31 +113,6 @@ describe('InstanceDetails', () => {
 
         cardSelectionMessageCreatorMock.verifyAll();
     });
-
-    const supportedKeyCodes = [KeyCodeConstants.ENTER, KeyCodeConstants.SPACEBAR];
-    it.each(supportedKeyCodes)(
-        'dispatches the card selection message when key with keycode %s is pressed',
-        keyCode => {
-            const preventDefaultMock = jest.fn();
-            const eventStub = { keyCode: keyCode, preventDefault: preventDefaultMock } as any;
-            setupGetPropertyConfigByIdMock();
-
-            cardSelectionMessageCreatorMock
-                .setup(mock =>
-                    mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), eventStub),
-                )
-                .verifiable(Times.once());
-
-            const wrapper = shallow(<InstanceDetails {...props} />);
-            const divElem = wrapper.find(`.${instanceDetailsCard}`);
-            expect(divElem.length).toBe(1);
-
-            divElem.simulate('keydown', eventStub);
-
-            cardSelectionMessageCreatorMock.verifyAll();
-            expect(preventDefaultMock).toHaveBeenCalled();
-        },
-    );
 
     it('renders nothing when there is no card row configuration for the property / no property', () => {
         props.result.identifiers = {

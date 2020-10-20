@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
-import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
+import { useState } from 'react';
 import {
+    focused,
+    hiddenHighlightButton,
     instanceDetailsCard,
     instanceDetailsCardContainer,
+    interactive,
     reportInstanceTable,
     selected,
 } from 'reports/components/instance-details.scss';
@@ -45,6 +48,7 @@ export type InstanceDetailsProps = {
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
+    const [cardFocused, setCardFocus] = useState(false);
 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
@@ -71,23 +75,16 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const cardClickHandler = (event: React.SyntheticEvent): void => {
         if (isHighlightSupported) {
+            event.stopPropagation();
             deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
-        }
-    };
-
-    const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
-        if (
-            event.keyCode === KeyCodeConstants.ENTER ||
-            event.keyCode === KeyCodeConstants.SPACEBAR
-        ) {
-            event.preventDefault();
-            cardClickHandler(event);
         }
     };
 
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
         [selected]: isHighlightSupported ? result.isSelected : false,
+        [focused]: isHighlightSupported && cardFocused,
+        [interactive]: isHighlightSupported,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
@@ -97,24 +94,32 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const cardAriaLabel = `${
         result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''
-    } card`;
+    }`;
+
+    const renderHighlightHiddenButton = () => {
+        if (!isHighlightSupported) {
+            return null;
+        }
+
+        return (
+            <button
+                onClick={cardClickHandler}
+                className={hiddenHighlightButton}
+                aria-label={`highlight failure instance card ${cardAriaLabel}`}
+                aria-pressed={result.isSelected}
+                onFocus={() => setCardFocus(true)}
+                onBlur={() => setCardFocus(false)}
+            ></button>
+        );
+    };
 
     return (
         <div
             data-automation-id={instanceCardAutomationId}
             className={instanceDetailsCardContainerStyling}
-            role="table"
         >
-            <div
-                className={instanceDetailsCardStyling}
-                tabIndex={0}
-                onClick={cardClickHandler}
-                onKeyDown={cardKeyPressHandler}
-                aria-selected={result.isSelected}
-                aria-label={cardAriaLabel}
-                role="row"
-            >
-                <div role="gridcell">
+            <div className={instanceDetailsCardStyling} onClick={cardClickHandler}>
+                <div>
                     <table className={reportInstanceTable}>
                         <tbody>
                             {renderCardRowsForPropertyBag(result.identifiers)}
@@ -122,6 +127,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                             {renderCardRowsForPropertyBag(result.resolution)}
                         </tbody>
                     </table>
+                    {renderHighlightHiddenButton()}
                     <InstanceDetailsFooter
                         deps={deps}
                         result={result}
