@@ -80,6 +80,7 @@ describe('AutomatedChecksView', () => {
         };
         const leftNavStoreData: LeftNavStoreData = {
             selectedKey: initialSelectedKey,
+            leftNavVisible: true,
         };
 
         const ruleResultsByStatusStub = {
