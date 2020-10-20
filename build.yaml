@@ -48,8 +48,8 @@ jobs:
             displayName: run unit tests
             timeoutInMinutes: 15
 
-          - script: yarn test:report --ci
-            displayName: run report package tests
+          - script: yarn test:report:e2e --ci
+            displayName: run report package e2e tests
             timeoutInMinutes: 5
 
           - task: PublishTestResults@2
