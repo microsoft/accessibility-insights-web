@@ -7,18 +7,18 @@ exports[`UrlsCardRow renders 1`] = `
       class="urlsRowContent"
     >
       <li>
-        <NewTabLink
+        <NewTabLinkWithConfirmationDialog
           href="https://www.test.com"
         >
           https://www.test.com
-        </NewTabLink>
+        </NewTabLinkWithConfirmationDialog>
       </li>
       <li>
-        <NewTabLink
+        <NewTabLinkWithConfirmationDialog
           href="https://www.test.com/more/tests"
         >
           https://www.test.com/more/tests
-        </NewTabLink>
+        </NewTabLinkWithConfirmationDialog>
       </li>
     </ul>
   }
