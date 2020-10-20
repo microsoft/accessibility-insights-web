@@ -4,7 +4,7 @@ import { ClassNameCardRow } from 'common/components/cards/class-name-card-row';
 import { ContentDescriptionCardRow } from 'common/components/cards/content-description-card-row';
 import { HowToCheckWebCardRow } from 'common/components/cards/how-to-check-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
-import { UrlsCardRow } from 'common/components/cards/urls-cards-row';
+import { UrlsCardRow } from 'common/components/cards/urls-card-row';
 import { HowToFixAndroidCardRow } from '../components/cards/how-to-fix-android-card-row';
 import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
 import { PathCardRow } from '../components/cards/path-card-row';

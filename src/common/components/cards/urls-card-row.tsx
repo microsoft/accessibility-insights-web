@@ -5,7 +5,6 @@ import * as React from 'react';
 
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedFC } from '../../../common/react/named-fc';
-import * as styles from './how-to-fix-card-row.scss';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface UrlsCardRowProps extends CardRowProps {
@@ -15,9 +14,9 @@ export interface UrlsCardRowProps extends CardRowProps {
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
     const renderUrlContent = () => {
         return (
-            <div className={styles.howToFixContent}>
-                {props.propertyData.map(url => (
-                    <div>
+            <div>
+                {props.propertyData.map((url, index) => (
+                    <div key={`urls-${index}`}>
                         <NewTabLink href={url}>{url}</NewTabLink>
                     </div>
                 ))}
