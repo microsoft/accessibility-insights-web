@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
-var common = require('../jest.common.config');
+var baseConfig = require('../jest.config.base');
 const rootDir = '../../../';
 const currentDir = '<rootDir>/src/tests/end-to-end';
 
 module.exports = {
-    ...common,
+    ...baseConfig,
     displayName: 'e2e tests',
     globalSetup: `${currentDir}/setup/global-setup.ts`,
     globalTeardown: `${currentDir}/setup/global-teardown.ts`,
+    moduleDirectories: [...baseConfig.moduleDirectories, 'src'],
     moduleFileExtensions: ['ts', 'tsx', 'json', 'js'],
     rootDir: rootDir,
     roots: [currentDir],

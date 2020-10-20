@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
-var common = require('../jest.common.config');
+var baseConfig = require('../jest.config.base');
 const rootDir = '../../../';
 const currentDir = '<rootDir>/src/tests/electron';
 
 module.exports = {
-    ...common,
+    ...baseConfig,
     displayName: 'electron tests',
     globalSetup: `${currentDir}/setup/global-setup.ts`,
     globalTeardown: `${currentDir}/setup/global-teardown.ts`,
+    moduleDirectories: [...baseConfig.moduleDirectories, 'src'],
     moduleFileExtensions: ['ts', 'tsx', 'js'],
     rootDir: rootDir,
     roots: [currentDir],
