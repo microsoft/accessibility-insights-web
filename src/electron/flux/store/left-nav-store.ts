@@ -16,15 +16,22 @@ export class LeftNavStore extends BaseStoreImpl<LeftNavStoreData> {
     public getDefaultState(): LeftNavStoreData {
         return {
             selectedKey: 'automated-checks',
+            leftNavVisible: true,
         };
     }
 
     protected addActionListeners(): void {
         this.actions.itemSelected.addListener(this.onItemSelected);
+        this.actions.setLeftNavVisible.addListener(this.onSetLeftNavVisible);
     }
 
     private onItemSelected = (key: LeftNavItemKey): void => {
         this.state.selectedKey = key;
+        this.emitChanged();
+    };
+
+    private onSetLeftNavVisible = (value: boolean): void => {
+        this.state.leftNavVisible = value;
         this.emitChanged();
     };
 }
