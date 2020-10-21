@@ -29,5 +29,17 @@ exports[` renders 1`] = `
     }
     textLabel={true}
   />
+  <div
+    className="failureInstances"
+  >
+    <h2>
+      Failure Instances
+    </h2>
+    <OutcomeChip
+      count={10}
+      outcomeType="fail"
+    />
+     Failure instances were detected
+  </div>
 </div>
 `;

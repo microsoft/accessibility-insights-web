@@ -11,7 +11,7 @@ import { SummaryReportSummarySection } from 'reports/components/report-sections/
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 
 describe('SummaryReportSummarySection', () => {
-    const violations = [
+    const failed = [
         {
             url: 'https://url.com/failed1',
             numFailures: 1,
@@ -19,72 +19,19 @@ describe('SummaryReportSummarySection', () => {
         },
         {
             url: 'https://url.com/failed2',
-            numFailures: 2,
+            numFailures: 4,
             reportLocation: 'failed report link 2',
         },
     ];
-    const passes = [{}, {}] as SummaryScanResult[];
+    const passed = [{}] as SummaryScanResult[];
     const unscannable = [{}, {}, {}] as SummaryScanError[];
-    const scenarios: [string, SummaryScanResults][] = [
-        [
-            'failure only',
-            {
-                failed: violations,
-                passed: [],
-                unscannable: [],
-            },
-        ],
-        [
-            'unscannable only',
-            {
-                failed: [],
-                passed: [],
-                unscannable: unscannable,
-            },
-        ],
-        [
-            'passes only',
-            {
-                failed: [],
-                passed: passes,
-                unscannable: [],
-            },
-        ],
-        [
-            'failures + unscannable only',
-            {
-                failed: violations,
-                passed: [],
-                unscannable: unscannable,
-            },
-        ],
-        [
-            'failures + passes only',
-            {
-                failed: violations,
-                passed: passes,
-                unscannable: [],
-            },
-        ],
-        [
-            'unscannable + passes only',
-            {
-                failed: [],
-                passed: passes,
-                unscannable: unscannable,
-            },
-        ],
-        [
-            'failures + unscannable + passes',
-            {
-                failed: violations,
-                passed: passes,
-                unscannable: unscannable,
-            },
-        ],
-    ];
+    const results: SummaryScanResults = {
+        failed,
+        passed,
+        unscannable,
+    };
 
-    it.each(scenarios)('BaseSummarySection: %s', (_, results) => {
+    it('renders', () => {
         const props = {
             results,
         } as SummaryReportSectionProps;
