@@ -19,10 +19,7 @@ export class SummaryReportHtmlGenerator {
         private readonly secondsToTimeStringConverter: (seconds: number) => string,
     ) {}
 
-    public generateHtml(
-        scanMetadata: ScanMetadata,
-        results: SummaryScanResults,
-    ): string {
+    public generateHtml(scanMetadata: ScanMetadata, results: SummaryScanResults): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 

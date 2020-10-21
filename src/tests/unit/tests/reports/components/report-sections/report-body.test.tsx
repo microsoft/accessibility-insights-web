@@ -40,7 +40,6 @@ describe('ReportBody', () => {
             pageTitle,
             pageUrl,
             description: 'test description',
-            scanDate: new Date('2019-05-29T19:12:16.804Z'),
             toolData,
             scanResult: {
                 passes: [],
@@ -65,7 +64,9 @@ describe('ReportBody', () => {
             scanMetadata: {
                 toolData,
                 targetAppInfo,
-                timestamp: 'today',
+                timespan: {
+                    scanComplete: new Date(0, 1, 2, 3),
+                },
             },
         };
 

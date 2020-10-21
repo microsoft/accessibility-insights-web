@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { ScanMetadata, ScanTimespan, ToolData } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    ScanTimespan,
+    ToolData,
+} from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';

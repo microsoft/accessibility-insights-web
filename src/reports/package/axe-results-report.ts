@@ -16,6 +16,7 @@ export type AxeResultsReportDeps = {
     getUnifiedRules: typeof convertScanResultsToUnifiedRules;
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate;
     getCards: typeof getCardViewData;
+    getDateFromTimestamp: (timestamp: string) => Date;
 };
 
 export class AxeResultsReport implements AccessibilityInsightsReport.Report {
@@ -26,10 +27,17 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
     ) { }
 
     public asHTML(): string {
-        const { resultDecorator, getUnifiedRules, getUnifiedResults, getCards, reportHtmlGenerator } = this.deps;
+        const {
+            resultDecorator,
+            getUnifiedRules,
+            getUnifiedResults,
+            getCards,
+            reportHtmlGenerator,
+            getDateFromTimestamp
+        } = this.deps;
         const { results, description, scanContext: { pageTitle } } = this.parameters;
 
-        const scanDate = new Date(results.timestamp);
+        const scanDate = getDateFromTimestamp(results.timestamp);
 
         const scanResults = resultDecorator.decorateResults(results);
 
@@ -54,11 +62,12 @@ export class AxeResultsReport implements AccessibilityInsightsReport.Report {
         const scanMetadata: ScanMetadata = {
             targetAppInfo: targetAppInfo,
             toolData: this.toolInfo,
-            timestamp: null,
+            timespan: {
+                scanComplete: scanDate,
+            },
         };
 
         const html = reportHtmlGenerator.generateHtml(
-            scanDate,
             description,
             cardsViewModel,
             scanMetadata,

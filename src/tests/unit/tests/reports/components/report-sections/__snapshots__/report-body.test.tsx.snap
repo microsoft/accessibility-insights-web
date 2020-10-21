@@ -70,13 +70,14 @@ exports[`ReportBody renders 1`] = `
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
-    scanDate={2019-05-29T19:12:16.804Z}
     scanMetadata={
       Object {
         "targetAppInfo": Object {
           "name": "app",
         },
-        "timestamp": "today",
+        "timespan": Object {
+          "scanComplete": 1900-02-02T11:00:00.000Z,
+        },
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -214,13 +215,14 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
-          "timestamp": "today",
+          "timespan": Object {
+            "scanComplete": 1900-02-02T11:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",
@@ -356,13 +358,14 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
-          "timestamp": "today",
+          "timespan": Object {
+            "scanComplete": 1900-02-02T11:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",
@@ -498,13 +501,14 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
-          "timestamp": "today",
+          "timespan": Object {
+            "scanComplete": 1900-02-02T11:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",
@@ -640,13 +644,14 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        scanDate={2019-05-29T19:12:16.804Z}
         scanMetadata={
           Object {
             "targetAppInfo": Object {
               "name": "app",
             },
-            "timestamp": "today",
+            "timespan": Object {
+              "scanComplete": 1900-02-02T11:00:00.000Z,
+            },
             "toolData": Object {
               "applicationProperties": Object {
                 "environmentName": "environmentName",
@@ -782,13 +787,14 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        scanDate={2019-05-29T19:12:16.804Z}
         scanMetadata={
           Object {
             "targetAppInfo": Object {
               "name": "app",
             },
-            "timestamp": "today",
+            "timespan": Object {
+              "scanComplete": 1900-02-02T11:00:00.000Z,
+            },
             "toolData": Object {
               "applicationProperties": Object {
                 "environmentName": "environmentName",
@@ -924,13 +930,14 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        scanDate={2019-05-29T19:12:16.804Z}
         scanMetadata={
           Object {
             "targetAppInfo": Object {
               "name": "app",
             },
-            "timestamp": "today",
+            "timespan": Object {
+              "scanComplete": 1900-02-02T11:00:00.000Z,
+            },
             "toolData": Object {
               "applicationProperties": Object {
                 "environmentName": "environmentName",
@@ -1069,13 +1076,14 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
-          "timestamp": "today",
+          "timespan": Object {
+            "scanComplete": 1900-02-02T11:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",

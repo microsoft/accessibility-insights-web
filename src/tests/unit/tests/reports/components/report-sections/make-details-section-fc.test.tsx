@@ -24,6 +24,9 @@ describe('makeDetailsSection', () => {
     const scanMetadata = {
         targetAppInfo,
         deviceName,
+        timespan: {
+            scanComplete: scanDate,
+        },
     } as ScanMetadata;
     const displayedScanTargetInfo: ScanDetailInfo = {
         label: 'item label',
@@ -47,7 +50,6 @@ describe('makeDetailsSection', () => {
 
     test.each(descriptionValues)('renders with description: %s', description => {
         const props: DetailsSectionProps = {
-            scanDate,
             targetAppInfo,
             description,
             environmentInfo: {

@@ -19,7 +19,6 @@ export type SectionProps = {
     deps: SectionDeps;
     fixInstructionProcessor: FixInstructionProcessor;
     description: string;
-    scanDate: Date;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;

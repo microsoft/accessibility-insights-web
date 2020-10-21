@@ -3,7 +3,11 @@
 
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { ScanMetadata, ScanTimespan, ToolData } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    ScanTimespan,
+    ToolData,
+} from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';

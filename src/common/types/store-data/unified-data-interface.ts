@@ -51,8 +51,7 @@ export type ScanTimespan = {
 };
 
 export type ScanMetadata = {
-    timespan?: ScanTimespan;
-    timestamp?: string;
+    timespan: ScanTimespan;
     toolData: ToolData;
     targetAppInfo: TargetAppData;
     deviceName?: string;

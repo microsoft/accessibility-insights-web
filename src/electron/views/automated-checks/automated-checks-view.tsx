@@ -53,6 +53,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
         isResultHighlightUnavailable: IsResultHighlightUnavailable;
+        getDateFromTimestamp: (timestamp: string) => Date;
     };
 
 export type AutomatedChecksViewProps = {
@@ -102,7 +103,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             highlightedResultUids,
         );
 
-        const scanMetadata: ScanMetadata = this.getScanMetadata(status, unifiedScanResultStoreData);
+        const scanMetadata: ScanMetadata = this.getScanMetadata(
+            status,
+            unifiedScanResultStoreData,
+            deps.getDateFromTimestamp,
+        );
 
         const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
 
@@ -181,11 +186,14 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     private getScanMetadata(
         status: ScanStatus,
         unifiedScanResultStoreData: UnifiedScanResultStoreData,
+        getDateFromTimestamp: (timestamp: string) => Date,
     ): ScanMetadata {
         return status !== ScanStatus.Completed
             ? null
             : {
-                  timestamp: unifiedScanResultStoreData.timestamp,
+                  timespan: {
+                      scanComplete: getDateFromTimestamp(unifiedScanResultStoreData.timestamp),
+                  },
                   toolData: unifiedScanResultStoreData.toolInfo,
                   targetAppInfo: unifiedScanResultStoreData.targetAppInfo,
                   deviceName: unifiedScanResultStoreData.platformInfo.deviceName,

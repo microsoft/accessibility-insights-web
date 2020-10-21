@@ -61,6 +61,7 @@ describe(DetailsViewContent, () => {
     let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
     let timestamp: string;
     let toolData: ToolData;
+    let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType(DetailsViewActionMessageCreator);
@@ -86,6 +87,8 @@ describe(DetailsViewContent, () => {
         );
         isResultHighlightUnavailableStub = () => null;
         timestamp = 'timestamp';
+        getDateFromTimestampMock = Mock.ofInstance(() => null);
+        getDateFromTimestampMock.setup(gd => gd(timestamp)).returns(() => new Date(0, 1, 2, 3));
         targetAppInfo = {
             name: pageTitle,
             url: pageUrl,
@@ -100,6 +103,7 @@ describe(DetailsViewContent, () => {
             getCardViewData: getCardViewDataMock.object,
             getCardSelectionViewData: getCardSelectionViewDataMock.object,
             isResultHighlightUnavailable: isResultHighlightUnavailableStub,
+            getDateFromTimestamp: getDateFromTimestampMock.object,
         } as DetailsViewContainerDeps;
     });
 

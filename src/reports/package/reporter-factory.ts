@@ -97,6 +97,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUnifiedRules: convertScanResultsToUnifiedRules,
         getUnifiedResults: getUnifiedResults,
         getCards: getCardViewData,
+        getDateFromTimestamp: DateProvider.getDateFromTimestamp,
     };
 
     return new AxeResultsReport(deps, parameters, toolData);
