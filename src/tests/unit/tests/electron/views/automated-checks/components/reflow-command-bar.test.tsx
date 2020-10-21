@@ -23,7 +23,6 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 
 describe('ReflowCommandBar', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
-    let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
     let cardsViewDataStub: CardsViewModel;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let scanMetadataStub: ScanMetadata;
@@ -36,10 +35,11 @@ describe('ReflowCommandBar', () => {
         featureFlagStoreDataStub = {
             somefeatureflag: true,
         };
-        getDateFromTimestampMock = Mock.ofInstance((_: string) => null as Date);
         cardsViewDataStub = {} as CardsViewModel;
         scanMetadataStub = {
-            timestamp: '1234',
+            timespan: {
+                scanComplete: scanDateStub,
+            },
             toolData: {} as ToolData,
             targetAppInfo: {
                 name: 'scan target name',
@@ -53,14 +53,9 @@ describe('ReflowCommandBar', () => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
         scanPortStub = 1111;
 
-        getDateFromTimestampMock
-            .setup(mock => mock(scanMetadataStub.timestamp))
-            .returns(() => scanDateStub);
-
         props = {
             deps: {
                 scanActionCreator: null,
-                getDateFromTimestamp: getDateFromTimestampMock.object,
                 reportGenerator: reportGeneratorMock.object,
             } as ReflowCommandBarDeps,
             scanStoreData: {
