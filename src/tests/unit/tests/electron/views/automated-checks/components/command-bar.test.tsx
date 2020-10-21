@@ -22,7 +22,6 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CommandBar', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
-    let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
     let cardsViewDataStub: CardsViewModel;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let scanMetadataStub: ScanMetadata;
@@ -32,21 +31,18 @@ describe('CommandBar', () => {
         featureFlagStoreDataStub = {
             somefeatureflag: true,
         };
-        getDateFromTimestampMock = Mock.ofInstance((_: string) => null as Date);
         cardsViewDataStub = {} as CardsViewModel;
+        scanDateStub = new Date(0);
         scanMetadataStub = {
-            timestamp: '1234',
+            timespan: {
+                scanComplete: scanDateStub,
+            },
             toolData: {} as ToolData,
             targetAppInfo: {
                 name: 'scan target name',
             },
         };
-        scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);
-
-        getDateFromTimestampMock
-            .setup(mock => mock(scanMetadataStub.timestamp))
-            .returns(() => scanDateStub);
     });
 
     describe('renders', () => {
@@ -54,7 +50,6 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: null,
-                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 } as CommandBarDeps,
                 scanStoreData: {
@@ -74,7 +69,6 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: null,
-                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 } as CommandBarDeps,
                 scanStoreData: {
@@ -97,7 +91,6 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: null,
-                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
                 scanStoreData: {
@@ -129,7 +122,6 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     scanActionCreator: scanActionCreatorMock.object,
-                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
                 scanPort: port,
@@ -157,7 +149,6 @@ describe('CommandBar', () => {
             const props = {
                 deps: {
                     dropdownClickHandler: dropdownClickHandlerMock.object,
-                    getDateFromTimestamp: getDateFromTimestampMock.object,
                     reportGenerator: reportGeneratorMock.object,
                 },
                 scanStoreData: {

@@ -9,7 +9,8 @@ import { BaseSummaryReportSectionProps } from 'reports/components/report-section
 export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps>(
     'SummaryReportDetailsSection',
     props => {
-        const { scanMetadata, scanTimespan, toUtcString, secondsToTimeString } = props;
+        const { scanMetadata, toUtcString, secondsToTimeString } = props;
+        const scanTimespan = scanMetadata.timespan;
 
         const createListItem = (label: string, content: string | JSX.Element) => (
             <li>

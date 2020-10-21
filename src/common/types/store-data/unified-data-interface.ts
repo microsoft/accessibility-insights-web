@@ -12,7 +12,7 @@ export interface ScanEngineProperties {
 
 export interface ApplicationProperties {
     name: string;
-    version: string;
+    version?: string;
     environmentName?: string;
 }
 
@@ -44,8 +44,14 @@ export interface ToolData {
     applicationProperties: ApplicationProperties;
 }
 
+export type ScanTimespan = {
+    scanComplete: Date;
+    scanStart?: Date;
+    durationSeconds?: number;
+};
+
 export type ScanMetadata = {
-    timestamp: string;
+    timespan: ScanTimespan;
     toolData: ToolData;
     targetAppInfo: TargetAppData;
     deviceName?: string;

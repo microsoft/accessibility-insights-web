@@ -56,10 +56,10 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const fixInstructionProcessor = new FixInstructionProcessor();
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -97,6 +97,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUnifiedRules: convertScanResultsToUnifiedRules,
         getUnifiedResults: getUnifiedResults,
         getCards: getCardViewData,
+        getDateFromTimestamp: DateProvider.getDateFromTimestamp,
     };
 
     return new AxeResultsReport(deps, parameters, toolData);
@@ -106,10 +107,10 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
     const { serviceName, axeVersion, userAgent } = parameters;
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -132,10 +133,10 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
     const { serviceName, axeVersion, userAgent } = parameters;
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 

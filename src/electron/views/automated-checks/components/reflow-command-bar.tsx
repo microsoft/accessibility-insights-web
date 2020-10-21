@@ -25,7 +25,6 @@ import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-button
 export type ReflowCommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    getDateFromTimestamp: (timestamp: string) => Date;
     reportGenerator: ReportGenerator;
 } & ReportExportComponentDeps;
 
@@ -63,10 +62,9 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 deps={deps}
                 reportExportFormat={'AutomatedChecks'}
                 pageTitle={scanMetadata.targetAppInfo.name}
-                scanDate={deps.getDateFromTimestamp(scanMetadata.timestamp)}
+                scanDate={scanMetadata.timespan.scanComplete}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                        deps.getDateFromTimestamp(scanMetadata.timestamp),
                         cardsViewData,
                         description,
                         scanMetadata,

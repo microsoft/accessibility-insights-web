@@ -5,10 +5,10 @@ import { createToolData } from 'common/application-properties-provider';
 describe('createToolData', () => {
     it('returns proper tool data', () => {
         const result = createToolData(
-            'test-tool-name',
-            'test-tool-version',
             'test-engine-name',
             'test-engine-version',
+            'test-tool-name',
+            'test-tool-version',
             'test-environment-name',
         );
 

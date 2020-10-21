@@ -61,6 +61,9 @@ describe('ReportHtmlGenerator', () => {
         const scanMetadata = {
             toolData: toolData,
             targetAppInfo: targetAppInfo,
+            timespan: {
+                scanComplete: scanDate,
+            },
         } as ScanMetadata;
 
         const sectionProps: ReportBodyProps = {
@@ -76,7 +79,6 @@ describe('ReportHtmlGenerator', () => {
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
             description,
-            scanDate,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
@@ -113,7 +115,6 @@ describe('ReportHtmlGenerator', () => {
         );
 
         const actual = testObject.generateHtml(
-            scanDate,
             description,
             {
                 cards: exampleUnifiedStatusResults,

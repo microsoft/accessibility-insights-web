@@ -36,6 +36,7 @@ import { DetailsViewCommandBarDeps } from './components/details-view-command-bar
 import { DetailsViewOverlayDeps } from './components/details-view-overlay/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
+    DetailsViewContentDeps,
     GetDetailsRightPanelConfiguration,
 } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
@@ -69,7 +70,8 @@ export type DetailsViewContainerDeps = {
     WithStoreSubscriptionDeps<DetailsViewContainerState> &
     ThemeDeps &
     TargetChangeDialogDeps &
-    NarrowModeDetectorDeps;
+    NarrowModeDetectorDeps &
+    DetailsViewContentDeps;
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DateProvider } from 'common/date-provider';
 import {
     CardSelectionViewData,
     getCardSelectionViewData,
@@ -36,7 +37,7 @@ import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-m
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('AutomatedChecksView', () => {
     const initialSelectedKey: LeftNavItemKey = 'automated-checks';
@@ -45,6 +46,7 @@ describe('AutomatedChecksView', () => {
     let screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
     let getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
     let getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
+    let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
 
     beforeEach(() => {
         isResultHighlightUnavailableStub = () => null;
@@ -54,6 +56,7 @@ describe('AutomatedChecksView', () => {
             'not-highlighted-uid-1': 'hidden',
         } as ResultsHighlightStatus;
         const timeStampStub = 'test timestamp';
+        const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const toolDataStub: ToolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;
@@ -100,6 +103,7 @@ describe('AutomatedChecksView', () => {
         screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
         getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
         getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
+        getDateFromTimestampMock = Mock.ofInstance(DateProvider.getDateFromTimestamp);
 
         props = {
             deps: {
@@ -109,6 +113,7 @@ describe('AutomatedChecksView', () => {
                 screenshotViewModelProvider: screenshotViewModelProviderMock.object,
                 isResultHighlightUnavailable: isResultHighlightUnavailableStub,
                 contentPagesInfo: contentPagesInfo,
+                getDateFromTimestamp: getDateFromTimestampMock.object,
             },
             cardSelectionStoreData,
             androidSetupStoreData: {},
@@ -143,6 +148,7 @@ describe('AutomatedChecksView', () => {
             .setup(provider => provider(unifiedScanResultStoreData, ['highlighted-uid-1']))
             .returns(() => screenshotViewModelStub)
             .verifiable(Times.once());
+        getDateFromTimestampMock.setup(gd => gd(timeStampStub)).returns(() => scanDate);
     });
 
     const createContentPagesInfo = (): ContentPagesInfo => {
