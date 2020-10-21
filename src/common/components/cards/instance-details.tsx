@@ -5,7 +5,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
-import { useState } from 'react';
 import {
     focused,
     hiddenHighlightButton,
@@ -48,7 +47,7 @@ export type InstanceDetailsProps = {
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
-    const [cardFocused, setCardFocus] = useState(false);
+    const [cardFocused, setCardFocus] = React.useState(false);
 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
