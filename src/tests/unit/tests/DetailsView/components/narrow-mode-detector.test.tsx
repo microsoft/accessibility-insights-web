@@ -6,8 +6,8 @@ import {
     NarrowModeDetector,
     NarrowModeDetectorProps,
     NarrowModeStatus,
-    narrowModeThresholds,
 } from 'DetailsView/components/narrow-mode-detector';
+import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -15,10 +15,20 @@ const TestComponent = NamedFC<{ narrowModeStatus: NarrowModeStatus }>('TestCompo
     return <h1>Test component</h1>;
 });
 
+const narrowModeThresholds = {
+    collapseHeaderAndNavThreshold: 600,
+    collapseCommandBarThreshold: 960,
+};
+
+const getNarrowModeThresholdsMock = (): NarrowModeThresholds => {
+    return narrowModeThresholds;
+};
+
 describe(NarrowModeDetector, () => {
     describe('render', () => {
         it('renders ReactResizeDetector ', () => {
             const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: false,
                 Component: TestComponent,
                 childrenProps: null,
@@ -29,6 +39,7 @@ describe(NarrowModeDetector, () => {
 
         it('renders child component properly when header is collapsed', () => {
             const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: true,
                 Component: TestComponent,
                 childrenProps: null,
@@ -49,6 +60,7 @@ describe(NarrowModeDetector, () => {
 
         it('renders child component properly when command bar is collapsed', () => {
             const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: true,
                 Component: TestComponent,
                 childrenProps: null,
@@ -69,6 +81,7 @@ describe(NarrowModeDetector, () => {
 
         it('renders child component properly when nothing is collapsed', () => {
             const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: true,
                 Component: TestComponent,
                 childrenProps: null,
@@ -89,6 +102,7 @@ describe(NarrowModeDetector, () => {
 
         it('renders child component properly when narrow mode is disabled', () => {
             const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: false,
                 Component: TestComponent,
                 childrenProps: null,

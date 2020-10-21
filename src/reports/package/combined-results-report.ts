@@ -1,24 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {  ToolData, ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
-import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
+import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
 import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
+import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 
-export type SummaryResultsReportDeps = {
-    reportHtmlGenerator: SummaryReportHtmlGenerator;
+export type CombinedResultsReportDeps = {
+    reportHtmlGenerator: CombinedReportHtmlGenerator;
 };
 
-export class SummaryResultsReport implements AccessibilityInsightsReport.Report {
+export class CombinedResultsReport implements AccessibilityInsightsReport.Report {
     constructor(
-        private readonly deps: SummaryResultsReportDeps,
-        private readonly parameters: AccessibilityInsightsReport.SummaryReportParameters,
+        private readonly deps: CombinedResultsReportDeps,
+        private readonly parameters: AccessibilityInsightsReport.CombinedReportParameters,
         private readonly toolInfo: ToolData,
-    ) { }
+    ) {}
 
     public asHTML(): string {
-        const reportHtmlGenerator = this.deps.reportHtmlGenerator;
-        const { results, scanDetails } = this.parameters;
+        const { scanDetails } = this.parameters;
 
         const targetAppInfo = {
             name: scanDetails.basePageTitle,
@@ -37,12 +36,6 @@ export class SummaryResultsReport implements AccessibilityInsightsReport.Report 
             durationSeconds: scanDetails.durationSeconds,
         }
 
-        const html = reportHtmlGenerator.generateHtml(
-            timespan,
-            scanMetadata,
-            results,
-        );
-
-        return html;
+        return this.deps.reportHtmlGenerator.generateHtml(timespan, scanMetadata);
     }
 }

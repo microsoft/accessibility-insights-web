@@ -3,16 +3,20 @@
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { AxeResultsReport } from './axe-results-report';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
+import { CombinedResultsReport } from 'reports/package/combined-results-report';
 
 export type AxeResultsReportGenerator =
     (parameters: AccessibilityInsightsReport.AxeReportParameters) => AxeResultsReport;
 export type SummaryResultsReportGenerator =
     (parameters: AccessibilityInsightsReport.SummaryReportParameters) => SummaryResultsReport;
+export type CombinedReportGenerator =
+    (parameters: AccessibilityInsightsReport.CombinedReportParameters) => CombinedResultsReport;
 
 export class Reporter implements AccessibilityInsightsReport.Reporter {
     constructor(
         private readonly axeResultsReportGenerator: AxeResultsReportGenerator,
-        private readonly summaryResultsReportGenerator: SummaryResultsReportGenerator
+        private readonly summaryResultsReportGenerator: SummaryResultsReportGenerator,
+        private readonly combinedResultsReportGenerator: CombinedReportGenerator,
     ) { }
 
     public fromAxeResult(
@@ -30,6 +34,6 @@ export class Reporter implements AccessibilityInsightsReport.Reporter {
     public fromCombinedResults(
         parameters: AccessibilityInsightsReport.CombinedReportParameters
     ): AccessibilityInsightsReport.Report {
-        return null;
+        return this.combinedResultsReportGenerator(parameters);
     }
 }

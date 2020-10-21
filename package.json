@@ -1,5 +1,6 @@
 {
     "name": "accessibility-insights-web",
+    "private": true,
     "version": "1.0.0",
     "description": "Accessibility Insights for Web",
     "license": "MIT",
@@ -11,6 +12,9 @@
         "node": ">=12.16.1",
         "yarn": "^1.22.4"
     },
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
         "ada-cat": "grunt ada-cat",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:unified",
@@ -55,6 +59,7 @@
         "test:e2e:docker:run": "docker run -t accessibility-insights-web-e2e",
         "test:e2e:docker": "npm-run-all --serial test:e2e:docker:build \"test:e2e:docker:run {@}\" --",
         "test:unified": "cross-env --max-old-space-size=16384 jest --projects src/tests/electron --runInBand --forceExit --detectOpenHandles",
+        "test:report:e2e": "lerna --scope accessibility-insights-report-e2e-tests run test",
         "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:all": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser watch:webpack-unified",
         "watch:build:web": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser",
@@ -73,7 +78,7 @@
         "@types/chrome": "0.0.125",
         "@types/enzyme": "^3.10.7",
         "@types/enzyme-adapter-react-16": "^1.0.6",
-        "@types/jest": "^26.0.14",
+        "@types/jest": "^26.0.15",
         "@types/jsdom": "^16.2.4",
         "@types/lodash": "^4.14.162",
         "@types/luxon": "^1.25.0",
@@ -118,9 +123,10 @@
         "grunt-sass": "^3.1.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^26.6.0",
-        "jest-circus": "^26.5.3",
+        "jest-circus": "^26.6.0",
         "jest-junit": "^12.0.0",
         "js-yaml": "^3.14.0",
+        "lerna": "^3.22.1",
         "license-check-and-add": "^3.0.4",
         "make-dir": "^3.1.0",
         "mini-css-extract-plugin": "1.0.0",
@@ -130,7 +136,7 @@
         "playwright": "^1.5.1",
         "preprocess": "^3.2.0",
         "prettier": "^2.1.2",
-        "react-devtools": "^4.8.2",
+        "react-devtools": "^4.9.0",
         "regenerator-runtime": "^0.13.7",
         "sass-loader": "^10.0.3",
         "script-loader": "0.7.2",
@@ -140,7 +146,7 @@
         "spectron": "^10.0.1",
         "terser-webpack-plugin": "^4.2.3",
         "ts-jest": "^26.4.1",
-        "ts-loader": "^8.0.5",
+        "ts-loader": "^8.0.6",
         "typed-scss-modules": "^3.1.0",
         "typemoq": "^2.1.0",
         "typescript": "^4.0.3",

@@ -7,13 +7,14 @@
 *.user
 
 # Output of build/deploy tasks
-/dist/
 /ref/
 /extension/
-/test-results/
 /package/
+
 bundle/
+dist/
 drop/
+test-results/
 *.scss.d.ts
 
 # Dependency directories

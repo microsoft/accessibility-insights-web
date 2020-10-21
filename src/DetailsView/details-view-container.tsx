@@ -5,7 +5,10 @@ import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
-import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
+import {
+    NarrowModeDetector,
+    NarrowModeDetectorDeps,
+} from 'DetailsView/components/narrow-mode-detector';
 import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ThemeDeps } from '../common/components/theme';
@@ -65,7 +68,8 @@ export type DetailsViewContainerDeps = {
     InteractiveHeaderDeps &
     WithStoreSubscriptionDeps<DetailsViewContainerState> &
     ThemeDeps &
-    TargetChangeDialogDeps;
+    TargetChangeDialogDeps &
+    NarrowModeDetectorDeps;
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;
@@ -98,6 +102,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <>
                     <NarrowModeDetector
+                        deps={this.props.deps}
                         isNarrowModeEnabled={this.hasStores()}
                         Component={Header}
                         childrenProps={headerProps}
