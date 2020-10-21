@@ -9,7 +9,7 @@ import { OutcomeChip } from 'reports/components/outcome-chip';
 import { allUrlOutcomeTypes, UrlOutcomeType } from 'reports/components/url-outcome-type';
 
 export const SummaryReportSummarySection = NamedFC<SummaryReportSectionProps>(
-    'BaseSummarySection',
+    'SummaryReportSummarySection',
     props => {
         const { results } = props;
 
