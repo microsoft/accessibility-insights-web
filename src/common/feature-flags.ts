@@ -124,7 +124,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             defaultValue: false,
             displayableName: 'Save / Load Assessment',
             displayableDescription: 'Enables saving and loading assessments.',
-            isPreviewFeature: true,
+            isPreviewFeature: false,
             forceDefault: false,
         },
     ];
