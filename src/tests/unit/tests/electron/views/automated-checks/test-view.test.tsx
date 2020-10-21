@@ -20,7 +20,7 @@ describe('TestView', () => {
     beforeEach(() => {
         scanMetadataStub = {
             timespan: {
-                scanComplete: new Date(0, 1, 2, 3, 4),
+                scanComplete: new Date(Date.UTC(0, 1, 2, 3, 4)),
             },
         } as ScanMetadata;
         cardsViewDataStub = {

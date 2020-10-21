@@ -76,7 +76,7 @@ exports[`ReportBody renders 1`] = `
           "name": "app",
         },
         "timespan": Object {
-          "scanComplete": 1900-02-02T11:00:00.000Z,
+          "scanComplete": 1900-02-02T03:00:00.000Z,
         },
         "toolData": Object {
           "applicationProperties": Object {
@@ -221,7 +221,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           },
           "timespan": Object {
-            "scanComplete": 1900-02-02T11:00:00.000Z,
+            "scanComplete": 1900-02-02T03:00:00.000Z,
           },
           "toolData": Object {
             "applicationProperties": Object {
@@ -364,7 +364,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           },
           "timespan": Object {
-            "scanComplete": 1900-02-02T11:00:00.000Z,
+            "scanComplete": 1900-02-02T03:00:00.000Z,
           },
           "toolData": Object {
             "applicationProperties": Object {
@@ -507,7 +507,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           },
           "timespan": Object {
-            "scanComplete": 1900-02-02T11:00:00.000Z,
+            "scanComplete": 1900-02-02T03:00:00.000Z,
           },
           "toolData": Object {
             "applicationProperties": Object {
@@ -650,7 +650,7 @@ exports[`ReportBody renders 1`] = `
               "name": "app",
             },
             "timespan": Object {
-              "scanComplete": 1900-02-02T11:00:00.000Z,
+              "scanComplete": 1900-02-02T03:00:00.000Z,
             },
             "toolData": Object {
               "applicationProperties": Object {
@@ -793,7 +793,7 @@ exports[`ReportBody renders 1`] = `
               "name": "app",
             },
             "timespan": Object {
-              "scanComplete": 1900-02-02T11:00:00.000Z,
+              "scanComplete": 1900-02-02T03:00:00.000Z,
             },
             "toolData": Object {
               "applicationProperties": Object {
@@ -936,7 +936,7 @@ exports[`ReportBody renders 1`] = `
               "name": "app",
             },
             "timespan": Object {
-              "scanComplete": 1900-02-02T11:00:00.000Z,
+              "scanComplete": 1900-02-02T03:00:00.000Z,
             },
             "toolData": Object {
               "applicationProperties": Object {
@@ -1082,7 +1082,7 @@ exports[`ReportBody renders 1`] = `
             "name": "app",
           },
           "timespan": Object {
-            "scanComplete": 1900-02-02T11:00:00.000Z,
+            "scanComplete": 1900-02-02T03:00:00.000Z,
           },
           "toolData": Object {
             "applicationProperties": Object {

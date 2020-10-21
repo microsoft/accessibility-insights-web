@@ -19,7 +19,7 @@ exports[`TestView when status scan <Completed> 1`] = `
     scanMetadata={
       Object {
         "timespan": Object {
-          "scanComplete": 1900-02-02T11:04:00.000Z,
+          "scanComplete": 1900-02-02T03:04:00.000Z,
         },
       }
     }

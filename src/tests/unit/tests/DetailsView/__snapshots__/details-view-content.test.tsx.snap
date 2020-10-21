@@ -191,7 +191,7 @@ exports[` render renders normally 1`] = `
           "url": "http://detailsViewContainerTest/url/",
         },
         "timespan": Object {
-          "scanComplete": 1900-02-02T11:00:00.000Z,
+          "scanComplete": 1900-02-02T03:00:00.000Z,
         },
         "toolData": Object {
           "applicationProperties": Object {

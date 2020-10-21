@@ -56,7 +56,7 @@ describe('AutomatedChecksView', () => {
             'not-highlighted-uid-1': 'hidden',
         } as ResultsHighlightStatus;
         const timeStampStub = 'test timestamp';
-        const scanDate = new Date(0, 1, 2, 3);
+        const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const toolDataStub: ToolData = {
             applicationProperties: { name: 'some app' },
         } as ToolData;

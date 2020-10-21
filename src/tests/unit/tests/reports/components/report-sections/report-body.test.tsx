@@ -18,6 +18,7 @@ describe('ReportBody', () => {
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
+        const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
@@ -65,7 +66,7 @@ describe('ReportBody', () => {
                 toolData,
                 targetAppInfo,
                 timespan: {
-                    scanComplete: new Date(0, 1, 2, 3),
+                    scanComplete: scanDate,
                 },
             },
         };
