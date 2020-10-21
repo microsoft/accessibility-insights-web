@@ -106,7 +106,7 @@
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.5",
         "eslint": "^7.11.0",
-        "eslint-plugin-react": "^7.21.4",
+        "eslint-plugin-react": "^7.21.5",
         "eslint-plugin-security": "^1.4.0",
         "express": "^4.16.4",
         "extract-zip": "^2.0.1",
