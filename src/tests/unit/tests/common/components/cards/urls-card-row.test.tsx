@@ -3,11 +3,8 @@
 import * as React from 'react';
 
 import { shallow } from 'enzyme';
-import {
-    UrlsCardRow,
-    UrlsCardRowDeps,
-    UrlsCardRowProps,
-} from 'common/components/cards/urls-card-row';
+import { UrlsCardRow, UrlsCardRowProps } from 'common/components/cards/urls-card-row';
+import { CardRowDeps } from 'common/configs/unified-result-property-configurations';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 
 describe('UrlsCardRow', () => {
@@ -16,7 +13,7 @@ describe('UrlsCardRow', () => {
             propertyData: { urls: ['https://www.test.com', 'https://www.test.com/more/tests'] },
             deps: {
                 LinkComponent: NewTabLinkWithConfirmationDialog,
-            } as UrlsCardRowDeps,
+            } as CardRowDeps,
             index: -1,
         };
         const testSubject = shallow(<UrlsCardRow {...props} />);

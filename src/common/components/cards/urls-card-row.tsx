@@ -2,22 +2,16 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { CardRowDeps, CardRowProps } from 'common/configs/unified-result-property-configurations';
+import { CardRowProps } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
-import { LinkComponentType } from 'common/types/link-component-type';
 import { SimpleCardRow } from './simple-card-row';
 import * as styles from './urls-card-row.scss';
-
-export type UrlsCardRowDeps = CardRowDeps & {
-    LinkComponent: LinkComponentType;
-};
 
 export interface UrlsPropertyData {
     urls: string[];
 }
 
 export interface UrlsCardRowProps extends CardRowProps {
-    deps: UrlsCardRowDeps;
     propertyData: UrlsPropertyData;
 }
 
