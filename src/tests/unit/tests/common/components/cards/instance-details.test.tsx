@@ -17,7 +17,7 @@ import {
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import {
     focused,
@@ -28,6 +28,15 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { exampleUnifiedResult } from './sample-view-model-data';
 
+jest.mock('react', () => {
+    const realReact = jest.requireActual('react');
+    const useRefMock = jest.fn();
+    return {
+        ...realReact,
+        useRef: useRefMock,
+    };
+});
+
 describe('InstanceDetails', () => {
     let props: InstanceDetailsProps;
     let deps: InstanceDetailsDeps;
@@ -35,13 +44,14 @@ describe('InstanceDetails', () => {
     let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
     let resultStub: UnifiedResult;
     let indexStub: number;
+    let hiddenButtonRefStub: any;
 
     beforeEach(() => {
         getPropertyConfigByIdMock = Mock.ofInstance(_ => null);
         cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         resultStub = exampleUnifiedResult;
         indexStub = 22;
-
+        hiddenButtonRefStub = { current: { focus: jest.fn(), click: jest.fn() } };
         deps = {
             getPropertyConfigById: getPropertyConfigByIdMock.object,
             cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
@@ -66,10 +76,22 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
-    it.each([
-        ['card', instanceDetailsCard],
-        ['hidden highlight button', hiddenHighlightButton],
-    ])('dispatches the card selection message when %s is clicked', (_, className) => {
+    it('forwards focus and click events to hidden button when card is clicked', () => {
+        (React.useRef as any).mockReturnValueOnce(hiddenButtonRefStub);
+        setupGetPropertyConfigByIdMock();
+
+        const wrapper = shallow(<InstanceDetails {...props} />);
+        const element = wrapper.find(`.${instanceDetailsCard}`);
+        expect(element.length).toBe(1);
+
+        element.simulate('click');
+
+        expect(hiddenButtonRefStub.current.focus).toHaveBeenCalled();
+        expect(hiddenButtonRefStub.current.click).toHaveBeenCalled();
+    });
+
+    it('dispatches the card selection message when hidden highlight button is clicked', () => {
+        (React.useRef as any).mockReturnValueOnce(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();
         const stopPropagationMock = jest.fn();
         const eventStub = {
@@ -81,18 +103,18 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const button = wrapper.find(`.${className}`);
-        expect(button.length).toBe(1);
+        const element = wrapper.find(`.${hiddenHighlightButton}`);
+        expect(element.length).toBe(1);
 
-        button.simulate('click', eventStub);
+        element.simulate('click', eventStub);
         expect(stopPropagationMock).toHaveBeenCalled();
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
+    // need to set document.activeElement
     it('applies focused styling on card when hidden highlight button is focused', () => {
+        (React.useRef as jest.Mock).mockReturnValue(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();
-        const testSubject = shallow(<InstanceDetails {...props} />);
-
         const wrapper = shallow(<InstanceDetails {...props} />);
         const button = wrapper.find(`.${hiddenHighlightButton}`);
         expect(button.length).toBe(1);
@@ -105,6 +127,7 @@ describe('InstanceDetails', () => {
     });
 
     it('does not dispatch the card selection message when card is clicked if highlighting is not supported', () => {
+        (React.useRef as any).mockReturnValueOnce(hiddenButtonRefStub);
         deps = {
             ...deps,
             cardInteractionSupport: noCardInteractionsSupported,
