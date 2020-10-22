@@ -3,12 +3,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ScanTimespan } from 'common/types/store-data/unified-data-interface';
 import { IMock, Mock } from 'typemoq';
-import {
-    ScanTimespan,
-    SummaryReportSectionProps,
-} from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 
 describe(SummaryReportDetailsSection, () => {
     const scanStart = new Date(0, 1, 2, 3);
@@ -44,9 +41,9 @@ describe(SummaryReportDetailsSection, () => {
                 name: 'page name',
                 url: 'page url',
             },
+            timespan: scanTimespan,
         } as ScanMetadata;
         const props = {
-            scanTimespan,
             scanMetadata,
             toUtcString: toUtcStringMock.object,
             secondsToTimeString: secondsToTimeStringMock.object,

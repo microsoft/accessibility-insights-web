@@ -9,7 +9,12 @@ import { DetailsViewBody } from 'DetailsView/details-view-body';
 import { DetailsViewContainerProps } from 'DetailsView/details-view-container';
 import * as React from 'react';
 
+export type DetailsViewContentDeps = {
+    getDateFromTimestamp: (timestamp: string) => Date;
+};
+
 export type DetailsViewContentProps = DetailsViewContainerProps & {
+    deps: DetailsViewContentDeps;
     isSideNavOpen: boolean;
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
@@ -87,8 +92,14 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             url: props.storeState.tabStoreData.url,
         };
 
+        const scanDate = props.deps.getDateFromTimestamp(
+            props.storeState.unifiedScanResultStoreData.timestamp,
+        );
+
         const scanMetadata: ScanMetadata = {
-            timestamp: props.storeState.unifiedScanResultStoreData.timestamp,
+            timespan: {
+                scanComplete: scanDate,
+            },
             targetAppInfo: targetAppInfo,
             toolData: props.storeState.unifiedScanResultStoreData.toolInfo,
         };

@@ -18,7 +18,9 @@ exports[`TestView when status scan <Completed> 1`] = `
     deps={Object {}}
     scanMetadata={
       Object {
-        "timestamp": "some time",
+        "timespan": Object {
+          "scanComplete": 1900-02-02T03:04:00.000Z,
+        },
       }
     }
     userConfigurationStoreData={

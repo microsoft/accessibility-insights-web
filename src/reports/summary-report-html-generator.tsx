@@ -7,10 +7,7 @@ import { ReportBody, ReportBodyProps } from './components/report-sections/report
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import { ReportSectionFactory } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
-import {
-    SummaryReportSectionProps,
-    ScanTimespan,
-} from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 
 export class SummaryReportHtmlGenerator {
@@ -22,11 +19,7 @@ export class SummaryReportHtmlGenerator {
         private readonly secondsToTimeStringConverter: (seconds: number) => string,
     ) {}
 
-    public generateHtml(
-        scanTimespan: ScanTimespan,
-        scanMetadata: ScanMetadata,
-        results: SummaryScanResults,
-    ): string {
+    public generateHtml(scanMetadata: ScanMetadata, results: SummaryScanResults): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
@@ -34,7 +27,6 @@ export class SummaryReportHtmlGenerator {
             deps: {
                 collapsibleControl: ReportCollapsibleContainerControl,
             },
-            scanTimespan,
             scanMetadata,
             results,
             toUtcString: this.utcDateConverter,

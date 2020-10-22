@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UrlsCardRow renders 1`] = `
+<SimpleCardRow
+  content={
+    <ul
+      class="urlsRowContent"
+    >
+      <li>
+        <NewTabLinkWithConfirmationDialog
+          href="https://www.test.com"
+        >
+          https://www.test.com
+        </NewTabLinkWithConfirmationDialog>
+      </li>
+      <li>
+        <NewTabLinkWithConfirmationDialog
+          href="https://www.test.com/more/tests"
+        >
+          https://www.test.com/more/tests
+        </NewTabLinkWithConfirmationDialog>
+      </li>
+    </ul>
+  }
+  label="URL"
+  rowKey="urls-row--1"
+/>
+`;

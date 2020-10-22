@@ -23,7 +23,6 @@ import * as styles from './command-bar.scss';
 export type CommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    getDateFromTimestamp: (timestamp: string) => Date;
     reportGenerator: ReportGenerator;
 } & ReportExportComponentDeps;
 
@@ -49,10 +48,9 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
                 deps={deps}
                 reportExportFormat={'AutomatedChecks'}
                 pageTitle={scanMetadata.targetAppInfo.name}
-                scanDate={deps.getDateFromTimestamp(scanMetadata.timestamp)}
+                scanDate={scanMetadata.timespan.scanComplete}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                        deps.getDateFromTimestamp(scanMetadata.timestamp),
                         cardsViewData,
                         description,
                         scanMetadata,

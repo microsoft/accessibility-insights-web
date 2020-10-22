@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 import {
     FailedUrlsSection,
     FailedUrlsSectionDeps,
@@ -22,19 +23,8 @@ import { TitleSection } from './title-section';
 
 export type SectionDeps = FailedUrlsSectionDeps;
 
-export type ScanTimespan = {
-    scanStart: Date;
-    scanComplete: Date;
-    durationSeconds: number;
-};
-
-export type SummaryReportSectionProps = {
+export type SummaryReportSectionProps = BaseSummaryReportSectionProps & {
     deps: SectionDeps;
-    scanTimespan: ScanTimespan;
-    toUtcString: (date: Date) => string;
-    secondsToTimeString: (seconds: number) => string;
-    getCollapsibleScript: () => string;
-    scanMetadata: ScanMetadata;
     results: SummaryScanResults;
 };
 

@@ -19,7 +19,6 @@
         "./packages/*/drop",
         "./src/assessments/color/test-steps/flashing-text-example.html",
         "./src/tests/miscellaneous/mock-adb/bin",
-        "./test-results",
         ".gitattribute",
         ".gitattributes",
         ".ignoredRevs",
@@ -29,6 +28,9 @@
         "**/*.snap",
         "**/*.svg",
         "**/*.mp3",
+        "**/bundle",
+        "**/drop",
+        "**/test-results",
         "Dockerfile",
         "yarn.lock"
     ],

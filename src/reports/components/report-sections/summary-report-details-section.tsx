@@ -5,12 +5,13 @@ import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
-import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
+import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 
-export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
+export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps>(
     'SummaryReportDetailsSection',
     props => {
-        const { scanMetadata, scanTimespan, toUtcString, secondsToTimeString } = props;
+        const { scanMetadata, toUtcString, secondsToTimeString } = props;
+        const scanTimespan = scanMetadata.timespan;
 
         const createListItem = (
             label: string,

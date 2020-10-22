@@ -13,6 +13,13 @@ exports[`NoContentAvailableView renders 1`] = `
         },
       }
     }
+    deps={
+      Object {
+        "textContent": Object {
+          "applicationTitle": "test-application-title",
+        },
+      }
+    }
     isNarrowModeEnabled={true}
   />
   <NoContentAvailable />

@@ -20,6 +20,7 @@ exports[`HowToFixWebCardRow renders 1`] = `
         }
         deps={
           Object {
+            "LinkComponent": Object {},
             "fixInstructionProcessor": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "backgroundColorText": "background color: ",
@@ -43,6 +44,7 @@ exports[`HowToFixWebCardRow renders 1`] = `
         }
         deps={
           Object {
+            "LinkComponent": Object {},
             "fixInstructionProcessor": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "backgroundColorText": "background color: ",

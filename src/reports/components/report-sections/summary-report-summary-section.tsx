@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { OutcomeChip } from 'reports/components/outcome-chip';

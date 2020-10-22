@@ -50,7 +50,7 @@ describe('ReportGenerator', () => {
     test('generateHtml', () => {
         dataBuilderMock
             .setup(builder =>
-                builder.generateHtml(date, description, cardsViewDataStub, scanMetadataStub),
+                builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
             )
             .returns(() => 'returned-data');
 
@@ -60,7 +60,6 @@ describe('ReportGenerator', () => {
             assessmentReportHtmlGeneratorMock.object,
         );
         const actual = testObject.generateFastPassAutomatedChecksReport(
-            date,
             cardsViewDataStub,
             description,
             scanMetadataStub,

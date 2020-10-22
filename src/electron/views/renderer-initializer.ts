@@ -145,6 +145,7 @@ import {
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
+import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 
 declare let window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -547,6 +548,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             leftNavItems,
             contentPagesInfo,
             navLinkRenderer: new NavLinkRenderer(),
+            getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

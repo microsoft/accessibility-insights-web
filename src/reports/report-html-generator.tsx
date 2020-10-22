@@ -31,7 +31,6 @@ export class ReportHtmlGenerator {
     ) {}
 
     public generateHtml(
-        scanDate: Date,
         description: string,
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
@@ -41,7 +40,6 @@ export class ReportHtmlGenerator {
 
         const detailsProps: SectionProps = {
             description,
-            scanDate,
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
                 collapsibleControl: ReportCollapsibleContainerControl,
