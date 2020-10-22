@@ -8,6 +8,7 @@ import {
     HowToFixAndroidCardRow,
     HowToFixAndroidCardRowProps,
 } from 'common/components/cards/how-to-fix-android-card-row';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { IMock, It, Mock } from 'typemoq';
 import { FixInstructionProcessor } from '../../../../../../common/components/fix-instruction-processor';
 
@@ -20,7 +21,10 @@ describe(HowToFixAndroidCardRow, () => {
     });
     it('renders with matches', () => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
@@ -36,7 +40,10 @@ describe(HowToFixAndroidCardRow, () => {
 
     test.each([null, undefined])('renders when howToFix is empty. - %o', howToFixValue => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
@@ -51,7 +58,10 @@ describe(HowToFixAndroidCardRow, () => {
 
     test.each([null, undefined])('throws when match has empty strings - %o', value => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: [value],
@@ -92,7 +102,10 @@ describe(HowToFixAndroidCardRow, () => {
     renderWithSpaceTestCases.forEach(testCase => {
         it(`renders with whitespace - ${testCase.label}`, () => {
             const props: HowToFixAndroidCardRowProps = {
-                deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+                deps: {
+                    fixInstructionProcessor: fixInstructionProcessorMock.object,
+                    LinkComponent: {} as LinkComponentType,
+                },
                 index: 22,
                 propertyData: {
                     formatAsCode: testCase.formatAsCode,
@@ -108,7 +121,10 @@ describe(HowToFixAndroidCardRow, () => {
 
     it('renders without formatAsCode property', () => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 howToFix:
@@ -123,7 +139,10 @@ describe(HowToFixAndroidCardRow, () => {
 
     it('renders when matches are not found', () => {
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn'T", 'notPresent', 'bold1'],
@@ -144,7 +163,10 @@ describe(HowToFixAndroidCardRow, () => {
             .returns(str => <>replaced-color</>);
 
         const props: HowToFixAndroidCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
