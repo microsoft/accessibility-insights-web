@@ -16,7 +16,9 @@ export const BestPractice: HyperlinkDefinition = {
     href: '',
 };
 
-export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> = {
+export type RuleToLinksMapping = DictionaryStringTo<HyperlinkDefinition[]>;
+
+export const ruleToLinkConfiguration: RuleToLinksMapping = {
     'aria-input-field-name': [link.WCAG_4_1_2],
     'aria-toggle-field-name': [link.WCAG_4_1_2],
     'avoid-inline-spacing': [link.WCAG_1_4_12],
