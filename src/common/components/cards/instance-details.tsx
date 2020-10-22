@@ -56,8 +56,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
         [selected]: isHighlightSupported && result.isSelected,
-        [focused]:
-            isHighlightSupported && cardFocused && document.activeElement === hiddenButton.current,
+        [focused]: isHighlightSupported && cardFocused, // && document.activeElement === hiddenButton.current,
         [interactive]: isHighlightSupported,
     });
 
@@ -104,13 +103,8 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                             }`}
                             aria-pressed={result.isSelected}
                             onFocus={e => setCardFocus(true)}
-                            onBlur={e => {
-                                if (
-                                    e.relatedTarget !==
-                                    document.querySelector(`.${instanceDetailsCardStyling}`)
-                                )
-                                    setCardFocus(false);
-                            }}
+                            onBlur={e => setCardFocus(false)}
+                            // onBlur={e => (e.relatedTarget !== null ? setCardFocus(false) : {})}
                         ></button>
                     )}
                     <InstanceDetailsFooter
