@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CombinedResultsToCardsModelConverter converts results without issues to cards view data 1`] = `
+Object {
+  "allCardsCollapsed": true,
+  "cards": Object {
+    "fail": Array [],
+    "inapplicable": Array [
+      Object {
+        "description": "Ensures every ARIA input field has an accessible name",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/aria-input-field-name",
+            "text": "guidance for aria-input-field-name",
+          },
+        ],
+        "id": "aria-input-field-name",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/aria-input-field-name?application=webdriverjs",
+      },
+      Object {
+        "description": "Ensures every ARIA toggle field has an accessible name",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/aria-toggle-field-name",
+            "text": "guidance for aria-toggle-field-name",
+          },
+        ],
+        "id": "aria-toggle-field-name",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/aria-toggle-field-name?application=webdriverjs",
+      },
+      Object {
+        "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/autocomplete-valid",
+            "text": "guidance for autocomplete-valid",
+          },
+        ],
+        "id": "autocomplete-valid",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/autocomplete-valid?application=webdriverjs",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "Ensures <area> elements of image maps have alternate text",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/area-alt",
+            "text": "guidance for area-alt",
+          },
+        ],
+        "id": "area-alt",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs",
+      },
+      Object {
+        "description": "Ensures aria-hidden elements do not contain focusable elements",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/aria-hidden-focus",
+            "text": "guidance for aria-hidden-focus",
+          },
+        ],
+        "id": "aria-hidden-focus",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/aria-hidden-focus?application=webdriverjs",
+      },
+    ],
+    "unknown": Array [],
+  },
+  "visualHelperEnabled": false,
+}
+`;
