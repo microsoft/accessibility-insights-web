@@ -207,13 +207,10 @@ export class DetailsViewCommandBar extends React.Component<
     }
 
     private renderSaveAssessmentButton = (): JSX.Element | null => {
-        return (
-            <FlaggedComponent
-                featureFlag={FeatureFlags.saveAndLoadAssessment}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={<SaveAssessmentButton />}
-            />
-        );
+        if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
+            return <SaveAssessmentButton />;
+        }
+        return null;
     };
 
     private showStartOverDialog = (dialogState: StartOverDialogType) => {

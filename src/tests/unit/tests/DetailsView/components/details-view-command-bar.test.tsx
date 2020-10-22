@@ -101,20 +101,24 @@ describe('DetailsViewCommandBar', () => {
         } as DetailsViewCommandBarProps;
     }
 
-    test('renders with export button, with start over', () => {
-        testOnPivot(true, true);
+    test('renders with export button, with save assessment, with start over', () => {
+        testOnPivot(true, true, true);
     });
 
-    test('renders without export button, without start over', () => {
-        testOnPivot(false, false);
+    test('renders without export button, without save assessment, without start over', () => {
+        testOnPivot(false, false, false);
     });
 
-    test('renders with export button, without start over', () => {
-        testOnPivot(true, false);
+    test('renders with export button, without save assessment, without start over', () => {
+        testOnPivot(true, false, false);
     });
 
-    test('renders without export button, with start over', () => {
-        testOnPivot(false, true);
+    test('renders without export button, with save assessment, without start over', () => {
+        testOnPivot(false, true, false);
+    });
+
+    test('renders without export button, without save assessment, with start over', () => {
+        testOnPivot(false, false, true);
     });
 
     test('renders null when tab closed', () => {
@@ -271,7 +275,11 @@ describe('DetailsViewCommandBar', () => {
         });
     });
 
-    function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
+    function testOnPivot(
+        renderExportResults: boolean,
+        renderSaveAssessment: boolean,
+        renderStartOver: boolean,
+    ): void {
         showReportExportButton = renderExportResults;
 
         if (renderStartOver) {
@@ -279,6 +287,9 @@ describe('DetailsViewCommandBar', () => {
         }
 
         const props = getProps();
+
+        props.featureFlagStoreData = { saveAndLoadAssessment: renderSaveAssessment };
+
         setupStartOverButtonFactory(props);
         setupReportExportDialogFactory({ isOpen: false });
 
