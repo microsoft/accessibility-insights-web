@@ -21,6 +21,7 @@ import {
     UnifiedRule,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
+import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
@@ -55,6 +56,7 @@ describe('AutomatedChecksView', () => {
             'highlighted-uid-1': 'visible',
             'not-highlighted-uid-1': 'hidden',
         } as ResultsHighlightStatus;
+
         const timeStampStub = 'test timestamp';
         const scanDate = new Date(Date.UTC(0, 1, 2, 3));
         const toolDataStub: ToolData = {
@@ -64,11 +66,13 @@ describe('AutomatedChecksView', () => {
         const cardSelectionViewDataStub = {
             resultsHighlightStatus: resultsHighlightStatus,
         } as CardSelectionViewData;
+
         const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
         const resultsStub = [
             { uid: 'highlighted-uid-1' },
             { uid: 'not-highlighted-uid-1' },
         ] as UnifiedResult[];
+
         const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
             targetAppInfo: {
                 name: 'test-target-app-name',
@@ -81,6 +85,7 @@ describe('AutomatedChecksView', () => {
                 deviceName: 'TEST DEVICE',
             } as PlatformData,
         };
+
         const leftNavStoreData: LeftNavStoreData = {
             selectedKey: initialSelectedKey,
             leftNavVisible: true,
@@ -89,9 +94,11 @@ describe('AutomatedChecksView', () => {
         const ruleResultsByStatusStub = {
             fail: [{ id: 'test-fail-id' } as CardRuleResult],
         } as CardRuleResultsByStatus;
+
         const cardsViewData = {
             cards: ruleResultsByStatusStub,
         } as CardsViewModel;
+
         const screenshotViewModelStub = {
             screenshotData: {
                 base64PngData: 'this should appear in snapshotted ScreenshotView props',
@@ -108,6 +115,7 @@ describe('AutomatedChecksView', () => {
         props = {
             deps: {
                 scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                leftNavActionCreator: Mock.ofType(LeftNavActionCreator).object,
                 getCardsViewData: getUnifiedRuleResultsMock.object,
                 getCardSelectionViewData: getCardSelectionViewDataMock.object,
                 screenshotViewModelProvider: screenshotViewModelProviderMock.object,
