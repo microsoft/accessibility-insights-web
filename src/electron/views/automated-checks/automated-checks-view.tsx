@@ -20,6 +20,7 @@ import {
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
+import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
@@ -28,6 +29,7 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
+import { ReflowCommandBar } from 'electron/views/automated-checks/components/reflow-command-bar';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
 import { TestView } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
@@ -48,6 +50,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
     ContentPanelDeps &
     SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
+        leftNavActionCreator: LeftNavActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
         getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
@@ -200,7 +203,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
               };
     }
 
-    private renderCommandBar(
+    private renderStandardCommandBar(
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
     ): JSX.Element {
@@ -214,6 +217,34 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 scanMetadata={scanMetadata}
             />
         );
+    }
+
+    private renderReflowCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return (
+            <ReflowCommandBar
+                cardsViewData={cardsViewData}
+                deps={this.props.deps}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                isSideNavOpen={this.props.leftNavStoreData.leftNavVisible}
+                narrowModeStatus={this.props.narrowModeStatus}
+                scanMetadata={scanMetadata}
+                scanPort={this.getScanPort()}
+                scanStoreData={this.props.scanStoreData}
+                setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
+            />
+        );
+    }
+
+    private renderCommandBar(
+        cardsViewData: CardsViewModel,
+        scanMetadata: ScanMetadata,
+    ): JSX.Element {
+        return this.props.narrowModeStatus.isCommandBarCollapsed
+            ? this.renderReflowCommandBar(cardsViewData, scanMetadata)
+            : this.renderStandardCommandBar(cardsViewData, scanMetadata);
     }
 
     private renderExpandedCommandBar(
@@ -239,7 +270,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 featureFlag={UnifiedFeatureFlags.leftNavBar}
                 featureFlagStoreData={this.props.featureFlagStoreData}
                 enableJSXElement={null}
-                disableJSXElement={this.renderCommandBar(cardsViewData, scanMetadata)}
+                disableJSXElement={this.renderStandardCommandBar(cardsViewData, scanMetadata)}
             />
         );
     }

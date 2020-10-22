@@ -549,6 +549,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             contentPagesInfo,
             navLinkRenderer: new NavLinkRenderer(),
             getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
+            leftNavActionCreator,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
