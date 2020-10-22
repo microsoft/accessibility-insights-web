@@ -238,15 +238,6 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderCommandBar(
-        cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetadata,
-    ): JSX.Element {
-        return this.props.narrowModeStatus.isCommandBarCollapsed
-            ? this.renderReflowCommandBar(cardsViewData, scanMetadata)
-            : this.renderStandardCommandBar(cardsViewData, scanMetadata);
-    }
-
     private renderExpandedCommandBar(
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
@@ -255,7 +246,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             <FlaggedComponent
                 featureFlag={UnifiedFeatureFlags.leftNavBar}
                 featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={this.renderCommandBar(cardsViewData, scanMetadata)}
+                enableJSXElement={this.renderReflowCommandBar(cardsViewData, scanMetadata)}
                 disableJSXElement={null}
             />
         );

@@ -21,7 +21,6 @@ import {
     UnifiedRule,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
-import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
@@ -113,11 +112,6 @@ describe('AutomatedChecksView', () => {
         getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
         getDateFromTimestampMock = Mock.ofInstance(DateProvider.getDateFromTimestamp);
 
-        const narrowModeStatus: NarrowModeStatus = {
-            isHeaderAndNavCollapsed: false,
-            isCommandBarCollapsed: false,
-        };
-
         props = {
             deps: {
                 scanActionCreator: Mock.ofType(ScanActionCreator).object,
@@ -140,7 +134,6 @@ describe('AutomatedChecksView', () => {
             },
             unifiedScanResultStoreData,
             leftNavStoreData,
-            narrowModeStatus,
         } as AutomatedChecksViewProps;
 
         getCardSelectionViewDataMock
@@ -197,14 +190,6 @@ describe('AutomatedChecksView', () => {
         getCardSelectionViewDataMock.verifyAll();
         getUnifiedRuleResultsMock.verifyAll();
         screenshotViewModelProviderMock.verifyAll();
-    });
-
-    it('renders ReflowCommandBar when narrow mode status is collapsed', () => {
-        props.narrowModeStatus.isCommandBarCollapsed = true;
-
-        const wrapped = shallow(<AutomatedChecksView {...props} />);
-
-        expect(wrapped.getElement()).toMatchSnapshot();
     });
 
     it('triggers scan when first mounted', () => {
