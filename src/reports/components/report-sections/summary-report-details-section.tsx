@@ -13,19 +13,21 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
         const { scanMetadata, toUtcString, secondsToTimeString } = props;
         const scanTimespan = scanMetadata.timespan;
 
-        const createListItem = (
-            label: string,
-            content: string | JSX.Element,
-            icon?: JSX.Element,
-        ) => (
-            <li>
-                <span className="icon" aria-hidden="true">
-                    {icon}
-                </span>
-                <span className="label">{`${label} `}</span>
-                <span className="text">{content}</span>
-            </li>
-        );
+        const createListItem = (label: string, content: string | JSX.Element, icon?: JSX.Element) =>
+            icon ? (
+                <li>
+                    <span className="icon" aria-hidden="true">
+                        {icon}
+                    </span>
+                    <span className="label">{`${label} `}</span>
+                    <span className="text">{content}</span>
+                </li>
+            ) : (
+                <li>
+                    <span className="label no-icon">{`${label} `}</span>
+                    <span className="text">{content}</span>
+                </li>
+            );
 
         const scanStartUTC = toUtcString(scanTimespan.scanStart);
         const scanCompleteUTC = toUtcString(scanTimespan.scanComplete);

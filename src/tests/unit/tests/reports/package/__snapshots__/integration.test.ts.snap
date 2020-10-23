@@ -11077,11 +11077,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
           </li>
           <li>
             <span
-              aria-hidden="true"
-              class="icon"
-            />
-            <span
-              class="label"
+              class="label no-icon"
             >
               Scans completed 
             </span>
@@ -11093,11 +11089,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
           </li>
           <li>
             <span
-              aria-hidden="true"
-              class="icon"
-            />
-            <span
-              class="label"
+              class="label no-icon"
             >
               Duration 
             </span>
@@ -12165,11 +12157,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
           </li>
           <li>
             <span
-              aria-hidden="true"
-              class="icon"
-            />
-            <span
-              class="label"
+              class="label no-icon"
             >
               Scans completed 
             </span>
@@ -12181,11 +12169,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
           </li>
           <li>
             <span
-              aria-hidden="true"
-              class="icon"
-            />
-            <span
-              class="label"
+              class="label no-icon"
             >
               Duration 
             </span>

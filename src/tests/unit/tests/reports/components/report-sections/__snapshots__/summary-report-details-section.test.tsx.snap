@@ -53,11 +53,7 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
-        className="icon"
-      />
-      <span
-        className="label"
+        className="label no-icon"
       >
         Scans completed 
       </span>
@@ -69,11 +65,7 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
-        aria-hidden="true"
-        className="icon"
-      />
-      <span
-        className="label"
+        className="label no-icon"
       >
         Duration 
       </span>
