@@ -17,6 +17,7 @@ describe('LeftNavHamburgerButton', () => {
                 isSideNavOpen={false}
                 setSideNavOpen={null}
                 ariaLabel={ariaLabel}
+                className={'some-class'}
             />,
         );
 

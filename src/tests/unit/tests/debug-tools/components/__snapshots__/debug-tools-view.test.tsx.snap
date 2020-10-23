@@ -23,6 +23,14 @@ exports[`DebugToolsView renders when storesHub.hasStoresData = true 1`] = `
         },
       }
     }
+    deps={
+      Object {
+        "storesHub": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "stores": undefined,
+        },
+      }
+    }
     isNarrowModeEnabled={true}
   />
   <ToolsNav

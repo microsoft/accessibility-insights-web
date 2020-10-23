@@ -26,32 +26,12 @@ body {
     display: none !important;
 }
 
-.issue-filing-dialog {
-    .ms-Dialog-title {
-        font-size: 21px;
-        line-height: 32px;
-        letter-spacing: -0.02em;
-        font-weight: 600;
-        padding-bottom: 0;
-    }
-
-    .ms-Dialog-subText {
-        font-weight: 400;
-        font-size: 15px;
-        color: $secondary-text;
-    }
-}
-
 .insights-code {
     font-family: $codeFontFamily;
 }
 
 .column-header span:first-of-type {
     padding-left: 5px !important;
-}
-
-.details-view-dropdown-callout {
-    right: 0 !important;
 }
 
 .details-view-spinner {
@@ -63,22 +43,6 @@ body {
     flex-direction: column;
     height: 100%;
 
-    .ms-Nav-compositeLink a {
-        border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $neutral-0;
-        border-top: 0px;
-        border-bottom: 0px;
-    }
-    .ms-Nav-compositeLink.is-selected a {
-        background-color: $communication-tint-40;
-        border-left: $pivotItemLeftBorderWidth $pivotItemBorderStyle $communication-primary;
-        .ms-Button-label,
-        .overview-percent {
-            color: $highlighted-text;
-        }
-        .left-nav-icon {
-            color: $left-nav-icon;
-        }
-    }
     .ms-DetailsRow,
     .ms-GroupHeader {
         user-select: text;

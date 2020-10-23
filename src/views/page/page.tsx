@@ -2,23 +2,29 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { Header, HeaderDeps } from 'common/components/header';
+import { Header, HeaderDeps, HeaderProps } from 'common/components/header';
 import { NamedFC } from 'common/react/named-fc';
-import { NarrowModeDetector } from 'DetailsView/components/narrow-mode-detector';
+import {
+    NarrowModeDetector,
+    NarrowModeDetectorDeps,
+} from 'DetailsView/components/narrow-mode-detector';
 
 export type PageProps = {
     deps: PageDeps;
 };
 
-export type PageDeps = HeaderDeps;
+export type PageDeps = HeaderDeps & NarrowModeDetectorDeps;
 
 export const Page = NamedFC<PageProps>('Page', ({ deps, children }) => {
+    const headerProps: Omit<HeaderProps, 'narrowModeStatus'> = { deps: deps };
+
     return (
         <>
             <NarrowModeDetector
+                deps={deps}
                 isNarrowModeEnabled={true}
                 Component={Header}
-                childrenProps={{ deps: deps }}
+                childrenProps={headerProps}
             />
             <main>{children}</main>
         </>

@@ -32,7 +32,7 @@ export function getReportExportDialogForAssessment(
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
-        scanDate: deps.getCurrentDate(),
+        scanDate: scanMetadata.timespan.scanComplete,
         htmlGenerator: description =>
             reportGenerator.generateAssessmentReport(
                 assessmentStoreData,
@@ -71,17 +71,15 @@ export function getReportExportDialogForFastPass(
     }
 
     const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
-    const scanDate = deps.getDateFromTimestamp(props.scanMetadata.timestamp);
     const reportGenerator = deps.reportGenerator;
 
     const dialogProps: ExportDialogWithLocalStateProps = {
         deps: deps,
-        scanDate: scanDate,
         pageTitle: props.scanMetadata.targetAppInfo.name,
+        scanDate: props.scanMetadata.timespan.scanComplete,
         reportExportFormat: 'AutomatedChecks',
         htmlGenerator: description =>
             reportGenerator.generateFastPassAutomatedChecksReport(
-                scanDate,
                 props.cardsViewData,
                 description,
                 props.scanMetadata,

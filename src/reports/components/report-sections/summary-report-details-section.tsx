@@ -3,13 +3,14 @@
 
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
-import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { NamedFC } from 'common/react/named-fc';
+import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 
-export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
+export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps>(
     'SummaryReportDetailsSection',
     props => {
-        const { scanMetadata, scanTimespan, toUtcString, secondsToTimeString } = props;
+        const { scanMetadata, toUtcString, secondsToTimeString } = props;
+        const scanTimespan = scanMetadata.timespan;
 
         const createListItem = (label: string, content: string | JSX.Element) => (
             <li>
@@ -27,7 +28,7 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
                 <h2>Scan details</h2>
                 <ul className="crawl-details-section-list">
                     {createListItem(
-                        'Target url',
+                        'Target site',
                         <NewTabLinkWithConfirmationDialog
                             href={scanMetadata.targetAppInfo.url}
                             title={scanMetadata.targetAppInfo.name}
@@ -35,8 +36,8 @@ export const SummaryReportDetailsSection = NamedFC<SummaryReportSectionProps>(
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
                     )}
-                    {createListItem('Scan start', scanStartUTC)}
-                    {createListItem('Scan complete', scanCompleteUTC)}
+                    {createListItem('Scans started', scanStartUTC)}
+                    {createListItem('Scans completed', scanCompleteUTC)}
                     {createListItem('Duration', duration)}
                 </ul>
             </div>

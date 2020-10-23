@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { automatedChecksTestConfig } from 'electron/platform/android/test-configs/automated-checks/test-config';
+import { needsReviewTestConfig } from 'electron/platform/android/test-configs/needs-review/test-config';
 import { TestConfig } from 'electron/types/test-config';
 
-export const androidTestConfigs: TestConfig[] = [automatedChecksTestConfig];
+export const androidTestConfigs: TestConfig[] = [automatedChecksTestConfig, needsReviewTestConfig];

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`report package integration with issues 1`] = `
+exports[`report package API fromAxeResult matches snapshot for scan input with issues 1`] = `
 <DocumentFragment>
   <meta
     charset="UTF-8"
@@ -12,7 +12,7 @@ exports[`report package integration with issues 1`] = `
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:detailsView.css&gt;&gt;
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
@@ -7019,7 +7019,7 @@ exports[`report package integration with issues 1`] = `
 </DocumentFragment>
 `;
 
-exports[`report package integration with no issues 1`] = `
+exports[`report package API fromAxeResult matches snapshot for scan input without issues 1`] = `
 <DocumentFragment>
   <meta
     charset="UTF-8"
@@ -7031,7 +7031,7 @@ exports[`report package integration with no issues 1`] = `
     &lt;&lt;CSS:../reports/automated-checks-report.css&gt;&gt;
   </style>
   <style>
-    &lt;&lt;CSS:detailsView.css&gt;&gt;
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
   </style>
   <header>
     <div
@@ -10742,6 +10742,2031 @@ exports[`report package integration with no issues 1`] = `
       role="contentinfo"
     >
       This automated checks result was generated using the Accessibility Insights Service that helps find some of the most common accessibility issues. The scan was performed using axe-core 3.3.2 and Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/78.0.3904.108 Safari/537.36. For a complete WCAG 2.1 compliance assessment please visit 
+      <a
+        class="ms-Link insights-link tool-name-link root-000"
+        href="http://aka.ms/AccessibilityInsights"
+        target="_blank"
+        title="Get more information and download Accessibility Insights for Web"
+      >
+        http://aka.ms/AccessibilityInsights
+      </a>
+      .
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`report package API fromSummaryResults matches snapshot for scan input with issues 1`] = `
+<DocumentFragment>
+  <meta
+    charset="UTF-8"
+  />
+  <title>
+    Accessibility Insights automated checks result
+  </title>
+  <style>
+    &lt;&lt;CSS:../reports/summary-report.css&gt;&gt;
+  </style>
+  <style>
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
+  </style>
+  <header>
+    <div
+      class="reportHeaderBar"
+    >
+      <svg
+        aria-hidden="true"
+        class="header-icon"
+        fill="none"
+        role="img"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <mask
+          height="43"
+          id="mask000"
+          maskUnits="userSpaceOnUse"
+          style="mask-type:alpha"
+          width="48"
+          x="0"
+          y="3"
+        >
+          <path
+            d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
+            fill="white"
+          />
+        </mask>
+        <g
+          mask="url(#mask0)"
+        >
+          <path
+            d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
+            fill="white"
+          />
+          <rect
+            fill="#D6E9F7"
+            height="42.2726"
+            transform="rotate(45 43.9494 7.24556)"
+            width="14.0948"
+            x="43.9494"
+            y="7.24556"
+          />
+          <mask
+            height="31"
+            id="mask000"
+            maskUnits="userSpaceOnUse"
+            style="mask-type:alpha"
+            width="30"
+            x="-6"
+            y="-3"
+          >
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="#CFEBFF"
+            />
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="url(#paint0_linear)"
+            />
+          </mask>
+          <g
+            mask="url(#mask1)"
+          >
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="white"
+            />
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="url(#paint1_linear)"
+            />
+            <rect
+              fill="#D6E9F7"
+              height="42.2726"
+              transform="rotate(-45 4.54834 6.88206)"
+              width="16.3577"
+              x="4.54834"
+              y="6.88206"
+            />
+            <rect
+              fill="url(#paint2_linear)"
+              height="42.2726"
+              transform="rotate(-45 4.54834 6.88206)"
+              width="16.3577"
+              x="4.54834"
+              y="6.88206"
+            />
+          </g>
+          <g
+            filter="url(#filter0_d)"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M34.0764 27.3564C39.8071 27.3483 44.4461 22.6961 44.438 16.9655C44.4299 11.2349 39.7778 6.59585 34.0472 6.60393C28.3165 6.61201 23.6775 11.2642 23.6856 16.9948C23.6888 19.2829 24.4324 21.397 25.6895 23.1108L23.4287 25.3788C22.8852 25.395 22.3466 25.6109 21.9324 26.0265L17.1218 30.8526C16.4185 31.5582 16.4203 32.7005 17.126 33.4038L17.6952 33.9713C18.4009 34.6746 19.5431 34.6728 20.2465 33.9671L25.057 29.141C25.4715 28.7252 25.6857 28.1855 25.6998 27.6415L27.9603 25.3737C29.6766 26.6235 31.7907 27.3596 34.0764 27.3564ZM34.0368 23.2439C37.4964 23.2579 40.3122 20.4647 40.3262 17.0051C40.3401 13.5456 37.5469 10.7298 34.0874 10.7158C30.6279 10.7018 27.812 13.495 27.7981 16.9545C27.7841 20.4141 30.5773 23.2299 34.0368 23.2439Z"
+              fill="#004880"
+              fill-rule="evenodd"
+            />
+          </g>
+        </g>
+        <defs>
+          <filter
+            color-interpolation-filters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="29.5269"
+            id="filter000_d"
+            width="29.5246"
+            x="15.748"
+            y="6.50654"
+          >
+            <feflood
+              flood-opacity="0"
+              result="BackgroundImageFix"
+            />
+            <fecolormatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            />
+            <feoffset
+              dy="0.725705"
+            />
+            <fegaussianblur
+              stdDeviation="0.40317"
+            />
+            <fecolormatrix
+              type="matrix"
+              values="0 0 0 0 0.0447352 0 0 0 0 0.305769 0 0 0 0 0.492222 0 0 0 0.51 0"
+            />
+            <feblend
+              in2="BackgroundImageFix"
+              mode="normal"
+              result="effect1_dropShadow"
+            />
+            <feblend
+              in="SourceGraphic"
+              in2="effect1_dropShadow"
+              mode="normal"
+              result="shape"
+            />
+          </filter>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint000_linear"
+            x1="14.3166"
+            x2="5.92409"
+            y1="16.8744"
+            y2="8.23504"
+          >
+            <stop
+              offset="0"
+              stop-color="#073A5F"
+              stop-opacity="0.3"
+            />
+            <stop
+              offset="1"
+              stop-color="#CFEBFF"
+              stop-opacity="0"
+            />
+          </lineargradient>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint000_linear"
+            x1="14.3166"
+            x2="5.92409"
+            y1="16.8744"
+            y2="8.23504"
+          >
+            <stop
+              offset="0"
+              stop-color="#165B8E"
+              stop-opacity="0.29"
+            />
+            <stop
+              offset="1"
+              stop-color="white"
+              stop-opacity="0"
+            />
+          </lineargradient>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint000_linear"
+            x1="11.3179"
+            x2="11.0819"
+            y1="20.1024"
+            y2="11.1606"
+          >
+            <stop
+              offset="0"
+              stop-color="#165B8E"
+              stop-opacity="0.29"
+            />
+            <stop
+              offset="1"
+              stop-color="#D6E9F7"
+              stop-opacity="0"
+            />
+          </lineargradient>
+        </defs>
+      </svg>
+      <div
+        class="headerText"
+      >
+        Accessibility Insights
+      </div>
+    </div>
+  </header>
+  <main
+    class="outer-container"
+  >
+    <div
+      class="content-container"
+    >
+      <div
+        class="title-section"
+      >
+        <h1>
+          Automated checks results
+        </h1>
+      </div>
+      <div
+        class="urlsSummarySection"
+      >
+        <h2>
+          URLs
+        </h2>
+        4 total URLs discovered
+        <div
+          aria-label="2 Failed, 1 Not scanned, 1 Passed"
+          class="outcome-summary-bar"
+          role="img"
+        >
+          <div
+            style="flex-grow:2"
+          >
+            <span
+              class="fail summary-bar-left-edge"
+            >
+              <span
+                aria-hidden="true"
+              >
+                <span
+                  class="check-container"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58172 0 0 3.58173 0 8C0 12.4183 3.58172 16 8 16ZM10.9947 4.99466C10.7018 4.70178 10.2269 4.70178 9.93401 4.99466L8 6.92868L6.06599 4.99466C5.77309 4.70178 5.29823 4.70178 5.00533 4.99466C4.71243 5.28757 4.71243 5.76242 5.00533 6.05533L6.93933 7.98932L4.99467 9.93399C4.70177 10.2269 4.70177 10.7018 4.99467 10.9947C5.28756 11.2876 5.76243 11.2876 6.05532 10.9947L8 9.04999L9.94467 10.9947C10.2376 11.2876 10.7124 11.2876 11.0053 10.9947C11.2982 10.7018 11.2982 10.2269 11.0053 9.93399L9.06066 7.98932L10.9947 6.05533C11.2876 5.76242 11.2876 5.28757 10.9947 4.99466Z"
+                      fill="var(--neutral-0)"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </span>
+              2
+              <div
+                class="label"
+              >
+                 Failed
+              </div>
+            </span>
+          </div>
+          <div
+            style="flex-grow:1"
+          >
+            <span
+              class="unscannable"
+            >
+              <span
+                aria-hidden="true"
+              >
+                <span
+                  class="check-container"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="8"
+                      cy="8"
+                      fill="white"
+                      r="8"
+                    />
+                    <line
+                      stroke="#737373"
+                      stroke-linecap="round"
+                      stroke-width="1.5"
+                      x1="5.66064"
+                      x2="10.2568"
+                      y1="5.625"
+                      y2="10.2212"
+                    />
+                  </svg>
+                </span>
+              </span>
+              1
+              <div
+                class="label"
+              >
+                 Not scanned
+              </div>
+            </span>
+          </div>
+          <div
+            style="flex-grow:1"
+          >
+            <span
+              class="pass summary-bar-right-edge"
+            >
+              <span
+                aria-hidden="true"
+              >
+                <span
+                  class="check-container"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM6.0616 11.1442L6.05904 11.1417L4.27459 9.35718C3.90847 8.99104 3.90847 8.39747 4.27459 8.03134C4.64071 7.66524 5.2343 7.66524 5.60041 8.03134L6.72452 9.15545L10.6054 5.27457C10.9715 4.90848 11.5651 4.90848 11.9312 5.27457C12.2974 5.64071 12.2974 6.23427 11.9312 6.60041L7.391 11.1406L7.38742 11.1442C7.06707 11.4646 6.57256 11.5046 6.20867 11.2643C6.15668 11.23 6.10737 11.19 6.0616 11.1442Z"
+                      fill="white"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </span>
+              1
+              <div
+                class="label"
+              >
+                 Passed
+              </div>
+            </span>
+          </div>
+        </div>
+        <div
+          class="failureInstances"
+        >
+          <h2>
+            Failure Instances
+          </h2>
+          <span
+            class="outcome-chip outcome-chip-fail"
+            title="6 Failed"
+          >
+            <span
+              class="icon"
+            >
+              <span
+                class="check-container"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    fill="#E81123"
+                    r="8"
+                  />
+                  <path
+                    d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                    fill="var(--neutral-0)"
+                  />
+                </svg>
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="count"
+              data-automation-id="count"
+            >
+               6
+            </span>
+            <span
+              class="screen-reader-only"
+            >
+              6 Failed
+            </span>
+          </span>
+           Failure instances were detected
+        </div>
+      </div>
+      <div
+        class="crawl-details-section"
+      >
+        <h2>
+          Scan details
+        </h2>
+        <ul
+          class="crawl-details-section-list"
+        >
+          <li>
+            <span
+              class="label"
+            >
+              Target site 
+            </span>
+            <span
+              class="text"
+            >
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://example.com/mock-base-url"
+                id="new-tab-link-with-confirmation-dialog__000"
+                target="_blank"
+                title="Mock base with failures and unscannables"
+              >
+                https://example.com/mock-base-url
+              </a>
+              <script>
+                (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__5", document, confirm);
+              </script>
+            </span>
+          </li>
+          <li>
+            <span
+              class="label"
+            >
+              Scans started 
+            </span>
+            <span
+              class="text"
+            >
+              2020-02-02 3:04 AM UTC
+            </span>
+          </li>
+          <li>
+            <span
+              class="label"
+            >
+              Scans completed 
+            </span>
+            <span
+              class="text"
+            >
+              2020-02-02 4:04 AM UTC
+            </span>
+          </li>
+          <li>
+            <span
+              class="label"
+            >
+              Duration 
+            </span>
+            <span
+              class="text"
+            >
+              01:00:00
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="url-results-container"
+      >
+        <div
+          class="results-heading"
+        >
+          <h2>
+            Results by URL
+          </h2>
+        </div>
+        <div
+          class="url-result-section"
+        >
+          <div
+            class="collapsible-container collapsed"
+          >
+            <div
+              aria-level="3"
+              class="title-container"
+              role="heading"
+            >
+              <button
+                aria-controls="content-container-failed-urls-section"
+                aria-expanded="false"
+                class="collapsible-control"
+              >
+                <span
+                  class="resultSectionTitle"
+                >
+                  <span
+                    class="screen-reader-only"
+                  >
+                    Failed URLs 2
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="heading"
+                  >
+                    Failed URLs
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="outcomeChipContainer"
+                  >
+                    <span
+                      class="outcome-chip outcome-chip-fail"
+                      title="2 Failed"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <span
+                          class="check-container"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="8"
+                              cy="8"
+                              fill="#E81123"
+                              r="8"
+                            />
+                            <path
+                              d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                              fill="var(--neutral-0)"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="count"
+                        data-automation-id="count"
+                      >
+                         2
+                      </span>
+                      <span
+                        class="screen-reader-only"
+                      >
+                        2 Failed
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="collapsible-content"
+              id="content-container-failed-urls-section"
+            >
+              <table
+                class="summary-results-table"
+                id="failed-urls-table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      id="failed-urls-table-header000"
+                    >
+                      # failure instances (6)
+                    </th>
+                    <th
+                      id="failed-urls-table-header000"
+                    >
+                      URL
+                    </th>
+                    <th
+                      id="failed-urls-table-header000"
+                    >
+                      Link to report
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      class="text-cell"
+                      headers="failed-urls-table-header0"
+                    >
+                      1
+                    </td>
+                    <td
+                      class="url-cell"
+                      headers="failed-urls-table-header1"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://example.com/mock-base-url/has-1-failure"
+                        target="_blank"
+                      >
+                        https://example.com/mock-base-url/has-1-failure
+                      </a>
+                    </td>
+                    <td
+                      class="text-cell"
+                      headers="failed-urls-table-header2"
+                    >
+                      <a
+                        aria-label="Report for https://example.com/mock-base-url/has-1-failure"
+                        class="ms-Link insights-link root-000"
+                        href="./has-1-failure1.html"
+                        target="_blank"
+                      >
+                        Report
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="text-cell"
+                      headers="failed-urls-table-header0"
+                    >
+                      5
+                    </td>
+                    <td
+                      class="url-cell"
+                      headers="failed-urls-table-header1"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://example.com/mock-base-url/has-5-failures"
+                        target="_blank"
+                      >
+                        https://example.com/mock-base-url/has-5-failures
+                      </a>
+                    </td>
+                    <td
+                      class="text-cell"
+                      headers="failed-urls-table-header2"
+                    >
+                      <a
+                        aria-label="Report for https://example.com/mock-base-url/has-5-failures"
+                        class="ms-Link insights-link root-000"
+                        href="./has-5-failures.html"
+                        target="_blank"
+                      >
+                        Report
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div
+          class="url-result-section"
+        >
+          <div
+            class="collapsible-container collapsed"
+          >
+            <div
+              aria-level="3"
+              class="title-container"
+              role="heading"
+            >
+              <button
+                aria-controls="content-container-not-scanned-urls-section"
+                aria-expanded="false"
+                class="collapsible-control"
+              >
+                <span
+                  class="resultSectionTitle"
+                >
+                  <span
+                    class="screen-reader-only"
+                  >
+                    Not scanned URLs 1
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="heading"
+                  >
+                    Not scanned URLs
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="outcomeChipContainer"
+                  >
+                    <span
+                      class="outcome-chip outcome-chip-unscannable"
+                      title="1 Not scanned"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <span
+                          class="check-container"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="8"
+                              cy="8"
+                              fill="#737373"
+                              r="8"
+                            />
+                            <line
+                              stroke="white"
+                              stroke-linecap="round"
+                              stroke-width="1.5"
+                              x1="5.66064"
+                              x2="10.2568"
+                              y1="5.625"
+                              y2="10.2212"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="count"
+                        data-automation-id="count"
+                      >
+                         1
+                      </span>
+                      <span
+                        class="screen-reader-only"
+                      >
+                        1 Not scanned
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="collapsible-content"
+              id="content-container-not-scanned-urls-section"
+            >
+              <table
+                class="summary-results-table"
+                id="not-scanned-urls-table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      id="not-scanned-urls-table-header000"
+                    >
+                      Error type
+                    </th>
+                    <th
+                      id="not-scanned-urls-table-header000"
+                    >
+                      URL
+                    </th>
+                    <th
+                      id="not-scanned-urls-table-header000"
+                    >
+                      Error description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      class="text-cell"
+                      headers="not-scanned-urls-table-header0"
+                    >
+                      MockErrorType
+                    </td>
+                    <td
+                      class="url-cell"
+                      headers="not-scanned-urls-table-header1"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://example.com/mock-base-url/unscannable"
+                        target="_blank"
+                      >
+                        https://example.com/mock-base-url/unscannable
+                      </a>
+                    </td>
+                    <td
+                      class="text-cell"
+                      headers="not-scanned-urls-table-header2"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="./error-log.txt"
+                        target="_blank"
+                      >
+                        Mock unscannable error description
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div
+          class="url-result-section"
+        >
+          <div
+            class="collapsible-container collapsed"
+          >
+            <div
+              aria-level="3"
+              class="title-container"
+              role="heading"
+            >
+              <button
+                aria-controls="content-container-passed-urls-section"
+                aria-expanded="false"
+                class="collapsible-control"
+              >
+                <span
+                  class="resultSectionTitle"
+                >
+                  <span
+                    class="screen-reader-only"
+                  >
+                    Passed URLs 1
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="heading"
+                  >
+                    Passed URLs
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="outcomeChipContainer"
+                  >
+                    <span
+                      class="outcome-chip outcome-chip-pass"
+                      title="1 Passed"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <span
+                          class="check-container"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="8"
+                              cy="8"
+                              fill="#228722"
+                              r="8"
+                            />
+                            <path
+                              clip-rule="evenodd"
+                              d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                              fill="var(--neutral-0)"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="count"
+                        data-automation-id="count"
+                      >
+                         1
+                      </span>
+                      <span
+                        class="screen-reader-only"
+                      >
+                        1 Passed
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="collapsible-content"
+              id="content-container-passed-urls-section"
+            >
+              <table
+                class="summary-results-table"
+                id="passed-urls-table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      id="passed-urls-table-header000"
+                    >
+                      # failure instances (0)
+                    </th>
+                    <th
+                      id="passed-urls-table-header000"
+                    >
+                      URL
+                    </th>
+                    <th
+                      id="passed-urls-table-header000"
+                    >
+                      Link to report
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      class="text-cell"
+                      headers="passed-urls-table-header0"
+                    >
+                      0
+                    </td>
+                    <td
+                      class="url-cell"
+                      headers="passed-urls-table-header1"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://example.com/mock-base-url/passes"
+                        target="_blank"
+                      >
+                        https://example.com/mock-base-url/passes
+                      </a>
+                    </td>
+                    <td
+                      class="text-cell"
+                      headers="passed-urls-table-header2"
+                    >
+                      <a
+                        aria-label="Report for https://example.com/mock-base-url/passes"
+                        class="ms-Link insights-link root-000"
+                        href="./passes.html"
+                        target="_blank"
+                      >
+                        Report
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function (doc) {
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
+  for (let index = 0; index &lt; collapsibles.length; index++) {
+    const container = collapsibles.item(index);
+    const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
+
+    if (button == null) {
+      continue;
+    }
+
+    button.addEventListener('click', function () {
+      var _a;
+
+      const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
+
+      if (content == null) {
+        throw Error(\`Expected button element's parent to have a next sibling\`);
+      }
+
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+      const isExpandedAfter = !wasExpandedBefore;
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
+      if (isExpandedAfter) {
+        container.classList.remove('collapsed');
+      } else {
+        container.classList.add('collapsed');
+      }
+    });
+  }
+})(document)
+      </script>
+    </div>
+  </main>
+  <div
+    class="report-footer-container"
+  >
+    <div
+      class="report-footer"
+      role="contentinfo"
+    >
+      This automated checks result was generated using the Mock Service Name that helps find some of the most common accessibility issues. The scan was performed using axe-core mock.axe.version and Mock user agent. For a complete WCAG 2.1 compliance assessment please visit 
+      <a
+        class="ms-Link insights-link tool-name-link root-000"
+        href="http://aka.ms/AccessibilityInsights"
+        target="_blank"
+        title="Get more information and download Accessibility Insights for Web"
+      >
+        http://aka.ms/AccessibilityInsights
+      </a>
+      .
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`report package API fromSummaryResults matches snapshot for scan input without issues 1`] = `
+<DocumentFragment>
+  <meta
+    charset="UTF-8"
+  />
+  <title>
+    Accessibility Insights automated checks result
+  </title>
+  <style>
+    &lt;&lt;CSS:../reports/summary-report.css&gt;&gt;
+  </style>
+  <style>
+    &lt;&lt;CSS:../../packages/report/bundle/report.css&gt;&gt;
+  </style>
+  <header>
+    <div
+      class="reportHeaderBar"
+    >
+      <svg
+        aria-hidden="true"
+        class="header-icon"
+        fill="none"
+        role="img"
+        viewBox="0 0 48 48"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <mask
+          height="43"
+          id="mask000"
+          maskUnits="userSpaceOnUse"
+          style="mask-type:alpha"
+          width="48"
+          x="0"
+          y="3"
+        >
+          <path
+            d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
+            fill="white"
+          />
+        </mask>
+        <g
+          mask="url(#mask0)"
+        >
+          <path
+            d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
+            fill="white"
+          />
+          <rect
+            fill="#D6E9F7"
+            height="42.2726"
+            transform="rotate(45 43.9494 7.24556)"
+            width="14.0948"
+            x="43.9494"
+            y="7.24556"
+          />
+          <mask
+            height="31"
+            id="mask000"
+            maskUnits="userSpaceOnUse"
+            style="mask-type:alpha"
+            width="30"
+            x="-6"
+            y="-3"
+          >
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="#CFEBFF"
+            />
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="url(#paint0_linear)"
+            />
+          </mask>
+          <g
+            mask="url(#mask1)"
+          >
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="white"
+            />
+            <path
+              d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+              fill="url(#paint1_linear)"
+            />
+            <rect
+              fill="#D6E9F7"
+              height="42.2726"
+              transform="rotate(-45 4.54834 6.88206)"
+              width="16.3577"
+              x="4.54834"
+              y="6.88206"
+            />
+            <rect
+              fill="url(#paint2_linear)"
+              height="42.2726"
+              transform="rotate(-45 4.54834 6.88206)"
+              width="16.3577"
+              x="4.54834"
+              y="6.88206"
+            />
+          </g>
+          <g
+            filter="url(#filter0_d)"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M34.0764 27.3564C39.8071 27.3483 44.4461 22.6961 44.438 16.9655C44.4299 11.2349 39.7778 6.59585 34.0472 6.60393C28.3165 6.61201 23.6775 11.2642 23.6856 16.9948C23.6888 19.2829 24.4324 21.397 25.6895 23.1108L23.4287 25.3788C22.8852 25.395 22.3466 25.6109 21.9324 26.0265L17.1218 30.8526C16.4185 31.5582 16.4203 32.7005 17.126 33.4038L17.6952 33.9713C18.4009 34.6746 19.5431 34.6728 20.2465 33.9671L25.057 29.141C25.4715 28.7252 25.6857 28.1855 25.6998 27.6415L27.9603 25.3737C29.6766 26.6235 31.7907 27.3596 34.0764 27.3564ZM34.0368 23.2439C37.4964 23.2579 40.3122 20.4647 40.3262 17.0051C40.3401 13.5456 37.5469 10.7298 34.0874 10.7158C30.6279 10.7018 27.812 13.495 27.7981 16.9545C27.7841 20.4141 30.5773 23.2299 34.0368 23.2439Z"
+              fill="#004880"
+              fill-rule="evenodd"
+            />
+          </g>
+        </g>
+        <defs>
+          <filter
+            color-interpolation-filters="sRGB"
+            filterUnits="userSpaceOnUse"
+            height="29.5269"
+            id="filter000_d"
+            width="29.5246"
+            x="15.748"
+            y="6.50654"
+          >
+            <feflood
+              flood-opacity="0"
+              result="BackgroundImageFix"
+            />
+            <fecolormatrix
+              in="SourceAlpha"
+              type="matrix"
+              values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+            />
+            <feoffset
+              dy="0.725705"
+            />
+            <fegaussianblur
+              stdDeviation="0.40317"
+            />
+            <fecolormatrix
+              type="matrix"
+              values="0 0 0 0 0.0447352 0 0 0 0 0.305769 0 0 0 0 0.492222 0 0 0 0.51 0"
+            />
+            <feblend
+              in2="BackgroundImageFix"
+              mode="normal"
+              result="effect1_dropShadow"
+            />
+            <feblend
+              in="SourceGraphic"
+              in2="effect1_dropShadow"
+              mode="normal"
+              result="shape"
+            />
+          </filter>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint000_linear"
+            x1="14.3166"
+            x2="5.92409"
+            y1="16.8744"
+            y2="8.23504"
+          >
+            <stop
+              offset="0"
+              stop-color="#073A5F"
+              stop-opacity="0.3"
+            />
+            <stop
+              offset="1"
+              stop-color="#CFEBFF"
+              stop-opacity="0"
+            />
+          </lineargradient>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint000_linear"
+            x1="14.3166"
+            x2="5.92409"
+            y1="16.8744"
+            y2="8.23504"
+          >
+            <stop
+              offset="0"
+              stop-color="#165B8E"
+              stop-opacity="0.29"
+            />
+            <stop
+              offset="1"
+              stop-color="white"
+              stop-opacity="0"
+            />
+          </lineargradient>
+          <lineargradient
+            gradientUnits="userSpaceOnUse"
+            id="paint000_linear"
+            x1="11.3179"
+            x2="11.0819"
+            y1="20.1024"
+            y2="11.1606"
+          >
+            <stop
+              offset="0"
+              stop-color="#165B8E"
+              stop-opacity="0.29"
+            />
+            <stop
+              offset="1"
+              stop-color="#D6E9F7"
+              stop-opacity="0"
+            />
+          </lineargradient>
+        </defs>
+      </svg>
+      <div
+        class="headerText"
+      >
+        Accessibility Insights
+      </div>
+    </div>
+  </header>
+  <main
+    class="outer-container"
+  >
+    <div
+      class="content-container"
+    >
+      <div
+        class="title-section"
+      >
+        <h1>
+          Automated checks results
+        </h1>
+      </div>
+      <div
+        class="urlsSummarySection"
+      >
+        <h2>
+          URLs
+        </h2>
+        2 total URLs discovered
+        <div
+          aria-label="0 Failed, 0 Not scanned, 2 Passed"
+          class="outcome-summary-bar"
+          role="img"
+        >
+          <div
+            style="flex-grow:0"
+          >
+            <span
+              class="fail summary-bar-left-edge"
+            >
+              <span
+                aria-hidden="true"
+              >
+                <span
+                  class="check-container"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58172 0 0 3.58173 0 8C0 12.4183 3.58172 16 8 16ZM10.9947 4.99466C10.7018 4.70178 10.2269 4.70178 9.93401 4.99466L8 6.92868L6.06599 4.99466C5.77309 4.70178 5.29823 4.70178 5.00533 4.99466C4.71243 5.28757 4.71243 5.76242 5.00533 6.05533L6.93933 7.98932L4.99467 9.93399C4.70177 10.2269 4.70177 10.7018 4.99467 10.9947C5.28756 11.2876 5.76243 11.2876 6.05532 10.9947L8 9.04999L9.94467 10.9947C10.2376 11.2876 10.7124 11.2876 11.0053 10.9947C11.2982 10.7018 11.2982 10.2269 11.0053 9.93399L9.06066 7.98932L10.9947 6.05533C11.2876 5.76242 11.2876 5.28757 10.9947 4.99466Z"
+                      fill="var(--neutral-0)"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </span>
+              0
+              <div
+                class="label"
+              >
+                 Failed
+              </div>
+            </span>
+          </div>
+          <div
+            style="flex-grow:0"
+          >
+            <span
+              class="unscannable"
+            >
+              <span
+                aria-hidden="true"
+              >
+                <span
+                  class="check-container"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle
+                      cx="8"
+                      cy="8"
+                      fill="white"
+                      r="8"
+                    />
+                    <line
+                      stroke="#737373"
+                      stroke-linecap="round"
+                      stroke-width="1.5"
+                      x1="5.66064"
+                      x2="10.2568"
+                      y1="5.625"
+                      y2="10.2212"
+                    />
+                  </svg>
+                </span>
+              </span>
+              0
+              <div
+                class="label"
+              >
+                 Not scanned
+              </div>
+            </span>
+          </div>
+          <div
+            style="flex-grow:2"
+          >
+            <span
+              class="pass summary-bar-right-edge"
+            >
+              <span
+                aria-hidden="true"
+              >
+                <span
+                  class="check-container"
+                >
+                  <svg
+                    fill="none"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM6.0616 11.1442L6.05904 11.1417L4.27459 9.35718C3.90847 8.99104 3.90847 8.39747 4.27459 8.03134C4.64071 7.66524 5.2343 7.66524 5.60041 8.03134L6.72452 9.15545L10.6054 5.27457C10.9715 4.90848 11.5651 4.90848 11.9312 5.27457C12.2974 5.64071 12.2974 6.23427 11.9312 6.60041L7.391 11.1406L7.38742 11.1442C7.06707 11.4646 6.57256 11.5046 6.20867 11.2643C6.15668 11.23 6.10737 11.19 6.0616 11.1442Z"
+                      fill="white"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </span>
+              </span>
+              2
+              <div
+                class="label"
+              >
+                 Passed
+              </div>
+            </span>
+          </div>
+        </div>
+        <div
+          class="failureInstances"
+        >
+          <h2>
+            Failure Instances
+          </h2>
+          <span
+            class="outcome-chip outcome-chip-fail"
+            title="0 Failed"
+          >
+            <span
+              class="icon"
+            >
+              <span
+                class="check-container"
+              >
+                <svg
+                  fill="none"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  width="16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    fill="#E81123"
+                    r="8"
+                  />
+                  <path
+                    d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                    fill="var(--neutral-0)"
+                  />
+                </svg>
+              </span>
+            </span>
+            <span
+              aria-hidden="true"
+              class="count"
+              data-automation-id="count"
+            >
+               0
+            </span>
+            <span
+              class="screen-reader-only"
+            >
+              0 Failed
+            </span>
+          </span>
+           Failure instances were detected
+        </div>
+      </div>
+      <div
+        class="crawl-details-section"
+      >
+        <h2>
+          Scan details
+        </h2>
+        <ul
+          class="crawl-details-section-list"
+        >
+          <li>
+            <span
+              class="label"
+            >
+              Target site 
+            </span>
+            <span
+              class="text"
+            >
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://example.com/mock-base-url"
+                id="new-tab-link-with-confirmation-dialog__000"
+                target="_blank"
+                title="Mock base without failures or unscannables"
+              >
+                https://example.com/mock-base-url
+              </a>
+              <script>
+                (function (linkId, doc, confirmCallback) {
+  const targetPageLink = doc.getElementById(linkId);
+  targetPageLink.addEventListener('click', function (event) {
+    const result = confirmCallback('Are you sure you want to navigate away from the Accessibility Insights report?\\n' + 'This link will open the target page in a new tab.\\n\\nPress OK to continue or ' + 'Cancel to stay on the current page.');
+
+    if (result === false) {
+      event.preventDefault();
+    }
+  });
+})("new-tab-link-with-confirmation-dialog__6", document, confirm);
+              </script>
+            </span>
+          </li>
+          <li>
+            <span
+              class="label"
+            >
+              Scans started 
+            </span>
+            <span
+              class="text"
+            >
+              2020-02-02 3:04 AM UTC
+            </span>
+          </li>
+          <li>
+            <span
+              class="label"
+            >
+              Scans completed 
+            </span>
+            <span
+              class="text"
+            >
+              2020-02-02 4:04 AM UTC
+            </span>
+          </li>
+          <li>
+            <span
+              class="label"
+            >
+              Duration 
+            </span>
+            <span
+              class="text"
+            >
+              01:00:00
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div
+        class="url-results-container"
+      >
+        <div
+          class="results-heading"
+        >
+          <h2>
+            Results by URL
+          </h2>
+        </div>
+        <div
+          class="url-result-section"
+        >
+          <div
+            class="collapsible-container collapsed"
+          >
+            <div
+              aria-level="3"
+              class="title-container"
+              role="heading"
+            >
+              <button
+                aria-controls="content-container-failed-urls-section"
+                aria-expanded="false"
+                class="collapsible-control"
+              >
+                <span
+                  class="resultSectionTitle"
+                >
+                  <span
+                    class="screen-reader-only"
+                  >
+                    Failed URLs 0
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="heading"
+                  >
+                    Failed URLs
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="outcomeChipContainer"
+                  >
+                    <span
+                      class="outcome-chip outcome-chip-fail"
+                      title="0 Failed"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <span
+                          class="check-container"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="8"
+                              cy="8"
+                              fill="#E81123"
+                              r="8"
+                            />
+                            <path
+                              d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                              fill="var(--neutral-0)"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="count"
+                        data-automation-id="count"
+                      >
+                         0
+                      </span>
+                      <span
+                        class="screen-reader-only"
+                      >
+                        0 Failed
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="collapsible-content"
+              id="content-container-failed-urls-section"
+            >
+              <table
+                class="summary-results-table"
+                id="failed-urls-table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      id="failed-urls-table-header000"
+                    >
+                      # failure instances (0)
+                    </th>
+                    <th
+                      id="failed-urls-table-header000"
+                    >
+                      URL
+                    </th>
+                    <th
+                      id="failed-urls-table-header000"
+                    >
+                      Link to report
+                    </th>
+                  </tr>
+                </thead>
+                <tbody />
+              </table>
+            </div>
+          </div>
+        </div>
+        <div
+          class="url-result-section"
+        >
+          <div
+            class="collapsible-container collapsed"
+          >
+            <div
+              aria-level="3"
+              class="title-container"
+              role="heading"
+            >
+              <button
+                aria-controls="content-container-not-scanned-urls-section"
+                aria-expanded="false"
+                class="collapsible-control"
+              >
+                <span
+                  class="resultSectionTitle"
+                >
+                  <span
+                    class="screen-reader-only"
+                  >
+                    Not scanned URLs 0
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="heading"
+                  >
+                    Not scanned URLs
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="outcomeChipContainer"
+                  >
+                    <span
+                      class="outcome-chip outcome-chip-unscannable"
+                      title="0 Not scanned"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <span
+                          class="check-container"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="8"
+                              cy="8"
+                              fill="#737373"
+                              r="8"
+                            />
+                            <line
+                              stroke="white"
+                              stroke-linecap="round"
+                              stroke-width="1.5"
+                              x1="5.66064"
+                              x2="10.2568"
+                              y1="5.625"
+                              y2="10.2212"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="count"
+                        data-automation-id="count"
+                      >
+                         0
+                      </span>
+                      <span
+                        class="screen-reader-only"
+                      >
+                        0 Not scanned
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="collapsible-content"
+              id="content-container-not-scanned-urls-section"
+            >
+              <table
+                class="summary-results-table"
+                id="not-scanned-urls-table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      id="not-scanned-urls-table-header000"
+                    >
+                      Error type
+                    </th>
+                    <th
+                      id="not-scanned-urls-table-header000"
+                    >
+                      URL
+                    </th>
+                    <th
+                      id="not-scanned-urls-table-header000"
+                    >
+                      Error description
+                    </th>
+                  </tr>
+                </thead>
+                <tbody />
+              </table>
+            </div>
+          </div>
+        </div>
+        <div
+          class="url-result-section"
+        >
+          <div
+            class="collapsible-container collapsed"
+          >
+            <div
+              aria-level="3"
+              class="title-container"
+              role="heading"
+            >
+              <button
+                aria-controls="content-container-passed-urls-section"
+                aria-expanded="false"
+                class="collapsible-control"
+              >
+                <span
+                  class="resultSectionTitle"
+                >
+                  <span
+                    class="screen-reader-only"
+                  >
+                    Passed URLs 2
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="heading"
+                  >
+                    Passed URLs
+                  </span>
+                  <span
+                    aria-hidden="true"
+                    class="outcomeChipContainer"
+                  >
+                    <span
+                      class="outcome-chip outcome-chip-pass"
+                      title="2 Passed"
+                    >
+                      <span
+                        class="icon"
+                      >
+                        <span
+                          class="check-container"
+                        >
+                          <svg
+                            fill="none"
+                            height="16"
+                            viewBox="0 0 16 16"
+                            width="16"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle
+                              cx="8"
+                              cy="8"
+                              fill="#228722"
+                              r="8"
+                            />
+                            <path
+                              clip-rule="evenodd"
+                              d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                              fill="var(--neutral-0)"
+                              fill-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span
+                        aria-hidden="true"
+                        class="count"
+                        data-automation-id="count"
+                      >
+                         2
+                      </span>
+                      <span
+                        class="screen-reader-only"
+                      >
+                        2 Passed
+                      </span>
+                    </span>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div
+              aria-hidden="true"
+              class="collapsible-content"
+              id="content-container-passed-urls-section"
+            >
+              <table
+                class="summary-results-table"
+                id="passed-urls-table"
+              >
+                <thead>
+                  <tr>
+                    <th
+                      id="passed-urls-table-header000"
+                    >
+                      # failure instances (0)
+                    </th>
+                    <th
+                      id="passed-urls-table-header000"
+                    >
+                      URL
+                    </th>
+                    <th
+                      id="passed-urls-table-header000"
+                    >
+                      Link to report
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      class="text-cell"
+                      headers="passed-urls-table-header0"
+                    >
+                      0
+                    </td>
+                    <td
+                      class="url-cell"
+                      headers="passed-urls-table-header1"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://example.com/mock-base-url/passes-a"
+                        target="_blank"
+                      >
+                        https://example.com/mock-base-url/passes-a
+                      </a>
+                    </td>
+                    <td
+                      class="text-cell"
+                      headers="passed-urls-table-header2"
+                    >
+                      <a
+                        aria-label="Report for https://example.com/mock-base-url/passes-a"
+                        class="ms-Link insights-link root-000"
+                        href="./passes-a.html"
+                        target="_blank"
+                      >
+                        Report
+                      </a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td
+                      class="text-cell"
+                      headers="passed-urls-table-header0"
+                    >
+                      0
+                    </td>
+                    <td
+                      class="url-cell"
+                      headers="passed-urls-table-header1"
+                    >
+                      <a
+                        class="ms-Link insights-link root-000"
+                        href="https://example.com/mock-base-url/passes-b"
+                        target="_blank"
+                      >
+                        https://example.com/mock-base-url/passes-b
+                      </a>
+                    </td>
+                    <td
+                      class="text-cell"
+                      headers="passed-urls-table-header2"
+                    >
+                      <a
+                        aria-label="Report for https://example.com/mock-base-url/passes-b"
+                        class="ms-Link insights-link root-000"
+                        href="./passes-b.html"
+                        target="_blank"
+                      >
+                        Report
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function (doc) {
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
+  for (let index = 0; index &lt; collapsibles.length; index++) {
+    const container = collapsibles.item(index);
+    const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
+
+    if (button == null) {
+      continue;
+    }
+
+    button.addEventListener('click', function () {
+      var _a;
+
+      const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
+
+      if (content == null) {
+        throw Error(\`Expected button element's parent to have a next sibling\`);
+      }
+
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
+      const isExpandedAfter = !wasExpandedBefore;
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
+      if (isExpandedAfter) {
+        container.classList.remove('collapsed');
+      } else {
+        container.classList.add('collapsed');
+      }
+    });
+  }
+})(document)
+      </script>
+    </div>
+  </main>
+  <div
+    class="report-footer-container"
+  >
+    <div
+      class="report-footer"
+      role="contentinfo"
+    >
+      This automated checks result was generated using the Mock Service Name that helps find some of the most common accessibility issues. The scan was performed using axe-core mock.axe.version and Mock user agent. For a complete WCAG 2.1 compliance assessment please visit 
       <a
         class="ms-Link insights-link tool-name-link root-000"
         href="http://aka.ms/AccessibilityInsights"

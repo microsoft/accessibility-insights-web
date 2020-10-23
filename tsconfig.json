@@ -1,31 +1,14 @@
 {
+    "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "allowSyntheticDefaultImports": true,
         "target": "es2017",
         "module": "amd",
         "lib": ["es2017", "dom", "scripthost"],
-        "jsx": "react",
-        "sourceMap": true,
         "outDir": "./dist/",
         "rootDir": "./",
-        "stripInternal": true,
-        "noEmitOnError": true,
-        "skipLibCheck": true,
-        "suppressExcessPropertyErrors": true,
-        "alwaysStrict": true,
-        "noImplicitUseStrict": false,
-        "moduleResolution": "node",
-        "inlineSources": true,
-        "experimentalDecorators": true,
-        "strictFunctionTypes": false,
-        "strictPropertyInitialization": false,
-        "noErrorTruncation": false,
-        "noStrictGenericChecks": false,
-        "allowJs": false,
-        "typeRoots": ["node_modules/@types"],
-        "plugins": [],
         "baseUrl": "./src",
-        "forceConsistentCasingInFileNames": true
+        "typeRoots": ["node_modules/@types"],
+        "strictNullChecks": false
     },
     "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "src/**/*.js"]
 }

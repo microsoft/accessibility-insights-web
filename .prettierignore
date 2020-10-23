@@ -21,6 +21,7 @@
 .vs/
 AppXManifest.xml
 copyright-header.txt
+bundle/
 dist/
 docs/art/ada-cat.ansi256.txt
 docs/LICENSE.txt

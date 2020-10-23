@@ -21,17 +21,11 @@ export class ReportGenerator {
     }
 
     public generateFastPassAutomatedChecksReport(
-        scanDate: Date,
         cardsViewData: CardsViewModel,
         description: string,
         scanMetadata: ScanMetadata,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(
-            scanDate,
-            description,
-            cardsViewData,
-            scanMetadata,
-        );
+        return this.reportHtmlGenerator.generateHtml(description, cardsViewData, scanMetadata);
     }
 
     public generateAssessmentReport(

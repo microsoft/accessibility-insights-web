@@ -5,4 +5,5 @@ import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 
 export type LeftNavStoreData = {
     selectedKey: LeftNavItemKey;
+    leftNavVisible: boolean;
 };

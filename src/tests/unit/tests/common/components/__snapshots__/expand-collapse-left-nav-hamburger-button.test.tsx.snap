@@ -3,6 +3,7 @@
 exports[`AssessmentLeftNavHamburgerButton renders per snapshot 1`] = `
 <LeftNavHamburgerButton
   ariaLabel="Assessment - all tests and requirements list"
+  className="some-class"
   isSideNavOpen={false}
   setSideNavOpen={null}
 />
@@ -11,6 +12,7 @@ exports[`AssessmentLeftNavHamburgerButton renders per snapshot 1`] = `
 exports[`FastPassLeftNavHamburgerButton renders per snapshot 1`] = `
 <LeftNavHamburgerButton
   ariaLabel="FastPass - all tests list"
+  className="some-class"
   isSideNavOpen={false}
   setSideNavOpen={null}
 />

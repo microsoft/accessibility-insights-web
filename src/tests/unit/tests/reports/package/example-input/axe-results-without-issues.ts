@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export const scanNoIssues = {
+export const axeResultsWithoutIssues = {
     inapplicable: [
         {
             description: 'Ensures every accesskey attribute value is unique',

@@ -2,7 +2,13 @@
 
 exports[`TestView when status scan <Completed> 1`] = `
 <React.Fragment>
-  <HeaderSection />
+  <HeaderSection
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
+  />
   <CardsView
     cardsViewData={
       Object {
@@ -12,7 +18,9 @@ exports[`TestView when status scan <Completed> 1`] = `
     deps={Object {}}
     scanMetadata={
       Object {
-        "timestamp": "some time",
+        "timespan": Object {
+          "scanComplete": 1900-02-02T03:04:00.000Z,
+        },
       }
     }
     userConfigurationStoreData={
@@ -26,7 +34,13 @@ exports[`TestView when status scan <Completed> 1`] = `
 
 exports[`TestView when status scan <Failed> 1`] = `
 <React.Fragment>
-  <HeaderSection />
+  <HeaderSection
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
+  />
   <ScanningSpinner
     aria-live="assertive"
     isSpinning={false}
@@ -37,7 +51,13 @@ exports[`TestView when status scan <Failed> 1`] = `
 
 exports[`TestView when status scan <Scanning> 1`] = `
 <React.Fragment>
-  <HeaderSection />
+  <HeaderSection
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
+  />
   <ScanningSpinner
     aria-live="assertive"
     isSpinning={true}
@@ -48,7 +68,13 @@ exports[`TestView when status scan <Scanning> 1`] = `
 
 exports[`TestView when status scan <undefined> 1`] = `
 <React.Fragment>
-  <HeaderSection />
+  <HeaderSection
+    contentPageInfo={
+      Object {
+        "title": "some title",
+      }
+    }
+  />
   <ScanningSpinner
     aria-live="assertive"
     isSpinning={false}

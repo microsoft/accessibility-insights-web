@@ -8,4 +8,5 @@ export class LeftNavActionCreator {
     constructor(private readonly actions: LeftNavActions) {}
 
     public itemSelected = (itemKey: LeftNavItemKey) => this.actions.itemSelected.invoke(itemKey);
+    public setLeftNavVisible = (value: boolean) => this.actions.setLeftNavVisible.invoke(value);
 }

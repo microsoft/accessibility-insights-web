@@ -5,6 +5,7 @@ import {
     HowToFixWebCardRowProps,
 } from 'common/components/cards/how-to-fix-card-row';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
@@ -13,7 +14,10 @@ describe('HowToFixWebCardRow', () => {
     it('renders', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixWebCardRowProps = {
-            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                LinkComponent: {} as LinkComponentType,
+            },
             index: 22,
             propertyData: {
                 any: ['some any message'],

@@ -3,10 +3,10 @@
 import { ToolData } from './types/store-data/unified-data-interface';
 
 export const createToolData = (
-    toolName: string,
-    toolVersion: string,
     scanEngineName: string,
     scanEngineVersion: string,
+    toolName: string,
+    toolVersion?: string,
     environmentName?: string,
 ): ToolData => {
     return {

@@ -108,10 +108,10 @@ async function initialize(): Promise<void> {
     const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
     const toolData = createToolData(
-        toolName,
-        browserAdapter.getVersion(),
         'axe-core',
         AxeInfo.Default.version,
+        toolName,
+        browserAdapter.getVersion(),
         browserSpec,
     );
 

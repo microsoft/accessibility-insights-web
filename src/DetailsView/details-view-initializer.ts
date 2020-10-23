@@ -21,6 +21,7 @@ import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
@@ -301,10 +302,10 @@ if (tabId != null) {
             const browserSpec = navigatorUtils.getBrowserSpec();
 
             const toolData = createToolData(
-                toolName,
-                browserAdapter.getVersion(),
                 'axe-core',
                 AxeInfo.Default.version,
+                toolName,
+                browserAdapter.getVersion(),
                 browserSpec,
             );
 
@@ -465,6 +466,7 @@ if (tabId != null) {
                 Assessments,
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
+                getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
             };
 
             const renderer = new DetailsViewRenderer(
@@ -502,6 +504,7 @@ function createNullifiedRenderer(
         textContent,
         storesHub,
         storeActionMessageCreator: new NullStoreActionMessageCreator(),
+        getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
     };
 
     return new NoContentAvailableViewRenderer(deps, doc, render, documentElementSetter);

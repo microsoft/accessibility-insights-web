@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "lib": ["es2017", "dom"],
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react",
+        "sourceMap": true,
+        "stripInternal": true,
+        "noEmitOnError": true,
+        "skipLibCheck": true,
+        "suppressExcessPropertyErrors": true,
+        "alwaysStrict": true,
+        "noImplicitUseStrict": false,
+        "moduleResolution": "node",
+        "inlineSources": true,
+        "experimentalDecorators": true,
+        "strictFunctionTypes": false,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": false,
+        "noErrorTruncation": false,
+        "noStrictGenericChecks": false,
+        "allowJs": false,
+        "plugins": [],
+        "forceConsistentCasingInFileNames": true
+    }
+}

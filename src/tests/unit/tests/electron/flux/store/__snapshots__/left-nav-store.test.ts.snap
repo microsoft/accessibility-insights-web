@@ -2,6 +2,7 @@
 
 exports[`LeftNavStore returns default state 1`] = `
 Object {
+  "leftNavVisible": true,
   "selectedKey": "automated-checks",
 }
 `;

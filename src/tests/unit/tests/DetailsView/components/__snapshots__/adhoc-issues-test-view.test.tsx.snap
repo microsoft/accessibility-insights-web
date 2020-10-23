@@ -1,59 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
-<React.Fragment>
-  <ScanIncompleteWarning
-    test={-1}
-    warningConfiguration={Object {}}
-    warnings={Array []}
-  />
-  <DetailsListIssuesView
-    clickHandlerFactory={
-      proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "actionCreator": undefined,
-        "telemetryFactory": undefined,
+<div
+  className="issuesTestView"
+>
+  <React.Fragment>
+    <ScanIncompleteWarning
+      test={-1}
+      warningConfiguration={Object {}}
+      warnings={Array []}
+    />
+    <DetailsListIssuesView
+      clickHandlerFactory={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actionCreator": undefined,
+          "telemetryFactory": undefined,
+        }
       }
-    }
-    configuration={
-      Object {
-        "displayableData": Object {
-          "title": "test title",
-        },
-        "getStoreData": [Function],
+      configuration={
+        Object {
+          "displayableData": Object {
+            "title": "test title",
+          },
+          "getStoreData": [Function],
+        }
       }
-    }
-    instancesSection={[Function]}
-    scanIncompleteWarnings={Array []}
-    selectedTest={-1}
-    switcherNavConfiguration={
-      Object {
-        "warningConfiguration": Object {},
+      instancesSection={[Function]}
+      scanIncompleteWarnings={Array []}
+      selectedTest={-1}
+      switcherNavConfiguration={
+        Object {
+          "warningConfiguration": Object {},
+        }
       }
-    }
-    tabStoreData={
-      Object {
-        "isChanged": false,
+      tabStoreData={
+        Object {
+          "isChanged": false,
+        }
       }
-    }
-    visualizationStoreData={
-      Object {
-        "scanning": "test-scanning",
-        "tests": Object {},
+      visualizationStoreData={
+        Object {
+          "scanning": "test-scanning",
+          "tests": Object {},
+        }
       }
-    }
-  />
-</React.Fragment>
+    />
+  </React.Fragment>
+</div>
 `;
 
 exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `
-<TargetPageChangedView
-  displayableData={
-    Object {
-      "title": "test title",
+<div
+  className="issuesTestView"
+>
+  <TargetPageChangedView
+    displayableData={
+      Object {
+        "title": "test title",
+      }
     }
-  }
-  toggleClickHandler={[Function]}
-  visualizationType={-1}
-/>
+    toggleClickHandler={[Function]}
+    visualizationType={-1}
+  />
+</div>
 `;

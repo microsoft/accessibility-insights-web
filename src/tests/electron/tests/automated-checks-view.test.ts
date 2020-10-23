@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -12,6 +13,8 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
+import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
+
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
@@ -75,6 +78,24 @@ describe('AutomatedChecksView', () => {
         expect(await countHighlightBoxes()).toBe(1);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
+    });
+
+    it('should pass accessibility validation when left nav is showing', async () => {
+        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
+        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
+        await scanForAccessibilityIssuesInAllModes(app);
+    });
+
+    it('left nav allows to change between tests', async () => {
+        const testIndex = 1;
+        const expectedTestTitle = androidTestConfigs[testIndex].title;
+        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
+        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
+        await automatedChecksView.client.click(
+            AutomatedChecksViewSelectors.nthTestInLeftNav(testIndex + 1),
+        );
+        const title = await automatedChecksView.client.getText('h1');
+        expect(title).toEqual(expectedTestTitle);
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {

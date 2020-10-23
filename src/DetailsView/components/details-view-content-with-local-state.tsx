@@ -30,6 +30,7 @@ export class DetailsViewContentWithLocalState extends React.Component<
         return (
             <>
                 <NarrowModeDetector
+                    deps={this.props.deps}
                     isNarrowModeEnabled={true}
                     Component={DetailsViewContent}
                     childrenProps={{

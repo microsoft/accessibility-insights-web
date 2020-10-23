@@ -13,7 +13,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   hidden={true}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -94,7 +94,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   hidden={true}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -175,7 +175,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -256,7 +256,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -337,7 +337,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -418,7 +418,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -499,7 +499,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -581,7 +581,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }
@@ -662,7 +662,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   hidden={false}
   modalProps={
     Object {
-      "className": "issue-filing-dialog",
+      "className": "issueFilingDialog",
       "containerClassName": "insightsDialogMainOverride",
       "isBlocking": false,
     }

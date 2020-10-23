@@ -60,7 +60,7 @@ describe('ReportExportDialogFactory', () => {
             url: thePageUrl,
         };
         scanMetadata = {
-            timestamp: theTimestamp,
+            timespan: { scanComplete: theDate },
             toolData: theToolData,
             targetAppInfo: targetAppInfo,
         } as ScanMetadata;

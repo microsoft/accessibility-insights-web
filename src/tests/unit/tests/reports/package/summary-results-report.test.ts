@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { SummaryReportParameters, CrawlSummaryDetails, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
+import { ScanSummaryDetails, SummaryReportParameters, SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
 import { Mock } from 'typemoq';
@@ -16,20 +16,18 @@ describe('SummaryResultsReport', () => {
         name: basePageTitle,
         url: baseUrl,
     };
-    const scanMetadataStub = {
-        toolData: toolDataStub,
-        targetAppInfo: targetAppInfoStub,
-        timestamp: null,
-    };
-
-    
     const scanTimespan = {
         scanStart: new Date(2019, 1, 2, 3),
         scanComplete: new Date(2019, 4, 5, 6),
         durationSeconds: 42,
     };
+    const scanMetadataStub = {
+        toolData: toolDataStub,
+        targetAppInfo: targetAppInfoStub,
+        timespan: scanTimespan,
+    };
 
-    const crawlDetails: CrawlSummaryDetails = {
+    const scanDetails: ScanSummaryDetails = {
         baseUrl: baseUrl,
         basePageTitle: basePageTitle,
         ...scanTimespan
@@ -64,7 +62,7 @@ describe('SummaryResultsReport', () => {
         serviceName: 'service name',
         axeVersion: 'axe version',
         userAgent: 'browser spec',
-        crawlDetails,
+        scanDetails: scanDetails,
         results,
     };
 
@@ -72,7 +70,7 @@ describe('SummaryResultsReport', () => {
 
     const mockHtmlGenerator = Mock.ofType<SummaryReportHtmlGenerator>();
     mockHtmlGenerator
-        .setup(hg => hg.generateHtml(scanTimespan, scanMetadataStub, results))
+        .setup(hg => hg.generateHtml(scanMetadataStub, results))
         .returns(() => expectedHTML);
 
     const deps = {

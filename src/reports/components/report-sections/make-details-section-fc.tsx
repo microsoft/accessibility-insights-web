@@ -12,7 +12,7 @@ import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<
     SectionProps,
-    'scanMetadata' | 'description' | 'scanDate' | 'toUtcString'
+    'scanMetadata' | 'description' | 'toUtcString'
 >;
 
 export type ScanDetailInfo = {
@@ -24,7 +24,7 @@ export function makeDetailsSectionFC(
     getDisplayedScanTargetInfo: (scanMetadata: ScanMetadata) => ScanDetailInfo,
 ): ReactFCWithDisplayName<DetailsSectionProps> {
     return NamedFC<DetailsSectionProps>('DetailsSection', props => {
-        const { scanMetadata, description, scanDate, toUtcString } = props;
+        const { scanMetadata, description, toUtcString } = props;
 
         const createListItem = (
             icon: JSX.Element,
@@ -41,7 +41,7 @@ export function makeDetailsSectionFC(
             </li>
         );
 
-        const scanDateUTC: string = toUtcString(scanDate);
+        const scanDateUTC: string = toUtcString(scanMetadata.timespan.scanComplete);
         const showCommentRow = !isEmpty(description);
         const displayedScanTargetInfo: ScanDetailInfo = getDisplayedScanTargetInfo(scanMetadata);
 

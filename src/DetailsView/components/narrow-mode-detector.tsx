@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
+import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 
@@ -9,15 +10,17 @@ export type NarrowModeStatus = {
     isCommandBarCollapsed: boolean;
 };
 
-export type NarrowModeDetectorProps<P = { narrowModeStatus: NarrowModeStatus }> = {
-    isNarrowModeEnabled: boolean;
-    Component: ReactFCWithDisplayName<P & { narrowModeStatus: NarrowModeStatus }>;
-    childrenProps: P;
+export type NarrowModeDetectorDeps = {
+    getNarrowModeThresholds: () => NarrowModeThresholds;
 };
 
-export const narrowModeThresholds = {
-    collapseHeaderAndNavThreshold: 600,
-    collapseCommandBarThreshold: 960,
+export type NarrowModeDetectorProps<P = { narrowModeStatus: NarrowModeStatus }> = {
+    deps: NarrowModeDetectorDeps;
+    isNarrowModeEnabled: boolean;
+    Component:
+        | ReactFCWithDisplayName<P & { narrowModeStatus: NarrowModeStatus }>
+        | React.ComponentClass<P & { narrowModeStatus: NarrowModeStatus }>;
+    childrenProps: P;
 };
 
 export function getNarrowModeComponentWrapper<P>(
@@ -26,6 +29,7 @@ export function getNarrowModeComponentWrapper<P>(
     return (dimensions: { width: number }) => {
         const childrenProps = props.childrenProps;
         const isNarrowModeEnabled = props.isNarrowModeEnabled === true;
+        const narrowModeThresholds = props.deps.getNarrowModeThresholds();
 
         const isNarrowerThan = (threshold: number) => dimensions.width < threshold;
 
