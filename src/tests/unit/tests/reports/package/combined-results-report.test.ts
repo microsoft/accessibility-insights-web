@@ -42,10 +42,17 @@ describe('CombinedResultsReport', () => {
         ...scanTimespanStub
     };
 
+    const urlResultsCount = {
+        passedUrls: 1,
+        failedUrls: 2,
+        unscannableUrls: 3,
+    };
+
     const results = {
         resultsByRule: {
             failed: [],
         },
+        urlResults: urlResultsCount,
     } as CombinedReportResults;
 
     const parameters: CombinedReportParameters = {
@@ -90,7 +97,7 @@ describe('CombinedResultsReport', () => {
             .returns(() => cardsViewDataStub);
 
         reportHtmlGeneratorMock
-            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub))
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub, urlResultsCount))
             .returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();

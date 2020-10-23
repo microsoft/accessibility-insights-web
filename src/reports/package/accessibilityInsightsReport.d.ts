@@ -80,8 +80,15 @@ declare namespace AccessibilityInsightsReport {
         notApplicable?: AxeRuleData[],
     }
 
+    export type UrlResultCounts = {
+        passedUrls: number,
+        failedUrls: number,
+        unscannableUrls: number,
+    }
+
     export type CombinedReportResults = {
         resultsByRule: GroupedResults,
+        urlResults: UrlResultCounts,
     }
 
     export type CombinedReportParameters = {

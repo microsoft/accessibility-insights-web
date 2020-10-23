@@ -14,6 +14,11 @@ export const combinedResultsWithoutIssues: CombinedReportParameters = {
     },
     userAgent: 'Mock user agent',
     results: {
+        urlResults: {
+            failedUrls: 0,
+            passedUrls: 2,
+            unscannableUrls: 1,
+        },
         resultsByRule: {
             failed: [],
             passed: [

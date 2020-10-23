@@ -55,6 +55,12 @@ describe('CombinedReportHtmlGenerator', () => {
         timespan: scanTimespan,
     } as ScanMetadata;
 
+    const urlResultCounts = {
+        passedUrls: 1,
+        failedUrls: 2,
+        unscannableUrls: 3,
+    };
+
     const cardsViewData = {
         cards: exampleUnifiedStatusResults,
         visualHelperEnabled: true,
@@ -87,6 +93,7 @@ describe('CombinedReportHtmlGenerator', () => {
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
             cardsByRule: cardsViewData,
+            urlResultCounts,
         };
 
         const headElement: JSX.Element = <NullComponent />;
@@ -102,7 +109,7 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(scanMetadata, cardsViewData);
+        const html = testSubject.generateHtml(scanMetadata, cardsViewData, urlResultCounts);
 
         expect(html).toMatchSnapshot();
     });
