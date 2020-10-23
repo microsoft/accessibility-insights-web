@@ -22,6 +22,7 @@ import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -33,6 +34,8 @@ import {
 } from 'DetailsView/components/start-over-dialog';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { FeatureFlags } from 'common/feature-flags';
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -135,11 +138,13 @@ export class DetailsViewCommandBar extends React.Component<
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
+        const saveAssessmentElement: JSX.Element | null = this.renderSaveAssessmentButton();
 
-        if (reportExportElement || startOverElement) {
+        if (reportExportElement || saveAssessmentElement || startOverElement) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
+                    {saveAssessmentElement}
                     {startOverElement}
                 </div>
             );
@@ -152,6 +157,8 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
+                renderSaveAssessmentButton={this.renderSaveAssessmentButton}
+                featureFlagStoreData={this.props.featureFlagStoreData}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
@@ -198,6 +205,13 @@ export class DetailsViewCommandBar extends React.Component<
             afterDialogDismissed: this.focusReportExportButton,
         });
     }
+
+    private renderSaveAssessmentButton = (): JSX.Element | null => {
+        if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
+            return <SaveAssessmentButton />;
+        }
+        return null;
+    };
 
     private showStartOverDialog = (dialogState: StartOverDialogType) => {
         this.setState({ startOverDialogState: dialogState });
