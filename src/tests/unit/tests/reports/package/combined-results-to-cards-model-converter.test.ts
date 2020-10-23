@@ -33,13 +33,32 @@ describe(CombinedResultsToCardsModelConverter, () => {
         );
     })
 
-    it('converts results to cards view data', () => {
+    it('with issues', () => {
         setupGuidanceLinks();
 
         const cardsViewModel = testSubject.convertResults(combinedResultsWithIssues.results.resultsByRule);
 
         expect(cardsViewModel).toMatchSnapshot();
-    })
+    });
+
+    it('without issues', () => {
+        setupGuidanceLinks();
+
+        const cardsViewModel = testSubject.convertResults(combinedResultsWithoutIssues.results.resultsByRule);
+
+        expect(cardsViewModel).toMatchSnapshot();
+    });
+
+    it('without passed or inapplicable rules', () => {
+        setupGuidanceLinks();
+        const onlyFailedResults = {
+            failed: combinedResultsWithIssues.results.resultsByRule.failed,
+        };
+
+        const cardsViewModel = testSubject.convertResults(onlyFailedResults);
+
+        expect(cardsViewModel).toMatchSnapshot();
+    });
 
     function setupGuidanceLinks() {
         getGuidanceLinksMock.setup(gl => gl(It.isAny())).returns((ruleId) => {

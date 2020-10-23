@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CombinedResultsToCardsModelConverter converts results to cards view data 1`] = `
+exports[`CombinedResultsToCardsModelConverter with issues 1`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
@@ -167,6 +167,192 @@ Object {
         "url": "https://dequeuniversity.com/rules/axe/3.3/aria-hidden-focus?application=webdriverjs",
       },
     ],
+    "unknown": Array [],
+  },
+  "visualHelperEnabled": false,
+}
+`;
+
+exports[`CombinedResultsToCardsModelConverter without issues 1`] = `
+Object {
+  "allCardsCollapsed": true,
+  "cards": Object {
+    "fail": Array [],
+    "inapplicable": Array [
+      Object {
+        "description": "Ensures every ARIA input field has an accessible name",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/aria-input-field-name",
+            "text": "guidance for aria-input-field-name",
+          },
+        ],
+        "id": "aria-input-field-name",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/aria-input-field-name?application=webdriverjs",
+      },
+      Object {
+        "description": "Ensures every ARIA toggle field has an accessible name",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/aria-toggle-field-name",
+            "text": "guidance for aria-toggle-field-name",
+          },
+        ],
+        "id": "aria-toggle-field-name",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/aria-toggle-field-name?application=webdriverjs",
+      },
+      Object {
+        "description": "Ensure the autocomplete attribute is correct and suitable for the form field",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/autocomplete-valid",
+            "text": "guidance for autocomplete-valid",
+          },
+        ],
+        "id": "autocomplete-valid",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/autocomplete-valid?application=webdriverjs",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "Ensures <area> elements of image maps have alternate text",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/area-alt",
+            "text": "guidance for area-alt",
+          },
+        ],
+        "id": "area-alt",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/area-alt?application=webdriverjs",
+      },
+      Object {
+        "description": "Ensures aria-hidden elements do not contain focusable elements",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/aria-hidden-focus",
+            "text": "guidance for aria-hidden-focus",
+          },
+        ],
+        "id": "aria-hidden-focus",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "https://dequeuniversity.com/rules/axe/3.3/aria-hidden-focus?application=webdriverjs",
+      },
+    ],
+    "unknown": Array [],
+  },
+  "visualHelperEnabled": false,
+}
+`;
+
+exports[`CombinedResultsToCardsModelConverter without passed or inapplicable rules 1`] = `
+Object {
+  "allCardsCollapsed": true,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "failed-rule-1 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/failed-rule-1",
+            "text": "guidance for failed-rule-1",
+          },
+        ],
+        "id": "failed-rule-1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet 1</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".rule-1-selector-1",
+              "css-selector": ".rule-1-selector-1",
+              "identifier": ".rule-1-selector-1",
+            },
+            "instanceUrls": Array [
+              "https://url/rule-1/failure1",
+            ],
+            "isSelected": false,
+            "resolution": Object {
+              "howToFixSummary": "fix failed-rule-1",
+            },
+            "ruleId": "failed-rule-1",
+            "status": "fail",
+            "uid": "test uid",
+          },
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet 2</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".rule-1-selector-2",
+              "css-selector": ".rule-1-selector-2",
+              "identifier": ".rule-1-selector-2",
+            },
+            "instanceUrls": Array [
+              "https://url/rule1/failure2",
+              "https://url/rule1/failure3",
+            ],
+            "isSelected": false,
+            "resolution": Object {
+              "howToFixSummary": "fix failed-rule-1",
+            },
+            "ruleId": "failed-rule-1",
+            "status": "fail",
+            "uid": "test uid",
+          },
+        ],
+        "url": "https://rules/failed-rule-1",
+      },
+      Object {
+        "description": "failed-rule-2 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/failed-rule-2",
+            "text": "guidance for failed-rule-2",
+          },
+        ],
+        "id": "failed-rule-2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".rule-2-selector-1",
+              "css-selector": ".rule-2-selector-1",
+              "identifier": ".rule-2-selector-1",
+            },
+            "instanceUrls": Array [
+              "https://url/rule2/failure1",
+            ],
+            "isSelected": false,
+            "resolution": Object {
+              "howToFixSummary": "fix failed-rule-2",
+            },
+            "ruleId": "failed-rule-2",
+            "status": "fail",
+            "uid": "test uid",
+          },
+        ],
+        "url": "https://rules/rule2/failed-rule-1",
+      },
+    ],
+    "inapplicable": Array [],
+    "pass": Array [],
     "unknown": Array [],
   },
   "visualHelperEnabled": false,
