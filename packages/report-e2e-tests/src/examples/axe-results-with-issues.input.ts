@@ -5,7 +5,7 @@ import { AxeReportParameters } from 'accessibility-insights-report';
 export const axeResultsWithIssues: AxeReportParameters = {
     description: 'Description for Axe Results With Issues',
     scanContext: {
-        pageTitle: 'Page Title for Axe Results With Issues'
+        pageTitle: 'Page Title for Axe Results With Issues',
     },
     serviceName: 'Service Name for Axe Results With Issues',
     results: {

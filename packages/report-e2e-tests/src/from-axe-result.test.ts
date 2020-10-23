@@ -20,7 +20,7 @@ describe('fromAxeResult', () => {
             const output = reporterFactory().fromAxeResult(input).asHTML();
             const formattedOutput = prettier.format(output, { parser: 'html' });
 
-            const snapshotFile = path.join(__dirname, 'examples', `${exampleName}.output.html`);
+            const snapshotFile = path.join(__dirname, 'examples', `${exampleName}.snap.html`);
             expect(formattedOutput).toMatchFile(snapshotFile);
         });
     });

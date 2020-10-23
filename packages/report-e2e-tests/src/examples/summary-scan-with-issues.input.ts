@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SummaryReportParameters } from "accessibility-insights-report";
+import { SummaryReportParameters } from 'accessibility-insights-report';
 
 export const summaryScanWithIssues: SummaryReportParameters = {
     serviceName: 'Mock Service Name',
@@ -24,14 +24,14 @@ export const summaryScanWithIssues: SummaryReportParameters = {
                 numFailures: 5,
                 reportLocation: './has-5-failures.html',
                 url: 'https://example.com/mock-base-url/has-5-failures',
-            }
+            },
         ],
         passed: [
             {
                 numFailures: 0,
                 reportLocation: './passes.html',
                 url: 'https://example.com/mock-base-url/passes',
-            }
+            },
         ],
         unscannable: [
             {
@@ -39,7 +39,7 @@ export const summaryScanWithIssues: SummaryReportParameters = {
                 errorDescription: 'Mock unscannable error description',
                 errorLogLocation: './error-log.txt',
                 url: 'https://example.com/mock-base-url/unscannable',
-            }
-        ]
+            },
+        ],
     },
 };
