@@ -11232,7 +11232,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
           </div>
         </div>
         <div
-          class="failure-instances"
+          class="failureInstances"
         >
           <h2>
             Failure Instances
@@ -12312,7 +12312,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
           </div>
         </div>
         <div
-          class="failure-instances"
+          class="failureInstances"
         >
           <h2>
             Failure Instances

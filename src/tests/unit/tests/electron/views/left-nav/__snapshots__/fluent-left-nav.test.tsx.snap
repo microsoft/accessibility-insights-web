@@ -22,6 +22,15 @@ exports[`FluentLeftNav render left nav inside panel 1`] = `
   onRenderNavigationContent={[Function]}
   type={8}
 >
+  <div
+    className="navMenuContainer"
+  >
+    <FastPassLeftNavHamburgerButton
+      className="navMenu"
+      isSideNavOpen={true}
+      setSideNavOpen={[Function]}
+    />
+  </div>
   <LeftNav
     deps={Object {}}
     selectedKey="automated-checks"
