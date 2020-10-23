@@ -34,6 +34,7 @@ import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/componen
 import { TestView } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
+import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
 import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -164,9 +165,12 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 featureFlag={UnifiedFeatureFlags.leftNavBar}
                 featureFlagStoreData={this.props.featureFlagStoreData}
                 enableJSXElement={
-                    <LeftNav
+                    <FluentLeftNav
                         deps={this.props.deps}
+                        isNavOpen={this.props.leftNavStoreData.leftNavVisible}
+                        narrowModeStatus={this.props.narrowModeStatus}
                         selectedKey={this.props.leftNavStoreData.selectedKey}
+                        setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
                     />
                 }
             />
