@@ -147,7 +147,7 @@ exports[`ReportBody renders 1`] = `
   />
   <content-container>
     <title-section />
-    <summary-section
+    <details-section
       cardsViewData={
         Object {
           "allCardsCollapsed": true,
@@ -290,7 +290,7 @@ exports[`ReportBody renders 1`] = `
       }
       userConfigurationStoreData={null}
     />
-    <details-section
+    <summary-section
       cardsViewData={
         Object {
           "allCardsCollapsed": true,
