@@ -10,16 +10,15 @@ import { FeatureFlags } from 'common/feature-flags';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;
-    renderSaveAssessmentButton: () => JSX.Element | null;
+    renderSaveAssessmentButton?: () => JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
-    featureFlagStoreData: FeatureFlagStoreData;
+    featureFlagStoreData?: FeatureFlagStoreData;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
     'CommandBarButtonsMenu',
     props => {
-        const possibleSaveAssessmentButton = props.renderSaveAssessmentButton();
         const exportButton = props.renderExportReportButton();
         const overflowItems: IContextualMenuItem[] = [];
 
@@ -27,7 +26,8 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'export report',
             onRender: () => <div role="menuitem">{exportButton}</div>,
         });
-        if (props.featureFlagStoreData[FeatureFlags.saveAndLoadAssessment]) {
+        if (props.featureFlagStoreData?.[FeatureFlags.saveAndLoadAssessment] && props.renderSaveAssessmentButton) {
+            const possibleSaveAssessmentButton = props.renderSaveAssessmentButton();
             overflowItems.push({
                 key: 'save assessment',
                 onRender: () => <div role="menuitem">{possibleSaveAssessmentButton}</div>,
