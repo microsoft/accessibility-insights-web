@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
-import { CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
+import { CardResult, CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
 import { isNil } from "lodash";
-import { AxeRuleData, GroupedResults } from "reports/package/accessibilityInsightsReport";
-import { GuidanceLink, RuleToLinksMapping } from "scanner/rule-to-links-mappings";
+import { AxeRuleData, FailureData, FailuresGroup, GroupedResults } from "reports/package/accessibilityInsightsReport";
+import { GuidanceLink } from "scanner/rule-to-links-mappings";
 
 export class CombinedResultsToCardsModelConverter {
     constructor(
@@ -17,13 +17,14 @@ export class CombinedResultsToCardsModelConverter {
         results: GroupedResults,
     ): CardsViewModel => {
         
-        const passedCardRules = this.getCardRuleResults(results.passed);
-        const inapplicableCardRules = this.getCardRuleResults(results.notApplicable)
+        const passedCards = this.getCardRuleResults(results.passed);
+        const inapplicableCards = this.getCardRuleResults(results.notApplicable);
+        const failedCards = results.failed.map(this.getFailuresGroupedByRule);
         
         const statusResults: CardRuleResultsByStatus = {
-            fail: [],
-            pass: passedCardRules,
-            inapplicable: inapplicableCardRules,
+            fail: failedCards,
+            pass: passedCards,
+            inapplicable: inapplicableCards,
             unknown: [],
         };
     
@@ -39,17 +40,31 @@ export class CombinedResultsToCardsModelConverter {
             return [];
         }
     
-        return rules.map(this.getCardRuleResult);
+        return rules.map(rule => this.getCardRuleResult(rule));
     }
     
-    private getCardRuleResult = (rule: AxeRuleData): CardRuleResult => {
+    private getCardRuleResult = (rule: AxeRuleData, nodes?: CardResult[]): CardRuleResult => {
         return {
             id: rule.ruleId,
             description: rule.description,
             url: rule.ruleUrl,
             isExpanded: false,
             guidance: this.getGuidanceLinks(rule.ruleId),
-            nodes: [],
+            nodes: isNil(nodes) ? [] : nodes,
         };
+    }
+
+    private getFailuresGroupedByRule = (groupedFailures: FailuresGroup): CardRuleResult => {
+        if(groupedFailures.failed.length == 0) {
+            return null;
+        }
+        const rule = groupedFailures.failed[0].rule;
+        const failureNodes = groupedFailures.failed.map(this.getFailureCardResult);
+        
+        return this.getCardRuleResult(rule, failureNodes);
+    }
+
+    private getFailureCardResult = (failures: FailureData): CardResult => {
+        return null;
     }
 }
