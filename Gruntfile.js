@@ -150,12 +150,6 @@ module.exports = function (grunt) {
                         src: './src/reports/package/accessibilityInsightsReport.d.ts',
                         dest: path.join(packageReportDropPath, 'index.d.ts'),
                     },
-                    {
-                        cwd: './src/reports/package/root',
-                        src: '*',
-                        dest: packageReportDropPath,
-                        expand: true,
-                    },
                 ],
             },
             'package-ui': {

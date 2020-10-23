@@ -25,7 +25,7 @@
         "build:unified": "grunt build-unified",
         "build:unified:all": "grunt build-unified-all",
         "build:unified:canary": "grunt build-unified-canary",
-        "build:package:report": "grunt build-package-report",
+        "build:package:report": "lerna --scope accessibility-insights-report run build",
         "build:package:ui": "grunt build-package-ui",
         "build:prod": "grunt build-prod",
         "change-log": "node ./tools/get-change-log-for-release.js",

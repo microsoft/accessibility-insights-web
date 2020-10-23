@@ -3,6 +3,16 @@
     "version": "2.2.1",
     "description": "Accessibility Insights Report",
     "license": "MIT",
+    "files": [
+        "../../LICENSE",
+        "./drop",
+        "README.md"
+    ],
+    "main": "drop/index.js",
+    "typings": "drop/index.d.ts",
+    "scripts": {
+        "build": "grunt build-package-report"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/Microsoft/accessibility-insights-web"
