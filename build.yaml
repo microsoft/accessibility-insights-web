@@ -48,10 +48,6 @@ jobs:
             displayName: run unit tests
             timeoutInMinutes: 15
 
-          - script: yarn test:report:e2e --ci
-            displayName: run report package e2e tests
-            timeoutInMinutes: 5
-
           - task: PublishTestResults@2
             inputs:
                 testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
@@ -108,6 +104,20 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+            timeoutInMinutes: 5
+
+    - job: 'e2e_report_linux'
+      pool:
+          vmImage: $(linuxImage)
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+
+          - script: yarn build:package:report
+            displayName: build report package
+            timeoutInMinutes: 5
+
+          - script: yarn test:report:e2e --ci
+            displayName: run report package e2e tests
             timeoutInMinutes: 5
 
     - job: 'e2e_web_linux'
