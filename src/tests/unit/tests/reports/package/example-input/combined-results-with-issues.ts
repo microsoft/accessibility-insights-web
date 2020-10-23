@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CombinedReportParameters } from "reports/package/accessibilityInsightsReport";
 
-export const combinedResultsWithoutIssues: CombinedReportParameters = {
+export const combinedResultsWithIssues: CombinedReportParameters = {
     serviceName: 'Mock Service Name',
     axeVersion: 'mock.axe.version',
     scanDetails: {

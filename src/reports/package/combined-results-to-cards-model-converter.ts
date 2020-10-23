@@ -3,6 +3,9 @@
 
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { CardResult, CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
+import { UUIDGenerator } from "common/uid-generator";
+import { ResolutionCreator } from "injected/adapters/resolution-creator";
+import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-string-utils";
 import { isNil } from "lodash";
 import { AxeRuleData, FailureData, FailuresGroup, GroupedResults } from "reports/package/accessibilityInsightsReport";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
@@ -10,7 +13,8 @@ import { GuidanceLink } from "scanner/rule-to-links-mappings";
 export class CombinedResultsToCardsModelConverter {
     constructor(
         private readonly getGuidanceLinks: (ruleId: string) => GuidanceLink[],
-        private readonly cardSelectionViewData: CardSelectionViewData
+        private readonly cardSelectionViewData: CardSelectionViewData,
+        private readonly uuidGenerator: UUIDGenerator,
     ) {}
 
     public convertResults = (
@@ -64,7 +68,28 @@ export class CombinedResultsToCardsModelConverter {
         return this.getCardRuleResult(rule, failureNodes);
     }
 
-    private getFailureCardResult = (failures: FailureData): CardResult => {
-        return null;
+    private getFailureCardResult = (failureData: FailureData): CardResult => {
+        const rule = failureData.rule;
+        const cssSelector = failureData.elementSelector;
+
+        return {
+            uid: this.uuidGenerator(),
+            status: 'fail',
+            ruleId: rule.ruleId,
+            identifiers: {
+                identifier: cssSelector,
+                conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
+                'css-selector': cssSelector,
+            },
+            descriptors: {
+                snippet: failureData.snippet,
+            },
+            resolution: {
+                howToFixSummary: failureData.fix,
+            },
+            isSelected: false,
+            highlightStatus: 'unavailable',
+            instanceUrls: failureData.urls,
+        }
     }
 }

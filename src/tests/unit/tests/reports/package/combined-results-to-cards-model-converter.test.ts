@@ -2,33 +2,41 @@
 // Licensed under the MIT License.
 
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
-import { CardsViewModel } from "common/types/store-data/card-view-model";
+import { UUIDGenerator } from "common/uid-generator";
 import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
+import { combinedResultsWithIssues } from "tests/unit/tests/reports/package/example-input/combined-results-with-issues";
 import { IMock, It, Mock } from "typemoq";
 import { combinedResultsWithoutIssues } from "./example-input/combined-results-without-issues";
 
 describe(CombinedResultsToCardsModelConverter, () => {
-    let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
     const viewDataStub: CardSelectionViewData = {
         selectedResultUids: [],
         expandedRuleIds: [],
         visualHelperEnabled: false,
         resultsHighlightStatus: {},
     };
+    let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
+    let uuidGeneratorMock: IMock<UUIDGenerator>;
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
     beforeEach(() => {
         getGuidanceLinksMock = Mock.ofInstance(() => null);
+        uuidGeneratorMock = Mock.ofType<UUIDGenerator>();
+        uuidGeneratorMock.setup(ug => ug()).returns(() => 'test uid');
         
-        testSubject = new CombinedResultsToCardsModelConverter(getGuidanceLinksMock.object, viewDataStub);
+        testSubject = new CombinedResultsToCardsModelConverter(
+            getGuidanceLinksMock.object,
+            viewDataStub,
+            uuidGeneratorMock.object
+        );
     })
 
-    it('converts results without issues to cards view data', () => {
+    it('converts results to cards view data', () => {
         setupGuidanceLinks();
 
-        const cardsViewModel = testSubject.convertResults(combinedResultsWithoutIssues.results.resultsByRule);
+        const cardsViewModel = testSubject.convertResults(combinedResultsWithIssues.results.resultsByRule);
 
         expect(cardsViewModel).toMatchSnapshot();
     })

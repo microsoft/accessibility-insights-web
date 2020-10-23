@@ -1,10 +1,103 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CombinedResultsToCardsModelConverter converts results without issues to cards view data 1`] = `
+exports[`CombinedResultsToCardsModelConverter converts results to cards view data 1`] = `
 Object {
   "allCardsCollapsed": true,
   "cards": Object {
-    "fail": Array [],
+    "fail": Array [
+      Object {
+        "description": "failed-rule-1 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/failed-rule-1",
+            "text": "guidance for failed-rule-1",
+          },
+        ],
+        "id": "failed-rule-1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet 1</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".rule-1-selector-1",
+              "css-selector": ".rule-1-selector-1",
+              "identifier": ".rule-1-selector-1",
+            },
+            "instanceUrls": Array [
+              "https://url/rule-1/failure1",
+            ],
+            "isSelected": false,
+            "resolution": Object {
+              "howToFixSummary": "fix failed-rule-1",
+            },
+            "ruleId": "failed-rule-1",
+            "status": "fail",
+            "uid": "test uid",
+          },
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet 2</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".rule-1-selector-2",
+              "css-selector": ".rule-1-selector-2",
+              "identifier": ".rule-1-selector-2",
+            },
+            "instanceUrls": Array [
+              "https://url/rule1/failure2",
+              "https://url/rule1/failure3",
+            ],
+            "isSelected": false,
+            "resolution": Object {
+              "howToFixSummary": "fix failed-rule-1",
+            },
+            "ruleId": "failed-rule-1",
+            "status": "fail",
+            "uid": "test uid",
+          },
+        ],
+        "url": "https://rules/failed-rule-1",
+      },
+      Object {
+        "description": "failed-rule-2 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/failed-rule-2",
+            "text": "guidance for failed-rule-2",
+          },
+        ],
+        "id": "failed-rule-2",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".rule-2-selector-1",
+              "css-selector": ".rule-2-selector-1",
+              "identifier": ".rule-2-selector-1",
+            },
+            "instanceUrls": Array [
+              "https://url/rule2/failure1",
+            ],
+            "isSelected": false,
+            "resolution": Object {
+              "howToFixSummary": "fix failed-rule-2",
+            },
+            "ruleId": "failed-rule-2",
+            "status": "fail",
+            "uid": "test uid",
+          },
+        ],
+        "url": "https://rules/rule2/failed-rule-1",
+      },
+    ],
     "inapplicable": Array [
       Object {
         "description": "Ensures every ARIA input field has an accessible name",

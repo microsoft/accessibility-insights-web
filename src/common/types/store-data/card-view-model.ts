@@ -13,7 +13,6 @@ export interface CardRuleResult {
     url: string;
     guidance: GuidanceLink[];
     isExpanded: boolean;
-    instanceUrls?: string[];
 }
 export type CardRuleResultsByStatus = {
     [key in CardRuleResultStatus]: CardRuleResult[];
@@ -28,6 +27,7 @@ export type CardsViewModel = {
 export interface CardResult extends UnifiedResult {
     isSelected: boolean;
     highlightStatus: HighlightState;
+    instanceUrls?: string[];
 }
 export const AllRuleResultStatuses: CardRuleResultStatus[] = [
     'pass',
