@@ -11102,7 +11102,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
         </ul>
       </div>
       <div
-        class="summary-report-summary-section"
+        class="urlsSummarySection"
       >
         <h2>
           URLs
@@ -12182,7 +12182,7 @@ exports[`report package API fromSummaryResults matches snapshot for scan input w
         </ul>
       </div>
       <div
-        class="summary-report-summary-section"
+        class="urlsSummarySection"
       >
         <h2>
           URLs
