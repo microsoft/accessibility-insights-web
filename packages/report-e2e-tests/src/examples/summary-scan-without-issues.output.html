@@ -1,0 +1,1940 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Accessibility Insights automated checks result</title>
+    <style>
+      :root {
+        --black: #000000;
+        --light-black: #161616;
+        --white: #ffffff;
+        --brand-blue: #004880;
+        --grey: #333333;
+        --ada-brand-color: var(--brand-blue);
+        --primary-text: rgba(0, 0, 0, 0.9);
+        --secondary-text: rgba(0, 0, 0, 0.7);
+        --disabled-text: rgba(0, 0, 0, 0.38);
+        --communication-primary: #106ebe;
+        --communication-tint-40: #eff6fc;
+        --communication-tint-30: #deecf9;
+        --communication-tint-20: #c7e0f4;
+        --communication-tint-10: #2b88d8;
+        --communication-shade-20: #004578;
+        --neutral-0: var(--white);
+        --neutral-2: #f8f8f8;
+        --neutral-3: #f6f6f6;
+        --neutral-4: #f4f4f4;
+        --neutral-6: #f2f2f2;
+        --neutral-6-5: #f1f1f1;
+        --neutral-8: #ebebeb;
+        --neutral-10: #dedede;
+        --neutral-20: #c8c8c8;
+        --neutral-30: #a6a6a6;
+        --neutral-55: #6e6e6e;
+        --neutral-60: #666666;
+        --neutral-70: #3c3c3c;
+        --neutral-80: var(--grey);
+        --neutral-100: var(--black);
+        --neutral-alpha-2: rgba(0, 0, 0, 0.02);
+        --neutral-alpha-4: rgba(0, 0, 0, 0.04);
+        --neutral-alpha-6: rgba(0, 0, 0, 0.06);
+        --neutral-alpha-8: rgba(0, 0, 0, 0.08);
+        --neutral-alpha-10: rgba(0, 0, 0, 0.1);
+        --neutral-alpha-20: rgba(0, 0, 0, 0.2);
+        --neutral-alpha-30: rgba(0, 0, 0, 0.3);
+        --neutral-alpha-60: rgba(0, 0, 0, 0.6);
+        --neutral-alpha-70: rgba(0, 0, 0, 0.7);
+        --neutral-alpha-80: rgba(0, 0, 0, 0.8);
+        --neutral-alpha-90: rgba(0, 0, 0, 0.9);
+        --positive-outcome: #228722;
+        --negative-outcome: #e81123;
+        --neutral-outcome: var(--neutral-60);
+        --box-shadow-108: rgba(0, 0, 0, 0.108);
+        --box-shadow-132: rgba(0, 0, 0, 0.132);
+        --box-shadow-27: rgba(0, 0, 0, 0.27);
+        --screenshot-image-outline: #8b8b8b;
+        --card-border: transparent;
+        --card-footer-border: var(--neutral-10);
+        --header-bar-title-color: var(--neutral-0);
+        --help-links-section-background: var(--neutral-4);
+        --help-links-section-border: var(--neutral-4);
+        --index-circle-background: var(--communication-primary);
+        --link-hover: var(--communication-shade-20);
+        --link: var(--communication-primary);
+        --menu-border: var(--neutral-3);
+        --menu-item-background-active: var(--neutral-alpha-8);
+        --menu-item-background-hover: var(--neutral-alpha-4);
+        --left-nav-icon: var(--neutral-55);
+        --pill-background: var(--neutral-alpha-8);
+        --pill: var(--primary-text);
+        --spinner-text: var(--communication-primary);
+        --nav-link-hover: var(--neutral-alpha-8);
+        --nav-link-selected: var(--communication-tint-20);
+        --nav-link-expanded: var(--communication-tint-40);
+        --insights-button-hover: #0179d4;
+        --landmark-contentinfo: #00a88c;
+        --landmark-main: #cb2e6d;
+        --landmark-complementary: #6b9d1a;
+        --landmark-banner: #d08311;
+        --landmark-region: #2560e0;
+        --landmark-navigation: #9b38e6;
+        --landmark-search: #d363d8;
+        --landmark-form: #0298c7;
+      }
+      :root .high-contrast-theme {
+        --ada-brand-color: var(--white);
+        --secondary-text: var(--white);
+        --primary-text: var(--white);
+        --disabled-text: #c285ff;
+        --communication-tint-40: #38a9ff;
+        --communication-tint-30: var(--communication-tint-10);
+        --neutral-0: var(--light-black);
+        --neutral-2: var(--light-black);
+        --neutral-3: var(--light-black);
+        --neutral-4: var(--light-black);
+        --neutral-6: var(--light-black);
+        --neutral-6-5: var(--light-black);
+        --neutral-8: var(--white);
+        --neutral-10: var(--light-black);
+        --neutral-20: var(--white);
+        --neutral-30: var(--white);
+        --neutral-55: var(--white);
+        --neutral-60: var(--white);
+        --neutral-70: var(--white);
+        --neutral-80: var(--white);
+        --neutral-100: var(--white);
+        --neutral-alpha-8: var(--white);
+        --neutral-alpha-90: var(--white);
+        --positive-outcome: #4ac94a;
+        --negative-outcome: #fc7ab1;
+        --neutral-outcome: var(--neutral-0);
+        --card-border: var(--white);
+        --card-footer-border: var(--white);
+        --header-bar-title-color: var(--brand-blue);
+        --help-links-section-background: transparent;
+        --help-links-section-border: var(--white);
+        --index-circle-background: var(--communication-tint-40);
+        --link-hover: #ffff00;
+        --link: #ffff00;
+        --menu-border: var(--grey);
+        --menu-item-background-active: var(--communication-tint-40);
+        --menu-item-background-hover: var(--grey);
+        --left-nav-icon: var(--black);
+        --pill-background: var(--white);
+        --pill: var(--black);
+        --screenshot-image-outline: var(--white);
+        --spinner-text: var(--communication-tint-40);
+        --nav-link-hover: #2a2a2a;
+        --nav-link-selected: var(--communication-tint-40);
+        --nav-link-expanded: transparent;
+      }
+      .ms-Fabric.is-focusVisible .ms-Nav-group .ms-nav-linkButton:focus::after {
+        border: 1px solid var(--neutral-100);
+      }
+      @media screen and (-ms-high-contrast: active) {
+        .ms-Fabric.is-focusVisible
+          .ms-Nav-group
+          .ms-nav-linkButton:focus::after {
+          border: 1px dashed windowtext !important;
+        }
+      }
+      button::after {
+        content: "";
+        position: absolute;
+      }
+      .ms-fontColor-neutralPrimary,
+      .ms-fontColor-neutralPrimary--hover:hover {
+        color: var(--neutral-100) !important;
+      }
+      .ms-Fabric {
+        color: var(--neutral-100);
+      }
+      .high-contrast-theme .insights-link:hover {
+        text-decoration: underline;
+      }
+      .high-contrast-theme .is-selected .status-icon {
+        color: var(--black) !important;
+      }
+      .insights-link {
+        color: var(--link) !important;
+        text-decoration: none;
+      }
+      .insights-link:hover {
+        color: var(--link-hover) !important;
+        text-decoration: underline;
+      }
+      .ms-Spinner .ms-Spinner-circle {
+        border-top-color: var(--spinner-text);
+      }
+      .ms-Spinner .ms-Spinner-label {
+        color: var(--spinner-text);
+      }
+      .guidance-tags span {
+        font-size: 12px;
+        font-weight: normal;
+        margin-left: 8px;
+        padding: 2px 12px;
+        color: var(--pill);
+        background-color: var(--pill-background);
+        border-radius: 120px;
+      }
+      .instance-details-card {
+        border-radius: 4px;
+        border: 1px solid var(--card-border);
+        outline-style: "border-style";
+        box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
+          0px 3.2px 7.2px var(--box-shadow-132);
+        margin-bottom: 16px;
+        cursor: pointer;
+        width: -moz-available; /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
+      }
+      .instance-details-card-container.selected {
+        outline: 5px solid var(--communication-tint-10);
+      }
+      .instance-details-card.selected {
+        border: 1px solid transparent;
+      }
+      .instance-details-card:focus {
+        outline: 2px solid var(--primary-text);
+        outline-offset: 2px;
+      }
+      .instance-details-card.selected:focus {
+        outline-offset: 8px;
+      }
+      .instance-details-card:hover {
+        box-shadow: 0px 8px 10px var(--box-shadow-108),
+          0px 8px 10px var(--box-shadow-132);
+      }
+      .report-instance-table {
+        background: var(--neutral-0);
+        display: table;
+        table-layout: fixed;
+        width: -moz-available; /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
+        border-radius: inherit;
+        border-collapse: collapse;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+      .report-instance-table .row {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 2px;
+        padding-bottom: 14px;
+        padding-left: 0px;
+        padding-right: 20px;
+        border-bottom: 0.5px solid var(--neutral-10);
+      }
+      .report-instance-table .row > * {
+        margin-top: 12px;
+        margin-bottom: 0px;
+        margin-left: 20px;
+        margin-right: 0px;
+        padding: 0;
+      }
+      .report-instance-table .row:last-child {
+        border-bottom: none;
+      }
+      .report-instance-table .row-label {
+        flex-basis: 90px;
+        flex-shrink: 1;
+        flex-grow: 0;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        color: var(--primary-text);
+        text-align: left;
+      }
+      .report-instance-table .row-content {
+        flex-basis: 200px;
+        flex-shrink: 1;
+        flex-grow: 1;
+        color: var(--secondary-text);
+        font-size: 14px;
+        line-height: 20px;
+        align-items: flex-end;
+        display: flex;
+      }
+      .outcome-summary-bar {
+        display: flex;
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 16px;
+        margin-bottom: 0px;
+        line-height: 24px;
+        font-size: 17px;
+        font-weight: 600;
+        white-space: pre-wrap;
+      }
+      .outcome-summary-bar .block,
+      .outcome-summary-bar .fail,
+      .outcome-summary-bar .pass,
+      .outcome-summary-bar .inapplicable,
+      .outcome-summary-bar .unscannable,
+      .outcome-summary-bar .incomplete {
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 20px;
+        font-size: 16px;
+        color: var(--neutral-0);
+        padding: 8px 8px 10px 10px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+        margin-right: 4px;
+      }
+      .outcome-summary-bar .count {
+        font-weight: 600;
+      }
+      .outcome-summary-bar .fail {
+        background-color: var(--negative-outcome);
+      }
+      .outcome-summary-bar .fail .check-container {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-summary-bar .fail .check-container svg circle {
+        fill: var(--negative-outcome);
+      }
+      .outcome-summary-bar .fail .check-container {
+        bottom: -1px;
+        margin-right: 8px;
+      }
+      .outcome-summary-bar .pass {
+        background-color: var(--positive-outcome);
+      }
+      .outcome-summary-bar .pass .check-container {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-summary-bar .pass .check-container svg circle {
+        fill: var(--positive-outcome);
+      }
+      .outcome-summary-bar .pass .check-container {
+        bottom: -1px;
+        margin-right: 8px;
+        margin-left: 4px;
+      }
+      .outcome-summary-bar .inapplicable,
+      .outcome-summary-bar .unscannable {
+        background-color: var(--neutral-outcome);
+      }
+      .outcome-summary-bar .inapplicable .check-container,
+      .outcome-summary-bar .unscannable .check-container {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-summary-bar .inapplicable .check-container,
+      .outcome-summary-bar .unscannable .check-container {
+        bottom: -1px;
+        margin-right: 8px;
+        margin-left: 4px;
+      }
+      .outcome-summary-bar .incomplete {
+        background-color: var(--neutral-outcome);
+        color: var(--white);
+        border: 2px var(--neutral-60) solid;
+        height: 12px;
+      }
+      .outcome-summary-bar .incomplete .check-container {
+        position: relative;
+        width: 8px;
+        height: 8px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 3px solid var(--neutral-0);
+      }
+      .outcome-summary-bar .incomplete .check-container {
+        margin-right: 6px;
+        border-color: var(--white);
+      }
+      .outcome-summary-bar .summary-bar-left-edge {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+      }
+      .outcome-summary-bar .summary-bar-right-edge {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+        margin-right: 0px;
+      }
+      .outcome-summary-bar .label {
+        font-weight: normal;
+      }
+      .screen-reader-only {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .check-container svg {
+        width: 100%;
+        height: 100%;
+      }
+      .outcome-chip {
+        height: 16px;
+        color: var(--primary-text);
+        border-radius: 0px 8px 8px 0px;
+        margin: 0 4px 0 4px;
+        display: inline-flex;
+        align-items: center;
+        margin-bottom: -3px;
+      }
+      .outcome-chip .icon {
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+      }
+      .outcome-chip .count {
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        line-height: 13px;
+        font-size: 11px;
+        border-radius: 0 8px 8px 0;
+        padding: 0 6px 0 10px;
+        font-weight: 700;
+        margin-left: -8px;
+        height: 13px;
+      }
+      .outcome-chip.outcome-chip-pass .check-container {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-chip.outcome-chip-pass .check-container svg circle {
+        fill: var(--positive-outcome);
+      }
+      .outcome-chip.outcome-chip-pass .check-container {
+        background-color: var(--positive-outcome);
+      }
+      .outcome-chip.outcome-chip-pass .count {
+        background-color: transparent;
+        border: 1.5px solid var(--positive-outcome);
+      }
+      .outcome-chip.outcome-chip-incomplete .check-container,
+      .outcome-chip.outcome-chip-review .check-container {
+        position: relative;
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 1px solid var(--neutral-0);
+      }
+      .outcome-chip.outcome-chip-incomplete .check-container,
+      .outcome-chip.outcome-chip-review .check-container {
+        background-color: var(--neutral-60);
+      }
+      .outcome-chip.outcome-chip-incomplete .count,
+      .outcome-chip.outcome-chip-review .count {
+        background-color: transparent;
+        border: 1.5px solid var(--neutral-60);
+      }
+      .outcome-chip.outcome-chip-fail .check-container {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-chip.outcome-chip-fail .check-container svg circle {
+        fill: var(--negative-outcome);
+      }
+      .outcome-chip.outcome-chip-fail .check-container {
+        background-color: var(--negative-outcome);
+      }
+      .outcome-chip.outcome-chip-fail .count {
+        background-color: transparent;
+        border: 1.5px solid var(--negative-outcome);
+      }
+      .outcome-chip.outcome-chip-inapplicable .check-container,
+      .outcome-chip.outcome-chip-unscannable .check-container {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-chip.outcome-chip-inapplicable .check-container,
+      .outcome-chip.outcome-chip-unscannable .check-container {
+        background-color: var(--neutral-outcome);
+      }
+      .outcome-chip.outcome-chip-inapplicable .count,
+      .outcome-chip.outcome-chip-unscannable .count {
+        background-color: transparent;
+        border: 1.5px solid var(--neutral-outcome);
+      }
+      .outcome-icon-set .outcome-icon {
+        margin-left: 4px;
+        border-radius: 50%;
+      }
+      .outcome-icon-set .outcome-icon-pass .check-container {
+        position: relative;
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-icon-set .outcome-icon-pass .check-container svg circle {
+        fill: var(--positive-outcome);
+      }
+      .outcome-icon-set .outcome-icon-incomplete .check-container {
+        position: relative;
+        width: 12px;
+        height: 12px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 1px solid var(--neutral-0);
+      }
+      .outcome-icon-set .outcome-icon-incomplete .check-container {
+        border-color: var(--neutral-60);
+      }
+      .outcome-icon-set .outcome-icon-fail .check-container {
+        position: relative;
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        border-radius: 50%;
+        border: 0px solid var(--neutral-0);
+      }
+      .outcome-icon-set .outcome-icon-fail .check-container svg circle {
+        fill: var(--negative-outcome);
+      }
+      body {
+        font-size: 14px;
+        margin: auto;
+        background-color: var(--neutral-2);
+        color: black;
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      .outer-container {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+      }
+      .outer-container .content-container {
+        max-width: 960px;
+        margin: 0 auto;
+        margin-top: 24px;
+      }
+      .outer-container .content-container h2 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+      }
+      @media only screen and (max-width: 1000px) {
+        .outer-container .content-container {
+          margin: 24px 16px 0 16px;
+        }
+      }
+      .report-footer-container {
+        max-width: 960px;
+        margin: 0 auto;
+        margin-bottom: 68px;
+        margin-top: 24px;
+      }
+      .report-footer-container .report-footer {
+        line-height: 20px;
+        color: var(--secondary-text);
+      }
+      .report-footer-container .report-footer .tool-name-link {
+        color: var(--secondary-text) !important;
+      }
+      @media only screen and (max-width: 1000px) {
+        .report-footer-container {
+          margin: 0px 16px 68px 16px;
+        }
+      }
+      .report-header-command-bar {
+        height: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        min-height: fit-content;
+        align-items: center;
+        background-color: var(--neutral-0);
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+      }
+      .report-header-command-bar .target-page {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px 0px 0px 16px;
+        display: inherit;
+        color: var(--primary-text);
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+      }
+      .report-header-command-bar .target-page a {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .title-section h1 {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        margin: 0px 0px 24px 0px;
+        font-size: 21px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
+      }
+      .results-container {
+        margin-top: 56px;
+      }
+      .urls-summary-section {
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        border-radius: 4px;
+        background-color: var(--neutral-0);
+        padding: 20px;
+        margin-bottom: 24px;
+      }
+      .urls-summary-section h2 {
+        margin-bottom: 16px !important;
+      }
+      .urls-summary-section .failure-instances {
+        margin-top: 40px;
+      }
+      .crawl-details-section {
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        border-radius: 4px;
+        background-color: var(--neutral-0);
+        padding: 20px;
+      }
+      .crawl-details-section .crawl-details-section-list {
+        list-style: none;
+        font-size: 14px;
+        line-height: 20px;
+        padding-left: 0px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+        margin-block-end: 0px;
+      }
+      .crawl-details-section .crawl-details-section-list li {
+        display: inline-block;
+      }
+      .crawl-details-section .text,
+      .crawl-details-section .label {
+        word-break: break-all;
+        color: var(--neutral-55);
+      }
+      .crawl-details-section .label {
+        font-weight: 600;
+      }
+      .url-result-section {
+        padding-bottom: 31px;
+      }
+      .url-result-section
+        .title-container[aria-level="3"]
+        .collapsible-control::before {
+        position: relative;
+        bottom: 2px;
+        margin-right: 14px;
+      }
+      .url-result-section .collapsible-content {
+        margin-top: 19px;
+      }
+      .url-results-container {
+        margin-top: 56px;
+      }
+      .url-results-container .results-heading {
+        margin-top: 32px;
+        margin-bottom: 32px;
+      }
+      .summary-results-table {
+        width: 100%;
+        margin: 0px;
+        text-align: left;
+        border-spacing: 0px;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .summary-results-table th,
+      .summary-results-table td {
+        border: 1px solid var(--neutral-20);
+        padding: 16px 8px 16px 8px;
+      }
+      .summary-results-table th {
+        font-weight: 600;
+        background-color: var(--neutral-6);
+      }
+      .summary-results-table thead tr :first-child {
+        width: 172px;
+      }
+      .summary-results-table td {
+        background-color: var(--neutral-0);
+      }
+      .summary-results-table td.text-cell {
+        overflow-wrap: break-word;
+      }
+      .summary-results-table td.url-cell {
+        overflow-wrap: anywhere;
+      }
+      @media screen and (max-width: 640px) {
+        .outcome-past-tense {
+          display: none;
+        }
+      }
+      .result-section {
+        padding-bottom: 58px;
+      }
+      .result-section
+        .title-container[aria-level="2"]
+        .collapsible-control::before {
+        position: relative;
+        bottom: 2px;
+        margin-right: 14px;
+      }
+      .collapsible-container:not(.collapsible-rule-details-group)
+        .collapsible-control {
+        padding-left: 2px;
+        padding-right: 16px;
+        position: relative;
+      }
+      .collapsible-container .collapsible-control[aria-expanded="false"]:before,
+      .collapsible-container .collapsible-control[aria-expanded="true"]:before {
+        display: inline-block;
+        border-right: 1px solid var(--secondary-text);
+        border-bottom: 1px solid var(--secondary-text);
+        min-width: 7px;
+        width: 7px;
+        height: 7px;
+        content: "";
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
+      }
+      .collapsible-container .collapsible-control {
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        display: flex;
+        align-items: baseline;
+        width: 100%;
+      }
+      .collapsible-container .collapsible-control:hover {
+        background-color: var(--neutral-alpha-4);
+      }
+      .collapsible-container
+        .collapsible-control[aria-expanded="false"]:before {
+        -webkit-transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+      .collapsible-container .collapsible-control[aria-expanded="true"]:before {
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      .collapsible-container .collapsible-content[aria-hidden="true"] {
+        display: none;
+      }
+    </style>
+    <style>
+      .report-congrats-message--1O-Tl {
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      .report-congrats-head--6pvch {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--primary-text);
+        padding: 10px 0 10px 0;
+      }
+      .report-congrats-info--pvbRt {
+        font-size: 14px;
+        color: var(--secondary-text);
+        padding: 10px 0 10px 0;
+      }
+      .sleeping-ada--3M6Q7 {
+        height: 100px;
+      }
+      .outcome-chip-container--3NUUD {
+        min-width: 50px;
+      }
+      .instance-details-card--OrpLo {
+        border-radius: 4px;
+        border: 1px solid var(--card-border);
+        outline-style: "border-style";
+        box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
+          0px 3.2px 7.2px var(--box-shadow-132);
+        margin-bottom: 16px;
+        cursor: pointer;
+        width: -moz-available; /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
+      }
+      .instance-details-card-container--_ELdq.selected--3O8dW {
+        outline: 5px solid var(--communication-tint-10);
+      }
+      .instance-details-card--OrpLo.selected--3O8dW {
+        border: 1px solid transparent;
+      }
+      .instance-details-card--OrpLo:focus {
+        outline: 2px solid var(--primary-text);
+        outline-offset: 2px;
+      }
+      .instance-details-card--OrpLo.selected--3O8dW:focus {
+        outline-offset: 8px;
+      }
+      .instance-details-card--OrpLo:hover {
+        box-shadow: 0px 8px 10px var(--box-shadow-108),
+          0px 8px 10px var(--box-shadow-132);
+      }
+      .report-instance-table--ljlFi {
+        background: var(--neutral-0);
+        display: table;
+        table-layout: fixed;
+        width: -moz-available; /* WebKit-based browsers will ignore this. */
+        width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+        width: fill-available;
+        border-radius: inherit;
+        border-collapse: collapse;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+      .report-instance-table--ljlFi .row--kaG63 {
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 2px;
+        padding-bottom: 14px;
+        padding-left: 0px;
+        padding-right: 20px;
+        border-bottom: 0.5px solid var(--neutral-10);
+      }
+      .report-instance-table--ljlFi .row--kaG63 > * {
+        margin-top: 12px;
+        margin-bottom: 0px;
+        margin-left: 20px;
+        margin-right: 0px;
+        padding: 0;
+      }
+      .report-instance-table--ljlFi .row--kaG63:last-child {
+        border-bottom: none;
+      }
+      .report-instance-table--ljlFi .row-label--1iEmL {
+        flex-basis: 90px;
+        flex-shrink: 1;
+        flex-grow: 0;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        color: var(--primary-text);
+        text-align: left;
+      }
+      .report-instance-table--ljlFi .row-content--usdIW {
+        flex-basis: 200px;
+        flex-shrink: 1;
+        flex-grow: 1;
+        color: var(--secondary-text);
+        font-size: 14px;
+        line-height: 20px;
+        align-items: flex-end;
+        display: flex;
+      }
+      .multi-line-text-no-bullet--3igrU {
+        padding-left: 0;
+        list-style: none;
+      }
+      .multi-line-text-no-bullet--3igrU li:not(:last-child) {
+        margin-bottom: 4px;
+      }
+      .multi-line-text-yes-bullet--ebJpE {
+        padding-left: 16px;
+      }
+      .multi-line-text-yes-bullet--ebJpE li {
+        list-style-type: disc;
+        margin-bottom: 4px;
+      }
+      .combination-lists--2hRoK {
+        flex-direction: column;
+        display: flex;
+      }
+      .urls-row-content--2TTTB {
+        padding-left: 16px;
+      }
+      .urls-row-content--2TTTB li {
+        list-style-type: disc;
+        margin-bottom: 4px;
+      }
+      .insights-fix-instruction-list--1vUZj
+        li
+        span.fix-instruction-color-box--2DKsr {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        vertical-align: -5%;
+        margin: 0px 2px;
+        border: 1px solid var(--light-black);
+      }
+      .insights-fix-instruction-list--1vUZj .screen-reader-only--QfHg0 {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+      .toast-container--YaZxW {
+        display: inline-block;
+      }
+      .toast-content--Wt0Lj {
+        background: var(--neutral-70);
+        border-radius: 4px;
+        color: var(--neutral-0);
+        padding-left: 20px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        padding-right: 20px;
+        width: 316px;
+        margin-left: calc(316px / -2 - 20px);
+        left: 50%;
+        bottom: 20px;
+        z-index: 1000;
+        position: absolute;
+      }
+      .how-to-fix-content--2-Pc1 {
+        margin-bottom: 16px;
+      }
+      .how-to-fix-content--2-Pc1 ul {
+        padding-left: 16px;
+      }
+      .how-to-fix-content--2-Pc1 ul li {
+        list-style-type: disc;
+        margin-bottom: 4px;
+      }
+      .snippet--msVz- {
+        font-family: Menlo, Consolas, Courier New, monospace;
+        white-space: normal;
+      }
+      div.insights-dialog-main-override--12zq8 {
+        width: 75%;
+        max-width: 500px;
+        user-select: text;
+      }
+      @media screen and (max-width: 500px) {
+        div.insights-dialog-main-override--12zq8 {
+          min-width: 240px;
+          width: 75%;
+        }
+      }
+      div.insights-dialog-main-override--12zq8 .dialog-body--2gMoa {
+        font-size: 16px;
+      }
+      .issue-filing-dialog--2bt4g .ms-Dialog-title {
+        font-size: 21px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        padding-bottom: 0;
+      }
+      .issue-filing-dialog--2bt4g .ms-Dialog-subText {
+        font-weight: 400;
+        font-size: 15px;
+        color: var(--secondary-text);
+      }
+      .action-and-cancel-buttons-component--GI-yD {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .action-and-cancel-buttons-component--GI-yD
+        .action-cancel-button-col--2EdOO
+        + .action-cancel-button-col--2EdOO {
+        margin-left: 8px;
+      }
+      div.kebab-menu-callout--14fgT {
+        box-shadow: 0px 6.4px 14.4px var(--box-shadow-132),
+          0px 1.2px 3.6px var(--box-shadow-108);
+        border-radius: 4px;
+        border-width: 0px;
+      }
+      div.kebab-menu-callout--14fgT > div {
+        border-radius: 4px;
+      }
+      .kebab-menu--z2Gzc {
+        background: var(--neutral-3);
+        border: 1px solid var(--menu-border);
+      }
+      .kebab-menu--z2Gzc li {
+        background-color: var(--neutral-3);
+      }
+      .kebab-menu--z2Gzc button i {
+        color: var(--primary-text);
+      }
+      .kebab-menu--z2Gzc button:hover {
+        background-color: var(--menu-item-background-hover);
+      }
+      .kebab-menu--z2Gzc button:active {
+        background-color: var(--menu-item-background-active);
+        color: var(--light-black);
+      }
+      .kebab-menu--z2Gzc button:active i {
+        color: var(--light-black);
+      }
+      button.kebab-menu-button--2aa2O {
+        width: 34px;
+        height: 32px;
+        margin: 8px;
+        border-radius: 2px;
+        background: transparent;
+      }
+      button.kebab-menu-button--2aa2O svg {
+        stroke: var(--primary-text);
+      }
+      @media screen and (-ms-high-contrast: active) {
+        button.kebab-menu-button--2aa2O svg {
+          fill: inherit !important;
+        }
+      }
+      button.kebab-menu-button--2aa2O:hover {
+        background-color: var(--menu-item-background-hover);
+      }
+      button.kebab-menu-button--2aa2O:active,
+      button.kebab-menu-button--2aa2O[aria-expanded="true"] {
+        background-color: var(--menu-item-background-active);
+        color: var(--light-black);
+      }
+      button.kebab-menu-button--2aa2O:active svg > circle,
+      button.kebab-menu-button--2aa2O[aria-expanded="true"] svg > circle {
+        stroke: var(--light-black);
+      }
+      button.kebab-menu-button--2aa2O > span {
+        justify-content: center;
+      }
+      .foot--1bb1r {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: var(--neutral-2);
+        min-height: 48px;
+        padding-left: 12px;
+        border-top: 0.5px solid var(--card-footer-border);
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+      }
+      .foot--1bb1r .highlight-status--1IQGd {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: transparent;
+      }
+      .foot--1bb1r .highlight-status--1IQGd svg {
+        fill: var(--secondary-text);
+      }
+      .foot--1bb1r .highlight-status--1IQGd label {
+        color: var(--secondary-text);
+        font-size: 14px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+      ul.instance-details-list--2Beza {
+        list-style-type: none;
+        padding-inline-start: unset;
+        margin-block-start: unset;
+        margin-block-end: unset;
+      }
+      ul.instance-details-list--2Beza > li {
+        margin-bottom: 16px;
+      }
+      ul.instance-details-list--2Beza > li:last-child {
+        margin-bottom: unset;
+      }
+      .rule-more-resources--3PCDe {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 16px;
+        padding: 14px 20px;
+        background-color: var(--neutral-0);
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        border-radius: 4px;
+        border: 1px solid var(--card-border);
+        line-height: 20px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+      .rule-more-resources--3PCDe .more-resources-title--17xOw {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      }
+      .rule-more-resources--3PCDe .rule-details-id--ie-v- {
+        padding: 12px 0;
+      }
+      .rule-details-group--39A1d .rule-detail {
+        font-size: 14px;
+        padding: 16px 8px;
+        display: flex;
+        align-items: baseline;
+        text-align: left;
+      }
+      .rule-details-group--39A1d .rule-detail .outcome-chip {
+        vertical-align: middle;
+        margin-bottom: 2px;
+      }
+      .rule-details-group--39A1d .rule-detail .rule-details-id {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        color: var(--primary-text);
+        word-break: break-all;
+      }
+      .rule-details-group--39A1d .rule-detail .rule-details-id a {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        color: var(--primary-text) !important;
+      }
+      .rule-details-group--39A1d .rule-detail .rule-detail-description {
+        color: var(--secondary-text) !important;
+        word-break: break-all;
+      }
+      .rule-details-group--39A1d .rule-detail .guidance-links a {
+        color: var(--secondary-text) !important;
+      }
+      .collapsible-rule-details-group--3aN3u {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+      }
+      .collapsible-rule-details-group--3aN3u .rule-detail {
+        box-shadow: unset;
+      }
+      .collapsible-rule-details-group--3aN3u:not(.collapsed) {
+        box-shadow: unset;
+      }
+      .result-section-title--27ZOL {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      .result-section-title--27ZOL .outcome-chip.outcome-chip-fail .count {
+        line-height: 11px;
+      }
+      .result-section-title--27ZOL .outcome-chip.outcome-chip-fail svg {
+        margin-bottom: 3px;
+      }
+      .result-section-title--27ZOL .title--nA1u1 {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 24px;
+        margin-right: 6px;
+        color: var(--primary-text);
+      }
+      .result-section-title--27ZOL .heading--3ryVY {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 20px;
+        margin-right: 6px;
+        color: var(--primary-text);
+      }
+      .result-section-title--27ZOL .outcome-chip-container--1Vd7P {
+        display: flex;
+        height: 16px;
+      }
+      .result-section--1FLO5 {
+        padding-bottom: 58px;
+      }
+      .result-section--1FLO5
+        .title-container--1CFvU[aria-level="2"]
+        .collapsible-control--ey-Vd::before {
+        position: relative;
+        bottom: 2px;
+      }
+      .result-section--1FLO5 > h2 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+      }
+      .report-header-bar--kg10M {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        background-color: var(--ada-brand-color);
+        height: 40px;
+        width: 100%;
+      }
+      .report-header-bar--kg10M .header-icon {
+        flex-shrink: 0;
+        margin-left: 16px;
+        height: 22px;
+        width: 22px;
+      }
+      .report-header-bar--kg10M .header-text--2L-Jl {
+        margin-left: 8px;
+        color: var(--header-bar-title-color);
+        flex-shrink: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: normal;
+        font-size: 17px;
+        line-height: 24px;
+      }
+      .report-header-command-bar--CWe48 {
+        height: 40px;
+        width: 100%;
+        display: flex;
+        justify-content: end;
+        min-height: fit-content;
+        align-items: center;
+        background-color: var(--neutral-0);
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+      }
+      .report-header-command-bar--CWe48 .target-page--16UqC {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin: 0px 0px 0px 16px;
+        display: inherit;
+        color: var(--primary-text);
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: normal;
+      }
+      .report-header-command-bar--CWe48 .target-page--16UqC a {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .urls-summary-section--2D8aF {
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        border-radius: 4px;
+        background-color: var(--neutral-0);
+        padding: 20px;
+        margin-bottom: 24px;
+      }
+      .urls-summary-section--2D8aF h2 {
+        margin-bottom: 16px !important;
+      }
+      .urls-summary-section--2D8aF .failure-instances--2tbUx {
+        margin-top: 40px;
+      }
+      span.fix-instruction-color-box--HXJ1A {
+        width: 14px;
+        height: 14px;
+        display: inline-block;
+        vertical-align: -5%;
+        margin: 0px 2px;
+        border: 1px solid var(--light-black);
+      }
+      .screen-reader-only--1uWLQ {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="report-header-bar--kg10M">
+        <svg
+          role="img"
+          aria-hidden="true"
+          class="header-icon"
+          viewBox="0 0 48 48"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <mask
+            id="mask0"
+            maskUnits="userSpaceOnUse"
+            x="0"
+            y="3"
+            width="48"
+            height="43"
+            style="mask-type: alpha"
+          >
+            <path
+              d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
+              fill="white"
+            ></path>
+          </mask>
+          <g mask="url(#mask0)">
+            <path
+              d="M43.8309 27.1383C49.3148 21.6544 49.3148 12.7633 43.8309 7.27934C38.347 1.79544 29.4558 1.79543 23.9719 7.27934C18.488 1.79544 9.59684 1.79544 4.11293 7.27934C-1.37098 12.7633 -1.37098 21.6544 4.11293 27.1383L21.986 45.0114C23.0828 46.1082 24.861 46.1082 25.9578 45.0114L43.8309 27.1383Z"
+              fill="white"
+            ></path>
+            <rect
+              x="43.9494"
+              y="7.24556"
+              width="14.0948"
+              height="42.2726"
+              transform="rotate(45 43.9494 7.24556)"
+              fill="#D6E9F7"
+            ></rect>
+            <mask
+              id="mask1"
+              maskUnits="userSpaceOnUse"
+              x="-6"
+              y="-3"
+              width="30"
+              height="31"
+              style="mask-type: alpha"
+            >
+              <path
+                d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+                fill="#CFEBFF"
+              ></path>
+              <path
+                d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+                fill="url(#paint0_linear)"
+              ></path>
+            </mask>
+            <g mask="url(#mask1)">
+              <path
+                d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+                fill="white"
+              ></path>
+              <path
+                d="M23.9718 7.27863L4.11284 27.1376C-1.37106 21.6537 -1.37106 12.7625 4.11284 7.27863C9.59675 1.79472 18.4879 1.79472 23.9718 7.27863Z"
+                fill="url(#paint1_linear)"
+              ></path>
+              <rect
+                x="4.54834"
+                y="6.88206"
+                width="16.3577"
+                height="42.2726"
+                transform="rotate(-45 4.54834 6.88206)"
+                fill="#D6E9F7"
+              ></rect>
+              <rect
+                x="4.54834"
+                y="6.88206"
+                width="16.3577"
+                height="42.2726"
+                transform="rotate(-45 4.54834 6.88206)"
+                fill="url(#paint2_linear)"
+              ></rect>
+            </g>
+            <g filter="url(#filter0_d)">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M34.0764 27.3564C39.8071 27.3483 44.4461 22.6961 44.438 16.9655C44.4299 11.2349 39.7778 6.59585 34.0472 6.60393C28.3165 6.61201 23.6775 11.2642 23.6856 16.9948C23.6888 19.2829 24.4324 21.397 25.6895 23.1108L23.4287 25.3788C22.8852 25.395 22.3466 25.6109 21.9324 26.0265L17.1218 30.8526C16.4185 31.5582 16.4203 32.7005 17.126 33.4038L17.6952 33.9713C18.4009 34.6746 19.5431 34.6728 20.2465 33.9671L25.057 29.141C25.4715 28.7252 25.6857 28.1855 25.6998 27.6415L27.9603 25.3737C29.6766 26.6235 31.7907 27.3596 34.0764 27.3564ZM34.0368 23.2439C37.4964 23.2579 40.3122 20.4647 40.3262 17.0051C40.3401 13.5456 37.5469 10.7298 34.0874 10.7158C30.6279 10.7018 27.812 13.495 27.7981 16.9545C27.7841 20.4141 30.5773 23.2299 34.0368 23.2439Z"
+                fill="#004880"
+              ></path>
+            </g>
+          </g>
+          <defs>
+            <filter
+              id="filter0_d"
+              x="15.748"
+              y="6.50654"
+              width="29.5246"
+              height="29.5269"
+              filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB"
+            >
+              <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+              <feColorMatrix
+                in="SourceAlpha"
+                type="matrix"
+                values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+              ></feColorMatrix>
+              <feOffset dy="0.725705"></feOffset>
+              <feGaussianBlur stdDeviation="0.40317"></feGaussianBlur>
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 0.0447352 0 0 0 0 0.305769 0 0 0 0 0.492222 0 0 0 0.51 0"
+              ></feColorMatrix>
+              <feBlend
+                mode="normal"
+                in2="BackgroundImageFix"
+                result="effect1_dropShadow"
+              ></feBlend>
+              <feBlend
+                mode="normal"
+                in="SourceGraphic"
+                in2="effect1_dropShadow"
+                result="shape"
+              ></feBlend>
+            </filter>
+            <linearGradient
+              id="paint0_linear"
+              x1="14.3166"
+              y1="16.8744"
+              x2="5.92409"
+              y2="8.23504"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#073A5F" stop-opacity="0.3"></stop>
+              <stop offset="1" stop-color="#CFEBFF" stop-opacity="0"></stop>
+            </linearGradient>
+            <linearGradient
+              id="paint1_linear"
+              x1="14.3166"
+              y1="16.8744"
+              x2="5.92409"
+              y2="8.23504"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#165B8E" stop-opacity="0.29"></stop>
+              <stop offset="1" stop-color="white" stop-opacity="0"></stop>
+            </linearGradient>
+            <linearGradient
+              id="paint2_linear"
+              x1="11.3179"
+              y1="20.1024"
+              x2="11.0819"
+              y2="11.1606"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0" stop-color="#165B8E" stop-opacity="0.29"></stop>
+              <stop offset="1" stop-color="#D6E9F7" stop-opacity="0"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="header-text--2L-Jl">Accessibility Insights</div>
+      </div>
+    </header>
+    <main class="outer-container">
+      <div class="content-container">
+        <div class="title-section"><h1>Automated checks results</h1></div>
+        <div class="urls-summary-section--2D8aF">
+          <h2>URLs</h2>
+          2 total URLs discovered
+          <div
+            class="outcome-summary-bar"
+            aria-label="0 Failed, 0 Not scanned, 2 Passed"
+            role="img"
+          >
+            <div style="flex-grow: 0">
+              <span class="fail summary-bar-left-edge"
+                ><span aria-hidden="true"
+                  ><span class="check-container"
+                    ><svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58173 12.4183 0 8 0C3.58172 0 0 3.58173 0 8C0 12.4183 3.58172 16 8 16ZM10.9947 4.99466C10.7018 4.70178 10.2269 4.70178 9.93401 4.99466L8 6.92868L6.06599 4.99466C5.77309 4.70178 5.29823 4.70178 5.00533 4.99466C4.71243 5.28757 4.71243 5.76242 5.00533 6.05533L6.93933 7.98932L4.99467 9.93399C4.70177 10.2269 4.70177 10.7018 4.99467 10.9947C5.28756 11.2876 5.76243 11.2876 6.05532 10.9947L8 9.04999L9.94467 10.9947C10.2376 11.2876 10.7124 11.2876 11.0053 10.9947C11.2982 10.7018 11.2982 10.2269 11.0053 9.93399L9.06066 7.98932L10.9947 6.05533C11.2876 5.76242 11.2876 5.28757 10.9947 4.99466Z"
+                        fill="var(--neutral-0)"
+                      ></path></svg></span></span
+                >0
+                <div class="label">Failed</div></span
+              >
+            </div>
+            <div style="flex-grow: 0">
+              <span class="unscannable"
+                ><span aria-hidden="true"
+                  ><span class="check-container"
+                    ><svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <circle cx="8" cy="8" r="8" fill="white"></circle>
+                      <line
+                        x1="5.66064"
+                        y1="5.625"
+                        x2="10.2568"
+                        y2="10.2212"
+                        stroke="#737373"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                      ></line></svg></span></span
+                >0
+                <div class="label">Not scanned</div></span
+              >
+            </div>
+            <div style="flex-grow: 2">
+              <span class="pass summary-bar-right-edge"
+                ><span aria-hidden="true"
+                  ><span class="check-container"
+                    ><svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16ZM6.0616 11.1442L6.05904 11.1417L4.27459 9.35718C3.90847 8.99104 3.90847 8.39747 4.27459 8.03134C4.64071 7.66524 5.2343 7.66524 5.60041 8.03134L6.72452 9.15545L10.6054 5.27457C10.9715 4.90848 11.5651 4.90848 11.9312 5.27457C12.2974 5.64071 12.2974 6.23427 11.9312 6.60041L7.391 11.1406L7.38742 11.1442C7.06707 11.4646 6.57256 11.5046 6.20867 11.2643C6.15668 11.23 6.10737 11.19 6.0616 11.1442Z"
+                        fill="white"
+                      ></path></svg></span></span
+                >2
+                <div class="label">Passed</div></span
+              >
+            </div>
+          </div>
+          <div class="failure-instances--2tbUx">
+            <h2>Failure Instances</h2>
+            <span class="outcome-chip outcome-chip-fail" title="0 Failed"
+              ><span class="icon"
+                ><span class="check-container"
+                  ><svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <circle cx="8" cy="8" r="8" fill="#E81123"></circle>
+                    <path
+                      d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                      fill="var(--neutral-0)"
+                    ></path></svg></span></span
+              ><span
+                data-automation-id="count"
+                class="count"
+                aria-hidden="true"
+              >
+                0</span
+              ><span class="screen-reader-only">0 Failed</span></span
+            >
+            Failure instances were detected
+          </div>
+        </div>
+        <div class="crawl-details-section">
+          <h2>Scan details</h2>
+          <ul class="crawl-details-section-list">
+            <li>
+              <span class="label">Target site </span
+              ><span class="text"
+                ><a
+                  target="_blank"
+                  href="https://example.com/mock-base-url"
+                  class="ms-Link insights-link root-49"
+                  title="Mock base without failures or unscannables"
+                  id="new-tab-link-with-confirmation-dialog__2"
+                  >https://example.com/mock-base-url</a
+                >
+                <script>
+                  (function (linkId, doc, confirmCallback) {
+                    const targetPageLink = doc.getElementById(linkId);
+                    targetPageLink.addEventListener("click", function (event) {
+                      const result = confirmCallback(
+                        "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
+                          "This link will open the target page in a new tab.\n\nPress OK to continue or " +
+                          "Cancel to stay on the current page."
+                      );
+                      if (result === false) {
+                        event.preventDefault();
+                      }
+                    });
+                  })(
+                    "new-tab-link-with-confirmation-dialog__2",
+                    document,
+                    confirm
+                  );
+                </script></span
+              >
+            </li>
+            <li>
+              <span class="label">Scans started </span
+              ><span class="text">2020-02-02 3:04 AM UTC</span>
+            </li>
+            <li>
+              <span class="label">Scans completed </span
+              ><span class="text">2020-02-02 4:04 AM UTC</span>
+            </li>
+            <li>
+              <span class="label">Duration </span
+              ><span class="text">01:00:00</span>
+            </li>
+          </ul>
+        </div>
+        <div class="url-results-container">
+          <div class="results-heading"><h2>Results by URL</h2></div>
+          <div class="url-result-section">
+            <div class="collapsible-container collapsed">
+              <div class="title-container" role="heading" aria-level="3">
+                <button
+                  class="collapsible-control"
+                  aria-expanded="false"
+                  aria-controls="content-container-failed-urls-section"
+                >
+                  <span class="result-section-title--27ZOL"
+                    ><span class="screen-reader-only">Failed URLs 0</span
+                    ><span class="heading--3ryVY" aria-hidden="true"
+                      >Failed URLs</span
+                    ><span
+                      class="outcome-chip-container--1Vd7P"
+                      aria-hidden="true"
+                      ><span
+                        class="outcome-chip outcome-chip-fail"
+                        title="0 Failed"
+                        ><span class="icon"
+                          ><span class="check-container"
+                            ><svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="8"
+                                fill="#E81123"
+                              ></circle>
+                              <path
+                                d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                                fill="var(--neutral-0)"
+                              ></path></svg></span></span
+                        ><span
+                          data-automation-id="count"
+                          class="count"
+                          aria-hidden="true"
+                        >
+                          0</span
+                        ><span class="screen-reader-only">0 Failed</span></span
+                      ></span
+                    ></span
+                  >
+                </button>
+              </div>
+              <div
+                id="content-container-failed-urls-section"
+                class="collapsible-content"
+                aria-hidden="true"
+              >
+                <table class="summary-results-table" id="failed-urls-table">
+                  <thead>
+                    <tr>
+                      <th id="failed-urls-table-header0">
+                        # failure instances (0)
+                      </th>
+                      <th id="failed-urls-table-header1">URL</th>
+                      <th id="failed-urls-table-header2">Link to report</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="url-result-section">
+            <div class="collapsible-container collapsed">
+              <div class="title-container" role="heading" aria-level="3">
+                <button
+                  class="collapsible-control"
+                  aria-expanded="false"
+                  aria-controls="content-container-not-scanned-urls-section"
+                >
+                  <span class="result-section-title--27ZOL"
+                    ><span class="screen-reader-only">Not scanned URLs 0</span
+                    ><span class="heading--3ryVY" aria-hidden="true"
+                      >Not scanned URLs</span
+                    ><span
+                      class="outcome-chip-container--1Vd7P"
+                      aria-hidden="true"
+                      ><span
+                        class="outcome-chip outcome-chip-unscannable"
+                        title="0 Not scanned"
+                        ><span class="icon"
+                          ><span class="check-container"
+                            ><svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="8"
+                                fill="#737373"
+                              ></circle>
+                              <line
+                                x1="5.66064"
+                                y1="5.625"
+                                x2="10.2568"
+                                y2="10.2212"
+                                stroke="white"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                              ></line></svg></span></span
+                        ><span
+                          data-automation-id="count"
+                          class="count"
+                          aria-hidden="true"
+                        >
+                          0</span
+                        ><span class="screen-reader-only"
+                          >0 Not scanned</span
+                        ></span
+                      ></span
+                    ></span
+                  >
+                </button>
+              </div>
+              <div
+                id="content-container-not-scanned-urls-section"
+                class="collapsible-content"
+                aria-hidden="true"
+              >
+                <table
+                  class="summary-results-table"
+                  id="not-scanned-urls-table"
+                >
+                  <thead>
+                    <tr>
+                      <th id="not-scanned-urls-table-header0">Error type</th>
+                      <th id="not-scanned-urls-table-header1">URL</th>
+                      <th id="not-scanned-urls-table-header2">
+                        Error description
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="url-result-section">
+            <div class="collapsible-container collapsed">
+              <div class="title-container" role="heading" aria-level="3">
+                <button
+                  class="collapsible-control"
+                  aria-expanded="false"
+                  aria-controls="content-container-passed-urls-section"
+                >
+                  <span class="result-section-title--27ZOL"
+                    ><span class="screen-reader-only">Passed URLs 2</span
+                    ><span class="heading--3ryVY" aria-hidden="true"
+                      >Passed URLs</span
+                    ><span
+                      class="outcome-chip-container--1Vd7P"
+                      aria-hidden="true"
+                      ><span
+                        class="outcome-chip outcome-chip-pass"
+                        title="2 Passed"
+                        ><span class="icon"
+                          ><span class="check-container"
+                            ><svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 16 16"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <circle
+                                cx="8"
+                                cy="8"
+                                r="8"
+                                fill="#228722"
+                              ></circle>
+                              <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                                fill="var(--neutral-0)"
+                              ></path></svg></span></span
+                        ><span
+                          data-automation-id="count"
+                          class="count"
+                          aria-hidden="true"
+                        >
+                          2</span
+                        ><span class="screen-reader-only">2 Passed</span></span
+                      ></span
+                    ></span
+                  >
+                </button>
+              </div>
+              <div
+                id="content-container-passed-urls-section"
+                class="collapsible-content"
+                aria-hidden="true"
+              >
+                <table class="summary-results-table" id="passed-urls-table">
+                  <thead>
+                    <tr>
+                      <th id="passed-urls-table-header0">
+                        # failure instances (0)
+                      </th>
+                      <th id="passed-urls-table-header1">URL</th>
+                      <th id="passed-urls-table-header2">Link to report</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td headers="passed-urls-table-header0" class="text-cell">
+                        0
+                      </td>
+                      <td headers="passed-urls-table-header1" class="url-cell">
+                        <a
+                          target="_blank"
+                          href="https://example.com/mock-base-url/passes-a"
+                          class="ms-Link insights-link root-49"
+                          >https://example.com/mock-base-url/passes-a</a
+                        >
+                      </td>
+                      <td headers="passed-urls-table-header2" class="text-cell">
+                        <a
+                          target="_blank"
+                          href="./passes-a.html"
+                          class="ms-Link insights-link root-49"
+                          aria-label="Report for https://example.com/mock-base-url/passes-a"
+                          >Report</a
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td headers="passed-urls-table-header0" class="text-cell">
+                        0
+                      </td>
+                      <td headers="passed-urls-table-header1" class="url-cell">
+                        <a
+                          target="_blank"
+                          href="https://example.com/mock-base-url/passes-b"
+                          class="ms-Link insights-link root-49"
+                          >https://example.com/mock-base-url/passes-b</a
+                        >
+                      </td>
+                      <td headers="passed-urls-table-header2" class="text-cell">
+                        <a
+                          target="_blank"
+                          href="./passes-b.html"
+                          class="ms-Link insights-link root-49"
+                          aria-label="Report for https://example.com/mock-base-url/passes-b"
+                          >Report</a
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function (doc) {
+            const collapsibles = doc.getElementsByClassName(
+              "collapsible-container"
+            );
+            for (let index = 0; index < collapsibles.length; index++) {
+              const container = collapsibles.item(index);
+              const button =
+                container === null || container === void 0
+                  ? void 0
+                  : container.querySelector(".collapsible-control");
+              if (button == null) {
+                continue;
+              }
+              button.addEventListener("click", function () {
+                var _a;
+                const content =
+                  (_a = button.parentElement) === null || _a === void 0
+                    ? void 0
+                    : _a.nextElementSibling;
+                if (content == null) {
+                  throw Error(
+                    `Expected button element's parent to have a next sibling`
+                  );
+                }
+                const wasExpandedBefore =
+                  button.getAttribute("aria-expanded") === "false"
+                    ? false
+                    : true;
+                const isExpandedAfter = !wasExpandedBefore;
+                button.setAttribute("aria-expanded", isExpandedAfter + "");
+                content.setAttribute("aria-hidden", !isExpandedAfter + "");
+                if (isExpandedAfter) {
+                  container.classList.remove("collapsed");
+                } else {
+                  container.classList.add("collapsed");
+                }
+              });
+            }
+          })(document);
+        </script>
+      </div>
+    </main>
+    <div class="report-footer-container">
+      <div class="report-footer" role="contentinfo">
+        This automated checks result was generated using the Mock Service Name
+        that helps find some of the most common accessibility issues. The scan
+        was performed using axe-core mock.axe.version and Mock user agent. For a
+        complete WCAG 2.1 compliance assessment please visit
+        <a
+          target="_blank"
+          href="http://aka.ms/AccessibilityInsights"
+          class="ms-Link insights-link tool-name-link root-49"
+          title="Get more information and download Accessibility Insights for Web"
+          >http://aka.ms/AccessibilityInsights</a
+        >.
+      </div>
+    </div>
+  </body>
+</html>

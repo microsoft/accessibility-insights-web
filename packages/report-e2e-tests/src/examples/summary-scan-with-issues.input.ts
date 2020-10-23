@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SummaryReportParameters } from "reports/package/accessibilityInsightsReport";
+import { SummaryReportParameters } from "accessibility-insights-report";
 
 export const summaryScanWithIssues: SummaryReportParameters = {
     serviceName: 'Mock Service Name',

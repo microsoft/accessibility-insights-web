@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SummaryReportParameters } from "reports/package/accessibilityInsightsReport";
+
+import { SummaryReportParameters } from 'accessibility-insights-report';
 
 export const summaryScanWithoutIssues: SummaryReportParameters = {
     serviceName: 'Mock Service Name',
@@ -25,7 +26,7 @@ export const summaryScanWithoutIssues: SummaryReportParameters = {
                 numFailures: 0,
                 reportLocation: './passes-b.html',
                 url: 'https://example.com/mock-base-url/passes-b',
-            }
+            },
         ],
         unscannable: [],
     },
