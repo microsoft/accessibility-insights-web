@@ -18,7 +18,10 @@ describe('fromSummaryResults', () => {
 
         it('produces pinned HTML file', () => {
             const output = reporterFactory().fromSummaryResults(input).asHTML();
-            const formattedOutput = prettier.format(output, { parser: 'html' });
+            const formattedOutput = prettier.format(output, {
+                parser: 'html',
+                htmlWhitespaceSensitivity: 'strict',
+            });
 
             const snapshotFile = path.join(__dirname, 'examples', `${exampleName}.snap.html`);
             expect(formattedOutput).toMatchFile(snapshotFile);
