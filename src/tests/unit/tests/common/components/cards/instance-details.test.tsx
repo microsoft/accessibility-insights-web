@@ -111,7 +111,6 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
-    // need to set document.activeElement
     it('applies focused styling on card when hidden highlight button is focused', () => {
         (React.useRef as jest.Mock).mockReturnValue(hiddenButtonRefStub);
         setupGetPropertyConfigByIdMock();

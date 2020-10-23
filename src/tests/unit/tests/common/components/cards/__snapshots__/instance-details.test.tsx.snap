@@ -8,6 +8,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
   <div
     className="instanceDetailsCard selected interactive"
     onClick={[Function]}
+    tabIndex={-1}
   >
     <div>
       <table
@@ -78,6 +79,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
   <div
     className="instanceDetailsCard interactive"
     onClick={[Function]}
+    tabIndex={-1}
   >
     <div>
       <table
@@ -148,6 +150,7 @@ exports[`InstanceDetails renders 1`] = `
   <div
     className="instanceDetailsCard interactive"
     onClick={[Function]}
+    tabIndex={-1}
   >
     <div>
       <table
@@ -317,6 +320,7 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
   <div
     className="instanceDetailsCard interactive"
     onClick={[Function]}
+    tabIndex={-1}
   >
     <div>
       <table

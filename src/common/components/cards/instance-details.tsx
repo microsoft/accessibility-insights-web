@@ -56,7 +56,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
         [selected]: isHighlightSupported && result.isSelected,
-        [focused]: isHighlightSupported && cardFocused, // && document.activeElement === hiddenButton.current,
+        [focused]: isHighlightSupported && cardFocused,
         [interactive]: isHighlightSupported,
     });
 
@@ -82,7 +82,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             data-automation-id={instanceCardAutomationId}
             className={instanceDetailsCardContainerStyling}
         >
-            <div className={instanceDetailsCardStyling} onClick={cardClickHandler}>
+            <div className={instanceDetailsCardStyling} onClick={cardClickHandler} tabIndex={-1}>
                 <div>
                     <table className={reportInstanceTable}>
                         <tbody>
@@ -102,9 +102,8 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                                     : ''
                             }`}
                             aria-pressed={result.isSelected}
-                            onFocus={e => setCardFocus(true)}
-                            onBlur={e => setCardFocus(false)}
-                            // onBlur={e => (e.relatedTarget !== null ? setCardFocus(false) : {})}
+                            onFocus={_ => setCardFocus(true)}
+                            onBlur={_ => setCardFocus(false)}
                         ></button>
                     )}
                     <InstanceDetailsFooter

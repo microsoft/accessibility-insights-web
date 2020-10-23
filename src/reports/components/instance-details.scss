@@ -36,12 +36,14 @@
     border: 1px solid transparent;
 }
 
-.instance-details-card.focused {
+.instance-details-card.focused,
+.instance-details-card:focus {
     outline: 2px solid $primary-text;
     outline-offset: 2px;
 }
 
-.instance-details-card.selected.focused {
+.instance-details-card.selected.focused,
+.instance-details-card.selected:focus {
     outline-offset: 8px;
 }
 
