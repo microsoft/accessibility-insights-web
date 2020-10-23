@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { DateIcon } from 'common/icons/date-icon';
+import { UrlIcon } from 'common/icons/url-icon';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
-import { NamedFC } from 'common/react/named-fc';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 
 export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps>(
@@ -12,12 +13,21 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
         const { scanMetadata, toUtcString, secondsToTimeString } = props;
         const scanTimespan = scanMetadata.timespan;
 
-        const createListItem = (label: string, content: string | JSX.Element) => (
-            <li>
-                <span className="label">{`${label} `}</span>
-                <span className="text">{content}</span>
-            </li>
-        );
+        const createListItem = (label: string, content: string | JSX.Element, icon?: JSX.Element) =>
+            icon ? (
+                <li>
+                    <span className="icon" aria-hidden="true">
+                        {icon}
+                    </span>
+                    <span className="label">{`${label} `}</span>
+                    <span className="text">{content}</span>
+                </li>
+            ) : (
+                <li>
+                    <span className="label no-icon">{`${label} `}</span>
+                    <span className="text">{content}</span>
+                </li>
+            );
 
         const scanStartUTC = toUtcString(scanTimespan.scanStart);
         const scanCompleteUTC = toUtcString(scanTimespan.scanComplete);
@@ -35,8 +45,9 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
                         >
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
+                        <UrlIcon />,
                     )}
-                    {createListItem('Scans started', scanStartUTC)}
+                    {createListItem('Scans started', scanStartUTC, <DateIcon />)}
                     {createListItem('Scans completed', scanCompleteUTC)}
                     {createListItem('Duration', duration)}
                 </ul>

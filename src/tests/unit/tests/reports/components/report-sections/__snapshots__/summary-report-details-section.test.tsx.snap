@@ -12,6 +12,12 @@ exports[` renders 1`] = `
   >
     <li>
       <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
         className="label"
       >
         Target site 
@@ -29,6 +35,12 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
         className="label"
       >
         Scans started 
@@ -41,7 +53,7 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
-        className="label"
+        className="label no-icon"
       >
         Scans completed 
       </span>
@@ -53,7 +65,7 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
-        className="label"
+        className="label no-icon"
       >
         Duration 
       </span>
