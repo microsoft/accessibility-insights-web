@@ -157,7 +157,7 @@
     },
     "dependencies": {
         "accessibility-insights-for-android-service-bin": "^1.2.1",
-        "appium-adb": "^8.8.0",
+        "appium-adb": "^8.8.1",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "4.0.2",
         "axios": "^0.20.0",
