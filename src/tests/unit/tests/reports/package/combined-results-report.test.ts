@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { CardsViewModel } from "common/types/store-data/card-view-model";
 import { ToolData } from "common/types/store-data/unified-data-interface";
 import { CombinedReportHtmlGenerator } from "reports/combined-report-html-generator";
 import { CombinedReportParameters, CombinedReportResults, ScanSummaryDetails } from "reports/package/accessibilityInsightsReport";
 import { CombinedResultsReport } from "reports/package/combined-results-report";
+import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
 import { IMock, It, Mock } from "typemoq";
 
 describe('CombinedResultsReport', () => {
     let reportHtmlGeneratorMock: IMock<CombinedReportHtmlGenerator>;
+    let resultsToCardsConverterMock: IMock<CombinedResultsToCardsModelConverter>;
 
     let combinedResultsReport: CombinedResultsReport;
 
@@ -39,7 +42,11 @@ describe('CombinedResultsReport', () => {
         ...scanTimespanStub
     };
 
-    const results = {} as CombinedReportResults;
+    const results = {
+        resultsByRule: {
+            failed: [],
+        },
+    } as CombinedReportResults;
 
     const parameters: CombinedReportParameters = {
         serviceName: 'service name',
@@ -49,19 +56,42 @@ describe('CombinedResultsReport', () => {
         results,
     };
 
+    const cardsViewDataStub: CardsViewModel = {
+        visualHelperEnabled: false,
+        allCardsCollapsed: true,
+        cards: {
+            fail: [],
+            pass: [],
+            inapplicable: [],
+            unknown: [],
+        },
+    };
+
     const expectedHtml = '<div>The Report!</div>';
 
     beforeEach(() => {
         reportHtmlGeneratorMock = Mock.ofType(CombinedReportHtmlGenerator);
+        resultsToCardsConverterMock = Mock.ofType<CombinedResultsToCardsModelConverter>();
 
         const deps = {
             reportHtmlGenerator: reportHtmlGeneratorMock.object,
-        }
-        combinedResultsReport = new CombinedResultsReport(deps, parameters, toolDataStub);
+        };
+        combinedResultsReport = new CombinedResultsReport(
+            deps,
+            parameters,
+            toolDataStub,
+            resultsToCardsConverterMock.object
+        );
     });
 
     it('returns HTML', () => {
-        reportHtmlGeneratorMock.setup(rhg => rhg.generateHtml(scanMetadataStub)).returns(() => expectedHtml);
+        resultsToCardsConverterMock
+            .setup(rtc => rtc.convertResults(results.resultsByRule))
+            .returns(() => cardsViewDataStub);
+
+        reportHtmlGeneratorMock
+            .setup(rhg => rhg.generateHtml(scanMetadataStub, cardsViewDataStub))
+            .returns(() => expectedHtml);
 
         const html = combinedResultsReport.asHTML();
 

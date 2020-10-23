@@ -27,6 +27,7 @@ export type CardsViewModel = {
 export interface CardResult extends UnifiedResult {
     isSelected: boolean;
     highlightStatus: HighlightState;
+    instanceUrls?: string[];
 }
 export const AllRuleResultStatuses: CardRuleResultStatus[] = [
     'pass',
