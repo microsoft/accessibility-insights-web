@@ -120,6 +120,14 @@ jobs:
             displayName: run report package e2e tests
             timeoutInMinutes: 5
 
+          - task: PublishTestResults@2
+            inputs:
+                testResultsFiles: $(System.DefaultWorkingDirectory)/packages/report-e2e-tests/test-results/unit/junit.xml
+                testRunTitle: $(Agent.JobName)
+            condition: always()
+            displayName: publish test results
+            timeoutInMinutes: 3
+
     - job: 'e2e_web_linux'
       pool:
           vmImage: $(linuxImage)
