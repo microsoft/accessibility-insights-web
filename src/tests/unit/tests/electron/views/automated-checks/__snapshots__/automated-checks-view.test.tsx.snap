@@ -250,7 +250,9 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -690,7 +692,9 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -1089,7 +1093,9 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -1484,7 +1490,9 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
