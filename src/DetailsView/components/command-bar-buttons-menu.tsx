@@ -26,7 +26,10 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'export report',
             onRender: () => <div role="menuitem">{exportButton}</div>,
         });
-        if (props.featureFlagStoreData?.[FeatureFlags.saveAndLoadAssessment] && props.renderSaveAssessmentButton) {
+        if (
+            props.featureFlagStoreData?.[FeatureFlags.saveAndLoadAssessment] &&
+            props.renderSaveAssessmentButton
+        ) {
             const possibleSaveAssessmentButton = props.renderSaveAssessmentButton();
             overflowItems.push({
                 key: 'save assessment',
