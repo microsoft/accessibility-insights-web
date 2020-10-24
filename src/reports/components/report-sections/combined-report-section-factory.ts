@@ -3,6 +3,7 @@
 import { NullComponent } from 'common/components/null-component';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
+import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
@@ -25,7 +26,7 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     ContentContainer,
     HeaderSection: SummaryReportHeaderSection,
     TitleSection,
-    SummarySection: NullComponent,
+    SummarySection: CombinedReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
     ResultsContainer: NullComponent,
     FailedInstancesSection: NullComponent,
