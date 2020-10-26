@@ -60,7 +60,7 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             fix: 'fix failed-rule-2',
                             rule: {
                                 description: 'failed-rule-2 description',
-                                ruleUrl: 'https://rules/rule2/failed-rule-1',
+                                ruleUrl: 'https://rules/failed-rule-2',
                                 ruleId: 'failed-rule-2',
                                 tags: ['rule-2-tag'],
                             },

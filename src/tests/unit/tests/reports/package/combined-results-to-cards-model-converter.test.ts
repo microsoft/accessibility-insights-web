@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RuleIdToResourceUrl } from "common/configs/rule-resource-links";
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { UUIDGenerator } from "common/uid-generator";
 import { GroupedResults, FailuresGroup, AxeRuleData } from "reports/package/accessibilityInsightsReport";
@@ -16,6 +17,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
     };
     let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
     let uuidGeneratorMock: IMock<UUIDGenerator>;
+    let getRuleResourceUrlMock: IMock<RuleIdToResourceUrl>;
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
@@ -23,11 +25,13 @@ describe(CombinedResultsToCardsModelConverter, () => {
         getGuidanceLinksMock = Mock.ofInstance(() => null);
         uuidGeneratorMock = Mock.ofType<UUIDGenerator>();
         uuidGeneratorMock.setup(ug => ug()).returns(() => 'test uid');
+        getRuleResourceUrlMock = Mock.ofType<RuleIdToResourceUrl>();
         
         testSubject = new CombinedResultsToCardsModelConverter(
             getGuidanceLinksMock.object,
             viewDataStub,
-            uuidGeneratorMock.object
+            uuidGeneratorMock.object,
+            getRuleResourceUrlMock.object,
         );
     })
 

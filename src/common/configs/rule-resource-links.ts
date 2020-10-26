@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type RuleResourcesLinkMapping = { [rule: string]: string };
+export type RuleIdToResourceUrl = (ruleId: string, defaultUrl?: string) => string;
 
 const baseRuleResourcesUrl = 'https://accessibilityinsights.io/info-examples';
 const webRuleResourcesPath = `${baseRuleResourcesUrl}/web`;
@@ -18,7 +18,7 @@ export const getRuleResourceUrl = (
     return `${resourcesPath}/${ruleId}`;
 };
 
-export const getWebRuleResourceUrl = (ruleId: string, defaultUrl?: string) => {
+export const getWebRuleResourceUrl: RuleIdToResourceUrl = (ruleId: string, defaultUrl?: string) => {
     return getRuleResourceUrl(ruleId, webRulesWithResources, webRuleResourcesPath, defaultUrl);
 };
 

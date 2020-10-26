@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
+import { getWebRuleResourceUrl } from 'common/configs/rule-resource-links';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
@@ -167,6 +168,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         getGuidanceLinks,
         cardSelectionViewData,
         generateUID,
+        getWebRuleResourceUrl,
     );
 
     return new CombinedResultsReport(deps, parameters, toolData, resultsToCardsConverter);
