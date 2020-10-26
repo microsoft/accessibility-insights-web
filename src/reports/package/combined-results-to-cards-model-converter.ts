@@ -80,6 +80,7 @@ export class CombinedResultsToCardsModelConverter {
                 identifier: cssSelector,
                 conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
                 'css-selector': cssSelector,
+                urls: { urls: failureData.urls },
             },
             descriptors: {
                 snippet: failureData.snippet,
@@ -89,7 +90,6 @@ export class CombinedResultsToCardsModelConverter {
             },
             isSelected: false,
             highlightStatus: 'unavailable',
-            instanceUrls: failureData.urls,
         }
     }
 }

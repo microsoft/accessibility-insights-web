@@ -14,13 +14,18 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
     },
     userAgent: 'Mock user agent',
     results: {
+        urlResults: {
+            failedUrls: 3,
+            passedUrls: 2,
+            unscannableUrls: 1,
+        },
         resultsByRule: {
             failed: [
                 {
                     key: 'failed-rule-1',
                     failed: [
                         {
-                            urls: ['https://url/rule-1/failure1'],
+                            urls: ['https://url/rule-1/failure-1'],
                             elementSelector: '.rule-1-selector-1',
                             snippet: '<div>snippet 1</div>',
                             fix: 'fix failed-rule-1',
@@ -32,7 +37,7 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             }
                         },
                         {
-                            urls: ['https://url/rule1/failure2', 'https://url/rule1/failure3'],
+                            urls: ['https://url/rule-1/failure-1', 'https://url/rule1/failure-2'],
                             elementSelector: '.rule-1-selector-2',
                             snippet: '<div>snippet 2</div>',
                             fix: 'fix failed-rule-1',

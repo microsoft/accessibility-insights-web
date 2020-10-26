@@ -5,6 +5,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
 import { CombinedReportSectionProps } from './components/report-sections/combined-report-section-factory';
 import { ReportSectionFactory } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
@@ -18,13 +19,18 @@ export class CombinedReportHtmlGenerator {
         private readonly secondsToTimeStringConverter: (seconds: number) => string,
     ) {}
 
-    public generateHtml(scanMetadata: ScanMetadata, cardsByRule: CardsViewModel): string {
+    public generateHtml(
+        scanMetadata: ScanMetadata,
+        cardsByRule: CardsViewModel,
+        urlResultCounts: UrlResultCounts,
+    ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);
 
         const detailsProps: CombinedReportSectionProps = {
             scanMetadata,
             cardsByRule,
+            urlResultCounts,
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,
             getCollapsibleScript: this.getCollapsibleScript,
