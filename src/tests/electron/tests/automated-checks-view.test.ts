@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
+import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -13,11 +15,12 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
-import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
+    let narrowModeThresholds = getNarrowModeThresholdsForUnified();
+    const height = 400;
 
     beforeEach(async () => {
         await setupMockAdb(
@@ -83,6 +86,10 @@ describe('AutomatedChecksView', () => {
     it('should pass accessibility validation when left nav is showing', async () => {
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
+        app.client.browserWindow.setSize(
+            narrowModeThresholds.collapseCommandBarThreshold + 1,
+            height,
+        );
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
