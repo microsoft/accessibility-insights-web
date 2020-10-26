@@ -84,18 +84,22 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
-        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
-        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
         app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
+        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
+        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
     it('left nav allows to change between tests', async () => {
         const testIndex = 1;
         const expectedTestTitle = androidTestConfigs[testIndex].title;
+        app.client.browserWindow.setSize(
+            narrowModeThresholds.collapseCommandBarThreshold + 1,
+            height,
+        );
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
         await automatedChecksView.client.click(
