@@ -182,6 +182,7 @@
         "webextension-polyfill-ts": "^0.20.0"
     },
     "resolutions": {
+        "@types/node": "^12.16.1",
         "acorn": "^7.1.1",
         "dot-prop": "^5.2.0",
         "kind-of": "^6.0.3",
