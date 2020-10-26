@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
@@ -12,16 +13,20 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('CommandBarButtonsMenu', () => {
     let renderExportReportComponentMock: IMock<() => JSX.Element>;
+    let renderSaveAssessmentButtonMock: IMock<() => JSX.Element>;
     let getStartOverMenuItemMock: IMock<() => StartOverMenuItem>;
     let commandBarButtonsMenuProps: CommandBarButtonsMenuProps;
 
     beforeEach(() => {
         renderExportReportComponentMock = Mock.ofInstance(() => null);
+        renderSaveAssessmentButtonMock = Mock.ofInstance(() => null);
         getStartOverMenuItemMock = Mock.ofInstance(() => null);
         commandBarButtonsMenuProps = {
             renderExportReportButton: renderExportReportComponentMock.object,
+            renderSaveAssessmentButton: renderSaveAssessmentButtonMock.object,
             getStartOverMenuItem: getStartOverMenuItemMock.object,
             buttonRef: {} as RefObject<IButton>,
+            featureFlagStoreData: {} as FeatureFlagStoreData,
         } as CommandBarButtonsMenuProps;
     });
 
@@ -30,7 +35,29 @@ describe('CommandBarButtonsMenu', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders child buttons', () => {
+    it('renders all child buttons, including child behind the feature flag', () => {
+        setupExportReportMenuItem();
+        setupSaveAssessmentMenuItem();
+        setupStartOverMenuItem();
+
+        commandBarButtonsMenuProps.featureFlagStoreData = { saveAndLoadAssessment: true };
+        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
+        const renderedProps = wrapper.getElement().props;
+        const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
+
+        expect(overflowItems).toBeDefined();
+        expect(overflowItems).toHaveLength(3);
+
+        expect(overflowItems[0].onRender()).toMatchSnapshot('render export report menuitem');
+        expect(overflowItems[1].onRender()).toMatchSnapshot('render save assessment menuitem');
+        expect(overflowItems[2].onRender()).toMatchSnapshot('render start over menuitem');
+
+        renderExportReportComponentMock.verifyAll();
+        renderSaveAssessmentButtonMock.verifyAll();
+        getStartOverMenuItemMock.verifyAll();
+    });
+
+    it('renders child buttons with the exception of child behind feature flag', () => {
         setupExportReportMenuItem();
         setupStartOverMenuItem();
 
@@ -40,7 +67,8 @@ describe('CommandBarButtonsMenu', () => {
         expect(overflowItems).toBeDefined();
         expect(overflowItems).toHaveLength(2);
 
-        overflowItems.forEach(item => expect(item.onRender()).toMatchSnapshot());
+        expect(overflowItems[0].onRender()).toMatchSnapshot('render export report menuitem');
+        expect(overflowItems[1].onRender()).toMatchSnapshot('render start over menuitem');
 
         renderExportReportComponentMock.verifyAll();
         getStartOverMenuItemMock.verifyAll();
@@ -50,6 +78,13 @@ describe('CommandBarButtonsMenu', () => {
         renderExportReportComponentMock
             .setup(r => r())
             .returns(() => <>Report export button</>)
+            .verifiable(Times.once());
+    }
+
+    function setupSaveAssessmentMenuItem(): void {
+        renderSaveAssessmentButtonMock
+            .setup(r => r())
+            .returns(() => <>Save assessment button</>)
             .verifiable(Times.once());
     }
 

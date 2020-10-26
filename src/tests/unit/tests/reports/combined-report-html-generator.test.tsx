@@ -14,6 +14,7 @@ import { CombinedReportSectionProps } from 'reports/components/report-sections/c
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('CombinedReportHtmlGenerator', () => {
@@ -54,6 +55,18 @@ describe('CombinedReportHtmlGenerator', () => {
         timespan: scanTimespan,
     } as ScanMetadata;
 
+    const urlResultCounts = {
+        passedUrls: 1,
+        failedUrls: 2,
+        unscannableUrls: 3,
+    };
+
+    const cardsViewData = {
+        cards: exampleUnifiedStatusResults,
+        visualHelperEnabled: true,
+        allCardsCollapsed: true,
+    };
+
     let getScriptMock: IMock<() => string>;
     let sectionFactoryMock: IMock<ReportSectionFactory<CombinedReportSectionProps>>;
     let rendererMock: IMock<ReactStaticRenderer>;
@@ -79,6 +92,8 @@ describe('CombinedReportHtmlGenerator', () => {
             secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
+            cardsByRule: cardsViewData,
+            urlResultCounts,
         };
 
         const headElement: JSX.Element = <NullComponent />;
@@ -94,7 +109,7 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(scanMetadata);
+        const html = testSubject.generateHtml(scanMetadata, cardsViewData, urlResultCounts);
 
         expect(html).toMatchSnapshot();
     });

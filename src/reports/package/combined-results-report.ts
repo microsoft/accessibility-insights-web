@@ -3,6 +3,7 @@
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
 import { ScanMetadata, ScanTimespan, ToolData } from 'common/types/store-data/unified-data-interface';
+import { CombinedResultsToCardsModelConverter } from 'reports/package/combined-results-to-cards-model-converter';
 
 export type CombinedResultsReportDeps = {
     reportHtmlGenerator: CombinedReportHtmlGenerator;
@@ -13,10 +14,11 @@ export class CombinedResultsReport implements AccessibilityInsightsReport.Report
         private readonly deps: CombinedResultsReportDeps,
         private readonly parameters: AccessibilityInsightsReport.CombinedReportParameters,
         private readonly toolInfo: ToolData,
+        private readonly resultsToCardsConverter: CombinedResultsToCardsModelConverter
     ) {}
 
     public asHTML(): string {
-        const { scanDetails } = this.parameters;
+        const { scanDetails, results } = this.parameters;
 
         const targetAppInfo = {
             name: scanDetails.basePageTitle,
@@ -35,6 +37,14 @@ export class CombinedResultsReport implements AccessibilityInsightsReport.Report
             timespan,
         };
 
-        return this.deps.reportHtmlGenerator.generateHtml(scanMetadata);
+        const cardsByRule = this.resultsToCardsConverter.convertResults(
+            results.resultsByRule
+        );
+
+        return this.deps.reportHtmlGenerator.generateHtml(
+            scanMetadata,
+            cardsByRule,
+            results.urlResults
+        );
     }
 }

@@ -18,7 +18,7 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { css } from 'office-ui-fabric-react';
+import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import * as styles from './command-bar.scss';
@@ -56,6 +56,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
         setSideNavOpen,
     } = props;
     let exportReport: JSX.Element = null;
+    let dropdownMenuButtonRef: IButton = null;
 
     if (scanMetadata != null) {
         exportReport = (
@@ -74,6 +75,10 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 updatePersistedDescription={() => null}
                 getExportDescription={() => ''}
                 featureFlagStoreData={featureFlagStoreData}
+                onDialogDismiss={() => {
+                    dropdownMenuButtonRef.dismissMenu();
+                    dropdownMenuButtonRef.focus();
+                }}
             />
         );
     }
@@ -100,7 +105,9 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 <CommandBarButtonsMenu
                     renderExportReportButton={() => exportReport}
                     getStartOverMenuItem={() => startOverButtonProps}
-                    buttonRef={null}
+                    buttonRef={ref => {
+                        dropdownMenuButtonRef = ref;
+                    }}
                 />
             );
         }

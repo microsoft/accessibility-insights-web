@@ -15,11 +15,16 @@
         "url": "https://github.com/microsoft/accessibility-insights-web/issues"
     },
     "homepage": "https://github.com/microsoft/accessibility-insights-web#readme",
+    "dependencies": {
+        "accessibility-insights-report": "*"
+    },
     "devDependencies": {
         "@types/jest": "^26.0.14",
         "jest": "^26.5.0",
         "jest-circus": "^26.5.3",
+        "jest-file-snapshot": "^0.3.8",
         "jest-junit": "^12.0.0",
+        "prettier": "^2.1.2",
         "ts-jest": "^26.4.1",
         "typescript": "^4.0.3"
     }

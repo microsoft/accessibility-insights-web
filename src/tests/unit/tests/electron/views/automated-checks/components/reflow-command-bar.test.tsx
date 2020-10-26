@@ -5,6 +5,8 @@ import { EnumHelper } from 'common/enum-helper';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import {
@@ -14,12 +16,12 @@ import {
     ReflowCommandBarProps,
 } from 'electron/views/automated-checks/components/reflow-command-bar';
 import { mount, shallow } from 'enzyme';
+import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 
 describe('ReflowCommandBar', () => {
     let featureFlagStoreDataStub: FeatureFlagStoreData;
@@ -144,8 +146,10 @@ describe('ReflowCommandBar', () => {
             props.narrowModeStatus.isCommandBarCollapsed = true;
 
             const rendered = shallow(<ReflowCommandBar {...props} />);
+            const commandBar = rendered.find(CommandBarButtonsMenu);
 
             expect(rendered.getElement()).toMatchSnapshot();
+            expect(commandBar.prop('renderExportReportButton')()).toMatchSnapshot('export report');
         });
 
         test('isHeaderAndNavCollapsed is true', () => {
@@ -154,6 +158,25 @@ describe('ReflowCommandBar', () => {
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
             expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        test('dropdown menu is dismissed and button focused when dialog is dismissed', () => {
+            props.narrowModeStatus.isCommandBarCollapsed = true;
+            const rendered = shallow(<ReflowCommandBar {...props} />);
+            const buttonMock = Mock.ofType<IButton>();
+            const commandBar = rendered.find(CommandBarButtonsMenu);
+            const buttonRefCallback = commandBar.prop('buttonRef') as any;
+            const onDialogDismissCallback = commandBar.prop('renderExportReportButton')().props[
+                'onDialogDismiss'
+            ];
+
+            buttonMock.setup(bm => bm.dismissMenu()).verifiable();
+            buttonMock.setup(bm => bm.focus()).verifiable();
+
+            buttonRefCallback(buttonMock.object);
+            onDialogDismissCallback();
+
+            buttonMock.verifyAll();
         });
     });
 });
