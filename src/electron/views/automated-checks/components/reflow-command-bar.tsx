@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { FastPassLeftNavHamburgerButton } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import {
     ReportExportComponent,
@@ -16,16 +18,14 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import * as styles from './command-bar.scss';
-import { FastPassLeftNavHamburgerButton } from 'common/components/expand-collapse-left-nav-hamburger-button';
-import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
 
 export type ReflowCommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    getDateFromTimestamp: (timestamp: string) => Date;
     reportGenerator: ReportGenerator;
 } & ReportExportComponentDeps;
 
@@ -56,6 +56,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
         setSideNavOpen,
     } = props;
     let exportReport: JSX.Element = null;
+    let dropdownMenuButtonRef: IButton = null;
 
     if (scanMetadata != null) {
         exportReport = (
@@ -63,10 +64,9 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 deps={deps}
                 reportExportFormat={'AutomatedChecks'}
                 pageTitle={scanMetadata.targetAppInfo.name}
-                scanDate={deps.getDateFromTimestamp(scanMetadata.timestamp)}
+                scanDate={scanMetadata.timespan.scanComplete}
                 htmlGenerator={description =>
                     deps.reportGenerator.generateFastPassAutomatedChecksReport(
-                        deps.getDateFromTimestamp(scanMetadata.timestamp),
                         cardsViewData,
                         description,
                         scanMetadata,
@@ -75,6 +75,10 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 updatePersistedDescription={() => null}
                 getExportDescription={() => ''}
                 featureFlagStoreData={featureFlagStoreData}
+                onDialogDismiss={() => {
+                    dropdownMenuButtonRef.dismissMenu();
+                    dropdownMenuButtonRef.focus();
+                }}
             />
         );
     }
@@ -101,7 +105,9 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 <CommandBarButtonsMenu
                     renderExportReportButton={() => exportReport}
                     getStartOverMenuItem={() => startOverButtonProps}
-                    buttonRef={null}
+                    buttonRef={ref => {
+                        dropdownMenuButtonRef = ref;
+                    }}
                 />
             );
         }

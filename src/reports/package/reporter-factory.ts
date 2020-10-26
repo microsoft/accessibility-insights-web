@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
+import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
 import { getCheckResolution, getFixResolution } from 'injected/adapters/resolution-creator';
@@ -16,6 +17,7 @@ import { SummaryReportSectionFactory } from 'reports/components/report-sections/
 import { ReporterHead } from 'reports/components/reporter-automated-check-head';
 import { AxeResultsReport, AxeResultsReportDeps } from 'reports/package/axe-results-report';
 import { CombinedResultsReport } from 'reports/package/combined-results-report';
+import { CombinedResultsToCardsModelConverter } from 'reports/package/combined-results-to-cards-model-converter';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
@@ -56,10 +58,10 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const fixInstructionProcessor = new FixInstructionProcessor();
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -97,6 +99,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         getUnifiedRules: convertScanResultsToUnifiedRules,
         getUnifiedResults: getUnifiedResults,
         getCards: getCardViewData,
+        getDateFromTimestamp: DateProvider.getDateFromTimestamp,
     };
 
     return new AxeResultsReport(deps, parameters, toolData);
@@ -106,10 +109,10 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
     const { serviceName, axeVersion, userAgent } = parameters;
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -132,10 +135,10 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
     const { serviceName, axeVersion, userAgent } = parameters;
 
     const toolData = createToolData(
-        serviceName,
-        '',
         'axe-core',
         axeVersion,
+        serviceName,
+        null,
         userAgent,
     );
 
@@ -150,7 +153,23 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         reportHtmlGenerator,
     }
 
-    return new CombinedResultsReport(deps, parameters, toolData);
+    const getGuidanceLinks = (ruleId: string) => {
+        return ruleToLinkConfiguration[ruleId];
+    };
+    const cardSelectionViewData: CardSelectionViewData = {
+        selectedResultUids: [],
+        expandedRuleIds: [],
+        visualHelperEnabled: false,
+        resultsHighlightStatus: {},
+    };
+
+    const resultsToCardsConverter = new CombinedResultsToCardsModelConverter(
+        getGuidanceLinks,
+        cardSelectionViewData,
+        generateUID,
+    );
+
+    return new CombinedResultsReport(deps, parameters, toolData, resultsToCardsConverter);
 }
 
 initializeFabricIcons();

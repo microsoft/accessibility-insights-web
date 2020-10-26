@@ -4,6 +4,8 @@ import { ClassNameCardRow } from 'common/components/cards/class-name-card-row';
 import { ContentDescriptionCardRow } from 'common/components/cards/content-description-card-row';
 import { HowToCheckWebCardRow } from 'common/components/cards/how-to-check-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
+import { UrlsCardRow } from 'common/components/cards/urls-card-row';
+import { LinkComponentType } from 'common/types/link-component-type';
 import { HowToFixAndroidCardRow } from '../components/cards/how-to-fix-android-card-row';
 import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
 import { PathCardRow } from '../components/cards/path-card-row';
@@ -33,6 +35,7 @@ export const AllPropertyTypes: PropertyType[] = [
 
 export interface CardRowDeps {
     fixInstructionProcessor: FixInstructionProcessor;
+    LinkComponent: LinkComponentType;
 }
 
 export interface CardRowProps {
@@ -77,6 +80,10 @@ export const textConfiguration: PropertyConfiguration = {
     cardRow: TextCardRow,
 };
 
+export const urlsConfiguration: PropertyConfiguration = {
+    cardRow: UrlsCardRow,
+};
+
 export type PropertyIdToConfigurationMap = {
     [key in PropertyType]: PropertyConfiguration;
 };
@@ -89,6 +96,7 @@ const propertyIdToConfigurationMap: PropertyIdToConfigurationMap = {
     className: classNameConfiguration,
     contentDescription: contentDescriptionConfiguration,
     text: textConfiguration,
+    urls: urlsConfiguration,
 };
 
 export function getPropertyConfiguration(id: string): Readonly<PropertyConfiguration> {

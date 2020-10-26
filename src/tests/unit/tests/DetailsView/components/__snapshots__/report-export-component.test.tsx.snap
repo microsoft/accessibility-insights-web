@@ -13,6 +13,7 @@ exports[`ReportExportComponentTest render 1`] = `
     Export result
   </InsightsCommandButton>
   <ExportDialog
+    afterDismissed={[Function]}
     deps={
       Object {
         "reportGenerator": proxy {
@@ -53,6 +54,7 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     Export result
   </InsightsCommandButton>
   <ExportDialog
+    afterDismissed={[Function]}
     deps={
       Object {
         "reportGenerator": proxy {
@@ -92,6 +94,7 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     Export result
   </InsightsCommandButton>
   <ExportDialog
+    afterDismissed={[Function]}
     deps={
       Object {
         "reportGenerator": proxy {
@@ -131,6 +134,7 @@ exports[`ReportExportComponentTest user interactions edit text field: test conte
     Export result
   </InsightsCommandButton>
   <ExportDialog
+    afterDismissed={[Function]}
     deps={
       Object {
         "reportGenerator": proxy {

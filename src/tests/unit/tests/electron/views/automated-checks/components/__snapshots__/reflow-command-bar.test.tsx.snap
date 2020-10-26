@@ -9,7 +9,7 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
     className="farItems"
   >
     <CommandBarButtonsMenu
-      buttonRef={null}
+      buttonRef={[Function]}
       getStartOverMenuItem={[Function]}
       renderExportReportButton={[Function]}
     />
@@ -27,6 +27,34 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
     />
   </div>
 </section>
+`;
+
+exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export report 1`] = `
+<ReportExportComponent
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+      "scanActionCreator": null,
+    }
+  }
+  featureFlagStoreData={
+    Object {
+      "somefeatureflag": true,
+    }
+  }
+  getExportDescription={[Function]}
+  htmlGenerator={[Function]}
+  onDialogDismiss={[Function]}
+  pageTitle="scan target name"
+  reportExportFormat="AutomatedChecks"
+  scanDate={1970-01-01T00:00:00.000Z}
+  updatePersistedDescription={[Function]}
+/>
 `;
 
 exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = `
@@ -48,7 +76,6 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
           <ReportExportComponent
             deps={
               Object {
-                "getDateFromTimestamp": [Function],
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "assessmentReportHtmlGenerator": undefined,
@@ -65,6 +92,7 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
             scanDate={1970-01-01T00:00:00.000Z}
@@ -166,7 +194,6 @@ exports[`ReflowCommandBar renders while status is <Completed> 1`] = `
           <ReportExportComponent
             deps={
               Object {
-                "getDateFromTimestamp": [Function],
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "assessmentReportHtmlGenerator": undefined,
@@ -183,6 +210,7 @@ exports[`ReflowCommandBar renders while status is <Completed> 1`] = `
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
             scanDate={1970-01-01T00:00:00.000Z}
@@ -238,7 +266,6 @@ exports[`ReflowCommandBar renders while status is <Default> 1`] = `
           <ReportExportComponent
             deps={
               Object {
-                "getDateFromTimestamp": [Function],
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "assessmentReportHtmlGenerator": undefined,
@@ -255,6 +282,7 @@ exports[`ReflowCommandBar renders while status is <Default> 1`] = `
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
             scanDate={1970-01-01T00:00:00.000Z}
@@ -310,7 +338,6 @@ exports[`ReflowCommandBar renders while status is <Failed> 1`] = `
           <ReportExportComponent
             deps={
               Object {
-                "getDateFromTimestamp": [Function],
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "assessmentReportHtmlGenerator": undefined,
@@ -327,6 +354,7 @@ exports[`ReflowCommandBar renders while status is <Failed> 1`] = `
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
             scanDate={1970-01-01T00:00:00.000Z}
@@ -382,7 +410,6 @@ exports[`ReflowCommandBar renders while status is <Scanning> 1`] = `
           <ReportExportComponent
             deps={
               Object {
-                "getDateFromTimestamp": [Function],
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "assessmentReportHtmlGenerator": undefined,
@@ -399,9 +426,9 @@ exports[`ReflowCommandBar renders while status is <Scanning> 1`] = `
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
-            scanDate={1970-01-01T00:00:00.000Z}
             updatePersistedDescription={[Function]}
           />
         }

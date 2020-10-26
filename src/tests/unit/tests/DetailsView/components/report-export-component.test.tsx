@@ -40,12 +40,14 @@ describe('ReportExportComponentTest', () => {
             featureFlagStoreData: {
                 'test-feature-flag': true,
             },
+            onDialogDismiss: () => null,
         };
     });
 
     test('render', () => {
         const wrapper = shallow(<ReportExportComponent {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.find(ExportDialog).prop('afterDismissed')).toEqual(props.onDialogDismiss);
     });
 
     describe('user interactions', () => {

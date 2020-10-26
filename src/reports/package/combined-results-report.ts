@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
-import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
-import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata, ScanTimespan, ToolData } from 'common/types/store-data/unified-data-interface';
+import { CombinedResultsToCardsModelConverter } from 'reports/package/combined-results-to-cards-model-converter';
 
 export type CombinedResultsReportDeps = {
     reportHtmlGenerator: CombinedReportHtmlGenerator;
@@ -14,20 +14,15 @@ export class CombinedResultsReport implements AccessibilityInsightsReport.Report
         private readonly deps: CombinedResultsReportDeps,
         private readonly parameters: AccessibilityInsightsReport.CombinedReportParameters,
         private readonly toolInfo: ToolData,
+        private readonly resultsToCardsConverter: CombinedResultsToCardsModelConverter
     ) {}
 
     public asHTML(): string {
-        const { scanDetails } = this.parameters;
+        const { scanDetails, results } = this.parameters;
 
         const targetAppInfo = {
             name: scanDetails.basePageTitle,
             url: scanDetails.baseUrl,
-        };
-
-        const scanMetadata: ScanMetadata = {
-            targetAppInfo: targetAppInfo,
-            toolData: this.toolInfo,
-            timestamp: null,
         };
 
         const timespan: ScanTimespan = {
@@ -36,6 +31,20 @@ export class CombinedResultsReport implements AccessibilityInsightsReport.Report
             durationSeconds: scanDetails.durationSeconds,
         }
 
-        return this.deps.reportHtmlGenerator.generateHtml(timespan, scanMetadata);
+        const scanMetadata: ScanMetadata = {
+            targetAppInfo: targetAppInfo,
+            toolData: this.toolInfo,
+            timespan,
+        };
+
+        const cardsByRule = this.resultsToCardsConverter.convertResults(
+            results.resultsByRule
+        );
+
+        return this.deps.reportHtmlGenerator.generateHtml(
+            scanMetadata,
+            cardsByRule,
+            results.urlResults
+        );
     }
 }
