@@ -51,8 +51,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
-    const hiddenButton = React.useRef(null);
-
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
         [selected]: isHighlightSupported && result.isSelected,
@@ -66,31 +64,28 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     });
 
     const toggleSelectHandler = (event: React.SyntheticEvent): void => {
-        if (isHighlightSupported) {
-            event.stopPropagation();
-            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
-        }
+        event.stopPropagation();
+        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
     };
 
-    const cardClickHandler = (event: React.SyntheticEvent): void => {
-        hiddenButton.current?.focus();
-        hiddenButton.current?.click();
-    };
+    const hiddenButton = React.useRef(null);
+    const cardHighlightingProperties = isHighlightSupported
+        ? {
+              onClick: (_: React.SyntheticEvent): void => {
+                  hiddenButton.current?.focus();
+                  hiddenButton.current?.click();
+              },
+              tabIndex: -1,
+          }
+        : {};
 
     return (
         <div
             data-automation-id={instanceCardAutomationId}
             className={instanceDetailsCardContainerStyling}
         >
-            <div className={instanceDetailsCardStyling} onClick={cardClickHandler} tabIndex={-1}>
+            <div className={instanceDetailsCardStyling} {...cardHighlightingProperties}>
                 <div>
-                    <table className={reportInstanceTable}>
-                        <tbody>
-                            {renderCardRowsForPropertyBag(result.identifiers, props)}
-                            {renderCardRowsForPropertyBag(result.descriptors, props)}
-                            {renderCardRowsForPropertyBag(result.resolution, props)}
-                        </tbody>
-                    </table>
                     {isHighlightSupported && (
                         <button
                             ref={hiddenButton}
@@ -106,6 +101,13 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                             onBlur={_ => setCardFocus(false)}
                         ></button>
                     )}
+                    <table className={reportInstanceTable}>
+                        <tbody>
+                            {renderCardRowsForPropertyBag(result.identifiers, props)}
+                            {renderCardRowsForPropertyBag(result.descriptors, props)}
+                            {renderCardRowsForPropertyBag(result.resolution, props)}
+                        </tbody>
+                    </table>
                     <InstanceDetailsFooter
                         deps={deps}
                         result={result}
