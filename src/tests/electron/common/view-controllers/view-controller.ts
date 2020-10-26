@@ -16,7 +16,23 @@ export abstract class ViewController {
         // semantics than Puppeteer; in particular, it requires the element be in the viewport
         // but doesn't scroll the page to the element, so it's easy for it to fail in ways that
         // are dependent on the test environment.
-        await this.screenshotOnError(async () => this.client.waitForExist(selector, timeout));
+        await this.screenshotOnError(async () => await this.client.waitForExist(selector, timeout));
+    }
+
+    public async waitForNumberOfSelectorMatches(
+        selector: string,
+        expectedNumber: number,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+    ): Promise<void> {
+        await this.screenshotOnError(async () => {
+            await this.client.waitUntil(
+                async () => {
+                    return (await this.client.$$(selector)).length === expectedNumber;
+                },
+                timeout,
+                `expected to find ${expectedNumber} matches for selector ${selector} within ${timeout}ms`,
+            );
+        });
     }
 
     public async waitForSelectorToDisappear(
