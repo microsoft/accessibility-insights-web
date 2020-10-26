@@ -19,7 +19,7 @@ import { testResourceServerConfig } from '../setup/test-resource-server-config';
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
-    let narrowModeThresholds = getNarrowModeThresholdsForUnified();
+    const narrowModeThresholds = getNarrowModeThresholdsForUnified();
     const height = 400;
 
     beforeEach(async () => {
