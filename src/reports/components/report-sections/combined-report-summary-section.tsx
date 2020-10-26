@@ -15,7 +15,7 @@ export const CombinedReportSummarySection = NamedFC<CombinedReportSectionProps>(
         let failedInstances = 0;
         cards.fail.forEach(failedScanResult => {
             failedScanResult.nodes.forEach(failureNode => {
-                failedInstances += failureNode.instanceUrls.length;
+                failedInstances += failureNode.identifiers.urls.urls.length;
             });
         });
 

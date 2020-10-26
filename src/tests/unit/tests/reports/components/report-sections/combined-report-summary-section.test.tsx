@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import {
+    CardResult,
+    CardRuleResult,
+    CardRuleResultsByStatus,
+} from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
@@ -19,16 +23,24 @@ describe(CombinedReportSummarySection, () => {
             {
                 id: 'some-rule',
                 nodes: [
-                    {
-                        instanceUrls: [
-                            'http://url-fail/1',
-                            'http://url-fail/2',
-                            'http://url-fail/3',
-                        ],
-                    },
-                    {
-                        instanceUrls: ['http://url-fail/1'],
-                    },
+                    ({
+                        identifiers: {
+                            urls: {
+                                urls: [
+                                    'http://url-fail/1',
+                                    'http://url-fail/2',
+                                    'http://url-fail/3',
+                                ],
+                            },
+                        },
+                    } as unknown) as CardResult,
+                    ({
+                        identifiers: {
+                            urls: {
+                                urls: ['http://url-fail/1'],
+                            },
+                        },
+                    } as unknown) as CardResult,
                 ],
             },
         ],
