@@ -14,10 +14,13 @@ import { AutomatedChecksViewController } from 'tests/electron/common/view-contro
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
+import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { RawResult } from 'webdriverio';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
+    const narrowModeThresholds = getNarrowModeThresholdsForUnified();
 
     beforeEach(async () => {
         await setupMockAdb(
@@ -202,4 +205,45 @@ describe('AutomatedChecksView', () => {
             expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
         });
     }
+
+    const setupWindowForCommandBarReflowTest = async (
+        narrowFactor: number,
+    ): Promise<RawResult<any>> => {
+        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
+
+        const width = narrowModeThresholds.collapseCommandBarThreshold - narrowFactor;
+        const height = 500;
+
+        app.client.browserWindow.restore();
+        app.client.browserWindow.setSize(width, height);
+
+        // Note: the following call returns a different type of object than is specified
+        // by the typescript return type when the element is found
+        return automatedChecksView.client.$(AutomatedChecksViewSelectors.leftNavHamburgerButton);
+    };
+
+    it('command bar reflows when narrow mode threshold is crossed', async () => {
+        const result = await setupWindowForCommandBarReflowTest(2);
+        expect(result.value).not.toBeNull();
+    });
+
+    it('command bar does not reflow when narrow mode threshold is not crossed', async () => {
+        const result = await setupWindowForCommandBarReflowTest(0);
+        expect(result.value).toBeNull();
+    });
+
+    it.only('hamburger button click opens left nav', async () => {
+        await setupWindowForCommandBarReflowTest(2);
+
+        const isLeftNavEnabled = await automatedChecksView.client.isEnabled(
+            AutomatedChecksViewSelectors.leftNav,
+        );
+        expect(isLeftNavEnabled).toBe(true);
+
+        const selector = `${AutomatedChecksViewSelectors.leftNavHamburgerButton} > span > i`;
+        await automatedChecksView.client.click(selector);
+
+        // if the nav bar doesn't disappear, the timeout is reached and the test fails.
+        await automatedChecksView.waitForSelectorToDisappear(AutomatedChecksViewSelectors.leftNav);
+    });
 });
