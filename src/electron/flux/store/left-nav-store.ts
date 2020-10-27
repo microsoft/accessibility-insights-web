@@ -27,6 +27,7 @@ export class LeftNavStore extends BaseStoreImpl<LeftNavStoreData> {
 
     private onItemSelected = (key: LeftNavItemKey): void => {
         this.state.selectedKey = key;
+        this.state.leftNavVisible = false;
         this.emitChanged();
     };
 
