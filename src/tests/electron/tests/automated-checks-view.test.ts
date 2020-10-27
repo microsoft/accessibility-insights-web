@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
+import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -13,11 +15,12 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
-import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let automatedChecksView: AutomatedChecksViewController;
+    const narrowModeThresholds = getNarrowModeThresholdsForUnified();
+    const height = 400;
 
     beforeEach(async () => {
         await setupMockAdb(
@@ -41,20 +44,14 @@ describe('AutomatedChecksView', () => {
     });
 
     it('displays automated checks results collapsed by default', async () => {
-        const ruleGroups = await automatedChecksView.queryRuleGroups();
-        expect(ruleGroups).toHaveLength(3);
+        automatedChecksView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await automatedChecksView.queryRuleGroupContents();
         expect(collapsibleContentElements).toHaveLength(0);
     });
 
-    async function countHighlightBoxes(): Promise<number> {
-        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
-        return boxes.length;
-    }
-
     it('supports expanding and collapsing rule groups', async () => {
-        expect(await countHighlightBoxes()).toBe(4);
+        await automatedChecksView.waitForHighlightBoxCount(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
@@ -66,7 +63,7 @@ describe('AutomatedChecksView', () => {
         await automatedChecksView.toggleRuleGroupAtPosition(3);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
-        expect(await countHighlightBoxes()).toBe(4);
+        await automatedChecksView.waitForHighlightBoxCount(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
@@ -75,12 +72,16 @@ describe('AutomatedChecksView', () => {
         await automatedChecksView.toggleRuleGroupAtPosition(2);
         await assertCollapsedRuleGroup(2, 'ActiveViewName');
 
-        expect(await countHighlightBoxes()).toBe(1);
+        await automatedChecksView.waitForHighlightBoxCount(1);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
+        app.client.browserWindow.setSize(
+            narrowModeThresholds.collapseCommandBarThreshold + 1,
+            height,
+        );
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
         await scanForAccessibilityIssuesInAllModes(app);
@@ -89,6 +90,10 @@ describe('AutomatedChecksView', () => {
     it('left nav allows to change between tests', async () => {
         const testIndex = 1;
         const expectedTestTitle = androidTestConfigs[testIndex].title;
+        app.client.browserWindow.setSize(
+            narrowModeThresholds.collapseCommandBarThreshold + 1,
+            height,
+        );
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.leftNav);
         await automatedChecksView.client.click(

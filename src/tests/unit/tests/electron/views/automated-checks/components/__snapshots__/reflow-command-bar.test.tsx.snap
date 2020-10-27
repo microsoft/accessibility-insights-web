@@ -6,7 +6,7 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
   className="commandBar"
 >
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <CommandBarButtonsMenu
       buttonRef={[Function]}
@@ -68,7 +68,7 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
     setSideNavOpen={[Function]}
   />
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <React.Fragment>
       <FlaggedComponent
@@ -140,7 +140,7 @@ exports[`ReflowCommandBar renders does not create report export when scan metada
   className="commandBar"
 >
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <React.Fragment>
       <FlaggedComponent
@@ -186,7 +186,7 @@ exports[`ReflowCommandBar renders while status is <Completed> 1`] = `
   className="commandBar"
 >
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <React.Fragment>
       <FlaggedComponent
@@ -258,7 +258,7 @@ exports[`ReflowCommandBar renders while status is <Default> 1`] = `
   className="commandBar"
 >
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <React.Fragment>
       <FlaggedComponent
@@ -330,7 +330,7 @@ exports[`ReflowCommandBar renders while status is <Failed> 1`] = `
   className="commandBar"
 >
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <React.Fragment>
       <FlaggedComponent
@@ -402,7 +402,7 @@ exports[`ReflowCommandBar renders while status is <Scanning> 1`] = `
   className="commandBar"
 >
   <div
-    className="farItems"
+    className="farItems reflow"
   >
     <React.Fragment>
       <FlaggedComponent
