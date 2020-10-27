@@ -14,22 +14,29 @@ import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controll
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private pages: Array<Page> = [];
+    private underlyingBrowserContext: Playwright.BrowserContext | null;
 
     constructor(
         private readonly browserInstanceId: string,
-        private readonly underlyingBrowserContext: Playwright.BrowserContext,
+        underlyingBrowserContext: Playwright.BrowserContext,
         private readonly onClose?: () => Promise<void>,
     ) {
+        this.underlyingBrowserContext = underlyingBrowserContext;
         underlyingBrowserContext.on('close', onBrowserDisconnected);
     }
 
     public async close(): Promise<void> {
+        if (null == this.underlyingBrowserContext) {
+            return;
+        }
+
         if (this.onClose) {
             await this.onClose();
         }
 
         this.underlyingBrowserContext.removeListener('close', onBrowserDisconnected);
         await this.underlyingBrowserContext.close();
+        this.underlyingBrowserContext = null;
     }
 
     public async backgroundPage(): Promise<BackgroundPage> {

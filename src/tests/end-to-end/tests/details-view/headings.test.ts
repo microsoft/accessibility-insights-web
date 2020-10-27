@@ -21,10 +21,7 @@ describe('Details View -> Assessment -> Headings', () => {
     });
 
     afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     describe('Requirement page', () => {

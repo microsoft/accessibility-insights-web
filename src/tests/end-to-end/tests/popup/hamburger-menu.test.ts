@@ -21,10 +21,7 @@ describe('Popup -> Hamburger menu', () => {
     });
 
     afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     it('should have content matching snapshot', async () => {
