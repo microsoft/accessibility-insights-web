@@ -4,9 +4,11 @@ import { collapsibleButtonAutomationId } from 'common/components/cards/collapsib
 import { instanceCardAutomationId } from 'common/components/cards/instance-details';
 import { ruleContentAutomationId } from 'common/components/cards/instance-details-group';
 import { ruleGroupAutomationId } from 'common/components/cards/rules-with-instances';
+import { leftNavHamburgerButtonAutomationId } from 'common/components/left-nav-hamburger-button';
 import { testViewLeftNavLinkAutomationId } from 'DetailsView/components/left-nav/test-view-left-nav-link';
 import { automatedChecksViewAutomationId } from 'electron/views/automated-checks/automated-checks-view';
 import { commandButtonSettingsId } from 'electron/views/automated-checks/components/command-bar';
+import { fluentLeftNavAutomationId } from 'electron/views/left-nav/fluent-left-nav';
 import { leftNavAutomationId } from 'electron/views/left-nav/left-nav';
 import { highlightBoxAutomationId } from 'electron/views/screenshot/highlight-box';
 import { screenshotImageAutomationId } from 'electron/views/screenshot/screenshot';
@@ -21,6 +23,8 @@ export const AutomatedChecksViewSelectors = {
     ruleGroup: getAutomationIdSelector(ruleGroupAutomationId),
     ruleContent: getAutomationIdSelector(ruleContentAutomationId),
     leftNav: getAutomationIdSelector(leftNavAutomationId),
+    fluentLeftNav: getAutomationIdSelector(fluentLeftNavAutomationId),
+    leftNavHamburgerButton: getAutomationIdSelector(leftNavHamburgerButtonAutomationId),
 
     nthRuleGroupCollapseExpandButton: (position: number) =>
         `${nthRuleGroup(position)} ${getAutomationIdSelector(collapsibleButtonAutomationId)}`,

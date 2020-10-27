@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
-import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import * as fs from 'fs';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -15,6 +14,8 @@ import { AppController } from 'tests/electron/common/view-controllers/app-contro
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
+import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
+import { RawResult } from 'webdriverio';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
@@ -207,4 +208,67 @@ describe('AutomatedChecksView', () => {
             expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
         });
     }
+
+    const setupWindowForCommandBarReflowTest = async (
+        narrowFactor: number,
+    ): Promise<RawResult<any>> => {
+        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
+
+        const width = narrowModeThresholds.collapseCommandBarThreshold - narrowFactor;
+
+        app.client.browserWindow.restore();
+        app.client.browserWindow.setSize(width, height);
+
+        // Note: the following call returns a different type of object than is specified
+        // by the typescript return type when the element is found
+        return automatedChecksView.client.$(AutomatedChecksViewSelectors.leftNavHamburgerButton);
+    };
+
+    it('command bar reflows when narrow mode threshold is crossed', async () => {
+        const result = await setupWindowForCommandBarReflowTest(2);
+        expect(result.value).not.toBeNull();
+    });
+
+    it('command bar does not reflow when narrow mode threshold is not crossed', async () => {
+        const result = await setupWindowForCommandBarReflowTest(0);
+        expect(result.value).toBeNull();
+    });
+
+    it('hamburger button click opens and closes left nav', async () => {
+        await setupWindowForCommandBarReflowTest(2);
+
+        const result = await automatedChecksView.client.$(
+            AutomatedChecksViewSelectors.fluentLeftNav,
+        );
+        expect(result.state).toBe('failure');
+
+        await automatedChecksView.client.click(AutomatedChecksViewSelectors.leftNavHamburgerButton);
+
+        // if the nav bar doesn't appear, the timeout has expired and the test fails.
+        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.fluentLeftNav);
+
+        // The fluent left nav bar appears over the command bar
+        // so it requires a different selector
+        const selector = `${AutomatedChecksViewSelectors.fluentLeftNav} ${AutomatedChecksViewSelectors.leftNavHamburgerButton}`;
+        await automatedChecksView.client.click(selector);
+
+        // if the nav bar doesn't disappear, the timeout has expired and the test fails.
+        await automatedChecksView.waitForSelectorToDisappear(
+            AutomatedChecksViewSelectors.fluentLeftNav,
+        );
+    });
+
+    it.only('left nav closes when item is selected', async () => {
+        await setupWindowForCommandBarReflowTest(2);
+        await automatedChecksView.client.click(AutomatedChecksViewSelectors.leftNavHamburgerButton);
+        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.fluentLeftNav);
+
+        const selector = `${AutomatedChecksViewSelectors.fluentLeftNav} a`;
+        await automatedChecksView.client.click(selector);
+
+        // if the nav bar doesn't disappear, the timeout has expired and the test fails.
+        await automatedChecksView.waitForSelectorToDisappear(
+            AutomatedChecksViewSelectors.fluentLeftNav,
+        );
+    });
 });
