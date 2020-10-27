@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
+import { inspect } from 'util';
 
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import {
@@ -32,7 +33,7 @@ export class Page {
         }
 
         function serializeError(error: Error): string {
-            return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
+            return `[Error]{\n${inspect(error, { compact: false, depth: 4 })}\n}`;
         }
 
         underlyingPage.on('pageerror', error => {
@@ -45,6 +46,12 @@ export class Page {
                 )
             ) {
                 return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
+            }
+
+            if (error.name === 'Error' && error.message === 'Object' && error.stack == null) {
+                // unknown flakiness, tracked by https://github.com/microsoft/accessibility-insights-web/issues/3529
+                console.warn(`'pageerror' (console.error): ${serializeError(error)}`);
+                return;
             }
 
             forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
