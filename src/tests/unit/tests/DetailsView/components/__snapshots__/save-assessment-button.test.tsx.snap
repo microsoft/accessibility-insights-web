@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SaveAssessmentButton should render per the snapshot 1`] = `
+<InsightsCommandButton
+  iconProps={
+    Object {
+      "iconName": "Save",
+    }
+  }
+>
+  Save assessment
+</InsightsCommandButton>
+`;

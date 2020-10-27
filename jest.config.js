@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 module.exports = {
     projects: [
+        '<rootDir>/packages/*',
         '<rootDir>/src/tests/unit',
         '<rootDir>/src/tests/end-to-end',
         '<rootDir>/src/tests/electron',

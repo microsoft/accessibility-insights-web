@@ -21,6 +21,7 @@ export interface ReportExportComponentProps {
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
+    onDialogDismiss?: () => void;
 }
 
 export interface ReportExportComponentState {
@@ -92,6 +93,7 @@ export class ReportExportComponent extends React.Component<
                     reportExportFormat={reportExportFormat}
                     onExportClick={this.generateHtml}
                     featureFlagStoreData={this.props.featureFlagStoreData}
+                    afterDismissed={this.props.onDialogDismiss}
                 />
             </>
         );

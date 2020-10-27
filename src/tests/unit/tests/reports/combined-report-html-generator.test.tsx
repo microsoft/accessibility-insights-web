@@ -3,14 +3,18 @@
 
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
-import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import {
+    ScanMetadata,
+    ScanTimespan,
+    ToolData,
+} from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
-import { ScanTimespan } from 'reports/components/report-sections/base-summary-report-section-props';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('CombinedReportHtmlGenerator', () => {
@@ -39,15 +43,28 @@ describe('CombinedReportHtmlGenerator', () => {
         url: baseUrl,
     };
 
-    const scanMetadata = {
-        toolData: toolData,
-        targetAppInfo: targetAppInfo,
-    } as ScanMetadata;
-
     const scanTimespan: ScanTimespan = {
         scanStart: new Date(2020, 1, 2, 3),
         scanComplete: new Date(2020, 4, 5, 6),
         durationSeconds: 42,
+    };
+
+    const scanMetadata = {
+        toolData: toolData,
+        targetAppInfo: targetAppInfo,
+        timespan: scanTimespan,
+    } as ScanMetadata;
+
+    const urlResultCounts = {
+        passedUrls: 1,
+        failedUrls: 2,
+        unscannableUrls: 3,
+    };
+
+    const cardsViewData = {
+        cards: exampleUnifiedStatusResults,
+        visualHelperEnabled: true,
+        allCardsCollapsed: true,
     };
 
     let getScriptMock: IMock<() => string>;
@@ -75,7 +92,8 @@ describe('CombinedReportHtmlGenerator', () => {
             secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
-            scanTimespan,
+            cardsByRule: cardsViewData,
+            urlResultCounts,
         };
 
         const headElement: JSX.Element = <NullComponent />;
@@ -91,7 +109,7 @@ describe('CombinedReportHtmlGenerator', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const html = testSubject.generateHtml(scanTimespan, scanMetadata);
+        const html = testSubject.generateHtml(scanMetadata, cardsViewData, urlResultCounts);
 
         expect(html).toMatchSnapshot();
     });

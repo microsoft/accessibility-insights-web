@@ -9,6 +9,11 @@ import {
 } from 'DetailsView/components/details-view-switcher-nav';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import {
+    SaveAssessmentButton,
+    SaveAssessmentButtonProps,
+} from 'DetailsView/components/save-assessment-button';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import {
     StartOverComponentFactory,
     StartOverFactoryProps,
 } from 'DetailsView/components/start-over-component-factory';
@@ -32,10 +37,12 @@ describe('DetailsViewCommandBar', () => {
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
+    let saveAssessmentButton: JSX.Element;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
+    let saveAssessmentButtonMock: IMock<(Props: SaveAssessmentButtonProps) => JSX.Element>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -44,12 +51,14 @@ describe('DetailsViewCommandBar', () => {
             MockBehavior.Loose,
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
+        saveAssessmentButtonMock = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
+        saveAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });
@@ -88,23 +97,28 @@ describe('DetailsViewCommandBar', () => {
             narrowModeStatus: {
                 isCommandBarCollapsed,
             },
+            featureFlagStoreData: {} as FeatureFlagStoreData,
         } as DetailsViewCommandBarProps;
     }
 
-    test('renders with export button, with start over', () => {
-        testOnPivot(true, true);
+    test('renders with export button, with save assessment, with start over', () => {
+        testOnPivot(true, true, true);
     });
 
-    test('renders without export button, without start over', () => {
-        testOnPivot(false, false);
+    test('renders without export button, without save assessment, without start over', () => {
+        testOnPivot(false, false, false);
     });
 
-    test('renders with export button, without start over', () => {
-        testOnPivot(true, false);
+    test('renders with export button, without save assessment, without start over', () => {
+        testOnPivot(true, false, false);
     });
 
-    test('renders without export button, with start over', () => {
-        testOnPivot(false, true);
+    test('renders without export button, with save assessment, without start over', () => {
+        testOnPivot(false, true, false);
+    });
+
+    test('renders without export button, without save assessment, with start over', () => {
+        testOnPivot(false, false, true);
     });
 
     test('renders null when tab closed', () => {
@@ -129,6 +143,11 @@ describe('DetailsViewCommandBar', () => {
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
         rendered.setState({ isReportExportDialogOpen: true });
 
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with save assessment button', () => {
+        const rendered = shallow(<SaveAssessmentButton />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
@@ -256,7 +275,11 @@ describe('DetailsViewCommandBar', () => {
         });
     });
 
-    function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
+    function testOnPivot(
+        renderExportResults: boolean,
+        renderSaveAssessment: boolean,
+        renderStartOver: boolean,
+    ): void {
         showReportExportButton = renderExportResults;
 
         if (renderStartOver) {
@@ -264,6 +287,9 @@ describe('DetailsViewCommandBar', () => {
         }
 
         const props = getProps();
+
+        props.featureFlagStoreData = { saveAndLoadAssessment: renderSaveAssessment };
+
         setupStartOverButtonFactory(props);
         setupReportExportDialogFactory({ isOpen: false });
 

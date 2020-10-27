@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { FastPassLeftNavHamburgerButton } from 'common/components/expand-collapse-left-nav-hamburger-button';
 import { NamedFC } from 'common/react/named-fc';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -17,10 +18,11 @@ export type FluentLeftNavProps = {
     narrowModeStatus: NarrowModeStatus;
     selectedKey: LeftNavItemKey;
     isNavOpen: boolean;
+    setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const FluentLeftNav = NamedFC<FluentLeftNavProps>('LeftNav', props => {
-    const { narrowModeStatus, selectedKey, isNavOpen, deps } = props;
+    const { narrowModeStatus, selectedKey, isNavOpen, deps, setSideNavOpen } = props;
     const leftNav = <LeftNav selectedKey={selectedKey} deps={deps} />;
 
     if (!narrowModeStatus.isHeaderAndNavCollapsed) {
@@ -38,6 +40,13 @@ export const FluentLeftNav = NamedFC<FluentLeftNavProps>('LeftNav', props => {
             onRenderNavigation={() => null}
             type={PanelType.customNear}
         >
+            <div className={styles.navMenuContainer}>
+                <FastPassLeftNavHamburgerButton
+                    isSideNavOpen={isNavOpen}
+                    setSideNavOpen={setSideNavOpen}
+                    className={styles.navMenu}
+                />
+            </div>
             {leftNav}
         </GenericPanel>
     );

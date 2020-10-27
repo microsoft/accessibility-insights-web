@@ -43,6 +43,7 @@ exports[` render renders normally 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -129,6 +130,7 @@ exports[` render renders normally 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],
@@ -188,7 +190,9 @@ exports[` render renders normally 1`] = `
           "name": "DetailsViewContainerTest title",
           "url": "http://detailsViewContainerTest/url/",
         },
-        "timestamp": "timestamp",
+        "timespan": Object {
+          "scanComplete": 1900-02-02T03:00:00.000Z,
+        },
         "toolData": Object {
           "applicationProperties": Object {
             "name": "some app",
@@ -462,6 +466,7 @@ exports[` render renders normally 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "getDetailsRightPanelConfiguration": [Function],
         "getDetailsSwitcherNavConfiguration": [Function],
         "isResultHighlightUnavailable": [Function],

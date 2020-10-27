@@ -70,13 +70,14 @@ exports[`ReportBody renders 1`] = `
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
-    scanDate={2019-05-29T19:12:16.804Z}
     scanMetadata={
       Object {
         "targetAppInfo": Object {
           "name": "app",
         },
-        "timestamp": "today",
+        "timespan": Object {
+          "scanComplete": 1900-02-02T03:00:00.000Z,
+        },
         "toolData": Object {
           "applicationProperties": Object {
             "environmentName": "environmentName",
@@ -146,148 +147,6 @@ exports[`ReportBody renders 1`] = `
   />
   <content-container>
     <title-section />
-    <summary-section
-      cardsViewData={
-        Object {
-          "allCardsCollapsed": true,
-          "cards": Object {
-            "fail": Array [
-              Object {
-                "description": "sample-description",
-                "guidance": Array [
-                  Object {
-                    "href": "sample-guidance-href",
-                    "text": "sample-guidance-text",
-                  },
-                ],
-                "id": "some-rule",
-                "nodes": Array [
-                  Object {
-                    "descriptors": Object {
-                      "snippet": "this is a sample snippet",
-                    },
-                    "identifiers": Object {
-                      "conciseName": "body img",
-                      "css-selector": "body img",
-                      "identifier": "body img",
-                    },
-                    "resolution": Object {
-                      "how-to-fix-web": Object {
-                        "all": Array [],
-                        "any": Array [
-                          "Element does not have an alt attribute",
-                          "aria-label attribute does not exist or is empty",
-                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-                        ],
-                        "none": Array [],
-                      },
-                      "howToFixSummary": "sample how to fix summary",
-                    },
-                    "ruleId": "image-alt",
-                    "status": "fail",
-                    "uid": "some-guid-here",
-                  },
-                ],
-                "url": "sample-url",
-              },
-            ],
-            "inapplicable": Array [],
-            "pass": Array [],
-            "unknown": Array [],
-          },
-          "visualHelperEnabled": true,
-        }
-      }
-      deps={Object {}}
-      description="test description"
-      fixInstructionProcessor={
-        proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "backgroundColorText": "background color: ",
-          "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "colorValueMatcher": "(#[0-9a-f]{6})",
-          "foregroundColorText": "foreground color: ",
-          "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
-        }
-      }
-      getCollapsibleScript={[Function]}
-      getGuidanceTagsFromGuidanceLinks={[Function]}
-      pageTitle="page-title"
-      pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
-      scanMetadata={
-        Object {
-          "targetAppInfo": Object {
-            "name": "app",
-          },
-          "timestamp": "today",
-          "toolData": Object {
-            "applicationProperties": Object {
-              "environmentName": "environmentName",
-              "name": "app-name",
-              "version": "app-version",
-            },
-            "scanEngineProperties": Object {
-              "name": "engine-name",
-              "version": "engine-version",
-            },
-          },
-        }
-      }
-      scanResult={
-        Object {
-          "inapplicable": Array [],
-          "incomplete": Array [],
-          "passes": Array [],
-          "targetPageTitle": "page-title",
-          "targetPageUrl": "url:target-page",
-          "timestamp": "today",
-          "violations": Array [],
-        }
-      }
-      sectionFactory={
-        Object {
-          "BodySection": [Function],
-          "ContentContainer": [Function],
-          "DetailsSection": [Function],
-          "FailedInstancesSection": [Function],
-          "FooterSection": [Function],
-          "FooterText": [Function],
-          "HeaderSection": [Function],
-          "NotApplicableChecksSection": [Function],
-          "PassedChecksSection": [Function],
-          "ResultsContainer": [Function],
-          "SummarySection": [Function],
-          "TitleSection": [Function],
-          "resultSectionsOrder": Array [
-            "failed",
-            "passed",
-            "notApplicable",
-          ],
-        }
-      }
-      shouldAlertFailuresCount={false}
-      targetAppInfo={
-        Object {
-          "name": "app",
-        }
-      }
-      toUtcString={[Function]}
-      toolData={
-        Object {
-          "applicationProperties": Object {
-            "environmentName": "environmentName",
-            "name": "app-name",
-            "version": "app-version",
-          },
-          "scanEngineProperties": Object {
-            "name": "engine-name",
-            "version": "engine-version",
-          },
-        }
-      }
-      userConfigurationStoreData={null}
-    />
     <details-section
       cardsViewData={
         Object {
@@ -356,13 +215,157 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
+          "timespan": Object {
+            "scanComplete": 1900-02-02T03:00:00.000Z,
+          },
+          "toolData": Object {
+            "applicationProperties": Object {
+              "environmentName": "environmentName",
+              "name": "app-name",
+              "version": "app-version",
+            },
+            "scanEngineProperties": Object {
+              "name": "engine-name",
+              "version": "engine-version",
+            },
+          },
+        }
+      }
+      scanResult={
+        Object {
+          "inapplicable": Array [],
+          "incomplete": Array [],
+          "passes": Array [],
+          "targetPageTitle": "page-title",
+          "targetPageUrl": "url:target-page",
           "timestamp": "today",
+          "violations": Array [],
+        }
+      }
+      sectionFactory={
+        Object {
+          "BodySection": [Function],
+          "ContentContainer": [Function],
+          "DetailsSection": [Function],
+          "FailedInstancesSection": [Function],
+          "FooterSection": [Function],
+          "FooterText": [Function],
+          "HeaderSection": [Function],
+          "NotApplicableChecksSection": [Function],
+          "PassedChecksSection": [Function],
+          "ResultsContainer": [Function],
+          "SummarySection": [Function],
+          "TitleSection": [Function],
+          "resultSectionsOrder": Array [
+            "failed",
+            "passed",
+            "notApplicable",
+          ],
+        }
+      }
+      shouldAlertFailuresCount={false}
+      targetAppInfo={
+        Object {
+          "name": "app",
+        }
+      }
+      toUtcString={[Function]}
+      toolData={
+        Object {
+          "applicationProperties": Object {
+            "environmentName": "environmentName",
+            "name": "app-name",
+            "version": "app-version",
+          },
+          "scanEngineProperties": Object {
+            "name": "engine-name",
+            "version": "engine-version",
+          },
+        }
+      }
+      userConfigurationStoreData={null}
+    />
+    <summary-section
+      cardsViewData={
+        Object {
+          "allCardsCollapsed": true,
+          "cards": Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "conciseName": "body img",
+                      "css-selector": "body img",
+                      "identifier": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                      "howToFixSummary": "sample how to fix summary",
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          },
+          "visualHelperEnabled": true,
+        }
+      }
+      deps={Object {}}
+      description="test description"
+      fixInstructionProcessor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "backgroundColorText": "background color: ",
+          "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorValueMatcher": "(#[0-9a-f]{6})",
+          "foregroundColorText": "foreground color: ",
+          "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+        }
+      }
+      getCollapsibleScript={[Function]}
+      getGuidanceTagsFromGuidanceLinks={[Function]}
+      pageTitle="page-title"
+      pageUrl="url:target-page"
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "app",
+          },
+          "timespan": Object {
+            "scanComplete": 1900-02-02T03:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",
@@ -498,13 +501,14 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
-          "timestamp": "today",
+          "timespan": Object {
+            "scanComplete": 1900-02-02T03:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",
@@ -640,13 +644,14 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        scanDate={2019-05-29T19:12:16.804Z}
         scanMetadata={
           Object {
             "targetAppInfo": Object {
               "name": "app",
             },
-            "timestamp": "today",
+            "timespan": Object {
+              "scanComplete": 1900-02-02T03:00:00.000Z,
+            },
             "toolData": Object {
               "applicationProperties": Object {
                 "environmentName": "environmentName",
@@ -782,13 +787,14 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        scanDate={2019-05-29T19:12:16.804Z}
         scanMetadata={
           Object {
             "targetAppInfo": Object {
               "name": "app",
             },
-            "timestamp": "today",
+            "timespan": Object {
+              "scanComplete": 1900-02-02T03:00:00.000Z,
+            },
             "toolData": Object {
               "applicationProperties": Object {
                 "environmentName": "environmentName",
@@ -924,13 +930,14 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
-        scanDate={2019-05-29T19:12:16.804Z}
         scanMetadata={
           Object {
             "targetAppInfo": Object {
               "name": "app",
             },
-            "timestamp": "today",
+            "timespan": Object {
+              "scanComplete": 1900-02-02T03:00:00.000Z,
+            },
             "toolData": Object {
               "applicationProperties": Object {
                 "environmentName": "environmentName",
@@ -1069,13 +1076,14 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
             "name": "app",
           },
-          "timestamp": "today",
+          "timespan": Object {
+            "scanComplete": 1900-02-02T03:00:00.000Z,
+          },
           "toolData": Object {
             "applicationProperties": Object {
               "environmentName": "environmentName",

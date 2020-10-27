@@ -1,10 +1,10 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 
 describe('LeftNavStore', () => {
@@ -26,13 +26,35 @@ describe('LeftNavStore', () => {
     it('item selection causes state change', () => {
         const initialState: LeftNavStoreData = {
             selectedKey: 'needs-review',
+            leftNavVisible: true,
         };
         const expectedState: LeftNavStoreData = {
             selectedKey: 'automated-checks',
+            leftNavVisible: true,
         };
 
         CreateStoreTesterForLeftNavActions('itemSelected')
             .withActionParam(expectedState.selectedKey)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    it.each([
+        [true, false],
+        [false, true],
+        [false, false],
+        [true, true],
+    ])('setLeftNavVisible causes state change', (initialValue, expectedValue) => {
+        const initialState: LeftNavStoreData = {
+            selectedKey: 'needs-review',
+            leftNavVisible: initialValue,
+        };
+        const expectedState: LeftNavStoreData = {
+            selectedKey: 'needs-review',
+            leftNavVisible: expectedValue,
+        };
+
+        CreateStoreTesterForLeftNavActions('setLeftNavVisible')
+            .withActionParam(expectedValue)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 

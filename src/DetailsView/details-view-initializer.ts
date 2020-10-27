@@ -302,10 +302,10 @@ if (tabId != null) {
             const browserSpec = navigatorUtils.getBrowserSpec();
 
             const toolData = createToolData(
-                toolName,
-                browserAdapter.getVersion(),
                 'axe-core',
                 AxeInfo.Default.version,
+                toolName,
+                browserAdapter.getVersion(),
                 browserSpec,
             );
 

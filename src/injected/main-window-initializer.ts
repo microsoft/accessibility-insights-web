@@ -204,10 +204,10 @@ export class MainWindowInitializer extends WindowInitializer {
         const browserSpec = new NavigatorUtils(window.navigator, logger).getBrowserSpec();
 
         const toolData = createToolData(
-            toolName,
-            this.appDataAdapter.getVersion(),
             'axe-core',
             AxeInfo.Default.version,
+            toolName,
+            this.appDataAdapter.getVersion(),
             browserSpec,
         );
 

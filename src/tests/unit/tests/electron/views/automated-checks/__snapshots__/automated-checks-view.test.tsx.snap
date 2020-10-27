@@ -45,7 +45,14 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
       },
       "getCardSelectionViewData": [Function],
       "getCardsViewData": [Function],
+      "getDateFromTimestamp": [Function],
       "isResultHighlightUnavailable": [Function],
+      "leftNavActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "actions": undefined,
+        "itemSelected": [Function],
+        "setLeftNavVisible": [Function],
+      },
       "scanActionCreator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "deviceActions": undefined,
@@ -113,7 +120,14 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
       },
       "getCardSelectionViewData": [Function],
       "getCardsViewData": [Function],
+      "getDateFromTimestamp": [Function],
       "isResultHighlightUnavailable": [Function],
+      "leftNavActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "actions": undefined,
+        "itemSelected": [Function],
+        "setLeftNavVisible": [Function],
+      },
       "scanActionCreator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "deviceActions": undefined,
@@ -164,7 +178,14 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -208,7 +229,14 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -222,7 +250,9 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -233,7 +263,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
       <FlaggedComponent
         disableJSXElement={null}
         enableJSXElement={
-          <CommandBar
+          <ReflowCommandBar
             cardsViewData={
               Object {
                 "cards": Object {
@@ -267,7 +297,14 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
                 "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
                 "scanActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "deviceActions": undefined,
@@ -281,13 +318,16 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 },
               }
             }
+            isSideNavOpen={true}
             scanMetadata={
               Object {
                 "deviceName": "TEST DEVICE",
                 "targetAppInfo": Object {
                   "name": "test-target-app-name",
                 },
-                "timestamp": "test timestamp",
+                "timespan": Object {
+                  "scanComplete": 1900-02-02T03:00:00.000Z,
+                },
                 "toolData": Object {
                   "applicationProperties": Object {
                     "name": "some app",
@@ -300,6 +340,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 "status": 2,
               }
             }
+            setSideNavOpen={[Function]}
           />
         }
         featureFlag="leftNavBar"
@@ -346,7 +387,14 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                     },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
                     "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
                     "scanActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                       "deviceActions": undefined,
@@ -366,7 +414,9 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                     "targetAppInfo": Object {
                       "name": "test-target-app-name",
                     },
-                    "timestamp": "test timestamp",
+                    "timespan": Object {
+                      "scanComplete": 1900-02-02T03:00:00.000Z,
+                    },
                     "toolData": Object {
                       "applicationProperties": Object {
                         "name": "some app",
@@ -429,7 +479,14 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                   },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                     "deviceActions": undefined,
@@ -449,7 +506,9 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                   "targetAppInfo": Object {
                     "name": "test-target-app-name",
                   },
-                  "timestamp": "test timestamp",
+                  "timespan": Object {
+                    "scanComplete": 1900-02-02T03:00:00.000Z,
+                  },
                   "toolData": Object {
                     "applicationProperties": Object {
                       "name": "some app",
@@ -501,7 +560,14 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -554,7 +620,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -598,7 +671,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -612,7 +692,9 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -623,7 +705,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
       <FlaggedComponent
         disableJSXElement={null}
         enableJSXElement={
-          <CommandBar
+          <ReflowCommandBar
             cardsViewData={
               Object {
                 "cards": Object {
@@ -657,7 +739,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                 },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
                 "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
                 "scanActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "deviceActions": undefined,
@@ -671,12 +760,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                 },
               }
             }
+            isSideNavOpen={true}
             scanMetadata={null}
             scanStoreData={
               Object {
                 "status": 3,
               }
             }
+            setSideNavOpen={[Function]}
           />
         }
         featureFlag="leftNavBar"
@@ -723,7 +814,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                     },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
                     "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
                     "scanActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                       "deviceActions": undefined,
@@ -793,7 +891,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                   },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                     "deviceActions": undefined,
@@ -856,7 +961,14 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -909,7 +1021,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -953,7 +1072,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -967,7 +1093,9 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -978,7 +1106,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
       <FlaggedComponent
         disableJSXElement={null}
         enableJSXElement={
-          <CommandBar
+          <ReflowCommandBar
             cardsViewData={
               Object {
                 "cards": Object {
@@ -1012,7 +1140,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                 },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
                 "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
                 "scanActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "deviceActions": undefined,
@@ -1026,12 +1161,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                 },
               }
             }
+            isSideNavOpen={true}
             scanMetadata={null}
             scanStoreData={
               Object {
                 "status": 1,
               }
             }
+            setSideNavOpen={[Function]}
           />
         }
         featureFlag="leftNavBar"
@@ -1078,7 +1215,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                     },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
                     "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
                     "scanActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                       "deviceActions": undefined,
@@ -1148,7 +1292,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                   },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                     "deviceActions": undefined,
@@ -1207,7 +1358,14 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -1260,7 +1418,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,
@@ -1304,7 +1469,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               },
               "getCardSelectionViewData": [Function],
               "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
               "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "deviceActions": undefined,
@@ -1318,7 +1490,9 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               },
             }
           }
+          isNavOpen={true}
           selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
         />
       }
       featureFlag="leftNavBar"
@@ -1329,7 +1503,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
       <FlaggedComponent
         disableJSXElement={null}
         enableJSXElement={
-          <CommandBar
+          <ReflowCommandBar
             cardsViewData={
               Object {
                 "cards": Object {
@@ -1363,7 +1537,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                 },
                 "getCardSelectionViewData": [Function],
                 "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
                 "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
                 "scanActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "deviceActions": undefined,
@@ -1377,12 +1558,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                 },
               }
             }
+            isSideNavOpen={true}
             scanMetadata={null}
             scanStoreData={
               Object {
                 "status": undefined,
               }
             }
+            setSideNavOpen={[Function]}
           />
         }
         featureFlag="leftNavBar"
@@ -1429,7 +1612,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                     },
                     "getCardSelectionViewData": [Function],
                     "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
                     "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
                     "scanActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                       "deviceActions": undefined,
@@ -1499,7 +1689,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                   },
                   "getCardSelectionViewData": [Function],
                   "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
                   "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                     "deviceActions": undefined,
@@ -1557,7 +1754,14 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
         },
         "getCardSelectionViewData": [Function],
         "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
         "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "deviceActions": undefined,

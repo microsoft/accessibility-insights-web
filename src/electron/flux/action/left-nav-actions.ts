@@ -5,4 +5,5 @@ import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 
 export class LeftNavActions {
     public readonly itemSelected = new Action<LeftNavItemKey>();
+    public readonly setLeftNavVisible = new Action<boolean>();
 }

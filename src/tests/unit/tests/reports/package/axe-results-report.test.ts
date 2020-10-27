@@ -15,6 +15,7 @@ import { ResultDecorator } from 'scanner/result-decorator';
 import { Mock, MockBehavior } from 'typemoq';
 
 describe('AxeResultReport', () => {
+    const scanTimestamp = 'timestamp';
     const reportDateTime = new Date(2019, 10, 23, 15, 35, 0);
     const url = 'https://the.page';
     const pageTitle = 'PAGE_TITLE';
@@ -29,11 +30,13 @@ describe('AxeResultReport', () => {
     const scanMetadataStub = {
         toolData: toolDataStub,
         targetAppInfo: targetAppInfoStub,
-        timestamp: null,
+        timespan: {
+            scanComplete: reportDateTime,
+        }
     };
 
     const results = {
-        timestamp: reportDateTime.toISOString(),
+        timestamp: scanTimestamp,
         url,
     } as AxeResults;
 
@@ -73,8 +76,11 @@ describe('AxeResultReport', () => {
     const expectedHTML = '<div>The Report!</div>';
     const mockReportHtmlGenerator = Mock.ofType<ReportHtmlGenerator>(null, MockBehavior.Strict);
     mockReportHtmlGenerator
-        .setup(gen => gen.generateHtml(reportDateTime, description, mockCardsViewModel.object, scanMetadataStub))
+        .setup(gen => gen.generateHtml(description, mockCardsViewModel.object, scanMetadataStub))
         .returns(() => expectedHTML);
+
+    const mockGetDateFromTimestamp = Mock.ofType<(timestamp: string) => Date>();
+    mockGetDateFromTimestamp.setup(md => md(scanTimestamp)).returns(() => reportDateTime);
 
     const deps: AxeResultsReportDeps = {
         reportHtmlGenerator: mockReportHtmlGenerator.object,
@@ -82,6 +88,7 @@ describe('AxeResultReport', () => {
         getUnifiedRules: mockGetRules.object,
         getUnifiedResults: mockGetResults.object,
         getCards: mockGetCards.object,
+        getDateFromTimestamp: mockGetDateFromTimestamp.object,
     };
 
     it('returns HTML', () => {

@@ -26,6 +26,7 @@
         "**/*.icns",
         "**/*.scss.d.ts",
         "**/*.snap",
+        "**/*.snap.html",
         "**/*.svg",
         "**/*.mp3",
         "**/bundle",

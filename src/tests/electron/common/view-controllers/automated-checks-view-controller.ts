@@ -13,8 +13,12 @@ export class AutomatedChecksViewController extends ViewController {
         super(client);
     }
 
-    public async queryRuleGroups(): Promise<any[]> {
-        return this.client.$$(AutomatedChecksViewSelectors.ruleGroup);
+    public async waitForRuleGroupCount(count: number): Promise<void> {
+        await this.waitForNumberOfSelectorMatches(AutomatedChecksViewSelectors.ruleGroup, count);
+    }
+
+    public async waitForHighlightBoxCount(count: number): Promise<void> {
+        await this.waitForNumberOfSelectorMatches(ScreenshotViewSelectors.highlightBox, count);
     }
 
     public async queryRuleGroupContents(): Promise<any[]> {

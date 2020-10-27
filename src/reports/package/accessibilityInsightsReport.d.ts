@@ -69,15 +69,26 @@ declare namespace AccessibilityInsightsReport {
         rule: AxeRuleData
     };
 
-    export interface ResultsGroup {
+    export interface FailuresGroup {
         key: string,
         failed: FailureData[],
-        passed?: AxeRuleData,
-        notApplicable?: AxeRuleData,
+    }
+
+    export type GroupedResults = {
+        failed: FailuresGroup[],
+        passed?: AxeRuleData[],
+        notApplicable?: AxeRuleData[],
+    }
+
+    export type UrlResultCounts = {
+        passedUrls: number,
+        failedUrls: number,
+        unscannableUrls: number,
     }
 
     export type CombinedReportResults = {
-        resultsByRule: ResultsGroup[],
+        resultsByRule: GroupedResults,
+        urlResults: UrlResultCounts,
     }
 
     export type CombinedReportParameters = {
