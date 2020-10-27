@@ -1,25 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type RuleIdToResourceUrl = (ruleId: string, defaultUrl?: string) => string;
-
 const baseRuleResourcesUrl = 'https://accessibilityinsights.io/info-examples';
 const webRuleResourcesPath = `${baseRuleResourcesUrl}/web`;
 
-export const getRuleResourceUrl = (
-    ruleId: string,
-    rulesList: string[],
-    resourcesPath: string,
-    defaultUrl?: string,
-) => {
+export const getRuleResourceUrl = (ruleId: string, rulesList: string[], resourcesPath: string) => {
     if (!rulesList.includes(ruleId)) {
-        return defaultUrl;
+        return null;
     }
     return `${resourcesPath}/${ruleId}`;
 };
 
-export const getWebRuleResourceUrl: RuleIdToResourceUrl = (ruleId: string, defaultUrl?: string) => {
-    return getRuleResourceUrl(ruleId, webRulesWithResources, webRuleResourcesPath, defaultUrl);
+export const getA11yInsightsWebRuleUrl = (ruleId: string) => {
+    return getRuleResourceUrl(ruleId, webRulesWithResources, webRuleResourcesPath);
 };
 
 export const webRulesWithResources = [

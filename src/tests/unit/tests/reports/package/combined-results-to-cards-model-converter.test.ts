@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RuleIdToResourceUrl } from "common/configs/rule-resource-links";
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { UUIDGenerator } from "common/uid-generator";
 import { GroupedResults, FailuresGroup, AxeRuleData } from "reports/package/accessibilityInsightsReport";
 import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
+import { HelpUrlGetter } from "scanner/help-url-getter";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
 import { IMock, It, Mock } from "typemoq";
 
@@ -17,7 +17,11 @@ describe(CombinedResultsToCardsModelConverter, () => {
     };
     let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
     let uuidGeneratorMock: IMock<UUIDGenerator>;
-    let getRuleResourceUrlMock: IMock<RuleIdToResourceUrl>;
+    const helpUrlGetterStub = {
+        getHelpUrl: (ruleId, defaultUrl) => {
+            return `url for ${ruleId} with default url ${defaultUrl}`;
+        }
+    } as HelpUrlGetter;
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
@@ -25,13 +29,12 @@ describe(CombinedResultsToCardsModelConverter, () => {
         getGuidanceLinksMock = Mock.ofInstance(() => null);
         uuidGeneratorMock = Mock.ofType<UUIDGenerator>();
         uuidGeneratorMock.setup(ug => ug()).returns(() => 'test uid');
-        getRuleResourceUrlMock = Mock.ofType<RuleIdToResourceUrl>();
         
         testSubject = new CombinedResultsToCardsModelConverter(
             getGuidanceLinksMock.object,
             viewDataStub,
             uuidGeneratorMock.object,
-            getRuleResourceUrlMock.object,
+            helpUrlGetterStub,
         );
     })
 

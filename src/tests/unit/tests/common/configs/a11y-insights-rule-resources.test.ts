@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { getRuleResourceUrl } from 'common/configs/rule-resource-links';
+import { getRuleResourceUrl } from 'common/configs/a11y-insights-rule-resources';
 
 describe(getRuleResourceUrl, () => {
     const ruleIdWithResource = 'rule-id';
@@ -9,30 +9,18 @@ describe(getRuleResourceUrl, () => {
     const rulesList = [ruleIdWithResource];
 
     it('for rule that has a resource', () => {
-        const defaultUrl = 'default url';
         const expectedUrl = `${resourcePath}/${ruleIdWithResource}`;
 
-        const resourceUrl = getRuleResourceUrl(
-            ruleIdWithResource,
-            rulesList,
-            resourcePath,
-            defaultUrl,
-        );
+        const resourceUrl = getRuleResourceUrl(ruleIdWithResource, rulesList, resourcePath);
 
         expect(resourceUrl).toBe(expectedUrl);
     });
 
     it('for rule that does not have a resource', () => {
-        const defaultUrl = 'default url';
         const ruleIdWithoutResource = 'another-rule-id';
 
-        const resourceUrl = getRuleResourceUrl(
-            ruleIdWithoutResource,
-            rulesList,
-            resourcePath,
-            defaultUrl,
-        );
+        const resourceUrl = getRuleResourceUrl(ruleIdWithoutResource, rulesList, resourcePath);
 
-        expect(resourceUrl).toBe(defaultUrl);
+        expect(resourceUrl).toBeNull();
     });
 });
