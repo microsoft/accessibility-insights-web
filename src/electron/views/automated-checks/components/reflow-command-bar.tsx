@@ -18,7 +18,7 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { IButton } from 'office-ui-fabric-react';
+import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import * as styles from './command-bar.scss';
@@ -127,7 +127,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
     return (
         <section className={styles.commandBar} aria-label="command bar">
             {hamburgerMenuButton}
-            <div className={styles.farItems}>
+            <div className={css(styles.farItems, styles.reflow)}>
                 {getFarButtons()}
                 <InsightsCommandButton
                     data-automation-id={commandButtonSettingsId}

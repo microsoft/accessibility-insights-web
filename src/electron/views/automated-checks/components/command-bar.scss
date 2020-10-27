@@ -40,6 +40,10 @@ button.settings-gear-button {
         display: flex;
         justify-content: flex-end;
         align-items: center;
+
+        &.reflow {
+            width: 100%;
+        }
     }
 
     .button-icon {
