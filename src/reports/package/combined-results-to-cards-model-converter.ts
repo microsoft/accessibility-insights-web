@@ -77,10 +77,10 @@ export class CombinedResultsToCardsModelConverter {
             status: 'fail',
             ruleId: rule.ruleId,
             identifiers: {
+                urls: { urls: failureData.urls },
                 identifier: cssSelector,
                 conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
                 'css-selector': cssSelector,
-                urls: { urls: failureData.urls },
             },
             descriptors: {
                 snippet: failureData.snippet,
