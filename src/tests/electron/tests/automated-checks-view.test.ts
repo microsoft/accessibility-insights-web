@@ -42,7 +42,7 @@ describe('AutomatedChecksView', () => {
     it('should use the expected window title', async () => {
         expect(await app.getTitle()).toBe('Accessibility Insights for Android - Automated checks');
     });
-
+    /*
     it('displays automated checks results collapsed by default', async () => {
         automatedChecksView.waitForRuleGroupCount(3);
 
@@ -206,5 +206,5 @@ describe('AutomatedChecksView', () => {
             expect(boxStyle.width).toBeCloseTo(expectedHighlightBoxStyles[index].width);
             expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
         });
-    }
+    }*/
 });

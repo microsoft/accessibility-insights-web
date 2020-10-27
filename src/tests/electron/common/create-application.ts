@@ -43,6 +43,8 @@ export async function createAppController(
         connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
         connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
         ...overrideSpectronOptions,
+        chromeDriverLogPath: `C:/Users/karansin/chromedriverlogs.txt`,
+        webdriverLogPath: `C:/Users/karansin/logs`,
     });
     await app.start();
     return new AppController(app);
