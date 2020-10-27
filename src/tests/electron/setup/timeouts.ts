@@ -9,6 +9,9 @@ export const DEFAULT_ELECTRON_TEST_TIMEOUT_MS = 60000;
 export const DEFAULT_APP_CONNECT_TIMEOUT_MS = 10000;
 export const DEFAULT_APP_CONNECT_RETRIES = 3;
 
+// This governs how long Spectron should allow for ChromeDriver to start
+export const DEFAULT_CHROMEDRIVER_START_TIMEOUT_MS = 10000;
+
 // How long to wait for an element to be visible
 export const DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS = 5000;
 
