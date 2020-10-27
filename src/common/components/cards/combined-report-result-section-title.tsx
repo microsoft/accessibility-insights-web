@@ -2,17 +2,19 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeType } from 'reports/components/outcome-type';
 
-import { ResultSectionTitleProps } from './result-section-title';
-import * as styles from './result-section-title.scss';
+import * as styles from './combined-report-result-section-title.scss';
 
-const titleClassNames = {
-    title: styles.title,
-    heading: styles.heading,
+export type CombinedReportResultSectionTitleProps = {
+    title: string;
+    badgeCount: number;
+    outcomeType: OutcomeType;
+    shouldAlertFailuresCount?: boolean;
 };
 
-export const CombinedReportResultSectionTitle = NamedFC<ResultSectionTitleProps>(
-    'ResultSectionTitle',
+export const CombinedReportResultSectionTitle = NamedFC<CombinedReportResultSectionTitleProps>(
+    'CombinedResultSectionTitle',
     props => {
         const singularMessageSubject =
             props.outcomeType === 'review' ? 'instance to review' : 'failure';
@@ -28,13 +30,13 @@ export const CombinedReportResultSectionTitle = NamedFC<ResultSectionTitleProps>
             </span>
         );
         const titleWithInstance = (
-            <span className={titleClassNames[props.titleSize]} aria-hidden="true">
+            <span className={styles.heading} aria-hidden="true">
                 {props.title} ({props.badgeCount})
             </span>
         );
 
         return (
-            <span className={styles.resultSectionTitle}>
+            <span className={styles.combinedReportResultSectionTitle}>
                 <span className="screen-reader-only">
                     {props.title}{' '}
                     {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}

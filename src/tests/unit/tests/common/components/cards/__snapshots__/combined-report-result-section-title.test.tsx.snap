@@ -2,7 +2,7 @@
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 0 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -20,19 +20,19 @@ exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     0
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -50,19 +50,19 @@ exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     1
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCount is greater than 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -80,19 +80,19 @@ exports[`ResultSectionTitle with outcomeType fail renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     2
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -103,19 +103,19 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting 1`] =
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     10
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -126,19 +126,19 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shou
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     15
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, titleSize=heading 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -152,16 +152,16 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, titl
     className="heading"
   >
     test title
-     "("
+     (
     10
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 0 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -179,19 +179,19 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting,
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     0
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -209,19 +209,19 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting,
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     1
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is greater than 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -239,65 +239,19 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting,
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     2
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting 1`] = `
 <span
-  className="resultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-     "("
-    10
-    ")"
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    15
-  </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-     "("
-    15
-    ")"
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -311,16 +265,62 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerti
     className="heading"
   >
     test title
-     "("
+     (
     10
-    ")"
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    15
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, titleSize=heading 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    10
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 0 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -338,19 +338,19 @@ exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     0
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -368,19 +368,19 @@ exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     1
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is greater than 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -398,65 +398,19 @@ exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCo
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     2
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType pass renders with no-alerting 1`] = `
 <span
-  className="resultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-     "("
-    10
-    ")"
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    15
-  </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-     "("
-    15
-    ")"
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -470,16 +424,62 @@ exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, titl
     className="heading"
   >
     test title
-     "("
+     (
     10
-    ")"
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    15
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, titleSize=heading 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    10
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 0 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -497,19 +497,19 @@ exports[`ResultSectionTitle with outcomeType review renders with alerting, badge
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     0
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -527,19 +527,19 @@ exports[`ResultSectionTitle with outcomeType review renders with alerting, badge
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     1
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is greater than 1 1`] = `
 <span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -557,65 +557,19 @@ exports[`ResultSectionTitle with outcomeType review renders with alerting, badge
   </span>
   <span
     aria-hidden="true"
-    className="title"
+    className="heading"
   >
     test title
-     "("
+     (
     2
-    ")"
+    )
   </span>
 </span>
 `;
 
 exports[`ResultSectionTitle with outcomeType review renders with no-alerting 1`] = `
 <span
-  className="resultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-     "("
-    10
-    ")"
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType review renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
-<span
-  className="resultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    15
-  </span>
-  <span
-    aria-hidden="true"
-    className="title"
-  >
-    test title
-     "("
-    15
-    ")"
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType review renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="resultSectionTitle"
+  className="combinedReportResultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -629,9 +583,55 @@ exports[`ResultSectionTitle with outcomeType review renders with no-alerting, ti
     className="heading"
   >
     test title
-     "("
+     (
     10
-    ")"
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    15
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType review renders with no-alerting, titleSize=heading 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    10
+    )
   </span>
 </span>
 `;
