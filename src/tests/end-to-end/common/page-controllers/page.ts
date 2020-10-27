@@ -16,6 +16,7 @@ import {
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
+import { serializeError } from 'tests/common/serialize-error';
 
 const promiseFactory = createDefaultPromiseFactory();
 
@@ -29,10 +30,6 @@ export class Page {
             forceTestFailure(
                 `Playwright.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
             );
-        }
-
-        function serializeError(error: Error): string {
-            return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
         }
 
         underlyingPage.on('pageerror', error => {
