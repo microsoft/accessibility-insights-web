@@ -16,12 +16,12 @@ export async function retry<T>(operation: () => Promise<T>, options?: RetryOptio
         operationLabel: 'operation',
         ...options,
     };
-    const maxTries = options.maxRetries + 1;
+    const maxTries = options.maxRetries! + 1;
     for (let currentTry = 1; currentTry <= maxTries; currentTry += 1) {
         try {
             return await operation();
         } catch (e: any) {
-            if (currentTry === maxTries || !options.retryOnlyIfMatches(e)) {
+            if (currentTry === maxTries || !options.retryOnlyIfMatches!(e)) {
                 throw e;
             } else if (options.warnOnRetry) {
                 console.warn(
