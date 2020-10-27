@@ -19,6 +19,7 @@ import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
+import { ResultsContainer } from './results-container';
 import { TitleSection } from './title-section';
 
 export type CombinedReportSectionDeps = ResultSectionDeps;
@@ -38,7 +39,7 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     TitleSection,
     SummarySection: CombinedReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
-    ResultsContainer: NullComponent,
+    ResultsContainer,
     FailedInstancesSection: CollapsibleFailedResultsSection,
     PassedChecksSection: NullComponent,
     NotApplicableChecksSection: NullComponent,
