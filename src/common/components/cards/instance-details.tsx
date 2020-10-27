@@ -86,6 +86,13 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         >
             <div className={instanceDetailsCardStyling} {...cardHighlightingProperties}>
                 <div>
+                    <table className={reportInstanceTable}>
+                        <tbody>
+                            {renderCardRowsForPropertyBag(result.identifiers, props)}
+                            {renderCardRowsForPropertyBag(result.descriptors, props)}
+                            {renderCardRowsForPropertyBag(result.resolution, props)}
+                        </tbody>
+                    </table>
                     {isHighlightSupported && (
                         <button
                             ref={hiddenButton}
@@ -101,13 +108,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                             onBlur={_ => setCardFocus(false)}
                         ></button>
                     )}
-                    <table className={reportInstanceTable}>
-                        <tbody>
-                            {renderCardRowsForPropertyBag(result.identifiers, props)}
-                            {renderCardRowsForPropertyBag(result.descriptors, props)}
-                            {renderCardRowsForPropertyBag(result.resolution, props)}
-                        </tbody>
-                    </table>
                     <InstanceDetailsFooter
                         deps={deps}
                         result={result}
