@@ -29,7 +29,7 @@ export const CombinedReportResultSectionTitle = NamedFC<ResultSectionTitleProps>
         );
         const titleWithInstance = (
             <span className={titleClassNames[props.titleSize]} aria-hidden="true">
-                {props.title} "("{props.badgeCount}")"
+                {props.title} ({props.badgeCount})
             </span>
         );
 
