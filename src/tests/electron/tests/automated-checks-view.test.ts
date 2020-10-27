@@ -41,20 +41,14 @@ describe('AutomatedChecksView', () => {
     });
 
     it('displays automated checks results collapsed by default', async () => {
-        const ruleGroups = await automatedChecksView.queryRuleGroups();
-        expect(ruleGroups).toHaveLength(3);
+        automatedChecksView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await automatedChecksView.queryRuleGroupContents();
         expect(collapsibleContentElements).toHaveLength(0);
     });
 
-    async function countHighlightBoxes(): Promise<number> {
-        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
-        return boxes.length;
-    }
-
     it('supports expanding and collapsing rule groups', async () => {
-        expect(await countHighlightBoxes()).toBe(4);
+        await automatedChecksView.waitForHighlightBoxCount(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
@@ -66,7 +60,7 @@ describe('AutomatedChecksView', () => {
         await automatedChecksView.toggleRuleGroupAtPosition(3);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
-        expect(await countHighlightBoxes()).toBe(4);
+        await automatedChecksView.waitForHighlightBoxCount(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
@@ -75,7 +69,7 @@ describe('AutomatedChecksView', () => {
         await automatedChecksView.toggleRuleGroupAtPosition(2);
         await assertCollapsedRuleGroup(2, 'ActiveViewName');
 
-        expect(await countHighlightBoxes()).toBe(1);
+        await automatedChecksView.waitForHighlightBoxCount(1);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
