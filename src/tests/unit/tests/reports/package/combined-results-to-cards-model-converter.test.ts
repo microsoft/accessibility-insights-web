@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { UUIDGenerator } from "common/uid-generator";
+import { GroupedResults, FailuresGroup, AxeRuleData } from "reports/package/accessibilityInsightsReport";
 import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
-import { combinedResultsWithIssues } from "tests/unit/tests/reports/package/example-input/combined-results-with-issues";
 import { IMock, It, Mock } from "typemoq";
-import { combinedResultsWithoutIssues } from "./example-input/combined-results-without-issues";
 
 describe(CombinedResultsToCardsModelConverter, () => {
     const viewDataStub: CardSelectionViewData = {
@@ -35,27 +33,37 @@ describe(CombinedResultsToCardsModelConverter, () => {
 
     it('with issues', () => {
         setupGuidanceLinks();
+        const input: GroupedResults = {
+            failed: [makeFailuresGroup('failed-rule-1'), makeFailuresGroup('failed-rule-2')],
+            passed: [makeRule('passed-rule-1')],
+            notApplicable: [makeRule('inapplicable-rule-1')],
+        };
 
-        const cardsViewModel = testSubject.convertResults(combinedResultsWithIssues.results.resultsByRule);
+        const cardsViewModel = testSubject.convertResults(input);
 
         expect(cardsViewModel).toMatchSnapshot();
     });
 
     it('without issues', () => {
         setupGuidanceLinks();
+        const input: GroupedResults = {
+            failed: [],
+            passed: [makeRule('passed-rule-1'), makeRule('passed-rule-2')],
+            notApplicable: [makeRule('inapplicable-rule-1'), makeRule('inapplicable-rule-2')],
+        };
 
-        const cardsViewModel = testSubject.convertResults(combinedResultsWithoutIssues.results.resultsByRule);
+        const cardsViewModel = testSubject.convertResults(input);
 
         expect(cardsViewModel).toMatchSnapshot();
     });
 
     it('without passed or inapplicable rules', () => {
         setupGuidanceLinks();
-        const onlyFailedResults = {
-            failed: combinedResultsWithIssues.results.resultsByRule.failed,
+        const input: GroupedResults = {
+            failed: [makeFailuresGroup('failed-rule-1')],
         };
 
-        const cardsViewModel = testSubject.convertResults(onlyFailedResults);
+        const cardsViewModel = testSubject.convertResults(input);
 
         expect(cardsViewModel).toMatchSnapshot();
     });
@@ -67,5 +75,36 @@ describe(CombinedResultsToCardsModelConverter, () => {
                 text: `guidance for ${ruleId}`,
             }];
         });
+    }
+
+    function makeFailuresGroup(ruleId: string): FailuresGroup {
+        return {
+            key: ruleId,
+            failed: [
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-1`,
+                    fix: `Fix the ${ruleId} violation`,
+                    snippet: `<div>snippet 1</div>`,
+                    urls: [`https://example.com/${ruleId}/only-violation`]
+                },
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-2`,
+                    fix: `Fix the ${ruleId} violation`,
+                    snippet: `<div>snippet 2</div>`,
+                    urls: [`https://example.com/${ruleId}/violations/1`, `https://example.com/${ruleId}/violations/2`, `https://example.com/${ruleId}/violations/3`]
+                }
+            ]
+        };
+    }
+
+    function makeRule(ruleId: string): AxeRuleData {
+        return {
+            ruleId,
+            description: `${ruleId} description`,
+            ruleUrl: `https://example.com/rules/${ruleId}`,
+            tags: ['common-tag', `${ruleId}-specific-tag`],
+        };
     }
 });
