@@ -26,10 +26,7 @@ describe('Details View -> Assessment -> Reflow', () => {
     });
 
     afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     const { commandBarMenuButtonSelectors, hamburgerMenuButtonSelectors } = navMenuSelectors;

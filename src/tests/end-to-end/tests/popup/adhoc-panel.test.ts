@@ -22,10 +22,7 @@ describe('Popup -> Ad-hoc tools', () => {
     });
 
     afterEach(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
