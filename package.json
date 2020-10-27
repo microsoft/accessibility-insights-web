@@ -162,7 +162,7 @@
         "axe-core": "4.0.2",
         "axios": "^0.20.0",
         "classnames": "^2.2.6",
-        "electron": "8.4.1",
+        "electron": "10.1.4",
         "electron-log": "^4.2.4",
         "electron-updater": "^4.3.5",
         "idb-keyval": "^3.2.0",
