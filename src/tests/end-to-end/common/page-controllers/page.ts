@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
+import { inspect } from 'util';
 
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import {
@@ -32,7 +33,7 @@ export class Page {
         }
 
         function serializeError(error: Error): string {
-            return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
+            return `[Error]{\n${inspect(error, { compact: false, depth: 4 })}\n}`;
         }
 
         underlyingPage.on('pageerror', error => {
