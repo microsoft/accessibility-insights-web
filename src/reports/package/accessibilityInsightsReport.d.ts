@@ -61,10 +61,16 @@ declare namespace AccessibilityInsightsReport {
         ruleUrl: string
     }
 
+    export interface FormattedCheckResult {
+        id: string;
+        message: string;
+        data: any;
+    }
+
     export type HowToFixData = {
-        any: axe.CheckResult[],
-        all: axe.CheckResult[],
-        none: axe.CheckResult[],
+        any: FormattedCheckResult[],
+        all: FormattedCheckResult[],
+        none: FormattedCheckResult[],
         failureSummary?: string,
     }
 
