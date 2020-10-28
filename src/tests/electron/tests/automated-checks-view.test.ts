@@ -42,7 +42,7 @@ describe('AutomatedChecksView', () => {
     it('should use the expected window title', async () => {
         expect(await app.getTitle()).toBe('Accessibility Insights for Android - Automated checks');
     });
-    /*
+
     it('displays automated checks results collapsed by default', async () => {
         automatedChecksView.waitForRuleGroupCount(3);
 
@@ -150,7 +150,7 @@ describe('AutomatedChecksView', () => {
         const expectedScreenshotImage =
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView.client.getAttribute<string>(
+        const actualScreenshotImage = await automatedChecksView.client.getAttribute(
             ScreenshotViewSelectors.screenshotImage,
             'src',
         );
@@ -160,11 +160,8 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const styles = await automatedChecksView.client.getAttribute<string[]>(
-            ScreenshotViewSelectors.highlightBox,
-            'style',
-        );
-
+        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const styles = await Promise.all(boxes.map(async b => await b.getAttribute('style')));
         const actualHighlightBoxStyles = styles.map(extractPositionStyles);
         verifyHighlightBoxStyles(actualHighlightBoxStyles, [
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
@@ -206,5 +203,5 @@ describe('AutomatedChecksView', () => {
             expect(boxStyle.width).toBeCloseTo(expectedHighlightBoxStyles[index].width);
             expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
         });
-    }*/
+    }
 });

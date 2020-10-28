@@ -4,7 +4,10 @@ import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setu
 import { Application } from 'spectron';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
-import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
+import {
+    getSpectronAsyncClient,
+    SpectronAsyncClient,
+} from 'tests/electron/common/view-controllers/spectron-async-client';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
@@ -12,7 +15,7 @@ export class AppController {
     public client: SpectronAsyncClient;
 
     constructor(public app: Application) {
-        this.client = app.client as any;
+        this.client = getSpectronAsyncClient(app.client, app.browserWindow);
     }
 
     public async stop(): Promise<void> {
@@ -71,13 +74,15 @@ export class AppController {
 
         await this.client.waitUntil(
             async () => {
-                const classes = await this.client.getAttribute<string>('body', 'class');
+                const classes = await this.client.getAttribute('body', 'class');
                 return expectedHighContrastMode === classes.includes(highContrastThemeClass);
             },
-            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
-            `was expecting body element ${
-                expectedHighContrastMode ? 'with' : 'without'
-            } class high-contrast-theme`,
+            {
+                timeout: DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+                timeoutMsg: `was expecting body element ${
+                    expectedHighContrastMode ? 'with' : 'without'
+                } class high-contrast-theme`,
+            },
         );
     }
 
@@ -102,14 +107,14 @@ export class AppController {
     ): Promise<void> {
         await this.client.waitUntil(
             async () => {
-                const executeOutput = await this.client.executeAsync((prop, done) => {
+                return await this.client.executeAsync((prop, done) => {
                     done((window as any)[prop] != null);
                 }, propertyName);
-
-                return executeOutput.status === 0 && executeOutput.value === true;
             },
-            DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
-            `was expecting window.${propertyName} to be defined`,
+            {
+                timeout: DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+                timeoutMsg: `was expecting window.${propertyName} to be defined`,
+            },
         );
     }
 }
