@@ -12,7 +12,7 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
       aria-hidden="true"
     >
       <OutcomeChip
-        count={1}
+        count={2}
         outcomeType="fail"
       />
     </span>
@@ -96,7 +96,7 @@ exports[`MinimalRuleHeader renders, outcomeType = review 1`] = `
       aria-hidden="true"
     >
       <OutcomeChip
-        count={1}
+        count={2}
         outcomeType="review"
       />
     </span>

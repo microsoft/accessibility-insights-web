@@ -49,6 +49,7 @@ describe('ResultSectionContent', () => {
             targetAppInfo: { name: 'app' },
             visualHelperEnabled: true,
             allCardsCollapsed: true,
+            outcomeCounter: null,
         };
 
         const wrapper = shallow(<ResultSectionContent {...props} />);

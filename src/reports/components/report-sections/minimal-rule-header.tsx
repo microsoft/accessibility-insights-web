@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { outcomeChipContainer } from 'reports/components/report-sections/minimal-rule-header.scss';
 
 import { InstanceOutcomeType } from '../instance-outcome-type';
@@ -17,19 +18,22 @@ export type MinimalRuleHeaderProps = {
         nodes: any[];
     };
     outcomeType: InstanceOutcomeType;
+    outcomeCounter: OutcomeCounter;
 };
 
 export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHeader', props => {
-    const { outcomeType, rule } = props;
+    const { outcomeType, rule, outcomeCounter } = props;
 
     const renderCountBadge = () => {
         if (outcomeType !== 'fail' && outcomeType !== 'review') {
             return null;
         }
 
+        const count = outcomeCounter(rule.nodes);
+
         return (
             <span aria-hidden="true">
-                <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />
+                <OutcomeChip count={count} outcomeType={outcomeType} />
             </span>
         );
     };

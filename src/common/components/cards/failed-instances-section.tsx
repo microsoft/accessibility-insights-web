@@ -7,6 +7,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 export type FailedInstancesSectionDeps = ResultSectionDeps;
 export type FailedInstancesSectionProps = {
@@ -47,6 +48,7 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
                 shouldAlertFailuresCount={shouldAlertFailuresCount}
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
+                outcomeCounter={OutcomeCounter.countByCards}
             />
         );
     },
