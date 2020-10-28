@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ResultSectionTitleProps } from 'common/components/cards/result-section-title';
-import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
+import {
+    CombinedReportResultSectionTitle,
+    CombinedReportResultSectionTitleProps,
+} from 'common/components/cards/combined-report-result-section-title';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
@@ -10,20 +12,18 @@ describe.each(allInstanceOutcomeTypes)(
     'ResultSectionTitle with outcomeType %s renders',
     outcomeType => {
         it.each`
-            badgeCount | shouldAlertFailuresCount | titleSize    | description
-            ${10}      | ${false}                 | ${'title'}   | ${'with no-alerting'}
-            ${15}      | ${undefined}             | ${'title'}   | ${'with no-alerting, shouldAlertFailuresCount is undefined'}
-            ${0}       | ${true}                  | ${'title'}   | ${'with alerting, badgeCount is 0'}
-            ${1}       | ${true}                  | ${'title'}   | ${'with alerting, badgeCount is 1'}
-            ${2}       | ${true}                  | ${'title'}   | ${'with alerting, badgeCount is greater than 1'}
-            ${10}      | ${false}                 | ${'heading'} | ${'with no-alerting, titleSize=heading'}
-        `('$description', ({ badgeCount, shouldAlertFailuresCount, titleSize }) => {
-            const props: ResultSectionTitleProps = {
+            outcomeCount | shouldAlertFailuresCount | description
+            ${10}        | ${false}                 | ${'with no-alerting'}
+            ${15}        | ${undefined}             | ${'with no-alerting, shouldAlertFailuresCount is undefined'}
+            ${0}         | ${true}                  | ${'with alerting, badgeCount is 0'}
+            ${1}         | ${true}                  | ${'with alerting, badgeCount is 1'}
+            ${2}         | ${true}                  | ${'with alerting, badgeCount is greater than 1'}
+        `('$description', ({ outcomeCount, shouldAlertFailuresCount }) => {
+            const props: CombinedReportResultSectionTitleProps = {
                 title: 'test title',
-                badgeCount,
-                shouldAlertFailuresCount,
+                outcomeCount,
                 outcomeType: outcomeType,
-                titleSize,
+                shouldAlertFailuresCount,
             };
 
             const wrapped = shallow(<CombinedReportResultSectionTitle {...props} />);

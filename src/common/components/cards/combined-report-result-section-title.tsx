@@ -8,7 +8,7 @@ import * as styles from './combined-report-result-section-title.scss';
 
 export type CombinedReportResultSectionTitleProps = {
     title: string;
-    badgeCount: number;
+    outcomeCount: number;
     outcomeType: OutcomeType;
     shouldAlertFailuresCount?: boolean;
 };
@@ -21,17 +21,17 @@ export const CombinedReportResultSectionTitle = NamedFC<CombinedReportResultSect
         const pluralMessageSubject =
             props.outcomeType === 'review' ? 'instances to review' : 'failures';
         const alertTerm =
-            props.badgeCount !== 1
+            props.outcomeCount !== 1
                 ? `${pluralMessageSubject} were`
                 : `${singularMessageSubject} was`;
         const alertingFailuresCount = (
             <span role="alert">
-                {props.badgeCount} {alertTerm} detected.
+                {props.outcomeCount} {alertTerm} detected.
             </span>
         );
         const titleWithInstance = (
             <span className={styles.heading} aria-hidden="true">
-                {props.title} ({props.badgeCount})
+                {props.title} ({props.outcomeCount})
             </span>
         );
 
@@ -39,7 +39,7 @@ export const CombinedReportResultSectionTitle = NamedFC<CombinedReportResultSect
             <span className={styles.combinedReportResultSectionTitle}>
                 <span className="screen-reader-only">
                     {props.title}{' '}
-                    {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
+                    {props.shouldAlertFailuresCount ? alertingFailuresCount : props.outcomeCount}
                 </span>
                 {titleWithInstance}
             </span>

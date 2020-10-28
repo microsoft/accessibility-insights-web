@@ -136,29 +136,6 @@ exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, shou
 </span>
 `;
 
-exports[`ResultSectionTitle with outcomeType fail renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
-`;
-
 exports[`ResultSectionTitle with outcomeType inapplicable renders with alerting, badgeCount is 0 1`] = `
 <span
   className="combinedReportResultSectionTitle"
@@ -290,29 +267,6 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerti
     test title
      (
     15
-    )
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
     )
   </span>
 </span>
@@ -454,29 +408,6 @@ exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, shou
 </span>
 `;
 
-exports[`ResultSectionTitle with outcomeType pass renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
-    )
-  </span>
-</span>
-`;
-
 exports[`ResultSectionTitle with outcomeType review renders with alerting, badgeCount is 0 1`] = `
 <span
   className="combinedReportResultSectionTitle"
@@ -608,29 +539,6 @@ exports[`ResultSectionTitle with outcomeType review renders with no-alerting, sh
     test title
      (
     15
-    )
-  </span>
-</span>
-`;
-
-exports[`ResultSectionTitle with outcomeType review renders with no-alerting, titleSize=heading 1`] = `
-<span
-  className="combinedReportResultSectionTitle"
->
-  <span
-    className="screen-reader-only"
-  >
-    test title
-     
-    10
-  </span>
-  <span
-    aria-hidden="true"
-    className="heading"
-  >
-    test title
-     (
-    10
     )
   </span>
 </span>
