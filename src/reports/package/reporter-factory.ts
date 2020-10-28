@@ -175,6 +175,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         cardSelectionViewData,
         generateUID,
         helpUrlGetter,
+        getFixResolution,
     );
 
     return new CombinedResultsReport(deps, parameters, toolData, resultsToCardsConverter);

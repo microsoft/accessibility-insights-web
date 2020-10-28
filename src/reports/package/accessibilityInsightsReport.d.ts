@@ -61,11 +61,18 @@ declare namespace AccessibilityInsightsReport {
         ruleUrl: string
     }
 
+    export type HowToFixData = {
+        any: FormattedCheckResult[],
+        all: FormattedCheckResult[],
+        none: FormattedCheckResult[],
+        failureSummary?: string,
+    }
+
     export type FailureData = {
         urls: string[],
         elementSelector: string,
         snippet: string,
-        fix: string,
+        fix: HowToFixData,
         rule: AxeRuleData
     };
 

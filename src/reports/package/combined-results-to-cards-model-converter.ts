@@ -4,6 +4,7 @@
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { CardResult, CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
 import { UUIDGenerator } from "common/uid-generator";
+import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-string-utils";
 import { isNil } from "lodash";
 import { AxeRuleData, FailureData, FailuresGroup, GroupedResults } from "reports/package/accessibilityInsightsReport";
@@ -16,6 +17,7 @@ export class CombinedResultsToCardsModelConverter {
         private readonly cardSelectionViewData: CardSelectionViewData,
         private readonly uuidGenerator: UUIDGenerator,
         private readonly helpUrlGetter: HelpUrlGetter,
+        private readonly getFixResolution: ResolutionCreator,
     ) {}
 
     public convertResults = (
@@ -87,7 +89,8 @@ export class CombinedResultsToCardsModelConverter {
                 snippet: failureData.snippet,
             },
             resolution: {
-                howToFixSummary: failureData.fix,
+                howToFixSummary: failureData.fix.failureSummary,
+                ...this.getFixResolution({ id: rule.ruleId, nodeResult: failureData.fix}),
             },
             isSelected: false,
             highlightStatus: 'unavailable',
