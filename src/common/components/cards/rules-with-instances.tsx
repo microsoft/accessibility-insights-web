@@ -3,6 +3,7 @@
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
@@ -30,6 +31,7 @@ export type RulesWithInstancesProps = {
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    outcomeCounter: OutcomeCounter;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -43,6 +45,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         deps,
         userConfigurationStoreData,
         targetAppInfo,
+        outcomeCounter,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -52,7 +55,14 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
-                header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
+                header: (
+                    <MinimalRuleHeader
+                        key={rule.id}
+                        rule={rule}
+                        outcomeType={outcomeType}
+                        outcomeCounter={outcomeCounter}
+                    />
+                ),
                 content: (
                     <RuleContent
                         key={`${rule.id}-rule-group`}

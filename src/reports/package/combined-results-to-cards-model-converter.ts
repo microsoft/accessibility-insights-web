@@ -8,6 +8,7 @@ import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-string-utils";
 import { isNil } from "lodash";
 import { AxeRuleData, FailureData, FailuresGroup, GroupedResults } from "reports/package/accessibilityInsightsReport";
+import { HelpUrlGetter } from "scanner/help-url-getter";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
 
 export class CombinedResultsToCardsModelConverter {
@@ -15,6 +16,8 @@ export class CombinedResultsToCardsModelConverter {
         private readonly getGuidanceLinks: (ruleId: string) => GuidanceLink[],
         private readonly cardSelectionViewData: CardSelectionViewData,
         private readonly uuidGenerator: UUIDGenerator,
+        private readonly helpUrlGetter: HelpUrlGetter,
+        private readonly getFixResolution: ResolutionCreator,
     ) {}
 
     public convertResults = (
@@ -51,7 +54,7 @@ export class CombinedResultsToCardsModelConverter {
         return {
             id: rule.ruleId,
             description: rule.description,
-            url: rule.ruleUrl,
+            url: this.helpUrlGetter.getHelpUrl(rule.ruleId, rule.ruleUrl),
             isExpanded: false,
             guidance: this.getGuidanceLinks(rule.ruleId),
             nodes: isNil(nodes) ? [] : nodes,
@@ -86,7 +89,8 @@ export class CombinedResultsToCardsModelConverter {
                 snippet: failureData.snippet,
             },
             resolution: {
-                howToFixSummary: failureData.fix,
+                howToFixSummary: failureData.fix.failureSummary,
+                ...this.getFixResolution({ id: rule.ruleId, nodeResult: failureData.fix}),
             },
             isSelected: false,
             highlightStatus: 'unavailable',

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
+import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { generateUID } from 'common/uid-generator';
@@ -86,7 +87,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         title: () => targetPageTitle,
     } as DocumentUtils;
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
-    const helpUrlGetter = new HelpUrlGetter(configuration);
+    const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
     const resultDecorator = new ResultDecorator(titleProvider, messageDecorator, (ruleId, axeHelpUrl) =>
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
         ruleToLinkConfiguration,
@@ -168,10 +169,13 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         resultsHighlightStatus: {},
     };
 
+    const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
     const resultsToCardsConverter = new CombinedResultsToCardsModelConverter(
         getGuidanceLinks,
         cardSelectionViewData,
         generateUID,
+        helpUrlGetter,
+        getFixResolution,
     );
 
     return new CombinedResultsReport(deps, parameters, toolData, resultsToCardsConverter);

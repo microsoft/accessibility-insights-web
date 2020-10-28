@@ -8,6 +8,7 @@ import { ResultSectionContent } from 'common/components/cards/result-section-con
 import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 export type CombinedReportFailedSectionDeps = ResultSectionDeps;
 
@@ -42,6 +43,7 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     visualHelperEnabled={cardsViewData.visualHelperEnabled}
                     allCardsCollapsed={cardsViewData.allCardsCollapsed}
                     userConfigurationStoreData={null}
+                    outcomeCounter={OutcomeCounter.countByIdentifierUrls}
                     {...props}
                 />
             ),

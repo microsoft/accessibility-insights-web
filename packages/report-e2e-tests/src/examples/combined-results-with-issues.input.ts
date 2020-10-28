@@ -28,7 +28,17 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             urls: ['https://url/rule-1/failure-1'],
                             elementSelector: '.rule-1-selector-1',
                             snippet: '<div>snippet 1</div>',
-                            fix: 'fix failed-rule-1',
+                            fix: {
+                                all: [
+                                    {
+                                        id: 'fix1',
+                                        message: 'fix failed-rule-1 failure 1',
+                                        data: null,
+                                    },
+                                ],
+                                any: [],
+                                none: [],
+                            },
                             rule: {
                                 description: 'failed-rule-1 description',
                                 ruleUrl: 'https://rules/failed-rule-1',
@@ -40,7 +50,17 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             urls: ['https://url/rule-1/failure-1', 'https://url/rule1/failure-2'],
                             elementSelector: '.rule-1-selector-2',
                             snippet: '<div>snippet 2</div>',
-                            fix: 'fix failed-rule-1',
+                            fix: {
+                                all: [
+                                    {
+                                        id: 'fix1',
+                                        message: 'fix failed-rule-1 failure 2',
+                                        data: null,
+                                    },
+                                ],
+                                any: [],
+                                none: [],
+                            },
                             rule: {
                                 description: 'failed-rule-1 description',
                                 ruleUrl: 'https://rules/failed-rule-1',
@@ -57,10 +77,25 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             urls: ['https://url/rule2/failure1'],
                             elementSelector: '.rule-2-selector-1',
                             snippet: '<div>snippet</div>',
-                            fix: 'fix failed-rule-2',
+                            fix: {
+                                all: [],
+                                any: [
+                                    {
+                                        id: 'fix1',
+                                        message: 'fix failed-rule-2 option 1',
+                                        data: null,
+                                    },
+                                    {
+                                        id: 'fix2',
+                                        message: 'fix failed-rule-2 option 2',
+                                        data: null,
+                                    },
+                                ],
+                                none: [],
+                            },
                             rule: {
                                 description: 'failed-rule-2 description',
-                                ruleUrl: 'https://rules/rule2/failed-rule-1',
+                                ruleUrl: 'https://rules/failed-rule-2',
                                 ruleId: 'failed-rule-2',
                                 tags: ['rule-2-tag'],
                             },

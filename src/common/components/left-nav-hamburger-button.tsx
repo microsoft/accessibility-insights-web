@@ -13,6 +13,8 @@ export type LeftNavHamburgerButtonProps = {
     className?: string;
 };
 
+export const leftNavHamburgerButtonAutomationId = 'left-nav-hamburger-button';
+
 export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
     'LeftNavHamburgerButton',
     props => {
@@ -26,6 +28,7 @@ export const LeftNavHamburgerButton = NamedFC<LeftNavHamburgerButtonProps>(
                 iconProps={{ iconName: 'GlobalNavButton' }}
                 ariaLabel={props.ariaLabel}
                 aria-expanded={props.isSideNavOpen}
+                data-automation-id={leftNavHamburgerButtonAutomationId}
                 onClick={onClick}
             />
         );

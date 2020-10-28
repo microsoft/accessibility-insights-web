@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { UUIDGenerator } from "common/uid-generator";
-import { GroupedResults, FailuresGroup, AxeRuleData } from "reports/package/accessibilityInsightsReport";
+import { ResolutionCreator } from "injected/adapters/resolution-creator";
+import { GroupedResults, FailuresGroup, AxeRuleData, HowToFixData } from "reports/package/accessibilityInsightsReport";
 import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
+import { HelpUrlGetter } from "scanner/help-url-getter";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
 import { IMock, It, Mock } from "typemoq";
 
@@ -16,6 +18,12 @@ describe(CombinedResultsToCardsModelConverter, () => {
     };
     let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
     let uuidGeneratorMock: IMock<UUIDGenerator>;
+    const helpUrlGetterStub = {
+        getHelpUrl: (ruleId, defaultUrl) => {
+            return `url for ${ruleId} with default url ${defaultUrl}`;
+        }
+    } as HelpUrlGetter;
+    let resolutionCreatorMock: IMock<ResolutionCreator>;
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
@@ -23,16 +31,21 @@ describe(CombinedResultsToCardsModelConverter, () => {
         getGuidanceLinksMock = Mock.ofInstance(() => null);
         uuidGeneratorMock = Mock.ofType<UUIDGenerator>();
         uuidGeneratorMock.setup(ug => ug()).returns(() => 'test uid');
+        resolutionCreatorMock = Mock.ofType<ResolutionCreator>();
+
+        setupGuidanceLinks();
+        setupResolutionCreator();
         
         testSubject = new CombinedResultsToCardsModelConverter(
             getGuidanceLinksMock.object,
             viewDataStub,
-            uuidGeneratorMock.object
+            uuidGeneratorMock.object,
+            helpUrlGetterStub,
+            resolutionCreatorMock.object,
         );
     })
 
     it('with issues', () => {
-        setupGuidanceLinks();
         const input: GroupedResults = {
             failed: [makeFailuresGroup('failed-rule-1'), makeFailuresGroup('failed-rule-2')],
             passed: [makeRule('passed-rule-1')],
@@ -45,7 +58,6 @@ describe(CombinedResultsToCardsModelConverter, () => {
     });
 
     it('without issues', () => {
-        setupGuidanceLinks();
         const input: GroupedResults = {
             failed: [],
             passed: [makeRule('passed-rule-1'), makeRule('passed-rule-2')],
@@ -58,7 +70,6 @@ describe(CombinedResultsToCardsModelConverter, () => {
     });
 
     it('without passed or inapplicable rules', () => {
-        setupGuidanceLinks();
         const input: GroupedResults = {
             failed: [makeFailuresGroup('failed-rule-1')],
         };
@@ -77,6 +88,12 @@ describe(CombinedResultsToCardsModelConverter, () => {
         });
     }
 
+    function setupResolutionCreator() {
+        resolutionCreatorMock.setup(rc => rc(It.isAny())).returns(data => {
+            return {'how-to-fix': `fix ${data.nodeResult.failureSummary}`};
+        });
+    }
+
     function makeFailuresGroup(ruleId: string): FailuresGroup {
         return {
             key: ruleId,
@@ -84,18 +101,27 @@ describe(CombinedResultsToCardsModelConverter, () => {
                 {
                     rule: makeRule(ruleId),
                     elementSelector: `.${ruleId}-selector-1`,
-                    fix: `Fix the ${ruleId} violation`,
+                    fix: makeHowToFixData(ruleId, 1),
                     snippet: `<div>snippet 1</div>`,
                     urls: [`https://example.com/${ruleId}/only-violation`]
                 },
                 {
                     rule: makeRule(ruleId),
                     elementSelector: `.${ruleId}-selector-2`,
-                    fix: `Fix the ${ruleId} violation`,
+                    fix: makeHowToFixData(ruleId, 2),
                     snippet: `<div>snippet 2</div>`,
                     urls: [`https://example.com/${ruleId}/violations/1`, `https://example.com/${ruleId}/violations/2`, `https://example.com/${ruleId}/violations/3`]
                 }
             ]
+        };
+    }
+
+    function makeHowToFixData(ruleId: string, failureId: number): HowToFixData {
+        return  {
+            any: [],
+            all: [],
+            none: [],
+            failureSummary: `Violation ${failureId} of rule ${ruleId}`,
         };
     }
 
