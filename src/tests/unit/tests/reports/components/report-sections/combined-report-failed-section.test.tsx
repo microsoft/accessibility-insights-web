@@ -40,9 +40,14 @@ describe('CombinedReportFailedSection', () => {
 
         collapsibleControlMock
             .setup(cc => cc(It.isObjectWith(expectedCollapsibleControlProps)))
-            .returns(() => <div>Collapsible component</div>);
+            .returns(({ header, content }) => (
+                <>
+                    <div id="collapsible-header">{header}</div>
+                    <div id="collapsible-content">{content}</div>
+                </>
+            ));
 
         const wrapper = shallow(<CombinedReportFailedSection {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 });
