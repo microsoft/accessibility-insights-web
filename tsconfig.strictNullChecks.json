@@ -315,7 +315,6 @@
         "./src/reports/react-static-renderer.ts",
         "./src/reports/report-name-generator-builder.ts",
         "./src/reports/report-name-generator.ts",
-        "./src/reports/summary-report.styles.ts",
         "./src/scanner/axe-configurator.ts",
         "./src/scanner/axe-extension.d.ts",
         "./src/scanner/axe-options.ts",
