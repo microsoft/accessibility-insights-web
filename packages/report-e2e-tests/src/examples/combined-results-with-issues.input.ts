@@ -32,7 +32,7 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                                 all: [
                                     {
                                         id: 'fix1',
-                                        message: 'fix failed-rule-1',
+                                        message: 'fix failed-rule-1 failure 1',
                                         data: null,
                                     },
                                 ],
@@ -51,14 +51,14 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             elementSelector: '.rule-1-selector-2',
                             snippet: '<div>snippet 2</div>',
                             fix: {
-                                all: [],
-                                any: [
+                                all: [
                                     {
                                         id: 'fix1',
-                                        message: 'fix failed-rule-1',
+                                        message: 'fix failed-rule-1 failure 2',
                                         data: null,
                                     },
                                 ],
+                                any: [],
                                 none: [],
                             },
                             rule: {

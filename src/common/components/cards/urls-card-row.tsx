@@ -18,7 +18,7 @@ export interface UrlsCardRowProps extends CardRowProps {
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
     const renderUrlContent = () => {
         return (
-            <ul class={styles.urlsRowContent}>
+            <ul className={styles.urlsRowContent}>
                 {props.propertyData.urls.map((url, index) => (
                     <li key={`urls-${index}`}>
                         <deps.LinkComponent href={url}>{url}</deps.LinkComponent>

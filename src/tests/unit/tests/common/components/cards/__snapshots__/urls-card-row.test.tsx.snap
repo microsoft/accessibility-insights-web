@@ -4,7 +4,7 @@ exports[`UrlsCardRow renders 1`] = `
 <SimpleCardRow
   content={
     <ul
-      class="urlsRowContent"
+      className="urlsRowContent"
     >
       <li>
         <NewTabLinkWithConfirmationDialog
