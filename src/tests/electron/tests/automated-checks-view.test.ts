@@ -234,41 +234,40 @@ describe('AutomatedChecksView', () => {
         expect(result.value).toBeNull();
     });
 
-    it('hamburger button click opens and closes left nav', async () => {
-        await setupWindowForCommandBarReflowTest(2);
+    const waitForFluentLeftNavToDisappear = async (): Promise<void> => {
+        return automatedChecksView.waitForSelectorToDisappear(
+            AutomatedChecksViewSelectors.fluentLeftNav,
+        );
+    };
 
+    const expectFluentLeftNavNotToBeRendered = async (): Promise<void> => {
         const result = await automatedChecksView.client.$(
             AutomatedChecksViewSelectors.fluentLeftNav,
         );
         expect(result.state).toBe('failure');
+    };
 
+    it('hamburger button click opens and closes left nav', async () => {
+        await setupWindowForCommandBarReflowTest(2);
+        await expectFluentLeftNavNotToBeRendered();
         await automatedChecksView.client.click(AutomatedChecksViewSelectors.leftNavHamburgerButton);
-
-        // if the nav bar doesn't appear, the timeout has expired and the test fails.
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.fluentLeftNav);
 
-        // The fluent left nav bar appears over the command bar
-        // so it requires a different selector
+        // Clicks the hamburger button inside the fluent left nav (there is one within the command bar as well)
         const selector = `${AutomatedChecksViewSelectors.fluentLeftNav} ${AutomatedChecksViewSelectors.leftNavHamburgerButton}`;
         await automatedChecksView.client.click(selector);
-
-        // if the nav bar doesn't disappear, the timeout has expired and the test fails.
-        await automatedChecksView.waitForSelectorToDisappear(
-            AutomatedChecksViewSelectors.fluentLeftNav,
-        );
+        await waitForFluentLeftNavToDisappear();
+        await expectFluentLeftNavNotToBeRendered();
     });
 
-    it.only('left nav closes when item is selected', async () => {
+    it('left nav closes when item is selected', async () => {
         await setupWindowForCommandBarReflowTest(2);
         await automatedChecksView.client.click(AutomatedChecksViewSelectors.leftNavHamburgerButton);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.fluentLeftNav);
 
         const selector = `${AutomatedChecksViewSelectors.fluentLeftNav} a`;
         await automatedChecksView.client.click(selector);
-
-        // if the nav bar doesn't disappear, the timeout has expired and the test fails.
-        await automatedChecksView.waitForSelectorToDisappear(
-            AutomatedChecksViewSelectors.fluentLeftNav,
-        );
+        await waitForFluentLeftNavToDisappear();
+        await expectFluentLeftNavNotToBeRendered();
     });
 });
