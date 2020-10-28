@@ -2,7 +2,7 @@
 
 exports[`CollapsibleUrlResultSection renders 1`] = `
 <div
-  className="url-result-section"
+  className="urlResultSection"
 >
   <div>
     Collapsible component

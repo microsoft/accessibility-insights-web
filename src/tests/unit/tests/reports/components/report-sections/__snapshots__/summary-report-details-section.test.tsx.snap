@@ -2,13 +2,13 @@
 
 exports[` renders 1`] = `
 <div
-  className="crawl-details-section"
+  className="crawlDetailsSection"
 >
   <h2>
     Scan details
   </h2>
   <ul
-    className="crawl-details-section-list"
+    className="crawlDetailsSectionList"
   >
     <li>
       <span
@@ -53,7 +53,7 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
-        className="label no-icon"
+        className="noIcon label"
       >
         Scans completed 
       </span>
@@ -65,7 +65,7 @@ exports[` renders 1`] = `
     </li>
     <li>
       <span
-        className="label no-icon"
+        className="noIcon label"
       >
         Duration 
       </span>
