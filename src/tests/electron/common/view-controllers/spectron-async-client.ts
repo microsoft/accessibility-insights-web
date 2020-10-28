@@ -16,7 +16,7 @@ export function getSpectronAsyncClient(client: SpectronClient, browserWindow: Sp
         browserWindow,
         $: (selector: string) => client.$(selector),
         $$: (selector: string) => client.$$(selector),
-        click: async (selector?: string) => {
+        click: async (selector: string) => {
             const element = await client.$(selector);
             return await element.click();
         },
@@ -68,7 +68,7 @@ export interface SpectronAsyncClient {
     browserWindow: SpectronWindow;
     $(selector: string): Promise<WebDriverIO.Element>;
     $$(selector: string): Promise<WebDriverIO.Element[]>;
-    click(selector?: string): Promise<void>;
+    click(selector: string): Promise<void>;
     executeAsync(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
     execute(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
     getAttribute(selector: string, attributeName: string): Promise<string>;
