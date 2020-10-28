@@ -20,10 +20,7 @@ describe('Details View -> Overview Page', () => {
     });
 
     afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     it.each([true, false])(

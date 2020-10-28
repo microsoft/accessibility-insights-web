@@ -30,7 +30,7 @@ describe('LeftNavStore', () => {
         };
         const expectedState: LeftNavStoreData = {
             selectedKey: 'automated-checks',
-            leftNavVisible: true,
+            leftNavVisible: false,
         };
 
         CreateStoreTesterForLeftNavActions('itemSelected')

@@ -21,10 +21,7 @@ describe('Popup -> Launch Pad', () => {
     });
 
     afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     it('content should match snapshot', async () => {

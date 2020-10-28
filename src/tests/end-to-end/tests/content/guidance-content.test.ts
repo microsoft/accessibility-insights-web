@@ -20,10 +20,7 @@ describe('Guidance Content pages', () => {
     });
 
     afterAll(async () => {
-        if (browser) {
-            await browser.close();
-            browser = undefined;
-        }
+        await browser?.close();
     });
 
     describe.each(contentPaths)('%s', path => {
