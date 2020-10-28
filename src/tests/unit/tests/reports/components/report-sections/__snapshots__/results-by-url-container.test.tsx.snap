@@ -3,10 +3,10 @@
 exports[`ResultsByUrlContainer renders 1`] = `
 <React.Fragment>
   <div
-    className="url-results-container"
+    className="urlResultsContainer"
   >
     <div
-      className="results-heading"
+      className="resultsHeading"
     >
       <h2>
         Results by URL

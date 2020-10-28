@@ -12,7 +12,7 @@ exports[`SummaryReportHead renders 1`] = `
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<<CSS:../reports/summary-report.css>>",
+        "__html": "<<CSS:../reports/automated-checks-report.css>>",
       }
     }
   />
