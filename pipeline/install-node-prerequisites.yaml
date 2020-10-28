@@ -7,7 +7,7 @@ steps:
       displayName: use node 14.15.0
       timeoutInMinutes: 2
 
-    - script: npm install yarn@1.22.4 -g
+    - script: npm install yarn@1.22.10 -g
       displayName: install yarn as a global dependency
       timeoutInMinutes: 1
 

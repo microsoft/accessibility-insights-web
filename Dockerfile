@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/playwright:bionic
 
 USER root
 
-RUN npm install -g yarn@1.22.4
+RUN npm install -g yarn@1.22.10
 
 WORKDIR /app
 
