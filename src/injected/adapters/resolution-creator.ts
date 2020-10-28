@@ -6,9 +6,15 @@ import { AxeNodeResult } from '../../scanner/iruleresults';
 
 export type ResolutionCreator = (data: ResolutionCreatorData) => DictionaryStringTo<any>;
 
+export interface NodeResolutionData {
+    any: FormattedCheckResult[];
+    none: FormattedCheckResult[];
+    all: FormattedCheckResult[];
+}
+
 export interface ResolutionCreatorData {
     id: string;
-    nodeResult: AxeNodeResult;
+    nodeResult: NodeResolutionData;
 }
 
 export const getFixResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
