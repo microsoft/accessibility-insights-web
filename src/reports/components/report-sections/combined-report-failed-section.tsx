@@ -31,12 +31,11 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     outcomeCount={ruleCount}
                     outcomeType="fail"
                     title="Failed"
-                    titleSize="title"
-                    {...props}
                 />
             ),
             content: (
                 <ResultSectionContent
+                    deps={deps}
                     outcomeType="fail"
                     targetAppInfo={scanMetadata.targetAppInfo}
                     results={cardsViewData.cards.fail}
@@ -44,7 +43,6 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     allCardsCollapsed={cardsViewData.allCardsCollapsed}
                     userConfigurationStoreData={null}
                     outcomeCounter={OutcomeCounter.countByIdentifierUrls}
-                    {...props}
                 />
             ),
             headingLevel: 2,
