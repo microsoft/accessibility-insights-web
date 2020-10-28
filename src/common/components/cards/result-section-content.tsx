@@ -4,6 +4,7 @@ import { CardsVisualizationModifierButtons } from 'common/components/cards/cards
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
@@ -11,7 +12,7 @@ import {
     NoFailedInstancesCongrats,
     NoFailedInstancesCongratsDeps,
 } from '../../../reports/components/report-sections/no-failed-instances-congrats';
-import { CardResult, CardRuleResult } from '../../types/store-data/card-view-model';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
@@ -29,7 +30,7 @@ export type ResultSectionContentProps = {
     targetAppInfo: TargetAppData;
     visualHelperEnabled: boolean;
     allCardsCollapsed: boolean;
-    outcomeCounter: (nodes: CardResult[]) => number;
+    outcomeCounter: OutcomeCounter;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(

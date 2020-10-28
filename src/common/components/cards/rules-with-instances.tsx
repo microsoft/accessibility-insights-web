@@ -3,11 +3,12 @@
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
-import { CardResult, CardRuleResult } from '../../types/store-data/card-view-model';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import {
     CollapsibleComponentCardsDeps,
@@ -30,7 +31,7 @@ export type RulesWithInstancesProps = {
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
-    outcomeCounter: (nodes: CardResult[]) => number;
+    outcomeCounter: OutcomeCounter;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
