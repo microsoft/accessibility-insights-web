@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CombinedReportRulesOnlySections CombinedReportNotApplicableSection renders 1`] = `
+<div
+  className="result-section"
+>
+  <div>
+    Collapsible component
+  </div>
+</div>
+`;
+
+exports[`CombinedReportRulesOnlySections CombinedReportPassedSection renders 1`] = `
+<div
+  className="result-section"
+>
+  <div>
+    Collapsible component
+  </div>
+</div>
+`;

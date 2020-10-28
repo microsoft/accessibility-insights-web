@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollapsibleFailedResultsSection renders 1`] = `
+exports[`CombinedReportFailedSection renders 1`] = `
 <div
   className="result-section"
 >
