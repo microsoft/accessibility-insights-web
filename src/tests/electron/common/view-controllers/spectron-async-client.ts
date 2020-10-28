@@ -11,9 +11,13 @@ import * as WebDriverIO from 'webdriverio';
 // @types/webdriver has been superceded by improved types
 // in webdriverio 5 directly, but Spectron has not consumed them
 
+export type SpectronAsyncWindow = Omit<SpectronWindow, 'capturePage'> & {
+    capturePage(): Promise<Uint8Array>;
+};
+
 export interface SpectronAsyncClient {
     // https://github.com/electron-userland/spectron/blob/cd733c4bc6b28eb5a1041ed79eef5563e75432ae/lib/api.js#L311
-    browserWindow: SpectronWindow;
+    browserWindow: SpectronAsyncWindow;
 
     $(selector: string): Promise<WebDriverIO.RawResult<any>>;
     $$(selector: string): Promise<WebDriverIO.RawResult<any>[]>;
