@@ -4,6 +4,7 @@ import { CardSelectionViewData } from "common/get-card-selection-view-data";
 import { UUIDGenerator } from "common/uid-generator";
 import { GroupedResults, FailuresGroup, AxeRuleData } from "reports/package/accessibilityInsightsReport";
 import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
+import { HelpUrlGetter } from "scanner/help-url-getter";
 import { GuidanceLink } from "scanner/rule-to-links-mappings";
 import { IMock, It, Mock } from "typemoq";
 
@@ -16,6 +17,11 @@ describe(CombinedResultsToCardsModelConverter, () => {
     };
     let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
     let uuidGeneratorMock: IMock<UUIDGenerator>;
+    const helpUrlGetterStub = {
+        getHelpUrl: (ruleId, defaultUrl) => {
+            return `url for ${ruleId} with default url ${defaultUrl}`;
+        }
+    } as HelpUrlGetter;
 
     let testSubject: CombinedResultsToCardsModelConverter;
 
@@ -27,7 +33,8 @@ describe(CombinedResultsToCardsModelConverter, () => {
         testSubject = new CombinedResultsToCardsModelConverter(
             getGuidanceLinksMock.object,
             viewDataStub,
-            uuidGeneratorMock.object
+            uuidGeneratorMock.object,
+            helpUrlGetterStub,
         );
     })
 

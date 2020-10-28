@@ -18,6 +18,7 @@ import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
 import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
+import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 
 export const scan = (
     options: ScanOptions,
@@ -34,7 +35,7 @@ export const scan = (
     );
     const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
-    const helpUrlGetter = new HelpUrlGetter(configuration);
+    const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
     const resultDecorator = new ResultDecorator(
         documentUtils,
         messageDecorator,
@@ -55,7 +56,7 @@ export const getVersion = (): string => {
 };
 
 export const getDefaultRules = (): ScannerRuleInfo[] => {
-    const helpUrlGetter = new HelpUrlGetter(configuration);
+    const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
     const ruleIncludedStatus = getRuleInclusions(
         axe._audit.rules,
         ruleToLinkConfiguration,

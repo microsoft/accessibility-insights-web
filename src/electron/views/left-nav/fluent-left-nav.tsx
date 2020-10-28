@@ -11,6 +11,8 @@ import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
 import { PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+export const fluentLeftNavAutomationId = 'fluent-left-nav';
+
 export type FluentLeftNavDeps = LeftNavDeps;
 
 export type FluentLeftNavProps = {
@@ -31,6 +33,7 @@ export const FluentLeftNav = NamedFC<FluentLeftNavProps>('LeftNav', props => {
 
     return (
         <GenericPanel
+            innerPanelAutomationId={fluentLeftNavAutomationId}
             layerProps={{ className: styles.leftNavPanelHost }}
             className={styles.leftNavPanel}
             isOpen={isNavOpen}
