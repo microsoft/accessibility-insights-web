@@ -142,12 +142,17 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         userAgent,
     );
 
+    const fixInstructionProcessor = new FixInstructionProcessor();
+
     const reportHtmlGenerator = new CombinedReportHtmlGenerator(
         CombinedReportSectionFactory,
         new ReactStaticRenderer(),
         getDefaultAddListenerForCollapsibleSection,
         DateProvider.getUTCStringFromDate,
         DateProvider.getTimeStringFromSeconds,
+        GetGuidanceTagsFromGuidanceLinks,
+        fixInstructionProcessor,
+        getPropertyConfiguration,
     );
     const deps = {
         reportHtmlGenerator,

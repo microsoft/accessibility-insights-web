@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import {
     ScanMetadata,
     ScanTimespan,
@@ -10,9 +14,14 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { CombinedReportHtmlGenerator } from 'reports/combined-report-html-generator';
+import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
+import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+} from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -25,6 +34,10 @@ describe('CombinedReportHtmlGenerator', () => {
 
     const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
     const getTimeStringFromSecondsStub: typeof DateProvider.getTimeStringFromSeconds = () => '';
+
+    const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+    const getPropertyConfigurationStub = (id: string) => null;
+    const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
     const toolData: ToolData = {
         scanEngineProperties: {
@@ -82,11 +95,23 @@ describe('CombinedReportHtmlGenerator', () => {
             getScriptMock.object,
             getUTCStringFromDateStub,
             getTimeStringFromSecondsStub,
+            getGuidanceTagsStub,
+            fixInstructionProcessorMock.object,
+            getPropertyConfigurationStub,
         );
     });
 
     it('generateHtml', () => {
         const sectionProps: ReportBodyProps<CombinedReportSectionProps> = {
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+                getPropertyConfigById: getPropertyConfigurationStub,
+                collapsibleControl: ReportCollapsibleContainerControl,
+                cardInteractionSupport: noCardInteractionsSupported,
+                cardsVisualizationModifierButtons: NullComponent,
+                LinkComponent: NewTabLinkWithConfirmationDialog,
+            } as SectionDeps,
             sectionFactory: sectionFactoryMock.object,
             toUtcString: getUTCStringFromDateStub,
             secondsToTimeString: getTimeStringFromSecondsStub,
@@ -97,7 +122,9 @@ describe('CombinedReportHtmlGenerator', () => {
         };
 
         const headElement: JSX.Element = <NullComponent />;
-        const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
+        const bodyElement: JSX.Element = (
+            <ReportBody<CombinedReportSectionProps> {...sectionProps} />
+        );
 
         sectionFactoryMock.setup(mock => mock.HeadSection).returns(() => NullComponent);
         rendererMock

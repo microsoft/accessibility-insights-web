@@ -1,13 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { NullComponent } from 'common/components/null-component';
+import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
+import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
 import { CombinedReportSectionProps } from './components/report-sections/combined-report-section-factory';
-import { ReportSectionFactory } from './components/report-sections/report-section-factory';
+import {
+    ReportSectionFactory,
+    SectionDeps,
+} from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export class CombinedReportHtmlGenerator {
@@ -17,6 +27,9 @@ export class CombinedReportHtmlGenerator {
         private readonly getCollapsibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly secondsToTimeStringConverter: (seconds: number) => string,
+        private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+        private readonly fixInstructionProcessor: FixInstructionProcessor,
+        private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
     ) {}
 
     public generateHtml(
@@ -29,6 +42,15 @@ export class CombinedReportHtmlGenerator {
 
         const detailsProps: CombinedReportSectionProps = {
             scanMetadata,
+            deps: {
+                fixInstructionProcessor: this.fixInstructionProcessor,
+                collapsibleControl: ReportCollapsibleContainerControl,
+                getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
+                getPropertyConfigById: this.getPropertyConfiguration,
+                cardInteractionSupport: noCardInteractionsSupported,
+                cardsVisualizationModifierButtons: NullComponent,
+                LinkComponent: NewTabLinkWithConfirmationDialog,
+            } as SectionDeps,
             cardsByRule,
             urlResultCounts,
             toUtcString: this.utcDateConverter,
