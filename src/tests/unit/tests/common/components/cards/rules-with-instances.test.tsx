@@ -37,6 +37,7 @@ describe('RulesWithInstances', () => {
                 rules={rules}
                 userConfigurationStoreData={null}
                 targetAppInfo={{ name: 'app' }}
+                outcomeCounter={() => null}
             />,
         );
 

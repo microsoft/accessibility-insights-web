@@ -81,6 +81,7 @@ exports[`RulesWithInstances renders 1`] = `
     }
     header={
       <MinimalRuleHeader
+        outcomeCounter={[Function]}
         outcomeType="pass"
         rule={
           Object {

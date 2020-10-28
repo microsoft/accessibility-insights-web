@@ -4,9 +4,10 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { CardsViewModel } from '../../types/store-data/card-view-model';
+import { CardResult, CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 export type NeedsReviewInstancesSectionDeps = ResultSectionDeps;
 export type NeedsReviewInstancesSectionProps = {
@@ -47,6 +48,7 @@ export const NeedsReviewInstancesSection = NamedFC<NeedsReviewInstancesSectionPr
                 shouldAlertFailuresCount={shouldAlertFailuresCount}
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
+                outcomeCounter={OutcomeCounter.countByCards}
             />
         );
     },

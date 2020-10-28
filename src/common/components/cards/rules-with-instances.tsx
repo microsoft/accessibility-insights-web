@@ -7,7 +7,7 @@ import { TargetAppData } from '../../../common/types/store-data/unified-data-int
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
-import { CardRuleResult } from '../../types/store-data/card-view-model';
+import { CardResult, CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import {
     CollapsibleComponentCardsDeps,
@@ -30,6 +30,7 @@ export type RulesWithInstancesProps = {
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    outcomeCounter: (nodes: CardResult[]) => number;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -43,6 +44,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         deps,
         userConfigurationStoreData,
         targetAppInfo,
+        outcomeCounter,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -52,7 +54,14 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
-                header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
+                header: (
+                    <MinimalRuleHeader
+                        key={rule.id}
+                        rule={rule}
+                        outcomeType={outcomeType}
+                        outcomeCounter={outcomeCounter}
+                    />
+                ),
                 content: (
                     <RuleContent
                         key={`${rule.id}-rule-group`}

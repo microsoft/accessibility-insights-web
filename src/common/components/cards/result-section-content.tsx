@@ -11,7 +11,7 @@ import {
     NoFailedInstancesCongrats,
     NoFailedInstancesCongratsDeps,
 } from '../../../reports/components/report-sections/no-failed-instances-congrats';
-import { CardRuleResult } from '../../types/store-data/card-view-model';
+import { CardResult, CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
@@ -29,6 +29,7 @@ export type ResultSectionContentProps = {
     targetAppInfo: TargetAppData;
     visualHelperEnabled: boolean;
     allCardsCollapsed: boolean;
+    outcomeCounter: (nodes: CardResult[]) => number;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -41,6 +42,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             deps,
             userConfigurationStoreData,
             targetAppInfo,
+            outcomeCounter,
         } = props;
         if (results.length === 0) {
             return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
@@ -56,6 +58,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     fixInstructionProcessor={fixInstructionProcessor}
                     userConfigurationStoreData={userConfigurationStoreData}
                     targetAppInfo={targetAppInfo}
+                    outcomeCounter={outcomeCounter}
                 />
             </>
         );
