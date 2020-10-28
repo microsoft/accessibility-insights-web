@@ -5,31 +5,29 @@ import * as React from 'react';
 
 import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { ResultSectionContent } from 'common/components/cards/result-section-content';
-import { ResultSectionTitle } from 'common/components/cards/result-section-title';
+import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 
-export type CollapsibleFailedResultsSectionDeps = ResultSectionDeps;
+export type CombinedReportFailedResultsSectionDeps = ResultSectionDeps;
 
-export type CollapsibleFailedResultsSectionProps = {
-    deps: CollapsibleFailedResultsSectionDeps;
-    cardsByRule: CardsViewModel;
+export type CombinedReportFailedResultsSectionProps = {
+    deps: CombinedReportFailedResultsSectionDeps;
+    cardsViewData: CardsViewModel;
     scanMetadata: ScanMetadata;
 };
 
-export const CollapsibleFailedResultsSection = NamedFC<CollapsibleFailedResultsSectionProps>(
-    'CollapsibleFailedResultsSection',
+export const CombinedReportFailedResultsSection = NamedFC<CombinedReportFailedResultsSectionProps>(
+    'CombinedReportFailedResultsSection',
     props => {
-        const { deps, cardsByRule, scanMetadata } = props;
+        const { deps, cardsViewData, scanMetadata } = props;
 
-        const count = cardsByRule.cards.fail.reduce((total, rule) => {
-            return total + rule.nodes.length;
-        }, 0);
+        const ruleCount = cardsViewData.cards.fail.length;
 
         const CollapsibleContent = deps.collapsibleControl({
             header: (
-                <ResultSectionTitle
-                    badgeCount={count}
+                <CombinedReportResultSectionTitle
+                    outcomeCount={ruleCount}
                     outcomeType="fail"
                     title="Failed"
                     titleSize="title"
@@ -40,9 +38,9 @@ export const CollapsibleFailedResultsSection = NamedFC<CollapsibleFailedResultsS
                 <ResultSectionContent
                     outcomeType="fail"
                     targetAppInfo={scanMetadata.targetAppInfo}
-                    results={cardsByRule.cards.fail}
-                    visualHelperEnabled={cardsByRule.visualHelperEnabled}
-                    allCardsCollapsed={cardsByRule.allCardsCollapsed}
+                    results={cardsViewData.cards.fail}
+                    visualHelperEnabled={cardsViewData.visualHelperEnabled}
+                    allCardsCollapsed={cardsViewData.allCardsCollapsed}
                     userConfigurationStoreData={null}
                     {...props}
                 />

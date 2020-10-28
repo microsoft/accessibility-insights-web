@@ -3,7 +3,6 @@
 
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
@@ -117,7 +116,7 @@ describe('CombinedReportHtmlGenerator', () => {
             secondsToTimeString: getTimeStringFromSecondsStub,
             getCollapsibleScript: getScriptMock.object,
             scanMetadata,
-            cardsByRule: cardsViewData,
+            cardsViewData,
             urlResultCounts,
         };
 

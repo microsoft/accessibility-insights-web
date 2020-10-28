@@ -9,8 +9,8 @@ import { CombinedReportSectionProps } from 'reports/components/report-sections/c
 export const CombinedReportSummarySection = NamedFC<CombinedReportSectionProps>(
     'CombinedReportSummarySection',
     props => {
-        const { cardsByRule, urlResultCounts } = props;
-        const cards = cardsByRule.cards;
+        const { cardsViewData, urlResultCounts } = props;
+        const cards = cardsViewData.cards;
 
         let failedInstances = 0;
         cards.fail.forEach(failedScanResult => {
