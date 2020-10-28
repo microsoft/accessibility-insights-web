@@ -5,24 +5,24 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
-    CombinedReportFailedResultsSectionProps,
-    CombinedReportFailedResultsSection,
-    CombinedReportFailedResultsSectionDeps,
-} from 'reports/components/report-sections/combined-report-failed-results-section';
+    CombinedReportFailedSectionProps,
+    CombinedReportFailedSection,
+    CombinedReportFailedSectionDeps,
+} from 'reports/components/report-sections/combined-report-failed-section';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 import { It, Mock } from 'typemoq';
 
-describe('CombinedReportFailedResultsSection', () => {
+describe('CombinedReportFailedSection', () => {
     it('renders', () => {
         const collapsibleControlMock = Mock.ofType<
             (props: CollapsibleComponentCardsProps) => JSX.Element
         >();
         const scanMetaDataStub = {} as ScanMetadata;
         const containerId = 'container-id';
-        const props: CombinedReportFailedResultsSectionProps = {
+        const props: CombinedReportFailedSectionProps = {
             deps: {
                 collapsibleControl: collapsibleControlMock.object,
-            } as CombinedReportFailedResultsSectionDeps,
+            } as CombinedReportFailedSectionDeps,
             containerId,
             content: <div>Content</div>,
             cardsViewData: {
@@ -31,7 +31,7 @@ describe('CombinedReportFailedResultsSection', () => {
                 allCardsCollapsed: true,
             },
             scanMetadata: scanMetaDataStub,
-        } as CombinedReportFailedResultsSectionProps;
+        } as CombinedReportFailedSectionProps;
 
         const expectedCollapsibleControlProps: Partial<CollapsibleComponentCardsProps> = {
             headingLevel: 2,
@@ -42,7 +42,7 @@ describe('CombinedReportFailedResultsSection', () => {
             .setup(cc => cc(It.isObjectWith(expectedCollapsibleControlProps)))
             .returns(() => <div>Collapsible component</div>);
 
-        const wrapper = shallow(<CombinedReportFailedResultsSection {...props} />);
+        const wrapper = shallow(<CombinedReportFailedSection {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

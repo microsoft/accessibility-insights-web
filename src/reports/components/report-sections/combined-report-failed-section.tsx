@@ -9,16 +9,16 @@ import { CombinedReportResultSectionTitle } from 'common/components/cards/combin
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 
-export type CombinedReportFailedResultsSectionDeps = ResultSectionDeps;
+export type CombinedReportFailedSectionDeps = ResultSectionDeps;
 
-export type CombinedReportFailedResultsSectionProps = {
-    deps: CombinedReportFailedResultsSectionDeps;
+export type CombinedReportFailedSectionProps = {
+    deps: CombinedReportFailedSectionDeps;
     cardsViewData: CardsViewModel;
     scanMetadata: ScanMetadata;
 };
 
-export const CombinedReportFailedResultsSection = NamedFC<CombinedReportFailedResultsSectionProps>(
-    'CombinedReportFailedResultsSection',
+export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionProps>(
+    'CombinedReportFailedSection',
     props => {
         const { deps, cardsViewData, scanMetadata } = props;
 

@@ -4,13 +4,13 @@ import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 import {
-    CombinedReportFailedResultsSection,
-    CombinedReportFailedResultsSectionProps,
-} from 'reports/components/report-sections/combined-report-failed-results-section';
+    CombinedReportFailedSection,
+    CombinedReportFailedSectionProps,
+} from 'reports/components/report-sections/combined-report-failed-section';
 import {
     CombinedReportNotApplicableSection,
     CombinedReportPassedSection,
-} from 'reports/components/report-sections/combined-report-rules-only-section';
+} from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
@@ -27,7 +27,7 @@ import { TitleSection } from './title-section';
 export type CombinedReportSectionDeps = ResultSectionDeps;
 
 export type CombinedReportSectionProps = BaseSummaryReportSectionProps &
-    CombinedReportFailedResultsSectionProps & {
+    CombinedReportFailedSectionProps & {
         deps: CombinedReportSectionDeps;
         cardsViewData: CardsViewModel;
         urlResultCounts: UrlResultCounts;
@@ -42,7 +42,7 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     SummarySection: CombinedReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
     ResultsContainer,
-    FailedInstancesSection: CombinedReportFailedResultsSection,
+    FailedInstancesSection: CombinedReportFailedSection,
     PassedChecksSection: CombinedReportPassedSection,
     NotApplicableChecksSection: CombinedReportNotApplicableSection,
     FooterSection: ReportFooter,
