@@ -3,11 +3,16 @@
 import { RuleConfiguration } from './iruleresults';
 
 export class HelpUrlGetter {
-    constructor(private readonly ruleConfigs: RuleConfiguration[]) {}
+    constructor(
+        private readonly ruleConfigs: RuleConfiguration[],
+        private readonly getA11yInsightsHelpUrl: (ruleId: string) => string | null,
+    ) {}
 
     public getHelpUrl(ruleId: string, axeHelpUrl: string): string {
         const customHelpUrl = this.getCustomHelpUrl(ruleId);
-        return customHelpUrl || axeHelpUrl;
+        const a11yInsightsHelpUrl = this.getA11yInsightsHelpUrl(ruleId);
+
+        return customHelpUrl || a11yInsightsHelpUrl || axeHelpUrl;
     }
 
     private getCustomHelpUrl(ruleId: string): string | null {
