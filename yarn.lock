@@ -14836,7 +14836,7 @@ webdriverio@^6.1.20:
     rgb2hex "^0.2.0"
     serialize-error "^7.0.0"
     webdriver "6.7.0"
-    
+
 webextension-polyfill-ts@^0.21.0:
   version "0.21.0"
   resolved "https://registry.yarnpkg.com/webextension-polyfill-ts/-/webextension-polyfill-ts-0.21.0.tgz#de07984177b585d12e7189abfab9fb1e3fbfa048"
