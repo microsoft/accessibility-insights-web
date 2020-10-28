@@ -65,12 +65,12 @@ export function getSpectronAsyncClient(client: SpectronClient, browserWindow: Sp
 }
 
 export interface SpectronAsyncClient {
+    browserWindow: SpectronWindow;
     $(selector: string): Promise<WebDriverIO.Element>;
     $$(selector: string): Promise<WebDriverIO.Element[]>;
-    browserWindow: SpectronWindow;
     click(selector?: string): Promise<void>;
-    execute(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
     executeAsync(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
+    execute(script: string | ((...args: any[]) => void), ...args: any[]): Promise<any>;
     getAttribute(selector: string, attributeName: string): Promise<string>;
     getText(selector?: string): Promise<string>;
     isEnabled(selector?: string): Promise<boolean>;
