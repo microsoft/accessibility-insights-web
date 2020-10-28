@@ -15,8 +15,6 @@ describe('ResolutionCreator', () => {
                 any: [],
                 all: [],
                 none: [],
-                html: 'test html',
-                target: ['test target'],
             },
         };
 
@@ -67,8 +65,6 @@ describe('ResolutionCreator', () => {
                 any: [],
                 all: [],
                 none: [],
-                html: 'test html',
-                target: ['test target'],
             },
         };
 

@@ -62,9 +62,9 @@ declare namespace AccessibilityInsightsReport {
     }
 
     export type HowToFixData = {
-        any: FormattedCheckResult[],
-        all: FormattedCheckResult[],
-        none: FormattedCheckResult[],
+        any: axe.CheckResult[],
+        all: axe.CheckResult[],
+        none: axe.CheckResult[],
         failureSummary?: string,
     }
 
