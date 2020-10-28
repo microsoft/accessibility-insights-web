@@ -33,20 +33,25 @@ describe('CombinedReportRulesOnlySections', () => {
 
         collapsibleControlMock
             .setup(cc => cc(It.isObjectWith(expectedCollapsibleControlProps)))
-            .returns(() => <div>Collapsible component</div>);
+            .returns(({ header, content }) => (
+                <>
+                    <div id="collapsible-header">{header}</div>
+                    <div id="collapsible-content">{content}</div>
+                </>
+            ));
     });
 
     describe('CombinedReportPassedSection', () => {
         it('renders', () => {
             const wrapper = shallow(<CombinedReportPassedSection {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.debug()).toMatchSnapshot();
         });
     });
 
     describe('CombinedReportNotApplicableSection', () => {
         it('renders', () => {
             const wrapper = shallow(<CombinedReportNotApplicableSection {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.debug()).toMatchSnapshot();
         });
     });
 });
