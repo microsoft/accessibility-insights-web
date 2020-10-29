@@ -39,7 +39,7 @@ export abstract class ViewController {
 
     public async waitForSelectorToDisappear(
         selector: string,
-        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS * 2,
     ): Promise<void> {
         await this.screenshotOnError(async () =>
             this.client.waitForExist(

@@ -214,8 +214,6 @@ describe('AutomatedChecksView', () => {
         app.client.browserWindow.restore();
         app.client.browserWindow.setSize(width, height);
 
-        // Note: the following call returns a different type of object than is specified
-        // by the typescript return type when the element is found
         return automatedChecksView.client.$(AutomatedChecksViewSelectors.leftNavHamburgerButton);
     };
 
