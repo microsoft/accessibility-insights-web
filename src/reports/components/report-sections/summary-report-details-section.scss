@@ -24,12 +24,15 @@
 
         li {
             display: inline-block;
-            padding-top: 6px;
             .icon {
                 padding-right: 12px;
                 position: relative;
                 top: 3px;
             }
+        }
+
+        li.targetSite {
+            margin-bottom: 6px;
         }
     }
 
@@ -37,6 +40,9 @@
     .label {
         word-break: break-all;
         color: $neutral-55;
+        @include text-style-body-m;
+    }
+    .label {
         font-weight: $fontWeightSemiBold;
     }
     .label.no-icon {
