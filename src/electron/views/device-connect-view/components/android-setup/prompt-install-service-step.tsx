@@ -24,7 +24,7 @@ export const PromptInstallServiceStep = NamedFC<CommonAndroidSetupStepProps>(
             rightFooterButtonProps: {
                 text: 'Next',
                 disabled: true,
-                onClick: null,
+                onClick: undefined,
             },
         };
 

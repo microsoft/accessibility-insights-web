@@ -19,7 +19,7 @@ exports[`PromptConfiguringPortForwardingFailedStep renders with device 1`] = `
   rightFooterButtonProps={
     Object {
       "disabled": true,
-      "onClick": null,
+      "onClick": undefined,
       "text": "Next",
     }
   }
@@ -64,7 +64,7 @@ exports[`PromptConfiguringPortForwardingFailedStep renders with emulator 1`] = `
   rightFooterButtonProps={
     Object {
       "disabled": true,
-      "onClick": null,
+      "onClick": undefined,
       "text": "Next",
     }
   }
