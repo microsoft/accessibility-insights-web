@@ -80,22 +80,27 @@ describe('link function', () => {
             testEvaluate(
                 'accessible-name',
                 'url',
+                true,
                 getPropertyValuesMock,
                 getAccessibleTextMock,
-                true,
+                'self',
             );
         });
         it('evaluates when url is unspecified (parent html as snippet)', () => {
             testEvaluate(
                 'accessible-name',
                 null,
+                true,
                 getPropertyValuesMock,
                 getAccessibleTextMock,
-                false,
+                'parent',
             );
         });
         it('evaluates when accessible-name is unspecified (parent html as snippet)', () => {
-            testEvaluate(null, 'url', getPropertyValuesMock, getAccessibleTextMock, false);
+            testEvaluate(null, 'url', true, getPropertyValuesMock, getAccessibleTextMock, 'parent');
+        });
+        it('evaluates when accessible-name is unspecified and no parent exists (node html as snippet)', () => {
+            testEvaluate(null, 'url', false, getPropertyValuesMock, getAccessibleTextMock, 'self');
         });
     });
 });
@@ -103,9 +108,10 @@ describe('link function', () => {
 function testEvaluate(
     accessibleName: string,
     url: string,
+    nodeHasParent: boolean,
     getPropertyValuesMock: IGlobalMock<any>,
     getAccessibleTextMock: IGlobalMock<any>,
-    snippetUnmodified: boolean,
+    expectedSnippet: 'parent' | 'self',
 ): void {
     const dataSetterMock = Mock.ofInstance(data => {});
 
@@ -117,9 +123,14 @@ function testEvaluate(
         role: 'role',
         tabIndex: 'tabindex',
         url: url,
-        snippet: snippetUnmodified ? outerHTML : parentOuterHTML,
+        snippet: expectedSnippet === 'self' ? outerHTML : parentOuterHTML,
     };
-    const nodeStub = getNodeStub(expectedData.url, expectedData.role, expectedData.tabIndex);
+    const nodeStub = getNodeStub(
+        expectedData.url,
+        expectedData.role,
+        expectedData.tabIndex,
+        nodeHasParent,
+    );
 
     dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
     getPropertyValuesMock
@@ -143,7 +154,7 @@ function testMatches(
     expectedHasCustomWidgetMarkup: boolean,
     expectedResult: boolean,
 ): void {
-    const nodeStub = getNodeStub(href, null, null);
+    const nodeStub = getNodeStub(href, null, null, true);
     const hasCustomWidgetMarkupMock = GlobalMock.ofInstance(
         AxeUtils.hasCustomWidgetMarkup,
         'hasCustomWidgetMarkup',
@@ -160,12 +171,19 @@ function testMatches(
     expect(result).toBe(expectedResult);
 }
 
-function getNodeStub(href: string, role: string, tabindex: string): HTMLElement {
+function getNodeStub(
+    href: string,
+    role: string,
+    tabindex: string,
+    withParent: boolean,
+): HTMLElement {
     return {
         outerHTML: outerHTML,
-        parentElement: {
-            outerHTML: parentOuterHTML,
-        },
+        parentElement: withParent
+            ? {
+                  outerHTML: parentOuterHTML,
+              }
+            : null,
         getAttribute: attr => {
             if (attr === 'href') {
                 return href;

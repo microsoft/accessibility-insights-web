@@ -60,7 +60,10 @@ function evaluateLinkFunction(
     };
 
     const missingNameOrUrl = !accessibleName || !url;
-    const snippet = missingNameOrUrl ? node.parentElement.outerHTML : node.outerHTML;
+    const snippet =
+        missingNameOrUrl && node.parentElement != null
+            ? node.parentElement.outerHTML
+            : node.outerHTML;
 
     data[snippetKey] = snippet;
     // tslint:disable-next-line:no-invalid-this
