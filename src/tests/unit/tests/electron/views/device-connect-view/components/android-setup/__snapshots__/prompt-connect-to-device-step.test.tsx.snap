@@ -19,7 +19,7 @@ exports[`PromptConnectToDeviceStep renders per snapshot 1`] = `
   rightFooterButtonProps={
     Object {
       "disabled": true,
-      "onClick": null,
+      "onClick": undefined,
       "text": "Next",
     }
   }

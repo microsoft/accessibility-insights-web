@@ -19,7 +19,7 @@ exports[`PromptInstallFailedStep renders with device 1`] = `
   rightFooterButtonProps={
     Object {
       "disabled": true,
-      "onClick": null,
+      "onClick": undefined,
       "text": "Next",
     }
   }
@@ -29,9 +29,13 @@ exports[`PromptInstallFailedStep renders with device 1`] = `
   </p>
   <DeviceDescription
     className="deviceDescription"
-    friendlyName="Super-Duper Gadget"
-    id="1"
-    isEmulator={false}
+    deviceInfo={
+      Object {
+        "friendlyName": "Super-Duper Gadget",
+        "id": "1",
+        "isEmulator": false,
+      }
+    }
   />
   <CustomizedPrimaryButton
     data-automation-id="try-again"
@@ -60,7 +64,7 @@ exports[`PromptInstallFailedStep renders with emulator 1`] = `
   rightFooterButtonProps={
     Object {
       "disabled": true,
-      "onClick": null,
+      "onClick": undefined,
       "text": "Next",
     }
   }
@@ -70,9 +74,13 @@ exports[`PromptInstallFailedStep renders with emulator 1`] = `
   </p>
   <DeviceDescription
     className="deviceDescription"
-    friendlyName="Emulator Extraordinaire"
-    id="1"
-    isEmulator={true}
+    deviceInfo={
+      Object {
+        "friendlyName": "Emulator Extraordinaire",
+        "id": "1",
+        "isEmulator": true,
+      }
+    }
   />
   <CustomizedPrimaryButton
     data-automation-id="try-again"

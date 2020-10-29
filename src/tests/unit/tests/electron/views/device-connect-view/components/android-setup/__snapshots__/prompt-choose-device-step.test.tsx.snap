@@ -40,21 +40,21 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
       items={
         Array [
           Object {
-            "metadata": Object {
+            "deviceInfo": Object {
               "friendlyName": "Phone 1",
               "id": "1",
               "isEmulator": true,
             },
           },
           Object {
-            "metadata": Object {
+            "deviceInfo": Object {
               "friendlyName": "Phone 2",
               "id": "2",
               "isEmulator": false,
             },
           },
           Object {
-            "metadata": Object {
+            "deviceInfo": Object {
               "friendlyName": "Phone 3",
               "id": "3",
               "isEmulator": true,
@@ -78,21 +78,21 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
           "_isModal": false,
           "_items": Array [
             Object {
-              "metadata": Object {
+              "deviceInfo": Object {
                 "friendlyName": "Phone 1",
                 "id": "1",
                 "isEmulator": true,
               },
             },
             Object {
-              "metadata": Object {
+              "deviceInfo": Object {
                 "friendlyName": "Phone 2",
                 "id": "2",
                 "isEmulator": false,
               },
             },
             Object {
-              "metadata": Object {
+              "deviceInfo": Object {
                 "friendlyName": "Phone 3",
                 "id": "3",
                 "isEmulator": true,
@@ -100,9 +100,9 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
             },
           ],
           "_keyToIndexMap": Object {
-            "0": 0,
-            "1": 1,
-            "2": 2,
+            "1": 0,
+            "2": 1,
+            "3": 2,
           },
           "_onSelectionChanged": [Function],
           "_selectedItems": null,
