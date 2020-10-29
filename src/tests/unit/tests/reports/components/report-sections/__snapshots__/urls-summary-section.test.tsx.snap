@@ -8,8 +8,12 @@ exports[` renders 1`] = `
     <h2>
       URLs
     </h2>
-    6
-     total URLs discovered
+    <span
+      className="totalUrls"
+    >
+      6
+    </span>
+     total URLs scanned
   </React.Fragment>
   <OutcomeSummaryBar
     allOutcomeTypes={

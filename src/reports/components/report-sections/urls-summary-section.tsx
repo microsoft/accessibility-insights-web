@@ -28,7 +28,7 @@ export const UrlsSummarySection = NamedFC<UrlsSummarySectionProps>('UrlsSummaryS
         return (
             <>
                 <h2>URLs</h2>
-                {totalUrls} total URLs discovered
+                <span className={styles.totalUrls}>{totalUrls}</span> total URLs scanned
             </>
         );
     };
