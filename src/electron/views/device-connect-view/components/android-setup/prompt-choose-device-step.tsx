@@ -79,7 +79,7 @@ export class PromptChooseDeviceStep extends React.Component<
                             return (
                                 <DeviceDescription
                                     className={styles.row}
-                                    {...item.metadata}
+                                    deviceInfo={item.metadata}
                                 ></DeviceDescription>
                             );
                         }}

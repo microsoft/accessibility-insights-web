@@ -8,11 +8,22 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceDescription', () => {
+    it.each([null, undefined])('renders as null with no deviceInfo', deviceInfo => {
+        const props: DeviceDescriptionProps = {
+            deviceInfo,
+        };
+
+        const rendered = shallow(<DeviceDescription {...props} />);
+        expect(rendered.getElement()).toBeNull();
+    });
+
     it('renders with device', () => {
         const props: DeviceDescriptionProps = {
-            isEmulator: false,
-            friendlyName: 'Super-Duper Gadget',
-            id: '0',
+            deviceInfo: {
+                isEmulator: false,
+                friendlyName: 'Super-Duper Gadget',
+                id: '0',
+            },
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
@@ -21,9 +32,11 @@ describe('DeviceDescription', () => {
 
     it('renders with emulator', () => {
         const props: DeviceDescriptionProps = {
-            isEmulator: true,
-            friendlyName: 'Emulator Extraordinaire',
-            id: '1',
+            deviceInfo: {
+                isEmulator: true,
+                friendlyName: 'Emulator Extraordinaire',
+                id: '1',
+            },
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
@@ -32,10 +45,12 @@ describe('DeviceDescription', () => {
 
     it('renders with extra classname', () => {
         const props: DeviceDescriptionProps = {
-            isEmulator: true,
-            friendlyName: 'Simple Emulator',
+            deviceInfo: {
+                isEmulator: true,
+                friendlyName: 'Simple Emulator',
+                id: '2',
+            },
             className: 'my-class',
-            id: '2',
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);
@@ -44,10 +59,12 @@ describe('DeviceDescription', () => {
 
     it('renders with currentApplication', () => {
         const props: DeviceDescriptionProps = {
-            isEmulator: false,
-            friendlyName: 'Whizbang tablet',
+            deviceInfo: {
+                isEmulator: false,
+                friendlyName: 'Whizbang tablet',
+                id: '3',
+            },
             currentApplication: 'Wildlife Manager',
-            id: '3',
         };
 
         const rendered = shallow(<DeviceDescription {...props} />);

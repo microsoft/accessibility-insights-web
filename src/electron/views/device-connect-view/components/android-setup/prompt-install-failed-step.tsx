@@ -36,7 +36,7 @@ export const PromptInstallFailedStep = NamedFC<CommonAndroidSetupStepProps>(
         };
 
         const descriptionProps: DeviceDescriptionProps = {
-            ...props.androidSetupStoreData.selectedDevice,
+            deviceInfo: props.androidSetupStoreData.selectedDevice,
             className: styles.deviceDescription,
         };
 
