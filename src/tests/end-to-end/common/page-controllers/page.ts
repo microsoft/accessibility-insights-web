@@ -48,19 +48,13 @@ export class Page {
                 return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
             }
 
-            const serializedError = serializeError(error);
-            if (serializedError === '[Error: Object]') {
+            if (`${error.message}` === 'Object') {
                 // unknown flakiness, tracked by https://github.com/microsoft/accessibility-insights-web/issues/3529
-                console.warn(
-                    `'pageerror' (console.error):\n` +
-                        `    name='${error.name}',\n` +
-                        `    message='${error.message}',\n` +
-                        `    serializeError='${serializeError(error)}`,
-                );
+                console.warn(`'pageerror' (console.error): ${serializeError(error)}`);
                 return;
             }
 
-            forceEventFailure(`'pageerror' (console.error): ${serializedError}`);
+            forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
         });
         underlyingPage.on('requestfailed', request => {
             const failure = request.failure()!;
