@@ -12,6 +12,7 @@ import {
     CombinedReportPassedSection,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { CombinedReportSummarySection } from 'reports/components/report-sections/combined-report-summary-section';
+import { RulesResultsContainer } from 'reports/components/report-sections/rules-results-container';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
 import { SummaryReportHeaderSection } from 'reports/components/report-sections/summary-report-header-section';
 import { SummaryReportHead } from 'reports/components/summary-report-head';
@@ -41,7 +42,7 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     TitleSection,
     SummarySection: CombinedReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
-    ResultsContainer,
+    ResultsContainer: RulesResultsContainer,
     FailedInstancesSection: CombinedReportFailedSection,
     PassedChecksSection: CombinedReportPassedSection,
     NotApplicableChecksSection: CombinedReportNotApplicableSection,
