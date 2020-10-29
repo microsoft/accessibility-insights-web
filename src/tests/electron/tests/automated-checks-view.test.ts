@@ -16,7 +16,6 @@ import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/set
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { Element } from 'webdriverio';
-import { resultItem } from 'office-ui-fabric-react/lib/components/FloatingPicker/PeoplePicker/PeoplePicker.scss';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
@@ -40,7 +39,7 @@ describe('AutomatedChecksView', () => {
             await app.stop();
         }
     });
-    /*
+
     it('should use the expected window title', async () => {
         expect(await app.getTitle()).toBe('Accessibility Insights for Android - Automated checks');
     });
@@ -205,7 +204,7 @@ describe('AutomatedChecksView', () => {
             expect(boxStyle.width).toBeCloseTo(expectedHighlightBoxStyles[index].width);
             expect(boxStyle.height).toBeCloseTo(expectedHighlightBoxStyles[index].height);
         });
-    }*/
+    }
 
     const setupWindowForCommandBarReflowTest = async (narrowFactor: number): Promise<Element> => {
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
