@@ -1789,8 +1789,8 @@
                       ><button
                         class="collapsible-control"
                         aria-expanded="false"
-                        aria-controls="content-container-failed-rule-1"
-                        aria-label="failed-rule-1 2 Failed failed-rule-1 description"
+                        aria-controls="content-container-bypass"
+                        aria-label="bypass 2 Failed Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content"
                         ><span
                           data-automation-id="rule-detail"
                           class="rule-detail"
@@ -1833,16 +1833,18 @@
                             ><span
                               data-automation-id="cards-rule-id"
                               class="rule-details-id"
-                              >failed-rule-1</span
+                              >bypass</span
                             >:
                             <span class="rule-details-description"
-                              >failed-rule-1 description</span
+                              >Ensures each page has at least one mechanism for
+                              a user to bypass navigation and jump straight to
+                              the content</span
                             ></span
                           ></span
                         ></button
                       ></div
                     ><div
-                      id="content-container-failed-rule-1"
+                      id="content-container-bypass"
                       class="collapsible-content"
                       aria-hidden="true"
                       ><div class="rule-more-resources--3PCDe"
@@ -1851,10 +1853,10 @@
                         ><span class="rule-details-id--ie-v-"
                           ><a
                             target="_blank"
-                            href="https://rules/failed-rule-1"
+                            href="https://accessibilityinsights.io/info-examples/web/bypass"
                             class="ms-Link insights-link root-49"
                             id="new-tab-link-with-confirmation-dialog__2"
-                            >More information about failed-rule-1</a
+                            >More information about bypass</a
                           ><script>
                             (function (linkId, doc, confirmCallback) {
                               const targetPageLink = doc.getElementById(linkId);
@@ -1877,94 +1879,44 @@
                               confirm
                             );
                           </script></span
-                        ><span></span></div
+                        ><span
+                          ><span class="guidance-links"
+                            ><a
+                              target="_blank"
+                              href="https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
+                              class="ms-Link insights-link root-49"
+                              id="new-tab-link-with-confirmation-dialog__3"
+                              >WCAG 2.4.1</a
+                            ><script>
+                              (function (linkId, doc, confirmCallback) {
+                                const targetPageLink = doc.getElementById(
+                                  linkId
+                                );
+                                targetPageLink.addEventListener(
+                                  "click",
+                                  function (event) {
+                                    const result = confirmCallback(
+                                      "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
+                                        "This link will open the target page in a new tab.\n\nPress OK to continue or " +
+                                        "Cancel to stay on the current page."
+                                    );
+                                    if (result === false) {
+                                      event.preventDefault();
+                                    }
+                                  }
+                                );
+                              })(
+                                "new-tab-link-with-confirmation-dialog__3",
+                                document,
+                                confirm
+                              );
+                            </script></span
+                          ></span
+                        ></div
                       ><ul
                         data-automation-id="cards-rule-content"
                         class="instance-details-list--2Beza"
                         aria-label="instances with path, snippet and how to resolve information"
-                        ><li
-                          ><div
-                            data-automation-id="instance-card"
-                            class="instance-details-card-container--_ELdq"
-                            ><div class="instance-details-card--OrpLo"
-                              ><div
-                                ><table class="report-instance-table--ljlFi"
-                                  ><tbody
-                                    ><tr class="row--kaG63"
-                                      ><th class="row-label--1iEmL">URL</th
-                                      ><td class="row-content--usdIW"
-                                        ><ul class="urls-row-content--2TTTB"
-                                          ><li
-                                            ><a
-                                              target="_blank"
-                                              href="https://url/rule-1/failure-1"
-                                              class="ms-Link insights-link root-49"
-                                              id="new-tab-link-with-confirmation-dialog__3"
-                                              >https://url/rule-1/failure-1</a
-                                            ><script>
-                                              (function (
-                                                linkId,
-                                                doc,
-                                                confirmCallback
-                                              ) {
-                                                const targetPageLink = doc.getElementById(
-                                                  linkId
-                                                );
-                                                targetPageLink.addEventListener(
-                                                  "click",
-                                                  function (event) {
-                                                    const result = confirmCallback(
-                                                      "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
-                                                        "This link will open the target page in a new tab.\n\nPress OK to continue or " +
-                                                        "Cancel to stay on the current page."
-                                                    );
-                                                    if (result === false) {
-                                                      event.preventDefault();
-                                                    }
-                                                  }
-                                                );
-                                              })(
-                                                "new-tab-link-with-confirmation-dialog__3",
-                                                document,
-                                                confirm
-                                              );
-                                            </script></li
-                                          ></ul
-                                        ></td
-                                      ></tr
-                                    ><tr class="row--kaG63"
-                                      ><th class="row-label--1iEmL">Path</th
-                                      ><td class="row-content--usdIW"
-                                        >.rule-1-selector-1</td
-                                      ></tr
-                                    ><tr class="row--kaG63"
-                                      ><th class="row-label--1iEmL">Snippet</th
-                                      ><td
-                                        class="row-content--usdIW snippet--msVz-"
-                                        >&lt;div&gt;snippet 1&lt;/div&gt;</td
-                                      ></tr
-                                    ><tr class="row--kaG63"
-                                      ><th class="row-label--1iEmL"
-                                        >How to fix</th
-                                      ><td class="row-content--usdIW"
-                                        ><div class="how-to-fix-content--2-Pc1"
-                                          ><div
-                                            ><div>Fix the following:</div
-                                            ><ul
-                                              class="insights-fix-instruction-list--1vUZj"
-                                              ><li
-                                                >fix failed-rule-1 failure 1</li
-                                              ></ul
-                                            ></div
-                                          ></div
-                                        ></td
-                                      ></tr
-                                    ></tbody
-                                  ></table
-                                ></div
-                              ></div
-                            ></div
-                          ></li
                         ><li
                           ><div
                             data-automation-id="instance-card"
@@ -2012,13 +1964,65 @@
                                                 confirm
                                               );
                                             </script></li
+                                          ></ul
+                                        ></td
+                                      ></tr
+                                    ><tr class="row--kaG63"
+                                      ><th class="row-label--1iEmL">Path</th
+                                      ><td class="row-content--usdIW"
+                                        >.rule-1-selector-1</td
+                                      ></tr
+                                    ><tr class="row--kaG63"
+                                      ><th class="row-label--1iEmL">Snippet</th
+                                      ><td
+                                        class="row-content--usdIW snippet--msVz-"
+                                        >&lt;div&gt;snippet 1&lt;/div&gt;</td
+                                      ></tr
+                                    ><tr class="row--kaG63"
+                                      ><th class="row-label--1iEmL"
+                                        >How to fix</th
+                                      ><td class="row-content--usdIW"
+                                        ><div class="how-to-fix-content--2-Pc1"
+                                          ><div
+                                            ><div>Fix ONE of the following:</div
+                                            ><ul
+                                              class="insights-fix-instruction-list--1vUZj"
+                                              ><li>No valid skip link found</li
+                                              ><li
+                                                >Page does not have a header</li
+                                              ><li
+                                                >Page does not have a landmark
+                                                region</li
+                                              ></ul
+                                            ></div
+                                          ></div
+                                        ></td
+                                      ></tr
+                                    ></tbody
+                                  ></table
+                                ></div
+                              ></div
+                            ></div
+                          ></li
+                        ><li
+                          ><div
+                            data-automation-id="instance-card"
+                            class="instance-details-card-container--_ELdq"
+                            ><div class="instance-details-card--OrpLo"
+                              ><div
+                                ><table class="report-instance-table--ljlFi"
+                                  ><tbody
+                                    ><tr class="row--kaG63"
+                                      ><th class="row-label--1iEmL">URL</th
+                                      ><td class="row-content--usdIW"
+                                        ><ul class="urls-row-content--2TTTB"
                                           ><li
                                             ><a
                                               target="_blank"
-                                              href="https://url/rule1/failure-2"
+                                              href="https://url/rule-1/failure-1"
                                               class="ms-Link insights-link root-49"
                                               id="new-tab-link-with-confirmation-dialog__5"
-                                              >https://url/rule1/failure-2</a
+                                              >https://url/rule-1/failure-1</a
                                             ><script>
                                               (function (
                                                 linkId,
@@ -2047,6 +2051,41 @@
                                                 confirm
                                               );
                                             </script></li
+                                          ><li
+                                            ><a
+                                              target="_blank"
+                                              href="https://url/rule1/failure-2"
+                                              class="ms-Link insights-link root-49"
+                                              id="new-tab-link-with-confirmation-dialog__6"
+                                              >https://url/rule1/failure-2</a
+                                            ><script>
+                                              (function (
+                                                linkId,
+                                                doc,
+                                                confirmCallback
+                                              ) {
+                                                const targetPageLink = doc.getElementById(
+                                                  linkId
+                                                );
+                                                targetPageLink.addEventListener(
+                                                  "click",
+                                                  function (event) {
+                                                    const result = confirmCallback(
+                                                      "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
+                                                        "This link will open the target page in a new tab.\n\nPress OK to continue or " +
+                                                        "Cancel to stay on the current page."
+                                                    );
+                                                    if (result === false) {
+                                                      event.preventDefault();
+                                                    }
+                                                  }
+                                                );
+                                              })(
+                                                "new-tab-link-with-confirmation-dialog__6",
+                                                document,
+                                                confirm
+                                              );
+                                            </script></li
                                           ></ul
                                         ></td
                                       ></tr
@@ -2067,11 +2106,15 @@
                                       ><td class="row-content--usdIW"
                                         ><div class="how-to-fix-content--2-Pc1"
                                           ><div
-                                            ><div>Fix the following:</div
+                                            ><div>Fix ONE of the following:</div
                                             ><ul
                                               class="insights-fix-instruction-list--1vUZj"
+                                              ><li>No valid skip link found</li
                                               ><li
-                                                >fix failed-rule-1 failure 2</li
+                                                >Page does not have a header</li
+                                              ><li
+                                                >Page does not have a landmark
+                                                region</li
                                               ></ul
                                             ></div
                                           ></div
@@ -2092,8 +2135,8 @@
                       ><button
                         class="collapsible-control"
                         aria-expanded="false"
-                        aria-controls="content-container-failed-rule-2"
-                        aria-label="failed-rule-2 1 Failed failed-rule-2 description"
+                        aria-controls="content-container-color-contrast"
+                        aria-label="color-contrast 1 Failed Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds"
                         ><span
                           data-automation-id="rule-detail"
                           class="rule-detail"
@@ -2136,16 +2179,18 @@
                             ><span
                               data-automation-id="cards-rule-id"
                               class="rule-details-id"
-                              >failed-rule-2</span
+                              >color-contrast</span
                             >:
                             <span class="rule-details-description"
-                              >failed-rule-2 description</span
+                              >Ensures the contrast between foreground and
+                              background colors meets WCAG 2 AA contrast ratio
+                              thresholds</span
                             ></span
                           ></span
                         ></button
                       ></div
                     ><div
-                      id="content-container-failed-rule-2"
+                      id="content-container-color-contrast"
                       class="collapsible-content"
                       aria-hidden="true"
                       ><div class="rule-more-resources--3PCDe"
@@ -2154,10 +2199,10 @@
                         ><span class="rule-details-id--ie-v-"
                           ><a
                             target="_blank"
-                            href="https://rules/failed-rule-2"
+                            href="https://accessibilityinsights.io/info-examples/web/color-contrast"
                             class="ms-Link insights-link root-49"
-                            id="new-tab-link-with-confirmation-dialog__6"
-                            >More information about failed-rule-2</a
+                            id="new-tab-link-with-confirmation-dialog__7"
+                            >More information about color-contrast</a
                           ><script>
                             (function (linkId, doc, confirmCallback) {
                               const targetPageLink = doc.getElementById(linkId);
@@ -2175,12 +2220,45 @@
                                 }
                               );
                             })(
-                              "new-tab-link-with-confirmation-dialog__6",
+                              "new-tab-link-with-confirmation-dialog__7",
                               document,
                               confirm
                             );
                           </script></span
-                        ><span></span></div
+                        ><span
+                          ><span class="guidance-links"
+                            ><a
+                              target="_blank"
+                              href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html"
+                              class="ms-Link insights-link root-49"
+                              id="new-tab-link-with-confirmation-dialog__8"
+                              >WCAG 1.4.3</a
+                            ><script>
+                              (function (linkId, doc, confirmCallback) {
+                                const targetPageLink = doc.getElementById(
+                                  linkId
+                                );
+                                targetPageLink.addEventListener(
+                                  "click",
+                                  function (event) {
+                                    const result = confirmCallback(
+                                      "Are you sure you want to navigate away from the Accessibility Insights report?\n" +
+                                        "This link will open the target page in a new tab.\n\nPress OK to continue or " +
+                                        "Cancel to stay on the current page."
+                                    );
+                                    if (result === false) {
+                                      event.preventDefault();
+                                    }
+                                  }
+                                );
+                              })(
+                                "new-tab-link-with-confirmation-dialog__8",
+                                document,
+                                confirm
+                              );
+                            </script></span
+                          ></span
+                        ></div
                       ><ul
                         data-automation-id="cards-rule-content"
                         class="instance-details-list--2Beza"
@@ -2202,7 +2280,7 @@
                                               target="_blank"
                                               href="https://url/rule2/failure1"
                                               class="ms-Link insights-link root-49"
-                                              id="new-tab-link-with-confirmation-dialog__7"
+                                              id="new-tab-link-with-confirmation-dialog__9"
                                               >https://url/rule2/failure1</a
                                             ><script>
                                               (function (
@@ -2227,7 +2305,7 @@
                                                   }
                                                 );
                                               })(
-                                                "new-tab-link-with-confirmation-dialog__7",
+                                                "new-tab-link-with-confirmation-dialog__9",
                                                 document,
                                                 confirm
                                               );
@@ -2252,13 +2330,45 @@
                                       ><td class="row-content--usdIW"
                                         ><div class="how-to-fix-content--2-Pc1"
                                           ><div
-                                            ><div>Fix ONE of the following:</div
+                                            ><div>Fix the following:</div
                                             ><ul
                                               class="insights-fix-instruction-list--1vUZj"
                                               ><li
-                                                >fix failed-rule-2 option 1</li
-                                              ><li
-                                                >fix failed-rule-2 option 2</li
+                                                ><span aria-hidden="true"
+                                                  ><span
+                                                    >Element has insufficient
+                                                    color contrast of 2.52
+                                                    (foreground color: </span
+                                                  ><span
+                                                    class="fix-instruction-color-box--HXJ1A"
+                                                    style="
+                                                      background-color: #8a94a8;
+                                                    "
+                                                  ></span
+                                                  ><span
+                                                    >#8a94a8, background color: </span
+                                                  ><span
+                                                    class="fix-instruction-color-box--HXJ1A"
+                                                    style="
+                                                      background-color: #e7ecd8;
+                                                    "
+                                                  ></span
+                                                  ><span
+                                                    >#e7ecd8, font size: 12.0pt
+                                                    (16px), font weight:
+                                                    normal). Expected contrast
+                                                    ratio of 4.5:1</span
+                                                  ></span
+                                                ><span
+                                                  class="screen-reader-only--1uWLQ"
+                                                  >Element has insufficient
+                                                  color contrast of 2.52
+                                                  (foreground color: #8a94a8,
+                                                  background color: #e7ecd8,
+                                                  font size: 12.0pt (16px), font
+                                                  weight: normal). Expected
+                                                  contrast ratio of 4.5:1</span
+                                                ></li
                                               ></ul
                                             ></div
                                           ></div
@@ -2318,7 +2428,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__8"
+                          id="new-tab-link-with-confirmation-dialog__10"
                           >WCAG 4.1.2</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2336,7 +2446,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__8",
+                            "new-tab-link-with-confirmation-dialog__10",
                             document,
                             confirm
                           );
@@ -2365,7 +2475,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__9"
+                          id="new-tab-link-with-confirmation-dialog__11"
                           >WCAG 4.1.2</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2383,7 +2493,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__9",
+                            "new-tab-link-with-confirmation-dialog__11",
                             document,
                             confirm
                           );
@@ -2412,7 +2522,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__10"
+                          id="new-tab-link-with-confirmation-dialog__12"
                           >WCAG 1.3.5</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2430,7 +2540,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__10",
+                            "new-tab-link-with-confirmation-dialog__12",
                             document,
                             confirm
                           );
@@ -2484,7 +2594,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__11"
+                          id="new-tab-link-with-confirmation-dialog__13"
                           >WCAG 1.1.1</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2502,7 +2612,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__11",
+                            "new-tab-link-with-confirmation-dialog__13",
                             document,
                             confirm
                           );</script
@@ -2511,7 +2621,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__12"
+                          id="new-tab-link-with-confirmation-dialog__14"
                           >WCAG 2.4.4</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2529,7 +2639,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__12",
+                            "new-tab-link-with-confirmation-dialog__14",
                             document,
                             confirm
                           );</script
@@ -2538,7 +2648,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__13"
+                          id="new-tab-link-with-confirmation-dialog__15"
                           >WCAG 4.1.2</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2556,7 +2666,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__13",
+                            "new-tab-link-with-confirmation-dialog__15",
                             document,
                             confirm
                           );
@@ -2585,7 +2695,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__14"
+                          id="new-tab-link-with-confirmation-dialog__16"
                           >WCAG 4.1.2</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2603,7 +2713,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__14",
+                            "new-tab-link-with-confirmation-dialog__16",
                             document,
                             confirm
                           );</script
@@ -2612,7 +2722,7 @@
                           target="_blank"
                           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
                           class="ms-Link insights-link root-49"
-                          id="new-tab-link-with-confirmation-dialog__15"
+                          id="new-tab-link-with-confirmation-dialog__17"
                           >WCAG 1.3.1</a
                         ><script>
                           (function (linkId, doc, confirmCallback) {
@@ -2630,7 +2740,7 @@
                               }
                             });
                           })(
-                            "new-tab-link-with-confirmation-dialog__15",
+                            "new-tab-link-with-confirmation-dialog__17",
                             document,
                             confirm
                           );
