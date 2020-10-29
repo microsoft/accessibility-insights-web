@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import * as styles from './results-by-url-container.scss';
-export type ResultsByUrlContainerProps = Pick<CombinedReportSectionProps, 'getCollapsibleScript'>;
+export type ResultsByUrlContainerProps = Pick<SummaryReportSectionProps, 'getCollapsibleScript'>;
 
 export const ResultsByUrlContainer = NamedFC<ResultsByUrlContainerProps>(
     'ResultsContainer',
