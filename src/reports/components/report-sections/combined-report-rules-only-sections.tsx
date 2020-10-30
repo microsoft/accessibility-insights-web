@@ -40,7 +40,7 @@ const makeCombinedReportRulesOnlySection = (options: {
                         outcomeType={outcomeType}
                     />
                 ),
-                headingLevel: 2,
+                headingLevel: 3,
                 deps: null,
             });
 

@@ -32,6 +32,7 @@ export type RulesWithInstancesProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
+    headingLevel: number;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -46,6 +47,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         userConfigurationStoreData,
         targetAppInfo,
         outcomeCounter,
+        headingLevel,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -76,7 +78,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 containerAutomationId: ruleGroupAutomationId,
                 containerClassName: styles.collapsibleRuleDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
-                headingLevel: 3,
+                headingLevel,
                 deps: deps,
                 isExpanded: rule.isExpanded,
             };

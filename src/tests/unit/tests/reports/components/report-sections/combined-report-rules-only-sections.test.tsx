@@ -9,14 +9,14 @@ import {
     CombinedReportRulesOnlySectionProps,
 } from 'reports/components/report-sections/combined-report-rules-only-sections';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
-import { It, Mock } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('CombinedReportRulesOnlySections', () => {
     let props: CombinedReportRulesOnlySectionProps;
     beforeEach(() => {
         const collapsibleControlMock = Mock.ofType<
             (props: CollapsibleComponentCardsProps) => JSX.Element
-        >();
+        >(undefined, MockBehavior.Strict);
         props = {
             deps: {
                 collapsibleControl: collapsibleControlMock.object,
@@ -27,7 +27,7 @@ describe('CombinedReportRulesOnlySections', () => {
         } as CombinedReportRulesOnlySectionProps;
 
         const expectedCollapsibleControlProps: Partial<CollapsibleComponentCardsProps> = {
-            headingLevel: 2,
+            headingLevel: 3,
             deps: null,
         };
 

@@ -38,6 +38,7 @@ describe('RulesWithInstances', () => {
                 userConfigurationStoreData={null}
                 targetAppInfo={{ name: 'app' }}
                 outcomeCounter={() => null}
+                headingLevel={5}
             />,
         );
 

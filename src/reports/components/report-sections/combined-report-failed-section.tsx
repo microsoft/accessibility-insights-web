@@ -43,9 +43,10 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     allCardsCollapsed={cardsViewData.allCardsCollapsed}
                     userConfigurationStoreData={null}
                     outcomeCounter={OutcomeCounter.countByIdentifierUrls}
+                    headingLevel={4}
                 />
             ),
-            headingLevel: 2,
+            headingLevel: 3,
             deps: null,
         });
 
