@@ -16,7 +16,6 @@ export const RulesResultsContainer = NamedFC<RulesResultsContainerProps>(
                     <div className={styles.resultsHeading}>Rules</div>
                     {children}
                 </div>
-                {/* tslint:disable-next-line: react-no-dangerous-html */}
                 <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
             </>
         );
