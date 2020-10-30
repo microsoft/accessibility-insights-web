@@ -178,6 +178,12 @@
         background-color: var(--pill-background);
         border-radius: 120px;
       }
+      .hidden-highlight-button {
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+      }
       .instance-details-card {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -185,7 +191,6 @@
         box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
           0px 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        cursor: pointer;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
@@ -196,14 +201,19 @@
       .instance-details-card.selected {
         border: 1px solid transparent;
       }
+      .instance-details-card.focused,
       .instance-details-card:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+      .instance-details-card.selected.focused,
       .instance-details-card.selected:focus {
         outline-offset: 8px;
       }
-      .instance-details-card:hover {
+      .instance-details-card.interactive {
+        cursor: pointer;
+      }
+      .instance-details-card.interactive:hover {
         box-shadow: 0px 8px 10px var(--box-shadow-108),
           0px 8px 10px var(--box-shadow-132);
       }
@@ -786,6 +796,12 @@
       .outcome-chip-container--3NUUD {
         min-width: 50px;
       }
+      .hidden-highlight-button--3g1WD {
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+      }
       .instance-details-card--OrpLo {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -793,7 +809,6 @@
         box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
           0px 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        cursor: pointer;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
@@ -804,14 +819,19 @@
       .instance-details-card--OrpLo.selected--3O8dW {
         border: 1px solid transparent;
       }
+      .instance-details-card--OrpLo.focused--1AKKx,
       .instance-details-card--OrpLo:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+      .instance-details-card--OrpLo.selected--3O8dW.focused--1AKKx,
       .instance-details-card--OrpLo.selected--3O8dW:focus {
         outline-offset: 8px;
       }
-      .instance-details-card--OrpLo:hover {
+      .instance-details-card--OrpLo.interactive--197c0 {
+        cursor: pointer;
+      }
+      .instance-details-card--OrpLo.interactive--197c0:hover {
         box-shadow: 0px 8px 10px var(--box-shadow-108),
           0px 8px 10px var(--box-shadow-132);
       }
@@ -1320,7 +1340,6 @@
       }
       .crawl-details-section--1fOcG .crawl-details-section-list--jnYUU li {
         display: inline-block;
-        padding-top: 6px;
       }
       .crawl-details-section--1fOcG
         .crawl-details-section-list--jnYUU
@@ -1330,10 +1349,23 @@
         position: relative;
         top: 3px;
       }
+      .crawl-details-section--1fOcG
+        .crawl-details-section-list--jnYUU
+        li.targetSite--21S0a {
+        margin-bottom: 6px;
+      }
       .crawl-details-section--1fOcG .text--10LOi,
       .crawl-details-section--1fOcG .label--2A9-a {
         word-break: break-all;
         color: var(--neutral-55);
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .crawl-details-section--1fOcG .label--2A9-a {
         font-weight: 600;
       }
       .crawl-details-section--1fOcG .label--2A9-a.no-icon--1hwhv {
@@ -1573,7 +1605,7 @@
             href="https://markreay.github.io/AU/before.html"
             class="ms-Link insights-link root-49"
             title="Page Title for Axe Results With Issues"
-            id="new-tab-link-with-confirmation-dialog__1"
+            id="new-tab-link-with-confirmation-dialog__0"
             >Page Title for Axe Results With Issues</a
           ><script>
             (function (linkId, doc, confirmCallback) {
@@ -1588,7 +1620,7 @@
                   event.preventDefault();
                 }
               });
-            })("new-tab-link-with-confirmation-dialog__1", document, confirm);
+            })("new-tab-link-with-confirmation-dialog__0", document, confirm);
           </script></div
         ></div
       ></header
@@ -1618,7 +1650,7 @@
                   href="https://markreay.github.io/AU/before.html"
                   class="ms-Link insights-link root-49"
                   title="Page Title for Axe Results With Issues"
-                  id="new-tab-link-with-confirmation-dialog__2"
+                  id="new-tab-link-with-confirmation-dialog__1"
                   >https://markreay.github.io/AU/before.html</a
                 ><script>
                   (function (linkId, doc, confirmCallback) {
@@ -1634,7 +1666,7 @@
                       }
                     });
                   })(
-                    "new-tab-link-with-confirmation-dialog__2",
+                    "new-tab-link-with-confirmation-dialog__1",
                     document,
                     confirm
                   );
@@ -1875,14 +1907,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label="html card"
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2011,14 +2037,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='li:nth-child(1) &gt; a[href="\#"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2091,14 +2111,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='li:nth-child(2) &gt; a[href="\#"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2171,14 +2185,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='li:nth-child(3) &gt; a[href="\#"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2251,14 +2259,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='li:nth-child(4) &gt; a[href="\#"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2419,14 +2421,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label="html card"
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2552,14 +2548,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='img[src$="slide2\.jpg"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2618,14 +2608,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='img[src$="arrow-left\.png"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2684,14 +2668,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='img[src$="arrow-right\.png"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2750,14 +2728,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='img[src$="captcha\.png"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2909,14 +2881,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="name"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -2970,14 +2936,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="email"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3031,14 +2991,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="city"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3092,14 +3046,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="state"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3153,14 +3101,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="zip"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3214,14 +3156,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="country"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3275,14 +3211,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="major_cs"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3336,14 +3266,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="major_eng"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3397,14 +3321,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="major_econ"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3458,14 +3376,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="major_phy"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3519,14 +3431,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="major_psy"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3580,14 +3486,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="major_sp"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3641,14 +3541,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label='input[name="captcha"] card'
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3790,14 +3684,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label="html card"
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -3922,14 +3810,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label="html card"
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"
@@ -4054,14 +3936,8 @@
                       ><div
                         data-automation-id="instance-card"
                         class="instance-details-card-container--_ELdq"
-                        role="table"
-                        ><div
-                          class="instance-details-card--OrpLo"
-                          tabindex="0"
-                          aria-selected="false"
-                          aria-label="html card"
-                          role="row"
-                          ><div role="gridcell"
+                        ><div class="instance-details-card--OrpLo"
+                          ><div
                             ><table class="report-instance-table--ljlFi"
                               ><tbody
                                 ><tr class="row--kaG63"

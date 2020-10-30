@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
-import { inspect } from 'util';
 
 import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import {
@@ -17,6 +16,7 @@ import {
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
+import { serializeError } from 'tests/common/serialize-error';
 
 const promiseFactory = createDefaultPromiseFactory();
 
@@ -30,10 +30,6 @@ export class Page {
             forceTestFailure(
                 `Playwright.Page '${underlyingPage.url()}' emitted ${eventDescription}`,
             );
-        }
-
-        function serializeError(error: Error): string {
-            return `[Error]{\n${inspect(error, { compact: false, depth: 4 })}\n}`;
         }
 
         underlyingPage.on('pageerror', error => {

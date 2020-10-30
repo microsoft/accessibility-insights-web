@@ -1,14 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
-import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 import {
+    focused,
+    hiddenHighlightButton,
     instanceDetailsCard,
     instanceDetailsCardContainer,
+    interactive,
     reportInstanceTable,
     selected,
 } from 'reports/components/instance-details.scss';
@@ -44,84 +46,68 @@ export type InstanceDetailsProps = {
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
-    const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
+    const { result, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
+    const [cardFocused, setCardFocus] = React.useState(false);
 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
-    const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
-        let propertyIndex = 0;
-        const cardRows = [];
-        forOwn(propertyBag, (propertyData, propertyName) => {
-            const propertyConfig = deps.getPropertyConfigById(propertyName);
-            if (!isEmpty(propertyConfig)) {
-                const CardRow = propertyConfig.cardRow;
-                ++propertyIndex;
-                cardRows.push(
-                    <CardRow
-                        deps={deps}
-                        propertyData={propertyData}
-                        index={index}
-                        key={`${propertyName}-${propertyIndex}`}
-                    />,
-                );
-            }
-        });
-        return <>{cardRows}</>;
-    };
-
-    const cardClickHandler = (event: React.SyntheticEvent): void => {
-        if (isHighlightSupported) {
-            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
-        }
-    };
-
-    const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
-        if (
-            event.keyCode === KeyCodeConstants.ENTER ||
-            event.keyCode === KeyCodeConstants.SPACEBAR
-        ) {
-            event.preventDefault();
-            cardClickHandler(event);
-        }
-    };
-
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
-        [selected]: isHighlightSupported ? result.isSelected : false,
+        [selected]: isHighlightSupported && result.isSelected,
+        [focused]: isHighlightSupported && cardFocused,
+        [interactive]: isHighlightSupported,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
         [instanceDetailsCardContainer]: true,
-        [selected]: isHighlightSupported ? result.isSelected : false,
+        [selected]: isHighlightSupported && result.isSelected,
     });
 
-    const cardAriaLabel = `${
-        result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''
-    } card`;
+    const toggleSelectHandler = (event: React.SyntheticEvent): void => {
+        event.stopPropagation();
+        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
+    };
+
+    const hiddenButton = React.useRef(null);
+    const cardHighlightingProperties = isHighlightSupported
+        ? {
+              onClick: (_: React.SyntheticEvent): void => {
+                  hiddenButton.current?.focus();
+                  hiddenButton.current?.click();
+              },
+              tabIndex: -1,
+          }
+        : {};
 
     return (
         <div
             data-automation-id={instanceCardAutomationId}
             className={instanceDetailsCardContainerStyling}
-            role="table"
         >
-            <div
-                className={instanceDetailsCardStyling}
-                tabIndex={0}
-                onClick={cardClickHandler}
-                onKeyDown={cardKeyPressHandler}
-                aria-selected={result.isSelected}
-                aria-label={cardAriaLabel}
-                role="row"
-            >
-                <div role="gridcell">
+            <div className={instanceDetailsCardStyling} {...cardHighlightingProperties}>
+                <div>
                     <table className={reportInstanceTable}>
                         <tbody>
-                            {renderCardRowsForPropertyBag(result.identifiers)}
-                            {renderCardRowsForPropertyBag(result.descriptors)}
-                            {renderCardRowsForPropertyBag(result.resolution)}
+                            {renderCardRowsForPropertyBag(result.identifiers, props)}
+                            {renderCardRowsForPropertyBag(result.descriptors, props)}
+                            {renderCardRowsForPropertyBag(result.resolution, props)}
                         </tbody>
                     </table>
+                    {isHighlightSupported && (
+                        <button
+                            ref={hiddenButton}
+                            onClick={toggleSelectHandler}
+                            className={hiddenHighlightButton}
+                            aria-label={`highlight ${
+                                result.identifiers && result.identifiers.identifier
+                                    ? result.identifiers.identifier
+                                    : ''
+                            }`}
+                            aria-pressed={result.isSelected}
+                            onFocus={_ => setCardFocus(true)}
+                            onBlur={_ => setCardFocus(false)}
+                        ></button>
+                    )}
                     <InstanceDetailsFooter
                         deps={deps}
                         result={result}
@@ -134,3 +120,27 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         </div>
     );
 });
+
+const renderCardRowsForPropertyBag = (
+    propertyBag: StoredInstancePropertyBag,
+    props: InstanceDetailsProps,
+) => {
+    let propertyIndex = 0;
+    const cardRows = [];
+    forOwn(propertyBag, (propertyData, propertyName) => {
+        const propertyConfig = props.deps.getPropertyConfigById(propertyName);
+        if (!isEmpty(propertyConfig)) {
+            const CardRow = propertyConfig.cardRow;
+            ++propertyIndex;
+            cardRows.push(
+                <CardRow
+                    deps={props.deps}
+                    propertyData={propertyData}
+                    index={props.index}
+                    key={`${propertyName}-${propertyIndex}`}
+                />,
+            );
+        }
+    });
+    return <>{cardRows}</>;
+};

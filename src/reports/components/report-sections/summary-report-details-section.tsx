@@ -15,9 +15,14 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
         const { scanMetadata, toUtcString, secondsToTimeString } = props;
         const scanTimespan = scanMetadata.timespan;
 
-        const createListItem = (label: string, content: string | JSX.Element, icon?: JSX.Element) =>
+        const createListItem = (
+            label: string,
+            content: string | JSX.Element,
+            icon?: JSX.Element,
+            className?: string,
+        ) =>
             icon ? (
-                <li>
+                <li className={className}>
                     <span className={styles.icon} aria-hidden="true">
                         {icon}
                     </span>
@@ -25,7 +30,7 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
                     <span className={styles.text}>{content}</span>
                 </li>
             ) : (
-                <li>
+                <li className={className}>
                     <span className={css(styles.noIcon, styles.label)}>{`${label} `}</span>
                     <span className={styles.text}>{content}</span>
                 </li>
@@ -48,6 +53,7 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
                         <UrlIcon />,
+                        styles.targetSite,
                     )}
                     {createListItem('Scans started', scanStartUTC, <DateIcon />)}
                     {createListItem('Scans completed', scanCompleteUTC)}

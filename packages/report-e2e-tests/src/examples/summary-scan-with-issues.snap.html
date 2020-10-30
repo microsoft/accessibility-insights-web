@@ -178,6 +178,12 @@
         background-color: var(--pill-background);
         border-radius: 120px;
       }
+      .hidden-highlight-button {
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+      }
       .instance-details-card {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -185,7 +191,6 @@
         box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
           0px 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        cursor: pointer;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
@@ -196,14 +201,19 @@
       .instance-details-card.selected {
         border: 1px solid transparent;
       }
+      .instance-details-card.focused,
       .instance-details-card:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+      .instance-details-card.selected.focused,
       .instance-details-card.selected:focus {
         outline-offset: 8px;
       }
-      .instance-details-card:hover {
+      .instance-details-card.interactive {
+        cursor: pointer;
+      }
+      .instance-details-card.interactive:hover {
         box-shadow: 0px 8px 10px var(--box-shadow-108),
           0px 8px 10px var(--box-shadow-132);
       }
@@ -786,6 +796,12 @@
       .outcome-chip-container--3NUUD {
         min-width: 50px;
       }
+      .hidden-highlight-button--3g1WD {
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+      }
       .instance-details-card--OrpLo {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -793,7 +809,6 @@
         box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
           0px 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        cursor: pointer;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
@@ -804,14 +819,19 @@
       .instance-details-card--OrpLo.selected--3O8dW {
         border: 1px solid transparent;
       }
+      .instance-details-card--OrpLo.focused--1AKKx,
       .instance-details-card--OrpLo:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+      .instance-details-card--OrpLo.selected--3O8dW.focused--1AKKx,
       .instance-details-card--OrpLo.selected--3O8dW:focus {
         outline-offset: 8px;
       }
-      .instance-details-card--OrpLo:hover {
+      .instance-details-card--OrpLo.interactive--197c0 {
+        cursor: pointer;
+      }
+      .instance-details-card--OrpLo.interactive--197c0:hover {
         box-shadow: 0px 8px 10px var(--box-shadow-108),
           0px 8px 10px var(--box-shadow-132);
       }
@@ -1320,7 +1340,6 @@
       }
       .crawl-details-section--1fOcG .crawl-details-section-list--jnYUU li {
         display: inline-block;
-        padding-top: 6px;
       }
       .crawl-details-section--1fOcG
         .crawl-details-section-list--jnYUU
@@ -1330,10 +1349,23 @@
         position: relative;
         top: 3px;
       }
+      .crawl-details-section--1fOcG
+        .crawl-details-section-list--jnYUU
+        li.targetSite--21S0a {
+        margin-bottom: 6px;
+      }
       .crawl-details-section--1fOcG .text--10LOi,
       .crawl-details-section--1fOcG .label--2A9-a {
         word-break: break-all;
         color: var(--neutral-55);
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .crawl-details-section--1fOcG .label--2A9-a {
         font-weight: 600;
       }
       .crawl-details-section--1fOcG .label--2A9-a.no-icon--1hwhv {
@@ -1573,7 +1605,7 @@
         ><div class="crawl-details-section--1fOcG"
           ><h2>Scan details</h2
           ><ul class="crawl-details-section-list--jnYUU"
-            ><li
+            ><li class="targetSite--21S0a"
               ><span class="icon--2efHF" aria-hidden="true"
                 ><svg
                   width="17"
@@ -1593,7 +1625,7 @@
                   href="https://example.com/mock-base-url"
                   class="ms-Link insights-link root-49"
                   title="Mock base with failures and unscannables"
-                  id="new-tab-link-with-confirmation-dialog__1"
+                  id="new-tab-link-with-confirmation-dialog__0"
                   >https://example.com/mock-base-url</a
                 ><script>
                   (function (linkId, doc, confirmCallback) {
@@ -1609,7 +1641,7 @@
                       }
                     });
                   })(
-                    "new-tab-link-with-confirmation-dialog__1",
+                    "new-tab-link-with-confirmation-dialog__0",
                     document,
                     confirm
                   );
