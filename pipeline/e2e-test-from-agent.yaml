@@ -8,3 +8,5 @@ steps:
     - script: yarn test:e2e --ci
       displayName: run e2e tests
       timeoutInMinutes: 15
+      env:
+          DEBUG: 'pw:browser'
