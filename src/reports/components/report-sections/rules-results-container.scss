@@ -1,0 +1,13 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/fonts.scss';
+
+.rules-results-container {
+    margin-top: 56px;
+    .results-heading {
+        margin-top: 32px;
+        margin-bottom: 32px;
+        @include text-style-title-s;
+    }
+}
