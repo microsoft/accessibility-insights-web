@@ -31,6 +31,7 @@ export type ResultSectionContentProps = {
     visualHelperEnabled: boolean;
     allCardsCollapsed: boolean;
     outcomeCounter: OutcomeCounter;
+    headingLevel: number;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -44,6 +45,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             userConfigurationStoreData,
             targetAppInfo,
             outcomeCounter,
+            headingLevel,
         } = props;
         if (results.length === 0) {
             return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
@@ -60,6 +62,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     userConfigurationStoreData={userConfigurationStoreData}
                     targetAppInfo={targetAppInfo}
                     outcomeCounter={outcomeCounter}
+                    headingLevel={headingLevel}
                 />
             </>
         );

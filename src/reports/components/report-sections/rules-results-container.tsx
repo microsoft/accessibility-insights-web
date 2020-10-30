@@ -13,7 +13,7 @@ export const RulesResultsContainer = NamedFC<RulesResultsContainerProps>(
         return (
             <>
                 <div className={styles.rulesResultsContainer}>
-                    <div className={styles.resultsHeading}>Rules</div>
+                    <h2 className={styles.resultsHeading}>Rules</h2>
                     {children}
                 </div>
                 <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />

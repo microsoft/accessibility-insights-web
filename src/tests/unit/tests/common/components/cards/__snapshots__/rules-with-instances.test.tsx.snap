@@ -125,7 +125,7 @@ exports[`RulesWithInstances renders 1`] = `
         }
       />
     }
-    headingLevel={3}
+    headingLevel={5}
     id="some-rule"
   />
 </div>

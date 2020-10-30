@@ -49,6 +49,7 @@ export const NeedsReviewInstancesSection = NamedFC<NeedsReviewInstancesSectionPr
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
                 outcomeCounter={OutcomeCounter.countByCards}
+                headingLevel={3}
             />
         );
     },

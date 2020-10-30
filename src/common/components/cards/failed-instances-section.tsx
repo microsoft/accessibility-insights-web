@@ -49,6 +49,7 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
                 visualHelperEnabled={cardsViewData.visualHelperEnabled}
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
                 outcomeCounter={OutcomeCounter.countByCards}
+                headingLevel={3}
             />
         );
     },
