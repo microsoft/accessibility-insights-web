@@ -54,8 +54,10 @@ export const UrlsSummarySection = NamedFC<UrlsSummarySectionProps>('UrlsSummaryS
         return (
             <div className={styles.failureInstances}>
                 <h2>Failure Instances</h2>
-                <OutcomeChip count={failureInstancesCount} outcomeType={'fail'} /> Failure instances
-                were detected
+                <span className={styles.failureOutcomeChip}>
+                    <OutcomeChip count={failureInstancesCount} outcomeType={'fail'} />
+                    <span>Failure instances were detected</span>
+                </span>
             </div>
         );
     };
