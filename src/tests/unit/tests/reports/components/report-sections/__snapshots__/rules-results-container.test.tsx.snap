@@ -5,11 +5,13 @@ exports[` renders 1`] = `
   <div
     className="rulesResultsContainer"
   >
-    <h2
+    <div
       className="resultsHeading"
     >
-      Rules
-    </h2>
+      <h2>
+        Rules
+      </h2>
+    </div>
     <div>
       1
     </div>
