@@ -91,7 +91,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
             >
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
-                    const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
+                    const count = outcomeCounter(rule.nodes);
+                    const buttonAriaLabel = `${rule.id} ${count} ${pastTense} ${rule.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
                     );
