@@ -160,7 +160,7 @@
         "appium-adb": "^8.8.1",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "4.0.2",
-        "axios": "^0.20.0",
+        "axios": "^0.21.0",
         "classnames": "^2.2.6",
         "electron": "8.4.1",
         "electron-log": "^4.2.4",
