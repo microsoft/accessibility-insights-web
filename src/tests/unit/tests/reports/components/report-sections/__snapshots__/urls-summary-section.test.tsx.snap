@@ -8,8 +8,12 @@ exports[` renders 1`] = `
     <h2>
       URLs
     </h2>
-    6
-     total URLs discovered
+    <span
+      className="totalUrls"
+    >
+      6
+    </span>
+     total URLs scanned
   </React.Fragment>
   <OutcomeSummaryBar
     allOutcomeTypes={
@@ -35,11 +39,17 @@ exports[` renders 1`] = `
     <h2>
       Failure Instances
     </h2>
-    <OutcomeChip
-      count={10}
-      outcomeType="fail"
-    />
-     Failure instances were detected
+    <span
+      className="failureOutcomeChip"
+    >
+      <OutcomeChip
+        count={10}
+        outcomeType="fail"
+      />
+      <span>
+        Failure instances were detected
+      </span>
+    </span>
   </div>
 </div>
 `;

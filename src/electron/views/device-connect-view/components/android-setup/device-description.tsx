@@ -7,27 +7,33 @@ import { css, Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './device-description.scss';
 
-export interface DeviceDescriptionProps extends DeviceInfo {
+export interface DeviceDescriptionProps {
+    deviceInfo?: DeviceInfo;
     className?: string;
     currentApplication?: string;
 }
 
 export const deviceDescriptionAutomationId = 'device-description';
 export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescription', props => {
-    const iconName: string = props.isEmulator ? 'Devices3' : 'CellPhone';
-    const iconAriaLabel: string = props.isEmulator ? 'Emulator' : 'Device';
+    if (props.deviceInfo == null) {
+        return null;
+    }
+
+    const { isEmulator, friendlyName } = props.deviceInfo;
+    const iconName: string = isEmulator ? 'Devices3' : 'CellPhone';
+    const iconAriaLabel: string = isEmulator ? 'Emulator' : 'Device';
 
     let descriptionAndApp;
 
     if (props.currentApplication) {
         descriptionAndApp = (
             <div className={styles.deviceAndCurrentApplication}>
-                {props.friendlyName}
+                {props.deviceInfo.friendlyName}
                 <div className={styles.currentApplication}>{props.currentApplication}</div>
             </div>
         );
     } else {
-        descriptionAndApp = props.friendlyName;
+        descriptionAndApp = friendlyName;
     }
 
     return (

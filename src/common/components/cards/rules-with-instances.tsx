@@ -3,6 +3,7 @@
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
@@ -30,6 +31,8 @@ export type RulesWithInstancesProps = {
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    outcomeCounter: OutcomeCounter;
+    headingLevel: number;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -43,6 +46,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         deps,
         userConfigurationStoreData,
         targetAppInfo,
+        outcomeCounter,
+        headingLevel,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -52,7 +57,14 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,
-                header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
+                header: (
+                    <MinimalRuleHeader
+                        key={rule.id}
+                        rule={rule}
+                        outcomeType={outcomeType}
+                        outcomeCounter={outcomeCounter}
+                    />
+                ),
                 content: (
                     <RuleContent
                         key={`${rule.id}-rule-group`}
@@ -66,7 +78,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 containerAutomationId: ruleGroupAutomationId,
                 containerClassName: styles.collapsibleRuleDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
-                headingLevel: 3,
+                headingLevel,
                 deps: deps,
                 isExpanded: rule.isExpanded,
             };
@@ -79,7 +91,8 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
             >
                 {rules.map((rule, idx) => {
                     const { pastTense } = outcomeTypeSemantics[outcomeType];
-                    const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
+                    const count = outcomeCounter(rule.nodes);
+                    const buttonAriaLabel = `${rule.id} ${count} ${pastTense} ${rule.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(rule, idx, buttonAriaLabel),
                     );

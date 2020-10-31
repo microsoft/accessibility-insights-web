@@ -4,20 +4,13 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
   className="instanceDetailsCardContainer selected"
   data-automation-id="instance-card"
-  role="table"
 >
   <div
-    aria-label="test-id card"
-    aria-selected={true}
-    className="instanceDetailsCard selected"
+    className="instanceDetailsCard selected interactive"
     onClick={[Function]}
-    onKeyDown={[Function]}
-    role="row"
-    tabIndex={0}
+    tabIndex={-1}
   >
-    <div
-      role="gridcell"
-    >
+    <div>
       <table
         className="reportInstanceTable"
       >
@@ -27,6 +20,14 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
           <React.Fragment />
         </tbody>
       </table>
+      <button
+        aria-label="highlight test-id"
+        aria-pressed={true}
+        className="hiddenHighlightButton"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+      />
       <InstanceDetailsFooter
         deps={
           Object {
@@ -74,20 +75,13 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 <div
   className="instanceDetailsCardContainer"
   data-automation-id="instance-card"
-  role="table"
 >
   <div
-    aria-label="test-id card"
-    aria-selected={false}
-    className="instanceDetailsCard"
+    className="instanceDetailsCard interactive"
     onClick={[Function]}
-    onKeyDown={[Function]}
-    role="row"
-    tabIndex={0}
+    tabIndex={-1}
   >
-    <div
-      role="gridcell"
-    >
+    <div>
       <table
         className="reportInstanceTable"
       >
@@ -97,6 +91,14 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
           <React.Fragment />
         </tbody>
       </table>
+      <button
+        aria-label="highlight test-id"
+        aria-pressed={false}
+        className="hiddenHighlightButton"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+      />
       <InstanceDetailsFooter
         deps={
           Object {
@@ -144,19 +146,13 @@ exports[`InstanceDetails renders 1`] = `
 <div
   className="instanceDetailsCardContainer"
   data-automation-id="instance-card"
-  role="table"
 >
   <div
-    aria-label="body img card"
-    className="instanceDetailsCard"
+    className="instanceDetailsCard interactive"
     onClick={[Function]}
-    onKeyDown={[Function]}
-    role="row"
-    tabIndex={0}
+    tabIndex={-1}
   >
-    <div
-      role="gridcell"
-    >
+    <div>
       <table
         className="reportInstanceTable"
       >
@@ -254,6 +250,13 @@ exports[`InstanceDetails renders 1`] = `
           </React.Fragment>
         </tbody>
       </table>
+      <button
+        aria-label="highlight body img"
+        className="hiddenHighlightButton"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+      />
       <InstanceDetailsFooter
         deps={
           Object {
@@ -313,19 +316,13 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
 <div
   className="instanceDetailsCardContainer"
   data-automation-id="instance-card"
-  role="table"
 >
   <div
-    aria-label="test-id card"
-    className="instanceDetailsCard"
+    className="instanceDetailsCard interactive"
     onClick={[Function]}
-    onKeyDown={[Function]}
-    role="row"
-    tabIndex={0}
+    tabIndex={-1}
   >
-    <div
-      role="gridcell"
-    >
+    <div>
       <table
         className="reportInstanceTable"
       >
@@ -335,6 +332,13 @@ exports[`InstanceDetails renders nothing when there is no card row configuration
           <React.Fragment />
         </tbody>
       </table>
+      <button
+        aria-label="highlight test-id"
+        className="hiddenHighlightButton"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+      />
       <InstanceDetailsFooter
         deps={
           Object {

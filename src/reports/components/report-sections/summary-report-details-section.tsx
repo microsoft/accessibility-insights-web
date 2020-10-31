@@ -3,9 +3,11 @@
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
 import { NamedFC } from 'common/react/named-fc';
+import { css } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
+import * as styles from './summary-report-details-section.scss';
 
 export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps>(
     'SummaryReportDetailsSection',
@@ -13,19 +15,24 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
         const { scanMetadata, toUtcString, secondsToTimeString } = props;
         const scanTimespan = scanMetadata.timespan;
 
-        const createListItem = (label: string, content: string | JSX.Element, icon?: JSX.Element) =>
+        const createListItem = (
+            label: string,
+            content: string | JSX.Element,
+            icon?: JSX.Element,
+            className?: string,
+        ) =>
             icon ? (
-                <li>
-                    <span className="icon" aria-hidden="true">
+                <li className={className}>
+                    <span className={styles.icon} aria-hidden="true">
                         {icon}
                     </span>
-                    <span className="label">{`${label} `}</span>
-                    <span className="text">{content}</span>
+                    <span className={styles.label}>{`${label} `}</span>
+                    <span className={styles.text}>{content}</span>
                 </li>
             ) : (
-                <li>
-                    <span className="label no-icon">{`${label} `}</span>
-                    <span className="text">{content}</span>
+                <li className={className}>
+                    <span className={css(styles.noIcon, styles.label)}>{`${label} `}</span>
+                    <span className={styles.text}>{content}</span>
                 </li>
             );
 
@@ -34,9 +41,9 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
         const duration = secondsToTimeString(scanTimespan.durationSeconds);
 
         return (
-            <div className="crawl-details-section">
+            <div className={styles.crawlDetailsSection}>
                 <h2>Scan details</h2>
-                <ul className="crawl-details-section-list">
+                <ul className={styles.crawlDetailsSectionList}>
                     {createListItem(
                         'Target site',
                         <NewTabLinkWithConfirmationDialog
@@ -46,6 +53,7 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
                             {scanMetadata.targetAppInfo.url}
                         </NewTabLinkWithConfirmationDialog>,
                         <UrlIcon />,
+                        styles.targetSite,
                     )}
                     {createListItem('Scans started', scanStartUTC, <DateIcon />)}
                     {createListItem('Scans completed', scanCompleteUTC)}

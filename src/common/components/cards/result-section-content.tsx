@@ -4,6 +4,7 @@ import { CardsVisualizationModifierButtons } from 'common/components/cards/cards
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
@@ -29,6 +30,8 @@ export type ResultSectionContentProps = {
     targetAppInfo: TargetAppData;
     visualHelperEnabled: boolean;
     allCardsCollapsed: boolean;
+    outcomeCounter: OutcomeCounter;
+    headingLevel: number;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -41,6 +44,8 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
             deps,
             userConfigurationStoreData,
             targetAppInfo,
+            outcomeCounter,
+            headingLevel,
         } = props;
         if (results.length === 0) {
             return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
@@ -56,6 +61,8 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     fixInstructionProcessor={fixInstructionProcessor}
                     userConfigurationStoreData={userConfigurationStoreData}
                     targetAppInfo={targetAppInfo}
+                    outcomeCounter={outcomeCounter}
+                    headingLevel={headingLevel}
                 />
             </>
         );

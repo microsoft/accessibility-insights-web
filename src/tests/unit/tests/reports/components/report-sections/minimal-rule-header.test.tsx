@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
+import { OutcomeCounter } from 'reports/components/outcome-counter';
 import {
     MinimalRuleHeader,
     MinimalRuleHeaderProps,
@@ -14,11 +15,13 @@ describe('MinimalRuleHeader', () => {
         description: 'rule description',
         nodes: [{}],
     };
+    const outcomeCounterStub: OutcomeCounter = _ => 2;
 
     it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
         const props: MinimalRuleHeaderProps = {
             rule,
             outcomeType,
+            outcomeCounter: outcomeCounterStub,
         };
 
         const wrapped = shallow(<MinimalRuleHeader {...props} />);

@@ -12,7 +12,6 @@ export const ResultsContainer = NamedFC<ResultsContainerProps>(
         return (
             <>
                 <div className="results-container">{children}</div>
-                {/* tslint:disable-next-line: react-no-dangerous-html */}
                 <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
             </>
         );

@@ -51,7 +51,7 @@ export class CombinedReportHtmlGenerator {
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLinkWithConfirmationDialog,
             } as SectionDeps,
-            cardsByRule,
+            cardsViewData: cardsByRule,
             urlResultCounts,
             toUtcString: this.utcDateConverter,
             secondsToTimeString: this.secondsToTimeStringConverter,

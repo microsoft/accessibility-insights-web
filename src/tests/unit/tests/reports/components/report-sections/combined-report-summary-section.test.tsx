@@ -52,7 +52,7 @@ describe(CombinedReportSummarySection, () => {
     it('renders', () => {
         const props = ({
             urlResultCounts,
-            cardsByRule: {
+            cardsViewData: {
                 cards,
             },
         } as unknown) as CombinedReportSectionProps;

@@ -6,7 +6,7 @@ exports[`RulesWithInstances renders 1`] = `
   data-automation-id="rule-details-group"
 >
   <CollapsibleControlStub
-    buttonAriaLabel="some-rule 1 Passed sample-description"
+    buttonAriaLabel="some-rule 5 Passed sample-description"
     containerAutomationId="cards-rule-group"
     containerClassName="collapsibleRuleDetailsGroup"
     content={
@@ -81,6 +81,7 @@ exports[`RulesWithInstances renders 1`] = `
     }
     header={
       <MinimalRuleHeader
+        outcomeCounter={[Function]}
         outcomeType="pass"
         rule={
           Object {
@@ -124,7 +125,7 @@ exports[`RulesWithInstances renders 1`] = `
         }
       />
     }
-    headingLevel={3}
+    headingLevel={5}
     id="some-rule"
   />
 </div>
