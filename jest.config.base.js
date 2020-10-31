@@ -23,7 +23,7 @@ module.exports = {
     displayName: '<should be overriden by individual jest.configs>',
     globals: {
         'ts-jest': {
-            tsConfig: '<rootDir>/tsconfig.json',
+            tsconfig: '<rootDir>/tsconfig.json',
         },
     },
     moduleDirectories: ['node_modules'],
