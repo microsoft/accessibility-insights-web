@@ -80,7 +80,7 @@
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^26.0.15",
         "@types/jsdom": "^16.2.5",
-        "@types/lodash": "^4.14.162",
+        "@types/lodash": "^4.14.164",
         "@types/luxon": "^1.25.0",
         "@types/make-dir": "^2.1.0",
         "@types/q": "^1.5.4",
