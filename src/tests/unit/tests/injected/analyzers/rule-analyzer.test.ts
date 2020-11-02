@@ -4,6 +4,7 @@ import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isFunction } from 'lodash';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
@@ -136,6 +137,7 @@ describe('RuleAnalyzer', () => {
             visualizationConfigurationFactoryMock.object,
             postResolveCallbackMock.object,
             scanIncompleteWarningDetectorMock.object,
+            failTestOnErrorLogger,
         );
 
         const scanResults = createTestResults();
