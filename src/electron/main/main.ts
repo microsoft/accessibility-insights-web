@@ -37,6 +37,7 @@ const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         show: false,
+        // enableRemoteModule required for spectron (https://github.com/electron-userland/spectron/issues/693#issuecomment-696957538)
         webPreferences: { nodeIntegration: true, enableRemoteModule: true },
         titleBarStyle: 'hidden',
         width: mainWindowConfig.defaultWidth,
