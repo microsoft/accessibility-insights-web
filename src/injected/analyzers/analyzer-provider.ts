@@ -55,6 +55,7 @@ export class AnalyzerProvider {
             this.visualizationConfigFactory,
             null,
             this.scanIncompleteWarningDetector,
+            this.logger,
         );
     }
 
@@ -71,6 +72,7 @@ export class AnalyzerProvider {
             this.visualizationConfigFactory,
             this.sendConvertedResults,
             this.scanIncompleteWarningDetector,
+            this.logger,
         );
     }
 
@@ -87,6 +89,7 @@ export class AnalyzerProvider {
             this.visualizationConfigFactory,
             this.sendNeedsReviewResults,
             this.scanIncompleteWarningDetector,
+            this.logger,
         );
     }
 
