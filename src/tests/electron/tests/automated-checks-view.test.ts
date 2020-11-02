@@ -147,20 +147,20 @@ describe('AutomatedChecksView', () => {
         const axeRuleResultExample = JSON.parse(
             fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
         );
-
         const expectedScreenshotImage =
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
+        await automatedChecksView.waitForSelector(ScreenshotViewSelectors.screenshotImage);
         const actualScreenshotImage = await automatedChecksView.client.getAttribute<string>(
             ScreenshotViewSelectors.screenshotImage,
             'src',
         );
+
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
-        await automatedChecksView.waitForScreenshotViewVisible();
-
+        await automatedChecksView.waitForSelector(ScreenshotViewSelectors.highlightBox);
         const styles = await automatedChecksView.client.getAttribute<string[]>(
             ScreenshotViewSelectors.highlightBox,
             'style',
