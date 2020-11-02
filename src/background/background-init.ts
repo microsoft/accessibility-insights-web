@@ -6,6 +6,7 @@ import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-c
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { WindowUtils } from 'common/window-utils';
 import { UAParser } from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -56,6 +57,8 @@ async function initialize(): Promise<void> {
         browserAdapter,
         deprecatedStorageDataKeys,
     );
+
+    const windowUtils = new WindowUtils();
 
     const urlValidator = new UrlValidator(browserAdapter);
     const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
@@ -186,6 +189,7 @@ async function initialize(): Promise<void> {
         promiseFactory,
         logger,
         usageLogger,
+        windowUtils,
     );
 
     const targetPageController = new TargetPageController(

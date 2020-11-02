@@ -23,6 +23,7 @@ import {
     UserConfigurationStoreData,
 } from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 describe('UserConfigurationStoreTest', () => {
     let initialStoreData: UserConfigurationStoreData;
@@ -60,6 +61,7 @@ describe('UserConfigurationStoreTest', () => {
             initialStoreData,
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         expect(testSubject.getState()).toBeUndefined();
@@ -70,6 +72,7 @@ describe('UserConfigurationStoreTest', () => {
             null,
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         testSubject.initialize();
@@ -82,6 +85,7 @@ describe('UserConfigurationStoreTest', () => {
             cloneDeep(initialStoreData),
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         testSubject.initialize();
@@ -108,6 +112,7 @@ describe('UserConfigurationStoreTest', () => {
             persisted as UserConfigurationStoreData,
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         testSubject.initialize();
@@ -120,6 +125,7 @@ describe('UserConfigurationStoreTest', () => {
             null,
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
         testSubject.initialize();
 
@@ -135,6 +141,7 @@ describe('UserConfigurationStoreTest', () => {
             cloneDeep(initialStoreData),
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         const firstCallDefaultState = testSubject.getDefaultState();
@@ -150,6 +157,7 @@ describe('UserConfigurationStoreTest', () => {
             null,
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         const firstCallDefaultState = testSubject.getDefaultState();
@@ -165,6 +173,7 @@ describe('UserConfigurationStoreTest', () => {
             initialStoreData,
             new UserConfigurationActions(),
             indexDbStrictMock.object,
+            failTestOnErrorLogger,
         );
 
         expect(testSubject.getId()).toBe(StoreNames[StoreNames.UserConfigurationStore]);
@@ -512,7 +521,12 @@ describe('UserConfigurationStoreTest', () => {
         actionName: keyof UserConfigurationActions,
     ): StoreTester<UserConfigurationStoreData, UserConfigurationActions> {
         const factory = (actions: UserConfigurationActions) =>
-            new UserConfigurationStore(initialStoreData, actions, indexDbStrictMock.object);
+            new UserConfigurationStore(
+                initialStoreData,
+                actions,
+                indexDbStrictMock.object,
+                failTestOnErrorLogger,
+            );
 
         return new StoreTester(UserConfigurationActions, actionName, factory);
     }

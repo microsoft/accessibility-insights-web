@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 
 import { BaseStore } from '../../common/base-store';
@@ -21,25 +22,19 @@ import { PostResolveCallback, RuleAnalyzer } from './rule-analyzer';
 import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
-    private tabStopsListener: TabStopsListener;
-    private scopingStore: BaseStore<ScopingStoreData>;
-    private sendMessageDelegate: (message) => void;
-    private scanner: ScannerUtils;
-    private telemetryDataFactory: TelemetryDataFactory;
-    private dateGetter: () => Date;
-
     constructor(
-        tabStopsListener: TabStopsListener,
-        scopingStore: BaseStore<ScopingStoreData>,
-        sendMessageDelegate: (message) => void,
-        scanner: ScannerUtils,
-        telemetryDataFactory: TelemetryDataFactory,
-        dateGetter: () => Date,
+        private readonly tabStopsListener: TabStopsListener,
+        private readonly scopingStore: BaseStore<ScopingStoreData>,
+        private readonly sendMessageDelegate: (message) => void,
+        private readonly scanner: ScannerUtils,
+        private readonly telemetryDataFactory: TelemetryDataFactory,
+        private readonly dateGetter: () => Date,
         private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
-        private filterResultsByRules: IResultRuleFilter,
-        private sendConvertedResults: PostResolveCallback,
-        private sendNeedsReviewResults: PostResolveCallback,
-        private scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        private readonly filterResultsByRules: IResultRuleFilter,
+        private readonly sendConvertedResults: PostResolveCallback,
+        private readonly sendNeedsReviewResults: PostResolveCallback,
+        private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        private readonly logger: Logger,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -116,6 +111,7 @@ export class AnalyzerProvider {
             new WindowUtils(),
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
+            this.logger,
         );
     }
 
@@ -124,6 +120,7 @@ export class AnalyzerProvider {
             config,
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
+            this.logger,
         );
     }
 }
