@@ -3,7 +3,7 @@
 const androidServiceBin = require('accessibility-insights-for-android-service-bin');
 const merge = require('lodash/merge');
 const path = require('path');
-const sass = require('node-sass');
+const sass = require('sass');
 const targets = require('./targets.config');
 const yaml = require('js-yaml');
 
