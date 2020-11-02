@@ -152,8 +152,6 @@ declare let window: Window & {
     featureFlagsController: FeatureFlagsController;
 };
 
-process.env['NODE_OPTIONS'] = '';
-
 initializeFabricIcons();
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
