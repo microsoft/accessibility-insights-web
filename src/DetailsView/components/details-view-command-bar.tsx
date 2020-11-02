@@ -23,6 +23,7 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
+import { SaveAssessmentFactoryProps, SaveAssessmentFactoryDeps } from 'DetailsView/components/save-assessment-factory';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -45,8 +46,8 @@ export type DetailsViewCommandBarDeps = {
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & ExportDialogDeps &
-    StartOverFactoryDeps;
+} & ExportDialogDeps & SaveAssessmentFactoryDeps &
+    StartOverFactoryDeps
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
@@ -210,11 +211,7 @@ export class DetailsViewCommandBar extends React.Component<
         if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
             return (
             <SaveAssessmentButton
-                getAssessment={
-                    this.props.deps
-                    .detailsViewActionMessageCreator
-                    .getAssessment
-                }
+                getAssessment={}
             />);
         }
         return null;
