@@ -21,10 +21,16 @@ export class AppController {
         }
     }
 
-    public async getTitle(): Promise<string> {
-        // getTitle() is normally synchronous in Electron, but Spectron overrides this and makes it async, confusing Typescript
-        // tslint:disable-next-line: await-promise
-        return await this.app.webContents.getTitle();
+    public async waitForTitle(expectedTitle: string): Promise<void> {
+        const timeout = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS;
+        await this.client.waitUntil(
+            async () => {
+                const title = await this.app.webContents.getTitle();
+                return title === expectedTitle;
+            },
+            timeout,
+            `was expecting window title to transition to ${expectedTitle} within ${timeout}ms`,
+        );
     }
 
     public async openDeviceConnectionDialog(): Promise<DeviceConnectionDialogController> {
