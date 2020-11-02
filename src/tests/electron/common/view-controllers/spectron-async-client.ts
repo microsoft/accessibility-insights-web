@@ -5,22 +5,14 @@ import { SpectronClient, SpectronWindow } from 'spectron';
 import * as WebDriverIO from 'webdriverio';
 
 // This file worked around incorrect or missing spectron/webdriverio
-// typings in the past. The webdriverio (SpectronClient) typings are
-// improved in spectron 12.0.0, so parts of this file are now just a
-// single place to update the usages. We can remove this extra layer
-// by updating individual end-to-end tests/controllers to consume
-// SpectronClient directly. SpectronAsyncWindow adds async signatures
-// to the SpectronWindow type to address github issue spectron@343.
-
-export interface SpectronAsyncWindow {
-    restore(): Promise<void>;
-    setSize(width: number, height: number): Promise<void>;
-    capturePage(): Promise<Uint8Array>; // bytes in PNG format
-}
+// typings in the past. These types are improved in spectron 12.0.0,
+// so this file is now just a single place to update the usages. We
+// can remove this extra layer by updating individual end-to-end
+// tests/controllers to consume SpectronClient directly.
 
 export function getSpectronAsyncClient(client: SpectronClient, browserWindow: SpectronWindow) {
     const typedAsyncClient: SpectronAsyncClient = {
-        browserWindow: (browserWindow as unknown) as SpectronAsyncWindow,
+        browserWindow,
         $: (selector: string) => client.$(selector),
         $$: (selector: string) => client.$$(selector),
         click: async (selector: string) => {
@@ -72,7 +64,7 @@ export function getSpectronAsyncClient(client: SpectronClient, browserWindow: Sp
 }
 
 export interface SpectronAsyncClient {
-    browserWindow: SpectronAsyncWindow;
+    browserWindow: SpectronWindow;
     $(selector: string): Promise<WebDriverIO.Element>;
     $$(selector: string): Promise<WebDriverIO.Element[]>;
     click(selector: string): Promise<void>;
