@@ -239,6 +239,7 @@
         "./src/electron/views/device-connect-view/components/android-setup/android-setup-step-layout.tsx",
         "./src/electron/views/device-connect-view/components/android-setup/android-setup-types.ts",
         "./src/electron/views/device-connect-view/components/android-setup/configuring-port-forwarding-step.tsx",
+        "./src/electron/views/device-connect-view/components/android-setup/default-android-setup-components.ts",
         "./src/electron/views/device-connect-view/components/android-setup/detect-adb-step.tsx",
         "./src/electron/views/device-connect-view/components/android-setup/detect-devices-step.tsx",
         "./src/electron/views/device-connect-view/components/android-setup/detect-permissions-step.tsx",
