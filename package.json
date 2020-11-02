@@ -147,7 +147,7 @@
         "terser-webpack-plugin": "^4.2.3",
         "ts-jest": "^26.4.3",
         "ts-loader": "^8.0.7",
-        "typed-scss-modules": "^3.2.2",
+        "typed-scss-modules": "^3.3.0",
         "typemoq": "^2.1.0",
         "typescript": "^4.0.3",
         "webdriverio": "^4.13.0",
