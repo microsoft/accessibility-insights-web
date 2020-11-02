@@ -200,6 +200,7 @@
         "./src/electron/flux/action-creator/left-nav-action-creator.ts",
         "./src/electron/flux/action-creator/scan-action-creator.ts",
         "./src/electron/flux/action-creator/window-frame-action-creator.ts",
+        "./src/electron/flux/store/android-setup-store.ts",
         "./src/electron/flux/store/left-nav-store.ts",
         "./src/electron/flux/store/scan-store.ts",
         "./src/electron/flux/store/window-state-store.ts",
