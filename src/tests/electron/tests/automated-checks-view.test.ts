@@ -45,7 +45,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('displays automated checks results collapsed by default', async () => {
-        automatedChecksView.waitForRuleGroupCount(3);
+        await automatedChecksView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await automatedChecksView.queryRuleGroupContents();
         expect(collapsibleContentElements).toHaveLength(0);
@@ -79,7 +79,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
-        app.client.browserWindow.setSize(
+        await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
@@ -91,7 +91,7 @@ describe('AutomatedChecksView', () => {
     it('left nav allows to change between tests', async () => {
         const testIndex = 1;
         const expectedTestTitle = androidTestConfigs[testIndex].title;
-        app.client.browserWindow.setSize(
+        await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
