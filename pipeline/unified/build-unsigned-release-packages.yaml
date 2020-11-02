@@ -24,20 +24,20 @@ steps:
 
     - template: ./download-electron-mirror.yaml
 
-    #- task: ComponentGovernanceComponentDetection@0
-    #  displayName: 'dependency detection (Component Governance)'
-    #  inputs:
-    #      detectorsFilter: Yarn
-    #      ignoreDirectories: 'drop,dist,extension,node_modules'
-    #      verbosity: Normal
-    #  timeoutInMinutes: 5
+    - task: ComponentGovernanceComponentDetection@0
+      displayName: 'dependency detection (Component Governance)'
+      inputs:
+          detectorsFilter: Yarn
+          ignoreDirectories: 'drop,dist,extension,node_modules'
+          verbosity: Normal
+      timeoutInMinutes: 5
 
-    #- task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
-    #  displayName: 'generate NOTICE.html file'
-    #  inputs:
-    #      outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
-    #      outputformat: html
-    #  timeoutInMinutes: 5
+    - task: msospo.ospo-extension.8d7f9abb-6896-461d-9e25-4f74ed65ddb2.notice@0
+      displayName: 'generate NOTICE.html file'
+      inputs:
+          outputfile: '$(System.DefaultWorkingDirectory)/src/NOTICE.html'
+          outputformat: html
+      timeoutInMinutes: 5
 
     - template: ./unified-e2e-test-interactive.yaml
 
