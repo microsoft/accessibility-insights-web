@@ -223,15 +223,11 @@ describe('AutomatedChecksView', () => {
 
     it('command bar reflows when narrow mode threshold is crossed', async () => {
         await setupWindowForCommandBarReflowTest('narrow');
-
         await automatedChecksView.waitForSelector(
             AutomatedChecksViewSelectors.leftNavHamburgerButton,
         );
-    });
 
-    it('command bar does not reflow when narrow mode threshold is not crossed', async () => {
         await setupWindowForCommandBarReflowTest('wide');
-
         await automatedChecksView.waitForSelectorToDisappear(
             AutomatedChecksViewSelectors.leftNavHamburgerButton,
         );
