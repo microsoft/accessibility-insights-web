@@ -2,7 +2,7 @@
 
 exports[`InstanceDetailsGroup renders 1`] = `
 <ul
-  aria-label="instances with path, snippet and how to resolve information"
+  aria-label="instances with additional information like path, snippet and how to fix"
   className="instanceDetailsList"
   data-automation-id="cards-rule-content"
 >
