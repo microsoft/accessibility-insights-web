@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 @import './common-mixins.scss';
+@import '../../../common/styles/fonts.scss';
 
 .urls-summary-section {
     @include boxShadow();
@@ -13,7 +14,15 @@
     h2 {
         margin-bottom: 16px !important;
     }
+    .total-urls {
+        font-weight: $fontWeightSemiBold;
+    }
     .failure-instances {
         margin-top: 40px;
+    }
+    .failure-outcome-chip {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
     }
 }

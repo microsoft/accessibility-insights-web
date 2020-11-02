@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import * as styles from './summary-results-table.scss';
 
 const cellClassNames = {
-    text: 'text-cell',
-    url: 'url-cell',
+    text: styles.textCell,
+    url: styles.urlCell,
 };
 
 type CellContentType = keyof typeof cellClassNames;
@@ -74,7 +75,7 @@ export const SummaryResultsTable = NamedFC<SummaryResultsTableProps>(
         };
 
         return (
-            <table className="summary-results-table" id={id}>
+            <table className={styles.summaryResultsTable} id={id}>
                 <thead>{getTableHeaders()}</thead>
                 <tbody>{getTableRows()}</tbody>
             </table>

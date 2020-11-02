@@ -178,6 +178,12 @@
         background-color: var(--pill-background);
         border-radius: 120px;
       }
+      .hidden-highlight-button {
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+      }
       .instance-details-card {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -185,7 +191,6 @@
         box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
           0px 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        cursor: pointer;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
@@ -196,14 +201,19 @@
       .instance-details-card.selected {
         border: 1px solid transparent;
       }
+      .instance-details-card.focused,
       .instance-details-card:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+      .instance-details-card.selected.focused,
       .instance-details-card.selected:focus {
         outline-offset: 8px;
       }
-      .instance-details-card:hover {
+      .instance-details-card.interactive {
+        cursor: pointer;
+      }
+      .instance-details-card.interactive:hover {
         box-shadow: 0px 8px 10px var(--box-shadow-108),
           0px 8px 10px var(--box-shadow-132);
       }
@@ -699,9 +709,7 @@
       .result-section {
         padding-bottom: 58px;
       }
-      .result-section
-        .title-container[aria-level="2"]
-        .collapsible-control::before {
+      .result-section .title-container .collapsible-control::before {
         position: relative;
         bottom: 2px;
         margin-right: 14px;
@@ -786,6 +794,12 @@
       .outcome-chip-container--3NUUD {
         min-width: 50px;
       }
+      .hidden-highlight-button--3g1WD {
+        opacity: 0;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+      }
       .instance-details-card--OrpLo {
         border-radius: 4px;
         border: 1px solid var(--card-border);
@@ -793,7 +807,6 @@
         box-shadow: 0px 0.6px 1.8px var(--box-shadow-108),
           0px 3.2px 7.2px var(--box-shadow-132);
         margin-bottom: 16px;
-        cursor: pointer;
         width: -moz-available; /* WebKit-based browsers will ignore this. */
         width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
         width: fill-available;
@@ -804,14 +817,19 @@
       .instance-details-card--OrpLo.selected--3O8dW {
         border: 1px solid transparent;
       }
+      .instance-details-card--OrpLo.focused--1AKKx,
       .instance-details-card--OrpLo:focus {
         outline: 2px solid var(--primary-text);
         outline-offset: 2px;
       }
+      .instance-details-card--OrpLo.selected--3O8dW.focused--1AKKx,
       .instance-details-card--OrpLo.selected--3O8dW:focus {
         outline-offset: 8px;
       }
-      .instance-details-card--OrpLo:hover {
+      .instance-details-card--OrpLo.interactive--197c0 {
+        cursor: pointer;
+      }
+      .instance-details-card--OrpLo.interactive--197c0:hover {
         box-shadow: 0px 8px 10px var(--box-shadow-108),
           0px 8px 10px var(--box-shadow-132);
       }
@@ -1185,7 +1203,7 @@
         padding-bottom: 58px;
       }
       .result-section--1FLO5
-        .title-container--1CFvU[aria-level="2"]
+        .title-container--1CFvU
         .collapsible-control--ey-Vd::before {
         position: relative;
         bottom: 2px;
@@ -1253,6 +1271,36 @@
         overflow: hidden;
         text-overflow: ellipsis;
       }
+      .combined-report-result-section-title--3lkTt {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 8px;
+        margin-bottom: 8px;
+      }
+      .combined-report-result-section-title--3lkTt .title--3RrV_ {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 24px;
+        margin-right: 6px;
+        color: var(--primary-text);
+      }
+      .combined-report-result-section-title--3lkTt .heading--AZCs6 {
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 20px;
+        margin-right: 6px;
+        color: var(--primary-text);
+      }
       .urls-summary-section--2D8aF {
         box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
           0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
@@ -1264,8 +1312,131 @@
       .urls-summary-section--2D8aF h2 {
         margin-bottom: 16px !important;
       }
+      .urls-summary-section--2D8aF .total-urls--2y1hz {
+        font-weight: 600;
+      }
       .urls-summary-section--2D8aF .failure-instances--2tbUx {
         margin-top: 40px;
+      }
+      .urls-summary-section--2D8aF .failure-outcome-chip--1awMD {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .rules-results-container--3FFbl {
+        margin-top: 56px;
+      }
+      .rules-results-container--3FFbl .results-heading--2smUB {
+        margin-top: 32px;
+        margin-bottom: 32px;
+        font-family: "Segoe UI Semibold", "Segoe UI Web (West European)",
+          "Segoe UI", "-apple-system", BlinkMacSystemFont, Roboto,
+          "Helvetica Neue", Helvetica, Ubuntu, Arial, sans-serif,
+          "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: 600;
+        font-size: 17px;
+        line-height: 24px;
+      }
+      .crawl-details-section--1fOcG {
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108),
+          0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+        border-radius: 4px;
+        background-color: var(--neutral-0);
+        padding: 20px;
+        margin-bottom: 22px;
+      }
+      .crawl-details-section--1fOcG .crawl-details-section-list--jnYUU {
+        list-style: none;
+        font-size: 14px;
+        line-height: 16px;
+        padding-left: 0px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .crawl-details-section--1fOcG .crawl-details-section-list--jnYUU li {
+        display: inline-block;
+      }
+      .crawl-details-section--1fOcG
+        .crawl-details-section-list--jnYUU
+        li
+        .icon--2efHF {
+        padding-right: 12px;
+        position: relative;
+        top: 3px;
+      }
+      .crawl-details-section--1fOcG
+        .crawl-details-section-list--jnYUU
+        li.targetSite--21S0a {
+        margin-bottom: 6px;
+      }
+      .crawl-details-section--1fOcG .text--10LOi,
+      .crawl-details-section--1fOcG .label--2A9-a {
+        word-break: break-all;
+        color: var(--neutral-55);
+        font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
+          BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
+          sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .crawl-details-section--1fOcG .label--2A9-a {
+        font-weight: 600;
+      }
+      .crawl-details-section--1fOcG .label--2A9-a.no-icon--1hwhv {
+        padding-left: 29px;
+      }
+      .url-result-section--eZ2_b {
+        padding-bottom: 31px;
+      }
+      .url-result-section--eZ2_b
+        .title-container[aria-level="3"]
+        .collapsible-control::before {
+        position: relative;
+        bottom: 2px;
+        margin-right: 14px;
+      }
+      .url-result-section--eZ2_b .collapsible-content {
+        margin-top: 19px;
+      }
+      .summary-results-table--1fNdd {
+        width: 100%;
+        margin: 0px;
+        text-align: left;
+        border-spacing: 0px;
+        border-collapse: collapse;
+        font-size: 14px;
+        line-height: 20px;
+      }
+      .summary-results-table--1fNdd th,
+      .summary-results-table--1fNdd td {
+        border: 1px solid var(--neutral-20);
+        padding: 16px 8px 16px 8px;
+      }
+      .summary-results-table--1fNdd th {
+        font-weight: 600;
+        background-color: var(--neutral-6);
+      }
+      .summary-results-table--1fNdd thead tr :first-child {
+        width: 172px;
+      }
+      .summary-results-table--1fNdd td {
+        background-color: var(--neutral-0);
+      }
+      .summary-results-table--1fNdd td.text-cell--3Ja6T {
+        overflow-wrap: break-word;
+      }
+      .summary-results-table--1fNdd td.url-cell--3yTMr {
+        overflow-wrap: anywhere;
+      }
+      .url-results-container--1jYWH {
+        margin-top: 56px;
+      }
+      .url-results-container--1jYWH .results-heading--gfgZc {
+        margin-top: 32px;
+        margin-bottom: 32px;
       }
       span.fix-instruction-color-box--HXJ1A {
         width: 14px;
@@ -1451,7 +1622,7 @@
             href="https://markreay.github.io/AU/after.html"
             class="ms-Link insights-link root-49"
             title="Page Title for Axe Results Without Issues"
-            id="new-tab-link-with-confirmation-dialog__3"
+            id="new-tab-link-with-confirmation-dialog__0"
             >Page Title for Axe Results Without Issues</a
           ><script>
             (function (linkId, doc, confirmCallback) {
@@ -1466,7 +1637,7 @@
                   event.preventDefault();
                 }
               });
-            })("new-tab-link-with-confirmation-dialog__3", document, confirm);
+            })("new-tab-link-with-confirmation-dialog__0", document, confirm);
           </script></div
         ></div
       ></header
@@ -1496,7 +1667,7 @@
                   href="https://markreay.github.io/AU/after.html"
                   class="ms-Link insights-link root-49"
                   title="Page Title for Axe Results Without Issues"
-                  id="new-tab-link-with-confirmation-dialog__4"
+                  id="new-tab-link-with-confirmation-dialog__1"
                   >https://markreay.github.io/AU/after.html</a
                 ><script>
                   (function (linkId, doc, confirmCallback) {
@@ -1512,7 +1683,7 @@
                       }
                     });
                   })(
-                    "new-tab-link-with-confirmation-dialog__4",
+                    "new-tab-link-with-confirmation-dialog__1",
                     document,
                     confirm
                   );

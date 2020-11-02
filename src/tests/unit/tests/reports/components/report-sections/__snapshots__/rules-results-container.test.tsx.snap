@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultsByUrlContainer renders 1`] = `
+exports[` renders 1`] = `
 <React.Fragment>
   <div
-    className="urlResultsContainer"
+    className="rulesResultsContainer"
   >
     <div
       className="resultsHeading"
     >
       <h2>
-        Results by URL
+        Rules
       </h2>
     </div>
     <div>

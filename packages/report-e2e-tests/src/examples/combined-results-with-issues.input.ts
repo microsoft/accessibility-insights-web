@@ -29,21 +29,47 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             elementSelector: '.rule-1-selector-1',
                             snippet: '<div>snippet 1</div>',
                             fix: {
-                                all: [
+                                all: [],
+                                any: [
                                     {
-                                        id: 'fix1',
-                                        message: 'fix failed-rule-1 failure 1',
                                         data: null,
+                                        id: 'internal-link-present',
+                                        impact: 'serious',
+                                        message: 'No valid skip link found',
+                                        relatedNodes: [],
+                                    },
+                                    {
+                                        data: null,
+                                        id: 'header-present',
+                                        impact: 'serious',
+                                        message: 'Page does not have a header',
+                                        relatedNodes: [],
+                                    },
+                                    {
+                                        data: null,
+                                        id: 'landmark',
+                                        impact: 'serious',
+                                        message: 'Page does not have a landmark region',
+                                        relatedNodes: [],
                                     },
                                 ],
-                                any: [],
+                                failureSummary:
+                                    'Fix any of the following:\n  No valid skip link found\n  Page does not have a header\n  Page does not have a landmark region',
                                 none: [],
                             },
                             rule: {
-                                description: 'failed-rule-1 description',
-                                ruleUrl: 'https://rules/failed-rule-1',
-                                ruleId: 'failed-rule-1',
-                                tags: ['rule-1-tag-1', 'rule-1-tag-2'],
+                                description:
+                                    'Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content',
+                                ruleUrl:
+                                    'https://dequeuniversity.com/rules/axe/3.3/bypass?application=webdriverjs',
+                                ruleId: 'bypass',
+                                tags: [
+                                    'cat.keyboard',
+                                    'wcag2a',
+                                    'wcag241',
+                                    'section508',
+                                    'section508.22.o',
+                                ],
                             },
                         },
                         {
@@ -51,21 +77,47 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                             elementSelector: '.rule-1-selector-2',
                             snippet: '<div>snippet 2</div>',
                             fix: {
-                                all: [
+                                all: [],
+                                any: [
                                     {
-                                        id: 'fix1',
-                                        message: 'fix failed-rule-1 failure 2',
                                         data: null,
+                                        id: 'internal-link-present',
+                                        impact: 'serious',
+                                        message: 'No valid skip link found',
+                                        relatedNodes: [],
+                                    },
+                                    {
+                                        data: null,
+                                        id: 'header-present',
+                                        impact: 'serious',
+                                        message: 'Page does not have a header',
+                                        relatedNodes: [],
+                                    },
+                                    {
+                                        data: null,
+                                        id: 'landmark',
+                                        impact: 'serious',
+                                        message: 'Page does not have a landmark region',
+                                        relatedNodes: [],
                                     },
                                 ],
-                                any: [],
+                                failureSummary:
+                                    'Fix any of the following:\n  No valid skip link found\n  Page does not have a header\n  Page does not have a landmark region',
                                 none: [],
                             },
                             rule: {
-                                description: 'failed-rule-1 description',
-                                ruleUrl: 'https://rules/failed-rule-1',
-                                ruleId: 'failed-rule-1',
-                                tags: ['rule-1-tag-1', 'rule-1-tag-2'],
+                                description:
+                                    'Ensures each page has at least one mechanism for a user to bypass navigation and jump straight to the content',
+                                ruleUrl:
+                                    'https://dequeuniversity.com/rules/axe/3.3/bypass?application=webdriverjs',
+                                ruleId: 'bypass',
+                                tags: [
+                                    'cat.keyboard',
+                                    'wcag2a',
+                                    'wcag241',
+                                    'section508',
+                                    'section508.22.o',
+                                ],
                             },
                         },
                     ],
@@ -81,23 +133,38 @@ export const combinedResultsWithIssues: CombinedReportParameters = {
                                 all: [],
                                 any: [
                                     {
-                                        id: 'fix1',
-                                        message: 'fix failed-rule-2 option 1',
-                                        data: null,
-                                    },
-                                    {
-                                        id: 'fix2',
-                                        message: 'fix failed-rule-2 option 2',
-                                        data: null,
+                                        data: {
+                                            bgColor: '#e7ecd8',
+                                            contrastRatio: 2.52,
+                                            expectedContrastRatio: '4.5:1',
+                                            fgColor: '#8a94a8',
+                                            fontSize: '12.0pt (16px)',
+                                            fontWeight: 'normal',
+                                            missingData: null,
+                                        },
+                                        id: 'color-contrast',
+                                        impact: 'serious',
+                                        message:
+                                            'Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1',
+                                        relatedNodes: [
+                                            {
+                                                html: '<li>',
+                                                target: ['#menu > li:nth-child(1)'],
+                                            },
+                                        ],
                                     },
                                 ],
                                 none: [],
+                                failureSummary:
+                                    'Fix any of the following:\n  Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1',
                             },
                             rule: {
-                                description: 'failed-rule-2 description',
-                                ruleUrl: 'https://rules/failed-rule-2',
-                                ruleId: 'failed-rule-2',
-                                tags: ['rule-2-tag'],
+                                description:
+                                    'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
+                                ruleUrl:
+                                    'https://dequeuniversity.com/rules/axe/3.3/color-contrast?application=webdriverjs',
+                                ruleId: 'color-contrast',
+                                tags: ['cat.color', 'wcag2aa', 'wcag143'],
                             },
                         },
                     ],

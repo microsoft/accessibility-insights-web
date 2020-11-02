@@ -7,6 +7,7 @@ import {
 } from 'common/components/cards/result-section-title';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import * as styles from './collapsible-url-result-section.scss';
 
 export type CollapsibleUrlResultSectionDeps = {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
@@ -30,6 +31,6 @@ export const CollapsibleUrlResultSection = NamedFC<CollapsibleUrlResultSectionPr
             deps: null,
         });
 
-        return <div className="url-result-section">{CollapsibleContent}</div>;
+        return <div className={styles.urlResultSection}>{CollapsibleContent}</div>;
     },
 );
