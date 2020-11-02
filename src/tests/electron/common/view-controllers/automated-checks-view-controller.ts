@@ -64,8 +64,4 @@ export class AutomatedChecksViewController extends ViewController {
 
         await this.waitForSelector(toggleInStateSelector);
     }
-
-    public async waitForFluentLeftNavToDisappear(): Promise<void> {
-        await this.waitForSelectorToDisappear(AutomatedChecksViewSelectors.fluentLeftNav);
-    }
 }
