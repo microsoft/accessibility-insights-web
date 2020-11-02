@@ -187,6 +187,7 @@
         "./src/content/guidance-tags.ts",
         "./src/content/test/contrast/state-changes.tsx",
         "./src/debug-tools/action-creators/debug-tools-action-creator.ts",
+        "./src/debug-tools/components/stores-tree.tsx",
         "./src/debug-tools/components/telemetry-viewer/telemetry-common-fields.tsx",
         "./src/debug-tools/components/telemetry-viewer/telemetry-messages-list.tsx",
         "./src/debug-tools/components/telemetry-viewer/telemetry-viewer.tsx",
