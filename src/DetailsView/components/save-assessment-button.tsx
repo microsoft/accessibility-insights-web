@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 export interface SaveAssessmentButtonProps {
-    getAssessment: (e) => void;
+    // getAssessment: (e) => void;
 }
 
 export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonProps> {
@@ -11,7 +11,7 @@ export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonPr
         return (
             <InsightsCommandButton
                 iconProps={{ iconName: 'Save' }}
-                onClick={this.props.getAssessment}
+                // onClick={this.props.getAssessment}
             >
                 Save assessment
             </InsightsCommandButton>
