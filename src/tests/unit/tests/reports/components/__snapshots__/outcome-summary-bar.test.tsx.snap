@@ -214,11 +214,11 @@ exports[`OutcomeSummaryBar show with text label 1`] = `
         <CheckIcon />
       </span>
       42
-      <div
+      <span
         className="label"
       >
          Passed
-      </div>
+      </span>
     </span>
   </div>
   <div
@@ -237,11 +237,11 @@ exports[`OutcomeSummaryBar show with text label 1`] = `
         <CrossIcon />
       </span>
       13
-      <div
+      <span
         className="label"
       >
          Failed
-      </div>
+      </span>
     </span>
   </div>
   <div
@@ -260,11 +260,11 @@ exports[`OutcomeSummaryBar show with text label 1`] = `
         <CircleIcon />
       </span>
       7
-      <div
+      <span
         className="label"
       >
          Incomplete
-      </div>
+      </span>
     </span>
   </div>
 </div>

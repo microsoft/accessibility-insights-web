@@ -20,4 +20,9 @@
     .failure-instances {
         margin-top: 40px;
     }
+    .failure-outcome-chip {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
 }

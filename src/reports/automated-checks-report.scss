@@ -43,7 +43,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 .result-section {
     padding-bottom: 58px;
 
-    .title-container[aria-level='2'] {
+    .title-container {
         .collapsible-control::before {
             position: relative;
             bottom: 2px;

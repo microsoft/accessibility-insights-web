@@ -10,13 +10,13 @@ import {
     CombinedReportFailedSectionDeps,
 } from 'reports/components/report-sections/combined-report-failed-section';
 import { exampleUnifiedStatusResults } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
-import { It, Mock } from 'typemoq';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('CombinedReportFailedSection', () => {
     it('renders', () => {
         const collapsibleControlMock = Mock.ofType<
             (props: CollapsibleComponentCardsProps) => JSX.Element
-        >();
+        >(undefined, MockBehavior.Strict);
         const scanMetaDataStub = {} as ScanMetadata;
         const containerId = 'container-id';
         const props: CombinedReportFailedSectionProps = {
@@ -34,7 +34,7 @@ describe('CombinedReportFailedSection', () => {
         } as CombinedReportFailedSectionProps;
 
         const expectedCollapsibleControlProps: Partial<CollapsibleComponentCardsProps> = {
-            headingLevel: 2,
+            headingLevel: 3,
             deps: null,
         };
 

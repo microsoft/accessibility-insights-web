@@ -28,6 +28,7 @@ describe('RulesWithInstances', () => {
                 <CollapsibleControlStub {...props} />
             ),
         } as RulesWithInstancesDeps;
+        const outcomeCounterStub = () => 5;
 
         const wrapped = shallow(
             <RulesWithInstances
@@ -37,7 +38,8 @@ describe('RulesWithInstances', () => {
                 rules={rules}
                 userConfigurationStoreData={null}
                 targetAppInfo={{ name: 'app' }}
-                outcomeCounter={() => null}
+                outcomeCounter={outcomeCounterStub}
+                headingLevel={5}
             />,
         );
 
