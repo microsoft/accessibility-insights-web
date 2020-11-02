@@ -49,7 +49,7 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
             return null;
         }
         const outcomePastTense = outcomeTypeSemantics[outcomeType].pastTense;
-        return <div className={'label'}>{` ${outcomePastTense}`}</div>;
+        return <span className={'label'}>{` ${outcomePastTense}`}</span>;
     };
 
     return (
