@@ -84,7 +84,7 @@ async function startDetachedPortForwardServer(port, path) {
     testServerProcess.unref(); // avoid having adb wait for test server before exiting
 
     const pidFile = portFile(port, 'pid');
-    fs.writeFileSync(pidFile, testServerProcess.pid);
+    fs.writeFileSync(pidFile, `${testServerProcess.pid}`);
 
     return testServerProcess.pid;
 }
