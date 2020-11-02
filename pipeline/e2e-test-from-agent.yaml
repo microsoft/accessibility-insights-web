@@ -9,4 +9,4 @@ steps:
       displayName: run e2e tests
       timeoutInMinutes: 15
       env:
-          DEBUG: 'pw:browser'
+          DEBUG: 'pw:*'
