@@ -184,6 +184,7 @@
     "resolutions": {
         "@types/node": "^12.16.1",
         "acorn": "^7.1.1",
+        "agent-base": "^6.0.2",
         "dot-prop": "^5.2.0",
         "kind-of": "^6.0.3",
         "minimist": "^1.2.3",
