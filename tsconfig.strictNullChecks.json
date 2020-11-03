@@ -338,6 +338,7 @@
         "./src/scanner/help-url-getter.ts",
         "./src/scanner/iruleresults.d.ts",
         "./src/scanner/locale-configuration.ts",
+        "./src/scanner/message-decorator.ts",
         "./src/scanner/processor.ts",
         "./src/scanner/role-utils.ts",
         "./src/scanner/scan-options.ts",
