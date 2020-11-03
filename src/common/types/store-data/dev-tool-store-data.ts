@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 export interface DevToolStoreData {
     isOpen: boolean;
-    inspectElement?: string[];
-    frameUrl?: string;
+    inspectElement: string[] | null;
+    frameUrl: string | null;
     inspectElementRequestId: number;
 }

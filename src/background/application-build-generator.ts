@@ -3,7 +3,7 @@
 import { config } from '../common/configuration';
 
 export class ApplicationBuildGenerator {
-    public getBuild(): string | undefined {
+    public getBuild(): string {
         return config.getOption('telemetryBuildName');
     }
 }
