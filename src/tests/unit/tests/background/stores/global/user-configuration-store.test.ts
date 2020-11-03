@@ -224,6 +224,7 @@ describe('UserConfigurationStoreTest', () => {
                     .setup(i =>
                         i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
                     )
+                    .returns(() => Promise.resolve(true))
                     .verifiable(Times.once());
 
                 storeTester
@@ -279,6 +280,7 @@ describe('UserConfigurationStoreTest', () => {
                     .setup(i =>
                         i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
                     )
+                    .returns(() => Promise.resolve(true))
                     .verifiable(Times.once());
 
                 storeTester
@@ -334,6 +336,7 @@ describe('UserConfigurationStoreTest', () => {
                     .setup(i =>
                         i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
                     )
+                    .returns(() => Promise.resolve(true))
                     .verifiable(Times.once());
 
                 storeTester
@@ -373,6 +376,7 @@ describe('UserConfigurationStoreTest', () => {
                 .setup(i =>
                     i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
                 )
+                .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
             storeTester
@@ -419,6 +423,7 @@ describe('UserConfigurationStoreTest', () => {
                 .setup(indexDb =>
                     indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
                 )
+                .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
             storeTester
@@ -448,6 +453,7 @@ describe('UserConfigurationStoreTest', () => {
             .setup(indexDb =>
                 indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
             )
+            .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
 
         storeTester
@@ -468,6 +474,7 @@ describe('UserConfigurationStoreTest', () => {
             .setup(indexDb =>
                 indexDb.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
             )
+            .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
 
         storeTester
@@ -508,6 +515,7 @@ describe('UserConfigurationStoreTest', () => {
                 .setup(i =>
                     i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)),
                 )
+                .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
             storeTester
