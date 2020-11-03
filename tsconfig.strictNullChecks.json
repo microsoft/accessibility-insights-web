@@ -331,6 +331,7 @@
         "./src/scanner/custom-rules/color-rule.ts",
         "./src/scanner/custom-rules/css-content-rule.ts",
         "./src/scanner/custom-rules/css-positioning-rule.ts",
+        "./src/scanner/custom-rules/cues-rule.ts",
         "./src/scanner/custom-rules/frame-title.ts",
         "./src/scanner/custom-rules/header-rule.ts",
         "./src/scanner/custom-rules/heading-rule.ts",
