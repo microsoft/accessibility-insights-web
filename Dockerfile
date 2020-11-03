@@ -9,7 +9,13 @@ FROM mcr.microsoft.com/playwright:bionic
 
 USER root
 
-RUN npm install -g yarn@1.22.4
+# Install node 14 (per https://github.com/microsoft/playwright/pull/4262#issuecomment-719745883)
+RUN apt-get update && apt-get install -y curl && \
+    curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN npm install -g yarn@1.22.10
 
 WORKDIR /app
 

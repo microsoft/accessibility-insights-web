@@ -41,11 +41,11 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should use the expected window title', async () => {
-        expect(await app.getTitle()).toBe('Accessibility Insights for Android - Automated checks');
+        await app.waitForTitle('Accessibility Insights for Android - Automated checks');
     });
 
     it('displays automated checks results collapsed by default', async () => {
-        automatedChecksView.waitForRuleGroupCount(3);
+        await automatedChecksView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await automatedChecksView.queryRuleGroupContents();
         expect(collapsibleContentElements).toHaveLength(0);
@@ -79,7 +79,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
-        app.client.browserWindow.setSize(
+        await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
@@ -91,7 +91,7 @@ describe('AutomatedChecksView', () => {
     it('left nav allows to change between tests', async () => {
         const testIndex = 1;
         const expectedTestTitle = androidTestConfigs[testIndex].title;
-        app.client.browserWindow.setSize(
+        await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
@@ -147,20 +147,20 @@ describe('AutomatedChecksView', () => {
         const axeRuleResultExample = JSON.parse(
             fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
         );
-
         const expectedScreenshotImage =
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
+        await automatedChecksView.waitForSelector(ScreenshotViewSelectors.screenshotImage);
         const actualScreenshotImage = await automatedChecksView.client.getAttribute<string>(
             ScreenshotViewSelectors.screenshotImage,
             'src',
         );
+
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
-        await automatedChecksView.waitForScreenshotViewVisible();
-
+        await automatedChecksView.waitForSelector(ScreenshotViewSelectors.highlightBox);
         const styles = await automatedChecksView.client.getAttribute<string[]>(
             ScreenshotViewSelectors.highlightBox,
             'style',
@@ -209,47 +209,39 @@ describe('AutomatedChecksView', () => {
         });
     }
 
-    const setupWindowForCommandBarReflowTest = async (
-        narrowFactor: number,
-    ): Promise<RawResult<any>> => {
+    const setupWindowForCommandBarReflowTest = async (mode: 'narrow' | 'wide'): Promise<void> => {
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
 
-        const width = narrowModeThresholds.collapseCommandBarThreshold - narrowFactor;
+        const width =
+            mode === 'narrow'
+                ? narrowModeThresholds.collapseCommandBarThreshold - 2
+                : narrowModeThresholds.collapseCommandBarThreshold;
 
-        app.client.browserWindow.restore();
-        app.client.browserWindow.setSize(width, height);
-
-        // Note: the following call returns a different type of object than is specified
-        // by the typescript return type when the element is found
-        return automatedChecksView.client.$(AutomatedChecksViewSelectors.leftNavHamburgerButton);
+        await app.client.browserWindow.restore();
+        await app.client.browserWindow.setSize(width, height);
     };
 
     it('command bar reflows when narrow mode threshold is crossed', async () => {
-        const result = await setupWindowForCommandBarReflowTest(2);
-        expect(result.value).not.toBeNull();
-    });
+        await setupWindowForCommandBarReflowTest('narrow');
+        await automatedChecksView.waitForSelector(
+            AutomatedChecksViewSelectors.leftNavHamburgerButton,
+        );
 
-    it('command bar does not reflow when narrow mode threshold is not crossed', async () => {
-        const result = await setupWindowForCommandBarReflowTest(0);
-        expect(result.value).toBeNull();
+        await setupWindowForCommandBarReflowTest('wide');
+        await automatedChecksView.waitForSelectorToDisappear(
+            AutomatedChecksViewSelectors.leftNavHamburgerButton,
+        );
     });
 
     const waitForFluentLeftNavToDisappear = async (): Promise<void> => {
-        return automatedChecksView.waitForSelectorToDisappear(
+        await automatedChecksView.waitForSelectorToDisappear(
             AutomatedChecksViewSelectors.fluentLeftNav,
         );
-    };
-
-    const expectFluentLeftNavNotToBeRendered = async (): Promise<void> => {
-        const result = await automatedChecksView.client.$(
-            AutomatedChecksViewSelectors.fluentLeftNav,
-        );
-        expect(result.state).toBe('failure');
     };
 
     it('hamburger button click opens and closes left nav', async () => {
-        await setupWindowForCommandBarReflowTest(2);
-        await expectFluentLeftNavNotToBeRendered();
+        await setupWindowForCommandBarReflowTest('narrow');
+        await waitForFluentLeftNavToDisappear();
         await automatedChecksView.client.click(AutomatedChecksViewSelectors.leftNavHamburgerButton);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.fluentLeftNav);
 
@@ -257,17 +249,15 @@ describe('AutomatedChecksView', () => {
         const selector = `${AutomatedChecksViewSelectors.fluentLeftNav} ${AutomatedChecksViewSelectors.leftNavHamburgerButton}`;
         await automatedChecksView.client.click(selector);
         await waitForFluentLeftNavToDisappear();
-        await expectFluentLeftNavNotToBeRendered();
     });
 
     it('left nav closes when item is selected', async () => {
-        await setupWindowForCommandBarReflowTest(2);
+        await setupWindowForCommandBarReflowTest('narrow');
         await automatedChecksView.client.click(AutomatedChecksViewSelectors.leftNavHamburgerButton);
         await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.fluentLeftNav);
 
         const selector = `${AutomatedChecksViewSelectors.fluentLeftNav} a`;
         await automatedChecksView.client.click(selector);
         await waitForFluentLeftNavToDisappear();
-        await expectFluentLeftNavNotToBeRendered();
     });
 });

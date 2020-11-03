@@ -1,11 +1,11 @@
 {
     "name": "accessibility-insights-report",
-    "version": "2.2.1",
+    "version": "3.0.1",
     "description": "Accessibility Insights Report",
     "license": "MIT",
     "files": [
         "../../LICENSE",
-        "./drop",
+        "drop",
         "README.md"
     ],
     "main": "drop/index.js",
