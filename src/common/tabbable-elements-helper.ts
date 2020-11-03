@@ -39,8 +39,8 @@ export class TabbableElementsHelper {
         return this.getAncestorMap(parent);
     }
 
-    public getMappedImage(map: HTMLMapElement): HTMLImageElement | null {
-        const mapName: string = map.name;
+    public getMappedImage(map: HTMLMapElement | null): HTMLImageElement | null {
+        const mapName: string | undefined = map?.name;
 
         if (!mapName) {
             return null;
