@@ -59,7 +59,9 @@ export async function createAppController(
             operationLabel: 'app.start',
             warnOnRetry: true,
             maxRetries: DEFAULT_CHROMEDRIVER_START_RETRIES,
-            retryOnlyIfMatches: err => err?.message?.includes('ChromeDriver did not start within'),
+            retryOnlyIfMatches: err =>
+                err?.message?.includes('ChromeDriver did not start within') ||
+                err?.message?.includes('Error: Failed to create session.'),
         },
     );
 
