@@ -20,7 +20,7 @@ We recommend [VS Code](https://code.visualstudio.com/) for [editing/debugging](#
 
 #### Fork and clone the repository
 
-See [Git branch setup](docs/git-branch-setup.md).
+See [Git branch setup](git-branch-setup.md).
 
 #### Install packages
 
