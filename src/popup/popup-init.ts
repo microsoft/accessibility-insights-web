@@ -16,14 +16,14 @@ const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 const urlValidator = new UrlValidator(browserAdapter);
 const targetTabFinder = new TargetTabFinder(window, browserAdapter, urlValidator, new UrlParser());
+const logger = createDefaultLogger();
 
 const isSupportedBrowser = createSupportedBrowserChecker(userAgentParser);
 const popupInitializer: PopupInitializer = new PopupInitializer(
     browserAdapter,
     targetTabFinder,
     isSupportedBrowser,
-    createDefaultLogger(),
+    logger,
 );
 
-// tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-popupInitializer.initialize();
+popupInitializer.initialize().catch(logger.error);

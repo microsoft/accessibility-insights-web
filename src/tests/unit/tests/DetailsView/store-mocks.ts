@@ -76,6 +76,7 @@ export class StoreMocks {
         null,
         null,
         null,
+        null,
     ).getDefaultState();
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();

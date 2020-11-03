@@ -10,11 +10,12 @@ import { Interpreter } from 'background/interpreter';
 import { InspectStore } from 'background/stores/inspect-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
-import { Messages } from '../../../../common/messages';
-import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
-import { WindowUtils } from '../../../../common/window-utils';
-import { itIsFunction } from '../../common/it-is-function';
-import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { Messages } from 'common/messages';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { WindowUtils } from 'common/window-utils';
+import { itIsFunction } from 'tests/unit/common/it-is-function';
+import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 describe('InjectorControllerTest', () => {
     let validator: InjectorControllerValidator;
@@ -176,6 +177,7 @@ class InjectorControllerValidator {
             this.mockTabStore.object,
             this.mockInspectStore.object,
             this.mockWindowUtils.object,
+            failTestOnErrorLogger,
         );
     }
 

@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
+import { WindowUtils } from 'common/window-utils';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
-import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
 import {
     AxeAnalyzerResult,
@@ -32,8 +33,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         windowUtils: WindowUtils,
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        logger: Logger,
     ) {
-        super(config, sendMessageDelegate, scanIncompleteWarningDetector);
+        super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
         this.tabStopsListener = tabStopsListener;
         this.windowUtils = windowUtils;
     }
@@ -42,9 +44,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         // We intentionally float this promise; the current analyzer API is that analyze starts the
         // analysis and it's allowed to continue running for arbitrarily long until teardown() is called.
         // We use a Promise for this internally only so we can reuse Q's "onprogress" behavior.
-        //
-        // tslint:disable-next-line:no-floating-promises
-        this.getResults().progress(this.onProgress);
+        this.getResults().progress(this.onProgress).catch(this.logger.error);
     }
 
     protected getResults = (): Q.Promise<AxeAnalyzerResult> => {

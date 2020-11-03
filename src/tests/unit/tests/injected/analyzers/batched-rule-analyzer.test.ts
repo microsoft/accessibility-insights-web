@@ -4,6 +4,7 @@ import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { clone, isFunction } from 'lodash';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
@@ -292,6 +293,7 @@ describe('BatchedRuleAnalyzer', () => {
             visualizationConfigurationFactoryMock.object,
             resultConfigFilterMock.object,
             scanIncompleteWarningDetectorMock.object,
+            failTestOnErrorLogger,
         );
     }
 });

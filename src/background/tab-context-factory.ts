@@ -6,6 +6,7 @@ import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
+import { WindowUtils } from 'common/window-utils';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -39,6 +40,7 @@ export class TabContextFactory {
         private readonly promiseFactory: PromiseFactory,
         private readonly logger: Logger,
         private readonly usageLogger: UsageLogger,
+        private readonly windowUtils: WindowUtils,
     ) {}
 
     public createTabContext(
@@ -139,6 +141,8 @@ export class TabContextFactory {
             interpreter,
             storeHub.tabStore,
             storeHub.inspectStore,
+            this.windowUtils,
+            this.logger,
         );
 
         shortcutsPageActionCreator.registerCallbacks();

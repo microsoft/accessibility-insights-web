@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { cloneDeep, isPlainObject } from 'lodash';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
@@ -33,6 +34,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         private readonly persistedState: UserConfigurationStoreData,
         private readonly userConfigActions: UserConfigurationActions,
         private readonly indexDbApi: IndexedDBAPI,
+        private readonly logger: Logger,
     ) {
         super(StoreNames.UserConfigurationStore);
     }
@@ -133,8 +135,10 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     };
 
     private saveAndEmitChanged(): void {
-        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
-        this.indexDbApi.setItem(IndexedDBDataKeys.userConfiguration, this.state);
+        this.indexDbApi
+            .setItem(IndexedDBDataKeys.userConfiguration, this.state)
+            .catch(this.logger.error);
+
         this.emitChanged();
     }
 }

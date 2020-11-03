@@ -12,6 +12,7 @@ import {
 } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStoreData> {
     private storeDataGeneratorMock: IMock<InitialAssessmentStoreDataGenerator>;
@@ -31,6 +32,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
             null,
             null,
             initialAssessmentStoreDataGenerator || this.getPreparedMock(),
+            failTestOnErrorLogger,
         ).getDefaultState();
     }
 

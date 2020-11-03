@@ -19,7 +19,7 @@ import { QStub } from '../../../stubs/q-stub';
 
 // These tests were written before we started enforcing no-floating-promises, and we've grandfathered in
 // their warnings because they pervasively use a Q-mocking strategy that consistently trips the check.
-// tslint:disable:no-floating-promises
+/* eslint-disable @typescript-eslint/no-floating-promises */
 
 interface FrameInfo {
     frameElement: HTMLIFrameElement;
