@@ -163,7 +163,7 @@
         "axios": "^0.21.0",
         "classnames": "^2.2.6",
         "electron": "8.4.1",
-        "electron-log": "^4.2.4",
+        "electron-log": "^4.3.0",
         "electron-updater": "^4.3.5",
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.20",
