@@ -11,13 +11,6 @@ exports[` should render from switcher nav 1`] = `
         "assessmentsProviderWithFeaturesEnabled": [Function],
       }
     }
-    styles={
-      Object {
-        "dropdownClassName": "leftNavSwitcherDropdown",
-        "dropdownOptionClassName": "switcherDropdownOption",
-        "switcherClassName": "leftNavSwitcher",
-      }
-    }
   />
   <test
     assessmentsData={
