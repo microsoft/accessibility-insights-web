@@ -104,6 +104,7 @@ export class AnalyzerProvider {
             this.visualizationConfigFactory,
             this.filterResultsByRules,
             this.scanIncompleteWarningDetector,
+            this.logger,
         );
     }
 
