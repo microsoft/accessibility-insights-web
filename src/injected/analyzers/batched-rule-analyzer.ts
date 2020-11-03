@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 
 import { BaseStore } from '../../common/base-store';
@@ -26,6 +27,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postScanFilter: IResultRuleFilter,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        logger: Logger,
     ) {
         super(
             config,
@@ -37,6 +39,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
             visualizationConfigFactory,
             null,
             scanIncompleteWarningDetector,
+            logger,
         );
         BatchedRuleAnalyzer.batchConfigs.push(config);
     }
