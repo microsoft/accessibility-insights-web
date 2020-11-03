@@ -22,7 +22,7 @@ export const imageConfiguration: RuleConfiguration = {
     },
 };
 
-export function isImage(node: HTMLElement, virtualNode: HTMLElement): boolean {
+export function isImage(node: HTMLElement): boolean {
     const selector: string = 'img, [role=img], svg';
     if (axe.utils.matchesSelector(node, selector)) {
         return true;
