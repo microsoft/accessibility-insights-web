@@ -39,9 +39,9 @@ export function isImage(node: HTMLElement, virtualNode: HTMLElement): boolean {
 
 function evaluateImageFunction(node: HTMLElement): boolean {
     const accessibleName: string = AxeUtils.getAccessibleText(node, false);
-    const codedAs: string = AxeUtils.getImageCodedAs(node);
-    const imageType: string = AxeUtils.getImageType(node);
-    const role: string = node.getAttribute('role');
+    const codedAs: string | null = AxeUtils.getImageCodedAs(node);
+    const imageType: string | null = AxeUtils.getImageType(node);
+    const role: string | null = node.getAttribute('role');
 
     // tslint:disable-next-line:no-invalid-this
     this.data({
