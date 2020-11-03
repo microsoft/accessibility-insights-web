@@ -40,7 +40,7 @@ export class TelemetryPermissionDialog extends React.Component<
         };
     }
 
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         if (!this.props.isFirstTime) {
             return null;
         }
@@ -86,6 +86,6 @@ export class TelemetryPermissionDialog extends React.Component<
     }
 
     private onCheckboxChange = (ev?, checked?: boolean): void => {
-        this.setState({ isEnableTelemetryChecked: checked });
+        this.setState({ isEnableTelemetryChecked: !!checked });
     };
 }
