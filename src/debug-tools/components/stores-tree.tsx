@@ -43,6 +43,8 @@ export interface StoresTreeState {
     permissionsStateStoreData: PermissionsStateStoreData;
 }
 
+type StoresTreeStateDatum = StoresTreeState[keyof StoresTreeState];
+
 export type StoresTreeDeps = {
     storesHub: ClientStoresHub<StoresTreeState>;
 };
@@ -51,6 +53,11 @@ export interface StoresTreeProps {
     deps: StoresTreeDeps;
     state: StoresTreeState;
 }
+
+type StoresTreeListItem = {
+    key: string;
+    value: StoresTreeStateDatum;
+};
 
 export const StoresTree = NamedFC<StoresTreeProps>('StoresTree', ({ deps, state }) => {
     const { storesHub } = deps;
@@ -64,7 +71,7 @@ export const StoresTree = NamedFC<StoresTreeProps>('StoresTree', ({ deps, state 
     const selectionMode = SelectionMode.none;
 
     const groups: IGroup[] = [];
-    let items = [];
+    let items: StoresTreeListItem[] = [];
 
     let instanceCount: number = 0;
 

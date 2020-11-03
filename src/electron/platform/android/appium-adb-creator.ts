@@ -3,9 +3,11 @@
 
 import ADB from 'appium-adb';
 
-export type AppiumAdbCreateParameters = {
-    sdkRoot: string;
-};
+export type AppiumAdbCreateParameters =
+    | {
+          sdkRoot: string;
+      }
+    | undefined;
 
 export interface AppiumAdbCreator {
     createADB(opts: AppiumAdbCreateParameters): Promise<ADB>;

@@ -48,9 +48,9 @@ export class StateMachine<StepIdT extends string, ActionT extends ActionBag<Acti
 
         if (this.steps[nextStep].onEnter != null) {
             // exceptions are expected never to be thrown from onEnter.
-            this.steps[nextStep]
-                .onEnter()
-                .catch(error => console.log(`UnExpected error in ${nextStep}.onEnter: ${error}`));
+            this.steps[nextStep].onEnter!().catch(error =>
+                console.log(`UnExpected error in ${nextStep}.onEnter: ${error}`),
+            );
         }
 
         this.currentStep = nextStep;
