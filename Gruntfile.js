@@ -3,7 +3,7 @@
 const androidServiceBin = require('accessibility-insights-for-android-service-bin');
 const merge = require('lodash/merge');
 const path = require('path');
-const sass = require('node-sass');
+const sass = require('sass');
 const targets = require('./targets.config');
 const yaml = require('js-yaml');
 
@@ -400,7 +400,7 @@ module.exports = function (grunt) {
                 const cssFile = path.resolve(cssPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
-                return styles.replace(/\n/g, '\\\n');
+                return styles.replace(/"/g, '\\"').replace(/\n/g, '\\\n');
             });
             grunt.file.write(dest, output, fileOptions);
             grunt.log.writeln(`    written to ${dest}`);

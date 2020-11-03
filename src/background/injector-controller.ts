@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InspectMode } from 'background/inspect-modes';
+import { Logger } from 'common/logging/logger';
 import { Messages } from '../common/messages';
 import { WindowUtils } from '../common/window-utils';
 import { ContentScriptInjector } from './injector/content-script-injector';
@@ -10,31 +11,19 @@ import { TabStore } from './stores/tab-store';
 import { VisualizationStore } from './stores/visualization-store';
 
 export class InjectorController {
-    private injector: ContentScriptInjector;
-    private visualizationStore: VisualizationStore;
-    private inspectStore: InspectStore;
-    private interpreter: Interpreter;
-    private tabStore: TabStore;
-    private windowUtils: WindowUtils;
     private static readonly injectionStartedWaitTime = 10;
 
     private oldInspectType = InspectMode.off;
 
     constructor(
-        injector: ContentScriptInjector,
-        visualizationStore: VisualizationStore,
-        interpreter: Interpreter,
-        tabStore: TabStore,
-        inspectStore: InspectStore,
-        windowUtils?: WindowUtils,
-    ) {
-        this.injector = injector;
-        this.visualizationStore = visualizationStore;
-        this.tabStore = tabStore;
-        this.inspectStore = inspectStore;
-        this.interpreter = interpreter;
-        this.windowUtils = windowUtils || new WindowUtils();
-    }
+        private readonly injector: ContentScriptInjector,
+        private readonly visualizationStore: VisualizationStore,
+        private readonly interpreter: Interpreter,
+        private readonly tabStore: TabStore,
+        private readonly inspectStore: InspectStore,
+        private readonly windowUtils: WindowUtils,
+        private readonly logger: Logger,
+    ) {}
 
     public initialize(): void {
         this.visualizationStore.addChangedListener(this.inject);
@@ -59,13 +48,15 @@ export class InjectorController {
                 });
             }, InjectorController.injectionStartedWaitTime);
 
-            // tslint:disable-next-line:no-floating-promises - grandfathered
-            this.injector.injectScripts(tabId).then(() => {
-                this.interpreter.interpret({
-                    messageType: Messages.Visualizations.State.InjectionCompleted,
-                    tabId: tabId,
-                });
-            });
+            this.injector
+                .injectScripts(tabId)
+                .then(() => {
+                    this.interpreter.interpret({
+                        messageType: Messages.Visualizations.State.InjectionCompleted,
+                        tabId: tabId,
+                    });
+                })
+                .catch(this.logger.error);
         }
 
         this.oldInspectType = inspectStoreState.inspectMode;

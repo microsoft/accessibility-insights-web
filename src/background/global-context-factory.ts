@@ -61,6 +61,7 @@ export class GlobalContextFactory {
             indexedDBInstance,
             persistedData,
             storageAdapter,
+            logger,
         );
 
         const featureFlagsController = new FeatureFlagsController(

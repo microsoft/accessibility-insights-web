@@ -3,6 +3,7 @@
 import { PermissionsStateStore } from 'background/stores/global/permissions-state-store';
 import { FeatureFlagDefaultsHelper } from 'common/feature-flag-defaults-helper';
 import { getAllFeatureFlagDetails } from 'common/feature-flags';
+import { Logger } from 'common/logging/logger';
 import { BaseStore } from '../../../common/base-store';
 import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
@@ -43,6 +44,7 @@ export class GlobalStoreHub implements StoreHub {
         indexedDbInstance: IndexedDBAPI,
         persistedData: PersistedData,
         storageAdapter: StorageAdapter,
+        logger: Logger,
     ) {
         this.commandStore = new CommandStore(globalActionHub.commandActions, telemetryEventHandler);
         this.featureFlagStore = new FeatureFlagStore(
@@ -66,11 +68,13 @@ export class GlobalStoreHub implements StoreHub {
             indexedDbInstance,
             persistedData.assessmentStoreData,
             new InitialAssessmentStoreDataGenerator(assessmentsProvider.all()),
+            logger,
         );
         this.userConfigurationStore = new UserConfigurationStore(
             persistedData.userConfigurationData,
             globalActionHub.userConfigurationActions,
             indexedDbInstance,
+            logger,
         );
         this.permissionsStateStore = new PermissionsStateStore(
             globalActionHub.permissionsStateActions,
