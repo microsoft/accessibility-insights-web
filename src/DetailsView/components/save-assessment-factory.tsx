@@ -8,23 +8,16 @@ import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-but
 
 export type SaveAssessmentFactoryDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    fileURLProvider: FileURLProvider;
 }
 
 export type SaveAssessmentFactoryProps = CommandBarProps & {
     deps: SaveAssessmentFactoryDeps;
 }
 
-export interface SaveAssessmentFactory {
-    // getAssessment: (props: SaveAssessmentFactoryProps) => void;
-}
-
 export function getReportForAssessment(props: SaveAssessmentFactoryProps): JSX.Element {
-    const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType
-
     return <SaveAssessmentButton />
 }
 
-export function getReportForFastPass(props: SaveAssessmentFactoryProps) :void {
-    const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType
+export function getReportForFastPass(props: SaveAssessmentFactoryProps): JSX.Element | null {
+    return null
 }

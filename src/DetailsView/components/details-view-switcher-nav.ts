@@ -10,6 +10,7 @@ import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-chec
 import {
     CommandBarProps,
     ReportExportDialogFactory,
+    SaveAssessmentFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportDialogForAssessment,
@@ -18,7 +19,6 @@ import {
 import {
     getReportForAssessment,
     getReportForFastPass,
-    SaveAssessmentFactory,
 } from 'DetailsView/components/save-assessment-factory';
 import {
     ShouldShowReportExportButton,
