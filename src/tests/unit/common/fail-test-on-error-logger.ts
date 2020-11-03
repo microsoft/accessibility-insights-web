@@ -8,6 +8,8 @@ export const failTestOnErrorLogger: Logger = {
         // intentionally ignored
     },
     error: (message?: string, ...optionalParams: any[]) => {
-        fail(`FailTestOnErrorLogger.error invoked with "${message}" ${inspect(optionalParams)}`);
+        expect(
+            `FailTestOnErrorLogger.error invoked with "${message}" ${inspect(optionalParams)}`,
+        ).toBe('FailTestOnErrorLogger.error never invoked');
     },
 };
