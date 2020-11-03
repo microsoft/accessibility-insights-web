@@ -19,6 +19,3 @@ export const DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS = 5000;
 
 // How long of a wait to artificially inject between element hover/mousedown/mouseup during clicks
 export const DEFAULT_CLICK_HOVER_DELAY_MS = 100;
-
-// https://webdriver.io/docs/api/browser/setTimeout.html
-export const DEFAULT_WEBDRIVERIO_WAIT_TIMEOUT = 1000;

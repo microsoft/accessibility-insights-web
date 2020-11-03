@@ -37,9 +37,12 @@ export abstract class ViewController {
         });
     }
 
+    // Webdriver waits the full implicit waitForTimeout before returning not-found.
+    // This means we need to wrap the waitForExist call with a longer timeout when
+    // reverse is true. See webdriverio@2082 and ai-web@3599.
     public async waitForSelectorToDisappear(
         selector: string,
-        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS * 2,
     ): Promise<void> {
         await this.screenshotOnError(async () =>
             this.client.waitForExist(

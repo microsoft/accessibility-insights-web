@@ -9,7 +9,6 @@ import {
     DEFAULT_APP_CONNECT_TIMEOUT_MS,
     DEFAULT_CHROMEDRIVER_START_RETRIES,
     DEFAULT_CHROMEDRIVER_START_TIMEOUT_MS,
-    DEFAULT_WEBDRIVERIO_WAIT_TIMEOUT,
 } from 'tests/electron/setup/timeouts';
 import { AppController } from './view-controllers/app-controller';
 
@@ -49,7 +48,6 @@ export async function createAppController(
                 connectionRetryCount: DEFAULT_APP_CONNECT_RETRIES,
                 connectionRetryTimeout: DEFAULT_APP_CONNECT_TIMEOUT_MS,
                 startTimeout: DEFAULT_CHROMEDRIVER_START_TIMEOUT_MS,
-                waitTimeout: DEFAULT_WEBDRIVERIO_WAIT_TIMEOUT,
                 ...overrideSpectronOptions,
             });
             await app.start();
