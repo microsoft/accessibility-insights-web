@@ -8,6 +8,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { AnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 describe('BaseAnalyzer', () => {
     let testSubject: BaseAnalyzer;
@@ -29,6 +30,7 @@ describe('BaseAnalyzer', () => {
             configStub,
             sendMessageMock.object,
             scanIncompleteWarningDetectorMock.object,
+            failTestOnErrorLogger,
         );
     });
 

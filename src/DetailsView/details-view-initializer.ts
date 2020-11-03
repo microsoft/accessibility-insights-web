@@ -122,6 +122,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+import { Logger } from 'common/logging/logger';
 
 declare const window: AutoChecker & Window;
 
@@ -486,7 +487,11 @@ if (tabId != null) {
             window.A11YSelfValidator = a11ySelfValidator;
         },
         () => {
-            const renderer = createNullifiedRenderer(document, ReactDOM.render);
+            const renderer = createNullifiedRenderer(
+                document,
+                ReactDOM.render,
+                createDefaultLogger(),
+            );
             renderer.render();
         },
     );
@@ -495,9 +500,10 @@ if (tabId != null) {
 function createNullifiedRenderer(
     doc: Document,
     render: typeof ReactDOM.render,
+    logger: Logger,
 ): NoContentAvailableViewRenderer {
     // using an instance of an actual store (instead of a StoreProxy) so we can get the default state.
-    const store = new UserConfigurationStore(null, new UserConfigurationActions(), null);
+    const store = new UserConfigurationStore(null, new UserConfigurationActions(), null, logger);
     const storesHub = new BaseClientStoresHub<ThemeInnerState>([store]);
 
     const deps: NoContentAvailableViewDeps = {

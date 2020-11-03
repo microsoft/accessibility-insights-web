@@ -4,6 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { Logger } from 'common/logging/logger';
 import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -46,33 +47,18 @@ import { AssessmentDataRemover } from './../assessment-data-remover';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
-    private assessmentActions: AssessmentActions;
-    private assessmentDataConverter: AssessmentDataConverter;
-    private assessmentDataRemover: AssessmentDataRemover;
-    private assessmentsProvider: AssessmentsProvider;
-    private idbInstance: IndexedDBAPI;
-    private browserAdapter: BrowserAdapter;
-    private persistedData: AssessmentStoreData;
-
     constructor(
-        browserAdapter: BrowserAdapter,
-        assessmentActions: AssessmentActions,
-        assessmentDataConverter: AssessmentDataConverter,
-        assessmentDataRemover: AssessmentDataRemover,
-        assessmentsProvider: AssessmentsProvider,
-        idbInstance: IndexedDBAPI,
-        persistedData: AssessmentStoreData,
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly assessmentActions: AssessmentActions,
+        private readonly assessmentDataConverter: AssessmentDataConverter,
+        private readonly assessmentDataRemover: AssessmentDataRemover,
+        private readonly assessmentsProvider: AssessmentsProvider,
+        private readonly idbInstance: IndexedDBAPI,
+        private readonly persistedData: AssessmentStoreData,
         private readonly initialAssessmentStoreDataGenerator: InitialAssessmentStoreDataGenerator,
+        private readonly logger: Logger,
     ) {
         super(StoreNames.AssessmentStore);
-
-        this.browserAdapter = browserAdapter;
-        this.assessmentActions = assessmentActions;
-        this.assessmentDataConverter = assessmentDataConverter;
-        this.assessmentsProvider = assessmentsProvider;
-        this.assessmentDataRemover = assessmentDataRemover;
-        this.idbInstance = idbInstance;
-        this.persistedData = persistedData;
     }
 
     public generateDefaultState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
@@ -99,8 +85,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     protected emitChanged(): void {
         const assessmentStoreData = this.getState();
 
-        // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation
-        this.persistAssessmentData(assessmentStoreData);
+        this.persistAssessmentData(assessmentStoreData).catch(this.logger.error);
 
         super.emitChanged();
     }
