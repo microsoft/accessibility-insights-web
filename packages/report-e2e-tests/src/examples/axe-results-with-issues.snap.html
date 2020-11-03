@@ -286,11 +286,11 @@
         white-space: pre-wrap;
       }
       .outcome-summary-bar .block,
-      .outcome-summary-bar .fail,
-      .outcome-summary-bar .pass,
+      .outcome-summary-bar .incomplete,
       .outcome-summary-bar .inapplicable,
       .outcome-summary-bar .unscannable,
-      .outcome-summary-bar .incomplete {
+      .outcome-summary-bar .pass,
+      .outcome-summary-bar .fail {
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
           sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -720,8 +720,9 @@
         padding-right: 16px;
         position: relative;
       }
-      .collapsible-container .collapsible-control[aria-expanded="false"]:before,
-      .collapsible-container .collapsible-control[aria-expanded="true"]:before {
+      .collapsible-container .collapsible-control[aria-expanded="true"]:before,
+      .collapsible-container
+        .collapsible-control[aria-expanded="false"]:before {
         display: inline-block;
         border-right: 1px solid var(--secondary-text);
         border-bottom: 1px solid var(--secondary-text);

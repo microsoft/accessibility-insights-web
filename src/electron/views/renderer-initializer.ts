@@ -183,12 +183,11 @@ const indexedDBDataKeysToFetch = [
     IndexedDBDataKeys.unifiedFeatureFlags,
 ];
 
-// tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
-    (persistedData: Partial<PersistedData>) => {
-        const installationData: InstallationData = persistedData.installationData;
+const logger = createDefaultLogger();
 
-        const logger = createDefaultLogger();
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
+    .then((persistedData: Partial<PersistedData>) => {
+        const installationData: InstallationData = persistedData.installationData;
 
         const applicationTelemetryDataFactory = getApplicationTelemetryDataFactory(
             installationData,
@@ -203,6 +202,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
             persistedData.userConfigurationData,
             userConfigActions,
             indexedDBInstance,
+            logger,
         );
         userConfigurationStore.initialize();
 
@@ -561,5 +561,5 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then(
         sendAppInitializedTelemetryEvent(telemetryEventHandler, platformInfo);
 
         ipcRendererShim.initializeWindow();
-    },
-);
+    })
+    .catch(logger.error);

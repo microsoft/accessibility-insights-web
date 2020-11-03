@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
+import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
@@ -32,8 +33,9 @@ export class RuleAnalyzer extends BaseAnalyzer {
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postOnResolve: PostResolveCallback,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
+        logger: Logger,
     ) {
-        super(config, sendMessageDelegate, scanIncompleteWarningDetector);
+        super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
     }
 
     protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
