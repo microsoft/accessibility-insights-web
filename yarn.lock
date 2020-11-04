@@ -12173,16 +12173,6 @@ sanitize-filename@^1.6.1, sanitize-filename@^1.6.2, sanitize-filename@^1.6.3:
   dependencies:
     truncate-utf8-bytes "^1.0.0"
 
-sass-graph@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/sass-graph/-/sass-graph-2.2.5.tgz#a981c87446b8319d96dce0671e487879bd24c2e8"
-  integrity sha512-VFWDAHOe6mRuT4mZRd4eKE+d8Uedrk6Xnh7Sh9b4NGufQLQjOrvf/MQoOdx+0s92L89FeyUUNfU597j/3uNpag==
-  dependencies:
-    glob "^7.0.0"
-    lodash "^4.0.0"
-    scss-tokenizer "^0.2.3"
-    yargs "^13.3.2"
-
 sass-loader@^10.0.5:
   version "10.0.5"
   resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-10.0.5.tgz#f53505b5ddbedf43797470ceb34066ded82bb769"
@@ -13557,10 +13547,10 @@ ts-jest@^26.4.3:
     semver "7.x"
     yargs-parser "20.x"
 
-ts-loader@^8.0.7:
-  version "8.0.7"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.7.tgz#9ce70db5b3906cc9143a09c54ff5247d102ea974"
-  integrity sha512-ooa4wxlZ9TOXaJ/iVyZlWsim79Ul4KyifSwyT2hOrbQA6NZJypsLOE198o8Ko+JV+ZHnMArvWcl4AnRqpCU/Mw==
+ts-loader@^8.0.8:
+  version "8.0.8"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-8.0.8.tgz#5c514c895d3b2462bf0148f63da0c22b227f7867"
+  integrity sha512-wihija1i2Ub9FxKFoEgx/phToJiDZKLIbTFURgf4Efxla2QuVucDO6ZpHf2jNJsRtDQfBId0g+1HF0biIjoT6Q==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"
