@@ -15,7 +15,7 @@ export const getA11yInsightsWebRuleUrl = (ruleId: string) => {
     return getRuleResourceUrl(ruleId, webRulesWithResources, webRuleResourcesPath);
 };
 
-export const webRulesWithResources = [
+const webRulesWithResources = [
     'aria-alt',
     'aria-allowed-attr',
     'aria-hidden-body',

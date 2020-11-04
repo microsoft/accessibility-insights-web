@@ -6,10 +6,10 @@ import { getAttributes } from './axe-utils';
 const htmlCues = ['readonly', 'disabled', 'required'];
 const ariaCues = ['aria-readonly', 'aria-disabled', 'aria-required'];
 
-export function generateHTMLCuesDictionary(node: HTMLElement): DictionaryStringTo<string> {
+export function generateHTMLCuesDictionary(node: HTMLElement): DictionaryStringTo<string | null> {
     return getAttributes(node, htmlCues);
 }
 
-export function generateARIACuesDictionary(node: HTMLElement): DictionaryStringTo<string> {
+export function generateARIACuesDictionary(node: HTMLElement): DictionaryStringTo<string | null> {
     return getAttributes(node, ariaCues);
 }

@@ -18,6 +18,8 @@ export class DevToolStore extends BaseStoreImpl<DevToolStoreData> {
         const defaultValues: DevToolStoreData = {
             isOpen: false,
             inspectElementRequestId: 0,
+            inspectElement: null,
+            frameUrl: null,
         };
 
         return defaultValues;

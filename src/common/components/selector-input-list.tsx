@@ -58,7 +58,7 @@ export class SelectorInputList extends React.Component<
         const shouldUpdateState = !_.isEqual(this.props, previousProps);
 
         if (shouldUpdateState) {
-            this.updateFieldValueValidState(null, this.textField.value);
+            this.updateFieldValueValidState(null, this.textField.value ?? '');
         }
     }
 
@@ -141,7 +141,7 @@ export class SelectorInputList extends React.Component<
     };
 
     private addSelector = (event: React.MouseEvent<HTMLButtonElement>): void => {
-        const selector = this.textField.value;
+        const selector = this.textField.value ?? '';
         this.props.onAddSelector(event, this.props.inputType, this.formatSelector(selector));
         this.restore();
         this.refocus();

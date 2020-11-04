@@ -24,7 +24,7 @@ export class InspectHandler {
                 (state.inspectElement.length === 1 || state.frameUrl)
             ) {
                 const selector = state.inspectElement[state.inspectElement.length - 1];
-                this.targetPageInspector.inspectElement(selector, state.frameUrl);
+                this.targetPageInspector.inspectElement(selector, state.frameUrl ?? undefined);
             }
         });
 

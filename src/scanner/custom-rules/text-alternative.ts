@@ -23,14 +23,14 @@ export const textAlternativeConfiguration: RuleConfiguration = {
 };
 
 function matches(node: HTMLElement): boolean {
-    return isImage(node, null) && AxeUtils.getImageCodedAs(node) === 'Meaningful';
+    return isImage(node) && AxeUtils.getImageCodedAs(node) === 'Meaningful';
 }
 
 function evaluateTextAlternative(node: HTMLElement): boolean {
     const accessibleName: string = AxeUtils.getAccessibleText(node, false);
     const accessibleDescription: string = AxeUtils.getAccessibleDescription(node);
-    const imageType: string = AxeUtils.getImageType(node);
-    const role: string = node.getAttribute('role');
+    const imageType: string | null = AxeUtils.getImageType(node);
+    const role: string | null = node.getAttribute('role');
 
     // tslint:disable-next-line:no-invalid-this
     this.data({
