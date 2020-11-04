@@ -32,15 +32,17 @@ export class InjectorController {
 
     private inject = (): void => {
         const tabId: number = this.tabStore.getState().id;
-        const visualizationStoreState = this.visualizationStore.getState();
         const inspectStoreState = this.inspectStore.getState();
+        const visualizationStoreState = this.visualizationStore.getState();
 
-        if (
-            ((this.oldInspectType !== inspectStoreState.inspectMode &&
-                inspectStoreState.inspectMode !== InspectMode.off) ||
-                visualizationStoreState.injectingInProgress === true) &&
-            !visualizationStoreState.injectingStarted
-        ) {
+        const inspectStoreInjectingRequested =
+            this.oldInspectType !== inspectStoreState.inspectMode &&
+            inspectStoreState.inspectMode !== InspectMode.off;
+
+        const isInjectingRequested =
+            inspectStoreInjectingRequested || visualizationStoreState.injectingRequested;
+
+        if (isInjectingRequested && !visualizationStoreState.injectingStarted) {
             this.windowUtils.setTimeout(() => {
                 this.interpreter.interpret({
                     messageType: Messages.Visualizations.State.InjectionStarted,
