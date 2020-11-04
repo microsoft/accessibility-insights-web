@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 
 export interface PathSnippetStoreData {
-    path: string;
-    snippet: string;
+    path: string | null;
+    snippet: string | null;
 }

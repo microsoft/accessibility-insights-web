@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { defaultsDeep } from 'lodash';
+import { cloneDeep, defaultsDeep } from 'lodash';
 
 import { defaults } from './configuration-defaults';
 import {
@@ -23,7 +23,7 @@ export class WindowVariableConfiguration implements ConfigAccessor, ConfigMutato
     }
 
     public reset(): ConfigMutator {
-        this.config = null;
+        this.config = cloneDeep(defaults);
         return this;
     }
 
