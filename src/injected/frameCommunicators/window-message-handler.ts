@@ -7,8 +7,8 @@ import { WindowMessage } from './window-message';
 import { WindowMessageMarshaller } from './window-message-marshaller';
 
 export type FrameMessageResponseCallback = (
-    result: any,
-    error: ErrorMessageContent,
+    result: any | undefined,
+    error: ErrorMessageContent | undefined,
     messageSourceWindow: Window,
     responder?: FrameMessageResponseCallback,
 ) => void;
@@ -66,7 +66,7 @@ export class WindowMessageHandler {
 
     private windowMessageHandler = (e: MessageEvent): void => {
         const sourceWindow = e.source as Window;
-        const data: WindowMessage = this.windowMessageParser.parseMessage(e.data);
+        const data: WindowMessage | null = this.windowMessageParser.parseMessage(e.data);
         if (data == null) {
             return;
         }
@@ -80,11 +80,14 @@ export class WindowMessageHandler {
                 this.processNewMessage(sourceWindow, data);
             }
         } catch (err) {
-            this.post(sourceWindow, data.command, err, null, messageId);
+            this.post(sourceWindow, data.command, err, undefined, messageId);
         }
     };
 
-    private updateResponseCallbackMap(messageId, callback): void {
+    private updateResponseCallbackMap(
+        messageId: string,
+        callback?: FrameMessageResponseCallback,
+    ): void {
         if (callback) {
             this.callbacksForMessagesSentFromCurrentFrame[messageId] = callback;
         } else {

@@ -269,6 +269,7 @@
         "./src/injected/client-utils.ts",
         "./src/injected/constants.ts",
         "./src/injected/frameCommunicators/error-message-content.ts",
+        "./src/injected/frameCommunicators/window-message-handler.ts",
         "./src/injected/frameCommunicators/window-message-marshaller.ts",
         "./src/injected/frameCommunicators/window-message.ts",
         "./src/injected/iframe-detector.ts",
