@@ -727,7 +727,7 @@ describe('VisualizationStoreTest ', () => {
             .build();
 
         const expectedState = new VisualizationStoreDataBuilder()
-            .with('injectingRequested', null)
+            .with('injectingRequested', false)
             .with('injectingStarted', true)
             .build();
 
