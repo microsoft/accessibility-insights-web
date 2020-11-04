@@ -48,13 +48,6 @@ import {
     getFastPassSelectedDetailsView,
     GetSelectedDetailsViewProps,
 } from './left-nav/get-selected-details-view';
-import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from './left-nav/left-nav-link-builder';
-import { NavLinkHandler } from './left-nav/nav-link-handler';
-
-export type GetLeftNavDeps = {
-    navLinkHandler: NavLinkHandler;
-    leftNavLinkBuilder: LeftNavLinkBuilder;
-} & LeftNavLinkBuilderDeps;
 
 export type LeftNavDeps = AssessmentLeftNavDeps & FastPassLeftNavDeps;
 export type LeftNavProps = AssessmentLeftNavProps & FastPassLeftNavProps;

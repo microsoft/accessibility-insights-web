@@ -28,7 +28,6 @@
         "./src/DetailsView/components/report-export-button.tsx",
         "./src/DetailsView/components/requirement-instructions.tsx",
         "./src/DetailsView/components/save-assessment-button.tsx",
-        "./src/DetailsView/components/switcher-style-names.ts",
         "./src/DetailsView/components/target-page-hidden-bar.tsx",
         "./src/DetailsView/components/test-status-choice-group.tsx",
         "./src/DetailsView/no-content-available-view-renderer.tsx",
