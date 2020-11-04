@@ -184,7 +184,6 @@
     },
     "resolutions": {
         "@types/node": "^14.14.6",
-        "acorn": "^7.1.1",
         "dot-prop": "^5.2.0",
         "kind-of": "^6.0.3",
         "minimist": "^1.2.3",
