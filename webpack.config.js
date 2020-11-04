@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const path = require('path');
-const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
@@ -9,15 +8,10 @@ const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const commonPlugins = [
-    new webpack.optimize.LimitChunkCountPlugin({
-        maxChunks: 1, // Must be greater than or equal to one
-        minChunkSize: 1000000,
-    }),
     new ForkTsCheckerWebpackPlugin(),
     new CaseSensitivePathsPlugin(),
     new MiniCssExtractPlugin({
-        // Options similar to the same options in webpackOptions.output
-        // both options are optional
+        // Similar to the same options in webpackOptions.output
         filename: '[name].css',
         chunkFilename: '[id].css',
     }),
@@ -93,9 +87,6 @@ const commonConfig = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,
-    node: {
-        setImmediate: false,
-    },
     performance: {
         // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
         maxEntrypointSize: 10 * 1024 * 1024,
