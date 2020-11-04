@@ -272,6 +272,7 @@
         "./src/injected/frame-url-search-initiator.ts",
         "./src/injected/frameCommunicators/error-message-content.ts",
         "./src/injected/frameCommunicators/frame-communicator.ts",
+        "./src/injected/frameCommunicators/scrolling-controller.ts",
         "./src/injected/frameCommunicators/window-message-handler.ts",
         "./src/injected/frameCommunicators/window-message-marshaller.ts",
         "./src/injected/frameCommunicators/window-message.ts",
