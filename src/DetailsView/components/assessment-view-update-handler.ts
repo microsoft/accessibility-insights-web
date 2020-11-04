@@ -8,14 +8,7 @@ import {
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
-import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { VisualizationType } from '../../common/types/visualization-type';
-
-export type WithAssessmentTestResult = { assessmentTestResult: AssessmentTestResult };
-export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<
-    WithAssessmentTestResult
->('AssessmentViewMainContentExtensionPoint');
 
 export interface AssessmentViewUpdateHandlerDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

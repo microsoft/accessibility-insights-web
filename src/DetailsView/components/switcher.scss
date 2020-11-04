@@ -3,13 +3,15 @@
 @import '../../common/styles/colors.scss';
 
 @mixin title-border {
-    border: 1px $neutral-0 solid;
+    border: 1px $neutral-alpha-90 solid;
     border-radius: 2px;
 }
 
 // The two layers of class selector and the explicit enumeration of the states are both
 // required to beat the specificity of office fabric styles
-.header-switcher .header-switcher-dropdown {
+.left-nav-switcher .left-nav-switcher-dropdown {
+    margin: 8px;
+
     &,
     &:focus,
     &:hover,
@@ -18,36 +20,30 @@
         :global(.ms-Dropdown-title) {
             @include title-border;
 
-            background-color: $ada-brand-color;
+            background-color: $neutral-0;
             height: 32px;
 
             box-sizing: border-box;
-            width: 165px;
-            color: $neutral-0;
+            width: inherit;
+            color: $neutral-alpha-90;
             i {
                 margin-right: 8px;
             }
         }
         :global(.ms-Dropdown-caretDownWrapper) {
             top: 2px;
-            right: 10px;
+            right: 18px;
         }
         :global(.ms-Dropdown-caretDown) {
-            color: $neutral-0;
+            color: $neutral-alpha-90;
         }
     }
 
     :global(.ms-Dropdown):focus::after {
         @include title-border;
 
-        outline: 1px $neutral-0 solid;
+        outline: 1px $neutral-alpha-90 solid;
         outline-offset: -5px;
-    }
-}
-
-:global(.ms-Dropdown-items .ms-Button:focus) {
-    @media screen and (-ms-high-contrast: active) {
-        border: 2px highlighttext solid !important;
     }
 }
 
