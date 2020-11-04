@@ -268,6 +268,8 @@
         "./src/injected/analyzers/filter-results.ts",
         "./src/injected/client-utils.ts",
         "./src/injected/constants.ts",
+        "./src/injected/frame-url-finder.ts",
+        "./src/injected/frame-url-search-initiator.ts",
         "./src/injected/frameCommunicators/error-message-content.ts",
         "./src/injected/frameCommunicators/frame-communicator.ts",
         "./src/injected/frameCommunicators/window-message-handler.ts",
