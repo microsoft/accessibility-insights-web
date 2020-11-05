@@ -9,10 +9,8 @@ import * as React from 'react';
 
 describe('HeaderSection', () => {
     const props: HeaderSectionProps = {
-        contentPageInfo: {
-            title: 'test-title',
-            description: <>test-description</>,
-        },
+        title: 'test-title',
+        description: <>test-description</>,
     };
 
     it('renders', () => {

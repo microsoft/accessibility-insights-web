@@ -18,7 +18,7 @@ const createLeftNavItem = (
 ): LeftNavItem => {
     return {
         key: config.key,
-        displayName: config.title,
+        displayName: config.contentPageInfo.title,
         onSelect: () => actionCreator.itemSelected(config.key),
     };
 };
