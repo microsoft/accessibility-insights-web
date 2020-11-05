@@ -66,7 +66,9 @@ exports[`DetailsViewCommandBar renders with export button, with save assessment,
       buttonRef={[Function]}
       showReportExportDialog={[Function]}
     />
-    <SaveAssessmentButton />
+    <div>
+      Save assessment
+    </div>
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
@@ -131,6 +133,7 @@ exports[`DetailsViewCommandBar renders with export button, with save assessment,
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
@@ -255,6 +258,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
@@ -375,6 +379,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
@@ -488,7 +493,9 @@ exports[`DetailsViewCommandBar renders without export button, with save assessme
   <div
     className="detailsViewCommandButtons"
   >
-    <SaveAssessmentButton />
+    <div>
+      Save assessment
+    </div>
   </div>
   <div>
     Export dialog
@@ -550,6 +557,7 @@ exports[`DetailsViewCommandBar renders without export button, with save assessme
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
@@ -673,6 +681,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
@@ -789,6 +798,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
         "CommandBar": [Function],
         "LeftNav": [Function],
         "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },

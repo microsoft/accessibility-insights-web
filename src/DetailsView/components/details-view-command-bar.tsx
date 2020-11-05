@@ -22,7 +22,10 @@ import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
-import {  SaveAssessmentFactoryDeps, SaveAssessmentFactoryProps } from 'DetailsView/components/save-assessment-factory';
+import {
+    SaveAssessmentFactoryDeps,
+    SaveAssessmentFactoryProps,
+} from 'DetailsView/components/save-assessment-factory';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -45,8 +48,9 @@ export type DetailsViewCommandBarDeps = {
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-} & ExportDialogDeps & SaveAssessmentFactoryDeps &
-    StartOverFactoryDeps
+} & ExportDialogDeps &
+    SaveAssessmentFactoryDeps &
+    StartOverFactoryDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
@@ -210,11 +214,9 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderSaveAssessmentButton = (): JSX.Element | null => {
         if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return (
-                this.props.switcherNavConfiguration.SaveAssessmentFactory({
-                    ...this.props,
-                })
-            );
+            return this.props.switcherNavConfiguration.SaveAssessmentFactory({
+                ...this.props,
+            });
         }
         return null;
     };
