@@ -61,6 +61,40 @@ describe('ScrollingControllerTest', () => {
         HTMLElementUtilsMock.verifyAll();
     });
 
+    test('scroll to nonexistent element is a noop', () => {
+        let subscribeCallback: (result: any, error: any, responder?: any) => void;
+
+        frameCommunicatorMock
+            .setup(fcm =>
+                fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()),
+            )
+            .returns((cmd, func) => {
+                subscribeCallback = func;
+            })
+            .verifiable(Times.once());
+
+        const message: ScrollingWindowMessage = {
+            focusedTarget: ['a'],
+        };
+
+        HTMLElementUtilsMock.setup(dm => dm.querySelector(It.isValue('a')))
+            .returns(() => null)
+            .verifiable(Times.once());
+
+        HTMLElementUtilsMock.setup(h => h.scrollInToView(It.isAny())).verifiable(Times.never());
+
+        const testObject = new ScrollingController(
+            frameCommunicatorMock.object,
+            HTMLElementUtilsMock.object,
+        );
+
+        testObject.initialize();
+        subscribeCallback(message, null);
+
+        frameCommunicatorMock.verifyAll();
+        HTMLElementUtilsMock.verifyAll();
+    });
+
     test('scroll in other frames', () => {
         let subscribeCallback: (result: any, error: any, responder?: any) => void;
 

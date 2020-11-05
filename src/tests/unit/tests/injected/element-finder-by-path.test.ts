@@ -80,9 +80,8 @@ describe('ElementFinderByPositionTest', () => {
                 errorCallback = error;
             });
 
-        responderMock.setup(rm => rm(resultsStub, null, windowStub)).verifiable();
-
-        responderMock.setup(rm => rm(null, errorStub, windowStub)).verifiable();
+        responderMock.setup(rm => rm(resultsStub, undefined, windowStub)).verifiable();
+        responderMock.setup(rm => rm(undefined, errorStub, windowStub)).verifiable();
 
         testSubject.initialize();
         testSubject.processRequest = processRequestMock.object;
