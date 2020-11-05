@@ -15,7 +15,6 @@ import { AutomatedChecksViewController } from 'tests/electron/common/view-contro
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
-import { RawResult } from 'webdriverio';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
@@ -151,7 +150,7 @@ describe('AutomatedChecksView', () => {
             'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
         await automatedChecksView.waitForSelector(ScreenshotViewSelectors.screenshotImage);
-        const actualScreenshotImage = await automatedChecksView.client.getAttribute<string>(
+        const actualScreenshotImage = await automatedChecksView.client.getAttribute(
             ScreenshotViewSelectors.screenshotImage,
             'src',
         );
@@ -161,11 +160,9 @@ describe('AutomatedChecksView', () => {
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForSelector(ScreenshotViewSelectors.highlightBox);
-        const styles = await automatedChecksView.client.getAttribute<string[]>(
-            ScreenshotViewSelectors.highlightBox,
-            'style',
-        );
 
+        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const styles = await Promise.all(boxes.map(async b => await b.getAttribute('style')));
         const actualHighlightBoxStyles = styles.map(extractPositionStyles);
         verifyHighlightBoxStyles(actualHighlightBoxStyles, [
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
