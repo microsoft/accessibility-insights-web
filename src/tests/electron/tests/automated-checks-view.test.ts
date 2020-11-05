@@ -89,7 +89,7 @@ describe('AutomatedChecksView', () => {
 
     it('left nav allows to change between tests', async () => {
         const testIndex = 1;
-        const expectedTestTitle = androidTestConfigs[testIndex].title;
+        const expectedTestTitle = androidTestConfigs[testIndex].contentPageInfo.title;
         await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
