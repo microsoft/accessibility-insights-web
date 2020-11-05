@@ -27,7 +27,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: inject occurs', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', true)
+            .with('injectingRequested', true)
             .build();
 
         validator
@@ -78,7 +78,7 @@ describe('InjectorControllerTest', () => {
 
     test("inject doesn't occur when inspect mode changed to off", async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', false)
+            .with('injectingRequested', false)
             .build();
 
         validator
@@ -102,7 +102,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: already injecting => no inject', () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', true)
+            .with('injectingRequested', true)
             .with('injectingStarted', true)
             .build();
 
@@ -118,7 +118,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: injectingInProgress is false => no inject', () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', false)
+            .with('injectingRequested', false)
             .with('injectingStarted', true)
             .build();
 

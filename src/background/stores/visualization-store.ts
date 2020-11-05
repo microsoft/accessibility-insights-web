@@ -97,7 +97,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             selectedAdhocDetailsView: VisualizationType.Issues,
             selectedDetailsViewPivot: DetailsViewPivotType.fastPass,
             injectingStarted: false,
-            injectingInProgress: null,
+            injectingRequested: false,
             focusedTarget: null,
         };
 
@@ -190,7 +190,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
                 this.state.scanning = configuration.getIdentifier(step);
             }
 
-            this.state.injectingInProgress = true;
+            this.state.injectingRequested = true;
             configuration.enableTest(this.state.tests, payload);
         }
         this.emitChanged();
@@ -242,7 +242,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     };
 
     private onInjectionCompleted = (): void => {
-        this.state.injectingInProgress = false;
+        this.state.injectingRequested = false;
         this.state.injectingStarted = false;
         this.emitChanged();
     };
@@ -252,7 +252,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             return;
         }
 
-        this.state.injectingInProgress = true;
+        this.state.injectingRequested = true;
         this.state.injectingStarted = true;
         this.emitChanged();
     };

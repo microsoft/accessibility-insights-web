@@ -53,7 +53,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('do not start scan if inject in progress', () => {
         const state = new VisualizationStoreDataBuilder()
             .with('scanning', 'landmarks')
-            .with('injectingInProgress', true)
+            .with('injectingRequested', true)
             .withLandmarksEnable()
             .build();
 
@@ -98,7 +98,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     test('start scan: inject just completed', () => {
         const enabledStep = HeadingsTestStep.headingFunction;
         const prevState = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', true)
+            .with('injectingRequested', true)
             .with('scanning', enabledStep)
             .withHeadingsAssessment(true, enabledStep)
             .build();
