@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    FailedInstancesSection,
-    FailedInstancesSectionDeps,
-    FailedInstancesSectionProps,
-} from 'common/components/cards/failed-instances-section';
+    CommonInstancesSectionDeps,
+    CommonInstancesSectionProps,
+} from 'common/components/cards/common-instances-section-props';
+import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
@@ -42,11 +42,11 @@ describe('FailedInstancesSection', () => {
             ${{ cards: nonEmptyResults }}     | ${false}                 | ${'with alerting off'}
         `('$description', ({ results, shouldAlertFailuresCount }) => {
             const props = {
-                deps: {} as FailedInstancesSectionDeps,
+                deps: {} as CommonInstancesSectionDeps,
                 cardsViewData: results,
                 shouldAlertFailuresCount,
                 scanMetadata,
-            } as FailedInstancesSectionProps;
+            } as CommonInstancesSectionProps;
 
             const wrapper = shallow(<FailedInstancesSection {...props} />);
 

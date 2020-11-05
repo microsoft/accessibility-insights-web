@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
+import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -31,6 +33,8 @@ describe('TestView', () => {
         } as UserConfigurationStoreData;
         contentPageInfo = {
             title: 'some title',
+            description: <p>some description</p>,
+            instancesSectionComponent: StubInstancesSectionComponent,
         } as ContentPageInfo;
     });
 
@@ -55,4 +59,9 @@ describe('TestView', () => {
 
         expect(testSubject.getElement()).toMatchSnapshot();
     });
+
+    const StubInstancesSectionComponent = NamedFC<CommonInstancesSectionProps>(
+        'stubInstancesSectionComponent',
+        props => <p>stub instances section</p>,
+    );
 });

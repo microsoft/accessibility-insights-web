@@ -3,21 +3,25 @@
 
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
-import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { TestConfig } from 'electron/types/test-config';
 import { LeftNavItem } from 'electron/types/left-nav-item';
 import { Mock, MockBehavior } from 'typemoq';
+import { ContentPageInfo } from 'electron/types/content-page-info';
 
 describe('left nav item factory', () => {
     it('creates array of LeftNavItem objects as expected', () => {
         const configs: TestConfig[] = [
             {
                 key: 'automated-checks',
-                title: 'my title1',
+                contentPageInfo: {
+                    title: 'my title1',
+                } as ContentPageInfo,
             } as TestConfig,
             {
                 key: 'needs-review',
-                title: 'my title2',
+                contentPageInfo: {
+                    title: 'my title2',
+                } as ContentPageInfo,
             } as TestConfig,
         ];
 
@@ -45,7 +49,9 @@ describe('left nav item factory', () => {
         const configs: TestConfig[] = [
             {
                 key: 'automated-checks',
-                title: 'my title1',
+                contentPageInfo: {
+                    title: 'my title1',
+                } as ContentPageInfo,
             } as TestConfig,
         ];
 
