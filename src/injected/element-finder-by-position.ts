@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
-
 import { BoundRectAccessor, ClientUtils } from './client-utils';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
@@ -18,20 +16,17 @@ export class ElementFinderByPosition {
     private scannerUtils: ScannerUtils;
     private frameCommunicator: FrameCommunicator;
     private clientUtils: ClientUtils;
-    private q: typeof Q;
     private dom: Document;
 
     constructor(
         frameCommunicator: FrameCommunicator,
         clientUtils: ClientUtils,
         scannerUtils: ScannerUtils,
-        q: typeof Q,
         dom: Document,
     ) {
         this.frameCommunicator = frameCommunicator;
         this.scannerUtils = scannerUtils;
         this.clientUtils = clientUtils;
-        this.q = q;
         this.dom = dom;
     }
 
@@ -58,46 +53,36 @@ export class ElementFinderByPosition {
         );
     };
 
-    public processRequest(message: ElementFinderByPositionMessage): Q.IPromise<string[]> {
+    public async processRequest(message: ElementFinderByPositionMessage): Promise<string[]> {
         let path = [];
-        const deferred = this.q.defer<string[]>();
         const element = this.getElementByPosition(message);
 
         if (element == null) {
-            deferred.resolve(path);
-            return deferred.promise;
+            return path;
         }
 
         path.push(this.scannerUtils.getUniqueSelector(element));
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe') {
-            deferred.resolve(path);
-            return deferred.promise;
+            return path;
         }
 
         const elementRect = this.clientUtils.getOffset(element as BoundRectAccessor);
 
-        this.frameCommunicator
-            .sendMessage<ElementFinderByPositionMessage, string[]>({
-                command: ElementFinderByPosition.findElementByPositionCommand,
-                frame: element as HTMLIFrameElement,
-                message: {
-                    x: message.x + window.scrollX - elementRect.left,
-                    y: message.y + window.scrollY - elementRect.top,
-                } as ElementFinderByPositionMessage,
-            })
-            .then(
-                result => {
-                    path = path.concat(result);
+        const descendentElements = await this.frameCommunicator.sendMessage<
+            ElementFinderByPositionMessage,
+            string[]
+        >({
+            command: ElementFinderByPosition.findElementByPositionCommand,
+            frame: element as HTMLIFrameElement,
+            message: {
+                x: message.x + window.scrollX - elementRect.left,
+                y: message.y + window.scrollY - elementRect.top,
+            } as ElementFinderByPositionMessage,
+        });
 
-                    deferred.resolve(path);
-                },
-                err => {
-                    deferred.reject(null);
-                },
-            );
-
-        return deferred.promise;
+        path = path.concat(descendentElements);
+        return path;
     }
 
     private getElementByPosition(message: ElementFinderByPositionMessage): HTMLElement {
