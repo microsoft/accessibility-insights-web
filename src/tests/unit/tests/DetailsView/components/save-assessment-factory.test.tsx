@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    getReportForAssessment,
-    getReportForFastPass,
+    getSaveButtonForAssessment,
+    getSaveButtonForFastPass,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
 
 describe('SaveAssessmentFactory', () => {
     let props: SaveAssessmentFactoryProps;
 
-    describe('getReportForAssessment', () => {
+    describe('getSaveButtonForAssessment', () => {
         test('renders save assessment button', () => {
-            const rendered = getReportForAssessment(props);
+            const rendered = getSaveButtonForAssessment(props);
             expect(rendered).toMatchSnapshot();
         });
     });
 
-    describe('getReportForFastPass', () => {
+    describe('getSaveButtonForFastPass', () => {
         test('renders save assessment button as null', () => {
-            const rendered = getReportForFastPass(props);
+            const rendered = getSaveButtonForFastPass(props);
             expect(rendered).toBeNull();
         });
     });

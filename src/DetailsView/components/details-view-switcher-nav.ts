@@ -17,8 +17,8 @@ import {
     getReportExportDialogForFastPass,
 } from 'DetailsView/components/report-export-dialog-factory';
 import {
-    getReportForAssessment,
-    getReportForFastPass,
+    getSaveButtonForAssessment,
+    getSaveButtonForFastPass,
 } from 'DetailsView/components/save-assessment-factory';
 import {
     ShouldShowReportExportButton,
@@ -100,7 +100,7 @@ const detailsViewSwitcherNavs: {
         CommandBar: AssessmentCommandBar,
         ReportExportDialogFactory: getReportExportDialogForAssessment,
         shouldShowReportExportButton: shouldShowReportExportButtonForAssessment,
-        SaveAssessmentFactory: getReportForAssessment,
+        SaveAssessmentFactory: getSaveButtonForAssessment,
         StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
@@ -111,7 +111,7 @@ const detailsViewSwitcherNavs: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportDialogFactory: getReportExportDialogForFastPass,
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
-        SaveAssessmentFactory: getReportForFastPass,
+        SaveAssessmentFactory: getSaveButtonForFastPass,
         StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,

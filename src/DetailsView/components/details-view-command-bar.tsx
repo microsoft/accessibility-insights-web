@@ -37,8 +37,6 @@ import {
 } from 'DetailsView/components/start-over-dialog';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { FeatureFlags } from 'common/feature-flags';
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
