@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-
 export interface SaveAssessmentButtonProps {}
 
 export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonProps> {

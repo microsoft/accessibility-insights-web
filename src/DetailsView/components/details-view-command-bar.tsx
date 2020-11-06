@@ -22,7 +22,10 @@ import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
-import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
+import {
+    SaveAssessmentFactoryDeps,
+    SaveAssessmentFactoryProps,
+} from 'DetailsView/components/save-assessment-factory';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -34,8 +37,6 @@ import {
 } from 'DetailsView/components/start-over-dialog';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { FeatureFlags } from 'common/feature-flags';
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -46,6 +47,7 @@ export type DetailsViewCommandBarDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ExportDialogDeps &
+    SaveAssessmentFactoryDeps &
     StartOverFactoryDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
@@ -56,6 +58,8 @@ export type DetailsViewCommandBarState = {
 };
 
 export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
+
+export type SaveAssessmentFactory = (props: SaveAssessmentFactoryProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -208,7 +212,9 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderSaveAssessmentButton = (): JSX.Element | null => {
         if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return <SaveAssessmentButton />;
+            return this.props.switcherNavConfiguration.SaveAssessmentFactory({
+                ...this.props,
+            });
         }
         return null;
     };

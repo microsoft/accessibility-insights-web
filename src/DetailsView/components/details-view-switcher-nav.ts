@@ -10,11 +10,16 @@ import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-chec
 import {
     CommandBarProps,
     ReportExportDialogFactory,
+    SaveAssessmentFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
 } from 'DetailsView/components/report-export-dialog-factory';
+import {
+    getSaveButtonForAssessment,
+    getSaveButtonForFastPass,
+} from 'DetailsView/components/save-assessment-factory';
 import {
     ShouldShowReportExportButton,
     shouldShowReportExportButtonForAssessment,
@@ -57,6 +62,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportDialogFactory: ReportExportDialogFactory;
     shouldShowReportExportButton: ShouldShowReportExportButton;
+    SaveAssessmentFactory: SaveAssessmentFactory;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -68,6 +74,7 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportDialogFactory: ReportExportDialogFactory;
     shouldShowReportExportButton: ShouldShowReportExportButton;
+    SaveAssessmentFactory: SaveAssessmentFactory;
     StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
@@ -86,6 +93,7 @@ const detailsViewSwitcherNavs: {
         CommandBar: AssessmentCommandBar,
         ReportExportDialogFactory: getReportExportDialogForAssessment,
         shouldShowReportExportButton: shouldShowReportExportButtonForAssessment,
+        SaveAssessmentFactory: getSaveButtonForAssessment,
         StartOverComponentFactory: AssessmentStartOverFactory,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
@@ -96,6 +104,7 @@ const detailsViewSwitcherNavs: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportDialogFactory: getReportExportDialogForFastPass,
         shouldShowReportExportButton: shouldShowReportExportButtonForFastpass,
+        SaveAssessmentFactory: getSaveButtonForFastPass,
         StartOverComponentFactory: FastpassStartOverFactory,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
