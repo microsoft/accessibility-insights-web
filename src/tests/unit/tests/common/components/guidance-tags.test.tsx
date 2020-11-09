@@ -3,10 +3,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
-import { GuidanceTags, GuidanceTagsProps } from '../../../../../common/components/guidance-tags';
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
-import { GuidanceLink } from '../../../../../scanner/rule-to-links-mappings';
+import { GuidanceTags, GuidanceTagsProps } from 'common/components/guidance-tags';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { GuidanceLink } from 'common/guidance-links';
 
 describe('GuidanceTags', () => {
     let getGuidanceTagsFromGuidanceLinksMock: IMock<GetGuidanceTagsFromGuidanceLinks>;

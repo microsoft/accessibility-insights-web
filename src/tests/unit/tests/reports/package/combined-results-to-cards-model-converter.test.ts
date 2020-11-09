@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
+import { GuidanceLink } from 'common/guidance-links';
 import { UUIDGenerator } from "common/uid-generator";
 import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { GroupedResults, FailuresGroup, AxeRuleData, HowToFixData } from "reports/package/accessibilityInsightsReport";
 import { CombinedResultsToCardsModelConverter } from "reports/package/combined-results-to-cards-model-converter";
 import { HelpUrlGetter } from "scanner/help-url-getter";
-import { GuidanceLink } from "scanner/rule-to-links-mappings";
 import { IMock, It, Mock } from "typemoq";
 
 describe(CombinedResultsToCardsModelConverter, () => {
