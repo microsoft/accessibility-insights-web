@@ -4,11 +4,12 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
-import { LeftNavController } from 'tests/electron/common/view-controllers/left-nav-controller';
+import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
 describe('NeedsReviewView', () => {
     let app: AppController;
+    let automatedChecksViewController: AutomatedChecksViewController;
 
     beforeEach(async () => {
         await setupMockAdb(
@@ -19,10 +20,8 @@ describe('NeedsReviewView', () => {
 
         app = await createApplication({ suppressFirstTimeDialog: true });
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
-        await app.openAutomatedChecksView();
-
-        const leftNavController = new LeftNavController(app.client);
-        await leftNavController.clickNeedsReview();
+        automatedChecksViewController = await app.openAutomatedChecksView();
+        await automatedChecksViewController.clickLeftNavItem('needs-review');
     });
 
     afterEach(async () => {
