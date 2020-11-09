@@ -69,7 +69,7 @@ export class AutomatedChecksViewController extends ViewController {
     public async clickLeftNavItem(key: LeftNavItemKey): Promise<void> {
         const selector = this.getSelectorForLeftNavItemLink(key);
         await this.waitForSelector(selector);
-        await this.client.click(selector);
+        await this.click(selector);
     }
 
     private getSelectorForLeftNavItemLink(key: LeftNavItemKey): string {
