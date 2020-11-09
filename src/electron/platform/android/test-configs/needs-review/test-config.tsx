@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { TestConfig } from 'electron/types/test-config';
+import { needsReviewResultsFilter } from './results-filter';
 
 export const needsReviewTestConfig: TestConfig = {
     key: 'needs-review',
@@ -16,5 +17,6 @@ export const needsReviewTestConfig: TestConfig = {
             </>
         ),
         instancesSectionComponent: NeedsReviewInstancesSection,
+        resultsFilter: needsReviewResultsFilter,
     },
 };
