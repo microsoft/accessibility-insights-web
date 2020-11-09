@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import {
@@ -63,5 +64,15 @@ export class AutomatedChecksViewController extends ViewController {
             : settingsPanelSelectors.disabledToggle(toggleSelector);
 
         await this.waitForSelector(toggleInStateSelector);
+    }
+
+    public async clickLeftNavItem(key: LeftNavItemKey): Promise<void> {
+        const selector = this.getSelectorForLeftNavItemLink(key);
+        await this.waitForSelector(selector);
+        await this.click(selector);
+    }
+
+    private getSelectorForLeftNavItemLink(key: LeftNavItemKey): string {
+        return `${AutomatedChecksViewSelectors.leftNav} a[data-automation-id="${key}"]`;
     }
 }
