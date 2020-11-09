@@ -1,27 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isMatch } from 'lodash';
+import * as React from 'react';
+import { It, Mock, MockBehavior } from 'typemoq';
+
 import { buildTestStepsFromRules } from 'assessments/automated-checks/build-test-steps-from-rules';
 import { InstanceTableColumn } from 'assessments/types/instance-table-column';
 import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
-import { isMatch } from 'lodash';
-import * as React from 'react';
-import { It, Mock, MockBehavior } from 'typemoq';
-import { HyperlinkDefinition } from 'views/content/content-page';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { Messages } from 'common/messages';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     AssessmentInstanceRowData,
     AssessmentInstanceTable,
-} from '../../../../../DetailsView/components/assessment-instance-table';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
-import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
-import { ScannerRuleInfo } from '../../../../../scanner/scanner-rule-info';
+} from 'DetailsView/components/assessment-instance-table';
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
+import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
+import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
 
 describe('buildTestStepsFromRules', () => {
     it('should exist', () => {

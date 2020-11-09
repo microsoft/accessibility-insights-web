@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HyperlinkDefinition } from 'views/content/content-page';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 
 export interface ScannerRuleInfo {
     id: string;

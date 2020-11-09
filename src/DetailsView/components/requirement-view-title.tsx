@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NamedFC } from 'common/react/named-fc';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import * as React from 'react';
-import { ContentPageComponent, HyperlinkDefinition } from 'views/content/content-page';
+import { ContentPageComponent } from 'views/content/content-page';
 import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
 import * as styles from './requirement-view-title.scss';
 

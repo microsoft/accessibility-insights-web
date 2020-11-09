@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
-import { RuleIncluded } from 'scanner/get-rule-inclusions';
 
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { DictionaryStringTo } from 'types/common-types';
-import { HyperlinkDefinition } from 'views/content/content-page';
+
+import { RuleIncluded } from './get-rule-inclusions';
 import { ScannerRuleInfo } from './scanner-rule-info';
 
 interface ExpectedGetRuleObject {

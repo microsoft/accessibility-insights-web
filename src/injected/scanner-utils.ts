@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from 'common/guidance-links';
+import { Logger } from 'common/logging/logger';
 import { CheckData } from 'injected/element-based-view-model-creator';
-import { Logger } from '../common/logging/logger';
-import { scan as scanRunner } from '../scanner/exposed-apis';
-import { RuleResult, ScanResults } from '../scanner/iruleresults';
-import { GuidanceLink } from '../scanner/rule-to-links-mappings';
-import { ScanOptions } from '../scanner/scan-options';
-import { DictionaryStringTo } from '../types/common-types';
+import { scan as scanRunner } from 'scanner/exposed-apis';
+import { RuleResult, ScanResults } from 'scanner/iruleresults';
+import { ScanOptions } from 'scanner/scan-options';
+import { DictionaryStringTo } from 'types/common-types';
 
 declare let axe: any;
 

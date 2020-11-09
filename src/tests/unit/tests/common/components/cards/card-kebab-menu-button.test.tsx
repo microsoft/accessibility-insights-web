@@ -19,7 +19,7 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
-import { guidanceTags } from 'content/guidance-tags';
+import { guidanceTags } from 'common/guidance-links';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
