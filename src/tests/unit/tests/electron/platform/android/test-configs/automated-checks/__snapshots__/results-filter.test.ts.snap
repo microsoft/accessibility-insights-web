@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`automatedChecksResultsFilter filters results properly 1`] = `
+Array [
+  Object {
+    "status": "fail",
+  },
+  Object {
+    "status": "fail",
+  },
+  Object {
+    "status": "fail",
+  },
+]
+`;
