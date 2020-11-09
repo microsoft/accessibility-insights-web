@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
+import { ResultsFilter } from 'common/types/results-filter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { cloneDeep } from 'lodash';
@@ -15,6 +16,8 @@ describe('getCardSelectionStoreviewData', () => {
     let initialCardSelectionState: CardSelectionStoreData;
     let initialUnifiedScanResultState: UnifiedScanResultStoreData;
     let isResultHighlightUnavailable: IMock<IsResultHighlightUnavailable>;
+
+    const resultsFilter: ResultsFilter = res => res.uid == 'sampleUid3';
 
     beforeEach(() => {
         const defaultCardSelectionState: CardSelectionStoreData = {
@@ -69,7 +72,7 @@ describe('getCardSelectionStoreviewData', () => {
         initialCardSelectionState = cloneDeep(defaultCardSelectionState);
     });
 
-    test('all rules collapsed, visual helper enabled, expect all highlights', () => {
+    test('all rules collapsed, visual helper enabled, no resultsFilter, expect all highlights', () => {
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,
@@ -81,6 +84,22 @@ describe('getCardSelectionStoreviewData', () => {
             sampleUid2: 'visible',
             sampleUid3: 'visible',
             sampleUid4: 'visible',
+        });
+        expect(viewData.expandedRuleIds).toEqual([]);
+        expect(viewData.selectedResultUids).toEqual([]);
+        expect(viewData.visualHelperEnabled).toEqual(true);
+    });
+
+    test('all rules collapsed, visual helper enabled, resultsFilter passed, expect only filtered highlights', () => {
+        const viewData = getCardSelectionViewData(
+            initialCardSelectionState,
+            initialUnifiedScanResultState,
+            isResultHighlightUnavailable.object,
+            resultsFilter,
+        );
+
+        expect(viewData.resultsHighlightStatus).toEqual({
+            sampleUid3: 'visible',
         });
         expect(viewData.expandedRuleIds).toEqual([]);
         expect(viewData.selectedResultUids).toEqual([]);

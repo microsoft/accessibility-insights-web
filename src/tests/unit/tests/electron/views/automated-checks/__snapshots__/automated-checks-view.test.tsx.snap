@@ -20,6 +20,7 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
         needs-review
          description
       </React.Fragment>,
+      "resultsFilter": [Function],
       "title": "test-needs-review-title",
     }
   }
@@ -32,6 +33,7 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
             automated-checks
              description
           </React.Fragment>,
+          "resultsFilter": [Function],
           "title": "test-automated-checks-title",
         },
         "needs-review": Object {
@@ -40,6 +42,7 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
             needs-review
              description
           </React.Fragment>,
+          "resultsFilter": [Function],
           "title": "test-needs-review-title",
         },
       },
@@ -95,6 +98,7 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
         automated-checks
          description
       </React.Fragment>,
+      "resultsFilter": [Function],
       "title": "test-automated-checks-title",
     }
   }
@@ -107,6 +111,7 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
             automated-checks
              description
           </React.Fragment>,
+          "resultsFilter": [Function],
           "title": "test-automated-checks-title",
         },
         "needs-review": Object {
@@ -115,6 +120,7 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
             needs-review
              description
           </React.Fragment>,
+          "resultsFilter": [Function],
           "title": "test-needs-review-title",
         },
       },
@@ -165,6 +171,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -173,6 +180,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -216,6 +224,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 },
                 "needs-review": Object {
@@ -224,6 +233,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                     needs-review
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-needs-review-title",
                 },
               },
@@ -284,6 +294,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                       automated-checks
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-automated-checks-title",
                   },
                   "needs-review": Object {
@@ -292,6 +303,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                       needs-review
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-needs-review-title",
                   },
                 },
@@ -374,6 +386,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                           automated-checks
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-automated-checks-title",
                       },
                       "needs-review": Object {
@@ -382,6 +395,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                           needs-review
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-needs-review-title",
                       },
                     },
@@ -454,6 +468,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 }
               }
@@ -466,6 +481,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                         automated-checks
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
                     },
                     "needs-review": Object {
@@ -474,6 +490,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                         needs-review
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-needs-review-title",
                     },
                   },
@@ -547,6 +564,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -555,6 +573,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -607,6 +626,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -615,6 +635,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -658,6 +679,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 },
                 "needs-review": Object {
@@ -666,6 +688,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                     needs-review
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-needs-review-title",
                 },
               },
@@ -726,6 +749,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                       automated-checks
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-automated-checks-title",
                   },
                   "needs-review": Object {
@@ -734,6 +758,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                       needs-review
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-needs-review-title",
                   },
                 },
@@ -801,6 +826,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                           automated-checks
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-automated-checks-title",
                       },
                       "needs-review": Object {
@@ -809,6 +835,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                           needs-review
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-needs-review-title",
                       },
                     },
@@ -866,6 +893,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 }
               }
@@ -878,6 +906,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                         automated-checks
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
                     },
                     "needs-review": Object {
@@ -886,6 +915,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                         needs-review
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-needs-review-title",
                     },
                   },
@@ -948,6 +978,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -956,6 +987,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -1008,6 +1040,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -1016,6 +1049,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -1059,6 +1093,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 },
                 "needs-review": Object {
@@ -1067,6 +1102,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                     needs-review
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-needs-review-title",
                 },
               },
@@ -1127,6 +1163,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                       automated-checks
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-automated-checks-title",
                   },
                   "needs-review": Object {
@@ -1135,6 +1172,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                       needs-review
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-needs-review-title",
                   },
                 },
@@ -1202,6 +1240,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                           automated-checks
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-automated-checks-title",
                       },
                       "needs-review": Object {
@@ -1210,6 +1249,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                           needs-review
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-needs-review-title",
                       },
                     },
@@ -1267,6 +1307,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 }
               }
@@ -1279,6 +1320,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                         automated-checks
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
                     },
                     "needs-review": Object {
@@ -1287,6 +1329,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                         needs-review
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-needs-review-title",
                     },
                   },
@@ -1345,6 +1388,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -1353,6 +1397,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -1405,6 +1450,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -1413,6 +1459,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
@@ -1456,6 +1503,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 },
                 "needs-review": Object {
@@ -1464,6 +1512,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                     needs-review
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-needs-review-title",
                 },
               },
@@ -1524,6 +1573,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                       automated-checks
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-automated-checks-title",
                   },
                   "needs-review": Object {
@@ -1532,6 +1582,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                       needs-review
                        description
                     </React.Fragment>,
+                    "resultsFilter": [Function],
                     "title": "test-needs-review-title",
                   },
                 },
@@ -1599,6 +1650,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                           automated-checks
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-automated-checks-title",
                       },
                       "needs-review": Object {
@@ -1607,6 +1659,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                           needs-review
                            description
                         </React.Fragment>,
+                        "resultsFilter": [Function],
                         "title": "test-needs-review-title",
                       },
                     },
@@ -1664,6 +1717,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                     automated-checks
                      description
                   </React.Fragment>,
+                  "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
                 }
               }
@@ -1676,6 +1730,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                         automated-checks
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
                     },
                     "needs-review": Object {
@@ -1684,6 +1739,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                         needs-review
                          description
                       </React.Fragment>,
+                      "resultsFilter": [Function],
                       "title": "test-needs-review-title",
                     },
                   },
@@ -1741,6 +1797,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               automated-checks
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-automated-checks-title",
           },
           "needs-review": Object {
@@ -1749,6 +1806,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
               needs-review
                description
             </React.Fragment>,
+            "resultsFilter": [Function],
             "title": "test-needs-review-title",
           },
         },
