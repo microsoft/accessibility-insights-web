@@ -17,8 +17,6 @@ describe('getCardSelectionStoreviewData', () => {
     let initialUnifiedScanResultState: UnifiedScanResultStoreData;
     let isResultHighlightUnavailable: IMock<IsResultHighlightUnavailable>;
 
-    const resultsFilter: ResultsFilter = res => res.uid == 'sampleUid3';
-
     beforeEach(() => {
         const defaultCardSelectionState: CardSelectionStoreData = {
             rules: {
@@ -91,6 +89,8 @@ describe('getCardSelectionStoreviewData', () => {
     });
 
     test('all rules collapsed, visual helper enabled, resultsFilter passed, expect only filtered highlights', () => {
+        const resultsFilter: ResultsFilter = res => res.uid == 'sampleUid3';
+
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
             initialUnifiedScanResultState,

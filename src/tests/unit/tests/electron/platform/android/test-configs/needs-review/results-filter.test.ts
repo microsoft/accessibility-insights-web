@@ -4,7 +4,7 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { needsReviewResultsFilter } from 'electron/platform/android/test-configs/needs-review/results-filter';
 
 describe('needsReviewResultsFilter', () => {
-    it('filters results properly', () => {
+    it('filters out non-unknown results', () => {
         const testResults = [
             { status: 'pass' },
             { status: 'fail' },
@@ -17,6 +17,6 @@ describe('needsReviewResultsFilter', () => {
 
         const filteredResults = testResults.filter(needsReviewResultsFilter);
 
-        expect(filteredResults).toMatchSnapshot();
+        expect(filteredResults).toEqual([{ status: 'unknown' }, { status: 'unknown' }]);
     });
 });

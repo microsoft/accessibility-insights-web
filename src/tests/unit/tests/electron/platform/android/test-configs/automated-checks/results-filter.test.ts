@@ -4,7 +4,7 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { automatedChecksResultsFilter } from 'electron/platform/android/test-configs/automated-checks/results-filter';
 
 describe('automatedChecksResultsFilter', () => {
-    it('filters results properly', () => {
+    it('filters out non-failed results', () => {
         const testResults = [
             { status: 'pass' },
             { status: 'fail' },
@@ -17,6 +17,10 @@ describe('automatedChecksResultsFilter', () => {
 
         const filteredResults = testResults.filter(automatedChecksResultsFilter);
 
-        expect(filteredResults).toMatchSnapshot();
+        expect(filteredResults).toEqual([
+            { status: 'fail' },
+            { status: 'fail' },
+            { status: 'fail' },
+        ]);
     });
 });
