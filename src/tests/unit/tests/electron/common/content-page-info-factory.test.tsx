@@ -41,6 +41,7 @@ describe('createContentPagesInfo', () => {
                 () => null,
             ),
             resultsFilter: _ => true,
+            allowsExportReport: true,
         };
     }
 });

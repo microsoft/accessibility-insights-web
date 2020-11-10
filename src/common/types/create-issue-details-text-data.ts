@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
+import { GuidanceLink } from 'common/guidance-links';
 
 export interface CreateIssueDetailsTextData {
     rule: {

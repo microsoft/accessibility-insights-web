@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { BestPractice } from 'scanner/rule-to-links-mappings';
-import { HyperlinkDefinition } from 'views/content/content-page';
 import { NamedFC } from '../react/named-fc';
 
 export interface GuidanceLinksProps {

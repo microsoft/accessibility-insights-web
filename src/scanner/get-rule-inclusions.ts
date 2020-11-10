@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { BestPractice } from 'scanner/rule-to-links-mappings';
 import { DictionaryStringTo } from 'types/common-types';
-import { HyperlinkDefinition } from 'views/content/content-page';
 import { IRuleConfiguration } from 'scanner/iruleresults';
 
 export type RuleIncluded =

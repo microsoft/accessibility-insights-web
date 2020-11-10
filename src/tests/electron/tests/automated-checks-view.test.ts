@@ -257,4 +257,9 @@ describe('AutomatedChecksView', () => {
         await automatedChecksView.client.click(selector);
         await waitForFluentLeftNavToDisappear();
     });
+
+    it('export report button exists', async () => {
+        await setupWindowForCommandBarReflowTest('wide');
+        await automatedChecksView.waitForSelector(AutomatedChecksViewSelectors.exportReportButton);
+    });
 });

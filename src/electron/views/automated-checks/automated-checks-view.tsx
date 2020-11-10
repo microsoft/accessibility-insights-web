@@ -238,6 +238,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 scanPort={this.getScanPort()}
                 scanStoreData={this.props.scanStoreData}
                 setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
+                currentContentPageInfo={this.getContentPageInfo()}
             />
         );
     }

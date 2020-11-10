@@ -134,6 +134,52 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
 </section>
 `;
 
+exports[`ReflowCommandBar renders does not create report export when allowsExportReport is false 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={null}
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={true}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
 exports[`ReflowCommandBar renders does not create report export when scan metadata is null 1`] = `
 <section
   aria-label="command bar"

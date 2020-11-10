@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { RuleIncluded } from 'scanner/get-rule-inclusions';
+import { getRules } from 'scanner/get-rules';
+import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
-
-import { HyperlinkDefinition } from 'views/content/content-page';
-import { getRules } from '../../../../scanner/get-rules';
-import { ScannerRuleInfo } from '../../../../scanner/scanner-rule-info';
 
 describe('getDefaultRules', () => {
     let getHelpUrlMock: IMock<(rule: string, axeHelpUrl: string) => string>;

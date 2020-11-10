@@ -55,16 +55,16 @@ exports[`ContentPage .provider finds forest/thePage 1`] = `
 
 exports[`ContentPage ContentCreator links renders 1`] = `
 <NewTabLink
-  href="href"
+  href="testLink href"
   onClick={[Function]}
 >
-  text
+  testLink text
 </NewTabLink>
 `;
 
 exports[`ContentPage ContentCreator links renders, children is text 1`] = `
 <NewTabLink
-  href="href"
+  href="testLink href"
   onClick={[Function]}
 >
   OVERRIDE

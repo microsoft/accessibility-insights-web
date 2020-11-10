@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import {
     explicitRuleOverrides,
     getRuleInclusions,
@@ -9,7 +10,6 @@ import {
 import { IRuleConfiguration } from 'scanner/iruleresults';
 import { BestPractice, ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 import { DictionaryStringTo } from 'types/common-types';
-import { HyperlinkDefinition } from 'views/content/content-page';
 
 describe('getRuleInclusions', () => {
     const fakeRules: IRuleConfiguration[] = [
