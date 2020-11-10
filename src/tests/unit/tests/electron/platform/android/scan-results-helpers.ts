@@ -133,7 +133,7 @@ export function buildRuleInformation(
             return null;
         },
         getResultStatus: r => {
-            return r.status;
+            return r.status === 'FAIL' ? 'fail' : 'pass';
         },
     } as RuleInformation;
 }

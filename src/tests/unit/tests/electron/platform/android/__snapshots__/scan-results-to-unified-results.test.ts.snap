@@ -26,7 +26,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
-    "status": "FAIL",
+    "status": "fail",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -44,7 +44,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
-    "status": "FAIL",
+    "status": "fail",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -67,7 +67,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
-    "status": "PASS",
+    "status": "pass",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -90,7 +90,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #4",
     },
     "ruleId": "My Rule #4",
-    "status": "PASS",
+    "status": "pass",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -113,7 +113,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #3",
     },
     "ruleId": "My Rule #3",
-    "status": "PASS",
+    "status": "pass",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -126,7 +126,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
-    "status": "UNKNOWN",
+    "status": "pass",
     "uid": "gguid-mock-stub",
   },
 ]
