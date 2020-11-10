@@ -88,10 +88,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         } = this.props;
         const { rules, results, toolInfo } = unifiedScanResultStoreData;
 
+        const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
+
         const cardSelectionViewData = deps.getCardSelectionViewData(
             cardSelectionStoreData,
             unifiedScanResultStoreData,
             deps.isResultHighlightUnavailable,
+            contentPageInfo.resultsFilter,
         );
 
         const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
@@ -111,8 +114,6 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             unifiedScanResultStoreData,
             deps.getDateFromTimestamp,
         );
-
-        const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
 
         return (
             <div

@@ -2,8 +2,12 @@
 // Licensed under the MIT License.
 import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { flatMap, forOwn, isEmpty, keys } from 'lodash';
+import { ResultsFilter } from 'common/types/results-filter';
+import {
+    UnifiedResult,
+    UnifiedScanResultStoreData,
+} from 'common/types/store-data/unified-data-interface';
+import { flatMap, forOwn, intersection, isEmpty, keys } from 'lodash';
 
 import {
     CardSelectionStoreData,
@@ -24,12 +28,14 @@ export type GetCardSelectionViewData = (
     storeData: CardSelectionStoreData,
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
+    resultsFilter?: ResultsFilter,
 ) => CardSelectionViewData;
 
 export const getCardSelectionViewData: GetCardSelectionViewData = (
     cardSelectionStoreData: CardSelectionStoreData,
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
+    resultsFilter: ResultsFilter = _ => true,
 ): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
@@ -39,7 +45,12 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 
     viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
     viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
-    const allResultUids = getAllResultUids(cardSelectionStoreData.rules);
+
+    const allResultUids = getAllResultUids(
+        unifiedScanResultStoreData.results.filter(resultsFilter),
+        cardSelectionStoreData.rules,
+    );
+
     const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
         unifiedScanResultStoreData,
         isResultHighlightUnavailable,
@@ -108,8 +119,17 @@ function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDiction
     return expandedRuleIds;
 }
 
-function getAllResultUids(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {
-    return getAllResultUidsFromRuleIdArray(ruleDictionary, keys(ruleDictionary));
+function getAllResultUids(
+    filteredResults: UnifiedResult[],
+    ruleDictionary: RuleExpandCollapseDataDictionary,
+): string[] {
+    const filteredResultUids = filteredResults.map(res => res.uid);
+
+    const allSelectionResultUids = getAllResultUidsFromRuleIdArray(
+        ruleDictionary,
+        keys(ruleDictionary),
+    );
+    return intersection(filteredResultUids, allSelectionResultUids);
 }
 
 function getAllResultUidsFromRuleIdArray(

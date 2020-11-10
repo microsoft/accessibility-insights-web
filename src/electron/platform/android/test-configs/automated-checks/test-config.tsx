@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { TestConfig } from 'electron/types/test-config';
+import { automatedChecksResultsFilter } from './results-filter';
 
 export const automatedChecksTestConfig: TestConfig = {
     key: 'automated-checks',
@@ -17,5 +18,6 @@ export const automatedChecksTestConfig: TestConfig = {
             </>
         ),
         instancesSectionComponent: FailedInstancesSection,
+        resultsFilter: automatedChecksResultsFilter,
     },
 };
