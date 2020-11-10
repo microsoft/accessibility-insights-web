@@ -18,5 +18,6 @@ export const needsReviewTestConfig: TestConfig = {
         ),
         instancesSectionComponent: NeedsReviewInstancesSection,
         resultsFilter: needsReviewResultsFilter,
+        allowsExportReport: false,
     },
 };

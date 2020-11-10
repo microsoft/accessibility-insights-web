@@ -285,6 +285,16 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                 },
               }
             }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "title": "test-automated-checks-title",
+              }
+            }
             deps={
               Object {
                 "contentPagesInfo": Object {
@@ -740,6 +750,16 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                 },
               }
             }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "title": "test-automated-checks-title",
+              }
+            }
             deps={
               Object {
                 "contentPagesInfo": Object {
@@ -1154,6 +1174,16 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                 },
               }
             }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "title": "test-automated-checks-title",
+              }
+            }
             deps={
               Object {
                 "contentPagesInfo": Object {
@@ -1562,6 +1592,16 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                     },
                   ],
                 },
+              }
+            }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "title": "test-automated-checks-title",
               }
             }
             deps={

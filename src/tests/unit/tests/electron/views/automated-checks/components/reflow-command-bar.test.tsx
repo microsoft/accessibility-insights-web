@@ -9,6 +9,7 @@ import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-button
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { ContentPageInfo } from 'electron/types/content-page-info';
 import {
     commandButtonRefreshId,
     ReflowCommandBar,
@@ -70,6 +71,9 @@ describe('ReflowCommandBar', () => {
             narrowModeStatus: narrowModeStatusStub,
             isSideNavOpen: true,
             setSideNavOpen: () => null,
+            currentContentPageInfo: {
+                allowsExportReport: true,
+            } as ContentPageInfo,
         };
     });
 
@@ -82,6 +86,13 @@ describe('ReflowCommandBar', () => {
 
         it('does not create report export when scan metadata is null', () => {
             props.scanMetadata = null;
+            const rendered = shallow(<ReflowCommandBar {...props} />);
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        it('does not create report export when allowsExportReport is false', () => {
+            props.currentContentPageInfo.allowsExportReport = false;
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
             expect(rendered.getElement()).toMatchSnapshot();

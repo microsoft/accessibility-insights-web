@@ -4,6 +4,7 @@ import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-t
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
+import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
@@ -41,5 +42,11 @@ describe('NeedsReviewView', () => {
 
     it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
+    });
+
+    it('export report button does not exist', async () => {
+        await automatedChecksViewController.waitForSelectorToDisappear(
+            AutomatedChecksViewSelectors.exportReportButton,
+        );
     });
 });

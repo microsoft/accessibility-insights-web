@@ -18,6 +18,7 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { ContentPageInfo } from 'electron/types/content-page-info';
 import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -39,6 +40,7 @@ export interface ReflowCommandBarProps {
     narrowModeStatus: NarrowModeStatus;
     isSideNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    currentContentPageInfo: ContentPageInfo;
 }
 
 export const commandButtonRefreshId = 'command-button-refresh';
@@ -54,11 +56,12 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
         narrowModeStatus,
         isSideNavOpen,
         setSideNavOpen,
+        currentContentPageInfo,
     } = props;
     let exportReport: JSX.Element = null;
     let dropdownMenuButtonRef: IButton = null;
 
-    if (scanMetadata != null) {
+    if (currentContentPageInfo.allowsExportReport && scanMetadata != null) {
         exportReport = (
             <ReportExportComponent
                 deps={deps}
