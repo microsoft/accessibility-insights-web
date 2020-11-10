@@ -292,6 +292,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
                   automated-checks
                    description
                 </React.Fragment>,
+                "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
               }
             }
@@ -757,6 +758,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
                   automated-checks
                    description
                 </React.Fragment>,
+                "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
               }
             }
@@ -1181,6 +1183,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
                   automated-checks
                    description
                 </React.Fragment>,
+                "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
               }
             }
@@ -1601,6 +1604,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
                   automated-checks
                    description
                 </React.Fragment>,
+                "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
               }
             }
