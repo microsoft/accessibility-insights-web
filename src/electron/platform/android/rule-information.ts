@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from 'common/guidance-links';
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
-import { GuidanceLink } from 'scanner/rule-to-links-mappings';
 
 import { RuleResultsData } from './android-scan-results';
 

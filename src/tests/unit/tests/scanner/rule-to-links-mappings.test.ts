@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
-import { HyperlinkDefinition } from 'views/content/content-page';
-
-import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 
 describe('ruleToLinkConfiguration', () => {
     const axe = Axe as any;

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from 'common/guidance-links';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
-import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
 
 // this is similar to `TestEngine` interface from axe-core
