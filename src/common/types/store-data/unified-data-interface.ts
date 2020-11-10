@@ -113,7 +113,10 @@ export interface UnifiedResult {
     resolution: UnifiedResolution;
 }
 
-export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
+export type InstanceResultStatus =
+    | 'pass' // May include results which are very low-confidence failures, in addition to high-confidence non-failures
+    | 'fail'
+    | 'unknown';
 
 export interface ScreenshotData {
     base64PngData: string;
