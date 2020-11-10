@@ -14,6 +14,7 @@
         "./src/DetailsView/components/generic-dialog.tsx",
         "./src/DetailsView/components/generic-panel.tsx",
         "./src/DetailsView/components/generic-toggle.tsx",
+        "./src/DetailsView/components/issues-table-handler.ts",
         "./src/DetailsView/components/left-nav/details-view-right-content-panel-type.ts",
         "./src/DetailsView/components/left-nav/get-selected-details-view.ts",
         "./src/DetailsView/components/left-nav/getting-started-nav-link.tsx",
