@@ -14,7 +14,7 @@ describe.each(allInstanceOutcomeTypes)(
     outcomeType => {
         it('renders per snapshot with default message', () => {
             const deps: NoFailedInstancesCongratsDeps = {
-                customCongratsMessage: null,
+                customCongratsContinueInvestigatingMessage: null,
                 outcomeType: outcomeType,
             };
             const wrapper = shallow(
@@ -26,7 +26,7 @@ describe.each(allInstanceOutcomeTypes)(
 
         it('renders per snapshot with custom message', () => {
             const deps: NoFailedInstancesCongratsDeps = {
-                customCongratsMessage: 'Look, ma! No bugs!',
+                customCongratsContinueInvestigatingMessage: 'Continue investigating!',
                 outcomeType: outcomeType,
             };
             const wrapper = shallow(

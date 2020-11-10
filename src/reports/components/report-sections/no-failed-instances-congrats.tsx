@@ -7,7 +7,7 @@ import { InstanceOutcomeType } from 'reports/components/instance-outcome-type';
 import * as styles from './no-failed-instances-congrats.scss';
 
 export type NoFailedInstancesCongratsDeps = {
-    customCongratsMessage: String;
+    customCongratsContinueInvestigatingMessage?: string;
 };
 
 export type NoFailedInstancesCongratsProps = {
@@ -20,9 +20,10 @@ export const NoFailedInstancesCongrats = NamedFC<NoFailedInstancesCongratsProps>
     props => {
         const messageSubject =
             props.outcomeType === 'review' ? 'instances to review' : 'failed automated checks';
-        const message =
-            props.deps.customCongratsMessage ??
-            `No ${messageSubject} were found. Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.`;
+        const continueInvestigatingMessage =
+            props.deps.customCongratsContinueInvestigatingMessage ??
+            "Continue investigating your website's accessibility compliance through manual testing using Tab stops and Assessment in Accessibility Insights for Web.";
+        const message = `No ${messageSubject} were found. ${continueInvestigatingMessage}`;
         return (
             <div className={styles.reportCongratsMessage}>
                 <div className={styles.reportCongratsHead}>Congratulations!</div>

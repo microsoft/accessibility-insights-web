@@ -487,8 +487,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             unifiedResultToIssueFilingDataConverter: new UnifiedResultToIssueFilingDataConverter(),
             windowUtils: windowUtils,
             setFocusVisibility,
-            customCongratsMessage:
-                "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
+            customCongratsContinueInvestigatingMessage:
+                "Continue investigating your app's accessibility compliance through manual testing.",
         };
 
         const documentManipulator = new DocumentManipulator(document);

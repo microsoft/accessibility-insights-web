@@ -455,7 +455,7 @@ if (tabId != null) {
                 isResultHighlightUnavailable: isResultHighlightUnavailableWeb,
                 setFocusVisibility,
                 documentManipulator,
-                customCongratsMessage: null, // uses default message
+                customCongratsContinueInvestigatingMessage: null, // uses default message
                 scopingActionMessageCreator,
                 inspectActionMessageCreator,
                 issuesSelection,
