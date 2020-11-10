@@ -11,12 +11,12 @@ import { ScannerRuleInfo } from './scanner-rule-info';
 interface ExpectedGetRuleObject {
     help: string | Function;
     ruleId: string;
-    helpUrl: string;
+    helpUrl?: string;
 }
 
 export function getRules(
     axe: typeof Axe,
-    urlGenerator: (ruleId: string, axeHelpUrl: string) => string,
+    urlGenerator: (ruleId: string, axeHelpUrl?: string) => string | undefined,
     ruleIncludedStatus: DictionaryStringTo<RuleIncluded>,
     ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>,
 ): ScannerRuleInfo[] {

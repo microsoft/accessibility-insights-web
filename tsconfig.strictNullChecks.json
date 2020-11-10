@@ -356,6 +356,7 @@
         "./src/scanner/cues.ts",
         "./src/scanner/custom-rule-configurations.ts",
         "./src/scanner/document-utils.ts",
+        "./src/scanner/exposed-apis.ts",
         "./src/scanner/get-rule-inclusions.ts",
         "./src/scanner/get-rules.ts",
         "./src/scanner/help-url-getter.ts",
