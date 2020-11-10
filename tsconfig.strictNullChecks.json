@@ -147,6 +147,7 @@
         "./src/common/extension-telemetry-events.ts",
         "./src/common/fabric-icons.ts",
         "./src/common/file-url-provider.ts",
+        "./src/common/get-guidance-tags-from-guidance-links.ts",
         "./src/common/get-inner-text-from-jsx-element.ts",
         "./src/common/globalization.ts",
         "./src/common/guidance-links.ts",

@@ -17,7 +17,7 @@ export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks 
             return;
         }
 
-        link.tags.forEach(tag => {
+        link.tags!.forEach(tag => {
             tags.push(tag);
         });
     });
