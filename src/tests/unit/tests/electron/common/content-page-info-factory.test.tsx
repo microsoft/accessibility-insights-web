@@ -40,6 +40,7 @@ describe('createContentPagesInfo', () => {
                 `${id} instances section`,
                 () => null,
             ),
+            resultsFilter: _ => true,
         };
     }
 });
