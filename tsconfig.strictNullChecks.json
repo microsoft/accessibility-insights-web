@@ -305,6 +305,7 @@
         "./src/injected/visualization/tabbed-item.ts",
         "./src/issue-filing/common/create-settings-getter.ts",
         "./src/issue-filing/common/http-query-builder.ts",
+        "./src/issue-filing/common/issue-filing-url-string-utils.ts",
         "./src/issue-filing/services/azure-boards/azure-boards-issue-filing-settings.tsx",
         "./src/issue-filing/services/github/github-issue-filing-settings.tsx",
         "./src/issue-filing/services/github/github-url-rectifier.ts",
