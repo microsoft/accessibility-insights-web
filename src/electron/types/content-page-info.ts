@@ -7,6 +7,7 @@ import { LeftNavItemKey } from './left-nav-item-key';
 
 export type ContentPageInfo = {
     title: string;
+    allowsExportReport: boolean;
     description: JSX.Element;
     instancesSectionComponent: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     resultsFilter: ResultsFilter;

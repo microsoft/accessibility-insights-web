@@ -6,6 +6,7 @@ import { ruleContentAutomationId } from 'common/components/cards/instance-detail
 import { ruleGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { leftNavHamburgerButtonAutomationId } from 'common/components/left-nav-hamburger-button';
 import { testViewLeftNavLinkAutomationId } from 'DetailsView/components/left-nav/test-view-left-nav-link';
+import { exportReportCommandBarButtonId } from 'DetailsView/components/report-export-component';
 import { automatedChecksViewAutomationId } from 'electron/views/automated-checks/automated-checks-view';
 import { commandButtonSettingsId } from 'electron/views/automated-checks/components/command-bar';
 import { fluentLeftNavAutomationId } from 'electron/views/left-nav/fluent-left-nav';
@@ -25,6 +26,7 @@ export const AutomatedChecksViewSelectors = {
     leftNav: getAutomationIdSelector(leftNavAutomationId),
     fluentLeftNav: getAutomationIdSelector(fluentLeftNavAutomationId),
     leftNavHamburgerButton: getAutomationIdSelector(leftNavHamburgerButtonAutomationId),
+    exportReportButton: getAutomationIdSelector(exportReportCommandBarButtonId),
 
     nthRuleGroupCollapseExpandButton: (position: number) =>
         `${nthRuleGroup(position)} ${getAutomationIdSelector(collapsibleButtonAutomationId)}`,

@@ -19,5 +19,6 @@ export const automatedChecksTestConfig: TestConfig = {
         ),
         instancesSectionComponent: FailedInstancesSection,
         resultsFilter: automatedChecksResultsFilter,
+        allowsExportReport: true,
     },
 };
