@@ -55,6 +55,19 @@ Array [
     "uid": "gguid-mock-stub",
     "url": "rule-link",
   },
+  Object {
+    "description": "This describes Rule #4",
+    "guidance": Array [
+      Object {
+        "href": "https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded",
+        "tags": undefined,
+        "text": "WCAG 1.2.1",
+      },
+    ],
+    "id": "Rule #4",
+    "uid": "gguid-mock-stub",
+    "url": "rule-link-4",
+  },
 ]
 `;
 

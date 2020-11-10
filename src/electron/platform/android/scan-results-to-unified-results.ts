@@ -45,7 +45,7 @@ function createUnifiedResultsFromScanResults(
             ruleResult.ruleId,
         );
 
-        if (ruleInformation && ruleInformation.includeThisResult(ruleResult)) {
+        if (ruleInformation) {
             unifiedResults.push(
                 createUnifiedResult(ruleInformation, ruleResult, viewElementLookup, uuidGenerator),
             );
@@ -88,7 +88,7 @@ function createUnifiedResult(
     return {
         uid: uuidGenerator(),
         ruleId: ruleInformation.ruleId,
-        status: getStatus(ruleResult.status),
+        status: ruleInformation.getResultStatus(ruleResult),
         descriptors: getDescriptors(viewElementLookup[ruleResult.axeViewId]),
         identifiers: {
             identifier: viewElementLookup[ruleResult.axeViewId]?.className,
@@ -108,15 +108,4 @@ function getDescriptors(viewElement: ViewElementData): UnifiedDescriptors {
         };
     }
     return null;
-}
-
-function getStatus(status: string): InstanceResultStatus {
-    switch (status) {
-        case 'PASS':
-            return 'pass';
-        case 'FAIL':
-            return 'fail';
-        default:
-            return 'unknown';
-    }
 }
