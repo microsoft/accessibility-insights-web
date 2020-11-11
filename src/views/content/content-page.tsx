@@ -5,20 +5,19 @@ import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { createMarkup, Markup, MarkupDeps } from './markup';
+import { MarkupBasedComponentProps, createMarkup, Markup, MarkupDeps } from './markup';
 
 type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
 type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.FC };
 
 export type ContentPageDeps = MarkupDeps;
-export interface ContentPageOptions {
-    setPageTitle?: boolean;
-}
-export type ContentPageProps = { deps: ContentPageDeps; options?: ContentPageOptions };
+export type ContentPageProps = MarkupBasedComponentProps;
+
 export type ContentPageComponent = React.FC<ContentPageProps> & {
     displayName: 'ContentPageComponent';
     pageTitle?: string;
 };
+
 export type ContentReference = string | ContentPageComponent;
 type CreateProps<M extends HyperlinkDefinitionMap> = {
     Markup: Markup;
