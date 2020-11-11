@@ -4,10 +4,11 @@ import * as React from 'react';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
+import { AssessmentDataFormatter } from 'common/assessment-data-formatter'
 
 export type SaveAssessmentFactoryDeps = {
     fileURLProvider: FileURLProvider,
-    // assessmentDataFormatter: AssessmentDataFormatter;
+    assessmentDataFormatter: AssessmentDataFormatter;
 };
 
 export type SaveAssessmentFactoryProps = CommandBarProps & {
@@ -15,8 +16,8 @@ export type SaveAssessmentFactoryProps = CommandBarProps & {
 };
 
 export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): JSX.Element {
-    const html = JSON.stringify(props.assessmentStoreData.assessments);
-    const fileURL = props.deps.fileURLProvider.provideURL([html], 'text/html');
+    const assessmentData = props.deps.assessmentDataFormatter.formatAssessmentData(props.assessmentStoreData.assessments)
+    const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'text/html');
 
     return (
         <SaveAssessmentButton
