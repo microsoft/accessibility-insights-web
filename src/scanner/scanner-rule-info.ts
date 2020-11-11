@@ -5,6 +5,6 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 export interface ScannerRuleInfo {
     id: string;
     help: string;
-    url: string;
+    url?: string;
     a11yCriteria: HyperlinkDefinition[];
 }
