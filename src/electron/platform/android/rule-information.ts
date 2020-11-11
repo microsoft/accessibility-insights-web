@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GuidanceLink } from 'common/guidance-links';
-import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedFormattableResolution,
+} from 'common/types/store-data/unified-data-interface';
 
 import { RuleResultsData } from './android-scan-results';
 
@@ -9,7 +12,7 @@ export type GetUnifiedFormattableResolutionDelegate = (
     ruleResultsData: RuleResultsData,
 ) => UnifiedFormattableResolution;
 
-export type IncludeThisResultDelegate = (ruleResultsData: RuleResultsData) => boolean;
+export type GetResultStatusDelegate = (ruleResultsData: RuleResultsData) => InstanceResultStatus;
 
 export class RuleInformation {
     constructor(
@@ -18,7 +21,7 @@ export class RuleInformation {
         readonly ruleDescription: string,
         readonly guidance: GuidanceLink[],
         readonly getUnifiedFormattableResolutionDelegate: GetUnifiedFormattableResolutionDelegate,
-        readonly includeThisResultDelegate: IncludeThisResultDelegate,
+        readonly getResultStatusDelegate: GetResultStatusDelegate,
     ) {}
 
     public getUnifiedFormattableResolution(
@@ -27,7 +30,7 @@ export class RuleInformation {
         return this.getUnifiedFormattableResolutionDelegate(ruleResultsData);
     }
 
-    public includeThisResult(ruleResultsData: RuleResultsData): boolean {
-        return this.includeThisResultDelegate(ruleResultsData);
+    public getResultStatus(ruleResultsData: RuleResultsData): InstanceResultStatus {
+        return this.getResultStatusDelegate(ruleResultsData);
     }
 }

@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedFormattableResolution,
+} from 'common/types/store-data/unified-data-interface';
 import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
@@ -147,7 +150,7 @@ describe('RuleInformationProvider', () => {
         expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
-    test('ColorContrast includeThisResult returns true when confidence is defined and High', () => {
+    test('ColorContrast getResultStatus returns unknown when confidence is defined and High', () => {
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
             'FAIL',
             2.798498811425733,
@@ -156,10 +159,10 @@ describe('RuleInformationProvider', () => {
             'High',
         );
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.includeThisResult(ruleResult)).toBe(false); // Revert to true when color contrast is re-enabled
+        expect(ruleInformation.getResultStatus(ruleResult)).toBe('unknown');
     });
 
-    test('ColorContrast includeThisResult returns false when confidence is defined but not High', () => {
+    test('ColorContrast getResultStatus returns pass when confidence is defined but not High', () => {
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
             'FAIL',
             2.798498811425733,
@@ -168,10 +171,10 @@ describe('RuleInformationProvider', () => {
             'Medium',
         );
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.includeThisResult(ruleResult)).toBe(false);
+        expect(ruleInformation.getResultStatus(ruleResult)).toBe('pass');
     });
 
-    test('ColorContrast includeThisResult returns false when confidence is not defined', () => {
+    test('ColorContrast getResultStatus returns pass when confidence is not defined', () => {
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
             'PASS',
             null,
@@ -180,10 +183,10 @@ describe('RuleInformationProvider', () => {
             null,
         );
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.includeThisResult(ruleResult)).toBe(false);
+        expect(ruleInformation.getResultStatus(ruleResult)).toBe('pass');
     });
 
-    test('TouchSizeWcag includeThisResult returns true', () => {
+    test('TouchSizeWcag getResultStatus returns fail', () => {
         const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject(
             'FAIL',
             2.25,
@@ -191,21 +194,54 @@ describe('RuleInformationProvider', () => {
             95,
         );
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.includeThisResult(null)).toBe(true);
+        expect(ruleInformation.getResultStatus(ruleResult)).toBe('fail');
     });
 
-    test('ActiveViewName includeThisResult returns true', () => {
-        const ruleInformation: RuleInformation = provider.getRuleInformation('ActiveViewName');
-        expect(ruleInformation.includeThisResult(null)).toBe(true);
-    });
+    type ruleStatusTestCase = {
+        ruleId: string;
+        status: string;
+        outcome: InstanceResultStatus;
+    };
 
-    test('EditTextValue includeThisResult returns true', () => {
-        const ruleInformation: RuleInformation = provider.getRuleInformation('EditTextValue');
-        expect(ruleInformation.includeThisResult(null)).toBe(true);
-    });
+    const ruleIdsToTest: ruleStatusTestCase[] = [
+        {
+            ruleId: 'ActiveViewName',
+            status: 'PASS',
+            outcome: 'pass',
+        },
+        {
+            ruleId: 'ActiveViewName',
+            status: 'FAIL',
+            outcome: 'fail',
+        },
+        {
+            ruleId: 'EditTextValue',
+            status: 'PASS',
+            outcome: 'pass',
+        },
+        {
+            ruleId: 'EditTextValue',
+            status: 'FAIL',
+            outcome: 'fail',
+        },
+        {
+            ruleId: 'ImageViewName',
+            status: 'PASS',
+            outcome: 'pass',
+        },
+        {
+            ruleId: 'ImageViewName',
+            status: 'FAIL',
+            outcome: 'fail',
+        },
+    ];
 
-    test('ImageViewName includeThisResult returns true', () => {
-        const ruleInformation: RuleInformation = provider.getRuleInformation('ImageViewName');
-        expect(ruleInformation.includeThisResult(null)).toBe(true);
-    });
+    test.each(ruleIdsToTest)(
+        'getResultStatus evaulates properly for %s',
+        (testCase: ruleStatusTestCase) => {
+            const ruleResult = buildRuleResultObject(testCase.ruleId, testCase.status);
+            const ruleInformation: RuleInformation = provider.getRuleInformation(testCase.ruleId);
+            expect(ruleInformation.getResultStatus(ruleResult)).toBe(testCase.outcome);
+        },
+    );
 });

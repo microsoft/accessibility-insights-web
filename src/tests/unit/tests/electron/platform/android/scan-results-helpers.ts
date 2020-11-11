@@ -114,7 +114,6 @@ export function buildRuleInformation(
     ruleId: string,
     ruleLink = 'rule-link',
     guidance: GuidanceLink[] = [],
-    includeResults: boolean = true,
 ): RuleInformation {
     return {
         ruleId: ruleId,
@@ -129,12 +128,12 @@ export function buildRuleInformation(
             const summary: string = 'How to fix ' + ruleId;
             return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
         },
-        includeThisResultDelegate: r => {
+        getResultStatusDelegate: r => {
             expect('includeThisResultDelegate').toBe('This code should never execute');
             return null;
         },
-        includeThisResult: r => {
-            return includeResults;
+        getResultStatus: r => {
+            return r.status === 'FAIL' ? 'fail' : 'pass';
         },
     } as RuleInformation;
 }
