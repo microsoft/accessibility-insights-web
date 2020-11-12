@@ -150,7 +150,7 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with save assessment button', () => {
-        const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps}/>);
+        const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 

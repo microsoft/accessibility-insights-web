@@ -3,8 +3,8 @@
 import * as React from 'react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 export interface SaveAssessmentButtonProps {
-    download: string,
-    href: string,
+    download: string;
+    href: string;
 }
 
 export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonProps> {
@@ -13,7 +13,8 @@ export class SaveAssessmentButton extends React.Component<SaveAssessmentButtonPr
             <InsightsCommandButton
                 iconProps={{ iconName: 'Save' }}
                 download={this.props.download}
-                href={this.props.href}>
+                href={this.props.href}
+            >
                 Save assessment
             </InsightsCommandButton>
         );

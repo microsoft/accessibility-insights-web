@@ -4,11 +4,11 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 
 describe('AssessmentDataFormatter', () => {
     it('returns the formatted assessment data object as a string', () => {
-        const testDataFormatter = new AssessmentDataFormatter()
+        const testDataFormatter = new AssessmentDataFormatter();
         const testAssessmentData = {
-            'mock': 'data'
-            };
+            mock: 'data',
+        };
         const formattedAssessmentData = testDataFormatter.formatAssessmentData(testAssessmentData);
         expect(formattedAssessmentData).toMatchSnapshot();
-    })
+    });
 });
