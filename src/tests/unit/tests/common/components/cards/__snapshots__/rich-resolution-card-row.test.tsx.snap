@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RichResolutionCardRow renders with type=check 1`] = `
+exports[`RichResolutionCardRow renders with labelType=check 1`] = `
 <SimpleCardRow
   content={
     <RichResolutionContent
@@ -11,7 +11,7 @@ exports[`RichResolutionCardRow renders with type=check 1`] = `
         }
       }
       deps={null}
-      type="check"
+      labelType="check"
     />
   }
   label="How to check"
@@ -19,7 +19,7 @@ exports[`RichResolutionCardRow renders with type=check 1`] = `
 />
 `;
 
-exports[`RichResolutionCardRow renders with type=fix 1`] = `
+exports[`RichResolutionCardRow renders with labelType=fix 1`] = `
 <SimpleCardRow
   content={
     <RichResolutionContent
@@ -30,7 +30,7 @@ exports[`RichResolutionCardRow renders with type=fix 1`] = `
         }
       }
       deps={null}
-      type="fix"
+      labelType="fix"
     />
   }
   label="How to fix"
