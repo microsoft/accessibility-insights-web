@@ -4,12 +4,11 @@ import * as React from 'react';
 import { Helmet } from 'react-helmet';
 
 import { Code, Emphasis, Tag, Term } from 'assessments/markup';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { CheckIcon } from 'common/icons/check-icon';
+import { CrossIcon } from 'common/icons/cross-icon';
+import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { TextContent } from 'content/strings/text-content';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { CheckIcon } from '../../common/icons/check-icon';
-import { CrossIcon } from '../../common/icons/cross-icon';
-import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { ContentPageComponent, ContentPageOptions } from './content-page';
 import { CodeExample, CodeExampleProps } from './markup/code-example';
 
 type PassFailProps = {
@@ -40,7 +39,7 @@ export type Markup = {
     Table: React.FC;
     LandmarkLegend: React.FC<{ role: string }>;
     ProblemList: React.FC;
-    Include: React.FC<{ content: ContentPageComponent }>;
+    Include: React.FC<{ content: MarkupBasedComponent }>;
 };
 
 export type MarkupDeps = {
@@ -48,8 +47,19 @@ export type MarkupDeps = {
     contentActionMessageCreator: Pick<ContentActionMessageCreator, 'openContentHyperLink'>;
 };
 
-export const createMarkup = (deps: MarkupDeps, options: ContentPageOptions) => {
-    function Include(props: { content: ContentPageComponent }): JSX.Element {
+export interface MarkupOptions {
+    setPageTitle?: boolean;
+}
+
+export type MarkupBasedComponentProps = {
+    deps: MarkupDeps;
+    options?: MarkupOptions;
+};
+
+export type MarkupBasedComponent = React.FC<MarkupBasedComponentProps>;
+
+export const createMarkup = (deps: MarkupDeps, options: MarkupOptions) => {
+    function Include(props: { content: MarkupBasedComponent }): JSX.Element {
         const Content = props.content;
         return <Content deps={deps} options={options} />;
     }
