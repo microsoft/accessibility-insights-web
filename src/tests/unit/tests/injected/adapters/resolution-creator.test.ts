@@ -58,7 +58,7 @@ describe('ResolutionCreator', () => {
     });
 
     it('outputs correct check resolution', () => {
-        const ruleId = 'test rule id';
+        const ruleId = 'test-rule-id';
         const resolutionCreatorDataStub: ResolutionCreatorData = {
             ruleId: ruleId,
             nodeResult: {
@@ -69,7 +69,10 @@ describe('ResolutionCreator', () => {
         };
 
         const expected = {
-            'how-to-check-web': ruleId,
+            richResolution: {
+                type: 'check',
+                contentId: 'web/test-rule-id',
+            },
         };
 
         const actual = getCheckResolution(resolutionCreatorDataStub);

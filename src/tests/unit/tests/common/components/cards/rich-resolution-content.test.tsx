@@ -17,7 +17,6 @@ describe('RichResolutionContent', () => {
 
     it.each([
         'android/ColorContrast',
-        'android/TouchSizeWcag',
         'android/ActiveViewName',
         'android/ImageViewName',
         'android/EditTextValue',
@@ -25,10 +24,24 @@ describe('RichResolutionContent', () => {
         'web/color-contrast',
         'web/th-has-data-cells',
         'web/link-in-text-block',
-    ])('renders with id=%s', testId => {
+    ])('renders static content with id=%s', testId => {
         const props: RichResolutionContentProps = {
             deps,
             contentId: testId,
+        };
+
+        const testSubject = shallow(<RichResolutionContent {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    it('renders android/TouchSizeWcag using contentVariables', () => {
+        const props: RichResolutionContentProps = {
+            deps,
+            contentId: 'android/TouchSizeWcag',
+            contentVariables: {
+                logicalWidth: 'LOGICAL_WIDTH_VALUE',
+                logicalHeight: 'LOGICAL_HEIGHT_VALUE',
+            },
         };
 
         const testSubject = shallow(<RichResolutionContent {...props} />);

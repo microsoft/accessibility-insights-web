@@ -23,7 +23,7 @@ Array [
       "identifier": "myClass1",
     },
     "resolution": Object {
-      "howtoFixSummary": "How to fix My Rule #1",
+      "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
     "status": "fail",
@@ -41,7 +41,7 @@ Array [
       "identifier": "myClass3",
     },
     "resolution": Object {
-      "howtoFixSummary": "How to fix My Rule #2",
+      "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
     "status": "fail",
@@ -64,7 +64,7 @@ Array [
       "identifier": "myClass4",
     },
     "resolution": Object {
-      "howtoFixSummary": "How to fix My Rule #2",
+      "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
     "status": "pass",
@@ -87,7 +87,7 @@ Array [
       "identifier": "myClass2",
     },
     "resolution": Object {
-      "howtoFixSummary": "How to fix My Rule #4",
+      "howToFixSummary": "How to fix My Rule #4",
     },
     "ruleId": "My Rule #4",
     "status": "pass",
@@ -110,7 +110,7 @@ Array [
       "identifier": "myClass2",
     },
     "resolution": Object {
-      "howtoFixSummary": "How to fix My Rule #3",
+      "howToFixSummary": "How to fix My Rule #3",
     },
     "ruleId": "My Rule #3",
     "status": "pass",
@@ -123,7 +123,7 @@ Array [
       "identifier": undefined,
     },
     "resolution": Object {
-      "howtoFixSummary": "How to fix My Rule #2",
+      "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
     "status": "pass",

@@ -1,0 +1,226 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichResolutionContent renders android/TouchSizeWcag using contentVariables 1`] = `
+<span>
+  The element has an insufficient target size (width: 
+  LOGICAL_WIDTH_VALUE
+  dp, height: 
+  LOGICAL_HEIGHT_VALUE
+  dp). Set the element's
+   
+  <Code>
+    minWidth
+  </Code>
+   and 
+  <Code>
+    minHeight
+  </Code>
+   
+  attributes to at least 44dp.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/ActiveViewName 1`] = `
+<span>
+  The view is active but has no name available to assistive technologies. Provide a name for the view using its
+   
+  <Code>
+    contentDescription
+  </Code>
+  ,
+   
+  <Code>
+    hint
+  </Code>
+  , 
+  <Code>
+    labelFor
+  </Code>
+  , or
+   
+  <Code>
+    text
+  </Code>
+   attribute (depending on the view type)
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/ColorContrast 1`] = `
+<div
+  className="combinationLists"
+>
+  <ul
+    className="multiLineTextYesBullet"
+  >
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be invisible, it passes.
+    </li>
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be visible, use
+       
+      <stubLinkComponent
+        href="https://go.microsoft.com/fwlink/?linkid=2075365"
+      >
+        Accessibility Insights for Windows
+      </stubLinkComponent>
+       
+      (or the
+       
+      <stubLinkComponent
+        href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+      >
+        Colour Contrast Analyser
+      </stubLinkComponent>
+       
+      if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/EditTextValue 1`] = `
+<span>
+  The element's 
+  <Code>
+    contentDescription
+  </Code>
+   overrides the text value required by assistive technologies. Remove the element's
+   
+  <Code>
+    contentDescription
+  </Code>
+   attribute.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/ImageViewName 1`] = `
+<span>
+  The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the
+   
+  <Code>
+    contentDescription
+  </Code>
+   attribute. If the image is decorative, give it an empty 
+  <Code>
+    contentDescription
+  </Code>
+  , or set its 
+  <Code>
+    isImportantForAccessibility
+  </Code>
+   attribute to false.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=web/aria-input-field-name 1`] = `
+<div>
+  Inspect the element using the
+   
+  <stubLinkComponent
+    href="https://developers.google.com/web/updates/2018/01/devtools"
+  >
+    Accessibility pane in the browser Developer Tools
+  </stubLinkComponent>
+   
+  to verify that the field's accessible name is complete without its associated
+   
+  <b>
+    &lt;
+    label
+    &gt;
+  </b>
+  .
+</div>
+`;
+
+exports[`RichResolutionContent renders static content with id=web/color-contrast 1`] = `
+<div
+  className="combinationLists"
+>
+  <ul
+    className="multiLineTextYesBullet"
+  >
+    <li
+      list-style-type="disc"
+    >
+      If the instance is an icon or other non-text content, ignore it. This rule applies only to text.
+    </li>
+    <li
+      list-style-type="disc"
+    >
+      If the instance is text, use
+       
+      <stubLinkComponent
+        href="https://go.microsoft.com/fwlink/?linkid=2075365"
+      >
+        Accessibility Insights for Windows
+      </stubLinkComponent>
+       
+      (or the
+       
+      <stubLinkComponent
+        href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+      >
+        Colour Contrast Analyser
+      </stubLinkComponent>
+       
+      if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
+    </li>
+  </ul>
+  <ul
+    className="multiLineTextNoBullet"
+  >
+    <li>
+      For detailed test instructions, see
+       
+      <Term>
+        Assessment 
+        &gt;
+         Adaptable content 
+        &gt;
+         Contrast
+      </Term>
+      .
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`RichResolutionContent renders static content with id=web/link-in-text-block 1`] = `
+<ul
+  className="multiLineTextNoBullet"
+>
+  <li>
+    Manually verify that the link text EITHER has a contrast ratio of at least 3:1 compared to surrounding text OR has a distinct visual style (such as underlined, bolded, or italicized).
+  </li>
+  <li>
+    To measure contrast, use
+     
+    <stubLinkComponent
+      href="https://go.microsoft.com/fwlink/?linkid=2075365"
+    >
+      Accessibility Insights for Windows
+    </stubLinkComponent>
+     
+    (or the
+     
+    <stubLinkComponent
+      href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+    >
+      Colour Contrast Analyser
+    </stubLinkComponent>
+     
+    if you're testing on a Mac).
+  </li>
+</ul>
+`;
+
+exports[`RichResolutionContent renders static content with id=web/th-has-data-cells 1`] = `
+<div>
+  Examine the header cell in the context of the table to verify that it has no data cells.
+</div>
+`;

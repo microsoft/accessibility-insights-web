@@ -2,73 +2,64 @@
 
 exports[`RuleInformationProvider getRuleInformation handles no foreground/background color values 1`] = `
 Object {
-  "howToFixFormat": Object {
-    "formatAsCode": null,
-    "howToFix": "The text element has insufficient contrast of NaN. Foreground color: NO VALUE AVAILABLE, background color: NO VALUE AVAILABLE). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+  "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
+  "richResolution": Object {
+    "contentId": "android/ColorContrast",
+    "type": "check",
   },
-  "howToFixSummary": "The text element has insufficient contrast of NaN. Foreground color: NO VALUE AVAILABLE, background color: NO VALUE AVAILABLE). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
 }
 `;
 
 exports[`RuleInformationProvider getRuleInformation returns correct data for ActiveViewName rule 1`] = `
 Object {
-  "howToFixFormat": Object {
-    "formatAsCode": Array [
-      "contentDescription",
-      "hint",
-      "labelFor",
-      "text",
-    ],
-    "howToFix": "The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)",
-  },
   "howToFixSummary": "The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)",
+  "richResolution": Object {
+    "contentId": "android/ActiveViewName",
+    "type": "fix",
+  },
 }
 `;
 
 exports[`RuleInformationProvider getRuleInformation returns correct data for ColorContrast rule 1`] = `
 Object {
-  "howToFixFormat": Object {
-    "formatAsCode": null,
-    "howToFix": "The text element has insufficient contrast of 2.798. Foreground color: #979797, background color: #fafafa). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+  "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
+  "richResolution": Object {
+    "contentId": "android/ColorContrast",
+    "type": "check",
   },
-  "howToFixSummary": "The text element has insufficient contrast of 2.798. Foreground color: #979797, background color: #fafafa). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
 }
 `;
 
 exports[`RuleInformationProvider getRuleInformation returns correct data for EditTextValue rule 1`] = `
 Object {
-  "howToFixFormat": Object {
-    "formatAsCode": Array [
-      "contentDescription",
-    ],
-    "howToFix": "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
-  },
   "howToFixSummary": "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
+  "richResolution": Object {
+    "contentId": "android/EditTextValue",
+    "type": "fix",
+  },
 }
 `;
 
 exports[`RuleInformationProvider getRuleInformation returns correct data for ImageViewName rule 1`] = `
 Object {
-  "howToFixFormat": Object {
-    "formatAsCode": Array [
-      "contentDescription",
-      "isImportantForAccessibility",
-    ],
-    "howToFix": "The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.",
-  },
   "howToFixSummary": "The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.",
+  "richResolution": Object {
+    "contentId": "android/ImageViewName",
+    "type": "fix",
+  },
 }
 `;
 
 exports[`RuleInformationProvider getRuleInformation returns correct data for TouchSizeWcag rule 1`] = `
 Object {
-  "howToFixFormat": Object {
-    "formatAsCode": Array [
-      "minWidth",
-      "minHeight",
-    ],
-    "howToFix": "The element has an insufficient target size (width: 42.222dp, height: 38.222dp). Set the element's minWidth and minHeight attributes to at least 44dp.",
-  },
   "howToFixSummary": "The element has an insufficient target size (width: 42.222dp, height: 38.222dp). Set the element's minWidth and minHeight attributes to at least 44dp.",
+  "richResolution": Object {
+    "contentId": "android/TouchSizeWcag",
+    "contentVariables": Object {
+      "logicalHeight": "38.222",
+      "logicalWidth": "42.222",
+    },
+    "type": "fix",
+  },
 }
 `;
