@@ -16,7 +16,7 @@ export const RichResolutionCardRow = NamedFC<RichResolutionCardRowProps>(
     ({ deps, index, propertyData }) => {
         return (
             <SimpleCardRow
-                label={`How to ${propertyData.type}`}
+                label={`How to ${propertyData.labelType}`}
                 content={<RichResolutionContent deps={deps} {...propertyData} />}
                 rowKey={`rich-resolution-row-${index}`}
             />

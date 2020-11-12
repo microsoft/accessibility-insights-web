@@ -8,12 +8,12 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('RichResolutionCardRow', () => {
-    it.each(['check', 'fix'] as const)('renders with type=%s', type => {
+    it.each(['check', 'fix'] as const)('renders with labelType=%s', labelType => {
         const props: RichResolutionCardRowProps = {
             deps: null,
             index: 123,
             propertyData: {
-                type,
+                labelType,
                 contentId: 'content-id',
                 contentVariables: { 'content-var-key': 'content-var-value' },
             },
