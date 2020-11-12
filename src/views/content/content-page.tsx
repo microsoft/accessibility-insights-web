@@ -3,21 +3,12 @@
 import { flatten, forEach, toPairs } from 'lodash';
 import * as React from 'react';
 
-import { GuidanceTag } from 'content/guidance-tags';
-import { NamedFC } from '../../common/react/named-fc';
-import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
+import { NamedFC } from 'common/react/named-fc';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 
-export type HyperlinkDefinition = { href: string; text: string };
 type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
 type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.FC };
-export function linkTo(text: string, href: string): HyperlinkDefinition {
-    return { text, href };
-}
-
-export function guidanceLinkTo(text: string, href: string, tags?: GuidanceTag[]): GuidanceLink {
-    return { text, href, tags };
-}
 
 export type ContentPageDeps = MarkupDeps;
 export interface ContentPageOptions {

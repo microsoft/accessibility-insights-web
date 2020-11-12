@@ -87,6 +87,29 @@ Array [
       "identifier": "myClass2",
     },
     "resolution": Object {
+      "howtoFixSummary": "How to fix My Rule #4",
+    },
+    "ruleId": "My Rule #4",
+    "status": "pass",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "boundingRectangle": Object {
+        "bottom": 50,
+        "left": 20,
+        "right": 35,
+        "top": 10,
+      },
+      "className": "myClass2",
+      "contentDescription": null,
+      "text": null,
+    },
+    "identifiers": Object {
+      "conciseName": "myClass2",
+      "identifier": "myClass2",
+    },
+    "resolution": Object {
       "howtoFixSummary": "How to fix My Rule #3",
     },
     "ruleId": "My Rule #3",
@@ -103,7 +126,7 @@ Array [
       "howtoFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
-    "status": "unknown",
+    "status": "pass",
     "uid": "gguid-mock-stub",
   },
 ]

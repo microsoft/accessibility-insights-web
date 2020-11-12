@@ -3,13 +3,14 @@
 exports[`TestView when status scan <Completed> 1`] = `
 <React.Fragment>
   <HeaderSection
-    contentPageInfo={
-      Object {
-        "title": "some title",
-      }
+    description={
+      <p>
+        some description
+      </p>
     }
+    title="some title"
   />
-  <CardsView
+  <stubInstancesSectionComponent
     cardsViewData={
       Object {
         "visualHelperEnabled": true,
@@ -23,6 +24,7 @@ exports[`TestView when status scan <Completed> 1`] = `
         },
       }
     }
+    shouldAlertFailuresCount={true}
     userConfigurationStoreData={
       Object {
         "isFirstTime": false,
@@ -35,11 +37,12 @@ exports[`TestView when status scan <Completed> 1`] = `
 exports[`TestView when status scan <Failed> 1`] = `
 <React.Fragment>
   <HeaderSection
-    contentPageInfo={
-      Object {
-        "title": "some title",
-      }
+    description={
+      <p>
+        some description
+      </p>
     }
+    title="some title"
   />
   <ScanningSpinner
     aria-live="assertive"
@@ -52,11 +55,12 @@ exports[`TestView when status scan <Failed> 1`] = `
 exports[`TestView when status scan <Scanning> 1`] = `
 <React.Fragment>
   <HeaderSection
-    contentPageInfo={
-      Object {
-        "title": "some title",
-      }
+    description={
+      <p>
+        some description
+      </p>
     }
+    title="some title"
   />
   <ScanningSpinner
     aria-live="assertive"
@@ -69,11 +73,12 @@ exports[`TestView when status scan <Scanning> 1`] = `
 exports[`TestView when status scan <undefined> 1`] = `
 <React.Fragment>
   <HeaderSection
-    contentPageInfo={
-      Object {
-        "title": "some title",
-      }
+    description={
+      <p>
+        some description
+      </p>
     }
+    title="some title"
   />
   <ScanningSpinner
     aria-live="assertive"

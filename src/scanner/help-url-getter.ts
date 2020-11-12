@@ -8,7 +8,7 @@ export class HelpUrlGetter {
         private readonly getA11yInsightsHelpUrl: (ruleId: string) => string | null,
     ) {}
 
-    public getHelpUrl(ruleId: string, axeHelpUrl: string): string {
+    public getHelpUrl(ruleId: string, axeHelpUrl?: string): string | undefined {
         const customHelpUrl = this.getCustomHelpUrl(ruleId);
         const a11yInsightsHelpUrl = this.getA11yInsightsHelpUrl(ruleId);
 

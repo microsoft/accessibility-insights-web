@@ -1,15 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceTag } from 'content/guidance-tags';
-import { link } from 'content/link';
-import { HyperlinkDefinition } from 'views/content/content-page';
-import { DictionaryStringTo } from '../types/common-types';
 
-export interface GuidanceLink {
-    href: string;
-    text: string;
-    tags?: GuidanceTag[];
-}
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { link } from 'content/link';
+import { DictionaryStringTo } from 'types/common-types';
 
 export const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',

@@ -83,7 +83,7 @@ describe('InspectHandler', () => {
         browserAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
         targetPageInspectorMock
-            .setup(inspector => inspector.inspectElement('#testElement', null))
+            .setup(inspector => inspector.inspectElement('#testElement', undefined))
             .verifiable(Times.once());
 
         testSubject.initialize();

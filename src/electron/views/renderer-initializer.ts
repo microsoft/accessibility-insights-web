@@ -50,7 +50,6 @@ import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { WindowUtils } from 'common/window-utils';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { ipcRenderer, shell } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
@@ -146,6 +145,7 @@ import {
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { TestViewDeps } from 'electron/views/automated-checks/test-view';
 
 declare let window: Window & {
     insightsUserConfiguration: UserConfigurationController;
@@ -462,7 +462,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const windowUtils = new WindowUtils();
 
-        const cardsViewDeps: CardsViewDeps = {
+        const testViewDeps: TestViewDeps = {
             LinkComponent: ElectronLink,
 
             cardInteractionSupport: allCardInteractionsSupported,
@@ -487,8 +487,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             unifiedResultToIssueFilingDataConverter: new UnifiedResultToIssueFilingDataConverter(),
             windowUtils: windowUtils,
             setFocusVisibility,
-            customCongratsMessage:
-                "No failed automated checks were found. Continue investigating your app's accessibility compliance through manual testing.",
+            customCongratsContinueInvestigatingMessage:
+                "Continue investigating your app's accessibility compliance through manual testing.",
         };
 
         const documentManipulator = new DocumentManipulator(document);
@@ -530,7 +530,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             getCardsViewData: getCardViewData,
             getCardSelectionViewData: getCardSelectionViewData,
             screenshotViewModelProvider,
-            ...cardsViewDeps,
+            ...testViewDeps,
             storeActionMessageCreator: new NullStoreActionMessageCreator(),
             settingsProvider: UnifiedSettingsProvider,
             loadTheme,

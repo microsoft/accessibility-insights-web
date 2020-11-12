@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IObjectWithKey } from 'office-ui-fabric-react';
 import { IGroup } from 'office-ui-fabric-react';
-import { HyperlinkDefinition } from 'views/content/content-page';
-import { RuleResult } from '../../scanner/iruleresults';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { RuleResult } from 'scanner/iruleresults';
 
 export interface DetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
@@ -15,7 +15,7 @@ export interface ListProps {
 }
 
 export interface DetailsGroup extends IGroup {
-    guidanceLinks: HyperlinkDefinition[];
+    guidanceLinks?: HyperlinkDefinition[];
     ruleUrl?: string;
 }
 
@@ -27,7 +27,7 @@ export class IssuesTableHandler {
         failedRules.forEach((rule: RuleResult) => {
             const curGroup: DetailsGroup = {
                 key: rule.id,
-                name: rule.help,
+                name: rule.help ?? rule.id,
                 startIndex: instanceCount,
                 isCollapsed: true,
                 count: rule.nodes.length,

@@ -53,7 +53,7 @@ describe('PathSnippetActionCreatorTest', () => {
     });
 
     it('handles GetPathSnippetCurrentState message', () => {
-        const getCurrentStateMock = createActionMock(null);
+        const getCurrentStateMock = createActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(
             getStoreStateMessage(StoreNames.PathSnippetStore),
@@ -71,7 +71,7 @@ describe('PathSnippetActionCreatorTest', () => {
     });
 
     it('handles ClearPathSnippetData message', () => {
-        const onClearDataMock = createActionMock(null);
+        const onClearDataMock = createActionMock(undefined);
         const actionsMock = createActionsMock('onClearData', onClearDataMock.object);
         const interpreterMock = createInterpreterMock(
             Messages.PathSnippet.ClearPathSnippetData,

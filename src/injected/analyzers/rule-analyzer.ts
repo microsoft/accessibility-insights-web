@@ -31,7 +31,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
-        private postOnResolve: PostResolveCallback,
+        private postOnResolve: PostResolveCallback | null,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
     ) {
@@ -74,7 +74,9 @@ export class RuleAnalyzer extends BaseAnalyzer {
 
     protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
         this.sendScanCompleteResolveMessage(analyzerResult, this.config);
-        this.postOnResolve(analyzerResult);
+        if (this.postOnResolve != null) {
+            this.postOnResolve(analyzerResult);
+        }
     };
 
     protected sendScanCompleteResolveMessage(

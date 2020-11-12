@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import {
@@ -48,7 +49,7 @@ export class AutomatedChecksViewController extends ViewController {
 
     public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
         await this.waitForSelector(toggleSelector);
-        const oldState = await this.client.getAttribute<string>(toggleSelector, 'aria-checked');
+        const oldState = await this.client.getAttribute(toggleSelector, 'aria-checked');
 
         const oldStateBool = oldState.toLowerCase() === 'true';
         if (oldStateBool !== newState) {
@@ -63,5 +64,15 @@ export class AutomatedChecksViewController extends ViewController {
             : settingsPanelSelectors.disabledToggle(toggleSelector);
 
         await this.waitForSelector(toggleInStateSelector);
+    }
+
+    public async clickLeftNavItem(key: LeftNavItemKey): Promise<void> {
+        const selector = this.getSelectorForLeftNavItemLink(key);
+        await this.waitForSelector(selector);
+        await this.click(selector);
+    }
+
+    private getSelectorForLeftNavItemLink(key: LeftNavItemKey): string {
+        return `${AutomatedChecksViewSelectors.leftNav} a[data-automation-id="${key}"]`;
     }
 }

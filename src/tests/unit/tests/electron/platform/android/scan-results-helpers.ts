@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from 'common/guidance-links';
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import {
     AndroidScanResults,
@@ -8,7 +9,6 @@ import {
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
-import { GuidanceLink } from './../../../../../../scanner/rule-to-links-mappings';
 
 export function buildScanResultsObject(
     deviceName: string = null,
@@ -114,7 +114,6 @@ export function buildRuleInformation(
     ruleId: string,
     ruleLink = 'rule-link',
     guidance: GuidanceLink[] = [],
-    includeResults: boolean = true,
 ): RuleInformation {
     return {
         ruleId: ruleId,
@@ -129,12 +128,12 @@ export function buildRuleInformation(
             const summary: string = 'How to fix ' + ruleId;
             return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
         },
-        includeThisResultDelegate: r => {
+        getResultStatusDelegate: r => {
             expect('includeThisResultDelegate').toBe('This code should never execute');
             return null;
         },
-        includeThisResult: r => {
-            return includeResults;
+        getResultStatus: r => {
+            return r.status === 'FAIL' ? 'fail' : 'pass';
         },
     } as RuleInformation;
 }

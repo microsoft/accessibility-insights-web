@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TextAlignProperty } from 'csstype';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
@@ -18,7 +17,7 @@ export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration 
 export type GetBoundingRect = (e: Element) => ClientRect;
 
 export interface SimpleHighlightDrawerConfiguration {
-    textAlign?: TextAlignProperty;
+    textAlign?: 'center' | 'left' | 'right';
     cursor?: string;
 }
 

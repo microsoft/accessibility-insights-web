@@ -6,9 +6,10 @@ import * as React from 'react';
 
 import { forOwn } from 'lodash';
 import { BestPractice } from 'scanner/rule-to-links-mappings';
-import { HyperlinkDefinition } from 'views/content/content-page';
-import { GuidanceLinks, GuidanceLinksProps } from '../../../../../common/components/guidance-links';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
+
+import { GuidanceLinks, GuidanceLinksProps } from 'common/components/guidance-links';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 
 describe('GuidanceLinksTest', () => {
     const testLink1 = {

@@ -21,8 +21,6 @@ const initialDataCreator = () => {
     return {} as AssessmentData;
 };
 
-export const contentProvider = ContentPage.provider(content);
-
 const assessmentWithColumns: Assessment = {
     key: 'assessment-1',
     visualizationType: -1 as VisualizationType,

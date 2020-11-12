@@ -66,7 +66,7 @@ describe('ResultDecorator', () => {
         it('should return without guidance links', () => {
             const scanResultInstance: RuleResult = {
                 ...instanceStub,
-                guidanceLinks: null,
+                guidanceLinks: undefined,
                 helpUrl: urlStub,
             };
             const nonEmptyScanResultStub = {

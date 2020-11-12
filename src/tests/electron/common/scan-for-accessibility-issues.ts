@@ -39,7 +39,7 @@ async function runAxeScan(
         },
     };
 
-    const executeOutput = await spectronClient.executeAsync(
+    const axeResults = await spectronClient.executeAsync(
         (options, selectorInEvaluate, done) => {
             const elementContext =
                 selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
@@ -54,11 +54,6 @@ async function runAxeScan(
         axeRunOptions,
         selector,
     );
-
-    // This is how webdriverio indicates success
-    expect(executeOutput).toHaveProperty('status', 0);
-
-    const axeResults = executeOutput.value;
 
     return prettyPrintAxeViolations(axeResults);
 }

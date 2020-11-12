@@ -8,6 +8,7 @@ import {
 } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { ResultsFilter } from 'common/types/results-filter';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import {
     CardRuleResult,
@@ -48,6 +49,7 @@ describe('AutomatedChecksView', () => {
     let getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
     let getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
+    const resultsFilter: ResultsFilter = _ => true;
 
     beforeEach(() => {
         isResultHighlightUnavailableStub = () => null;
@@ -142,6 +144,7 @@ describe('AutomatedChecksView', () => {
                     cardSelectionStoreData,
                     unifiedScanResultStoreData,
                     isResultHighlightUnavailableStub,
+                    resultsFilter,
                 ),
             )
             .returns(() => cardSelectionViewDataStub)
@@ -167,6 +170,7 @@ describe('AutomatedChecksView', () => {
                 (contentPagesInfo[key] = {
                     title: `test-${key}-title`,
                     description: <>test {key} description</>,
+                    resultsFilter: resultsFilter,
                 }),
         );
 

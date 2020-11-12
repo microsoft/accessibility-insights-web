@@ -13,7 +13,6 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import {
     SettingsPanel,
     SettingsPanelDeps,
@@ -31,7 +30,7 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { ReflowCommandBar } from 'electron/views/automated-checks/components/reflow-command-bar';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
-import { TestView } from 'electron/views/automated-checks/test-view';
+import { TestView, TestViewDeps } from 'electron/views/automated-checks/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
@@ -46,9 +45,9 @@ export const automatedChecksViewAutomationId = 'automated-checks-view';
 
 export type AutomatedChecksViewDeps = CommandBarDeps &
     TitleBarDeps &
-    CardsViewDeps &
     LeftNavDeps &
     ContentPanelDeps &
+    TestViewDeps &
     SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
         leftNavActionCreator: LeftNavActionCreator;
@@ -89,10 +88,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         } = this.props;
         const { rules, results, toolInfo } = unifiedScanResultStoreData;
 
+        const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
+
         const cardSelectionViewData = deps.getCardSelectionViewData(
             cardSelectionStoreData,
             unifiedScanResultStoreData,
             deps.isResultHighlightUnavailable,
+            contentPageInfo.resultsFilter,
         );
 
         const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
@@ -112,8 +114,6 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             unifiedScanResultStoreData,
             deps.getDateFromTimestamp,
         );
-
-        const contentPageInfo: ContentPageInfo = this.getContentPageInfo();
 
         return (
             <div
@@ -238,6 +238,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 scanPort={this.getScanPort()}
                 scanStoreData={this.props.scanStoreData}
                 setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
+                currentContentPageInfo={this.getContentPageInfo()}
             />
         );
     }

@@ -9,8 +9,8 @@ export class HTMLElementUtils {
         this.clientWindow = clientWindow || window;
     }
 
-    public getContentWindow(frame: HTMLIFrameElement): Window | null {
-        return frame.contentWindow;
+    public getContentWindow(frame?: HTMLIFrameElement): Window | null {
+        return frame?.contentWindow ?? null;
     }
 
     public scrollInToView(element: Element): void {

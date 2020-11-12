@@ -61,11 +61,11 @@ export class AnalyzerStateUpdateHandler {
         prevState: VisualizationStoreData,
         currState: VisualizationStoreData,
     ): void {
-        if (currState.scanning != null && currState.injectingInProgress !== true) {
+        if (currState.scanning != null && currState.injectingRequested !== true) {
             if (
                 prevState == null ||
                 prevState.scanning !== currState.scanning ||
-                prevState.injectingInProgress !== currState.injectingInProgress
+                prevState.injectingRequested !== currState.injectingRequested
             ) {
                 this.startScan(currState.scanning);
             }

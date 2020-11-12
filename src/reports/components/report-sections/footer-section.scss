@@ -11,11 +11,7 @@
     .report-footer {
         line-height: 20px;
 
-        color: $secondary-text;
-
-        .tool-name-link {
-            color: $secondary-text !important;
-        }
+        color: $report-footer-text;
     }
 
     @media only screen and (max-width: 1000px) {

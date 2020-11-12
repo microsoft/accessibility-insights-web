@@ -145,7 +145,6 @@ export class WindowInitializer {
             this.frameCommunicator,
             this.clientUtils,
             this.scannerUtils,
-            Q,
             document,
         );
         this.elementFinderByPosition.initialize();

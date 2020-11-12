@@ -25,17 +25,17 @@ export class ElementFinderByPath {
     };
 
     protected onFindElementByPath = (
-        message: ElementFinderByPathMessage,
-        error: ErrorMessageContent,
-        sourceWin: Window,
+        result: any | undefined,
+        error: ErrorMessageContent | undefined,
+        messageSourceWindow: Window,
         responder?: FrameMessageResponseCallback,
     ): void => {
-        this.processRequest(message).then(
+        this.processRequest(result).then(
             result => {
-                responder(result, null, sourceWin);
+                responder != null && responder(result, undefined, messageSourceWindow);
             },
             err => {
-                responder(null, err, sourceWin);
+                responder != null && responder(undefined, err, messageSourceWindow);
             },
         );
     };

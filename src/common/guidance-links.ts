@@ -12,3 +12,9 @@ export const guidanceTags = {
         displayText: 'New for WCAG 2.1',
     },
 };
+
+export interface GuidanceLink {
+    href: string;
+    text: string;
+    tags?: GuidanceTag[];
+}

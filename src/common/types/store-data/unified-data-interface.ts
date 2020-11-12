@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from 'common/guidance-links';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
-import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
 
 // this is similar to `TestEngine` interface from axe-core
@@ -113,7 +113,10 @@ export interface UnifiedResult {
     resolution: UnifiedResolution;
 }
 
-export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
+export type InstanceResultStatus =
+    | 'pass' // May include results which are very low-confidence failures, in addition to high-confidence non-failures
+    | 'fail'
+    | 'unknown';
 
 export interface ScreenshotData {
     base64PngData: string;

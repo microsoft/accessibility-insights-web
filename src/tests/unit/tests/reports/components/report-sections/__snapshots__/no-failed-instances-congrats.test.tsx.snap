@@ -12,7 +12,7 @@ exports[`NoFailedInstancesCongrats with outcomeType fail renders per snapshot wi
   <div
     className="reportCongratsInfo"
   >
-    Look, ma! No bugs!
+    No failed automated checks were found. Continue investigating!
   </div>
   <InlineImage
     alt=""
@@ -56,7 +56,7 @@ exports[`NoFailedInstancesCongrats with outcomeType inapplicable renders per sna
   <div
     className="reportCongratsInfo"
   >
-    Look, ma! No bugs!
+    No failed automated checks were found. Continue investigating!
   </div>
   <InlineImage
     alt=""
@@ -100,7 +100,7 @@ exports[`NoFailedInstancesCongrats with outcomeType pass renders per snapshot wi
   <div
     className="reportCongratsInfo"
   >
-    Look, ma! No bugs!
+    No failed automated checks were found. Continue investigating!
   </div>
   <InlineImage
     alt=""
@@ -144,7 +144,7 @@ exports[`NoFailedInstancesCongrats with outcomeType review renders per snapshot 
   <div
     className="reportCongratsInfo"
   >
-    Look, ma! No bugs!
+    No instances to review were found. Continue investigating!
   </div>
   <InlineImage
     alt=""

@@ -33,12 +33,6 @@
             color: $secondary-text !important;
             word-break: break-all;
         }
-
-        :global(.guidance-links) {
-            a {
-                color: $secondary-text !important;
-            }
-        }
     }
 }
 

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from 'common/guidance-links';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { GetGuidanceTagsFromGuidanceLinks } from '../get-guidance-tags-from-guidance-links';
 import { NamedFC } from '../react/named-fc';
 
