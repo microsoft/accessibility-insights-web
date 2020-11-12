@@ -5,7 +5,7 @@ Object {
   "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
   "richResolution": Object {
     "contentId": "android/ColorContrast",
-    "type": "check",
+    "labelType": "check",
   },
 }
 `;
@@ -15,7 +15,7 @@ Object {
   "howToFixSummary": "The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)",
   "richResolution": Object {
     "contentId": "android/ActiveViewName",
-    "type": "fix",
+    "labelType": "fix",
   },
 }
 `;
@@ -25,7 +25,7 @@ Object {
   "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
   "richResolution": Object {
     "contentId": "android/ColorContrast",
-    "type": "check",
+    "labelType": "check",
   },
 }
 `;
@@ -35,7 +35,7 @@ Object {
   "howToFixSummary": "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
   "richResolution": Object {
     "contentId": "android/EditTextValue",
-    "type": "fix",
+    "labelType": "fix",
   },
 }
 `;
@@ -45,7 +45,7 @@ Object {
   "howToFixSummary": "The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.",
   "richResolution": Object {
     "contentId": "android/ImageViewName",
-    "type": "fix",
+    "labelType": "fix",
   },
 }
 `;
@@ -59,7 +59,7 @@ Object {
       "logicalHeight": "38.222",
       "logicalWidth": "42.222",
     },
-    "type": "fix",
+    "labelType": "fix",
   },
 }
 `;

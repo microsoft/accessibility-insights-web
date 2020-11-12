@@ -70,7 +70,7 @@ describe('ResolutionCreator', () => {
 
         const expected = {
             richResolution: {
-                type: 'check',
+                labelType: 'check',
                 contentId: 'web/test-rule-id',
             },
         };

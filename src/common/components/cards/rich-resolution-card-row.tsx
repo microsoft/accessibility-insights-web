@@ -11,7 +11,7 @@ export interface RichResolutionCardRowProps extends CardRowProps {
     propertyData: UnifiedRichResolution;
 }
 
-export const RichResolutionCardRow = NamedFC<CardRowProps>(
+export const RichResolutionCardRow = NamedFC<RichResolutionCardRowProps>(
     'RichResolutionCardRow',
     ({ deps, index, propertyData }) => {
         return (

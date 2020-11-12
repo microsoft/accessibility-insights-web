@@ -28,7 +28,7 @@ export const getFixResolution: ResolutionCreator = (data: ResolutionCreatorData)
 export const getCheckResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
     return {
         richResolution: {
-            type: 'check',
+            labelType: 'check',
             contentId: `web/${data.ruleId}`,
         },
     };

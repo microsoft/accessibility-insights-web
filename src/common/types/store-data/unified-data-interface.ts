@@ -93,7 +93,7 @@ export type UnifiedDescriptors = {
 } & InstancePropertyBag;
 
 export type UnifiedRichResolution = {
-    type: 'check' | 'fix';
+    labelType: 'check' | 'fix';
     contentId: string;
     contentVariables?: DictionaryStringTo<string>;
 };

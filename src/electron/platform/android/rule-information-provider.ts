@@ -23,7 +23,7 @@ export class RuleInformationProvider {
                 () => ({
                     howToFixSummary: `If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.`,
                     richResolution: {
-                        type: 'check',
+                        labelType: 'check',
                         contentId: 'android/ColorContrast',
                     },
                 }),
@@ -46,7 +46,7 @@ export class RuleInformationProvider {
                     howToFixSummary:
                         'The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)',
                     richResolution: {
-                        type: 'fix',
+                        labelType: 'fix',
                         contentId: 'android/ActiveViewName',
                     },
                 }),
@@ -61,7 +61,7 @@ export class RuleInformationProvider {
                     howToFixSummary:
                         'The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.',
                     richResolution: {
-                        type: 'fix',
+                        labelType: 'fix',
                         contentId: 'android/ImageViewName',
                     },
                 }),
@@ -76,7 +76,7 @@ export class RuleInformationProvider {
                     howToFixSummary:
                         "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
                     richResolution: {
-                        type: 'fix',
+                        labelType: 'fix',
                         contentId: 'android/EditTextValue',
                     },
                 }),
@@ -98,7 +98,7 @@ export class RuleInformationProvider {
         return {
             howToFixSummary: `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 44dp.`,
             richResolution: {
-                type: 'fix',
+                labelType: 'fix',
                 contentId: 'android/TouchSizeWcag',
                 contentVariables: {
                     logicalWidth,
