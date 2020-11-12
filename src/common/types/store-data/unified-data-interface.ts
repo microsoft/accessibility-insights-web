@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { GuidanceLink } from 'common/guidance-links';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
+import { DictionaryStringTo } from 'types/common-types';
 import { ScanIncompleteWarningId } from '../scan-incomplete-warnings';
 
 // this is similar to `TestEngine` interface from axe-core
@@ -91,18 +92,16 @@ export type UnifiedDescriptors = {
     boundingRectangle?: BoundingRectangle;
 } & InstancePropertyBag;
 
-export type UnifiedResolution = {
-    howToFixSummary: string;
-} & InstancePropertyBag;
-
-export type FormattableResolution = {
-    howToFix: string;
-    formatAsCode?: string[];
+export type UnifiedRichResolution = {
+    labelType: 'check' | 'fix';
+    contentId: string;
+    contentVariables?: DictionaryStringTo<string>;
 };
 
-export type UnifiedFormattableResolution = {
-    howToFixFormat?: FormattableResolution;
-} & UnifiedResolution;
+export type UnifiedResolution = {
+    howToFixSummary: string;
+    richResolution?: UnifiedRichResolution;
+} & InstancePropertyBag;
 
 export interface UnifiedResult {
     uid: string;

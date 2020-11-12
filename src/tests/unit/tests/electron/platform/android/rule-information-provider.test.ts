@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import {
     InstanceResultStatus,
-    UnifiedFormattableResolution,
+    UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
 import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
@@ -65,12 +65,12 @@ describe('RuleInformationProvider', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
     });
 
-    function validateUnifiedFormattableResolution(
+    function validateUnifiedResolution(
         ruleId: string,
         ruleResult: RuleResultsData,
-    ): UnifiedFormattableResolution {
+    ): UnifiedResolution {
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleId);
-        const unifiedResolution = ruleInformation.getUnifiedFormattableResolution(ruleResult);
+        const unifiedResolution = ruleInformation.getUnifiedResolution(ruleResult);
 
         expect(ruleInformation).toBeTruthy();
         expect(ruleInformation.ruleId).toEqual(ruleId);
@@ -88,11 +88,8 @@ describe('RuleInformationProvider', () => {
             'fffafafa',
             'High',
         );
-        const unifiedFormattableResolution = validateUnifiedFormattableResolution(
-            testRuleId,
-            ruleResult,
-        );
-        expect(unifiedFormattableResolution).toMatchSnapshot();
+        const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation handles no foreground/background color values', () => {
@@ -104,11 +101,8 @@ describe('RuleInformationProvider', () => {
             null,
             'None',
         );
-        const unifiedFormattableResolution = validateUnifiedFormattableResolution(
-            testRuleId,
-            ruleResult,
-        );
-        expect(unifiedFormattableResolution).toMatchSnapshot();
+        const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for TouchSizeWcag rule', () => {
@@ -119,35 +113,23 @@ describe('RuleInformationProvider', () => {
             86,
             95,
         );
-        const unifiedFormattableResolution = validateUnifiedFormattableResolution(
-            testRuleId,
-            ruleResult,
-        );
-        expect(unifiedFormattableResolution).toMatchSnapshot();
+        const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ActiveViewName rule', () => {
-        const unifiedFormattableResolution = validateUnifiedFormattableResolution(
-            'ActiveViewName',
-            null,
-        );
-        expect(unifiedFormattableResolution).toMatchSnapshot();
+        const unifiedResolution = validateUnifiedResolution('ActiveViewName', null);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for EditTextValue rule', () => {
-        const unifiedFormattableResolution = validateUnifiedFormattableResolution(
-            'EditTextValue',
-            null,
-        );
-        expect(unifiedFormattableResolution).toMatchSnapshot();
+        const unifiedResolution = validateUnifiedResolution('EditTextValue', null);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ImageViewName rule', () => {
-        const unifiedFormattableResolution = validateUnifiedFormattableResolution(
-            'ImageViewName',
-            null,
-        );
-        expect(unifiedFormattableResolution).toMatchSnapshot();
+        const unifiedResolution = validateUnifiedResolution('ImageViewName', null);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('ColorContrast getResultStatus returns unknown when confidence is defined and High', () => {

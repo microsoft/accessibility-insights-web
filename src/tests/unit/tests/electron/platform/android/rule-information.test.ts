@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import {
     InstanceResultStatus,
-    UnifiedFormattableResolution,
+    UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
 import { link } from 'content/link';
 import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import {
-    GetUnifiedFormattableResolutionDelegate,
+    GetUnifiedResolutionDelegate,
     GetResultStatusDelegate,
     RuleInformation,
 } from 'electron/platform/android/rule-information';
@@ -77,31 +77,27 @@ describe('RuleInformation', () => {
         };
 
         for (const howToFixString of testInputs) {
-            const expectedUnifiedFormattableResolution: UnifiedFormattableResolution = {
+            const expectedUnifiedResolution: UnifiedResolution = {
                 howToFixSummary: howToFixString,
             };
 
-            const getUnifiedFormattableResolutionDelegateMock = Mock.ofType<
-                GetUnifiedFormattableResolutionDelegate
-            >();
-            getUnifiedFormattableResolutionDelegateMock
+            const getUnifiedResolutionDelegateMock = Mock.ofType<GetUnifiedResolutionDelegate>();
+            getUnifiedResolutionDelegateMock
                 .setup(func => func(testData))
-                .returns(() => expectedUnifiedFormattableResolution);
+                .returns(() => expectedUnifiedResolution);
 
             const ruleInformation = new RuleInformation(
                 null,
                 null,
                 null,
                 null,
-                getUnifiedFormattableResolutionDelegateMock.object,
+                getUnifiedResolutionDelegateMock.object,
                 failIfCalled,
             );
 
-            const actualUnifiedResolution = ruleInformation.getUnifiedFormattableResolution(
-                testData,
-            );
+            const actualUnifiedResolution = ruleInformation.getUnifiedResolution(testData);
 
-            expect(actualUnifiedResolution).toBe(expectedUnifiedFormattableResolution);
+            expect(actualUnifiedResolution).toBe(expectedUnifiedResolution);
         }
     });
 

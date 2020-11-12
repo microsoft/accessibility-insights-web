@@ -3,15 +3,12 @@
 import { GuidanceLink } from 'common/guidance-links';
 import {
     InstanceResultStatus,
-    UnifiedFormattableResolution,
+    UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
 
 import { RuleResultsData } from './android-scan-results';
 
-export type GetUnifiedFormattableResolutionDelegate = (
-    ruleResultsData: RuleResultsData,
-) => UnifiedFormattableResolution;
-
+export type GetUnifiedResolutionDelegate = (ruleResultsData: RuleResultsData) => UnifiedResolution;
 export type GetResultStatusDelegate = (ruleResultsData: RuleResultsData) => InstanceResultStatus;
 
 export class RuleInformation {
@@ -20,14 +17,12 @@ export class RuleInformation {
         readonly ruleLink: string,
         readonly ruleDescription: string,
         readonly guidance: GuidanceLink[],
-        readonly getUnifiedFormattableResolutionDelegate: GetUnifiedFormattableResolutionDelegate,
+        readonly getUnifiedResolutionDelegate: GetUnifiedResolutionDelegate,
         readonly getResultStatusDelegate: GetResultStatusDelegate,
     ) {}
 
-    public getUnifiedFormattableResolution(
-        ruleResultsData: RuleResultsData,
-    ): UnifiedFormattableResolution {
-        return this.getUnifiedFormattableResolutionDelegate(ruleResultsData);
+    public getUnifiedResolution(ruleResultsData: RuleResultsData): UnifiedResolution {
+        return this.getUnifiedResolutionDelegate(ruleResultsData);
     }
 
     public getResultStatus(ruleResultsData: RuleResultsData): InstanceResultStatus {

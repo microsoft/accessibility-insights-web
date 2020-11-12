@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';

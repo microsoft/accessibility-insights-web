@@ -120,13 +120,13 @@ export function buildRuleInformation(
         ruleDescription: 'This describes ' + ruleId,
         ruleLink,
         guidance,
-        getUnifiedFormattableResolutionDelegate: r => {
+        getUnifiedResolutionDelegate: r => {
             expect('getUnifiedResolution').toBe('This code should never execute');
             return null;
         },
-        getUnifiedFormattableResolution: r => {
+        getUnifiedResolution: r => {
             const summary: string = 'How to fix ' + ruleId;
-            return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
+            return { howToFixSummary: summary };
         },
         getResultStatusDelegate: r => {
             expect('includeThisResultDelegate').toBe('This code should never execute');

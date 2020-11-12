@@ -50,6 +50,10 @@ button::after {
     }
 }
 
+.insights-code {
+    font-family: $codeFontFamily;
+}
+
 .ms-Spinner {
     .ms-Spinner-circle {
         border-top-color: $spinner-text;

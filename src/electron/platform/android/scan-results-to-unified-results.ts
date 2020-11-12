@@ -1,11 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import {
-    InstanceResultStatus,
-    UnifiedDescriptors,
-    UnifiedResult,
-} from 'common/types/store-data/unified-data-interface';
+import { UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
 import { AndroidScanResults, RuleResultsData, ViewElementData } from './android-scan-results';
@@ -94,7 +89,7 @@ function createUnifiedResult(
             identifier: viewElementLookup[ruleResult.axeViewId]?.className,
             conciseName: viewElementLookup[ruleResult.axeViewId]?.className,
         },
-        resolution: ruleInformation.getUnifiedFormattableResolution(ruleResult),
+        resolution: ruleInformation.getUnifiedResolution(ruleResult),
     };
 }
 
