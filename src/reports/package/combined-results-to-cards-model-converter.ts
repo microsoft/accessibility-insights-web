@@ -90,7 +90,7 @@ export class CombinedResultsToCardsModelConverter {
             },
             resolution: {
                 howToFixSummary: failureData.fix.failureSummary,
-                ...this.getFixResolution({ id: rule.ruleId, nodeResult: failureData.fix}),
+                ...this.getFixResolution({ ruleId: rule.ruleId, nodeResult: failureData.fix}),
             },
             isSelected: false,
             highlightStatus: 'unavailable',

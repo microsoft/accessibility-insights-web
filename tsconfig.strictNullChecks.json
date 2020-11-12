@@ -113,7 +113,7 @@
         "./src/common/components/blocking-dialog.tsx",
         "./src/common/components/body-class-modifier.tsx",
         "./src/common/components/cards/card-interaction-support.ts",
-        "./src/common/components/cards/how-to-check-text.tsx",
+        "./src/common/components/cards/rich-resolution-content.tsx",
         "./src/common/components/cards/simple-card-row.tsx",
         "./src/common/components/collapsible-component.tsx",
         "./src/common/components/contrast-checker-app-links.tsx",

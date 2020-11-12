@@ -10,7 +10,7 @@ import {
 describe('ResolutionCreator', () => {
     it('outputs correct fix resolution with no data', () => {
         const resolutionCreatorDataStub: ResolutionCreatorData = {
-            id: 'rule id',
+            ruleId: 'rule id',
             nodeResult: {
                 any: [],
                 all: [],
@@ -32,7 +32,7 @@ describe('ResolutionCreator', () => {
 
     it('outputs correct fix resolution with data', () => {
         const resolutionCreatorDataStub: ResolutionCreatorData = {
-            id: 'rule id',
+            ruleId: 'rule id',
             nodeResult: {
                 any: [
                     { id: null, message: 'any 1 message', data: null },
@@ -60,7 +60,7 @@ describe('ResolutionCreator', () => {
     it('outputs correct check resolution', () => {
         const ruleId = 'test rule id';
         const resolutionCreatorDataStub: ResolutionCreatorData = {
-            id: ruleId,
+            ruleId: ruleId,
             nodeResult: {
                 any: [],
                 all: [],
