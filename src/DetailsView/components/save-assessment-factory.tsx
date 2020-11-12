@@ -16,9 +16,7 @@ export type SaveAssessmentFactoryProps = CommandBarProps & {
 };
 
 export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): JSX.Element {
-    const assessmentData = props.deps.assessmentDataFormatter.formatAssessmentData(
-        props.assessmentStoreData.assessments,
-    );
+    const assessmentData = props.deps.assessmentDataFormatter.formatAssessmentData(props.assessmentStoreData.assessments);
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'text/html');
 
     return <SaveAssessmentButton download={'filename'} href={fileURL} />;
