@@ -21,11 +21,7 @@ export class RuleInformationProvider {
                 'Text elements must have sufficient contrast against the background.',
                 [link.WCAG_1_4_3],
                 () => ({
-                    howToFixSummary: `If the text is intended to be invisible, it passes. If the text is intended to be visible,
-                        use Accessibility Insights for Windows (or the Colour Contrast Analyzer
-                        if you're testing on a Mac) to manually verify that it has sufficient contrast compared to
-                        the background. If the background is an image or gradient, test an area where contrast
-                        appears to be lowest.`,
+                    howToFixSummary: `If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.`,
                     richResolution: {
                         type: 'check',
                         contentId: 'android/ColorContrast',
