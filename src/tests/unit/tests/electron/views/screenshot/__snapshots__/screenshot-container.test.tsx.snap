@@ -11,6 +11,7 @@ exports[`ScreenshotContainer renders per snapshot with highlight boxes 1`] = `
     viewModel={
       Object {
         "height": "height-1",
+        "label": null,
         "left": "left-1",
         "resultUid": "result-1",
         "top": "top-1",
@@ -22,6 +23,7 @@ exports[`ScreenshotContainer renders per snapshot with highlight boxes 1`] = `
     viewModel={
       Object {
         "height": "height-2",
+        "label": "!",
         "left": "left-2",
         "resultUid": "result-2",
         "top": "top-2",

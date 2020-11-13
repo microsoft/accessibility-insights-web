@@ -58,6 +58,7 @@ function getHighlightBoxViewModelFromResult(
     const heightInPx = rectInPx.bottom - rectInPx.top;
     return {
         resultUid: result.uid,
+        label: result.status === 'fail' ? '!' : null,
         left: pxAsPercentRelativeTo(rectInPx.left, viewPort.width),
         top: pxAsPercentRelativeTo(rectInPx.top, viewPort.height),
         width: pxAsPercentRelativeTo(widthInPx, viewPort.width),
