@@ -8,7 +8,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('HighlightBox', () => {
-    const viewModel: HighlightBoxViewModel = {
+    const baseViewModel: Partial<HighlightBoxViewModel> = {
         resultUid: 'test-uid',
         top: '50%',
         left: '50%',
@@ -16,7 +16,11 @@ describe('HighlightBox', () => {
         height: '50px',
     };
 
-    it('renders with appropriate position and dimensions', () => {
+    it.each([null, '!'])('renders for label=%p with appropriate position and dimensions', label => {
+        const viewModel = {
+            ...baseViewModel,
+            label,
+        } as HighlightBoxViewModel;
         const testObject = shallow(<HighlightBox viewModel={viewModel} />);
         expect(testObject.getElement()).toMatchSnapshot();
     });

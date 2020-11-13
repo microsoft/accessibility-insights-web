@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HighlightBox renders with appropriate position and dimensions 1`] = `
+exports[`HighlightBox renders for label="!" with appropriate position and dimensions 1`] = `
 <div
   aria-hidden="true"
   className="highlightBox"
@@ -17,7 +17,24 @@ exports[`HighlightBox renders with appropriate position and dimensions 1`] = `
   <div
     className="highlightBoxLabel"
   >
+    $
     !
   </div>
 </div>
+`;
+
+exports[`HighlightBox renders for label=null with appropriate position and dimensions 1`] = `
+<div
+  aria-hidden="true"
+  className="highlightBox"
+  data-automation-id="screenshot-highlight-box"
+  style={
+    Object {
+      "height": "50px",
+      "left": "50%",
+      "top": "50%",
+      "width": "100px",
+    }
+  }
+/>
 `;
