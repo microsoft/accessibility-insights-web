@@ -152,7 +152,6 @@ const prodConfig = {
         splitChunks: false,
         minimizer: [
             new TerserWebpackPlugin({
-                sourceMap: false,
                 terserOptions: {
                     compress: false,
                     mangle: true,
