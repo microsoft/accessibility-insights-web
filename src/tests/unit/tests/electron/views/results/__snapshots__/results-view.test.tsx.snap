@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksView right content panel info changes when left nav selected key changes 1`] = `
+exports[`ResultsView right content panel info changes when left nav selected key changes 1`] = `
 <TestView
   cardsViewData={
     Object {
@@ -78,7 +78,7 @@ exports[`AutomatedChecksView right content panel info changes when left nav sele
 />
 `;
 
-exports[`AutomatedChecksView right content panel info renders with default/initial value 1`] = `
+exports[`ResultsView right content panel info renders with default/initial value 1`] = `
 <TestView
   cardsViewData={
     Object {
@@ -156,10 +156,10 @@ exports[`AutomatedChecksView right content panel info renders with default/initi
 />
 `;
 
-exports[`AutomatedChecksView when status scan <Completed> 1`] = `
+exports[`ResultsView when status scan <Completed> 1`] = `
 <div
-  className="automatedChecksView"
-  data-automation-id="automated-checks-view"
+  className="resultsView"
+  data-automation-id="results-view"
 >
   <TitleBar
     deps={
@@ -268,7 +268,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
       featureFlag="leftNavBar"
     />
     <div
-      className="automatedChecksPanelContainer"
+      className="resultsPanelContainer"
     >
       <FlaggedComponent
         disableJSXElement={null}
@@ -369,7 +369,7 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
         featureFlag="leftNavBar"
       />
       <div
-        className="automatedChecksPanelLayout"
+        className="resultsPanelLayout"
       >
         <div
           className="mainContentWrapper"
@@ -622,10 +622,10 @@ exports[`AutomatedChecksView when status scan <Completed> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView when status scan <Failed> 1`] = `
+exports[`ResultsView when status scan <Failed> 1`] = `
 <div
-  className="automatedChecksView"
-  data-automation-id="automated-checks-view"
+  className="resultsView"
+  data-automation-id="results-view"
 >
   <TitleBar
     deps={
@@ -734,7 +734,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
       featureFlag="leftNavBar"
     />
     <div
-      className="automatedChecksPanelContainer"
+      className="resultsPanelContainer"
     >
       <FlaggedComponent
         disableJSXElement={null}
@@ -820,7 +820,7 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
         featureFlag="leftNavBar"
       />
       <div
-        className="automatedChecksPanelLayout"
+        className="resultsPanelLayout"
       >
         <div
           className="mainContentWrapper"
@@ -1047,10 +1047,10 @@ exports[`AutomatedChecksView when status scan <Failed> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
+exports[`ResultsView when status scan <Scanning> 1`] = `
 <div
-  className="automatedChecksView"
-  data-automation-id="automated-checks-view"
+  className="resultsView"
+  data-automation-id="results-view"
 >
   <TitleBar
     deps={
@@ -1159,7 +1159,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
       featureFlag="leftNavBar"
     />
     <div
-      className="automatedChecksPanelContainer"
+      className="resultsPanelContainer"
     >
       <FlaggedComponent
         disableJSXElement={null}
@@ -1245,7 +1245,7 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
         featureFlag="leftNavBar"
       />
       <div
-        className="automatedChecksPanelLayout"
+        className="resultsPanelLayout"
       >
         <div
           className="mainContentWrapper"
@@ -1468,10 +1468,10 @@ exports[`AutomatedChecksView when status scan <Scanning> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView when status scan <undefined> 1`] = `
+exports[`ResultsView when status scan <undefined> 1`] = `
 <div
-  className="automatedChecksView"
-  data-automation-id="automated-checks-view"
+  className="resultsView"
+  data-automation-id="results-view"
 >
   <TitleBar
     deps={
@@ -1580,7 +1580,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
       featureFlag="leftNavBar"
     />
     <div
-      className="automatedChecksPanelContainer"
+      className="resultsPanelContainer"
     >
       <FlaggedComponent
         disableJSXElement={null}
@@ -1666,7 +1666,7 @@ exports[`AutomatedChecksView when status scan <undefined> 1`] = `
         featureFlag="leftNavBar"
       />
       <div
-        className="automatedChecksPanelLayout"
+        className="resultsPanelLayout"
       >
         <div
           className="mainContentWrapper"

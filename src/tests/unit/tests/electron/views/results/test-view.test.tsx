@@ -8,7 +8,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { TestView, TestViewDeps, TestViewProps } from 'electron/views/automated-checks/test-view';
+import { TestView, TestViewDeps, TestViewProps } from 'electron/views/results/test-view';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

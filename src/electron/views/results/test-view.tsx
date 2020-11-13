@@ -8,7 +8,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { HeaderSection } from 'electron/views/automated-checks/components/header-section';
+import { HeaderSection } from 'electron/views/results/components/header-section';
 import * as React from 'react';
 
 export type TestViewDeps = ResultSectionContentDeps;

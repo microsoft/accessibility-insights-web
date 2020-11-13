@@ -28,9 +28,9 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { ReflowCommandBar } from 'electron/views/automated-checks/components/reflow-command-bar';
-import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
-import { TestView, TestViewDeps } from 'electron/views/automated-checks/test-view';
+import { ReflowCommandBar } from 'electron/views/results/components/reflow-command-bar';
+import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-bar';
+import { TestView, TestViewDeps } from 'electron/views/results/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
@@ -38,12 +38,12 @@ import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
-import * as styles from './automated-checks-view.scss';
+import * as styles from './results-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 
-export const automatedChecksViewAutomationId = 'automated-checks-view';
+export const resultsViewAutomationId = 'results-view';
 
-export type AutomatedChecksViewDeps = CommandBarDeps &
+export type ResultsViewDeps = CommandBarDeps &
     TitleBarDeps &
     LeftNavDeps &
     ContentPanelDeps &
@@ -59,8 +59,8 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         getDateFromTimestamp: (timestamp: string) => Date;
     };
 
-export type AutomatedChecksViewProps = {
-    deps: AutomatedChecksViewDeps;
+export type ResultsViewProps = {
+    deps: ResultsViewDeps;
     scanStoreData: ScanStoreData;
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
@@ -73,7 +73,7 @@ export type AutomatedChecksViewProps = {
     narrowModeStatus: NarrowModeStatus;
 };
 
-export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
+export class ResultsView extends React.Component<ResultsViewProps> {
     public componentDidMount(): void {
         this.props.deps.scanActionCreator.scan(this.getScanPort());
     }
@@ -116,10 +116,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
 
         return (
-            <div
-                className={styles.automatedChecksView}
-                data-automation-id={automatedChecksViewAutomationId}
-            >
+            <div className={styles.resultsView} data-automation-id={resultsViewAutomationId}>
                 <TitleBar
                     deps={this.props.deps}
                     pageTitle={contentPageInfo.title}
@@ -127,9 +124,9 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 ></TitleBar>
                 <div className={styles.applicationView}>
                     {this.getLeftNav()}
-                    <div className={styles.automatedChecksPanelContainer}>
+                    <div className={styles.resultsPanelContainer}>
                         {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
-                        <div className={styles.automatedChecksPanelLayout}>
+                        <div className={styles.resultsPanelLayout}>
                             <div className={styles.mainContentWrapper}>
                                 {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
                                 <main>
