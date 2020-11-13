@@ -22,9 +22,7 @@ export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => 
         left: viewModel.left,
     };
     const renderedLabel =
-        viewModel.label == null ? null : (
-            <div className={highlightBoxLabel}>${viewModel.label}</div>
-        );
+        viewModel.label == null ? null : <div className={highlightBoxLabel}>{viewModel.label}</div>;
 
     return (
         <div

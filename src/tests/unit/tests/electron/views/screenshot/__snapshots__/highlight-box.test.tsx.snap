@@ -17,7 +17,6 @@ exports[`HighlightBox renders for label="!" with appropriate position and dimens
   <div
     className="highlightBoxLabel"
   >
-    $
     !
   </div>
 </div>
