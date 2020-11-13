@@ -4,6 +4,7 @@ import { HighlightState } from 'common/components/cards/instance-details-footer'
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { ResultsFilter } from 'common/types/results-filter';
 import {
+    PlatformData,
     UnifiedResult,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
@@ -46,18 +47,19 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
     viewData.visualHelperEnabled = cardSelectionStoreData.visualHelperEnabled || false;
     viewData.expandedRuleIds = getRuleIdsOfExpandedRules(cardSelectionStoreData.rules);
 
-    const filteredResults = unifiedScanResultStoreData.results.filter(resultsFilter);
-    const filteredResultUids = filteredResults.map(res => res.uid);
-    const allResultUids = getAllResultUids(filteredResultUids, cardSelectionStoreData.rules);
+    const candidateResults = unifiedScanResultStoreData.results.filter(resultsFilter);
+    const candidateResultUids = candidateResults.map(res => res.uid);
+    const allFilteredUids = getAllFilteredUids(candidateResultUids, cardSelectionStoreData.rules);
 
     const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
-        unifiedScanResultStoreData,
+        candidateResults,
+        unifiedScanResultStoreData.platformInfo,
         isResultHighlightUnavailable,
     );
     let selectedResultUids = getOnlyResultUidsFromSelectedCards(
         cardSelectionStoreData.rules,
         viewData.expandedRuleIds,
-        filteredResultUids,
+        candidateResultUids,
     );
     let visibleResultUids: string[];
 
@@ -65,20 +67,20 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
         visibleResultUids = [];
         selectedResultUids = [];
     } else if (viewData.expandedRuleIds.length === 0) {
-        visibleResultUids = allResultUids;
+        visibleResultUids = allFilteredUids;
     } else if (selectedResultUids.length > 0) {
         visibleResultUids = selectedResultUids;
     } else {
         visibleResultUids = getFilteredResultUidsFromRuleIdArray(
             cardSelectionStoreData.rules,
             viewData.expandedRuleIds,
-            filteredResultUids,
+            candidateResultUids,
         );
     }
 
     viewData.selectedResultUids = selectedResultUids;
     viewData.resultsHighlightStatus = getHighlightStatusByResultUid(
-        allResultUids,
+        allFilteredUids,
         visibleResultUids,
         unavailableResultUids,
     );
@@ -96,14 +98,14 @@ function getEmptyViewData(): CardSelectionViewData {
 }
 
 function getResultsWithUnavailableHighlightStatus(
-    unifiedScanResultStoreData: UnifiedScanResultStoreData,
+    candidateResults: UnifiedResult[],
+    platformInfo: PlatformData,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ): string[] {
-    return unifiedScanResultStoreData.results
+    return candidateResults
         .filter(
             result =>
-                result.status === 'fail' &&
-                isResultHighlightUnavailable(result, unifiedScanResultStoreData.platformInfo),
+                result.status === 'fail' && isResultHighlightUnavailable(result, platformInfo),
         )
         .map(result => result.uid);
 }
@@ -120,25 +122,25 @@ function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDiction
     return expandedRuleIds;
 }
 
-function getAllResultUids(
-    filteredResultUids: string[],
+function getAllFilteredUids(
+    candidateResultUids: string[],
     ruleDictionary: RuleExpandCollapseDataDictionary,
 ): string[] {
     return getFilteredResultUidsFromRuleIdArray(
         ruleDictionary,
         keys(ruleDictionary),
-        filteredResultUids,
+        candidateResultUids,
     );
 }
 
 function getFilteredResultUidsFromRuleIdArray(
     ruleDictionary: RuleExpandCollapseDataDictionary,
     ruleIds: string[],
-    filteredResultUids: string[],
+    candidateResultUids: string[],
 ): string[] {
     const allResultUids = flatMap(ruleIds, key => getAllResultUidsFromRule(ruleDictionary[key]));
 
-    return intersection(filteredResultUids, allResultUids);
+    return intersection(candidateResultUids, allResultUids);
 }
 
 function getAllResultUidsFromRule(rule: RuleExpandCollapseData): string[] {
@@ -148,13 +150,13 @@ function getAllResultUidsFromRule(rule: RuleExpandCollapseData): string[] {
 function getOnlyResultUidsFromSelectedCards(
     ruleDictionary: RuleExpandCollapseDataDictionary,
     ruleIds: string[],
-    filteredResultUids: string[],
+    candidateResultUids: string[],
 ): string[] {
     const selectedResultUids = flatMap(ruleIds, key =>
         getResultUidsFromSelectedCards(ruleDictionary[key]),
     );
 
-    return intersection(filteredResultUids, selectedResultUids);
+    return intersection(candidateResultUids, selectedResultUids);
 }
 
 function getResultUidsFromSelectedCards(rule: RuleExpandCollapseData): string[] {
