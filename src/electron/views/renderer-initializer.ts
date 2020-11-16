@@ -145,7 +145,7 @@ import {
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { TestViewDeps } from 'electron/views/automated-checks/test-view';
+import { TestViewDeps } from 'electron/views/results/test-view';
 
 declare let window: Window & {
     insightsUserConfiguration: UserConfigurationController;

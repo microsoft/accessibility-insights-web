@@ -15,7 +15,7 @@ import {
     ReflowCommandBar,
     ReflowCommandBarDeps,
     ReflowCommandBarProps,
-} from 'electron/views/automated-checks/components/reflow-command-bar';
+} from 'electron/views/results/components/reflow-command-bar';
 import { mount, shallow } from 'enzyme';
 import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';

@@ -12,7 +12,7 @@ import {
     CommandBarDeps,
     CommandBarProps,
     commandButtonRefreshId,
-} from 'electron/views/automated-checks/components/command-bar';
+} from 'electron/views/results/components/command-bar';
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';

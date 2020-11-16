@@ -20,7 +20,7 @@
     height: calc(100% - (#{$default-title-height}));
 }
 
-.automated-checks-view {
+.results-view {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -29,13 +29,13 @@
     -webkit-app-region: no-drag;
     background-color: $neutral-2;
 
-    .automated-checks-panel-container {
+    .results-panel-container {
         display: flex;
         flex-direction: column;
         overflow: hidden;
     }
 
-    .automated-checks-panel-layout {
+    .results-panel-layout {
         display: flex;
         flex-grow: 1;
         overflow: hidden;

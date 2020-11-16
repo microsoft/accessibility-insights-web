@@ -8,7 +8,7 @@ import { Mock, Times } from 'typemoq';
 import {
     MaximizeRestoreButton,
     MaximizeRestoreButtonProps,
-} from 'electron/views/automated-checks/components/maximize-restore-button';
+} from 'electron/views/results/components/maximize-restore-button';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('MaximizeRestoreButton', () => {

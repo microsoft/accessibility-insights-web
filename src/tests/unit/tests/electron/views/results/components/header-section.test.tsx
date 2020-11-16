@@ -3,7 +3,7 @@
 import {
     HeaderSection,
     HeaderSectionProps,
-} from 'electron/views/automated-checks/components/header-section';
+} from 'electron/views/results/components/header-section';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

@@ -28,12 +28,9 @@ import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPagesInfo } from 'electron/types/content-page-info';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
-import {
-    AutomatedChecksView,
-    AutomatedChecksViewProps,
-} from 'electron/views/automated-checks/automated-checks-view';
-import { TitleBar } from 'electron/views/automated-checks/components/title-bar';
-import { TestView } from 'electron/views/automated-checks/test-view';
+import { ResultsView, ResultsViewProps } from 'electron/views/results/results-view';
+import { TitleBar } from 'electron/views/results/components/title-bar';
+import { TestView } from 'electron/views/results/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
@@ -41,10 +38,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-describe('AutomatedChecksView', () => {
+describe('ResultsView', () => {
     const initialSelectedKey: LeftNavItemKey = 'automated-checks';
     let isResultHighlightUnavailableStub: IsResultHighlightUnavailable;
-    let props: AutomatedChecksViewProps;
+    let props: ResultsViewProps;
     let screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
     let getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
     let getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
@@ -136,7 +133,7 @@ describe('AutomatedChecksView', () => {
             },
             unifiedScanResultStoreData,
             leftNavStoreData,
-        } as AutomatedChecksViewProps;
+        } as ResultsViewProps;
 
         getCardSelectionViewDataMock
             .setup(getData =>
@@ -187,7 +184,7 @@ describe('AutomatedChecksView', () => {
     it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
         props.scanStoreData.status = ScanStatus[scanStatusName];
 
-        const wrapped = shallow(<AutomatedChecksView {...props} />);
+        const wrapped = shallow(<ResultsView {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
 
@@ -204,7 +201,7 @@ describe('AutomatedChecksView', () => {
         props.deps.scanActionCreator = scanActionCreatorMock.object;
         props.androidSetupStoreData.scanPort = scanPort;
 
-        shallow(<AutomatedChecksView {...props} />);
+        shallow(<ResultsView {...props} />);
 
         scanActionCreatorMock.verifyAll();
     });
@@ -213,7 +210,7 @@ describe('AutomatedChecksView', () => {
         it('renders with default/initial value', () => {
             const expectedTitle = `test-${initialSelectedKey}-title`;
 
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
+            const wrapped = shallow(<ResultsView {...props} />);
 
             expect(wrapped.find(TitleBar).props().pageTitle).toEqual(expectedTitle);
             expect(wrapped.find(TestView).getElement()).toMatchSnapshot();
@@ -225,7 +222,7 @@ describe('AutomatedChecksView', () => {
 
             props.leftNavStoreData.selectedKey = changedSelectedKey;
 
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
+            const wrapped = shallow(<ResultsView {...props} />);
 
             expect(wrapped.find(TitleBar).props().pageTitle).toEqual(expectedTitle);
             expect(wrapped.find(TestView).getElement()).toMatchSnapshot();
@@ -240,7 +237,7 @@ describe('AutomatedChecksView', () => {
             props.deps.scanActionCreator = scanActionCreatorMock.object;
             props.scanStoreData.status = ScanStatus.Failed;
             props.androidSetupStoreData.scanPort = scanPort;
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
+            const wrapped = shallow(<ResultsView {...props} />);
 
             scanActionCreatorMock.reset(); // this mock is used on componentDidMount, which is not in the scope of this unit test
 
