@@ -41,4 +41,23 @@ export class ResultsViewController extends ViewController {
     public createAutomatedChecksViewController(): AutomatedChecksViewController {
         return new AutomatedChecksViewController(this.client);
     }
+
+    public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
+        await this.waitForSelector(toggleSelector);
+        const oldState = await this.client.getAttribute(toggleSelector, 'aria-checked');
+
+        const oldStateBool = oldState.toLowerCase() === 'true';
+        if (oldStateBool !== newState) {
+            await this.click(toggleSelector);
+            await this.expectToggleState(toggleSelector, newState);
+        }
+    }
+
+    public async expectToggleState(toggleSelector: string, expectedState: boolean): Promise<void> {
+        const toggleInStateSelector = expectedState
+            ? settingsPanelSelectors.enabledToggle(toggleSelector)
+            : settingsPanelSelectors.disabledToggle(toggleSelector);
+
+        await this.waitForSelector(toggleInStateSelector);
+    }
 }
