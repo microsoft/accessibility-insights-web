@@ -65,7 +65,8 @@ describe('SaveAssessmentFactory', () => {
 
             fileURLProviderMock
                 .setup(f => f.provideURL([formattedAssessmentData], 'application/json'))
-                .returns(() => 'fileURL');
+                .returns(() => 'fileURL')
+                .verifiable(Times.once());
 
             const rendered = getSaveButtonForAssessment(props);
             expect(rendered).toMatchSnapshot();
