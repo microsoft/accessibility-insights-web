@@ -12,7 +12,9 @@ describe('SaveAssessmentButton', () => {
     let props: SaveAssessmentButtonProps;
 
     it('should render per the snapshot', () => {
-        const rendered = shallow(<SaveAssessmentButton {...props} />);
+        const rendered = shallow(
+            <SaveAssessmentButton {...props} download={'download'} href={'url'} />,
+        );
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
