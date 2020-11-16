@@ -40,7 +40,7 @@ describe('DetailsViewCommandBar', () => {
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
-    let saveAssessmentButton: JSX.Element;
+    let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
@@ -61,7 +61,6 @@ describe('DetailsViewCommandBar', () => {
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
-        saveAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });
@@ -151,7 +150,7 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with save assessment button', () => {
-        const rendered = shallow(<SaveAssessmentButton />);
+        const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
