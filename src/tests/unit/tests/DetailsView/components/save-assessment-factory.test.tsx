@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { FileURLProvider } from 'common/file-url-provider';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    AssessmentData,
+} from 'common/types/store-data/assessment-result-data';
 import {
     getSaveButtonForAssessment,
     getSaveButtonForFastPass,
@@ -14,15 +17,30 @@ import {
 describe('SaveAssessmentFactory', () => {
     let deps: SaveAssessmentFactoryDeps;
     let props: SaveAssessmentFactoryProps;
+    const fileURLProviderMock = Mock.ofType(FileURLProvider);
+    const assessmentDataFormatterMock = Mock.ofType(AssessmentDataFormatter);
 
     beforeEach(() => {
-        const fileURLProviderMock: IMock<FileURLProvider> = Mock.ofType(FileURLProvider);
-        const assessmentDataFormatterMock: IMock<AssessmentDataFormatter> = Mock.ofType(
-            AssessmentDataFormatter,
-        );
-
         const assessmentStoreData = {
-            assessments: null,
+            assessments: {
+                ['assessment-1']: {
+                    fullAxeResultsMap: null,
+                    generatedAssessmentInstancesMap: null,
+                    manualTestStepResultMap: {
+                        ['assessment-1-step-1']: {
+                            instances: [],
+                            status: 2,
+                            id: 'assessment-1-step-1',
+                        },
+                        ['removed-step']: {
+                            instances: [],
+                            status: 2,
+                            id: '123',
+                        },
+                    },
+                    testStepStatus: {},
+                },
+            } as { [key: string]: AssessmentData },
         } as AssessmentStoreData;
 
         deps = {
@@ -37,8 +55,22 @@ describe('SaveAssessmentFactory', () => {
 
     describe('getSaveButtonForAssessment', () => {
         test('renders save assessment button', () => {
+            const assessmentData = props.assessmentStoreData.assessments;
+            const formattedAssessmentData = JSON.stringify(assessmentData);
+
+            assessmentDataFormatterMock
+                .setup(a => a.formatAssessmentData(assessmentData))
+                .returns(() => formattedAssessmentData)
+                .verifiable(Times.once());
+
+            fileURLProviderMock
+                .setup(f => f.provideURL([formattedAssessmentData], 'application/json'))
+                .returns(() => 'fileURL');
+
             const rendered = getSaveButtonForAssessment(props);
             expect(rendered).toMatchSnapshot();
+            assessmentDataFormatterMock.verifyAll();
+            fileURLProviderMock.verifyAll();
         });
     });
 

@@ -3,5 +3,6 @@
 exports[`SaveAssessmentFactory getSaveButtonForAssessment renders save assessment button 1`] = `
 <SaveAssessmentButton
   download="filename"
+  href="fileURL"
 />
 `;
