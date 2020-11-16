@@ -380,7 +380,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const cardSelectionMessageCreator = new CardSelectionMessageCreator(
             dispatcher,
             telemetryDataFactory,
-            TelemetryEventSource.ElectronAutomatedChecksView,
+            TelemetryEventSource.ElectronResultsView,
         );
 
         const windowFrameListener = new WindowFrameListener(
@@ -417,7 +417,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const dropdownClickHandler = new DropdownClickHandler(
             dropdownActionMessageCreator,
-            TelemetryEventSource.ElectronAutomatedChecksView,
+            TelemetryEventSource.ElectronResultsView,
         );
 
         const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
@@ -448,7 +448,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
             dispatcher,
             telemetryDataFactory,
-            TelemetryEventSource.ElectronAutomatedChecksView,
+            TelemetryEventSource.ElectronResultsView,
         );
 
         const androidSetupStartListener = new AndroidSetupStartListener(

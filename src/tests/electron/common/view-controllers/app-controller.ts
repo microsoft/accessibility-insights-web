@@ -4,12 +4,12 @@ import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setu
 import { Application } from 'spectron';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
+import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
 import {
     getSpectronAsyncClient,
     SpectronAsyncClient,
 } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import { AutomatedChecksViewController } from './automated-checks-view-controller';
 
 export class AppController {
     public client: SpectronAsyncClient;
@@ -53,20 +53,20 @@ export class AppController {
         return androidSetupController;
     }
 
-    public async openAutomatedChecksView(): Promise<AutomatedChecksViewController> {
+    public async openResultsView(): Promise<ResultsViewController> {
         const androidSetupViewController = await this.openAndroidSetupView(
             'prompt-connected-start-testing',
         );
         await androidSetupViewController.startTesting();
 
-        return this.waitForAutomatedChecksView();
+        return this.waitForResultsView();
     }
 
-    public async waitForAutomatedChecksView(): Promise<AutomatedChecksViewController> {
-        const automatedChecksView = new AutomatedChecksViewController(this.client);
-        await automatedChecksView.waitForViewVisible();
+    public async waitForResultsView(): Promise<ResultsViewController> {
+        const resultsView = new ResultsViewController(this.client);
+        await resultsView.waitForViewVisible();
 
-        return automatedChecksView;
+        return resultsView;
     }
 
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {

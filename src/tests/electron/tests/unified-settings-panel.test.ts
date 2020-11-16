@@ -19,7 +19,7 @@ describe('AutomatedChecksView -> Settings Panel', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        automatedChecksView = await app.openAutomatedChecksView();
+        automatedChecksView = await app.openResultsView();
         await automatedChecksView.waitForViewVisible();
         await automatedChecksView.openSettingsPanel();
     });

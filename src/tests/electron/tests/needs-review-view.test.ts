@@ -26,7 +26,7 @@ describe('NeedsReviewView', () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.client.browserWindow.setSize(windowWidth, windowHeight);
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
-        automatedChecksViewController = await app.openAutomatedChecksView();
+        automatedChecksViewController = await app.openResultsView();
         await automatedChecksViewController.clickLeftNavItem('needs-review');
     });
 
