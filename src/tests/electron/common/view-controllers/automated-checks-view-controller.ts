@@ -28,4 +28,36 @@ export class AutomatedChecksViewController extends ViewController {
         await this.waitForSelector(selector);
         await this.client.click(selector);
     }
+
+    public async assertExpandedRuleGroup(
+        position: number,
+        expectedTitle: string,
+        expectedFailures: number,
+    ): Promise<void> {
+        const title = await this.client.getText(
+            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
+        );
+
+        expect(title).toEqual(expectedTitle);
+
+        const failures = await this.client.$$(
+            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
+        );
+
+        expect(failures).toHaveLength(expectedFailures);
+    }
+
+    public async assertCollapsedRuleGroup(position: number, expectedTitle: string): Promise<void> {
+        const title = await this.client.getText(
+            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
+        );
+
+        expect(title).toEqual(expectedTitle);
+
+        const failures = await this.client.$$(
+            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
+        );
+
+        expect(failures).toHaveLength(0);
+    }
 }

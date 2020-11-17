@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
+import { resultsView } from 'electron/views/results/results-view.scss';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
+import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
@@ -38,6 +40,18 @@ describe('NeedsReviewView', () => {
 
     it('should use the expected window title', async () => {
         await app.waitForTitle('Accessibility Insights for Android - Needs review');
+    });
+
+    it('displays needs review results with one failing result', async () => {
+        const automatedChecksView = resultsViewController.createAutomatedChecksViewController();
+        await automatedChecksView.waitForRuleGroupCount(1);
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
+        await automatedChecksView.waitForHighlightBoxCount(1);
+
+        await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await automatedChecksView.assertExpandedRuleGroup(1, 'ColorContrast', 1);
+
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
