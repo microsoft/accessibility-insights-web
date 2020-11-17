@@ -46,60 +46,29 @@ describe('AutomatedChecksView', () => {
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
-        await assertExpandedRuleGroup(1, 'ImageViewName', 1);
+        await automatedChecksView.assertExpandedRuleGroup(1, 'ImageViewName', 1);
 
         await automatedChecksView.toggleRuleGroupAtPosition(2);
-        await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
+        await automatedChecksView.assertExpandedRuleGroup(2, 'ActiveViewName', 2);
 
         await automatedChecksView.toggleRuleGroupAtPosition(3);
-        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
+        await automatedChecksView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
 
         await automatedChecksView.waitForHighlightBoxCount(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
-        await assertCollapsedRuleGroup(1, 'ImageViewName');
+        await automatedChecksView.assertCollapsedRuleGroup(1, 'ImageViewName');
 
         await automatedChecksView.toggleRuleGroupAtPosition(2);
-        await assertCollapsedRuleGroup(2, 'ActiveViewName');
+        await automatedChecksView.assertCollapsedRuleGroup(2, 'ActiveViewName');
 
         await automatedChecksView.waitForHighlightBoxCount(1);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
-        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
+        await automatedChecksView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
-    it('should pass accessibility validation in all contrast modes', async () => {
+    it('should pass accessibility rvalidation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
-
-    async function assertExpandedRuleGroup(
-        position: number,
-        expectedTitle: string,
-        expectedFailures: number,
-    ): Promise<void> {
-        const title = await automatedChecksView.client.getText(
-            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
-        );
-        expect(title).toEqual(expectedTitle);
-
-        const failures = await automatedChecksView.client.$$(
-            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
-        );
-        expect(failures).toHaveLength(expectedFailures);
-    }
-
-    async function assertCollapsedRuleGroup(
-        position: number,
-        expectedTitle: string,
-    ): Promise<void> {
-        const title = await automatedChecksView.client.getText(
-            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
-        );
-        expect(title).toEqual(expectedTitle);
-
-        const failures = await automatedChecksView.client.$$(
-            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
-        );
-        expect(failures).toHaveLength(0);
-    }
 });
