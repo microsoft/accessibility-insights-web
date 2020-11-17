@@ -33,6 +33,10 @@ export const PromptConnectToDeviceStep = NamedFC<CommonAndroidSetupStepProps>(
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>
+                <p>
+                    Connect a hardware device to your computer via USB, or run a virtual device in
+                    Android Studio or the Android Virtual Device Manager.
+                </p>
                 <PrimaryButton
                     data-automation-id={detectDeviceAutomationId}
                     text="Detect my device"
