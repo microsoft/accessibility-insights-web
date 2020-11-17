@@ -22,7 +22,7 @@ export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): J
     );
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'application/json');
 
-    return <SaveAssessmentButton download={'filename'} href={fileURL} />;
+    return <SaveAssessmentButton download={'filename.a11yextension'} href={fileURL} />;
 }
 
 export function getSaveButtonForFastPass(props: SaveAssessmentFactoryProps): JSX.Element | null {
