@@ -4,15 +4,15 @@ import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-t
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
-import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
+import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
-import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
+import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
 describe('NeedsReviewView', () => {
     let app: AppController;
-    let automatedChecksViewController: AutomatedChecksViewController;
+    let resultsViewController: ResultsViewController;
     const windowWidth = getNarrowModeThresholdsForUnified().collapseHeaderAndNavThreshold + 5;
     const windowHeight = 1000;
 
@@ -26,8 +26,8 @@ describe('NeedsReviewView', () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.client.browserWindow.setSize(windowWidth, windowHeight);
         await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
-        automatedChecksViewController = await app.openAutomatedChecksView();
-        await automatedChecksViewController.clickLeftNavItem('needs-review');
+        resultsViewController = await app.openResultsView();
+        await resultsViewController.clickLeftNavItem('needs-review');
     });
 
     afterEach(async () => {
@@ -45,8 +45,8 @@ describe('NeedsReviewView', () => {
     });
 
     it('export report button does not exist', async () => {
-        await automatedChecksViewController.waitForSelectorToDisappear(
-            AutomatedChecksViewSelectors.exportReportButton,
+        await resultsViewController.waitForSelectorToDisappear(
+            ResultsViewSelectors.exportReportButton,
         );
     });
 });
