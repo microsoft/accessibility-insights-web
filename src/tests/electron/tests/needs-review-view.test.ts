@@ -43,15 +43,15 @@ describe('NeedsReviewView', () => {
     });
 
     it('displays needs review results with one failing result', async () => {
-        const automatedChecksView = resultsViewController.createAutomatedChecksViewController();
-        await automatedChecksView.waitForRuleGroupCount(1);
-        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
-        await automatedChecksView.waitForHighlightBoxCount(1);
+        const cardsView = resultsViewController.createCardsViewController();
+        await cardsView.waitForRuleGroupCount(1);
+        expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
+        await cardsView.waitForHighlightBoxCount(1);
 
-        await automatedChecksView.toggleRuleGroupAtPosition(1);
-        await automatedChecksView.assertExpandedRuleGroup(1, 'ColorContrast', 1);
+        await cardsView.toggleRuleGroupAtPosition(1);
+        await cardsView.assertExpandedRuleGroup(1, 'ColorContrast', 1);
 
-        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
+        expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {

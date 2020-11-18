@@ -6,7 +6,7 @@ import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifi
 import { AutomatedChecksViewSelectors } from '../element-identifiers/automated-checks-view-selectors';
 import { ViewController } from './view-controller';
 
-export class AutomatedChecksViewController extends ViewController {
+export class CardsViewController extends ViewController {
     constructor(client: SpectronAsyncClient) {
         super(client);
     }

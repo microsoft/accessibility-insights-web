@@ -3,7 +3,7 @@
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { ScreenshotViewSelectors } from 'tests/electron/common/element-identifiers/screenshot-view-selectors';
-import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
+import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { ViewController } from './view-controller';
@@ -38,8 +38,8 @@ export class ResultsViewController extends ViewController {
         return `${ResultsViewSelectors.leftNav} a[data-automation-id="${key}"]`;
     }
 
-    public createAutomatedChecksViewController(): AutomatedChecksViewController {
-        return new AutomatedChecksViewController(this.client);
+    public createCardsViewController(): CardsViewController {
+        return new CardsViewController(this.client);
     }
 
     public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
