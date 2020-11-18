@@ -249,7 +249,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
         <div>
           Version 1.0.4 | Powered by 
           <div
-            class="ms-TooltipHost root-000"
+            class="ms-TooltipHost insights-tooltip-host--{{CSS_MODULE_HASH}} root-000"
           >
             <a
               aria-label="Navigate to axe-core npm page"
