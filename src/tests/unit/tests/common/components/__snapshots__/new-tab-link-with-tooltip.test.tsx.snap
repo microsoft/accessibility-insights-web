@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` handles children 1`] = `
+<StyledTooltipHostBase
+  content="tooltip text"
+  styles={
+    Object {
+      "root": Object {
+        "display": "inline-block",
+        "minWidth": 0,
+      },
+    }
+  }
+>
+  <NewTabLink
+    href="test"
+  >
+    link text
+  </NewTabLink>
+</StyledTooltipHostBase>
+`;
+
+exports[` renders with null tooltip content 1`] = `
+<StyledTooltipHostBase
+  styles={
+    Object {
+      "root": Object {
+        "display": "inline-block",
+        "minWidth": 0,
+      },
+    }
+  }
+>
+  <NewTabLink
+    href="test"
+  />
+</StyledTooltipHostBase>
+`;
+
+exports[` renders with tooltip content 1`] = `
+<StyledTooltipHostBase
+  content="tooltip text"
+  styles={
+    Object {
+      "root": Object {
+        "display": "inline-block",
+        "minWidth": 0,
+      },
+    }
+  }
+>
+  <NewTabLink
+    href="test"
+  />
+</StyledTooltipHostBase>
+`;

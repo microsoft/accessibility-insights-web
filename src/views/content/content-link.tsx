@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Icon } from 'office-ui-fabric-react';
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
+import { Icon, ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -34,14 +35,14 @@ export const ContentLink = NamedFC<ContentLinkProps>(
         const icon = iconName && <Icon iconName={iconName} />;
 
         return (
-            <NewTabLink
+            <NewTabLinkWithTooltip
                 href={`/insights.html#/content/${contentPath}`}
-                title="Guidance"
                 onClick={ev => openContentPage(ev, contentPath)}
+                tooltipContent={'Guidance'}
             >
                 {icon}
                 {linkText}
-            </NewTabLink>
+            </NewTabLinkWithTooltip>
         );
     },
 );

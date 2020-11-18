@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
-import { NewTabLink } from 'common/components/new-tab-link';
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
@@ -149,7 +149,7 @@ describe('PopupView', () => {
             const Subtitle = () => rendered.find(LaunchPanelHeader).prop('subtitle') as JSX.Element;
             const renderedSubtitle = shallow(<Subtitle />);
             expect(renderedSubtitle.debug()).toMatchSnapshot('subtitle');
-            const link = renderedSubtitle.find(NewTabLink);
+            const link = renderedSubtitle.find(NewTabLinkWithTooltip);
 
             link.simulate('click');
             actionMessageCreatorStrictMock.verify(ac => ac.openTutorial(It.isAny()), Times.once());

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
@@ -159,14 +160,14 @@ export class PopupView extends React.Component<PopupViewProps> {
                     title={this.props.title}
                     subtitle={
                         <>
-                            <NewTabLink
+                            <NewTabLinkWithTooltip
                                 href={LaunchPad.demoLink}
                                 aria-label="demo video"
-                                title="watch the 3 minute video introduction"
+                                tooltipContent="watch the 3 minute video introduction"
                                 onClick={onClickTutorialLink}
                             >
                                 Watch 3-minute video introduction
-                            </NewTabLink>{' '}
+                            </NewTabLinkWithTooltip>{' '}
                         </>
                     }
                     popupWindow={this.props.popupWindow}
