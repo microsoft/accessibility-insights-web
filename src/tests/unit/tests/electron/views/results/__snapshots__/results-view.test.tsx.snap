@@ -52,8 +52,9 @@ exports[`ResultsView right content panel info changes when left nav selected key
       "isResultHighlightUnavailable": [Function],
       "leftNavActionCreator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "actions": undefined,
+        "cardSelectionActions": undefined,
         "itemSelected": [Function],
+        "leftNavActions": undefined,
         "setLeftNavVisible": [Function],
       },
       "scanActionCreator": proxy {
@@ -130,8 +131,9 @@ exports[`ResultsView right content panel info renders with default/initial value
       "isResultHighlightUnavailable": [Function],
       "leftNavActionCreator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "actions": undefined,
+        "cardSelectionActions": undefined,
         "itemSelected": [Function],
+        "leftNavActions": undefined,
         "setLeftNavVisible": [Function],
       },
       "scanActionCreator": proxy {
@@ -190,8 +192,9 @@ exports[`ResultsView when status scan <Completed> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -243,8 +246,9 @@ exports[`ResultsView when status scan <Completed> 1`] = `
               "isResultHighlightUnavailable": [Function],
               "leftNavActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "actions": undefined,
+                "cardSelectionActions": undefined,
                 "itemSelected": [Function],
+                "leftNavActions": undefined,
                 "setLeftNavVisible": [Function],
               },
               "scanActionCreator": proxy {
@@ -324,8 +328,9 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                 "isResultHighlightUnavailable": [Function],
                 "leftNavActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "actions": undefined,
+                  "cardSelectionActions": undefined,
                   "itemSelected": [Function],
+                  "leftNavActions": undefined,
                   "setLeftNavVisible": [Function],
                 },
                 "scanActionCreator": proxy {
@@ -416,8 +421,9 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                     "isResultHighlightUnavailable": [Function],
                     "leftNavActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                      "actions": undefined,
+                      "cardSelectionActions": undefined,
                       "itemSelected": [Function],
+                      "leftNavActions": undefined,
                       "setLeftNavVisible": [Function],
                     },
                     "scanActionCreator": proxy {
@@ -511,8 +517,9 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                   "isResultHighlightUnavailable": [Function],
                   "leftNavActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "actions": undefined,
+                    "cardSelectionActions": undefined,
                     "itemSelected": [Function],
+                    "leftNavActions": undefined,
                     "setLeftNavVisible": [Function],
                   },
                   "scanActionCreator": proxy {
@@ -594,8 +601,9 @@ exports[`ResultsView when status scan <Completed> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -656,8 +664,9 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -709,8 +718,9 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               "isResultHighlightUnavailable": [Function],
               "leftNavActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "actions": undefined,
+                "cardSelectionActions": undefined,
                 "itemSelected": [Function],
+                "leftNavActions": undefined,
                 "setLeftNavVisible": [Function],
               },
               "scanActionCreator": proxy {
@@ -790,8 +800,9 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                 "isResultHighlightUnavailable": [Function],
                 "leftNavActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "actions": undefined,
+                  "cardSelectionActions": undefined,
                   "itemSelected": [Function],
+                  "leftNavActions": undefined,
                   "setLeftNavVisible": [Function],
                 },
                 "scanActionCreator": proxy {
@@ -867,8 +878,9 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                     "isResultHighlightUnavailable": [Function],
                     "leftNavActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                      "actions": undefined,
+                      "cardSelectionActions": undefined,
                       "itemSelected": [Function],
+                      "leftNavActions": undefined,
                       "setLeftNavVisible": [Function],
                     },
                     "scanActionCreator": proxy {
@@ -947,8 +959,9 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                   "isResultHighlightUnavailable": [Function],
                   "leftNavActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "actions": undefined,
+                    "cardSelectionActions": undefined,
                     "itemSelected": [Function],
+                    "leftNavActions": undefined,
                     "setLeftNavVisible": [Function],
                   },
                   "scanActionCreator": proxy {
@@ -1019,8 +1032,9 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -1081,8 +1095,9 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -1134,8 +1149,9 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               "isResultHighlightUnavailable": [Function],
               "leftNavActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "actions": undefined,
+                "cardSelectionActions": undefined,
                 "itemSelected": [Function],
+                "leftNavActions": undefined,
                 "setLeftNavVisible": [Function],
               },
               "scanActionCreator": proxy {
@@ -1215,8 +1231,9 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                 "isResultHighlightUnavailable": [Function],
                 "leftNavActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "actions": undefined,
+                  "cardSelectionActions": undefined,
                   "itemSelected": [Function],
+                  "leftNavActions": undefined,
                   "setLeftNavVisible": [Function],
                 },
                 "scanActionCreator": proxy {
@@ -1292,8 +1309,9 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                     "isResultHighlightUnavailable": [Function],
                     "leftNavActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                      "actions": undefined,
+                      "cardSelectionActions": undefined,
                       "itemSelected": [Function],
+                      "leftNavActions": undefined,
                       "setLeftNavVisible": [Function],
                     },
                     "scanActionCreator": proxy {
@@ -1372,8 +1390,9 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                   "isResultHighlightUnavailable": [Function],
                   "leftNavActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "actions": undefined,
+                    "cardSelectionActions": undefined,
                     "itemSelected": [Function],
+                    "leftNavActions": undefined,
                     "setLeftNavVisible": [Function],
                   },
                   "scanActionCreator": proxy {
@@ -1440,8 +1459,9 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -1502,8 +1522,9 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
@@ -1555,8 +1576,9 @@ exports[`ResultsView when status scan <undefined> 1`] = `
               "isResultHighlightUnavailable": [Function],
               "leftNavActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                "actions": undefined,
+                "cardSelectionActions": undefined,
                 "itemSelected": [Function],
+                "leftNavActions": undefined,
                 "setLeftNavVisible": [Function],
               },
               "scanActionCreator": proxy {
@@ -1636,8 +1658,9 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                 "isResultHighlightUnavailable": [Function],
                 "leftNavActionCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                  "actions": undefined,
+                  "cardSelectionActions": undefined,
                   "itemSelected": [Function],
+                  "leftNavActions": undefined,
                   "setLeftNavVisible": [Function],
                 },
                 "scanActionCreator": proxy {
@@ -1713,8 +1736,9 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                     "isResultHighlightUnavailable": [Function],
                     "leftNavActionCreator": proxy {
                       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                      "actions": undefined,
+                      "cardSelectionActions": undefined,
                       "itemSelected": [Function],
+                      "leftNavActions": undefined,
                       "setLeftNavVisible": [Function],
                     },
                     "scanActionCreator": proxy {
@@ -1793,8 +1817,9 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                   "isResultHighlightUnavailable": [Function],
                   "leftNavActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "actions": undefined,
+                    "cardSelectionActions": undefined,
                     "itemSelected": [Function],
+                    "leftNavActions": undefined,
                     "setLeftNavVisible": [Function],
                   },
                   "scanActionCreator": proxy {
@@ -1860,8 +1885,9 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         "isResultHighlightUnavailable": [Function],
         "leftNavActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "actions": undefined,
+          "cardSelectionActions": undefined,
           "itemSelected": [Function],
+          "leftNavActions": undefined,
           "setLeftNavVisible": [Function],
         },
         "scanActionCreator": proxy {
