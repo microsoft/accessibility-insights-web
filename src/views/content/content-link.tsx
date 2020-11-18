@@ -39,6 +39,7 @@ export const ContentLink = NamedFC<ContentLinkProps>(
                 href={`/insights.html#/content/${contentPath}`}
                 onClick={ev => openContentPage(ev, contentPath)}
                 tooltipContent={'Guidance'}
+                aria-label={'Guidance'}
             >
                 {icon}
                 {linkText}

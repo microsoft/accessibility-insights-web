@@ -22,7 +22,12 @@ export const ExternalLink = NamedFC<ExternalLinkProps>(
         const onClick = e => deps.actionInitiators.openExternalLink(e, { href });
 
         return (
-            <NewTabLinkWithTooltip href={href} onClick={onClick} tooltipContent={title}>
+            <NewTabLinkWithTooltip
+                href={href}
+                onClick={onClick}
+                tooltipContent={title}
+                aria-label={title}
+            >
                 {children}
             </NewTabLinkWithTooltip>
         );
