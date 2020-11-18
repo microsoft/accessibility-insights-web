@@ -30,18 +30,20 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
 import { LeftNavDeps } from 'electron/views/left-nav/left-nav';
-import { ReflowCommandBar } from 'electron/views/results/components/reflow-command-bar';
+import {
+    ReflowCommandBar,
+    ReflowCommandBarDeps,
+} from 'electron/views/results/components/reflow-command-bar';
 import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-bar';
 import { TestView, TestViewDeps } from 'electron/views/results/test-view';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
-import { CommandBarDeps } from './components/command-bar';
 import * as styles from './results-view.scss';
 
 export const resultsViewAutomationId = 'results-view';
 
-export type ResultsViewDeps = CommandBarDeps &
+export type ResultsViewDeps = ReflowCommandBarDeps &
     TitleBarDeps &
     LeftNavDeps &
     ContentPanelDeps &
