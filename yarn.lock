@@ -10502,10 +10502,10 @@ pkg@^4.4.9:
     resolve "^1.15.1"
     stream-meter "^1.0.4"
 
-playwright@^1.6.2:
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.6.2.tgz#8631aec4d16b081d8ac414637b006099814a69d1"
-  integrity sha512-KiMmQuANG4O/ozpwxP8EwBBap0/liS3+wwkGo6nBJ4O4951y4ZsRPR1dqwsMOUD9wjsWf3ER+bAmQH5XmEO4Ig==
+playwright@^1.7.0-next.1605717385119:
+  version "1.7.0-next.1605717385119"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.7.0-next.1605717385119.tgz#2ad128f8f9f53805be23edbd3eddf22321644cde"
+  integrity sha512-tj6/mYq1wiHTYmPudw6f5ntimp+6agPJYwtGJEAYOFZ5oVFQvvnxPnebP8MGViFFEGDDIhdrBnkbk+kjgf1BIg==
   dependencies:
     debug "^4.1.1"
     extract-zip "^2.0.1"
@@ -13995,10 +13995,15 @@ write@1.0.3:
   dependencies:
     mkdirp "^0.5.1"
 
-ws@^7, ws@^7.2.3, ws@^7.3.1:
+ws@^7, ws@^7.2.3:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.3.1.tgz#d0547bf67f7ce4f12a72dfe31262c68d7dc551c8"
   integrity sha512-D3RuNkynyHmEJIpD2qrgVkc9DQ23OrN/moAwZX4L8DfvszsJxpjQuUq3LMx6HoYji9fbIOBY18XWBsAux1ZZUA==
+
+ws@^7.3.1:
+  version "7.4.0"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.0.tgz#a5dd76a24197940d4a8bb9e0e152bb4503764da7"
+  integrity sha512-kyFwXuV/5ymf+IXhS6f0+eAFvydbaBW3zjpT6hUdAh/hbVjTIB5EHBGi0bPoCLSK2wcuz3BrEkB9LrYv1Nm4NQ==
 
 xdg-basedir@^3.0.0:
   version "3.0.0"
