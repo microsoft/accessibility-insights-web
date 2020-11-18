@@ -33,13 +33,14 @@ export const ContentLink = NamedFC<ContentLinkProps>(
 
         const contentPath = contentProvider.pathFromReference(reference);
         const icon = iconName && <Icon iconName={iconName} />;
+        const ariaLabel = linkText ? `${linkText} guidance` : 'Guidance';
 
         return (
             <NewTabLinkWithTooltip
                 href={`/insights.html#/content/${contentPath}`}
                 onClick={ev => openContentPage(ev, contentPath)}
                 tooltipContent={'Guidance'}
-                aria-label={'Guidance'}
+                aria-label={ariaLabel}
             >
                 {icon}
                 {linkText}

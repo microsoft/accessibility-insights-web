@@ -15,14 +15,14 @@ exports[`ContentLink renders from path, only have the icon 1`] = `
 `;
 
 exports[`ContentLink renders with both text and icon 1`] = `
-"<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"Guidance\\">
+"<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"test guidance\\">
   <StyledIconBase iconName=\\"test icon\\" />
   test
 </NewTabLinkWithTooltip>"
 `;
 
 exports[`ContentLink renders with only text 1`] = `
-"<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"Guidance\\">
+"<NewTabLinkWithTooltip href=\\"/insights.html#/content/for/testing\\" onClick={[Function: onClick]} tooltipContent=\\"Guidance\\" aria-label=\\"test guidance\\">
   test
 </NewTabLinkWithTooltip>"
 `;
