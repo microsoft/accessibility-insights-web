@@ -2,6 +2,8 @@
 
 exports[`SaveAssessmentButton should render per the snapshot 1`] = `
 <InsightsCommandButton
+  download="download"
+  href="url"
   iconProps={
     Object {
       "iconName": "Save",

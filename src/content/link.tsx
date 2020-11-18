@@ -1,7 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { guidanceLinkTo, linkTo } from 'views/content/content-page';
-import { guidanceTags } from './guidance-tags';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { GuidanceLink, GuidanceTag, guidanceTags } from 'common/guidance-links';
+
+function linkTo(text: string, href: string): HyperlinkDefinition {
+    return { text, href };
+}
+
+function guidanceLinkTo(text: string, href: string, tags?: GuidanceTag[]): GuidanceLink {
+    return { text, href, tags };
+}
 
 export const link = {
     WCAG_1_1_1: guidanceLinkTo('WCAG 1.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html'),

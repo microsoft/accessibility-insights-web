@@ -1,13 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    InstanceResultStatus,
     ScreenshotData,
+    UnifiedResult,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
-import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
-import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
+import {
+    exampleUnifiedResult,
+    exampleUnifiedResultWithBoundingRectangle,
+} from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 
 describe('screenshotViewModelProvider', () => {
     it('provides a null screenshotData when the UnifiedScanResultStore has no screenshotData', () => {
@@ -104,14 +108,17 @@ describe('screenshotViewModelProvider', () => {
     it('calculates highlight box positional values as percentages relative to the viewport size', () => {
         const viewPortWidth = 100;
         const viewPortHeight = 200;
-        const inputRectangle = {
+        const boundingRectangle = {
             left: 20,
             top: 50,
             right: 80,
             bottom: 150,
         };
-        const highlightBoxViewModel = provideHighlightBoxViewModelForBoundingRectangle(
-            inputRectangle,
+        const highlightBoxViewModel = provideHighlightBoxViewModelForResult(
+            {
+                ...exampleUnifiedResult,
+                descriptors: { boundingRectangle },
+            },
             viewPortWidth,
             viewPortHeight,
         );
@@ -122,15 +129,32 @@ describe('screenshotViewModelProvider', () => {
         expect(highlightBoxViewModel.height).toBe('50%');
     });
 
-    function provideHighlightBoxViewModelForBoundingRectangle(
-        boundingRectangle: BoundingRectangle,
+    it('uses ! to label failed results', () => {
+        const highlightBoxViewModel = provideHighlightBoxViewModelForResult({
+            ...exampleUnifiedResultWithBoundingRectangle,
+            status: 'fail',
+        });
+
+        expect(highlightBoxViewModel.label).toBe('!');
+    });
+
+    it.each(['unknown', 'pass'])(
+        'uses a null label for %s results',
+        (status: InstanceResultStatus) => {
+            const highlightBoxViewModel = provideHighlightBoxViewModelForResult({
+                ...exampleUnifiedResultWithBoundingRectangle,
+                status,
+            });
+
+            expect(highlightBoxViewModel.label).toBeNull();
+        },
+    );
+
+    function provideHighlightBoxViewModelForResult(
+        result: UnifiedResult,
         viewPortWidth: number = 10000,
         viewPortHeight: number = 10000,
-    ): HighlightBoxViewModel {
-        const result = {
-            ...exampleUnifiedResult,
-            descriptors: { boundingRectangle },
-        };
+    ) {
         const unifiedScanResultStoreData = {
             screenshotData: { base64PngData: 'any-non-null-screenshot-data' },
             results: [result],

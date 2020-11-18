@@ -18,7 +18,7 @@ export interface VisualizationStoreData {
     selectedFastPassDetailsView: VisualizationType;
     selectedAdhocDetailsView: VisualizationType;
     selectedDetailsViewPivot: DetailsViewPivotType;
-    injectingInProgress: boolean;
+    injectingRequested: boolean;
     injectingStarted: boolean;
     focusedTarget: string[];
 }

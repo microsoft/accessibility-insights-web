@@ -6,38 +6,44 @@ import {
     RuleResourcesProps,
 } from 'common/components/cards/rule-resources';
 import { NewTabLink } from 'common/components/new-tab-link';
+import { GuidanceLink } from 'common/guidance-links';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { GuidanceLink } from 'scanner/rule-to-links-mappings';
+import { DictionaryStringTo } from 'types/common-types';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RuleResources', () => {
     describe('renders', () => {
+        const linkComponents = {
+            NewTabLink,
+            ElectronExternalLink,
+        };
+
         type TestCases = {
             url: string;
             guidanceLinks: GuidanceLink[];
-            linkComponent: LinkComponentType;
+            linkComponent: keyof typeof linkComponents;
         };
 
         const testCases: TestCases[] = [
             {
                 url: 'test-url',
                 guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
-                linkComponent: ElectronExternalLink,
+                linkComponent: 'ElectronExternalLink',
             },
             {
                 url: null,
                 guidanceLinks: [{ href: 'test-href' } as GuidanceLink],
-                linkComponent: NewTabLink,
+                linkComponent: 'NewTabLink',
             },
-            { url: 'test-url', guidanceLinks: [], linkComponent: ElectronExternalLink },
-            { url: 'test-url', guidanceLinks: null, linkComponent: NewTabLink },
-            { url: null, guidanceLinks: [], linkComponent: ElectronExternalLink },
-            { url: null, guidanceLinks: null, linkComponent: NewTabLink },
+            { url: 'test-url', guidanceLinks: [], linkComponent: 'ElectronExternalLink' },
+            { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' },
+            { url: null, guidanceLinks: [], linkComponent: 'ElectronExternalLink' },
+            { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' },
         ];
 
         it.each(testCases)('with %o', testCase => {
@@ -48,7 +54,7 @@ describe('RuleResources', () => {
             const props: RuleResourcesProps = {
                 rule,
                 deps: {
-                    LinkComponent: testCase.linkComponent,
+                    LinkComponent: linkComponents[testCase.linkComponent],
                 } as RuleResourcesDeps,
             };
 

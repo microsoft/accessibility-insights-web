@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { HyperlinkDefinition } from 'views/content/content-page';
-import { DictionaryStringTo } from '../types/common-types';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { DictionaryStringTo } from 'types/common-types';
 import { DocumentUtils } from './document-utils';
 import { AxeRule, RuleResult, ScanResults } from './iruleresults';
 import { MessageDecorator } from './message-decorator';
@@ -13,7 +13,7 @@ export class ResultDecorator {
     constructor(
         private readonly documentUtils: DocumentUtils,
         private readonly messageDecorator: MessageDecorator,
-        private readonly getHelpUrl: (ruleId: string, axeHelpUrl: string) => string,
+        private readonly getHelpUrl: (ruleId: string, axeHelpUrl?: string) => string | undefined,
         private readonly ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>,
     ) {}
 
@@ -51,9 +51,9 @@ export class ResultDecorator {
         }, []);
     }
 
-    private getMapping(ruleId: string): HyperlinkDefinition[] {
+    private getMapping(ruleId: string): HyperlinkDefinition[] | undefined {
         if (this.ruleToLinkConfiguration == null) {
-            return null;
+            return undefined;
         }
 
         return this.ruleToLinkConfiguration[ruleId];

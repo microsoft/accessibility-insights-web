@@ -296,7 +296,7 @@ exports[` render renders normally 1`] = `
     visualizationStoreData={
       Object {
         "focusedTarget": null,
-        "injectingInProgress": null,
+        "injectingRequested": false,
         "injectingStarted": false,
         "scanning": null,
         "selectedAdhocDetailsView": -1,

@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RichResolutionCardRow renders with labelType=check 1`] = `
+<SimpleCardRow
+  content={
+    <RichResolutionContent
+      contentId="content-id"
+      contentVariables={
+        Object {
+          "content-var-key": "content-var-value",
+        }
+      }
+      deps={null}
+      labelType="check"
+    />
+  }
+  label="How to check"
+  rowKey="rich-resolution-row-123"
+/>
+`;
+
+exports[`RichResolutionCardRow renders with labelType=fix 1`] = `
+<SimpleCardRow
+  content={
+    <RichResolutionContent
+      contentId="content-id"
+      contentVariables={
+        Object {
+          "content-var-key": "content-var-value",
+        }
+      }
+      deps={null}
+      labelType="fix"
+    />
+  }
+  label="How to fix"
+  rowKey="rich-resolution-row-123"
+/>
+`;

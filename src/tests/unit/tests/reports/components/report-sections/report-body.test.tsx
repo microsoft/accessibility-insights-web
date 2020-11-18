@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
+import { CommonInstancesSectionDeps } from 'common/components/cards/common-instances-section-props';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NamedFC } from 'common/react/named-fc';
 import { shallow } from 'enzyme';
@@ -36,7 +36,7 @@ describe('ReportBody', () => {
         const targetAppInfo = { name: 'app' };
 
         const detailsProps: SectionProps = {
-            deps: {} as FailedInstancesSectionDeps,
+            deps: {} as CommonInstancesSectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             pageTitle,
             pageUrl,

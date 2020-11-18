@@ -1,0 +1,3 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+export type HyperlinkDefinition = { href: string; text: string };

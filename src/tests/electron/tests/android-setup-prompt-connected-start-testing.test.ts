@@ -87,7 +87,7 @@ describe('Android setup - prompt-connected-start-testing', () => {
 
     it('goes to automated checks upon start testing', async () => {
         await dialog.click(getAutomationIdSelector(startTestingId));
-        await app.waitForAutomatedChecksView();
+        await app.waitForResultsView();
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {

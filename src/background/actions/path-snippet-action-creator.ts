@@ -39,10 +39,10 @@ export class PathSnippetActionCreator {
     };
 
     private onGetPathSnippetCurrentState = (): void => {
-        this.pathSnippetActions.getCurrentState.invoke(null);
+        this.pathSnippetActions.getCurrentState.invoke();
     };
 
     private onClearPathSnippetData = (): void => {
-        this.pathSnippetActions.onClearData.invoke(null);
+        this.pathSnippetActions.onClearData.invoke();
     };
 }

@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
-import { GuidanceLink } from 'scanner/rule-to-links-mappings';
+import { GuidanceLink } from 'common/guidance-links';
+import {
+    InstanceResultStatus,
+    UnifiedResolution,
+} from 'common/types/store-data/unified-data-interface';
 
 import { RuleResultsData } from './android-scan-results';
 
-export type GetUnifiedFormattableResolutionDelegate = (
-    ruleResultsData: RuleResultsData,
-) => UnifiedFormattableResolution;
-
-export type IncludeThisResultDelegate = (ruleResultsData: RuleResultsData) => boolean;
+export type GetUnifiedResolutionDelegate = (ruleResultsData: RuleResultsData) => UnifiedResolution;
+export type GetResultStatusDelegate = (ruleResultsData: RuleResultsData) => InstanceResultStatus;
 
 export class RuleInformation {
     constructor(
@@ -17,17 +17,15 @@ export class RuleInformation {
         readonly ruleLink: string,
         readonly ruleDescription: string,
         readonly guidance: GuidanceLink[],
-        readonly getUnifiedFormattableResolutionDelegate: GetUnifiedFormattableResolutionDelegate,
-        readonly includeThisResultDelegate: IncludeThisResultDelegate,
+        readonly getUnifiedResolutionDelegate: GetUnifiedResolutionDelegate,
+        readonly getResultStatusDelegate: GetResultStatusDelegate,
     ) {}
 
-    public getUnifiedFormattableResolution(
-        ruleResultsData: RuleResultsData,
-    ): UnifiedFormattableResolution {
-        return this.getUnifiedFormattableResolutionDelegate(ruleResultsData);
+    public getUnifiedResolution(ruleResultsData: RuleResultsData): UnifiedResolution {
+        return this.getUnifiedResolutionDelegate(ruleResultsData);
     }
 
-    public includeThisResult(ruleResultsData: RuleResultsData): boolean {
-        return this.includeThisResultDelegate(ruleResultsData);
+    public getResultStatus(ruleResultsData: RuleResultsData): InstanceResultStatus {
+        return this.getResultStatusDelegate(ruleResultsData);
     }
 }

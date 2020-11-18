@@ -132,7 +132,7 @@ class FeElementBuilder<TParams> {
         const doc = this.drawerUtils.getDocumentElement();
         const element = doc.createElementNS(SVGNamespaceUrl, this.elementName);
 
-        forOwn(this.params, (paramValue, paramName) => {
+        forOwn(this.params, (paramValue: any, paramName: string) => {
             if (paramValue != null) {
                 element.setAttributeNS(null, paramName, paramValue.toString());
             }
@@ -160,7 +160,6 @@ class FeElementBuilder<TParams> {
 }
 
 export interface FeMergeNodeParams {
-    // tslint:disable-next-line: no-reserved-keywords
     in?: string;
 }
 
@@ -180,11 +179,10 @@ export interface FeFloodParams {
 }
 
 export interface FeOffsetParams {
-    // tslint:disable-next-line: no-reserved-keywords
     in?: string;
-    dx?: number;
-    dy?: number;
-    result?: string;
+    dx: number;
+    dy: number;
+    result: string;
 }
 
 export interface FilterParams {
@@ -197,7 +195,6 @@ export interface FilterParams {
 export interface FeMorphologyParams {
     operator?: string;
     radius?: number;
-    // tslint:disable-next-line: no-reserved-keywords
     in?: string;
     result?: string;
 }

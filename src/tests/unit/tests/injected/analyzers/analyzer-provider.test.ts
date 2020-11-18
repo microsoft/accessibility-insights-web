@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ScopingStore } from 'background/stores/global/scoping-store';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, Mock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
@@ -69,6 +70,7 @@ describe('AnalyzerProviderTests', () => {
             sendConvertedResultsMock.object,
             sendNeedsReviewResultsMock.object,
             scanIncompleteWarningDetectorMock.object,
+            failTestOnErrorLogger,
         );
     });
 

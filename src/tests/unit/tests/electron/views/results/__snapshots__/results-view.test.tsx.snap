@@ -1,0 +1,1889 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsView right content panel info changes when left nav selected key changes 1`] = `
+<TestView
+  cardsViewData={
+    Object {
+      "cards": Object {
+        "fail": Array [
+          Object {
+            "id": "test-fail-id",
+          },
+        ],
+      },
+    }
+  }
+  contentPageInfo={
+    Object {
+      "description": <React.Fragment>
+        test 
+        needs-review
+         description
+      </React.Fragment>,
+      "resultsFilter": [Function],
+      "title": "test-needs-review-title",
+    }
+  }
+  deps={
+    Object {
+      "contentPagesInfo": Object {
+        "automated-checks": Object {
+          "description": <React.Fragment>
+            test 
+            automated-checks
+             description
+          </React.Fragment>,
+          "resultsFilter": [Function],
+          "title": "test-automated-checks-title",
+        },
+        "needs-review": Object {
+          "description": <React.Fragment>
+            test 
+            needs-review
+             description
+          </React.Fragment>,
+          "resultsFilter": [Function],
+          "title": "test-needs-review-title",
+        },
+      },
+      "getCardSelectionViewData": [Function],
+      "getCardsViewData": [Function],
+      "getDateFromTimestamp": [Function],
+      "isResultHighlightUnavailable": [Function],
+      "leftNavActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "actions": undefined,
+        "itemSelected": [Function],
+        "setLeftNavVisible": [Function],
+      },
+      "scanActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "deviceActions": undefined,
+        "scanActions": undefined,
+      },
+      "screenshotViewModelProvider": [Function],
+      "toolData": Object {
+        "applicationProperties": Object {
+          "name": "some app",
+        },
+      },
+    }
+  }
+  scanMetadata={null}
+  userConfigurationStoreData={
+    Object {
+      "isFirstTime": false,
+    }
+  }
+/>
+`;
+
+exports[`ResultsView right content panel info renders with default/initial value 1`] = `
+<TestView
+  cardsViewData={
+    Object {
+      "cards": Object {
+        "fail": Array [
+          Object {
+            "id": "test-fail-id",
+          },
+        ],
+      },
+    }
+  }
+  contentPageInfo={
+    Object {
+      "description": <React.Fragment>
+        test 
+        automated-checks
+         description
+      </React.Fragment>,
+      "resultsFilter": [Function],
+      "title": "test-automated-checks-title",
+    }
+  }
+  deps={
+    Object {
+      "contentPagesInfo": Object {
+        "automated-checks": Object {
+          "description": <React.Fragment>
+            test 
+            automated-checks
+             description
+          </React.Fragment>,
+          "resultsFilter": [Function],
+          "title": "test-automated-checks-title",
+        },
+        "needs-review": Object {
+          "description": <React.Fragment>
+            test 
+            needs-review
+             description
+          </React.Fragment>,
+          "resultsFilter": [Function],
+          "title": "test-needs-review-title",
+        },
+      },
+      "getCardSelectionViewData": [Function],
+      "getCardsViewData": [Function],
+      "getDateFromTimestamp": [Function],
+      "isResultHighlightUnavailable": [Function],
+      "leftNavActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "actions": undefined,
+        "itemSelected": [Function],
+        "setLeftNavVisible": [Function],
+      },
+      "scanActionCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "deviceActions": undefined,
+        "scanActions": undefined,
+      },
+      "screenshotViewModelProvider": [Function],
+      "toolData": Object {
+        "applicationProperties": Object {
+          "name": "some app",
+        },
+      },
+    }
+  }
+  scanMetadata={null}
+  userConfigurationStoreData={
+    Object {
+      "isFirstTime": false,
+    }
+  }
+/>
+`;
+
+exports[`ResultsView when status scan <Completed> 1`] = `
+<div
+  className="resultsView"
+  data-automation-id="results-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    pageTitle="test-automated-checks-title"
+  />
+  <div
+    className="applicationView"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          isNavOpen={true}
+          selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
+        />
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="resultsPanelContainer"
+    >
+      <FlaggedComponent
+        disableJSXElement={null}
+        enableJSXElement={
+          <ReflowCommandBar
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "resultsFilter": [Function],
+                "title": "test-automated-checks-title",
+              }
+            }
+            deps={
+              Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-needs-review-title",
+                  },
+                },
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            isSideNavOpen={true}
+            scanMetadata={
+              Object {
+                "deviceName": "TEST DEVICE",
+                "targetAppInfo": Object {
+                  "name": "test-target-app-name",
+                },
+                "timespan": Object {
+                  "scanComplete": 1900-02-02T03:00:00.000Z,
+                },
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            scanStoreData={
+              Object {
+                "status": 2,
+              }
+            }
+            setSideNavOpen={[Function]}
+          />
+        }
+        featureFlag="leftNavBar"
+      />
+      <div
+        className="resultsPanelLayout"
+      >
+        <div
+          className="mainContentWrapper"
+        >
+          <FlaggedComponent
+            disableJSXElement={
+              <CommandBar
+                cardsViewData={
+                  Object {
+                    "cards": Object {
+                      "fail": Array [
+                        Object {
+                          "id": "test-fail-id",
+                        },
+                      ],
+                    },
+                  }
+                }
+                deps={
+                  Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-needs-review-title",
+                      },
+                    },
+                    "getCardSelectionViewData": [Function],
+                    "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
+                    "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
+                    "scanActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "deviceActions": undefined,
+                      "scanActions": undefined,
+                    },
+                    "screenshotViewModelProvider": [Function],
+                    "toolData": Object {
+                      "applicationProperties": Object {
+                        "name": "some app",
+                      },
+                    },
+                  }
+                }
+                scanMetadata={
+                  Object {
+                    "deviceName": "TEST DEVICE",
+                    "targetAppInfo": Object {
+                      "name": "test-target-app-name",
+                    },
+                    "timespan": Object {
+                      "scanComplete": 1900-02-02T03:00:00.000Z,
+                    },
+                    "toolData": Object {
+                      "applicationProperties": Object {
+                        "name": "some app",
+                      },
+                    },
+                  }
+                }
+                scanStoreData={
+                  Object {
+                    "status": 2,
+                  }
+                }
+              />
+            }
+            enableJSXElement={null}
+            featureFlag="leftNavBar"
+          />
+          <main>
+            <TestView
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                }
+              }
+              deps={
+                Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-needs-review-title",
+                    },
+                  },
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={
+                Object {
+                  "deviceName": "TEST DEVICE",
+                  "targetAppInfo": Object {
+                    "name": "test-target-app-name",
+                  },
+                  "timespan": Object {
+                    "scanComplete": 1900-02-02T03:00:00.000Z,
+                  },
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanStatus={2}
+              userConfigurationStoreData={
+                Object {
+                  "isFirstTime": false,
+                }
+              }
+            />
+          </main>
+        </div>
+        <ScreenshotView
+          viewModel={
+            Object {
+              "screenshotData": Object {
+                "base64PngData": "this should appear in snapshotted ScreenshotView props",
+              },
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    layerClassName="settingsPanelLayerHost"
+    userConfigStoreState={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ResultsView when status scan <Failed> 1`] = `
+<div
+  className="resultsView"
+  data-automation-id="results-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    pageTitle="test-automated-checks-title"
+  />
+  <div
+    className="applicationView"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          isNavOpen={true}
+          selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
+        />
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="resultsPanelContainer"
+    >
+      <FlaggedComponent
+        disableJSXElement={null}
+        enableJSXElement={
+          <ReflowCommandBar
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "resultsFilter": [Function],
+                "title": "test-automated-checks-title",
+              }
+            }
+            deps={
+              Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-needs-review-title",
+                  },
+                },
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            isSideNavOpen={true}
+            scanMetadata={null}
+            scanStoreData={
+              Object {
+                "status": 3,
+              }
+            }
+            setSideNavOpen={[Function]}
+          />
+        }
+        featureFlag="leftNavBar"
+      />
+      <div
+        className="resultsPanelLayout"
+      >
+        <div
+          className="mainContentWrapper"
+        >
+          <FlaggedComponent
+            disableJSXElement={
+              <CommandBar
+                cardsViewData={
+                  Object {
+                    "cards": Object {
+                      "fail": Array [
+                        Object {
+                          "id": "test-fail-id",
+                        },
+                      ],
+                    },
+                  }
+                }
+                deps={
+                  Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-needs-review-title",
+                      },
+                    },
+                    "getCardSelectionViewData": [Function],
+                    "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
+                    "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
+                    "scanActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "deviceActions": undefined,
+                      "scanActions": undefined,
+                    },
+                    "screenshotViewModelProvider": [Function],
+                    "toolData": Object {
+                      "applicationProperties": Object {
+                        "name": "some app",
+                      },
+                    },
+                  }
+                }
+                scanMetadata={null}
+                scanStoreData={
+                  Object {
+                    "status": 3,
+                  }
+                }
+              />
+            }
+            enableJSXElement={null}
+            featureFlag="leftNavBar"
+          />
+          <main>
+            <TestView
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                }
+              }
+              deps={
+                Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-needs-review-title",
+                    },
+                  },
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanStatus={3}
+              userConfigurationStoreData={
+                Object {
+                  "isFirstTime": false,
+                }
+              }
+            />
+          </main>
+        </div>
+        <ScreenshotView
+          viewModel={
+            Object {
+              "screenshotData": Object {
+                "base64PngData": "this should appear in snapshotted ScreenshotView props",
+              },
+            }
+          }
+        />
+        <DeviceDisconnectedPopup
+          onConnectNewDevice={[Function]}
+          onRescanDevice={[Function]}
+        />
+      </div>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    layerClassName="settingsPanelLayerHost"
+    userConfigStoreState={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ResultsView when status scan <Scanning> 1`] = `
+<div
+  className="resultsView"
+  data-automation-id="results-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    pageTitle="test-automated-checks-title"
+  />
+  <div
+    className="applicationView"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          isNavOpen={true}
+          selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
+        />
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="resultsPanelContainer"
+    >
+      <FlaggedComponent
+        disableJSXElement={null}
+        enableJSXElement={
+          <ReflowCommandBar
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "resultsFilter": [Function],
+                "title": "test-automated-checks-title",
+              }
+            }
+            deps={
+              Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-needs-review-title",
+                  },
+                },
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            isSideNavOpen={true}
+            scanMetadata={null}
+            scanStoreData={
+              Object {
+                "status": 1,
+              }
+            }
+            setSideNavOpen={[Function]}
+          />
+        }
+        featureFlag="leftNavBar"
+      />
+      <div
+        className="resultsPanelLayout"
+      >
+        <div
+          className="mainContentWrapper"
+        >
+          <FlaggedComponent
+            disableJSXElement={
+              <CommandBar
+                cardsViewData={
+                  Object {
+                    "cards": Object {
+                      "fail": Array [
+                        Object {
+                          "id": "test-fail-id",
+                        },
+                      ],
+                    },
+                  }
+                }
+                deps={
+                  Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-needs-review-title",
+                      },
+                    },
+                    "getCardSelectionViewData": [Function],
+                    "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
+                    "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
+                    "scanActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "deviceActions": undefined,
+                      "scanActions": undefined,
+                    },
+                    "screenshotViewModelProvider": [Function],
+                    "toolData": Object {
+                      "applicationProperties": Object {
+                        "name": "some app",
+                      },
+                    },
+                  }
+                }
+                scanMetadata={null}
+                scanStoreData={
+                  Object {
+                    "status": 1,
+                  }
+                }
+              />
+            }
+            enableJSXElement={null}
+            featureFlag="leftNavBar"
+          />
+          <main>
+            <TestView
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                }
+              }
+              deps={
+                Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-needs-review-title",
+                    },
+                  },
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={null}
+              scanStatus={1}
+              userConfigurationStoreData={
+                Object {
+                  "isFirstTime": false,
+                }
+              }
+            />
+          </main>
+        </div>
+        <ScreenshotView
+          viewModel={
+            Object {
+              "screenshotData": Object {
+                "base64PngData": "this should appear in snapshotted ScreenshotView props",
+              },
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    layerClassName="settingsPanelLayerHost"
+    userConfigStoreState={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ResultsView when status scan <undefined> 1`] = `
+<div
+  className="resultsView"
+  data-automation-id="results-view"
+>
+  <TitleBar
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    pageTitle="test-automated-checks-title"
+  />
+  <div
+    className="applicationView"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <LeftNav
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "actions": undefined,
+                "itemSelected": [Function],
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          isNavOpen={true}
+          selectedKey="automated-checks"
+          setSideNavOpen={[Function]}
+        />
+      }
+      featureFlag="leftNavBar"
+    />
+    <div
+      className="resultsPanelContainer"
+    >
+      <FlaggedComponent
+        disableJSXElement={null}
+        enableJSXElement={
+          <ReflowCommandBar
+            cardsViewData={
+              Object {
+                "cards": Object {
+                  "fail": Array [
+                    Object {
+                      "id": "test-fail-id",
+                    },
+                  ],
+                },
+              }
+            }
+            currentContentPageInfo={
+              Object {
+                "description": <React.Fragment>
+                  test 
+                  automated-checks
+                   description
+                </React.Fragment>,
+                "resultsFilter": [Function],
+                "title": "test-automated-checks-title",
+              }
+            }
+            deps={
+              Object {
+                "contentPagesInfo": Object {
+                  "automated-checks": Object {
+                    "description": <React.Fragment>
+                      test 
+                      automated-checks
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-automated-checks-title",
+                  },
+                  "needs-review": Object {
+                    "description": <React.Fragment>
+                      test 
+                      needs-review
+                       description
+                    </React.Fragment>,
+                    "resultsFilter": [Function],
+                    "title": "test-needs-review-title",
+                  },
+                },
+                "getCardSelectionViewData": [Function],
+                "getCardsViewData": [Function],
+                "getDateFromTimestamp": [Function],
+                "isResultHighlightUnavailable": [Function],
+                "leftNavActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "actions": undefined,
+                  "itemSelected": [Function],
+                  "setLeftNavVisible": [Function],
+                },
+                "scanActionCreator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "deviceActions": undefined,
+                  "scanActions": undefined,
+                },
+                "screenshotViewModelProvider": [Function],
+                "toolData": Object {
+                  "applicationProperties": Object {
+                    "name": "some app",
+                  },
+                },
+              }
+            }
+            isSideNavOpen={true}
+            scanMetadata={null}
+            scanStoreData={
+              Object {
+                "status": undefined,
+              }
+            }
+            setSideNavOpen={[Function]}
+          />
+        }
+        featureFlag="leftNavBar"
+      />
+      <div
+        className="resultsPanelLayout"
+      >
+        <div
+          className="mainContentWrapper"
+        >
+          <FlaggedComponent
+            disableJSXElement={
+              <CommandBar
+                cardsViewData={
+                  Object {
+                    "cards": Object {
+                      "fail": Array [
+                        Object {
+                          "id": "test-fail-id",
+                        },
+                      ],
+                    },
+                  }
+                }
+                deps={
+                  Object {
+                    "contentPagesInfo": Object {
+                      "automated-checks": Object {
+                        "description": <React.Fragment>
+                          test 
+                          automated-checks
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-automated-checks-title",
+                      },
+                      "needs-review": Object {
+                        "description": <React.Fragment>
+                          test 
+                          needs-review
+                           description
+                        </React.Fragment>,
+                        "resultsFilter": [Function],
+                        "title": "test-needs-review-title",
+                      },
+                    },
+                    "getCardSelectionViewData": [Function],
+                    "getCardsViewData": [Function],
+                    "getDateFromTimestamp": [Function],
+                    "isResultHighlightUnavailable": [Function],
+                    "leftNavActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "actions": undefined,
+                      "itemSelected": [Function],
+                      "setLeftNavVisible": [Function],
+                    },
+                    "scanActionCreator": proxy {
+                      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                      "deviceActions": undefined,
+                      "scanActions": undefined,
+                    },
+                    "screenshotViewModelProvider": [Function],
+                    "toolData": Object {
+                      "applicationProperties": Object {
+                        "name": "some app",
+                      },
+                    },
+                  }
+                }
+                scanMetadata={null}
+                scanStoreData={
+                  Object {
+                    "status": undefined,
+                  }
+                }
+              />
+            }
+            enableJSXElement={null}
+            featureFlag="leftNavBar"
+          />
+          <main>
+            <TestView
+              cardsViewData={
+                Object {
+                  "cards": Object {
+                    "fail": Array [
+                      Object {
+                        "id": "test-fail-id",
+                      },
+                    ],
+                  },
+                }
+              }
+              contentPageInfo={
+                Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                }
+              }
+              deps={
+                Object {
+                  "contentPagesInfo": Object {
+                    "automated-checks": Object {
+                      "description": <React.Fragment>
+                        test 
+                        automated-checks
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-automated-checks-title",
+                    },
+                    "needs-review": Object {
+                      "description": <React.Fragment>
+                        test 
+                        needs-review
+                         description
+                      </React.Fragment>,
+                      "resultsFilter": [Function],
+                      "title": "test-needs-review-title",
+                    },
+                  },
+                  "getCardSelectionViewData": [Function],
+                  "getCardsViewData": [Function],
+                  "getDateFromTimestamp": [Function],
+                  "isResultHighlightUnavailable": [Function],
+                  "leftNavActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "actions": undefined,
+                    "itemSelected": [Function],
+                    "setLeftNavVisible": [Function],
+                  },
+                  "scanActionCreator": proxy {
+                    "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                    "deviceActions": undefined,
+                    "scanActions": undefined,
+                  },
+                  "screenshotViewModelProvider": [Function],
+                  "toolData": Object {
+                    "applicationProperties": Object {
+                      "name": "some app",
+                    },
+                  },
+                }
+              }
+              scanMetadata={null}
+              userConfigurationStoreData={
+                Object {
+                  "isFirstTime": false,
+                }
+              }
+            />
+          </main>
+        </div>
+        <ScreenshotView
+          viewModel={
+            Object {
+              "screenshotData": Object {
+                "base64PngData": "this should appear in snapshotted ScreenshotView props",
+              },
+            }
+          }
+        />
+      </div>
+    </div>
+  </div>
+  <SettingsPanel
+    deps={
+      Object {
+        "contentPagesInfo": Object {
+          "automated-checks": Object {
+            "description": <React.Fragment>
+              test 
+              automated-checks
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-automated-checks-title",
+          },
+          "needs-review": Object {
+            "description": <React.Fragment>
+              test 
+              needs-review
+               description
+            </React.Fragment>,
+            "resultsFilter": [Function],
+            "title": "test-needs-review-title",
+          },
+        },
+        "getCardSelectionViewData": [Function],
+        "getCardsViewData": [Function],
+        "getDateFromTimestamp": [Function],
+        "isResultHighlightUnavailable": [Function],
+        "leftNavActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "itemSelected": [Function],
+          "setLeftNavVisible": [Function],
+        },
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "deviceActions": undefined,
+          "scanActions": undefined,
+        },
+        "screenshotViewModelProvider": [Function],
+        "toolData": Object {
+          "applicationProperties": Object {
+            "name": "some app",
+          },
+        },
+      }
+    }
+    featureFlagData={Object {}}
+    layerClassName="settingsPanelLayerHost"
+    userConfigStoreState={
+      Object {
+        "isFirstTime": false,
+      }
+    }
+  />
+</div>
+`;

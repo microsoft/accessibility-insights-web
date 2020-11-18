@@ -99,7 +99,7 @@ describe('ScanResults to Unified Results Test', () => {
     ): void {
         mock.setup(m =>
             m({
-                id: id,
+                ruleId: id,
                 nodeResult: nodeResult,
             }),
         ).returns(() => resolutionStub);

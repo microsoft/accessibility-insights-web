@@ -1,19 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
-import { ClientUtils } from '../../../../injected/client-utils';
+import { SingleElementSelector } from 'common/types/store-data/scoping-store-data';
+import { ClientUtils } from 'injected/client-utils';
 import {
     ElementFinderByPosition,
     ElementFinderByPositionMessage,
-} from '../../../../injected/element-finder-by-position';
-import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
-import { FrameCommunicator } from '../../../../injected/frameCommunicators/frame-communicator';
-import { FrameMessageResponseCallback } from '../../../../injected/frameCommunicators/window-message-handler';
-import { ScannerUtils } from '../../../../injected/scanner-utils';
-import { QStub } from '../../stubs/q-stub';
+} from 'injected/element-finder-by-position';
+import { ErrorMessageContent } from 'injected/frameCommunicators/error-message-content';
+import { FrameCommunicator } from 'injected/frameCommunicators/frame-communicator';
+import { FrameMessageResponseCallback } from 'injected/frameCommunicators/window-message-handler';
+import { ScannerUtils } from 'injected/scanner-utils';
 
 class TestableElementFinder extends ElementFinderByPosition {
     public getOnfindElementByPosition(): (
@@ -30,43 +28,24 @@ describe('ElementFinderByPositionTest', () => {
     let frameCommunicatorMock: IMock<FrameCommunicator>;
     let clientUtilsMock: IMock<ClientUtils>;
     let scannerUtils: IMock<ScannerUtils>;
-    let mockQ: IMock<typeof Q>;
     let elementsFromPointMock: IMock<(x: number, y: number) => Element[]>;
     let domStub: Document;
-    let resolveMock;
-    let rejectMock;
-    let promiseStub;
-    let deferredObjectStub: Q.Deferred<string[]>;
-    let promiseHandlerMock: IMock<(callback: Function) => void>;
 
     beforeEach(() => {
         frameCommunicatorMock = Mock.ofType(FrameCommunicator);
         clientUtilsMock = Mock.ofType(ClientUtils);
         scannerUtils = Mock.ofType(ScannerUtils);
-        mockQ = Mock.ofType(QStub, MockBehavior.Strict) as any;
         elementsFromPointMock = Mock.ofInstance((x: number, y: number) => {
             return null;
         });
         domStub = {
             elementsFromPoint: elementsFromPointMock.object,
         } as Document;
-        resolveMock = Mock.ofInstance(value => {});
-        rejectMock = Mock.ofInstance(value => {});
-        promiseHandlerMock = Mock.ofInstance(callback => {});
-        deferredObjectStub = {
-            promise: promiseStub,
-            resolve: resolveMock.object,
-            reject: rejectMock.object,
-        } as Q.Deferred<SingleElementSelector>;
-        promiseStub = {
-            then: promiseHandlerMock.object,
-        };
 
         testSubject = new TestableElementFinder(
             frameCommunicatorMock.object,
             clientUtilsMock.object,
             scannerUtils.object,
-            mockQ.object,
             domStub,
         );
     });
@@ -128,7 +107,7 @@ describe('ElementFinderByPositionTest', () => {
         processRequestMock.verifyAll();
     });
 
-    test('process request when element is null', () => {
+    test('process request when element is null', async () => {
         const messageStub = {
             x: 1,
             y: 2,
@@ -136,14 +115,10 @@ describe('ElementFinderByPositionTest', () => {
 
         setupElementsFromPointMock(messageStub, []);
 
-        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
-
-        setupResolveMock([]);
-
-        testSubject.processRequest(messageStub);
+        expect(await testSubject.processRequest(messageStub)).toEqual([]);
     });
 
-    test('process request when element is not iframe', () => {
+    test('process request when element is not iframe', async () => {
         const messageStub = {
             x: 1,
             y: 2,
@@ -154,20 +129,10 @@ describe('ElementFinderByPositionTest', () => {
         setupElementsFromPointMock(messageStub, [elementStub]);
         setupGetUniqueSelector(elementStub, selector);
 
-        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
-
-        setupResolveMock([selector]);
-
-        testSubject.processRequest(messageStub);
+        expect(await testSubject.processRequest(messageStub)).toEqual([selector]);
     });
 
-    test('process request when element is in iframe', () => {
-        let successCallback;
-        let errorCallback;
-        const sendMessagePromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
-        const sendMessageReturnStub = {
-            then: sendMessagePromiseHandlerMock.object,
-        } as Q.IPromise<string[]>;
+    test('process request when element is in iframe', async () => {
         const messageStub = {
             x: 1,
             y: 2,
@@ -193,7 +158,7 @@ describe('ElementFinderByPositionTest', () => {
 
         frameCommunicatorMock
             .setup(fcm => fcm.sendMessage(It.isValue(expectedFrameCommunicatorMessage)))
-            .returns(() => sendMessageReturnStub)
+            .returns(() => Promise.resolve(selector))
             .verifiable();
 
         clientUtilsMock
@@ -201,21 +166,7 @@ describe('ElementFinderByPositionTest', () => {
             .returns(() => elementRectStub)
             .verifiable();
 
-        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
-
-        sendMessagePromiseHandlerMock
-            .setup(prp => prp(It.isAny(), It.isAny()))
-            .callback((success, error) => {
-                successCallback = success;
-                errorCallback = error;
-            });
-
-        setupResolveMock([iframeSelector, selector]);
-        setupRejectMock();
-
-        testSubject.processRequest(messageStub);
-        successCallback(selector);
-        errorCallback(null);
+        expect(await testSubject.processRequest(messageStub)).toEqual([iframeSelector, selector]);
 
         verifyAll();
     });
@@ -237,18 +188,9 @@ describe('ElementFinderByPositionTest', () => {
             .verifiable();
     }
 
-    function setupResolveMock(selectors: string[]): void {
-        resolveMock.setup(rm => rm(It.isValue(selectors))).verifiable();
-    }
-    function setupRejectMock(): void {
-        rejectMock.setup(rm => rm(null)).verifiable();
-    }
-
     function verifyAll(): void {
         frameCommunicatorMock.verifyAll();
         clientUtilsMock.verifyAll();
         scannerUtils.verifyAll();
-        resolveMock.verifyAll();
-        rejectMock.verifyAll();
     }
 });

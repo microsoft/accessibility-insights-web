@@ -28,21 +28,24 @@ import {
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
     ReportExportDialogFactory,
+    SaveAssessmentFactory,
 } from '../../../../../DetailsView/components/details-view-command-bar';
+import { SaveAssessmentFactoryProps } from 'DetailsView/components/save-assessment-factory';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';
     const thePageUrl = 'command-bar-test-url';
     const reportExportDialogStub = <div>Export dialog</div>;
+    const saveAssessmentStub = <div>Save assessment</div>;
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
-    let saveAssessmentButton: JSX.Element;
+    let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
-    let saveAssessmentButtonMock: IMock<(Props: SaveAssessmentButtonProps) => JSX.Element>;
+    let saveAssessmentFactory: IMock<SaveAssessmentFactory>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -51,14 +54,13 @@ describe('DetailsViewCommandBar', () => {
             MockBehavior.Loose,
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
-        saveAssessmentButtonMock = Mock.ofInstance(props => null);
+        saveAssessmentFactory = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
-        saveAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });
@@ -74,6 +76,7 @@ describe('DetailsViewCommandBar', () => {
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
             ReportExportDialogFactory: reportExportDialogFactory.object,
+            SaveAssessmentFactory: saveAssessmentFactory.object,
             shouldShowReportExportButton: p => showReportExportButton,
             StartOverComponentFactory: {
                 getStartOverComponent: getStartOverComponentMock.object,
@@ -147,7 +150,7 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with save assessment button', () => {
-        const rendered = shallow(<SaveAssessmentButton />);
+        const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
@@ -290,6 +293,7 @@ describe('DetailsViewCommandBar', () => {
 
         props.featureFlagStoreData = { saveAndLoadAssessment: renderSaveAssessment };
 
+        setupSaveAssessmentFactory(props);
         setupStartOverButtonFactory(props);
         setupReportExportDialogFactory({ isOpen: false });
 
@@ -313,6 +317,11 @@ describe('DetailsViewCommandBar', () => {
     ): void {
         const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
         reportExportDialogFactory.setup(r => r(argMatcher)).returns(() => reportExportDialogStub);
+    }
+
+    function setupSaveAssessmentFactory(expectedProps?: Partial<SaveAssessmentFactoryProps>): void {
+        const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
+        saveAssessmentFactory.setup(r => r(argMatcher)).returns(() => saveAssessmentStub);
     }
 
     function setupStartOverButtonFactory(props: CommandBarProps): void {

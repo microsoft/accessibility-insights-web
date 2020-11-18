@@ -1,11 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import {
-    InstanceResultStatus,
-    UnifiedDescriptors,
-    UnifiedResult,
-} from 'common/types/store-data/unified-data-interface';
+import { UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
 import { AndroidScanResults, RuleResultsData, ViewElementData } from './android-scan-results';
@@ -45,7 +40,7 @@ function createUnifiedResultsFromScanResults(
             ruleResult.ruleId,
         );
 
-        if (ruleInformation && ruleInformation.includeThisResult(ruleResult)) {
+        if (ruleInformation) {
             unifiedResults.push(
                 createUnifiedResult(ruleInformation, ruleResult, viewElementLookup, uuidGenerator),
             );
@@ -88,13 +83,13 @@ function createUnifiedResult(
     return {
         uid: uuidGenerator(),
         ruleId: ruleInformation.ruleId,
-        status: getStatus(ruleResult.status),
+        status: ruleInformation.getResultStatus(ruleResult),
         descriptors: getDescriptors(viewElementLookup[ruleResult.axeViewId]),
         identifiers: {
             identifier: viewElementLookup[ruleResult.axeViewId]?.className,
             conciseName: viewElementLookup[ruleResult.axeViewId]?.className,
         },
-        resolution: ruleInformation.getUnifiedFormattableResolution(ruleResult),
+        resolution: ruleInformation.getUnifiedResolution(ruleResult),
     };
 }
 
@@ -108,15 +103,4 @@ function getDescriptors(viewElement: ViewElementData): UnifiedDescriptors {
         };
     }
     return null;
-}
-
-function getStatus(status: string): InstanceResultStatus {
-    switch (status) {
-        case 'PASS':
-            return 'pass';
-        case 'FAIL':
-            return 'fail';
-        default:
-            return 'unknown';
-    }
 }

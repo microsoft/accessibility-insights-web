@@ -8,78 +8,85 @@ const { getMemoizedImportsForFile } = require('./import-finder');
 const glob = require('glob');
 const config = require('./config');
 
-/**
- * @param {string} srcRoot
- * @param {{ includeTests: boolean }} [options]
- */
-const getAllTsFiles = (srcRoot, options) => {
-    return new Promise((resolve, reject) => {
-        glob(`${srcRoot}/**/*.@(ts|tsx)`, (err, files) => {
-            if (err) {
-                return reject(err);
-            }
+// "Eligible" means "a file that we might want to list in tsconfig.strictNullChecks.json"
+// "Checked" means "a file that is currently listed in tsconfig.strictNullChecks.json"
+// It is possible for an ineligible file to be checked (eg, a png under /src/icons/**)
 
-            return resolve(
-                files.filter(
-                    file =>
-                        !file.endsWith('.d.ts') &&
-                        (options && options.includeTests ? true : !/\.test\.tsx?$/.test(file)),
-                ),
-            );
+const isTestFile = file => /\.test\.tsx?$/.test(file);
+
+const isEligibleFile = file =>
+    (file.endsWith('.ts') || file.endsWith('.tsx')) &&
+    !file.endsWith('.d.ts') &&
+    (config.includeTests || !isTestFile(file)) &&
+    !config.skippedFiles.has(path.relative(config.srcRoot, file));
+
+function globAsync(pattern) {
+    return new Promise((resolve, reject) => {
+        glob(pattern, (err, files) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(files);
+            }
         });
     });
-};
+}
 
-/**
- * @param {string} repoRoot
- * @param {{ includeTests: boolean }} [options]
- */
-async function getUncheckedLeafFiles(repoRoot, options) {
-    const srcRoot = path.join(repoRoot, 'src');
+// Includes both checked and unchecked files (ie, doesn't care about inclusion in tsconfig.strictNullChecks.json)
+async function getAllEligibleFiles() {
+    const tsFiles = await globAsync(`${config.srcRoot}/**/*.@(ts|tsx)`);
+    const eligibleFiles = tsFiles.filter(isEligibleFile);
+    return eligibleFiles;
+}
 
-    const checkedFiles = await getCheckedFiles(repoRoot);
+// Includes ineligible files that are listed under glob patterns in tsconfig.strictNullChecks
+async function getAllCheckedFiles() {
+    const tsconfigPath = path.join(config.repoRoot, config.targetTsconfig);
+    const tsconfigContent = JSON.parse(fs.readFileSync(tsconfigPath).toString());
 
-    const allFiles = await getAllTsFiles(srcRoot, options);
+    const set = new Set(
+        tsconfigContent.files.map(f => path.join(config.repoRoot, f).replace(/\\/g, '/')),
+    );
+    await Promise.all(
+        tsconfigContent.include.map(async include => {
+            const includePath = path.join(config.repoRoot, include);
+            const files = await globAsync(includePath);
+            for (const file of files) {
+                set.add(file);
+            }
+        }),
+    );
+    return set;
+}
 
-    const allUncheckedFiles = allFiles
-        .filter(file => !checkedFiles.has(file))
-        .filter(file => !config.skippedFiles.has(path.relative(srcRoot, file)));
+async function getUncheckedLeafFiles() {
+    const checkedFiles = await getAllCheckedFiles();
+    const eligibleFiles = await getAllEligibleFiles();
+    const eligibleFileSet = new Set(eligibleFiles);
+
+    const allUncheckedFiles = eligibleFiles.filter(file => !checkedFiles.has(file));
 
     const areAllImportsChecked = file => {
-        const allImports = getMemoizedImportsForFile(file, srcRoot);
-        return allImports.every(imp => checkedFiles.has(imp));
+        const allImports = getMemoizedImportsForFile(file, config.srcRoot);
+        const uncheckedImports = allImports.filter(imp => !checkedFiles.has(imp));
+        const ineligibleUncheckedImports = uncheckedImports.filter(
+            imp => !eligibleFileSet.has(imp),
+        );
+        if (ineligibleUncheckedImports.length > 0) {
+            console.warn(
+                `Eligible file ${file} with unchecked ineligible imports [${ineligibleUncheckedImports.join(
+                    ', ',
+                )}]`,
+            );
+        }
+        return uncheckedImports.length === 0;
     };
 
     return allUncheckedFiles.filter(areAllImportsChecked);
 }
 
-async function getCheckedFiles(tsconfigDir) {
-    const tsconfigPath = path.join(tsconfigDir, config.targetTsconfig);
-    const tsconfigContent = JSON.parse(fs.readFileSync(tsconfigPath).toString());
-
-    const set = new Set(
-        tsconfigContent.files.map(f => path.join(tsconfigDir, f).replace(/\\/g, '/')),
-    );
-    const includes = tsconfigContent.include.map(include => {
-        return new Promise((resolve, reject) => {
-            glob(path.join(tsconfigDir, include), (err, files) => {
-                if (err) {
-                    return reject(err);
-                }
-
-                for (const file of files) {
-                    set.add(file);
-                }
-                resolve();
-            });
-        });
-    });
-    await Promise.all(includes);
-    return set;
-}
-
 module.exports = {
-    getAllTsFiles,
+    getAllEligibleFiles,
     getUncheckedLeafFiles,
-    getCheckedFiles,
+    getAllCheckedFiles,
 };

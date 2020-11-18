@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
@@ -36,12 +35,7 @@ describe('ScanResultsToUnifiedResults', () => {
         const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1);
         const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2);
         const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3);
-        const ruleInformation4: RuleInformation = buildRuleInformation(
-            ruleId4,
-            'rule-link-4',
-            [],
-            false,
-        );
+        const ruleInformation4: RuleInformation = buildRuleInformation(ruleId4, 'rule-link-4', []);
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock
@@ -122,10 +116,10 @@ describe('ScanResultsToUnifiedResults', () => {
         const id4: string = 'id4';
         const ruleResults: RuleResultsData[] = [
             buildRuleResultObject(ruleId1, 'FAIL', id1),
-            buildRuleResultObject('unsupprted Rule #1', 'PASS', id2),
+            buildRuleResultObject('unsupported Rule #1', 'PASS', id2),
             buildRuleResultObject(ruleId2, 'FAIL', id3),
             buildRuleResultObject(ruleId2, 'PASS', id4),
-            buildRuleResultObject('unsupprted Rule #2', 'FAIL', id1),
+            buildRuleResultObject('unsupported Rule #2', 'FAIL', id1),
             buildRuleResultObject(ruleId4, 'PASS', id2),
             buildRuleResultObject(ruleId3, 'PASS', id2),
             buildRuleResultObject(ruleId2, 'UNKNOWN', 'does not exist'), // Force "unknown" cases

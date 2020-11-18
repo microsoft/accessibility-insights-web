@@ -10,11 +10,12 @@ import { Interpreter } from 'background/interpreter';
 import { InspectStore } from 'background/stores/inspect-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
-import { Messages } from '../../../../common/messages';
-import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
-import { WindowUtils } from '../../../../common/window-utils';
-import { itIsFunction } from '../../common/it-is-function';
-import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { Messages } from 'common/messages';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { WindowUtils } from 'common/window-utils';
+import { itIsFunction } from 'tests/unit/common/it-is-function';
+import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 describe('InjectorControllerTest', () => {
     let validator: InjectorControllerValidator;
@@ -26,7 +27,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: inject occurs', async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', true)
+            .with('injectingRequested', true)
             .build();
 
         validator
@@ -77,7 +78,7 @@ describe('InjectorControllerTest', () => {
 
     test("inject doesn't occur when inspect mode changed to off", async () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', false)
+            .with('injectingRequested', false)
             .build();
 
         validator
@@ -101,7 +102,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: already injecting => no inject', () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', true)
+            .with('injectingRequested', true)
             .with('injectingStarted', true)
             .build();
 
@@ -117,7 +118,7 @@ describe('InjectorControllerTest', () => {
 
     test('initialize: injectingInProgress is false => no inject', () => {
         const visualizationData = new VisualizationStoreDataBuilder()
-            .with('injectingInProgress', false)
+            .with('injectingRequested', false)
             .with('injectingStarted', true)
             .build();
 
@@ -176,6 +177,7 @@ class InjectorControllerValidator {
             this.mockTabStore.object,
             this.mockInspectStore.object,
             this.mockWindowUtils.object,
+            failTestOnErrorLogger,
         );
     }
 

@@ -4,34 +4,29 @@
 // @ts-check
 const path = require('path');
 const process = require('process');
-const { repoRoot } = require('./config');
-const { getUncheckedLeafFiles, getAllTsFiles } = require('./eligible-file-finder');
+const { srcRoot } = require('./config');
+const { getUncheckedLeafFiles, getAllEligibleFiles } = require('./eligible-file-finder');
 const { getImportsForFile } = require('./import-finder');
 
-const srcRoot = path.join(repoRoot, 'src');
-
 if (process.argv.includes('--help')) {
-    console.log(
-        'yarn null:find [--sort=name|count] [--show-count] [--include-tests] [--filter file_path_substring]',
-    );
+    console.log('yarn null:find [--sort=name|count] [--show-count] [--filter file_path_substring]');
     process.exit(0);
 }
 const sortBy = process.argv.includes('--sort=name') ? 'name' : 'count';
 const printDependedOnCount = process.argv.includes('--show-count');
-const includeTests = process.argv.includes('--include-tests');
 const filterArgIndex = process.argv.indexOf('--filter') + 1;
 const filterArg = filterArgIndex === 0 ? null : process.argv[filterArgIndex];
 
 const filter = filterArg && (file => file.includes(filterArg));
 
 async function main() {
-    const eligibleFiles = await getUncheckedLeafFiles(repoRoot, { includeTests });
+    const eligibleFiles = await getUncheckedLeafFiles();
 
     const eligibleSet = new Set(eligibleFiles);
 
     const dependedOnCount = new Map(eligibleFiles.map(file => [file, 0]));
 
-    for (const file of await getAllTsFiles(srcRoot)) {
+    for (const file of await getAllEligibleFiles()) {
         if (eligibleSet.has(file)) {
             // Already added
             continue;

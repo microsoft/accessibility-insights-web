@@ -16,10 +16,10 @@ import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-d
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import {
-    AutomatedChecksView,
-    AutomatedChecksViewDeps,
-    AutomatedChecksViewProps,
-} from 'electron/views/automated-checks/automated-checks-view';
+    ResultsView,
+    ResultsViewDeps,
+    ResultsViewProps,
+} from 'electron/views/results/results-view';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
@@ -33,7 +33,7 @@ import {
 
 export type RootContainerDeps = WithStoreSubscriptionDeps<RootContainerState> &
     DeviceConnectViewContainerDeps &
-    AutomatedChecksViewDeps &
+    ResultsViewDeps &
     NarrowModeDetectorDeps;
 
 export type RootContainerProps = {
@@ -56,7 +56,7 @@ export type RootContainerState = {
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {
     const { storeState, ...rest } = props;
 
-    const childProps: Omit<AutomatedChecksViewProps, 'narrowModeStatus'> = {
+    const childProps: Omit<ResultsViewProps, 'narrowModeStatus'> = {
         ...storeState,
         ...rest,
     };
@@ -66,7 +66,7 @@ export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerI
             <NarrowModeDetector
                 deps={props.deps}
                 isNarrowModeEnabled={true}
-                Component={AutomatedChecksView}
+                Component={ResultsView}
                 childrenProps={childProps}
             />
         );

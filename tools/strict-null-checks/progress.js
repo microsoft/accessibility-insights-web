@@ -2,13 +2,15 @@
 // Licensed under the MIT License.
 
 // @ts-check
-const { repoRoot } = require('./config');
-const { getCheckedFiles, getAllTsFiles } = require('./eligible-file-finder');
+const { getAllCheckedFiles, getAllEligibleFiles } = require('./eligible-file-finder');
 
 async function main() {
     const datestamp = new Date().toDateString();
-    const doneCount = (await getCheckedFiles(repoRoot)).size;
-    const totalCount = (await getAllTsFiles(`${repoRoot}/src`)).length;
+    const checkedFiles = await getAllCheckedFiles();
+    const eligibleFiles = await getAllEligibleFiles();
+    const checkedEligibleFiles = eligibleFiles.filter(f => checkedFiles.has(f));
+    const doneCount = checkedEligibleFiles.length;
+    const totalCount = eligibleFiles.length;
     const percentage = 100 * (doneCount / totalCount);
     const formattedPercentage = percentage.toFixed(0) + '%';
 

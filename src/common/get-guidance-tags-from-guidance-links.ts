@@ -2,8 +2,7 @@
 // Licensed under the MIT License.
 import { isArray, isObject } from 'lodash';
 
-import { GuidanceTag } from 'content/guidance-tags';
-import { GuidanceLink } from '../scanner/rule-to-links-mappings';
+import { GuidanceLink, GuidanceTag } from 'common/guidance-links';
 
 export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[]) => GuidanceTag[];
 export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks = links => {
@@ -18,7 +17,7 @@ export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks 
             return;
         }
 
-        link.tags.forEach(tag => {
+        link.tags!.forEach(tag => {
             tags.push(tag);
         });
     });

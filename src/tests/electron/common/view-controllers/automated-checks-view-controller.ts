@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScreenshotViewSelectors } from 'tests/electron/common/element-identifiers/screenshot-view-selectors';
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
-import {
-    AutomatedChecksViewSelectors,
-    ScreenshotViewSelectors,
-} from '../element-identifiers/automated-checks-view-selectors';
+import { AutomatedChecksViewSelectors } from '../element-identifiers/automated-checks-view-selectors';
 import { ViewController } from './view-controller';
 
 export class AutomatedChecksViewController extends ViewController {
@@ -31,37 +29,35 @@ export class AutomatedChecksViewController extends ViewController {
         await this.client.click(selector);
     }
 
-    public async waitForViewVisible(): Promise<void> {
-        await this.waitForSelector(AutomatedChecksViewSelectors.mainContainer);
+    public async assertExpandedRuleGroup(
+        position: number,
+        expectedTitle: string,
+        expectedFailures: number,
+    ): Promise<void> {
+        const title = await this.client.getText(
+            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
+        );
+
+        expect(title).toEqual(expectedTitle);
+
+        const failures = await this.client.$$(
+            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
+        );
+
+        expect(failures).toHaveLength(expectedFailures);
     }
 
-    public async waitForScreenshotViewVisible(): Promise<void> {
-        await this.waitForSelector(ScreenshotViewSelectors.screenshotView);
-    }
+    public async assertCollapsedRuleGroup(position: number, expectedTitle: string): Promise<void> {
+        const title = await this.client.getText(
+            AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
+        );
 
-    public async openSettingsPanel(): Promise<void> {
-        await this.waitForSelector(AutomatedChecksViewSelectors.settingsButton);
-        await this.click(AutomatedChecksViewSelectors.settingsButton);
-        await this.waitForSelector(settingsPanelSelectors.settingsPanel);
-        await this.waitForMilliseconds(750); // Allow for fabric's panel animation to settle
-    }
+        expect(title).toEqual(expectedTitle);
 
-    public async setToggleState(toggleSelector: string, newState: boolean): Promise<void> {
-        await this.waitForSelector(toggleSelector);
-        const oldState = await this.client.getAttribute<string>(toggleSelector, 'aria-checked');
+        const failures = await this.client.$$(
+            AutomatedChecksViewSelectors.nthRuleGroupInstances(position),
+        );
 
-        const oldStateBool = oldState.toLowerCase() === 'true';
-        if (oldStateBool !== newState) {
-            await this.click(toggleSelector);
-            await this.expectToggleState(toggleSelector, newState);
-        }
-    }
-
-    public async expectToggleState(toggleSelector: string, expectedState: boolean): Promise<void> {
-        const toggleInStateSelector = expectedState
-            ? settingsPanelSelectors.enabledToggle(toggleSelector)
-            : settingsPanelSelectors.disabledToggle(toggleSelector);
-
-        await this.waitForSelector(toggleInStateSelector);
+        expect(failures).toHaveLength(0);
     }
 }

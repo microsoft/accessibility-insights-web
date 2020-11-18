@@ -90,7 +90,7 @@ export enum TelemetryEventSource {
     TargetPage,
     ContentPage,
     ElectronDeviceConnect,
-    ElectronAutomatedChecksView,
+    ElectronResultsView,
 }
 
 export type BaseTelemetryData = {

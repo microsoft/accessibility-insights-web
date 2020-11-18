@@ -3,11 +3,7 @@
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ [length]: 0 ],
-  linkComponent: [Function] {
-    [length]: 1,
-    [name]: '',
-    displayName: 'ElectronExternalLink'
-  }
+  linkComponent: 'ElectronExternalLink'
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -47,11 +43,7 @@ exports[`RuleResources renders with {
 exports[`RuleResources renders with {
   url: 'test-url',
   guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: [Function] {
-    [length]: 1,
-    [name]: '',
-    displayName: 'ElectronExternalLink'
-  }
+  linkComponent: 'ElectronExternalLink'
 } 1`] = `
 <div
   className="ruleMoreResources"
@@ -101,10 +93,54 @@ exports[`RuleResources renders with {
 `;
 
 exports[`RuleResources renders with {
-  url: 'test-url',
-  guidanceLinks: null,
-  linkComponent: [Function] { [length]: 1, [name]: '', displayName: 'NewTabLink' }
+  url: null,
+  guidanceLinks: [ [length]: 0 ],
+  linkComponent: 'ElectronExternalLink'
+} 1`] = `null`;
+
+exports[`RuleResources renders with {
+  url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
+  linkComponent: 'NewTabLink'
 } 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span>
+    <GuidanceLinks
+      LinkComponent={[Function]}
+      links={
+        Array [
+          Object {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+    <GuidanceTags
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
+      links={
+        Array [
+          Object {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `
 <div
   className="ruleMoreResources"
 >
@@ -140,60 +176,4 @@ exports[`RuleResources renders with {
 </div>
 `;
 
-exports[`RuleResources renders with {
-  url: null,
-  guidanceLinks: [ [length]: 0 ],
-  linkComponent: [Function] {
-    [length]: 1,
-    [name]: '',
-    displayName: 'ElectronExternalLink'
-  }
-} 1`] = `null`;
-
-exports[`RuleResources renders with {
-  url: null,
-  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ],
-  linkComponent: [Function] { [length]: 1, [name]: '', displayName: 'NewTabLink' }
-} 1`] = `
-<div
-  className="ruleMoreResources"
->
-  <div
-    className="moreResourcesTitle"
-  >
-    Resources for this rule
-  </div>
-  <span>
-    <GuidanceLinks
-      LinkComponent={[Function]}
-      links={
-        Array [
-          Object {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-    <GuidanceTags
-      deps={
-        Object {
-          "LinkComponent": [Function],
-        }
-      }
-      links={
-        Array [
-          Object {
-            "href": "test-href",
-          },
-        ]
-      }
-    />
-  </span>
-</div>
-`;
-
-exports[`RuleResources renders with {
-  url: null,
-  guidanceLinks: null,
-  linkComponent: [Function] { [length]: 1, [name]: '', displayName: 'NewTabLink' }
-} 1`] = `null`;
+exports[`RuleResources renders with { url: null, guidanceLinks: null, linkComponent: 'NewTabLink' } 1`] = `null`;

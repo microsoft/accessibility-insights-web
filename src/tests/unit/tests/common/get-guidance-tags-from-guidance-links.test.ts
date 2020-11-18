@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
-import { GuidanceLink } from '../../../../scanner/rule-to-links-mappings';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { GuidanceLink } from 'common/guidance-links';
 
 describe('GetGuidanceTagsFromGuidanceLinks', () => {
     it.each([null, [], [undefined]])('handles invalid arg %p', (links: GuidanceLink[]) => {
