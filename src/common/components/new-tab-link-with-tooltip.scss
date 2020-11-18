@@ -1,0 +1,11 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
+:global(.high-contrast-theme) {
+    .insights-tooltip {
+        outline-style: solid;
+        outline-width: 1px;
+        outline-color: $always-white;
+    }
+}

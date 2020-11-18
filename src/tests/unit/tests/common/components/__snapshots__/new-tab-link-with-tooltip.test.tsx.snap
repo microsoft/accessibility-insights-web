@@ -2,6 +2,14 @@
 
 exports[` handles children 1`] = `
 <StyledTooltipHostBase
+  calloutProps={
+    Object {
+      "styles": Object {
+        "beak": "insightsTooltip",
+        "root": "insightsTooltip",
+      },
+    }
+  }
   content="tooltip text"
   styles={
     Object {
@@ -22,6 +30,14 @@ exports[` handles children 1`] = `
 
 exports[` renders with null tooltip content 1`] = `
 <StyledTooltipHostBase
+  calloutProps={
+    Object {
+      "styles": Object {
+        "beak": "insightsTooltip",
+        "root": "insightsTooltip",
+      },
+    }
+  }
   styles={
     Object {
       "root": Object {
@@ -39,6 +55,14 @@ exports[` renders with null tooltip content 1`] = `
 
 exports[` renders with tooltip content 1`] = `
 <StyledTooltipHostBase
+  calloutProps={
+    Object {
+      "styles": Object {
+        "beak": "insightsTooltip",
+        "root": "insightsTooltip",
+      },
+    }
+  }
   content="tooltip text"
   styles={
     Object {
