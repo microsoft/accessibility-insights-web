@@ -65,7 +65,7 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
-import { FileNameBuilder } from 'common/filename-builder'
+import { FileNameBuilder } from 'common/filename-builder';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
