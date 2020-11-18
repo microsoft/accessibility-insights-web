@@ -23,7 +23,7 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
         let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
         let iconName = 'ChevronDown';
-        let ariaLabel = buttonText;
+        let ariaLabel = null;
 
         if (allCardsCollapsed) {
             expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
