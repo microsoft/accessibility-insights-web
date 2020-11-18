@@ -14,7 +14,7 @@ export const NewTabLinkWithTooltip = NamedFC<NewTabLinkWithTooltipProps>(
     props => {
         const { tooltipContent, ...linkProps } = props;
         const hostStyles: Partial<ITooltipHostStyles> = {
-            root: { display: 'inline-block', minWidth: 0 },
+            root: styles.insightsTooltipHost,
         };
         const calloutProps: ICalloutProps = {
             styles: {

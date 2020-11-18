@@ -13,10 +13,7 @@ exports[` handles children 1`] = `
   content="tooltip text"
   styles={
     Object {
-      "root": Object {
-        "display": "inline-block",
-        "minWidth": 0,
-      },
+      "root": "insightsTooltipHost",
     }
   }
 >
@@ -40,10 +37,7 @@ exports[` renders with null tooltip content 1`] = `
   }
   styles={
     Object {
-      "root": Object {
-        "display": "inline-block",
-        "minWidth": 0,
-      },
+      "root": "insightsTooltipHost",
     }
   }
 >
@@ -66,10 +60,7 @@ exports[` renders with tooltip content 1`] = `
   content="tooltip text"
   styles={
     Object {
-      "root": Object {
-        "display": "inline-block",
-        "minWidth": 0,
-      },
+      "root": "insightsTooltipHost",
     }
   }
 >
