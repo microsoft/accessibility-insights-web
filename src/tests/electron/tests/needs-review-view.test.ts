@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { resultsView } from 'electron/views/results/results-view.scss';
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -27,7 +26,6 @@ describe('NeedsReviewView', () => {
 
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.client.browserWindow.setSize(windowWidth, windowHeight);
-        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('needs-review');
     });

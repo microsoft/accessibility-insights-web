@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { GetCardViewData } from 'common/rule-based-view-model-provider';
@@ -18,7 +17,6 @@ import {
     SettingsPanelDeps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -28,18 +26,18 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { ReflowCommandBar } from 'electron/views/results/components/reflow-command-bar';
-import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-bar';
-import { TestView, TestViewDeps } from 'electron/views/results/test-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
-import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
+import { LeftNavDeps } from 'electron/views/left-nav/left-nav';
+import { ReflowCommandBar } from 'electron/views/results/components/reflow-command-bar';
+import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-bar';
+import { TestView, TestViewDeps } from 'electron/views/results/test-view';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
+import { CommandBarDeps } from './components/command-bar';
 import * as styles from './results-view.scss';
-import { CommandBar, CommandBarDeps } from './components/command-bar';
 
 export const resultsViewAutomationId = 'results-view';
 
@@ -125,10 +123,9 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                 <div className={styles.applicationView}>
                     {this.getLeftNav()}
                     <div className={styles.resultsPanelContainer}>
-                        {this.renderExpandedCommandBar(cardsViewData, scanMetadata)}
+                        {this.renderReflowCommandBar(cardsViewData, scanMetadata)}
                         <div className={styles.resultsPanelLayout}>
                             <div className={styles.mainContentWrapper}>
-                                {this.renderOriginalCommandBar(cardsViewData, scanMetadata)}
                                 <main>
                                     <TestView
                                         deps={deps}
@@ -158,18 +155,12 @@ export class ResultsView extends React.Component<ResultsViewProps> {
 
     private getLeftNav(): JSX.Element {
         return (
-            <FlaggedComponent
-                featureFlag={UnifiedFeatureFlags.leftNavBar}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={
-                    <FluentLeftNav
-                        deps={this.props.deps}
-                        isNavOpen={this.props.leftNavStoreData.leftNavVisible}
-                        narrowModeStatus={this.props.narrowModeStatus}
-                        selectedKey={this.props.leftNavStoreData.selectedKey}
-                        setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
-                    />
-                }
+            <FluentLeftNav
+                deps={this.props.deps}
+                isNavOpen={this.props.leftNavStoreData.leftNavVisible}
+                narrowModeStatus={this.props.narrowModeStatus}
+                selectedKey={this.props.leftNavStoreData.selectedKey}
+                setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
             />
         );
     }
@@ -204,22 +195,6 @@ export class ResultsView extends React.Component<ResultsViewProps> {
               };
     }
 
-    private renderStandardCommandBar(
-        cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetadata,
-    ): JSX.Element {
-        return (
-            <CommandBar
-                deps={this.props.deps}
-                scanPort={this.getScanPort()}
-                scanStoreData={this.props.scanStoreData}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                cardsViewData={cardsViewData}
-                scanMetadata={scanMetadata}
-            />
-        );
-    }
-
     private renderReflowCommandBar(
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
@@ -236,34 +211,6 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                 scanStoreData={this.props.scanStoreData}
                 setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
                 currentContentPageInfo={this.getContentPageInfo()}
-            />
-        );
-    }
-
-    private renderExpandedCommandBar(
-        cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetadata,
-    ): JSX.Element {
-        return (
-            <FlaggedComponent
-                featureFlag={UnifiedFeatureFlags.leftNavBar}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={this.renderReflowCommandBar(cardsViewData, scanMetadata)}
-                disableJSXElement={null}
-            />
-        );
-    }
-
-    private renderOriginalCommandBar(
-        cardsViewData: CardsViewModel,
-        scanMetadata: ScanMetadata,
-    ): JSX.Element {
-        return (
-            <FlaggedComponent
-                featureFlag={UnifiedFeatureFlags.leftNavBar}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={null}
-                disableJSXElement={this.renderStandardCommandBar(cardsViewData, scanMetadata)}
             />
         );
     }

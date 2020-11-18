@@ -73,34 +73,15 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         />
     );
 
-    const startOverItem: JSX.Element = (
-        <FlaggedComponent
-            featureFlag={UnifiedFeatureFlags.leftNavBar}
-            featureFlagStoreData={featureFlagStoreData}
-            enableJSXElement={null}
-            disableJSXElement={startOver}
-        />
-    );
-
-    const startOverFarItem: JSX.Element = (
-        <FlaggedComponent
-            featureFlag={UnifiedFeatureFlags.leftNavBar}
-            featureFlagStoreData={featureFlagStoreData}
-            enableJSXElement={startOver}
-            disableJSXElement={null}
-        />
-    );
-
     return (
         <section className={styles.commandBar} aria-label="command bar">
-            <div className={styles.items}>{startOverItem}</div>
             <div className={styles.farItems}>
                 <FlaggedComponent
                     enableJSXElement={exportReport}
                     featureFlagStoreData={featureFlagStoreData}
                     featureFlag={UnifiedFeatureFlags.exportReport}
                 />
-                {startOverFarItem}
+                {startOver}
                 <InsightsCommandButton
                     data-automation-id={commandButtonSettingsId}
                     ariaLabel="settings"
