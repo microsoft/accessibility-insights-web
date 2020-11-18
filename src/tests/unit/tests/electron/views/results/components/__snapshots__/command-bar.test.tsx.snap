@@ -6,32 +6,6 @@ exports[`CommandBar renders does not create report export when scan metadata is 
   className="commandBar"
 >
   <div
-    className="items"
-  >
-    <FlaggedComponent
-      disableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={true}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-    />
-  </div>
-  <div
     className="farItems"
   >
     <FlaggedComponent
@@ -43,27 +17,16 @@ exports[`CommandBar renders does not create report export when scan metadata is 
         }
       }
     />
-    <FlaggedComponent
-      disableJSXElement={null}
-      enableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={true}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
+    <InsightsCommandButton
+      data-automation-id="command-button-refresh"
+      disabled={true}
+      iconProps={
         Object {
-          "somefeatureflag": true,
+          "iconName": "Refresh",
         }
       }
+      onClick={[Function]}
+      text="Start over"
     />
     <InsightsCommandButton
       ariaLabel="settings"
@@ -87,32 +50,6 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   className="commandBar"
 >
   <div
-    className="items"
-  >
-    <FlaggedComponent
-      disableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={false}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-    />
-  </div>
-  <div
     className="farItems"
   >
     <FlaggedComponent
@@ -149,27 +86,16 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
         }
       }
     />
-    <FlaggedComponent
-      disableJSXElement={null}
-      enableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={false}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
+    <InsightsCommandButton
+      data-automation-id="command-button-refresh"
+      disabled={false}
+      iconProps={
         Object {
-          "somefeatureflag": true,
+          "iconName": "Refresh",
         }
       }
+      onClick={[Function]}
+      text="Start over"
     />
     <InsightsCommandButton
       ariaLabel="settings"
@@ -193,32 +119,6 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   className="commandBar"
 >
   <div
-    className="items"
-  >
-    <FlaggedComponent
-      disableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={false}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-    />
-  </div>
-  <div
     className="farItems"
   >
     <FlaggedComponent
@@ -255,27 +155,16 @@ exports[`CommandBar renders while status is <Default> 1`] = `
         }
       }
     />
-    <FlaggedComponent
-      disableJSXElement={null}
-      enableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={false}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
+    <InsightsCommandButton
+      data-automation-id="command-button-refresh"
+      disabled={false}
+      iconProps={
         Object {
-          "somefeatureflag": true,
+          "iconName": "Refresh",
         }
       }
+      onClick={[Function]}
+      text="Start over"
     />
     <InsightsCommandButton
       ariaLabel="settings"
@@ -299,32 +188,6 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   className="commandBar"
 >
   <div
-    className="items"
-  >
-    <FlaggedComponent
-      disableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={false}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-    />
-  </div>
-  <div
     className="farItems"
   >
     <FlaggedComponent
@@ -361,27 +224,16 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
         }
       }
     />
-    <FlaggedComponent
-      disableJSXElement={null}
-      enableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={false}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
+    <InsightsCommandButton
+      data-automation-id="command-button-refresh"
+      disabled={false}
+      iconProps={
         Object {
-          "somefeatureflag": true,
+          "iconName": "Refresh",
         }
       }
+      onClick={[Function]}
+      text="Start over"
     />
     <InsightsCommandButton
       ariaLabel="settings"
@@ -405,32 +257,6 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   className="commandBar"
 >
   <div
-    className="items"
-  >
-    <FlaggedComponent
-      disableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={true}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      enableJSXElement={null}
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-    />
-  </div>
-  <div
     className="farItems"
   >
     <FlaggedComponent
@@ -467,27 +293,16 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
         }
       }
     />
-    <FlaggedComponent
-      disableJSXElement={null}
-      enableJSXElement={
-        <InsightsCommandButton
-          data-automation-id="command-button-refresh"
-          disabled={true}
-          iconProps={
-            Object {
-              "iconName": "Refresh",
-            }
-          }
-          onClick={[Function]}
-          text="Start over"
-        />
-      }
-      featureFlag="leftNavBar"
-      featureFlagStoreData={
+    <InsightsCommandButton
+      data-automation-id="command-button-refresh"
+      disabled={true}
+      iconProps={
         Object {
-          "somefeatureflag": true,
+          "iconName": "Refresh",
         }
       }
+      onClick={[Function]}
+      text="Start over"
     />
     <InsightsCommandButton
       ariaLabel="settings"
