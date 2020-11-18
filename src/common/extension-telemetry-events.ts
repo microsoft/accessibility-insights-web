@@ -68,6 +68,7 @@ export const SCAN_INCOMPLETE_WARNINGS: string = 'scanIncompleteWarnings';
 export const ALL_URLS_PERMISSION_UPDATED: string = 'allUrlsPermissionUpdated';
 export const LEFT_NAV_PANEL_EXPANDED: string = 'leftNavPanelExpanded';
 export const NEEDS_REVIEW_TOGGLE: string = 'NeedsReviewToggled';
+export const NAVIGATE_TO_NEW_CARDS_VIEW: string = 'NavigateToNewCardsView';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
