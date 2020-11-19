@@ -23,11 +23,13 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
         let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
         let iconName = 'ChevronDown';
+        let ariaLabel = null;
 
         if (allCardsCollapsed) {
             expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
             iconName = 'ChevronRight';
+            ariaLabel = 'Expand all rules to show failed instances.';
         }
 
         return (
@@ -35,6 +37,7 @@ export const ExpandCollapseAllButton = NamedFC<ExpandCollapseAllButtonProps>(
                 iconProps={{ iconName }}
                 onClick={expandCollapseAllButtonHandler}
                 aria-expanded={!allCardsCollapsed}
+                aria-label={ariaLabel}
                 className={styles.expandCollapseAllButton}
             >
                 {buttonText}
