@@ -6,13 +6,11 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-        <span className=\\"targetPageTitle\\">
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+    <NewTabLinkWithTooltip tooltipContent=\\"Switch to target page: command-bar-test-tab-title\\" role=\\"link\\" className=\\"targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
+      <span className=\\"targetPageTitle\\">
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <CommandBarButtonsMenu renderExportReportButton={[Function]} renderSaveAssessmentButton={[Function]} featureFlagStoreData={{...}} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
   <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
@@ -34,30 +32,19 @@ exports[`DetailsViewCommandBar renders with export button, with save assessment,
     >
       Target page: 
     </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
     >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
+      <span
+        className="targetPageTitle"
       >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div
     className="detailsViewCommandButtons"
@@ -165,30 +152,19 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
     >
       Target page: 
     </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
     >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
+      <span
+        className="targetPageTitle"
       >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div
     className="detailsViewCommandButtons"
@@ -290,30 +266,19 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     >
       Target page: 
     </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
     >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
+      <span
+        className="targetPageTitle"
       >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div
     className="detailsViewCommandButtons"
@@ -414,13 +379,11 @@ exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-        <span className=\\"targetPageTitle\\">
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+    <NewTabLinkWithTooltip tooltipContent=\\"Switch to target page: command-bar-test-tab-title\\" role=\\"link\\" className=\\"targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
+      <span className=\\"targetPageTitle\\">
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
@@ -435,13 +398,11 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
     <span id=\\"switch-to-target\\">
       Target page: 
     </span>
-    <StyledTooltipHostBase content=\\"Switch to target page: command-bar-test-tab-title\\" styles={{...}}>
-      <StyledLinkBase role=\\"link\\" className=\\"insights-link targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
-        <span className=\\"targetPageTitle\\">
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+    <NewTabLinkWithTooltip tooltipContent=\\"Switch to target page: command-bar-test-tab-title\\" role=\\"link\\" className=\\"targetPageLink\\" onClick={[Function: proxy]} aria-label=\\"Switch to target page: command-bar-test-tab-title\\">
+      <span className=\\"targetPageTitle\\">
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
@@ -465,30 +426,19 @@ exports[`DetailsViewCommandBar renders without export button, with save assessme
     >
       Target page: 
     </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
     >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
+      <span
+        className="targetPageTitle"
       >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div
     className="detailsViewCommandButtons"
@@ -589,30 +539,19 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
     >
       Target page: 
     </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
     >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
+      <span
+        className="targetPageTitle"
       >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div
     className="detailsViewCommandButtons"
@@ -713,30 +652,19 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
     >
       Target page: 
     </span>
-    <StyledTooltipHostBase
-      content="Switch to target page: command-bar-test-tab-title"
-      styles={
-        Object {
-          "root": Object {
-            "display": "inline-block",
-            "minWidth": 0,
-          },
-        }
-      }
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
     >
-      <StyledLinkBase
-        aria-label="Switch to target page: command-bar-test-tab-title"
-        className="insights-link targetPageLink"
-        onClick={[Function]}
-        role="link"
+      <span
+        className="targetPageTitle"
       >
-        <span
-          className="targetPageTitle"
-        >
-          command-bar-test-tab-title
-        </span>
-      </StyledLinkBase>
-    </StyledTooltipHostBase>
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
   </div>
   <div>
     Export dialog

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { ContentLink } from 'views/content/content-link';
 import { ContentPage } from 'views/content/content-page';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 describe('ContentLink', () => {
@@ -70,7 +70,7 @@ describe('ContentLink', () => {
     it('reacts to a click', () => {
         const result = shallow(<ContentLink deps={deps} reference={contentPath} />);
 
-        result.find(NewTabLink).simulate('click');
+        result.find(NewTabLinkWithTooltip).simulate('click');
 
         expect(openContentPage).toBeCalledWith(undefined, contentPath);
     });

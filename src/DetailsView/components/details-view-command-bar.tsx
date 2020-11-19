@@ -40,6 +40,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;
@@ -117,16 +118,15 @@ export class DetailsViewCommandBar extends React.Component<
         return (
             <div className={styles.detailsViewTargetPage} aria-labelledby="switch-to-target">
                 <span id="switch-to-target">Target page:&nbsp;</span>
-                <TooltipHost content={tooltipContent} styles={hostStyles}>
-                    <Link
-                        role="link"
-                        className={css('insights-link', styles.targetPageLink)}
-                        onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
-                        aria-label={tooltipContent}
-                    >
-                        <span className={styles.targetPageTitle}>{targetPageTitle}</span>
-                    </Link>
-                </TooltipHost>
+                <NewTabLinkWithTooltip
+                    tooltipContent={tooltipContent}
+                    role="link"
+                    className={styles.targetPageLink}
+                    onClick={this.props.deps.detailsViewActionMessageCreator.switchToTargetTab}
+                    aria-label={tooltipContent}
+                >
+                    <span className={styles.targetPageTitle}>{targetPageTitle}</span>
+                </NewTabLinkWithTooltip>
             </div>
         );
     }

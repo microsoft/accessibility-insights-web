@@ -248,14 +248,18 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
       >
         <div>
           Version 1.0.4 | Powered by 
-          <a
-            class="ms-Link insights-link root-000"
-            href="https://www.npmjs.com/package/axe-core"
-            target="_blank"
-            title="Navigate to axe-core npm page"
+          <div
+            class="ms-TooltipHost insights-tooltip-host--{{CSS_MODULE_HASH}} root-000"
           >
-            axe-core
-          </a>
+            <a
+              aria-label="Navigate to axe-core npm page"
+              class="ms-Link insights-link root-000"
+              href="https://www.npmjs.com/package/axe-core"
+              target="_blank"
+            >
+              axe-core
+            </a>
+          </div>
            4.0.2
         </div>
       </div>
