@@ -22,7 +22,7 @@ import { ContentPageInfo } from 'electron/types/content-page-info';
 import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import * as styles from './command-bar.scss';
+import * as styles from './reflow-command-bar.scss';
 
 export type ReflowCommandBarDeps = {
     scanActionCreator: ScanActionCreator;

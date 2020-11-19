@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -42,7 +41,6 @@ describe('ResultsView', () => {
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
-        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await resultsView.waitForSelector(ResultsViewSelectors.leftNav);
         await scanForAccessibilityIssuesInAllModes(app);
     });
@@ -54,7 +52,6 @@ describe('ResultsView', () => {
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
         );
-        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
         await resultsView.waitForSelector(ResultsViewSelectors.leftNav);
         await resultsView.client.click(ResultsViewSelectors.nthTestInLeftNav(testIndex + 1));
         const title = await resultsView.client.getText('h1');
@@ -134,8 +131,6 @@ describe('ResultsView', () => {
     }
 
     const setupWindowForCommandBarReflowTest = async (mode: 'narrow' | 'wide'): Promise<void> => {
-        await app.setFeatureFlag(UnifiedFeatureFlags.leftNavBar, true);
-
         const width =
             mode === 'narrow'
                 ? narrowModeThresholds.collapseCommandBarThreshold - 2
