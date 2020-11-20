@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ReportNameGeneratorBuilder } from 'reports/report-name-generator-builder';
+import { FileNameBuilder } from 'common/filename-builder';
 
-describe('ReportNameGeneratorBuilder', () => {
-    const testObject = new ReportNameGeneratorBuilder();
+describe('FileNameBuilder', () => {
+    const testObject = new FileNameBuilder();
 
     it('generates single digit date', () => {
         const date = new Date(2018, 0, 1);
