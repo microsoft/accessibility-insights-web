@@ -5,17 +5,32 @@ import { It, Mock, Times } from 'typemoq';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';
 
-describe('HTMLElementUtilsTest', () => {
-    test('getContentWindow', () => {
-        const testObject = new HTMLElementUtils();
+describe('HTMLElementUtils', () => {
+    describe('getContentWindow', () => {
+        it('returns the frame.contentWindow property', () => {
+            const testObject = new HTMLElementUtils();
 
-        const frame = {
-            contentWindow: 'content-window',
-        } as any;
+            const frame = {
+                contentWindow: 'content-window',
+            } as any;
 
-        const result = testObject.getContentWindow(frame);
+            const result = testObject.getContentWindow(frame);
 
-        expect(result).toEqual(frame.contentWindow);
+            expect(result).toEqual(frame.contentWindow);
+        });
+
+        it.each([null, undefined])('returns null for %p frame', frame => {
+            const testObject = new HTMLElementUtils();
+            expect(testObject.getContentWindow(frame)).toBeNull();
+        });
+
+        it.each([null, undefined])('returns null for %p contentWindow', contentWindow => {
+            const testObject = new HTMLElementUtils();
+            const frame = {
+                contentWindow,
+            } as any;
+            expect(testObject.getContentWindow(frame)).toBeNull();
+        });
     });
 
     test('scrollIntoView', () => {

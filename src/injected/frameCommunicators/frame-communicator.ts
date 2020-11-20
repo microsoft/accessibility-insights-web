@@ -40,25 +40,25 @@ export class FrameCommunicator {
             this.subscribe(
                 FrameCommunicator.PingCommand,
                 (
-                    data: any,
-                    error: ErrorMessageContent,
+                    result: any | undefined,
+                    error: ErrorMessageContent | undefined,
                     messageSourceWindow: Window,
-                    callback: Function,
+                    responder?: FrameMessageResponseCallback,
                 ) => {
-                    this.invokeMethodIfExists(callback, data);
+                    this.invokeMethodIfExists(responder, result);
                 },
             );
 
             this.subscribe(
                 FrameCommunicator.DisposeCommand,
                 (
-                    data: any,
-                    error: ErrorMessageContent,
+                    result: any | undefined,
+                    error: ErrorMessageContent | undefined,
                     messageSourceWindow: Window,
-                    callback: Function,
+                    responder?: FrameMessageResponseCallback,
                 ) => {
                     this.dispose().then(() => {
-                        this.invokeMethodIfExists(callback, data);
+                        this.invokeMethodIfExists(responder, result);
                     });
                 },
             );
@@ -150,7 +150,7 @@ export class FrameCommunicator {
     private doesFrameSupportScripting(frame: HTMLIFrameElement): boolean {
         return (
             !frame.hasAttribute('sandbox') ||
-            frame.getAttribute('sandbox').toLocaleLowerCase().lastIndexOf('allow-scripts') >= 0
+            frame.getAttribute('sandbox')!.toLocaleLowerCase().lastIndexOf('allow-scripts') >= 0
         );
     }
 
@@ -171,7 +171,7 @@ export class FrameCommunicator {
         return this.q.timeout(promise, timeOut);
     }
 
-    private invokeMethodIfExists(method: Function, data?: any): void {
+    private invokeMethodIfExists(method?: Function, data?: any): void {
         if (method) {
             method(data);
         }

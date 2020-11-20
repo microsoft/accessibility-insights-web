@@ -23,7 +23,7 @@ async function main() {
 
     for (let pass = 1; ; pass += 1) {
         let successesThisPass = 0;
-        const uncheckedLeafFiles = await getUncheckedLeafFiles(repoRoot);
+        const uncheckedLeafFiles = await getUncheckedLeafFiles();
         const candidateFiles = uncheckedLeafFiles.filter(f => !alreadyAttempted.has(f));
         const candidateCount = candidateFiles.length;
         console.log(`## Starting pass ${pass} with ${candidateCount} candidate files`);

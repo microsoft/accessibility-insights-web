@@ -31,6 +31,8 @@ export interface ReportExportComponentState {
     exportData: string;
 }
 
+export const exportReportCommandBarButtonId = 'export-report-command-bar-button';
+
 export class ReportExportComponent extends React.Component<
     ReportExportComponentProps,
     ReportExportComponentState
@@ -77,6 +79,7 @@ export class ReportExportComponent extends React.Component<
         return (
             <>
                 <InsightsCommandButton
+                    data-automation-id={exportReportCommandBarButtonId}
                     iconProps={{ iconName: 'Export' }}
                     onClick={this.onExportButtonClick}
                 >

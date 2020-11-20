@@ -29,23 +29,26 @@ export abstract class ViewController {
                 async () => {
                     return (await this.client.$$(selector)).length === expectedNumber;
                 },
-                timeout,
-                `expected to find ${expectedNumber} matches for selector ${selector} within ${timeout}ms`,
+                {
+                    timeout,
+                    timeoutMsg: `expected to find ${expectedNumber} matches for selector ${selector} within ${timeout}ms`,
+                },
             );
         });
     }
 
+    // Webdriver waits the full implicit waitForTimeout before returning not-found.
+    // This means we need to wrap the waitForExist call with a longer timeout when
+    // reverse is true. See webdriverio@2082 and ai-web@3599.
     public async waitForSelectorToDisappear(
         selector: string,
-        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
+        timeout: number = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS * 2,
     ): Promise<void> {
         await this.screenshotOnError(async () =>
-            this.client.waitUntil(
-                async () => {
-                    const selected = await this.client.$(selector);
-                    return selected.value === null;
-                },
+            this.client.waitForExist(
+                selector,
                 timeout,
+                true,
                 `was expecting element by selector ${selector} to disappear`,
             ),
         );

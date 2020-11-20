@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { ColumnValue } from 'common/types/property-bag/column-value-bag';
-import { HyperlinkDefinition } from 'views/content/content-page';
 
 import { RequirementOutcomeStats } from './components/requirement-outcome-type';
 

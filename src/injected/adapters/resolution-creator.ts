@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { DictionaryStringTo } from 'types/common-types';
-import { AxeNodeResult } from '../../scanner/iruleresults';
 
 export type ResolutionCreator = (data: ResolutionCreatorData) => DictionaryStringTo<any>;
 
@@ -13,7 +11,7 @@ export interface NodeResolutionData {
 }
 
 export interface ResolutionCreatorData {
-    id: string;
+    ruleId: string;
     nodeResult: NodeResolutionData;
 }
 
@@ -29,6 +27,9 @@ export const getFixResolution: ResolutionCreator = (data: ResolutionCreatorData)
 
 export const getCheckResolution: ResolutionCreator = (data: ResolutionCreatorData) => {
     return {
-        'how-to-check-web': data.id,
+        richResolution: {
+            labelType: 'check',
+            contentId: `web/${data.ruleId}`,
+        },
     };
 };

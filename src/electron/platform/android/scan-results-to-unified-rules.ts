@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { AndroidScanResults } from './android-scan-results';
@@ -30,7 +29,7 @@ export function convertScanResultsToUnifiedRules(
         if (!ruleIds.has(ruleId)) {
             const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
 
-            if (ruleInformation && ruleInformation.includeThisResult(result)) {
+            if (ruleInformation) {
                 unifiedRules.push(createUnifiedRuleFromRuleResult(ruleInformation, uuidGenerator));
                 ruleIds.add(ruleId);
             }

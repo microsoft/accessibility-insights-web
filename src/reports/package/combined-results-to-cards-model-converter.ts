@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { CardSelectionViewData } from "common/get-card-selection-view-data";
+import { GuidanceLink } from "common/guidance-links";
 import { CardResult, CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from "common/types/store-data/card-view-model";
 import { UUIDGenerator } from "common/uid-generator";
 import { ResolutionCreator } from "injected/adapters/resolution-creator";
@@ -9,7 +10,6 @@ import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-
 import { isNil } from "lodash";
 import { AxeRuleData, FailureData, FailuresGroup, GroupedResults } from "reports/package/accessibilityInsightsReport";
 import { HelpUrlGetter } from "scanner/help-url-getter";
-import { GuidanceLink } from "scanner/rule-to-links-mappings";
 
 export class CombinedResultsToCardsModelConverter {
     constructor(
@@ -90,7 +90,7 @@ export class CombinedResultsToCardsModelConverter {
             },
             resolution: {
                 howToFixSummary: failureData.fix.failureSummary,
-                ...this.getFixResolution({ id: rule.ruleId, nodeResult: failureData.fix}),
+                ...this.getFixResolution({ ruleId: rule.ruleId, nodeResult: failureData.fix}),
             },
             isSelected: false,
             highlightStatus: 'unavailable',

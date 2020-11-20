@@ -27,6 +27,7 @@ describe('ScreenshotContainer', () => {
         const highlightBoxViewModels: HighlightBoxViewModel[] = [
             {
                 resultUid: 'result-1',
+                label: null,
                 top: 'top-1',
                 left: 'left-1',
                 width: 'width-1',
@@ -34,6 +35,7 @@ describe('ScreenshotContainer', () => {
             },
             {
                 resultUid: 'result-2',
+                label: '!',
                 top: 'top-2',
                 left: 'left-2',
                 width: 'width-2',

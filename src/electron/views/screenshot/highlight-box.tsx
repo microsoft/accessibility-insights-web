@@ -21,6 +21,8 @@ export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => 
         top: viewModel.top,
         left: viewModel.left,
     };
+    const renderedLabel =
+        viewModel.label == null ? null : <div className={highlightBoxLabel}>{viewModel.label}</div>;
 
     return (
         <div
@@ -29,7 +31,7 @@ export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => 
             aria-hidden="true"
             data-automation-id={highlightBoxAutomationId}
         >
-            <div className={highlightBoxLabel}>!</div>
+            {renderedLabel}
         </div>
     );
 });

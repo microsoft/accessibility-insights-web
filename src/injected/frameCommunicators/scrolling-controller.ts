@@ -27,12 +27,12 @@ export class ScrollingController {
     }
 
     private onTriggerScrolling = (
-        message: ScrollingWindowMessage,
-        error: ErrorMessageContent,
-        sourceWin: Window,
+        result: any | undefined,
+        error: ErrorMessageContent | undefined,
+        messageSourceWindow: Window,
         responder?: FrameMessageResponseCallback,
     ): void => {
-        this.processRequest(message);
+        this.processRequest(result);
     };
 
     public processRequest(message: ScrollingWindowMessage): void {
@@ -48,8 +48,10 @@ export class ScrollingController {
     }
 
     private scrollElementInCurrentFrame(selector: string): void {
-        const targetElement: Element = this.htmlElementUtils.querySelector(selector);
-        this.htmlElementUtils.scrollInToView(targetElement);
+        const targetElement: Element | null = this.htmlElementUtils.querySelector(selector);
+        if (targetElement != null) {
+            this.htmlElementUtils.scrollInToView(targetElement);
+        }
     }
 
     private scrollElementInIFrames(focusedTarget: string[], frame: HTMLIFrameElement): void {

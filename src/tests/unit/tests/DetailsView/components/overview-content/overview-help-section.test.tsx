@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { HyperlinkDefinition } from 'views/content/content-page';
-
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import {
     OverviewHelpSection,
     OverviewHelpSectionDeps,
     OverviewHelpSectionProps,
-} from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+} from 'DetailsView/components/overview-content/overview-help-section';
 
 describe('OverviewHelpSection', () => {
     test('help text is shown properly', () => {

@@ -3,11 +3,18 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
+import {
+    SaveAssessmentButton,
+    SaveAssessmentButtonProps,
+} from 'DetailsView/components/save-assessment-button';
 
 describe('SaveAssessmentButton', () => {
+    let props: SaveAssessmentButtonProps;
+
     it('should render per the snapshot', () => {
-        const rendered = shallow(<SaveAssessmentButton />);
+        const rendered = shallow(
+            <SaveAssessmentButton {...props} download={'download'} href={'url'} />,
+        );
 
         expect(rendered.getElement()).toMatchSnapshot();
     });

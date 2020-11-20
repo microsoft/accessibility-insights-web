@@ -1,0 +1,514 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <CommandBarButtonsMenu
+      buttonRef={[Function]}
+      getStartOverMenuItem={[Function]}
+      renderExportReportButton={[Function]}
+    />
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export report 1`] = `
+<ReportExportComponent
+  deps={
+    Object {
+      "reportGenerator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentReportHtmlGenerator": undefined,
+        "reportHtmlGenerator": undefined,
+        "reportNameGenerator": undefined,
+      },
+      "scanActionCreator": null,
+    }
+  }
+  featureFlagStoreData={
+    Object {
+      "somefeatureflag": true,
+    }
+  }
+  getExportDescription={[Function]}
+  htmlGenerator={[Function]}
+  onDialogDismiss={[Function]}
+  pageTitle="scan target name"
+  reportExportFormat="AutomatedChecks"
+  scanDate={1970-01-01T00:00:00.000Z}
+  updatePersistedDescription={[Function]}
+/>
+`;
+
+exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <FastPassLeftNavHamburgerButton
+    className="navMenu"
+    isSideNavOpen={true}
+    setSideNavOpen={[Function]}
+  />
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={
+          <ReportExportComponent
+            deps={
+              Object {
+                "reportGenerator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
+                },
+                "scanActionCreator": null,
+              }
+            }
+            featureFlagStoreData={
+              Object {
+                "somefeatureflag": true,
+              }
+            }
+            getExportDescription={[Function]}
+            htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
+            pageTitle="scan target name"
+            reportExportFormat="AutomatedChecks"
+            scanDate={1970-01-01T00:00:00.000Z}
+            updatePersistedDescription={[Function]}
+          />
+        }
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={true}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar renders does not create report export when allowsExportReport is false 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={null}
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={true}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar renders does not create report export when scan metadata is null 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={null}
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={true}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar renders while status is <Completed> 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={
+          <ReportExportComponent
+            deps={
+              Object {
+                "reportGenerator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
+                },
+                "scanActionCreator": null,
+              }
+            }
+            featureFlagStoreData={
+              Object {
+                "somefeatureflag": true,
+              }
+            }
+            getExportDescription={[Function]}
+            htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
+            pageTitle="scan target name"
+            reportExportFormat="AutomatedChecks"
+            scanDate={1970-01-01T00:00:00.000Z}
+            updatePersistedDescription={[Function]}
+          />
+        }
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={false}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar renders while status is <Default> 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={
+          <ReportExportComponent
+            deps={
+              Object {
+                "reportGenerator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
+                },
+                "scanActionCreator": null,
+              }
+            }
+            featureFlagStoreData={
+              Object {
+                "somefeatureflag": true,
+              }
+            }
+            getExportDescription={[Function]}
+            htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
+            pageTitle="scan target name"
+            reportExportFormat="AutomatedChecks"
+            scanDate={1970-01-01T00:00:00.000Z}
+            updatePersistedDescription={[Function]}
+          />
+        }
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={false}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar renders while status is <Failed> 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={
+          <ReportExportComponent
+            deps={
+              Object {
+                "reportGenerator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
+                },
+                "scanActionCreator": null,
+              }
+            }
+            featureFlagStoreData={
+              Object {
+                "somefeatureflag": true,
+              }
+            }
+            getExportDescription={[Function]}
+            htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
+            pageTitle="scan target name"
+            reportExportFormat="AutomatedChecks"
+            scanDate={1970-01-01T00:00:00.000Z}
+            updatePersistedDescription={[Function]}
+          />
+        }
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={false}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;
+
+exports[`ReflowCommandBar renders while status is <Scanning> 1`] = `
+<section
+  aria-label="command bar"
+  className="commandBar"
+>
+  <div
+    className="farItems reflow"
+  >
+    <React.Fragment>
+      <FlaggedComponent
+        enableJSXElement={
+          <ReportExportComponent
+            deps={
+              Object {
+                "reportGenerator": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentReportHtmlGenerator": undefined,
+                  "reportHtmlGenerator": undefined,
+                  "reportNameGenerator": undefined,
+                },
+                "scanActionCreator": null,
+              }
+            }
+            featureFlagStoreData={
+              Object {
+                "somefeatureflag": true,
+              }
+            }
+            getExportDescription={[Function]}
+            htmlGenerator={[Function]}
+            onDialogDismiss={[Function]}
+            pageTitle="scan target name"
+            reportExportFormat="AutomatedChecks"
+            updatePersistedDescription={[Function]}
+          />
+        }
+        featureFlag="exportReport"
+        featureFlagStoreData={
+          Object {
+            "somefeatureflag": true,
+          }
+        }
+      />
+      <InsightsCommandButton
+        data-automation-id="command-button-refresh"
+        disabled={true}
+        iconProps={
+          Object {
+            "iconName": "Refresh",
+          }
+        }
+        onClick={[Function]}
+        text="Start over"
+      />
+    </React.Fragment>
+    <InsightsCommandButton
+      ariaLabel="settings"
+      className="settingsGearButton"
+      data-automation-id="command-button-settings"
+      iconProps={
+        Object {
+          "className": "settingsGearButtonIcon",
+          "iconName": "Gear",
+        }
+      }
+      onClick={[Function]}
+    />
+  </div>
+</section>
+`;

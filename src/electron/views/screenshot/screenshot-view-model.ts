@@ -8,6 +8,7 @@ export type HighlightBoxViewModel = {
     top: string;
     width: string;
     height: string;
+    label: string | null;
 };
 
 export type ScreenshotViewModel = {

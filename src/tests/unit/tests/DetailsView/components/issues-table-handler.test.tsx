@@ -60,7 +60,7 @@ describe('IssuesTableHandlerTests', () => {
                 id: 'id2',
                 nodes: [node3],
                 description: 'des2',
-                help: 'help2',
+                help: undefined, // should cause resulting group name to fall back to id
                 guidanceLinks: [
                     {
                         text: 'text2',
@@ -110,7 +110,7 @@ describe('IssuesTableHandlerTests', () => {
             {
                 key: 'id2',
                 isCollapsed: true,
-                name: 'help2',
+                name: 'id2', // no help text, so should fall back to rule ID
                 startIndex: 2,
                 count: 1,
                 guidanceLinks: [

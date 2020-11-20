@@ -72,6 +72,7 @@
         --nav-link-selected: var(--communication-tint-20);
         --nav-link-expanded: var(--communication-tint-40);
         --insights-button-hover: #0179d4;
+        --report-footer-text: #222222;
         --landmark-contentinfo: #00a88c;
         --landmark-main: #cb2e6d;
         --landmark-complementary: #6b9d1a;
@@ -162,6 +163,9 @@
       .insights-link:hover {
         color: var(--link-hover) !important;
         text-decoration: underline;
+      }
+      .insights-code {
+        font-family: Menlo, Consolas, Courier New, monospace;
       }
       .ms-Spinner .ms-Spinner-circle {
         border-top-color: var(--spinner-text);
@@ -286,11 +290,11 @@
         white-space: pre-wrap;
       }
       .outcome-summary-bar .block,
-      .outcome-summary-bar .fail,
-      .outcome-summary-bar .pass,
+      .outcome-summary-bar .incomplete,
       .outcome-summary-bar .inapplicable,
       .outcome-summary-bar .unscannable,
-      .outcome-summary-bar .incomplete {
+      .outcome-summary-bar .pass,
+      .outcome-summary-bar .fail {
         font-family: "Segoe UI Web (West European)", "Segoe UI", "-apple-system",
           BlinkMacSystemFont, Roboto, "Helvetica Neue", Helvetica, Ubuntu, Arial,
           sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -623,10 +627,7 @@
       }
       .report-footer-container .report-footer {
         line-height: 20px;
-        color: var(--secondary-text);
-      }
-      .report-footer-container .report-footer .tool-name-link {
-        color: var(--secondary-text) !important;
+        color: var(--report-footer-text);
       }
       @media only screen and (max-width: 1000px) {
         .report-footer-container {
@@ -720,8 +721,9 @@
         padding-right: 16px;
         position: relative;
       }
-      .collapsible-container .collapsible-control[aria-expanded="false"]:before,
-      .collapsible-container .collapsible-control[aria-expanded="true"]:before {
+      .collapsible-container .collapsible-control[aria-expanded="true"]:before,
+      .collapsible-container
+        .collapsible-control[aria-expanded="false"]:before {
         display: inline-block;
         border-right: 1px solid var(--secondary-text);
         border-bottom: 1px solid var(--secondary-text);
@@ -887,21 +889,21 @@
         align-items: flex-end;
         display: flex;
       }
-      .multi-line-text-no-bullet--3igrU {
+      .multi-line-text-no-bullet--2GwgV {
         padding-left: 0;
         list-style: none;
       }
-      .multi-line-text-no-bullet--3igrU li:not(:last-child) {
+      .multi-line-text-no-bullet--2GwgV li:not(:last-child) {
         margin-bottom: 4px;
       }
-      .multi-line-text-yes-bullet--ebJpE {
+      .multi-line-text-yes-bullet--1hYdz {
         padding-left: 16px;
       }
-      .multi-line-text-yes-bullet--ebJpE li {
+      .multi-line-text-yes-bullet--1hYdz li {
         list-style-type: disc;
         margin-bottom: 4px;
       }
-      .combination-lists--2hRoK {
+      .combination-lists--R7b8i {
         flex-direction: column;
         display: flex;
       }
@@ -1146,9 +1148,6 @@
       .rule-details-group--39A1d .rule-detail .rule-detail-description {
         color: var(--secondary-text) !important;
         word-break: break-all;
-      }
-      .rule-details-group--39A1d .rule-detail .guidance-links a {
-        color: var(--secondary-text) !important;
       }
       .collapsible-rule-details-group--3aN3u {
         box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);

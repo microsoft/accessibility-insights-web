@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
+import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
+import { create } from 'content/common';
 import { createMarkup } from 'views/content/markup';
-import { create } from '../../../../../../src/content/common';
-import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 
 describe('ContentPage', () => {
     const contentActionMessageCreatorMock = Mock.ofType<ContentActionMessageCreator>();

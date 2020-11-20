@@ -76,12 +76,9 @@ describe('ScanResultsToUnifiedRules', () => {
         const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3, 'rule-link-3', [
             link.WCAG_1_1_1,
         ]);
-        const ruleInformation4: RuleInformation = buildRuleInformation(
-            ruleId4,
-            'rule-link-4',
-            [link.WCAG_1_2_1],
-            false,
-        );
+        const ruleInformation4: RuleInformation = buildRuleInformation(ruleId4, 'rule-link-4', [
+            link.WCAG_1_2_1,
+        ]);
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock

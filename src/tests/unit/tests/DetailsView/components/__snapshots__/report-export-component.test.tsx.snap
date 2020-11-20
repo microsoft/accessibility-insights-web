@@ -3,6 +3,7 @@
 exports[`ReportExportComponentTest render 1`] = `
 <React.Fragment>
   <InsightsCommandButton
+    data-automation-id="export-report-command-bar-button"
     iconProps={
       Object {
         "iconName": "Export",
@@ -44,6 +45,7 @@ exports[`ReportExportComponentTest render 1`] = `
 exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
   <InsightsCommandButton
+    data-automation-id="export-report-command-bar-button"
     iconProps={
       Object {
         "iconName": "Export",
@@ -84,6 +86,7 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
 exports[`ReportExportComponentTest user interactions dismiss dialog: dialog should be dismissed 1`] = `
 <React.Fragment>
   <InsightsCommandButton
+    data-automation-id="export-report-command-bar-button"
     iconProps={
       Object {
         "iconName": "Export",
@@ -124,6 +127,7 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
 exports[`ReportExportComponentTest user interactions edit text field: test content with special characters: <> $ " \` ' 1`] = `
 <React.Fragment>
   <InsightsCommandButton
+    data-automation-id="export-report-command-bar-button"
     iconProps={
       Object {
         "iconName": "Export",

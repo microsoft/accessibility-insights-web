@@ -321,6 +321,7 @@ export class MainWindowInitializer extends WindowInitializer {
             unifiedResultSender.sendAutomatedChecksResults,
             unifiedResultSender.sendNeedsReviewResults,
             scanIncompleteWarningDetector,
+            logger,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(

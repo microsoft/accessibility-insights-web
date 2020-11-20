@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HowToFixWebPropertyData } from 'common/components/cards/how-to-fix-card-row';
+import { GuidanceLink } from 'common/guidance-links';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
-import { GuidanceLink } from 'scanner/rule-to-links-mappings';
 import { exampleUnifiedResult } from 'tests/unit/tests/common/components/cards/sample-view-model-data';
 
 describe('GetDecoratedAxeNodeResult', () => {
@@ -54,7 +54,7 @@ describe('GetDecoratedAxeNodeResult', () => {
         const unifiedResult: UnifiedResult = exampleUnifiedResult;
         unifiedResult.resolution = {
             howToFixSummary: 'sample how to fix summary',
-            'how-to-check-web': 'sample how to check text',
+            richHowToCheck: 'sample how to check text',
         };
         const unifiedRule: UnifiedRule = {
             id: 'some rule',

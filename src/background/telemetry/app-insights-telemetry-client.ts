@@ -51,7 +51,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
 
         this.initialized = true;
 
-        this.appInsights.downloadAndSetup({
+        this.appInsights.downloadAndSetup!({
             instrumentationKey: config.getOption('appInsightsInstrumentationKey'),
             disableAjaxTracking: true,
             // start with telemetry disabled, to avoid sending past queued telemetry data

@@ -4,7 +4,6 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
-import { leftNavSwitcherStyleNames } from 'DetailsView/components/switcher-style-names';
 import { mapValues } from 'lodash';
 import { INav } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -65,11 +64,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
 
     const leftNav: JSX.Element = (
         <div className={`${styles.leftNav} main-nav`}>
-            <Switcher
-                deps={props.deps}
-                pivotKey={props.selectedPivot}
-                styles={leftNavSwitcherStyleNames}
-            />
+            <Switcher deps={props.deps} pivotKey={props.selectedPivot} />
             <switcherNavConfiguration.LeftNav
                 deps={deps}
                 assessmentsProvider={filteredProvider}

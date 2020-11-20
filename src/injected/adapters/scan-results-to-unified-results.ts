@@ -126,7 +126,7 @@ export class ConvertScanResultsToUnifiedResults {
             },
             resolution: {
                 howToFixSummary: nodeResult.failureSummary,
-                ...getResolution({ id: ruleResultData.ruleID, nodeResult: nodeResult }),
+                ...getResolution({ ruleId: ruleResultData.ruleID, nodeResult: nodeResult }),
             },
         };
     };

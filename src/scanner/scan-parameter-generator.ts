@@ -18,11 +18,11 @@ export class ScanParameterGenerator {
         };
 
         if (options == null || options.testsToRun == null) {
-            result.runOnly.values = Object.keys(this.rulesIncluded).filter(
+            result.runOnly!.values = Object.keys(this.rulesIncluded).filter(
                 id => this.rulesIncluded[id].status === 'included',
             );
         } else {
-            result.runOnly.values = options.testsToRun;
+            result.runOnly!.values = options.testsToRun;
         }
 
         return result;

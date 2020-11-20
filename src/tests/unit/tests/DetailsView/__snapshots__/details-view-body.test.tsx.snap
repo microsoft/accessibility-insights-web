@@ -181,7 +181,7 @@ exports[`DetailsViewBody render render 1`] = `
       visualizationStoreData={
         Object {
           "focusedTarget": null,
-          "injectingInProgress": null,
+          "injectingRequested": false,
           "injectingStarted": false,
           "scanning": null,
           "selectedAdhocDetailsView": 1,
@@ -485,7 +485,7 @@ exports[`DetailsViewBody render render 1`] = `
         visualizationStoreData={
           Object {
             "focusedTarget": null,
-            "injectingInProgress": null,
+            "injectingRequested": false,
             "injectingStarted": false,
             "scanning": null,
             "selectedAdhocDetailsView": 1,
@@ -796,7 +796,7 @@ exports[`DetailsViewBody render render 1`] = `
             visualizationStoreData={
               Object {
                 "focusedTarget": null,
-                "injectingInProgress": null,
+                "injectingRequested": false,
                 "injectingStarted": false,
                 "scanning": null,
                 "selectedAdhocDetailsView": 1,

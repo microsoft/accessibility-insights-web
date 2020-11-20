@@ -1,18 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { Message } from '../../../../../common/message';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../../common/window-utils';
-import {
-    FocusAnalyzerConfiguration,
-    ScanBasePayload,
-} from '../../../../../injected/analyzers/analyzer';
-import { TabStopsAnalyzer } from '../../../../../injected/analyzers/tab-stops-analyzer';
-import { TabStopEvent, TabStopsListener } from '../../../../../injected/tab-stops-listener';
-import { itIsFunction } from '../../../common/it-is-function';
+import { Message } from 'common/message';
+import { VisualizationType } from 'common/types/visualization-type';
+import { WindowUtils } from 'common/window-utils';
+import { FocusAnalyzerConfiguration, ScanBasePayload } from 'injected/analyzers/analyzer';
+import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
+import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabStopEvent, TabStopsListener } from 'injected/tab-stops-listener';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
+import { itIsFunction } from 'tests/unit/common/it-is-function';
 
 describe('TabStopsAnalyzer', () => {
     let windowUtilsMock: IMock<WindowUtils>;
@@ -50,6 +48,7 @@ describe('TabStopsAnalyzer', () => {
             windowUtilsMock.object,
             sendMessageMock.object,
             scanIncompleteWarningDetectorMock.object,
+            failTestOnErrorLogger,
         );
         typeStub = -1 as VisualizationType;
     });
