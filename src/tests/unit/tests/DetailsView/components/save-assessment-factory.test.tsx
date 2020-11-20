@@ -21,6 +21,8 @@ describe('SaveAssessmentFactory', () => {
     const fileURLProviderMock = Mock.ofType(FileURLProvider);
     const assessmentDataFormatterMock = Mock.ofType(AssessmentDataFormatter);
     const fileNameBuilderMock = Mock.ofType(FileNameBuilder);
+    const getCurrentDateStub = () => dateValue;
+    const dateValue = new Date(2020, 11, 20);
 
     beforeEach(() => {
         const assessmentStoreData = {
@@ -50,6 +52,7 @@ describe('SaveAssessmentFactory', () => {
             assessmentDataFormatter: assessmentDataFormatterMock.object,
             fileURLProvider: fileURLProviderMock.object,
             fileNameBuilder: fileNameBuilderMock.object,
+            getCurrentDate: getCurrentDateStub,
         } as SaveAssessmentFactoryDeps;
         props = {
             deps,
@@ -61,7 +64,6 @@ describe('SaveAssessmentFactory', () => {
         test('renders save assessment button', () => {
             const assessmentData = props.assessmentStoreData.assessments;
             const formattedAssessmentData = JSON.stringify(assessmentData);
-            const currentDate = new Date();
             const title = props.assessmentStoreData.persistedTabInfo.title;
 
             assessmentDataFormatterMock
@@ -74,7 +76,7 @@ describe('SaveAssessmentFactory', () => {
                 .returns(() => 'fileURL')
                 .verifiable(Times.once());
 
-            fileNameBuilderMock.setup(f => f.getDateSegment(currentDate)).returns(() => 'date');
+            fileNameBuilderMock.setup(f => f.getDateSegment(dateValue)).returns(() => 'date');
 
             fileNameBuilderMock.setup(f => f.getTitleSegment(title)).returns(() => 'title');
 

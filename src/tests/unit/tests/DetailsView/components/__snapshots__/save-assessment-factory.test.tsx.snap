@@ -2,7 +2,7 @@
 
 exports[`SaveAssessmentFactory getSaveButtonForAssessment renders save assessment button 1`] = `
 <SaveAssessmentButton
-  download="SavedAssessment_<undefined>_title.a11yextension"
+  download="SavedAssessment_date_title.a11ywebassessment"
   href="fileURL"
 />
 `;
