@@ -3,6 +3,7 @@
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
 <CustomizedActionButton
   aria-expanded={true}
+  aria-label={null}
   className="expandCollapseAllButton"
   iconProps={
     Object {
@@ -18,6 +19,7 @@ exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed fal
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed true 1`] = `
 <CustomizedActionButton
   aria-expanded={false}
+  aria-label="Expand all rules to show failed instances."
   className="expandCollapseAllButton"
   iconProps={
     Object {
