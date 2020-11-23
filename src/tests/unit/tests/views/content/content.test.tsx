@@ -9,9 +9,9 @@ import { ContentProvider } from 'views/content/content-page';
 describe('content', () => {
     it('renders', () => {
         const contentFromReference = jest.fn().mockReturnValue('THE-CONTENT');
-        const contentProvider = ({ contentFromReference } as Partial<
-            ContentProvider
-        >) as ContentProvider;
+        const contentProvider = ({
+            contentFromReference,
+        } as Partial<ContentProvider>) as ContentProvider;
         const deps = ({ contentProvider } as Partial<ContentDeps>) as ContentDeps;
 
         const component = <Content deps={deps} reference="content/path" />;

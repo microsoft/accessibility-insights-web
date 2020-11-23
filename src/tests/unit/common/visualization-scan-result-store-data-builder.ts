@@ -10,9 +10,7 @@ import { HtmlElementAxeResults } from '../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<
-    VisualizationScanResultData
-> {
+export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
     constructor() {
         super();
         this.data = new VisualizationScanResultStore(null, null).getDefaultState();

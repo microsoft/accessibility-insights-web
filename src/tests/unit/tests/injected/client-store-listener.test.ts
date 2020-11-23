@@ -12,9 +12,9 @@ describe('ClientStoreListener', () => {
     describe('initialize', () => {
         let testSubject: ClientStoreListener;
         let storeHubMock: IMock<BaseClientStoresHub<TargetPageStoreData>>;
-        let onReadyToExecuteVisualizationUpdatesMock: IMock<(
-            storeData: TargetPageStoreData,
-        ) => void>;
+        let onReadyToExecuteVisualizationUpdatesMock: IMock<
+            (storeData: TargetPageStoreData) => void
+        >;
         let triggerOnChange: () => void;
 
         beforeEach(() => {

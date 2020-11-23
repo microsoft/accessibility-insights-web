@@ -34,10 +34,9 @@ describe('ScopingListenerTest', () => {
     let onClickProcessRequestPromiseCallback: (path: SingleElementSelector) => void;
     let onClick: (event: MouseEvent) => void;
     let addEventListenerMock: IMock<(event: string, callback: (event: MouseEvent) => void) => void>;
-    let removeEventListenerMock: IMock<(
-        event: string,
-        callback: (event: MouseEvent) => void,
-    ) => void>;
+    let removeEventListenerMock: IMock<
+        (event: string, callback: (event: MouseEvent) => void) => void
+    >;
     let createElementMock: IMock<(tagName: string) => HTMLElement>;
     let dom: Document;
     let elementStub: HTMLElement;

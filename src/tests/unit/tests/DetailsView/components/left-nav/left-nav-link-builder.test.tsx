@@ -39,9 +39,9 @@ describe('LeftNavBuilder', () => {
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
     let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
-    let outcomeStatsFromManualTestStatusMock: IMock<(
-        testStepStatus: ManualTestStatusData,
-    ) => RequirementOutcomeStats>;
+    let outcomeStatsFromManualTestStatusMock: IMock<
+        (testStepStatus: ManualTestStatusData) => RequirementOutcomeStats
+    >;
     let navLinkHandlerMock: IMock<NavLinkHandler>;
     let navLinkRendererMock: IMock<NavLinkRenderer>;
     let onRightPanelContentSwitchMock: IMock<() => void>;

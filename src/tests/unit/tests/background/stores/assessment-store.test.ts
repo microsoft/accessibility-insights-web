@@ -99,9 +99,7 @@ describe('AssessmentStore', () => {
             .returns(step => getDefaultManualTestStepResult(step));
 
         indexDBInstanceMock = Mock.ofType<IndexedDBAPI>(undefined, MockBehavior.Strict);
-        initialAssessmentStoreDataGeneratorMock = Mock.ofType<
-            InitialAssessmentStoreDataGenerator
-        >();
+        initialAssessmentStoreDataGeneratorMock = Mock.ofType<InitialAssessmentStoreDataGenerator>();
     });
 
     afterEach(() => {

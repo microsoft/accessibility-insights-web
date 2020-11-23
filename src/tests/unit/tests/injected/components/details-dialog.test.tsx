@@ -163,9 +163,7 @@ describe('DetailsDialog', () => {
             test.each(shadowDialogEnabled)(
                 'on click copy issue details button, shadow dialog: %s',
                 shadowDialog => {
-                    const targetPageActionMessageCreatorMock = Mock.ofType<
-                        TargetPageActionMessageCreator
-                    >();
+                    const targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>();
 
                     const deps = {
                         ...defaultDetailsDialogDeps,
