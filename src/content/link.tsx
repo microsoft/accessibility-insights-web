@@ -7,6 +7,10 @@ export const link = {
     WCAG_1_1_1: guidanceLinkTo('WCAG 1.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html'),
     WCAG_1_2_1: guidanceLinkTo('WCAG 1.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded'),
     WCAG_1_2_2: guidanceLinkTo('WCAG 1.2.2', 'https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html'),
+    WCAG_1_2_3: guidanceLinkTo(
+        'WCAG 1.2.3',
+        'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded',
+    ),
     WCAG_1_2_4: guidanceLinkTo('WCAG 1.2.4', 'https://www.w3.org/WAI/WCAG21/Understanding/captions-live.html'),
     WCAG_1_2_5: guidanceLinkTo('WCAG 1.2.5', 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded'),
     WCAG_1_3_1: guidanceLinkTo('WCAG 1.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships'),
