@@ -26,6 +26,7 @@ import {
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
+import { LoadAssessmentButton } from 'DetailsView/components/load-assessment-button';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -143,12 +144,14 @@ export class DetailsViewCommandBar extends React.Component<
         const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
         const saveAssessmentElement: JSX.Element | null = this.renderSaveAssessmentButton();
+        const loadAssessmentElement: JSX.Element | null = this.renderLoadAssessmentButton();
 
-        if (reportExportElement || saveAssessmentElement || startOverElement) {
+        if (reportExportElement || saveAssessmentElement || loadAssessmentElement || startOverElement) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
                     {saveAssessmentElement}
+                    {loadAssessmentElement}
                     {startOverElement}
                 </div>
             );
@@ -162,6 +165,7 @@ export class DetailsViewCommandBar extends React.Component<
             <CommandBarButtonsMenu
                 renderExportReportButton={this.renderExportButton}
                 renderSaveAssessmentButton={this.renderSaveAssessmentButton}
+                renderLoadAssessmentButton={this.renderLoadAssessmentButton}
                 featureFlagStoreData={this.props.featureFlagStoreData}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
@@ -215,6 +219,13 @@ export class DetailsViewCommandBar extends React.Component<
             return this.props.switcherNavConfiguration.SaveAssessmentFactory({
                 ...this.props,
             });
+        }
+        return null;
+    };
+
+    private renderLoadAssessmentButton = (): JSX.Element | null => {
+        if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
+            return <LoadAssessmentButton />
         }
         return null;
     };

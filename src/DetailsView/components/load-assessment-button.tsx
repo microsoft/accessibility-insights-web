@@ -13,7 +13,7 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
             <InsightsCommandButton
                 iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
             >
-                Load Assessment assessment
+                Load assessment
             </InsightsCommandButton>
         );
     }
