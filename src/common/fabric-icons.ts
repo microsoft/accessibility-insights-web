@@ -40,6 +40,7 @@ export function initializeFabricIcons(): void {
             edit: '\uE70F',
             export: '\uEDE1',
             FabricFolder: '\uF0A9',
+            FabricOpenFolderHorizontal : '\uF0A8',
             feedback: '\uED15',
             fileHTML: '\uF2ED',
             gear: '\uE713',
