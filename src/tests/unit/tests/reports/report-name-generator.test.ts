@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { WebReportNameGenerator } from 'reports/report-name-generator';
-import { ReportNameGeneratorBuilder } from 'reports/report-name-generator-builder';
+import { FileNameBuilder } from 'common/filename-builder';
 import { Mock, Times } from 'typemoq';
 
 describe('WebReportNameGenerator', () => {
@@ -12,15 +12,15 @@ describe('WebReportNameGenerator', () => {
     const dateSegment = 'date segment';
     const titleSegment = 'title segment';
 
-    const reportNameGeneratorBuilderMock = Mock.ofType(ReportNameGeneratorBuilder);
-    const testObject = new WebReportNameGenerator(reportNameGeneratorBuilderMock.object);
+    const fileNameBuilderMock = Mock.ofType(FileNameBuilder);
+    const testObject = new WebReportNameGenerator(fileNameBuilderMock.object);
 
     beforeEach(() => {
-        reportNameGeneratorBuilderMock
+        fileNameBuilderMock
             .setup(rngbm => rngbm.getDateSegment(theDate))
             .returns(() => dateSegment)
             .verifiable(Times.once());
-        reportNameGeneratorBuilderMock
+        fileNameBuilderMock
             .setup(rngbm => rngbm.getTitleSegment(theTitle))
             .returns(() => titleSegment)
             .verifiable(Times.once());
@@ -32,6 +32,6 @@ describe('WebReportNameGenerator', () => {
         const expected = `${theBase}_${dateSegment}_${titleSegment}.html`;
         expect(actual).toEqual(expected);
 
-        reportNameGeneratorBuilderMock.verifyAll();
+        fileNameBuilderMock.verifyAll();
     });
 });

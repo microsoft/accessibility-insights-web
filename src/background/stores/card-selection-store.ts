@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forOwn } from 'lodash';
+import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
     CardSelectionStoreData,
@@ -34,6 +34,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         this.cardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
         this.cardSelectionActions.resetFocusedIdentifier.addListener(this.onResetFocusedIdentifier);
+        this.cardSelectionActions.navigateToNewCardsView.addListener(this.onNavigateToNewCardsView);
     }
 
     public getDefaultState(): CardSelectionStoreData {
@@ -156,6 +157,18 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
     private onResetFocusedIdentifier = (): void => {
         this.state.focusedResultUid = null;
+        this.emitChanged();
+    };
+
+    private onNavigateToNewCardsView = (): void => {
+        this.state.focusedResultUid = null;
+        for (const ruleId in this.state.rules) {
+            this.state.rules[ruleId].isExpanded = false;
+            for (const resultId in this.state.rules[ruleId].cards) {
+                this.state.rules[ruleId].cards[resultId] = false;
+            }
+        }
+        this.state.visualHelperEnabled = !isEmpty(this.state.rules);
         this.emitChanged();
     };
 }

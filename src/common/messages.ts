@@ -206,6 +206,7 @@ export class Messages {
         CollapseAllRules: `${messagePrefix}/cardSelection/collapseAllRules`,
         ExpandAllRules: `${messagePrefix}/cardSelection/expandAllRules`,
         ToggleVisualHelper: `${messagePrefix}/cardSelection/toggleVisualHelper`,
+        NavigateToNewCardsView: `${messagePrefix}/cardSelection/navigateToNewCardsView`,
     };
 
     public static readonly PermissionsState = {

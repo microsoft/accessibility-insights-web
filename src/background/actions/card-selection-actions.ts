@@ -5,6 +5,7 @@ import { CardSelectionPayload, RuleExpandCollapsePayload } from './action-payloa
 
 export class CardSelectionActions {
     public readonly getCurrentState = new Action();
+    public readonly navigateToNewCardsView = new Action();
     public readonly toggleRuleExpandCollapse = new Action<RuleExpandCollapsePayload>();
     public readonly toggleCardSelection = new Action<CardSelectionPayload>();
     public readonly collapseAllRules = new Action();

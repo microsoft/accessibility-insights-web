@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { padStart } from 'lodash';
 
-export class ReportNameGeneratorBuilder {
+export class FileNameBuilder {
     public getDateSegment(scanDate: Date): string {
         return (
             scanDate.getFullYear() +

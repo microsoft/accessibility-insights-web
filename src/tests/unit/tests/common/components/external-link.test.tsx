@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { shallow } from 'enzyme';
-import { Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ExternalLink, ExternalLinkDeps } from '../../../../../common/components/external-link';
@@ -24,13 +24,13 @@ describe('ExternalLink', () => {
         </ExternalLink>,
     );
 
-    const link = rendered.find(Link);
+    const link = rendered.find(NewTabLinkWithTooltip);
 
     it('renders Link', () => {
         expect(link.exists()).toEqual(true);
-        expect(link.type()).toEqual(Link);
+        expect(link.type()).toEqual(NewTabLinkWithTooltip);
         expect(link.prop('href')).toEqual(href);
-        expect(link.prop('title')).toEqual(title);
+        expect(link.prop('tooltipContent')).toEqual(title);
         expect(link.children().debug()).toEqual(text);
     });
 

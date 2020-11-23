@@ -44,7 +44,8 @@ export const PromptGrantPermissionsStep = NamedFC<CommonAndroidSetupStepProps>(
             <AndroidSetupStepLayout {...layoutProps}>
                 <p>
                     Be sure the Accessibility Insights for Android Service on your device is turned
-                    on and has permission to access your device and capture screenshots.
+                    on and has permission to access your device and capture screenshots. Then select{' '}
+                    <i>Try again</i> to connect.
                 </p>
                 <DeviceDescription {...descriptionProps}></DeviceDescription>
                 <PrimaryButton

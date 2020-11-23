@@ -6,9 +6,7 @@ import {
     ElectronExternalLinkProps,
 } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
-import { Button } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, Times } from 'typemoq';
 
 describe('ElectronExternalLink', () => {
@@ -28,21 +26,29 @@ describe('ElectronExternalLink', () => {
     });
 
     test('click', () => {
-        const shellMock = Mock.ofType<Shell>();
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<
-            Button
-        >;
-        shellMock.setup(shell => shell.openExternal(testHref)).verifiable(Times.once());
+        const mockShell = Mock.ofType<Shell>();
+        const mockPreventDefault = Mock.ofInstance(() => {});
+        const mockStopPropagation = Mock.ofInstance(() => {});
+        const mockEvent = {
+            preventDefault: mockPreventDefault.object,
+            stopPropagation: mockStopPropagation.object,
+        } as React.MouseEvent<unknown>;
+
+        mockShell.setup(shell => shell.openExternal(testHref)).verifiable(Times.once());
+        mockPreventDefault.setup(m => m()).verifiable(Times.once());
+        mockStopPropagation.setup(m => m()).verifiable(Times.once());
 
         const props: ElectronExternalLinkProps = {
             href: testHref,
             children: testText,
-            shell: shellMock.object,
+            shell: mockShell.object,
         };
 
         const rendered = shallow(<ElectronExternalLink {...props} />);
-        rendered.simulate('click', eventStub);
+        rendered.simulate('click', mockEvent);
 
-        shellMock.verifyAll();
+        mockShell.verifyAll();
+        mockPreventDefault.verifyAll();
+        mockStopPropagation.verifyAll();
     });
 });
