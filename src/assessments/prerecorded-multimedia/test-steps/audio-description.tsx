@@ -43,5 +43,5 @@ export const AudioDescription: Requirement = {
     howToTest: audioHowToTest,
     isManual: true,
     ...content,
-    guidanceLinks: [link.WCAG_1_2_5],
+    guidanceLinks: [link.WCAG_1_2_3, link.WCAG_1_2_5],
 };
