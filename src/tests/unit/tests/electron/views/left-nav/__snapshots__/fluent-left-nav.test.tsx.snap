@@ -12,13 +12,13 @@ exports[`FluentLeftNav render left nav inside panel 1`] = `
   className="leftNavPanel"
   hasCloseButton={false}
   innerPanelAutomationId="fluent-left-nav"
-  isLightDismiss={true}
   isOpen={true}
   layerProps={
     Object {
       "className": "leftNavPanelHost",
     }
   }
+  onDismiss={[Function]}
   onRenderNavigation={[Function]}
   onRenderNavigationContent={[Function]}
   type={8}

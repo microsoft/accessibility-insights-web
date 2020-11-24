@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FastPassLeftNavHamburgerButton } from 'common/components/expand-collapse-left-nav-hamburger-button';
+import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import {
     FluentLeftNav,
@@ -10,6 +11,7 @@ import {
 } from 'electron/views/left-nav/fluent-left-nav';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock, MockBehavior } from 'typemoq';
 
 describe('FluentLeftNav', () => {
     let props: FluentLeftNavProps;
@@ -44,5 +46,17 @@ describe('FluentLeftNav', () => {
         props.narrowModeStatus.isHeaderAndNavCollapsed = false;
         const testSubject = shallow(<FluentLeftNav {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    test('dismissing the panel uses setSideNavOpen(false)', () => {
+        const setSideNavOpenMock = Mock.ofInstance((state: boolean) => {}, MockBehavior.Strict);
+        props.setSideNavOpen = setSideNavOpenMock.object;
+        const testSubject = shallow(<FluentLeftNav {...props} />);
+
+        setSideNavOpenMock.setup(m => m(false)).verifiable();
+
+        testSubject.find(GenericPanel).prop('onDismiss')();
+
+        setSideNavOpenMock.verifyAll();
     });
 });
