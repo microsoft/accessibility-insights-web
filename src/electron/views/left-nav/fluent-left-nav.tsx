@@ -37,11 +37,11 @@ export const FluentLeftNav = NamedFC<FluentLeftNavProps>('LeftNav', props => {
             layerProps={{ className: styles.leftNavPanelHost }}
             className={styles.leftNavPanel}
             isOpen={isNavOpen}
-            isLightDismiss
             hasCloseButton={false}
             onRenderNavigationContent={() => null}
             onRenderNavigation={() => null}
             type={PanelType.customNear}
+            onDismiss={() => setSideNavOpen(false)}
         >
             <div className={styles.navMenuContainer}>
                 <FastPassLeftNavHamburgerButton
