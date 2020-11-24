@@ -12,9 +12,7 @@ describe('LoadAssessmentButton', () => {
     let props: LoadAssessmentButtonProps;
 
     it('should render per the snapshot', () => {
-        const rendered = shallow(
-            <LoadAssessmentButton />,
-        );
+        const rendered = shallow(<LoadAssessmentButton />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });

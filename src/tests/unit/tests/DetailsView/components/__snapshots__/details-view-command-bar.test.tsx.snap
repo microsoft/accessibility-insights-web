@@ -12,12 +12,12 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </span>
     </NewTabLinkWithTooltip>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function]} renderSaveAssessmentButton={[Function]} featureFlagStoreData={{...}} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
+  <CommandBarButtonsMenu renderExportReportButton={[Function]} renderSaveAssessmentButton={[Function]} renderLoadAssessmentButton={[Function]} featureFlagStoreData={{...}} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
   <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
 </div>"
 `;
 
-exports[`DetailsViewCommandBar renders with export button, with save assessment, with start over 1`] = `
+exports[`DetailsViewCommandBar renders with export button, save assessment, load, assessment, and start over 1`] = `
 <div
   aria-label="command bar"
   className="detailsViewCommandBar"
@@ -56,6 +56,7 @@ exports[`DetailsViewCommandBar renders with export button, with save assessment,
     <div>
       Save assessment
     </div>
+    <LoadAssessmentButton />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
@@ -137,7 +138,7 @@ exports[`DetailsViewCommandBar renders with export button, with save assessment,
 </div>
 `;
 
-exports[`DetailsViewCommandBar renders with export button, without save assessment, without start over 1`] = `
+exports[`DetailsViewCommandBar renders with export button, without save assessment, without load assessment, without start over 1`] = `
 <div
   aria-label="command bar"
   className="detailsViewCommandBar"
@@ -249,6 +250,18 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
     }
   />
 </div>
+`;
+
+exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
+<InsightsCommandButton
+  iconProps={
+    Object {
+      "iconName": "FabricOpenFolderHorizontal",
+    }
+  }
+>
+  Load assessment
+</InsightsCommandButton>
 `;
 
 exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
@@ -411,7 +424,7 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
 </div>"
 `;
 
-exports[`DetailsViewCommandBar renders without export button, with save assessment, without start over 1`] = `
+exports[`DetailsViewCommandBar renders without export button, save assessment, load assessment, and start over 1`] = `
 <div
   aria-label="command bar"
   className="detailsViewCommandBar"
@@ -439,126 +452,6 @@ exports[`DetailsViewCommandBar renders without export button, with save assessme
         command-bar-test-tab-title
       </span>
     </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <div>
-      Save assessment
-    </div>
-  </div>
-  <div>
-    Export dialog
-  </div>
-  <StartOverDialog
-    deps={
-      Object {
-        "detailsViewActionMessageCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "addPathForValidation": [Function],
-          "cancelStartOver": [Function],
-          "cancelStartOverAllAssessments": [Function],
-          "changeAssessmentVisualizationState": [Function],
-          "changeManualRequirementStatus": [Function],
-          "changeManualTestStatus": [Function],
-          "clearPathSnippetData": [Function],
-          "closePreviewFeaturesPanel": [Function],
-          "closeScopingPanel": [Function],
-          "closeSettingsPanel": [Function],
-          "continuePreviousAssessment": [Function],
-          "copyIssueDetailsClicked": [Function],
-          "dispatcher": undefined,
-          "editFailureInstance": [Function],
-          "leftNavPanelExpanded": [Function],
-          "removeFailureInstance": [Function],
-          "rescanVisualization": [Function],
-          "setAllUrlsPermissionState": [Function],
-          "setFeatureFlag": [Function],
-          "startOverAllAssessments": [Function],
-          "switchToTargetTab": [Function],
-          "telemetryFactory": undefined,
-          "undoManualRequirementStatusChange": [Function],
-          "undoManualTestStatusChange": [Function],
-        },
-      }
-    }
-    dialogState="none"
-    dismissDialog={[Function]}
-    featureFlagStoreData={
-      Object {
-        "saveAndLoadAssessment": true,
-      }
-    }
-    narrowModeStatus={
-      Object {
-        "isCommandBarCollapsed": false,
-      }
-    }
-    scanMetadata={
-      Object {
-        "targetAppInfo": Object {
-          "name": "command-bar-test-tab-title",
-          "url": "command-bar-test-url",
-        },
-      }
-    }
-    switcherNavConfiguration={
-      Object {
-        "CommandBar": [Function],
-        "LeftNav": [Function],
-        "ReportExportDialogFactory": [Function],
-        "SaveAssessmentFactory": [Function],
-        "StartOverComponentFactory": Object {
-          "getStartOverComponent": [Function],
-        },
-        "shouldShowReportExportButton": [Function],
-      }
-    }
-    tabStoreData={
-      Object {
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`DetailsViewCommandBar renders without export button, without save assessment, with start over 1`] = `
-<div
-  aria-label="command bar"
-  className="detailsViewCommandBar"
-  role="region"
->
-  <div
-    aria-labelledby="switch-to-target"
-    className="detailsViewTargetPage"
-  >
-    <span
-      id="switch-to-target"
-    >
-      Target page: 
-    </span>
-    <NewTabLinkWithTooltip
-      aria-label="Switch to target page: command-bar-test-tab-title"
-      className="targetPageLink"
-      onClick={[Function]}
-      role="link"
-      tooltipContent="Switch to target page: command-bar-test-tab-title"
-    >
-      <span
-        className="targetPageTitle"
-      >
-        command-bar-test-tab-title
-      </span>
-    </NewTabLinkWithTooltip>
-  </div>
-  <div
-    className="detailsViewCommandButtons"
-  >
-    <CustomizedActionButton>
-      Start Over Component
-    </CustomizedActionButton>
   </div>
   <div>
     Export dialog
@@ -637,7 +530,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
 </div>
 `;
 
-exports[`DetailsViewCommandBar renders without export button, without save assessment, without start over 1`] = `
+exports[`DetailsViewCommandBar renders without export button, without save assessment, without load assessment, with start over 1`] = `
 <div
   aria-label="command bar"
   className="detailsViewCommandBar"
@@ -665,6 +558,13 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
         command-bar-test-tab-title
       </span>
     </NewTabLinkWithTooltip>
+  </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <CustomizedActionButton>
+      Start Over Component
+    </CustomizedActionButton>
   </div>
   <div>
     Export dialog

@@ -29,8 +29,8 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
         });
         if (
             props.featureFlagStoreData?.[FeatureFlags.saveAndLoadAssessment] &&
-            (props.renderSaveAssessmentButton &&
-            props.renderLoadAssessmentButton)
+            props.renderSaveAssessmentButton &&
+            props.renderLoadAssessmentButton
         ) {
             overflowItems.push(
                 {

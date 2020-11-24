@@ -12,6 +12,10 @@ import {
     SaveAssessmentButton,
     SaveAssessmentButtonProps,
 } from 'DetailsView/components/save-assessment-button';
+import {
+    LoadAssessmentButton,
+    LoadAssessmentButtonProps,
+} from 'DetailsView/components/load-assessment-button';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     StartOverComponentFactory,
@@ -41,11 +45,13 @@ describe('DetailsViewCommandBar', () => {
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
     let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
+    let loadAssessmentButton: JSX.Element;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
     let saveAssessmentFactory: IMock<SaveAssessmentFactory>;
+    let loadAssessmentButtonMock: IMock<(Props: LoadAssessmentButtonProps) => JSX.Element>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -55,12 +61,14 @@ describe('DetailsViewCommandBar', () => {
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
         saveAssessmentFactory = Mock.ofInstance(props => null);
+        loadAssessmentButtonMock = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
+        loadAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });
@@ -104,24 +112,20 @@ describe('DetailsViewCommandBar', () => {
         } as DetailsViewCommandBarProps;
     }
 
-    test('renders with export button, with save assessment, with start over', () => {
-        testOnPivot(true, true, true);
+    test('renders with export button, save assessment, load, assessment, and start over', () => {
+        testOnPivot(true, true, true, true);
     });
 
-    test('renders without export button, without save assessment, without start over', () => {
-        testOnPivot(false, false, false);
+    test('renders without export button, save assessment, load assessment, and start over', () => {
+        testOnPivot(false, false, false, false);
     });
 
-    test('renders with export button, without save assessment, without start over', () => {
-        testOnPivot(true, false, false);
+    test('renders with export button, without save assessment, without load assessment, without start over', () => {
+        testOnPivot(true, false, false, false);
     });
 
-    test('renders without export button, with save assessment, without start over', () => {
-        testOnPivot(false, true, false);
-    });
-
-    test('renders without export button, without save assessment, with start over', () => {
-        testOnPivot(false, false, true);
+    test('renders without export button, without save assessment, without load assessment, with start over', () => {
+        testOnPivot(false, false, false, true);
     });
 
     test('renders null when tab closed', () => {
@@ -151,6 +155,11 @@ describe('DetailsViewCommandBar', () => {
 
     test('renders with save assessment button', () => {
         const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with load assessment button', () => {
+        const rendered = shallow(<LoadAssessmentButton />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
@@ -281,6 +290,7 @@ describe('DetailsViewCommandBar', () => {
     function testOnPivot(
         renderExportResults: boolean,
         renderSaveAssessment: boolean,
+        renderLoadAssessment: boolean,
         renderStartOver: boolean,
     ): void {
         showReportExportButton = renderExportResults;

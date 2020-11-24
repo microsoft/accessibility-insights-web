@@ -146,7 +146,12 @@ export class DetailsViewCommandBar extends React.Component<
         const saveAssessmentElement: JSX.Element | null = this.renderSaveAssessmentButton();
         const loadAssessmentElement: JSX.Element | null = this.renderLoadAssessmentButton();
 
-        if (reportExportElement || saveAssessmentElement || loadAssessmentElement || startOverElement) {
+        if (
+            reportExportElement ||
+            saveAssessmentElement ||
+            loadAssessmentElement ||
+            startOverElement
+        ) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
@@ -225,7 +230,7 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderLoadAssessmentButton = (): JSX.Element | null => {
         if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return <LoadAssessmentButton />
+            return <LoadAssessmentButton />;
         }
         return null;
     };
