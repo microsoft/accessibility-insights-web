@@ -73,9 +73,9 @@ describe('TabContextFactoryTest', () => {
             broadcastMock
                 .setup(bm =>
                     bm(
-                        It.isObjectWith({ storeId: StoreNames[storeName] } as StoreUpdateMessage<
-                            any
-                        >),
+                        It.isObjectWith({
+                            storeId: StoreNames[storeName],
+                        } as StoreUpdateMessage<any>),
                     ),
                 )
                 .returns(() => Promise.resolve())

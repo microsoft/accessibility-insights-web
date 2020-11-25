@@ -22,17 +22,17 @@ import { StoreMocks } from './store-mocks';
 describe('DocumentTitleUpdater', () => {
     let storeMocks: StoreMocks;
     let testObject: DocumentTitleUpdater;
-    let getPanelConfigMock: IMock<(
-        props: GetDetailsRightPanelConfigurationProps,
-    ) => DetailsRightPanelConfiguration>;
+    let getPanelConfigMock: IMock<
+        (props: GetDetailsRightPanelConfigurationProps) => DetailsRightPanelConfiguration
+    >;
     let getSwitcherNavConfigMock: IMock<GetDetailsSwitcherNavConfiguration>;
     let visualizationConfigFactoryMock: IMock<VisualizationConfigurationFactory>;
     let doc;
     let onStoreChange: () => void;
     let switcherNavConfigStub: DetailsViewSwitcherNavConfiguration;
-    let getSelectedDetailsViewMock: IMock<(
-        props: GetSelectedDetailsViewProps,
-    ) => VisualizationType>;
+    let getSelectedDetailsViewMock: IMock<
+        (props: GetSelectedDetailsViewProps) => VisualizationType
+    >;
 
     beforeEach(() => {
         storeMocks = new StoreMocks();

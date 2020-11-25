@@ -22,9 +22,10 @@ describe('ScanIncompleteWarning', () => {
     beforeEach(() => {
         testStub = -1;
 
-        const scanIncompleteWarningStub: ReactFCWithDisplayName<ScanIncompleteWarningMessageBarProps> = NamedFC<
-            ScanIncompleteWarningMessageBarProps
-        >('test', _ => null);
+        const scanIncompleteWarningStub: ReactFCWithDisplayName<ScanIncompleteWarningMessageBarProps> = NamedFC<ScanIncompleteWarningMessageBarProps>(
+            'test',
+            _ => null,
+        );
         warningConfiguration = {
             'missing-required-cross-origin-permissions': scanIncompleteWarningStub,
         };

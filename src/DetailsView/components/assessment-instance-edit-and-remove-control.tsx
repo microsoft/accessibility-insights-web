@@ -25,9 +25,7 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export class AssessmentInstanceEditAndRemoveControl extends React.Component<
-    AssessmentInstanceEditAndRemoveControlProps
-> {
+export class AssessmentInstanceEditAndRemoveControl extends React.Component<AssessmentInstanceEditAndRemoveControlProps> {
     public render(): JSX.Element {
         return (
             <div>

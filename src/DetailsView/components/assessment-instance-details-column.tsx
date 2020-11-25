@@ -16,9 +16,7 @@ export interface AssessmentInstanceDetailsColumnProps {
 }
 
 export const instanceTableTextContentAutomationId = 'instance-table-text-content';
-export class AssessmentInstanceDetailsColumn extends React.Component<
-    AssessmentInstanceDetailsColumnProps
-> {
+export class AssessmentInstanceDetailsColumn extends React.Component<AssessmentInstanceDetailsColumnProps> {
     public render(): JSX.Element {
         const showLabel = !!this.props.labelText;
         const showHeader = !!this.props.headerText;

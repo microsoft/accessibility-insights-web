@@ -79,9 +79,10 @@ describe(DetailsViewContentWithLocalState, () => {
             isOpen: boolean,
             event?: React.MouseEvent<any>,
         ): void {
-            const setNavOpen = (wrapper.childAt(0).props() as NarrowModeDetectorProps<
-                DetailsViewContentProps
-            >).childrenProps.setSideNavOpen;
+            const setNavOpen = (wrapper
+                .childAt(0)
+                .props() as NarrowModeDetectorProps<DetailsViewContentProps>).childrenProps
+                .setSideNavOpen;
             setNavOpen(isOpen, event);
         }
     });

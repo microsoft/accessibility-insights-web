@@ -26,9 +26,9 @@ import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
-    let resultProcessorMock: IMock<(
-        results: ScanResults,
-    ) => DictionaryStringTo<HtmlElementAxeResults>>;
+    let resultProcessorMock: IMock<
+        (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>
+    >;
     let dateGetterMock: IMock<() => Date>;
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
