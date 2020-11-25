@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadAssessmentButton should render per the snapshot 1`] = `
+<InsightsCommandButton
+  iconProps={
+    Object {
+      "iconName": "FabricOpenFolderHorizontal",
+    }
+  }
+>
+  Load assessment
+</InsightsCommandButton>
+`;

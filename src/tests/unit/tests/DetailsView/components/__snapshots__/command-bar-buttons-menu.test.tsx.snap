@@ -39,6 +39,16 @@ exports[`CommandBarButtonsMenu renders all child buttons, including child behind
 </div>
 `;
 
+exports[`CommandBarButtonsMenu renders all child buttons, including child behind the feature flag: render load assessment menuitem 1`] = `
+<div
+  role="menuitem"
+>
+  <React.Fragment>
+    Load assessment button
+  </React.Fragment>
+</div>
+`;
+
 exports[`CommandBarButtonsMenu renders all child buttons, including child behind the feature flag: render save assessment menuitem 1`] = `
 <div
   role="menuitem"
