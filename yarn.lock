@@ -249,17 +249,10 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.7.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.9.2":
   version "7.12.5"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
   integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
-  dependencies:
-    regenerator-runtime "^0.13.4"
-
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.5.5", "@babel/runtime@^7.9.2":
-  version "7.10.3"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.10.3.tgz#670d002655a7c366540c67f6fd3342cd09500364"
-  integrity sha512-RzGO0RLSdokm9Ipe/YD+7ww8X2Ro79qiXZF3HU9ljrM+qnJmH1Vqth+hbiQZy761LnMJTMitHDuKVYTk3k4dLw==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -2917,10 +2910,10 @@ app-builder-lib@22.9.1, app-builder-lib@^22.9.1:
     semver "^7.3.2"
     temp-file "^3.3.7"
 
-appium-adb@^8.9.0:
-  version "8.9.0"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.9.0.tgz#1c33a9e03009abf9382b6c9afc070fadb6e6af21"
-  integrity sha512-n43l6aoKe/5Nh3vvI3YD4Y+G8S8wfCGqHhxw1oejXmSJKId068XojHDX0EdYGDnbuqZUpRNR/0j9vcv8xX2Gnw==
+appium-adb@^8.9.1:
+  version "8.9.1"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.9.1.tgz#60abb48221f0fa16240c4b9ef68f040f7cb3970c"
+  integrity sha512-jG7au8+whHxuMdj12FE/QglQCY1ifjZqpWc9+U2g5U5CzjqcoqKZwDAw4xKdBgc+WwqV3kvUVFgjRqUXnd9TsQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
