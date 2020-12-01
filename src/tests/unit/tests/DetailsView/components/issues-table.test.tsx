@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { DateProvider } from 'common/date-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -61,29 +60,6 @@ describe('IssuesTableTest', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    test('inline start over button', () => {
-        const issuesEnabled = false;
-        const testType = VisualizationType.ColorSensoryAssessment;
-        const clickEvent = {} as MouseEvent;
-
-        const props = new TestPropsBuilder()
-            .setDeps(deps)
-            .setIssuesEnabled(issuesEnabled)
-            .setTestType(testType)
-            .build();
-
-        detailsViewActionMessageCreatorMock
-            .setup(amc => amc.rescanVisualization(testType, clickEvent))
-            .verifiable();
-
-        const wrapped = shallow(<IssuesTable {...props} />);
-
-        const button = wrapped.find(InsightsCommandButton);
-        button.simulate('click', clickEvent);
-
-        detailsViewActionMessageCreatorMock.verifyAll();
-    });
-
     it('spinner for scanning state', () => {
         const issuesEnabled = true;
 
@@ -133,11 +109,6 @@ class TestPropsBuilder {
 
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
-        return this;
-    }
-
-    public setTestType(testType: VisualizationType): TestPropsBuilder {
-        this.testType = testType;
         return this;
     }
 

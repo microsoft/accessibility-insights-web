@@ -12,6 +12,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { InlineStartOverButton } from 'DetailsView/components/inline-start-over-button';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -97,25 +98,14 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return <ScanningSpinner isSpinning={true} label={label} />;
     }
 
-    private renderInlineStartOverButton(): JSX.Element {
+    private renderDisabledMessage(): JSX.Element {
         const selectedTest = this.props.visualizationStoreData.selectedFastPassDetailsView;
-        const rescan = event =>
-            this.props.deps.detailsViewActionMessageCreator.rescanVisualization(
-                selectedTest,
-                event,
-            );
-        return (
-            <InsightsCommandButton
-                onClick={rescan}
-                text="Start over"
-                iconProps={{ iconName: 'Refresh' }}
-                className={styles.inlineStartOverButton}
+        const startOverButton = (
+            <InlineStartOverButton
+                selectedTest={selectedTest}
+                detailsViewActionMessageCreator={this.props.deps.detailsViewActionMessageCreator}
             />
         );
-    }
-
-    private renderDisabledMessage(): JSX.Element {
-        const startOverButton = this.renderInlineStartOverButton();
         const disabledMessage = (
             <span>Use the {startOverButton} button to scan the target page.</span>
         );

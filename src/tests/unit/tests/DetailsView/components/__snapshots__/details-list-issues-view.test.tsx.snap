@@ -67,5 +67,11 @@ exports[`DetailsListIssuesView should return issues table with scanning to false
     </React.Fragment>
   }
   title="test title"
+  visualizationStoreData={
+    Object {
+      "scanning": null,
+      "tests": Object {},
+    }
+  }
 />
 `;

@@ -13,7 +13,14 @@ exports[`TargetPageChangedView renders with subtitle=test subtitle content and f
     test subtitle content
   </div>
   <p>
-    The target page has changed. Use the start over button to scan the new target page.
+    <React.Fragment>
+      'The target page has changed. Use the 
+      <InlineStartOverButton
+        detailsViewActionMessageCreator={Object {}}
+        selectedTest={2}
+      />
+       button to scan the new target page.'
+    </React.Fragment>
   </p>
 </div>
 `;
@@ -29,7 +36,14 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
     className="targetPageChangedSubtitle"
   />
   <p>
-    The target page has changed. Use the start over button to scan the new target page.
+    <React.Fragment>
+      'The target page has changed. Use the 
+      <InlineStartOverButton
+        detailsViewActionMessageCreator={Object {}}
+        selectedTest={2}
+      />
+       button to scan the new target page.'
+    </React.Fragment>
   </p>
 </div>
 `;
@@ -45,7 +59,14 @@ exports[`TargetPageChangedView renders with subtitle=undefined and feature flag=
     className="targetPageChangedSubtitle"
   />
   <p>
-    The target page has changed. Use the start over button to scan the new target page.
+    <React.Fragment>
+      'The target page has changed. Use the 
+      <InlineStartOverButton
+        detailsViewActionMessageCreator={Object {}}
+        selectedTest={2}
+      />
+       button to scan the new target page.'
+    </React.Fragment>
   </p>
 </div>
 `;

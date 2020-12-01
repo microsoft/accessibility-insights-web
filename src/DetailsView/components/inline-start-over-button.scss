@@ -1,0 +1,12 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+
+.inline-start-over-button {
+    height: fit-content;
+    padding: 4px;
+    margin-bottom: -4px;
+    vertical-align: text-bottom;
+    border-color: $secondary-text;
+    background-color: $neutral-0;
+}

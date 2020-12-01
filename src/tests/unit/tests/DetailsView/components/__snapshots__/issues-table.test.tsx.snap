@@ -17,15 +17,37 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
       >
         <span>
           Use the 
-          <InsightsCommandButton
-            className="inlineStartOverButton"
-            iconProps={
-              Object {
-                "iconName": "Refresh",
+          <InlineStartOverButton
+            detailsViewActionMessageCreator={
+              proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "addPathForValidation": [Function],
+                "cancelStartOver": [Function],
+                "cancelStartOverAllAssessments": [Function],
+                "changeAssessmentVisualizationState": [Function],
+                "changeManualRequirementStatus": [Function],
+                "changeManualTestStatus": [Function],
+                "clearPathSnippetData": [Function],
+                "closePreviewFeaturesPanel": [Function],
+                "closeScopingPanel": [Function],
+                "closeSettingsPanel": [Function],
+                "continuePreviousAssessment": [Function],
+                "copyIssueDetailsClicked": [Function],
+                "dispatcher": undefined,
+                "editFailureInstance": [Function],
+                "leftNavPanelExpanded": [Function],
+                "removeFailureInstance": [Function],
+                "rescanVisualization": [Function],
+                "setAllUrlsPermissionState": [Function],
+                "setFeatureFlag": [Function],
+                "startOverAllAssessments": [Function],
+                "switchToTargetTab": [Function],
+                "telemetryFactory": undefined,
+                "undoManualRequirementStatusChange": [Function],
+                "undoManualTestStatusChange": [Function],
               }
             }
-            onClick={[Function]}
-            text="Start over"
+            selectedTest={-1}
           />
            button to scan the target page.
         </span>

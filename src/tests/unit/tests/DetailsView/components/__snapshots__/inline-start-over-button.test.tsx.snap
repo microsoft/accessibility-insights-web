@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders 1`] = `
+<InsightsCommandButton
+  className="inlineStartOverButton"
+  iconProps={
+    Object {
+      "iconName": "Refresh",
+    }
+  }
+  onClick={[Function]}
+  text="Start over"
+/>
+`;
