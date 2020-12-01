@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Markup from 'assessments/markup';
 import {
     CommonInstancesSectionDeps,
     CommonInstancesSectionProps,
 } from 'common/components/cards/common-instances-section-props';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import * as styles from 'DetailsView/components/issues-table.scss';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -33,6 +34,7 @@ export interface IssuesTableProps {
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
+    visualizationStoreData: VisualizationStoreData;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -95,11 +97,27 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return <ScanningSpinner isSpinning={true} label={label} />;
     }
 
+    private renderInlineStartOverButton(): JSX.Element {
+        const selectedTest = this.props.visualizationStoreData.selectedFastPassDetailsView;
+        const rescan = event =>
+            this.props.deps.detailsViewActionMessageCreator.rescanVisualization(
+                selectedTest,
+                event,
+            );
+        return (
+            <InsightsCommandButton
+                onClick={rescan}
+                text="Start over"
+                iconProps={{ iconName: 'Refresh' }}
+                className={styles.inlineStartOverButton}
+            />
+        );
+    }
+
     private renderDisabledMessage(): JSX.Element {
+        const startOverButton = this.renderInlineStartOverButton();
         const disabledMessage = (
-            <span>
-                Use the <Markup.Term>Start over button</Markup.Term> to scan the target page.
-            </span>
+            <span>Use the {startOverButton} button to scan the target page.</span>
         );
 
         return (

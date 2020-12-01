@@ -1,10 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { DateProvider } from 'common/date-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     IssuesTable,
     IssuesTableDeps,
@@ -19,12 +23,15 @@ import { exampleUnifiedStatusResults } from '../../common/components/cards/sampl
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;
     let reportGeneratorMock: IMock<ReportGenerator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportGenerator: reportGeneratorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
         } as IssuesTableDeps;
     });
 
@@ -52,6 +59,29 @@ describe('IssuesTableTest', () => {
         const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    test('inline start over button', () => {
+        const issuesEnabled = false;
+        const testType = VisualizationType.ColorSensoryAssessment;
+        const clickEvent = {} as MouseEvent;
+
+        const props = new TestPropsBuilder()
+            .setDeps(deps)
+            .setIssuesEnabled(issuesEnabled)
+            .setTestType(testType)
+            .build();
+
+        detailsViewActionMessageCreatorMock
+            .setup(amc => amc.rescanVisualization(testType, clickEvent))
+            .verifiable();
+
+        const wrapped = shallow(<IssuesTable {...props} />);
+
+        const button = wrapped.find(InsightsCommandButton);
+        button.simulate('click', clickEvent);
+
+        detailsViewActionMessageCreatorMock.verifyAll();
     });
 
     it('spinner for scanning state', () => {
@@ -84,6 +114,7 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private featureFlags = {};
     private deps: IssuesTableDeps;
+    private testType: VisualizationType = -1;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
@@ -102,6 +133,11 @@ class TestPropsBuilder {
 
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
+        return this;
+    }
+
+    public setTestType(testType: VisualizationType): TestPropsBuilder {
+        this.testType = testType;
         return this;
     }
 
@@ -128,6 +164,9 @@ class TestPropsBuilder {
                 'SomeInstancesSection',
                 _ => null,
             ),
+            visualizationStoreData: {
+                selectedFastPassDetailsView: this.testType,
+            } as VisualizationStoreData,
         };
     }
 }
