@@ -16,7 +16,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
         visualHelperEnabled: false,
         resultsHighlightStatus: {},
     };
-    let getGuidanceLinksMock: IMock<(ruleId: string) => GuidanceLink[]>;
+    let mapAxeTagsToGuidanceLinksMock: IMock<(axeTags?: string[]) => GuidanceLink[]>;
     let uuidGeneratorMock: IMock<UUIDGenerator>;
     const helpUrlGetterStub = {
         getHelpUrl: (ruleId, defaultUrl) => {
@@ -28,7 +28,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
     let testSubject: CombinedResultsToCardsModelConverter;
 
     beforeEach(() => {
-        getGuidanceLinksMock = Mock.ofInstance(() => null);
+        mapAxeTagsToGuidanceLinksMock = Mock.ofInstance(() => null);
         uuidGeneratorMock = Mock.ofType<UUIDGenerator>();
         uuidGeneratorMock.setup(ug => ug()).returns(() => 'test uid');
         resolutionCreatorMock = Mock.ofType<ResolutionCreator>();
@@ -37,7 +37,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
         setupResolutionCreator();
         
         testSubject = new CombinedResultsToCardsModelConverter(
-            getGuidanceLinksMock.object,
+            mapAxeTagsToGuidanceLinksMock.object,
             viewDataStub,
             uuidGeneratorMock.object,
             helpUrlGetterStub,
@@ -80,10 +80,11 @@ describe(CombinedResultsToCardsModelConverter, () => {
     });
 
     function setupGuidanceLinks() {
-        getGuidanceLinksMock.setup(gl => gl(It.isAny())).returns((ruleId) => {
+        mapAxeTagsToGuidanceLinksMock.setup(gl => gl(It.isAny())).returns((axeTags) => {
+            const tagStr = (axeTags ?? []).join('-');
             return [{
-                href: `https://guidance-link-stub/${ruleId}`,
-                text: `guidance for ${ruleId}`,
+                href: `https://guidance-link-stub/${tagStr}`,
+                text: `guidance for ${tagStr}`,
             }];
         });
     }

@@ -1,28 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import {
     explicitRuleOverrides,
     getRuleInclusions,
     RuleIncluded,
 } from 'scanner/get-rule-inclusions';
 import { IRuleConfiguration } from 'scanner/iruleresults';
-import { BestPractice, ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
 import { DictionaryStringTo } from 'types/common-types';
 
 describe('getRuleInclusions', () => {
     const fakeRules: IRuleConfiguration[] = [
-        { id: 'axe-enabled', selector: 'fake-selector', enabled: true },
-        { id: 'axe-disabled', selector: 'fake-selector', enabled: false },
+        { id: 'axe-enabled', selector: 'fake-selector', enabled: true, tags: [] },
+        { id: 'axe-disabled', selector: 'fake-selector', enabled: false, tags: [] },
     ];
-    const fakeEmptyConfig: DictionaryStringTo<HyperlinkDefinition[]> = {
-        'axe-enabled': [{} as HyperlinkDefinition],
-        'axe-disabled': [{} as HyperlinkDefinition],
-    };
 
     it('respects initial enabled/disabled config and populates reason', () => {
-        const inclusions = getRuleInclusions(fakeRules, fakeEmptyConfig, {});
+        const inclusions = getRuleInclusions(fakeRules, {});
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'included',
@@ -43,7 +37,7 @@ describe('getRuleInclusions', () => {
             },
         };
 
-        const inclusions = getRuleInclusions(fakeRules, fakeEmptyConfig, fakeOverrides);
+        const inclusions = getRuleInclusions(fakeRules, fakeOverrides);
         expect(inclusions).toMatchObject({
             'axe-enabled': {
                 status: 'excluded',
@@ -56,44 +50,44 @@ describe('getRuleInclusions', () => {
         });
     });
 
-    it('excludes rules without a guidance mapping and populates reason', () => {
-        const inclusions = getRuleInclusions(fakeRules, {}, {});
-        expect(inclusions).toMatchObject({
-            'axe-enabled': {
-                status: 'excluded',
-                reason: 'no guidance link mapping',
+    it('excludes rules mapped to best-practice tag and populates reason', () => {
+        const bestPracticeRule = [
+            {
+                id: 'best-practice-rule',
+                selector: 'fake-selector',
+                enabled: true,
+                tags: ['best-practice'],
             },
-            'axe-disabled': {
+        ];
+        const inclusions = getRuleInclusions(bestPracticeRule, {});
+        expect(inclusions).toMatchObject({
+            'best-practice-rule': {
                 status: 'excluded',
-                reason: 'disabled in axe config',
+                reason: 'rule is tagged best-practice',
             },
         });
     });
 
-    it('excludes rules mapped to Best Practice and populates reason', () => {
-        const configWithBestPractice: DictionaryStringTo<HyperlinkDefinition[]> = {
-            'axe-enabled': [BestPractice],
-            'axe-disabled': [{} as HyperlinkDefinition],
-        };
-        const inclusions = getRuleInclusions(fakeRules, configWithBestPractice, {});
-        expect(inclusions).toMatchObject({
-            'axe-enabled': {
-                status: 'excluded',
-                reason: 'rule maps to BestPractice',
+    it('excludes rules mapped to best-practice tag and populates reason', () => {
+        const bestPracticeRule = [
+            {
+                id: 'best-practice-rule',
+                selector: 'fake-selector',
+                enabled: true,
+                tags: ['experimental'],
             },
-            'axe-disabled': {
+        ];
+        const inclusions = getRuleInclusions(bestPracticeRule, {});
+        expect(inclusions).toMatchObject({
+            'best-practice-rule': {
                 status: 'excluded',
-                reason: 'disabled in axe config',
+                reason: 'rule is tagged experimental',
             },
         });
     });
 
     it('matches snapshotted list of production rules', () => {
-        const inclusions = getRuleInclusions(
-            axe._audit.rules,
-            ruleToLinkConfiguration,
-            explicitRuleOverrides,
-        );
+        const inclusions = getRuleInclusions(axe._audit.rules, explicitRuleOverrides);
         expect(inclusions).toMatchSnapshot();
     });
 });

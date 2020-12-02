@@ -12,13 +12,14 @@ interface ExpectedGetRuleObject {
     help: string | Function;
     ruleId: string;
     helpUrl?: string;
+    tags?: string[];
 }
 
 export function getRules(
     axe: typeof Axe,
     urlGenerator: (ruleId: string, axeHelpUrl?: string) => string | undefined,
     ruleIncludedStatus: DictionaryStringTo<RuleIncluded>,
-    ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]>,
+    mapAxeTagsToGuidanceLinks: (axeTags?: string[]) => HyperlinkDefinition[],
 ): ScannerRuleInfo[] {
     const allRules = axe.getRules() as ExpectedGetRuleObject[];
 
@@ -28,7 +29,7 @@ export function getRules(
             id: rule.ruleId,
             url: urlGenerator(rule.ruleId, rule.helpUrl),
             help: resolveHelp(rule.help),
-            a11yCriteria: ruleToLinkConfiguration[rule.ruleId],
+            a11yCriteria: mapAxeTagsToGuidanceLinks(rule.tags),
         }));
 }
 

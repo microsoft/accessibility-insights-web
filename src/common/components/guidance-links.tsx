@@ -4,7 +4,7 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
-import { BestPractice } from 'scanner/rule-to-links-mappings';
+import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
 import { NamedFC } from '../react/named-fc';
 
 export interface GuidanceLinksProps {

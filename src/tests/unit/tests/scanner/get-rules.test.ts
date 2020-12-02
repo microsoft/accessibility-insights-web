@@ -55,10 +55,7 @@ describe('getDefaultRules', () => {
             },
         ];
 
-        const ruleToLinkStub: DictionaryStringTo<HyperlinkDefinition[]> = Object.assign(
-            {},
-            ...rulesStub.map(r => ({ [r.ruleId]: [a11yCriteriaStub] })),
-        );
+        const mapAxeTagsToGuidanceLinksStub = () => [a11yCriteriaStub];
         const ruleIncludedStub: DictionaryStringTo<RuleIncluded> = {
             [ruleStubOne.ruleId]: {
                 status: 'included',
@@ -83,7 +80,12 @@ describe('getDefaultRules', () => {
 
         getHelpUrlMock.setup(gchm => gchm(ruleStubTwo.ruleId, It.isAny())).returns(() => urlStub);
 
-        const actual = getRules(axeStub, getHelpUrlMock.object, ruleIncludedStub, ruleToLinkStub);
+        const actual = getRules(
+            axeStub,
+            getHelpUrlMock.object,
+            ruleIncludedStub,
+            mapAxeTagsToGuidanceLinksStub,
+        );
 
         expect(actual).toEqual(expected);
         getRulesMock.verifyAll();

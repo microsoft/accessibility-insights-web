@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { BestPractice } from 'scanner/rule-to-links-mappings';
 import { DictionaryStringTo } from 'types/common-types';
 import { IRuleConfiguration } from 'scanner/iruleresults';
 
@@ -14,24 +12,27 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'included',
         reason: 'for parity with video-caption, which axe-core includes by default',
     },
+    'form-field-multiple-labels': {
+        status: 'excluded',
+        reason:
+            "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    },
 };
 
 export const getRuleInclusions = (
     ruleset: IRuleConfiguration[],
-    ruleToLinksMap: DictionaryStringTo<HyperlinkDefinition[]>,
     ruleOverrides: DictionaryStringTo<RuleIncluded>,
 ): DictionaryStringTo<RuleIncluded> => {
     return Object.assign(
         {},
         ...ruleset.map(r => ({
-            [r.id]: getRuleIncludedConfig(r, ruleToLinksMap, ruleOverrides),
+            [r.id]: getRuleIncludedConfig(r, ruleOverrides),
         })),
     );
 };
 
 function getRuleIncludedConfig(
     rule: IRuleConfiguration,
-    ruleToLinksMap: DictionaryStringTo<HyperlinkDefinition[]>,
     ruleOverrides: DictionaryStringTo<RuleIncluded>,
 ): RuleIncluded {
     if (ruleOverrides.hasOwnProperty(rule.id)) {
@@ -45,17 +46,17 @@ function getRuleIncludedConfig(
         };
     }
 
-    if (!ruleToLinksMap.hasOwnProperty(rule.id)) {
+    if (rule.tags.includes('experimental')) {
         return {
             status: 'excluded',
-            reason: 'no guidance link mapping',
+            reason: 'rule is tagged experimental',
         };
     }
 
-    if (ruleToLinksMap[rule.id].includes(BestPractice)) {
+    if (rule.tags.includes('best-practice')) {
         return {
             status: 'excluded',
-            reason: 'rule maps to BestPractice',
+            reason: 'rule is tagged best-practice',
         };
     }
 
