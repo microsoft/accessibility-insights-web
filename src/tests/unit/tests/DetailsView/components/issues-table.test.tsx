@@ -5,6 +5,9 @@ import { DateProvider } from 'common/date-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     IssuesTable,
     IssuesTableDeps,
@@ -19,12 +22,15 @@ import { exampleUnifiedStatusResults } from '../../common/components/cards/sampl
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;
     let reportGeneratorMock: IMock<ReportGenerator>;
+    let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
+        detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportGenerator: reportGeneratorMock.object,
+            detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
         } as IssuesTableDeps;
     });
 
@@ -84,6 +90,7 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private featureFlags = {};
     private deps: IssuesTableDeps;
+    private testType: VisualizationType = -1;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
         this.deps = deps;
@@ -128,6 +135,9 @@ class TestPropsBuilder {
                 'SomeInstancesSection',
                 _ => null,
             ),
+            visualizationStoreData: {
+                selectedFastPassDetailsView: this.testType,
+            } as VisualizationStoreData,
         };
     }
 }

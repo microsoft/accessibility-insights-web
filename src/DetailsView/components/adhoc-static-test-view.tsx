@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as React from 'react';
 import { ContentReference } from 'views/content/content-page';
 
@@ -17,7 +18,9 @@ import {
 } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
-export type AdhocStaticTestViewDeps = StaticContentDetailsViewDeps;
+export type AdhocStaticTestViewDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & StaticContentDetailsViewDeps;
 
 export interface AdhocStaticTestViewProps {
     deps: AdhocStaticTestViewDeps;
@@ -49,6 +52,7 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
                     visualizationType={selectedTest}
                     toggleClickHandler={clickHandler}
                     featureFlagStoreData={props.featureFlagStoreData}
+                    detailsViewActionMessageCreator={props.deps.detailsViewActionMessageCreator}
                 />
             );
         }

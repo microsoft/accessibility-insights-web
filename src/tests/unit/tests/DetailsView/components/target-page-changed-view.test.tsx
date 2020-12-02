@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { DisplayableVisualizationTypeData } from 'common/configs/visualization-configuration-factory';
 import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     TargetPageChangedView,
     TargetPageChangedViewProps,
@@ -25,11 +26,13 @@ describe('TargetPageChangedView', () => {
                 toggleLabel: 'test toggle label',
                 subtitle,
             } as DisplayableVisualizationTypeData;
+            const detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
 
             const props: TargetPageChangedViewProps = {
                 visualizationType,
                 displayableData,
                 toggleClickHandler: clickHandlerStub,
+                detailsViewActionMessageCreator,
             };
 
             const wrapped = shallow(<TargetPageChangedView {...props} />);
