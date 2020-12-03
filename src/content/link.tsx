@@ -48,7 +48,6 @@ export const link = {
     ]),
     WCAG_2_2_1: guidanceLinkTo('WCAG 2.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html'),
     WCAG_2_2_2: guidanceLinkTo('WCAG 2.2.2', 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide'),
-    WCAG_2_2_4: guidanceLinkTo('WCAG 2.2.4', 'https://www.w3.org/WAI/WCAG21/Understanding/interruptions.html'),
     WCAG_2_3_1: guidanceLinkTo('WCAG 2.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html'),
     WCAG_2_4_1: guidanceLinkTo('WCAG 2.4.1', 'https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks'),
     WCAG_2_4_2: guidanceLinkTo('WCAG 2.4.2', 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html'),
@@ -57,7 +56,6 @@ export const link = {
     WCAG_2_4_5: guidanceLinkTo('WCAG 2.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html'),
     WCAG_2_4_6: guidanceLinkTo('WCAG 2.4.6', 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels'),
     WCAG_2_4_7: guidanceLinkTo('WCAG 2.4.7', 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html'),
-    WCAG_2_4_9: guidanceLinkTo('WCAG 2.4.9', 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only.html'),
     WCAG_2_5_1: guidanceLinkTo('WCAG 2.5.1', 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html', [guidanceTags.WCAG_2_1]),
     WCAG_2_5_2: guidanceLinkTo('WCAG 2.5.2', 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html', [
         guidanceTags.WCAG_2_1,
@@ -71,7 +69,6 @@ export const link = {
     WCAG_3_2_2: guidanceLinkTo('WCAG 3.2.2', 'https://www.w3.org/WAI/WCAG21/Understanding/on-input.html'),
     WCAG_3_2_3: guidanceLinkTo('WCAG 3.2.3', 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation'),
     WCAG_3_2_4: guidanceLinkTo('WCAG 3.2.4', 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification'),
-    WCAG_3_2_5: guidanceLinkTo('WCAG 3.2.5', 'https://www.w3.org/WAI/WCAG21/Understanding/change-on-request.html'),
     WCAG_3_3_1: guidanceLinkTo('WCAG 3.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html'),
     WCAG_3_3_2: guidanceLinkTo('WCAG 3.3.2', 'https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html'),
     WCAG_3_3_3: guidanceLinkTo('WCAG 3.3.3', 'https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion.html'),
