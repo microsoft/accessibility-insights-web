@@ -23,5 +23,9 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
 }
 
 export function mapAxeTagsToGuidanceLinks(axeTags?: string[]): HyperlinkDefinition[] {
-    return (axeTags ?? []).map(mapAxeTagToGuidanceLink).filter(maybeLink => maybeLink != null);
+    return (axeTags ?? []).map(mapAxeTagToGuidanceLink).filter(isNotNull);
+}
+
+function isNotNull<T>(maybeInstance?: T): maybeInstance is Exclude<T, null | undefined> {
+    return maybeInstance != null;
 }

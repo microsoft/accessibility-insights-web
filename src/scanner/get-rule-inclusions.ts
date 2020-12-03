@@ -46,6 +46,13 @@ function getRuleIncludedConfig(
         };
     }
 
+    if (rule.tags == null) {
+        return {
+            status: 'excluded',
+            reason: 'rule does not define a tags property',
+        };
+    }
+
     if (rule.tags.includes('experimental')) {
         return {
             status: 'excluded',

@@ -50,6 +50,24 @@ describe('getRuleInclusions', () => {
         });
     });
 
+    it("excludes rules mapped to null tags (because it's probably one of our custom rules) and populates reason", () => {
+        const noTagRule = [
+            {
+                id: 'no-tag-rule',
+                selector: 'fake-selector',
+                enabled: true,
+                // tags: ...
+            },
+        ];
+        const inclusions = getRuleInclusions(noTagRule, {});
+        expect(inclusions).toMatchObject({
+            'no-tag-rule': {
+                status: 'excluded',
+                reason: 'rule does not define a tags property',
+            },
+        });
+    });
+
     it('excludes rules mapped to best-practice tag and populates reason', () => {
         const bestPracticeRule = [
             {
@@ -68,18 +86,18 @@ describe('getRuleInclusions', () => {
         });
     });
 
-    it('excludes rules mapped to best-practice tag and populates reason', () => {
-        const bestPracticeRule = [
+    it('excludes rules mapped to experimental tag and populates reason', () => {
+        const experimentalRule = [
             {
-                id: 'best-practice-rule',
+                id: 'experimental-rule',
                 selector: 'fake-selector',
                 enabled: true,
                 tags: ['experimental'],
             },
         ];
-        const inclusions = getRuleInclusions(bestPracticeRule, {});
+        const inclusions = getRuleInclusions(experimentalRule, {});
         expect(inclusions).toMatchObject({
-            'best-practice-rule': {
+            'experimental-rule': {
                 status: 'excluded',
                 reason: 'rule is tagged experimental',
             },

@@ -14,7 +14,7 @@ export class ResultDecorator {
         private readonly documentUtils: DocumentUtils,
         private readonly messageDecorator: MessageDecorator,
         private readonly getHelpUrl: (ruleId: string, axeHelpUrl?: string) => string | undefined,
-        private readonly mapAxeTagsToGuidanceLinks: (axeTags: string[]) => HyperlinkDefinition[],
+        private readonly mapAxeTagsToGuidanceLinks: (axeTags?: string[]) => HyperlinkDefinition[],
     ) {}
 
     public decorateResults(results: Axe.AxeResults): ScanResults {
