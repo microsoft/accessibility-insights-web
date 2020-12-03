@@ -68,8 +68,8 @@
         "watch:scss": "tsm \"src/**/*.scss\" --watch",
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
-        "watch:webpack-dev-browser": "webpack --watch --config-name dev --colors --progress",
-        "watch:webpack-unified": "webpack --watch --config-name unified --colors --progress",
+        "watch:webpack-dev-browser": "webpack --watch --config-name dev --color --progress",
+        "watch:webpack-unified": "webpack --watch --config-name unified --color --progress",
         "with:mock-service-for-android": "npm-run-all --race --parallel serve:mock-service-for-android"
     },
     "devDependencies": {
