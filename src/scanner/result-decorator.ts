@@ -3,7 +3,6 @@
 import * as Axe from 'axe-core';
 
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { DictionaryStringTo } from 'types/common-types';
 import { DocumentUtils } from './document-utils';
 import { AxeRule, RuleResult, ScanResults } from './iruleresults';
 import { MessageDecorator } from './message-decorator';
