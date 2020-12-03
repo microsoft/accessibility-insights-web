@@ -57,6 +57,14 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         ).toEqual([BestPractice, link.WCAG_1_1_1]);
     });
 
+    it('should sort the output', () => {
+        expect(mapAxeTagsToGuidanceLinks(['wcag111', 'wcag1411', 'best-practice'])).toEqual([
+            BestPractice,
+            link.WCAG_1_1_1,
+            link.WCAG_1_4_11,
+        ]);
+    });
+
     const axe = Axe as any;
     const allAxeTags = new Set(flatMap(axe.getRules(), rule => rule.tags));
     const axeWcagTags = [...allAxeTags.values()].filter(tag => /^wcag\d+$/.test(tag)).sort();

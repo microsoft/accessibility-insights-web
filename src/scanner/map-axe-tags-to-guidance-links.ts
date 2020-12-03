@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { link } from 'content/link';
+import { sortBy } from 'lodash';
 
 export const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',
@@ -84,7 +85,11 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
 }
 
 export function mapAxeTagsToGuidanceLinks(axeTags?: string[]): HyperlinkDefinition[] {
-    return (axeTags ?? []).map(mapAxeTagToGuidanceLink).filter(isNotNull);
+    const normalizedTags = axeTags ?? [];
+    const unsortedMaybeLinks = normalizedTags.map(mapAxeTagToGuidanceLink);
+    const unsortedLinks = unsortedMaybeLinks.filter(isNotNull);
+    const sortedLinks = sortBy(unsortedLinks, link => link.text);
+    return sortedLinks;
 }
 
 function isNotNull<T>(maybeInstance?: T): maybeInstance is Exclude<T, null | undefined> {
