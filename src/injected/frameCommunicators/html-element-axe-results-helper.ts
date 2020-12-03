@@ -99,7 +99,7 @@ export class HtmlElementAxeResultsHelper {
             const elementResult = elementResults[i];
             const targetLength = elementResult.target.length;
 
-            if (elementResult.targetIndex == undefined) {
+            if (elementResult.targetIndex == null) {
                 elementResult.targetIndex = 0;
             }
             if (targetLength === elementResult.targetIndex + 1) {

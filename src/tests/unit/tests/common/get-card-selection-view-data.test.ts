@@ -90,7 +90,7 @@ describe('getCardSelectionStoreviewData', () => {
     });
 
     test('all rules collapsed, visual helper enabled, resultsFilter passed, expect only filtered highlights', () => {
-        resultsFilter = res => res.uid == 'sampleUid3';
+        resultsFilter = res => res.uid === 'sampleUid3';
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
@@ -244,7 +244,7 @@ describe('getCardSelectionStoreviewData', () => {
     });
 
     test('one rule expanded, visual helper enabled, resultsFilter passed, expect some highlights', () => {
-        resultsFilter = res => res.uid == 'sampleUid2';
+        resultsFilter = res => res.uid === 'sampleUid2';
         initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
 
         const viewData = getCardSelectionViewData(
@@ -288,7 +288,7 @@ describe('getCardSelectionStoreviewData', () => {
         initialCardSelectionState.rules['sampleRuleId1'].isExpanded = true;
         initialCardSelectionState.rules['sampleRuleId2'].isExpanded = true;
         initialCardSelectionState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
-        resultsFilter = res => res.uid == 'sampleUid2';
+        resultsFilter = res => res.uid === 'sampleUid2';
 
         const viewData = getCardSelectionViewData(
             initialCardSelectionState,
