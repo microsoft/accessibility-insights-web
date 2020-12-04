@@ -1,17 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
+import { Message } from 'common/message';
+import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { VisualizationType } from 'common/types/visualization-type';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
-import { Message } from '../../common/message';
-import { VisualizationType } from '../../common/types/visualization-type';
-import {
-    Analyzer,
-    AnalyzerConfiguration,
-    AxeAnalyzerResult,
-    ScanCompletedPayload,
-} from './analyzer';
+import { Analyzer, AnalyzerConfiguration, ScanCompletedPayload } from './analyzer';
 
 export class BaseAnalyzer implements Analyzer {
     protected visualizationType: VisualizationType;
