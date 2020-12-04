@@ -9,8 +9,8 @@ Object {
         "description": "failed-rule-1 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/failed-rule-1",
-            "text": "guidance for failed-rule-1",
+            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
+            "text": "guidance for common-tag-failed-rule-1-specific-tag",
           },
         ],
         "id": "failed-rule-1",
@@ -73,8 +73,8 @@ Object {
         "description": "failed-rule-2 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/failed-rule-2",
-            "text": "guidance for failed-rule-2",
+            "href": "https://guidance-link-stub/common-tag-failed-rule-2-specific-tag",
+            "text": "guidance for common-tag-failed-rule-2-specific-tag",
           },
         ],
         "id": "failed-rule-2",
@@ -139,8 +139,8 @@ Object {
         "description": "inapplicable-rule-1 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/inapplicable-rule-1",
-            "text": "guidance for inapplicable-rule-1",
+            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
+            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
           },
         ],
         "id": "inapplicable-rule-1",
@@ -154,8 +154,8 @@ Object {
         "description": "passed-rule-1 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/passed-rule-1",
-            "text": "guidance for passed-rule-1",
+            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
+            "text": "guidance for common-tag-passed-rule-1-specific-tag",
           },
         ],
         "id": "passed-rule-1",
@@ -180,8 +180,8 @@ Object {
         "description": "inapplicable-rule-1 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/inapplicable-rule-1",
-            "text": "guidance for inapplicable-rule-1",
+            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
+            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
           },
         ],
         "id": "inapplicable-rule-1",
@@ -193,8 +193,8 @@ Object {
         "description": "inapplicable-rule-2 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/inapplicable-rule-2",
-            "text": "guidance for inapplicable-rule-2",
+            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-2-specific-tag",
+            "text": "guidance for common-tag-inapplicable-rule-2-specific-tag",
           },
         ],
         "id": "inapplicable-rule-2",
@@ -208,8 +208,8 @@ Object {
         "description": "passed-rule-1 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/passed-rule-1",
-            "text": "guidance for passed-rule-1",
+            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
+            "text": "guidance for common-tag-passed-rule-1-specific-tag",
           },
         ],
         "id": "passed-rule-1",
@@ -221,8 +221,8 @@ Object {
         "description": "passed-rule-2 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/passed-rule-2",
-            "text": "guidance for passed-rule-2",
+            "href": "https://guidance-link-stub/common-tag-passed-rule-2-specific-tag",
+            "text": "guidance for common-tag-passed-rule-2-specific-tag",
           },
         ],
         "id": "passed-rule-2",
@@ -246,8 +246,8 @@ Object {
         "description": "failed-rule-1 description",
         "guidance": Array [
           Object {
-            "href": "https://guidance-link-stub/failed-rule-1",
-            "text": "guidance for failed-rule-1",
+            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
+            "text": "guidance for common-tag-failed-rule-1-specific-tag",
           },
         ],
         "id": "failed-rule-1",

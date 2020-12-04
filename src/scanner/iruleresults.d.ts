@@ -6,6 +6,7 @@ export interface AxeRule {
     description?: string;
     helpUrl?: string;
     help?: string;
+    tags?: string[];
 }
 
 export interface AxeNodeResult {

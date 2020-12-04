@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { forOwn } from 'lodash';
-import { BestPractice } from 'scanner/rule-to-links-mappings';
+import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
 
 import { GuidanceLinks, GuidanceLinksProps } from 'common/components/guidance-links';
 import { NewTabLink } from 'common/components/new-tab-link';
