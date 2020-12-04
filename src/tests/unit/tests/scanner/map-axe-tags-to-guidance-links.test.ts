@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Axe from 'axe-core';
+import * as axe from 'axe-core';
 import { link } from 'content/link';
 import { flatMap } from 'lodash';
 import { BestPractice, mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
@@ -65,7 +65,6 @@ describe('mapAxeTagsToGuidanceLinks', () => {
         ]);
     });
 
-    const axe = Axe as any;
     const allAxeTags = new Set(flatMap(axe.getRules(), rule => rule.tags));
     const axeWcagTags = [...allAxeTags.values()].filter(tag => /^wcag\d+$/.test(tag)).sort();
     const axeWcagNonAAATags = axeWcagTags.filter(tag => !wcagAAAtags.includes(tag));
