@@ -22,6 +22,7 @@ import {
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import * as React from 'react';
 import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
@@ -530,6 +531,19 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             payload,
         });
     };
+
+    public uploadAssessment = (assessmentData: VersionedAssessmentData): void => {
+        const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
+        const payload: BaseActionPayload = {
+            telemetry: telemetry,
+            assessmentData: assessmentData
+        };
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.UploadAssessment,
+            payload,
+        });
+    };
+
 
     public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
