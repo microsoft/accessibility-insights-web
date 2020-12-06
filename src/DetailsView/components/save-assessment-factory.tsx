@@ -21,7 +21,7 @@ export type SaveAssessmentFactoryProps = {
 
 export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): JSX.Element {
     const assessmentData = props.deps.assessmentDataFormatter.formatAssessmentData(
-        props.assessmentStoreData.assessments,
+        props.assessmentStoreData,
     );
 
     const currentDate = props.deps.getCurrentDate();
