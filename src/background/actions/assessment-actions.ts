@@ -10,6 +10,7 @@ import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
     AssessmentActionInstancePayload,
+    BaseActionPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,
@@ -45,4 +46,5 @@ export class AssessmentActions {
     public readonly updateSelectedPivotChild = new Action<UpdateSelectedDetailsViewPayload>();
     public readonly updateTargetTabId = new Action<number>();
     public readonly continuePreviousAssessment = new Action<number>();
+    public readonly uploadAssessment = new Action<BaseActionPayload>();
 }
