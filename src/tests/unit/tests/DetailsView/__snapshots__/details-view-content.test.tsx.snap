@@ -31,6 +31,7 @@ exports[` render renders normally 1`] = `
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
         "dropdownClickHandler": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -118,6 +119,7 @@ exports[` render renders normally 1`] = `
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
         "dropdownClickHandler": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -454,6 +456,7 @@ exports[` render renders normally 1`] = `
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
         "dropdownClickHandler": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

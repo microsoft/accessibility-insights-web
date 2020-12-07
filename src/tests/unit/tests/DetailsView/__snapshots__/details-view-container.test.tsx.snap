@@ -30,6 +30,7 @@ exports[`DetailsViewContainer render content render once; should call details vi
         "telemetryFactory": undefined,
         "undoManualRequirementStatusChange": [Function],
         "undoManualTestStatusChange": [Function],
+        "uploadAssessment": [Function],
       },
       "storesHub": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
