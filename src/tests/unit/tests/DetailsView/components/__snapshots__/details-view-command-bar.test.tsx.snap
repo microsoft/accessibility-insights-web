@@ -93,6 +93,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
       }
     }
@@ -207,6 +208,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
       }
     }
@@ -259,6 +261,7 @@ exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
       "iconName": "FabricOpenFolderHorizontal",
     }
   }
+  onClick={[Function]}
 >
   Load assessment
 </InsightsCommandButton>
@@ -333,6 +336,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
       }
     }
@@ -485,6 +489,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
       }
     }
@@ -598,6 +603,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
           "telemetryFactory": undefined,
           "undoManualRequirementStatusChange": [Function],
           "undoManualTestStatusChange": [Function],
+          "uploadAssessment": [Function],
         },
       }
     }

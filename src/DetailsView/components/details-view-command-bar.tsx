@@ -79,8 +79,8 @@ export interface DetailsViewCommandBarProps {
     narrowModeStatus: NarrowModeStatus;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
+    loadAssessmentButtonProps: LoadAssessmentButtonProps
 }
-
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
     DetailsViewCommandBarState
@@ -231,7 +231,7 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderLoadAssessmentButton = (): JSX.Element | null => {
         if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return <LoadAssessmentButton {...this.props}
+            return <LoadAssessmentButton {...this.props.loadAssessmentButtonProps}
         />
         }
         return null;
