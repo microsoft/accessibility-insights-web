@@ -9,6 +9,7 @@ import {
 import { Tab } from 'common/itab';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
@@ -23,7 +24,6 @@ import {
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
-import { FailureInstanceData } from 'DetailsView/components/failure-instance-panel-control';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
 
