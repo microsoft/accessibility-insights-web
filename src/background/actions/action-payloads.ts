@@ -20,6 +20,7 @@ import {
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { FailureInstanceData } from 'DetailsView/components/failure-instance-panel-control';
 import { Rectangle } from 'electron';
@@ -52,6 +53,9 @@ export interface AssessmentActionInstancePayload extends AssessmentToggleActionP
     selector: string;
 }
 
+export interface UploadAssessmentPayload extends BaseActionPayload {
+    versionedAssessmentData: VersionedAssessmentData
+}
 export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
 }

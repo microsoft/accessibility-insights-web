@@ -19,6 +19,7 @@ import {
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
+    UploadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
@@ -534,9 +535,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public uploadAssessment = (assessmentData: VersionedAssessmentData): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: BaseActionPayload = {
+        const payload: UploadAssessmentPayload = {
             telemetry: telemetry,
-            assessmentData: assessmentData
+            versionedAssessmentData: assessmentData
         };
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.UploadAssessment,

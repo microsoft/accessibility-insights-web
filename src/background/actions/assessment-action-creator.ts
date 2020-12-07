@@ -27,6 +27,7 @@ import {
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
+    UploadAssessmentPayload,
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
@@ -144,7 +145,7 @@ export class AssessmentActionCreator {
         this.assessmentActions.continuePreviousAssessment.invoke(tabId);
     };
 
-    private onUploadAssessment = (payload: BaseActionPayload, tabId: number): void => {
+    private onUploadAssessment = (payload: UploadAssessmentPayload, tabId: number): void => {
         const eventName = TelemetryEvents.UPLOAD_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.uploadAssessment.invoke(payload);
