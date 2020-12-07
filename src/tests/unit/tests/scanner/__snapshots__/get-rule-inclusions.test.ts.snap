@@ -16,6 +16,13 @@ Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
+  "aria-command-name": Object {
+    "status": "included",
+  },
+  "aria-dialog-name": Object {
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
+  },
   "aria-hidden-body": Object {
     "status": "included",
   },
@@ -23,6 +30,12 @@ Object {
     "status": "included",
   },
   "aria-input-field-name": Object {
+    "status": "included",
+  },
+  "aria-meter-name": Object {
+    "status": "included",
+  },
+  "aria-progressbar-name": Object {
     "status": "included",
   },
   "aria-required-attr": Object {
@@ -42,6 +55,13 @@ Object {
   },
   "aria-toggle-field-name": Object {
     "status": "included",
+  },
+  "aria-tooltip-name": Object {
+    "status": "included",
+  },
+  "aria-treeitem-name": Object {
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
   },
   "aria-valid-attr": Object {
     "status": "included",
@@ -239,6 +259,10 @@ Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
+  "presentation-role-conflict": Object {
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
+  },
   "region": Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
@@ -251,6 +275,9 @@ Object {
     "status": "excluded",
   },
   "scrollable-region-focusable": Object {
+    "status": "included",
+  },
+  "select-name": Object {
     "status": "included",
   },
   "server-side-image-map": Object {
