@@ -537,14 +537,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: UploadAssessmentPayload = {
             telemetry: telemetry,
-            versionedAssessmentData: assessmentData
+            versionedAssessmentData: assessmentData,
         };
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.UploadAssessment,
             payload,
         });
     };
-
 
     public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);

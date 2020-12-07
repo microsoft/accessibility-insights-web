@@ -1016,10 +1016,9 @@ class ActionCreatorValidator {
         null,
         MockBehavior.Strict,
     );
-    private detailsViewControllerStrictMock: IMock<ExtensionDetailsViewController> = Mock.ofType<ExtensionDetailsViewController>(
-        null,
-        MockBehavior.Strict,
-    );
+    private detailsViewControllerStrictMock: IMock<ExtensionDetailsViewController> = Mock.ofType<
+        ExtensionDetailsViewController
+    >(null, MockBehavior.Strict);
 
     private loggerMock = Mock.ofType<Logger>();
 

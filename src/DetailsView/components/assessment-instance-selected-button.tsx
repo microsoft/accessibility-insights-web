@@ -20,7 +20,9 @@ export interface AssessmentInstanceSelectedButtonProps {
     ) => void;
 }
 
-export class AssessmentInstanceSelectedButton extends React.Component<AssessmentInstanceSelectedButtonProps> {
+export class AssessmentInstanceSelectedButton extends React.Component<
+    AssessmentInstanceSelectedButtonProps
+> {
     public render(): JSX.Element {
         const { isVisualizationEnabled, isVisible } = this.props;
 

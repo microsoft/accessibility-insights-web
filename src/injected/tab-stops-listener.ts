@@ -178,8 +178,8 @@ export class TabStopsListener {
     };
 
     private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName(
-            'iframe',
-        ) as HTMLCollectionOf<HTMLIFrameElement>;
+        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<
+            HTMLIFrameElement
+        >;
     }
 }

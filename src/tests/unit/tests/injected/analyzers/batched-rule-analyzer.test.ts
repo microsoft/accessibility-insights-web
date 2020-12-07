@@ -98,9 +98,12 @@ describe('BatchedRuleAnalyzer', () => {
         const resultOne: RuleResult = {
             id: ruleOne,
         } as RuleResult;
-        const resultProcessorMockOne: IMock<
-            (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>
-        > = Mock.ofInstance(results => null, MockBehavior.Strict);
+        const resultProcessorMockOne: IMock<(
+            results: ScanResults,
+        ) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
+            results => null,
+            MockBehavior.Strict,
+        );
         const configOne = {
             rules: [ruleOne],
             analyzerMessageType: 'sample message type',
@@ -110,9 +113,12 @@ describe('BatchedRuleAnalyzer', () => {
             resultProcessor: scanner => resultProcessorMockOne.object,
         };
         const ruleTwo = 'the second rule';
-        const resultProcessorMockTwo: IMock<
-            (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>
-        > = Mock.ofInstance(results => null, MockBehavior.Strict);
+        const resultProcessorMockTwo: IMock<(
+            results: ScanResults,
+        ) => DictionaryStringTo<HtmlElementAxeResults>> = Mock.ofInstance(
+            results => null,
+            MockBehavior.Strict,
+        );
         const configTwo = {
             ...clone(configOne),
             rules: [ruleTwo],

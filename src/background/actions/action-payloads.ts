@@ -54,7 +54,7 @@ export interface AssessmentActionInstancePayload extends AssessmentToggleActionP
 }
 
 export interface UploadAssessmentPayload extends BaseActionPayload {
-    versionedAssessmentData: VersionedAssessmentData
+    versionedAssessmentData: VersionedAssessmentData;
 }
 export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;

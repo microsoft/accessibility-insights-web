@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AssessmentStoreData } from "common/types/store-data/assessment-result-data";
-import { VersionedAssessmentData } from "common/types/versioned-assessment-data";
-
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 
 export class AssessmentDataFormatter {
     public formatAssessmentData = (assessmentData: AssessmentStoreData): string => {
@@ -11,7 +10,6 @@ export class AssessmentDataFormatter {
         const assessmentReportData = JSON.stringify(versionedData);
         return assessmentReportData;
     };
-
 
     private addVersionNumber = (assessmentData: AssessmentStoreData): VersionedAssessmentData => {
         const versionedAssessmentData = {
@@ -21,4 +19,3 @@ export class AssessmentDataFormatter {
         return versionedAssessmentData;
     };
 }
-

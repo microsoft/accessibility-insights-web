@@ -22,10 +22,9 @@ describe('ResultSectionContent', () => {
     const depsStub = {} as ResultSectionContentDeps;
 
     it('renders, with some rules', () => {
-        const cardsVisualizationModifierButtonsStub: Readonly<CardsVisualizationModifierButtons> = NamedFC<CardsVisualizationModifierButtonsProps>(
-            'test',
-            _ => null,
-        );
+        const cardsVisualizationModifierButtonsStub: Readonly<CardsVisualizationModifierButtons> = NamedFC<
+            CardsVisualizationModifierButtonsProps
+        >('test', _ => null);
 
         const props = {
             deps: {

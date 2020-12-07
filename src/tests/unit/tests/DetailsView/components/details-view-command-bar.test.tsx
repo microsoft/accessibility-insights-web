@@ -47,7 +47,7 @@ describe('DetailsViewCommandBar', () => {
     let startOverComponent: JSX.Element;
     let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
     let loadAssessmentButton: JSX.Element;
-    let LoadAssessmentButtonProps: LoadAssessmentButtonProps
+    let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
@@ -76,10 +76,9 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> = NamedFC<DetailsViewCommandBarProps>(
-            'test',
-            _ => null,
-        );
+        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> = NamedFC<
+            DetailsViewCommandBarProps
+        >('test', _ => null);
         const LeftNavStub: ReactFCWithDisplayName<LeftNavProps> = NamedFC<LeftNavProps>(
             'test',
             _ => null,

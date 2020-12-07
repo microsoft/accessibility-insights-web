@@ -43,10 +43,7 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
 
     private onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
         const content = readerEvent.target.result as string;
-        const assessmentData = this.props.deps.assessmentDataParser.parseAssessmentData(
-            content,
-        );
-        this.props.deps.detailsViewActionMessageCreator.uploadAssessment(assessmentData)
+        const assessmentData = this.props.deps.assessmentDataParser.parseAssessmentData(content);
+        this.props.deps.detailsViewActionMessageCreator.uploadAssessment(assessmentData);
     };
-
 }
