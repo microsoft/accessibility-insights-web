@@ -29,7 +29,7 @@ import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
 import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 
 export const initializeDebugTools = () => {
     initializeFabricIcons();
