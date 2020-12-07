@@ -26,7 +26,6 @@ import { forEach, isEmpty, pickBy } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import {
     AddResultDescriptionPayload,
-    BaseActionPayload,
     ExpandTestNavPayload,
     SelectTestSubviewPayload,
     UploadAssessmentPayload,
@@ -148,10 +147,6 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
 
     private onContinuePreviousAssessment = (tabId: number): void => {
         this.updateTargetTabWithId(tabId);
-    };
-
-    private onUploadAssessment = (payload: UploadAssessmentPayload): void => {
-        //update state
     };
 
     private onUpdateTargetTabId = (tabId: number): void => {
