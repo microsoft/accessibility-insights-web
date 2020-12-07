@@ -1,19 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
+import { BaseStore } from 'common/base-store';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { ForRuleAnalyzerScanCallback } from 'common/types/analyzer-telemetry-callbacks';
+import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
+import { ScanResults } from 'scanner/iruleresults';
+import { ScanOptions } from 'scanner/scan-options';
 
-import { BaseStore } from '../../common/base-store';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { ForRuleAnalyzerScanCallback } from '../../common/types/analyzer-telemetry-callbacks';
-import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { ScanResults } from '../../scanner/iruleresults';
-import { ScanOptions } from '../../scanner/scan-options';
 import { ScannerUtils } from '../scanner-utils';
-import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
+import { RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export type MessageDelegate = (message: any) => void;

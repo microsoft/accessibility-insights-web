@@ -20,11 +20,12 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
-} from '../../../../common/extension-telemetry-events';
-import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import { AxeAnalyzerResult } from '../../../../injected/analyzers/analyzer';
+} from 'common/extension-telemetry-events';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationType } from 'common/types/visualization-type';
+
 import { EventStubFactory } from './../../common/event-stub-factory';
 
 describe('TelemetryDataFactoryTest', () => {
