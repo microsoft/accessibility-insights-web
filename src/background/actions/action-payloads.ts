@@ -11,6 +11,7 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import {
     PlatformData,
     ScreenshotData,
@@ -25,7 +26,6 @@ import { FailureInstanceData } from 'DetailsView/components/failure-instance-pan
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
 import { TabStopEvent } from 'injected/tab-stops-listener';
-import { LaunchPanelType } from 'popup/components/popup-view';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;

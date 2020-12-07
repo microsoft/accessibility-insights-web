@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { It, Mock, Times } from 'typemoq';
 
-import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
-import { LaunchPanelType } from '../../../../../popup/components/popup-view';
-import { PopupViewControllerHandler } from '../../../../../popup/handlers/popup-view-controller-handler';
+import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
+import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
+import { PopupViewControllerHandler } from 'popup/handlers/popup-view-controller-handler';
 
 describe('PopupViewControllerHandlerTest', () => {
     test('openAdhocToolsPanel', () => {
