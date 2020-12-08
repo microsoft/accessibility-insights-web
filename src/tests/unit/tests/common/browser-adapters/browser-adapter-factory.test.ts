@@ -11,7 +11,7 @@ import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-f
 import { ChromiumAdapter } from 'common/browser-adapters/chromium-adapter';
 import { FirefoxAdapter } from 'common/browser-adapters/firefox-adapter';
 import { IMock, Mock } from 'typemoq';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 
 describe('BrowserAdapterFactory', () => {
     describe('makeFromUserAgent', () => {

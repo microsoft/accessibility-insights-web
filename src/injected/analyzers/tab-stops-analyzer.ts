@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { TabStopEvent } from 'common/types/tab-stop-event';
 import { WindowUtils } from 'common/window-utils';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import * as Q from 'q';
 
-import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
+import { TabStopsListener } from '../tab-stops-listener';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 

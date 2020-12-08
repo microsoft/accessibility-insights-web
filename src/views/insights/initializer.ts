@@ -6,7 +6,7 @@ import { HTMLElementUtils } from 'common/html-element-utils';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { scan } from 'scanner/exposed-apis';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 import { rendererDependencies } from './dependencies';
 import { renderer } from './renderer';
 

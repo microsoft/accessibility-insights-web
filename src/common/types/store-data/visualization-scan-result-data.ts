@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../injected/scanner-utils';
-import { TabOrderPropertyBag } from '../../../injected/tab-order-property-bag';
-import { TabStopEvent } from '../../../injected/tab-stops-listener';
-import { ScanResults } from '../../../scanner/iruleresults';
-import { DictionaryStringTo } from '../../../types/common-types';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
+import { TabOrderPropertyBag } from 'injected/tab-order-property-bag';
+import { ScanResults } from 'scanner/iruleresults';
+import { DictionaryStringTo } from 'types/common-types';
 
 interface IssuesScanResultData {
     scanResult?: ScanResults;

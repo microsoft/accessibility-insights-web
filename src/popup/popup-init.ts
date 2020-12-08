@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { createSupportedBrowserChecker } from '../common/is-supported-browser';
 import { UrlParser } from '../common/url-parser';

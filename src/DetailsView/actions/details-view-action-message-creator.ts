@@ -22,18 +22,18 @@ import {
     UploadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
+import { ReportExportFormat } from 'common/extension-telemetry-events';
+import { Message } from 'common/message';
+import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
+import { Messages } from 'common/messages';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { FailureInstanceData } from 'common/types/failure-instance-data';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
-import * as TelemetryEvents from '../../common/extension-telemetry-events';
-import { ReportExportFormat } from '../../common/extension-telemetry-events';
-import { Message } from '../../common/message';
-import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
-import { Messages } from '../../common/messages';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { FailureInstanceData } from '../components/failure-instance-panel-control';
 import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;

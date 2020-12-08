@@ -1,19 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DateProvider } from '../common/date-provider';
-import { HTMLElementUtils } from '../common/html-element-utils';
-import { WindowUtils } from '../common/window-utils';
+import { DateProvider } from 'common/date-provider';
+import { HTMLElementUtils } from 'common/html-element-utils';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { WindowUtils } from 'common/window-utils';
 import { VisualizationWindowMessage } from './drawing-controller';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { ScannerUtils } from './scanner-utils';
-
-export interface TabStopEvent {
-    timestamp: number;
-    target: string[];
-    html: string;
-}
 
 export class TabStopsListener {
     private frameCommunicator: FrameCommunicator;
