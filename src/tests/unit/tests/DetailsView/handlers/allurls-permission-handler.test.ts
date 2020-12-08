@@ -9,10 +9,9 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('AllUrlsPermissionHandler', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
-    let actionMessageCreatorMock: IMock<Pick<
-        DetailsViewActionMessageCreator,
-        'setAllUrlsPermissionState'
-    >>;
+    let actionMessageCreatorMock: IMock<
+        Pick<DetailsViewActionMessageCreator, 'setAllUrlsPermissionState'>
+    >;
     let testSubject: AllUrlsPermissionHandler;
 
     beforeEach(() => {

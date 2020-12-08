@@ -62,9 +62,9 @@ export class HtmlElementAxeResultsHelper {
         const missingFrames: HTMLIFrameElement[] = [];
 
         const allFramesIncludingCurrentFrames = Array.prototype.slice.call(
-            this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<
-                HTMLIFrameElement
-            >,
+            this.htmlElementUtils.getAllElementsByTagName(
+                'iframe',
+            ) as HTMLCollectionOf<HTMLIFrameElement>,
         );
         allFramesIncludingCurrentFrames.push(null); // current frame
 

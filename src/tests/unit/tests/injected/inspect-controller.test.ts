@@ -18,10 +18,9 @@ describe('InspectControllerTests', () => {
     let inspectConfigurationMock: IMock<InspectConfigurationFactory>;
     let defaultState: InspectMode;
     let onHoverStub: (selector: string[]) => void;
-    let changeInspectModeMock: IMock<(
-        event: React.MouseEvent<HTMLButtonElement> | MouseEvent,
-        inspectMode: InspectMode,
-    ) => void>;
+    let changeInspectModeMock: IMock<
+        (event: React.MouseEvent<HTMLButtonElement> | MouseEvent, inspectMode: InspectMode) => void
+    >;
     let testObject: InspectController;
 
     beforeEach(() => {

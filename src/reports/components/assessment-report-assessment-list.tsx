@@ -24,9 +24,7 @@ export interface IconWithCountProps {
     count: number;
 }
 
-export class AssessmentReportAssessmentList extends React.Component<
-    AssessmentReportAssessmentListProps
-> {
+export class AssessmentReportAssessmentList extends React.Component<AssessmentReportAssessmentListProps> {
     public render(): JSX.Element {
         return <div>{this.renderAssessments()}</div>;
     }
