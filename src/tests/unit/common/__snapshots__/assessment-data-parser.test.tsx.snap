@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentDataParser returns the parsed assessment data string as a object of type versionedAssessmentData 1`] = `
-Object {
-  "assessmentData": "data",
-  "version": 1,
-}
-`;
-
 exports[`AssessmentDataParser returns the parsed assessment data string as an object of type versionedAssessmentData 1`] = `
 Object {
   "assessmentData": "data",
