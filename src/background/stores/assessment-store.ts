@@ -149,6 +149,10 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.updateTargetTabWithId(tabId);
     };
 
+    private onUploadAssessment = (payload: UploadAssessmentPayload): void => {
+        //update state
+    };
+
     private onUpdateTargetTabId = (tabId: number): void => {
         if (this.state.persistedTabInfo == null || this.state.persistedTabInfo.id !== tabId) {
             this.updateTargetTabWithId(tabId);
