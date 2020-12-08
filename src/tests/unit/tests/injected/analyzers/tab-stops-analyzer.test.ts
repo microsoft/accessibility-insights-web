@@ -3,12 +3,13 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { Message } from 'common/message';
+import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import { WindowUtils } from 'common/window-utils';
 import { FocusAnalyzerConfiguration, ScanBasePayload } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import { TabStopEvent, TabStopsListener } from 'injected/tab-stops-listener';
+import { TabStopsListener } from 'injected/tab-stops-listener';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
 

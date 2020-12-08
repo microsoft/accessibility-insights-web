@@ -7,6 +7,7 @@ import {
 } from 'background/actions/action-payloads';
 import { Tab } from 'common/itab';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import * as React from 'react';
 
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
@@ -16,7 +17,6 @@ import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetr
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { WindowUtils } from '../../common/window-utils';
-import { LaunchPanelType } from '../components/popup-view';
 
 const visualizationMessages = Messages.Visualizations;
 

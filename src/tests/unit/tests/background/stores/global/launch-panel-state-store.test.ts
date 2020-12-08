@@ -6,8 +6,10 @@ import { LocalStorageData } from 'background/storage-data';
 import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { StoreNames } from 'common/stores/store-names';
-import { LaunchPanelStoreData } from 'common/types/store-data/launch-panel-store-data';
-import { LaunchPanelType } from 'popup/components/popup-view';
+import {
+    LaunchPanelStoreData,
+    LaunchPanelType,
+} from 'common/types/store-data/launch-panel-store-data';
 import { IMock, It, Mock } from 'typemoq';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
