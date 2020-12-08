@@ -28,6 +28,7 @@ import {
     AddResultDescriptionPayload,
     ExpandTestNavPayload,
     SelectTestSubviewPayload,
+    UploadAssessmentPayload,
 } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
@@ -122,6 +123,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.continuePreviousAssessment.addListener(
             this.onContinuePreviousAssessment,
         );
+        this.assessmentActions.uploadAssessment.addListener(this.onUploadAssessment);
     }
 
     private updateTargetTabWithId(tabId: number): void {
@@ -145,6 +147,10 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
 
     private onContinuePreviousAssessment = (tabId: number): void => {
         this.updateTargetTabWithId(tabId);
+    };
+
+    private onUploadAssessment = (payload: UploadAssessmentPayload): void => {
+        //update state
     };
 
     private onUpdateTargetTabId = (tabId: number): void => {

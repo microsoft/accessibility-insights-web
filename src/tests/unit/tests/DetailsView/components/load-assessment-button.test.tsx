@@ -6,13 +6,12 @@ import { shallow } from 'enzyme';
 import {
     LoadAssessmentButton,
     LoadAssessmentButtonProps,
-} from 'DetailsView/components/load-assessment-button';
-
+} from '../../../../../DetailsView/components/load-assessment-button';
 describe('LoadAssessmentButton', () => {
     let props: LoadAssessmentButtonProps;
 
     it('should render per the snapshot', () => {
-        const rendered = shallow(<LoadAssessmentButton />);
+        const rendered = shallow(<LoadAssessmentButton {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });

@@ -14,8 +14,9 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import {
     LoadAssessmentButton,
+    LoadAssessmentButtonDeps,
     LoadAssessmentButtonProps,
-} from 'DetailsView/components/load-assessment-button';
+} from '../../../../../DetailsView/components/load-assessment-button';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     StartOverComponentFactory,
@@ -46,6 +47,7 @@ describe('DetailsViewCommandBar', () => {
     let startOverComponent: JSX.Element;
     let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
     let loadAssessmentButton: JSX.Element;
+    let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
@@ -160,7 +162,7 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with load assessment button', () => {
-        const rendered = shallow(<LoadAssessmentButton />);
+        const rendered = shallow(<LoadAssessmentButton {...LoadAssessmentButtonProps} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 

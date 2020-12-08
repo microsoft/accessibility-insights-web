@@ -45,7 +45,7 @@ describe('SaveAssessmentFactory', () => {
                     testStepStatus: {},
                 },
             } as { [key: string]: AssessmentData },
-            persistedTabInfo: { title: 'SavedAssesment123' },
+            persistedTabInfo: { title: 'SavedAssessment123' },
         } as AssessmentStoreData;
 
         deps = {
@@ -62,7 +62,7 @@ describe('SaveAssessmentFactory', () => {
 
     describe('getSaveButtonForAssessment', () => {
         test('renders save assessment button', () => {
-            const assessmentData = props.assessmentStoreData.assessments;
+            const assessmentData = props.assessmentStoreData;
             const formattedAssessmentData = JSON.stringify(assessmentData);
             const title = props.assessmentStoreData.persistedTabInfo.title;
 
