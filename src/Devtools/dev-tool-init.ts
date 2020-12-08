@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { TargetPageInspector } from 'Devtools/target-page-inspector';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 import { DevToolInitializer } from './dev-tool-initializer';
 
 const userAgentParser = new UAParser(window.navigator.userAgent);
