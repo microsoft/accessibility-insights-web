@@ -2,11 +2,10 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DocumentUtils } from '../../../../scanner/document-utils';
-import { RuleResult } from '../../../../scanner/iruleresults';
-import { MessageDecorator } from '../../../../scanner/message-decorator';
-import { Processor } from '../../../../scanner/processor';
-import { ResultDecorator } from '../../../../scanner/result-decorator';
+import { DocumentUtils } from 'scanner/document-utils';
+import { MessageDecorator } from 'scanner/message-decorator';
+import { Processor } from 'scanner/processor';
+import { ResultDecorator } from 'scanner/result-decorator';
 
 describe('ResultDecorator', () => {
     let instanceStub;
@@ -24,6 +23,7 @@ describe('ResultDecorator', () => {
             id: 'test-rule',
             nodes: [nodeStub],
             description: null,
+            tags: ['tag1', 'tag2'],
         };
         nonEmptyResultStub = {
             passes: [],
@@ -49,79 +49,25 @@ describe('ResultDecorator', () => {
     describe('constructor', () => {
         it('should construct the generator', () => {
             const guidanceLink = {} as any;
-            const configuration = {
-                'test-rule': [guidanceLink],
-            };
+            const stubTagToLinkMapper = () => [guidanceLink];
             const resultDecorator = new ResultDecorator(
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
-                configuration,
+                stubTagToLinkMapper,
             );
             expect(resultDecorator).not.toBeNull();
         });
     });
 
-    describe('decorateResults: w/ no configuration', () => {
-        it('should return without guidance links', () => {
-            const scanResultInstance: RuleResult = {
-                ...instanceStub,
-                guidanceLinks: undefined,
-                helpUrl: urlStub,
-            };
-            const nonEmptyScanResultStub = {
-                passes: [],
-                violations: [scanResultInstance],
-                inapplicable: [],
-                incomplete: [],
-                timestamp: 100,
-                targetPageTitle: 'test title',
-                targetPageUrl: 'https://test_url',
-            };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
-                Processor.suppressChecksByMessages,
-                'suppressChecksByMessages',
-                Processor,
-                MockBehavior.Strict,
-            );
-
-            messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
-                .verifiable(Times.once());
-
-            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
-
-            suppressChecksByMessagesMock
-                .setup(scbmm => scbmm(instanceStub, true))
-                .returns(result => {
-                    return result;
-                })
-                .verifiable();
-
-            const testSubject = new ResultDecorator(
-                documentUtilsMock.object,
-                messageDecoratorMock.object,
-                getHelpUrlMock.object,
-                undefined,
-            );
-            let decoratedResult;
-            GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
-            });
-
-            expect(decoratedResult).toEqual(nonEmptyScanResultStub);
-            suppressChecksByMessagesMock.verifyAll();
-            documentUtilsMock.verifyAll();
-            messageDecoratorMock.verifyAll();
-        });
-    });
-
-    describe('decorateResults: with ruleToLinksConfiguration', () => {
+    describe('decorateResults with only violations', () => {
         it('should call success callback with correct result', () => {
             const guidanceLink = {} as any;
-            const configuration = {
-                'test-rule': [guidanceLink],
-            };
+            const mockTagToLinkMapper = Mock.ofInstance(tags => []);
+            mockTagToLinkMapper
+                .setup(m => m(['tag1', 'tag2']))
+                .returns(() => [guidanceLink])
+                .verifiable();
             const resultStubWithGuidanceLinks = {
                 passes: [],
                 violations: [
@@ -131,6 +77,7 @@ describe('ResultDecorator', () => {
                         description: null,
                         guidanceLinks: [guidanceLink],
                         helpUrl: urlStub,
+                        tags: ['tag1', 'tag2'],
                     },
                 ],
                 inapplicable: [],
@@ -163,7 +110,7 @@ describe('ResultDecorator', () => {
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
-                configuration,
+                mockTagToLinkMapper.object,
             );
             let decoratedResult;
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
@@ -174,46 +121,52 @@ describe('ResultDecorator', () => {
             suppressChecksByMessagesMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
+            mockTagToLinkMapper.verifyAll();
         });
     });
 
-    describe('decorateResults: w/ inapplicable', () => {
+    describe('decorateResults with both violation and inapplicable', () => {
         it('should call success callback with correct result', () => {
+            const violationInstance = {
+                id: 'test-violation-rule',
+                nodes: [],
+                description: null,
+                tags: ['tag1'],
+            };
             const inapplicableInstance = {
                 id: 'test-inapplicable-rule',
                 nodes: [],
                 description: null,
+                tags: ['tag2'],
             };
             const nonEmptyResultWithInapplicable = {
                 passes: [],
-                violations: [instanceStub],
+                violations: [violationInstance],
                 inapplicable: [inapplicableInstance],
                 incomplete: [],
                 timestamp: 100,
                 targetPageTitle: 'test title',
                 url: 'https://test_url',
             };
-            const guidanceLinkStub = {} as any;
-            const configuration = {
-                'test-rule': [guidanceLinkStub],
-                'test-inapplicable-rule': [guidanceLinkStub],
-            };
+            const guidanceLinkStub1 = { stubId: '1' } as any;
+            const guidanceLinkStub2 = { stubId: '2' } as any;
+            const urlStub1 = 'url-1';
+            const urlStub2 = 'url-2';
+            const tagToLinkMapperMock = Mock.ofInstance(tags => []);
             const resultStubWithGuidanceLinks = {
                 passes: [],
                 violations: [
                     {
-                        id: 'test-rule',
-                        nodes: [nodeStub],
-                        description: null,
-                        guidanceLinks: [guidanceLinkStub],
-                        helpUrl: urlStub,
+                        ...violationInstance,
+                        guidanceLinks: [guidanceLinkStub1],
+                        helpUrl: urlStub1,
                     },
                 ],
                 inapplicable: [
                     {
                         ...inapplicableInstance,
-                        guidanceLinks: [guidanceLinkStub],
-                        helpUrl: urlStub,
+                        guidanceLinks: [guidanceLinkStub2],
+                        helpUrl: urlStub2,
                     },
                 ],
                 incomplete: [],
@@ -228,22 +181,33 @@ describe('ResultDecorator', () => {
                 MockBehavior.Strict,
             );
 
+            tagToLinkMapperMock
+                .setup(m => m(['tag1']))
+                .returns(() => [guidanceLinkStub1])
+                .verifiable();
+            tagToLinkMapperMock
+                .setup(m => m(['tag2']))
+                .returns(() => [guidanceLinkStub2])
+                .verifiable();
+
             messageDecoratorMock
-                .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
+                .setup(mdm => mdm.decorateResultWithMessages(violationInstance))
                 .verifiable(Times.once());
 
             messageDecoratorMock
                 .setup(mdm => mdm.decorateResultWithMessages(inapplicableInstance))
                 .verifiable(Times.once());
 
-            getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
+            getHelpUrlMock
+                .setup(gchm => gchm(violationInstance.id, It.isAny()))
+                .returns(() => urlStub1);
 
             getHelpUrlMock
                 .setup(gchm => gchm(inapplicableInstance.id, It.isAny()))
-                .returns(() => urlStub);
+                .returns(() => urlStub2);
 
             suppressChecksByMessagesMock
-                .setup(scbmm => scbmm(instanceStub, true))
+                .setup(scbmm => scbmm(violationInstance, true))
                 .returns(result => {
                     return result;
                 })
@@ -260,7 +224,7 @@ describe('ResultDecorator', () => {
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
-                configuration,
+                tagToLinkMapperMock.object,
             );
             let decoratedResult;
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {
@@ -273,15 +237,14 @@ describe('ResultDecorator', () => {
             suppressChecksByMessagesMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
+            tagToLinkMapperMock.verifyAll();
         });
     });
 
     describe('decorateResults: w/ eliminating nullified processed results', () => {
         it('should call success callback with correct result', () => {
             const guidanceLinkStub = {} as any;
-            const configuration = {
-                'test-rule': [guidanceLinkStub],
-            };
+            const tagToLinkMapper = () => [guidanceLinkStub];
             const emptyResultsStub = {
                 passes: [],
                 violations: [],
@@ -315,7 +278,7 @@ describe('ResultDecorator', () => {
                 documentUtilsMock.object,
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
-                configuration,
+                tagToLinkMapper,
             );
             let decoratedResult;
             GlobalScope.using(suppressChecksByMessagesMock).with(() => {

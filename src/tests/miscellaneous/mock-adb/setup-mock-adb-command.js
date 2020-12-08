@@ -19,7 +19,7 @@ if (argv.length !== 3) {
 const configName = argv[2];
 const config = commonAdbConfigs[configName];
 
-if (config == undefined) {
+if (config == null) {
     console.error(`Unrecognized config-name: ${configName}\n`);
     exitWithUsage();
 }

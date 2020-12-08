@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeAnalyzerResult } from '../../injected/analyzers/analyzer';
+import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import {
     RuleAnalyzerScanTelemetryData,
     IssuesAnalyzerScanTelemetryData,

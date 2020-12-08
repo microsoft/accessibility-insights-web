@@ -7,7 +7,7 @@ import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-tele
 import { createToolData } from 'common/application-properties-provider';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { WindowUtils } from 'common/window-utils';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';

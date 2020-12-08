@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
-import { UAParser } from 'ua-parser-js';
+import * as UAParser from 'ua-parser-js';
 
 import { createSupportedBrowserChecker } from '../../../../common/is-supported-browser';
 
@@ -22,11 +22,11 @@ describe('isSupportedBrowser', () => {
     `('checks if $testedBrowser is supported', ({ browserName, engineName, isSupported }) => {
         setGetBrowser({
             name: browserName,
-        } as IUAParser.IBrowser);
+        } as UAParser.IBrowser);
 
         setGetEngine({
             name: engineName,
-        } as IUAParser.IEngine);
+        } as UAParser.IEngine);
 
         const testObject = createSupportedBrowserChecker(uaParserMock.object);
 
@@ -35,9 +35,9 @@ describe('isSupportedBrowser', () => {
         expect(result).toBe(isSupported);
     });
 
-    const setGetBrowser = (browser: IUAParser.IBrowser) =>
+    const setGetBrowser = (browser: UAParser.IBrowser) =>
         uaParserMock.setup(parser => parser.getBrowser()).returns(() => browser);
 
-    const setGetEngine = (engine: IUAParser.IEngine) =>
+    const setGetEngine = (engine: UAParser.IEngine) =>
         uaParserMock.setup(parser => parser.getEngine()).returns(() => engine);
 });

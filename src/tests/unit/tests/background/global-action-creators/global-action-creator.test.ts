@@ -12,11 +12,11 @@ import { GlobalActionCreator } from 'background/global-action-creators/global-ac
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from 'common/flux/action';
+import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('GlobalActionCreatorTest', () => {
