@@ -5,7 +5,6 @@ import * as React from 'react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
-import { AssessmentData } from 'common/types/store-data/assessment-result-data';
 
 export type LoadAssessmentButtonDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
