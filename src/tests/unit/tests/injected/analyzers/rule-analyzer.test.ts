@@ -2,27 +2,24 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { RuleAnalyzerScanTelemetryData } from 'common/extension-telemetry-events';
+import { Message } from 'common/message';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
+import { PostResolveCallback, RuleAnalyzer } from 'injected/analyzers/rule-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { HtmlElementAxeResults, ScannerUtils } from 'injected/scanner-utils';
 import { isFunction } from 'lodash';
+import { ScanResults } from 'scanner/iruleresults';
+import { ScanOptions } from 'scanner/scan-options';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, Times } from 'typemoq';
-
-import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
-import { Message } from '../../../../../common/message';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import {
-    AxeAnalyzerResult,
-    RuleAnalyzerConfiguration,
-} from '../../../../../injected/analyzers/analyzer';
-import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
-import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
-import { ScanResults } from '../../../../../scanner/iruleresults';
-import { ScanOptions } from '../../../../../scanner/scan-options';
-import { DictionaryStringTo } from '../../../../../types/common-types';
+import { DictionaryStringTo } from 'types/common-types';
 
 describe('RuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;

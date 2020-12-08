@@ -3,7 +3,7 @@
 exports[`getRuleInclusions matches snapshotted list of production rules 1`] = `
 Object {
   "accesskeys": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "area-alt": Object {
@@ -13,7 +13,14 @@ Object {
     "status": "included",
   },
   "aria-allowed-role": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
+  },
+  "aria-command-name": Object {
+    "status": "included",
+  },
+  "aria-dialog-name": Object {
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "aria-hidden-body": Object {
@@ -23,6 +30,12 @@ Object {
     "status": "included",
   },
   "aria-input-field-name": Object {
+    "status": "included",
+  },
+  "aria-meter-name": Object {
+    "status": "included",
+  },
+  "aria-progressbar-name": Object {
     "status": "included",
   },
   "aria-required-attr": Object {
@@ -42,6 +55,13 @@ Object {
   },
   "aria-toggle-field-name": Object {
     "status": "included",
+  },
+  "aria-tooltip-name": Object {
+    "status": "included",
+  },
+  "aria-treeitem-name": Object {
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
   },
   "aria-valid-attr": Object {
     "status": "included",
@@ -72,7 +92,7 @@ Object {
     "status": "included",
   },
   "css-orientation-lock": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "definition-list": Object {
@@ -94,34 +114,34 @@ Object {
     "status": "included",
   },
   "empty-heading": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "focus-order-semantics": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "form-field-multiple-labels": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
   },
   "frame-tested": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "frame-title": Object {
     "status": "included",
   },
   "frame-title-unique": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "heading-order": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "hidden-content": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "html-has-lang": Object {
@@ -134,14 +154,14 @@ Object {
     "status": "included",
   },
   "identical-links-same-purpose": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "image-alt": Object {
     "status": "included",
   },
   "image-redundant-alt": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "input-button-name": Object {
@@ -154,51 +174,51 @@ Object {
     "status": "included",
   },
   "label-content-name-mismatch": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "label-title-only": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-banner-is-top-level": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-complementary-is-top-level": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-contentinfo-is-top-level": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-main-is-top-level": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-no-duplicate-banner": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-no-duplicate-contentinfo": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-no-duplicate-main": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-one-main": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "landmark-unique": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "link-in-text-block": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "link-name": Object {
@@ -217,66 +237,73 @@ Object {
     "status": "included",
   },
   "meta-viewport": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "meta-viewport-large": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "no-autoplay-audio": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "object-alt": Object {
     "status": "included",
   },
   "p-as-heading": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "page-has-heading-one": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
+  },
+  "presentation-role-conflict": Object {
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "region": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "role-img-alt": Object {
     "status": "included",
   },
   "scope-attr-valid": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "scrollable-region-focusable": Object {
+    "status": "included",
+  },
+  "select-name": Object {
     "status": "included",
   },
   "server-side-image-map": Object {
     "status": "included",
   },
   "skip-link": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "svg-img-alt": Object {
     "status": "included",
   },
   "tabindex": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "table-duplicate-name": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
   "table-fake-caption": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "td-has-header": Object {
-    "reason": "rule maps to BestPractice",
+    "reason": "rule is tagged experimental",
     "status": "excluded",
   },
   "td-headers-attr": Object {

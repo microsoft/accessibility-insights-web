@@ -30,7 +30,7 @@ import { DocumentUtils } from 'scanner/document-utils';
 import { HelpUrlGetter } from 'scanner/help-url-getter';
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
-import { ruleToLinkConfiguration } from 'scanner/rule-to-links-mappings';
+import { mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
@@ -90,7 +90,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
     const resultDecorator = new ResultDecorator(titleProvider, messageDecorator, (ruleId, axeHelpUrl) =>
         helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
-        ruleToLinkConfiguration,
+        mapAxeTagsToGuidanceLinks,
     );
     const getUnifiedResults = new ConvertScanResultsToUnifiedResults(generateUID, getFixResolution, getCheckResolution).automatedChecksConversion;
 
@@ -159,9 +159,6 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         reportHtmlGenerator,
     }
 
-    const getGuidanceLinks = (ruleId: string) => {
-        return ruleToLinkConfiguration[ruleId];
-    };
     const cardSelectionViewData: CardSelectionViewData = {
         selectedResultUids: [],
         expandedRuleIds: [],
@@ -171,7 +168,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
 
     const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
     const resultsToCardsConverter = new CombinedResultsToCardsModelConverter(
-        getGuidanceLinks,
+        mapAxeTagsToGuidanceLinks,
         cardSelectionViewData,
         generateUID,
         helpUrlGetter,

@@ -13,7 +13,7 @@ import { ScanResults } from './iruleresults';
 import { Launcher } from './launcher';
 import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
-import { ruleToLinkConfiguration } from './rule-to-links-mappings';
+import { mapAxeTagsToGuidanceLinks } from './map-axe-tags-to-guidance-links';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
@@ -28,11 +28,7 @@ export const scan = (
     options = options || {};
 
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
-    const ruleIncludedStatus = getRuleInclusions(
-        axe._audit.rules,
-        ruleToLinkConfiguration,
-        explicitRuleOverrides,
-    );
+    const ruleIncludedStatus = getRuleInclusions(axe._audit.rules, explicitRuleOverrides);
     const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
@@ -40,7 +36,7 @@ export const scan = (
         documentUtils,
         messageDecorator,
         (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
-        ruleToLinkConfiguration,
+        mapAxeTagsToGuidanceLinks,
     );
     const launcher = new Launcher(axe, scanParameterGenerator, document, options);
     const axeResponseHandler = new AxeResponseHandler(
@@ -57,16 +53,12 @@ export const getVersion = (): string => {
 
 export const getDefaultRules = (): ScannerRuleInfo[] => {
     const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
-    const ruleIncludedStatus = getRuleInclusions(
-        axe._audit.rules,
-        ruleToLinkConfiguration,
-        explicitRuleOverrides,
-    );
+    const ruleIncludedStatus = getRuleInclusions(axe._audit.rules, explicitRuleOverrides);
     return getRules(
         axe,
         (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
         ruleIncludedStatus,
-        ruleToLinkConfiguration,
+        mapAxeTagsToGuidanceLinks,
     );
 };
 

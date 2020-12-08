@@ -33,6 +33,7 @@ export const uniqueLandmarkConfiguration: RuleConfiguration = {
         },
         ...descriptionHelp,
         helpUrl: '/insights.html#/content/rules/uniqueLandmark',
+        tags: ['best-practice', 'wcag241'],
     },
 };
 

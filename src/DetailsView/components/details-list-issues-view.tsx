@@ -44,6 +44,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 scanMetadata={props.scanMetadata}
                 cardsViewData={props.cardsViewData}
                 instancesSection={props.instancesSection}
+                visualizationStoreData={props.visualizationStoreData}
             />
         );
     },

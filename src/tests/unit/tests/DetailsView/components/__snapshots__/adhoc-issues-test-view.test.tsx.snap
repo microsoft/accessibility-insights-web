@@ -6,6 +6,11 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
 >
   <React.Fragment>
     <ScanIncompleteWarning
+      deps={
+        Object {
+          "detailsViewActionMessageCreator": Object {},
+        }
+      }
       test={-1}
       warningConfiguration={Object {}}
       warnings={Array []}
@@ -24,6 +29,11 @@ exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
             "title": "test title",
           },
           "getStoreData": [Function],
+        }
+      }
+      deps={
+        Object {
+          "detailsViewActionMessageCreator": Object {},
         }
       }
       instancesSection={[Function]}
@@ -55,6 +65,7 @@ exports[`AdhocIssuesTestView should return target page changed view as tab is ch
   className="issuesTestView"
 >
   <TargetPageChangedView
+    detailsViewActionMessageCreator={Object {}}
     displayableData={
       Object {
         "title": "test title",

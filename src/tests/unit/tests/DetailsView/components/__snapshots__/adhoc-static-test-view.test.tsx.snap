@@ -96,4 +96,4 @@ exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `
                 }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} />"
 `;
 
-exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} featureFlagStoreData={[undefined]} />"`;
+exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} featureFlagStoreData={[undefined]} detailsViewActionMessageCreator={[Function]} />"`;

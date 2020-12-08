@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from 'common/base-store';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
+import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { ScanResults } from 'scanner/iruleresults';
 
-import { BaseStore } from '../../common/base-store';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { ScanResults } from '../../scanner/iruleresults';
 import { ScannerUtils } from '../scanner-utils';
-import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
+import { RuleAnalyzerConfiguration } from './analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
 
 export type IResultRuleFilter = (results: ScanResults, rules: string[]) => ScanResults;
