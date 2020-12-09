@@ -261,7 +261,6 @@ exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
       "iconName": "FabricOpenFolderHorizontal",
     }
   }
-  onClick={[Function]}
 >
   Load assessment
 </InsightsCommandButton>
