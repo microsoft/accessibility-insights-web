@@ -36,6 +36,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
                 "dispatcher": undefined,
                 "editFailureInstance": [Function],
                 "leftNavPanelExpanded": [Function],
+                "loadAssessment": [Function],
                 "removeFailureInstance": [Function],
                 "rescanVisualization": [Function],
                 "setAllUrlsPermissionState": [Function],
@@ -45,7 +46,6 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
                 "telemetryFactory": undefined,
                 "undoManualRequirementStatusChange": [Function],
                 "undoManualTestStatusChange": [Function],
-                "uploadAssessment": [Function],
               }
             }
             selectedTest={-1}
@@ -160,6 +160,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
             "dispatcher": undefined,
             "editFailureInstance": [Function],
             "leftNavPanelExpanded": [Function],
+            "loadAssessment": [Function],
             "removeFailureInstance": [Function],
             "rescanVisualization": [Function],
             "setAllUrlsPermissionState": [Function],
@@ -169,7 +170,6 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
             "telemetryFactory": undefined,
             "undoManualRequirementStatusChange": [Function],
             "undoManualTestStatusChange": [Function],
-            "uploadAssessment": [Function],
           },
           "getDateFromTimestamp": [Function],
           "reportGenerator": proxy {
