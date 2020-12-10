@@ -10,10 +10,10 @@ import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-hel
 export type LoadAssessmentButtonDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentDataParser: AssessmentDataParser;
+    loadAssessmentHelper: LoadAssessmentHelper
 };
 export interface LoadAssessmentButtonProps {
     deps: LoadAssessmentButtonDeps;
-    loadAssessmentHelper: LoadAssessmentHelper
 }
 
 export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonProps> {
@@ -21,30 +21,11 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
         return (
             <InsightsCommandButton
                 iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
-                onClick={this.props.loadAssessmentHelper.getAssessmentForUpload}
+                onClick={this.props.deps.loadAssessmentHelper.getAssessmentForUpload}
             >
                 Load assessment
             </InsightsCommandButton>
         );
     }
 
-    // private getAssessmentForUpload = () => {
-    //     const input = document.createElement('input');
-    //     input.type = 'file';
-    //     input.accept = '.a11ywebassessment';
-    //     input.onchange = e => {
-    //         const file = (e.target as HTMLInputElement).files[0];
-    //         const reader = new FileReader();
-
-    //         reader.onload = this.onReaderLoad;
-    //         reader.readAsText(file, 'UTF-8');
-    //     };
-    //     input.click();
-    // };
-
-    // private onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
-    //     const content = readerEvent.target.result as string;
-    //     const assessmentData = this.props.deps.assessmentDataParser.parseAssessmentData(content);
-    //     this.props.deps.detailsViewActionMessageCreator.uploadAssessment(assessmentData);
-    // };
 }

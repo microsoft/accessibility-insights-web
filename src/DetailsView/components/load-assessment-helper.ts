@@ -8,7 +8,6 @@ export class LoadAssessmentHelper {
     private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {}
 
     public getAssessmentForUpload() {
-        console.log('clicked')
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.a11ywebassessment';
