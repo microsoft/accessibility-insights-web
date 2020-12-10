@@ -53,7 +53,7 @@ export interface AssessmentActionInstancePayload extends AssessmentToggleActionP
     selector: string;
 }
 
-export interface UploadAssessmentPayload extends BaseActionPayload {
+export interface LoadAssessmentPayload extends BaseActionPayload {
     versionedAssessmentData: VersionedAssessmentData;
 }
 export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {

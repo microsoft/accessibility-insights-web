@@ -19,14 +19,14 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
         return (
             <InsightsCommandButton
                 iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
-                onClick={this.getAssessmentForUpload}
+                onClick={this.getAssessmentForLoad}
             >
                 Load assessment
             </InsightsCommandButton>
         );
     }
 
-    private getAssessmentForUpload = () => {
+    private getAssessmentForLoad = () => {
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.a11ywebassessment';
@@ -43,6 +43,6 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
     private onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
         const content = readerEvent.target.result as string;
         const assessmentData = this.props.deps.assessmentDataParser.parseAssessmentData(content);
-        this.props.deps.detailsViewActionMessageCreator.uploadAssessment(assessmentData);
+        this.props.deps.detailsViewActionMessageCreator.loadAssessment(assessmentData);
     };
 }

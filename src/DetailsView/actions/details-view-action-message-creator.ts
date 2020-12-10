@@ -19,7 +19,7 @@ import {
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
-    UploadAssessmentPayload,
+    LoadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -533,14 +533,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public uploadAssessment = (assessmentData: VersionedAssessmentData): void => {
+    public loadAssessment = (assessmentData: VersionedAssessmentData): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: UploadAssessmentPayload = {
+        const payload: LoadAssessmentPayload = {
             telemetry: telemetry,
             versionedAssessmentData: assessmentData,
         };
         this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.UploadAssessment,
+            messageType: Messages.Assessment.LoadAssessment,
             payload,
         });
     };
