@@ -83,7 +83,7 @@ export interface DetailsViewCommandBarProps {
     narrowModeStatus: NarrowModeStatus;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
-    loadAssessmentButtonProps?: LoadAssessmentButtonProps;
+    loadAssessmentButtonProps: LoadAssessmentButtonProps;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,

@@ -14,7 +14,6 @@ export type LoadAssessmentButtonDeps = {
 export interface LoadAssessmentButtonProps {
     deps: LoadAssessmentButtonDeps;
     loadAssessmentHelper: LoadAssessmentHelper
-    getAssessmentForUpload: () => void
 }
 
 export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonProps> {
