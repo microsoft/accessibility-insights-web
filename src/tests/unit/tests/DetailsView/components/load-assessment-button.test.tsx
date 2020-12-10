@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 import {
     LoadAssessmentButton,
     LoadAssessmentButtonProps,
-} from '../../../../../DetailsView/components/load-assessment-button';
+} from 'DetailsView/components/load-assessment-button';
 describe('LoadAssessmentButton', () => {
     let props: LoadAssessmentButtonProps;
 
