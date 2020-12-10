@@ -112,7 +112,7 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.needsReview,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Needs review',
             displayableDescription:
                 'Enable a new test to show automated check rules that might have an accessibility issue and need to be reviewed.',
