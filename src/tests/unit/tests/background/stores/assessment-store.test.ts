@@ -41,13 +41,13 @@ import {
     PersistedTabInfo,
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
+import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     ScanBasePayload,
     ScanCompletedPayload,
     ScanUpdatePayload,
 } from 'injected/analyzers/analyzer';
-import { TabStopEvent } from 'injected/tab-stops-listener';
 import { cloneDeep, isFunction } from 'lodash';
 import { ScanResults } from 'scanner/iruleresults';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';

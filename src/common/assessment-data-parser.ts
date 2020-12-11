@@ -5,7 +5,7 @@ import { VersionedAssessmentData } from 'common/types/versioned-assessment-data'
 
 export class AssessmentDataParser {
     public parseAssessmentData = (assessmentData: string): VersionedAssessmentData => {
-        const uploadedAssessmentData = JSON.parse(assessmentData);
-        return uploadedAssessmentData;
+        const loadedAssessmentData = JSON.parse(assessmentData);
+        return loadedAssessmentData;
     };
 }

@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { forOwn, map } from 'lodash';
 
-import { StoreNames } from '../../common/stores/store-names';
-import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
-import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../injected/scanner-utils';
-import { TabStopEvent } from '../../injected/tab-stops-listener';
-import { DictionaryStringTo } from '../../types/common-types';
+import { StoreNames } from 'common/stores/store-names';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
+import { DictionaryStringTo } from 'types/common-types';
 import { AddTabbedElementPayload } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';

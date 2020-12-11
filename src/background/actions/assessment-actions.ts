@@ -20,7 +20,7 @@ import {
     SelectTestSubviewPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
-    UploadAssessmentPayload,
+    LoadAssessmentPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
@@ -47,5 +47,5 @@ export class AssessmentActions {
     public readonly updateSelectedPivotChild = new Action<UpdateSelectedDetailsViewPayload>();
     public readonly updateTargetTabId = new Action<number>();
     public readonly continuePreviousAssessment = new Action<number>();
-    public readonly uploadAssessment = new Action<UploadAssessmentPayload>();
+    public readonly LoadAssessment = new Action<LoadAssessmentPayload>();
 }

@@ -112,7 +112,7 @@ export class RuleInformationProvider {
         ruleResultsData: RuleResultsData,
     ): InstanceResultStatus => {
         if (
-            ruleResultsData.status == 'FAIL' &&
+            ruleResultsData.status === 'FAIL' &&
             ruleResultsData.props['Confidence in Color Detection'] === 'High'
         )
             return 'unknown';

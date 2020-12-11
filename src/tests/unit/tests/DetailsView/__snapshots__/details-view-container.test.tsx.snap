@@ -21,6 +21,7 @@ exports[`DetailsViewContainer render content render once; should call details vi
         "dispatcher": undefined,
         "editFailureInstance": [Function],
         "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
         "removeFailureInstance": [Function],
         "rescanVisualization": [Function],
         "setAllUrlsPermissionState": [Function],

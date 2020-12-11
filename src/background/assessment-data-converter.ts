@@ -2,18 +2,18 @@
 // Licensed under the MIT License.
 import { forOwn, isEmpty } from 'lodash';
 
-import { ManualTestStatus } from '../common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
     AssessmentInstancesMap,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
     TestStepResult,
     UserCapturedInstance,
-} from '../common/types/store-data/assessment-result-data';
-import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
-import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
-import { TabStopEvent } from '../injected/tab-stops-listener';
-import { DictionaryStringTo } from '../types/common-types';
+} from 'common/types/store-data/assessment-result-data';
+import { TabStopEvent } from 'common/types/tab-stop-event';
+import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
+import { PartialTabOrderPropertyBag } from 'injected/tab-order-property-bag';
+import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 
 export class AssessmentDataConverter {

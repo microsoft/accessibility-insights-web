@@ -15,7 +15,10 @@ import {
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { LaunchPanelStoreData } from '../../common/types/store-data/launch-panel-store-data';
+import {
+    LaunchPanelStoreData,
+    LaunchPanelType,
+} from '../../common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { UrlValidator } from '../../common/url-validator';
 import { PopupHandlers } from '../handlers/popup-handlers';
@@ -52,11 +55,6 @@ export type PopupViewControllerDeps = LaunchPadDeps &
     WithStoreSubscriptionDeps<PopupViewControllerState> & {
         browserAdapter: BrowserAdapter;
     };
-
-export enum LaunchPanelType {
-    AdhocToolsPanel,
-    LaunchPad,
-}
 
 export interface PopupViewControllerState {
     featureFlagStoreData: FeatureFlagStoreData;

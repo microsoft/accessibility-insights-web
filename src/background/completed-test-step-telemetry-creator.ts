@@ -52,7 +52,7 @@ export class CompletedTestStepTelemetryCreator {
             this.isNewCompletedTestStep(assessment, step),
         );
         const targetTab = this.store.getState().persistedTabInfo;
-        if (completedStep != undefined && targetTab !== null) {
+        if (completedStep != null && targetTab !== null) {
             const payload: PayloadWithEventName = {
                 eventName: TelemetryEvents.CHANGE_OVERALL_REQUIREMENT_STATUS,
                 telemetry: this.createTelemetryInfo(assessment, completedStep),
@@ -64,7 +64,7 @@ export class CompletedTestStepTelemetryCreator {
                 payload,
             });
         }
-        return completedStep != undefined;
+        return completedStep != null;
     }
 
     private isNewCompletedTestStep(assessment: Assessment, step: Requirement): boolean {

@@ -69,24 +69,24 @@ async function main() {
 
     const result = resultFromCommand(config, inputCommand);
 
-    if (result.delayMs != undefined) {
+    if (result.delayMs != null) {
         await new Promise(resolve => {
             setTimeout(resolve, result.delayMs);
         });
     }
-    if (result.startTestServer != undefined) {
+    if (result.startTestServer != null) {
         const { port, path } = result.startTestServer;
         stopDetachedPortForwardServer(port);
         result.testServerPid = await startDetachedPortForwardServer(port, path);
     }
-    if (result.stopTestServer != undefined) {
+    if (result.stopTestServer != null) {
         const { port } = result.stopTestServer;
         result.testServerPid = stopDetachedPortForwardServer(port);
     }
-    if (result.stderr != undefined) {
+    if (result.stderr != null) {
         console.error(result.stderr);
     }
-    if (result.stdout != undefined) {
+    if (result.stdout != null) {
         console.log(result.stdout);
     }
 
@@ -97,7 +97,7 @@ async function main() {
     const outputConfigFile = path.join(outputLogsDir, fileWithMockAdbConfig);
     fs.copyFileSync(configPath, outputConfigFile);
 
-    if (result.exitCode != undefined) {
+    if (result.exitCode != null) {
         process.exit(result.exitCode);
     }
 }

@@ -27,7 +27,7 @@ import {
     SelectGettingStartedPayload,
     SelectTestSubviewPayload,
     ToggleActionPayload,
-    UploadAssessmentPayload,
+    LoadAssessmentPayload,
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
@@ -130,8 +130,8 @@ export class AssessmentActionCreator {
             this.onContinuePreviousAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
-            AssessmentMessages.UploadAssessment,
-            this.onUploadAssessment,
+            AssessmentMessages.LoadAssessment,
+            this.onLoadAssessment,
         );
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.DetailsView.Select,
@@ -145,10 +145,10 @@ export class AssessmentActionCreator {
         this.assessmentActions.continuePreviousAssessment.invoke(tabId);
     };
 
-    private onUploadAssessment = (payload: UploadAssessmentPayload, tabId: number): void => {
-        const eventName = TelemetryEvents.UPLOAD_ASSESSMENT;
+    private onLoadAssessment = (payload: LoadAssessmentPayload, tabId: number): void => {
+        const eventName = TelemetryEvents.LOAD_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-        this.assessmentActions.uploadAssessment.invoke(payload);
+        this.assessmentActions.LoadAssessment.invoke(payload);
     };
 
     private onPassUnmarkedInstances = (payload: ToggleActionPayload, tabId: number): void => {

@@ -5,13 +5,15 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from 'common/message-creators/store-action-message-creator-impl';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
-import { LaunchPanelStoreData } from 'common/types/store-data/launch-panel-store-data';
+import {
+    LaunchPanelStoreData,
+    LaunchPanelType,
+} from 'common/types/store-data/launch-panel-store-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { LaunchPanelHeader } from 'popup/components/launch-panel-header';
 import {
-    LaunchPanelType,
     PopupView,
     PopupViewControllerDeps,
     PopupViewControllerState,

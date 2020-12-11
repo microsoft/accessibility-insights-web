@@ -146,7 +146,7 @@ export class AssessmentReportModelBuilder {
             }
 
             function getAssistedData(): InstanceReportModel[] {
-                if (storeData.generatedAssessmentInstancesMap == undefined) {
+                if (storeData.generatedAssessmentInstancesMap == null) {
                     return [];
                 }
 
@@ -155,7 +155,7 @@ export class AssessmentReportModelBuilder {
                         const testStepResult =
                             storeData.generatedAssessmentInstancesMap[key].testStepResults[stepKey];
                         return (
-                            testStepResult != undefined &&
+                            testStepResult != null &&
                             testStepResult.status ===
                                 storeData.testStepStatus[stepKey].stepFinalResult
                         );
