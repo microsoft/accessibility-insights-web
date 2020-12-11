@@ -65,6 +65,7 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
+import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { FileNameBuilder } from 'common/filename-builder';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
@@ -389,6 +390,8 @@ if (tabId != null) {
 
             const assessmentDataFormatter = new AssessmentDataFormatter();
 
+            const assessmentDataParser = new AssessmentDataParser();
+
             const fileNameBuilder = new FileNameBuilder();
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
@@ -420,6 +423,7 @@ if (tabId != null) {
                 windowUtils,
                 fileURLProvider,
                 assessmentDataFormatter,
+                assessmentDataParser,
                 fileNameBuilder,
                 getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,

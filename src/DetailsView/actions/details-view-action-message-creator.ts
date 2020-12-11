@@ -19,6 +19,7 @@ import {
     SetAllUrlsPermissionStatePayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
+    LoadAssessmentPayload,
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
@@ -27,6 +28,7 @@ import { Message } from 'common/message';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -527,6 +529,18 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         };
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.ContinuePreviousAssessment,
+            payload,
+        });
+    };
+
+    public loadAssessment = (assessmentData: VersionedAssessmentData): void => {
+        const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
+        const payload: LoadAssessmentPayload = {
+            telemetry: telemetry,
+            versionedAssessmentData: assessmentData,
+        };
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.LoadAssessment,
             payload,
         });
     };

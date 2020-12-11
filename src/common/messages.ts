@@ -144,6 +144,7 @@ export class Messages {
         ChangeVisualizationStateForAll: `${messagePrefix}/assessment/changeVisualizationStateForAll`,
         ScanUpdate: `${messagePrefix}/assessment/scanUpdate`,
         ContinuePreviousAssessment: `${messagePrefix}/assessment/continuePreviousAssessment`,
+        LoadAssessment: `${messagePrefix}/assessment/loadAssessment`,
     };
 
     public static readonly FeatureFlags = {

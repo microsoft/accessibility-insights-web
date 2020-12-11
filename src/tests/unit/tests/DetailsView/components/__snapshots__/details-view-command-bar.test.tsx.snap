@@ -84,6 +84,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -198,6 +199,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -259,6 +261,7 @@ exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
       "iconName": "FabricOpenFolderHorizontal",
     }
   }
+  onClick={[Function]}
 >
   Load assessment
 </InsightsCommandButton>
@@ -324,6 +327,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -476,6 +480,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -589,6 +594,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],

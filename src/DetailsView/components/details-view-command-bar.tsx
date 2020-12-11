@@ -26,7 +26,11 @@ import {
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
-import { LoadAssessmentButton } from 'DetailsView/components/load-assessment-button';
+import {
+    LoadAssessmentButton,
+    LoadAssessmentButtonProps,
+    LoadAssessmentButtonDeps,
+} from 'DetailsView/components/load-assessment-button';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -50,7 +54,8 @@ export type DetailsViewCommandBarDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ExportDialogDeps &
     SaveAssessmentFactoryDeps &
-    StartOverFactoryDeps;
+    StartOverFactoryDeps &
+    LoadAssessmentButtonDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
@@ -78,8 +83,8 @@ export interface DetailsViewCommandBarProps {
     narrowModeStatus: NarrowModeStatus;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
+    loadAssessmentButtonProps?: LoadAssessmentButtonProps;
 }
-
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
     DetailsViewCommandBarState
@@ -230,7 +235,7 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderLoadAssessmentButton = (): JSX.Element | null => {
         if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return <LoadAssessmentButton />;
+            return <LoadAssessmentButton {...this.props.loadAssessmentButtonProps} />;
         }
         return null;
     };

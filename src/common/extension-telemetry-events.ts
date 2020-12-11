@@ -32,6 +32,7 @@ export const REMOVE_FAILURE_INSTANCE: string = 'removeFailureInstance';
 export const EDIT_FAILURE_INSTANCE: string = 'editFailureInstance';
 export const PASS_UNMARKED_INSTANCES: string = 'passUnmarkedInstances';
 export const CONTINUE_PREVIOUS_ASSESSMENT: string = 'ContinuePreviousAssessment';
+export const LOAD_ASSESSMENT: string = 'loadAssessment';
 export const ENABLE_VISUAL_HELPER: string = 'enableVisualHelper';
 export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
 export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
