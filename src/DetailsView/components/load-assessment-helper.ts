@@ -7,7 +7,7 @@ export class LoadAssessmentHelper {
     constructor(private readonly assessmentDataParser: AssessmentDataParser,
     private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {}
 
-    public getAssessmentForUpload() {
+    public getAssessmentForLoad() {
         const input = document.createElement('input');
         input.type = 'file';
         input.accept = '.a11ywebassessment';
@@ -24,6 +24,6 @@ export class LoadAssessmentHelper {
     public onReaderLoad (readerEvent: ProgressEvent<FileReader>) {
         const content = readerEvent.target.result as string;
         const assessmentData = this.assessmentDataParser.parseAssessmentData(content);
-        this.detailsViewActionMessageCreator.uploadAssessment(assessmentData);
+        this.detailsViewActionMessageCreator.loadAssessment(assessmentData);
     };
 }
