@@ -3,7 +3,6 @@
 import { IMock, Mock } from 'typemoq';
 
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { title } from 'content/strings/application';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
@@ -60,7 +59,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             issueDetailsField: 'description',
         };
 
-        baseTags = `Accessibility; ${title}; rule: ${sampleIssueDetailsData.rule.id}`;
+        baseTags = `Accessibility; ${toolData.applicationProperties.name}; rule: ${sampleIssueDetailsData.rule.id}`;
 
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
         const testTitle = 'test title';
