@@ -62,7 +62,7 @@ export class CombinedResultsToCardsModelConverter {
     }
 
     private getFailuresGroupedByRule = (groupedFailures: FailuresGroup): CardRuleResult => {
-        if(groupedFailures.failed.length == 0) {
+        if(groupedFailures.failed.length === 0) {
             return null;
         }
         const rule = groupedFailures.failed[0].rule;

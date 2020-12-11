@@ -149,7 +149,7 @@ export class Browser {
     private async waitForBackgroundPageMatching(
         predicate: (candidate: Playwright.Page) => boolean,
     ): Promise<Playwright.Page> {
-        const apiSupported = (this.underlyingBrowserContext as any).backgroundPages != undefined;
+        const apiSupported = (this.underlyingBrowserContext as any).backgroundPages != null;
         if (!apiSupported) {
             // Tracking issue for native Playwright support: https://github.com/microsoft/playwright/issues/2874
             // Suggested workaround for Firefox: https://github.com/microsoft/playwright/issues/2644#issuecomment-647842059

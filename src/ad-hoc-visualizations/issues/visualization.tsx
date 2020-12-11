@@ -42,7 +42,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: data => data.results != undefined,
+    shouldShowExportReport: data => data.results != null,
     displayableData: {
         title: 'Automated checks',
         subtitle: (

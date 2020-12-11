@@ -15,7 +15,7 @@ export class BackgroundPage extends Page {
     public async waitForInitialization(): Promise<void> {
         await this.underlyingPage.waitForFunction(
             () => {
-                const initialized = window.insightsUserConfiguration != undefined;
+                const initialized = window.insightsUserConfiguration != null;
                 return initialized;
             },
             null,

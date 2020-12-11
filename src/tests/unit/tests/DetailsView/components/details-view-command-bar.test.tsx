@@ -27,14 +27,14 @@ import { isNil } from 'lodash';
 import { ActionButton, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     CommandBarProps,
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
     ReportExportDialogFactory,
     SaveAssessmentFactory,
-} from '../../../../../DetailsView/components/details-view-command-bar';
+} from 'DetailsView/components/details-view-command-bar';
 import { SaveAssessmentFactoryProps } from 'DetailsView/components/save-assessment-factory';
 
 describe('DetailsViewCommandBar', () => {

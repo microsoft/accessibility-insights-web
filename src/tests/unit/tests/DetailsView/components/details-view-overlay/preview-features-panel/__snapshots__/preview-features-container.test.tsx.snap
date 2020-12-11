@@ -29,6 +29,7 @@ exports[`PreviewFeaturesContainerTest renders all available preview features 1`]
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
