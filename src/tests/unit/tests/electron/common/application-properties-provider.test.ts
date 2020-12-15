@@ -22,6 +22,7 @@ describe('ToolDataDelegate', () => {
               "applicationProperties": Object {
                 "environmentName": undefined,
                 "name": "Accessibility Insights for Android",
+                "resolution": undefined,
                 "version": "test-version",
               },
               "scanEngineProperties": Object {

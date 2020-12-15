@@ -47,6 +47,8 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
             },
             testEnvironment: {
                 userAgent,
+                windowHeight,
+                windowWidth,
             },
         },
         scanContext: {
@@ -64,6 +66,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         serviceName,
         null,
         userAgent,
+        `${windowWidth}x${windowHeight}`
     );
 
     const sectionFactory: ReportSectionFactory<SectionProps> = {
@@ -107,7 +110,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
 };
 
 const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
-    const { serviceName, axeVersion, userAgent } = parameters;
+    const { serviceName, axeVersion, userAgent, browserResolution } = parameters;
 
     const toolData = createToolData(
         'axe-core',
@@ -115,6 +118,7 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
         serviceName,
         null,
         userAgent,
+        browserResolution,
     );
 
     const reportHtmlGenerator = new SummaryReportHtmlGenerator(
@@ -133,7 +137,7 @@ const summaryResultsReportGenerator = (parameters: SummaryReportParameters) => {
 };
 
 const combinedResultsReportGenerator = (parameters: CombinedReportParameters) => {
-    const { serviceName, axeVersion, userAgent } = parameters;
+    const { serviceName, axeVersion, userAgent, browserResolution } = parameters;
 
     const toolData = createToolData(
         'axe-core',
@@ -141,6 +145,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         serviceName,
         null,
         userAgent,
+        browserResolution,
     );
 
     const fixInstructionProcessor = new FixInstructionProcessor();
