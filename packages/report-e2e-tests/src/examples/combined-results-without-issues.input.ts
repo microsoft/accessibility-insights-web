@@ -13,6 +13,7 @@ export const combinedResultsWithoutIssues: CombinedReportParameters = {
         durationSeconds: 1 * 60 * 60,
     },
     userAgent: 'Mock user agent',
+    browserResolution: '1920x1080',
     results: {
         urlResults: {
             failedUrls: 0,
