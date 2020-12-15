@@ -3,7 +3,7 @@
 exports[`CombinedReportRulesOnlySections CombinedReportNotApplicableSection renders 1`] = `
 "<div className=\\"result-section\\">
   <div id=\\"collapsible-header\\">
-    <CombinedResultSectionTitle outcomeCount={0} outcomeType=\\"inapplicable\\" title=\\"Not applicable\\" titleSize=\\"title\\" />
+    <CombinedResultSectionTitle outcomeCount={0} outcomeType=\\"inapplicable\\" title=\\"Not applicable rules\\" titleSize=\\"title\\" />
   </div>
   <div id=\\"collapsible-content\\">
     <RulesOnly deps={{...}} cardRuleResults={{...}} outcomeType=\\"inapplicable\\" />
@@ -14,7 +14,7 @@ exports[`CombinedReportRulesOnlySections CombinedReportNotApplicableSection rend
 exports[`CombinedReportRulesOnlySections CombinedReportPassedSection renders 1`] = `
 "<div className=\\"result-section\\">
   <div id=\\"collapsible-header\\">
-    <CombinedResultSectionTitle outcomeCount={0} outcomeType=\\"pass\\" title=\\"Passed\\" titleSize=\\"title\\" />
+    <CombinedResultSectionTitle outcomeCount={0} outcomeType=\\"pass\\" title=\\"Passed rules\\" titleSize=\\"title\\" />
   </div>
   <div id=\\"collapsible-content\\">
     <RulesOnly deps={{...}} cardRuleResults={{...}} outcomeType=\\"pass\\" />
