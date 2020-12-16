@@ -16,6 +16,7 @@ describe('FooterTextForService', () => {
                 name: 'app-name',
                 version: 'app-version',
                 environmentName: 'environmentName',
+                resolution: '800x600',
             },
         };
         const scanMetadata = {

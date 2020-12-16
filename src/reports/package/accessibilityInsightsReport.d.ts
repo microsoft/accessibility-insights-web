@@ -50,6 +50,7 @@ declare namespace AccessibilityInsightsReport {
         serviceName: string,
         axeVersion: string,
         userAgent: string,
+        browserResolution: string,
         scanDetails: ScanSummaryDetails,
         results: SummaryScanResults,
     };
@@ -108,6 +109,7 @@ declare namespace AccessibilityInsightsReport {
         serviceName: string,
         axeVersion: string,
         userAgent: string,
+        browserResolution: string,
         scanDetails: ScanSummaryDetails,
         results: CombinedReportResults,
     }

@@ -50,10 +50,10 @@ const makeCombinedReportRulesOnlySection = (options: {
 
 export const CombinedReportPassedSection = makeCombinedReportRulesOnlySection({
     outcomeType: 'pass',
-    title: 'Passed',
+    title: 'Passed rules',
 });
 
 export const CombinedReportNotApplicableSection = makeCombinedReportRulesOnlySection({
     outcomeType: 'inapplicable',
-    title: 'Not applicable',
+    title: 'Not applicable rules',
 });

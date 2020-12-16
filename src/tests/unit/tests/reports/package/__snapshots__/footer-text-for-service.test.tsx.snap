@@ -5,13 +5,20 @@ exports[`FooterTextForService renders: footer 1`] = `
   This automated checks result was generated using the 
   app-name
    
-  that helps find some of the most common accessibility issues. The scan was performed using 
+  that helps find some of the most common accessibility issues. The scan was
+   
+  performed in a clean browser environment, using 
   engine-name
    
   engine-version
    and 
   environmentName
-  . For a complete WCAG 2.1 compliance assessment please visit
+   
+  with a display resolution of 
+  800x600
+  . For a complete
+   
+  WCAG 2.1 compliance assessment please visit
    
   <ToolLink />
   .
