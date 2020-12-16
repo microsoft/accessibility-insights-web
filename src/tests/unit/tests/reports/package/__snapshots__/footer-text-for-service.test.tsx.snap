@@ -15,6 +15,7 @@ exports[`FooterTextForService renders: footer 1`] = `
   environmentName
    
   with a display resolution of 
+  800x600
   . For a complete
    
   WCAG 2.1 compliance assessment please visit
