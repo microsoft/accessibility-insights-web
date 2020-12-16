@@ -4,26 +4,30 @@ import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 
 export class LoadAssessmentHelper {
-    constructor(private readonly assessmentDataParser: AssessmentDataParser,
-    private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator) {}
+    constructor(
+        private readonly assessmentDataParser: AssessmentDataParser,
+        private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+        private readonly fileReader: FileReader,
+        private readonly createElement: (input: string) => HTMLInputElement,
+    ) {}
 
     public getAssessmentForLoad() {
-        const input = document.createElement('input');
+        const input = this.createElement('input');
         input.type = 'file';
         input.accept = '.a11ywebassessment';
-        input.onchange = e => {
-            const file = (e.target as HTMLInputElement).files[0];
-            const reader = new FileReader();
 
-            reader.onload = this.onReaderLoad;
-            reader.readAsText(file, 'UTF-8');
+        let onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
+            const content = readerEvent.target.result as string;
+            const assessmentData = this.assessmentDataParser.parseAssessmentData(content);
+            this.detailsViewActionMessageCreator.loadAssessment(assessmentData);
         };
-        input.click();
-    };
+        let onInputChange = (e: Event) => {
+            const file = (e.target as HTMLInputElement).files[0];
+            this.fileReader.onload = onReaderLoad;
+            this.fileReader.readAsText(file, 'UTF-8');
+        };
 
-    public onReaderLoad (readerEvent: ProgressEvent<FileReader>) {
-        const content = readerEvent.target.result as string;
-        const assessmentData = this.assessmentDataParser.parseAssessmentData(content);
-        this.detailsViewActionMessageCreator.loadAssessment(assessmentData);
-    };
+        input.onchange = onInputChange;
+        input.click();
+    }
 }

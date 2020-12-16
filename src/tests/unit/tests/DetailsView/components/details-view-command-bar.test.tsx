@@ -73,6 +73,8 @@ describe('DetailsViewCommandBar', () => {
         loadAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
+
+        
     });
 
     function getProps(): DetailsViewCommandBarProps {

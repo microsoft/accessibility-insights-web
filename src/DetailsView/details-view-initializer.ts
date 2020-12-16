@@ -67,7 +67,7 @@ import { FileURLProvider } from '../common/file-url-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from '../common/assessment-data-parser';
 import { FileNameBuilder } from 'common/filename-builder';
-import { LoadAssessmentHelper } from "DetailsView/components/load-assessment-helper";
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -127,6 +127,7 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { Logger } from 'common/logging/logger';
+import { createElement } from 'react';
 
 declare const window: AutoChecker & Window;
 
@@ -393,7 +394,13 @@ if (tabId != null) {
 
             const assessmentDataParser = new AssessmentDataParser();
 
-            const loadAssessmentHelper = new LoadAssessmentHelper(assessmentDataParser, detailsViewActionMessageCreator);
+            const fileReader = new FileReader;
+
+            const loadAssessmentHelper = new LoadAssessmentHelper(
+                assessmentDataParser,
+                detailsViewActionMessageCreator,
+                fileReader, document.createElement
+            );
 
             const fileNameBuilder = new FileNameBuilder();
 

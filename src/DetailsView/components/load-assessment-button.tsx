@@ -10,7 +10,7 @@ import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-hel
 export type LoadAssessmentButtonDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentDataParser: AssessmentDataParser;
-    loadAssessmentHelper: LoadAssessmentHelper
+    loadAssessmentHelper: LoadAssessmentHelper;
 };
 export interface LoadAssessmentButtonProps {
     deps: LoadAssessmentButtonDeps;
@@ -27,5 +27,4 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
             </InsightsCommandButton>
         );
     }
-
 }
