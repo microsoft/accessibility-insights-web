@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { CustomWidgetPropertyBag } from 'common/types/property-bag/custom-widgets-property-bag';
+import { NoValue } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
@@ -11,7 +12,6 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { ScannerUtils } from 'injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { NoValue } from '../../common/property-bag-column-renderer';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';

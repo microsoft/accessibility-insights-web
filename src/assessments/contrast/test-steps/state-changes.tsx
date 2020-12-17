@@ -4,6 +4,10 @@ import {
     MacContrastCheckerAppLink,
     WindowsContrastCheckerAppLink,
 } from 'common/components/contrast-checker-app-links';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from 'common/types/property-bag/property-bag-column-renderer-config';
 import { StateChangesPropertyBag } from 'common/types/property-bag/state-changes';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
@@ -14,10 +18,6 @@ import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import {
-    NoValue,
-    PropertyBagColumnRendererConfig,
-} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
