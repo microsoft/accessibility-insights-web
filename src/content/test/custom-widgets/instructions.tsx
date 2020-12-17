@@ -4,7 +4,7 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <p>If a custom widget has visible label or instructions, they must be programmatically related to it.</p>
+        <p>If a custom widget has a visible label or instructions, they must be programmatically determinable.</p>
 
         <h2>Why it matters</h2>
         <p>
