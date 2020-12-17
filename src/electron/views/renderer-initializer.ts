@@ -55,7 +55,10 @@ import { ipcRenderer, shell } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
-import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
+import {
+    // createGetToolDataDelegate,
+    createGetToolDataDelegateNew,
+} from 'electron/common/application-properties-provider';
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
 import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
@@ -79,9 +82,9 @@ import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-s
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
-import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
+//import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
-import { ScanController } from 'electron/platform/android/scan-controller';
+// import { ScanController } from 'electron/platform/android/scan-controller';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
     AndroidServiceConfiguratorFactory,
@@ -92,7 +95,10 @@ import { createAndroidSetupStateMachineFactory } from 'electron/platform/android
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
-import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
+// import { createDefaultBuilder } from 'electron/platform/electron/unified-result-builder';
+import { createScanResultsFetcher } from 'electron/platform/electron/fetch-scan-results';
+import { ScanController } from 'electron/platform/electron/scan-controller';
+import { createDefaultBuilder } from 'electron/platform/electron/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
 import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
@@ -292,8 +298,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             leftNavStore,
         ]);
 
-        const fetchScanResults = createScanResultsFetcher(axios.get);
-
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
@@ -391,10 +395,33 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         );
         windowFrameListener.initialize();
 
-        const getToolData = createGetToolDataDelegate(
+        // Android version
+        // const fetchScanResults = createScanResultsFetcher(axios.get);
+        //
+        // const getToolData = createGetToolDataDelegate(
+        //     androidAppTitle,
+        //     appDataAdapter.getVersion(),
+        //     'axe-android',
+        // );
+
+        // const unifiedResultsBuilder = createDefaultBuilder(getToolData);
+        // const scanController = new ScanController(
+        //     scanActions,
+        //     unifiedScanResultActions,
+        //     fetchScanResults,
+        //     unifiedResultsBuilder,
+        //     telemetryEventHandler,
+        //     DateProvider.getCurrentDate,
+        //     logger,
+        // );
+
+        // Electron version
+        const fetchScanResults = createScanResultsFetcher(DateProvider.getCurrentDate);
+
+        const getToolData = createGetToolDataDelegateNew(
             androidAppTitle,
             appDataAdapter.getVersion(),
-            'axe-android',
+            'axe-electron',
         );
 
         const unifiedResultsBuilder = createDefaultBuilder(getToolData);
@@ -520,7 +547,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             windowStateActionCreator,
             dropdownClickHandler,
             LinkComponent: ElectronLink,
-            fetchScanResults,
             deviceConnectActionCreator,
             androidSetupActionCreator,
             storesHub,

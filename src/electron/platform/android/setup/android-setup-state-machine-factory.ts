@@ -39,7 +39,8 @@ export const createAndroidSetupStateMachineFactory = (
         return new StateMachine<AndroidSetupStepId, AndroidSetupActions>(
             stepsFactory(deps, storeCallbacks),
             storeStepTransition,
-            'wait-to-start',
+            // 'wait-to-start',
+            'prompt-connected-start-testing',
         );
     };
 };
