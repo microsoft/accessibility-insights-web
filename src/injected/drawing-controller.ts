@@ -16,8 +16,6 @@ import {
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 import { Drawer } from './visualization/drawer';
 
-export type RegisterDrawer = (id: string, drawer: Drawer) => void;
-
 export interface VisualizationWindowMessage {
     visualizationType?: VisualizationType;
     isEnabled: boolean;
@@ -45,7 +43,7 @@ export class DrawingController {
         );
     }
 
-    public registerDrawer: RegisterDrawer = (id: string, drawer: Drawer) => {
+    public registerDrawer = (id: string, drawer: Drawer) => {
         if (this.drawers[id]) {
             throw new Error(`Drawer already registered to id: ${id}`);
         }
