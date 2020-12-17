@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { VisualizationType } from 'common/types/visualization-type';
+import { RegisterDrawer } from 'injected/drawing-controller';
+import { VisualizationTypeDrawerRegistrar } from 'injected/visualization-type-drawer-registrar';
+import { Drawer } from 'injected/visualization/drawer';
+import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { IMock, Mock } from 'typemoq';
-import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import {
-    RegisterDrawer,
-    VisualizationTypeDrawerRegistrar,
-} from '../../../../injected/visualization-type-drawer-registrar';
-import { Drawer } from '../../../../injected/visualization/drawer';
-import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 
 describe('VisualizationTypeDrawerRegistrar', () => {
     let registerDrawerMock: IMock<RegisterDrawer>;

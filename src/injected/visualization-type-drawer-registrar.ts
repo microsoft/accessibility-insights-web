@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { RegisterDrawer } from 'injected/drawing-controller';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../common/types/visualization-type';
-import { Drawer } from './visualization/drawer';
 import { DrawerProvider } from './visualization/drawer-provider';
-
-export type RegisterDrawer = (id: string, drawer: Drawer) => void;
 
 export class VisualizationTypeDrawerRegistrar {
     constructor(
