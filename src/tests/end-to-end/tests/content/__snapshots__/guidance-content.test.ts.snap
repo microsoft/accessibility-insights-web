@@ -22743,7 +22743,7 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
       class="content"
     >
       <p>
-        If a native widget has visible label or instructions, they must be programmatically determinable.
+        If a native widget has a visible label or instructions, they must be programmatically determinable.
       </p>
       <h2>
         Why it matters
