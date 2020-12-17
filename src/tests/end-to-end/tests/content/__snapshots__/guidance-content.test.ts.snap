@@ -6495,7 +6495,7 @@ exports[`Guidance Content pages test/customWidgets/instructions/infoAndExamples 
       class="content"
     >
       <p>
-        If a custom widget has visible label or instructions, they must be programmatically related to it.
+        If a custom widget has a visible label or instructions, they must be programmatically determinable.
       </p>
       <h2>
         Why it matters
@@ -22743,7 +22743,7 @@ exports[`Guidance Content pages test/nativeWidgets/instructions/infoAndExamples 
       class="content"
     >
       <p>
-        If a native widget has visible label or instructions, they must be programmatically related to it.
+        If a native widget has visible label or instructions, they must be programmatically determinable.
       </p>
       <h2>
         Why it matters
