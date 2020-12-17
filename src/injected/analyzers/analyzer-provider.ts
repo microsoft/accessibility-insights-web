@@ -4,7 +4,6 @@ import { Logger } from 'common/logging/logger';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 
 import { BaseStore } from '../../common/base-store';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
 import { WindowUtils } from '../../common/window-utils';
@@ -29,7 +28,6 @@ export class AnalyzerProvider {
         private readonly scanner: ScannerUtils,
         private readonly telemetryDataFactory: TelemetryDataFactory,
         private readonly dateGetter: () => Date,
-        private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private readonly filterResultsByRules: IResultRuleFilter,
         private readonly sendConvertedResults: PostResolveCallback,
         private readonly sendNeedsReviewResults: PostResolveCallback,
@@ -52,7 +50,6 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.dateGetter,
             this.telemetryDataFactory,
-            this.visualizationConfigFactory,
             null,
             this.scanIncompleteWarningDetector,
             this.logger,
@@ -69,7 +66,6 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.dateGetter,
             this.telemetryDataFactory,
-            this.visualizationConfigFactory,
             this.sendConvertedResults,
             this.scanIncompleteWarningDetector,
             this.logger,
@@ -86,7 +82,6 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.dateGetter,
             this.telemetryDataFactory,
-            this.visualizationConfigFactory,
             this.sendNeedsReviewResults,
             this.scanIncompleteWarningDetector,
             this.logger,
@@ -101,7 +96,6 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.dateGetter,
             this.telemetryDataFactory,
-            this.visualizationConfigFactory,
             this.filterResultsByRules,
             this.scanIncompleteWarningDetector,
             this.logger,

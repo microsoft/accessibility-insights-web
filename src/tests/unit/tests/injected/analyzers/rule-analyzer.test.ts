@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { ScopingStore } from 'background/stores/global/scoping-store';
-import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { RuleAnalyzerScanTelemetryData } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -30,14 +28,12 @@ describe('RuleAnalyzer', () => {
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: ScopingStoreData;
-    let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     const allInstancesMock: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let typeStub: VisualizationType;
-    const name = 'test-name';
     let configStub: RuleAnalyzerConfiguration;
     let scanCallback: (results: ScanResults) => void;
     let postResolveCallbackMock: IMock<PostResolveCallback>;
@@ -50,7 +46,6 @@ describe('RuleAnalyzer', () => {
         scannerUtilsMock = Mock.ofType(ScannerUtils);
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         postResolveCallbackMock = Mock.ofInstance(results => null);
 
         const dateStub = {
@@ -71,14 +66,6 @@ describe('RuleAnalyzer', () => {
         scopingStoreMock
             .setup(sm => sm.getState())
             .returns(() => scopingState)
-            .verifiable();
-        visualizationConfigurationFactoryMock
-            .setup(v => v.getConfiguration(typeStub))
-            .returns(() => {
-                return {
-                    displayableData: { title: name },
-                } as VisualizationConfiguration;
-            })
             .verifiable();
         scanIncompleteWarningDetectorMock
             .setup(idm => idm.detectScanIncompleteWarnings())
@@ -107,12 +94,13 @@ describe('RuleAnalyzer', () => {
 
     function testGetResults(done: () => void): void {
         const key = 'sample key';
+        const testName = 'sample test name';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
-            return createTelemetryStub(elapsedTime, name, key);
+            return createTelemetryStub(elapsedTime, testName, key);
         };
         const startTime = 10;
         const endTime = 20;
-        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, name, key);
+        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, testName, key);
 
         configStub = {
             rules: ['fake-rule'],
@@ -131,7 +119,6 @@ describe('RuleAnalyzer', () => {
             sendMessageMock.object,
             dateGetterMock.object,
             telemetryDataFactoryMock.object,
-            visualizationConfigurationFactoryMock.object,
             postResolveCallbackMock.object,
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,
