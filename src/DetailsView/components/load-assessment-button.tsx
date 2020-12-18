@@ -21,7 +21,7 @@ export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonPr
         return (
             <InsightsCommandButton
                 iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
-                onClick={this.props.deps.loadAssessmentHelper.getAssessmentForLoad}
+                onClick={() => this.props.deps.loadAssessmentHelper.getAssessmentForLoad()}
             >
                 Load assessment
             </InsightsCommandButton>

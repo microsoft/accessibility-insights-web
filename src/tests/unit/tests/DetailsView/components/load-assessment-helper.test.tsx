@@ -7,18 +7,17 @@ import { Mock, Times } from 'typemoq';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 
 describe('LoadAssessmentHelper', () => {
-    let detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
-    let assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
-    let fileReaderMock = Mock.ofType(FileReader);
-    let createElementStub: (input: string) => HTMLInputElement;
-    let clickMock = Mock.ofType<() => void>();
+    const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
+    const assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
+    const fileReaderMock = Mock.ofType(FileReader);
+    const documentMock = Mock.ofType(Document);
+    const clickMock = Mock.ofType<() => void>();
     let assessmentData: VersionedAssessmentData;
     let content: string;
     let file: File;
     let inputStub;
     let event;
     let readerEvent;
-    let expectedElementType: string;
 
     it('it accepts an assessment for load', () => {
         assessmentDataParserMock
@@ -34,15 +33,15 @@ describe('LoadAssessmentHelper', () => {
 
         fileReaderMock.callBase = true;
 
+        documentMock
+            .setup(d => d.createElement('input'))
+            .returns(() => inputStub)
+            .verifiable(Times.once());
+
         clickMock.setup(c => c()).verifiable(Times.once());
 
         inputStub = {
             click: clickMock.object,
-        };
-
-        createElementStub = (elementType: string) => {
-            expectedElementType = elementType;
-            return inputStub;
         };
 
         event = {
@@ -61,7 +60,7 @@ describe('LoadAssessmentHelper', () => {
             assessmentDataParserMock.object,
             detailsViewActionMessageCreatorMock.object,
             fileReaderMock.object,
-            createElementStub,
+            documentMock.object,
         );
 
         testLoadAssessmentHelper.getAssessmentForLoad();
@@ -70,10 +69,10 @@ describe('LoadAssessmentHelper', () => {
 
         expect(inputStub.type).toBe('file');
         expect(inputStub.accept).toBe('.a11ywebassessment');
-        expect(expectedElementType).toBe('input');
         assessmentDataParserMock.verifyAll();
         detailsViewActionMessageCreatorMock.verifyAll();
         fileReaderMock.verifyAll();
+        documentMock.verifyAll();
         clickMock.verifyAll();
     });
 });

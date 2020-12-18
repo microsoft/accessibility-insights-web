@@ -14,21 +14,15 @@ import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 
 describe('LoadAssessmentButton', () => {
-    let deps: LoadAssessmentButtonDeps;
-    let props: LoadAssessmentButtonProps;
     const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
     const assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
     const loadAssessmentHelperMock = Mock.ofType(LoadAssessmentHelper);
-
-    deps = {
+    const deps = {
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
         assessmentDataParser: assessmentDataParserMock.object,
         loadAssessmentHelper: loadAssessmentHelperMock.object,
     } as LoadAssessmentButtonDeps;
-
-    props = {
-        deps,
-    };
+    const props = { deps } as LoadAssessmentButtonProps;
 
     it('should render per the snapshot', () => {
         const rendered = shallow(<LoadAssessmentButton {...props} />);

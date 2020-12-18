@@ -394,12 +394,13 @@ if (tabId != null) {
 
             const assessmentDataParser = new AssessmentDataParser();
 
-            const fileReader = new FileReader;
+            const fileReader = new FileReader();
 
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
                 detailsViewActionMessageCreator,
-                fileReader, document.createElement
+                fileReader,
+                document,
             );
 
             const fileNameBuilder = new FileNameBuilder();

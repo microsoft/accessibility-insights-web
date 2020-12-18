@@ -8,20 +8,20 @@ export class LoadAssessmentHelper {
         private readonly assessmentDataParser: AssessmentDataParser,
         private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
         private readonly fileReader: FileReader,
-        private readonly createElement: (input: string) => HTMLInputElement,
+        private readonly document: Document,
     ) {}
 
     public getAssessmentForLoad() {
-        const input = this.createElement('input');
+        const input = this.document.createElement('input');
         input.type = 'file';
         input.accept = '.a11ywebassessment';
 
-        let onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
+        const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
             const content = readerEvent.target.result as string;
             const assessmentData = this.assessmentDataParser.parseAssessmentData(content);
             this.detailsViewActionMessageCreator.loadAssessment(assessmentData);
         };
-        let onInputChange = (e: Event) => {
+        const onInputChange = (e: Event) => {
             const file = (e.target as HTMLInputElement).files[0];
             this.fileReader.onload = onReaderLoad;
             this.fileReader.readAsText(file, 'UTF-8');
