@@ -67,6 +67,7 @@ import { FileURLProvider } from '../common/file-url-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { FileNameBuilder } from 'common/filename-builder';
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -392,6 +393,15 @@ if (tabId != null) {
 
             const assessmentDataParser = new AssessmentDataParser();
 
+            const fileReader = new FileReader();
+
+            const loadAssessmentHelper = new LoadAssessmentHelper(
+                assessmentDataParser,
+                detailsViewActionMessageCreator,
+                fileReader,
+                document,
+            );
+
             const fileNameBuilder = new FileNameBuilder();
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
@@ -425,6 +435,7 @@ if (tabId != null) {
                 assessmentDataFormatter,
                 assessmentDataParser,
                 fileNameBuilder,
+                loadAssessmentHelper,
                 getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
