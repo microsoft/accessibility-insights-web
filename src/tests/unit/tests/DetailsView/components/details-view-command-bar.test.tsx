@@ -16,7 +16,7 @@ import {
     LoadAssessmentButton,
     LoadAssessmentButtonDeps,
     LoadAssessmentButtonProps,
-} from '../../../../../DetailsView/components/load-assessment-button';
+} from 'DetailsView/components/load-assessment-button';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     StartOverComponentFactory,

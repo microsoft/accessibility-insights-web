@@ -65,7 +65,7 @@ import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
-import { AssessmentDataParser } from '../common/assessment-data-parser';
+import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { FileNameBuilder } from 'common/filename-builder';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
@@ -127,7 +127,6 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { Logger } from 'common/logging/logger';
-import { createElement } from 'react';
 
 declare const window: AutoChecker & Window;
 
