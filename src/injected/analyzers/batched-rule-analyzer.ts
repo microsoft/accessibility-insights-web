@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
@@ -25,7 +24,6 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,
-        protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postScanFilter: IResultRuleFilter,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
@@ -37,7 +35,6 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
             sendMessageDelegate,
             dateGetter,
             telemetryFactory,
-            visualizationConfigFactory,
             null,
             scanIncompleteWarningDetector,
             logger,

@@ -316,7 +316,6 @@ export class MainWindowInitializer extends WindowInitializer {
             new ScannerUtils(scan, logger, generateUID),
             telemetryDataFactory,
             DateProvider.getCurrentDate,
-            this.visualizationConfigurationFactory,
             filterResultsByRules,
             unifiedResultSender.sendAutomatedChecksResults,
             unifiedResultSender.sendNeedsReviewResults,

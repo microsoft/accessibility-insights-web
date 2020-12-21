@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { BaseStore } from 'common/base-store';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { ForRuleAnalyzerScanCallback } from 'common/types/analyzer-telemetry-callbacks';
@@ -31,7 +30,6 @@ export class RuleAnalyzer extends BaseAnalyzer {
         protected sendMessageDelegate: (message) => void,
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,
-        protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postOnResolve: PostResolveCallback | null,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
@@ -90,13 +88,11 @@ export class RuleAnalyzer extends BaseAnalyzer {
         const telemetryGetter: ForRuleAnalyzerScanCallback = config.telemetryProcessor(
             this.telemetryFactory,
         );
-        const testName = this.visualizationConfigFactory.getConfiguration(config.testType)
-            .displayableData.title;
         const telemetry = telemetryGetter(
             analyzerResult,
             elapsedTime,
             this.elementsScanned,
-            testName,
+            config.testType,
             config.key,
         );
 
