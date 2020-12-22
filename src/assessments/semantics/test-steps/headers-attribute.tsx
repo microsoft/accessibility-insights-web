@@ -1,8 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
+import { onRenderSnippetColumn } from 'assessments/common/element-column-renderers';
+import { ReportInstanceField } from 'assessments/types/report-instance-field';
 import { NewTabLink } from 'common/components/new-tab-link';
+import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/semantics/headers-attribute';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
 
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
@@ -60,12 +65,31 @@ const headersAttributeHowToTest: JSX.Element = (
     </div>
 );
 
+const key = SemanticsTestStep.headersAttribute;
+
 export const HeadersAttribute: Requirement = {
-    key: SemanticsTestStep.headersAttribute,
+    key,
     name: 'Headers attribute',
     description: headersAttributeDescription,
     howToTest: headersAttributeHowToTest,
-    isManual: true,
+    isManual: false,
     ...content,
     guidanceLinks: [link.WCAG_1_3_1],
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['headers-attribute'],
+                key,
+                testType: VisualizationType.SemanticsAssessment,
+            }),
+        ),
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    reportInstanceFields: [ReportInstanceField.fromSnippet('element', 'Element')],
+    columnsConfig: [
+        {
+            key: 'element',
+            name: 'Element',
+            onRender: onRenderSnippetColumn,
+        },
+    ],
 };
