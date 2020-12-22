@@ -6,7 +6,7 @@ import {
     IGetMessageGenerator,
     IMessageGenerator,
 } from 'assessments/assessment-default-message-generator';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { mount, shallow } from 'enzyme';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -92,7 +92,7 @@ describe('AssessmentInstanceTable', () => {
                 assessmentDefaultMessageGeneratorMock.object,
                 getDefaultMessageMock.object,
             );
-            const items: AssessmentInstanceRowData[] = [
+            const items: InstanceTableRow[] = [
                 {
                     key: 'items[0]',
                     statusChoiceGroup: null,

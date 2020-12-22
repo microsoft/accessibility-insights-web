@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { HeadingsAssessmentProperties } from 'common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
 import { HeadingFormatter } from 'injected/visualization/heading-formatter';
 import * as React from 'react';
 
 export function headingsAssessmentInstanceDetailsColumnRenderer(
-    item: AssessmentInstanceRowData<HeadingsAssessmentProperties>,
+    item: InstanceTableRow<HeadingsAssessmentProperties>,
 ): JSX.Element {
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.headingText : null;

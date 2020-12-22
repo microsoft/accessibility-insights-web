@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -103,7 +103,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             />
         );
 
-        const expectedRows: AssessmentInstanceRowData[] = [
+        const expectedRows: InstanceTableRow[] = [
             {
                 instance: {
                     target: ['target1'],

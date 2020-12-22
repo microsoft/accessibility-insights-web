@@ -7,11 +7,11 @@ import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/prope
 import { customWidgetsColumnRenderer } from 'assessments/custom-widgets/custom-widgets-column-renderer';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { RendererWrapper } from '../common/renderer-wrapper';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('CustomWidgetsColumnRenderer', () => {
     let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];
-    let item: AssessmentInstanceRowData<TestPropertyBag>;
+    let item: InstanceTableRow<TestPropertyBag>;
 
     beforeEach(() => {
         configs = [

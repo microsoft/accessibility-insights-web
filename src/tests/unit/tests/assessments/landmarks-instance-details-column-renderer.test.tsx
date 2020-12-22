@@ -6,7 +6,7 @@ import { landmarksAssessmentInstanceDetailsColumnRenderer } from 'assessments/la
 import { LandmarksAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { LandmarkFormatter } from '../../../../injected/visualization/landmark-formatter';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('LandmarksInstanceDetailsColumnRendererTest', () => {
     test('render', () => {
@@ -17,7 +17,7 @@ describe('LandmarksInstanceDetailsColumnRendererTest', () => {
                     label: 'label',
                 },
             },
-        } as AssessmentInstanceRowData<LandmarksAssessmentProperties>;
+        } as InstanceTableRow<LandmarksAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={LandmarkFormatter.getStyleForLandmarkRole('banner').borderColor}
@@ -37,7 +37,7 @@ describe('LandmarksInstanceDetailsColumnRendererTest', () => {
                     label: null,
                 },
             },
-        } as AssessmentInstanceRowData<LandmarksAssessmentProperties>;
+        } as InstanceTableRow<LandmarksAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={LandmarkFormatter.getStyleForLandmarkRole('banner').borderColor}

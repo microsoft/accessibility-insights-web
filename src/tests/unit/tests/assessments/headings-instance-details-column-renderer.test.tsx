@@ -6,7 +6,7 @@ import { headingsAssessmentInstanceDetailsColumnRenderer } from 'assessments/hea
 import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { HeadingFormatter } from '../../../../injected/visualization/heading-formatter';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('HeadingsInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
@@ -14,7 +14,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
+        } as InstanceTableRow<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
@@ -35,7 +35,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                     headingLevel: '3',
                 },
             },
-        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
+        } as InstanceTableRow<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={HeadingFormatter.headingStyles['3'].borderColor}
@@ -56,7 +56,7 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                     headingLevel: '7',
                 },
             },
-        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
+        } as InstanceTableRow<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}

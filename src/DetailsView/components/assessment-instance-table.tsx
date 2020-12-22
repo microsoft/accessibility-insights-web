@@ -23,9 +23,7 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
-
-export type InstanceTableHeaderType = 'none' | 'default';
+import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';
@@ -57,7 +55,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             );
         }
 
-        const items: AssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
+        const items: InstanceTableRow[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
             this.props.instancesMap,
             this.props.assessmentNavState,
             this.props.hasVisualHelper,
@@ -97,7 +95,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    public onItemInvoked = (item: AssessmentInstanceRowData): void => {
+    public onItemInvoked = (item: InstanceTableRow): void => {
         this.updateFocusedTarget(item);
     };
 
@@ -110,11 +108,11 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     };
 
-    public updateFocusedTarget = (item: AssessmentInstanceRowData): void => {
+    public updateFocusedTarget = (item: InstanceTableRow): void => {
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     };
 
-    private renderInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
+    private renderInstanceTableHeader(items: InstanceTableRow[]): JSX.Element {
         if (this.props.instanceTableHeaderType === 'none') {
             return null;
         }
@@ -136,7 +134,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    private isAnyInstanceStatusUnknown(items: AssessmentInstanceRowData[], step: string): boolean {
+    private isAnyInstanceStatusUnknown(items: InstanceTableRow[], step: string): boolean {
         return items.some(
             item =>
                 has(item.instance.testStepResults, step) &&

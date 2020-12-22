@@ -7,7 +7,7 @@ import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/prope
 import { PropertyBagColumnRendererFactory } from 'assessments/common/property-bag-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { RendererWrapper } from './renderer-wrapper';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;
@@ -22,7 +22,7 @@ describe('PropertyBagColumnRendererFactoryTest', () => {
             },
         ];
 
-        const item: AssessmentInstanceRowData<TestPropertyBag> = {
+        const item: InstanceTableRow<TestPropertyBag> = {
             key: 'stub-key',
             instance: {
                 html: null,

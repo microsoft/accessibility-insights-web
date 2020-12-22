@@ -11,7 +11,7 @@ import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
-import { AssessmentInstanceRowData, InstanceTableColumn } from '../types/instance-table-column';
+import { InstanceTableRow, InstanceTableColumn } from '../types/instance-table-data';
 import { Requirement } from '../types/requirement';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
@@ -79,7 +79,7 @@ const automatedChecksColumns: InstanceTableColumn[] = [
     },
 ];
 
-function onRenderPathColumn(item: AssessmentInstanceRowData): JSX.Element {
+function onRenderPathColumn(item: InstanceTableRow): JSX.Element {
     let textContent = '';
     if (item.instance.target) {
         textContent = item.instance.target.join(';');
@@ -96,7 +96,7 @@ function onRenderPathColumn(item: AssessmentInstanceRowData): JSX.Element {
     );
 }
 
-function onRenderSnippetColumn(item: AssessmentInstanceRowData): JSX.Element {
+function onRenderSnippetColumn(item: InstanceTableRow): JSX.Element {
     return (
         <AssessmentInstanceDetailsColumn
             background={null}

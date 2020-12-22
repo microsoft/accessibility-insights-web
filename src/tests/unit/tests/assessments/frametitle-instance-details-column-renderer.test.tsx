@@ -6,7 +6,7 @@ import { frameTitleInstanceDetailsColumnRenderer } from 'assessments/page/framet
 import { FrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
@@ -15,7 +15,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as AssessmentInstanceRowData<FrameAssessmentProperties>;
+        } as InstanceTableRow<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}
@@ -37,7 +37,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                     frameTitle: frameTitle,
                 },
             },
-        } as AssessmentInstanceRowData<FrameAssessmentProperties>;
+        } as InstanceTableRow<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}
@@ -59,7 +59,7 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                     frameTitle: frameTitle,
                 },
             },
-        } as AssessmentInstanceRowData<FrameAssessmentProperties>;
+        } as InstanceTableRow<FrameAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={FrameFormatter.frameStyles[frameType].borderColor}

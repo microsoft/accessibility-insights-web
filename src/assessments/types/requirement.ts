@@ -20,7 +20,7 @@ import { IColumn } from 'office-ui-fabric-react';
 import { DictionaryStringTo } from 'types/common-types';
 import { ContentPageComponent } from 'views/content/content-page';
 import { IGetMessageGenerator } from '../assessment-default-message-generator';
-import { InstanceTableColumn } from './instance-table-column';
+import { InstanceTableColumn, InstanceTableHeaderType } from './instance-table-data';
 import { ReportInstanceFields } from './report-instance-field';
 
 export interface Requirement {
@@ -55,7 +55,7 @@ export interface Requirement {
     getInstanceStatus?: (result: DecoratedAxeNodeResult) => ManualTestStatus;
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
-    instanceTableHeaderType?: 'none' | 'default';
+    instanceTableHeaderType?: InstanceTableHeaderType;
 }
 
 export type VisualHelperToggleConfigDeps = {

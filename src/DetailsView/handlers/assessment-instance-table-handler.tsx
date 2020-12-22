@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
@@ -77,7 +77,7 @@ export class AssessmentInstanceTableHandler {
         instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
-    ): AssessmentInstanceRowData[] {
+    ): InstanceTableRow[] {
         const assessmentInstances = this.getInstanceKeys(instancesMap, assessmentNavState).map(
             key => {
                 const instance = instancesMap[key];
@@ -88,7 +88,7 @@ export class AssessmentInstanceTableHandler {
                         ? this.renderSelectedButton(instance, key, assessmentNavState)
                         : null,
                     instance: instance,
-                } as AssessmentInstanceRowData;
+                } as InstanceTableRow;
             },
         );
         return assessmentInstances;

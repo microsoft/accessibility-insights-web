@@ -5,10 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 import { buildTestStepsFromRules } from 'assessments/automated-checks/build-test-steps-from-rules';
-import {
-    AssessmentInstanceRowData,
-    InstanceTableColumn,
-} from 'assessments/types/instance-table-column';
+import { InstanceTableRow, InstanceTableColumn } from 'assessments/types/instance-table-data';
 import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -140,7 +137,7 @@ describe('buildTestStepsFromRules', () => {
         html: string,
         message: string,
     ): void {
-        const item: AssessmentInstanceRowData = {
+        const item: InstanceTableRow = {
             statusChoiceGroup: null,
             visualizationButton: null,
             instance: {

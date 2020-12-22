@@ -8,7 +8,7 @@ import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/prope
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { RendererWrapper } from './renderer-wrapper';
-import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;
@@ -161,9 +161,7 @@ function getPropertyBag(): TestPropertyBag {
     };
 }
 
-function buildItemWithPropertyBag(
-    bag: TestPropertyBag,
-): AssessmentInstanceRowData<TestPropertyBag> {
+function buildItemWithPropertyBag(bag: TestPropertyBag): InstanceTableRow<TestPropertyBag> {
     return {
         key: 'stub-key',
         instance: {

@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 import { GeneratedAssessmentInstance } from 'common/types/store-data/assessment-result-data';
 
-export interface AssessmentInstanceRowData<P = {}> {
+export type InstanceTableHeaderType = 'none' | 'default';
+
+export interface InstanceTableRow<P = {}> {
     key: string;
     statusChoiceGroup: JSX.Element;
     visualizationButton?: JSX.Element;
@@ -12,5 +14,5 @@ export interface AssessmentInstanceRowData<P = {}> {
 export interface InstanceTableColumn {
     key: string;
     name: string;
-    onRender: (item: AssessmentInstanceRowData) => JSX.Element;
+    onRender: (item: InstanceTableRow) => JSX.Element;
 }
