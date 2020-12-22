@@ -10,10 +10,6 @@ import {
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import {
-    AssessmentInstanceRowData,
-    AssessmentInstanceTable,
-} from 'DetailsView/components/assessment-instance-table';
 import { Analyzer } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
@@ -59,10 +55,7 @@ export interface Requirement {
     getInstanceStatus?: (result: DecoratedAxeNodeResult) => ManualTestStatus;
     getInstanceStatusColumns?: () => Readonly<IColumn>[];
     getDefaultMessage?: IGetMessageGenerator;
-    renderInstanceTableHeader?: (
-        table: AssessmentInstanceTable,
-        items: AssessmentInstanceRowData[],
-    ) => JSX.Element;
+    instanceTableHeaderType?: 'none' | 'default';
 }
 
 export type VisualHelperToggleConfigDeps = {

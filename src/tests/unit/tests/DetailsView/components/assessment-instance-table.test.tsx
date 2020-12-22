@@ -6,6 +6,7 @@ import {
     IGetMessageGenerator,
     IMessageGenerator,
 } from 'assessments/assessment-default-message-generator';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 import { mount, shallow } from 'enzyme';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -17,7 +18,6 @@ import {
     GeneratedAssessmentInstance,
 } from '../../../../../common/types/store-data/assessment-result-data';
 import {
-    AssessmentInstanceRowData,
     AssessmentInstanceTable,
     AssessmentInstanceTableProps,
     passUnmarkedInstancesButtonAutomationId,
@@ -94,6 +94,7 @@ describe('AssessmentInstanceTable', () => {
             );
             const items: AssessmentInstanceRowData[] = [
                 {
+                    key: 'items[0]',
                     statusChoiceGroup: null,
                     visualizationButton: null,
                     instance: { testStepResults } as GeneratedAssessmentInstance,
@@ -136,9 +137,9 @@ describe('AssessmentInstanceTable', () => {
             expect(testSubject.getElement()).toMatchSnapshot();
         });
 
-        it('renders per snapshot with null header', () => {
+        it('renders per snapshot with "none" header type', () => {
             const testSubject = shallow(
-                <AssessmentInstanceTable {...props} renderInstanceTableHeader={() => null} />,
+                <AssessmentInstanceTable {...props} instanceTableHeaderType={'none'} />,
             );
             expect(testSubject.getElement()).toMatchSnapshot();
         });
@@ -226,10 +227,7 @@ describe('AssessmentInstanceTable', () => {
             assessmentInstanceTableHandler: assessmentInstanceTableHandler,
             getDefaultMessage: defaultMessageMock,
             assessmentDefaultMessageGenerator: defaultMessageGeneratorMock,
-            renderInstanceTableHeader: (
-                table: AssessmentInstanceTable,
-                items: AssessmentInstanceRowData[],
-            ) => table.renderDefaultInstanceTableHeader(items),
+            instanceTableHeaderType: 'default',
             hasVisualHelper: true,
         };
     }

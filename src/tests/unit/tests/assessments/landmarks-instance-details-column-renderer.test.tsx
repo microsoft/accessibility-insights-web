@@ -5,8 +5,8 @@ import * as React from 'react';
 import { landmarksAssessmentInstanceDetailsColumnRenderer } from 'assessments/landmarks/landmarks-instance-details-column-renderer';
 import { LandmarksAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
-import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { LandmarkFormatter } from '../../../../injected/visualization/landmark-formatter';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 
 describe('LandmarksInstanceDetailsColumnRendererTest', () => {
     test('render', () => {

@@ -6,8 +6,8 @@ import * as React from 'react';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { CustomWidgetsColumnRendererFactory } from 'assessments/custom-widgets/custom-widgets-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from '../common/renderer-wrapper';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 
 describe('CustomWidgetsColumnRendererFactory', () => {
     let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];
@@ -26,6 +26,7 @@ describe('CustomWidgetsColumnRendererFactory', () => {
         ];
 
         item = {
+            key: 'stub-key',
             instance: {
                 html: null,
                 target: null,

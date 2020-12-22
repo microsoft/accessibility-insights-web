@@ -5,8 +5,8 @@ import * as React from 'react';
 import { frameTitleInstanceDetailsColumnRenderer } from 'assessments/page/frametitle-instance-details-column-renderer';
 import { FrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
-import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 
 describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {

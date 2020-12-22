@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from 'types/common-types';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     item: AssessmentInstanceRowData<TPropertyBag>,

@@ -23,6 +23,9 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
+
+export type InstanceTableHeaderType = 'none' | 'default';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';
@@ -31,19 +34,10 @@ export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    renderInstanceTableHeader: (
-        table: AssessmentInstanceTable,
-        items: AssessmentInstanceRowData[],
-    ) => JSX.Element;
+    instanceTableHeaderType: InstanceTableHeaderType;
     getDefaultMessage: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     hasVisualHelper: boolean;
-}
-
-export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
-    statusChoiceGroup: JSX.Element;
-    visualizationButton?: JSX.Element;
-    instance: GeneratedAssessmentInstance<P>;
 }
 
 export interface CapturedInstanceRowData extends IObjectWithKey {
@@ -89,7 +83,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
 
         return (
             <div>
-                {this.props.renderInstanceTableHeader(this, items)}
+                {this.renderInstanceTableHeader(items)}
                 <DetailsList
                     ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
                     items={items}
@@ -120,7 +114,11 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     };
 
-    public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
+    private renderInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
+        if (this.props.instanceTableHeaderType === 'none') {
+            return null;
+        }
+
         const disabled = !this.isAnyInstanceStatusUnknown(
             items,
             this.props.assessmentNavState.selectedTestSubview,

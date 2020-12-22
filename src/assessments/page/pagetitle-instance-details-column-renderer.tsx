@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
-import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import * as React from 'react';
 
 export function pageTitleInstanceDetailsColumnRenderer(

@@ -6,13 +6,12 @@ import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
-import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
-import { InstanceTableColumn } from '../types/instance-table-column';
+import { AssessmentInstanceRowData, InstanceTableColumn } from '../types/instance-table-column';
 import { Requirement } from '../types/requirement';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
@@ -52,7 +51,7 @@ function buildAutomatedCheckStep(rule: ScannerRuleInfo): Requirement {
         columnsConfig: automatedChecksColumns,
         getInstanceStatus: getInstanceStatus,
         getInstanceStatusColumns: () => [],
-        renderInstanceTableHeader: () => null,
+        instanceTableHeaderType: 'none',
         renderRequirementDescription: requirementLink =>
             requirementLink.renderRequirementDescriptionWithoutIndex(),
         getDefaultMessage: defaultMessageGenerator =>

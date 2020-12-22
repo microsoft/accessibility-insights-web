@@ -127,7 +127,7 @@ const automatedAssessment = {
             isManual: null,
             guidanceLinks: [],
             columnsConfig: [],
-            renderInstanceTableHeader: () => null,
+            instanceTableHeaderType: 'none',
             getInstanceStatusColumns: () => [],
         },
         {
@@ -138,7 +138,7 @@ const automatedAssessment = {
             isManual: null,
             guidanceLinks: [],
             columnsConfig: [],
-            renderInstanceTableHeader: () => null,
+            instanceTableHeaderType: 'none',
             getInstanceStatusColumns: () => [],
         },
     ],

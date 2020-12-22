@@ -6,9 +6,9 @@ import * as React from 'react';
 import { propertyBagColumnRenderer } from 'assessments/common/property-bag-column-renderer';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { RendererWrapper } from './renderer-wrapper';
+import { AssessmentInstanceRowData } from 'assessments/types/instance-table-column';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;
@@ -165,6 +165,7 @@ function buildItemWithPropertyBag(
     bag: TestPropertyBag,
 ): AssessmentInstanceRowData<TestPropertyBag> {
     return {
+        key: 'stub-key',
         instance: {
             propertyBag: bag,
             html: null,
