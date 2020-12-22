@@ -5,8 +5,8 @@ import {
     ColumnValueBag,
     isScalarColumnValue,
 } from 'common/types/property-bag/column-value-bag';
+import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { TestStepInstance } from 'common/types/store-data/assessment-result-data';
-import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 
 export type ReportInstanceField = {
     key: string;

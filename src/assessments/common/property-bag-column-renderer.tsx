@@ -3,18 +3,10 @@
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { ColumnValue, ColumnValueBag } from 'common/types/property-bag/column-value-bag';
+import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
+import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from 'types/common-types';
-
-export const NoValue = '(no value)';
-
-export interface PropertyBagColumnRendererConfig<TPropertyBag extends ColumnValueBag> {
-    propertyName: keyof TPropertyBag & string;
-    displayName: string;
-    defaultValue?: ColumnValue;
-    expand?: boolean;
-}
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     item: AssessmentInstanceRowData<TPropertyBag>,

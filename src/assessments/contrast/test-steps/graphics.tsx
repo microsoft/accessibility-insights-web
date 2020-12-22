@@ -6,6 +6,10 @@ import {
 } from 'common/components/contrast-checker-app-links';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { MeaningfulImagePropertyBag } from 'common/types/property-bag/meaningful-image';
+import {
+    NoValue,
+    PropertyBagColumnRendererConfig,
+} from 'common/types/property-bag/property-bag-column-renderer-config';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/graphics';
@@ -14,10 +18,6 @@ import * as React from 'react';
 
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import {
-    NoValue,
-    PropertyBagColumnRendererConfig,
-} from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';

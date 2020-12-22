@@ -29,12 +29,7 @@ import {
     IssueDetailsNavigationControls,
     IssueDetailsNavigationControlsProps,
 } from './issue-details-navigation-controls';
-
-export enum CheckType {
-    All,
-    Any,
-    None,
-}
+import { CheckType } from '../../common/types/check-type';
 
 export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;

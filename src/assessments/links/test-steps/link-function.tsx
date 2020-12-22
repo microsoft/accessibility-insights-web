@@ -15,7 +15,7 @@ import { AssistedTestRecordYourResults } from '../../common/assisted-test-record
 import {
     NoValue,
     PropertyBagColumnRendererConfig,
-} from '../../common/property-bag-column-renderer';
+} from '../../../common/types/property-bag/property-bag-column-renderer-config';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
