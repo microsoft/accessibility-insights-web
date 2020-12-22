@@ -58,7 +58,7 @@ exports[`RequirementTableSection render instance table 1`] = `
       }
     }
     getDefaultMessage={[Function]}
-    renderInstanceTableHeader={[Function]}
+    instanceTableHeaderType="none"
   />
 </React.Fragment>
 `;
