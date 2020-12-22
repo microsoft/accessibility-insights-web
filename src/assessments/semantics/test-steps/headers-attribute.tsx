@@ -83,6 +83,7 @@ export const HeadersAttribute: Requirement = {
                 testType: VisualizationType.SemanticsAssessment,
             }),
         ),
+    getDrawer: provider => provider.createTableHeaderAttributeDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     reportInstanceFields: [ReportInstanceField.fromSnippet('element', 'Element')],
     columnsConfig: [

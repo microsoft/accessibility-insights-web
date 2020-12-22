@@ -12,6 +12,11 @@ import { DrawerInitData } from './drawer';
 import { DrawerUtils } from './drawer-utils';
 import { BoxConfig, DrawerConfiguration, Formatter } from './formatter';
 
+const getTargetElementsFromResult = (result: AxeResultsWithFrameLevel, dom: Document) => {
+    const elements = dom.querySelectorAll(result.target[result.targetIndex]);
+    return Array.from(elements);
+};
+
 export class HighlightBoxDrawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
     protected dialogRenderer: DialogRenderer;
@@ -38,6 +43,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
         drawerUtils: DrawerUtils,
         clientUtils: ClientUtils,
         formatter: Formatter = null,
+        private readonly getElementsToHighlight: typeof getTargetElementsFromResult = getTargetElementsFromResult,
     ) {
         super(dom, containerClass, windowUtils, shadowUtils, drawerUtils, formatter);
         this.clientUtils = clientUtils;
@@ -184,9 +190,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
         for (let i = 0; i < this.elementResults.length; i++) {
             const elementResult = this.elementResults[i];
-            const elementsFound = this.dom.querySelectorAll(
-                elementResult.target[elementResult.targetIndex],
-            );
+            const elementsFound = this.getElementsToHighlight(elementResult, this.dom);
 
             for (let elementPos = 0; elementPos < elementsFound.length; elementPos++) {
                 const element = this.createHighlightElement(
