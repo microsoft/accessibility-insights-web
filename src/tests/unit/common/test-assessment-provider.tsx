@@ -112,7 +112,7 @@ const simpleAssessment = {
     requirementOrder: RequirementComparer.byOrdinal,
 };
 
-const automatedAssessment = {
+const automatedAssessment: Assessment = {
     key: 'assessment-3',
     visualizationType: -3 as VisualizationType,
     title: 'assessment 3',

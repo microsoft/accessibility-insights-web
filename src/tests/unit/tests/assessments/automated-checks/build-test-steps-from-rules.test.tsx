@@ -138,6 +138,7 @@ describe('buildTestStepsFromRules', () => {
         message: string,
     ): void {
         const item: InstanceTableRow = {
+            key: 'stub-key',
             statusChoiceGroup: null,
             visualizationButton: null,
             instance: {
