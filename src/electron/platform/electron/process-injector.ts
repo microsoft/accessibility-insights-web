@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as child_process from 'child_process';
-import * as WebSocket from 'ws';
 import { Socket } from 'net';
 import axios from 'axios';
 import Protocol from 'devtools-protocol';
@@ -48,9 +47,9 @@ export class CDPWindow {
 }
 
 export class ProcessInjector {
-    private targetBinary =
-        'C:\\Users\\danielbj\\AppData\\Local\\Programs\\Accessibility Insights for Android\\Accessibility Insights for Android.exe';
     private targetPort = 10156;
+
+    constructor(private readonly targetBinary?: string) {}
 
     public createProcess() {
         // This is already vulnerable to shell injection, never ship this!
@@ -87,7 +86,9 @@ export class ProcessInjector {
     }
 
     public async launchUnderDebugger(): Promise<CDPWindow[]> {
-        const process = this.createProcess();
+        if (this.targetBinary !== undefined) {
+            const process = this.createProcess();
+        }
         for (let tryIndex = 1; tryIndex < 10; tryIndex += 1) {
             if (this.isCDPAvailable()) {
                 break;

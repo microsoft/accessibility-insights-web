@@ -19,12 +19,7 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
         const { LinkComponent } = props.deps;
 
         const layoutProps: AndroidSetupStepLayoutProps = {
-            headerText: 'Connected and ready to go!',
-            moreInfoLink: (
-                <LinkComponent href="https://aka.ms/accessibility-insights-for-android/otherDevice">
-                    How do I connect a different device?
-                </LinkComponent>
-            ),
+            headerText: 'Set up a target application',
             leftFooterButtonProps: {
                 text: 'Cancel',
                 onClick: _ => props.deps.androidSetupActionCreator.cancel(),
@@ -44,12 +39,10 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
 
         return (
             <AndroidSetupStepLayout {...layoutProps}>
-                <DeviceDescription {...descriptionProps}></DeviceDescription>
-                <DefaultButton
-                    data-automation-id={rescanAutomationId}
-                    text="Rescan devices"
-                    onClick={props.deps.androidSetupActionCreator.rescan}
-                />
+                <p>
+                    Start an electron application with the command line arg{' '}
+                    <code>--remote-debugging-port=10156</code>
+                </p>
             </AndroidSetupStepLayout>
         );
     },

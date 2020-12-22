@@ -3,14 +3,16 @@
 import { ProcessInjector } from 'electron/platform/electron/process-injector';
 
 describe('ProcessInjector', () => {
+    const targetBinary =
+        'C:\\Users\\karansin\\AppData\\Local\\Programs\\Accessibility Insights for Android\\Accessibility Insights for Android.exe';
     it.skip('launches and connects to an electron process', async () => {
-        const injector = new ProcessInjector();
+        const injector = new ProcessInjector(targetBinary);
         const output = await injector.launchUnderDebugger();
         expect(output).toEqual([]);
     });
 
     it('connects to an electron process', async () => {
-        const injector = new ProcessInjector();
+        const injector = new ProcessInjector(targetBinary);
         const windows = await injector.listWindows();
         expect(windows.length).toBe(1);
         const result = await windows[0].evaluate({

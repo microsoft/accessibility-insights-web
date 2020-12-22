@@ -25,11 +25,6 @@ export const createGetToolDataDelegateNew = (
     scanEngineName: string,
 ): ToolDataDelegateNew => {
     return scanResults => {
-        return createToolData(
-            scanEngineName,
-            scanResults.originalResult.targetPageUrl,
-            toolName,
-            toolVersion,
-        );
+        return createToolData(scanEngineName, 'scan engine version', toolName, toolVersion);
     };
 };
