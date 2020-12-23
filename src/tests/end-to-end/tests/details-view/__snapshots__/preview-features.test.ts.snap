@@ -140,13 +140,13 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                       Needs review
                     </div>
                     <div
-                      class="ms-Toggle is-enabled toggle--{{CSS_MODULE_HASH}} root-000"
+                      class="ms-Toggle is-checked is-enabled toggle--{{CSS_MODULE_HASH}} root-000"
                     >
                       <div
                         class="ms-Toggle-innerContainer container-000"
                       >
                         <button
-                          aria-checked="false"
+                          aria-checked="true"
                           aria-label="Needs review"
                           class="ms-Toggle-background pill-000"
                           data-is-focusable="true"
@@ -163,7 +163,7 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                           for="needsReview"
                           id="needsReview-stateText"
                         >
-                          Off
+                          On
                         </label>
                       </div>
                     </div>

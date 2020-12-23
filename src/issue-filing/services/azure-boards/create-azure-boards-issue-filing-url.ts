@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ToolData } from 'common/types/store-data/unified-data-interface';
-import { title } from 'content/strings/application';
 import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-details-text-data';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
@@ -14,8 +13,12 @@ import {
     AzureBoardsWorkItemType,
 } from './azure-boards-issue-filing-settings';
 
-const buildTags = (createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string => {
-    const tags = ['Accessibility', title, `rule: ${createIssueData.rule.id}`, ...standardTags];
+const buildTags = (
+    createIssueData: CreateIssueDetailsTextData,
+    standardTags: string[],
+    toolTitle: string,
+): string => {
+    const tags = ['Accessibility', toolTitle, `rule: ${createIssueData.rule.id}`, ...standardTags];
     return tags.join('; ');
 };
 
@@ -31,7 +34,7 @@ export const createAzureBoardsIssueFilingUrlProvider = (
     ) => {
         const titleField = stringUtils.getTitle(issueData);
         const standardTags = stringUtils.standardizeTags(issueData);
-        const tags = buildTags(issueData, standardTags);
+        const tags = buildTags(issueData, standardTags, toolData.applicationProperties.name);
         const body = issueDetailsBuilder(toolData, issueData);
 
         let bodyField: string = '[Microsoft.VSTS.TCM.ReproSteps]';

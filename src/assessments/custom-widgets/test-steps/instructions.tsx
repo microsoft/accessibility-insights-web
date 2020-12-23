@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { NewTabLink } from 'common/components/new-tab-link';
 import { CustomWidgetPropertyBag } from 'common/types/property-bag/custom-widgets-property-bag';
+import { NoValue } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/custom-widgets/instructions';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
-
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { InstructionsAndLabelsNotes } from '../../common/instructions-and-labels-note';
-import { NoValue } from '../../common/property-bag-column-renderer';
+import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { getFlatDesignPatternStringFromRole } from '../custom-widgets-column-renderer';
@@ -21,7 +21,8 @@ import { CustomWidgetsTestStep } from './test-steps';
 
 const instructionsDescription: JSX.Element = (
     <span>
-        If a custom widget has visible instructions, they must be programmatically related to it.
+        If a custom widget has a visible label or instructions, they must be programmatically
+        determinable.
     </span>
 );
 
@@ -42,11 +43,17 @@ const instructionsHowToTest: JSX.Element = (
                 visible label or instructions.
             </li>
             <li>
-                Verify that all visible labels and instructions are displayed in the Instances list:
+                If a widget does have a visible label or instructions, verify that they are also
+                displayed in the <Markup.Term>Instances</Markup.Term> list:
                 <ol>
-                    <li>Any label should appear in the accessible name.</li>
                     <li>
-                        Any additional instructions should appear in the accessible description.
+                        The accessible name must be (or include) an exact match of the visible text
+                        label.
+                    </li>
+                    <li>
+                        The accessible description must include any additional visible instructions.
+                        If any non-text instructions are provided (for example, icons or color
+                        changes), the accessible description must include a text equivalent.
                     </li>
                 </ol>
             </li>

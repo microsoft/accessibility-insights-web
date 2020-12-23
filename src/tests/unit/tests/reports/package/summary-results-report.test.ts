@@ -62,6 +62,7 @@ describe('SummaryResultsReport', () => {
         serviceName: 'service name',
         axeVersion: 'axe version',
         userAgent: 'browser spec',
+        browserResolution: '1920x1080',
         scanDetails: scanDetails,
         results,
     };

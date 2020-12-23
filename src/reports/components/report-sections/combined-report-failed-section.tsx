@@ -30,7 +30,7 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                 <CombinedReportResultSectionTitle
                     outcomeCount={ruleCount}
                     outcomeType="fail"
-                    title="Failed"
+                    title="Failed rules"
                 />
             ),
             content: (

@@ -13,6 +13,7 @@ export const summaryScanWithIssues: SummaryReportParameters = {
         durationSeconds: 1 * 60 * 60,
     },
     userAgent: 'Mock user agent',
+    browserResolution: '1920x1080',
     results: {
         failed: [
             {

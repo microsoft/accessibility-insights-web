@@ -299,11 +299,16 @@ export class TelemetryDataFactory {
         analyzerResult,
         scanDuration,
         elementsScanned,
-        testName,
+        testVisualizationType,
         requirementName,
     ) => {
         const telemetry: AssessmentRequirementScanTelemetryData = {
-            ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
+            ...this.forTestScan(
+                analyzerResult,
+                scanDuration,
+                elementsScanned,
+                testVisualizationType,
+            ),
             requirementName,
         };
 
@@ -314,14 +319,14 @@ export class TelemetryDataFactory {
         analyzerResult,
         scanDuration,
         elementsScanned,
-        testName,
+        testVisualizationType,
     ) => {
         const telemetry: RuleAnalyzerScanTelemetryData = {
             scanDuration: scanDuration,
             NumberOfElementsScanned: elementsScanned,
             include: analyzerResult.include,
             exclude: analyzerResult.exclude,
-            testName,
+            testName: VisualizationType[testVisualizationType],
         };
 
         return telemetry;
@@ -331,7 +336,7 @@ export class TelemetryDataFactory {
         analyzerResult,
         scanDuration,
         elementsScanned,
-        testName,
+        testVisualizationType,
     ) => {
         const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
             analyzerResult.originalResult.passes,
@@ -340,7 +345,12 @@ export class TelemetryDataFactory {
             analyzerResult.originalResult.violations,
         );
         const telemetry: IssuesAnalyzerScanTelemetryData = {
-            ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
+            ...this.forTestScan(
+                analyzerResult,
+                scanDuration,
+                elementsScanned,
+                testVisualizationType,
+            ),
             passedRuleResults: JSON.stringify(passedRuleResults),
             failedRuleResults: JSON.stringify(failedRuleResults),
         };
@@ -352,7 +362,7 @@ export class TelemetryDataFactory {
         analyzerResult,
         scanDuration,
         elementsScanned,
-        testName,
+        testVisualizationType,
     ) => {
         const passedRuleResults: DictionaryStringTo<number> = this.generateTelemetryRuleResult(
             analyzerResult.originalResult.passes,
@@ -364,7 +374,12 @@ export class TelemetryDataFactory {
             analyzerResult.originalResult.incomplete,
         );
         const telemetry: NeedsReviewAnalyzerScanTelemetryData = {
-            ...this.forTestScan(analyzerResult, scanDuration, elementsScanned, testName),
+            ...this.forTestScan(
+                analyzerResult,
+                scanDuration,
+                elementsScanned,
+                testVisualizationType,
+            ),
             passedRuleResults: JSON.stringify(passedRuleResults),
             failedRuleResults: JSON.stringify(failedRuleResults),
             incompleteRuleResults: JSON.stringify(incompleteRuleResults),

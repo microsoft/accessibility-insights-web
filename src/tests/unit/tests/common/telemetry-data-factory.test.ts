@@ -449,7 +449,7 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forAssessmentRequirementScan', () => {
-        const testName = 'test';
+        const testVisualizationType = VisualizationType.Color;
         const requirementName = 'requirement';
         const analyzerResultStub = {
             include: [],
@@ -461,7 +461,7 @@ describe('TelemetryDataFactoryTest', () => {
             analyzerResultStub,
             elapsedTime,
             elementsScanned,
-            testName,
+            testVisualizationType,
             requirementName,
         );
         const expected: RuleAnalyzerScanTelemetryData = {
@@ -469,7 +469,7 @@ describe('TelemetryDataFactoryTest', () => {
             NumberOfElementsScanned: elementsScanned,
             include: analyzerResultStub.include,
             exclude: analyzerResultStub.exclude,
-            testName,
+            testName: VisualizationType[testVisualizationType],
             requirementName,
         };
 
@@ -477,7 +477,7 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forTestScan', () => {
-        const testName = 'test';
+        const testVisualizationType = VisualizationType.ContrastAssessment;
         const analyzerResultStub = {
             include: [],
             exclude: [],
@@ -488,21 +488,21 @@ describe('TelemetryDataFactoryTest', () => {
             analyzerResultStub,
             elapsedTime,
             elementsScanned,
-            testName,
+            testVisualizationType,
         );
         const expected: RuleAnalyzerScanTelemetryData = {
             scanDuration: elapsedTime,
             NumberOfElementsScanned: elementsScanned,
             include: analyzerResultStub.include,
             exclude: analyzerResultStub.exclude,
-            testName,
+            testName: VisualizationType[testVisualizationType],
         };
 
         expect(actual).toEqual(expected);
     });
 
     test('forIssuesAnalyzerScan', () => {
-        const testName = 'test';
+        const testVisualizationType = VisualizationType.CustomWidgets;
         const analyzerResultStub = {
             include: [],
             exclude: [],
@@ -531,7 +531,7 @@ describe('TelemetryDataFactoryTest', () => {
             analyzerResultStub,
             elapsedTime,
             elementsScanned,
-            testName,
+            testVisualizationType,
         );
         const passedRuleResultsStub = {
             test: 2,
@@ -545,7 +545,7 @@ describe('TelemetryDataFactoryTest', () => {
     });
 
     test('forNeedsReviewAnalyzerScan', () => {
-        const testName = 'test';
+        const testVisualizationType = VisualizationType.Headings;
         const analyzerResultStub = {
             include: [],
             exclude: [],
@@ -580,7 +580,7 @@ describe('TelemetryDataFactoryTest', () => {
             analyzerResultStub,
             elapsedTime,
             elementsScanned,
-            testName,
+            testVisualizationType,
         );
         const passedRuleResultsStub = {
             test: 2,

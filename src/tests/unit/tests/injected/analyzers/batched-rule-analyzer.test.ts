@@ -7,8 +7,6 @@ import { clone, isFunction } from 'lodash';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -30,14 +28,12 @@ describe('BatchedRuleAnalyzer', () => {
     let dateMock: IMock<Date>;
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: ScopingStoreData;
-    let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     const allInstancesMocks: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let typeStub: VisualizationType;
-    const title = 'test-name';
     const scanCallbacks: ((results: ScanResults) => void)[] = [];
     let resultConfigFilterMock: IMock<IResultRuleFilter>;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
@@ -49,7 +45,6 @@ describe('BatchedRuleAnalyzer', () => {
         scannerUtilsMock = Mock.ofType(ScannerUtils);
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         const dateStub = {
             getTime: () => {
                 return null;
@@ -69,14 +64,6 @@ describe('BatchedRuleAnalyzer', () => {
             .setup(sm => sm.getState())
             .returns(() => scopingState)
             .verifiable();
-        visualizationConfigurationFactoryMock
-            .setup(v => v.getConfiguration(typeStub))
-            .returns(() => {
-                return {
-                    displayableData: { title },
-                } as VisualizationConfiguration;
-            })
-            .verifiable();
         scanIncompleteWarningDetectorMock
             .setup(idm => idm.detectScanIncompleteWarnings())
             .returns(() => []);
@@ -88,12 +75,13 @@ describe('BatchedRuleAnalyzer', () => {
 
     function testGetResults(done: () => void): void {
         const key = 'sample key';
+        const testName = 'sample test name';
         const telemetryProcessorStub = factory => (_, elapsedTime, __) => {
-            return createTelemetryStub(elapsedTime, title, key);
+            return createTelemetryStub(elapsedTime, testName, key);
         };
         const startTime = 10;
         const endTime = 20;
-        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, title, key);
+        const expectedTelemetryStub = createTelemetryStub(endTime - startTime, testName, key);
         const ruleOne = 'the first rule';
         const resultOne: RuleResult = {
             id: ruleOne,
@@ -284,7 +272,6 @@ describe('BatchedRuleAnalyzer', () => {
             sendMessageMock.object,
             dateGetterMock.object,
             telemetryDataFactoryMock.object,
-            visualizationConfigurationFactoryMock.object,
             resultConfigFilterMock.object,
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,

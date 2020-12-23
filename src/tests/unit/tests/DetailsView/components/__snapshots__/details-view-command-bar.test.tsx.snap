@@ -56,7 +56,76 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
     <div>
       Save assessment
     </div>
-    <LoadAssessmentButton />
+    <LoadAssessmentButton
+      deps={
+        Object {
+          "detailsViewActionMessageCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "addPathForValidation": [Function],
+            "cancelStartOver": [Function],
+            "cancelStartOverAllAssessments": [Function],
+            "changeAssessmentVisualizationState": [Function],
+            "changeManualRequirementStatus": [Function],
+            "changeManualTestStatus": [Function],
+            "clearPathSnippetData": [Function],
+            "closePreviewFeaturesPanel": [Function],
+            "closeScopingPanel": [Function],
+            "closeSettingsPanel": [Function],
+            "continuePreviousAssessment": [Function],
+            "copyIssueDetailsClicked": [Function],
+            "dispatcher": undefined,
+            "editFailureInstance": [Function],
+            "leftNavPanelExpanded": [Function],
+            "loadAssessment": [Function],
+            "removeFailureInstance": [Function],
+            "rescanVisualization": [Function],
+            "setAllUrlsPermissionState": [Function],
+            "setFeatureFlag": [Function],
+            "startOverAllAssessments": [Function],
+            "switchToTargetTab": [Function],
+            "telemetryFactory": undefined,
+            "undoManualRequirementStatusChange": [Function],
+            "undoManualTestStatusChange": [Function],
+          },
+        }
+      }
+      featureFlagStoreData={
+        Object {
+          "saveAndLoadAssessment": true,
+        }
+      }
+      narrowModeStatus={
+        Object {
+          "isCommandBarCollapsed": false,
+        }
+      }
+      scanMetadata={
+        Object {
+          "targetAppInfo": Object {
+            "name": "command-bar-test-tab-title",
+            "url": "command-bar-test-url",
+          },
+        }
+      }
+      switcherNavConfiguration={
+        Object {
+          "CommandBar": [Function],
+          "LeftNav": [Function],
+          "ReportExportDialogFactory": [Function],
+          "SaveAssessmentFactory": [Function],
+          "StartOverComponentFactory": Object {
+            "getStartOverComponent": [Function],
+          },
+          "shouldShowReportExportButton": [Function],
+        }
+      }
+      tabStoreData={
+        Object {
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        }
+      }
+    />
     <CustomizedActionButton>
       Start Over Component
     </CustomizedActionButton>
@@ -84,6 +153,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -198,6 +268,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -259,6 +330,7 @@ exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
       "iconName": "FabricOpenFolderHorizontal",
     }
   }
+  onClick={[Function]}
 >
   Load assessment
 </InsightsCommandButton>
@@ -324,6 +396,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -476,6 +549,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],
@@ -589,6 +663,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
           "dispatcher": undefined,
           "editFailureInstance": [Function],
           "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
           "setAllUrlsPermissionState": [Function],

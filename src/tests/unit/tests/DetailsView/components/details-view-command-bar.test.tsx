@@ -14,6 +14,7 @@ import {
 } from 'DetailsView/components/save-assessment-button';
 import {
     LoadAssessmentButton,
+    LoadAssessmentButtonDeps,
     LoadAssessmentButtonProps,
 } from 'DetailsView/components/load-assessment-button';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -26,14 +27,14 @@ import { isNil } from 'lodash';
 import { ActionButton, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     CommandBarProps,
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
     ReportExportDialogFactory,
     SaveAssessmentFactory,
-} from '../../../../../DetailsView/components/details-view-command-bar';
+} from 'DetailsView/components/details-view-command-bar';
 import { SaveAssessmentFactoryProps } from 'DetailsView/components/save-assessment-factory';
 
 describe('DetailsViewCommandBar', () => {
@@ -46,6 +47,7 @@ describe('DetailsViewCommandBar', () => {
     let startOverComponent: JSX.Element;
     let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
     let loadAssessmentButton: JSX.Element;
+    let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
@@ -160,7 +162,7 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with load assessment button', () => {
-        const rendered = shallow(<LoadAssessmentButton />);
+        const rendered = shallow(<LoadAssessmentButton {...LoadAssessmentButtonProps} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 

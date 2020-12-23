@@ -14,7 +14,7 @@ import { InstructionsAndLabelsNotes } from '../../common/instructions-and-labels
 import {
     NoValue,
     PropertyBagColumnRendererConfig,
-} from '../../common/property-bag-column-renderer';
+} from '../../../common/types/property-bag/property-bag-column-renderer-config';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
@@ -24,7 +24,7 @@ import { NativeWidgetsTestStep } from './test-steps';
 const description: JSX.Element = (
     <span>
         If a native widget has a visible label or instructions, they must be programmatically
-        related to it.
+        determinable.
     </span>
 );
 
@@ -48,11 +48,17 @@ const howToTest: JSX.Element = (
                 visible label or instructions.
             </li>
             <li>
-                Verify that all visible labels and instructions are displayed in the Instances list:
+                If a widget does have a visible label or instructions, verify that they are also
+                displayed in the <Markup.Term>Instances</Markup.Term> list:
                 <ol>
-                    <li>Any label should appear in the accessible name.</li>
                     <li>
-                        Any additional instructions should appear in the accessible description.
+                        The accessible name must be (or include) an exact match of any visible text
+                        label.
+                    </li>
+                    <li>
+                        The accessible description must include any additional visible instructions.
+                        If any non-text instructions are provided (for example, icons or color
+                        changes), the accessible description must include a text equivalent.
                     </li>
                 </ol>
             </li>

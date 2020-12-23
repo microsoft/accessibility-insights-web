@@ -4,20 +4,20 @@ import {
     MacContrastCheckerAppLink,
     WindowsContrastCheckerAppLink,
 } from 'common/components/contrast-checker-app-links';
-import { link } from 'content/link';
-import * as content from 'content/test/contrast/ui-components';
-import * as React from 'react';
-
-import { UIComponentsPropertyBag } from '../../../common/types/property-bag/ui-components';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ScannerUtils } from '../../../injected/scanner-utils';
-import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import {
     NoValue,
     PropertyBagColumnRendererConfig,
-} from '../../common/property-bag-column-renderer';
+} from 'common/types/property-bag/property-bag-column-renderer-config';
+import { UIComponentsPropertyBag } from 'common/types/property-bag/ui-components';
+import { VisualizationType } from 'common/types/visualization-type';
+import { link } from 'content/link';
+import * as content from 'content/test/contrast/ui-components';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { ScannerUtils } from 'injected/scanner-utils';
+import * as React from 'react';
+
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';

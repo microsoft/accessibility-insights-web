@@ -10,6 +10,7 @@ describe('createToolData', () => {
             'test-tool-name',
             'test-tool-version',
             'test-environment-name',
+            'test-resolution',
         );
 
         expect(result).toMatchInlineSnapshot(`
@@ -17,6 +18,7 @@ describe('createToolData', () => {
               "applicationProperties": Object {
                 "environmentName": "test-environment-name",
                 "name": "test-tool-name",
+                "resolution": "test-resolution",
                 "version": "test-tool-version",
               },
               "scanEngineProperties": Object {
