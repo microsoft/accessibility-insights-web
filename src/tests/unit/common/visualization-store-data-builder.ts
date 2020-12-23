@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep, forOwn } from 'lodash';
-import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import {
     AssessmentScanData,
@@ -18,7 +18,7 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             null,
             null,
             null,
-            new VisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(),
         ).getDefaultState();
     }
 
