@@ -127,7 +127,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
     }
 
-    public copyIssueDetailsClicked = (event: React.MouseEvent<any>): void => {
+    public copyIssueDetailsClicked = (event: SupportedMouseEvent): void => {
         const telemetryData = this.telemetryFactory.withTriggeredByAndSource(
             event,
             TelemetryEvents.TelemetryEventSource.DetailsView,
@@ -262,7 +262,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     ): void {
         const telemetry = sendTelemetry
             ? this.telemetryFactory.forAssessmentActionFromDetailsViewNoTriggeredBy(test)
-            : null;
+            : undefined;
         const payload: AssessmentToggleActionPayload = {
             test,
             requirement,
@@ -508,11 +508,10 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         requirement: string,
     ): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
-        const payload: ChangeInstanceSelectionPayload = {
+        const payload: Omit<ChangeInstanceSelectionPayload, 'selector'> = {
             test: test,
             requirement: requirement,
             isVisualizationEnabled: isVisualizationEnabled,
-            selector: null,
             telemetry: telemetry,
         };
 

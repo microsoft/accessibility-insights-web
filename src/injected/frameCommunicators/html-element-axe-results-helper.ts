@@ -7,7 +7,7 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { HtmlElementAxeResults } from '../scanner-utils';
 
 export interface HTMLIFrameResult {
-    frame: HTMLIFrameElement;
+    frame: HTMLIFrameElement | null;
     elementResults: AssessmentVisualizationInstance[];
 }
 

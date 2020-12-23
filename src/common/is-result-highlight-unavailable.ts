@@ -10,7 +10,7 @@ import { BoundingRectangle } from 'electron/platform/android/android-scan-result
 
 export type IsResultHighlightUnavailable = (
     result: UnifiedResult,
-    platformInfo: PlatformData,
+    platformInfo: PlatformData | null,
 ) => boolean;
 
 export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable = (
@@ -35,8 +35,8 @@ function hasValidBoundingRectangle(
     return !(
         boundingRectangle.right <= 0 ||
         boundingRectangle.bottom <= 0 ||
-        boundingRectangle.left > viewPort.width ||
-        boundingRectangle.top > viewPort.height
+        (viewPort.width != null && boundingRectangle.left > viewPort.width) ||
+        (viewPort.height != null && boundingRectangle.top > viewPort.height)
     );
 }
 

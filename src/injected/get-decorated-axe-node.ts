@@ -26,7 +26,7 @@ export const getDecoratedAxeNode: GetDecoratedAxeNodeCallback = (unifiedResult, 
     };
 };
 
-function getCheckData(unifiedResult: UnifiedResult): CheckData {
+function getCheckData(unifiedResult: UnifiedResult): CheckData | undefined {
     if (!unifiedResult.resolution['how-to-fix-web']) {
         return;
     }
@@ -45,6 +45,6 @@ function formatHowToFixData(howToFixData: HowToFixWebPropertyData): CheckData {
     };
 }
 
-function getHTML(unifiedResult: UnifiedResult): string {
+function getHTML(unifiedResult: UnifiedResult): string | undefined {
     return unifiedResult.descriptors.snippet;
 }

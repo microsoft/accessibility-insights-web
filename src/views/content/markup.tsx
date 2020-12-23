@@ -58,7 +58,7 @@ export type MarkupBasedComponentProps = {
 
 export type MarkupBasedComponent = React.FC<MarkupBasedComponentProps>;
 
-export const createMarkup = (deps: MarkupDeps, options: MarkupOptions) => {
+export const createMarkup = (deps: MarkupDeps, options?: MarkupOptions) => {
     function Include(props: { content: MarkupBasedComponent }): JSX.Element {
         const Content = props.content;
         return <Content deps={deps} options={options} />;
