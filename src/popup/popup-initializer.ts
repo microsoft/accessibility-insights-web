@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -8,7 +9,6 @@ import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../common/components/new-tab-link';
-import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
@@ -160,7 +160,7 @@ export class PopupInitializer {
             userConfigurationStore,
         ]);
 
-        const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+        const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
 
         const diagnosticViewClickHandler: DiagnosticViewClickHandler = new DiagnosticViewClickHandler(

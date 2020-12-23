@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getNotificationMessage } from 'ad-hoc-visualizations/issues/get-notification-message';
-import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
@@ -10,7 +9,6 @@ import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
-import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
@@ -32,9 +30,7 @@ const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: issuesTestKey,
     testMode: TestMode.Adhoc,
-    getTestView: props => (
-        <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...props} />
-    ),
+    testViewType: 'AdhocFailure',
     getStoreData: data => data.adhoc[issuesTestKey],
     enableTest: (data, _) => {
         data.adhoc[issuesTestKey].enabled = true;

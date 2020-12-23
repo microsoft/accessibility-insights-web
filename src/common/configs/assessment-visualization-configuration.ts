@@ -3,7 +3,6 @@
 import { ToggleActionPayload } from 'background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
-import { CommonTestViewProps } from '../../DetailsView/components/test-view';
 import { Analyzer } from '../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../injected/analyzers/analyzer-provider';
 import { VisualizationInstanceProcessorCallback } from '../../injected/visualization-instance-processor';
@@ -14,10 +13,12 @@ import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callback
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
+import { TestViewOverrides, TestViewType } from '../types/test-view-type';
 
 export interface AssessmentVisualizationConfiguration {
     key: string;
-    getTestView: (props: CommonTestViewProps) => JSX.Element;
+    testViewType: TestViewType;
+    testViewOverrides?: TestViewOverrides;
     getStoreData: (data: TestsEnabledState) => ScanData;
     enableTest: (data: TestsEnabledState, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;

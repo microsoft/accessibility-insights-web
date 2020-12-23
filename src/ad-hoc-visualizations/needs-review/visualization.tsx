@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import * as React from 'react';
@@ -12,7 +11,6 @@ import { Messages } from '../../common/messages';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
-import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
@@ -32,9 +30,7 @@ const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
 export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     key: needsReviewTestKey,
     testMode: TestMode.Adhoc,
-    getTestView: props => (
-        <AdhocIssuesTestView instancesSection={NeedsReviewInstancesSection} {...props} />
-    ),
+    testViewType: 'AdhocNeedsReview',
     getStoreData: data => data.adhoc[needsReviewTestKey],
     enableTest: data => {
         data.adhoc[needsReviewTestKey].enabled = true;

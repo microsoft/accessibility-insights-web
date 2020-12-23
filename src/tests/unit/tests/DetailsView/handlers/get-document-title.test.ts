@@ -3,10 +3,8 @@
 import { Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import {
-    DisplayableVisualizationTypeData,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../../../../../common/types/displayable-visualization-type-data';
 import {
     getOverviewTitle,
     getTestViewTitle,
@@ -15,7 +13,10 @@ import {
 
 describe('getTestViewTitle', () => {
     it('should get title from displayable data from config factory', () => {
-        const configFactory = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
+        const configFactory = Mock.ofType<VisualizationConfigurationFactory>(
+            undefined,
+            MockBehavior.Strict,
+        );
         const displayableDataStub = {
             title: 'fake title',
         } as DisplayableVisualizationTypeData;

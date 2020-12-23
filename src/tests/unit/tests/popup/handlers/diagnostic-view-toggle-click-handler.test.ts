@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { It, Mock } from 'typemoq';
 
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import {
     TelemetryEventSource,
     ToggleTelemetryData,
@@ -52,7 +52,7 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
         const testObject = new DiagnosticViewClickHandler(
             telemetryFactoryMock.object,
             visualizationActionCreatorMock.object,
-            new VisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 
@@ -97,7 +97,7 @@ describe('DiagnosticViewToggleClickHandlerTest', () => {
         const testObject = new DiagnosticViewClickHandler(
             telemetryFactoryMock.object,
             visualizationActionCreatorMock.object,
-            new VisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(),
         );
         testObject.toggleVisualization(visualizationStoreData, visualizationType, event);
 

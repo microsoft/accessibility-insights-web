@@ -11,6 +11,7 @@ import { BaseStore } from 'common/base-store';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from 'common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { DisplayableStrings } from 'common/constants/displayable-strings';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
@@ -50,7 +51,7 @@ describe('KeyboardShortcutHandler', () => {
     const testSource: TelemetryEventSource = TelemetryEventSource.ShortcutCommand;
 
     beforeEach(() => {
-        visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+        visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
         interpreterMock = Mock.ofType(Interpreter);
 
         visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
@@ -113,7 +114,7 @@ describe('KeyboardShortcutHandler', () => {
             browserAdapterMock.object,
             urlValidatorMock.object,
             notificationCreatorMock.object,
-            new VisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(),
             new TelemetryDataFactory(),
             userConfigurationStoreMock.object,
             commandsAdapterMock.object,

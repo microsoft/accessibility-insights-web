@@ -9,7 +9,7 @@ import { createInitialAssessmentTestData } from 'background/create-initial-asses
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -19,9 +19,6 @@ import {
     TestsEnabledState,
 } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
-import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
-import { CommonTestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
@@ -34,8 +31,6 @@ describe('AssessmentBuilderTest', () => {
         const analyzerProviderMock = Mock.ofType(AnalyzerProvider);
         const drawerProviderMock = Mock.ofType(DrawerProvider);
         const getInstanceIdentifierMock = Mock.ofInstance(() => null);
-        const testViewPropsStub = {} as CommonTestViewProps;
-        const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
 
         const requirement: Requirement = {
             description: (
@@ -135,7 +130,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(
             InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
         );
-        expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
+        expect(config.testViewType).toBe('Assessment');
 
         validateInstanceTableSettings(requirement);
 
@@ -155,8 +150,6 @@ describe('AssessmentBuilderTest', () => {
     });
 
     test('Assisted', () => {
-        const testViewPropsStub = {} as CommonTestViewProps;
-        const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
         const selectedRequirementKey = 'requirement key';
         const providerMock = Mock.ofType(AnalyzerProvider);
         const visualizationInstanceProcessorMock = Mock.ofInstance(() => null);
@@ -323,7 +316,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(
             InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
         );
-        expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
+        expect(config.testViewType).toBe('Assessment');
 
         validateInstanceTableSettings(requirement1);
         validateInstanceTableSettings(requirement5);
