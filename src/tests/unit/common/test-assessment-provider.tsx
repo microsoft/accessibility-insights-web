@@ -112,7 +112,7 @@ const simpleAssessment = {
     requirementOrder: RequirementComparer.byOrdinal,
 };
 
-const automatedAssessment = {
+const automatedAssessment: Assessment = {
     key: 'assessment-3',
     visualizationType: -3 as VisualizationType,
     title: 'assessment 3',
@@ -127,7 +127,7 @@ const automatedAssessment = {
             isManual: null,
             guidanceLinks: [],
             columnsConfig: [],
-            renderInstanceTableHeader: () => null,
+            instanceTableHeaderType: 'none',
             getInstanceStatusColumns: () => [],
         },
         {
@@ -138,7 +138,7 @@ const automatedAssessment = {
             isManual: null,
             guidanceLinks: [],
             columnsConfig: [],
-            renderInstanceTableHeader: () => null,
+            instanceTableHeaderType: 'none',
             getInstanceStatusColumns: () => [],
         },
     ],

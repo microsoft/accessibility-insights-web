@@ -213,8 +213,8 @@ describe('AssessmentBuilderTest', () => {
         requirement6.getInstanceStatus = getInstanceStatus6;
         const getInstanceStatusColumns6 = () => [];
         requirement6.getInstanceStatusColumns = getInstanceStatusColumns6;
-        const renderInstanceTableHeader6 = () => <div>6</div>;
-        requirement6.renderInstanceTableHeader = renderInstanceTableHeader6;
+        const instanceTableHeaderType6 = 'none';
+        requirement6.instanceTableHeaderType = instanceTableHeaderType6;
 
         const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
@@ -329,7 +329,7 @@ describe('AssessmentBuilderTest', () => {
         validateInstanceTableSettings(requirement5);
         expect(requirement6.getInstanceStatus).toBe(getInstanceStatus6);
         expect(requirement6.getInstanceStatusColumns).toBe(getInstanceStatusColumns6);
-        expect(requirement6.renderInstanceTableHeader).toBe(renderInstanceTableHeader6);
+        expect(requirement6.instanceTableHeaderType).toBe(instanceTableHeaderType6);
 
         const expectedData = {
             key: 'value',
@@ -366,14 +366,6 @@ describe('AssessmentBuilderTest', () => {
             isResizable: false,
         });
 
-        const tableMock = Mock.ofType(AssessmentInstanceTable, MockBehavior.Strict);
-        const headerStub = <div>Header</div>;
-        tableMock
-            .setup(tm => tm.renderDefaultInstanceTableHeader(It.isValue([])))
-            .returns(() => headerStub)
-            .verifiable(Times.once());
-        expect(requirement.renderInstanceTableHeader).toBeDefined();
-        expect(requirement.renderInstanceTableHeader(tableMock.object, [])).toBe(headerStub);
-        tableMock.verifyAll();
+        expect(requirement.instanceTableHeaderType).toBe('default');
     }
 });

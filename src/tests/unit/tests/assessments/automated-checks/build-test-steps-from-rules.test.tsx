@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 import { buildTestStepsFromRules } from 'assessments/automated-checks/build-test-steps-from-rules';
-import { InstanceTableColumn } from 'assessments/types/instance-table-column';
+import { InstanceTableRow, InstanceTableColumn } from 'assessments/types/instance-table-data';
 import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -14,10 +14,7 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
-import {
-    AssessmentInstanceRowData,
-    AssessmentInstanceTable,
-} from 'DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
@@ -121,8 +118,7 @@ describe('buildTestStepsFromRules', () => {
         expect(actual.getInstanceStatusColumns).toBeDefined();
         expect(actual.getInstanceStatusColumns()).toHaveLength(0);
 
-        expect(actual.renderInstanceTableHeader).toBeDefined();
-        expect(actual.renderInstanceTableHeader({} as AssessmentInstanceTable, [])).toBeNull();
+        expect(actual.instanceTableHeaderType).toBe('none');
 
         expect(actual.columnsConfig).toHaveLength(2);
         expect(actual.columnsConfig[0].key).toBe('path');
@@ -141,7 +137,8 @@ describe('buildTestStepsFromRules', () => {
         html: string,
         message: string,
     ): void {
-        const item: AssessmentInstanceRowData = {
+        const item: InstanceTableRow = {
+            key: 'stub-key',
             statusChoiceGroup: null,
             visualizationButton: null,
             instance: {

@@ -5,12 +5,12 @@ import * as React from 'react';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from 'types/common-types';
 import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>(
-    item: AssessmentInstanceRowData<any>,
+    item: InstanceTableRow<any>,
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
     includeLink: boolean,
 ): JSX.Element {

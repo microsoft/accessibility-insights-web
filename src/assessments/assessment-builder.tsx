@@ -17,10 +17,6 @@ import {
     ScanData,
     TestsEnabledState,
 } from 'common/types/store-data/visualization-store-data';
-import {
-    AssessmentInstanceRowData,
-    AssessmentInstanceTable,
-} from 'DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
@@ -67,8 +63,8 @@ export class AssessmentBuilder {
             requirement.getInstanceStatusColumns = AssessmentBuilder.getInstanceStatusColumns;
         }
 
-        if (!requirement.renderInstanceTableHeader) {
-            requirement.renderInstanceTableHeader = AssessmentBuilder.renderInstanceTableHeader;
+        if (!requirement.instanceTableHeaderType) {
+            requirement.instanceTableHeaderType = 'default';
         }
 
         if (!requirement.getDefaultMessage) {
@@ -103,13 +99,6 @@ export class AssessmentBuilder {
                 isResizable: false,
             },
         ];
-    }
-
-    private static renderInstanceTableHeader(
-        table: AssessmentInstanceTable,
-        items: AssessmentInstanceRowData[],
-    ): JSX.Element {
-        return table.renderDefaultInstanceTableHeader(items);
     }
 
     private static enableTest(scanData: ScanData, payload: AssessmentToggleActionPayload): void {

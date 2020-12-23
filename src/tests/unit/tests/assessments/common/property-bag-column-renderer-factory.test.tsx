@@ -6,8 +6,8 @@ import * as React from 'react';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { PropertyBagColumnRendererFactory } from 'assessments/common/property-bag-column-renderer-factory';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
-import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from './renderer-wrapper';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;
@@ -22,7 +22,8 @@ describe('PropertyBagColumnRendererFactoryTest', () => {
             },
         ];
 
-        const item: AssessmentInstanceRowData<TestPropertyBag> = {
+        const item: InstanceTableRow<TestPropertyBag> = {
+            key: 'stub-key',
             instance: {
                 html: null,
                 target: null,

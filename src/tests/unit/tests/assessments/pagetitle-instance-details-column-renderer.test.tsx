@@ -5,7 +5,7 @@ import * as React from 'react';
 import { pageTitleInstanceDetailsColumnRenderer } from 'assessments/page/pagetitle-instance-details-column-renderer';
 import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
-import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('PageTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
@@ -13,7 +13,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
             instance: {
                 propertyBag: null,
             },
-        } as AssessmentInstanceRowData<HeadingsAssessmentProperties>;
+        } as InstanceTableRow<HeadingsAssessmentProperties>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={null}
@@ -32,7 +32,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                     pageTitle: pageTitle,
                 },
             },
-        } as AssessmentInstanceRowData<any>;
+        } as InstanceTableRow<any>;
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={null}

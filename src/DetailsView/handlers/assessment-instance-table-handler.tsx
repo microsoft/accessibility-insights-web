@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
@@ -17,10 +18,7 @@ import { DictionaryStringTo } from 'types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
-import {
-    AssessmentInstanceRowData,
-    CapturedInstanceRowData,
-} from '../components/assessment-instance-table';
+import { CapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
 
@@ -79,7 +77,7 @@ export class AssessmentInstanceTableHandler {
         instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         assessmentNavState: AssessmentNavState,
         hasVisualHelper: boolean,
-    ): AssessmentInstanceRowData[] {
+    ): InstanceTableRow[] {
         const assessmentInstances = this.getInstanceKeys(instancesMap, assessmentNavState).map(
             key => {
                 const instance = instancesMap[key];
@@ -90,7 +88,7 @@ export class AssessmentInstanceTableHandler {
                         ? this.renderSelectedButton(instance, key, assessmentNavState)
                         : null,
                     instance: instance,
-                } as AssessmentInstanceRowData;
+                } as InstanceTableRow;
             },
         );
         return assessmentInstances;
