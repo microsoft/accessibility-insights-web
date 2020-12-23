@@ -3,10 +3,8 @@
 import { Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import {
-    DisplayableVisualizationTypeData,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../../../../../common/types/displayable-visualization-type-data';
 import {
     getOverviewTitle,
     getTestViewTitle,

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DisplayableVisualizationTypeData } from 'common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {

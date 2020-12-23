@@ -15,14 +15,6 @@ import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
 import { VisualizationConfiguration } from './visualization-configuration';
 
-export interface DisplayableVisualizationTypeData {
-    title: string;
-    subtitle?: JSX.Element;
-    enableMessage: string;
-    toggleLabel: string;
-    linkToDetailsViewText: string;
-}
-
 export class VisualizationConfigurationFactory {
     private configurationByType: DictionaryNumberTo<VisualizationConfiguration>;
 
