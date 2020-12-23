@@ -4,6 +4,7 @@ import { getRTL } from '@uifabric/utilities';
 
 import { NavigatorUtils } from 'common/navigator-utils';
 import { getCellAndHeaderElementsFromResult } from 'injected/visualization/get-cell-and-header-elements';
+import { TableHeadersAttributeFormatter } from 'injected/visualization/table-headers-formatter';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -125,7 +126,7 @@ export class DrawerProvider {
     }
 
     public createTableHeaderAttributeDrawer(): Drawer {
-        const formatter = new HighlightBoxFormatter();
+        const formatter = new TableHeadersAttributeFormatter();
 
         return new HighlightBoxDrawer(
             this.dom,
