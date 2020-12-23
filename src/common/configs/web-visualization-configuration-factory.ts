@@ -13,8 +13,9 @@ import { EnumHelper } from '../enum-helper';
 import { VisualizationType } from '../types/visualization-type';
 import { TestMode } from './test-mode';
 import { VisualizationConfiguration } from './visualization-configuration';
+import { VisualizationConfigurationFactory } from './visualization-configuration-factory';
 
-export class WebVisualizationConfigurationFactory {
+export class WebVisualizationConfigurationFactory implements VisualizationConfigurationFactory {
     private configurationByType: DictionaryNumberTo<VisualizationConfiguration>;
 
     constructor() {
