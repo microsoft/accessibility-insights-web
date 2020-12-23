@@ -13,6 +13,7 @@ import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
 import { NotificationCreator } from 'common/notification-creator';
@@ -85,9 +86,7 @@ describe('TabContextFactoryTest', () => {
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
-        const visualizationConfigurationFactoryMock = Mock.ofType(
-            VisualizationConfigurationFactory,
-        );
+        const visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
             .returns(theType => getConfigs(theType));

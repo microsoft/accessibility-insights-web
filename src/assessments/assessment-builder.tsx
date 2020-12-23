@@ -171,7 +171,7 @@ export class AssessmentBuilder {
             data.assessments[`${key}Assessment`];
 
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
-            getTestView: props => <AssessmentTestView {...props} />,
+            testViewType: 'Assessment',
             getStoreData: getStoreData,
             enableTest: (data, payload) =>
                 AssessmentBuilder.enableTest(
@@ -266,7 +266,7 @@ export class AssessmentBuilder {
             data.assessments[assessment.storeDataKey];
 
         const visualizationConfiguration: AssessmentVisualizationConfiguration = {
-            getTestView: props => <AssessmentTestView {...props} />,
+            testViewType: 'Assessment',
             getAssessmentData: data => data.assessments[key],
             setAssessmentData: (data, selectorMap, instanceMap) => {
                 const thisAssessment = data.assessments[key];

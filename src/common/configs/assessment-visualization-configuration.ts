@@ -13,11 +13,12 @@ import { IAnalyzerTelemetryCallback } from '../types/analyzer-telemetry-callback
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { TelemetryProcessor } from '../types/telemetry-processor';
-import { TestViewType } from '../types/test-view-type';
+import { TestViewOverrides, TestViewType } from '../types/test-view-type';
 
 export interface AssessmentVisualizationConfiguration {
     key: string;
     testViewType: TestViewType;
+    testViewOverrides?: TestViewOverrides;
     getStoreData: (data: TestsEnabledState) => ScanData;
     enableTest: (data: TestsEnabledState, payload: ToggleActionPayload) => void;
     disableTest: (data: ScanData, step?: string) => void;

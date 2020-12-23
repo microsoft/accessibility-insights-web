@@ -1,56 +1,60 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { It, Mock, MockBehavior } from 'typemoq';
-
-import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { TestViewType } from 'common/types/test-view-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     TestViewContainer,
     TestViewContainerProps,
-} from '../../../../../DetailsView/components/test-view-container';
-import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
+} from 'DetailsView/components/test-view-container';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { ContentPageComponent } from 'views/content/content-page';
 
-describe('TestViewContainerTest', () => {
-    it('should not return the target page closed view', () => {
-        const expectedTestView = <div />;
-        const configFactoryMock = Mock.ofType<VisualizationConfigurationFactory>(
-            null,
-            MockBehavior.Strict,
-        );
-        const getTestViewMock = Mock.ofInstance(_ => {}, MockBehavior.Strict);
+describe('TestViewContainer', () => {
+    describe.each(['AdhocStatic', 'AdhocFailure', 'AdhocNeedsReview', 'Assessment'])(
+        'for testViewType=%s',
+        (testViewType: TestViewType) => {
+            const selectedTest: VisualizationType = -1;
+            let configStub: VisualizationConfiguration;
+            let configFactoryStub: VisualizationConfigurationFactory;
+            let props: TestViewContainerProps;
+            beforeEach(() => {
+                configStub = {
+                    key: 'configStub',
+                    testViewType,
+                } as VisualizationConfiguration;
 
-        const configStub = {
-            getTestView: getTestViewMock.object,
-        } as VisualizationConfiguration;
+                configFactoryStub = {
+                    getConfiguration: (visualizationType: VisualizationType) => configStub,
+                } as VisualizationConfigurationFactory;
 
-        const props = {
-            tabStoreData: {
-                isClosed: false,
-            },
-            selectedTest: -1,
-            visualizationConfigurationFactory: configFactoryMock.object,
-            cardsViewData: {
-                cards: exampleUnifiedStatusResults,
-                visualHelperEnabled: true,
-                allCardsCollapsed: true,
-            },
-        } as TestViewContainerProps;
+                props = ({
+                    someParentProp: 'parent-prop',
+                    visualizationConfigurationFactory: configFactoryStub,
+                    selectedTest,
+                } as unknown) as TestViewContainerProps;
+            });
 
-        const expectedProps = {
-            configuration: configStub,
-            ...props,
-        };
-        configFactoryMock
-            .setup(cfm => cfm.getConfiguration(props.selectedTest))
-            .returns(() => configStub);
+            it('renders per snapshot with no testViewOverrides', () => {
+                configStub.testViewOverrides = undefined;
+                const rendered = shallow(<TestViewContainer {...props} />);
+                expect(rendered.getElement()).toMatchSnapshot();
+            });
 
-        getTestViewMock
-            .setup(gtvm => gtvm(It.isValue(expectedProps)))
-            .returns(() => expectedTestView);
+            it('renders per snapshot with testViewOverrides', () => {
+                configStub.testViewOverrides = {
+                    content: stubContentPageComponent('content'),
+                    guidance: stubContentPageComponent('guidance'),
+                };
+                const rendered = shallow(<TestViewContainer {...props} />);
+                expect(rendered.getElement()).toMatchSnapshot();
+            });
 
-        const rendered = shallow(<TestViewContainer {...props} />);
-        expect(rendered.getElement()).toMatchObject(expectedTestView);
-    });
+            function stubContentPageComponent(identifier: string): ContentPageComponent {
+                return (`stub content page component "${identifier}"` as unknown) as ContentPageComponent;
+            }
+        },
+    );
 });

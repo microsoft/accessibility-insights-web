@@ -20,7 +20,7 @@ describe('TargetTabControllerTest', () => {
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         getSwitchToTargetTabCallbackMock = Mock.ofInstance(() => null);
-        configurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        configurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         configStub = {
             getSwitchToTargetTabOnScan: getSwitchToTargetTabCallbackMock.object,
         } as VisualizationConfiguration;

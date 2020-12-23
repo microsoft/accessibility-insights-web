@@ -13,7 +13,10 @@ import {
 
 describe('getTestViewTitle', () => {
     it('should get title from displayable data from config factory', () => {
-        const configFactory = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
+        const configFactory = Mock.ofType<VisualizationConfigurationFactory>(
+            undefined,
+            MockBehavior.Strict,
+        );
         const displayableDataStub = {
             title: 'fake title',
         } as DisplayableVisualizationTypeData;
