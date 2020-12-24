@@ -72,8 +72,8 @@ describe('IssueFilingServiceProviderTest', () => {
             } as IssueFilingService,
         ];
 
-        expect(
+        expect(() =>
             new IssueFilingServiceProvider(givenTestOptions).forKey('invalid key'),
-        ).not.toBeDefined();
+        ).toThrowError(/invalid key/);
     });
 });
