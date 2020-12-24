@@ -18,9 +18,14 @@ export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable =
     platformInfo,
 ) => {
     if (
-        platformInfo == null ||
+        platformInfo?.viewPortInfo?.width == null ||
+        platformInfo?.viewPortInfo?.height == null ||
         result.descriptors.boundingRectangle == null ||
-        !hasValidBoundingRectangle(result.descriptors.boundingRectangle, platformInfo.viewPortInfo)
+        !hasValidBoundingRectangle(
+            result.descriptors.boundingRectangle,
+            platformInfo.viewPortInfo.width,
+            platformInfo.viewPortInfo.height,
+        )
     ) {
         return true;
     }
@@ -30,13 +35,14 @@ export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable =
 
 function hasValidBoundingRectangle(
     boundingRectangle: BoundingRectangle,
-    viewPort: ViewPortProperties,
+    viewPortWidth: number,
+    viewPortHeight: number,
 ): boolean {
     return !(
         boundingRectangle.right <= 0 ||
         boundingRectangle.bottom <= 0 ||
-        (viewPort.width != null && boundingRectangle.left > viewPort.width) ||
-        (viewPort.height != null && boundingRectangle.top > viewPort.height)
+        boundingRectangle.left > viewPortWidth ||
+        boundingRectangle.top > viewPortHeight
     );
 }
 
