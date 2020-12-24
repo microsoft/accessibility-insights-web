@@ -2969,10 +2969,10 @@ app-builder-lib@^22.10.4:
     semver "^7.3.4"
     temp-file "^3.3.7"
 
-appium-adb@^8.9.1:
-  version "8.9.1"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.9.1.tgz#60abb48221f0fa16240c4b9ef68f040f7cb3970c"
-  integrity sha512-jG7au8+whHxuMdj12FE/QglQCY1ifjZqpWc9+U2g5U5CzjqcoqKZwDAw4xKdBgc+WwqV3kvUVFgjRqUXnd9TsQ==
+appium-adb@^8.9.2:
+  version "8.9.2"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.9.2.tgz#889ac7a2970710219d780f497bae0dcd003465e7"
+  integrity sha512-yp2260MwbYcyfCYwD+oeIKdPm3xQvrA1qq4z0RUf492FJiDycf2tNQyO/R3rUY51vV+CASNI9tgzXBY689aFBw==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
