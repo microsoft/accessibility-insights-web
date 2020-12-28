@@ -2,19 +2,17 @@
 // Licensed under the MIT License.
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ContentPageComponent } from 'views/content/content-page';
-import { CommonTestViewProps } from '../../DetailsView/components/test-view';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { AssessmentVisualizationConfiguration } from './assessment-visualization-configuration';
 import { TestMode } from './test-mode';
-import { DisplayableVisualizationTypeData } from './visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../types/displayable-visualization-type-data';
 
 export interface VisualizationConfiguration extends AssessmentVisualizationConfiguration {
     key: string;
     testMode: TestMode;
     featureFlagToEnable?: string;
-    getTestView: (props: CommonTestViewProps) => JSX.Element;
     getStoreData: (data: TestsEnabledState) => ScanData;
     getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
     setAssessmentData?: (

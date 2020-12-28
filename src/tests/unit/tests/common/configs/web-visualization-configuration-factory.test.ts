@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { each } from 'lodash';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../../common/enum-helper';
 import {
     AssessmentData,
@@ -15,8 +15,8 @@ import {
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
-describe('VisualizationConfigurationFactoryTest', () => {
-    const testObject = new VisualizationConfigurationFactory();
+describe('WebVisualizationConfigurationFactory', () => {
+    const testObject = new WebVisualizationConfigurationFactory();
 
     test('get config for unsupported type', () => {
         const invalidType = -1 as VisualizationType;

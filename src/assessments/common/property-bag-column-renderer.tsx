@@ -5,11 +5,11 @@ import * as React from 'react';
 
 import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from 'types/common-types';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
-    item: AssessmentInstanceRowData<TPropertyBag>,
+    item: InstanceTableRow<TPropertyBag>,
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
 ): JSX.Element {
     const mapper = (config: PropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {

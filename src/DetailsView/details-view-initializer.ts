@@ -56,7 +56,6 @@ import { CardsCollapsibleControl } from '../common/components/cards/collapsible-
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
-import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -127,6 +126,7 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { Logger } from 'common/logging/logger';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 
 declare const window: AutoChecker & Window;
 
@@ -281,7 +281,7 @@ if (tabId != null) {
                 visualizationActionCreator,
                 telemetryFactory,
             );
-            const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+            const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
             const assessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
             const assessmentInstanceTableHandler = new AssessmentInstanceTableHandler(
                 detailsViewActionMessageCreator,

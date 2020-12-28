@@ -67,7 +67,7 @@ describe('AnalyzerControllerTests', () => {
             getIdentifier: getIdentifierMock.object,
         } as any;
 
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         assessmentsMock = Mock.ofType(AssessmentsProviderImpl);
         visualizationStoreMock = Mock.ofType<VisualizationStore>();
         featureFlagStoreStoreMock = Mock.ofType<FeatureFlagStore>();

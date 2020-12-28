@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
-import { DisplayableVisualizationTypeData } from 'common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {

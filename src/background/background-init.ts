@@ -6,10 +6,10 @@ import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-c
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { WindowUtils } from 'common/window-utils';
 import * as UAParser from 'ua-parser-js';
 import { AxeInfo } from '../common/axe-info';
-import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
@@ -145,7 +145,7 @@ async function initialize(): Promise<void> {
 
     const tabToContextMap: TabToContextMap = {};
 
-    const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const notificationCreator = new NotificationCreator(
         browserAdapter,
         visualizationConfigurationFactory,

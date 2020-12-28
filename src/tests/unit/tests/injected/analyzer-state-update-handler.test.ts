@@ -8,6 +8,7 @@ import { VisualizationConfigurationFactory } from '../../../../common/configs/vi
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 
 describe('AnalyzerStateUpdateHandlerTest', () => {
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
@@ -16,7 +17,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     let testObject: TestableAnalyzerStateUpdateHandler;
 
     beforeEach(() => {
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         startScanMock = Mock.ofInstance(id => {});
         teardownMock = Mock.ofInstance(id => {});
         testObject = new TestableAnalyzerStateUpdateHandler(
@@ -203,7 +204,7 @@ describe('AnalyzerStateUpdateHandlerTest', () => {
     function setupDefaultVisualizationConfigFactory(): void {
         visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAnyNumber()))
-            .returns(test => new VisualizationConfigurationFactory().getConfiguration(test));
+            .returns(test => new WebVisualizationConfigurationFactory().getConfiguration(test));
     }
 });
 

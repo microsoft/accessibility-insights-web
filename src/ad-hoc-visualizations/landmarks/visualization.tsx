@@ -8,12 +8,10 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
-import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
-import * as React from 'react';
 
 const { guidance } = content.landmarks;
 const landmarksTestKey = AdHocTestkeys.Landmarks;
@@ -28,7 +26,7 @@ const landmarkRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
 };
 
 export const LandmarksAdHocVisualization: VisualizationConfiguration = {
-    getTestView: props => <AdhocStaticTestView {...props} />,
+    testViewType: 'AdhocStatic',
     key: landmarksTestKey,
     testMode: TestMode.Adhoc,
     getStoreData: data => data.adhoc[landmarksTestKey],

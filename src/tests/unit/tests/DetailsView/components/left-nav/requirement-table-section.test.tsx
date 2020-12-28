@@ -53,7 +53,7 @@ describe('RequirementTableSection', () => {
             requirement: {
                 isManual: false,
                 getDefaultMessage: _ => null,
-                renderInstanceTableHeader: (_, a) => null,
+                instanceTableHeaderType: 'none',
             },
         } as RequirementTableSectionProps;
     });

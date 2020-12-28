@@ -27,7 +27,7 @@ import { ContentScriptInjector } from 'background/injector/content-script-inject
 import { Interpreter } from 'background/interpreter';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import * as TelemetryEvents from 'common/extension-telemetry-events';
 import {
     BaseTelemetryData,
@@ -1288,7 +1288,7 @@ class ActionCreatorValidator {
             this.detailsViewControllerStrictMock.object,
             this.telemetryEventHandlerStrictMock.object,
             this.notificationCreatorStrictMock.object,
-            new VisualizationConfigurationFactory(),
+            new WebVisualizationConfigurationFactory(),
             this.targetTabControllerStrictMock.object,
             this.loggerMock.object,
         );

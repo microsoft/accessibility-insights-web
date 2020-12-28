@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { ContentReference } from 'views/content/content-page';
-import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
+import { DisplayableVisualizationTypeData } from '../../../../../common/types/displayable-visualization-type-data';
 import {
     ScanData,
     TestsEnabledState,

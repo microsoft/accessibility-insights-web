@@ -3,6 +3,7 @@
 import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
@@ -26,7 +27,7 @@ import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 
 describe('DiagnosticViewToggleTest', () => {
-    const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+    const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
     const testTelemetrySource: TelemetryEventSource = -1 as TelemetryEventSource;
     const eventStubFactory = new EventStubFactory();
 
@@ -351,10 +352,8 @@ describe('DiagnosticViewToggleTest', () => {
 class DiagnosticViewTogglePropsBuilder {
     private visualizationType: VisualizationType;
     private data: VisualizationStoreData = new VisualizationStoreDataBuilder().build();
-    private visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-    private defaultVisualizationConfigurationFactoryMock = Mock.ofType(
-        VisualizationConfigurationFactory,
-    );
+    private visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
+    private defaultVisualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
     private actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;

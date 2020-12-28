@@ -23,6 +23,7 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
+import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';
@@ -31,19 +32,10 @@ export interface AssessmentInstanceTableProps {
     instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     assessmentNavState: AssessmentNavState;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    renderInstanceTableHeader: (
-        table: AssessmentInstanceTable,
-        items: AssessmentInstanceRowData[],
-    ) => JSX.Element;
+    instanceTableHeaderType: InstanceTableHeaderType;
     getDefaultMessage: Function;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     hasVisualHelper: boolean;
-}
-
-export interface AssessmentInstanceRowData<P = {}> extends IObjectWithKey {
-    statusChoiceGroup: JSX.Element;
-    visualizationButton?: JSX.Element;
-    instance: GeneratedAssessmentInstance<P>;
 }
 
 export interface CapturedInstanceRowData extends IObjectWithKey {
@@ -63,7 +55,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             );
         }
 
-        const items: AssessmentInstanceRowData[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
+        const items: InstanceTableRow[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
             this.props.instancesMap,
             this.props.assessmentNavState,
             this.props.hasVisualHelper,
@@ -89,7 +81,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
 
         return (
             <div>
-                {this.props.renderInstanceTableHeader(this, items)}
+                {this.renderInstanceTableHeader(items)}
                 <DetailsList
                     ariaLabelForGrid="Use arrow keys to navigate inside the instances grid"
                     items={items}
@@ -103,7 +95,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    public onItemInvoked = (item: AssessmentInstanceRowData): void => {
+    public onItemInvoked = (item: InstanceTableRow): void => {
         this.updateFocusedTarget(item);
     };
 
@@ -116,11 +108,15 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     };
 
-    public updateFocusedTarget = (item: AssessmentInstanceRowData): void => {
+    public updateFocusedTarget = (item: InstanceTableRow): void => {
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
     };
 
-    public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
+    private renderInstanceTableHeader(items: InstanceTableRow[]): JSX.Element {
+        if (this.props.instanceTableHeaderType === 'none') {
+            return null;
+        }
+
         const disabled = !this.isAnyInstanceStatusUnknown(
             items,
             this.props.assessmentNavState.selectedTestSubview,
@@ -138,7 +134,7 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    private isAnyInstanceStatusUnknown(items: AssessmentInstanceRowData[], step: string): boolean {
+    private isAnyInstanceStatusUnknown(items: InstanceTableRow[], step: string): boolean {
         return items.some(
             item =>
                 has(item.instance.testStepResults, step) &&

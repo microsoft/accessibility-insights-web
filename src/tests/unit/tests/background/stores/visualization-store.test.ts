@@ -12,9 +12,9 @@ import { InjectionActions } from 'background/actions/injection-actions';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { cloneDeep } from 'lodash';
 import { AdHocTestkeys } from '../../../../../common/configs/adhoc-test-keys';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
@@ -857,7 +857,7 @@ describe('VisualizationStoreTest ', () => {
                 new VisualizationActions(),
                 actions,
                 new InjectionActions(),
-                new VisualizationConfigurationFactory(),
+                new WebVisualizationConfigurationFactory(),
             );
 
         return new StoreTester(TabActions, actionName, factory);
@@ -871,7 +871,7 @@ describe('VisualizationStoreTest ', () => {
                 actions,
                 new TabActions(),
                 new InjectionActions(),
-                new VisualizationConfigurationFactory(),
+                new WebVisualizationConfigurationFactory(),
             );
 
         return new StoreTester(VisualizationActions, actionName, factory);
@@ -885,7 +885,7 @@ describe('VisualizationStoreTest ', () => {
                 new VisualizationActions(),
                 new TabActions(),
                 actions,
-                new VisualizationConfigurationFactory(),
+                new WebVisualizationConfigurationFactory(),
             );
 
         return new StoreTester(InjectionActions, actionName, factory);

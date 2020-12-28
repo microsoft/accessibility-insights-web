@@ -9,7 +9,7 @@ import { createInitialAssessmentTestData } from 'background/create-initial-asses
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -19,9 +19,6 @@ import {
     TestsEnabledState,
 } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { AssessmentInstanceTable } from '../../../../DetailsView/components/assessment-instance-table';
-import { AssessmentTestView } from '../../../../DetailsView/components/assessment-test-view';
-import { CommonTestViewProps } from '../../../../DetailsView/components/test-view';
 import { AnalyzerConfiguration } from '../../../../injected/analyzers/analyzer';
 import { AnalyzerProvider } from '../../../../injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
@@ -34,8 +31,6 @@ describe('AssessmentBuilderTest', () => {
         const analyzerProviderMock = Mock.ofType(AnalyzerProvider);
         const drawerProviderMock = Mock.ofType(DrawerProvider);
         const getInstanceIdentifierMock = Mock.ofInstance(() => null);
-        const testViewPropsStub = {} as CommonTestViewProps;
-        const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
 
         const requirement: Requirement = {
             description: (
@@ -135,7 +130,7 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(
             InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
         );
-        expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
+        expect(config.testViewType).toBe('Assessment');
 
         validateInstanceTableSettings(requirement);
 
@@ -155,8 +150,6 @@ describe('AssessmentBuilderTest', () => {
     });
 
     test('Assisted', () => {
-        const testViewPropsStub = {} as CommonTestViewProps;
-        const expectedTestView = <AssessmentTestView {...testViewPropsStub} />;
         const selectedRequirementKey = 'requirement key';
         const providerMock = Mock.ofType(AnalyzerProvider);
         const visualizationInstanceProcessorMock = Mock.ofInstance(() => null);
@@ -213,8 +206,8 @@ describe('AssessmentBuilderTest', () => {
         requirement6.getInstanceStatus = getInstanceStatus6;
         const getInstanceStatusColumns6 = () => [];
         requirement6.getInstanceStatusColumns = getInstanceStatusColumns6;
-        const renderInstanceTableHeader6 = () => <div>6</div>;
-        requirement6.renderInstanceTableHeader = renderInstanceTableHeader6;
+        const instanceTableHeaderType6 = 'none';
+        requirement6.instanceTableHeaderType = instanceTableHeaderType6;
 
         const assistedAssessment: AssistedAssessment = {
             key: 'manual assessment key',
@@ -323,13 +316,13 @@ describe('AssessmentBuilderTest', () => {
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(
             InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier,
         );
-        expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
+        expect(config.testViewType).toBe('Assessment');
 
         validateInstanceTableSettings(requirement1);
         validateInstanceTableSettings(requirement5);
         expect(requirement6.getInstanceStatus).toBe(getInstanceStatus6);
         expect(requirement6.getInstanceStatusColumns).toBe(getInstanceStatusColumns6);
-        expect(requirement6.renderInstanceTableHeader).toBe(renderInstanceTableHeader6);
+        expect(requirement6.instanceTableHeaderType).toBe(instanceTableHeaderType6);
 
         const expectedData = {
             key: 'value',
@@ -366,14 +359,6 @@ describe('AssessmentBuilderTest', () => {
             isResizable: false,
         });
 
-        const tableMock = Mock.ofType(AssessmentInstanceTable, MockBehavior.Strict);
-        const headerStub = <div>Header</div>;
-        tableMock
-            .setup(tm => tm.renderDefaultInstanceTableHeader(It.isValue([])))
-            .returns(() => headerStub)
-            .verifiable(Times.once());
-        expect(requirement.renderInstanceTableHeader).toBeDefined();
-        expect(requirement.renderInstanceTableHeader(tableMock.object, [])).toBe(headerStub);
-        tableMock.verifyAll();
+        expect(requirement.instanceTableHeaderType).toBe('default');
     }
 });

@@ -44,7 +44,7 @@ describe('DocumentTitleUpdater', () => {
             MockBehavior.Strict,
         );
         getSwitcherNavConfigMock = Mock.ofInstance(_ => null, MockBehavior.Strict);
-        visualizationConfigFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
 
         switcherNavConfigStub = {
             getSelectedDetailsView: getSelectedDetailsViewMock.object,

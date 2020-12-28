@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot with no testViewOverrides 1`] = `
+<AdhocIssuesTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": undefined,
+      "testViewType": "AdhocFailure",
+    }
+  }
+  instancesSection={[Function]}
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot with testViewOverrides 1`] = `
+<AdhocIssuesTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": Object {
+        "content": "stub content page component \\"content\\"",
+        "guidance": "stub content page component \\"guidance\\"",
+      },
+      "testViewType": "AdhocFailure",
+    }
+  }
+  content="stub content page component \\"content\\""
+  guidance="stub content page component \\"guidance\\""
+  instancesSection={[Function]}
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapshot with no testViewOverrides 1`] = `
+<AdhocIssuesTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": undefined,
+      "testViewType": "AdhocNeedsReview",
+    }
+  }
+  instancesSection={[Function]}
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapshot with testViewOverrides 1`] = `
+<AdhocIssuesTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": Object {
+        "content": "stub content page component \\"content\\"",
+        "guidance": "stub content page component \\"guidance\\"",
+      },
+      "testViewType": "AdhocNeedsReview",
+    }
+  }
+  content="stub content page component \\"content\\""
+  guidance="stub content page component \\"guidance\\""
+  instancesSection={[Function]}
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with no testViewOverrides 1`] = `
+<AdhocStaticTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": undefined,
+      "testViewType": "AdhocStatic",
+    }
+  }
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot with testViewOverrides 1`] = `
+<AdhocStaticTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": Object {
+        "content": "stub content page component \\"content\\"",
+        "guidance": "stub content page component \\"guidance\\"",
+      },
+      "testViewType": "AdhocStatic",
+    }
+  }
+  content="stub content page component \\"content\\""
+  guidance="stub content page component \\"guidance\\""
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=Assessment renders per snapshot with no testViewOverrides 1`] = `
+<AssessmentTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": undefined,
+      "testViewType": "Assessment",
+    }
+  }
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=Assessment renders per snapshot with testViewOverrides 1`] = `
+<AssessmentTestView
+  configuration={
+    Object {
+      "key": "configStub",
+      "testViewOverrides": Object {
+        "content": "stub content page component \\"content\\"",
+        "guidance": "stub content page component \\"guidance\\"",
+      },
+      "testViewType": "Assessment",
+    }
+  }
+  content="stub content page component \\"content\\""
+  guidance="stub content page component \\"guidance\\""
+  selectedTest={-1}
+  someParentProp="parent-prop"
+  visualizationConfigurationFactory={
+    Object {
+      "getConfiguration": [Function],
+    }
+  }
+/>
+`;

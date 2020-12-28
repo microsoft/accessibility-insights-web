@@ -55,7 +55,7 @@ describe('DiagnosticViewToggleFactoryTest', () => {
         [featureFlagStub]: true,
     };
 
-    let visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+    let visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
     let visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
     let featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
     let commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
@@ -63,7 +63,7 @@ describe('DiagnosticViewToggleFactoryTest', () => {
     let clickHandler = Mock.ofType(DiagnosticViewClickHandler);
 
     beforeEach(() => {
-        visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
         visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);

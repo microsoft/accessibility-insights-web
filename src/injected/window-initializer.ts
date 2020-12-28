@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { NavigatorUtils } from 'common/navigator-utils';
 import * as Q from 'q';
@@ -76,7 +77,7 @@ export class WindowInitializer {
         );
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
-        this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
+        this.visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
 
         const windowMessageHandler = new WindowMessageHandler(
             this.windowUtils,

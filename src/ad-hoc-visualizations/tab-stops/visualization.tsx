@@ -8,10 +8,8 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
 import { createHowToTest } from 'content/adhoc/tabstops/how-to-test';
-import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
 import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
-import * as React from 'react';
 
 const { guidance, extraGuidance } = content.tabstops;
 const tabStopsTestKey = AdHocTestkeys.TabStops;
@@ -25,11 +23,13 @@ const tabStopVisualizationConfiguration: FocusAnalyzerConfiguration = {
 };
 
 export const TabStopsAdHocVisualization: VisualizationConfiguration = {
-    getTestView: props => (
-        <AdhocStaticTestView content={createHowToTest(2)} guidance={extraGuidance} {...props} />
-    ),
     key: tabStopsTestKey,
     testMode: TestMode.Adhoc,
+    testViewType: 'AdhocStatic',
+    testViewOverrides: {
+        content: createHowToTest(2),
+        guidance: extraGuidance,
+    },
     getStoreData: data => data.adhoc[tabStopsTestKey],
     enableTest: (data, _) => (data.adhoc[tabStopsTestKey].enabled = true),
     disableTest: data => (data.enabled = false),

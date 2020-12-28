@@ -3,6 +3,7 @@
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ISelection } from 'office-ui-fabric-react';
+import * as React from 'react';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -22,6 +23,11 @@ import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-t
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
+import { AdhocIssuesTestView } from './adhoc-issues-test-view';
+import { AdhocStaticTestView } from './adhoc-static-test-view';
+import { AssessmentTestView } from './assessment-test-view';
+import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
+import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -53,6 +59,23 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
     const configuration = props.visualizationConfigurationFactory.getConfiguration(
         props.selectedTest,
     );
-    const testViewProps = { configuration, ...props };
-    return configuration.getTestView(testViewProps);
+    const testViewProps = { configuration, ...configuration.testViewOverrides, ...props };
+
+    switch (configuration.testViewType) {
+        case 'AdhocStatic':
+            return <AdhocStaticTestView {...testViewProps} />;
+        case 'AdhocFailure':
+            return (
+                <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...testViewProps} />
+            );
+        case 'AdhocNeedsReview':
+            return (
+                <AdhocIssuesTestView
+                    instancesSection={NeedsReviewInstancesSection}
+                    {...testViewProps}
+                />
+            );
+        case 'Assessment':
+            return <AssessmentTestView {...testViewProps} />;
+    }
 });

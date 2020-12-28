@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -14,10 +15,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
 import { AssessmentInstanceSelectedButton } from '../../../../../DetailsView/components/assessment-instance-selected-button';
-import {
-    AssessmentInstanceRowData,
-    CapturedInstanceRowData,
-} from '../../../../../DetailsView/components/assessment-instance-table';
+import { CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
 import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
@@ -105,7 +103,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             />
         );
 
-        const expectedRows: AssessmentInstanceRowData[] = [
+        const expectedRows: InstanceTableRow[] = [
             {
                 instance: {
                     target: ['target1'],
