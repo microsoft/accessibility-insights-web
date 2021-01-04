@@ -544,7 +544,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
-                telemetry: null,
+                telemetry: undefined,
             },
         };
 
@@ -554,7 +554,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                     VisualizationType.HeadingsAssessment,
                 ),
             )
-            .returns(() => null);
+            .verifiable(Times.never());
 
         testSubject.enableVisualHelper(
             VisualizationType.HeadingsAssessment,
@@ -563,6 +563,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             false,
         );
 
+        telemetryFactoryMock.verifyAll();
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
             Times.once(),
@@ -577,7 +578,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             payload: {
                 test: VisualizationType.HeadingsAssessment,
                 requirement,
-                telemetry: null,
+                telemetry: undefined,
             },
         };
 
@@ -587,7 +588,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                     VisualizationType.HeadingsAssessment,
                 ),
             )
-            .returns(() => null);
+            .verifiable(Times.never());
 
         testSubject.enableVisualHelper(
             VisualizationType.HeadingsAssessment,
@@ -596,6 +597,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             false,
         );
 
+        telemetryFactoryMock.verifyAll();
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
             Times.once(),
@@ -965,7 +967,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                 test: 1,
                 requirement: 'requirement',
                 isVisualizationEnabled: true,
-                selector: null,
                 telemetry: telemetry,
             },
         };
