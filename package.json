@@ -107,7 +107,7 @@
         "electron-builder": "^22.9.1",
         "enzyme": "^3.11.0",
         "enzyme-adapter-react-16": "^1.15.5",
-        "eslint": "^7.16.0",
+        "eslint": "^7.17.0",
         "eslint-plugin-react": "^7.22.0",
         "eslint-plugin-security": "^1.4.0",
         "express": "^4.16.4",
