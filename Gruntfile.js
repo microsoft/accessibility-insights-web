@@ -522,7 +522,7 @@ module.exports = function (grunt) {
             );
         }
 
-        const configFileContent = yaml.safeDump(config);
+        const configFileContent = yaml.dump(config);
         grunt.file.write(outElectronBuilderConfigFile, configFileContent);
         grunt.log.writeln(`generated ${outElectronBuilderConfigFile} from target config`);
     });
