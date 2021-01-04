@@ -14,15 +14,15 @@ import { DictionaryStringTo } from 'types/common-types';
 
 export interface CheckData {
     // tslint:disable-next-line: no-reserved-keywords
-    any: FormattedCheckResult[];
-    none: FormattedCheckResult[];
-    all: FormattedCheckResult[];
+    any?: FormattedCheckResult[];
+    none?: FormattedCheckResult[];
+    all?: FormattedCheckResult[];
 }
 
 export type GetElementBasedViewModelCallback = (
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
     cardSelectionData: CardSelectionStoreData,
-) => DictionaryStringTo<AssessmentVisualizationInstance>;
+) => DictionaryStringTo<AssessmentVisualizationInstance> | null;
 
 export class ElementBasedViewModelCreator {
     constructor(
@@ -37,7 +37,7 @@ export class ElementBasedViewModelCreator {
     ) => {
         const { rules, results } = unifiedScanResultStoreData;
         if (rules == null || results == null || cardSelectionData == null) {
-            return;
+            return null;
         }
 
         const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
@@ -49,10 +49,13 @@ export class ElementBasedViewModelCreator {
 
         results.forEach(unifiedResult => {
             if (resultsHighlightStatus[unifiedResult.uid] !== 'visible') {
-                return;
+                return null;
             }
 
             const rule = find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId);
+            if (rule == null) {
+                throw new Error(`Got result with unknown ruleId ${unifiedResult.ruleId}`);
+            }
 
             const identifier = this.getIdentifier(unifiedResult);
             const decoratedResult = this.getDecoratedAxeNode(unifiedResult, rule, identifier);

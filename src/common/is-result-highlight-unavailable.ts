@@ -10,7 +10,7 @@ import { BoundingRectangle } from 'electron/platform/android/android-scan-result
 
 export type IsResultHighlightUnavailable = (
     result: UnifiedResult,
-    platformInfo: PlatformData,
+    platformInfo: PlatformData | null,
 ) => boolean;
 
 export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable = (
@@ -18,9 +18,14 @@ export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable =
     platformInfo,
 ) => {
     if (
-        platformInfo == null ||
+        platformInfo?.viewPortInfo?.width == null ||
+        platformInfo?.viewPortInfo?.height == null ||
         result.descriptors.boundingRectangle == null ||
-        !hasValidBoundingRectangle(result.descriptors.boundingRectangle, platformInfo.viewPortInfo)
+        !hasValidBoundingRectangle(
+            result.descriptors.boundingRectangle,
+            platformInfo.viewPortInfo.width,
+            platformInfo.viewPortInfo.height,
+        )
     ) {
         return true;
     }
@@ -30,13 +35,14 @@ export const isResultHighlightUnavailableUnified: IsResultHighlightUnavailable =
 
 function hasValidBoundingRectangle(
     boundingRectangle: BoundingRectangle,
-    viewPort: ViewPortProperties,
+    viewPortWidth: number,
+    viewPortHeight: number,
 ): boolean {
     return !(
         boundingRectangle.right <= 0 ||
         boundingRectangle.bottom <= 0 ||
-        boundingRectangle.left > viewPort.width ||
-        boundingRectangle.top > viewPort.height
+        boundingRectangle.left > viewPortWidth ||
+        boundingRectangle.top > viewPortHeight
     );
 }
 

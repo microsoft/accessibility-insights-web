@@ -25,6 +25,42 @@ describe('isResultHighlightUnavailableUnified', () => {
         expect(isResultHighlightUnavailableUnified(unifiedResult, null)).toEqual(true);
     });
 
+    test('unavailable: viewPort data missing height', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    left: 0,
+                    right: 1,
+                    top: 0,
+                    bottom: 1,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 4 },
+        } as PlatformData;
+
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
+    });
+
+    test('unavailable: viewPort data missing width', () => {
+        const unifiedResult: UnifiedResult = {
+            descriptors: {
+                boundingRectangle: {
+                    left: 0,
+                    right: 1,
+                    top: 0,
+                    bottom: 1,
+                },
+            },
+        } as UnifiedResult;
+        const platformData: PlatformData = {
+            viewPortInfo: { height: 4 },
+        } as PlatformData;
+
+        expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
+    });
+
     test('unavailable: boundingRectangle left value is greater than platform width', () => {
         const unifiedResult: UnifiedResult = {
             descriptors: {
@@ -34,7 +70,7 @@ describe('isResultHighlightUnavailableUnified', () => {
             },
         } as UnifiedResult;
         const platformData: PlatformData = {
-            viewPortInfo: { width: 4 },
+            viewPortInfo: { width: 4, height: 10 },
         } as PlatformData;
 
         expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
@@ -48,7 +84,9 @@ describe('isResultHighlightUnavailableUnified', () => {
                 },
             },
         } as UnifiedResult;
-        const platformData: PlatformData = {} as PlatformData;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 1, height: 1 },
+        } as PlatformData;
 
         expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });
@@ -61,7 +99,9 @@ describe('isResultHighlightUnavailableUnified', () => {
                 },
             },
         } as UnifiedResult;
-        const platformData: PlatformData = {} as PlatformData;
+        const platformData: PlatformData = {
+            viewPortInfo: { width: 1, height: 1 },
+        } as PlatformData;
 
         expect(isResultHighlightUnavailableUnified(unifiedResult, platformData)).toEqual(true);
     });

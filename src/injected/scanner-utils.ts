@@ -11,15 +11,15 @@ import { DictionaryStringTo } from 'types/common-types';
 declare let axe: any;
 
 export type DecoratedAxeNodeResult = {
-    status: boolean;
+    status?: boolean;
     ruleId: string;
-    failureSummary: string;
+    failureSummary?: string;
     selector: string;
-    html: string;
-    help: string;
-    id: string;
+    html?: string;
+    help?: string;
+    id?: string;
     guidanceLinks: GuidanceLink[];
-    helpUrl: string;
+    helpUrl?: string;
 } & CheckData;
 
 export interface HtmlElementAxeResults {
@@ -125,12 +125,12 @@ export class ScannerUtils {
     private addResultstoDictionary(
         dictionary: DictionaryStringTo<HtmlElementAxeResults>,
         axeRules: RuleResult[],
-        status: boolean,
+        status: boolean | undefined,
     ): void {
         axeRules.forEach(ruleResult => {
             ruleResult.nodes.forEach(node => {
                 const selectorKey = node.target.join(';');
-                node.instanceId = this.generateUID ? this.generateUID() : null;
+                node.instanceId = this.generateUID ? this.generateUID() : undefined;
 
                 const elementResult = dictionary[selectorKey] || {
                     target: node.target,
@@ -149,7 +149,7 @@ export class ScannerUtils {
                     html: node.html,
                     selector: selectorKey,
                     id: node.instanceId,
-                    guidanceLinks: ruleResult.guidanceLinks,
+                    guidanceLinks: ruleResult.guidanceLinks ?? [],
                     helpUrl: ruleResult.helpUrl,
                 };
             });
