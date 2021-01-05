@@ -9,7 +9,8 @@ describe(getCellAndHeaderElementsFromResult, () => {
     let testDom: Document;
     const singleHeaderCellId = 'cell-with-one-header';
     const multiHeaderCellId = 'cell-with-two-headers';
-    const noHeadersCellId = 'ell-with-no-headers';
+    const noHeadersCellId = 'cell-with-no-headers';
+    const emptyHeadersCellId = 'cell-with-empty-headers';
     const headerId1 = 'header1';
     const headerId2 = 'header2';
     const headerId3 = 'header3';
@@ -26,6 +27,7 @@ describe(getCellAndHeaderElementsFromResult, () => {
                 <td id="${singleHeaderCellId}" headers="${headerId1}">cell1</td>
                 <td id="${multiHeaderCellId}" headers="${headerId2} ${headerId3}">cell2</td>
                 <td id="${noHeadersCellId}">cell3</td>
+                <td id="${emptyHeadersCellId}">cell4</td>
             </tr>
         </table>
         `);
@@ -35,7 +37,8 @@ describe(getCellAndHeaderElementsFromResult, () => {
         ['cell has one header', singleHeaderCellId, [headerId1]],
         ['cell has two headers', multiHeaderCellId, [headerId2, headerId3]],
         ['cell has no headers', noHeadersCellId, []],
-    ])('%s', (testName, targetCellId, headerIds) => {
+        ['cell has an empty headers attribute', emptyHeadersCellId, []],
+    ])('%s', (_, targetCellId, headerIds) => {
         const result = createResult(targetCellId);
 
         const elements = getCellAndHeaderElementsFromResult(result, testDom);

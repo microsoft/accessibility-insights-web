@@ -6,15 +6,6 @@ import { AssessmentVisualizationInstance } from '../frameCommunicators/html-elem
 import { FailureInstanceFormatter } from './failure-instance-formatter';
 import { DrawerConfiguration } from './formatter';
 
-export interface HeadingStyleConfiguration {
-    borderColor: string;
-    fontColor: string;
-}
-
-export interface StyleComputer {
-    getComputedStyle(elt: Element, pseudoElt?: string): CSSStyleDeclaration;
-}
-
 export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
     private readonly cellColor = '#6600CC';
     private readonly headerColor = '#0066CC';
