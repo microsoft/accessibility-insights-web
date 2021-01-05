@@ -84,7 +84,7 @@
         "@types/lodash": "^4.14.166",
         "@types/luxon": "^1.25.0",
         "@types/make-dir": "^2.1.0",
-        "@types/node": "^14.14.19",
+        "@types/node": "^14.14.20",
         "@types/q": "^1.5.4",
         "@types/react": "^16.14.2",
         "@types/react-copy-to-clipboard": "^5.0.0",
