@@ -22,7 +22,7 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
         element: HTMLElement,
         data: AssessmentVisualizationInstance,
     ): DrawerConfiguration {
-        const isHeader = this.isHeader(element);
+        const isHeader = element.matches('th');
 
         const style = {
             borderColor: isHeader ? this.headerColor : this.cellColor,
@@ -43,17 +43,6 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
             textAlign: 'right',
             failureBoxConfig: this.getFailureBoxConfig(data),
         };
-    }
-
-    private isHeader(element: HTMLElement): boolean {
-        if (element.matches('th')) {
-            return true;
-        }
-        const role = this.getAttribute(element, 'role');
-        if (role === 'columnheader' || role === 'rowheader') {
-            return true;
-        }
-        return false;
     }
 
     private getTextForHeader(element: HTMLElement): string {

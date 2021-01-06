@@ -13,16 +13,11 @@ describe(TableHeadersAttributeFormatter, () => {
 
     describe('getDrawerConfiguration', () => {
         test.each`
-            elementType | headers      | role              | id
-            ${'td'}     | ${'headers'} | ${null}           | ${null}
-            ${'td'}     | ${'headers'} | ${null}           | ${'id'}
-            ${'div'}    | ${'headers'} | ${'cell'}         | ${null}
-            ${'th'}     | ${null}      | ${null}           | ${'id'}
-            ${'th'}     | ${'headers'} | ${null}           | ${'id'}
-            ${'div'}    | ${null}      | ${'columnheader'} | ${'id'}
-            ${'div'}    | ${'headers'} | ${'columnheader'} | ${'id'}
-            ${'div'}    | ${null}      | ${'rowheader'}    | ${'id'}
-            ${'div'}    | ${'headers'} | ${'rowheader'}    | ${'id'}
+            elementType | headers      | role    | id
+            ${'td'}     | ${'headers'} | ${null} | ${null}
+            ${'td'}     | ${'headers'} | ${null} | ${'id'}
+            ${'th'}     | ${null}      | ${null} | ${'id'}
+            ${'th'}     | ${'headers'} | ${null} | ${'id'}
         `(
             '- $elementType headers=$headers role=$role id=$id',
             ({ elementType, headers, role, id }) => {

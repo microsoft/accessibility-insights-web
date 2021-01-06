@@ -15,28 +15,27 @@ describe('HeadersAttributeRule', () => {
     });
 
     it('selects table cells and headers', () => {
-        const expectedIds = ['header1', 'header2', 'header3', 'cell1', 'cell2'];
+        const headerId = 'header-id';
+        const cellId = 'cell-id';
         testDom = TestDocumentCreator.createTestDocument(`
             <table>
                 <tr>
-                    <th id="${expectedIds[0]}">header1</th>
-                    <div role="columnheader" id="${expectedIds[1]}">header2</div>
-                    <div role="rowheader" id="${expectedIds[2]}">header3</div>
+                    <th id="${headerId}">header1</th>
                     <div id="not-a-header">not a header</div>
                 </tr>
                 <tr>
-                    <td id="${expectedIds[3]}">cell1</td>
-                    <div role="cell" id="${expectedIds[4]}">cell2</div>
+                    <td id="${cellId}">cell1</td>
                     <div id="not-a-cell">not a cell</div>
                 </tr>
             </table>
         `);
-        const nodes = testDom.querySelectorAll(headersAttributeRuleConfiguration.rule.selector);
-        expect(nodes.length).toBe(expectedIds.length);
-        nodes.forEach(node => {
-            const nodeId = node.getAttribute('id');
-            expect(expectedIds.indexOf(nodeId)).not.toEqual(-1);
-        });
+        const nodes = Array.from(
+            testDom.querySelectorAll(headersAttributeRuleConfiguration.rule.selector),
+        );
+        expect(nodes.length).toBe(2);
+        const nodeIds = nodes.map(node => node.getAttribute('id'));
+        expect(nodeIds).toContain(headerId);
+        expect(nodeIds).toContain(cellId);
     });
 
     describe('matches', () => {

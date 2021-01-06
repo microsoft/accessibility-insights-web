@@ -13,7 +13,7 @@ export const headersAttributeRuleConfiguration: RuleConfiguration = {
     ],
     rule: {
         id: 'headers-attribute',
-        selector: 'th,td,[role=cell],[role=columnheader],[role=rowheader]',
+        selector: 'th,td',
         any: [headersAttributeCheckId],
         enabled: false,
         matches: hasHeadersAttribute,

@@ -5,6 +5,7 @@ Licensed under the MIT License.
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title>Semantics - Header attributes</title>
         <meta charset="UTF-8" />
     </head>
     <style>
@@ -51,12 +52,12 @@ Licensed under the MIT License.
                 <tr>
                     <td />
                     <th id="table2-header1" headers="top">Header1</th>
-                    <td role="columnheader" id="table2-header2" headers="top">Header2</td>
+                    <th id="table2-header2" headers="top">Header2</th>
                 </tr>
                 <tr>
-                    <td role="rowheader" id="rowheader">Row header</td>
+                    <th id="rowheader">Row header</th>
                     <td headers="rowheader table2-header1 top" id="cell1">Cell1 content</td>
-                    <td headers="rowheader table2-header2 top" id="cell1">Cell2 content<span /></td>
+                    <td headers="rowheader table2-header2 top" id="cell2">Cell2 content</td>
                 </tr>
             </tbody>
         </table>
