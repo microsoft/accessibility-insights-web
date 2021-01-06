@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { isEmpty } from 'lodash';
 import { DialogRenderer } from '../dialog-renderer';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
@@ -50,14 +51,14 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
         const headersAttr = this.getAttribute(element, 'headers');
         const headersText = headersAttr === null ? null : `headers="${headersAttr}"`;
 
-        return ['th', idText, headersText].join(' ');
+        return ['th', idText, headersText].filter(str => !isEmpty(str)).join(' ');
     }
 
     private getTextForCell(element: HTMLElement): string {
         const headersAttr = this.getAttribute(element, 'headers');
         const headersText = headersAttr === null ? null : `headers="${headersAttr}"`;
 
-        return ['td', headersText].join(' ');
+        return ['td', headersText].filter(str => !isEmpty(str)).join(' ');
     }
 
     private getAttribute(element: HTMLElement, attrName: string): string {

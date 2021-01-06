@@ -55,7 +55,7 @@ Object {
   "textBoxConfig": Object {
     "background": "#0066CC",
     "fontColor": "#FFFFFF",
-    "text": "th id=\\"id\\" ",
+    "text": "th id=\\"id\\"",
   },
 }
 `;
