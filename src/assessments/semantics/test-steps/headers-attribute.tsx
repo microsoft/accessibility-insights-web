@@ -24,11 +24,9 @@ const headersAttributeDescription: JSX.Element = (
 const headersAttributeHowToTest: JSX.Element = (
     <div>
         <p>
-            The visual helper for this requirement highlights elements coded as table cells with a{' '}
-            <Markup.CodeTerm>headers</Markup.CodeTerm> attribute set. Coded table cells include{' '}
-            <Markup.Tag tagName="td" /> elements and any element with a{' '}
-            <Markup.CodeTerm>role</Markup.CodeTerm> attribute set to "
-            <Markup.CodeTerm>cell</Markup.CodeTerm>". Any element whose id is referenced by a{' '}
+            The visual helper for this requirement highlights <Markup.Tag tagName="td" /> and{' '}
+            <Markup.Tag tagName="th" /> elements with a <Markup.CodeTerm>headers</Markup.CodeTerm>{' '}
+            attribute set. Any element whose id is referenced by a{' '}
             <Markup.CodeTerm>headers</Markup.CodeTerm> attribute is also highlighted.
         </p>
         <ol>
