@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TableHeadersAttributeFormatter getDrawerConfiguration - td headers=headers role=null id=id 1`] = `
+Object {
+  "borderColor": "#6600CC",
+  "failureBoxConfig": null,
+  "outlineStyle": "solid",
+  "showVisualization": true,
+  "textAlign": "right",
+  "textBoxConfig": Object {
+    "background": "#6600CC",
+    "fontColor": "#FFFFFF",
+    "text": "td headers=\\"headers\\"",
+  },
+}
+`;
+
+exports[`TableHeadersAttributeFormatter getDrawerConfiguration - td headers=headers role=null id=null 1`] = `
+Object {
+  "borderColor": "#6600CC",
+  "failureBoxConfig": null,
+  "outlineStyle": "solid",
+  "showVisualization": true,
+  "textAlign": "right",
+  "textBoxConfig": Object {
+    "background": "#6600CC",
+    "fontColor": "#FFFFFF",
+    "text": "td headers=\\"headers\\"",
+  },
+}
+`;
+
+exports[`TableHeadersAttributeFormatter getDrawerConfiguration - th headers=headers role=null id=id 1`] = `
+Object {
+  "borderColor": "#0066CC",
+  "failureBoxConfig": null,
+  "outlineStyle": "solid",
+  "showVisualization": true,
+  "textAlign": "right",
+  "textBoxConfig": Object {
+    "background": "#0066CC",
+    "fontColor": "#FFFFFF",
+    "text": "th id=\\"id\\" headers=\\"headers\\"",
+  },
+}
+`;
+
+exports[`TableHeadersAttributeFormatter getDrawerConfiguration - th headers=null role=null id=id 1`] = `
+Object {
+  "borderColor": "#0066CC",
+  "failureBoxConfig": null,
+  "outlineStyle": "solid",
+  "showVisualization": true,
+  "textAlign": "right",
+  "textBoxConfig": Object {
+    "background": "#0066CC",
+    "fontColor": "#FFFFFF",
+    "text": "th id=\\"id\\"",
+  },
+}
+`;

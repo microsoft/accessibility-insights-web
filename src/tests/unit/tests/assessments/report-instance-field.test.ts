@@ -202,4 +202,25 @@ describe('ReportInstanceField', () => {
             });
         });
     });
+
+    describe('fromSnippet', () => {
+        const key = 'property-key';
+        const label = 'Property label';
+
+        it('sets key and label', () => {
+            const field = ReportInstanceField.fromSnippet(key, label);
+
+            expect(field.key).toBe(key);
+            expect(field.label).toBe(label);
+        });
+
+        it('returns html', () => {
+            const htmlSnippet = 'html snippet';
+            const instanceStub = { html: htmlSnippet };
+
+            const field = ReportInstanceField.fromSnippet(key, label);
+
+            expect(field.getValue(instanceStub)).toBe(htmlSnippet);
+        });
+    });
 });

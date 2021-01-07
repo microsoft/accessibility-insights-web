@@ -20,6 +20,10 @@ import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
+import {
+    onRenderPathColumn,
+    onRenderSnippetColumn,
+} from 'assessments/common/element-column-renderers';
 
 describe('buildTestStepsFromRules', () => {
     it('should exist', () => {
@@ -123,12 +127,12 @@ describe('buildTestStepsFromRules', () => {
         expect(actual.columnsConfig).toHaveLength(2);
         expect(actual.columnsConfig[0].key).toBe('path');
         expect(actual.columnsConfig[0].name).toBe('Path');
+        expect(actual.columnsConfig[0].onRender).toBe(onRenderPathColumn);
+
         expect(actual.columnsConfig[1].key).toBe('snippet');
         expect(actual.columnsConfig[1].name).toBe('Snippet');
 
-        validateInstanceColumnsRender(actual.columnsConfig, null, null, 'null');
-        validateInstanceColumnsRender(actual.columnsConfig, ['A'], 'X', 'one');
-        validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
+        expect(actual.columnsConfig[1].onRender).toBe(onRenderSnippetColumn);
     }
 
     function validateInstanceColumnsRender(
