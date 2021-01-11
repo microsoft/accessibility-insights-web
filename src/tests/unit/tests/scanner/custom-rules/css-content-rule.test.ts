@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { GlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { cssContentConfiguration } from '../../../../../scanner/custom-rules/css-content-rule';
 
 describe('verify meaningful semantic configs', () => {

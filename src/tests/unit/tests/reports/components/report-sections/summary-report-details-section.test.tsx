@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanMetadata, ScanTimespan } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { SummaryReportDetailsSection } from 'reports/components/report-sections/summary-report-details-section';
-import { ScanMetadata, ScanTimespan } from 'common/types/store-data/unified-data-interface';
-import { IMock, Mock } from 'typemoq';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
+import { IMock, Mock } from 'typemoq';
 
 describe(SummaryReportDetailsSection, () => {
     const scanStart = new Date(0, 1, 2, 3);

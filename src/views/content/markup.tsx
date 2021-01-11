@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { Helmet } from 'react-helmet';
 
 import { Code, Emphasis, Tag, Term } from 'assessments/markup';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -9,6 +7,8 @@ import { CheckIcon } from 'common/icons/check-icon';
 import { CrossIcon } from 'common/icons/cross-icon';
 import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import { TextContent } from 'content/strings/text-content';
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
 import { CodeExample, CodeExampleProps } from './markup/code-example';
 
 type PassFailProps = {

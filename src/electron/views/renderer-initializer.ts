@@ -56,7 +56,9 @@ import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-m
 import { NullDetailsViewController } from 'electron/adapters/null-details-view-controller';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
+import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
+import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
@@ -97,6 +99,7 @@ import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-prov
 import { defaultAndroidSetupComponents } from 'electron/views/device-connect-view/components/android-setup/default-android-setup-components';
 import { UnifiedReportNameGenerator } from 'electron/views/report/unified-report-name-generator';
 import { UnifiedReportSectionFactory } from 'electron/views/report/unified-report-section-factory';
+import { TestViewDeps } from 'electron/views/results/test-view';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
@@ -115,9 +118,6 @@ import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/r
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
-import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { TestViewDeps } from 'electron/views/results/test-view';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';

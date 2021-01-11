@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DevToolStore } from 'background/stores/dev-tools-store';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { DevToolStore } from 'background/stores/dev-tools-store';
 import { BaseStore } from '../../../common/base-store';
 
 export class StoreMock<TStoreState> {

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatten } from 'lodash';
 
 import { Assessment } from 'assessments/types/iassessment';
 import { ReportInstanceFields } from 'assessments/types/report-instance-field';
+import { flatten } from 'lodash';
 import {
     AssessmentDetailsReportModel,
     InstanceElementKey,

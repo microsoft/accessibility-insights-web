@@ -6,10 +6,10 @@ import {
     DeviceDescriptionProps,
 } from 'electron/views/device-connect-view/components/android-setup/device-description';
 import * as styles from 'electron/views/device-connect-view/components/android-setup/prompt-connected-start-testing-step.scss';
+import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { rescanAutomationId } from 'electron/views/device-connect-view/components/automation-ids';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 

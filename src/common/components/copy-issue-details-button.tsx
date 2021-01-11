@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { NavigatorUtils } from 'common/navigator-utils';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { CopyIcon } from '../../common/icons/copy-icon';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { Toast, ToastDeps } from './toast';

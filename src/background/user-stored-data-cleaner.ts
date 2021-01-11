@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { each } from 'lodash';
 
-import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 
 export const cleanKeysFromStorage = (
     storageAdapter: StorageAdapter,

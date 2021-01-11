@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
 
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
     WaitForSelectorOptions,
 } from 'tests/end-to-end/common/playwright-option-types';
-import { serializeError } from 'tests/common/serialize-error';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { screenshotOnError } from '../screenshot-on-error';

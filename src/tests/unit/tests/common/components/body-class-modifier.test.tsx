@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BodyClassModifier, BodyClassModifierDeps } from 'common/components/body-class-modifier';
+import { DocumentManipulator } from 'common/document-manipulator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { BodyClassModifier, BodyClassModifierDeps } from 'common/components/body-class-modifier';
-import { DocumentManipulator } from 'common/document-manipulator';
 
 describe('BodyClassModifier', () => {
     let bodyClassNames: string[];

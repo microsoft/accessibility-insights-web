@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
 
 import { CheckIcon, CheckIconInverted } from 'common/icons/check-icon';
 import { CircleIcon } from 'common/icons/circle-icon';
 import { CrossIconInverted } from 'common/icons/cross-icon';
 import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
+import { shallow } from 'enzyme';
+import * as React from 'react';
 import { OutcomeIcon } from 'reports/components/outcome-icon';
 import { allRequirementOutcomeTypes } from 'reports/components/requirement-outcome-type';
 

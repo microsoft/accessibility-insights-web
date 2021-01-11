@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { NewTabLink } from 'common/components/new-tab-link';
 import {
     SummaryResultsTable,
     TableColumn,

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { LandmarksAssessmentProperties } from 'common/types/store-data/assessment-result-data';
+
 import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
 import { LandmarkFormatter } from 'injected/visualization/landmark-formatter';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
+import * as React from 'react';
 
 export function landmarksAssessmentInstanceDetailsColumnRenderer(
     item: InstanceTableRow<LandmarksAssessmentProperties>,

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IMock, Mock } from 'typemoq';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';

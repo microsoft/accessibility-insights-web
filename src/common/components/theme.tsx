@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DocumentManipulator } from 'common/document-manipulator';
 import * as React from 'react';
 
-import { DocumentManipulator } from 'common/document-manipulator';
 import { DefaultThemePalette } from '../styles/default-theme-palette';
 import { HighContrastThemePalette } from '../styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from '../types/store-data/user-configuration-store';

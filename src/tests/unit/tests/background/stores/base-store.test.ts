@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { IsSameObject } from '../../../common/typemoq-helper';
 

@@ -8,8 +8,8 @@ import {
     InlineStartOverButtonProps,
 } from 'DetailsView/components/inline-start-over-button';
 import { shallow } from 'enzyme';
-import { IMock, Mock } from 'typemoq';
 import * as React from 'react';
+import { IMock, Mock } from 'typemoq';
 
 describe(InlineStartOverButton, () => {
     const testType: VisualizationType = 1;

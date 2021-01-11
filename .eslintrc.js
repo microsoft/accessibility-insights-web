@@ -32,7 +32,15 @@ module.exports = {
         eqeqeq: ['error', 'always', { null: 'ignore' }],
 
         // Additional rules not enabled by default
-        'import/order': 'error',
+        'import/order': [
+            'error',
+            {
+                alphabetize: {
+                    order: 'asc',
+                    caseInsensitive: true,
+                },
+            },
+        ],
 
         // Disabled due to high existing-positive count during initial tslint -> eslint migration
         '@typescript-eslint/no-explicit-any': 'off',

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ReportNameGenerator } from 'reports/report-name-generator';
 import { FileNameBuilder } from 'common/filename-builder';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 
 export class UnifiedReportNameGenerator implements ReportNameGenerator {
     constructor(

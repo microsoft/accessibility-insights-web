@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ManualTestStatus, ManualTestStatusData } from 'common/types/manual-test-status';
 import { times } from 'lodash';
 
-import { ManualTestStatus, ManualTestStatusData } from 'common/types/manual-test-status';
 import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import {
     outcomeStatsFromManualTestStatus,

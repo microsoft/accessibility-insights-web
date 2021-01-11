@@ -3,12 +3,12 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 import {
     CollapsibleUrlResultSection,
     CollapsibleUrlResultSectionDeps,
 } from 'reports/components/report-sections/collapsible-url-result-section';
 import { UrlScanResultsTable } from 'reports/components/report-sections/url-scan-results-table';
+import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
 
 export type PassedUrlsSectionDeps = CollapsibleUrlResultSectionDeps;
 

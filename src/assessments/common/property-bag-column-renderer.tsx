@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
+import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
+import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
-import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { DictionaryStringTo } from 'types/common-types';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     item: InstanceTableRow<TPropertyBag>,

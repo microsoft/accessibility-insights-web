@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentData } from 'common/types/store-data/assessment-result-data';
@@ -11,6 +10,7 @@ import {
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
 import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
 describe('AssessmentViewTest', () => {

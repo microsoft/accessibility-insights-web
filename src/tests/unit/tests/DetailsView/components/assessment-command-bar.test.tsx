@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
 
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
 import {
@@ -9,6 +7,8 @@ import {
     DetailsViewCommandBarProps,
 } from 'DetailsView/components/details-view-command-bar';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { shallow } from 'enzyme';
+import * as React from 'react';
 
 function getProps(): CommandBarProps {
     const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = ({

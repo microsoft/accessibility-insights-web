@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
-import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
 import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
+import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
 import { AxeConfigurator } from './axe-configurator';
 import { AxeResponseHandler } from './axe-response-handler';
 import { CheckMessageTransformer } from './check-message-transformer';
@@ -13,9 +13,9 @@ import { getRules } from './get-rules';
 import { HelpUrlGetter } from './help-url-getter';
 import { ScanResults } from './iruleresults';
 import { Launcher } from './launcher';
+import { mapAxeTagsToGuidanceLinks } from './map-axe-tags-to-guidance-links';
 import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
-import { mapAxeTagsToGuidanceLinks } from './map-axe-tags-to-guidance-links';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';

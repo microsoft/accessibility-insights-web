@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Header, HeaderDeps } from 'common/components/header';
+import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Header, HeaderDeps } from 'common/components/header';
-import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 
 describe('Header', () => {
     const stubNarrowModeStatus = {

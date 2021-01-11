@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { find } from 'lodash';
 import { It, Mock } from 'typemoq';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentTestDefinition } from '../../../../../common/assessment/assessment-test-result';
 import {
     getRequirementsResults,

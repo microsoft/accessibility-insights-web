@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FileNameBuilder } from 'common/filename-builder';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
+import * as React from 'react';
 import { FileURLProvider } from '../../common/file-url-provider';
 
 export type SaveAssessmentFactoryDeps = {

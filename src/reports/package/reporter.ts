@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import { CombinedResultsReport } from 'reports/package/combined-results-report';
+import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { AxeResultsReport } from './axe-results-report';
 

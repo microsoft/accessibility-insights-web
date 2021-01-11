@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
+import { generateUID } from 'common/uid-generator';
 import * as makeDir from 'make-dir';
 
-import { generateUID } from 'common/uid-generator';
 
 function sanitizeFilename(s: string): string {
     return s.replace(/[^a-z0-9.-]+/gi, '_');

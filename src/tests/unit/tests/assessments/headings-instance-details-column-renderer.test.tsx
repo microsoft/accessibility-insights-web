@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 
 import { headingsAssessmentInstanceDetailsColumnRenderer } from 'assessments/headings/headings-instance-details-column-renderer';
 import { InstanceTableRow } from 'assessments/types/instance-table-data';
+import * as React from 'react';
 import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { HeadingFormatter } from '../../../../injected/visualization/heading-formatter';

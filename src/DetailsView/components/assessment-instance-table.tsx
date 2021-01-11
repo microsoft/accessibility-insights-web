@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IRenderFunction } from '@uifabric/utilities';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { has } from 'lodash';
 import {
     CheckboxVisibility,
@@ -13,9 +16,6 @@ import {
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
