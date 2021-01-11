@@ -12,7 +12,6 @@ import {
     InsightsConfigurationOptions,
 } from './configuration-types';
 
-
 export type ReadFileSync = () => Buffer;
 
 // Note: this is resolved relative to the bundled js file, not the src layout

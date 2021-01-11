@@ -4,7 +4,6 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { PortDisconnectStub } from '../stubs/chrome-adapter-stub';
 import { ChromeEventMock } from './chrome-event-mock';
 
-
 export class PortOnDisconnectMock extends ChromeEventMock {
     private portOnDisconnectMock = Mock.ofType(PortDisconnectStub, MockBehavior.Strict);
 
