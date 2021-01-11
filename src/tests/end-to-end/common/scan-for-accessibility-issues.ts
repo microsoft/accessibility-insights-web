@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { AxeResults, ElementContext } from 'axe-core';
 
-import * as path from 'path';
 import { Page } from './page-controllers/page';
 import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
 

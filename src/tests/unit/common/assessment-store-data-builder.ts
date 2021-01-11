@@ -6,13 +6,13 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import {
     AssessmentData,
     AssessmentStoreData,
 } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
-import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStoreData> {
     private storeDataGeneratorMock: IMock<InitialAssessmentStoreDataGenerator>;

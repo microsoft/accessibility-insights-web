@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { SummaryScanResult } from '../../package/accessibilityInsightsReport';
 import { NewTabLink } from 'common/components/new-tab-link';
 import {
     SummaryResultsTable,
     TableColumn,
 } from 'reports/components/report-sections/summary-results-table';
+import { SummaryScanResult } from '../../package/accessibilityInsightsReport';
 
 export type UrlScanResultsTableProps = {
     results: SummaryScanResult[];

@@ -115,6 +115,9 @@ import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/r
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
+import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { TestViewDeps } from 'electron/views/results/test-view';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -143,9 +146,6 @@ import {
     RootContainerRendererDeps,
 } from './root-container/root-container-renderer';
 import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
-import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
-import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { TestViewDeps } from 'electron/views/results/test-view';
 
 declare let window: Window & {
     insightsUserConfiguration: UserConfigurationController;

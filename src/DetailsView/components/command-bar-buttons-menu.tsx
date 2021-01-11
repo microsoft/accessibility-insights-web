@@ -4,9 +4,9 @@ import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
-import * as styles from './command-bar-buttons-menu.scss';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
     renderExportReportButton: () => JSX.Element;

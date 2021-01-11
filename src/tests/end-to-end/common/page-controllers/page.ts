@@ -8,6 +8,7 @@ import {
     PageFunction,
     WaitForSelectorOptions,
 } from 'tests/end-to-end/common/playwright-option-types';
+import { serializeError } from 'tests/common/serialize-error';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import { forceTestFailure } from '../force-test-failure';
 import { screenshotOnError } from '../screenshot-on-error';
@@ -16,7 +17,6 @@ import {
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
-import { serializeError } from 'tests/common/serialize-error';
 
 const promiseFactory = createDefaultPromiseFactory();
 

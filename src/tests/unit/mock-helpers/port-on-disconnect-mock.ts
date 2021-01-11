@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, MockBehavior } from 'typemoq';
+import { PortDisconnectStub } from '../stubs/chrome-adapter-stub';
 import { ChromeEventMock } from './chrome-event-mock';
 
-import { PortDisconnectStub } from '../stubs/chrome-adapter-stub';
 
 export class PortOnDisconnectMock extends ChromeEventMock {
     private portOnDisconnectMock = Mock.ofType(PortDisconnectStub, MockBehavior.Strict);

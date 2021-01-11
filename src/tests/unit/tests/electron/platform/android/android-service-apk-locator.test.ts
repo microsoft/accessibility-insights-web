@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { apkVersionName } from 'accessibility-insights-for-android-service-bin';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
-import * as path from 'path';
 
 describe('AndroidServiceApkLocator', () => {
     describe('with successful getAppPathAsync', () => {

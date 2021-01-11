@@ -3,9 +3,9 @@
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { CheckType } from 'common/types/check-type';
 import * as React from 'react';
+import { NamedFC } from '../react/named-fc';
 import * as styles from './fix-instruction-panel.scss';
 
-import { NamedFC } from '../react/named-fc';
 
 export interface FixInstructionPanelDeps {
     fixInstructionProcessor: FixInstructionProcessor;

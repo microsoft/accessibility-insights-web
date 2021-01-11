@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { resultsView } from 'electron/views/results/results-view.scss';
-import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
 import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';

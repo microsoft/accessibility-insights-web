@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
+import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
+import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 import { AxeConfigurator } from './axe-configurator';
 import { AxeResponseHandler } from './axe-response-handler';
 import { CheckMessageTransformer } from './check-message-transformer';
@@ -17,8 +19,6 @@ import { mapAxeTagsToGuidanceLinks } from './map-axe-tags-to-guidance-links';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
-import { explicitRuleOverrides, getRuleInclusions } from 'scanner/get-rule-inclusions';
-import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 
 export const scan = (
     options: ScanOptions,

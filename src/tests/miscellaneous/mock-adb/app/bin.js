@@ -3,13 +3,13 @@
 const fs = require('fs');
 const path = require('path');
 const process = require('process');
+const { EOL } = require('os');
+const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
 const {
     startDetachedPortForwardServer,
     stopDetachedPortForwardServer,
     tryHandleAsPortForwardServer,
 } = require('./port-forward-server.js');
-const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
-const { EOL } = require('os');
 
 function resultFromCommand(config, inputCommand) {
     // First option: exact match

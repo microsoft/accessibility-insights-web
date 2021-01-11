@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { allOriginsPattern } from 'background/browser-permissions-tracker';
-import { generateUID } from 'common/uid-generator';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as util from 'util';
+import { allOriginsPattern } from 'background/browser-permissions-tracker';
+import { generateUID } from 'common/uid-generator';
 import * as Playwright from 'playwright';
 import { ManifestOveride } from 'tests/end-to-end/common/manifest-overide';
-import * as util from 'util';
 import { testResourceServerConfig } from '../setup/test-resource-server-config';
 import { Browser } from './browser';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';

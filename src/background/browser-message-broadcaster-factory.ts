@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { inspect } from 'util';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Logger } from 'common/logging/logger';
-import { inspect } from 'util';
 
 export type MessageBroadcaster = (message: any) => Promise<void>;
 

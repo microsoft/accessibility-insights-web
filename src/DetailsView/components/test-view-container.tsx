@@ -6,6 +6,8 @@ import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
+import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -26,8 +28,6 @@ import { TestViewDeps } from './test-view';
 import { AdhocIssuesTestView } from './adhoc-issues-test-view';
 import { AdhocStaticTestView } from './adhoc-static-test-view';
 import { AssessmentTestView } from './assessment-test-view';
-import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
-import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

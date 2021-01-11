@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { CustomWidgetsColumnRendererFactory } from 'assessments/custom-widgets/custom-widgets-column-renderer-factory';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { RendererWrapper } from '../common/renderer-wrapper';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('CustomWidgetsColumnRendererFactory', () => {
     let configs: PropertyBagColumnRendererConfig<TestPropertyBag>[];

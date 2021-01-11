@@ -5,9 +5,9 @@ import * as React from 'react';
 
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { PropertyBagColumnRendererFactory } from 'assessments/common/property-bag-column-renderer-factory';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { RendererWrapper } from './renderer-wrapper';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;

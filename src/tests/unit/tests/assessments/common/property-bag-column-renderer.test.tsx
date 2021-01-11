@@ -5,10 +5,10 @@ import * as React from 'react';
 
 import { propertyBagColumnRenderer } from 'assessments/common/property-bag-column-renderer';
 import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { RendererWrapper } from './renderer-wrapper';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;

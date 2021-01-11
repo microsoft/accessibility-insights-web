@@ -3,10 +3,10 @@
 import * as React from 'react';
 
 import { frameTitleInstanceDetailsColumnRenderer } from 'assessments/page/frametitle-instance-details-column-renderer';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { FrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { FrameFormatter } from '../../../../injected/visualization/frame-formatter';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {

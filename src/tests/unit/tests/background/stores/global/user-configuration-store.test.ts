@@ -15,6 +15,7 @@ import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { WindowState } from 'electron/flux/types/window-state';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
@@ -23,7 +24,6 @@ import {
     UserConfigurationStoreData,
 } from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
-import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 
 describe('UserConfigurationStoreTest', () => {
     let initialStoreData: UserConfigurationStoreData;

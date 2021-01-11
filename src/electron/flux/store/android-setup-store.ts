@@ -3,10 +3,10 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
+import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { AndroidSetupActions } from '../action/android-setup-actions';
 import { AndroidSetupStoreData } from '../types/android-setup-store-data';
 
-import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import {
     AndroidSetupStateMachine,
     AndroidSetupStateMachineFactory,

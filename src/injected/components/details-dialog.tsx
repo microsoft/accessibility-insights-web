@@ -24,12 +24,12 @@ import { DictionaryStringTo } from 'types/common-types';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
+import { CheckType } from '../../common/types/check-type';
 import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
 import {
     IssueDetailsNavigationControls,
     IssueDetailsNavigationControlsProps,
 } from './issue-details-navigation-controls';
-import { CheckType } from '../../common/types/check-type';
 
 export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;

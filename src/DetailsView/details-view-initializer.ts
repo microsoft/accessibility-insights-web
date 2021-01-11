@@ -47,6 +47,12 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
+import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
+import { AssessmentDataParser } from 'common/assessment-data-parser';
+import { FileNameBuilder } from 'common/filename-builder';
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
+import { Logger } from 'common/logging/logger';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
@@ -63,10 +69,6 @@ import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
 import { FileURLProvider } from '../common/file-url-provider';
-import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
-import { AssessmentDataParser } from 'common/assessment-data-parser';
-import { FileNameBuilder } from 'common/filename-builder';
-import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -125,8 +127,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { Logger } from 'common/logging/logger';
-import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 
 declare const window: AutoChecker & Window;
 

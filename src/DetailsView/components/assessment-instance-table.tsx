@@ -15,6 +15,7 @@ import * as React from 'react';
 
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
@@ -23,7 +24,6 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { InstanceTableHeaderType, InstanceTableRow } from 'assessments/types/instance-table-data';
 
 export const passUnmarkedInstancesButtonAutomationId =
     'assessment-instance-table-pass-unmarked-instances-button';

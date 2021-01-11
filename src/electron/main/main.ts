@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { app, BrowserWindow, dialog, ipcMain, nativeTheme } from 'electron';
@@ -11,7 +12,6 @@ import { IPC_FROMRENDERER_MAIN_WINDOW_INITIALIZED_CHANNEL_NAME } from 'electron/
 import { IpcMessageDispatcher, IpcMessageSink } from 'electron/ipc/ipc-message-dispatcher';
 import { MainWindowRendererMessageHandlers } from 'electron/main/main-window-renderer-message-handlers';
 import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
-import * as path from 'path';
 import { mainWindowConfig } from './main-window-config';
 import { NativeHighContrastModeListener } from './native-high-contrast-mode-listener';
 

@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { pageTitleInstanceDetailsColumnRenderer } from 'assessments/page/pagetitle-instance-details-column-renderer';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
 import { HeadingsAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 describe('PageTitleInstanceDetailsColumnRendererTest', () => {
     test('render: propertyBag is null', () => {
