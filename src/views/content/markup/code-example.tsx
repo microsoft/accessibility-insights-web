@@ -4,7 +4,6 @@ import { CodeBlock } from 'assessments/markup';
 import { flatten } from 'lodash';
 import * as React from 'react';
 
-
 export type CodeExampleProps = {
     title?: React.ReactNode;
     children: string;

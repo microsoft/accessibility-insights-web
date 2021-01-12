@@ -10,7 +10,6 @@ import * as React from 'react';
 
 import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
 
-
 describe('GuidanceLinksTest', () => {
     const testLink1 = {
         text: 'text1',

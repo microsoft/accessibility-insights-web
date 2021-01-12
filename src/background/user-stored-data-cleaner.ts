@@ -3,7 +3,6 @@
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { each } from 'lodash';
 
-
 export const cleanKeysFromStorage = (
     storageAdapter: StorageAdapter,
     userDataKeys: string[],

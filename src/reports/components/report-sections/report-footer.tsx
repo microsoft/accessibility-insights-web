@@ -3,7 +3,6 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-
 export const ReportFooter = NamedFC('ReportFooter', ({ children }) => {
     return (
         <div className="report-footer-container">

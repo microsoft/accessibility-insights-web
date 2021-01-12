@@ -6,7 +6,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-
 export interface MaximizeRestoreButtonProps {
     isMaximized: boolean;
     onClick: () => void;

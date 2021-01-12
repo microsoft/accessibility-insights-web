@@ -4,7 +4,6 @@ import { TargetPageHiddenBar } from 'DetailsView/components/target-page-hidden-b
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-
 describe('TargetPageHiddenBar', () => {
     it('renders per snapshot to indicate that the target page is hidden', () => {
         const testSubject = shallow(<TargetPageHiddenBar isTargetPageHidden={true} />);

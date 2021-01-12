@@ -3,7 +3,6 @@
 import { GuidanceLink, GuidanceTag } from 'common/guidance-links';
 import { isArray, isObject } from 'lodash';
 
-
 export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[]) => GuidanceTag[];
 export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks = links => {
     if (isArray(links) === false) {

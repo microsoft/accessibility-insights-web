@@ -5,7 +5,6 @@ import { DocumentManipulator } from 'common/document-manipulator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-
 describe('BodyClassModifier', () => {
     let bodyClassNames: string[];
     let deps: BodyClassModifierDeps;

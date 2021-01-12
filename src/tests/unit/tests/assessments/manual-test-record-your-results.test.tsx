@@ -4,7 +4,6 @@ import { ManualTestRecordYourResults } from 'assessments/common/manual-test-reco
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
-
 describe('ManualTestRecordYourResultsTest', () => {
     const multiple = [false, true];
 

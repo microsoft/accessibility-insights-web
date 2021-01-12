@@ -11,7 +11,6 @@ import {
 } from '../types/android-setup-state-machine-types';
 import { AndroidSetupStoreData } from '../types/android-setup-store-data';
 
-
 export class AndroidSetupStore extends BaseStoreImpl<AndroidSetupStoreData> {
     private stateMachine: AndroidSetupStateMachine;
 

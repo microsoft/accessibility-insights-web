@@ -4,7 +4,6 @@ import { AssistedTestRecordYourResults } from 'assessments/common/assisted-test-
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-
 describe('AssistedTestRecordYourResults', () => {
     it('renders', () => {
         const wrapped = shallow(<AssistedTestRecordYourResults />);

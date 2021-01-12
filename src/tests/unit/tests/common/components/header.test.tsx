@@ -5,7 +5,6 @@ import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-
 describe('Header', () => {
     const stubNarrowModeStatus = {
         isHeaderAndNavCollapsed: false,

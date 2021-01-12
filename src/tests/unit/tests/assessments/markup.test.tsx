@@ -3,7 +3,6 @@
 import * as Markup from 'assessments/markup';
 import * as React from 'react';
 
-
 describe('markup tags', () => {
     test('test simple Tag', () => {
         const rendered = Markup.Tag({ tagName: 'myTag' });

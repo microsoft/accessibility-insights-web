@@ -10,7 +10,6 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, Times } from 'typemoq';
 
-
 describe('MaximizeRestoreButton', () => {
     it('renders with restore', () => {
         const props: MaximizeRestoreButtonProps = { isMaximized: true, onClick: null };

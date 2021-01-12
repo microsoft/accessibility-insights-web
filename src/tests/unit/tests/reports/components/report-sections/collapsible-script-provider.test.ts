@@ -7,7 +7,6 @@ import {
 } from 'reports/components/report-sections/collapsible-script-provider';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-
 describe('CollapsibleScriptProvider', () => {
     it('produces script source that matches snapshot', () => {
         expect(getDefaultAddListenerForCollapsibleSection()).toMatchSnapshot();
