@@ -42,6 +42,9 @@ module.exports = {
             },
         ],
 
+        'react/no-unused-state': 'error',
+        'react/no-access-state-in-setstate': 'error',
+
         // Disabled due to high existing-positive count during initial tslint -> eslint migration
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',

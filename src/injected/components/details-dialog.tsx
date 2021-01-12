@@ -53,9 +53,7 @@ export interface DetailsDialogProps {
 export interface DetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
-    canInspect: boolean;
     userConfigurationStoreData: UserConfigurationStoreData;
-    showInspectMessage: boolean;
 }
 
 export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
@@ -111,8 +109,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         this.state = {
             showDialog: true,
             currentRuleIndex: 0,
-            canInspect: true,
-            showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
         };
     }
