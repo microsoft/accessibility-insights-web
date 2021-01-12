@@ -6,9 +6,9 @@ import { CrossIcon, CrossIconInverted } from 'common/icons/cross-icon';
 import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
 import * as React from 'react';
 
+import { UrlOutcomeType } from 'reports/components/url-outcome-type';
 import { InstanceOutcomeType } from './instance-outcome-type';
 import { RequirementOutcomeType } from './requirement-outcome-type';
-import { UrlOutcomeType } from 'reports/components/url-outcome-type';
 
 export type OutcomeStats = { [OT in OutcomeType]: number };
 export type OutcomeType = RequirementOutcomeType | InstanceOutcomeType | UrlOutcomeType;

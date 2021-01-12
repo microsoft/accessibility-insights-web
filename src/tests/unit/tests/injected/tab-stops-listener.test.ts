@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HTMLElementUtils } from 'common/html-element-utils';
 import { TabStopEvent } from 'common/types/tab-stop-event';
@@ -11,6 +10,7 @@ import { FrameCommunicator, MessageRequest } from 'injected/frameCommunicators/f
 import { FrameMessageResponseCallback } from 'injected/frameCommunicators/window-message-handler';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { TabStopsListener } from 'injected/tab-stops-listener';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TabStopsListenerTest', () => {
     const frameCommunicatorMock: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);

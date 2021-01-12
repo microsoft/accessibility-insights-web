@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { shallow } from 'enzyme';
-
+import { AssessmentDataParser } from 'common/assessment-data-parser';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     LoadAssessmentButton,
     LoadAssessmentButtonProps,
     LoadAssessmentButtonDeps,
 } from 'DetailsView/components/load-assessment-button';
-import { Mock } from 'typemoq';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+
+import { Mock } from 'typemoq';
 
 describe('LoadAssessmentButton', () => {
     const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);

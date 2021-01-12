@@ -22,8 +22,8 @@ import {
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
-import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';

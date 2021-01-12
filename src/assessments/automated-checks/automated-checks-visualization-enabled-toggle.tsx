@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isEmpty } from 'lodash';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
@@ -8,6 +7,7 @@ import {
     TestStepResult,
 } from 'common/types/store-data/assessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { isEmpty } from 'lodash';
 
 function failingInstances(result: TestStepResult): boolean {
     return result.status === ManualTestStatus.FAIL;

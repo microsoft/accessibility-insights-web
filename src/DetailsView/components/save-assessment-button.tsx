@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import * as React from 'react';
 export interface SaveAssessmentButtonProps {
     download: string;
     href: string;

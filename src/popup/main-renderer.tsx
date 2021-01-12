@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { title } from 'content/strings/application';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { title } from 'content/strings/application';
 import { Theme, ThemeDeps, ThemeInnerState } from '../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';

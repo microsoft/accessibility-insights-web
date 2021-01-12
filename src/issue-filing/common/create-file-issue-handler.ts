@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServicePropertiesMap } from 'common/types/store-data/user-configuration-store';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingUrlProvider } from '../types/issue-filing-service';
 
 export type OpenIssueLink = (url: string) => Promise<any>;

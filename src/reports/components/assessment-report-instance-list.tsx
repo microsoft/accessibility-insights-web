@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatten, toPairs } from 'lodash';
-import * as React from 'react';
-
 import { NamedFC } from 'common/react/named-fc';
 import {
     BagOf,
     isScalarColumnValue,
     ScalarColumnValue,
 } from 'common/types/property-bag/column-value-bag';
+import { flatten, toPairs } from 'lodash';
+import * as React from 'react';
+
 import { InstanceReportModel } from '../assessment-report-model';
 
 export interface AssessmentReportInstanceListProps {

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CombinedResultsReport } from 'reports/package/combined-results-report';
+import { SummaryResultsReport } from 'reports/package/summary-results-report';
 import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { AxeResultsReport } from './axe-results-report';
-import { SummaryResultsReport } from 'reports/package/summary-results-report';
-import { CombinedResultsReport } from 'reports/package/combined-results-report';
 
 export type AxeResultsReportGenerator =
     (parameters: AccessibilityInsightsReport.AxeReportParameters) => AxeResultsReport;

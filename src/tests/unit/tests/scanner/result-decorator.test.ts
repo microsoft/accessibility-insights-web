@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DocumentUtils } from 'scanner/document-utils';
 import { MessageDecorator } from 'scanner/message-decorator';
 import { Processor } from 'scanner/processor';
 import { ResultDecorator } from 'scanner/result-decorator';
+import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ResultDecorator', () => {
     let instanceStub;

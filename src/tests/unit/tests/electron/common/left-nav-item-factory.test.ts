@@ -3,10 +3,10 @@
 
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
-import { TestConfig } from 'electron/types/test-config';
-import { LeftNavItem } from 'electron/types/left-nav-item';
-import { Mock, MockBehavior } from 'typemoq';
 import { ContentPageInfo } from 'electron/types/content-page-info';
+import { LeftNavItem } from 'electron/types/left-nav-item';
+import { TestConfig } from 'electron/types/test-config';
+import { Mock, MockBehavior } from 'typemoq';
 
 describe('left nav item factory', () => {
     it('creates array of LeftNavItem objects as expected', () => {

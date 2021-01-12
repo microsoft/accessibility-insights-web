@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { FileSystemConfiguration } from 'common/configuration/file-system-configuration';
 import { getElectronIconPath } from 'electron/common/get-electron-icon-path';
 import { OSType } from 'electron/window-management/platform-info';
-import * as path from 'path';
 import { GlobalMock, GlobalScope, It, Mock, MockBehavior } from 'typemoq';
 
 describe('getElectronIconPath', () => {

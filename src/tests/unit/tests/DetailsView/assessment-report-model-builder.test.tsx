@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forOwn } from 'lodash';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     AssessmentDefaultMessageGenerator,
@@ -13,7 +11,9 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { forOwn } from 'lodash';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 

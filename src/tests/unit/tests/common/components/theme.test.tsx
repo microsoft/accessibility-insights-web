@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { Mock } from 'typemoq';
 
 import { ThemeDeps, ThemeInner, ThemeInnerProps } from 'common/components/theme';
 import { DocumentManipulator } from 'common/document-manipulator';
 import { DefaultThemePalette } from 'common/styles/default-theme-palette';
 import { HighContrastThemePalette } from 'common/styles/high-contrast-theme-palette';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { Mock } from 'typemoq';
 
 describe('ThemeInner', () => {
     let props: ThemeInnerProps;

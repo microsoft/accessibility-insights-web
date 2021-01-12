@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TargetPageHiddenBar } from 'DetailsView/components/target-page-hidden-bar';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
-import { TargetPageHiddenBar } from 'DetailsView/components/target-page-hidden-bar';
 
 describe('TargetPageHiddenBar', () => {
     it('renders per snapshot to indicate that the target page is hidden', () => {

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import {
     AssessmentStoreData,
     PersistedTabInfo,

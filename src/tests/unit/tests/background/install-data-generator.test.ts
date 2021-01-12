@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { InstallDataGenerator } from 'background/install-data-generator';
 import { InstallationData } from 'background/installation-data';
 import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
 import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
 import { generateUID } from 'common/uid-generator';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('InstallDataGeneratorTest', () => {
     let generateGuidMock: IMock<() => string>;

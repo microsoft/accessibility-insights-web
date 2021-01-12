@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Times } from 'typemoq';
 
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
+import { IMock, It, Times } from 'typemoq';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { DefaultConstructor } from '../../../common/types/idefault-constructor';
 import { StoreTester } from './store-tester';

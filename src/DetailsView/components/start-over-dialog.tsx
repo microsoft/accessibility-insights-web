@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedFC } from 'common/react/named-fc';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { GenericDialog } from './generic-dialog';
 

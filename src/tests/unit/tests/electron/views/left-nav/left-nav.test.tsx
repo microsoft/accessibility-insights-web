@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { LeftNavItem } from 'electron/types/left-nav-item';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { LeftNavItem } from 'electron/types/left-nav-item';
 import { LeftNavProps, LeftNav } from 'electron/views/left-nav/left-nav';
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 
 describe('LeftNav', () => {
     let leftNavItemsStub: LeftNavItem[];

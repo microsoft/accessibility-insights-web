@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    CardsVisualizationModifierButtons,
+    CardsVisualizationModifierButtonsProps,
+} from 'common/components/cards/cards-visualization-modifier-buttons';
+import {
     ResultSectionContent,
     ResultSectionContentDeps,
     ResultSectionContentProps,
 } from 'common/components/cards/result-section-content';
+import { NamedFC } from 'common/react/named-fc';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    CardsVisualizationModifierButtons,
-    CardsVisualizationModifierButtonsProps,
-} from 'common/components/cards/cards-visualization-modifier-buttons';
-import { NamedFC } from 'common/react/named-fc';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('ResultSectionContent', () => {

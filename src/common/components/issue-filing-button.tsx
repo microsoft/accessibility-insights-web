@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';

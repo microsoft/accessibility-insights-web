@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { cloneDeep } from 'lodash';
 import { DictionaryNumberTo, DictionaryStringTo } from 'types/common-types';
 
-import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { TargetPageStoreData } from './client-store-listener';
 import { DrawingInitiator } from './drawing-initiator';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
 
 import { CheckIcon } from 'common/icons/check-icon';
 import { CrossIcon } from 'common/icons/cross-icon';
+import { shallow } from 'enzyme';
 import { UIFactory } from 'packages/accessibility-insights-ui/ui-factory';
+import * as React from 'react';
 import { GuidanceTitle } from 'views/content/guidance-title';
 
 describe('UIFactory', () => {

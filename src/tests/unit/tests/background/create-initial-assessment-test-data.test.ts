@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatMap } from 'lodash';
-
 import {
     createAutomatedChecksInitialAssessmentTestData,
     createInitialAssessmentTestData,
 } from 'background/create-initial-assessment-test-data';
+import { flatMap } from 'lodash';
+
 import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
 import {
     GeneratedAssessmentInstance,

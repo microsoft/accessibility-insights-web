@@ -2,8 +2,8 @@ import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-acti
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TestConfig } from 'electron/types/test-config';
 import { LeftNavItem } from 'electron/types/left-nav-item';
+import { TestConfig } from 'electron/types/test-config';
 
 export const createLeftNavItems = (
     configs: TestConfig[],

@@ -5,8 +5,8 @@ import {
     FixInstructionPanelProps,
 } from 'common/components/fix-instruction-panel';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { shallow } from 'enzyme';
 import { CheckType } from 'common/types/check-type';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
