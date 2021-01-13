@@ -29,8 +29,7 @@ export class CollapsibleComponent extends React.Component<
     }
 
     private onClick = (): void => {
-        const newState = !this.state.showContent;
-        this.setState({ showContent: newState });
+        this.setState(prevState => ({ showContent: !prevState.showContent }));
     };
 
     public render(): JSX.Element {

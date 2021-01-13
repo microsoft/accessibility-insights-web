@@ -78,8 +78,8 @@ export class TelemetryViewer extends React.Component<TelemetryViewerProps, Telem
     );
 
     private onTelemetryMessage = (telemetryMessage: DebugToolsTelemetryMessage) => {
-        this.setState({
-            telemetryMessages: [telemetryMessage, ...this.state.telemetryMessages],
-        });
+        this.setState(prevState => ({
+            telemetryMessages: [telemetryMessage, ...prevState.telemetryMessages],
+        }));
     };
 }
