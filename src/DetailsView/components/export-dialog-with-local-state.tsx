@@ -49,8 +49,8 @@ export class ExportDialogWithLocalState extends React.Component<
     };
 
     private generateHtml = () => {
-        this.setState(prevState => ({
-            exportData: this.props.htmlGenerator(prevState.exportDescription),
+        this.setState((prevState, prevProps) => ({
+            exportData: prevProps.htmlGenerator(prevState.exportDescription),
             exportDescription: '',
         }));
     };

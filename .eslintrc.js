@@ -42,8 +42,6 @@ module.exports = {
             },
         ],
 
-        'react/no-access-state-in-setstate': 'error',
-
         // Disabled due to high existing-positive count during initial tslint -> eslint migration
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -73,6 +71,7 @@ module.exports = {
         'react/display-name': 'off',
         'react/no-unescaped-entities': 'off',
         'react/jsx-key': 'off',
+        'react/no-access-state-in-setstate': 'error',
         'react/no-direct-mutation-state': 'off',
         'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',
