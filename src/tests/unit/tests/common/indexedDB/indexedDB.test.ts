@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBUtil } from 'common/indexedDB/indexedDB';
 import * as fakeIndexedDB from 'fake-indexeddb';
-
-import { IndexedDBUtil } from '../../../../../common/indexedDB/indexedDB';
+import { createStore } from 'idb-keyval';
 
 describe('IndexedDBUtil test cases', () => {
     const defaultDBName = 'default-db';
@@ -10,12 +10,8 @@ describe('IndexedDBUtil test cases', () => {
     let idbInstance;
     let store;
     beforeAll(() => {
-        const request = fakeIndexedDB.open(defaultDBName, 3);
-        request.onupgradeneeded = function (): void {
-            const db = request.result;
-            store = db.createObjectStore(defaultStoreName);
-        };
         global['indexedDB'] = fakeIndexedDB;
+        store = createStore(defaultDBName, defaultStoreName);
         idbInstance = new IndexedDBUtil(store);
     });
 

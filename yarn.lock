@@ -7399,10 +7399,10 @@ icss-utils@^5.0.0:
   resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-5.0.0.tgz#03ed56c3accd32f9caaf1752ebf64ef12347bb84"
   integrity sha512-aF2Cf/CkEZrI/vsu5WI/I+akFgdbwQHVE9YRZxATrhH4PVIe6a3BIjwjEcW+z+jP/hNh+YvM3lAAn1wJQ6opSg==
 
-idb-keyval@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.2.0.tgz#cbbf354deb5684b6cdc84376294fc05932845bd6"
-  integrity sha512-slx8Q6oywCCSfKgPgL0sEsXtPVnSbTLWpyiDcu6msHOyKOLari1TD1qocXVCft80umnkk3/Qqh3lwoFt8T/BPQ==
+idb-keyval@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-5.0.0.tgz#68e638e973ac641a7bb7416fdacd511238565023"
+  integrity sha512-/1pWu89XEgjIud81IMj1Ctxvm2fkUnNXbodUEDZIvoa9T7C2yqkZhJjNGti3vtZOG8rlNMk+EPIb/YcyC94ZCA==
 
 identity-obj-proxy@^3.0.0:
   version "3.0.0"
