@@ -71,6 +71,7 @@ module.exports = {
         'react/display-name': 'off',
         'react/no-unescaped-entities': 'off',
         'react/jsx-key': 'off',
+        'react/no-access-state-in-setstate': 'error',
         'react/no-direct-mutation-state': 'off',
         'react/jsx-no-target-blank': 'off',
         'react/no-unknown-property': 'off',

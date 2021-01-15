@@ -57,9 +57,14 @@ export class ReportExportComponent extends React.Component<
     };
 
     private generateHtml = () => {
-        const { htmlGenerator } = this.props;
-        const exportData = htmlGenerator(this.state.exportDescription);
-        this.setState({ exportDescription: '', exportData });
+        this.setState((prevState, prevProps) => {
+            const { htmlGenerator } = prevProps;
+
+            return {
+                exportDescription: '',
+                exportData: htmlGenerator(prevState.exportDescription),
+            };
+        });
     };
 
     private onExportButtonClick = () => {
