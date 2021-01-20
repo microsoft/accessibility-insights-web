@@ -6,8 +6,12 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/text-spacing';
 import * as React from 'react';
-
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
+import { VisualizationType } from 'common/types/visualization-type';
+import { TargetType } from 'common/types/target-type';
+
 import * as Markup from '../../markup';
 
 const textSpacingDescription: JSX.Element = (
@@ -16,43 +20,23 @@ const textSpacingDescription: JSX.Element = (
 
 const textSpacingHowToTest: JSX.Element = (
     <div>
-        This test uses the{' '}
-        <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">
-            Text spacing
-        </NewTabLink>{' '}
-        bookmarklet to adjust text spacing in the target page.
+        The visual helper for this requirement adjusts the target page's text styling as follows:
+        <ul>
+            <li>
+                <Markup.Term>Letter spacing</Markup.Term> (tracking) at 0.12 times the font size{' '}
+            </li>
+            <li>
+                <Markup.Term>Word spacing</Markup.Term> at 0.16 times the font size{' '}
+            </li>
+            <li>
+                <Markup.Term>Line height</Markup.Term> (line spacing) at 1.5 times the font size{' '}
+            </li>
+            <li>
+                <Markup.Term>Spacing after paragraphs</Markup.Term> at 2 times the font size{' '}
+            </li>
+        </ul>
         <ol>
-            <li>
-                Open{' '}
-                <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">
-                    Text spacing
-                </NewTabLink>{' '}
-                in a new browser window.
-            </li>
-            <li>
-                Add the "Bookmarklet: Text Spacing" link from that page to your browser's bookmarks.
-                (Mouse users can simply drag the link into the bookmarks bar.)
-            </li>
-            <li>
-                Run the bookmarklet in the browser tab containing your target page. Text styling
-                will automatically be adjusted as follows:
-                <ol>
-                    <li>
-                        <Markup.Term>Letter spacing</Markup.Term> (tracking) at 0.12 times the font
-                        size{' '}
-                    </li>
-                    <li>
-                        <Markup.Term>Word spacing</Markup.Term> at 0.16 times the font size{' '}
-                    </li>
-                    <li>
-                        <Markup.Term>Line height</Markup.Term> (line spacing) at 1.5 times the font
-                        size{' '}
-                    </li>
-                    <li>
-                        <Markup.Term>Spacing after paragraphs</Markup.Term> at 2 times the font size{' '}
-                    </li>
-                </ol>
-            </li>
+            <li>Toggle the visual helper to adjust text spacing in the target page.</li>
             <li>
                 Verify that all of the following are true:
                 <ol>
@@ -74,4 +58,18 @@ export const TextSpacing: Requirement = {
     ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_4_12],
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['text-spacing'],
+                key: AdaptableContentTestStep.textSpacing,
+                testType: VisualizationType.AdaptableContent,
+            }),
+        ),
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
+    getDrawer: provider =>
+        provider.createInjectedClassDrawer(
+            'insights-formatted-text-spacing-container',
+            TargetType.Multi,
+        ),
 };
