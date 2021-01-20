@@ -82,7 +82,7 @@
         "@types/jest": "^26.0.20",
         "@types/jsdom": "^16.2.6",
         "@types/lodash": "^4.14.167",
-        "@types/luxon": "^1.25.0",
+        "@types/luxon": "^1.25.1",
         "@types/make-dir": "^2.1.0",
         "@types/node": "^14.14.21",
         "@types/q": "^1.5.4",
