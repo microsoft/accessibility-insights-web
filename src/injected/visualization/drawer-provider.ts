@@ -21,16 +21,17 @@ import { FrameFormatter } from './frame-formatter';
 import { HeadingFormatter } from './heading-formatter';
 import { HighlightBoxDrawer } from './highlight-box-drawer';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
+import { InjectedClassDrawer } from './injected-class-drawer';
+import { InjectedClassFormatter } from './injected-class-formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
 import { NonTextComponentFormatter } from './non-text-component-formatter';
 import { NullDrawer } from './null-drawer';
-import { SingleTargetDrawer } from './single-target-drawer';
-import { SingleTargetFormatter } from './single-target-formatter';
 import { SVGDrawer } from './svg-drawer';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
+import { TargetType } from '../../common/types/target-type';
 
 export type IPartialSVGDrawerConfiguration = DeepPartial<SVGDrawerConfiguration>;
 
@@ -53,8 +54,11 @@ export class DrawerProvider {
         return new NullDrawer();
     }
 
-    public createSingleTargetDrawer(className: string): Drawer {
-        return new SingleTargetDrawer(this.drawerUtils, new SingleTargetFormatter(className));
+    public createInjectedClassDrawer(className: string, targetType = TargetType.Single): Drawer {
+        return new InjectedClassDrawer(
+            this.drawerUtils,
+            new InjectedClassFormatter(className, targetType),
+        );
     }
 
     public createSVGDrawer(config: IPartialSVGDrawerConfiguration = null): Drawer {

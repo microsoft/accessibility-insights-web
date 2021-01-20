@@ -6,18 +6,19 @@ import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { SingleTargetDrawerConfiguration } from '../../../../../injected/visualization/formatter';
-import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
-import { SingleTargetFormatter } from '../../../../../injected/visualization/single-target-formatter';
+import { InjectedClassDrawerConfiguration } from '../../../../../injected/visualization/formatter';
+import { InjectedClassDrawer } from '../../../../../injected/visualization/injected-class-drawer';
+import { InjectedClassFormatter } from '../../../../../injected/visualization/injected-class-formatter';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
+import { TargetType } from '../../../../../common/types/target-type';
 
-describe('SingleTargetDrawer Tests', () => {
+describe('InjectedClassDrawer Tests', () => {
     let drawerUtilsMock: IMock<DrawerUtils>;
-    let formatterMock: IMock<SingleTargetFormatter>;
+    let formatterMock: IMock<InjectedClassFormatter>;
 
     beforeEach(() => {
         drawerUtilsMock = Mock.ofType(DrawerUtils);
-        formatterMock = Mock.ofType(SingleTargetFormatter);
+        formatterMock = Mock.ofType(InjectedClassFormatter);
     });
 
     test('initializer', () => {
@@ -26,8 +27,8 @@ describe('SingleTargetDrawer Tests', () => {
                 `);
 
         setupDrawerUtilsMockDefault(dom);
-
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        setupFormatterMock();
+        const testSubject = new InjectedClassDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -51,7 +52,7 @@ describe('SingleTargetDrawer Tests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new InjectedClassDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -82,7 +83,7 @@ describe('SingleTargetDrawer Tests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new InjectedClassDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -113,7 +114,7 @@ describe('SingleTargetDrawer Tests', () => {
         setupDrawerUtilsMockDefault(dom);
         setupFormatterMock();
 
-        const testSubject = new SingleTargetDrawer(drawerUtilsMock.object, formatterMock.object);
+        const testSubject = new InjectedClassDrawer(drawerUtilsMock.object, formatterMock.object);
 
         const drawerInfo: DrawerInitData<HtmlElementAxeResults> = {
             data: [
@@ -150,7 +151,8 @@ describe('SingleTargetDrawer Tests', () => {
             .returns(() => {
                 return {
                     injectedClassName: 'test-injected-classname',
-                } as SingleTargetDrawerConfiguration;
+                    targetType: TargetType.Single,
+                } as InjectedClassDrawerConfiguration;
             })
             .verifiable(Times.atLeastOnce());
     }

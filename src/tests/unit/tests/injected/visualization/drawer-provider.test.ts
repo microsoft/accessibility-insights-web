@@ -13,8 +13,9 @@ import { DrawerProvider } from '../../../../../injected/visualization/drawer-pro
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
-import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
+import { InjectedClassDrawer } from '../../../../../injected/visualization/injected-class-drawer';
 import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer';
+import { TargetType } from '../../../../../common/types/target-type';
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
@@ -70,12 +71,17 @@ describe('DrawerProviderTests', () => {
         expect(drawer).toBeInstanceOf(HighlightBoxDrawer);
     });
 
-    test('getSingleTargetDrawer', () => {
+    test('getInjectedClassDrawer: with TargetType.Multi', () => {
         const injectedClassName = 'test';
-        const drawer = testObject.createSingleTargetDrawer(injectedClassName);
-        expect(drawer).toBeInstanceOf(SingleTargetDrawer);
+        const drawer = testObject.createInjectedClassDrawer(injectedClassName, TargetType.Multi);
+        expect(drawer).toBeInstanceOf(InjectedClassDrawer);
     });
 
+    test('getInjectedClassDrawer: with only class config', () => {
+        const injectedClassName = 'test';
+        const drawer = testObject.createInjectedClassDrawer(injectedClassName);
+        expect(drawer).toBeInstanceOf(InjectedClassDrawer);
+    });
     test('getSVGDrawer: svg drawer v2 with null/no config', () => {
         const drawer = testObject.createSVGDrawer() as any;
         expect(drawer.formatter.givenConfiguration).toBeNull();
