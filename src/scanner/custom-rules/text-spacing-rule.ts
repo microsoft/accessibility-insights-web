@@ -15,11 +15,6 @@ export const textSpacingConfiguration: RuleConfiguration = {
         id: 'text-spacing',
         selector: 'body',
         any: [spacingCheckId],
-        matches: () => isInTopWindow(window),
         enabled: false,
     },
 };
-
-export function isInTopWindow(win: any): boolean {
-    return win.top === win;
-}
