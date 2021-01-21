@@ -106,7 +106,7 @@
         "css-loader": "^5.0.1",
         "electron-builder": "^22.9.1",
         "enzyme": "^3.11.0",
-        "enzyme-adapter-react-16": "^1.15.5",
+        "enzyme-adapter-react-16": "^1.15.6",
         "eslint": "^7.18.0",
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-react": "^7.22.0",
