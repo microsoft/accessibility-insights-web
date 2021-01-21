@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-fc';
+import { InstanceOutcomeType } from 'reports/components/instance-outcome-type';
+import { RulesOnly } from 'reports/components/report-sections/rules-only';
 import { CollapsibleResultSectionDeps } from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
-import { RulesOnly } from 'reports/components/report-sections/rules-only';
-import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
-import { InstanceOutcomeType } from 'reports/components/instance-outcome-type';
 
 export type CombinedReportRulesOnlySectionDeps = CollapsibleResultSectionDeps;
 

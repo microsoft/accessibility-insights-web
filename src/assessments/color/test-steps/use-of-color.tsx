@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 
 import { VisualizationType } from 'common/types/visualization-type';
 import { TargetType } from 'common/types/target-type';
@@ -8,6 +7,7 @@ import { TargetType } from 'common/types/target-type';
 import { link } from 'content/link';
 import * as content from 'content/test/sensory/use-of-color';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';

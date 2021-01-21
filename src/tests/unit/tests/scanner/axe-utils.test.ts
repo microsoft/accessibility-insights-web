@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import * as AxeUtils from '../../../../scanner/axe-utils';
 import { setAxeGlobalTreeTo } from '../../common/axe-internals';
 

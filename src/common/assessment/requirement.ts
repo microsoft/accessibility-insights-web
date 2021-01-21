@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { keys, sortBy } from 'lodash';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
+import { keys, sortBy } from 'lodash';
 import { ManualTestStatusData, TestStepData } from '../types/manual-test-status';
 import { VisualizationType } from '../types/visualization-type';
 

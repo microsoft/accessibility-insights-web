@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isMatch } from 'lodash';
-import * as React from 'react';
-import { It, Mock, MockBehavior } from 'typemoq';
-
 import { buildTestStepsFromRules } from 'assessments/automated-checks/build-test-steps-from-rules';
+import {
+    onRenderPathColumn,
+    onRenderSnippetColumn,
+} from 'assessments/common/element-column-renderers';
 import { InstanceTableRow, InstanceTableColumn } from 'assessments/types/instance-table-data';
+
 import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { NewTabLink } from 'common/components/new-tab-link';
@@ -19,7 +20,10 @@ import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { isMatch } from 'lodash';
+import * as React from 'react';
 import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('buildTestStepsFromRules', () => {
     it('should exist', () => {
@@ -123,12 +127,12 @@ describe('buildTestStepsFromRules', () => {
         expect(actual.columnsConfig).toHaveLength(2);
         expect(actual.columnsConfig[0].key).toBe('path');
         expect(actual.columnsConfig[0].name).toBe('Path');
+        expect(actual.columnsConfig[0].onRender).toBe(onRenderPathColumn);
+
         expect(actual.columnsConfig[1].key).toBe('snippet');
         expect(actual.columnsConfig[1].name).toBe('Snippet');
 
-        validateInstanceColumnsRender(actual.columnsConfig, null, null, 'null');
-        validateInstanceColumnsRender(actual.columnsConfig, ['A'], 'X', 'one');
-        validateInstanceColumnsRender(actual.columnsConfig, ['A', 'B'], 'XY', 'two');
+        expect(actual.columnsConfig[1].onRender).toBe(onRenderSnippetColumn);
     }
 
     function validateInstanceColumnsRender(

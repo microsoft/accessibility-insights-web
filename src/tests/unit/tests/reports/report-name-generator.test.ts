@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { WebReportNameGenerator } from 'reports/report-name-generator';
 import { FileNameBuilder } from 'common/filename-builder';
+import { WebReportNameGenerator } from 'reports/report-name-generator';
 import { Mock, Times } from 'typemoq';
 
 describe('WebReportNameGenerator', () => {

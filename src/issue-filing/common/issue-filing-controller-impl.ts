@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { BaseStore } from 'common/base-store';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { OpenIssueLink } from 'issue-filing/common/create-file-issue-handler';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 

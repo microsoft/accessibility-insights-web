@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
+import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
+import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import {
     ContextualMenu,
     DirectionalHint,
@@ -10,8 +12,6 @@ import {
 } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { StartOverDialogType } from 'DetailsView/components/start-over-dialog';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 
 export interface StartOverState {

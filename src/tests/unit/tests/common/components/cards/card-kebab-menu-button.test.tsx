@@ -12,6 +12,7 @@ import {
     CardKebabMenuButtonProps,
 } from 'common/components/cards/card-kebab-menu-button';
 import { Toast } from 'common/components/toast';
+import { guidanceTags } from 'common/guidance-links';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { NamedFC } from 'common/react/named-fc';
@@ -19,7 +20,6 @@ import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-te
 import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
-import { guidanceTags } from 'common/guidance-links';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';

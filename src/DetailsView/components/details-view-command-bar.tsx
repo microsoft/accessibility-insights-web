@@ -2,23 +2,26 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
-import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { ReportGenerator } from 'reports/report-generator';
-
+import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
+
 import {
     ScanMetadata,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
+import {
+    LoadAssessmentButton,
+    LoadAssessmentButtonProps,
+    LoadAssessmentButtonDeps,
+} from 'DetailsView/components/load-assessment-button';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
@@ -26,11 +29,6 @@ import {
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
-import {
-    LoadAssessmentButton,
-    LoadAssessmentButtonProps,
-    LoadAssessmentButtonDeps,
-} from 'DetailsView/components/load-assessment-button';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -40,12 +38,14 @@ import {
     StartOverDialogState,
     StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
+import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 
 export type DetailsViewCommandBarDeps = {
     getCurrentDate: () => Date;

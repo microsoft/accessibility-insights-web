@@ -4,8 +4,8 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
-import { ResultSection } from './result-section';
 import { CommonInstancesSectionProps } from './common-instances-section-props';
+import { ResultSection } from './result-section';
 
 export const NeedsReviewInstancesSection = NamedFC<CommonInstancesSectionProps>(
     'NeedsReviewInstancesSection',

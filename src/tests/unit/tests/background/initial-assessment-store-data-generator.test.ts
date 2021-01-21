@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatMap } from 'lodash';
-import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { Assessment } from 'assessments/types/iassessment';
 import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
+import { flatMap } from 'lodash';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import {
     AssessmentData,
     AssessmentStoreData,

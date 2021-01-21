@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { Mock } from 'typemoq';
 import {
     AssessmentTestProviderDeps,
     AssessmentTestResult,

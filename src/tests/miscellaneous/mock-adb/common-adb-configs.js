@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+const path = require('path');
 const { apkVersionName } = require('accessibility-insights-for-android-service-bin');
 const cloneDeep = require('lodash/cloneDeep');
-const path = require('path');
 
 const successfulTestServerContentPath = path.join(
     __dirname,

@@ -3,11 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Mock } from 'typemoq';
 import {
     ResultsByUrlContainer,
     ResultsByUrlContainerProps,
 } from 'reports/components/report-sections/results-by-url-container';
+import { Mock } from 'typemoq';
 
 describe('ResultsByUrlContainer', () => {
     it('renders', () => {

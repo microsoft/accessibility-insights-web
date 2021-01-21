@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { GlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
 import { cssPositioningConfiguration } from '../../../../../scanner/custom-rules/css-positioning-rule';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 

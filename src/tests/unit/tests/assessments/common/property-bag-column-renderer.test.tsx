@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { propertyBagColumnRenderer } from 'assessments/common/property-bag-column-renderer';
+import { InstanceTableRow } from 'assessments/types/instance-table-data';
+import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
-import { propertyBagColumnRenderer } from 'assessments/common/property-bag-column-renderer';
-import { PropertyBagColumnRendererConfig } from 'common/types/property-bag/property-bag-column-renderer-config';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { RendererWrapper } from './renderer-wrapper';
-import { InstanceTableRow } from 'assessments/types/instance-table-data';
 
 interface TestPropertyBag extends ColumnValueBag {
     a: string;

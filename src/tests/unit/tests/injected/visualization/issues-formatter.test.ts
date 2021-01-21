@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NavigatorUtils } from 'common/navigator-utils';
 import { IMock, Mock } from 'typemoq';
 
-import { NavigatorUtils } from 'common/navigator-utils';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';

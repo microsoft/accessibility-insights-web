@@ -12,24 +12,24 @@ import { DetailsViewStoreData } from 'common/types/store-data/details-view-store
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import {
+    NarrowModeDetector,
+    NarrowModeDetectorDeps,
+} from 'DetailsView/components/narrow-mode-detector';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import {
+    DeviceConnectViewContainer,
+    DeviceConnectViewContainerDeps,
+} from 'electron/views/device-connect-view/components/device-connect-view-container';
 import {
     ResultsView,
     ResultsViewDeps,
     ResultsViewProps,
 } from 'electron/views/results/results-view';
-import {
-    DeviceConnectViewContainer,
-    DeviceConnectViewContainerDeps,
-} from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
-import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
-import {
-    NarrowModeDetector,
-    NarrowModeDetectorDeps,
-} from 'DetailsView/components/narrow-mode-detector';
 
 export type RootContainerDeps = WithStoreSubscriptionDeps<RootContainerState> &
     DeviceConnectViewContainerDeps &

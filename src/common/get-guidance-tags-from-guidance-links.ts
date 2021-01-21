@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isArray, isObject } from 'lodash';
-
 import { GuidanceLink, GuidanceTag } from 'common/guidance-links';
+import { isArray, isObject } from 'lodash';
 
 export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[]) => GuidanceTag[];
 export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks = links => {

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-fc';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { UrlsSummarySection } from 'reports/components/report-sections/urls-summary-section';
 

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { FileIssuePayload } from 'background/actions/action-payloads';
 import { IssueFilingActionCreator } from 'background/global-action-creators/issue-filing-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { ToolData } from 'common/types/store-data/unified-data-interface';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     FILE_ISSUE_CLICK,
     TelemetryEventSource,

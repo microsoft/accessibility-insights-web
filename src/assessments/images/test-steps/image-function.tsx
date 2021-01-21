@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ImageFunctionPropertyBag } from 'common/types/property-bag/image-function';
 import {
     NoValue,
     PropertyBagColumnRendererConfig,
 } from 'common/types/property-bag/property-bag-column-renderer-config';
-import { ImageFunctionPropertyBag } from 'common/types/property-bag/image-function';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';

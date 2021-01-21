@@ -3,9 +3,8 @@
 import { NewTabLink } from 'common/components/new-tab-link';
 import { ICalloutProps, ILinkProps, ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
-import * as styles from './new-tab-link-with-tooltip.scss';
-
 import { NamedFC } from '../react/named-fc';
+import * as styles from './new-tab-link-with-tooltip.scss';
 
 export type NewTabLinkWithTooltipProps = ILinkProps & { tooltipContent: string | undefined };
 

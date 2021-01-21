@@ -3,11 +3,11 @@
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ContentPageComponent } from 'views/content/content-page';
 import { DictionaryStringTo } from '../../types/common-types';
+import { DisplayableVisualizationTypeData } from '../types/displayable-visualization-type-data';
 import { AssessmentData, AssessmentStoreData } from '../types/store-data/assessment-result-data';
 import { ScanData, TestsEnabledState } from '../types/store-data/visualization-store-data';
 import { AssessmentVisualizationConfiguration } from './assessment-visualization-configuration';
 import { TestMode } from './test-mode';
-import { DisplayableVisualizationTypeData } from '../types/displayable-visualization-type-data';
 
 export interface VisualizationConfiguration extends AssessmentVisualizationConfiguration {
     key: string;

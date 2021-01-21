@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
-import { shallow } from 'enzyme';
-import * as React from 'react';
-
-import { forOwn } from 'lodash';
-import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
-
 import { GuidanceLinks, GuidanceLinksProps } from 'common/components/guidance-links';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
+import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
+import { shallow } from 'enzyme';
+import { forOwn } from 'lodash';
+import * as React from 'react';
+
+import { BestPractice } from 'scanner/map-axe-tags-to-guidance-links';
 
 describe('GuidanceLinksTest', () => {
     const testLink1 = {

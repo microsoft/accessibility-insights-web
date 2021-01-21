@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DateProvider } from 'common/date-provider';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { DateProvider } from 'common/date-provider';
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsSectionProps,
     makeDetailsSectionFC,

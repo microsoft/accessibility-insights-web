@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import {
     addEventListenerForCollapsibleSection,
     getDefaultAddListenerForCollapsibleSection,
 } from 'reports/components/report-sections/collapsible-script-provider';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CollapsibleScriptProvider', () => {
     it('produces script source that matches snapshot', () => {

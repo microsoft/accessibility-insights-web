@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CodeBlock } from 'assessments/markup';
 import { flatten } from 'lodash';
 import * as React from 'react';
-
-import { CodeBlock } from 'assessments/markup';
 
 export type CodeExampleProps = {
     title?: React.ReactNode;

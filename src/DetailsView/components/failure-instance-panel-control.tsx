@@ -69,11 +69,11 @@ export class FailureInstancePanelControl extends React.Component<
 
     public componentDidUpdate(prevProps: Readonly<FailureInstancePanelControlProps>): void {
         if (isEqual(prevProps, this.props) === false) {
-            this.setState(() => ({
+            this.setState((prevState, prevProps) => ({
                 currentInstance: {
-                    failureDescription: this.state.currentInstance.failureDescription,
-                    path: this.props.failureInstance.path,
-                    snippet: this.props.failureInstance.snippet,
+                    failureDescription: prevState.currentInstance.failureDescription,
+                    path: prevProps.failureInstance.path,
+                    snippet: prevProps.failureInstance.snippet,
                 },
             }));
         }
@@ -198,15 +198,21 @@ export class FailureInstancePanelControl extends React.Component<
     };
 
     protected onFailureDescriptionChange = (event, value: string): void => {
-        const updatedInstance = clone(this.state.currentInstance);
-        updatedInstance.failureDescription = value;
-        this.setState({ currentInstance: updatedInstance });
+        this.setState(prevState => {
+            const updatedInstance = clone(prevState.currentInstance);
+            updatedInstance.failureDescription = value;
+
+            return { currentInstance: updatedInstance };
+        });
     };
 
     private onSelectorChange = (event, value: string): void => {
-        const updatedInstance = clone(this.state.currentInstance);
-        updatedInstance.path = value;
-        this.setState({ currentInstance: updatedInstance });
+        this.setState(prevState => {
+            const updatedInstance = clone(prevState.currentInstance);
+            updatedInstance.path = value;
+
+            return { currentInstance: updatedInstance };
+        });
     };
 
     private onValidateSelector = (event): void => {

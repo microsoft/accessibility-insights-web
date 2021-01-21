@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
@@ -9,6 +8,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import * as React from 'react';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 
 export type DetailsListIssuesViewDeps = IssuesTableDeps;

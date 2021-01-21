@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { head } from 'lodash';
 
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { head } from 'lodash';
 import {
     AssessmentData,
     AssessmentStoreData,

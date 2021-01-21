@@ -6,15 +6,15 @@ import {
     SummaryReportParameters
 } from 'reports/package/accessibilityInsightsReport';
 import { AxeResultsReport } from 'reports/package/axe-results-report';
+import { CombinedResultsReport } from 'reports/package/combined-results-report';
 import {
     AxeResultsReportGenerator,
     CombinedReportGenerator,
     Reporter,
     SummaryResultsReportGenerator
 } from 'reports/package/reporter';
-import { Mock, IMock } from 'typemoq';
 import { SummaryResultsReport } from 'reports/package/summary-results-report';
-import { CombinedResultsReport } from 'reports/package/combined-results-report';
+import { Mock, IMock } from 'typemoq';
 
 describe('Reporter', () => {
     let mockReport: IMock<AxeResultsReport>;

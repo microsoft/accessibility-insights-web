@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import {
+    onRenderPathColumn,
+    onRenderSnippetColumn,
+} from 'assessments/common/element-column-renderers';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentInstanceDetailsColumn } from 'DetailsView/components/assessment-instance-details-column';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
@@ -78,35 +81,6 @@ const automatedChecksColumns: InstanceTableColumn[] = [
         onRender: onRenderSnippetColumn,
     },
 ];
-
-function onRenderPathColumn(item: InstanceTableRow): JSX.Element {
-    let textContent = '';
-    if (item.instance.target) {
-        textContent = item.instance.target.join(';');
-    }
-
-    return (
-        <AssessmentInstanceDetailsColumn
-            background={null}
-            labelText={null}
-            textContent={textContent}
-            tooltipId={null}
-            customClassName="not-applicable"
-        />
-    );
-}
-
-function onRenderSnippetColumn(item: InstanceTableRow): JSX.Element {
-    return (
-        <AssessmentInstanceDetailsColumn
-            background={null}
-            labelText={null}
-            textContent={item.instance.html}
-            tooltipId={null}
-            customClassName="not-applicable"
-        />
-    );
-}
 
 function getInstanceStatus(result: DecoratedAxeNodeResult): ManualTestStatus {
     if (result.status === true) {
