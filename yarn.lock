@@ -351,17 +351,18 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
-"@electron/get@^1.0.1", "@electron/get@^1.12.2":
-  version "1.12.2"
-  resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.12.2.tgz#6442066afb99be08cefb9a281e4b4692b33764f3"
-  integrity sha512-vAuHUbfvBQpYTJ5wB7uVIDq5c/Ry0fiTBMs7lnEYAo/qXXppIVcWdfBr57u6eRnKdVso7KSiH6p/LbQAG6Izrg==
+"@electron/get@^1.0.1", "@electron/get@^1.12.2", "@electron/get@^1.12.3":
+  version "1.12.3"
+  resolved "https://registry.yarnpkg.com/@electron/get/-/get-1.12.3.tgz#fa2723385c4b565a34c4c82f46087aa2a5fbf6d0"
+  integrity sha512-NFwSnVZQK7dhOYF1NQCt+HGqgL1aNdj0LUSx75uCqnZJqyiWCVdAMFV4b4/kC8HjUJAnsvdSEmjEt4G2qNQ9+Q==
   dependencies:
     debug "^4.1.1"
     env-paths "^2.2.0"
+    filenamify "^4.1.0"
     fs-extra "^8.1.0"
     got "^9.6.0"
     progress "^2.0.3"
-    sanitize-filename "^1.6.2"
+    semver "^6.2.0"
     sumchecker "^3.0.1"
   optionalDependencies:
     global-agent "^2.0.2"
@@ -6230,7 +6231,7 @@ filename-reserved-regex@^2.0.0:
   resolved "https://registry.yarnpkg.com/filename-reserved-regex/-/filename-reserved-regex-2.0.0.tgz#abf73dfab735d045440abfea2d91f389ebbfa229"
   integrity sha1-q/c9+rc10EVECr/qLZHzieu/oik=
 
-filenamify@^4.2.0:
+filenamify@^4.1.0, filenamify@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/filenamify/-/filenamify-4.2.0.tgz#c99716d676869585b3b5d328b3f06590d032e89f"
   integrity sha512-pkgE+4p7N1n7QieOopmn3TqJaefjdWXwEkj2XLZJLKfOgcQKkn11ahvGNgTD8mLggexLiDFQxeTs14xVU22XPA==
@@ -12118,7 +12119,7 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sanitize-filename@^1.6.1, sanitize-filename@^1.6.2, sanitize-filename@^1.6.3:
+sanitize-filename@^1.6.1, sanitize-filename@^1.6.3:
   version "1.6.3"
   resolved "https://registry.yarnpkg.com/sanitize-filename/-/sanitize-filename-1.6.3.tgz#755ebd752045931977e30b2025d340d7c9090378"
   integrity sha512-y/52Mcy7aw3gRm7IrcGDFx/bCk4AhRh2eI9luHOQM86nZsqwiRkkq2GekHXBBD+SmPidc8i2PqtYZl+pWJ8Oeg==
