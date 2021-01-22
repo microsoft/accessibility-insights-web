@@ -74,7 +74,7 @@
     },
     "devDependencies": {
         "7zip-bin": "^5.0.3",
-        "@electron/get": "^1.12.2",
+        "@electron/get": "^1.12.3",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.128",
         "@types/enzyme": "^3.10.8",
