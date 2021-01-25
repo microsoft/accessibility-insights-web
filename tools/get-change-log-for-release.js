@@ -109,7 +109,7 @@ const parseCommandLineArguments = () => {
         )
         .parse(process.argv);
 
-    return program;
+    return program.opts();
 };
 
 const validateCommandLineArguments = program => {
