@@ -30,12 +30,29 @@ if (
 const assetNumber = '6179765';
 
 const downloadMirrors = async () => {
-    await downloadElectronArtifact('electron', 'node_modules/electron/dist');
-    await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
+    const symbolsPath = await downloadelectron-symbolsArtifact('electron', 'symbols');
+    const electronPath = await downloadElectronArtifact('electron', 'node_modules/electron/dist');
+    const chromedriverPath = await downloadElectronArtifact(
+        'chromedriver',
+        'node_modules/electron-chromedriver/bin',
+    );
+
+    await clearAndExtract(symbolsPath, 'electron-symbols');
+    await clearAndExtract(electronPath, 'node_modules/electron/dist');
+    await clearAndExtract(chromedriverPath, 'node_modules/electron-chromedriver/bin');
+};
+
+const clearAndExtract = async (zipFilePath, destinationPath) => {
+    destinationPath = path.resolve(destinationPath);
+
+    console.log(`extracting to ${destinationPath}`);
+
+    fs.rmdirSync(destinationPath, { recursive: true });
+
+    await extract(zipFilePath, { dir: destinationPath });
 };
 
 const downloadElectronArtifact = async (artifactName, destinationPath) => {
-    destinationPath = path.resolve(destinationPath);
     console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
     const zipFilePath = await downloadArtifact({
         version: `${pkg.dependencies.electron}`,
@@ -48,11 +65,24 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
         force: true,
     });
     console.log(`zip downloaded to dir ${zipFilePath}`);
-    console.log(`extracting to ${destinationPath}`);
+    return zipFilePath;
+};
 
-    fs.rmdirSync(destinationPath, { recursive: true });
-
-    await extract(zipFilePath, { dir: destinationPath });
+const downloadelectron-symbolsArtifact = async (artifactName, destinationPath) => {
+    console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
+    const zipFilePath = await downloadArtifact({
+        version: `${pkg.dependencies.electron}`,
+        artifactName,
+        artifactSuffix: 'pdb',
+        mirrorOptions: {
+            mirror: process.env.ELECTRON_MIRROR_BASE_VAR,
+            customDir: process.env.ELECTRON_MIRROR_CUSTOM_DIR_VAR,
+            resolveAssetURL: resolveCustomAssetSymbolURL,
+        },
+        force: true,
+    });
+    console.log(`zip downloaded to dir ${zipFilePath}`);
+    return zipFilePath;
 };
 
 const resolveCustomAssetURL = details => {
@@ -62,6 +92,21 @@ const resolveCustomAssetURL = details => {
         : `${[details.artifactName, details.version, details.platform, details.arch].join(
               '-',
           )}.zip`;
+    const strippedVer = details.version.replace(/^v/, '');
+    return `${opts.mirror}/${strippedVer}/${opts.customDir}/${assetNumber}/${file}`;
+};
+
+const resolveCustomAssetSymbolURL = details => {
+    const opts = details.mirrorOptions;
+    const file = details.artifactName.startsWith('SHASUMS256')
+        ? details.artifactName
+        : `${[
+              details.artifactName,
+              details.version,
+              details.platform,
+              details.arch,
+              details.artifactSuffix,
+          ].join('-')}.zip`;
     const strippedVer = details.version.replace(/^v/, '');
     return `${opts.mirror}/${strippedVer}/${opts.customDir}/${assetNumber}/${file}`;
 };
