@@ -30,7 +30,7 @@ if (
 const assetNumber = '6179765';
 
 const downloadMirrors = async () => {
-    const symbolsPath = await downloadelectron-symbolsArtifact('electron', 'symbols');
+    const symbolsPath = await downloadElectronSymbolsArtifact('electron', 'symbols');
     const electronPath = await downloadElectronArtifact('electron', 'node_modules/electron/dist');
     const chromedriverPath = await downloadElectronArtifact(
         'chromedriver',
@@ -68,7 +68,7 @@ const downloadElectronArtifact = async (artifactName, destinationPath) => {
     return zipFilePath;
 };
 
-const downloadelectron-symbolsArtifact = async (artifactName, destinationPath) => {
+const downloadElectronSymbolsArtifact = async (artifactName, destinationPath) => {
     console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
     const zipFilePath = await downloadArtifact({
         version: `${pkg.dependencies.electron}`,
