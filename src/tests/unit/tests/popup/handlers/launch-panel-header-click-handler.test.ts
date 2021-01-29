@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, Times } from 'typemoq';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     LaunchPanelHeader,
@@ -88,40 +88,6 @@ describe('FeedbackMenuClickHandlerTest', () => {
         setStateMock.verifyAll();
     });
 
-    test('onDismissFeedbackMenu', () => {
-        const setStateMock = Mock.ofInstance((state: any) => {});
-        const stateStub = {
-            isContextMenuVisible: false,
-        };
-        const eventStub = {
-            currentTarget: 'currentTarget',
-        };
-        setStateMock.setup(sm => sm(It.isValue(stateStub))).verifiable();
-
-        const deps: LaunchPanelHeaderDeps = {
-            popupActionMessageCreator: null,
-            dropdownClickHandler: null,
-            launchPanelHeaderClickHandler: null,
-        };
-
-        const props: LaunchPanelHeaderProps = {
-            deps: deps,
-            title: 'title',
-            subtitle: 'subtitle',
-            supportLinkHandler: null,
-            popupWindow: null,
-            featureFlags: null,
-            openAdhocToolsPanel: null,
-            dropdownClickHandler: null,
-        };
-        const header = new LaunchPanelHeader(props);
-        header.setState = setStateMock.object;
-
-        testObject.onDismissFeedbackMenu(header, eventStub as any);
-
-        setStateMock.verifyAll();
-    });
-
     test('openAdhocToolsPanel', () => {
         const openAdhocToolsPanelMock = Mock.ofInstance(() => {});
         openAdhocToolsPanelMock.setup(o => o()).verifiable();
@@ -145,11 +111,8 @@ describe('FeedbackMenuClickHandlerTest', () => {
 
         const header = new LaunchPanelHeader(props);
 
-        const setStateMock = Mock.ofInstance((state: LaunchPanelHeaderState) => {});
-
-        setStateMock
-            .setup(setter => setter({ isContextMenuVisible: false }))
-            .verifiable(Times.once());
+        const setStateMock = Mock.ofInstance((state: LaunchPanelHeaderState) => {},
+        MockBehavior.Strict);
 
         header.setState = setStateMock.object;
 
