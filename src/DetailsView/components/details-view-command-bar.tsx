@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -19,7 +18,6 @@ import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/deta
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import {
     LoadAssessmentButton,
-    LoadAssessmentButtonProps,
     LoadAssessmentButtonDeps,
 } from 'DetailsView/components/load-assessment-button';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -38,7 +36,7 @@ import {
     StartOverDialogState,
     StartOverDialogType,
 } from 'DetailsView/components/start-over-dialog';
-import { IButton, ITooltipHostStyles, Link, TooltipHost } from 'office-ui-fabric-react';
+import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -117,9 +115,6 @@ export class DetailsViewCommandBar extends React.Component<
     private renderTargetPageInfo(): JSX.Element {
         const targetPageTitle: string = this.props.scanMetadata.targetAppInfo.name;
         const tooltipContent = `Switch to target page: ${targetPageTitle}`;
-        const hostStyles: Partial<ITooltipHostStyles> = {
-            root: { display: 'inline-block', minWidth: 0 },
-        };
         return (
             <div className={styles.detailsViewTargetPage} aria-labelledby="switch-to-target">
                 <span id="switch-to-target">Target page:&nbsp;</span>

@@ -61,9 +61,6 @@ describe('TargetPageInspector', () => {
         actualSelector => {
             // we need to define a inspect function so we can actually evaluate the script
             // tslint:disable-next-line: no-unused-variable
-            function inspect(): void {
-                // no op on purpose
-            }
 
             querySelectorMock
                 .setup(handler => handler(It.isAnyString()))

@@ -20,7 +20,7 @@ export async function retry<T>(operation: () => Promise<T>, options?: RetryOptio
     for (let currentTry = 1; currentTry <= maxTries; currentTry += 1) {
         try {
             return await operation();
-        } catch (e: any) {
+        } catch (e) {
             if (currentTry === maxTries || !options.retryOnlyIfMatches!(e)) {
                 throw e;
             } else if (options.warnOnRetry) {

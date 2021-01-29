@@ -7,9 +7,6 @@ import { fluentLeftNavAutomationId } from 'electron/views/left-nav/fluent-left-n
 import { leftNavAutomationId } from 'electron/views/left-nav/left-nav';
 import { commandButtonSettingsId } from 'electron/views/results/components/reflow-command-bar';
 import { resultsViewAutomationId } from 'electron/views/results/results-view';
-import { highlightBoxAutomationId } from 'electron/views/screenshot/highlight-box';
-import { screenshotImageAutomationId } from 'electron/views/screenshot/screenshot';
-import { screenshotViewAutomationId } from 'electron/views/screenshot/screenshot-view';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 
 export const ResultsViewSelectors = {

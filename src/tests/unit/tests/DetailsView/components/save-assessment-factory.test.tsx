@@ -13,7 +13,7 @@ import {
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
-import { IMock, Mock, Times } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
 describe('SaveAssessmentFactory', () => {
     let deps: SaveAssessmentFactoryDeps;

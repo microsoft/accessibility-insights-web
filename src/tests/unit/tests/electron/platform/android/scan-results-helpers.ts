@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GuidanceLink } from 'common/guidance-links';
-import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import {
     AndroidScanResults,
     DeviceInfo,

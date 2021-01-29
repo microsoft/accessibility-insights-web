@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { BaseSummaryReportSectionProps } from 'reports/components/report-sections/base-summary-report-section-props';
 import {
     FailedUrlsSection,

@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
-import { Icon, ITooltipHostStyles, TooltipHost } from 'office-ui-fabric-react';
+import { Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedFC } from '../../common/react/named-fc';
 import { ContentProvider, ContentReference } from './content-page';

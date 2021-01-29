@@ -14,7 +14,7 @@ import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 import { ScannerRuleInfo } from 'scanner/scanner-rule-info';
-import { InstanceTableRow, InstanceTableColumn } from '../types/instance-table-data';
+import { InstanceTableColumn } from '../types/instance-table-data';
 import { Requirement } from '../types/requirement';
 import { AutomatedChecksVisualizationToggle } from './automated-checks-visualization-enabled-toggle';
 
