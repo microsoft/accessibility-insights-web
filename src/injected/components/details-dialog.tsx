@@ -111,7 +111,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         this.state = {
             showDialog: true,
             currentRuleIndex: 0,
+            // eslint-disable-next-line react/no-unused-state
             canInspect: true,
+            // eslint-disable-next-line react/no-unused-state
             showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
         };
