@@ -18,7 +18,6 @@ import {
 } from 'DetailsView/components/details-view-switcher-nav';
 import {
     LoadAssessmentButton,
-    LoadAssessmentButtonDeps,
     LoadAssessmentButtonProps,
 } from 'DetailsView/components/load-assessment-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
@@ -46,14 +45,12 @@ describe('DetailsViewCommandBar', () => {
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
     let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
-    let loadAssessmentButton: JSX.Element;
     let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
     let saveAssessmentFactory: IMock<SaveAssessmentFactory>;
-    let loadAssessmentButtonMock: IMock<(Props: LoadAssessmentButtonProps) => JSX.Element>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -63,14 +60,12 @@ describe('DetailsViewCommandBar', () => {
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
         saveAssessmentFactory = Mock.ofInstance(props => null);
-        loadAssessmentButtonMock = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
-        loadAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });

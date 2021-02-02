@@ -60,7 +60,7 @@ describe('TargetPageInspector', () => {
         'calls eval through the inspected window, with selector = %s',
         actualSelector => {
             // we need to define a inspect function so we can actually evaluate the script
-            // tslint:disable-next-line: no-unused-variable
+            // @ts-expect-error instead
             function inspect(): void {
                 // no op on purpose
             }

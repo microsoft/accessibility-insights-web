@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { SingleElementSelector } from 'common/types/store-data/scoping-store-data';
 import { ClientUtils } from 'injected/client-utils';
 import {
     ElementFinderByPosition,
@@ -11,7 +10,7 @@ import { ErrorMessageContent } from 'injected/frameCommunicators/error-message-c
 import { FrameCommunicator } from 'injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from 'injected/frameCommunicators/window-message-handler';
 import { ScannerUtils } from 'injected/scanner-utils';
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 
 class TestableElementFinder extends ElementFinderByPosition {
     public getOnfindElementByPosition(): (
