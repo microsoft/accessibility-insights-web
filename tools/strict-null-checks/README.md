@@ -9,7 +9,7 @@ Based closely on the VS Code team's [vscode-strict-null-check-migration-tools](h
 
 ## Usage
 
-Use the `package.json` run-scripts in the root-level `package.json`:
+Use the `package.json` run-scripts in the root-level `package.json` (Note that if you have Hadoop YARN installed, you will need to replace `yarn` with `yarnpkg` in the commands below):
 
 ```bash
 $ # Print out a markdown-checklist of files that would be good candidates to update for null-safety
