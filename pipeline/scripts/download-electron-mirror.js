@@ -27,7 +27,7 @@ if (
     process.exit(1);
 }
 
-const assetNumber = '6179765';
+const assetNumber = '6837137';
 
 const downloadMirrors = async () => {
     await downloadElectronArtifact('electron', 'node_modules/electron/dist');
