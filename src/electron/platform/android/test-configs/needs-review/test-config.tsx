@@ -3,6 +3,7 @@
 
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { TestConfig } from 'electron/types/test-config';
+import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import * as React from 'react';
 import { needsReviewResultsFilter } from './results-filter';
 
@@ -19,5 +20,6 @@ export const needsReviewTestConfig: TestConfig = {
         instancesSectionComponent: NeedsReviewInstancesSection,
         resultsFilter: needsReviewResultsFilter,
         allowsExportReport: false,
+        visualHelperSection: ScreenshotView,
     },
 };
