@@ -33,7 +33,8 @@
         "**/drop",
         "**/test-results",
         "Dockerfile",
-        "yarn.lock"
+        "yarn.lock",
+        ".eslintignore"
     ],
     "licenseFormats": {
         "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc|nsh": {

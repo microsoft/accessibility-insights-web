@@ -81,9 +81,9 @@ module.exports = {
     },
     overrides: [
         {
-            files: ['src/tests/**/*'],
+            files: ['src/tests/**/*', 'tools/**/*', 'pipeline/**/*', 'deploy/**/*', 'Gruntfile.js'],
             rules: {
-                // Disable those errors and warnings which are not a threat to test code because the code is not run in production environments
+                // Disable those errors and warnings which are not a threat to code that is not run in production environments
                 'security/detect-non-literal-regexp': 'off',
                 'security/detect-non-literal-fs-filename': 'off',
                 'security/detect-unsafe-regex': 'off',

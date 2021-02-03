@@ -11,5 +11,15 @@
         "strictNullChecks": false,
         "noUnusedLocals": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "src/**/*.js"]
+    "include": [
+        ".eslintrc.js",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "deploy/**/*",
+        "packages/**/*",
+        "pipeline/scripts/**/*",
+        "tools/**/*",
+        "./*.js"
+    ]
 }
