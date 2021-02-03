@@ -335,7 +335,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
         const leftNavActionCreator = new LeftNavActionCreator(leftNavActions, cardSelectionActions);
-        const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
+        const leftNavItems = createLeftNavItems(
+            androidTestConfigs,
+            leftNavActionCreator,
+            featureFlagStore.getState(),
+        );
         const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
 
         const deviceConnectActionCreator = new DeviceConnectActionCreator(
