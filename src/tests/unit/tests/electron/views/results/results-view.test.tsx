@@ -26,12 +26,13 @@ import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-acti
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { ContentPagesInfo } from 'electron/types/content-page-info';
+import { ContentPageInfo, ContentPagesInfo } from 'electron/types/content-page-info';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { TitleBar } from 'electron/views/results/components/title-bar';
 import { ResultsView, ResultsViewProps } from 'electron/views/results/results-view';
 import { TestView } from 'electron/views/results/test-view';
+import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
@@ -168,7 +169,8 @@ describe('ResultsView', () => {
                     title: `test-${key}-title`,
                     description: <>test {key} description</>,
                     resultsFilter: resultsFilter,
-                }),
+                    visualHelperSection: ScreenshotView,
+                } as ContentPageInfo),
         );
 
         return contentPagesInfo;

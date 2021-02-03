@@ -26,6 +26,7 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
+import { VisualHelperSectionProps } from 'electron/types/visual-helper-section';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
@@ -36,7 +37,6 @@ import {
 } from 'electron/views/results/components/reflow-command-bar';
 import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-bar';
 import { TestView, TestViewDeps } from 'electron/views/results/test-view';
-import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 import * as styles from './results-view.scss';
@@ -115,6 +115,11 @@ export class ResultsView extends React.Component<ResultsViewProps> {
             deps.getDateFromTimestamp,
         );
 
+        const visualHelperSectionProps: VisualHelperSectionProps = {
+            viewModel: screenshotViewModel,
+        };
+        const VisualHelperSectionComponent = contentPageInfo.visualHelperSection;
+
         return (
             <div className={styles.resultsView} data-automation-id={resultsViewAutomationId}>
                 <TitleBar
@@ -139,7 +144,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                                     />
                                 </main>
                             </div>
-                            {<ScreenshotView viewModel={screenshotViewModel} />}
+                            <VisualHelperSectionComponent {...visualHelperSectionProps} />
                             {this.renderDeviceDisconnected()}
                         </div>
                     </div>

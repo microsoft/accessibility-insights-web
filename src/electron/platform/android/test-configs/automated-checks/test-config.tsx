@@ -3,6 +3,7 @@
 
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { TestConfig } from 'electron/types/test-config';
+import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import * as React from 'react';
 import { automatedChecksResultsFilter } from './results-filter';
 
@@ -20,5 +21,6 @@ export const automatedChecksTestConfig: TestConfig = {
         instancesSectionComponent: FailedInstancesSection,
         resultsFilter: automatedChecksResultsFilter,
         allowsExportReport: true,
+        visualHelperSection: ScreenshotView,
     },
 };

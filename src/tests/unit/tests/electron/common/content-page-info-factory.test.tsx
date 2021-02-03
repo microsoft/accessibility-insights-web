@@ -42,6 +42,7 @@ describe('createContentPagesInfo', () => {
             ),
             resultsFilter: _ => true,
             allowsExportReport: true,
+            visualHelperSection: null,
         };
     }
 });
