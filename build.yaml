@@ -24,7 +24,7 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
-          - script: yarn lint:check
+          - script: yarn lint:check:all
             displayName: check lint errors
             timeoutInMinutes: 5
 
