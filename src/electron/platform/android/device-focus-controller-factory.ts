@@ -3,12 +3,12 @@
 
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
-import { FocusCommandSender } from 'electron/platform/android/send-focus-command';
+import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 
 export class DeviceFocusControllerFactory {
     constructor(
         private readonly adbWrapperFactory: AdbWrapperFactory,
-        private readonly focusCommandSender: FocusCommandSender,
+        private readonly focusCommandSender: DeviceFocusCommandSender,
     ) {}
 
     public initialize(): void {

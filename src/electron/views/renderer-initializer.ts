@@ -81,11 +81,11 @@ import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-s
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { createDeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
-import { createFocusCommandSender } from 'electron/platform/android/send-focus-command';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
     AndroidServiceConfiguratorFactory,
@@ -415,7 +415,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
             appiumAdbWrapperFactory,
-            createFocusCommandSender(axios.get),
+            createDeviceFocusCommandSender(axios.get),
         );
 
         // Placeholder--remove once we include deviceFocusControllerFactory in the deps

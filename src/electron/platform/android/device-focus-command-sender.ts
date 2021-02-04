@@ -7,11 +7,11 @@ export enum DeviceFocusCommand {
     'Pause',
     'End',
 }
-export type FocusCommandSender = (port: number, command: DeviceFocusCommand) => Promise<void>;
+export type DeviceFocusCommandSender = (port: number, command: DeviceFocusCommand) => Promise<void>;
 
 export type HttpGet = typeof axios.get;
 
-export const createFocusCommandSender = (httpGet: HttpGet): FocusCommandSender => {
+export const createDeviceFocusCommandSender = (httpGet: HttpGet): DeviceFocusCommandSender => {
     return async (port: number, command: DeviceFocusCommand) => {
         await httpGet(`http://localhost:${port}/AccessibilityInsights/FocusTracking/${command}`);
     };

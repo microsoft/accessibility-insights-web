@@ -4,8 +4,8 @@
 import { AdbWrapper, KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import {
     DeviceFocusCommand,
-    FocusCommandSender,
-} from 'electron/platform/android/send-focus-command';
+    DeviceFocusCommandSender,
+} from 'electron/platform/android/device-focus-command-sender';
 
 export class DeviceFocusController {
     private deviceId: string;
@@ -13,7 +13,7 @@ export class DeviceFocusController {
 
     constructor(
         private readonly adbWrapper: AdbWrapper,
-        private readonly commandSender: FocusCommandSender,
+        private readonly commandSender: DeviceFocusCommandSender,
     ) {}
 
     public setDeviceId(deviceId: string) {
