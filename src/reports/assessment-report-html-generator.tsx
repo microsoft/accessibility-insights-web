@@ -5,9 +5,9 @@ import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
-import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import * as bundledStyles from '../DetailsView/bundled-details-view-styles';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';

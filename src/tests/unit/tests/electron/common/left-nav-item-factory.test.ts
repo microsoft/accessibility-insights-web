@@ -3,10 +3,10 @@
 
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
-import { TestConfig } from 'electron/types/test-config';
-import { LeftNavItem } from 'electron/types/left-nav-item';
-import { Mock, MockBehavior } from 'typemoq';
 import { ContentPageInfo } from 'electron/types/content-page-info';
+import { LeftNavItem } from 'electron/types/left-nav-item';
+import { TestConfig } from 'electron/types/test-config';
+import { Mock, MockBehavior } from 'typemoq';
 
 describe('left nav item factory', () => {
     it('creates array of LeftNavItem objects as expected', () => {
@@ -22,6 +22,14 @@ describe('left nav item factory', () => {
                 contentPageInfo: {
                     title: 'my title2',
                 } as ContentPageInfo,
+                featureFlag: 'disabled-flag',
+            } as TestConfig,
+            {
+                key: 'needs-review',
+                contentPageInfo: {
+                    title: 'my title3',
+                } as ContentPageInfo,
+                featureFlag: 'enabled-flag',
             } as TestConfig,
         ];
 
@@ -32,13 +40,17 @@ describe('left nav item factory', () => {
             } as LeftNavItem,
             {
                 key: 'needs-review',
-                displayName: 'my title2',
+                displayName: 'my title3',
             } as LeftNavItem,
         ];
-
+        const featureFlagStoreData = { 'disabled-flag': false, 'enabled-flag': true };
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
 
-        const actualItems = createLeftNavItems(configs, actionCreatorMock.object);
+        const actualItems = createLeftNavItems(
+            configs,
+            actionCreatorMock.object,
+            featureFlagStoreData,
+        );
 
         expect(actualItems).toMatchObject(expectedItems);
 
@@ -58,7 +70,7 @@ describe('left nav item factory', () => {
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
         actionCreatorMock.setup(m => m.itemSelected('automated-checks')).verifiable();
 
-        const leftNavItems = createLeftNavItems(configs, actionCreatorMock.object);
+        const leftNavItems = createLeftNavItems(configs, actionCreatorMock.object, {});
 
         leftNavItems[0].onSelect();
 

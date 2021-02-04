@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { headersAttributeRuleConfiguration } from 'scanner/custom-rules/headers-attribute-rule';
 import { autocompleteRuleConfiguration } from './custom-rules/autocomplete-rule';
 import { colorConfiguration } from './custom-rules/color-rule';
 import { cssContentConfiguration } from './custom-rules/css-content-rule';
@@ -39,4 +40,5 @@ export const configuration: RuleConfiguration[] = [
     cssContentConfiguration,
     autocompleteRuleConfiguration,
     headerRuleConfiguration,
+    headersAttributeRuleConfiguration,
 ];

@@ -9,6 +9,7 @@ import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-f
 import { NamedFC } from 'common/react/named-fc';
 import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentRenderer } from 'common/types/issue-filing-needs-setting-content';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
@@ -17,7 +18,6 @@ import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {

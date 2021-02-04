@@ -31,7 +31,7 @@ export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>(
             option?: IChoiceGroupOption,
         ) => {
             const payload = {
-                issueFilingServiceName: option.key,
+                issueFilingServiceName: option?.key ?? 'none',
             };
             props.onSelectedServiceChange(payload);
         };

@@ -29,9 +29,7 @@ export interface LaunchPanelHeaderProps {
     featureFlags: FeatureFlagStoreData;
 }
 
-export type LaunchPanelHeaderState = {
-    isContextMenuVisible: boolean;
-} & Pick<IContextualMenuItem, 'target'>;
+export type LaunchPanelHeaderState = Pick<IContextualMenuItem, 'target'>;
 
 export class LaunchPanelHeader extends React.Component<
     LaunchPanelHeaderProps,
@@ -40,9 +38,7 @@ export class LaunchPanelHeader extends React.Component<
     constructor(props: LaunchPanelHeaderProps) {
         super(props);
 
-        this.state = {
-            isContextMenuVisible: false,
-        };
+        this.state = {};
     }
 
     public render(): JSX.Element {

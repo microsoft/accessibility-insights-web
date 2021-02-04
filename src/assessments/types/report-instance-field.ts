@@ -92,10 +92,15 @@ function fromColumns<T extends ColumnValueBag>(
     }
 }
 
+function fromSnippet(key: string, label: string): ReportInstanceField {
+    return { key, label, getValue: i => i.html };
+}
+
 export const ReportInstanceField = {
     fromPropertyBagField,
     fromColumnValueBagField,
     fromPropertyBagFunction,
     fromColumns,
+    fromSnippet,
     common,
 };

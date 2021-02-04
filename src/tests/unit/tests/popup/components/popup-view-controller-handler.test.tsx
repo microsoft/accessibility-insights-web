@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, Times } from 'typemoq';
 
 import { LaunchPanelType } from 'common/types/store-data/launch-panel-store-data';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { PopupViewControllerHandler } from 'popup/handlers/popup-view-controller-handler';
+import { It, Mock, Times } from 'typemoq';
 
 describe('PopupViewControllerHandlerTest', () => {
     test('openAdhocToolsPanel', () => {

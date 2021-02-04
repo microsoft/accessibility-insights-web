@@ -8,13 +8,13 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 
-import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
-import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
-import { InstructionsAndLabelsNotes } from '../../common/instructions-and-labels-note';
 import {
     NoValue,
     PropertyBagColumnRendererConfig,
 } from '../../../common/types/property-bag/property-bag-column-renderer-config';
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
+import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
+import { InstructionsAndLabelsNotes } from '../../common/instructions-and-labels-note';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
 import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';

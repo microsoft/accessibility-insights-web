@@ -3,11 +3,11 @@
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { It, Mock } from 'typemoq';
 import {
     CollapsibleUrlResultSection,
     CollapsibleUrlResultSectionProps,
 } from 'reports/components/report-sections/collapsible-url-result-section';
+import { It, Mock } from 'typemoq';
 
 describe('CollapsibleUrlResultSection', () => {
     it('renders', () => {

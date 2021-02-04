@@ -49,7 +49,7 @@ describe('ElementBasedViewModelCreator', () => {
                 { results: [] } as UnifiedScanResultStoreData,
                 {} as CardSelectionStoreData,
             ),
-        ).toBeUndefined();
+        ).toBeNull();
     });
 
     test('getElementBasedViewModel: results are null', () => {
@@ -58,7 +58,7 @@ describe('ElementBasedViewModelCreator', () => {
                 { rules: [] } as UnifiedScanResultStoreData,
                 {} as CardSelectionStoreData,
             ),
-        ).toBeUndefined();
+        ).toBeNull();
     });
 
     test('getElementBasedViewModel: cardSelectionData are null', () => {
@@ -67,7 +67,7 @@ describe('ElementBasedViewModelCreator', () => {
                 { rules: [], results: [] } as UnifiedScanResultStoreData,
                 null,
             ),
-        ).toBeUndefined();
+        ).toBeNull();
     });
 
     test('getElementBasedViewModel: no highlighted results', () => {

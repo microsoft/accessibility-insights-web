@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forOwn, isEmpty } from 'lodash';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import {
@@ -13,6 +12,7 @@ import {
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from 'injected/tab-order-property-bag';
+import { forOwn, isEmpty } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 import { UniquelyIdentifiableInstances } from './instance-identifier-generator';
 

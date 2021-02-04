@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
+import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
 import {
     SummaryScanResults,
     SummaryScanResult,
     SummaryScanError,
 } from 'reports/package/accessibilityInsightsReport';
-import { SummaryReportSummarySection } from 'reports/components/report-sections/summary-report-summary-section';
-import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 
 describe('SummaryReportSummarySection', () => {
     const failed = [

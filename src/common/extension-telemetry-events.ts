@@ -171,14 +171,14 @@ export type ScopingTelemetryData = {
 } & BaseTelemetryData;
 
 export type AssessmentRequirementScanTelemetryData = {
-    requirementName: string;
+    requirementName?: string;
 } & RuleAnalyzerScanTelemetryData;
 
 export type RuleAnalyzerScanTelemetryData = {
     scanDuration: number;
     NumberOfElementsScanned: number;
-    include: SingleElementSelector[];
-    exclude: SingleElementSelector[];
+    include?: SingleElementSelector[];
+    exclude?: SingleElementSelector[];
     testName: string;
 };
 

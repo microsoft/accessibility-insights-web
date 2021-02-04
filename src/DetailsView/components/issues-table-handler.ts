@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { IObjectWithKey } from 'office-ui-fabric-react';
 import { IGroup } from 'office-ui-fabric-react';
-import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { RuleResult } from 'scanner/iruleresults';
 
 export interface DetailsRowData extends IObjectWithKey, AxeNodeResult {

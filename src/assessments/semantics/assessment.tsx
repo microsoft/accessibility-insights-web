@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HeadersAttribute } from 'assessments/semantics/test-steps/headers-attribute';
 import { VisualizationType } from 'common/types/visualization-type';
 import { test as content } from 'content/test';
 import * as React from 'react';
 
-import { HeadersAttribute } from 'assessments/semantics/test-steps/headers-attribute';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';

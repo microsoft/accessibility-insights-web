@@ -9,13 +9,13 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
+import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
-import { ReactStaticRenderer } from 'reports/react-static-renderer';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { SummaryReportSectionProps } from 'reports/components/report-sections/summary-report-section-factory';
 import { SummaryScanResults } from 'reports/package/accessibilityInsightsReport';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
-import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {

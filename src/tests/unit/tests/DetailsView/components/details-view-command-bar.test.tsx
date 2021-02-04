@@ -1,23 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import {
+    CommandBarProps,
+    DetailsViewCommandBar,
+    DetailsViewCommandBarProps,
+    ReportExportDialogFactory,
+    SaveAssessmentFactory,
+} from 'DetailsView/components/details-view-command-bar';
 import {
     DetailsViewSwitcherNavConfiguration,
     LeftNavProps,
 } from 'DetailsView/components/details-view-switcher-nav';
+import {
+    LoadAssessmentButton,
+    LoadAssessmentButtonProps,
+} from 'DetailsView/components/load-assessment-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import {
     SaveAssessmentButton,
     SaveAssessmentButtonProps,
 } from 'DetailsView/components/save-assessment-button';
-import {
-    LoadAssessmentButton,
-    LoadAssessmentButtonDeps,
-    LoadAssessmentButtonProps,
-} from 'DetailsView/components/load-assessment-button';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { SaveAssessmentFactoryProps } from 'DetailsView/components/save-assessment-factory';
 import {
     StartOverComponentFactory,
     StartOverFactoryProps,
@@ -27,15 +35,6 @@ import { isNil } from 'lodash';
 import { ActionButton, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import {
-    CommandBarProps,
-    DetailsViewCommandBar,
-    DetailsViewCommandBarProps,
-    ReportExportDialogFactory,
-    SaveAssessmentFactory,
-} from 'DetailsView/components/details-view-command-bar';
-import { SaveAssessmentFactoryProps } from 'DetailsView/components/save-assessment-factory';
 
 describe('DetailsViewCommandBar', () => {
     const thePageTitle = 'command-bar-test-tab-title';
@@ -46,14 +45,12 @@ describe('DetailsViewCommandBar', () => {
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
     let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
-    let loadAssessmentButton: JSX.Element;
     let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
     let saveAssessmentFactory: IMock<SaveAssessmentFactory>;
-    let loadAssessmentButtonMock: IMock<(Props: LoadAssessmentButtonProps) => JSX.Element>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -63,14 +60,12 @@ describe('DetailsViewCommandBar', () => {
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
         saveAssessmentFactory = Mock.ofInstance(props => null);
-        loadAssessmentButtonMock = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
-        loadAssessmentButton = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
     });

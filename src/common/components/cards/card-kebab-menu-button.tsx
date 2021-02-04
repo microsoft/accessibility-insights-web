@@ -53,7 +53,7 @@ export class CardKebabMenuButton extends React.Component<
         };
     }
 
-    public render(): JSX.Element {
+    public render(): JSX.Element | null {
         const menuItems = this.getMenuItems();
         if (menuItems.length === 0) {
             return null;
@@ -88,7 +88,7 @@ export class CardKebabMenuButton extends React.Component<
         );
     }
 
-    public renderCopyFailureDetailsToast(): JSX.Element {
+    public renderCopyFailureDetailsToast(): JSX.Element | null {
         const { cardInteractionSupport } = this.props.deps;
 
         if (!cardInteractionSupport.supportsCopyFailureDetails) {
@@ -100,7 +100,7 @@ export class CardKebabMenuButton extends React.Component<
 
     private getMenuItems(): IContextualMenuItem[] {
         const { cardInteractionSupport } = this.props.deps;
-        const items = [];
+        const items: IContextualMenuItem[] = [];
 
         if (cardInteractionSupport.supportsIssueFiling) {
             items.push({
@@ -120,7 +120,9 @@ export class CardKebabMenuButton extends React.Component<
                 iconProps: {
                     iconName: 'copy',
                 },
-                onClick: this.copyFailureDetails,
+                onClick: event => {
+                    this.copyFailureDetails(event);
+                },
             });
         }
 
@@ -154,7 +156,9 @@ export class CardKebabMenuButton extends React.Component<
         }
     };
 
-    private copyFailureDetails = async (event: React.MouseEvent<any>): Promise<void> => {
+    private copyFailureDetails = async (
+        event?: React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>,
+    ): Promise<void> => {
         const text = this.props.deps.issueDetailsTextGenerator.buildText(
             this.props.issueDetailsData,
             this.props.deps.toolData,
@@ -164,13 +168,13 @@ export class CardKebabMenuButton extends React.Component<
         try {
             await this.props.deps.navigatorUtils.copyToClipboard(text);
         } catch (error) {
-            this.toastRef.current.show('Failed to copy failure details. Please try again.');
+            this.toastRef.current?.show('Failed to copy failure details. Please try again.');
             return;
         }
-        this.toastRef.current.show('Failure details copied.');
+        this.toastRef.current?.show('Failure details copied.');
     };
 
-    public renderIssueFilingSettingContent(): JSX.Element {
+    public renderIssueFilingSettingContent(): JSX.Element | null {
         const { deps, userConfigurationStoreData, issueDetailsData } = this.props;
         const { issueFilingServiceProvider, cardInteractionSupport } = deps;
 

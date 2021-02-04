@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
+import * as path from 'path';
 import {
     FileSystemConfiguration,
     ReadFileSync,
 } from 'common/configuration/file-system-configuration';
-import * as path from 'path';
-import * as fs from 'fs';
 
 describe('FileSystemConfiguration', () => {
     const configFileWithFullNameSet = path.join(__dirname, 'insights.config.test.json');

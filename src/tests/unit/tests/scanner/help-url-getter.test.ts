@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 import { HelpUrlGetter } from '../../../../scanner/help-url-getter';
 import { RuleConfiguration } from '../../../../scanner/iruleresults.d';
 

@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
 import {
     DetailsViewCommandBarDeps,
     DetailsViewCommandBarProps,
 } from 'DetailsView/components/details-view-command-bar';
+import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
+import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
-import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';

@@ -13,6 +13,10 @@ export class IssueFilingServiceProvider {
     }
 
     public forKey(key: string): IssueFilingService {
-        return this.all().find(service => service.key === key);
+        const service = this.all().find(service => service.key === key);
+        if (service == null) {
+            throw new Error(`Request for issue filing service with unknown key ${key}`);
+        }
+        return service;
     }
 }

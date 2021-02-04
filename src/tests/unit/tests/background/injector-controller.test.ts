@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { InjectorController } from 'background/injector-controller';
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
@@ -13,9 +11,11 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { Messages } from 'common/messages';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { WindowUtils } from 'common/window-utils';
+import * as Q from 'q';
+import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
 import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
-import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('InjectorControllerTest', () => {
     let validator: InjectorControllerValidator;

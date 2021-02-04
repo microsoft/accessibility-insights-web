@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {  ToolData, ScanMetadata, ScanTimespan } from 'common/types/store-data/unified-data-interface';
-import AccessibilityInsightsReport from './accessibilityInsightsReport';
 import { SummaryReportHtmlGenerator } from 'reports/summary-report-html-generator';
+import AccessibilityInsightsReport from './accessibilityInsightsReport';
 
 export type SummaryResultsReportDeps = {
     reportHtmlGenerator: SummaryReportHtmlGenerator;

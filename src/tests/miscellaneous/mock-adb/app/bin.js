@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const fs = require('fs');
+const { EOL } = require('os');
 const path = require('path');
 const process = require('process');
+const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
 const {
     startDetachedPortForwardServer,
     stopDetachedPortForwardServer,
     tryHandleAsPortForwardServer,
 } = require('./port-forward-server.js');
-const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
-const { EOL } = require('os');
 
 function resultFromCommand(config, inputCommand) {
     // First option: exact match

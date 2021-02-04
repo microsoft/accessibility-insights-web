@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { apkVersionName } from 'accessibility-insights-for-android-service-bin';
 import * as path from 'path';
+import { apkVersionName } from 'accessibility-insights-for-android-service-bin';
 
 export type AndroidServiceApkInfo = {
     path: string;

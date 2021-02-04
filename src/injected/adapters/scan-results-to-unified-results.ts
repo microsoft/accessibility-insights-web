@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import { flatMap } from 'lodash';
 
-import { ResolutionCreator } from 'injected/adapters/resolution-creator';
 import {
     InstanceResultStatus,
     UnifiedResult,

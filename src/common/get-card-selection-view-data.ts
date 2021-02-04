@@ -53,7 +53,7 @@ export const getCardSelectionViewData: GetCardSelectionViewData = (
 
     const unavailableResultUids = getResultsWithUnavailableHighlightStatus(
         candidateResults,
-        unifiedScanResultStoreData.platformInfo,
+        unifiedScanResultStoreData.platformInfo ?? null,
         isResultHighlightUnavailable,
     );
     let selectedResultUids = getOnlyResultUidsFromSelectedCards(
@@ -99,7 +99,7 @@ function getEmptyViewData(): CardSelectionViewData {
 
 function getResultsWithUnavailableHighlightStatus(
     candidateResults: UnifiedResult[],
-    platformInfo: PlatformData,
+    platformInfo: PlatformData | null,
     isResultHighlightUnavailable: IsResultHighlightUnavailable,
 ): string[] {
     return candidateResults

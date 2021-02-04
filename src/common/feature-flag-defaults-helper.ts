@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagDetail } from 'common/feature-flags';
 import { forEach } from 'lodash';
 
-import { FeatureFlagDetail } from 'common/feature-flags';
 import { FeatureFlagStoreData } from './types/store-data/feature-flag-store-data';
 
 export class FeatureFlagDefaultsHelper {

@@ -3,6 +3,8 @@
 import { getRTL } from '@uifabric/utilities';
 
 import { NavigatorUtils } from 'common/navigator-utils';
+import { getCellAndHeaderElementsFromResult } from 'injected/visualization/get-cell-and-header-elements';
+import { TableHeadersAttributeFormatter } from 'injected/visualization/table-headers-formatter';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -121,6 +123,21 @@ export class DrawerProvider {
     public createNonTextComponentDrawer(): Drawer {
         const formatter = new NonTextComponentFormatter();
         return this.createDrawer('non-text-component', formatter);
+    }
+
+    public createTableHeaderAttributeDrawer(): Drawer {
+        const formatter = new TableHeadersAttributeFormatter();
+
+        return new HighlightBoxDrawer(
+            this.dom,
+            'insights-header-attribute-highlight-box',
+            this.windowUtils,
+            this.shadowUtils,
+            this.drawerUtils,
+            this.clientUtils,
+            formatter,
+            getCellAndHeaderElementsFromResult,
+        );
     }
 
     private createDrawer(containerClass: string, formatter: Formatter): Drawer {

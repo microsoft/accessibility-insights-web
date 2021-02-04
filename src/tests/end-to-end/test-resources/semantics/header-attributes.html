@@ -1,0 +1,65 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Semantics - Header attributes</title>
+        <meta charset="UTF-8" />
+    </head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            padding: 10px 20px 10px 20px;
+            margin: 0px;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: Calibri;
+        }
+    </style>
+    <body>
+        <h2>Simple table</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <th id="table1-header1">Header1</th>
+                    <th id="table1-header2">Header2</th>
+                </tr>
+                <tr>
+                    <td headers="table1-header1">Cell1 content</td>
+                    <td headers="table1-header2">Cell2 content</td>
+                </tr>
+                <tr>
+                    <td headers="table1-header1">Cell3 content</td>
+                    <td headers="table1-header2">Cell4 content</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Complex table</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td />
+                    <th id="top" colspan="2">Top Header</th>
+                </tr>
+                <tr>
+                    <td />
+                    <th id="table2-header1" headers="top">Header1</th>
+                    <th id="table2-header2" headers="top">Header2</th>
+                </tr>
+                <tr>
+                    <th id="rowheader">Row header</th>
+                    <td headers="rowheader table2-header1 top" id="cell1">Cell1 content</td>
+                    <td headers="rowheader table2-header2 top" id="cell2">Cell2 content</td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

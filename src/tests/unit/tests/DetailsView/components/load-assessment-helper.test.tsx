@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
-import { Mock, Times } from 'typemoq';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
+import { Mock, Times } from 'typemoq';
 
 describe('LoadAssessmentHelper', () => {
     const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);

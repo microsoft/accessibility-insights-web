@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
+import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { flatten, forEach, toPairs } from 'lodash';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-fc';
-import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { MarkupBasedComponentProps, createMarkup, Markup, MarkupDeps } from './markup';
 
 type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
@@ -54,9 +54,9 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
 export interface ContentProvider {
     getPage(path: string): ContentPageComponent;
     allPaths(): string[];
-    pathTo(component: ContentPageComponent): string;
+    pathTo(component: ContentPageComponent): string | null;
     contentFromReference(content: ContentReference): ContentPageComponent;
-    pathFromReference(content: ContentReference): string;
+    pathFromReference(content: ContentReference): string | null;
 }
 type ContentTree = { [K in string]: ContentTree | ContentPageComponent };
 export function ContentProvider(root: ContentTree): ContentProvider {
@@ -89,7 +89,7 @@ export function ContentProvider(root: ContentTree): ContentProvider {
     };
     const rootEntries = flattenTree(root);
 
-    function findPage(tree: ContentTree, [head, ...tail]: string[]): ContentPageComponent {
+    function findPage(tree: ContentTree, [head, ...tail]: string[]): ContentPageComponent | null {
         if (!tree) {
             return null;
         }

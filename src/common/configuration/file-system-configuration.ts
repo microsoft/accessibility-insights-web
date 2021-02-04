@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
+import * as path from 'path';
 import { defaultsDeep } from 'lodash';
 
 import { defaults } from './configuration-defaults';
@@ -9,9 +11,6 @@ import {
     InsightsConfiguration,
     InsightsConfigurationOptions,
 } from './configuration-types';
-
-import * as fs from 'fs';
-import * as path from 'path';
 
 export type ReadFileSync = () => Buffer;
 

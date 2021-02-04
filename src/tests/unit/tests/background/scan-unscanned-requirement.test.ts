@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanUnscannedRequirement } from 'background/scan-unscanned-requirement';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ScanUnscannedRequirement } from 'background/scan-unscanned-requirement';
 import { AssessmentData } from '../../../../common/types/store-data/assessment-result-data';
 
 describe('ScanUnscannedRequirement', () => {

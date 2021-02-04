@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
+import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 
 describe('AnalyzerStateUpdateHandlerTest', () => {
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;

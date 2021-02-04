@@ -22,6 +22,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
       </React.Fragment>,
       "resultsFilter": [Function],
       "title": "test-needs-review-title",
+      "visualHelperSection": [Function],
     }
   }
   deps={
@@ -35,6 +36,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-automated-checks-title",
+          "visualHelperSection": [Function],
         },
         "needs-review": Object {
           "description": <React.Fragment>
@@ -44,6 +46,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-needs-review-title",
+          "visualHelperSection": [Function],
         },
       },
       "getCardSelectionViewData": [Function],
@@ -101,6 +104,7 @@ exports[`ResultsView right content panel info renders with default/initial value
       </React.Fragment>,
       "resultsFilter": [Function],
       "title": "test-automated-checks-title",
+      "visualHelperSection": [Function],
     }
   }
   deps={
@@ -114,6 +118,7 @@ exports[`ResultsView right content panel info renders with default/initial value
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-automated-checks-title",
+          "visualHelperSection": [Function],
         },
         "needs-review": Object {
           "description": <React.Fragment>
@@ -123,6 +128,7 @@ exports[`ResultsView right content panel info renders with default/initial value
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-needs-review-title",
+          "visualHelperSection": [Function],
         },
       },
       "getCardSelectionViewData": [Function],
@@ -175,6 +181,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -184,6 +191,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -227,6 +235,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -236,6 +245,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -290,6 +300,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -303,6 +314,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -312,6 +324,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -390,6 +403,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -403,6 +417,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -412,6 +427,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -487,6 +503,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -496,6 +513,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -550,6 +568,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -559,6 +578,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -602,6 +622,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -611,6 +632,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -665,6 +687,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -678,6 +701,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -687,6 +711,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -750,6 +775,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -763,6 +789,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -772,6 +799,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -836,6 +864,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -845,6 +874,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -899,6 +929,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -908,6 +939,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -951,6 +983,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -960,6 +993,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -1014,6 +1048,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -1027,6 +1062,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -1036,6 +1072,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -1099,6 +1136,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -1112,6 +1150,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -1121,6 +1160,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -1181,6 +1221,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -1190,6 +1231,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -1244,6 +1286,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -1253,6 +1296,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -1296,6 +1340,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -1305,6 +1350,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -1359,6 +1405,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -1372,6 +1419,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -1381,6 +1429,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -1444,6 +1493,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -1457,6 +1507,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -1466,6 +1517,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -1525,6 +1577,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -1534,6 +1587,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],

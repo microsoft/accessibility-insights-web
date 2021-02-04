@@ -1,6 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
+
+import { DevToolStore } from 'background/stores/dev-tools-store';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { NavigatorUtils } from 'common/navigator-utils';
+import { ToolData } from 'common/types/store-data/unified-data-interface';
 import * as ReactDOM from 'react-dom';
 import {
     GlobalMock,
@@ -12,11 +17,6 @@ import {
     MockBehavior,
     Times,
 } from 'typemoq';
-
-import { DevToolStore } from 'background/stores/dev-tools-store';
-import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
-import { NavigatorUtils } from 'common/navigator-utils';
-import { ToolData } from 'common/types/store-data/unified-data-interface';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { FeatureFlags, getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';

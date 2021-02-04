@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedFC } from 'common/react/named-fc';
-import * as React from 'react';
 
+import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
 import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { ResultSectionContent } from 'common/components/cards/result-section-content';
-import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
+import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
 export type CombinedReportFailedSectionDeps = ResultSectionDeps;

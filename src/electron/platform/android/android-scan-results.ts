@@ -36,19 +36,19 @@ export interface DeviceInfo {
 export class AndroidScanResults {
     constructor(readonly rawData: any) {}
 
-    public get deviceInfo(): DeviceInfo {
+    public get deviceInfo(): DeviceInfo | null {
         return this.rawData?.axeContext?.axeDevice || null;
     }
 
-    public get deviceName(): string {
+    public get deviceName(): string | null {
         return this.rawData?.axeContext?.axeDevice?.name || null;
     }
 
-    public get appIdentifier(): string {
+    public get appIdentifier(): string | null {
         return this.rawData?.axeContext?.axeMetaData?.appIdentifier || null;
     }
 
-    public get viewElementTree(): ViewElementData {
+    public get viewElementTree(): ViewElementData | null {
         return this.rawData?.axeContext?.axeView || null;
     }
 
@@ -60,11 +60,11 @@ export class AndroidScanResults {
         return this.rawData?.axeContext?.axeMetaData?.axeVersion || 'no-version';
     }
 
-    public get analysisTimestamp(): string {
+    public get analysisTimestamp(): string | null {
         return this.rawData?.axeContext?.axeMetaData?.analysisTimestamp || null;
     }
 
-    public get screenshot(): ScreenshotData {
+    public get screenshot(): ScreenshotData | null {
         const screenshot = this.rawData?.axeContext?.screenshot;
 
         return screenshot ? { base64PngData: screenshot } : null;

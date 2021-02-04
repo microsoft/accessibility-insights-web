@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { Message } from 'common/message';
 import { TabStopEvent } from 'common/types/tab-stop-event';
@@ -12,6 +11,7 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TabStopsListener } from 'injected/tab-stops-listener';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('TabStopsAnalyzer', () => {
     let windowUtilsMock: IMock<WindowUtils>;

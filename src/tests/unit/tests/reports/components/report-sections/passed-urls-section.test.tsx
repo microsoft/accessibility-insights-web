@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { SummaryScanError, SummaryScanResult } from 'reports/package/accessibilityInsightsReport';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 import {
     PassedUrlsSectionDeps,
     PassedUrlsSection,
 } from 'reports/components/report-sections/passed-urls-section';
+import { SummaryScanError, SummaryScanResult } from 'reports/package/accessibilityInsightsReport';
 
 describe(PassedUrlsSection, () => {
     const failed = [{}] as SummaryScanResult[];

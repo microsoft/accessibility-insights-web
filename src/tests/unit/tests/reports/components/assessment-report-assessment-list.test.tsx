@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
-import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentDetailsReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,

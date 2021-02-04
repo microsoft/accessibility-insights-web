@@ -45,7 +45,8 @@ export type SupportedMouseEvent =
     | MouseEvent
     | React.MouseEvent<HTMLElement>
     | React.KeyboardEvent<HTMLElement>
-    | React.SyntheticEvent<Element, Event>;
+    | React.SyntheticEvent<Element, Event>
+    | undefined;
 
 export class TelemetryDataFactory {
     public forVisualizationToggleByCommand(enabled: boolean): ToggleTelemetryData {

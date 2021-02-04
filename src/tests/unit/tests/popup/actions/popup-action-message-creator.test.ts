@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
-import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     BaseTelemetryData,
@@ -13,6 +11,7 @@ import {
     TUTORIAL_OPEN,
 } from 'common/extension-telemetry-events';
 import { Tab } from 'common/itab';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
@@ -21,6 +20,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { WindowUtils } from 'common/window-utils';
 import { PopupActionMessageCreator } from 'popup/actions/popup-action-message-creator';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('PopupActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();

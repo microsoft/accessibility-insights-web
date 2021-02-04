@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
 
 import { CommandActions, GetCommandsPayload } from 'background/actions/command-actions';
 import { CommandStore } from 'background/stores/global/command-store';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { IMock, It, Mock, Times } from 'typemoq';
 import {
     ModifiedCommandsTelemetryData,
     SHORTCUT_MODIFIED,

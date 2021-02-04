@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, Times } from 'typemoq';
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { FileURLProvider } from 'common/file-url-provider';
 import { FileNameBuilder } from 'common/filename-builder';
@@ -14,6 +13,7 @@ import {
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
+import { Mock, Times } from 'typemoq';
 
 describe('SaveAssessmentFactory', () => {
     let deps: SaveAssessmentFactoryDeps;

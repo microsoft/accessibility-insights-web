@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
 import { shallow } from 'enzyme';
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
 import {
     IssueFilingChoiceGroup,
     IssueFilingChoiceGroupProps,

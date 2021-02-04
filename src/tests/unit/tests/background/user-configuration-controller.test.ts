@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, Times } from 'typemoq';
 
 import { SaveWindowBoundsPayload } from 'background/actions/action-payloads';
 import { Interpreter } from 'background/interpreter';
 import { UserConfigurationController } from 'background/user-configuration-controller';
 import { Message } from 'common/message';
 import { Messages } from 'common/messages';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('UserConfigurationController', () => {
     let testSubject: UserConfigurationController;

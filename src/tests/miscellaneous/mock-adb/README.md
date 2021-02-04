@@ -11,6 +11,8 @@ This directory contains the implementation for a `mock-adb` (Android Debug Bridg
 
 ### Usage
 
+Note that if you have Hadoop YARN installed, you will need to replace `yarn` with `yarnpkg` in the commands below.
+
 ```sh
 # This sets up mock-adb to respond as if a single physical device is connected with a working
 # and current install of Accessibility Insights for Android Service.

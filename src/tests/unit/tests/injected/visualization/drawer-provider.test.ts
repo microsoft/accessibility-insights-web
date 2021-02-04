@@ -63,6 +63,7 @@ describe('DrawerProviderTests', () => {
         'createHighlightBoxDrawer',
         'createCustomWidgetsDrawer',
         'createNonTextComponentDrawer',
+        'createTableHeaderAttributeDrawer',
     ];
 
     test.each(drawerYieldingFunctionNames)('%s', funcName => {

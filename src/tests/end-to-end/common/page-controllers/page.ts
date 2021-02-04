@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
 import { includes } from 'lodash';
 import * as Playwright from 'playwright';
 
-import { createDefaultPromiseFactory } from 'common/promises/promise-factory';
+import { serializeError } from 'tests/common/serialize-error';
 import {
     PageFunction,
     WaitForSelectorOptions,
@@ -16,7 +17,6 @@ import {
     DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS,
     DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
 } from '../timeouts';
-import { serializeError } from 'tests/common/serialize-error';
 
 const promiseFactory = createDefaultPromiseFactory();
 

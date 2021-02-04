@@ -16,7 +16,7 @@ const getLatestYAMLPath = parentDir => {
 
 const readLatestYAML = latestPath => {
     const latestString = fs.readFileSync(latestPath);
-    const latestContent = YAML.safeLoad(latestString);
+    const latestContent = YAML.load(latestString);
     return latestContent;
 };
 
@@ -39,7 +39,7 @@ const updateAllSha512s = async latestContent => {
 };
 
 const writeLatestYAML = (latestPath, latestContent) => {
-    const rawLatestContent = YAML.safeDump(latestContent);
+    const rawLatestContent = YAML.dump(latestContent);
     fs.writeFileSync(latestPath, rawLatestContent);
 };
 
