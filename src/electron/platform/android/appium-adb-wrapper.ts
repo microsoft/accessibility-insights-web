@@ -86,6 +86,6 @@ export class AppiumAdbWrapper implements AdbWrapper {
 
     public sendKeyEvent = async (deviceId: string, keyEventCode: KeyEventCode): Promise<void> => {
         this.adb.setDeviceId(deviceId);
-        return await this.adb.shell(['input', 'keyevent', keyEventCode]);
+        await this.adb.shell(['input', 'keyevent', keyEventCode]);
     };
 }
