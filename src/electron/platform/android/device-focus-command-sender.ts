@@ -3,9 +3,9 @@
 import axios from 'axios';
 
 export enum DeviceFocusCommand {
-    'Resume',
-    'Pause',
-    'End',
+    'Enable',
+    'Disable',
+    'Reset',
 }
 export type DeviceFocusCommandSender = (port: number, command: DeviceFocusCommand) => Promise<void>;
 

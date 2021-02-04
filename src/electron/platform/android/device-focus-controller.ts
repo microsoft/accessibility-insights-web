@@ -24,43 +24,43 @@ export class DeviceFocusController {
         this.port = port;
     }
 
-    public SendResumeTrackingCommandToDevice(): Promise<void> {
-        return this.commandSender(this.port, DeviceFocusCommand.Resume);
+    public EnableFocusTracking(): Promise<void> {
+        return this.commandSender(this.port, DeviceFocusCommand.Enable);
     }
 
-    public SendPauseTrackingCommandToDevice(): Promise<void> {
-        return this.commandSender(this.port, DeviceFocusCommand.Pause);
+    public DisableFocusTracking(): Promise<void> {
+        return this.commandSender(this.port, DeviceFocusCommand.Disable);
     }
 
-    public SendEndTrackingCommandToDevice(): Promise<void> {
-        return this.commandSender(this.port, DeviceFocusCommand.End);
+    public ResetFocusTracking(): Promise<void> {
+        return this.commandSender(this.port, DeviceFocusCommand.Reset);
     }
 
-    public SendUpKeyToDevice(): Promise<void> {
-        return this.SendKeyEventToDevice(KeyEventCode.Up);
+    public SendUpKey(): Promise<void> {
+        return this.SendKeyEvent(KeyEventCode.Up);
     }
 
-    public SendDownKeyToDevice(): Promise<void> {
-        return this.SendKeyEventToDevice(KeyEventCode.Down);
+    public SendDownKey(): Promise<void> {
+        return this.SendKeyEvent(KeyEventCode.Down);
     }
 
-    public SendLeftKeyToDevice(): Promise<void> {
-        return this.SendKeyEventToDevice(KeyEventCode.Left);
+    public SendLeftKey(): Promise<void> {
+        return this.SendKeyEvent(KeyEventCode.Left);
     }
 
-    public SendRightKeyToDevice(): Promise<void> {
-        return this.SendKeyEventToDevice(KeyEventCode.Right);
+    public SendRightKey(): Promise<void> {
+        return this.SendKeyEvent(KeyEventCode.Right);
     }
 
-    public SendEnterToDevice(): Promise<void> {
-        return this.SendKeyEventToDevice(KeyEventCode.Enter);
+    public SendEnter(): Promise<void> {
+        return this.SendKeyEvent(KeyEventCode.Enter);
     }
 
-    public SendTabKeyToDevice(): Promise<void> {
-        return this.SendKeyEventToDevice(KeyEventCode.Tab);
+    public SendTabKey(): Promise<void> {
+        return this.SendKeyEvent(KeyEventCode.Tab);
     }
 
-    private SendKeyEventToDevice(keyEventCode: KeyEventCode): Promise<void> {
+    private SendKeyEvent(keyEventCode: KeyEventCode): Promise<void> {
         return this.adbWrapper.sendKeyEvent(this.deviceId, keyEventCode);
     }
 }

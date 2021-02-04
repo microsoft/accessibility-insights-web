@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
-import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
+import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 
 export class DeviceFocusControllerFactory {
     constructor(
@@ -12,7 +12,7 @@ export class DeviceFocusControllerFactory {
     ) {}
 
     public initialize(): void {
-        // Temporary placeholder to let me call this class
+        // Temporary placeholder to let me call this class from renderer-initializer
     }
 
     public getDeviceFocusController = async (
