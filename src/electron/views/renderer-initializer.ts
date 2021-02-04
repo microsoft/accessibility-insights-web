@@ -81,9 +81,11 @@ import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-s
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { createFocusCommandSender } from 'electron/platform/android/send-focus-command';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
     AndroidServiceConfiguratorFactory,
@@ -221,9 +223,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
+        const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
         const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
             new AndroidServiceConfiguratorFactory(
-                new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
+                appiumAdbWrapperFactory,
                 apkLocator,
                 getPortPromise,
             ),
@@ -409,6 +412,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         );
 
         scanController.initialize();
+
+        const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
+            appiumAdbWrapperFactory,
+            createFocusCommandSender(axios.get),
+        );
+
+        // Placeholder--remove once we include deviceFocusControllerFactory in the deps
+        deviceFocusControllerFactory.initialize();
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
             telemetryDataFactory,
