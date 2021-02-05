@@ -47,7 +47,10 @@ describe('ResultsView', () => {
 
     it('left nav allows to change between tests', async () => {
         const testIndex = 1;
-        const expectedTestTitle = androidTestConfigs[testIndex].contentPageInfo.title;
+        const expectedTestTitle = androidTestConfigs.filter(
+            config => config.featureFlag === undefined,
+        )[testIndex].contentPageInfo.title;
+
         await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
