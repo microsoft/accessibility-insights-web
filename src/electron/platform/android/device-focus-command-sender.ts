@@ -3,10 +3,11 @@
 import axios from 'axios';
 
 export enum DeviceFocusCommand {
-    'Enable',
-    'Disable',
-    'Reset',
+    Enable = 'Enable',
+    Disable = 'Disable',
+    Reset = 'Reset',
 }
+
 export type DeviceFocusCommandSender = (port: number, command: DeviceFocusCommand) => Promise<void>;
 
 export type HttpGet = typeof axios.get;
