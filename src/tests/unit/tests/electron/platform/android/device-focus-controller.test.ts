@@ -9,7 +9,7 @@ import {
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('DeviceFocusControllerFactory tests', () => {
+describe('DeviceFocusController tests', () => {
     const deviceId: string = 'some device';
     const port: number = 23456;
 
