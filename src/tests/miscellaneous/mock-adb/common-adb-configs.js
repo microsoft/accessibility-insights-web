@@ -15,6 +15,7 @@ const serviceInfoCommandMatch =
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
 const sdkVersionCommandMatch = 'shell getprop ro.build.version.sdk';
+const inputKeyeventCommandMatch = 'shell input keyevent';
 
 function addDeviceEnumerationCommands(id, output) {
     output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
@@ -93,6 +94,16 @@ function addPortForwardingCommands(id, output, port) {
     };
 }
 
+function addInputKeyeventCommands(id, output) {
+    const keyeventCodes = [19, 20, 21, 22, 61, 66];
+
+    keyeventCodes.forEach(keyeventCode => {
+        output[`-s ${id} ${inputKeyeventCommandMatch} ${keyeventCode}`] = {
+            stdout: '',
+        };
+    });
+}
+
 function workingDeviceCommands(deviceIds, port) {
     const output = {
         'start-server': {},
@@ -113,6 +124,7 @@ function workingDeviceCommands(deviceIds, port) {
         addInstallServiceCommands(id, output);
         addCheckPermissionsCommands(id, output);
         addPortForwardingCommands(id, output, port);
+        addInputKeyeventCommands(id, output);
     }
 
     return output;
@@ -163,6 +175,10 @@ function simulatePortForwardingError(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, portForwardingCommandMatch);
 }
 
+function simulateInputKeyeventError(oldConfig) {
+    return cloneWithDisabledPattern(oldConfig, inputKeyeventCommandMatch);
+}
+
 const physicalDeviceName1 = 'device-1';
 const physicalDeviceName2 = 'device-2';
 const emulatorDeviceName = 'emulator-3';
@@ -188,4 +204,5 @@ module.exports = {
     simulateServiceNotInstalled,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
+    simulateInputKeyeventError,
 };
