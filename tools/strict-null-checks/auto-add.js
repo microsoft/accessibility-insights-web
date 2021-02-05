@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 
 // @ts-check
-const path = require('path');
-const fs = require('fs');
 const child_process = require('child_process');
+const fs = require('fs');
+const path = require('path');
+const { collapseCompletedDirectories } = require('./collapse-completed-directories');
 const config = require('./config');
 const { getUncheckedLeafFiles } = require('./eligible-file-finder');
-const { collapseCompletedDirectories } = require('./collapse-completed-directories');
 const { writeTsconfigSync } = require('./write-tsconfig');
 
 const repoRoot = config.repoRoot;
