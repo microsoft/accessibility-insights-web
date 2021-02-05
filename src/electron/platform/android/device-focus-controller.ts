@@ -52,7 +52,7 @@ export class DeviceFocusController {
         return this.SendKeyEvent(KeyEventCode.Right);
     }
 
-    public SendEnter(): Promise<void> {
+    public SendEnterKey(): Promise<void> {
         return this.SendKeyEvent(KeyEventCode.Enter);
     }
 
