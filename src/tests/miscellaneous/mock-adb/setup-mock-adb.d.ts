@@ -32,6 +32,7 @@ export function simulatePortForwardingError(config: MockAdbConfig): MockAdbConfi
 export function simulateServiceLacksPermissions(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceNotInstalled(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceInstallationError(config: MockAdbConfig): MockAdbConfig;
+export function simulateInputKeyeventError(config: MockAdbConfig): MockAdbConfig;
 export function delayAllCommands(delayMs: number, config: MockAdbConfig): MockAdbConfig;
 export const emulatorDeviceName: string;
 export const physicalDeviceName1: string;
