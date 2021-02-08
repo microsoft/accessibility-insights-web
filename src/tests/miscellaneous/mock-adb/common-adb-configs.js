@@ -95,13 +95,22 @@ function addPortForwardingCommands(id, output, port) {
 }
 
 function addInputKeyeventCommands(id, output) {
-    const keyeventCodes = [19, 20, 21, 22, 61, 66];
+    // These are the values thr virtual keyboard uses for focus testing.
+    // See KevEventCode in src/electron/platform/android/adb-wrapper.ts
+    const keyeventCodeMap = {
+        up: 19,
+        down: 20,
+        left: 21,
+        right: 22,
+        tab: 61,
+        enter: 66,
+    };
 
-    keyeventCodes.forEach(keyeventCode => {
+    for (const keyeventCode of Object.values(keyeventCodeMap)) {
         output[`-s ${id} ${inputKeyeventCommandMatch} ${keyeventCode}`] = {
             stdout: '',
         };
-    });
+    }
 }
 
 function workingDeviceCommands(deviceIds, port) {
