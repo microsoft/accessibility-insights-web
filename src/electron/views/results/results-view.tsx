@@ -117,7 +117,9 @@ export class ResultsView extends React.Component<ResultsViewProps> {
 
         const visualHelperSectionProps: VisualHelperSectionProps = {
             viewModel: screenshotViewModel,
+            narrowModeStatus: this.props.narrowModeStatus,
         };
+
         const VisualHelperSectionComponent = contentPageInfo.visualHelperSection;
 
         return (

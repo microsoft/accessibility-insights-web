@@ -3,7 +3,8 @@
 
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { ScreenshotViewProps } from 'electron/views/screenshot/screenshot-view';
+import { VirtualKeyboardViewProps } from 'electron/views/virtual-keyboard/virtual-keyboard-view';
 
-export type VisualHelperSectionProps = ScreenshotViewProps;
+export type VisualHelperSectionProps = ScreenshotViewProps & VirtualKeyboardViewProps;
 
 export type VisualHelperSection = ReactFCWithDisplayName<VisualHelperSectionProps>;
