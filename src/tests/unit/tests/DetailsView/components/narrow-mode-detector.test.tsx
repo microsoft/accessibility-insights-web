@@ -10,6 +10,7 @@ import {
 import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import ReactResizeDetector from 'react-resize-detector';
 
 const TestComponent = NamedFC<{ narrowModeStatus: NarrowModeStatus }>('TestComponent', props => {
     return <h1>Test component</h1>;
@@ -26,7 +27,7 @@ const getNarrowModeThresholdsMock = (): NarrowModeThresholds => {
 
 describe(NarrowModeDetector, () => {
     describe('render', () => {
-        it('renders ReactResizeDetector ', () => {
+        it('renders ReactResizeDetector with expected props', () => {
             const props: NarrowModeDetectorProps = {
                 deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: false,
@@ -34,7 +35,14 @@ describe(NarrowModeDetector, () => {
                 childrenProps: null,
             };
             const wrapper = shallow(<NarrowModeDetector {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const reactResizeDetector = wrapper.find(ReactResizeDetector);
+
+            expect(reactResizeDetector.exists()).toBe(true);
+            expect(reactResizeDetector.props()).toMatchObject({
+                handleWidth: true,
+                handleHeight: false,
+                querySelector: 'body',
+            });
         });
 
         it('renders child component properly when header is collapsed', () => {

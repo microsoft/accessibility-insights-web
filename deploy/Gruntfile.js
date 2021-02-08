@@ -98,7 +98,7 @@ module.exports = function (grunt) {
         const manifestPath = 'product/manifest.json';
         const manifest = grunt.file.readJSON(manifestPath);
         let version = options.extensionVersion;
-        if (version == 'auto') {
+        if (version === 'auto') {
             version = versionFromDate();
         }
         manifest.version = version;

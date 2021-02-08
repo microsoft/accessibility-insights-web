@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import { PackageInfo } from 'electron/platform/android/adb-wrapper';
+import { KeyEventCode, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -332,6 +332,43 @@ describe('AppiumAdbWrapper tests', () => {
         await testSubject.removeTcpForwarding(emulatorId, testLocalPortNumber);
 
         adbMock.verifyAll();
+    });
+
+    it('sendKeyEvent, propagates error', async () => {
+        const expectedMessage: string = 'Thrown during sendKeyEvent';
+        const keyEventCode: KeyEventCode = KeyEventCode.Tab;
+
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(['input', 'keyevent', keyEventCode]))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(testSubject.sendKeyEvent(emulatorId, keyEventCode)).rejects.toThrowError(
+            expectedMessage,
+        );
+
+        adbMock.verifyAll();
+    });
+
+    describe('sendKeyEvent, succeeds', () => {
+        test.each([
+            KeyEventCode.Up,
+            KeyEventCode.Down,
+            KeyEventCode.Left,
+            KeyEventCode.Right,
+            KeyEventCode.Enter,
+            KeyEventCode.Tab,
+        ])('sendKeyEvent sending %p', async (keyEventCode: KeyEventCode) => {
+            adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+            adbMock
+                .setup(m => m.shell(['input', 'keyevent', keyEventCode]))
+                .verifiable(Times.once());
+
+            await testSubject.sendKeyEvent(emulatorId, keyEventCode);
+
+            adbMock.verifyAll();
+        });
     });
     /*
     // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
