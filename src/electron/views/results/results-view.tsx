@@ -168,6 +168,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                 narrowModeStatus={this.props.narrowModeStatus}
                 selectedKey={this.props.leftNavStoreData.selectedKey}
                 setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
+                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }

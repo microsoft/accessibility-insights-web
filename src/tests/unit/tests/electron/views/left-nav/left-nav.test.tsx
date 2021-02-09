@@ -11,6 +11,7 @@ describe('LeftNav', () => {
     let leftNavItemsStub: LeftNavItem[];
     let navLinkRendererStub: NavLinkRenderer;
     let props: LeftNavProps;
+    const featureFlagStoreData = { 'disabled-flag': false, 'enabled-flag': true };
 
     beforeEach(() => {
         leftNavItemsStub = [
@@ -23,6 +24,13 @@ describe('LeftNav', () => {
                 key: 'needs-review',
                 displayName: 'some display name 2',
                 onSelect: () => null,
+                featureFlag: 'disabled-flag',
+            },
+            {
+                key: 'needs-review',
+                displayName: 'some display name 3',
+                onSelect: () => null,
+                featureFlag: 'enabled-flag',
             },
         ];
         navLinkRendererStub = {
@@ -33,6 +41,7 @@ describe('LeftNav', () => {
                 navLinkRenderer: navLinkRendererStub,
                 leftNavItems: leftNavItemsStub,
             },
+            featureFlagStoreData,
             selectedKey: 'automated-checks',
         };
     });

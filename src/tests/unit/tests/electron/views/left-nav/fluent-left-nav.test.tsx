@@ -27,6 +27,7 @@ describe('FluentLeftNav', () => {
 
         props = {
             deps: {} as FluentLeftNavDeps,
+            featureFlagStoreData: {},
             selectedKey: 'automated-checks',
             isNavOpen: true,
             narrowModeStatus: narrowModeStatusStub,

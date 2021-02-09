@@ -22,6 +22,7 @@ describe('left nav item factory', () => {
                 contentPageInfo: {
                     title: 'my title2',
                 } as ContentPageInfo,
+                featureFlag: 'my-feature-flag',
             } as TestConfig,
         ];
 
@@ -33,6 +34,7 @@ describe('left nav item factory', () => {
             {
                 key: 'needs-review',
                 displayName: 'my title2',
+                featureFlag: 'my-feature-flag',
             } as LeftNavItem,
         ];
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
