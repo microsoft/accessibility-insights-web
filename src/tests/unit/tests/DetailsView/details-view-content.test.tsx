@@ -230,6 +230,7 @@ describe(DetailsViewContent, () => {
                     narrowModeStatus={{
                         isHeaderAndNavCollapsed: false,
                         isCommandBarCollapsed: false,
+                        isVirtualKeyboardCollapsed: false,
                     }}
                     isSideNavOpen={false}
                     setSideNavOpen={() => {}}

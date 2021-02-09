@@ -65,6 +65,7 @@ exports[` render renders normally 1`] = `
       Object {
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
+        "isVirtualKeyboardCollapsed": false,
       }
     }
     selectedPivot={0}
@@ -177,6 +178,7 @@ exports[` render renders normally 1`] = `
       Object {
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
+        "isVirtualKeyboardCollapsed": false,
       }
     }
     pathSnippetStoreData={

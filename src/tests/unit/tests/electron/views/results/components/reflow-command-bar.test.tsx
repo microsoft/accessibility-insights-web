@@ -51,6 +51,7 @@ describe('ReflowCommandBar', () => {
         narrowModeStatusStub = {
             isHeaderAndNavCollapsed: false,
             isCommandBarCollapsed: false,
+            isVirtualKeyboardCollapsed: false,
         };
         scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);

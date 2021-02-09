@@ -6,6 +6,7 @@ exports[`NarrowModeDetector render renders child component properly when narrow 
     Object {
       "isCommandBarCollapsed": false,
       "isHeaderAndNavCollapsed": false,
+      "isVirtualKeyboardCollapsed": false,
     }
   }
 />
