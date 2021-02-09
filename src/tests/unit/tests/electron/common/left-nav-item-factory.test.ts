@@ -22,14 +22,7 @@ describe('left nav item factory', () => {
                 contentPageInfo: {
                     title: 'my title2',
                 } as ContentPageInfo,
-                featureFlag: 'disabled-flag',
-            } as TestConfig,
-            {
-                key: 'needs-review',
-                contentPageInfo: {
-                    title: 'my title3',
-                } as ContentPageInfo,
-                featureFlag: 'enabled-flag',
+                featureFlag: 'my-feature-flag',
             } as TestConfig,
         ];
 
@@ -40,17 +33,13 @@ describe('left nav item factory', () => {
             } as LeftNavItem,
             {
                 key: 'needs-review',
-                displayName: 'my title3',
+                displayName: 'my title2',
+                featureFlag: 'my-feature-flag',
             } as LeftNavItem,
         ];
-        const featureFlagStoreData = { 'disabled-flag': false, 'enabled-flag': true };
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
 
-        const actualItems = createLeftNavItems(
-            configs,
-            actionCreatorMock.object,
-            featureFlagStoreData,
-        );
+        const actualItems = createLeftNavItems(configs, actionCreatorMock.object);
 
         expect(actualItems).toMatchObject(expectedItems);
 
@@ -70,7 +59,7 @@ describe('left nav item factory', () => {
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
         actionCreatorMock.setup(m => m.itemSelected('automated-checks')).verifiable();
 
-        const leftNavItems = createLeftNavItems(configs, actionCreatorMock.object, {});
+        const leftNavItems = createLeftNavItems(configs, actionCreatorMock.object);
 
         leftNavItems[0].onSelect();
 
