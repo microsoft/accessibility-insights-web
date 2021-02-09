@@ -42,15 +42,15 @@ describe('WindowTitleTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('renders with actionable icons', () => {
+    it('renders nothing for mac', () => {
+        platformInfoMock.setup(p => p.isMac()).returns(() => true);
+
         const rendered = shallow(<WindowTitle {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('renders nothing for mac', () => {
-        platformInfoMock.setup(p => p.isMac()).returns(() => true);
-
+    it('renders with actionable icons', () => {
         const rendered = shallow(<WindowTitle {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
