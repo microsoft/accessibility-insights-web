@@ -49,9 +49,7 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
 });
 
 function getIconsContainer(props: WindowTitleProps): JSX.Element | null {
-    const { platformInfo } = props.deps;
-
-    if (platformInfo.isMac() || isEmpty(props.actionableIcons)) {
+    if (isEmpty(props.actionableIcons)) {
         return null;
     }
 
