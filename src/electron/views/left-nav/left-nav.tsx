@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { BaseLeftNav, BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LeftNavItem } from 'electron/types/left-nav-item';
@@ -18,13 +19,17 @@ export type LeftNavDeps = {
 export type LeftNavProps = {
     deps: LeftNavDeps;
     selectedKey: LeftNavItemKey;
+    featureFlagStoreData: FeatureFlagStoreData;
 };
 
 export const leftNavAutomationId = 'left-nav';
 
 export const LeftNav = NamedFC<LeftNavProps>('LeftNav', props => {
     const { deps } = props;
-    const leftLinkItems: BaseLeftNavLink[] = deps.leftNavItems.map((item, index) => ({
+    const leftNavItemsFiltered = deps.leftNavItems.filter(item =>
+        filterForFeatureFlag(item, props.featureFlagStoreData),
+    );
+    const leftLinkItems: BaseLeftNavLink[] = leftNavItemsFiltered.map((item, index) => ({
         name: item.displayName,
         key: item.key,
         onClickNavLink: item.onSelect,
@@ -47,3 +52,10 @@ export const LeftNav = NamedFC<LeftNavProps>('LeftNav', props => {
         </div>
     );
 });
+
+const filterForFeatureFlag = (
+    config: LeftNavItem,
+    featureFlagStoreData: FeatureFlagStoreData,
+): boolean => {
+    return config.featureFlag === undefined || featureFlagStoreData[config.featureFlag];
+};

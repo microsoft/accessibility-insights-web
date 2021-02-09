@@ -6,5 +6,6 @@ import { LeftNavItemKey } from './left-nav-item-key';
 export type LeftNavItem = {
     key: LeftNavItemKey;
     displayName: string;
+    featureFlag?: string;
     onSelect: () => void;
 };
