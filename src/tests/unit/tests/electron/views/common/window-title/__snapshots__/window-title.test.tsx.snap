@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`WindowTitleTest renders nothing for mac 1`] = `null`;
+
 exports[`WindowTitleTest renders nothing if fullscreen 1`] = `null`;
 
 exports[`WindowTitleTest renders with actionable icons 1`] = `
@@ -115,35 +117,6 @@ exports[`WindowTitleTest renders with custom header text class name 1`] = `
     <div>
       icon2
     </div>
-  </div>
-</header>
-`;
-
-exports[`WindowTitleTest renders without actionable buttons for mac 1`] = `
-<header
-  className="windowTitle"
->
-  <HelmetWrapper
-    defer={true}
-    encodeSpecialCharacters={true}
-  >
-    <title>
-      Accessibility Insights for Android
-       - 
-      page title 1
-    </title>
-  </HelmetWrapper>
-  <div
-    className="titleContainer"
-  >
-    <span>
-      logo
-    </span>
-    <span
-      className="headerText"
-    >
-      Accessibility Insights
-    </span>
   </div>
 </header>
 `;

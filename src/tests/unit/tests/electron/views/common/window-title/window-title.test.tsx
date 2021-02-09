@@ -48,7 +48,7 @@ describe('WindowTitleTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
-    it('renders without actionable buttons for mac', () => {
+    it('renders nothing for mac', () => {
         platformInfoMock.setup(p => p.isMac()).returns(() => true);
 
         const rendered = shallow(<WindowTitle {...props} />);
