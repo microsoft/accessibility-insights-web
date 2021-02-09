@@ -3,6 +3,7 @@
 export type NarrowModeThresholds = {
     collapseHeaderAndNavThreshold: number;
     collapseCommandBarThreshold: number;
+    collapseVirtualKeyboardThreshold?: number;
 };
 
 export const getNarrowModeThresholdsForWeb = (): NarrowModeThresholds => {
@@ -16,5 +17,6 @@ export const getNarrowModeThresholdsForUnified = (): NarrowModeThresholds => {
     return {
         collapseHeaderAndNavThreshold: 850,
         collapseCommandBarThreshold: 850,
+        collapseVirtualKeyboardThreshold: 560,
     };
 };
