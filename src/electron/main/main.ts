@@ -39,7 +39,7 @@ const createWindow = () => {
         show: false,
         // enableRemoteModule required for spectron (https://github.com/electron-userland/spectron/issues/693#issuecomment-696957538)
         webPreferences: { nodeIntegration: true, enableRemoteModule: true },
-        titleBarStyle: 'hidden',
+        titleBarStyle: platformInfo.isMac() ? 'default' : 'hidden',
         width: mainWindowConfig.defaultWidth,
         height: mainWindowConfig.defaultHeight,
         frame: os === OSType.Mac,
@@ -47,10 +47,6 @@ const createWindow = () => {
         minWidth: mainWindowConfig.minWidth,
         icon: getElectronIconPath(config, os),
     });
-    if (platformInfo.isMac()) {
-        // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
-        mainWindow.setSheetOffset(22);
-    }
 
     const mainWindowMessageSink: IpcMessageSink = (id, msg) => mainWindow.webContents.send(id, msg);
 

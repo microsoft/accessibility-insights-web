@@ -28,6 +28,10 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
         return null;
     }
 
+    if (props.deps.platformInfo.isMac()) {
+        return null;
+    }
+
     return (
         <header className={css(styles.windowTitle, props.className)}>
             <Helmet>
