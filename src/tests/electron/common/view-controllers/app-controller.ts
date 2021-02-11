@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
+import * as path from 'path';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { Application } from 'spectron';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
@@ -124,5 +126,23 @@ export class AppController {
                 timeoutMsg: `was expecting window.${propertyName} to be defined`,
             },
         );
+    }
+
+    public getServerLog(logName: string, extraLogNames: string): string {
+        return fs
+            .readFileSync(
+                path.normalize(
+                    `drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/server.log`,
+                ),
+            )
+            .toString();
+    }
+
+    public getAdbLog(logName: string, extraLogNames: string): string {
+        return fs
+            .readFileSync(
+                path.normalize(`drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/adb.log`),
+            )
+            .toString();
     }
 }
