@@ -58,6 +58,10 @@ async function main() {
     const outputLogsDir = path.join(path.dirname(process.execPath), 'logs', currentContext);
     fs.mkdirSync(outputLogsDir, { recursive: true });
 
+    const testLogsDir = path.join(outputLogsDir, 'testLogs');
+    fs.rmdirSync(testLogsDir);
+    fs.mkdirSync(testLogsDir);
+
     const outputFile = path.join(outputLogsDir, 'mock_adb_output.json');
 
     let ignoredPrefixArgs = 2; // node.exe bin.js
@@ -77,7 +81,7 @@ async function main() {
     if (result.startTestServer != null) {
         const { port, path } = result.startTestServer;
         stopDetachedPortForwardServer(port);
-        result.testServerPid = await startDetachedPortForwardServer(port, path);
+        result.testServerPid = await startDetachedPortForwardServer(port, path, testLogsDir);
     }
     if (result.stopTestServer != null) {
         const { port } = result.stopTestServer;
@@ -92,6 +96,10 @@ async function main() {
 
     result.input = process.argv;
     result.inputCommand = inputCommand;
+
+    fs.writeFileSync(path.join(testLogsDir, 'adb.log'), `ADB ${inputCommand}\n`, {
+        flag: 'a',
+    });
     fs.writeFileSync(outputFile, JSON.stringify(result, null, '    ') + EOL, { flag: 'a' });
 
     const outputConfigFile = path.join(outputLogsDir, fileWithMockAdbConfig);
