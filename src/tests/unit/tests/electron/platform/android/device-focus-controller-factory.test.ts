@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper } from 'electron/platform/android/adb-wrapper';
 import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
 describe('DeviceFocusControllerFactory tests', () => {
-    let adbWrapperFactoryMock: IMock<AdbWrapperFactory>;
     let testSubject: DeviceFocusControllerFactory;
 
     const focusCommandSenderMock: IMock<DeviceFocusCommandSender> = Mock.ofType<DeviceFocusCommandSender>(
@@ -17,34 +16,17 @@ describe('DeviceFocusControllerFactory tests', () => {
     );
 
     beforeEach(() => {
-        adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
-        testSubject = new DeviceFocusControllerFactory(
-            adbWrapperFactoryMock.object,
-            focusCommandSenderMock.object,
-        );
+        testSubject = new DeviceFocusControllerFactory(focusCommandSenderMock.object);
     });
 
-    it('initialize is just a placeholder', () => {
-        testSubject.initialize();
-    });
-
-    it('getDeviceFocusController returns correct type', async () => {
-        const adbLocation = 'In a galaxy far, far away';
-
+    it('getDeviceFocusController returns correct type', () => {
         const adbWrapperMock: IMock<AdbWrapper> = Mock.ofType<AdbWrapper>(
             undefined,
             MockBehavior.Strict,
         );
-        adbWrapperFactoryMock
-            .setup(m => m.createValidatedAdbWrapper(adbLocation))
-            .returns(() => Promise.resolve<AdbWrapper>(adbWrapperMock.object))
-            .verifiable(Times.once());
 
-        const promise = testSubject.getDeviceFocusController(adbLocation);
+        const deviceFocusController = testSubject.getDeviceFocusController(adbWrapperMock.object);
 
-        expect(promise).resolves.toBeInstanceOf(DeviceFocusController);
-
-        adbWrapperMock.verifyAll();
-        adbWrapperFactoryMock.verifyAll();
+        expect(deviceFocusController).toBeInstanceOf(DeviceFocusController);
     });
 });

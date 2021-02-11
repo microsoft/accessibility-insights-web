@@ -86,6 +86,7 @@ import { DeviceFocusControllerFactory } from 'electron/platform/android/device-f
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
     AndroidServiceConfiguratorFactory,
@@ -224,12 +225,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             ipcRendererShim.getAppPath,
         );
         const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
+        const adbWrapperHolder = new AdbWrapperHolder();
         const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
-            new AndroidServiceConfiguratorFactory(
-                appiumAdbWrapperFactory,
-                apkLocator,
-                getPortPromise,
-            ),
+            new AndroidServiceConfiguratorFactory(apkLocator, getPortPromise),
             androidPortCleaner,
         );
         const androidSetupStore = new AndroidSetupStore(
@@ -241,6 +239,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
                     userConfigMessageCreator,
                     fetchDeviceConfig,
                     logger,
+                    appiumAdbWrapperFactory,
+                    adbWrapperHolder,
                 ),
             ),
         );
@@ -414,12 +414,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         scanController.initialize();
 
         const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
-            appiumAdbWrapperFactory,
             createDeviceFocusCommandSender(axios.get),
         );
-
-        // Placeholder--remove once we include deviceFocusControllerFactory in the deps
-        deviceFocusControllerFactory.initialize();
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
             telemetryDataFactory,
@@ -561,6 +557,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             navLinkRenderer: new NavLinkRenderer(),
             getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
             leftNavActionCreator,
+            deviceFocusControllerFactory,
+            adbWrapperHolder,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
