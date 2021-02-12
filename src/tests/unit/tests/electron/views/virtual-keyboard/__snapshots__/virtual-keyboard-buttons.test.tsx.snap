@@ -6,6 +6,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
 >
   <Button
     className="button"
+    onClick={[Function]}
     primary={true}
   >
     <span
@@ -71,6 +72,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard collapsed 1`] = `
   </Button>
   <Button
     className="button"
+    onClick={[Function]}
     primary={true}
   >
     <span
@@ -88,6 +90,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
 >
   <Button
     className="rectangleButton button"
+    onClick={[Function]}
     primary={true}
   >
     <span
@@ -161,6 +164,7 @@ exports[`VirtualKeyboardButtons renders with virtual keyboard not collapsed 1`] 
   </div>
   <Button
     className="rectangleButton button"
+    onClick={[Function]}
     primary={true}
   >
     <span

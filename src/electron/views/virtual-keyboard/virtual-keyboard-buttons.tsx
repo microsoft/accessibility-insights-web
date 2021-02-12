@@ -3,15 +3,27 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 import * as styles from 'electron/views/virtual-keyboard/virtual-keyboard-buttons.scss';
 import { Button, css, Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-export type VirtualKeyboardButtonsProps = { narrowModeStatus: NarrowModeStatus };
+export type VirtualKeyboardButtonsDeps = {
+    deviceFocusControllerFactory: DeviceFocusControllerFactory;
+    adbWrapperHolder: AdbWrapperHolder;
+};
+
+export type VirtualKeyboardButtonsProps = {
+    deps: VirtualKeyboardButtonsDeps;
+    narrowModeStatus: NarrowModeStatus;
+    deviceId: string;
+};
+
 export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
     'VirtualKeyboardButtons',
     props => {
-        const getArrowButton = (text: string, className?: string) => {
+        const getArrowButton = (text: string, onClick: () => void, className?: string) => {
             return (
                 <Button className={styles.button} primary>
                     <span className={styles.innerButtonContainer}>
@@ -22,25 +34,36 @@ export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
             );
         };
 
-        const getLargeButton = (text: string, className?: string) => {
+        const getLargeButton = (text: string, onClick: () => void, className?: string) => {
             return (
-                <Button className={css(className, styles.button)} primary>
+                <Button onClick={onClick} className={css(className, styles.button)} primary>
                     <span className={styles.innerButtonContainer}>{text}</span>
                 </Button>
             );
         };
 
+        const deps = props.deps;
+        const deviceFocusController = deps.deviceFocusControllerFactory.getDeviceFocusController(
+            deps.adbWrapperHolder.getAdb(),
+        );
+        deviceFocusController.setDeviceId(props.deviceId);
         const isVirtualKeyboardCollapsed = props.narrowModeStatus.isVirtualKeyboardCollapsed;
-        const upButton = getArrowButton('Up');
-        const leftButton = getArrowButton('Left', styles.left);
-        const rightButton = getArrowButton('Right', styles.right);
-        const downButton = getArrowButton('Down', styles.down);
+        const upButton = getArrowButton('Up', deviceFocusController.SendUpKey);
+        const leftButton = getArrowButton('Left', deviceFocusController.SendLeftKey, styles.left);
+        const rightButton = getArrowButton(
+            'Right',
+            deviceFocusController.SendRightKey,
+            styles.right,
+        );
+        const downButton = getArrowButton('Down', deviceFocusController.SendDownKey, styles.down);
         const tabButton = getLargeButton(
             'Tab',
+            deviceFocusController.SendTabKey,
             isVirtualKeyboardCollapsed ? undefined : styles.rectangleButton,
         );
         const enterButton = getLargeButton(
             'Enter',
+            deviceFocusController.SendEnterKey,
             isVirtualKeyboardCollapsed ? undefined : styles.rectangleButton,
         );
 

@@ -47,9 +47,11 @@ describe('ResultsView', () => {
     let getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
     let getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
+    let scanPort: number;
     const resultsFilter: ResultsFilter = _ => true;
 
     beforeEach(() => {
+        scanPort = 11111;
         isResultHighlightUnavailableStub = () => null;
         const cardSelectionStoreData = {} as CardSelectionStoreData;
         const resultsHighlightStatus = {
@@ -124,7 +126,12 @@ describe('ResultsView', () => {
                 getDateFromTimestamp: getDateFromTimestampMock.object,
             },
             cardSelectionStoreData,
-            androidSetupStoreData: {},
+            androidSetupStoreData: {
+                scanPort: scanPort,
+                selectedDevice: {
+                    id: 'some-id',
+                },
+            },
             scanStoreData: {},
             userConfigurationStoreData: {
                 isFirstTime: false,
@@ -189,15 +196,12 @@ describe('ResultsView', () => {
         const wrapped = shallow(<ResultsView {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
-
         getCardSelectionViewDataMock.verifyAll();
         getUnifiedRuleResultsMock.verifyAll();
         screenshotViewModelProviderMock.verifyAll();
     });
 
     it('triggers scan when first mounted', () => {
-        const scanPort = 11111;
-
         const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
         scanActionCreatorMock.setup(creator => creator.scan(scanPort)).verifiable(Times.once());
         props.deps.scanActionCreator = scanActionCreatorMock.object;
@@ -233,8 +237,6 @@ describe('ResultsView', () => {
 
     describe('DeviceDisconnectedPopup event handlers', () => {
         it('onRescanDevice', () => {
-            const scanPort = 11111;
-
             const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
             props.deps.scanActionCreator = scanActionCreatorMock.object;
             props.scanStoreData.status = ScanStatus.Failed;

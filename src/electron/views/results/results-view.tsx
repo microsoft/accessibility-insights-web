@@ -26,7 +26,10 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
-import { VisualHelperSectionProps } from 'electron/types/visual-helper-section';
+import {
+    VisualHelperSectionDeps,
+    VisualHelperSectionProps,
+} from 'electron/types/visual-helper-section';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
@@ -48,6 +51,7 @@ export type ResultsViewDeps = ReflowCommandBarDeps &
     LeftNavDeps &
     ContentPanelDeps &
     TestViewDeps &
+    VisualHelperSectionDeps &
     SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
         leftNavActionCreator: LeftNavActionCreator;
@@ -116,8 +120,10 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         );
 
         const visualHelperSectionProps: VisualHelperSectionProps = {
+            deps: deps,
             viewModel: screenshotViewModel,
             narrowModeStatus: this.props.narrowModeStatus,
+            deviceId: this.props.androidSetupStoreData.selectedDevice.id,
         };
 
         const VisualHelperSectionComponent = contentPageInfo.visualHelperSection;
