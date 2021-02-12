@@ -227,6 +227,10 @@ export type ScanIncompleteWarningsTelemetryData = {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
 };
 
+export type DeviceFocusKeyEventTelemetryData = {
+    keyEventCode: number;
+};
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -250,5 +254,6 @@ export type TelemetryData =
     | ValidatePortTelemetryData
     | AndroidScanCompletedTelemetryData
     | AndroidScanFailedTelemetryData
+    | DeviceFocusKeyEventTelemetryData
     | ScanIncompleteWarningsTelemetryData
     | SetAllUrlsPermissionTelemetryData;

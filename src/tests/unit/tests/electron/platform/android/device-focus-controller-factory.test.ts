@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
 import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
@@ -9,6 +10,7 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('DeviceFocusControllerFactory tests', () => {
     let adbWrapperFactoryMock: IMock<AdbWrapperFactory>;
+    let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let testSubject: DeviceFocusControllerFactory;
 
     const focusCommandSenderMock: IMock<DeviceFocusCommandSender> = Mock.ofType<DeviceFocusCommandSender>(
@@ -18,9 +20,14 @@ describe('DeviceFocusControllerFactory tests', () => {
 
     beforeEach(() => {
         adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
+        telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>(
+            undefined,
+            MockBehavior.Strict,
+        );
         testSubject = new DeviceFocusControllerFactory(
             adbWrapperFactoryMock.object,
             focusCommandSenderMock.object,
+            telemetryEventHandlerMock.object,
         );
     });
 
