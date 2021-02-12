@@ -8,6 +8,10 @@ export const SCAN_STARTED: string = 'ScanStarted';
 export const SCAN_COMPLETED: string = 'ScanCompleted';
 export const SCAN_FAILED: string = 'ScanFailed';
 export const DEVICE_SETUP_STEP: string = 'DeviceSetupStep';
+export const DEVICE_FOCUS_ENABLE: string = 'DeviceFocusEnable';
+export const DEVICE_FOCUS_DISABLE: string = 'DeviceFocusDisable';
+export const DEVICE_FOCUS_RESET: string = 'DeviceFocusReset';
+export const DEVICE_FOCUS_KEYEVENT: string = 'DeviceFocusKeyEvent';
 
 export type AndroidSetupStepTelemetryData = {
     prevStep: string;
