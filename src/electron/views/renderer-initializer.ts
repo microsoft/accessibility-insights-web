@@ -416,6 +416,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
             appiumAdbWrapperFactory,
             createDeviceFocusCommandSender(axios.get),
+            telemetryEventHandler,
         );
 
         // Placeholder--remove once we include deviceFocusControllerFactory in the deps
