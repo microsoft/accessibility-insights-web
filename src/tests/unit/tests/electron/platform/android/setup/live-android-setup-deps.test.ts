@@ -41,8 +41,8 @@ describe('LiveAndroidSetupDeps', () => {
         );
         fetchConfigMock = Mock.ofInstance((port: number) => new Promise<DeviceConfig>(() => null));
         loggerMock = Mock.ofType<Logger>();
-        adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>();
-        adbWrapperHolderMock = Mock.ofType<AdbWrapperHolder>();
+        adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
+        adbWrapperHolderMock = Mock.ofType<AdbWrapperHolder>(undefined, MockBehavior.Strict);
         adbWrapperStub = {} as AdbWrapper;
 
         testSubject = new LiveAndroidSetupDeps(
