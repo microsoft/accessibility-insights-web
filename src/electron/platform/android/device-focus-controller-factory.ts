@@ -2,27 +2,17 @@
 // Licensed under the MIT License.
 
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { AdbWrapper, AdbWrapperFactory } from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper } from 'electron/platform/android/adb-wrapper';
 import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 
 export class DeviceFocusControllerFactory {
     constructor(
-        private readonly adbWrapperFactory: AdbWrapperFactory,
         private readonly focusCommandSender: DeviceFocusCommandSender,
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
-    public initialize(): void {
-        // Temporary placeholder to let me call this class from renderer-initializer
-    }
-
-    public getDeviceFocusController = async (
-        adbLocation: string,
-    ): Promise<DeviceFocusController> => {
-        const adbWrapper: AdbWrapper = await this.adbWrapperFactory.createValidatedAdbWrapper(
-            adbLocation,
-        );
+    public getDeviceFocusController = (adbWrapper: AdbWrapper): DeviceFocusController => {
         return new DeviceFocusController(
             adbWrapper,
             this.focusCommandSender,

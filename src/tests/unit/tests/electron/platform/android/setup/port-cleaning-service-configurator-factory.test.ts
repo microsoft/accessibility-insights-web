@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { AdbWrapper } from 'electron/platform/android/adb-wrapper';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
@@ -13,6 +14,7 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
     let portCleanerMock: IMock<AndroidPortCleaner>;
     let serviceConfigMock: IMock<ServiceConfigurator>;
     let testSubject: PortCleaningServiceConfiguratorFactory;
+    let adbWrapperStub: AdbWrapper;
 
     beforeEach(() => {
         innerFactoryMock = Mock.ofType<ServiceConfiguratorFactory>(undefined, MockBehavior.Strict);
@@ -22,34 +24,28 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
             innerFactoryMock.object,
             portCleanerMock.object,
         );
-
-        serviceConfigMock
-            .setup((m: any) => m.then)
-            .returns(() => undefined)
-            .verifiable(Times.once());
+        adbWrapperStub = {} as AdbWrapper;
     });
 
     function verifyAllMocks(): void {
         innerFactoryMock.verifyAll();
         portCleanerMock.verifyAll();
-        serviceConfigMock.verifyAll();
     }
 
-    it('getServiceConfig returns correct object after linking to cleaner', async () => {
-        const expectedAdbLocation: string = 'Some location';
+    it('getServiceConfig returns correct object after linking to cleaner', () => {
         const expectedServiceConfig: ServiceConfigurator = serviceConfigMock.object;
         let attachedServiceConfig: ServiceConfigurator;
         innerFactoryMock
-            .setup(m => m.getServiceConfigurator(expectedAdbLocation))
-            .returns(() => Promise.resolve(expectedServiceConfig))
+            .setup(m => m.getServiceConfigurator(adbWrapperStub))
+            .returns(() => expectedServiceConfig)
             .verifiable(Times.once());
         portCleanerMock
             .setup(m => m.setServiceConfig(It.isAny()))
             .callback(config => (attachedServiceConfig = config as ServiceConfigurator))
             .verifiable(Times.once());
 
-        const finalServiceConfig: ServiceConfigurator = await testSubject.getServiceConfigurator(
-            expectedAdbLocation,
+        const finalServiceConfig: ServiceConfigurator = testSubject.getServiceConfigurator(
+            adbWrapperStub,
         );
 
         expect(finalServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
