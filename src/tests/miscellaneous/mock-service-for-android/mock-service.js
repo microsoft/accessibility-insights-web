@@ -7,15 +7,18 @@ const express = require('express');
 function startMockService(port, filesPath, testLogsDir) {
     return new Promise(resolve => {
         const options = { extensions: 'json' };
-        const testLogsPath = path.join(testLogsDir, 'server.log');
         const app = express();
 
-        app.use(function (req, res, next) {
-            fs.writeFileSync(testLogsPath, `${req.method} ${req.url}\n`, {
-                flag: 'a',
+        if (testLogsDir) {
+            const testLogsPath = path.join(testLogsDir, 'server.log');
+            app.use(function (req, res, next) {
+                fs.writeFileSync(testLogsPath, `${req.method} ${req.url}\n`, {
+                    flag: 'a',
+                });
+                next();
             });
-            next();
-        });
+        }
+
         app.use('/AccessibilityInsights', express.static(filesPath, options));
 
         app.listen(parseInt(port, 10), 'localhost', () => {
