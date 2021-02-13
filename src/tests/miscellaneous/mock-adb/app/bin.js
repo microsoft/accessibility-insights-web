@@ -59,8 +59,7 @@ async function main() {
     fs.mkdirSync(outputLogsDir, { recursive: true });
 
     const testLogsDir = path.join(outputLogsDir, 'testLogs');
-    fs.rmdirSync(testLogsDir, { recursive: true });
-    fs.mkdirSync(testLogsDir);
+    fs.mkdirSync(testLogsDir, { recursive: true });
 
     const outputFile = path.join(outputLogsDir, 'mock_adb_output.json');
 

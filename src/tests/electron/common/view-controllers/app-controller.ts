@@ -145,4 +145,18 @@ export class AppController {
             )
             .toString();
     }
+
+    public resetServerLog(logName: string, extraLogNames: string): void {
+        fs.rmdirSync(
+            path.normalize(`drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/server.log`),
+            { recursive: true },
+        );
+    }
+
+    public resetAdbLog(logName: string, extraLogNames: string): void {
+        fs.rmdirSync(
+            path.normalize(`drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/adb.log`),
+            { recursive: true },
+        );
+    }
 }
