@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { AdbWrapper } from 'electron/platform/android/adb-wrapper';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
@@ -12,9 +13,9 @@ export class PortCleaningServiceConfiguratorFactory implements ServiceConfigurat
         private readonly androidPortCleaner: AndroidPortCleaner,
     ) {}
 
-    public getServiceConfigurator = async (adbLocation: string): Promise<ServiceConfigurator> => {
-        const serviceConfig: ServiceConfigurator = await this.innerFactory.getServiceConfigurator(
-            adbLocation,
+    public getServiceConfigurator = (adbWrapper: AdbWrapper): ServiceConfigurator => {
+        const serviceConfig: ServiceConfigurator = this.innerFactory.getServiceConfigurator(
+            adbWrapper,
         );
         const portCleaningServiceConfig = new PortCleaningServiceConfigurator(
             serviceConfig,
