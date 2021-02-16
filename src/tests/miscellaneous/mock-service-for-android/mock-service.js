@@ -1,18 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const fs = require('fs');
-const path = require('path');
 const express = require('express');
 
-function startMockService(port, filesPath, testLogsDir) {
+function startMockService(port, filesPath, logPath) {
     return new Promise(resolve => {
         const options = { extensions: 'json' };
         const app = express();
 
-        if (testLogsDir) {
-            const testLogsPath = path.join(testLogsDir, 'server.log');
+        if (logPath) {
             app.use(function (req, res, next) {
-                fs.writeFileSync(testLogsPath, `${req.method} ${req.url}\n`, {
+                fs.writeFileSync(logPath, `${req.method} ${req.url}\n`, {
                     flag: 'a',
                 });
                 next();
