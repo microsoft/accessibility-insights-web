@@ -32,46 +32,46 @@ export class DeviceFocusController {
         this.port = port;
     }
 
-    public EnableFocusTracking = () => {
+    public enableFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
         return this.commandSender(this.port, DeviceFocusCommand.Enable);
     };
 
-    public DisableFocusTracking = () => {
+    public disableFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
         return this.commandSender(this.port, DeviceFocusCommand.Disable);
     };
 
-    public ResetFocusTracking = () => {
+    public resetFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
         return this.commandSender(this.port, DeviceFocusCommand.Reset);
     };
 
-    public SendUpKey = () => {
-        return this.SendKeyEvent(KeyEventCode.Up);
+    public sendUpKey = () => {
+        return this.sendKeyEvent(KeyEventCode.Up);
     };
 
-    public SendDownKey = () => {
-        return this.SendKeyEvent(KeyEventCode.Down);
+    public sendDownKey = () => {
+        return this.sendKeyEvent(KeyEventCode.Down);
     };
 
-    public SendLeftKey = () => {
-        return this.SendKeyEvent(KeyEventCode.Left);
+    public sendLeftKey = () => {
+        return this.sendKeyEvent(KeyEventCode.Left);
     };
 
-    public SendRightKey = () => {
-        return this.SendKeyEvent(KeyEventCode.Right);
+    public sendRightKey = () => {
+        return this.sendKeyEvent(KeyEventCode.Right);
     };
 
-    public SendEnterKey = () => {
-        return this.SendKeyEvent(KeyEventCode.Enter);
+    public sendEnterKey = () => {
+        return this.sendKeyEvent(KeyEventCode.Enter);
     };
 
-    public SendTabKey = () => {
-        return this.SendKeyEvent(KeyEventCode.Tab);
+    public sendTabKey = () => {
+        return this.sendKeyEvent(KeyEventCode.Tab);
     };
 
-    private SendKeyEvent = (keyEventCode: KeyEventCode) => {
+    private sendKeyEvent = (keyEventCode: KeyEventCode) => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
             telemetry: {
                 keyEventCode,
