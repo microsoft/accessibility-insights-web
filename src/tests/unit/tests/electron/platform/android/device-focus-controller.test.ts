@@ -103,7 +103,7 @@ describe('DeviceFocusController tests', () => {
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('SendDownKey sends correct command and telemetry', async () => {
+    it('sendDownKey sends correct command and telemetry', async () => {
         adbWrapperMock
             .setup(m => m.sendKeyEvent(deviceId, KeyEventCode.Down))
             .verifiable(Times.once());
@@ -115,7 +115,7 @@ describe('DeviceFocusController tests', () => {
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('SendLeftKey sends correct command and telemetry', async () => {
+    it('sendLeftKey sends correct command and telemetry', async () => {
         adbWrapperMock
             .setup(m => m.sendKeyEvent(deviceId, KeyEventCode.Left))
             .verifiable(Times.once());
