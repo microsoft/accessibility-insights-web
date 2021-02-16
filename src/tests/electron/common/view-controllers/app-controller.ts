@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as fs from 'fs';
-import * as path from 'path';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
 import { Application } from 'spectron';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
@@ -125,38 +123,6 @@ export class AppController {
                 timeout: DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS,
                 timeoutMsg: `was expecting window.${propertyName} to be defined`,
             },
-        );
-    }
-
-    public getServerLog(logName: string, extraLogNames: string): string {
-        return fs
-            .readFileSync(
-                path.normalize(
-                    `drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/server.log`,
-                ),
-            )
-            .toString();
-    }
-
-    public getAdbLog(logName: string, extraLogNames: string): string {
-        return fs
-            .readFileSync(
-                path.normalize(`drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/adb.log`),
-            )
-            .toString();
-    }
-
-    public resetServerLog(logName: string, extraLogNames: string): void {
-        fs.rmdirSync(
-            path.normalize(`drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/server.log`),
-            { recursive: true },
-        );
-    }
-
-    public resetAdbLog(logName: string, extraLogNames: string): void {
-        fs.rmdirSync(
-            path.normalize(`drop/mock-adb/logs/${logName}/${extraLogNames}/testLogs/adb.log`),
-            { recursive: true },
         );
     }
 }
