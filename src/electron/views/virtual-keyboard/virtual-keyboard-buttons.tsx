@@ -25,7 +25,7 @@ export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
     props => {
         const getArrowButton = (text: string, onClick: () => void, className?: string) => {
             return (
-                <Button className={styles.button} primary>
+                <Button onClick={onClick} className={styles.button} primary>
                     <span className={styles.innerButtonContainer}>
                         <Icon iconName="upArrow" className={className} />
                         {text}
