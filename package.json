@@ -85,11 +85,11 @@
         "@types/lodash": "^4.14.168",
         "@types/luxon": "^1.25.1",
         "@types/make-dir": "^2.1.0",
-        "@types/node": "^14.14.25",
+        "@types/node": "^14.14.27",
         "@types/q": "^1.5.4",
         "@types/react": "^16.14.3",
         "@types/react-copy-to-clipboard": "^5.0.0",
-        "@types/react-dom": "^16.9.10",
+        "@types/react-dom": "^16.9.11",
         "@types/react-helmet": "^6.1.0",
         "@types/react-resize-detector": "^5.0.0",
         "@types/react-router-dom": "^5.1.7",
@@ -155,7 +155,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^4.1.5",
         "webdriverio": "^4.13.0",
-        "webpack": "^5.21.2",
+        "webpack": "^5.22.0",
         "webpack-cli": "^4.5.0",
         "webpack-node-externals": "^2.5.2"
     },
@@ -183,7 +183,7 @@
         "react-router-dom": "^5.2.0",
         "ua-parser-js": "^0.7.24",
         "uuid": "^8.3.2",
-        "webextension-polyfill-ts": "^0.24.0"
+        "webextension-polyfill-ts": "^0.25.0"
     },
     "resolutions": {
         "@types/node": "^14.14.6",

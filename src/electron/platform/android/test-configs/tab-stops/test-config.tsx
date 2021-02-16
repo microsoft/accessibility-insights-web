@@ -3,7 +3,7 @@
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { TestConfig } from 'electron/types/test-config';
-import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
+import { VirtualKeyboardView } from 'electron/views/virtual-keyboard/virtual-keyboard-view';
 import * as React from 'react';
 
 export const tabStopsTestConfig: TestConfig = {
@@ -65,7 +65,7 @@ export const tabStopsTestConfig: TestConfig = {
         instancesSectionComponent: NeedsReviewInstancesSection,
         resultsFilter: _ => false,
         allowsExportReport: false,
-        visualHelperSection: ScreenshotView,
+        visualHelperSection: VirtualKeyboardView,
     },
     featureFlag: UnifiedFeatureFlags.tabStops,
 };

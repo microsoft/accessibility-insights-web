@@ -4,11 +4,19 @@
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as commonStyles from 'electron/views/screenshot/common-visual-helper-section-styles.scss';
-import { VirtualKeyboardButtons } from 'electron/views/virtual-keyboard/virtual-keyboard-buttons';
+import {
+    VirtualKeyboardButtons,
+    VirtualKeyboardButtonsDeps,
+} from 'electron/views/virtual-keyboard/virtual-keyboard-buttons';
 import { css } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-export type VirtualKeyboardViewProps = { narrowModeStatus: NarrowModeStatus };
+export type VirtualKeyboardViewDeps = VirtualKeyboardButtonsDeps;
+export type VirtualKeyboardViewProps = {
+    deps: VirtualKeyboardViewDeps;
+    narrowModeStatus: NarrowModeStatus;
+    deviceId: string;
+};
 
 export const VirtualKeyboardView = NamedFC<VirtualKeyboardViewProps>(
     'VirtualKeyboardView',
