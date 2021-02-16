@@ -32,51 +32,51 @@ export class DeviceFocusController {
         this.port = port;
     }
 
-    public EnableFocusTracking(): Promise<void> {
+    public EnableFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
         return this.commandSender(this.port, DeviceFocusCommand.Enable);
-    }
+    };
 
-    public DisableFocusTracking(): Promise<void> {
+    public DisableFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
         return this.commandSender(this.port, DeviceFocusCommand.Disable);
-    }
+    };
 
-    public ResetFocusTracking(): Promise<void> {
+    public ResetFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
         return this.commandSender(this.port, DeviceFocusCommand.Reset);
-    }
+    };
 
-    public SendUpKey(): Promise<void> {
+    public SendUpKey = () => {
         return this.SendKeyEvent(KeyEventCode.Up);
-    }
+    };
 
-    public SendDownKey(): Promise<void> {
+    public SendDownKey = () => {
         return this.SendKeyEvent(KeyEventCode.Down);
-    }
+    };
 
-    public SendLeftKey(): Promise<void> {
+    public SendLeftKey = () => {
         return this.SendKeyEvent(KeyEventCode.Left);
-    }
+    };
 
-    public SendRightKey(): Promise<void> {
+    public SendRightKey = () => {
         return this.SendKeyEvent(KeyEventCode.Right);
-    }
+    };
 
-    public SendEnterKey(): Promise<void> {
+    public SendEnterKey = () => {
         return this.SendKeyEvent(KeyEventCode.Enter);
-    }
+    };
 
-    public SendTabKey(): Promise<void> {
+    public SendTabKey = () => {
         return this.SendKeyEvent(KeyEventCode.Tab);
-    }
+    };
 
-    private SendKeyEvent(keyEventCode: KeyEventCode): Promise<void> {
+    private SendKeyEvent = (keyEventCode: KeyEventCode) => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
             telemetry: {
                 keyEventCode,
             },
         });
         return this.adbWrapper.sendKeyEvent(this.deviceId, keyEventCode);
-    }
+    };
 }
