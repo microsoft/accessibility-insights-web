@@ -49,7 +49,7 @@ describe('DeviceFocusController tests', () => {
         testSubject.setPort(port);
     });
 
-    it('EnableFocusTracking sends correct command and telemetry', async () => {
+    it('enableFocusTracking sends correct command and telemetry', async () => {
         commandSenderMock
             .setup(getter => getter(port, DeviceFocusCommand.Enable))
             .verifiable(Times.once());
@@ -57,13 +57,13 @@ describe('DeviceFocusController tests', () => {
             .setup(m => m.publishTelemetry(DEVICE_FOCUS_ENABLE, {}))
             .verifiable(Times.once());
 
-        await testSubject.EnableFocusTracking();
+        await testSubject.enableFocusTracking();
 
         commandSenderMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('DisableFocusTracking sends correct command and telemetry', async () => {
+    it('disableFocusTracking sends correct command and telemetry', async () => {
         commandSenderMock
             .setup(getter => getter(port, DeviceFocusCommand.Disable))
             .verifiable(Times.once());
@@ -71,13 +71,13 @@ describe('DeviceFocusController tests', () => {
             .setup(m => m.publishTelemetry(DEVICE_FOCUS_DISABLE, {}))
             .verifiable(Times.once());
 
-        await testSubject.DisableFocusTracking();
+        await testSubject.disableFocusTracking();
 
         commandSenderMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('ResetFocusTracking sends correct command and telemetry', async () => {
+    it('resetFocusTracking sends correct command and telemetry', async () => {
         commandSenderMock
             .setup(getter => getter(port, DeviceFocusCommand.Reset))
             .verifiable(Times.once());
@@ -85,7 +85,7 @@ describe('DeviceFocusController tests', () => {
             .setup(m => m.publishTelemetry(DEVICE_FOCUS_RESET, {}))
             .verifiable(Times.once());
 
-        await testSubject.ResetFocusTracking();
+        await testSubject.resetFocusTracking();
 
         commandSenderMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
@@ -97,7 +97,7 @@ describe('DeviceFocusController tests', () => {
             .verifiable(Times.once());
         setTelemetryMockForKeyEvent(KeyEventCode.Up);
 
-        await testSubject.SendUpKey();
+        await testSubject.sendUpKey();
 
         adbWrapperMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
@@ -109,7 +109,7 @@ describe('DeviceFocusController tests', () => {
             .verifiable(Times.once());
         setTelemetryMockForKeyEvent(KeyEventCode.Down);
 
-        await testSubject.SendDownKey();
+        await testSubject.sendDownKey();
 
         adbWrapperMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
@@ -121,43 +121,43 @@ describe('DeviceFocusController tests', () => {
             .verifiable(Times.once());
         setTelemetryMockForKeyEvent(KeyEventCode.Left);
 
-        await testSubject.SendLeftKey();
+        await testSubject.sendLeftKey();
 
         adbWrapperMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('SendRightKey sends correct command and telemetry', async () => {
+    it('sendRightKey sends correct command and telemetry', async () => {
         adbWrapperMock
             .setup(m => m.sendKeyEvent(deviceId, KeyEventCode.Right))
             .verifiable(Times.once());
         setTelemetryMockForKeyEvent(KeyEventCode.Right);
 
-        await testSubject.SendRightKey();
+        await testSubject.sendRightKey();
 
         adbWrapperMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('SendEnterKey sends correct command and telemetry', async () => {
+    it('sendEnterKey sends correct command and telemetry', async () => {
         adbWrapperMock
             .setup(m => m.sendKeyEvent(deviceId, KeyEventCode.Enter))
             .verifiable(Times.once());
         setTelemetryMockForKeyEvent(KeyEventCode.Enter);
 
-        await testSubject.SendEnterKey();
+        await testSubject.sendEnterKey();
 
         adbWrapperMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 
-    it('SendTabKey sends correct command and telemetry', async () => {
+    it('sendTabKey sends correct command and telemetry', async () => {
         adbWrapperMock
             .setup(m => m.sendKeyEvent(deviceId, KeyEventCode.Tab))
             .verifiable(Times.once());
         setTelemetryMockForKeyEvent(KeyEventCode.Tab);
 
-        await testSubject.SendTabKey();
+        await testSubject.sendTabKey();
 
         adbWrapperMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();

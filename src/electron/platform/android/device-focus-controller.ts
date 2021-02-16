@@ -37,46 +37,46 @@ export class DeviceFocusController {
         this.port = port;
     }
 
-    public EnableFocusTracking = () => {
+    public enableFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
         this.wrapActionWithErrorHandling(this.commandSender(this.port, DeviceFocusCommand.Enable));
     };
 
-    public DisableFocusTracking = () => {
+    public disableFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
         this.wrapActionWithErrorHandling(this.commandSender(this.port, DeviceFocusCommand.Disable));
     };
 
-    public ResetFocusTracking = () => {
+    public resetFocusTracking = () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
         this.wrapActionWithErrorHandling(this.commandSender(this.port, DeviceFocusCommand.Reset));
     };
 
-    public SendUpKey = () => {
-        this.wrapActionWithErrorHandling(this.SendKeyEvent(KeyEventCode.Up));
+    public sendUpKey = () => {
+        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Up));
     };
 
-    public SendDownKey = () => {
-        this.wrapActionWithErrorHandling(this.SendKeyEvent(KeyEventCode.Down));
+    public sendDownKey = () => {
+        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Down));
     };
 
-    public SendLeftKey = () => {
-        this.wrapActionWithErrorHandling(this.SendKeyEvent(KeyEventCode.Left));
+    public sendLeftKey = () => {
+        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Left));
     };
 
-    public SendRightKey = () => {
-        this.wrapActionWithErrorHandling(this.SendKeyEvent(KeyEventCode.Right));
+    public sendRightKey = () => {
+        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Right));
     };
 
-    public SendEnterKey = () => {
-        this.wrapActionWithErrorHandling(this.SendKeyEvent(KeyEventCode.Enter));
+    public sendEnterKey = () => {
+        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Enter));
     };
 
-    public SendTabKey = () => {
-        this.wrapActionWithErrorHandling(this.SendKeyEvent(KeyEventCode.Tab));
+    public sendTabKey = () => {
+        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Tab));
     };
 
-    private SendKeyEvent = (keyEventCode: KeyEventCode) => {
+    private sendKeyEvent = (keyEventCode: KeyEventCode) => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
             telemetry: {
                 keyEventCode,
