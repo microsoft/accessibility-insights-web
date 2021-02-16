@@ -2,12 +2,14 @@
 // Licensed under the MIT License.
 
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { Logger } from 'common/logging/logger';
 import {
     DEVICE_FOCUS_DISABLE,
     DEVICE_FOCUS_ENABLE,
     DEVICE_FOCUS_KEYEVENT,
     DEVICE_FOCUS_RESET,
 } from 'electron/common/electron-telemetry-events';
+import { FocusActions } from 'electron/flux/action/focus-actions';
 import { AdbWrapper, KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import {
     DeviceFocusCommand,
@@ -23,6 +25,8 @@ describe('DeviceFocusController tests', () => {
     let adbWrapperMock: IMock<AdbWrapper>;
     let commandSenderMock: IMock<DeviceFocusCommandSender>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let focusActionsMock: IMock<FocusActions>;
+    let loggerMock: IMock<Logger>;
     let testSubject: DeviceFocusController;
 
     beforeEach(() => {
@@ -32,10 +36,14 @@ describe('DeviceFocusController tests', () => {
             undefined,
             MockBehavior.Strict,
         );
+        focusActionsMock = Mock.ofType<FocusActions>(undefined, MockBehavior.Strict);
+        loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         testSubject = new DeviceFocusController(
             adbWrapperMock.object,
             commandSenderMock.object,
             telemetryEventHandlerMock.object,
+            focusActionsMock.object,
+            loggerMock.object,
         );
         testSubject.setDeviceId(deviceId);
         testSubject.setPort(port);

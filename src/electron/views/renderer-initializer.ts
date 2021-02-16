@@ -416,6 +416,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
             createDeviceFocusCommandSender(axios.get),
             telemetryEventHandler,
+            scanActions,
+            logger,
         );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(

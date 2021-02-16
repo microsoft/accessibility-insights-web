@@ -12,6 +12,7 @@ export const DEVICE_FOCUS_ENABLE: string = 'DeviceFocusEnable';
 export const DEVICE_FOCUS_DISABLE: string = 'DeviceFocusDisable';
 export const DEVICE_FOCUS_RESET: string = 'DeviceFocusReset';
 export const DEVICE_FOCUS_KEYEVENT: string = 'DeviceFocusKeyEvent';
+export const DEVICE_FOCUS_ERROR: string = 'DeviceFocusError';
 
 export type AndroidSetupStepTelemetryData = {
     prevStep: string;

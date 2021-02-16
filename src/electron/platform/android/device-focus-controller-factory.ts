@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { Logger } from 'common/logging/logger';
+import { FocusActions } from 'electron/flux/action/focus-actions';
 import { AdbWrapper } from 'electron/platform/android/adb-wrapper';
 import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
@@ -10,6 +12,8 @@ export class DeviceFocusControllerFactory {
     constructor(
         private readonly focusCommandSender: DeviceFocusCommandSender,
         private readonly telemetryEventHandler: TelemetryEventHandler,
+        private readonly focusActions: FocusActions,
+        private readonly logger: Logger,
     ) {}
 
     public getDeviceFocusController = (adbWrapper: AdbWrapper): DeviceFocusController => {
@@ -17,6 +21,8 @@ export class DeviceFocusControllerFactory {
             adbWrapper,
             this.focusCommandSender,
             this.telemetryEventHandler,
+            this.focusActions,
+            this.logger,
         );
     };
 }
