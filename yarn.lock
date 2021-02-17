@@ -8891,10 +8891,10 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-license-check-and-add@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/license-check-and-add/-/license-check-and-add-4.0.1.tgz#f644d32161f1d7c954709c490e2894bcf1c184b0"
-  integrity sha512-IJY9OegV6GGs5SieX9viPGVGym/yJxv+Pr+ZpeDUxG9mzEccjqU2Fk2uopEwiqqrs5QN4thqqmS/KBZH+Vd0Hg==
+license-check-and-add@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/license-check-and-add/-/license-check-and-add-4.0.2.tgz#780611c08717e769f2cbd85aae7790100f59ff14"
+  integrity sha512-Mb2QZiuuTJ/X/428KskTojPs9rSnUjzc6rMsj6QhNt5x5LtzcGgBxsZyBCOklha/iAscDTaRzmb+wXq39Du2Jw==
   dependencies:
     fs-extra "^8.1.0"
     gitignore-to-glob "^0.3.0"
