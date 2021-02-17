@@ -92,7 +92,11 @@ export class DeviceFocusController {
     };
 
     private wrapActionWithErrorHandling(innerAction: Promise<void>): void {
-        innerAction.catch(this.commandFailed.bind(this));
+        innerAction.then(this.commandSucceeded.bind(this)).catch(this.commandFailed.bind(this));
+    }
+
+    private commandSucceeded(): void {
+        this.focusActions.scanCompleted.invoke(null);
     }
 
     private commandFailed(error: Error): void {

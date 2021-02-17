@@ -23,7 +23,6 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 describe('DeviceFocusController tests', () => {
     const deviceId: string = 'some device';
     const port: number = 23456;
-    const errorMessage: string = 'Welcome to the dark side';
 
     let adbWrapperMock: IMock<AdbWrapper>;
     let commandSenderMock: IMock<DeviceFocusCommandSender>;
@@ -31,6 +30,7 @@ describe('DeviceFocusController tests', () => {
     let focusActionsMock: IMock<FocusActions>;
     let loggerMock: IMock<Logger>;
     let scanFailedMock: IMock<Action<void>>;
+    let scanCompletedMock: IMock<Action<void>>;
     let testSubject: DeviceFocusController;
 
     beforeEach(() => {
@@ -43,6 +43,7 @@ describe('DeviceFocusController tests', () => {
         focusActionsMock = Mock.ofType<FocusActions>(undefined, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         scanFailedMock = Mock.ofType<Action<void>>();
+        scanCompletedMock = Mock.ofType<Action<void>>();
         testSubject = new DeviceFocusController(
             adbWrapperMock.object,
             commandSenderMock.object,
@@ -54,15 +55,6 @@ describe('DeviceFocusController tests', () => {
         testSubject.setPort(port);
     });
 
-    function verifyAllMocks(): void {
-        adbWrapperMock.verifyAll();
-        commandSenderMock.verifyAll();
-        telemetryEventHandlerMock.verifyAll();
-        focusActionsMock.verifyAll();
-        loggerMock.verifyAll();
-        scanFailedMock.verifyAll();
-    }
-
     describe('Success paths', () => {
         it('enableFocusTracking sends correct command and telemetry', async () => {
             commandSenderMock
@@ -72,6 +64,7 @@ describe('DeviceFocusController tests', () => {
             telemetryEventHandlerMock
                 .setup(m => m.publishTelemetry(DEVICE_FOCUS_ENABLE, {}))
                 .verifiable(Times.once());
+            setFocusActionsForSuccess();
 
             await testSubject.enableFocusTracking();
 
@@ -86,6 +79,7 @@ describe('DeviceFocusController tests', () => {
             telemetryEventHandlerMock
                 .setup(m => m.publishTelemetry(DEVICE_FOCUS_DISABLE, {}))
                 .verifiable(Times.once());
+            setFocusActionsForSuccess();
 
             await testSubject.disableFocusTracking();
 
@@ -112,6 +106,7 @@ describe('DeviceFocusController tests', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
             setTelemetryMockForKeyEvent(KeyEventCode.Up);
+            setFocusActionsForSuccess();
 
             await testSubject.sendUpKey();
 
@@ -124,6 +119,7 @@ describe('DeviceFocusController tests', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
             setTelemetryMockForKeyEvent(KeyEventCode.Down);
+            setFocusActionsForSuccess();
 
             await testSubject.sendDownKey();
 
@@ -136,6 +132,7 @@ describe('DeviceFocusController tests', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
             setTelemetryMockForKeyEvent(KeyEventCode.Left);
+            setFocusActionsForSuccess();
 
             await testSubject.sendLeftKey();
 
@@ -148,6 +145,7 @@ describe('DeviceFocusController tests', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
             setTelemetryMockForKeyEvent(KeyEventCode.Right);
+            setFocusActionsForSuccess();
 
             await testSubject.sendRightKey();
 
@@ -160,6 +158,7 @@ describe('DeviceFocusController tests', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
             setTelemetryMockForKeyEvent(KeyEventCode.Enter);
+            setFocusActionsForSuccess();
 
             await testSubject.sendEnterKey();
 
@@ -172,14 +171,27 @@ describe('DeviceFocusController tests', () => {
                 .returns(() => Promise.resolve())
                 .verifiable(Times.once());
             setTelemetryMockForKeyEvent(KeyEventCode.Tab);
+            setFocusActionsForSuccess();
 
             await testSubject.sendTabKey();
 
             verifyAllMocks();
         });
+
+        function setFocusActionsForSuccess(): void {
+            scanCompletedMock
+                .setup(m => m.invoke((It.isAny(), It.isAny())))
+                .verifiable(Times.once());
+            focusActionsMock
+                .setup(m => m.scanCompleted)
+                .returns(() => scanCompletedMock.object)
+                .verifiable(Times.once());
+        }
     });
 
     describe('Error paths', () => {
+        const errorMessage: string = 'Welcome to the dark side';
+
         it('enableFocusTracking sets error, logs, sends telemetry', async () => {
             commandSenderMock
                 .setup(getter => getter(port, DeviceFocusCommand.Enable))
@@ -302,21 +314,21 @@ describe('DeviceFocusController tests', () => {
 
             verifyAllMocks();
         });
-    });
 
-    function setMocksForFocusError(): void {
-        telemetryEventHandlerMock
-            .setup(m => m.publishTelemetry(DEVICE_FOCUS_ERROR, {}))
-            .verifiable(Times.once());
-        loggerMock
-            .setup(m => m.log('focus controller failure: ' + errorMessage))
-            .verifiable(Times.once());
-        scanFailedMock.setup(m => m.invoke((It.isAny(), It.isAny()))).verifiable(Times.once());
-        focusActionsMock
-            .setup(m => m.scanFailed)
-            .returns(() => scanFailedMock.object)
-            .verifiable(Times.once());
-    }
+        function setMocksForFocusError(): void {
+            telemetryEventHandlerMock
+                .setup(m => m.publishTelemetry(DEVICE_FOCUS_ERROR, {}))
+                .verifiable(Times.once());
+            loggerMock
+                .setup(m => m.log('focus controller failure: ' + errorMessage))
+                .verifiable(Times.once());
+            scanFailedMock.setup(m => m.invoke((It.isAny(), It.isAny()))).verifiable(Times.once());
+            focusActionsMock
+                .setup(m => m.scanFailed)
+                .returns(() => scanFailedMock.object)
+                .verifiable(Times.once());
+        }
+    });
 
     function setTelemetryMockForKeyEvent(keyEventCode: KeyEventCode): void {
         telemetryEventHandlerMock
@@ -328,5 +340,15 @@ describe('DeviceFocusController tests', () => {
                 }),
             )
             .verifiable(Times.once());
+    }
+
+    function verifyAllMocks(): void {
+        adbWrapperMock.verifyAll();
+        commandSenderMock.verifyAll();
+        telemetryEventHandlerMock.verifyAll();
+        focusActionsMock.verifyAll();
+        loggerMock.verifyAll();
+        scanFailedMock.verifyAll();
+        scanCompletedMock.verifyAll();
     }
 });
