@@ -10,6 +10,7 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { HeaderSection } from 'electron/views/results/components/header-section';
 import * as React from 'react';
+import * as styles from './test-view.scss';
 
 export type TestViewDeps = ResultSectionContentDeps;
 export type TestViewProps = {
@@ -34,21 +35,25 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
     const { title, description } = contentPageInfo;
     const headerSection = <HeaderSection title={title} description={description} />;
 
+    if (contentPageInfo.instancesSectionComponent == null) {
+        return <div className={styles.testView}>{headerSection}</div>;
+    }
+
     if (scanStatus !== ScanStatus.Completed) {
         return (
-            <>
+            <div className={styles.testView}>
                 {headerSection}
                 <ScanningSpinner
                     isSpinning={scanStatus === ScanStatus.Scanning}
                     label="Scanning..."
                     aria-live="assertive"
                 />
-            </>
+            </div>
         );
     }
 
     return (
-        <>
+        <div className={styles.testView}>
             {headerSection}
             <contentPageInfo.instancesSectionComponent
                 deps={deps}
@@ -57,6 +62,6 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 shouldAlertFailuresCount={true}
                 cardsViewData={cardsViewData}
             />
-        </>
+        </div>
     );
 });

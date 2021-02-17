@@ -12,10 +12,10 @@ export const needsReviewTestConfig: TestConfig = {
     contentPageInfo: {
         title: 'Needs review',
         description: (
-            <>
+            <p>
                 Sometimes automated checks identify <i>possible</i> accessibility problems that need
                 to be reviewed and verified by a human.
-            </>
+            </p>
         ),
         instancesSectionComponent: NeedsReviewInstancesSection,
         resultsFilter: needsReviewResultsFilter,
