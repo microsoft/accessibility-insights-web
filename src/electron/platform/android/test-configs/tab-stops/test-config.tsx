@@ -4,7 +4,7 @@ import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { TestConfig } from 'electron/types/test-config';
 import { VirtualKeyboardView } from 'electron/views/virtual-keyboard/virtual-keyboard-view';
 import * as React from 'react';
-import * as styles from '../../../../views/results/test-view.scss';
+import * as styles from './test-config.scss';
 
 const ariaLevelForHowToTestHeading: number = 2;
 
@@ -13,7 +13,7 @@ export const tabStopsTestConfig: TestConfig = {
     contentPageInfo: {
         title: 'Tab stops',
         description: (
-            <div className={styles.tabStopsTest}>
+            <>
                 <span role="heading" aria-level={ariaLevelForHowToTestHeading}>
                     <strong>How to test:</strong>
                 </span>
@@ -64,7 +64,7 @@ export const tabStopsTestConfig: TestConfig = {
                         </ul>
                     </li>
                 </ol>
-            </div>
+            </>
         ),
         resultsFilter: _ => false,
         allowsExportReport: false,

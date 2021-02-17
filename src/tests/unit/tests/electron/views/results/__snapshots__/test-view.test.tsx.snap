@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestView when status scan <Completed> 1`] = `
-<div
-  className="testView"
->
+<div>
   <HeaderSection
     description={
       <p>
@@ -37,9 +35,7 @@ exports[`TestView when status scan <Completed> 1`] = `
 `;
 
 exports[`TestView when status scan <Failed> 1`] = `
-<div
-  className="testView"
->
+<div>
   <HeaderSection
     description={
       <p>
@@ -57,9 +53,7 @@ exports[`TestView when status scan <Failed> 1`] = `
 `;
 
 exports[`TestView when status scan <Scanning> 1`] = `
-<div
-  className="testView"
->
+<div>
   <HeaderSection
     description={
       <p>
@@ -77,9 +71,7 @@ exports[`TestView when status scan <Scanning> 1`] = `
 `;
 
 exports[`TestView when status scan <undefined> 1`] = `
-<div
-  className="testView"
->
+<div>
   <HeaderSection
     description={
       <p>

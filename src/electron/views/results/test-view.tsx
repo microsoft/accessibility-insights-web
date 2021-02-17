@@ -10,7 +10,6 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { HeaderSection } from 'electron/views/results/components/header-section';
 import * as React from 'react';
-import * as styles from './test-view.scss';
 
 export type TestViewDeps = ResultSectionContentDeps;
 export type TestViewProps = {
@@ -36,12 +35,12 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
     const headerSection = <HeaderSection title={title} description={description} />;
 
     if (contentPageInfo.instancesSectionComponent == null) {
-        return <div className={styles.testView}>{headerSection}</div>;
+        return <div>{headerSection}</div>;
     }
 
     if (scanStatus !== ScanStatus.Completed) {
         return (
-            <div className={styles.testView}>
+            <div>
                 {headerSection}
                 <ScanningSpinner
                     isSpinning={scanStatus === ScanStatus.Scanning}
@@ -53,7 +52,7 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
     }
 
     return (
-        <div className={styles.testView}>
+        <div>
             {headerSection}
             <contentPageInfo.instancesSectionComponent
                 deps={deps}
