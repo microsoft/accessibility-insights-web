@@ -66,6 +66,7 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
@@ -164,6 +165,7 @@ const androidSetupActions = new AndroidSetupActions();
 const windowFrameActions = new WindowFrameActions();
 const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
+const deviceConnectionActions = new DeviceConnectionActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
@@ -410,7 +412,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
             createDeviceFocusCommandSender(axios.get),
             telemetryEventHandler,
-            scanActions,
+            deviceConnectionActions,
             logger,
         );
 

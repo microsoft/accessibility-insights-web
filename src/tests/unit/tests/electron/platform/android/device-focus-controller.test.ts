@@ -11,7 +11,7 @@ import {
     DEVICE_FOCUS_KEYEVENT,
     DEVICE_FOCUS_RESET,
 } from 'electron/common/electron-telemetry-events';
-import { FocusActions } from 'electron/flux/action/focus-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { AdbWrapper, KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import {
     DeviceFocusCommand,
@@ -27,10 +27,10 @@ describe('DeviceFocusController tests', () => {
     let adbWrapperMock: IMock<AdbWrapper>;
     let commandSenderMock: IMock<DeviceFocusCommandSender>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let focusActionsMock: IMock<FocusActions>;
+    let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
     let loggerMock: IMock<Logger>;
-    let scanFailedMock: IMock<Action<void>>;
-    let scanCompletedMock: IMock<Action<void>>;
+    let statusDisconnectedMock: IMock<Action<void>>;
+    let statusConnectedMock: IMock<Action<void>>;
     let testSubject: DeviceFocusController;
 
     beforeEach(() => {
@@ -40,15 +40,18 @@ describe('DeviceFocusController tests', () => {
             undefined,
             MockBehavior.Strict,
         );
-        focusActionsMock = Mock.ofType<FocusActions>(undefined, MockBehavior.Strict);
+        deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>(
+            undefined,
+            MockBehavior.Strict,
+        );
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
-        scanFailedMock = Mock.ofType<Action<void>>();
-        scanCompletedMock = Mock.ofType<Action<void>>();
+        statusDisconnectedMock = Mock.ofType<Action<void>>();
+        statusConnectedMock = Mock.ofType<Action<void>>();
         testSubject = new DeviceFocusController(
             adbWrapperMock.object,
             commandSenderMock.object,
             telemetryEventHandlerMock.object,
-            focusActionsMock.object,
+            deviceConnectionActionsMock.object,
             loggerMock.object,
         );
         testSubject.setDeviceId(deviceId);
@@ -179,12 +182,12 @@ describe('DeviceFocusController tests', () => {
         });
 
         function setFocusActionsForSuccess(): void {
-            scanCompletedMock
+            statusConnectedMock
                 .setup(m => m.invoke((It.isAny(), It.isAny())))
                 .verifiable(Times.once());
-            focusActionsMock
-                .setup(m => m.scanCompleted)
-                .returns(() => scanCompletedMock.object)
+            deviceConnectionActionsMock
+                .setup(m => m.statusConnected)
+                .returns(() => statusConnectedMock.object)
                 .verifiable(Times.once());
         }
     });
@@ -322,10 +325,12 @@ describe('DeviceFocusController tests', () => {
             loggerMock
                 .setup(m => m.log('focus controller failure: ' + errorMessage))
                 .verifiable(Times.once());
-            scanFailedMock.setup(m => m.invoke((It.isAny(), It.isAny()))).verifiable(Times.once());
-            focusActionsMock
-                .setup(m => m.scanFailed)
-                .returns(() => scanFailedMock.object)
+            statusDisconnectedMock
+                .setup(m => m.invoke((It.isAny(), It.isAny())))
+                .verifiable(Times.once());
+            deviceConnectionActionsMock
+                .setup(m => m.statusDisconnected)
+                .returns(() => statusDisconnectedMock.object)
                 .verifiable(Times.once());
         }
     });
@@ -346,9 +351,9 @@ describe('DeviceFocusController tests', () => {
         adbWrapperMock.verifyAll();
         commandSenderMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
-        focusActionsMock.verifyAll();
+        deviceConnectionActionsMock.verifyAll();
         loggerMock.verifyAll();
-        scanFailedMock.verifyAll();
-        scanCompletedMock.verifyAll();
+        statusDisconnectedMock.verifyAll();
+        statusConnectedMock.verifyAll();
     }
 });

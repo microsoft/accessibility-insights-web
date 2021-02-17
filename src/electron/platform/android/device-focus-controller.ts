@@ -10,7 +10,7 @@ import {
     DEVICE_FOCUS_KEYEVENT,
     DEVICE_FOCUS_RESET,
 } from 'electron/common/electron-telemetry-events';
-import { FocusActions } from 'electron/flux/action/focus-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { AdbWrapper, KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import {
     DeviceFocusCommand,
@@ -25,7 +25,7 @@ export class DeviceFocusController {
         private readonly adbWrapper: AdbWrapper,
         private readonly commandSender: DeviceFocusCommandSender,
         private readonly telemetryEventHandler: TelemetryEventHandler,
-        private readonly focusActions: FocusActions,
+        private readonly deviceConnectionActions: DeviceConnectionActions,
         private readonly logger: Logger,
     ) {}
 
@@ -96,12 +96,12 @@ export class DeviceFocusController {
     }
 
     private commandSucceeded(): void {
-        this.focusActions.scanCompleted.invoke(null);
+        this.deviceConnectionActions.statusConnected.invoke(null);
     }
 
     private commandFailed(error: Error): void {
         this.logger.log('focus controller failure: ' + error);
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ERROR, {});
-        this.focusActions.scanFailed.invoke(null);
+        this.deviceConnectionActions.statusDisconnected.invoke(null);
     }
 }

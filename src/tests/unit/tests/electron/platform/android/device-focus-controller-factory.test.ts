@@ -3,7 +3,7 @@
 
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
-import { FocusActions } from 'electron/flux/action/focus-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { AdbWrapper } from 'electron/platform/android/adb-wrapper';
 import { DeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
@@ -12,7 +12,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 describe('DeviceFocusControllerFactory tests', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let focusActionsMock: IMock<FocusActions>;
+    let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
     let loggerMock: IMock<Logger>;
     let testSubject: DeviceFocusControllerFactory;
 
@@ -26,12 +26,15 @@ describe('DeviceFocusControllerFactory tests', () => {
             undefined,
             MockBehavior.Strict,
         );
-        focusActionsMock = Mock.ofType<FocusActions>(undefined, MockBehavior.Strict);
+        deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>(
+            undefined,
+            MockBehavior.Strict,
+        );
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         testSubject = new DeviceFocusControllerFactory(
             focusCommandSenderMock.object,
             telemetryEventHandlerMock.object,
-            focusActionsMock.object,
+            deviceConnectionActionsMock.object,
             loggerMock.object,
         );
     });
