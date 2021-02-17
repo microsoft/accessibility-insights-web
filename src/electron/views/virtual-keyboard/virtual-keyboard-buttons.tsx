@@ -48,22 +48,22 @@ export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
         );
         deviceFocusController.setDeviceId(props.deviceId);
         const isVirtualKeyboardCollapsed = props.narrowModeStatus.isVirtualKeyboardCollapsed;
-        const upButton = getArrowButton('Up', deviceFocusController.SendUpKey);
-        const leftButton = getArrowButton('Left', deviceFocusController.SendLeftKey, styles.left);
+        const upButton = getArrowButton('Up', deviceFocusController.sendUpKey);
+        const leftButton = getArrowButton('Left', deviceFocusController.sendLeftKey, styles.left);
         const rightButton = getArrowButton(
             'Right',
-            deviceFocusController.SendRightKey,
+            deviceFocusController.sendRightKey,
             styles.right,
         );
-        const downButton = getArrowButton('Down', deviceFocusController.SendDownKey, styles.down);
+        const downButton = getArrowButton('Down', deviceFocusController.sendDownKey, styles.down);
         const tabButton = getLargeButton(
             'Tab',
-            deviceFocusController.SendTabKey,
+            deviceFocusController.sendTabKey,
             isVirtualKeyboardCollapsed ? undefined : styles.rectangleButton,
         );
         const enterButton = getLargeButton(
             'Enter',
-            deviceFocusController.SendEnterKey,
+            deviceFocusController.sendEnterKey,
             isVirtualKeyboardCollapsed ? undefined : styles.rectangleButton,
         );
 
