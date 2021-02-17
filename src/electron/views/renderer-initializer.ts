@@ -72,6 +72,7 @@ import { ScanActions } from 'electron/flux/action/scan-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
+import { DeviceConnectionStore } from 'electron/flux/store/device-connection-store';
 import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
@@ -255,6 +256,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const scanStore = new ScanStore(scanActions);
         scanStore.initialize();
+
+        const deviceConnectionStore = new DeviceConnectionStore(deviceConnectionActions);
+        deviceConnectionStore.initialize();
 
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
