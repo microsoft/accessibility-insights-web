@@ -6,13 +6,15 @@ import { VirtualKeyboardView } from 'electron/views/virtual-keyboard/virtual-key
 import * as React from 'react';
 import * as styles from '../../../../views/results/test-view.scss';
 
+const ariaLevelForHowToTestHeading: number = 2;
+
 export const tabStopsTestConfig: TestConfig = {
     key: 'tab-stops',
     contentPageInfo: {
         title: 'Tab stops',
         description: (
             <div className={styles.tabStopsTest}>
-                <span role="heading">
+                <span role="heading" aria-level={ariaLevelForHowToTestHeading}>
                     <strong>How to test:</strong>
                 </span>
                 <ol className={styles.howToTestList}>
