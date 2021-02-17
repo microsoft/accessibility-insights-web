@@ -20,12 +20,19 @@ export type VirtualKeyboardButtonsProps = {
     deviceId: string;
 };
 
+export const buildKeyboardButtonAutomationId = (text: string) => `virtual-keyboard-${text}-button`;
+
 export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
     'VirtualKeyboardButtons',
     props => {
         const getArrowButton = (text: string, onClick: () => void, className?: string) => {
             return (
-                <Button onClick={onClick} className={styles.button} primary>
+                <Button
+                    onClick={onClick}
+                    className={styles.button}
+                    data-automation-id={buildKeyboardButtonAutomationId(text)}
+                    primary
+                >
                     <span className={styles.innerButtonContainer}>
                         <Icon iconName="upArrow" className={className} />
                         {text}
@@ -36,7 +43,12 @@ export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
 
         const getLargeButton = (text: string, onClick: () => void, className?: string) => {
             return (
-                <Button onClick={onClick} className={css(className, styles.button)} primary>
+                <Button
+                    onClick={onClick}
+                    className={css(className, styles.button)}
+                    data-automation-id={buildKeyboardButtonAutomationId(text)}
+                    primary
+                >
                     <span className={styles.innerButtonContainer}>{text}</span>
                 </Button>
             );
