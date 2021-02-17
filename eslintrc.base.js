@@ -8,6 +8,7 @@ module.exports = {
     },
     extends: [
         'eslint:recommended',
+        'plugin:jsx-a11y/recommended',
         'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
         'plugin:@typescript-eslint/recommended-requiring-type-checking',
@@ -22,7 +23,7 @@ module.exports = {
         },
         ecmaVersion: 8,
     },
-    plugins: ['react', '@typescript-eslint', 'security', 'import'],
+    plugins: ['react', '@typescript-eslint', 'security', 'import', 'jsx-a11y'],
     settings: {
         react: {
             version: 'detect',
