@@ -400,6 +400,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const scanController = new ScanController(
             scanActions,
             unifiedScanResultActions,
+            deviceConnectionActions,
             fetchScanResults,
             unifiedResultsBuilder,
             telemetryEventHandler,
