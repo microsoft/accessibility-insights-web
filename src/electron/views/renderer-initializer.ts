@@ -140,7 +140,6 @@ import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub'
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
 import { DeviceActions } from '../flux/action/device-actions';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
@@ -341,11 +340,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
         const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
 
-        const deviceConnectActionCreator = new DeviceConnectActionCreator(
-            deviceActions,
-            fetchDeviceConfig,
-            telemetryEventHandler,
-        );
         const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
         const windowStateActionCreator = new WindowStateActionCreator(
             windowStateActions,
@@ -531,7 +525,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             dropdownClickHandler,
             LinkComponent: ElectronLink,
             fetchScanResults,
-            deviceConnectActionCreator,
             androidSetupActionCreator,
             storesHub,
             scanActionCreator,

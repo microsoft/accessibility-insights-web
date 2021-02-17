@@ -193,7 +193,7 @@ export type NeedsReviewAnalyzerScanTelemetryData = {
     incompleteRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
-export type ValidatePortTelemetryData = {
+export type PortTelemetryData = {
     port: number;
 };
 
@@ -251,7 +251,7 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | ValidatePortTelemetryData
+    | PortTelemetryData
     | AndroidScanCompletedTelemetryData
     | AndroidScanFailedTelemetryData
     | DeviceFocusKeyEventTelemetryData
