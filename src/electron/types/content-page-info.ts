@@ -10,7 +10,7 @@ export type ContentPageInfo = {
     title: string;
     allowsExportReport: boolean;
     description: JSX.Element;
-    instancesSectionComponent: ReactFCWithDisplayName<CommonInstancesSectionProps>;
+    instancesSectionComponent?: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     resultsFilter: ResultsFilter;
     visualHelperSection: VisualHelperSection;
 };

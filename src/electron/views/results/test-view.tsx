@@ -34,21 +34,25 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
     const { title, description } = contentPageInfo;
     const headerSection = <HeaderSection title={title} description={description} />;
 
+    if (contentPageInfo.instancesSectionComponent == null) {
+        return <div>{headerSection}</div>;
+    }
+
     if (scanStatus !== ScanStatus.Completed) {
         return (
-            <>
+            <div>
                 {headerSection}
                 <ScanningSpinner
                     isSpinning={scanStatus === ScanStatus.Scanning}
                     label="Scanning..."
                     aria-live="assertive"
                 />
-            </>
+            </div>
         );
     }
 
     return (
-        <>
+        <div>
             {headerSection}
             <contentPageInfo.instancesSectionComponent
                 deps={deps}
@@ -57,6 +61,6 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 shouldAlertFailuresCount={true}
                 cardsViewData={cardsViewData}
             />
-        </>
+        </div>
     );
 });

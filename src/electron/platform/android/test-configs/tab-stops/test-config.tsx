@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { TestConfig } from 'electron/types/test-config';
 import { VirtualKeyboardView } from 'electron/views/virtual-keyboard/virtual-keyboard-view';
 import * as React from 'react';
+import * as styles from './test-config.scss';
+
+const ariaLevelForHowToTestHeading: number = 2;
 
 export const tabStopsTestConfig: TestConfig = {
     key: 'tab-stops',
@@ -12,8 +14,10 @@ export const tabStopsTestConfig: TestConfig = {
         title: 'Tab stops',
         description: (
             <>
-                <strong>How to test:</strong>
-                <ol>
+                <span role="heading" aria-level={ariaLevelForHowToTestHeading}>
+                    <strong>How to test:</strong>
+                </span>
+                <ol className={styles.howToTestList}>
                     <li>Navigate to the screen you want to test in your app.</li>
                     <li>
                         Turn on the Show tab stops toggle. An empty circle will highlight the
@@ -62,7 +66,6 @@ export const tabStopsTestConfig: TestConfig = {
                 </ol>
             </>
         ),
-        instancesSectionComponent: NeedsReviewInstancesSection,
         resultsFilter: _ => false,
         allowsExportReport: false,
         visualHelperSection: VirtualKeyboardView,
