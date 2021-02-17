@@ -37,46 +37,52 @@ export class DeviceFocusController {
         this.port = port;
     }
 
-    public enableFocusTracking = () => {
+    public enableFocusTracking = async () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
-        this.wrapActionWithErrorHandling(this.commandSender(this.port, DeviceFocusCommand.Enable));
+        await this.wrapActionWithErrorHandling(
+            this.commandSender(this.port, DeviceFocusCommand.Enable),
+        );
     };
 
-    public disableFocusTracking = () => {
+    public disableFocusTracking = async () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
-        this.wrapActionWithErrorHandling(this.commandSender(this.port, DeviceFocusCommand.Disable));
+        await this.wrapActionWithErrorHandling(
+            this.commandSender(this.port, DeviceFocusCommand.Disable),
+        );
     };
 
-    public resetFocusTracking = () => {
+    public resetFocusTracking = async () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
-        this.wrapActionWithErrorHandling(this.commandSender(this.port, DeviceFocusCommand.Reset));
+        await this.wrapActionWithErrorHandling(
+            this.commandSender(this.port, DeviceFocusCommand.Reset),
+        );
     };
 
-    public sendUpKey = () => {
-        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Up));
+    public sendUpKey = async () => {
+        await this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Up));
     };
 
-    public sendDownKey = () => {
-        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Down));
+    public sendDownKey = async () => {
+        await this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Down));
     };
 
-    public sendLeftKey = () => {
-        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Left));
+    public sendLeftKey = async () => {
+        await this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Left));
     };
 
-    public sendRightKey = () => {
-        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Right));
+    public sendRightKey = async () => {
+        await this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Right));
     };
 
-    public sendEnterKey = () => {
-        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Enter));
+    public sendEnterKey = async () => {
+        await this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Enter));
     };
 
-    public sendTabKey = () => {
-        this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Tab));
+    public sendTabKey = async () => {
+        await this.wrapActionWithErrorHandling(this.sendKeyEvent(KeyEventCode.Tab));
     };
 
-    private sendKeyEvent = (keyEventCode: KeyEventCode) => {
+    private sendKeyEvent = (keyEventCode: KeyEventCode): Promise<void> => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
             telemetry: {
                 keyEventCode,
@@ -86,7 +92,7 @@ export class DeviceFocusController {
     };
 
     private wrapActionWithErrorHandling(innerAction: Promise<void>): void {
-        innerAction.then().catch(this.commandFailed.bind(this));
+        innerAction.catch(this.commandFailed.bind(this));
     }
 
     private commandFailed(error: Error): void {
