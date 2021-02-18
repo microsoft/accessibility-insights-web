@@ -21,6 +21,8 @@ import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-acti
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceConnectionStatus } from 'electron/flux/types/device-connection-status';
+import { DeviceConnectionStoreData } from 'electron/flux/types/device-connection-store-data';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
@@ -66,6 +68,7 @@ export type ResultsViewDeps = ReflowCommandBarDeps &
 export type ResultsViewProps = {
     deps: ResultsViewDeps;
     scanStoreData: ScanStoreData;
+    deviceConnectionStoreData: DeviceConnectionStoreData;
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
@@ -232,7 +235,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
     }
 
     private renderDeviceDisconnected(): JSX.Element {
-        if (this.props.scanStoreData.status !== ScanStatus.Failed) {
+        if (this.props.deviceConnectionStoreData.status !== DeviceConnectionStatus.Disconnected) {
             return;
         }
 
