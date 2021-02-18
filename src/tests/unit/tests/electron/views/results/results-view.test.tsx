@@ -24,6 +24,7 @@ import {
 } from 'common/types/store-data/unified-data-interface';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { DeviceConnectionStatus } from 'electron/flux/types/device-connection-status';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ContentPageInfo, ContentPagesInfo } from 'electron/types/content-page-info';
@@ -133,6 +134,7 @@ describe('ResultsView', () => {
                 },
             },
             scanStoreData: {},
+            deviceConnectionStoreData: { status: DeviceConnectionStatus.Unknown },
             userConfigurationStoreData: {
                 isFirstTime: false,
             },
@@ -193,6 +195,11 @@ describe('ResultsView', () => {
     it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
         props.scanStoreData.status = ScanStatus[scanStatusName];
 
+        props.deviceConnectionStoreData.status =
+            props.scanStoreData.status === ScanStatus.Failed
+                ? DeviceConnectionStatus.Disconnected
+                : DeviceConnectionStatus.Connected;
+
         const wrapped = shallow(<ResultsView {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
@@ -240,6 +247,7 @@ describe('ResultsView', () => {
             const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
             props.deps.scanActionCreator = scanActionCreatorMock.object;
             props.scanStoreData.status = ScanStatus.Failed;
+            props.deviceConnectionStoreData.status = DeviceConnectionStatus.Disconnected;
             props.androidSetupStoreData.scanPort = scanPort;
             const wrapped = shallow(<ResultsView {...props} />);
 
