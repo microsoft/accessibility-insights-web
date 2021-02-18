@@ -40,8 +40,7 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
             >
                 <div>
                     <p>
-                        Uh-oh! It seems the <strong>{deviceName}</strong> device has disconnected
-                        before the snapshot completed its analysis.
+                        Uh-oh! It seems the <strong>{deviceName}</strong> device has disconnected.
                     </p>
                     <p>
                         Make sure your device is properly connected, and try rescanning or

@@ -33,7 +33,7 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
       <strong>
         test device name
       </strong>
-       device has disconnected before the snapshot completed its analysis.
+       device has disconnected.
     </p>
     <p>
       Make sure your device is properly connected, and try rescanning or connecting a different device.
