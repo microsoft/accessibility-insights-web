@@ -17,6 +17,7 @@ import {
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceConnectionStoreData } from 'electron/flux/types/device-connection-store-data';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
@@ -45,6 +46,7 @@ export type RootContainerState = {
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanStoreData: ScanStoreData;
+    deviceConnectionStoreData: DeviceConnectionStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;

@@ -292,6 +292,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             userConfigurationStore,
             windowStateStore,
             scanStore,
+            deviceConnectionStore,
             unifiedScanResultStore,
             cardSelectionStore,
             detailsViewStore,
