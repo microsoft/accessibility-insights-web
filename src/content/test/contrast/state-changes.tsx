@@ -65,7 +65,5 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 where color alone is used to identify them
             </Markup.HyperLink>
         </Markup.Links>
-
-        <p></p>
     </>
 ));
