@@ -50,7 +50,7 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
   </div>
   <StyledDialogFooterBase>
     <CustomizedDefaultButton
-      text="Rescan device"
+      text="Start over"
     />
     <CustomizedDefaultButton
       text="Connect a new device"
