@@ -49,7 +49,7 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
                     </p>
                 </div>
                 <DialogFooter>
-                    <DefaultButton text="Rescan device" onClick={onRescanDevice} />
+                    <DefaultButton text="Start over" onClick={onRescanDevice} />
                     <DefaultButton text="Connect a new device" onClick={onConnectNewDevice} />
                 </DialogFooter>
             </Dialog>
