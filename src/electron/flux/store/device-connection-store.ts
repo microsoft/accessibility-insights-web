@@ -8,7 +8,7 @@ import { DeviceConnectionStoreData } from 'electron/flux/types/device-connection
 
 export class DeviceConnectionStore extends BaseStoreImpl<DeviceConnectionStoreData> {
     constructor(private readonly deviceConnectionActions: DeviceConnectionActions) {
-        super(StoreNames.ScanStore);
+        super(StoreNames.DeviceConnectionStore);
     }
 
     public getDefaultState(): DeviceConnectionStoreData {
