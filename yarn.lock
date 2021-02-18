@@ -11348,10 +11348,10 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-resize-detector@^6.5.0:
-  version "6.5.0"
-  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-6.5.0.tgz#13654438de5c871374657c7e09268fef17a4e5e8"
-  integrity sha512-hkBFm1sTJ/+I/A1+yHPJ444kc4zb37FqjMmsQuRloS+mzLP8Bb4tslMUf7+14SrDgBkKtdwJX13TwAxeEkyl5w==
+react-resize-detector@^6.6.0:
+  version "6.6.0"
+  resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-6.6.0.tgz#8814f224bf917aa856714291a92e69b5682c89f6"
+  integrity sha512-+Wz9nI/vDGrp/yMPRshwehSvHycUwRSfRh1ElCO/NLqIlsSLUhS8pVUU+X+emjVSCB/hrRDAjK0OZ1eYLsmeyw==
   dependencies:
     "@types/resize-observer-browser" "^0.1.5"
     lodash.debounce "^4.0.8"
