@@ -43,6 +43,6 @@ describe('ScanActionCreator', () => {
             scanStarted => scanStarted.invoke(It.isValue({ port })),
             Times.once(),
         );
-        statusUnknown.verify(resetConnection => resetConnection.invoke(), Times.once());
+        statusUnknown.verify(statusUnknown => statusUnknown.invoke(), Times.once());
     });
 });
