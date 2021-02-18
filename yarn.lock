@@ -12351,10 +12351,10 @@ signal-exit@^3.0.3:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha512-VUJ49FC8U1OxwZLxIbTTrDvLnf/6TDgxZcK8wxR8zs13xpx7xbG60ndBlhNrFi2EMuFRoeDoJO7wthSLq42EjA==
 
-simple-git@^2.34.2:
-  version "2.34.2"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.34.2.tgz#da26e5bd681787a751e2ea039d23bcd8d4b32a18"
-  integrity sha512-/EX4FtcpAj5L/Bs5zgaBGYDrnkrKflFVNppNLH9VXpIjZBLHx5cZ6/mOYJCoKXKlLRuk3iTvzrIsHo7v42zWHg==
+simple-git@^2.35.0:
+  version "2.35.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.35.0.tgz#7d8b30531a6f082184e012b7ec50ae1f39bcc051"
+  integrity sha512-VuXs2/HyZmZm43Z5IjvU+ahTmURh/Hmb/egmgNdFZuu8OEnW2emCalnL/4jRQkXeJvfzCTnev6wo5jtDmWw0Dw==
   dependencies:
     "@kwsites/file-exists" "^1.1.1"
     "@kwsites/promise-deferred" "^1.1.1"
