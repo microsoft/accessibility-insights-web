@@ -142,7 +142,6 @@ import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub'
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { DeviceActions } from '../flux/action/device-actions';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import {
@@ -161,7 +160,6 @@ initializeFabricIcons();
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 
 const userConfigActions = new UserConfigurationActions();
-const deviceActions = new DeviceActions();
 const androidSetupActions = new AndroidSetupActions();
 const windowFrameActions = new WindowFrameActions();
 const windowStateActions = new WindowStateActions();
@@ -353,7 +351,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             windowFrameActionCreator,
             userConfigurationStore,
         );
-        const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
+        const scanActionCreator = new ScanActionCreator(scanActions, deviceConnectionActions);
 
         const featureFlagActionCreator = new FeatureFlagsActionCreator(
             interpreter,
