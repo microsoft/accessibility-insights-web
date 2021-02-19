@@ -5,7 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
 import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
-import * as styles from 'electron/views/virtual-keyboard/virtual-keyboard-buttons.scss';
+import * as styles from 'electron/views/tab-stops/virtual-keyboard-buttons.scss';
 import { Button, css, Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 

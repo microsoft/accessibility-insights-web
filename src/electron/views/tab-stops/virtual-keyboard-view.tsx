@@ -7,7 +7,7 @@ import * as commonStyles from 'electron/views/screenshot/common-visual-helper-se
 import {
     VirtualKeyboardButtons,
     VirtualKeyboardButtonsDeps,
-} from 'electron/views/virtual-keyboard/virtual-keyboard-buttons';
+} from 'electron/views/tab-stops/virtual-keyboard-buttons';
 import { css } from 'office-ui-fabric-react';
 import * as React from 'react';
 
