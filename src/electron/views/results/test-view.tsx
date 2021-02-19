@@ -60,7 +60,6 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 scanMetadata={scanMetadata}
                 shouldAlertFailuresCount={true}
                 cardsViewData={cardsViewData}
-                showTabStops={true}
             />
         </div>
     );
