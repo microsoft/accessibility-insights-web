@@ -12,11 +12,11 @@ export const automatedChecksTestConfig: TestConfig = {
     contentPageInfo: {
         title: 'Automated checks',
         description: (
-            <>
+            <p>
                 Automated checks can detect some common accessibility problems such as missing or
                 invalid properties. But most accessibility problems can only be discovered through
                 manual testing.
-            </>
+            </p>
         ),
         instancesSectionComponent: FailedInstancesSection,
         resultsFilter: automatedChecksResultsFilter,

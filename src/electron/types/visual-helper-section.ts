@@ -6,7 +6,7 @@ import { ScreenshotViewProps } from 'electron/views/screenshot/screenshot-view';
 import {
     VirtualKeyboardViewProps,
     VirtualKeyboardViewDeps,
-} from 'electron/views/virtual-keyboard/virtual-keyboard-view';
+} from 'electron/views/tab-stops/virtual-keyboard-view';
 
 export type VisualHelperSectionProps = ScreenshotViewProps &
     VirtualKeyboardViewProps & {

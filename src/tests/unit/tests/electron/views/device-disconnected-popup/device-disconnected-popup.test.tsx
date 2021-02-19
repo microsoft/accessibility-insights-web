@@ -41,7 +41,7 @@ describe('DeviceDisconnectedPopup', () => {
 
             const wrapper = shallow(<DeviceDisconnectedPopup {...props} />);
 
-            wrapper.find('[text="Rescan device"]').simulate('click');
+            wrapper.find('[text="Start over"]').simulate('click');
 
             expect(onRescanDeviceMock).toBeCalledTimes(1);
         });

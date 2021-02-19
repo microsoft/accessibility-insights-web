@@ -14,7 +14,7 @@ export const HeaderSection = NamedFC<HeaderSectionProps>('HeaderSection', props 
     return (
         <div className={styles.headerSection}>
             <h1 className={styles.title}>{title}</h1>
-            <p className={styles.subtitle}>{description}</p>
+            <div className={styles.subtitle}>{description}</div>
         </div>
     );
 });
