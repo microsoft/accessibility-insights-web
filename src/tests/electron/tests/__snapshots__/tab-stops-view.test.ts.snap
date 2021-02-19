@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsView virtual keyboard keys send corresponding adb commands 1`] = `
+"ADB -s device-1 shell input keyevent 19
+ADB -s device-1 shell input keyevent 20
+ADB -s device-1 shell input keyevent 21
+ADB -s device-1 shell input keyevent 22
+ADB -s device-1 shell input keyevent 61
+ADB -s device-1 shell input keyevent 66
+"
+`;
