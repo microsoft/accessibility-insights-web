@@ -10,8 +10,8 @@ import {
     VirtualKeyboardButtons,
     VirtualKeyboardButtonsDeps,
     VirtualKeyboardButtonsProps,
-} from 'electron/views/virtual-keyboard/virtual-keyboard-buttons';
-import { VirtualKeyboardViewProps } from 'electron/views/virtual-keyboard/virtual-keyboard-view';
+} from 'electron/views/tab-stops/virtual-keyboard-buttons';
+import { VirtualKeyboardViewProps } from 'electron/views/tab-stops/virtual-keyboard-view';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
