@@ -13,6 +13,7 @@ import {
     SCAN_STARTED,
 } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
@@ -47,6 +48,10 @@ describe('ScanController', () => {
     let scanCompletedMock: IMock<Action<void>>;
     let scanFailedMock: IMock<Action<void>>;
 
+    let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
+    let deviceConnectedMock: IMock<Action<void>>;
+    let deviceDisconnectedMock: IMock<Action<void>>;
+
     let unifiedScanResultActionsMock: IMock<UnifiedScanResultActions>;
     let unifiedResultsBuilderMock: IMock<UnifiedScanCompletedPayloadBuilder>;
 
@@ -64,6 +69,16 @@ describe('ScanController', () => {
 
         scanCompletedMock = Mock.ofType<Action<void>>();
         scanFailedMock = Mock.ofType<Action<void>>();
+
+        deviceConnectedMock = Mock.ofType<Action<void>>();
+        deviceDisconnectedMock = Mock.ofType<Action<void>>();
+        deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>();
+        deviceConnectionActionsMock
+            .setup(actions => actions.statusConnected)
+            .returns(() => deviceConnectedMock.object);
+        deviceConnectionActionsMock
+            .setup(actions => actions.statusDisconnected)
+            .returns(() => deviceDisconnectedMock.object);
 
         scanActionsMock
             .setup(actions => actions.scanCompleted)
@@ -86,6 +101,7 @@ describe('ScanController', () => {
         testSubject = new ScanController(
             scanActionsMock.object,
             unifiedScanResultActionsMock.object,
+            deviceConnectionActionsMock.object,
             fetchScanResultsMock.object,
             unifiedResultsBuilderMock.object,
             telemetryEventHandlerMock.object,
@@ -171,6 +187,7 @@ describe('ScanController', () => {
         await tick();
 
         scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
+        deviceConnectedMock.verify(m => m.invoke(null), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
     });
@@ -205,6 +222,7 @@ describe('ScanController', () => {
 
         scanFailedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
         loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
+        deviceDisconnectedMock.verify(m => m.invoke(null), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
     });
