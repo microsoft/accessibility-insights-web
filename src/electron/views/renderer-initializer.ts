@@ -66,11 +66,13 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
+import { DeviceConnectionStore } from 'electron/flux/store/device-connection-store';
 import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
@@ -140,8 +142,6 @@ import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub'
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
-import { DeviceActions } from '../flux/action/device-actions';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import {
@@ -160,11 +160,11 @@ initializeFabricIcons();
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 
 const userConfigActions = new UserConfigurationActions();
-const deviceActions = new DeviceActions();
 const androidSetupActions = new AndroidSetupActions();
 const windowFrameActions = new WindowFrameActions();
 const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
+const deviceConnectionActions = new DeviceConnectionActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
@@ -255,6 +255,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const scanStore = new ScanStore(scanActions);
         scanStore.initialize();
 
+        const deviceConnectionStore = new DeviceConnectionStore(deviceConnectionActions);
+        deviceConnectionStore.initialize();
+
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
@@ -287,6 +290,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             userConfigurationStore,
             windowStateStore,
             scanStore,
+            deviceConnectionStore,
             unifiedScanResultStore,
             cardSelectionStore,
             detailsViewStore,
@@ -341,18 +345,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
         const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
 
-        const deviceConnectActionCreator = new DeviceConnectActionCreator(
-            deviceActions,
-            fetchDeviceConfig,
-            telemetryEventHandler,
-        );
         const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
         const windowStateActionCreator = new WindowStateActionCreator(
             windowStateActions,
             windowFrameActionCreator,
             userConfigurationStore,
         );
-        const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
+        const scanActionCreator = new ScanActionCreator(scanActions, deviceConnectionActions);
 
         const featureFlagActionCreator = new FeatureFlagsActionCreator(
             interpreter,
@@ -404,6 +403,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const scanController = new ScanController(
             scanActions,
             unifiedScanResultActions,
+            deviceConnectionActions,
             fetchScanResults,
             unifiedResultsBuilder,
             telemetryEventHandler,
@@ -416,6 +416,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
             createDeviceFocusCommandSender(axios.get),
             telemetryEventHandler,
+            deviceConnectionActions,
+            logger,
         );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
@@ -529,7 +531,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             dropdownClickHandler,
             LinkComponent: ElectronLink,
             fetchScanResults,
-            deviceConnectActionCreator,
             androidSetupActionCreator,
             storesHub,
             scanActionCreator,

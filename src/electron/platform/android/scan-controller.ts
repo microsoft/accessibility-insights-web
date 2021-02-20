@@ -10,6 +10,7 @@ import {
     SCAN_STARTED,
 } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import {
     AndroidScanResults,
@@ -22,6 +23,7 @@ export class ScanController {
     constructor(
         private readonly scanActions: ScanActions,
         private readonly unifiedScanResultAction: UnifiedScanResultActions,
+        private readonly deviceConnectionActions: DeviceConnectionActions,
         private readonly fetchScanResults: ScanResultsFetcher,
         private readonly unifiedResultsBuilder: UnifiedScanCompletedPayloadBuilder,
         private readonly telemetryEventHandler: TelemetryEventHandler,
@@ -69,6 +71,7 @@ export class ScanController {
 
         this.unifiedScanResultAction.scanCompleted.invoke(payload);
         this.scanActions.scanCompleted.invoke(null);
+        this.deviceConnectionActions.statusConnected.invoke(null);
     }
 
     private buildInstanceCount(ruleResults: RuleResultsData[]): InstanceCount {
@@ -101,5 +104,6 @@ export class ScanController {
         });
 
         this.scanActions.scanFailed.invoke(null);
+        this.deviceConnectionActions.statusDisconnected.invoke(null);
     }
 }
