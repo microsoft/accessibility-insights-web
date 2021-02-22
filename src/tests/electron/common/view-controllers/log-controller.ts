@@ -13,32 +13,56 @@ import {
 const readFile = util.promisify(fs.readFile);
 
 export class LogController {
-    constructor(private mockAdbPath: string, private client: SpectronAsyncClient) {}
+    private adbLogPath: string;
+    private serverLogPath: string;
+
+    constructor(
+        currentContext: string,
+        private mockAdbPath: string,
+        private client: SpectronAsyncClient,
+    ) {
+        this.adbLogPath = this.getAdbLogPath(currentContext);
+        this.serverLogPath = this.getServerLogPath(currentContext);
+    }
 
     private getOutputLogsDir(currentContext: string): string {
         return generateOutputLogsDir(this.mockAdbPath, currentContext);
     }
 
-    public async getServerLog(currentContext: string): Promise<string> {
-        const log = await readFile(generateServerLogPath(this.getOutputLogsDir(currentContext)));
+    private getServerLogPath(currentContext: string): string {
+        return generateServerLogPath(this.getOutputLogsDir(currentContext));
+    }
+
+    private getAdbLogPath(currentContext: string): string {
+        return generateAdbLogPath(this.getOutputLogsDir(currentContext));
+    }
+
+    public async getServerLog(): Promise<string> {
+        const log = await readFile(this.serverLogPath);
         return log.toString();
     }
 
-    public async getAdbLog(currentContext: string): Promise<string> {
-        const log = await readFile(generateAdbLogPath(this.getOutputLogsDir(currentContext)));
+    public async getAdbLog(): Promise<string> {
+        const log = await readFile(this.adbLogPath);
         return log.toString();
     }
 
-    public resetAdbLog(currentContext: string): void {
-        fs.unlinkSync(generateAdbLogPath(this.getOutputLogsDir(currentContext)));
+    public resetAdbLog(): void {
+        fs.unlinkSync(this.adbLogPath);
     }
 
-    public resetServerLog(currentContext: string): void {
-        fs.unlinkSync(generateServerLogPath(this.getOutputLogsDir(currentContext)));
+    public resetServerLog(): void {
+        fs.unlinkSync(this.serverLogPath);
     }
 
-    public async waitForAdbLogToContain(contains: string, currentContext: string) {
-        const isLogReady = async () => (await this.getAdbLog(currentContext)).includes(contains);
+    private adbLogExists(): boolean {
+        return fs.existsSync(this.adbLogPath);
+    }
+
+    public async waitForAdbLogToContain(contains: string) {
+        const isLogReady = async () =>
+            this.adbLogExists() && (await this.getAdbLog()).includes(contains);
+
         return this.client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
     }
 }
