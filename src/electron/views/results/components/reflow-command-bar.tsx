@@ -88,7 +88,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
         'data-automation-id': commandButtonRefreshId,
         text: 'Start over',
         iconProps: { iconName: 'Refresh' },
-        ...currentContentPageInfo.startOverButtonTabSettings(props),
+        ...currentContentPageInfo.startOverButtonSettings(props),
     };
 
     const hamburgerMenuButton = !narrowModeStatus.isHeaderAndNavCollapsed ? null : (

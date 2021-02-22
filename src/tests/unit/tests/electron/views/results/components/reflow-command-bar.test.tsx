@@ -70,7 +70,7 @@ describe('ReflowCommandBar', () => {
             setSideNavOpen: () => null,
             currentContentPageInfo: {
                 allowsExportReport: true,
-                startOverButtonTabSettings: _ => {
+                startOverButtonSettings: _ => {
                     return {
                         onClick: () => {},
                         disabled: false,
@@ -82,7 +82,7 @@ describe('ReflowCommandBar', () => {
 
     describe('renders', () => {
         it('with start over button disabled', () => {
-            props.currentContentPageInfo.startOverButtonTabSettings = _ => {
+            props.currentContentPageInfo.startOverButtonSettings = _ => {
                 return {
                     onClick: () => {},
                     disabled: true,
@@ -115,7 +115,7 @@ describe('ReflowCommandBar', () => {
         it('handles start over click', () => {
             let clickWasCalled: boolean = false;
 
-            props.currentContentPageInfo.startOverButtonTabSettings = _ => {
+            props.currentContentPageInfo.startOverButtonSettings = _ => {
                 return {
                     onClick: () => {
                         clickWasCalled = true;

@@ -7,7 +7,7 @@ import { VisualHelperSection } from 'electron/types/visual-helper-section';
 import { ReflowCommandBarProps } from 'electron/views/results/components/reflow-command-bar';
 import { LeftNavItemKey } from './left-nav-item-key';
 
-export type StartOverButtonTabSettings = {
+export type StartOverButtonSettings = {
     onClick: () => void;
     disabled: boolean;
 };
@@ -19,7 +19,7 @@ export type ContentPageInfo = {
     instancesSectionComponent?: ReactFCWithDisplayName<TestingContentProps>;
     resultsFilter: ResultsFilter;
     visualHelperSection: VisualHelperSection;
-    startOverButtonTabSettings: (props: ReflowCommandBarProps) => StartOverButtonTabSettings;
+    startOverButtonSettings: (props: ReflowCommandBarProps) => StartOverButtonSettings;
 };
 
 export type ContentPagesInfo = {

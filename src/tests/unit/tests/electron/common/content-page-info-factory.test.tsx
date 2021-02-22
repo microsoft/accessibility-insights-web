@@ -6,7 +6,7 @@ import { createContentPagesInfo } from 'electron/common/content-page-info-factor
 import {
     ContentPageInfo,
     ContentPagesInfo,
-    StartOverButtonTabSettings,
+    StartOverButtonSettings,
 } from 'electron/types/content-page-info';
 import { TestConfig } from 'electron/types/test-config';
 import { ReflowCommandBarProps } from 'electron/views/results/components/reflow-command-bar';
@@ -48,7 +48,7 @@ describe('createContentPagesInfo', () => {
             resultsFilter: _ => true,
             allowsExportReport: true,
             visualHelperSection: null,
-            startOverButtonTabSettings(_: ReflowCommandBarProps): StartOverButtonTabSettings {
+            startOverButtonSettings(_: ReflowCommandBarProps): StartOverButtonSettings {
                 return {
                     onClick: () => {},
                     disabled: false,

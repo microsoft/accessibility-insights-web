@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
-import { ScanStatus } from 'electron/flux/types/scan-status';
-import { StartOverButtonTabSettings } from 'electron/types/content-page-info';
+import { sharedScanResultsStartOverButtonSettings } from 'electron/platform/android/test-configs/shared-scan-results/start-over-button-settings';
 import { TestConfig } from 'electron/types/test-config';
-import { ReflowCommandBarProps } from 'electron/views/results/components/reflow-command-bar';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import * as React from 'react';
 import { automatedChecksResultsFilter } from './results-filter';
@@ -25,11 +23,6 @@ export const automatedChecksTestConfig: TestConfig = {
         resultsFilter: automatedChecksResultsFilter,
         allowsExportReport: true,
         visualHelperSection: ScreenshotView,
-        startOverButtonTabSettings(props: ReflowCommandBarProps): StartOverButtonTabSettings {
-            return {
-                onClick: () => props.deps.scanActionCreator.scan(props.scanPort),
-                disabled: props.scanStoreData.status === ScanStatus.Scanning,
-            };
-        },
+        startOverButtonSettings: sharedScanResultsStartOverButtonSettings,
     },
 };
