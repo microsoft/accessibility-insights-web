@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
+import { sharedScanResultsStartOverButtonSettings } from 'electron/platform/android/test-configs/shared-scan-results/start-over-button-settings';
 import { TestConfig } from 'electron/types/test-config';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import * as React from 'react';
@@ -22,5 +23,6 @@ export const automatedChecksTestConfig: TestConfig = {
         resultsFilter: automatedChecksResultsFilter,
         allowsExportReport: true,
         visualHelperSection: ScreenshotView,
+        startOverButtonSettings: sharedScanResultsStartOverButtonSettings,
     },
 };

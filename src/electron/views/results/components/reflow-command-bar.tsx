@@ -16,7 +16,6 @@ import {
 } from 'DetailsView/components/report-export-component';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
-import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { css, IButton } from 'office-ui-fabric-react';
@@ -49,7 +48,6 @@ export const commandButtonSettingsId = 'command-button-settings';
 export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar', props => {
     const {
         deps,
-        scanPort,
         featureFlagStoreData,
         cardsViewData,
         scanMetadata,
@@ -90,8 +88,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
         'data-automation-id': commandButtonRefreshId,
         text: 'Start over',
         iconProps: { iconName: 'Refresh' },
-        onClick: () => deps.scanActionCreator.scan(scanPort),
-        disabled: props.scanStoreData.status === ScanStatus.Scanning,
+        ...currentContentPageInfo.startOverButtonSettings(props),
     };
 
     const hamburgerMenuButton = !narrowModeStatus.isHeaderAndNavCollapsed ? null : (
