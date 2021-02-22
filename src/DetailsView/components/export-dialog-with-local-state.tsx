@@ -85,10 +85,10 @@ export class ExportDialogWithLocalState extends React.Component<
     }
 
     private onDialogOpened(): void {
-        this.setState({
-            exportDescription: this.props.getExportDescription(),
+        this.setState((_, props) => ({
+            exportDescription: props.getExportDescription(),
             exportName: this.generateReportName(),
-        });
+        }));
     }
 
     public componentDidUpdate(prev: ExportDialogWithLocalStateProps): void {
