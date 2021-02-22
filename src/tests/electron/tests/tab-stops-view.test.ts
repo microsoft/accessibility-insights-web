@@ -21,7 +21,7 @@ describe('TabStopsView', () => {
     let app: AppController;
     let resultsViewController: ResultsViewController;
     let virtualKeyboardViewController: VirtualKeyboardViewController;
-    const logController = new LogController(mockAdbFolder);
+    let logController: LogController;
     const mockAdbLogsBase = path.basename(__filename);
     const mockAdbLogsFolder = 'tabStopsLogs';
     const windowWidth = getNarrowModeThresholdsForUnified().collapseHeaderAndNavThreshold + 5;
@@ -34,6 +34,7 @@ describe('TabStopsView', () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.setFeatureFlag(UnifiedFeatureFlags.tabStops, true);
         app.client.browserWindow.setSize(windowWidth, windowHeight);
+        logController = new LogController(mockAdbFolder, app.client);
         virtualKeyboardViewController = new VirtualKeyboardViewController(app.client);
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('tab-stops');
@@ -49,20 +50,18 @@ describe('TabStopsView', () => {
         await app.waitForTitle('Accessibility Insights for Android - Tab stops');
     });
 
-    it('virtual keyboard keys send corresponding adb commands', async () => {
+    it.each([
+        KeyEventCode.Up,
+        KeyEventCode.Down,
+        KeyEventCode.Left,
+        KeyEventCode.Right,
+        KeyEventCode.Tab,
+        KeyEventCode.Enter,
+    ])('virtual keyboard sends keyevent %s', async (keyCode: KeyEventCode) => {
         logController.resetAdbLog(logsContext);
 
-        await virtualKeyboardViewController.clickVirtualKey(KeyEventCode.Up);
-        await virtualKeyboardViewController.clickVirtualKey(KeyEventCode.Down);
-        await virtualKeyboardViewController.clickVirtualKey(KeyEventCode.Left);
-        await virtualKeyboardViewController.clickVirtualKey(KeyEventCode.Right);
-        await virtualKeyboardViewController.clickVirtualKey(KeyEventCode.Tab);
-        await virtualKeyboardViewController.clickVirtualKey(KeyEventCode.Enter);
-        await logController.waitForAdbLogToContain(
-            KeyEventCode.Enter.toString(),
-            logsContext,
-            app.client,
-        );
+        await virtualKeyboardViewController.clickVirtualKey(keyCode);
+        await logController.waitForAdbLogToContain(keyCode.toString(), logsContext);
 
         const adbLog = await logController.getAdbLog(logsContext);
         expect(adbLog).toMatchSnapshot();

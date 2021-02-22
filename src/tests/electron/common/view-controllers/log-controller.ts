@@ -13,7 +13,7 @@ import {
 const readFile = util.promisify(fs.readFile);
 
 export class LogController {
-    constructor(private mockAdbPath: string) {}
+    constructor(private mockAdbPath: string, private client: SpectronAsyncClient) {}
 
     private getOutputLogsDir(currentContext: string): string {
         return generateOutputLogsDir(this.mockAdbPath, currentContext);
@@ -37,12 +37,8 @@ export class LogController {
         fs.unlinkSync(generateServerLogPath(this.getOutputLogsDir(currentContext)));
     }
 
-    public async waitForAdbLogToContain(
-        contains: string,
-        currentContext: string,
-        client: SpectronAsyncClient,
-    ) {
+    public async waitForAdbLogToContain(contains: string, currentContext: string) {
         const isLogReady = async () => (await this.getAdbLog(currentContext)).includes(contains);
-        return client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
+        return this.client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
     }
 }
