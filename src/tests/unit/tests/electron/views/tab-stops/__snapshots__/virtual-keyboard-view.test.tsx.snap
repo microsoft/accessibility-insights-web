@@ -15,10 +15,9 @@ exports[`VirtualKeyboardView renders 1`] = `
   <VirtualKeyboardButtons
     deps={
       Object {
-        "deviceFocusControllerFactory": Object {},
+        "deviceFocusController": Object {},
       }
     }
-    deviceId="some-device-id"
     narrowModeStatus={
       Object {
         "isVirtualKeyboardCollapsed": true,

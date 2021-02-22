@@ -11,31 +11,36 @@ import {
     DEVICE_FOCUS_RESET,
 } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
-import { AdbWrapper, KeyEventCode } from 'electron/platform/android/adb-wrapper';
+import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
+import { KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import {
     DeviceFocusCommand,
     DeviceFocusCommandSender,
 } from 'electron/platform/android/device-focus-command-sender';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 
 export class DeviceFocusController {
     private deviceId: string;
     private port: number;
 
     constructor(
-        private readonly adbWrapper: AdbWrapper,
+        private readonly adbWrapperHolder: AdbWrapperHolder,
         private readonly commandSender: DeviceFocusCommandSender,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly deviceConnectionActions: DeviceConnectionActions,
         private readonly logger: Logger,
+        private readonly androidSetupStore: AndroidSetupStore,
     ) {}
 
-    public setDeviceId(deviceId: string) {
-        this.deviceId = deviceId;
+    public initialize(): void {
+        this.androidSetupStore.addChangedListener(this.setDeviceData);
     }
 
-    public setPort(port: number) {
-        this.port = port;
-    }
+    private setDeviceData = (store: AndroidSetupStore) => {
+        const data = store.getState();
+        this.port = data.scanPort;
+        this.deviceId = data.selectedDevice?.id;
+    };
 
     public enableFocusTracking = async () => {
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
@@ -88,12 +93,17 @@ export class DeviceFocusController {
                 keyEventCode,
             },
         });
-        return this.adbWrapper.sendKeyEvent(this.deviceId, keyEventCode);
+        return this.adbWrapperHolder.getAdb().sendKeyEvent(this.deviceId, keyEventCode);
     };
 
-    private wrapActionWithErrorHandling(innerAction: Promise<void>): void {
-        innerAction.then(this.commandSucceeded.bind(this)).catch(this.commandFailed.bind(this));
-    }
+    private wrapActionWithErrorHandling = async (innerAction: Promise<void>) => {
+        try {
+            await innerAction;
+            this.commandSucceeded();
+        } catch (error) {
+            this.commandFailed(error);
+        }
+    };
 
     private commandSucceeded(): void {
         this.deviceConnectionActions.statusConnected.invoke(null);

@@ -15,7 +15,6 @@ export type VirtualKeyboardViewDeps = VirtualKeyboardButtonsDeps;
 export type VirtualKeyboardViewProps = {
     deps: VirtualKeyboardViewDeps;
     narrowModeStatus: NarrowModeStatus;
-    deviceId: string;
 };
 
 export const VirtualKeyboardView = NamedFC<VirtualKeyboardViewProps>(
