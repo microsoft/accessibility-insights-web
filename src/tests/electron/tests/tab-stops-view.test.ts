@@ -34,7 +34,7 @@ describe('TabStopsView', () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.setFeatureFlag(UnifiedFeatureFlags.tabStops, true);
         app.client.browserWindow.setSize(windowWidth, windowHeight);
-        logController = new LogController(mockAdbFolder, app.client);
+        logController = new LogController(logsContext, mockAdbFolder, app.client);
         virtualKeyboardViewController = new VirtualKeyboardViewController(app.client);
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('tab-stops');
@@ -58,12 +58,12 @@ describe('TabStopsView', () => {
         KeyEventCode.Tab,
         KeyEventCode.Enter,
     ])('virtual keyboard sends keyevent %s', async (keyCode: KeyEventCode) => {
-        logController.resetAdbLog(logsContext);
+        logController.resetAdbLog();
 
         await virtualKeyboardViewController.clickVirtualKey(keyCode);
-        await logController.waitForAdbLogToContain(keyCode.toString(), logsContext);
+        await logController.waitForAdbLogToContain(keyCode.toString());
 
-        const adbLog = await logController.getAdbLog(logsContext);
+        const adbLog = await logController.getAdbLog();
         expect(adbLog).toMatchSnapshot();
     });
 
