@@ -37,7 +37,8 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                     </li>
                     <li>
                         If you're testing on a virtual device, switch to the emulator app by
-                        clicking it or pressing Alt+Tab.
+                        clicking it or by pressing <strong>Alt+Tab</strong> (Windows or Linux) or{' '}
+                        <strong>Command+Tab</strong> (Mac).
                     </li>
                     <li>
                         Use the virtual keyboard to the right (or a physical keyboard) to:
