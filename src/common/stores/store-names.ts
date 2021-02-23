@@ -25,4 +25,5 @@ export enum StoreNames {
     LeftNavStore,
     ContentPanelStore,
     DeviceConnectionStore,
+    TabStopsStore,
 }
