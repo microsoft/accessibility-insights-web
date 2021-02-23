@@ -29,5 +29,5 @@ jobs:
           vmImage: ${{ parameters.linuxImage }}
       steps:
           - template: ../install-node-prerequisites.yaml
-          - template: ./unified-e2e-test-linux.yaml
+          - template: ./unified-e2e-test-interactive.yaml
           - template: ./unified-e2e-publish-results.yaml
