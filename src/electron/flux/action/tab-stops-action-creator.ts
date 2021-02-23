@@ -21,8 +21,8 @@ export class TabStopsActionCreator {
     };
 
     public startOver = () => {
-        this.deviceFocusController.resetFocusTracking();
         this.tabStopsActions.startOver.invoke();
+        this.deviceFocusController.resetFocusTracking();
     };
 
     public sendUpKey = () => {
