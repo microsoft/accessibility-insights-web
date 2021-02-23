@@ -30,31 +30,28 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                     <strong>How to test:</strong>
                 </span>
                 <ol className={styles.howToTestList}>
-                    <li>Navigate to the screen you want to test in your app.</li>
+                    <li>In your target app, navigate to the screen you want to test.</li>
                     <li>
-                        Turn on the Show tab stops toggle. An empty circle will highlight the
-                        element with focus.
+                        Turn on the <strong>Show tab stops</strong> toggle. An empty circle will
+                        highlight the element in the target app that currently has input focus.
                     </li>
                     <li>
-                        If you are connected to an emulator, select your emulator app to bring it
-                        into focus and use your keyboard.
+                        If you're testing on a virtual device, switch to the emulator app by
+                        clicking it or by pressing <strong>Alt+Tab</strong> (Windows or Linux) or{' '}
+                        <strong>Command+Tab</strong> (Mac).
                     </li>
                     <li>
-                        Or If you are connected to a physical mobile device use the keyboard
-                        key-buttons below.
-                    </li>
-                    <li>
-                        Move input focus through all the interactive elements in the page:
+                        Use the virtual keyboard to the right (or a physical keyboard) to:
                         <ul>
-                            <li>Use Tab and Shift+Tab to navigate between standalone controls.</li>
                             <li>
-                                Use the arrow keys to navigate between the focusable elements within
-                                a composite control.
+                                Navigate to each interactive element and then use the arrow keys to
+                                navigate away in each direction (up/down/left/right).
                             </li>
                         </ul>
                     </li>
                     <li>
-                        As you navigate to each element, look for these accessibility problems:
+                        As you navigate to each element, look for these{' '}
+                        <strong>accessibility problems</strong>:
                         <ul>
                             <li>
                                 An interactive element can't be reached using the Tab and arrow
@@ -69,7 +66,7 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                                 input focus.
                             </li>
                             <li>
-                                The tab order is inconsistent with the logical order that's
+                                The navigation order is inconsistent with the logical order that's
                                 communicated visually.
                             </li>
                             <li>Input focus moves unexpectedly without the user initiating it.</li>
