@@ -20,7 +20,7 @@
     "dependencies": {
         "axe-core": "4.1.1",
         "classnames": "^2.2.6",
-        "lodash": "^4.17.20",
+        "lodash": "^4.17.21",
         "luxon": "^1.26.0",
         "office-ui-fabric-react": "7.98.0",
         "react": "^16.14.0",
