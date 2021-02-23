@@ -12,19 +12,24 @@ import {
     DEVICE_FOCUS_RESET,
 } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
+import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
+import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
 import { AdbWrapper, KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import {
     DeviceFocusCommand,
     DeviceFocusCommandSender,
 } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('DeviceFocusController tests', () => {
     const deviceId: string = 'some device';
     const port: number = 23456;
 
+    let adbWrapperHolderMock: IMock<AdbWrapperHolder>;
     let adbWrapperMock: IMock<AdbWrapper>;
+    let androidSetupStoreMock: IMock<AndroidSetupStore>;
     let commandSenderMock: IMock<DeviceFocusCommandSender>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
@@ -34,7 +39,9 @@ describe('DeviceFocusController tests', () => {
     let testSubject: DeviceFocusController;
 
     beforeEach(() => {
+        adbWrapperHolderMock = Mock.ofType<AdbWrapperHolder>(undefined, MockBehavior.Strict);
         adbWrapperMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
+        androidSetupStoreMock = Mock.ofType<AndroidSetupStore>();
         commandSenderMock = Mock.ofType<DeviceFocusCommandSender>(undefined, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>(
             undefined,
@@ -47,15 +54,30 @@ describe('DeviceFocusController tests', () => {
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         statusDisconnectedMock = Mock.ofType<Action<void>>();
         statusConnectedMock = Mock.ofType<Action<void>>();
+        const androidSetupStoreData: AndroidSetupStoreData = {
+            scanPort: port,
+            selectedDevice: {
+                id: deviceId,
+            },
+        } as AndroidSetupStoreData;
+
+        adbWrapperHolderMock.setup(m => m.getAdb()).returns(() => adbWrapperMock.object);
+
+        androidSetupStoreMock
+            .setup(m => m.addChangedListener(It.isAny()))
+            .callback(setDeviceData => setDeviceData(androidSetupStoreMock.object));
+
+        androidSetupStoreMock.setup(m => m.getState()).returns(() => androidSetupStoreData);
+
         testSubject = new DeviceFocusController(
-            adbWrapperMock.object,
+            adbWrapperHolderMock.object,
             commandSenderMock.object,
             telemetryEventHandlerMock.object,
             deviceConnectionActionsMock.object,
             loggerMock.object,
+            androidSetupStoreMock.object,
         );
-        testSubject.setDeviceId(deviceId);
-        testSubject.setPort(port);
+        testSubject.initialize();
     });
 
     describe('Success paths', () => {
@@ -97,6 +119,7 @@ describe('DeviceFocusController tests', () => {
             telemetryEventHandlerMock
                 .setup(m => m.publishTelemetry(DEVICE_FOCUS_RESET, {}))
                 .verifiable(Times.once());
+            setFocusActionsForSuccess();
 
             await testSubject.resetFocusTracking();
 
@@ -315,6 +338,30 @@ describe('DeviceFocusController tests', () => {
 
             await testSubject.sendTabKey();
 
+            verifyAllMocks();
+        });
+
+        it('does not have device data', async () => {
+            androidSetupStoreMock.reset();
+
+            androidSetupStoreMock
+                .setup(m => m.addChangedListener(It.isAny()))
+                .callback(setDeviceData => setDeviceData(androidSetupStoreMock.object));
+
+            androidSetupStoreMock
+                .setup(m => m.getState())
+                .returns(() => ({} as AndroidSetupStoreData));
+
+            adbWrapperMock
+                .setup(m => m.sendKeyEvent(undefined, KeyEventCode.Up))
+                .returns(() => Promise.reject(errorMessage))
+                .verifiable(Times.once());
+
+            setTelemetryMockForKeyEvent(KeyEventCode.Up);
+            setMocksForFocusError();
+
+            testSubject.initialize();
+            await testSubject.sendUpKey();
             verifyAllMocks();
         });
 

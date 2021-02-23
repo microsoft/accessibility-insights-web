@@ -17,11 +17,10 @@ describe('VirtualKeyboardView', () => {
 
     beforeEach(() => {
         deps = {
-            deviceFocusControllerFactory: {},
+            deviceFocusController: {},
         } as VirtualKeyboardViewDeps;
         props = {
             deps,
-            deviceId: 'some-device-id',
             narrowModeStatus: {
                 isVirtualKeyboardCollapsed: true,
             } as NarrowModeStatus,

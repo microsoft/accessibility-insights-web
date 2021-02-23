@@ -3,21 +3,18 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
-import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
+import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 import * as styles from 'electron/views/tab-stops/virtual-keyboard-buttons.scss';
 import { Button, css, Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type VirtualKeyboardButtonsDeps = {
-    deviceFocusControllerFactory: DeviceFocusControllerFactory;
-    adbWrapperHolder: AdbWrapperHolder;
+    deviceFocusController: DeviceFocusController;
 };
 
 export type VirtualKeyboardButtonsProps = {
     deps: VirtualKeyboardButtonsDeps;
     narrowModeStatus: NarrowModeStatus;
-    deviceId: string;
 };
 
 export const buildKeyboardButtonAutomationId = (text: string) => `virtual-keyboard-${text}-button`;
@@ -55,10 +52,7 @@ export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
         };
 
         const deps = props.deps;
-        const deviceFocusController = deps.deviceFocusControllerFactory.getDeviceFocusController(
-            deps.adbWrapperHolder.getAdb(),
-        );
-        deviceFocusController.setDeviceId(props.deviceId);
+        const deviceFocusController = deps.deviceFocusController;
         const isVirtualKeyboardCollapsed = props.narrowModeStatus.isVirtualKeyboardCollapsed;
         const upButton = getArrowButton('Up', deviceFocusController.sendUpKey);
         const leftButton = getArrowButton('Left', deviceFocusController.sendLeftKey, styles.left);

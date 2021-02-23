@@ -84,7 +84,7 @@ import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wr
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createDeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
-import { DeviceFocusControllerFactory } from 'electron/platform/android/device-focus-controller-factory';
+import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
@@ -413,12 +413,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         scanController.initialize();
 
-        const deviceFocusControllerFactory = new DeviceFocusControllerFactory(
+        const deviceFocusController = new DeviceFocusController(
+            adbWrapperHolder,
             createDeviceFocusCommandSender(axios.get),
             telemetryEventHandler,
             deviceConnectionActions,
             logger,
+            androidSetupStore,
         );
+        deviceFocusController.initialize();
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
             telemetryDataFactory,
@@ -559,8 +562,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             navLinkRenderer: new NavLinkRenderer(),
             getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
             leftNavActionCreator,
-            deviceFocusControllerFactory,
-            adbWrapperHolder,
+            deviceFocusController,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
