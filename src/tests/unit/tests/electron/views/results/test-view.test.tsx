@@ -53,6 +53,7 @@ describe('TestView', () => {
             cardsViewData: cardsViewDataStub,
             scanStatus: ScanStatus[scanStatusName],
             contentPageInfo: contentPageInfo,
+            showTabStops: true,
         };
 
         const testSubject = shallow(<TestView {...props} />);

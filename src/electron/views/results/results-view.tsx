@@ -26,6 +26,7 @@ import { DeviceConnectionStoreData } from 'electron/flux/types/device-connection
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { TabStopsStoreData } from 'electron/flux/types/tab-stops-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import {
@@ -78,6 +79,7 @@ export type ResultsViewProps = {
     androidSetupStoreData: AndroidSetupStoreData;
     leftNavStoreData: LeftNavStoreData;
     narrowModeStatus: NarrowModeStatus;
+    tabStopsStoreData: TabStopsStoreData;
 };
 
 export class ResultsView extends React.Component<ResultsViewProps> {
@@ -152,6 +154,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                                         userConfigurationStoreData={userConfigurationStoreData}
                                         cardsViewData={cardsViewData}
                                         contentPageInfo={contentPageInfo}
+                                        showTabStops={this.props.tabStopsStoreData.focusTracking}
                                     />
                                 </main>
                             </div>

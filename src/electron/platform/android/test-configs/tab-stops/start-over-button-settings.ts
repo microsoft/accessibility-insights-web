@@ -8,7 +8,7 @@ export const tabStopsStartOverButtonSettings = (
     props: ReflowCommandBarProps,
 ): StartOverButtonSettings => {
     return {
-        onClick: () => {},
-        disabled: true,
+        onClick: props.deps.tabStopsActionCreator.startOver,
+        disabled: false,
     };
 };
