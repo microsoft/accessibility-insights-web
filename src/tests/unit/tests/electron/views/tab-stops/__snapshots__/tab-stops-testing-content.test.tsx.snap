@@ -5,6 +5,7 @@ exports[`TabStopsTestingContent renders 1`] = `
   <StyledToggleBase
     checked={true}
     className="toggle"
+    data-automation-id="tab-stops-toggle"
     label="Show tab stops"
     offText="Off"
     onClick={[Function]}
