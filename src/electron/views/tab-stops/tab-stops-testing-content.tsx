@@ -16,6 +16,8 @@ export type TabStopsTestingContentProps = {
     tabStopsEnabled: boolean;
 };
 
+export const tabStopsToggleAutomationId = 'tab-stops-toggle';
+
 const ariaLevelForHowToTestHeading: number = 3;
 
 export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
@@ -39,6 +41,7 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                     onText="On"
                     className={styles.toggle}
                     onClick={onToggle}
+                    data-automation-id={tabStopsToggleAutomationId}
                 />
                 <span role="heading" aria-level={ariaLevelForHowToTestHeading}>
                     <strong>How to test:</strong>
