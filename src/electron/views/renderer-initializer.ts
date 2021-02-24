@@ -428,8 +428,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             androidSetupStore,
         );
 
-        deviceFocusController.initialize();
-
         const tabStopsActionCreator = new TabStopsActionCreator(
             tabStopsActions,
             deviceConnectionActions,

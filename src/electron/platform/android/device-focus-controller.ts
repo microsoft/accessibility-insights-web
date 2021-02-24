@@ -17,9 +17,6 @@ import {
 import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 
 export class DeviceFocusController {
-    private deviceId: string;
-    private port: number;
-
     constructor(
         private readonly adbWrapperHolder: AdbWrapperHolder,
         private readonly commandSender: DeviceFocusCommandSender,
@@ -27,37 +24,46 @@ export class DeviceFocusController {
         private readonly androidSetupStore: AndroidSetupStore,
     ) {}
 
-    public initialize(): void {
-        this.androidSetupStore.addChangedListener(this.setDeviceData);
-    }
-
-    private setDeviceData = (store: AndroidSetupStore) => {
-        const data = store.getState();
-        this.port = data.scanPort;
-        this.deviceId = data.selectedDevice?.id;
-    };
-
     public enableFocusTracking = async () => {
+        const scanPort = this.androidSetupStore.getState().scanPort;
+        if (scanPort == null) {
+            return;
+        }
+
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
-        await this.commandSender(this.port, DeviceFocusCommand.Enable);
+        await this.commandSender(scanPort, DeviceFocusCommand.Enable);
     };
 
     public disableFocusTracking = async () => {
+        const scanPort = this.androidSetupStore.getState().scanPort;
+        if (scanPort == null) {
+            return;
+        }
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
-        await this.commandSender(this.port, DeviceFocusCommand.Disable);
+        await this.commandSender(scanPort, DeviceFocusCommand.Disable);
     };
 
     public resetFocusTracking = async () => {
+        const scanPort = this.androidSetupStore.getState().scanPort;
+        if (scanPort == null) {
+            return;
+        }
+
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
-        await this.commandSender(this.port, DeviceFocusCommand.Reset);
+        await this.commandSender(scanPort, DeviceFocusCommand.Reset);
     };
 
-    public sendKeyEvent = (keyEventCode: KeyEventCode): Promise<void> => {
+    public sendKeyEvent = async (keyEventCode: KeyEventCode) => {
+        const selectedDevice = this.androidSetupStore.getState().selectedDevice;
+        if (selectedDevice == null) {
+            return;
+        }
+
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
             telemetry: {
                 keyEventCode,
             },
         });
-        return this.adbWrapperHolder.getAdb().sendKeyEvent(this.deviceId, keyEventCode);
+        return this.adbWrapperHolder.getAdb().sendKeyEvent(selectedDevice.id, keyEventCode);
     };
 }
