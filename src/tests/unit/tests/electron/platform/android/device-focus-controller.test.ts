@@ -115,62 +115,34 @@ describe('DeviceFocusController tests', () => {
         });
     });
 
-    describe('No store data paths', () => {
+    describe('Error: (no store data) paths', () => {
         beforeEach(() => {
             const androidSetupStoreData: AndroidSetupStoreData = {} as AndroidSetupStoreData;
             androidSetupStoreMock.setup(m => m.getState()).returns(() => androidSetupStoreData);
         });
 
         it('enableFocusTracking', async () => {
-            commandSenderMock
-                .setup(getter => getter(port, DeviceFocusCommand.Enable))
-                .returns(() => Promise.resolve())
-                .verifiable(Times.never());
-            telemetryEventHandlerMock
-                .setup(m => m.publishTelemetry(DEVICE_FOCUS_ENABLE, {}))
-                .verifiable(Times.never());
-
-            await testSubject.enableFocusTracking();
-            verifyAllMocks();
+            await expect(testSubject.enableFocusTracking()).rejects.toThrowError(
+                'scan port not found',
+            );
         });
 
         it('disableFocusTracking', async () => {
-            commandSenderMock
-                .setup(getter => getter(port, DeviceFocusCommand.Disable))
-                .returns(() => Promise.resolve())
-                .verifiable(Times.never());
-            telemetryEventHandlerMock
-                .setup(m => m.publishTelemetry(DEVICE_FOCUS_DISABLE, {}))
-                .verifiable(Times.never());
-
-            await testSubject.disableFocusTracking();
-
-            verifyAllMocks();
+            await expect(testSubject.disableFocusTracking()).rejects.toThrowError(
+                'scan port not found',
+            );
         });
 
         it('resetFocusTracking', async () => {
-            commandSenderMock
-                .setup(getter => getter(port, DeviceFocusCommand.Reset))
-                .returns(() => Promise.resolve())
-                .verifiable(Times.never());
-            telemetryEventHandlerMock
-                .setup(m => m.publishTelemetry(DEVICE_FOCUS_RESET, {}))
-                .verifiable(Times.never());
-
-            await testSubject.resetFocusTracking();
-
-            verifyAllMocks();
+            await expect(testSubject.resetFocusTracking()).rejects.toThrowError(
+                'scan port not found',
+            );
         });
 
         it('sendKeyEvent', async () => {
-            adbWrapperMock
-                .setup(m => m.sendKeyEvent(deviceId, KeyEventCode.Up))
-                .returns(() => Promise.resolve())
-                .verifiable(Times.never());
-
-            await testSubject.sendKeyEvent(KeyEventCode.Up);
-
-            verifyAllMocks();
+            await expect(testSubject.sendKeyEvent(KeyEventCode.Up)).rejects.toThrowError(
+                'selected device not found',
+            );
         });
     });
 

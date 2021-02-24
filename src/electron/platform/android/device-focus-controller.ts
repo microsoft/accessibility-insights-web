@@ -25,45 +25,46 @@ export class DeviceFocusController {
     ) {}
 
     public enableFocusTracking = async () => {
-        const scanPort = this.androidSetupStore.getState().scanPort;
-        if (scanPort == null) {
-            return;
-        }
-
+        const scanPort = this.getScanPort();
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
         await this.commandSender(scanPort, DeviceFocusCommand.Enable);
     };
 
     public disableFocusTracking = async () => {
-        const scanPort = this.androidSetupStore.getState().scanPort;
-        if (scanPort == null) {
-            return;
-        }
+        const scanPort = this.getScanPort();
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
         await this.commandSender(scanPort, DeviceFocusCommand.Disable);
     };
 
     public resetFocusTracking = async () => {
-        const scanPort = this.androidSetupStore.getState().scanPort;
-        if (scanPort == null) {
-            return;
-        }
-
+        const scanPort = this.getScanPort();
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
         await this.commandSender(scanPort, DeviceFocusCommand.Reset);
     };
 
     public sendKeyEvent = async (keyEventCode: KeyEventCode) => {
-        const selectedDevice = this.androidSetupStore.getState().selectedDevice;
-        if (selectedDevice == null) {
-            return;
-        }
-
+        const selectedDevice = this.getSelectedDevice();
         this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
             telemetry: {
                 keyEventCode,
             },
         });
         return this.adbWrapperHolder.getAdb().sendKeyEvent(selectedDevice.id, keyEventCode);
+    };
+
+    private getScanPort = () => {
+        const scanPort = this.androidSetupStore.getState().scanPort;
+        if (scanPort == null) {
+            throw new Error('scan port not found');
+        }
+        return scanPort;
+    };
+
+    private getSelectedDevice = () => {
+        const selectedDevice = this.androidSetupStore.getState().selectedDevice;
+        if (selectedDevice == null) {
+            throw new Error('selected device not found');
+        }
+        return selectedDevice;
     };
 }
