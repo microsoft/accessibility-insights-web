@@ -59,9 +59,20 @@ export class LogController {
         return fs.existsSync(this.adbLogPath);
     }
 
+    private serverLogExists(): boolean {
+        return fs.existsSync(this.serverLogPath);
+    }
+
     public async waitForAdbLogToContain(contains: string) {
         const isLogReady = async () =>
             this.adbLogExists() && (await this.getAdbLog()).includes(contains);
+
+        return this.client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
+    }
+
+    public async waitForServerLogToContain(contains: string) {
+        const isLogReady = async () =>
+            this.serverLogExists() && (await this.getServerLog()).includes(contains);
 
         return this.client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
     }

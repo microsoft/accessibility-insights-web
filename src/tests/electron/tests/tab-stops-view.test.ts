@@ -75,6 +75,7 @@ describe('TabStopsView', () => {
 
         await tabStopsViewController.clickToggleTabStops();
         await tabStopsViewController.clickToggleTabStops();
+        await logController.waitForServerLogToContain('Disable');
 
         const serverLog = await logController.getServerLog();
         expect(serverLog).toMatchSnapshot();
