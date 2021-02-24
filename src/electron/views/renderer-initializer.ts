@@ -424,7 +424,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const deviceFocusController = new DeviceFocusController(
             adbWrapperHolder,
             createDeviceFocusCommandSender(axios.get),
-            telemetryEventHandler,
             androidSetupStore,
         );
 

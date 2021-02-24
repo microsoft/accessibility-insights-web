@@ -3,7 +3,13 @@
 
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Logger } from 'common/logging/logger';
-import { DEVICE_FOCUS_ERROR } from 'electron/common/electron-telemetry-events';
+import {
+    DEVICE_FOCUS_DISABLE,
+    DEVICE_FOCUS_ENABLE,
+    DEVICE_FOCUS_ERROR,
+    DEVICE_FOCUS_KEYEVENT,
+    DEVICE_FOCUS_RESET,
+} from 'electron/common/electron-telemetry-events';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { TabStopsActions } from 'electron/flux/action/tab-stops-actions';
 import { KeyEventCode } from 'electron/platform/android/adb-wrapper';
@@ -20,6 +26,7 @@ export class TabStopsActionCreator {
 
     public enableTabStops = async () => {
         try {
+            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
             await this.deviceFocusController.enableFocusTracking();
             this.tabStopsActions.enableFocusTracking.invoke();
             this.deviceConnectionActions.statusConnected.invoke();
@@ -30,6 +37,7 @@ export class TabStopsActionCreator {
 
     public disableTabStops = async () => {
         try {
+            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
             await this.deviceFocusController.disableFocusTracking();
             this.tabStopsActions.disableFocusTracking.invoke();
             this.deviceConnectionActions.statusConnected.invoke();
@@ -40,6 +48,7 @@ export class TabStopsActionCreator {
 
     public startOver = async () => {
         try {
+            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
             await this.deviceFocusController.resetFocusTracking();
             this.tabStopsActions.startOver.invoke();
             this.deviceConnectionActions.statusConnected.invoke();
@@ -49,40 +58,54 @@ export class TabStopsActionCreator {
     };
 
     public sendUpKey = async () => {
+        this.publishTelemetryForKeyboardEvent(KeyEventCode.Up);
         await this.wrapActionWithErrorHandling(
             this.deviceFocusController.sendKeyEvent(KeyEventCode.Up),
         );
     };
 
     public sendDownKey = async () => {
+        this.publishTelemetryForKeyboardEvent(KeyEventCode.Down);
         await this.wrapActionWithErrorHandling(
             this.deviceFocusController.sendKeyEvent(KeyEventCode.Down),
         );
     };
 
     public sendLeftKey = async () => {
+        this.publishTelemetryForKeyboardEvent(KeyEventCode.Left);
         await this.wrapActionWithErrorHandling(
             this.deviceFocusController.sendKeyEvent(KeyEventCode.Left),
         );
     };
 
     public sendRightKey = async () => {
+        this.publishTelemetryForKeyboardEvent(KeyEventCode.Right);
         await this.wrapActionWithErrorHandling(
             this.deviceFocusController.sendKeyEvent(KeyEventCode.Right),
         );
     };
 
     public sendTabKey = async () => {
+        this.publishTelemetryForKeyboardEvent(KeyEventCode.Tab);
         await this.wrapActionWithErrorHandling(
             this.deviceFocusController.sendKeyEvent(KeyEventCode.Tab),
         );
     };
 
     public sendEnterKey = async () => {
+        this.publishTelemetryForKeyboardEvent(KeyEventCode.Enter);
         await this.wrapActionWithErrorHandling(
             this.deviceFocusController.sendKeyEvent(KeyEventCode.Enter),
         );
     };
+
+    private publishTelemetryForKeyboardEvent(keyEventCode: KeyEventCode): void {
+        this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_KEYEVENT, {
+            telemetry: {
+                keyEventCode,
+            },
+        });
+    }
 
     private wrapActionWithErrorHandling = async (innerAction: Promise<void>) => {
         try {
