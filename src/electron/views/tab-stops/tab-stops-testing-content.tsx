@@ -2,14 +2,18 @@
 // Licensed under the MIT License.
 
 import { NamedFC } from 'common/react/named-fc';
+import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 import * as styles from './tab-stops-testing-content.scss';
 
-export type TabStopsTestingContentDeps = {};
+export type TabStopsTestingContentDeps = {
+    tabStopsActionCreator: TabStopsActionCreator;
+};
+
 export type TabStopsTestingContentProps = {
     deps: TabStopsTestingContentDeps;
-    showTabStops: boolean;
+    tabStopsEnabled: boolean;
 };
 
 const ariaLevelForHowToTestHeading: number = 3;
@@ -17,14 +21,24 @@ const ariaLevelForHowToTestHeading: number = 3;
 export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
     'TabStopsTestingContent',
     props => {
+        const tabStopsActionCreator = props.deps.tabStopsActionCreator;
+        const onToggle = () => {
+            if (props.tabStopsEnabled) {
+                tabStopsActionCreator.disableTabStops();
+            } else {
+                tabStopsActionCreator.enableTabStops();
+            }
+        };
+
         return (
             <>
                 <Toggle
                     label={'Show tab stops'}
-                    checked={props.showTabStops}
+                    checked={props.tabStopsEnabled}
                     offText="Off"
                     onText="On"
                     className={styles.toggle}
+                    onClick={onToggle}
                 />
                 <span role="heading" aria-level={ariaLevelForHowToTestHeading}>
                     <strong>How to test:</strong>

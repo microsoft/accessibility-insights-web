@@ -16,7 +16,7 @@ export type ContentPageInfo = {
     title: string;
     allowsExportReport: boolean;
     description?: JSX.Element;
-    instancesSectionComponent?: ReactFCWithDisplayName<TestingContentProps>;
+    instancesSectionComponent: ReactFCWithDisplayName<TestingContentProps>;
     resultsFilter: ResultsFilter;
     visualHelperSection: VisualHelperSection;
     startOverButtonSettings: (props: ReflowCommandBarProps) => StartOverButtonSettings;

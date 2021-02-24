@@ -27,6 +27,7 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { DeviceConnectionStatus } from 'electron/flux/types/device-connection-status';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { TabStopsStoreData } from 'electron/flux/types/tab-stops-store-data';
 import { ContentPageInfo, ContentPagesInfo } from 'electron/types/content-page-info';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
@@ -94,6 +95,10 @@ describe('ResultsView', () => {
             leftNavVisible: true,
         };
 
+        const tabStopsStoreData: TabStopsStoreData = {
+            focusTracking: true,
+        };
+
         const ruleResultsByStatusStub = {
             fail: [{ id: 'test-fail-id' } as CardRuleResult],
         } as CardRuleResultsByStatus;
@@ -143,6 +148,7 @@ describe('ResultsView', () => {
             },
             unifiedScanResultStoreData,
             leftNavStoreData,
+            tabStopsStoreData,
         } as ResultsViewProps;
 
         getCardSelectionViewDataMock

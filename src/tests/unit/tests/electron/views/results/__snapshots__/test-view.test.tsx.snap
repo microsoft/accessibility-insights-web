@@ -25,6 +25,7 @@ exports[`TestView when status scan <Completed> 1`] = `
       }
     }
     shouldAlertFailuresCount={true}
+    tabStopsEnabled={true}
     userConfigurationStoreData={
       Object {
         "isFirstTime": false,
