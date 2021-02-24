@@ -382,23 +382,6 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallbacks for onUpdateIssuesSelectedTargets', () => {
-        const selectedTargets = ['#headings-1', '#landmark-1'];
-        const args = [selectedTargets, 1];
-        const actionName = 'updateIssuesSelectedTargets';
-
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.Issues.UpdateSelectedTargets, args)
-            .setupActionOnVisualizationScanResultActions(actionName)
-            .setupVisualizationScanResultActionWithInvokeParameter(actionName, selectedTargets);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallbacks for scrollRequested', () => {
         const visualizationActionName = 'scrollRequested';
         const cardSelectionActionName = 'resetFocusedIdentifier';
