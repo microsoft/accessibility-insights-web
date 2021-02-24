@@ -120,7 +120,6 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 dropdownClickHandler={props.deps.dropdownClickHandler}
                 clickHandlerFactory={props.deps.clickHandlerFactory}
                 assessmentInstanceTableHandler={props.deps.assessmentInstanceTableHandler}
-                issuesSelection={props.deps.issuesSelection}
                 issuesTableHandler={props.deps.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}

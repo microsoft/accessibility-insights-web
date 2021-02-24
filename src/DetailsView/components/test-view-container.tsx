@@ -5,7 +5,6 @@ import { NeedsReviewInstancesSection } from 'common/components/cards/needs-revie
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -46,7 +45,6 @@ export interface TestViewContainerProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    issuesSelection: ISelection;
     issuesTableHandler: IssuesTableHandler;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;

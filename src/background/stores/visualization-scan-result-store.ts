@@ -40,8 +40,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             state[key] = {
                 fullAxeResultsMap: null,
                 scanResult: null,
-                selectedAxeResultsMap: null,
-                selectedIdToRuleResultMap: null,
                 fullIdToRuleResultMap: null,
             };
         });
@@ -52,9 +50,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     protected addActionListeners(): void {
         this.visualizationScanResultsActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationScanResultsActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.visualizationScanResultsActions.updateIssuesSelectedTargets.addListener(
-            this.onUpdateIssuesSelectedTargets,
-        );
         this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
         this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
@@ -108,28 +103,10 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         const result = payload.scanResult;
         const selectedRows = this.getRowToRuleResultMap(selectorMap);
 
-        this.state[payload.key].selectedAxeResultsMap = selectorMap;
         this.state[payload.key].fullIdToRuleResultMap = selectedRows;
-        this.state[payload.key].selectedIdToRuleResultMap = selectedRows;
         this.state[payload.key].fullAxeResultsMap = selectorMap;
         this.state[payload.key].scanResult = result;
 
-        this.emitChanged();
-    };
-
-    private onUpdateIssuesSelectedTargets = (selected: string[]): void => {
-        const newSelectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
-
-        selected.forEach(uid => {
-            const value = this.state.issues.fullIdToRuleResultMap[uid];
-
-            if (value != null) {
-                newSelectedRows[uid] = value;
-            }
-        });
-
-        this.state.issues.selectedAxeResultsMap = this.getSelectorMap(newSelectedRows);
-        this.state.issues.selectedIdToRuleResultMap = newSelectedRows;
         this.emitChanged();
     };
 
@@ -157,25 +134,5 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         });
 
         return selectedRows;
-    }
-
-    private getSelectorMap(
-        selectedRows: DictionaryStringTo<DecoratedAxeNodeResult>,
-    ): DictionaryStringTo<HtmlElementAxeResults> {
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {};
-        forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
-            const ruleResult = selectedRow;
-            const ruleResults = selectorMap[ruleResult.selector]
-                ? selectorMap[ruleResult.selector].ruleResults
-                : {};
-
-            ruleResults[ruleResult.ruleId] = ruleResult;
-            selectorMap[ruleResult.selector] = {
-                ruleResults: ruleResults,
-                target: ruleResult.selector.split(';'),
-            };
-        });
-
-        return selectorMap;
     }
 }
