@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
+import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import {
     VirtualKeyboardButtons,
     VirtualKeyboardButtonsDeps,
@@ -15,14 +15,14 @@ import { IMock, Mock } from 'typemoq';
 
 describe('VirtualKeyboardButtons', () => {
     let props: VirtualKeyboardButtonsProps;
-    let deviceFocusControllerMock: IMock<DeviceFocusController>;
+    let tabStopsActionCreatorMock: IMock<TabStopsActionCreator>;
 
     beforeEach(() => {
-        deviceFocusControllerMock = Mock.ofType<DeviceFocusController>();
+        tabStopsActionCreatorMock = Mock.ofType<TabStopsActionCreator>();
 
         props = {
             deps: {
-                deviceFocusController: deviceFocusControllerMock.object,
+                tabStopsActionCreator: tabStopsActionCreatorMock.object,
             } as VirtualKeyboardButtonsDeps,
             narrowModeStatus: {
                 isVirtualKeyboardCollapsed: true,

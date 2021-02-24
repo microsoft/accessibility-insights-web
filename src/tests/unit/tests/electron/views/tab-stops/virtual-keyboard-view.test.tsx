@@ -17,7 +17,7 @@ describe('VirtualKeyboardView', () => {
 
     beforeEach(() => {
         deps = {
-            deviceFocusController: {},
+            tabStopsActionCreator: {},
         } as VirtualKeyboardViewDeps;
         props = {
             deps,
