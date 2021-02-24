@@ -88,6 +88,7 @@ import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { createDeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
+import { DeviceFocusMinder } from 'electron/platform/android/device-focus-minder';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
@@ -538,6 +539,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
         };
+
+        const deviceFocusMinder = new DeviceFocusMinder(
+            deviceFocusController,
+            tabStopsStore,
+            leftNavStore,
+        );
+        deviceFocusMinder.initialize();
 
         const deps: RootContainerRendererDeps = {
             ipcRendererShim: ipcRendererShim,
