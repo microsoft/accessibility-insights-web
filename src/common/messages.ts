@@ -16,7 +16,6 @@ export interface DetailsViewMessages {
 }
 
 export interface IssuesMessages {
-    UpdateSelectedTargets: string;
     UpdateFocusedInstance: string;
 }
 
@@ -66,7 +65,6 @@ export class Messages {
             TerminateScan: `${messagePrefix}/visualization/tab-stops/terminated`,
         },
         Issues: {
-            UpdateSelectedTargets: `${messagePrefix}/visualization/issues/targets/selected/update`,
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
         },
         State: {
