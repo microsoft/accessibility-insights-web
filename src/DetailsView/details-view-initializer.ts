@@ -111,7 +111,6 @@ import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unified-result-to-issue-filing-data';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
-import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
 import { ExtensionSettingsProvider } from './components/details-view-overlay/settings-panel/settings/extension-settings-provider';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
@@ -274,9 +273,6 @@ if (tabId != null) {
                 actionMessageDispatcher,
             );
 
-            const issuesSelection = new IssuesSelectionFactory().createSelection(
-                detailsViewActionMessageCreator,
-            );
             const clickHandlerFactory = new DetailsViewToggleClickHandlerFactory(
                 visualizationActionCreator,
                 telemetryFactory,
@@ -481,7 +477,6 @@ if (tabId != null) {
                 customCongratsContinueInvestigatingMessage: null, // uses default message
                 scopingActionMessageCreator,
                 inspectActionMessageCreator,
-                issuesSelection,
                 clickHandlerFactory,
                 issuesTableHandler,
                 assessmentInstanceTableHandler,

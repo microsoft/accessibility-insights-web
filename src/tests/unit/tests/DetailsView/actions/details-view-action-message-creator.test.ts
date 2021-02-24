@@ -54,21 +54,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
-    test('updateIssuesSelectedTargets', () => {
-        const selectedTargets: string[] = ['#headings-1', '#landmark-1'];
-        const expectedMessage = {
-            messageType: Messages.Visualizations.Issues.UpdateSelectedTargets,
-            payload: selectedTargets,
-        };
-
-        testSubject.updateIssuesSelectedTargets(selectedTargets);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
     test('updateFocusedInstanceTarget', () => {
         const instanceTarget = ['#headings-1'];
         const expectedMessage = {
