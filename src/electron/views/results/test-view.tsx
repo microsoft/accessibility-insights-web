@@ -19,7 +19,7 @@ export type TestViewProps = {
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     contentPageInfo: ContentPageInfo;
-    showTabStops: boolean;
+    tabStopsEnabled: boolean;
 };
 
 export const TestView = NamedFC<TestViewProps>('TestView', props => {
@@ -57,7 +57,7 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 scanMetadata={scanMetadata}
                 shouldAlertFailuresCount={true}
                 cardsViewData={cardsViewData}
-                showTabStops={props.showTabStops}
+                tabStopsEnabled={props.tabStopsEnabled}
             />
         </div>
     );

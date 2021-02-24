@@ -13,7 +13,7 @@ export type TabStopsTestingContentDeps = {
 
 export type TabStopsTestingContentProps = {
     deps: TabStopsTestingContentDeps;
-    showTabStops: boolean;
+    tabStopsEnabled: boolean;
 };
 
 const ariaLevelForHowToTestHeading: number = 3;
@@ -23,7 +23,7 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
     props => {
         const tabStopsActionCreator = props.deps.tabStopsActionCreator;
         const onToggle = () => {
-            if (props.showTabStops) {
+            if (props.tabStopsEnabled) {
                 tabStopsActionCreator.disableTabStops();
             } else {
                 tabStopsActionCreator.enableTabStops();
@@ -34,7 +34,7 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
             <>
                 <Toggle
                     label={'Show tab stops'}
-                    checked={props.showTabStops}
+                    checked={props.tabStopsEnabled}
                     offText="Off"
                     onText="On"
                     className={styles.toggle}

@@ -22,7 +22,7 @@ describe('TabStopsTestingContent', () => {
         );
         props = {
             deps: { tabStopsActionCreator: tabStopsActionCreatorMock.object },
-            showTabStops: true,
+            tabStopsEnabled: true,
         };
     });
 
@@ -42,7 +42,7 @@ describe('TabStopsTestingContent', () => {
     });
 
     test('toggles tab stops on', () => {
-        props.showTabStops = false;
+        props.tabStopsEnabled = false;
         tabStopsActionCreatorMock.setup(m => m.enableTabStops()).verifiable();
         const testSubject = shallow(<TabStopsTestingContent {...props} />);
         const onToggle = testSubject.find(Toggle).prop('onClick');

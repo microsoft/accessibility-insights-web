@@ -154,7 +154,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                                         userConfigurationStoreData={userConfigurationStoreData}
                                         cardsViewData={cardsViewData}
                                         contentPageInfo={contentPageInfo}
-                                        showTabStops={this.props.tabStopsStoreData.focusTracking}
+                                        tabStopsEnabled={this.props.tabStopsStoreData.focusTracking}
                                     />
                                 </main>
                             </div>
