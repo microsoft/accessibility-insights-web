@@ -3,13 +3,13 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
+import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import * as styles from 'electron/views/tab-stops/virtual-keyboard-buttons.scss';
 import { Button, css, Icon } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export type VirtualKeyboardButtonsDeps = {
-    deviceFocusController: DeviceFocusController;
+    tabStopsActionCreator: TabStopsActionCreator;
 };
 
 export type VirtualKeyboardButtonsProps = {
@@ -52,24 +52,24 @@ export const VirtualKeyboardButtons = NamedFC<VirtualKeyboardButtonsProps>(
         };
 
         const deps = props.deps;
-        const deviceFocusController = deps.deviceFocusController;
+        const tabStopsActionCreator = deps.tabStopsActionCreator;
         const isVirtualKeyboardCollapsed = props.narrowModeStatus.isVirtualKeyboardCollapsed;
-        const upButton = getArrowButton('Up', deviceFocusController.sendUpKey);
-        const leftButton = getArrowButton('Left', deviceFocusController.sendLeftKey, styles.left);
+        const upButton = getArrowButton('Up', tabStopsActionCreator.sendUpKey);
+        const leftButton = getArrowButton('Left', tabStopsActionCreator.sendLeftKey, styles.left);
         const rightButton = getArrowButton(
             'Right',
-            deviceFocusController.sendRightKey,
+            tabStopsActionCreator.sendRightKey,
             styles.right,
         );
-        const downButton = getArrowButton('Down', deviceFocusController.sendDownKey, styles.down);
+        const downButton = getArrowButton('Down', tabStopsActionCreator.sendDownKey, styles.down);
         const tabButton = getLargeButton(
             'Tab',
-            deviceFocusController.sendTabKey,
+            tabStopsActionCreator.sendTabKey,
             isVirtualKeyboardCollapsed ? undefined : styles.rectangleButton,
         );
         const enterButton = getLargeButton(
             'Enter',
-            deviceFocusController.sendEnterKey,
+            tabStopsActionCreator.sendEnterKey,
             isVirtualKeyboardCollapsed ? undefined : styles.rectangleButton,
         );
 

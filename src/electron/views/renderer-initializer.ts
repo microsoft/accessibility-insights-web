@@ -69,12 +69,15 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
+import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
+import { TabStopsActions } from 'electron/flux/action/tab-stops-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
 import { DeviceConnectionStore } from 'electron/flux/store/device-connection-store';
 import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { ScanStore } from 'electron/flux/store/scan-store';
+import { TabStopsStore } from 'electron/flux/store/tab-stops-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
@@ -173,6 +176,7 @@ const previewFeaturesActions = new PreviewFeaturesActions(); // not really used 
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
 const leftNavActions = new LeftNavActions();
+const tabStopsActions = new TabStopsActions();
 
 const ipcRendererShim = new IpcRendererShim(ipcRenderer);
 ipcRendererShim.initialize();
@@ -283,6 +287,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const leftNavStore = new LeftNavStore(leftNavActions);
         leftNavStore.initialize();
 
+        const tabStopsStore = new TabStopsStore(tabStopsActions);
+        tabStopsStore.initialize();
+
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
@@ -297,6 +304,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             featureFlagStore,
             androidSetupStore,
             leftNavStore,
+            tabStopsStore,
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
@@ -417,11 +425,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             adbWrapperHolder,
             createDeviceFocusCommandSender(axios.get),
             telemetryEventHandler,
-            deviceConnectionActions,
-            logger,
             androidSetupStore,
         );
+
         deviceFocusController.initialize();
+
+        const tabStopsActionCreator = new TabStopsActionCreator(
+            tabStopsActions,
+            deviceConnectionActions,
+            deviceFocusController,
+            logger,
+            telemetryEventHandler,
+        );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
             telemetryDataFactory,
@@ -562,7 +577,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             navLinkRenderer: new NavLinkRenderer(),
             getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
             leftNavActionCreator,
-            deviceFocusController,
+            tabStopsActionCreator: tabStopsActionCreator,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);
