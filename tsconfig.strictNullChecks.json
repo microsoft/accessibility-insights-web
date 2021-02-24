@@ -5,7 +5,6 @@
     },
     "files": [
         "./src/DetailsView/actions/details-view-action-message-creator.ts",
-        "./src/DetailsView/actions/issues-selection.tsx",
         "./src/DetailsView/bundled-details-view-styles.ts",
         "./src/DetailsView/components/action-and-cancel-buttons-component.tsx",
         "./src/DetailsView/components/assessment-instance-details-column.tsx",
