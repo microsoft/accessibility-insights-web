@@ -99,7 +99,7 @@
         "@typescript-eslint/eslint-plugin": "^4.0.0",
         "@typescript-eslint/parser": "^3.10.1",
         "app-builder-lib": "^22.10.4",
-        "case-sensitive-paths-webpack-plugin": "^2.3.0",
+        "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.1",
         "commander": "^7.1.0",
         "core-js-bundle": "^3.8.3",
