@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TabStopsView toggling show tab stops sends corresponding service commands 1`] = `
+"GET /AccessibilityInsights/FocusTracking/Enable
+GET /AccessibilityInsights/FocusTracking/Disable
+"
+`;
+
 exports[`TabStopsView virtual keyboard sends keyevent 19 1`] = `
 "ADB -s device-1 shell input keyevent 19
 "
