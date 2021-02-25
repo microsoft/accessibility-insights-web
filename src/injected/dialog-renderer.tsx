@@ -70,7 +70,7 @@ export class DialogRenderer {
     ) => {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.getMainWindowContext();
-            mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
+            mainWindowContext.getTargetPageActionMessageCreator().openInjectedDialog(data.target);
 
             const elementSelector: string = this.getElementSelector(data);
             const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(
