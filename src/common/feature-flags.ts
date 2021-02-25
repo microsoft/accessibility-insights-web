@@ -7,7 +7,6 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 export class FeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
     public static readonly showAllAssessments = 'showAllAssessments';
-    public static readonly shadowDialog = 'shadowDialog';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly scoping = 'scoping';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
@@ -29,16 +28,6 @@ export interface FeatureFlagDetail {
 
 export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
     return [
-        {
-            id: FeatureFlags.shadowDialog,
-            defaultValue: false,
-            displayableName: 'Improved dialog styling',
-            displayableDescription:
-                'Avoids styling problems in failure dialogs by rendering them in shadow DOM. ' +
-                "(You'll need to refresh the target page to see the new dialog styling.)",
-            isPreviewFeature: false,
-            forceDefault: false,
-        },
         {
             id: FeatureFlags.showAllAssessments,
             defaultValue: false,
