@@ -147,6 +147,9 @@
         "./src/common/components/blocking-dialog.tsx",
         "./src/common/components/body-class-modifier.tsx",
         "./src/common/components/cards/card-interaction-support.ts",
+        "./src/common/components/cards/cards-visualization-modifier-buttons.tsx",
+        "./src/common/components/cards/collapsible-component-cards.tsx",
+        "./src/common/components/cards/expand-collapse-all-button.tsx",
         "./src/common/components/cards/rich-resolution-content.tsx",
         "./src/common/components/cards/rule-resources.tsx",
         "./src/common/components/cards/simple-card-row.tsx",
@@ -154,6 +157,7 @@
         "./src/common/components/collapsible-component.tsx",
         "./src/common/components/contrast-checker-app-links.tsx",
         "./src/common/components/controls/insights-command-button.tsx",
+        "./src/common/components/copy-issue-details-button.tsx",
         "./src/common/components/enable-telemetry-setting-description.tsx",
         "./src/common/components/expand-collapse-left-nav-hamburger-button.tsx",
         "./src/common/components/external-link.tsx",
@@ -377,6 +381,7 @@
         "./src/reports/components/report-sections/footer-text.tsx",
         "./src/reports/components/report-sections/header-section.tsx",
         "./src/reports/components/report-sections/no-failed-instances-congrats.tsx",
+        "./src/reports/components/report-sections/report-collapsible-container.tsx",
         "./src/reports/components/report-sections/report-footer.tsx",
         "./src/reports/components/report-sections/reporter-header-section.tsx",
         "./src/reports/components/report-sections/summary-report-header-section.tsx",
@@ -461,10 +466,7 @@
         "./src/views/content/markup.tsx",
         "./src/views/insights/renderer.tsx",
         "./src/views/insights/router.tsx",
-        "./src/views/page/page.tsx",
-        "./src/common/components/cards/collapsible-component-cards.tsx",
-        "./src/common/components/cards/expand-collapse-all-button.tsx",
-        "./src/common/components/copy-issue-details-button.tsx"
+        "./src/views/page/page.tsx"
     ],
     "include": [
         "src/DetailsView/actions/**/*",
