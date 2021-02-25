@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog } from '../../../../../injected/components/details-dialog';
 import {
     IssueDetailsNavigationClickHandler,
@@ -109,26 +108,6 @@ describe('IssueDetailsNavigationControls', () => {
             );
         });
 
-        it('handles next button activation, shadow dom on', () => {
-            controlProps.featureFlagStoreData = {
-                [FeatureFlags.shadowDialog]: true,
-            };
-
-            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
-
-            const nextButton = wrapper.find({ 'data-automation-id': 'next' });
-
-            expect(nextButton).not.toBeNull();
-            expect(nextButton).toHaveLength(1);
-
-            nextButton.simulate('click');
-
-            navigationHandlerMock.verify(
-                handler => handler.nextButtonClickHandler(controlProps.container),
-                Times.never(),
-            );
-        });
-
         it('handles back button activation', () => {
             const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
 
@@ -142,26 +121,6 @@ describe('IssueDetailsNavigationControls', () => {
             navigationHandlerMock.verify(
                 handler => handler.backButtonClickHandler(controlProps.container),
                 Times.once(),
-            );
-        });
-
-        it('handles back button activation, shadow dom on', () => {
-            controlProps.featureFlagStoreData = {
-                [FeatureFlags.shadowDialog]: true,
-            };
-
-            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
-
-            const backButton = wrapper.find({ 'data-automation-id': 'back' });
-
-            expect(backButton).not.toBeNull();
-            expect(backButton).toHaveLength(1);
-
-            backButton.simulate('click');
-
-            navigationHandlerMock.verify(
-                handler => handler.backButtonClickHandler(controlProps.container),
-                Times.never(),
             );
         });
     });
