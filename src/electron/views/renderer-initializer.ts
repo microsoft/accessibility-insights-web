@@ -349,8 +349,26 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
+        const deviceFocusController = new DeviceFocusController(
+            adbWrapperHolder,
+            createDeviceFocusCommandSender(axios.get),
+            androidSetupStore,
+        );
+
+        const tabStopsActionCreator = new TabStopsActionCreator(
+            tabStopsActions,
+            deviceConnectionActions,
+            deviceFocusController,
+            logger,
+            telemetryEventHandler,
+        );
+
         const leftNavActionCreator = new LeftNavActionCreator(leftNavActions, cardSelectionActions);
-        const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
+        const leftNavItems = createLeftNavItems(
+            androidTestConfigs,
+            leftNavActionCreator,
+            tabStopsActionCreator,
+        );
         const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
 
         const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
@@ -420,20 +438,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         );
 
         scanController.initialize();
-
-        const deviceFocusController = new DeviceFocusController(
-            adbWrapperHolder,
-            createDeviceFocusCommandSender(axios.get),
-            androidSetupStore,
-        );
-
-        const tabStopsActionCreator = new TabStopsActionCreator(
-            tabStopsActions,
-            deviceConnectionActions,
-            deviceFocusController,
-            logger,
-            telemetryEventHandler,
-        );
 
         const dropdownActionMessageCreator = new DropdownActionMessageCreator(
             telemetryDataFactory,
