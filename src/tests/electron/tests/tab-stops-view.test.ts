@@ -10,6 +10,7 @@ import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { LogController } from 'tests/electron/common/view-controllers/log-controller';
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
+import { TabStopsViewController } from 'tests/electron/common/view-controllers/tab-stops-view-controller';
 import { VirtualKeyboardViewController } from 'tests/electron/common/view-controllers/virtual-keyboard-view-controller';
 import {
     commonAdbConfigs,
@@ -22,6 +23,7 @@ describe('TabStopsView', () => {
     let resultsViewController: ResultsViewController;
     let virtualKeyboardViewController: VirtualKeyboardViewController;
     let logController: LogController;
+    let tabStopsViewController: TabStopsViewController;
     const mockAdbLogsBase = path.basename(__filename);
     const mockAdbLogsFolder = 'tabStopsLogs';
     const windowWidth = getNarrowModeThresholdsForUnified().collapseHeaderAndNavThreshold + 5;
@@ -35,6 +37,7 @@ describe('TabStopsView', () => {
         app.setFeatureFlag(UnifiedFeatureFlags.tabStops, true);
         app.client.browserWindow.setSize(windowWidth, windowHeight);
         logController = new LogController(logsContext, mockAdbFolder, app.client);
+        tabStopsViewController = new TabStopsViewController(app.client);
         virtualKeyboardViewController = new VirtualKeyboardViewController(app.client);
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('tab-stops');
@@ -65,6 +68,17 @@ describe('TabStopsView', () => {
 
         const adbLog = await logController.getAdbLog();
         expect(adbLog).toMatchSnapshot();
+    });
+
+    it('toggling show tab stops sends corresponding service commands', async () => {
+        logController.resetServerLog();
+
+        await tabStopsViewController.clickToggleTabStops();
+        await tabStopsViewController.clickToggleTabStops();
+        await logController.waitForServerLogToContain('Disable');
+
+        const serverLog = await logController.getServerLog();
+        expect(serverLog).toMatchSnapshot();
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
