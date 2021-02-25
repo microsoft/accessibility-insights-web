@@ -81,6 +81,15 @@ describe('TabStopsView', () => {
         expect(serverLog).toMatchSnapshot();
     });
 
+    it('clicking start over sends corresponding service command', async () => {
+        logController.resetServerLog();
+
+        await resultsViewController.clickStartOver();
+
+        const serverLog = await logController.getServerLog();
+        expect(serverLog).toMatchSnapshot();
+    });
+
     it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });

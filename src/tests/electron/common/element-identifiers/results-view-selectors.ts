@@ -5,7 +5,10 @@ import { testViewLeftNavLinkAutomationId } from 'DetailsView/components/left-nav
 import { exportReportCommandBarButtonId } from 'DetailsView/components/report-export-component';
 import { fluentLeftNavAutomationId } from 'electron/views/left-nav/fluent-left-nav';
 import { leftNavAutomationId } from 'electron/views/left-nav/left-nav';
-import { commandButtonSettingsId } from 'electron/views/results/components/reflow-command-bar';
+import {
+    commandButtonRefreshId,
+    commandButtonSettingsId,
+} from 'electron/views/results/components/reflow-command-bar';
 import { resultsViewAutomationId } from 'electron/views/results/results-view';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 
@@ -22,4 +25,5 @@ export const ResultsViewSelectors = {
         )} li:nth-of-type(${position}) ${getAutomationIdSelector(testViewLeftNavLinkAutomationId)}`,
 
     settingsButton: getAutomationIdSelector(commandButtonSettingsId),
+    startOverButton: getAutomationIdSelector(commandButtonRefreshId),
 };
