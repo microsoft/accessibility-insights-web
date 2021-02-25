@@ -57,6 +57,15 @@ export class TabStopsActionCreator {
         }
     };
 
+    public resetTabStopsToDefaultState = async () => {
+        try {
+            this.tabStopsActions.startOver.invoke();
+            await this.deviceFocusController.resetFocusTracking();
+        } catch (e) {
+            this.logger.log('reset tab stops to default state silently failed: ' + e);
+        }
+    };
+
     public sendUpKey = async () => {
         this.publishTelemetryForKeyboardEvent(KeyEventCode.Up);
         await this.wrapActionWithErrorHandling(
