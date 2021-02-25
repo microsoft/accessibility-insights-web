@@ -1,9 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
-import { DEVICE_FOCUS_ERROR } from 'electron/common/electron-telemetry-events';
+import {
+    DEVICE_FOCUS_DISABLE,
+    DEVICE_FOCUS_ENABLE,
+    DEVICE_FOCUS_ERROR,
+    DEVICE_FOCUS_KEYEVENT,
+    DEVICE_FOCUS_RESET,
+} from 'electron/common/electron-telemetry-events';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { TabStopsActions } from 'electron/flux/action/tab-stops-actions';
@@ -55,6 +62,7 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock
                 .setup(m => m.enableFocusTracking())
                 .returns(() => Promise.resolve());
+            setupTelemetryMock(DEVICE_FOCUS_ENABLE, {});
             tabStopsActionsMock.setup(m => m.enableFocusTracking).returns(() => actionMock.object);
             setFocusActionsForSuccess();
 
@@ -68,6 +76,7 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock
                 .setup(m => m.disableFocusTracking())
                 .returns(() => Promise.resolve());
+            setupTelemetryMock(DEVICE_FOCUS_DISABLE, {});
             tabStopsActionsMock.setup(m => m.disableFocusTracking).returns(() => actionMock.object);
             setFocusActionsForSuccess();
 
@@ -81,6 +90,7 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock
                 .setup(m => m.resetFocusTracking())
                 .returns(() => Promise.resolve());
+            setupTelemetryMock(DEVICE_FOCUS_RESET, {});
             tabStopsActionsMock.setup(m => m.startOver).returns(() => actionMock.object);
             setFocusActionsForSuccess();
 
@@ -127,6 +137,12 @@ describe('TabStopsActionCreator', () => {
             funcName: keyof TabStopsActionCreator,
         ): Promise<void> {
             setFocusActionsForSuccess();
+            setupTelemetryMock(DEVICE_FOCUS_KEYEVENT, {
+                telemetry: {
+                    keyEventCode,
+                },
+            });
+
             deviceFocusControllerMock
                 .setup(m => m.sendKeyEvent(keyEventCode))
                 .returns(() => Promise.resolve());
@@ -145,6 +161,7 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.enableFocusTracking())
                 .returns(() => Promise.reject(errorMessage));
 
+            setupTelemetryMock(DEVICE_FOCUS_ENABLE, {});
             tabStopsActionsMock.setup(m => m.enableFocusTracking).returns(() => actionMock.object);
             setMocksForFocusError();
 
@@ -159,6 +176,7 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.disableFocusTracking())
                 .returns(() => Promise.reject(errorMessage));
 
+            setupTelemetryMock(DEVICE_FOCUS_DISABLE, {});
             tabStopsActionsMock.setup(m => m.disableFocusTracking).returns(() => actionMock.object);
             setMocksForFocusError();
 
@@ -173,6 +191,7 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.resetFocusTracking())
                 .returns(() => Promise.reject(errorMessage));
 
+            setupTelemetryMock(DEVICE_FOCUS_RESET, {});
             tabStopsActionsMock.setup(m => m.startOver).returns(() => actionMock.object);
             setMocksForFocusError();
 
@@ -211,6 +230,11 @@ describe('TabStopsActionCreator', () => {
             funcName: keyof TabStopsActionCreator,
         ): Promise<void> {
             setMocksForFocusError();
+            setupTelemetryMock(DEVICE_FOCUS_KEYEVENT, {
+                telemetry: {
+                    keyEventCode,
+                },
+            });
             deviceFocusControllerMock
                 .setup(m => m.sendKeyEvent(keyEventCode))
                 .returns(() => Promise.reject(errorMessage));
@@ -236,6 +260,12 @@ describe('TabStopsActionCreator', () => {
                 .verifiable(Times.once());
         }
     });
+
+    function setupTelemetryMock(eventName: string, payload: BaseActionPayload): void {
+        telemetryEventHandlerMock
+            .setup(m => m.publishTelemetry(eventName, payload))
+            .verifiable(Times.once());
+    }
 
     function verifyAllMocks(): void {
         telemetryEventHandlerMock.verifyAll();
