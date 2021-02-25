@@ -90,6 +90,15 @@ describe('TabStopsView', () => {
         expect(serverLog).toMatchSnapshot();
     });
 
+    it('leaving tab stops sends reset service command', async () => {
+        logController.resetServerLog();
+
+        await resultsViewController.clickLeftNavItem('automated-checks');
+
+        const serverLog = await logController.getServerLog();
+        expect(serverLog).toMatchSnapshot();
+    });
+
     it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
