@@ -22,7 +22,7 @@ type PropertyBagKey<PB> = PB[keyof PB];
 
 function fromPropertyBagField<PB>(label: string, key: keyof PB & string): ReportInstanceField {
     function getValue(i: HasPropertyBag<PB>): string {
-        return i.propertyBag && i.propertyBag[key] && i.propertyBag[key].toString();
+        return i.propertyBag && i.propertyBag[key] && (i.propertyBag[key] as any).toString();
     }
     return { key, label, getValue };
 }

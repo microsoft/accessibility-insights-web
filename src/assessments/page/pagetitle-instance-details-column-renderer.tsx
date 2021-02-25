@@ -8,11 +8,5 @@ export function pageTitleInstanceDetailsColumnRenderer(item: InstanceTableRow<an
     const propertyBag = item.instance.propertyBag;
     const textContent = propertyBag ? propertyBag.pageTitle : null;
 
-    return (
-        <AssessmentInstanceDetailsColumn
-            background={null}
-            textContent={textContent}
-            tooltipId={null}
-        />
-    );
+    return <AssessmentInstanceDetailsColumn textContent={textContent} />;
 }
