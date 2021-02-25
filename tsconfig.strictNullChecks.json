@@ -461,7 +461,10 @@
         "./src/views/content/markup.tsx",
         "./src/views/insights/renderer.tsx",
         "./src/views/insights/router.tsx",
-        "./src/views/page/page.tsx"
+        "./src/views/page/page.tsx",
+        "./src/common/components/cards/collapsible-component-cards.tsx",
+        "./src/common/components/cards/expand-collapse-all-button.tsx",
+        "./src/common/components/copy-issue-details-button.tsx"
     ],
     "include": [
         "src/DetailsView/actions/**/*",

@@ -3,7 +3,7 @@
 exports[`ExpandCollapseAllButton renders per snapshot with allCardsCollapsed false 1`] = `
 <CustomizedActionButton
   aria-expanded={true}
-  aria-label={null}
+  aria-label={undefined}
   className="expandCollapseAllButton"
   iconProps={
     Object {
