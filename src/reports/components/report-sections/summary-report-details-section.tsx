@@ -36,29 +36,39 @@ export const SummaryReportDetailsSection = NamedFC<BaseSummaryReportSectionProps
                 </li>
             );
 
-        const scanStartUTC = toUtcString(scanTimespan.scanStart);
+        const listItems: JSX.Element[] = [];
+
+        listItems.push(
+            createListItem(
+                'Target site',
+                <NewTabLinkWithConfirmationDialog
+                    href={scanMetadata.targetAppInfo.url}
+                    title={scanMetadata.targetAppInfo.name}
+                >
+                    {scanMetadata.targetAppInfo.url}
+                </NewTabLinkWithConfirmationDialog>,
+                <UrlIcon />,
+                styles.targetSite,
+            ),
+        );
+
+        if (scanTimespan.scanStart != null) {
+            const scanStartUTC = toUtcString(scanTimespan.scanStart);
+            listItems.push(createListItem('Scans started', scanStartUTC, <DateIcon />));
+        }
+
         const scanCompleteUTC = toUtcString(scanTimespan.scanComplete);
-        const duration = secondsToTimeString(scanTimespan.durationSeconds);
+        listItems.push(createListItem('Scans completed', scanCompleteUTC));
+
+        if (scanTimespan.durationSeconds != null) {
+            const duration = secondsToTimeString(scanTimespan.durationSeconds);
+            listItems.push(createListItem('Duration', duration));
+        }
 
         return (
             <div className={styles.crawlDetailsSection}>
                 <h2>Scan details</h2>
-                <ul className={styles.crawlDetailsSectionList}>
-                    {createListItem(
-                        'Target site',
-                        <NewTabLinkWithConfirmationDialog
-                            href={scanMetadata.targetAppInfo.url}
-                            title={scanMetadata.targetAppInfo.name}
-                        >
-                            {scanMetadata.targetAppInfo.url}
-                        </NewTabLinkWithConfirmationDialog>,
-                        <UrlIcon />,
-                        styles.targetSite,
-                    )}
-                    {createListItem('Scans started', scanStartUTC, <DateIcon />)}
-                    {createListItem('Scans completed', scanCompleteUTC)}
-                    {createListItem('Duration', duration)}
-                </ul>
+                <ul className={styles.crawlDetailsSectionList}>{listItems}</ul>
             </div>
         );
     },

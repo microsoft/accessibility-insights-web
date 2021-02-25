@@ -25,7 +25,11 @@ export const rendererDependencies: (
     logger: Logger,
 ) => RendererDeps = (browserAdapter, logger) => {
     const url = new URL(window.location.href);
-    const tabId = parseInt(url.searchParams.get('tabId'), 10);
+    const tabIdParam = url.searchParams.get('tabId');
+    if (tabIdParam == null) {
+        throw new Error('Insights page requires a tabId URL parameter');
+    }
+    const tabId = parseInt(tabIdParam, 10);
     const actionMessageDispatcher = new RemoteActionMessageDispatcher(
         browserAdapter.sendMessageToFrames,
         tabId,

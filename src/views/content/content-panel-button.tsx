@@ -29,6 +29,10 @@ export const ContentPanelButton = NamedFC<ContentPanelButtonProps>(
         }
 
         const contentPath = contentProvider.pathFromReference(reference);
+        if (contentPath == null) {
+            return null;
+        }
+
         const onClick = ev =>
             contentActionMessageCreator.openContentPanel(ev, contentPath, contentTitle);
 

@@ -7,6 +7,6 @@ import { BaseDataBuilder } from './base-data-builder';
 export class ScopingStoreDataBuilder extends BaseDataBuilder<ScopingStoreData> {
     constructor() {
         super();
-        this.data = new ScopingStore(null).getDefaultState();
+        this.data = new ScopingStore(null!).getDefaultState();
     }
 }
