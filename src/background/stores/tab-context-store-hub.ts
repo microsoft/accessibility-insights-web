@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionStore } from 'background/stores/card-selection-store';
+import { InjectedDialogStore } from 'background/stores/injected-dialog-store';
 
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -26,6 +27,7 @@ export class TabContextStoreHub implements StoreHub {
     public pathSnippetStore: PathSnippetStore;
     public unifiedScanResultStore: UnifiedScanResultStore;
     public cardSelectionStore: CardSelectionStore;
+    public injectedDialogStore: InjectedDialogStore;
 
     constructor(
         actionHub: ActionHub,
@@ -73,6 +75,12 @@ export class TabContextStoreHub implements StoreHub {
             actionHub.scanResultActions,
         );
         this.cardSelectionStore.initialize();
+
+        this.injectedDialogStore = new InjectedDialogStore(
+            actionHub.injectedDialogActions,
+            actionHub.visualizationActions,
+        );
+        this.injectedDialogStore.initialize();
     }
 
     public getAllStores(): BaseStore<any>[] {
@@ -86,6 +94,7 @@ export class TabContextStoreHub implements StoreHub {
             this.pathSnippetStore,
             this.unifiedScanResultStore,
             this.cardSelectionStore,
+            this.injectedDialogStore,
         ].filter(store => store != null);
     }
 

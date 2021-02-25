@@ -215,3 +215,7 @@ export interface SaveWindowBoundsPayload extends BaseActionPayload {
     windowState: WindowState;
     windowBounds: Rectangle;
 }
+
+export interface InjectedDialogOpenPayload extends BaseActionPayload {
+    target: string[];
+}

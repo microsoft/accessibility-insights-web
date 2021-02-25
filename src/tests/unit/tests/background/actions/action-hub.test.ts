@@ -4,6 +4,7 @@ import { ActionHub } from 'background/actions/action-hub';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { ContentActions } from 'background/actions/content-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { InjectedDialogActions } from 'background/actions/injected-dialog-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
@@ -39,4 +40,5 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.contentActions).toBeInstanceOf(ContentActions);
     expect(hub.injectionActions).toBeInstanceOf(InjectionActions);
     expect(hub.sidePanelActions).toBeInstanceOf(SidePanelActions);
+    expect(hub.injectedDialogActions).toBeInstanceOf(InjectedDialogActions);
 }

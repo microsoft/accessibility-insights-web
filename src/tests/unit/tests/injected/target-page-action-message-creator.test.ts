@@ -40,17 +40,37 @@ describe('TargetPageActionMessageCreator', () => {
         );
     });
 
-    it('sends telemetry for openIssuesDialog', () => {
-        const eventName = TelemetryEvents.ISSUES_DIALOG_OPENED;
-        const eventData: TelemetryEvents.TelemetryData = {
-            source: TelemetryEventSource.TargetPage,
-            triggeredBy: 'N/A',
+    it('dispatches message for openInjectedDialog', () => {
+        const stubTarget = ['#iframe', '#element'];
+
+        const expectedMessage = {
+            messageType: Messages.InjectedDialog.Open,
+            payload: {
+                target: stubTarget,
+            },
+            telemetry: {
+                source: TelemetryEventSource.TargetPage,
+                triggeredBy: 'N/A',
+            },
         };
 
-        testSubject.openIssuesDialog();
+        testSubject.openInjectedDialog(stubTarget);
 
         dispatcherMock.verify(
-            dispatcher => dispatcher.sendTelemetry(eventName, eventData),
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
+            Times.once(),
+        );
+    });
+
+    it('dispatches message for closeInjectedDialog', () => {
+        const expectedMessage = {
+            messageType: Messages.InjectedDialog.Close,
+        };
+
+        testSubject.closeInjectedDialog();
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(expectedMessage),
             Times.once(),
         );
     });

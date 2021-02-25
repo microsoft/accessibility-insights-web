@@ -215,4 +215,9 @@ export class Messages {
     public static readonly DebugTools = {
         Open: `${messagePrefix}/debugTools/open`,
     };
+
+    public static readonly InjectedDialog = {
+        Open: `${messagePrefix}/injectedDialog/open`,
+        Close: `${messagePrefix}/injectedDialog/close`,
+    };
 }

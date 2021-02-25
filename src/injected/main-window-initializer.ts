@@ -8,6 +8,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { InjectedDialogStoreData } from 'common/types/store-data/injected-dialog-store-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -96,6 +97,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
     private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
     private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
+    private injectedDialogStoreProxy: StoreProxy<InjectedDialogStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -153,6 +155,10 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.PermissionsStateStore],
             this.browserAdapter,
         );
+        this.injectedDialogStoreProxy = new StoreProxy<InjectedDialogStoreData>(
+            StoreNames[StoreNames.InjectedDialogStore],
+            this.browserAdapter,
+        );
 
         const logger = createDefaultLogger();
 
@@ -180,6 +186,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
             this.permissionsStateStoreProxy,
+            this.injectedDialogStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
 
@@ -248,6 +255,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
             this.permissionsStateStoreProxy,
+            this.injectedDialogStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);

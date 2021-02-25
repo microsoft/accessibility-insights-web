@@ -13,6 +13,7 @@ import { CardSelectionActionCreator } from './actions/card-selection-action-crea
 import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
+import { InjectedDialogActionCreator } from './actions/injected-dialog-action-creator';
 import { InjectionActionCreator } from './actions/injection-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
@@ -134,6 +135,11 @@ export class TabContextFactory {
             interpreter,
             actionsHub.injectionActions,
         );
+        const injectedDialogActionCreator = new InjectedDialogActionCreator(
+            interpreter,
+            actionsHub.injectedDialogActions,
+            this.telemetryEventHandler,
+        );
 
         const injectorController = new InjectorController(
             new ContentScriptInjector(browserAdapter, this.promiseFactory, this.logger),
@@ -157,6 +163,7 @@ export class TabContextFactory {
         scanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();
         injectionActionCreator.registerCallbacks();
+        injectedDialogActionCreator.registerCallbacks();
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(broadcastMessage, storeHub, this.logger);

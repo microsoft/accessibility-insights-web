@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { InjectedDialogActions } from 'background/actions/injected-dialog-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { TabActions } from '../actions/tab-actions';
@@ -32,6 +33,7 @@ export class ActionHub {
     public cardSelectionActions: CardSelectionActions;
     public injectionActions: InjectionActions;
     public sidePanelActions: SidePanelActions;
+    public injectedDialogActions: InjectedDialogActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
@@ -49,5 +51,6 @@ export class ActionHub {
         this.cardSelectionActions = new CardSelectionActions();
         this.injectionActions = new InjectionActions();
         this.sidePanelActions = new SidePanelActions();
+        this.injectedDialogActions = new InjectedDialogActions();
     }
 }
