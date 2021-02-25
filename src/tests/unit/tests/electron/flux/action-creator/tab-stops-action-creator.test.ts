@@ -100,6 +100,18 @@ describe('TabStopsActionCreator', () => {
             verifyAllMocks();
         });
 
+        it('resetTabStopsToDefaultState', async () => {
+            deviceFocusControllerMock
+                .setup(m => m.resetFocusTracking())
+                .returns(() => Promise.resolve());
+            tabStopsActionsMock.setup(m => m.startOver).returns(() => actionMock.object);
+
+            await testSubject.resetTabStopsToDefaultState();
+
+            actionMock.verify(m => m.invoke(), Times.once());
+            verifyAllMocks();
+        });
+
         it('sendUpKey', async () => {
             await testSendKeyEventSuccess(KeyEventCode.Up, 'sendUpKey');
         });
@@ -198,6 +210,22 @@ describe('TabStopsActionCreator', () => {
             await testSubject.startOver();
 
             actionMock.verify(m => m.invoke(), Times.never());
+            verifyAllMocks();
+        });
+
+        it('resetTabStopsToDefaultState', async () => {
+            const thrownErrorMessage = 'some error message';
+            const expectedLoggedMessage =
+                'reset tab stops to default state silently failed: ' + thrownErrorMessage;
+            deviceFocusControllerMock
+                .setup(m => m.resetFocusTracking())
+                .returns(() => Promise.reject(thrownErrorMessage));
+            tabStopsActionsMock.setup(m => m.startOver).returns(() => actionMock.object);
+            loggerMock.setup(m => m.log(expectedLoggedMessage)).verifiable();
+
+            await testSubject.resetTabStopsToDefaultState();
+
+            actionMock.verify(m => m.invoke(), Times.once());
             verifyAllMocks();
         });
 
