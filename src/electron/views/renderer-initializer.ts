@@ -92,6 +92,7 @@ import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-r
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
+import { AndroidBrowserCloseCleanupTasks } from 'electron/platform/android/setup/android-browser-close-cleanup-tasks';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
     AndroidServiceConfiguratorFactory,
@@ -219,11 +220,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const fetchDeviceConfig = createDeviceConfigFetcher(axios.get, parseDeviceConfig);
 
-        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(
-            ipcRendererShim,
-            logger,
-        );
-        androidPortCleaner.initialize();
+        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(logger);
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
@@ -354,6 +351,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             createDeviceFocusCommandSender(axios.get),
             androidSetupStore,
         );
+
+        const androidBrowserCloseCleanupTasks = new AndroidBrowserCloseCleanupTasks(
+            ipcRendererShim,
+            deviceFocusController,
+            androidPortCleaner,
+            logger,
+        );
+        androidBrowserCloseCleanupTasks.addBrowserCloseListener();
 
         const tabStopsActionCreator = new TabStopsActionCreator(
             tabStopsActions,
