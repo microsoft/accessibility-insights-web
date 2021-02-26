@@ -20,7 +20,7 @@ export class AndroidBrowserCloseCleanupTasks {
 
     private executeCleanupTasks = async () => {
         try {
-            await this.deviceFocusController.disableFocusTracking();
+            await this.deviceFocusController.resetFocusTracking();
         } catch (error) {
             this.logger.log(error);
         }

@@ -50,7 +50,7 @@ describe('AndroidBrowserCloseCleanupTasks', () => {
 
     it('All cleanup tasks are called', async () => {
         deviceFocusControllerMock
-            .setup(tsvc => tsvc.disableFocusTracking())
+            .setup(tsvc => tsvc.resetFocusTracking())
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
@@ -68,7 +68,7 @@ describe('AndroidBrowserCloseCleanupTasks', () => {
         const errorMessage = 'threw in visualization cleaner';
 
         deviceFocusControllerMock
-            .setup(tsvc => tsvc.disableFocusTracking())
+            .setup(tsvc => tsvc.resetFocusTracking())
             .returns(() => Promise.reject(errorMessage))
             .verifiable(Times.once());
 
@@ -88,7 +88,7 @@ describe('AndroidBrowserCloseCleanupTasks', () => {
         const errorMessage = 'threw in port cleaner';
 
         deviceFocusControllerMock
-            .setup(tsvc => tsvc.disableFocusTracking())
+            .setup(tsvc => tsvc.resetFocusTracking())
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
