@@ -48,18 +48,23 @@ describe('AndroidBrowserCloseCleanupTasks', () => {
         loggerMock.verifyAll();
     }
 
-    it('All cleanup tasks are called', async () => {
+    it('All cleanup tasks are called and in order', async () => {
+        const callHistory = [];
         deviceFocusControllerMock
             .setup(tsvc => tsvc.resetFocusTracking())
+            .callback(() => callHistory.push('resetFocusTracking'))
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
         androidPortCleanerMock
             .setup(apc => apc.removeRemainingPorts())
+            .callback(() => callHistory.push('removeRemainingPorts'))
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
 
         await callback();
+
+        expect(callHistory).toEqual(['resetFocusTracking', 'removeRemainingPorts']);
 
         verifyAllMocks();
     });

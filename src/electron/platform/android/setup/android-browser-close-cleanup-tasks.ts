@@ -18,17 +18,20 @@ export class AndroidBrowserCloseCleanupTasks {
         this.ipcRendererShim.fromBrowserWindowClose.addAsyncListener(this.executeCleanupTasks);
     }
 
-    private executeCleanupTasks = async () => {
+    private executeCleanupTasks = async (): Promise<void> => {
+        await this.resetFocusTracking();
+        await this.disconnectDevice();
+    };
+
+    private resetFocusTracking = async (): Promise<void> => {
         try {
             await this.deviceFocusController.resetFocusTracking();
         } catch (error) {
             this.logger.log(error);
         }
-
-        await this.disconnectDevice();
     };
 
-    private disconnectDevice = async () => {
+    private disconnectDevice = async (): Promise<void> => {
         try {
             await this.androidPortCleaner.removeRemainingPorts();
         } catch (error) {
