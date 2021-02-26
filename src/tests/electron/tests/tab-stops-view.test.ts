@@ -99,6 +99,21 @@ describe('TabStopsView', () => {
         expect(serverLog).toMatchSnapshot();
     });
 
+    it('exiting while tab stops are active sends reset service command', async () => {
+        logController.resetServerLog();
+        await tabStopsViewController.clickToggleTabStops();
+        await logController.waitForServerLogToContain('Enable');
+        logController.resetServerLog();
+
+        if (app != null) {
+            await app.stop();
+        }
+
+        await logController.waitForServerLogToContain('Reset');
+        const serverLog = await logController.getServerLog();
+        expect(serverLog).toMatchSnapshot();
+    });
+
     it('should pass accessibility validation in all contrast modes', async () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
