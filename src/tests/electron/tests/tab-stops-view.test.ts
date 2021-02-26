@@ -85,6 +85,7 @@ describe('TabStopsView', () => {
         logController.resetServerLog();
 
         await resultsViewController.clickStartOver();
+        await logController.waitForServerLogToContain('Reset');
 
         const serverLog = await logController.getServerLog();
         expect(serverLog).toMatchSnapshot();
@@ -94,6 +95,7 @@ describe('TabStopsView', () => {
         logController.resetServerLog();
 
         await resultsViewController.clickLeftNavItem('automated-checks');
+        await logController.waitForServerLogToContain('Reset');
 
         const serverLog = await logController.getServerLog();
         expect(serverLog).toMatchSnapshot();
