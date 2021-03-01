@@ -1,5 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TabStopsView clicking start over sends corresponding service command 1`] = `
+"GET /AccessibilityInsights/FocusTracking/Reset
+"
+`;
+
 exports[`TabStopsView toggling show tab stops sends corresponding service commands 1`] = `
 "GET /AccessibilityInsights/FocusTracking/Enable
 GET /AccessibilityInsights/FocusTracking/Disable
