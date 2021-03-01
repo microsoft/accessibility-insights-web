@@ -26,7 +26,7 @@ export class InjectedDialogActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.InjectedDialogStore),
-            () => this.injectedDialogActions.getCurrentState.invoke(null),
+            () => this.injectedDialogActions.getCurrentState.invoke(),
         );
     }
 
