@@ -23,8 +23,9 @@ import { RendererDeps } from './renderer';
 export const rendererDependencies: (
     browserAdapter: BrowserAdapter,
     logger: Logger,
-) => RendererDeps = (browserAdapter, logger) => {
-    const url = new URL(window.location.href);
+    win: Window,
+) => RendererDeps = (browserAdapter, logger, win) => {
+    const url = new URL(win.location.href);
     const tabIdParam = url.searchParams.get('tabId');
     if (tabIdParam == null) {
         throw new Error('Insights page requires a tabId URL parameter');

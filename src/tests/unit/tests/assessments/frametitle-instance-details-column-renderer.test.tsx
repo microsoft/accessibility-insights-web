@@ -21,7 +21,6 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                 background={FrameFormatter.frameStyles[frameType].borderColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
                 textContent={null}
-                tooltipId={null}
             />
         );
         expect(expected).toEqual(frameTitleInstanceDetailsColumnRenderer(item));
@@ -43,7 +42,6 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                 background={FrameFormatter.frameStyles[frameType].borderColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
                 textContent={frameTitle}
-                tooltipId={null}
             />
         );
         expect(expected).toEqual(frameTitleInstanceDetailsColumnRenderer(item));
@@ -65,7 +63,6 @@ describe('FrameTitleInstanceDetailsColumnRendererTest', () => {
                 background={FrameFormatter.frameStyles[frameType].borderColor}
                 labelText={FrameFormatter.frameStyles[frameType].contentText}
                 textContent={frameTitle}
-                tooltipId={null}
             />
         );
         expect(expected).toEqual(frameTitleInstanceDetailsColumnRenderer(item));

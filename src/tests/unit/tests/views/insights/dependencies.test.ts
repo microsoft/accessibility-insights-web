@@ -11,10 +11,18 @@ import { RendererDeps } from 'views/insights/renderer';
 
 describe('rendererDependencies', () => {
     let subject: RendererDeps;
+    let stubWindow: Window;
     beforeAll(() => {
+        stubWindow = {
+            location: {
+                href: 'someext://extid/insights.html?tabId=3',
+            } as Location,
+        } as Window;
+
         subject = rendererDependencies(
             Mock.ofType<BrowserAdapter>().object,
             Mock.ofType<Logger>().object,
+            stubWindow,
         );
     });
 
