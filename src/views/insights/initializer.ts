@@ -15,7 +15,7 @@ const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
 const browserAdapter = browserAdapterFactory.makeFromUserAgent();
 
 const logger = createDefaultLogger();
-renderer(rendererDependencies(browserAdapter, logger, window));
+renderer(rendererDependencies(browserAdapter, logger));
 
 const a11ySelfValidator = new A11YSelfValidator(
     new ScannerUtils(scan, logger),
