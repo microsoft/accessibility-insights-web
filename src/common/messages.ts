@@ -71,6 +71,7 @@ export const Messages = {
 
     Assessment: {
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
+        SelectNextRequirement: `${messagePrefix}/details-view/requirement/select-next`,
         SelectGettingStarted: `${messagePrefix}/details-view/select-getting-started`,
         ExpandTestNav: `${messagePrefix}/details-view/expand-test-nav`,
         CollapseTestNav: `${messagePrefix}/details-view/collapse-test-nav`,

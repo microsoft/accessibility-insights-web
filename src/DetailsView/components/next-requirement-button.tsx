@@ -26,7 +26,7 @@ export const NextRequirementButton = NamedFC<NextRequirementButtonProps>(
         }
 
         const selectNextRequirement = (event: React.MouseEvent<HTMLElement>) => {
-            props.deps.detailsViewActionMessageCreator.selectRequirement(
+            props.deps.detailsViewActionMessageCreator.selectNextRequirement(
                 event,
                 props.nextRequirement.key,
                 props.currentTest,

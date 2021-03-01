@@ -46,6 +46,10 @@ export class AssessmentActionCreator {
             this.onSelectTestRequirement,
         );
         this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.SelectNextRequirement,
+            this.onSelectNextTestRequirement,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
             AssessmentMessages.SelectGettingStarted,
             this.onSelectGettingStarted,
         );
@@ -253,6 +257,14 @@ export class AssessmentActionCreator {
     private onSelectTestRequirement = (payload: SelectTestSubviewPayload): void => {
         this.assessmentActions.selectTestSubview.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
+    };
+
+    private onSelectNextTestRequirement = (payload: SelectTestSubviewPayload): void => {
+        this.assessmentActions.selectTestSubview.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.SELECT_NEXT_REQUIREMENT,
+            payload,
+        );
     };
 
     private onSelectGettingStarted = (payload: SelectGettingStartedPayload): void => {

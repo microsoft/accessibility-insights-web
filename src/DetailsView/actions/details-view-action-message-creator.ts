@@ -173,6 +173,27 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
+    public selectNextRequirement(
+        event: React.MouseEvent<HTMLElement>,
+        nextRequirement: string,
+        visualizationType: VisualizationType,
+    ): void {
+        const payload: SelectTestSubviewPayload = {
+            telemetry: this.telemetryFactory.forSelectRequirement(
+                event,
+                visualizationType,
+                nextRequirement,
+            ),
+            selectedTestSubview: nextRequirement,
+            selectedTest: visualizationType,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.SelectNextRequirement,
+            payload: payload,
+        });
+    }
+
     public selectGettingStarted(
         event: React.MouseEvent<HTMLElement>,
         visualizationType: VisualizationType,
