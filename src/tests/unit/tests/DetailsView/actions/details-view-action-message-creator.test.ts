@@ -155,6 +155,38 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
+    test('selectNextRequirement', () => {
+        const view = VisualizationType.Headings;
+        const selectedRequirement = HeadingsTestStep.headingFunction;
+        const event = eventStubFactory.createKeypressEvent() as any;
+        const telemetry: RequirementSelectTelemetryData = {
+            triggeredBy: 'keypress',
+            selectedTest: VisualizationType[view],
+            selectedRequirement: selectedRequirement,
+            source: testSource,
+        };
+
+        const expectedMessage = {
+            messageType: Messages.Assessment.SelectNextRequirement,
+            payload: {
+                telemetry: telemetry,
+                selectedTestSubview: selectedRequirement,
+                selectedTest: view,
+            },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forSelectRequirement(event, view, selectedRequirement))
+            .returns(() => telemetry);
+
+        testSubject.selectNextRequirement(event, HeadingsTestStep.headingFunction, view);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
     test('selectGettingStarted', () => {
         const view = VisualizationType.Headings;
         const event = eventStubFactory.createKeypressEvent() as any;
