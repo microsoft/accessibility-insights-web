@@ -4,7 +4,9 @@
 .how-to-test-list {
     padding-left: 1em;
 }
-
+.disc-style-type {
+    list-style-type: disc !important;
+}
 .toggle {
     display: flex;
     align-items: center;
