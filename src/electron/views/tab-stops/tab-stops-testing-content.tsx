@@ -61,6 +61,10 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                         Use the virtual keyboard to the right (or a physical keyboard) to:
                         <ul>
                             <li>
+                                Navigate linearly through all the interactive elements using only
+                                the Tab key.
+                            </li>
+                            <li>
                                 Navigate to each interactive element and then use the arrow keys to
                                 navigate away in each direction (up/down/left/right).
                             </li>
