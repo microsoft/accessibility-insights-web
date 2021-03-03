@@ -22,7 +22,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
             background: 'background',
             labelText: 'labelText',
             textContent: 'textContent',
-            tooltipId: undefined,
         };
 
         const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
@@ -37,7 +36,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
             background: 'background',
             labelText: 'N/A',
             textContent: 'textContent',
-            tooltipId: undefined,
         };
 
         const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
@@ -54,7 +52,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
         const props: AssessmentInstanceDetailsColumnProps = {
             background: 'background',
             textContent: 'textContent',
-            tooltipId: undefined,
         };
 
         const wrapper = Enzyme.shallow(<AssessmentInstanceDetailsColumn {...props} />);
@@ -67,7 +64,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
             background: 'background',
             labelText: 'N/A',
             textContent: 'textContent',
-            tooltipId: undefined,
             customClassName: 'custom-class-name',
         };
 
@@ -87,7 +83,6 @@ describe('AssessmentInstanceDetailsColumn', () => {
         props.labelText ? expect(hasLabel).toEqual(true) : expect(hasLabel).toEqual(false);
         expect(wrapper.find(TooltipHost).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).props().content).toEqual(props.textContent);
-        expect(wrapper.find(TooltipHost).props().id).toEqual(props.tooltipId);
         expect(wrapper.find(`.${styles.assessmentInstanceTextContent}`).exists()).toEqual(true);
         expect(
             wrapper.find(`.${styles.assessmentInstanceTextContent}`).getElement().props.children,

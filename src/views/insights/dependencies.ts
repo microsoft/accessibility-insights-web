@@ -24,11 +24,9 @@ export const rendererDependencies: (
     browserAdapter: BrowserAdapter,
     logger: Logger,
 ) => RendererDeps = (browserAdapter, logger) => {
-    const url = new URL(window.location.href);
-    const tabId = parseInt(url.searchParams.get('tabId'), 10);
     const actionMessageDispatcher = new RemoteActionMessageDispatcher(
         browserAdapter.sendMessageToFrames,
-        tabId,
+        null,
         logger,
     );
 

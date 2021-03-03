@@ -21,7 +21,6 @@ export function landmarksAssessmentInstanceDetailsColumnRenderer(
         <AssessmentInstanceDetailsColumn
             background={background}
             textContent={textContent}
-            tooltipId={null}
             customClassName="radio"
         />
     );

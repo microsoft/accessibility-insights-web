@@ -31,6 +31,10 @@ export const ContentLink = NamedFC<ContentLinkProps>(
         }
 
         const contentPath = contentProvider.pathFromReference(reference);
+        if (contentPath == null) {
+            return null;
+        }
+
         const icon = iconName && <Icon iconName={iconName} />;
         const ariaLabel = linkText ? `${linkText} guidance` : 'Guidance';
 

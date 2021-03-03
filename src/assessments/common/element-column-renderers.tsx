@@ -12,10 +12,7 @@ export function onRenderPathColumn(item: InstanceTableRow): JSX.Element {
 
     return (
         <AssessmentInstanceDetailsColumn
-            background={null}
-            labelText={null}
             textContent={textContent}
-            tooltipId={null}
             customClassName="not-applicable"
         />
     );
@@ -24,10 +21,7 @@ export function onRenderPathColumn(item: InstanceTableRow): JSX.Element {
 export function onRenderSnippetColumn(item: InstanceTableRow): JSX.Element {
     return (
         <AssessmentInstanceDetailsColumn
-            background={null}
-            labelText={null}
             textContent={item.instance.html}
-            tooltipId={null}
             customClassName="not-applicable"
         />
     );

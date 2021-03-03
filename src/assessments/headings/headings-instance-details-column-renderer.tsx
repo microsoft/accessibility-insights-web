@@ -26,7 +26,6 @@ export function headingsAssessmentInstanceDetailsColumnRenderer(
             background={background}
             labelText={labelText}
             textContent={textContent}
-            tooltipId={null}
             customClassName={customClass}
         />
     );
