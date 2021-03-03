@@ -59,7 +59,11 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                     </li>
                     <li>
                         Use the virtual keyboard to the right (or a physical keyboard) to:
-                        <ul>
+                        <ul className={styles.discStyleType}>
+                            <li>
+                                Navigate linearly through all the interactive elements using only
+                                the <strong>Tab</strong> key.
+                            </li>
                             <li>
                                 Navigate to each interactive element and then use the arrow keys to
                                 navigate away in each direction (up/down/left/right).
@@ -69,10 +73,10 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
                     <li>
                         As you navigate to each element, look for these{' '}
                         <strong>accessibility problems</strong>:
-                        <ul>
+                        <ul className={styles.discStyleType}>
                             <li>
-                                An interactive element can't be reached using the Tab and arrow
-                                keys.
+                                An interactive element can't be reached using the{' '}
+                                <strong>Tab</strong> and arrow keys.
                             </li>
                             <li>
                                 An interactive element "traps" input focus and prevents navigating
