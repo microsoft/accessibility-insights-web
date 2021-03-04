@@ -3,6 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as styles from 'electron/views/screenshot/common-visual-helper-section-styles.scss';
 import { ScreenshotContainer } from 'electron/views/screenshot/screenshot-container';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { ScreenshotViewModel } from './screenshot-view-model';
 
@@ -35,13 +36,13 @@ function renderUnavailableMessage(): JSX.Element {
 }
 
 function renderScreenshotContainer(viewModel: ScreenshotViewModel): JSX.Element {
-    if (viewModel.screenshotData == null) {
+    if (isEmpty(viewModel.screenshotData)) {
         return renderUnavailableMessage();
     }
 
     return (
         <ScreenshotContainer
-            screenshotData={viewModel.screenshotData}
+            screenshotData={viewModel.screenshotData!}
             highlightBoxViewModels={viewModel.highlightBoxViewModels}
         />
     );

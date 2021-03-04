@@ -5,13 +5,13 @@ import { AndroidScanResults } from './android-scan-results';
 
 export type ConvertScanResultsToPlatformDataDelegate = (
     scanResults: AndroidScanResults,
-) => PlatformData | undefined;
+) => PlatformData | null;
 
 export function convertScanResultsToPlatformData(
     scanResults: AndroidScanResults,
-): PlatformData | undefined {
+): PlatformData | null {
     if (scanResults == null || scanResults.deviceInfo == null) {
-        return undefined;
+        return null;
     }
 
     return {

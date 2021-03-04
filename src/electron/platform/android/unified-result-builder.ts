@@ -34,7 +34,7 @@ export const createBuilder = (
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
-        platformInfo: getPlatformData(scanResults),
+        platformInfo: getPlatformData(scanResults) ?? undefined,
         toolInfo: getToolData(scanResults),
         timestamp: scanResults.analysisTimestamp ?? undefined,
         targetAppInfo: {
