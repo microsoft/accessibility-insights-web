@@ -26,9 +26,11 @@ export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>(
     },
 );
 
-function renderHighlightBoxes(highlightBoxViewModels: HighlightBoxViewModel[]): JSX.Element[] {
+function renderHighlightBoxes(
+    highlightBoxViewModels: HighlightBoxViewModel[],
+): JSX.Element[] | null {
     if (isEmpty(highlightBoxViewModels)) {
-        return;
+        return null;
     }
 
     return highlightBoxViewModels.map(viewModel => (

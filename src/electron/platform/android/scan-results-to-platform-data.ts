@@ -7,7 +7,9 @@ export type ConvertScanResultsToPlatformDataDelegate = (
     scanResults: AndroidScanResults,
 ) => PlatformData;
 
-export function convertScanResultsToPlatformData(scanResults: AndroidScanResults): PlatformData {
+export function convertScanResultsToPlatformData(
+    scanResults: AndroidScanResults,
+): PlatformData | null {
     if (scanResults == null || scanResults.deviceInfo == null) {
         return null;
     }

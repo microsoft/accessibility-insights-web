@@ -4,7 +4,7 @@ import * as path from 'path';
 import { ConfigAccessor } from 'common/configuration/configuration-types';
 import { OSType } from 'electron/window-management/platform-info';
 
-export function getElectronIconPath(config: ConfigAccessor, os: OSType): string | undefined {
+export function getElectronIconPath(config: ConfigAccessor, os: OSType | null): string | undefined {
     const baseIconPath = config.getOption('electronIconBaseName');
     if (baseIconPath === undefined) {
         return undefined;
