@@ -3,7 +3,6 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as styles from 'electron/views/screenshot/common-visual-helper-section-styles.scss';
 import { ScreenshotContainer } from 'electron/views/screenshot/screenshot-container';
-import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { ScreenshotViewModel } from './screenshot-view-model';
 
@@ -14,8 +13,6 @@ export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 export const ScreenshotView = NamedFC<ScreenshotViewProps>(
     'ScreenshotView',
     (props: ScreenshotViewProps) => {
-        const isUnavailable = isEmpty(props.viewModel.screenshotData);
-
         return (
             <div
                 role="complementary"
@@ -23,9 +20,7 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>(
                 data-automation-id={screenshotViewAutomationId}
             >
                 {renderHeader()}
-                {isUnavailable
-                    ? renderUnavailableMessage()
-                    : renderScreenshotContainer(props.viewModel)}
+                {renderScreenshotContainer(props.viewModel)}
             </div>
         );
     },
@@ -39,11 +34,15 @@ function renderUnavailableMessage(): JSX.Element {
     return <p>Screenshot for scan is unavailable</p>;
 }
 
-function renderScreenshotContainer(nonEmptyViewModel: ScreenshotViewModel): JSX.Element {
+function renderScreenshotContainer(viewModel: ScreenshotViewModel): JSX.Element {
+    if (viewModel.screenshotData == null) {
+        return renderUnavailableMessage();
+    }
+
     return (
         <ScreenshotContainer
-            screenshotData={nonEmptyViewModel.screenshotData}
-            highlightBoxViewModels={nonEmptyViewModel.highlightBoxViewModels}
+            screenshotData={viewModel.screenshotData}
+            highlightBoxViewModels={viewModel.highlightBoxViewModels}
         />
     );
 }

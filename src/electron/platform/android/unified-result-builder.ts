@@ -36,12 +36,12 @@ export const createBuilder = (
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
         platformInfo: getPlatformData(scanResults),
         toolInfo: getToolData(scanResults),
-        timestamp: scanResults.analysisTimestamp,
+        timestamp: scanResults.analysisTimestamp ?? undefined,
         targetAppInfo: {
-            name: scanResults.appIdentifier,
+            name: scanResults.appIdentifier ?? undefined,
         },
         scanIncompleteWarnings: [],
-        screenshotData: scanResults.screenshot,
+        screenshotData: scanResults.screenshot ?? undefined,
     };
     return payload;
 };
