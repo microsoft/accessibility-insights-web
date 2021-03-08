@@ -2931,10 +2931,10 @@ app-builder-lib@^22.10.4:
     semver "^7.3.4"
     temp-file "^3.3.7"
 
-appium-adb@^8.10.0:
-  version "8.10.0"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.10.0.tgz#773e31217f0de02e37c423634689129116dc96b6"
-  integrity sha512-J21paflGyipFPxp03Uljoo+pKU2Y18StvAR5cBoTZO/yXU0gE24J9IdPilY8PhZT9iimRU2RWZZUXCmBoYuLzw==
+appium-adb@^8.11.0:
+  version "8.11.0"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.11.0.tgz#6abd5f37c7323f74b362cf8c28b93fa1f33f0dae"
+  integrity sha512-1AfQ6eiwLQBAlhAJq7OdZzvD6tojoZMzwhsWbOktc35LML83nRHVf7NWOMcRrBcxj60YRidVE+WWAggh6QfsoA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
@@ -2946,7 +2946,7 @@ appium-adb@^8.10.0:
     lodash "^4.0.0"
     lru-cache "^6.0.0"
     semver "^7.0.0"
-    source-map-support "^0.5.5"
+    source-map-support "^0.x"
     teen_process "^1.11.0"
     utf7 "^1.0.2"
 
@@ -12308,7 +12308,7 @@ source-map-resolve@^0.5.0, source-map-resolve@^0.5.2:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
-source-map-support@^0.5.19, source-map-support@^0.5.3, source-map-support@^0.5.5, source-map-support@^0.5.6, source-map-support@~0.5.19:
+source-map-support@^0.5.19, source-map-support@^0.5.3, source-map-support@^0.5.5, source-map-support@^0.5.6, source-map-support@^0.x, source-map-support@~0.5.19:
   version "0.5.19"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.19.tgz#a98b62f86dcaf4f67399648c085291ab9e8fed61"
   integrity sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw==
