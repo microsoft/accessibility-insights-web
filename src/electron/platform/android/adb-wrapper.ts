@@ -30,6 +30,7 @@ export interface AdbWrapper {
     setTcpForwarding(deviceId: string, localPort: number, devicePort: number): Promise<number>;
     removeTcpForwarding(deviceId: string, devicePort: number): Promise<void>;
     sendKeyEvent(deviceId: string, keyEventCode: KeyEventCode): Promise<void>;
+    grantOverlayPermission: (deviceId: string) => Promise<void>;
 }
 
 export interface AdbWrapperFactory {

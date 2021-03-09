@@ -16,6 +16,10 @@ const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
 const sdkVersionCommandMatch = 'shell getprop ro.build.version.sdk';
 const inputKeyeventCommandMatch = 'shell input keyevent';
+const resetOverlayPermissionCommandMatch =
+    'shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice';
+const grantOverlayPermissionCommandMatch =
+    'shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW';
 
 function addDeviceEnumerationCommands(id, output) {
     output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
@@ -113,6 +117,11 @@ function addInputKeyeventCommands(id, output) {
     }
 }
 
+function addGrantOverlayPermissionCommands(id, output) {
+    output[`-s ${id} ${resetOverlayPermissionCommandMatch}`] = {};
+    output[`-s ${id} ${grantOverlayPermissionCommandMatch}`] = {};
+}
+
 function workingDeviceCommands(deviceIds, port) {
     const output = {
         'start-server': {},
@@ -132,6 +141,7 @@ function workingDeviceCommands(deviceIds, port) {
         addDetectServiceCommands(id, output);
         addInstallServiceCommands(id, output);
         addCheckPermissionsCommands(id, output);
+        addGrantOverlayPermissionCommands(id, output);
         addPortForwardingCommands(id, output, port);
         addInputKeyeventCommands(id, output);
     }

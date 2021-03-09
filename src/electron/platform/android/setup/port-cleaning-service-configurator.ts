@@ -31,6 +31,10 @@ export class PortCleaningServiceConfigurator implements ServiceConfigurator {
         return this.innerObject.hasRequiredPermissions();
     };
 
+    public grantOverlayPermission = (): Promise<void> => {
+        return this.innerObject.grantOverlayPermission();
+    };
+
     public setupTcpForwarding = async (): Promise<number> => {
         const assignedPort = await this.innerObject.setupTcpForwarding();
         this.portCleaner.addPort(assignedPort);

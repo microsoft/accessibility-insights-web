@@ -3,10 +3,10 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-export const detectPermissions: AndroidSetupStepConfig = (stepTransition, deps) => ({
+export const grantOverlayPermission: AndroidSetupStepConfig = (stepTransition, deps) => ({
     actions: {},
     onEnter: async () => {
-        const detected = await deps.hasExpectedPermissions();
-        stepTransition(detected ? 'grant-overlay-permission' : 'prompt-grant-permissions');
+        await deps.grantOverlayPermission();
+        stepTransition('configuring-port-forwarding');
     },
 });

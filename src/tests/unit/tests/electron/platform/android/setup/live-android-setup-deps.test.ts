@@ -259,6 +259,22 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
+    it('grantOverlayPermission catches thrown errors', async () => {
+        // This test has the side effect of ensuring grantOverlayPermission is called
+        // So there is no need for a separate test.
+
+        serviceConfigMock
+            .setup(m => m.grantOverlayPermission())
+            .throws(new Error('Threw during grantOverlayPermission'))
+            .verifiable(Times.once());
+
+        await initializeServiceConfig();
+
+        await testSubject.grantOverlayPermission();
+
+        verifyAllMocks();
+    });
+
     it('setupTcpForwarding propagates error from serviceConfig.setupTcpForwarding', async () => {
         const serviceConfigErrorMessage = 'error from serviceConfig';
         serviceConfigMock
