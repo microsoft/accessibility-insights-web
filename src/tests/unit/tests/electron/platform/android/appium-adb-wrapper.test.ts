@@ -372,10 +372,8 @@ describe('AppiumAdbWrapper tests', () => {
     });
 
     it('grantOverlayPermission, calls expected adb commands', async () => {
-        const resetCommand =
-            'cmd appops reset com.microsoft.accessibilityinsightsforandroidservice';
-        const grantCommand =
-            'pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW';
+        const resetCommand = `cmd appops reset ${testPackageName}`;
+        const grantCommand = `pm grant ${testPackageName} android.permission.SYSTEM_ALERT_WINDOW`;
 
         adbMock
             .setup(m => m.setDeviceId(emulatorId))
@@ -387,7 +385,7 @@ describe('AppiumAdbWrapper tests', () => {
             .setup(m => m.shell(grantCommand.split(/\s+/)))
             .verifiable(Times.once(), ExpectedCallType.InSequence);
 
-        await testSubject.grantOverlayPermission(emulatorId);
+        await testSubject.grantOverlayPermission(emulatorId, testPackageName);
 
         adbMock.verifyAll();
     });
@@ -401,9 +399,9 @@ describe('AppiumAdbWrapper tests', () => {
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 
-        await expect(testSubject.grantOverlayPermission(emulatorId)).rejects.toThrowError(
-            expectedMessage,
-        );
+        await expect(
+            testSubject.grantOverlayPermission(emulatorId, testPackageName),
+        ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();
     });

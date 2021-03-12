@@ -347,7 +347,7 @@ describe('AndroidServiceConfigurator', () => {
 
         const expectedMessage = 'Error thrown during grantOverlayPermission';
         adbWrapperMock
-            .setup(m => m.grantOverlayPermission(testDeviceId))
+            .setup(m => m.grantOverlayPermission(testDeviceId, servicePackageName))
             .throws(new Error(expectedMessage))
             .verifiable(Times.once());
 

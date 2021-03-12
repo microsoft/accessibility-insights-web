@@ -85,7 +85,10 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
     };
 
     public grantOverlayPermission = async (): Promise<void> => {
-        return await this.adbWrapper.grantOverlayPermission(this.selectedDeviceId);
+        return await this.adbWrapper.grantOverlayPermission(
+            this.selectedDeviceId,
+            this.servicePackageName,
+        );
     };
 
     public setupTcpForwarding = async (): Promise<number> => {
