@@ -9,6 +9,7 @@ import { configuringPortForwarding } from 'electron/platform/android/setup/steps
 import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
 import { detectService } from 'electron/platform/android/setup/steps/detect-service';
+import { grantOverlayPermission } from 'electron/platform/android/setup/steps/grant-overlay-permission';
 import { installingService } from 'electron/platform/android/setup/steps/installing-service';
 import { promptChooseDevice } from 'electron/platform/android/setup/steps/prompt-choose-device';
 import { promptConfiguringPortForwardingFailed } from 'electron/platform/android/setup/steps/prompt-configuring-port-forwarding-failed';
@@ -51,6 +52,7 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'prompt-install-failed': promptInstallService,
     'detect-permissions': detectPermissions,
     'prompt-grant-permissions': promptGrantPermissions,
+    'grant-overlay-permission': grantOverlayPermission,
     'configuring-port-forwarding': configuringPortForwarding,
     'prompt-configuring-port-forwarding-failed': promptConfiguringPortForwardingFailed,
     'prompt-connected-start-testing': promptConnectedStartTesting,

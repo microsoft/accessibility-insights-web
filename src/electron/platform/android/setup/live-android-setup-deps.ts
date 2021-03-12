@@ -79,6 +79,14 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         return false;
     };
 
+    public grantOverlayPermission = async (): Promise<void> => {
+        try {
+            return await this.serviceConfig.grantOverlayPermission();
+        } catch (error) {
+            this.logger.log(error);
+        }
+    };
+
     public setupTcpForwarding = async (): Promise<number> => {
         return await this.serviceConfig.setupTcpForwarding();
     };

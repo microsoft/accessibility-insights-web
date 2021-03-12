@@ -4,7 +4,7 @@
 import ADB from 'appium-adb';
 import { KeyEventCode, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumAdbWrapper tests', () => {
     let adbMock: IMock<ADB>;
@@ -370,6 +370,42 @@ describe('AppiumAdbWrapper tests', () => {
             adbMock.verifyAll();
         });
     });
+
+    it('grantOverlayPermission, calls expected adb commands', async () => {
+        const resetCommand = `cmd appops reset ${testPackageName}`;
+        const grantCommand = `pm grant ${testPackageName} android.permission.SYSTEM_ALERT_WINDOW`;
+
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
+        adbMock
+            .setup(m => m.shell(resetCommand.split(/\s+/)))
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
+        adbMock
+            .setup(m => m.shell(grantCommand.split(/\s+/)))
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
+
+        await testSubject.grantOverlayPermission(emulatorId, testPackageName);
+
+        adbMock.verifyAll();
+    });
+
+    it('grantOverlayPermission, propagates error', async () => {
+        const expectedMessage: string = 'Thrown during grantOverlayPermission';
+
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
+        adbMock
+            .setup(m => m.shell(It.isAny()))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(
+            testSubject.grantOverlayPermission(emulatorId, testPackageName),
+        ).rejects.toThrowError(expectedMessage);
+
+        adbMock.verifyAll();
+    });
+
     /*
     // For live testing, set ANDROID_HOME or ANDROID_SDK_ROOT to point
     // to your local installation, then add this line just before

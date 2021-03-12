@@ -88,4 +88,18 @@ export class AppiumAdbWrapper implements AdbWrapper {
         this.adb.setDeviceId(deviceId);
         await this.adb.shell(['input', 'keyevent', keyEventCode]);
     };
+
+    public grantOverlayPermission = async (
+        deviceId: string,
+        packageName: string,
+    ): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.shell(['cmd', 'appops', 'reset', packageName]);
+        await this.adb.shell([
+            'pm',
+            'grant',
+            packageName,
+            'android.permission.SYSTEM_ALERT_WINDOW',
+        ]);
+    };
 }

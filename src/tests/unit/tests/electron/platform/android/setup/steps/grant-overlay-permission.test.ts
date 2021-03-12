@@ -7,11 +7,11 @@ import {
 } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
-import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
+import { grantOverlayPermission } from 'electron/platform/android/setup/steps/grant-overlay-permission';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { checkExpectedActionsAreDefined } from './actions-tester';
 
-describe('Android setup step: detectPermissions', () => {
+describe('Android setup step: grantOverlayPermission', () => {
     let depsMock: IMock<AndroidSetupDeps>;
     let storeCallbacksMock: IMock<AndroidSetupStoreCallbacks>;
     let stepTransitionMock: IMock<AndroidSetupStepTransitionCallback>;
@@ -33,40 +33,22 @@ describe('Android setup step: detectPermissions', () => {
 
     it('has expected properties', () => {
         const deps = {} as AndroidSetupDeps;
-        const step = detectPermissions(null, deps);
+        const step = grantOverlayPermission(null, deps);
         checkExpectedActionsAreDefined(step, []);
         expect(step.onEnter).toBeDefined();
     });
 
-    it('onEnter transitions to grant overlay permission', async () => {
-        const p = Promise.resolve(true);
+    it('onEnter transitions to configuring-port-forwarding on success', async () => {
+        const p = Promise.resolve();
 
         depsMock
-            .setup(m => m.hasExpectedPermissions())
+            .setup(m => m.grantOverlayPermission())
             .returns(_ => p)
             .verifiable(Times.once());
 
-        stepTransitionMock.setup(m => m('grant-overlay-permission')).verifiable();
+        stepTransitionMock.setup(m => m('configuring-port-forwarding')).verifiable();
 
-        const step = detectPermissions(
-            stepTransitionMock.object,
-            depsMock.object,
-            storeCallbacksMock.object,
-        );
-        await step.onEnter();
-    });
-
-    it('onEnter transitions to prompt-grant-permissions on failure', async () => {
-        const p = Promise.resolve(false);
-
-        depsMock
-            .setup(m => m.hasExpectedPermissions())
-            .returns(_ => p)
-            .verifiable(Times.once());
-
-        stepTransitionMock.setup(m => m('prompt-grant-permissions')).verifiable(Times.once());
-
-        const step = detectPermissions(
+        const step = grantOverlayPermission(
             stepTransitionMock.object,
             depsMock.object,
             storeCallbacksMock.object,

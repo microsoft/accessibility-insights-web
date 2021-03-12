@@ -341,6 +341,21 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
+    it('grantOverlayPermission propagates thrown errors', async () => {
+        // This test has the side effect of ensuring grantOverlayPermission is called
+        // So there is no need for a separate test.
+
+        const expectedMessage = 'Error thrown during grantOverlayPermission';
+        adbWrapperMock
+            .setup(m => m.grantOverlayPermission(testDeviceId, servicePackageName))
+            .throws(new Error(expectedMessage))
+            .verifiable(Times.once());
+
+        await expect(testSubject.grantOverlayPermission()).rejects.toThrowError(expectedMessage);
+
+        verifyAllMocks();
+    });
+
     describe('setupTcpForwarding', () => {
         it('propagates error from portFinder', async () => {
             const expectedMessage: string = 'Thrown from portFinder';
