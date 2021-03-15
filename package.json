@@ -74,7 +74,7 @@
         "with:mock-service-for-android": "npm-run-all --race --parallel serve:mock-service-for-android"
     },
     "devDependencies": {
-        "7zip-bin": "^5.1.0",
+        "7zip-bin": "^5.1.1",
         "@electron/get": "^1.12.4",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.133",
