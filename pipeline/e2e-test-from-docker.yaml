@@ -4,7 +4,7 @@ steps:
     - script: docker build -t app .
       displayName: setup docker
 
-    - script: docker run --network=host -i app
+    - script: docker run --network=host -i app --ci
       displayName: run e2e tests on docker
 
     - bash: |
