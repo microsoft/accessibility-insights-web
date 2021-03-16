@@ -14,7 +14,7 @@ export const DEVICE_FOCUS_KEYEVENT: string = 'DeviceFocusKeyEvent';
 export const DEVICE_FOCUS_ERROR: string = 'DeviceFocusError';
 
 export type AndroidSetupStepTelemetryData = {
-    prevStep: string;
+    prevStep: string | null;
     newStep: string;
     prevDuration: number;
 } & BaseTelemetryData;

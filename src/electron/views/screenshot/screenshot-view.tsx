@@ -14,8 +14,6 @@ export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 export const ScreenshotView = NamedFC<ScreenshotViewProps>(
     'ScreenshotView',
     (props: ScreenshotViewProps) => {
-        const isUnavailable = isEmpty(props.viewModel.screenshotData);
-
         return (
             <div
                 role="complementary"
@@ -23,9 +21,7 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>(
                 data-automation-id={screenshotViewAutomationId}
             >
                 {renderHeader()}
-                {isUnavailable
-                    ? renderUnavailableMessage()
-                    : renderScreenshotContainer(props.viewModel)}
+                {renderScreenshotContainer(props.viewModel)}
             </div>
         );
     },
@@ -39,11 +35,15 @@ function renderUnavailableMessage(): JSX.Element {
     return <p>Screenshot for scan is unavailable</p>;
 }
 
-function renderScreenshotContainer(nonEmptyViewModel: ScreenshotViewModel): JSX.Element {
+function renderScreenshotContainer(viewModel: ScreenshotViewModel): JSX.Element {
+    if (isEmpty(viewModel.screenshotData)) {
+        return renderUnavailableMessage();
+    }
+
     return (
         <ScreenshotContainer
-            screenshotData={nonEmptyViewModel.screenshotData}
-            highlightBoxViewModels={nonEmptyViewModel.highlightBoxViewModels}
+            screenshotData={viewModel.screenshotData!}
+            highlightBoxViewModels={viewModel.highlightBoxViewModels}
         />
     );
 }
