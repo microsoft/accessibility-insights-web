@@ -38,6 +38,6 @@ export class InspectActionCreator {
     };
 
     private onGetInspectCurrentState = (): void => {
-        this.inspectActions.getCurrentState.invoke(null);
+        this.inspectActions.getCurrentState.invoke();
     };
 }

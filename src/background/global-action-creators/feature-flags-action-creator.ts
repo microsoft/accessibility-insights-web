@@ -30,7 +30,7 @@ export class FeatureFlagsActionCreator {
     }
 
     private onGetFeatureFlags = (): void => {
-        this.featureFlagActions.getCurrentState.invoke(null);
+        this.featureFlagActions.getCurrentState.invoke();
     };
 
     private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
@@ -39,6 +39,6 @@ export class FeatureFlagsActionCreator {
     };
 
     private onResetFeatureFlags = (): void => {
-        this.featureFlagActions.resetFeatureFlags.invoke(null);
+        this.featureFlagActions.resetFeatureFlags.invoke();
     };
 }

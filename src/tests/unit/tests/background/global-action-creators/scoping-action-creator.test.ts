@@ -28,7 +28,7 @@ describe('ScopingActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = createActionMock(null);
+        const getCurrentStateMock = createActionMock(undefined);
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
