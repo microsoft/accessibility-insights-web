@@ -6,8 +6,6 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
-import { TargetType } from 'common/types/target-type';
-
 import { generateUID } from 'common/uid-generator';
 import { adhoc as content } from 'content/adhoc';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
@@ -48,8 +46,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     getIdentifier: () => colorTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,
-    getDrawer: provider =>
-        provider.createInjectedClassDrawer('insights-grey-scale-container', TargetType.Single),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,

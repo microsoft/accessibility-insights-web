@@ -3,8 +3,6 @@
 import { autoPassIfNoResults } from 'assessments/auto-pass-if-no-results';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { VisualizationType } from 'common/types/visualization-type';
-import { TargetType } from 'common/types/target-type';
-
 import { link } from 'content/link';
 import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
 import * as content from 'content/test/semantics/css-content';
@@ -120,9 +118,6 @@ export const CssContent: Requirement = {
             }),
         ),
     getDrawer: provider =>
-        provider.createInjectedClassDrawer(
-            'insights-pseudo-selector-style-container',
-            TargetType.Single,
-        ),
+        provider.createSingleTargetDrawer('insights-pseudo-selector-style-container'),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

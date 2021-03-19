@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 import { VisualizationType } from 'common/types/visualization-type';
-import { TargetType } from 'common/types/target-type';
-
 import { link } from 'content/link';
 import * as content from 'content/test/sensory/use-of-color';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
@@ -67,6 +65,5 @@ export const UseOfColor: Requirement = {
             }),
         ),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    getDrawer: provider =>
-        provider.createInjectedClassDrawer('insights-grey-scale-container', TargetType.Single),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
 };

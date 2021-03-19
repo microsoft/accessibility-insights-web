@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
-import { TargetType } from '../../common/types/target-type';
 
 export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
     outlineStyle?: string;
@@ -69,15 +68,14 @@ export interface SVGDrawerConfiguration {
     focusedLine: LineConfiguration;
 }
 
-export interface InjectedClassDrawerConfiguration {
+export interface SingleTargetDrawerConfiguration {
     injectedClassName: string;
-    targetType?: TargetType;
 }
 
 export interface Formatter {
     getDrawerConfiguration(
         element: Node,
         data: AxeResultsWithFrameLevel,
-    ): DrawerConfiguration | SVGDrawerConfiguration | InjectedClassDrawerConfiguration;
+    ): DrawerConfiguration | SVGDrawerConfiguration | SingleTargetDrawerConfiguration;
     getDialogRenderer(): DialogRenderer;
 }
