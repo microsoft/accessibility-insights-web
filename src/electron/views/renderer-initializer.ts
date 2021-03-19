@@ -8,7 +8,6 @@ import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
-import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
@@ -173,7 +172,6 @@ const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
 const sidePanelActions = new SidePanelActions();
-const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
 const leftNavActions = new LeftNavActions();
@@ -266,7 +264,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         cardSelectionStore.initialize();
 
         const detailsViewStore = new DetailsViewStore(
-            previewFeaturesActions,
             contentActions,
             detailsViewActions,
             sidePanelActions,

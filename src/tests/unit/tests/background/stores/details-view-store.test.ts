@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
-import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from 'common/stores/store-names';
@@ -12,7 +11,7 @@ import { StoreTester } from '../../../common/store-tester';
 
 describe('DetailsViewStoreTest', () => {
     test('getId', () => {
-        const testObject = new DetailsViewStore(null, null, null, null);
+        const testObject = new DetailsViewStore(null, null, null);
         expect(testObject.getId()).toBe(StoreNames[StoreNames.DetailsViewStore]);
     });
 
@@ -53,9 +52,9 @@ describe('DetailsViewStoreTest', () => {
             .withPreviewFeaturesOpen(false)
             .build();
 
-        createStoreTesterForPreviewFeatureActions(
-            'closePreviewFeatures',
-        ).testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForSidePanelActions('closeSidePanel')
+            .withActionParam('PreviewFeatures')
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('onOpenScoping', () => {
@@ -125,29 +124,11 @@ describe('DetailsViewStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function createStoreTesterForPreviewFeatureActions(
-        actionName: keyof PreviewFeaturesActions,
-    ): StoreTester<DetailsViewStoreData, PreviewFeaturesActions> {
-        const factory = (actions: PreviewFeaturesActions) =>
-            new DetailsViewStore(
-                actions,
-                new ContentActions(),
-                new DetailsViewActions(),
-                new SidePanelActions(),
-            );
-        return new StoreTester(PreviewFeaturesActions, actionName, factory);
-    }
-
     function createStoreTesterForContentActions(
         actionName: keyof ContentActions,
     ): StoreTester<DetailsViewStoreData, ContentActions> {
         const factory = (actions: ContentActions) =>
-            new DetailsViewStore(
-                new PreviewFeaturesActions(),
-                actions,
-                new DetailsViewActions(),
-                new SidePanelActions(),
-            );
+            new DetailsViewStore(actions, new DetailsViewActions(), new SidePanelActions());
 
         return new StoreTester(ContentActions, actionName, factory);
     }
@@ -156,12 +137,7 @@ describe('DetailsViewStoreTest', () => {
         actionName: keyof DetailsViewActions,
     ): StoreTester<DetailsViewStoreData, DetailsViewActions> {
         const factory = (actions: DetailsViewActions) =>
-            new DetailsViewStore(
-                new PreviewFeaturesActions(),
-                new ContentActions(),
-                actions,
-                new SidePanelActions(),
-            );
+            new DetailsViewStore(new ContentActions(), actions, new SidePanelActions());
 
         return new StoreTester(DetailsViewActions, actionName, factory);
     }
@@ -170,12 +146,7 @@ describe('DetailsViewStoreTest', () => {
         actionName: keyof SidePanelActions,
     ): StoreTester<DetailsViewStoreData, SidePanelActions> {
         const factory = (actions: SidePanelActions) =>
-            new DetailsViewStore(
-                new PreviewFeaturesActions(),
-                new ContentActions(),
-                new DetailsViewActions(),
-                actions,
-            );
+            new DetailsViewStore(new ContentActions(), new DetailsViewActions(), actions);
 
         return new StoreTester(SidePanelActions, actionName, factory);
     }

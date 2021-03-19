@@ -100,7 +100,6 @@
         "./src/background/actions/path-snippet-actions.ts",
         "./src/background/actions/permissions-state-actions.ts",
         "./src/background/actions/popup-action-creator.ts",
-        "./src/background/actions/preview-features-actions.ts",
         "./src/background/actions/scoping-actions.ts",
         "./src/background/actions/shortcuts-page-action-creator.ts",
         "./src/background/actions/side-panel-actions.ts",

@@ -6,7 +6,6 @@ import { ContentActions } from 'background/actions/content-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
-import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { TabActions } from 'background/actions/tab-actions';
@@ -30,7 +29,6 @@ function runNullAserts(hub: ActionHub): void {
 function runTypeAsserts(hub: ActionHub): void {
     expect(hub.assessmentActions).toBeInstanceOf(AssessmentActions);
     expect(hub.devToolActions).toBeInstanceOf(DevToolActions);
-    expect(hub.previewFeaturesActions).toBeInstanceOf(PreviewFeaturesActions);
     expect(hub.scopingActions).toBeInstanceOf(ScopingActions);
     expect(hub.tabActions).toBeInstanceOf(TabActions);
     expect(hub.visualizationActions).toBeInstanceOf(VisualizationActions);
