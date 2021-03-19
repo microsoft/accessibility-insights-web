@@ -19,6 +19,7 @@ describe('ReportCollapsibleContainerControl', () => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
                 const props: CollapsibleComponentCardsProps = {
+                    id: 'some-id',
                     header: <div>Some header</div>,
                     content: <div>Some content</div>,
                     headingLevel: 5,

@@ -58,9 +58,7 @@ exports[`LaunchPanelHeaderTest renders 1`] = `
           },
           "refs": Object {},
           "setState": [Function],
-          "state": Object {
-            "isContextMenuVisible": false,
-          },
+          "state": Object {},
           "updater": Updater {
             "_callbacks": Array [],
             "_renderer": ReactShallowRenderer {

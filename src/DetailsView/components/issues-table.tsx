@@ -4,7 +4,6 @@ import {
     CommonInstancesSectionDeps,
     CommonInstancesSectionProps,
 } from 'common/components/cards/common-instances-section-props';
-import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';

@@ -10,7 +10,6 @@ import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
     AssessmentActionInstancePayload,
-    BaseActionPayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
     ChangeRequirementStatusPayload,

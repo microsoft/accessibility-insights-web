@@ -15,6 +15,13 @@ You will need the following tools installed:
 
 -   [Node](https://nodejs.org) >= 14.15.0 (check by running `node --version`) - This is the version being enforced on our builds
 -   [Yarn](https://yarnpkg.com/getting-started/install) >= 1.22.10 (check by running `yarn --version`)
+    -    Note: There is a [known name collision](https://github.com/yarnpkg/yarn/issues/673) between Yarn package manager and Hadoop YARN. If you have Hadoop YARN installed, replace `yarn` with `yarnpkg` in the commands below.
+-   **macOS only** [Xcode](https://wilsonmar.github.io/xcode/#XcodeInstall). This is needed when installing some dev dependencies (like spectron). After installing Xcode, run the following commands from a command terminal:
+```
+    xcode-select --install
+    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+    sudo xcodebuild -license accept
+```
 
 We recommend [VS Code](https://code.visualstudio.com/) for [editing/debugging](#using-vs-code), but you can use whichever editor you prefer. The [extensions we recommend](../.vscode/extensions.json) should be automatically suggested to you when opening this repository's folder in VS Code.
 

@@ -8,7 +8,17 @@
         "rootDir": "./",
         "baseUrl": "./src",
         "typeRoots": ["node_modules/@types"],
-        "strictNullChecks": false
+        "strictNullChecks": false,
+        "noUnusedLocals": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", ".eslintrc.js", "src/**/*.js"]
+    "include": [
+        ".eslintrc.js",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "src/**/*.js",
+        "deploy/**/*",
+        "pipeline/scripts/**/*",
+        "tools/**/*",
+        "./*.js"
+    ]
 }

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const gitP = require('simple-git/promise');
 const fs = require('fs');
 const path = require('path');
 const commander = require('commander');
+const gitP = require('simple-git/promise');
 
 const main = async () => {
     const params = parseCommandLineArguments();
@@ -31,7 +31,7 @@ const getCommitType = commitMessage => {
     const separator = ':';
     const separatorIndex = commitMessage.indexOf(separator);
 
-    if (separatorIndex == -1) {
+    if (separatorIndex === -1) {
         return 'NONE';
     }
 
@@ -58,7 +58,7 @@ const extractPrNumber = original => {
 };
 
 const makePrLink = pr => {
-    if (pr == '') {
+    if (pr === '') {
         return pr;
     }
 
@@ -109,7 +109,7 @@ const parseCommandLineArguments = () => {
         )
         .parse(process.argv);
 
-    return program;
+    return program.opts();
 };
 
 const validateCommandLineArguments = program => {
@@ -127,7 +127,7 @@ const validateCommandLineArguments = program => {
         program.output = `change-log.${program.from}-${program.to}.csv`;
     }
 
-    if (errors.length != 0) {
+    if (errors.length !== 0) {
         errors.forEach(error => console.error(error));
         process.exit(1);
     }

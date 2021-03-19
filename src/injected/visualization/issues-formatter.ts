@@ -35,7 +35,6 @@ export class IssuesFormatter implements Formatter {
             htmlElementUtils,
             windowUtils,
             navigatorUtils,
-            shadowUtils,
             browserAdapter,
             getRTLFunc,
             detailsDialogHandler,

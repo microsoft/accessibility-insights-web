@@ -25,7 +25,7 @@ async function main() {
         while (untraversedImportChains.length > 0) {
             const currentImportChain = untraversedImportChains.pop();
             const currentImport = currentImportChain.file;
-            if (transitiveImportsWithImportPath[currentImport] != undefined) {
+            if (transitiveImportsWithImportPath[currentImport] !== undefined) {
                 continue;
             }
             transitiveImportsWithImportPath[currentImport] = currentImportChain;

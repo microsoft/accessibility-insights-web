@@ -14,13 +14,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                 propertyBag: null,
             },
         } as InstanceTableRow<HeadingsAssessmentProperties>;
-        const expected = (
-            <AssessmentInstanceDetailsColumn
-                background={null}
-                textContent={null}
-                tooltipId={null}
-            />
-        );
+        const expected = <AssessmentInstanceDetailsColumn textContent={null} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
 
@@ -33,13 +27,7 @@ describe('PageTitleInstanceDetailsColumnRendererTest', () => {
                 },
             },
         } as InstanceTableRow<any>;
-        const expected = (
-            <AssessmentInstanceDetailsColumn
-                background={null}
-                textContent={pageTitle}
-                tooltipId={null}
-            />
-        );
+        const expected = <AssessmentInstanceDetailsColumn textContent={pageTitle} />;
         expect(expected).toEqual(pageTitleInstanceDetailsColumnRenderer(item));
     });
 });

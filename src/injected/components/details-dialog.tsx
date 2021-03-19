@@ -9,7 +9,6 @@ import {
 } from 'common/components/fix-instruction-panel';
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { FeatureFlags } from 'common/feature-flags';
 import { CancelIcon } from 'common/icons/cancel-icon';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
@@ -46,7 +45,6 @@ export interface DetailsDialogProps {
     dialogHandler: DetailsDialogHandler;
     devToolStore: BaseStore<DevToolStoreData>;
     devToolActionMessageCreator: DevToolActionMessageCreator;
-    featureFlagStoreData: DictionaryStringTo<boolean>;
     devToolsShortcut: string;
 }
 
@@ -111,7 +109,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         this.state = {
             showDialog: true,
             currentRuleIndex: 0,
+            // eslint-disable-next-line react/no-unused-state
             canInspect: true,
+            // eslint-disable-next-line react/no-unused-state
             showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
         };
@@ -122,19 +122,37 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const ruleName: string = failedRuleIds[this.state.currentRuleIndex];
         const rule: DecoratedAxeNodeResult = this.props.failedRules[ruleName];
 
-        if (this.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
-            return this.withshadowDomTurnedOn(rule);
-        } else {
-            return this.withshadowDomTurnedOff(rule);
-        }
-    }
-
-    private getOnClickWhenNotInShadowDom(func: (ev: any) => void): (ev: any) => void {
-        if (this.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
-            return null;
-        } else {
-            return func;
-        }
+        return (
+            <Dialog
+                hidden={!this.state.showDialog}
+                // Used top button instead of default close button to avoid use of fabric icons that might not load due to target page's Content Security Policy
+                dialogContentProps={{
+                    type: DialogType.normal,
+                    showCloseButton: false,
+                    topButtonsProps: [
+                        {
+                            ariaLabel: 'Close',
+                            onRenderIcon: this.renderCloseIcon,
+                            onClick: this.onHideDialog,
+                        },
+                    ],
+                    styles: { title: 'insights-dialog-title' },
+                }}
+                modalProps={{
+                    isBlocking: false,
+                    containerClassName:
+                        'insights-dialog-main-override insights-dialog-main-container',
+                    layerProps: {
+                        onLayerDidMount: this.onLayoutDidMount,
+                        hostId: 'insights-dialog-layer-host',
+                    },
+                }}
+                onDismiss={this.onHideDialog}
+                title={rule.help}
+            >
+                {this.renderDialogContent(rule)}
+            </Dialog>
+        );
     }
 
     private renderCommandBar(): JSX.Element {
@@ -145,7 +163,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             failedRules: this.props.failedRules,
             onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator
                 .copyIssueDetailsClicked,
-            onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
+            onClickInspectButton: this.onClickInspectButton,
             shouldShowInspectButtonMessage: () =>
                 this.props.dialogHandler.shouldShowInspectButtonMessage(this),
             userConfigurationStoreData: this.state.userConfigurationStoreData,
@@ -162,7 +180,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const navigationControlsProps: IssueDetailsNavigationControlsProps = {
             container: this,
             dialogHandler: this.props.dialogHandler,
-            featureFlagStoreData: this.props.featureFlagStoreData,
             failuresCount: size(this.props.failedRules),
         };
 
@@ -256,69 +273,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 {this.renderFixInstructions(rule)}
                 {this.renderNextAndBackButtons()}
             </div>
-        );
-    }
-
-    private withshadowDomTurnedOn(rule: DecoratedAxeNodeResult): JSX.Element {
-        return (
-            <div
-                style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }}
-                className="insights-dialog-main-override-shadow"
-            >
-                <div className="insights-dialog-container">
-                    <div className="insights-dialog-header">
-                        <p className="ms-Dialog-title insights-dialog-title">{rule.help}</p>
-                        <div className="ms-Dialog-topButton">
-                            <button
-                                type="button"
-                                className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close"
-                                aria-label="Close"
-                                data-is-focusable="true"
-                            >
-                                <span className="ms-button-flex-container">
-                                    <CancelIcon />
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-
-                    {this.renderDialogContent(rule)}
-                </div>
-            </div>
-        );
-    }
-
-    private withshadowDomTurnedOff(rule: DecoratedAxeNodeResult): JSX.Element {
-        return (
-            <Dialog
-                hidden={!this.state.showDialog}
-                // Used top button instead of default close button to avoid use of fabric icons that might not load due to target page's Content Security Policy
-                dialogContentProps={{
-                    type: DialogType.normal,
-                    showCloseButton: false,
-                    topButtonsProps: [
-                        {
-                            ariaLabel: 'Close',
-                            onRenderIcon: this.renderCloseIcon,
-                            onClick: this.onHideDialog,
-                        },
-                    ],
-                    styles: { title: 'insights-dialog-title' },
-                }}
-                modalProps={{
-                    isBlocking: false,
-                    containerClassName:
-                        'insights-dialog-main-override insights-dialog-main-container',
-                    layerProps: {
-                        onLayerDidMount: this.onLayoutDidMount,
-                        hostId: 'insights-dialog-layer-host',
-                    },
-                }}
-                onDismiss={this.onHideDialog}
-                title={rule.help}
-            >
-                {this.renderDialogContent(rule)}
-            </Dialog>
         );
     }
 }

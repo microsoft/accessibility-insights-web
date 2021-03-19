@@ -13,6 +13,9 @@ export function propertyBagColumnRenderer<TPropertyBag extends ColumnValueBag>(
     configs: PropertyBagColumnRendererConfig<TPropertyBag>[],
 ): JSX.Element {
     const mapper = (config: PropertyBagColumnRendererConfig<TPropertyBag>, index: number) => {
+        if (item.instance.propertyBag == null) {
+            return null;
+        }
         const value = item.instance.propertyBag[config.propertyName];
         if (value == null && config.defaultValue == null) {
             return null;

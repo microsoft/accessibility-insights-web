@@ -22,6 +22,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
       </React.Fragment>,
       "resultsFilter": [Function],
       "title": "test-needs-review-title",
+      "visualHelperSection": [Function],
     }
   }
   deps={
@@ -35,6 +36,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-automated-checks-title",
+          "visualHelperSection": [Function],
         },
         "needs-review": Object {
           "description": <React.Fragment>
@@ -44,6 +46,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-needs-review-title",
+          "visualHelperSection": [Function],
         },
       },
       "getCardSelectionViewData": [Function],
@@ -59,7 +62,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
       },
       "scanActionCreator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "deviceActions": undefined,
+        "deviceConnectionActions": undefined,
         "scanActions": undefined,
       },
       "screenshotViewModelProvider": [Function],
@@ -71,6 +74,7 @@ exports[`ResultsView right content panel info changes when left nav selected key
     }
   }
   scanMetadata={null}
+  tabStopsEnabled={true}
   userConfigurationStoreData={
     Object {
       "isFirstTime": false,
@@ -101,6 +105,7 @@ exports[`ResultsView right content panel info renders with default/initial value
       </React.Fragment>,
       "resultsFilter": [Function],
       "title": "test-automated-checks-title",
+      "visualHelperSection": [Function],
     }
   }
   deps={
@@ -114,6 +119,7 @@ exports[`ResultsView right content panel info renders with default/initial value
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-automated-checks-title",
+          "visualHelperSection": [Function],
         },
         "needs-review": Object {
           "description": <React.Fragment>
@@ -123,6 +129,7 @@ exports[`ResultsView right content panel info renders with default/initial value
           </React.Fragment>,
           "resultsFilter": [Function],
           "title": "test-needs-review-title",
+          "visualHelperSection": [Function],
         },
       },
       "getCardSelectionViewData": [Function],
@@ -138,7 +145,7 @@ exports[`ResultsView right content panel info renders with default/initial value
       },
       "scanActionCreator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "deviceActions": undefined,
+        "deviceConnectionActions": undefined,
         "scanActions": undefined,
       },
       "screenshotViewModelProvider": [Function],
@@ -150,6 +157,7 @@ exports[`ResultsView right content panel info renders with default/initial value
     }
   }
   scanMetadata={null}
+  tabStopsEnabled={true}
   userConfigurationStoreData={
     Object {
       "isFirstTime": false,
@@ -175,6 +183,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -184,6 +193,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -199,7 +209,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -227,6 +237,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -236,6 +247,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -251,7 +263,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
           },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
+            "deviceConnectionActions": undefined,
             "scanActions": undefined,
           },
           "screenshotViewModelProvider": [Function],
@@ -290,6 +302,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -303,6 +316,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -312,6 +326,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -327,7 +342,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             },
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
+              "deviceConnectionActions": undefined,
               "scanActions": undefined,
             },
             "screenshotViewModelProvider": [Function],
@@ -355,6 +370,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             },
           }
         }
+        scanPort={11111}
         scanStoreData={
           Object {
             "status": 2,
@@ -390,6 +406,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -403,6 +420,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -412,6 +430,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -427,7 +446,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                   },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceActions": undefined,
+                    "deviceConnectionActions": undefined,
                     "scanActions": undefined,
                   },
                   "screenshotViewModelProvider": [Function],
@@ -455,6 +474,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
                 }
               }
               scanStatus={2}
+              tabStopsEnabled={true}
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -464,6 +484,55 @@ exports[`ResultsView when status scan <Completed> 1`] = `
           </main>
         </div>
         <ScreenshotView
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                  "visualHelperSection": [Function],
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "cardSelectionActions": undefined,
+                "itemSelected": [Function],
+                "leftNavActions": undefined,
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceConnectionActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          deviceId="some-id"
           viewModel={
             Object {
               "screenshotData": Object {
@@ -487,6 +556,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -496,6 +566,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -511,7 +582,7 @@ exports[`ResultsView when status scan <Completed> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -550,6 +621,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -559,6 +631,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -574,7 +647,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -602,6 +675,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -611,6 +685,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -626,7 +701,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
           },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
+            "deviceConnectionActions": undefined,
             "scanActions": undefined,
           },
           "screenshotViewModelProvider": [Function],
@@ -665,6 +740,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -678,6 +754,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -687,6 +764,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -702,7 +780,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             },
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
+              "deviceConnectionActions": undefined,
               "scanActions": undefined,
             },
             "screenshotViewModelProvider": [Function],
@@ -715,6 +793,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         }
         isSideNavOpen={true}
         scanMetadata={null}
+        scanPort={11111}
         scanStoreData={
           Object {
             "status": 3,
@@ -750,6 +829,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -763,6 +843,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -772,6 +853,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -787,7 +869,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
                   },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceActions": undefined,
+                    "deviceConnectionActions": undefined,
                     "scanActions": undefined,
                   },
                   "screenshotViewModelProvider": [Function],
@@ -800,6 +882,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
               }
               scanMetadata={null}
               scanStatus={3}
+              tabStopsEnabled={true}
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -809,6 +892,55 @@ exports[`ResultsView when status scan <Failed> 1`] = `
           </main>
         </div>
         <ScreenshotView
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                  "visualHelperSection": [Function],
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "cardSelectionActions": undefined,
+                "itemSelected": [Function],
+                "leftNavActions": undefined,
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceConnectionActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          deviceId="some-id"
           viewModel={
             Object {
               "screenshotData": Object {
@@ -836,6 +968,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -845,6 +978,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -860,7 +994,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -899,6 +1033,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -908,6 +1043,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -923,7 +1059,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -951,6 +1087,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -960,6 +1097,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -975,7 +1113,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
           },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
+            "deviceConnectionActions": undefined,
             "scanActions": undefined,
           },
           "screenshotViewModelProvider": [Function],
@@ -1014,6 +1152,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -1027,6 +1166,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -1036,6 +1176,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -1051,7 +1192,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             },
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
+              "deviceConnectionActions": undefined,
               "scanActions": undefined,
             },
             "screenshotViewModelProvider": [Function],
@@ -1064,6 +1205,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         }
         isSideNavOpen={true}
         scanMetadata={null}
+        scanPort={11111}
         scanStoreData={
           Object {
             "status": 1,
@@ -1099,6 +1241,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -1112,6 +1255,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -1121,6 +1265,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -1136,7 +1281,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
                   },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceActions": undefined,
+                    "deviceConnectionActions": undefined,
                     "scanActions": undefined,
                   },
                   "screenshotViewModelProvider": [Function],
@@ -1149,6 +1294,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
               }
               scanMetadata={null}
               scanStatus={1}
+              tabStopsEnabled={true}
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -1158,6 +1304,55 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
           </main>
         </div>
         <ScreenshotView
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                  "visualHelperSection": [Function],
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "cardSelectionActions": undefined,
+                "itemSelected": [Function],
+                "leftNavActions": undefined,
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceConnectionActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          deviceId="some-id"
           viewModel={
             Object {
               "screenshotData": Object {
@@ -1181,6 +1376,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -1190,6 +1386,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -1205,7 +1402,7 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -1244,6 +1441,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -1253,6 +1451,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -1268,7 +1467,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],
@@ -1296,6 +1495,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-automated-checks-title",
+              "visualHelperSection": [Function],
             },
             "needs-review": Object {
               "description": <React.Fragment>
@@ -1305,6 +1505,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
               </React.Fragment>,
               "resultsFilter": [Function],
               "title": "test-needs-review-title",
+              "visualHelperSection": [Function],
             },
           },
           "getCardSelectionViewData": [Function],
@@ -1320,7 +1521,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
           },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
+            "deviceConnectionActions": undefined,
             "scanActions": undefined,
           },
           "screenshotViewModelProvider": [Function],
@@ -1359,6 +1560,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           }
         }
         deps={
@@ -1372,6 +1574,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-automated-checks-title",
+                "visualHelperSection": [Function],
               },
               "needs-review": Object {
                 "description": <React.Fragment>
@@ -1381,6 +1584,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                 </React.Fragment>,
                 "resultsFilter": [Function],
                 "title": "test-needs-review-title",
+                "visualHelperSection": [Function],
               },
             },
             "getCardSelectionViewData": [Function],
@@ -1396,7 +1600,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             },
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-              "deviceActions": undefined,
+              "deviceConnectionActions": undefined,
               "scanActions": undefined,
             },
             "screenshotViewModelProvider": [Function],
@@ -1409,6 +1613,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         }
         isSideNavOpen={true}
         scanMetadata={null}
+        scanPort={11111}
         scanStoreData={
           Object {
             "status": undefined,
@@ -1444,6 +1649,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                   </React.Fragment>,
                   "resultsFilter": [Function],
                   "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
                 }
               }
               deps={
@@ -1457,6 +1663,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-automated-checks-title",
+                      "visualHelperSection": [Function],
                     },
                     "needs-review": Object {
                       "description": <React.Fragment>
@@ -1466,6 +1673,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                       </React.Fragment>,
                       "resultsFilter": [Function],
                       "title": "test-needs-review-title",
+                      "visualHelperSection": [Function],
                     },
                   },
                   "getCardSelectionViewData": [Function],
@@ -1481,7 +1689,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                   },
                   "scanActionCreator": proxy {
                     "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-                    "deviceActions": undefined,
+                    "deviceConnectionActions": undefined,
                     "scanActions": undefined,
                   },
                   "screenshotViewModelProvider": [Function],
@@ -1493,6 +1701,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
                 }
               }
               scanMetadata={null}
+              tabStopsEnabled={true}
               userConfigurationStoreData={
                 Object {
                   "isFirstTime": false,
@@ -1502,6 +1711,55 @@ exports[`ResultsView when status scan <undefined> 1`] = `
           </main>
         </div>
         <ScreenshotView
+          deps={
+            Object {
+              "contentPagesInfo": Object {
+                "automated-checks": Object {
+                  "description": <React.Fragment>
+                    test 
+                    automated-checks
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-automated-checks-title",
+                  "visualHelperSection": [Function],
+                },
+                "needs-review": Object {
+                  "description": <React.Fragment>
+                    test 
+                    needs-review
+                     description
+                  </React.Fragment>,
+                  "resultsFilter": [Function],
+                  "title": "test-needs-review-title",
+                  "visualHelperSection": [Function],
+                },
+              },
+              "getCardSelectionViewData": [Function],
+              "getCardsViewData": [Function],
+              "getDateFromTimestamp": [Function],
+              "isResultHighlightUnavailable": [Function],
+              "leftNavActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "cardSelectionActions": undefined,
+                "itemSelected": [Function],
+                "leftNavActions": undefined,
+                "setLeftNavVisible": [Function],
+              },
+              "scanActionCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "deviceConnectionActions": undefined,
+                "scanActions": undefined,
+              },
+              "screenshotViewModelProvider": [Function],
+              "toolData": Object {
+                "applicationProperties": Object {
+                  "name": "some app",
+                },
+              },
+            }
+          }
+          deviceId="some-id"
           viewModel={
             Object {
               "screenshotData": Object {
@@ -1525,6 +1783,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-automated-checks-title",
+            "visualHelperSection": [Function],
           },
           "needs-review": Object {
             "description": <React.Fragment>
@@ -1534,6 +1793,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
             </React.Fragment>,
             "resultsFilter": [Function],
             "title": "test-needs-review-title",
+            "visualHelperSection": [Function],
           },
         },
         "getCardSelectionViewData": [Function],
@@ -1549,7 +1809,7 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
+          "deviceConnectionActions": undefined,
           "scanActions": undefined,
         },
         "screenshotViewModelProvider": [Function],

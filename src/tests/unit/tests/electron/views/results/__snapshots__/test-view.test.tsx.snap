@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TestView when status scan <Completed> 1`] = `
-<React.Fragment>
+<div>
   <HeaderSection
     description={
       <p>
@@ -25,17 +25,18 @@ exports[`TestView when status scan <Completed> 1`] = `
       }
     }
     shouldAlertFailuresCount={true}
+    tabStopsEnabled={true}
     userConfigurationStoreData={
       Object {
         "isFirstTime": false,
       }
     }
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`TestView when status scan <Failed> 1`] = `
-<React.Fragment>
+<div>
   <HeaderSection
     description={
       <p>
@@ -49,11 +50,11 @@ exports[`TestView when status scan <Failed> 1`] = `
     isSpinning={false}
     label="Scanning..."
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`TestView when status scan <Scanning> 1`] = `
-<React.Fragment>
+<div>
   <HeaderSection
     description={
       <p>
@@ -67,11 +68,11 @@ exports[`TestView when status scan <Scanning> 1`] = `
     isSpinning={true}
     label="Scanning..."
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`TestView when status scan <undefined> 1`] = `
-<React.Fragment>
+<div>
   <HeaderSection
     description={
       <p>
@@ -85,5 +86,5 @@ exports[`TestView when status scan <undefined> 1`] = `
     isSpinning={false}
     label="Scanning..."
   />
-</React.Fragment>
+</div>
 `;

@@ -94,6 +94,14 @@ describe('PortCleaningServiceConfigurator', () => {
         verifyAllMocks();
     });
 
+    it('grantOverlayPermission chains through', async () => {
+        innerObjectMock.setup(m => m.grantOverlayPermission()).verifiable(Times.once());
+
+        await testSubject.grantOverlayPermission();
+
+        verifyAllMocks();
+    });
+
     it('setupTcpForwarding chains through', async () => {
         const expectedPort: number = 123;
         innerObjectMock

@@ -1,0 +1,52 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Page with Shadow DOMs</title>
+        <style>
+            .shadow-container {
+                height: 50px;
+                width: 100%;
+                border: 1px solid black;
+            }
+        </style>
+        <script>
+            function addShadowContent(id, mode, withIssues) {
+                const container = document.getElementById(id);
+                const shadowRoot = container.attachShadow({ mode: mode });
+                if (withIssues) {
+                    shadowRoot.innerHTML = '<p style="color: #ccc">low-contrast text</p>';
+                } else {
+                    shadowRoot.innerHTML = '<p>normal-contrast text</p>';
+                }
+            }
+
+            window.addEventListener('DOMContentLoaded', () => {
+                addShadowContent('open-shadow-container-with-issues', 'open', true);
+                addShadowContent('open-shadow-container-without-issues', 'open', false);
+                addShadowContent('closed-shadow-container-with-issues', 'closed', true);
+                addShadowContent('closed-shadow-container-without-issues', 'closed', false);
+            });
+        </script>
+    </head>
+
+    <body>
+        <h1>Page with Shadow DOMs</h1>
+
+        <h2>Open shadow DOM containers</h2>
+        <h3>...with issues</h3>
+        <div id="open-shadow-container-with-issues" class="shadow-container"></div>
+        <h3>...without issues</h3>
+        <div id="open-shadow-container-without-issues" class="shadow-container"></div>
+
+        <h2>Closed shadow DOM containers</h2>
+        <h3>...with issues</h3>
+        <div id="closed-shadow-container-with-issues" class="shadow-container"></div>
+        <h3>...without issues</h3>
+        <div id="closed-shadow-container-without-issues" class="shadow-container"></div>
+    </body>
+</html>

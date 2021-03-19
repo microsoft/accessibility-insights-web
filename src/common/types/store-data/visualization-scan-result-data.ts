@@ -10,8 +10,6 @@ interface IssuesScanResultData {
     scanResult?: ScanResults;
     fullAxeResultsMap: DictionaryStringTo<HtmlElementAxeResults>;
     fullIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
-    selectedAxeResultsMap: DictionaryStringTo<HtmlElementAxeResults>;
-    selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
 }
 
 export interface TabbedElementData extends TabStopEvent {

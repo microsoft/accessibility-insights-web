@@ -23,6 +23,7 @@ describe('FeatureFlagsTest', () => {
             [UnifiedFeatureFlags.logTelemetryToConsole]: false,
             [UnifiedFeatureFlags.showAllFeatureFlags]: false,
             [UnifiedFeatureFlags.exportReport]: true,
+            [UnifiedFeatureFlags.tabStops]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);

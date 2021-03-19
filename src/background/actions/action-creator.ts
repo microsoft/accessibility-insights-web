@@ -86,10 +86,6 @@ export class ActionCreator {
         );
 
         this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.Issues.UpdateSelectedTargets,
-            this.onUpdateIssuesSelectedTargets,
-        );
-        this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Issues.UpdateFocusedInstance,
             this.onUpdateFocusedInstance,
         );
@@ -262,10 +258,6 @@ export class ActionCreator {
 
     private onRecordingTerminated = (payload: BaseActionPayload): void => {
         this.visualizationScanResultActions.disableTabStop.invoke(payload);
-    };
-
-    private onUpdateIssuesSelectedTargets = (payload: string[]): void => {
-        this.visualizationScanResultActions.updateIssuesSelectedTargets.invoke(payload);
     };
 
     private onUpdateFocusedInstance = (payload: string[]): void => {

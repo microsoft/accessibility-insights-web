@@ -3,6 +3,7 @@
 
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
+import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { LeftNavItem } from 'electron/types/left-nav-item';
 import { TestConfig } from 'electron/types/test-config';
@@ -22,6 +23,7 @@ describe('left nav item factory', () => {
                 contentPageInfo: {
                     title: 'my title2',
                 } as ContentPageInfo,
+                featureFlag: 'my-feature-flag',
             } as TestConfig,
         ];
 
@@ -33,12 +35,20 @@ describe('left nav item factory', () => {
             {
                 key: 'needs-review',
                 displayName: 'my title2',
+                featureFlag: 'my-feature-flag',
             } as LeftNavItem,
         ];
-
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
+        const tabStopsActionCreator = Mock.ofType<TabStopsActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
 
-        const actualItems = createLeftNavItems(configs, actionCreatorMock.object);
+        const actualItems = createLeftNavItems(
+            configs,
+            actionCreatorMock.object,
+            tabStopsActionCreator.object,
+        );
 
         expect(actualItems).toMatchObject(expectedItems);
 
@@ -54,14 +64,24 @@ describe('left nav item factory', () => {
                 } as ContentPageInfo,
             } as TestConfig,
         ];
-
         const actionCreatorMock = Mock.ofType<LeftNavActionCreator>(undefined, MockBehavior.Strict);
-        actionCreatorMock.setup(m => m.itemSelected('automated-checks')).verifiable();
+        const tabStopsActionCreatorMock = Mock.ofType<TabStopsActionCreator>(
+            undefined,
+            MockBehavior.Strict,
+        );
 
-        const leftNavItems = createLeftNavItems(configs, actionCreatorMock.object);
+        actionCreatorMock.setup(m => m.itemSelected('automated-checks')).verifiable();
+        tabStopsActionCreatorMock.setup(m => m.resetTabStopsToDefaultState()).verifiable();
+
+        const leftNavItems = createLeftNavItems(
+            configs,
+            actionCreatorMock.object,
+            tabStopsActionCreatorMock.object,
+        );
 
         leftNavItems[0].onSelect();
 
         actionCreatorMock.verifyAll();
+        tabStopsActionCreatorMock.verifyAll();
     });
 });

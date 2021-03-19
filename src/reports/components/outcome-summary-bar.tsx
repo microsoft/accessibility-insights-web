@@ -60,7 +60,6 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
                     iconStyleInverted === true ? outcomeIconMapInverted : outcomeIconMap;
                 const outcomeIcon = iconMap[outcomeType];
                 const count = props.outcomeStats[outcomeType];
-                const outcomePastTense = outcomeTypeSemantics[outcomeType].pastTense;
 
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>

@@ -39,16 +39,6 @@ import { DetailsViewRightContentPanelType } from '../components/left-nav/details
 const messages = Messages.Visualizations;
 
 export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {
-    public updateIssuesSelectedTargets(selectedTargets: string[]): void {
-        const payload: string[] = selectedTargets;
-        const message: Message = {
-            messageType: messages.Issues.UpdateSelectedTargets,
-            payload,
-        };
-
-        this.dispatcher.dispatchMessage(message);
-    }
-
     public closePreviewFeaturesPanel = (): void => {
         const messageType = Messages.PreviewFeatures.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
@@ -179,6 +169,27 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.SelectTestRequirement,
+            payload: payload,
+        });
+    }
+
+    public selectNextRequirement(
+        event: React.MouseEvent<HTMLElement>,
+        nextRequirement: string,
+        visualizationType: VisualizationType,
+    ): void {
+        const payload: SelectTestSubviewPayload = {
+            telemetry: this.telemetryFactory.forSelectRequirement(
+                event,
+                visualizationType,
+                nextRequirement,
+            ),
+            selectedTestSubview: nextRequirement,
+            selectedTest: visualizationType,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.SelectNextRequirement,
             payload: payload,
         });
     }

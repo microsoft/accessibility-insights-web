@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VirtualKeyboardView renders 1`] = `
+<div
+  className="visualHelperSection"
+>
+  <h2
+    className="header"
+  >
+    Virtual Keyboard
+  </h2>
+  <div>
+    Selecting these keyboard buttons will initiate keyboard events directly to your connected device and show ‘Tab Stops’ visualizations on your app.
+  </div>
+  <VirtualKeyboardButtons
+    deps={
+      Object {
+        "tabStopsActionCreator": Object {},
+      }
+    }
+    narrowModeStatus={
+      Object {
+        "isVirtualKeyboardCollapsed": true,
+      }
+    }
+  />
+</div>
+`;

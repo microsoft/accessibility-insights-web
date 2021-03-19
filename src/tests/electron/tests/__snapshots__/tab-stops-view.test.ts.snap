@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsView clicking start over sends corresponding service command 1`] = `
+"GET /AccessibilityInsights/FocusTracking/Reset
+"
+`;
+
+exports[`TabStopsView exiting while tab stops are active sends reset service command 1`] = `
+"GET /AccessibilityInsights/FocusTracking/Reset
+"
+`;
+
+exports[`TabStopsView leaving tab stops sends reset service command 1`] = `
+"GET /AccessibilityInsights/FocusTracking/Reset
+"
+`;
+
+exports[`TabStopsView toggling show tab stops sends corresponding service commands 1`] = `
+"GET /AccessibilityInsights/FocusTracking/Enable
+GET /AccessibilityInsights/FocusTracking/Disable
+"
+`;
+
+exports[`TabStopsView virtual keyboard sends keyevent 19 1`] = `
+"ADB -s device-1 shell input keyevent 19
+"
+`;
+
+exports[`TabStopsView virtual keyboard sends keyevent 20 1`] = `
+"ADB -s device-1 shell input keyevent 20
+"
+`;
+
+exports[`TabStopsView virtual keyboard sends keyevent 21 1`] = `
+"ADB -s device-1 shell input keyevent 21
+"
+`;
+
+exports[`TabStopsView virtual keyboard sends keyevent 22 1`] = `
+"ADB -s device-1 shell input keyevent 22
+"
+`;
+
+exports[`TabStopsView virtual keyboard sends keyevent 61 1`] = `
+"ADB -s device-1 shell input keyevent 61
+"
+`;
+
+exports[`TabStopsView virtual keyboard sends keyevent 66 1`] = `
+"ADB -s device-1 shell input keyevent 66
+"
+`;

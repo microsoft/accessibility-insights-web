@@ -19,3 +19,6 @@ export const DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS = 5000;
 
 // How long of a wait to artificially inject between element hover/mousedown/mouseup during clicks
 export const DEFAULT_CLICK_HOVER_DELAY_MS = 100;
+
+// How long to wait for a mock adb or service log to contain a value
+export const DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS = 1500;

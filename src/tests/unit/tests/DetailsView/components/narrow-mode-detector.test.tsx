@@ -10,23 +10,28 @@ import {
 import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import ReactResizeDetector from 'react-resize-detector';
 
 const TestComponent = NamedFC<{ narrowModeStatus: NarrowModeStatus }>('TestComponent', props => {
     return <h1>Test component</h1>;
 });
 
-const narrowModeThresholds = {
-    collapseHeaderAndNavThreshold: 600,
-    collapseCommandBarThreshold: 960,
-};
-
-const getNarrowModeThresholdsMock = (): NarrowModeThresholds => {
-    return narrowModeThresholds;
-};
-
 describe(NarrowModeDetector, () => {
+    let narrowModeThresholds: NarrowModeThresholds;
+
+    beforeEach(() => {
+        narrowModeThresholds = {
+            collapseHeaderAndNavThreshold: 600,
+            collapseCommandBarThreshold: 960,
+            collapseVirtualKeyboardThreshold: 550,
+        };
+    });
+
+    const getNarrowModeThresholdsMock = (): NarrowModeThresholds => {
+        return narrowModeThresholds;
+    };
     describe('render', () => {
-        it('renders ReactResizeDetector ', () => {
+        it('renders ReactResizeDetector with expected props', () => {
             const props: NarrowModeDetectorProps = {
                 deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: false,
@@ -34,10 +39,17 @@ describe(NarrowModeDetector, () => {
                 childrenProps: null,
             };
             const wrapper = shallow(<NarrowModeDetector {...props} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
+            const reactResizeDetector = wrapper.find(ReactResizeDetector);
+
+            expect(reactResizeDetector.exists()).toBe(true);
+            expect(reactResizeDetector.props()).toMatchObject({
+                handleWidth: true,
+                handleHeight: false,
+                querySelector: 'body',
+            });
         });
 
-        it('renders child component properly when header is collapsed', () => {
+        it('renders child component properly when virtual keyboard is collapsed', () => {
             const props: NarrowModeDetectorProps = {
                 deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
                 isNarrowModeEnabled: true,
@@ -48,10 +60,11 @@ describe(NarrowModeDetector, () => {
                 narrowModeStatus: {
                     isHeaderAndNavCollapsed: true,
                     isCommandBarCollapsed: true,
-                },
+                    isVirtualKeyboardCollapsed: true,
+                } as NarrowModeStatus,
             };
             const rendered = renderChildComponent(props, {
-                width: narrowModeThresholds.collapseHeaderAndNavThreshold - 1,
+                width: narrowModeThresholds.collapseVirtualKeyboardThreshold - 1,
                 height: 0,
             });
 
@@ -69,10 +82,33 @@ describe(NarrowModeDetector, () => {
                 narrowModeStatus: {
                     isHeaderAndNavCollapsed: false,
                     isCommandBarCollapsed: true,
-                },
+                    isVirtualKeyboardCollapsed: false,
+                } as NarrowModeStatus,
             };
             const rendered = renderChildComponent(props, {
                 width: narrowModeThresholds.collapseCommandBarThreshold - 1,
+                height: 0,
+            });
+
+            expect(rendered.props).toEqual(expectedChildProps);
+        });
+
+        it('renders child component properly when header is collapsed', () => {
+            const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
+                isNarrowModeEnabled: true,
+                Component: TestComponent,
+                childrenProps: null,
+            };
+            const expectedChildProps = {
+                narrowModeStatus: {
+                    isHeaderAndNavCollapsed: true,
+                    isCommandBarCollapsed: true,
+                    isVirtualKeyboardCollapsed: false,
+                } as NarrowModeStatus,
+            };
+            const rendered = renderChildComponent(props, {
+                width: narrowModeThresholds.collapseHeaderAndNavThreshold - 1,
                 height: 0,
             });
 
@@ -90,10 +126,35 @@ describe(NarrowModeDetector, () => {
                 narrowModeStatus: {
                     isHeaderAndNavCollapsed: false,
                     isCommandBarCollapsed: false,
-                },
+                    isVirtualKeyboardCollapsed: false,
+                } as NarrowModeStatus,
             };
             const rendered = renderChildComponent(props, {
                 width: narrowModeThresholds.collapseCommandBarThreshold + 1,
+                height: 0,
+            });
+
+            expect(rendered.props).toEqual(expectedChildProps);
+        });
+
+        it('renders child component properly when not all narrow mode thresholds are specified', () => {
+            narrowModeThresholds.collapseVirtualKeyboardThreshold = undefined;
+
+            const props: NarrowModeDetectorProps = {
+                deps: { getNarrowModeThresholds: getNarrowModeThresholdsMock },
+                isNarrowModeEnabled: true,
+                Component: TestComponent,
+                childrenProps: null,
+            };
+            const expectedChildProps = {
+                narrowModeStatus: {
+                    isHeaderAndNavCollapsed: false,
+                    isCommandBarCollapsed: true,
+                    isVirtualKeyboardCollapsed: false,
+                } as NarrowModeStatus,
+            };
+            const rendered = renderChildComponent(props, {
+                width: narrowModeThresholds.collapseCommandBarThreshold - 1,
                 height: 0,
             });
 

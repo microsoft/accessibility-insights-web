@@ -24,4 +24,6 @@ export enum StoreNames {
     AndroidSetupStore,
     LeftNavStore,
     ContentPanelStore,
+    DeviceConnectionStore,
+    TabStopsStore,
 }

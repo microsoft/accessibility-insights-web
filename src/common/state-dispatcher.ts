@@ -11,10 +11,7 @@ export class StateDispatcher {
         private readonly broadcastMessage: (message: StoreUpdateMessage<any>) => Promise<void>,
         private readonly stores: StoreHub,
         private readonly logger: Logger,
-    ) {
-        this.broadcastMessage = broadcastMessage;
-        this.stores = stores;
-    }
+    ) {}
 
     public initialize(): void {
         this.stores.getAllStores().forEach(store => this.addDispatchListenerToStore(store));

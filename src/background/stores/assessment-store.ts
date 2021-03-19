@@ -12,7 +12,6 @@ import {
     AssessmentData,
     AssessmentStoreData,
     GeneratedAssessmentInstance,
-    InstanceIdToInstanceDataMap,
     TestStepResult,
     UserCapturedInstance,
 } from 'common/types/store-data/assessment-result-data';
@@ -27,8 +26,8 @@ import { DictionaryStringTo } from 'types/common-types';
 import {
     AddResultDescriptionPayload,
     ExpandTestNavPayload,
-    SelectTestSubviewPayload,
     LoadAssessmentPayload,
+    SelectTestSubviewPayload,
 } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
