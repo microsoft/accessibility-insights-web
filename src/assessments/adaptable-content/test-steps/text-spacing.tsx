@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
-import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/text-spacing';
 import * as React from 'react';
@@ -10,7 +9,6 @@ import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/ass
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { VisualizationType } from 'common/types/visualization-type';
-import { TargetType } from 'common/types/target-type';
 
 import * as Markup from '../../markup';
 
@@ -68,8 +66,5 @@ export const TextSpacing: Requirement = {
         ),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     getDrawer: provider =>
-        provider.createInjectedClassDrawer(
-            'insights-formatted-text-spacing-container',
-            TargetType.Multi,
-        ),
+        provider.createSingleTargetDrawer('insights-formatted-text-spacing-container'),
 };
