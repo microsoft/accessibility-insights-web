@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { AdaptableContentTestStep } from 'assessments/adaptable-content/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
+import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/adaptable-content/text-spacing';
-import * as React from 'react';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import * as React from 'react';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
-import { VisualizationType } from 'common/types/visualization-type';
 
 import * as Markup from '../../markup';
 
