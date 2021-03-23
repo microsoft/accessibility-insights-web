@@ -59,7 +59,7 @@ test('my accessibility test', async () => {
 
 ## Contributing
 
-To contribute, please visit [accessibility-insights-web](https://github.com/microsoft/accessibility-insights-web/blob/master/README.md) for more information.
+To contribute, please visit [accessibility-insights-web](https://github.com/microsoft/accessibility-insights-web/blob/main/README.md) for more information.
 
 ### Contributor License Agreement
 
