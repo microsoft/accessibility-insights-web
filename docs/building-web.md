@@ -77,7 +77,7 @@ We expect almost all code to be covered by unit tests (the main exception to thi
 ```sh
 # This runs only unit tests changed in your feature branch
 # Run this regularly during feature development
-yarn test --changedSince master
+yarn test --changedSince main
 
 # Test only files matching a particular name pattern
 yarn test -- -- SomeFile.test.tsx
@@ -89,7 +89,7 @@ yarn watch:test
 yarn test
 
 # -u updates snapshots
-yarn test --changedSince master -u
+yarn test --changedSince main -u
 yarn test -u
 yarn test -- -u -- SomeFile.test.tsx
 ```
@@ -123,7 +123,7 @@ Generally, if a Pull Request doesn't touch any E2E tests, you don't have to run 
 
 ### Commands to run before check in
 
--   You should run a FastPass (formatting and lint checks) before creating a Pull Request to master:
+-   You should run a FastPass (formatting and lint checks) before creating a Pull Request to main:
 
     ```sh
     yarn fastpass

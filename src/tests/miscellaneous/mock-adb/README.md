@@ -38,4 +38,4 @@ In the remote build, these logs are uploaded as artifacts if any end-to-end test
 
 ### Implementation
 
-The `mock-adb` implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/master/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
+The `mock-adb` implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/main/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
