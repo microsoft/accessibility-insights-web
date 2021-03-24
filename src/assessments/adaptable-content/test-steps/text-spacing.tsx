@@ -21,16 +21,16 @@ const textSpacingHowToTest: JSX.Element = (
         The visual helper for this requirement adjusts the target page's text styling as follows:
         <ul>
             <li>
-                <Markup.Term>Letter spacing</Markup.Term> (tracking) at 0.12 times the font size{' '}
+                <Markup.Term>Letter spacing</Markup.Term> (tracking) at 0.12 times the font size
             </li>
             <li>
-                <Markup.Term>Word spacing</Markup.Term> at 0.16 times the font size{' '}
+                <Markup.Term>Word spacing</Markup.Term> at 0.16 times the font size
             </li>
             <li>
-                <Markup.Term>Line height</Markup.Term> (line spacing) at 1.5 times the font size{' '}
+                <Markup.Term>Line height</Markup.Term> (line spacing) at 1.5 times the font size
             </li>
             <li>
-                <Markup.Term>Spacing after paragraphs</Markup.Term> at 2 times the font size{' '}
+                <Markup.Term>Spacing after paragraphs</Markup.Term> at 2 times the font size
             </li>
         </ul>
         <ol>
