@@ -15,7 +15,7 @@ export class UserConfigurationActionCreator {
 
     constructor(private readonly userConfigActions: UserConfigurationActions) {}
 
-    public getUserConfigurationState = () => this.userConfigActions.getCurrentState.invoke(null);
+    public getUserConfigurationState = () => this.userConfigActions.getCurrentState.invoke();
 
     public setTelemetryState = (enableTelemetry: boolean) =>
         this.userConfigActions.setTelemetryState.invoke(enableTelemetry);
