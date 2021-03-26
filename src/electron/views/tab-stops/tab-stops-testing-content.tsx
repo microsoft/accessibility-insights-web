@@ -18,7 +18,7 @@ export type TabStopsTestingContentProps = {
 
 export const tabStopsToggleAutomationId = 'tab-stops-toggle';
 
-const ariaLevelForHowToTestHeading: number = 3;
+const ariaLevelForHowToTestHeading: number = 2;
 
 export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
     'TabStopsTestingContent',
