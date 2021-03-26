@@ -12,7 +12,7 @@ exports[`TabStopsTestingContent renders 1`] = `
     onText="On"
   />
   <span
-    aria-level={3}
+    aria-level={2}
     role="heading"
   >
     <strong>
