@@ -38,7 +38,7 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.tabStops,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Show Tab Stops test',
             displayableDescription: 'Show the Tab Stops test on the Left Nav',
             isPreviewFeature: false,
