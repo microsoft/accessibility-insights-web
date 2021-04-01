@@ -17,6 +17,7 @@ import { nativeWidgetsDefaultConfiguration } from './custom-rules/native-widgets
 import { pageConfiguration } from './custom-rules/page-title';
 import { textAlternativeConfiguration } from './custom-rules/text-alternative';
 import { textContrastConfiguration } from './custom-rules/text-contrast';
+import { textSpacingConfiguration } from './custom-rules/text-spacing-rule';
 import { uniqueLandmarkConfiguration } from './custom-rules/unique-landmark';
 import { widgetFunctionConfiguration } from './custom-rules/widget-function';
 import { RuleConfiguration } from './iruleresults';
@@ -40,5 +41,6 @@ export const configuration: RuleConfiguration[] = [
     cssContentConfiguration,
     autocompleteRuleConfiguration,
     headerRuleConfiguration,
+    textSpacingConfiguration,
     headersAttributeRuleConfiguration,
 ];
