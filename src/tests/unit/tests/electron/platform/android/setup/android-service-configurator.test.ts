@@ -70,7 +70,7 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
-    it('getConnectedDevices returns info from AdbWrapper', async () => {
+    it('getConnectedDevices returns info from AdbWrapper and friendly device names', async () => {
         const rawFriendlyName1 = 'an emulator';
         const rawFriendlyName2 = 'a device';
         const friendlyName2 = 'A branded device';
