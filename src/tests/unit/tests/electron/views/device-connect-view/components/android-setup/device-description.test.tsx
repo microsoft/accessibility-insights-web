@@ -21,7 +21,7 @@ describe('DeviceDescription', () => {
         const props: DeviceDescriptionProps = {
             deviceInfo: {
                 isEmulator: false,
-                friendlyName: 'Super-Duper Gadget',
+                model: 'Super-Duper Gadget',
                 id: '0',
             },
         };
@@ -34,7 +34,7 @@ describe('DeviceDescription', () => {
         const props: DeviceDescriptionProps = {
             deviceInfo: {
                 isEmulator: true,
-                friendlyName: 'Emulator Extraordinaire',
+                model: 'Emulator Extraordinaire',
                 id: '1',
             },
         };
@@ -47,7 +47,7 @@ describe('DeviceDescription', () => {
         const props: DeviceDescriptionProps = {
             deviceInfo: {
                 isEmulator: true,
-                friendlyName: 'Simple Emulator',
+                model: 'Simple Emulator',
                 id: '2',
             },
             className: 'my-class',
@@ -61,7 +61,7 @@ describe('DeviceDescription', () => {
         const props: DeviceDescriptionProps = {
             deviceInfo: {
                 isEmulator: false,
-                friendlyName: 'Whizbang tablet',
+                model: 'Whizbang tablet',
                 id: '3',
             },
             currentApplication: 'Wildlife Manager',

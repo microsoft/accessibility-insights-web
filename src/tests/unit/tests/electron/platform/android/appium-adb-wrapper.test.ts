@@ -75,7 +75,7 @@ describe('AppiumAdbWrapper tests', () => {
         expect(devices.length).toBe(1);
         expect(devices[0].id).toBe(emulatorId);
         expect(devices[0].isEmulator).toBe(true);
-        expect(devices[0].friendlyName).toBe(emulatorModel);
+        expect(devices[0].model).toBe(emulatorModel);
 
         adbMock.verifyAll();
     });
@@ -101,7 +101,7 @@ describe('AppiumAdbWrapper tests', () => {
         expect(devices.length).toBe(1);
         expect(devices[0].id).toBe(deviceId);
         expect(devices[0].isEmulator).toBe(false);
-        expect(devices[0].friendlyName).toBe(deviceModel);
+        expect(devices[0].model).toBe(deviceModel);
 
         adbMock.verifyAll();
     });
@@ -131,10 +131,10 @@ describe('AppiumAdbWrapper tests', () => {
         expect(devices.length).toBe(2);
         expect(devices[0].id).toBe(emulatorId);
         expect(devices[0].isEmulator).toBe(true);
-        expect(devices[0].friendlyName).toBe(emulatorModel);
+        expect(devices[0].model).toBe(emulatorModel);
         expect(devices[1].id).toBe(deviceId);
         expect(devices[1].isEmulator).toBe(false);
-        expect(devices[1].friendlyName).toBe(deviceModel);
+        expect(devices[1].model).toBe(deviceModel);
 
         adbMock.verifyAll();
     });

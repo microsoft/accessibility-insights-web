@@ -27,7 +27,7 @@ describe('PromptInstallServiceStep', () => {
     it('renders with device', () => {
         const selectedDevice: DeviceInfo = {
             isEmulator: false,
-            friendlyName: 'Super-Duper Gadget',
+            model: 'Super-Duper Gadget',
             id: '1',
         };
 
@@ -40,7 +40,7 @@ describe('PromptInstallServiceStep', () => {
     it('renders with emulator', () => {
         const selectedDevice: DeviceInfo = {
             isEmulator: true,
-            friendlyName: 'Emulator Extraordinaire',
+            model: 'Emulator Extraordinaire',
             id: '1',
         };
 

@@ -31,12 +31,12 @@ describe('PortCleaningServiceConfigurator', () => {
             {
                 id: 'emulator5',
                 isEmulator: true,
-                friendlyName: 'a new emulator',
+                model: 'a new emulator',
             },
             {
                 id: 'cell12345',
                 isEmulator: false,
-                friendlyName: 'my tablet',
+                model: 'my tablet',
             },
         ];
         innerObjectMock

@@ -67,12 +67,12 @@ describe('AndroidServiceConfigurator', () => {
             {
                 id: 'emulator1',
                 isEmulator: true,
-                friendlyName: 'an emulator',
+                model: 'an emulator',
             },
             {
                 id: 'phone123',
                 isEmulator: false,
-                friendlyName: 'a device',
+                model: 'a device',
             },
         ];
         adbWrapperMock

@@ -46,7 +46,7 @@ describe(AndroidSetupActionCreator, () => {
     it('invokes setSelectedDevice action on setSelectedDevice', () => {
         const testDevice: DeviceInfo = {
             id: 'Robbie',
-            friendlyName: 'Robbie the robot',
+            model: 'Robbie the robot',
             isEmulator: true,
         };
 

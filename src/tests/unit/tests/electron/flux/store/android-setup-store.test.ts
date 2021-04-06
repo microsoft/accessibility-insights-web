@@ -115,7 +115,7 @@ describe('AndroidSetupStore', () => {
     it('ensure setSelectedDevice function results in store update', () => {
         const testDevice: DeviceInfo = {
             id: 'r2d2',
-            friendlyName: 'little buddy',
+            model: 'little buddy',
             isEmulator: true,
         };
 
@@ -150,12 +150,12 @@ describe('AndroidSetupStore', () => {
         const testDevices: DeviceInfo[] = [
             {
                 id: 'r2d2',
-                friendlyName: 'little buddy',
+                model: 'little buddy',
                 isEmulator: true,
             },
             {
                 id: 'c3po',
-                friendlyName: '3po',
+                model: '3po',
                 isEmulator: false,
             },
         ];

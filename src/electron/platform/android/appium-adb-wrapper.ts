@@ -41,8 +41,8 @@ export class AppiumAdbWrapper implements AdbWrapper {
 
     private async getDeviceInfo(id: string, isEmulator: boolean): Promise<DeviceInfo> {
         this.adb.setDeviceId(id);
-        const friendlyName = await this.adb.getModel();
-        return { id, isEmulator, friendlyName };
+        const model = await this.adb.getModel();
+        return { id, isEmulator, model };
     }
 
     public getPackageInfo = async (deviceId: string, packageName: string): Promise<PackageInfo> => {
