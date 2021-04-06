@@ -114,12 +114,12 @@ describe('LiveAndroidSetupDeps', () => {
             {
                 id: 'emulator1',
                 isEmulator: true,
-                model: 'an emulator',
+                friendlyName: 'an emulator',
             },
             {
                 id: 'phone123',
                 isEmulator: false,
-                model: 'a device',
+                friendlyName: 'a device',
             },
         ];
         serviceConfigMock

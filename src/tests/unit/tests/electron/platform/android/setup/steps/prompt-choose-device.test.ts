@@ -53,7 +53,7 @@ describe('Android setup step: promptChooseDevice', () => {
     it('setSelectedDevice transitions to detect-service as expected', () => {
         const testDevice: DeviceInfo = {
             id: 'Hal9000',
-            model: 'Hal',
+            friendlyName: 'Hal',
             isEmulator: true,
         };
 

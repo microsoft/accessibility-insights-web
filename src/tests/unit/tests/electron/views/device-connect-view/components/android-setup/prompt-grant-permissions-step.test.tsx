@@ -24,7 +24,7 @@ describe('PromptGrantPermissionsStep', () => {
     it('renders with device', () => {
         const selectedDevice: DeviceInfo = {
             isEmulator: false,
-            model: 'Super-Duper Gadget',
+            friendlyName: 'Super-Duper Gadget',
             id: '1',
         };
 
@@ -37,7 +37,7 @@ describe('PromptGrantPermissionsStep', () => {
     it('renders with emulator', () => {
         const selectedDevice: DeviceInfo = {
             isEmulator: true,
-            model: 'Emulator Extraordinaire',
+            friendlyName: 'Emulator Extraordinaire',
             id: '1',
         };
 

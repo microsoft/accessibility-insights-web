@@ -79,12 +79,12 @@ describe('AndroidServiceConfigurator', () => {
             {
                 id: 'emulator1',
                 isEmulator: true,
-                model: model1,
+                friendlyName: model1,
             },
             {
                 id: 'phone123',
                 isEmulator: false,
-                model: model2,
+                friendlyName: model2,
             },
         ];
         adbWrapperMock
@@ -104,11 +104,9 @@ describe('AndroidServiceConfigurator', () => {
 
         expect(actualDevices[0].id).toBe(expectedDevices[0].id);
         expect(actualDevices[0].isEmulator).toBe(expectedDevices[0].isEmulator);
-        expect(actualDevices[0].model).toBe(expectedDevices[0].model);
         expect(actualDevices[0].friendlyName).toBe(friendlyName1);
         expect(actualDevices[1].id).toBe(expectedDevices[1].id);
         expect(actualDevices[1].isEmulator).toBe(expectedDevices[1].isEmulator);
-        expect(actualDevices[1].model).toBe(expectedDevices[1].model);
         expect(actualDevices[1].friendlyName).toBe(friendlyName2);
 
         verifyAllMocks();

@@ -4,8 +4,7 @@
 export type DeviceInfo = {
     id: string;
     isEmulator: boolean;
-    model: string;
-    friendlyName?: string;
+    friendlyName: string;
 };
 
 export type PackageInfo = {

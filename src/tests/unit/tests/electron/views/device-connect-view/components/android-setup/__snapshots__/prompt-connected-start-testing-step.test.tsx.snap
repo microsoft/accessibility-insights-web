@@ -29,9 +29,9 @@ exports[`PromptConnectedStartTestingStep renders with device 1`] = `
     currentApplication="super-cool app"
     deviceInfo={
       Object {
+        "friendlyName": "Super-Duper Gadget",
         "id": "1",
         "isEmulator": false,
-        "model": "Super-Duper Gadget",
       }
     }
   />
@@ -72,9 +72,9 @@ exports[`PromptConnectedStartTestingStep renders with emulator 1`] = `
     currentApplication="super-cool app"
     deviceInfo={
       Object {
+        "friendlyName": "Emulator Extraordinaire",
         "id": "1",
         "isEmulator": true,
-        "model": "Emulator Extraordinaire",
       }
     }
   />

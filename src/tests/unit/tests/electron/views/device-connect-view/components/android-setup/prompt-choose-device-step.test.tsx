@@ -29,17 +29,17 @@ describe('PromptChooseDeviceStep', () => {
             availableDevices: [
                 {
                     id: '1',
-                    model: 'Phone 1',
+                    friendlyName: 'Phone 1',
                     isEmulator: true,
                 },
                 {
                     id: '2',
-                    model: 'Phone 2',
+                    friendlyName: 'Phone 2',
                     isEmulator: false,
                 },
                 {
                     id: '3',
-                    model: 'Phone 3',
+                    friendlyName: 'Phone 3',
                     isEmulator: true,
                 },
             ],

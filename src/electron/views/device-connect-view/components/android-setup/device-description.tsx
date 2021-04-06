@@ -19,7 +19,7 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
         return null;
     }
 
-    const { isEmulator, model } = props.deviceInfo;
+    const { isEmulator, friendlyName } = props.deviceInfo;
     const iconName: string = isEmulator ? 'Devices3' : 'CellPhone';
     const iconAriaLabel: string = isEmulator ? 'Emulator' : 'Device';
 
@@ -28,12 +28,12 @@ export const DeviceDescription = NamedFC<DeviceDescriptionProps>('DeviceDescript
     if (props.currentApplication) {
         descriptionAndApp = (
             <div className={styles.deviceAndCurrentApplication}>
-                {props.deviceInfo.model}
+                {props.deviceInfo.friendlyName}
                 <div className={styles.currentApplication}>{props.currentApplication}</div>
             </div>
         );
     } else {
-        descriptionAndApp = model;
+        descriptionAndApp = friendlyName;
     }
 
     return (

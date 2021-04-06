@@ -36,9 +36,9 @@ exports[`PromptGrantPermissionsStep renders with device 1`] = `
     className="deviceDescription"
     deviceInfo={
       Object {
+        "friendlyName": "Super-Duper Gadget",
         "id": "1",
         "isEmulator": false,
-        "model": "Super-Duper Gadget",
       }
     }
   />
@@ -86,9 +86,9 @@ exports[`PromptGrantPermissionsStep renders with emulator 1`] = `
     className="deviceDescription"
     deviceInfo={
       Object {
+        "friendlyName": "Emulator Extraordinaire",
         "id": "1",
         "isEmulator": true,
-        "model": "Emulator Extraordinaire",
       }
     }
   />

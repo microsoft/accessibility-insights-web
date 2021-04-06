@@ -41,23 +41,23 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
         Array [
           Object {
             "deviceInfo": Object {
+              "friendlyName": "Phone 1",
               "id": "1",
               "isEmulator": true,
-              "model": "Phone 1",
             },
           },
           Object {
             "deviceInfo": Object {
+              "friendlyName": "Phone 2",
               "id": "2",
               "isEmulator": false,
-              "model": "Phone 2",
             },
           },
           Object {
             "deviceInfo": Object {
+              "friendlyName": "Phone 3",
               "id": "3",
               "isEmulator": true,
-              "model": "Phone 3",
             },
           },
         ]
@@ -79,23 +79,23 @@ exports[`PromptChooseDeviceStep renders per snapshot 1`] = `
           "_items": Array [
             Object {
               "deviceInfo": Object {
+                "friendlyName": "Phone 1",
                 "id": "1",
                 "isEmulator": true,
-                "model": "Phone 1",
               },
             },
             Object {
               "deviceInfo": Object {
+                "friendlyName": "Phone 2",
                 "id": "2",
                 "isEmulator": false,
-                "model": "Phone 2",
               },
             },
             Object {
               "deviceInfo": Object {
+                "friendlyName": "Phone 3",
                 "id": "3",
                 "isEmulator": true,
-                "model": "Phone 3",
               },
             },
           ],

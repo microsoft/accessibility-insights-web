@@ -41,8 +41,9 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
             namedDevices.push({
                 id: rawDevice.id,
                 isEmulator: rawDevice.isEmulator,
-                model: rawDevice.model,
-                friendlyName: this.friendlyDeviceNameProvider.getFriendlyName(rawDevice.model),
+                friendlyName: this.friendlyDeviceNameProvider.getFriendlyName(
+                    rawDevice.friendlyName,
+                ),
             });
         });
         return namedDevices;

@@ -193,7 +193,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
     }
 
     private getConnectedDeviceName(): string {
-        return this.props.androidSetupStoreData.selectedDevice?.model;
+        return this.props.androidSetupStoreData.selectedDevice?.friendlyName;
     }
 
     private getScanPort(): number {
