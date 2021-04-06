@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
+import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { PortFinderOptions } from 'portfinder';
-import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 
 export type PortFinder = (options?: PortFinderOptions) => Promise<number>;
 
@@ -35,11 +35,12 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
     ) {}
 
     public getConnectedDevices = async (): Promise<DeviceInfo[]> => {
-        const rawDevices: DeviceInfo[] = await this.adbWrapper.getConnectedDevices();
-        let namedDevices: DeviceInfo[] = [];
+        // Devices reported from ADB have model names--convert them to friendly names if possible
+        const adbDevices: DeviceInfo[] = await this.adbWrapper.getConnectedDevices();
+        const friendlyDevices: DeviceInfo[] = [];
 
-        rawDevices.forEach(rawDevice => {
-            namedDevices.push({
+        adbDevices.forEach(rawDevice => {
+            friendlyDevices.push({
                 id: rawDevice.id,
                 isEmulator: rawDevice.isEmulator,
                 friendlyName: this.friendlyDeviceNameProvider.getFriendlyName(
@@ -47,7 +48,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
                 ),
             });
         });
-        return namedDevices;
+        return friendlyDevices;
     };
 
     public setSelectedDevice = (deviceId: string): void => {
