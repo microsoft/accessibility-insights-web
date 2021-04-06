@@ -71,20 +71,19 @@ describe('AndroidServiceConfigurator', () => {
     });
 
     it('getConnectedDevices returns info from AdbWrapper', async () => {
-        const model1 = 'an emulator';
-        const friendlyName1 = model1;
-        const model2 = 'a device';
+        const rawFriendlyName1 = 'an emulator';
+        const rawFriendlyName2 = 'a device';
         const friendlyName2 = 'A branded device';
         const expectedDevices: DeviceInfo[] = [
             {
                 id: 'emulator1',
                 isEmulator: true,
-                friendlyName: model1,
+                friendlyName: rawFriendlyName1,
             },
             {
                 id: 'phone123',
                 isEmulator: false,
-                friendlyName: model2,
+                friendlyName: rawFriendlyName2,
             },
         ];
         adbWrapperMock
@@ -92,11 +91,11 @@ describe('AndroidServiceConfigurator', () => {
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
         friendlyDeviceNameProviderMock
-            .setup(m => m.getFriendlyName(model1))
-            .returns(() => friendlyName1)
+            .setup(m => m.getFriendlyName(rawFriendlyName1))
+            .returns(() => rawFriendlyName1)
             .verifiable(Times.once());
         friendlyDeviceNameProviderMock
-            .setup(m => m.getFriendlyName(model2))
+            .setup(m => m.getFriendlyName(rawFriendlyName2))
             .returns(() => friendlyName2)
             .verifiable(Times.once());
 
@@ -104,7 +103,7 @@ describe('AndroidServiceConfigurator', () => {
 
         expect(actualDevices[0].id).toBe(expectedDevices[0].id);
         expect(actualDevices[0].isEmulator).toBe(expectedDevices[0].isEmulator);
-        expect(actualDevices[0].friendlyName).toBe(friendlyName1);
+        expect(actualDevices[0].friendlyName).toBe(rawFriendlyName1);
         expect(actualDevices[1].id).toBe(expectedDevices[1].id);
         expect(actualDevices[1].isEmulator).toBe(expectedDevices[1].isEmulator);
         expect(actualDevices[1].friendlyName).toBe(friendlyName2);
