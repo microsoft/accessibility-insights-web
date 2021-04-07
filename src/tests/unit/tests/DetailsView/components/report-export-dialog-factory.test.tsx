@@ -26,6 +26,7 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportExportDialogFactory', () => {
     const theDate = new Date(Date.UTC(2019, 2, 12, 9, 0));
+    const currentDate = new Date(Date.UTC(2021, 1, 7, 5, 2));
     const theToolData: ToolData = { applicationProperties: { name: 'some app' } } as ToolData;
     const thePageTitle = 'command-bar-test-tab-title';
     const theDescription = 'test description';
@@ -71,7 +72,7 @@ describe('ReportExportDialogFactory', () => {
         cardsViewData = null;
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
-            getCurrentDate: () => theDate,
+            getCurrentDate: () => currentDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => theDate,
         } as DetailsViewCommandBarDeps;
