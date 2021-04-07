@@ -14,7 +14,7 @@ describe('AndroidDeviceFriendlyNameProvider', () => {
 
     it('returns friendly name if match exists', () => {
         const definedDevice = 'SM-T830';
-        const expectedFriendlyName = 'Samsung Galaxy Tab S4 (model SM-T830)';
+        const expectedFriendlyName = 'SM-T830 (Samsung Galaxy Tab S4)';
 
         expect(testSubject.getFriendlyName(definedDevice)).toBe(expectedFriendlyName);
     });
