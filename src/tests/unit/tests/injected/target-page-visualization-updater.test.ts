@@ -96,7 +96,7 @@ describe('TargetPageVisualizationUpdater', () => {
         testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
-        verifyPreviousStates({}, { [configIdStub]: selectorMapStub });
+        verifyPreviousStates({}, { [visualizationTypeStub]: selectorMapStub });
     });
 
     test('visualization needs to be enabled', () => {
@@ -122,7 +122,7 @@ describe('TargetPageVisualizationUpdater', () => {
         drawingInitiatorMock.verifyAll();
         verifyPreviousStates(
             { [configIdStub]: newVisualizationEnabledStateStub },
-            { [configIdStub]: selectorMapStub },
+            { [visualizationTypeStub]: selectorMapStub },
         );
     });
 
@@ -144,7 +144,7 @@ describe('TargetPageVisualizationUpdater', () => {
         drawingInitiatorMock.verifyAll();
         verifyPreviousStates(
             { [configIdStub]: newVisualizationEnabledStateStub },
-            { [configIdStub]: selectorMapStub },
+            { [visualizationTypeStub]: selectorMapStub },
         );
     });
 

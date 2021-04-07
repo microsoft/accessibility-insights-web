@@ -55,7 +55,7 @@ export class TargetPageVisualizationUpdater {
             configuration,
             configId,
         );
-        this.previousVisualizationSelectorMapStates[configId] = selectorMap;
+        this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
     };
 
     private executeUpdate = (
