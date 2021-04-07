@@ -25,7 +25,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportExportDialogFactory', () => {
-    const theDate = new Date(Date.UTC(2019, 2, 12, 9, 0));
+    const scanCompleteDate = new Date(Date.UTC(2019, 2, 12, 9, 0));
     const currentDate = new Date(Date.UTC(2021, 1, 7, 5, 2));
     const theToolData: ToolData = { applicationProperties: { name: 'some app' } } as ToolData;
     const thePageTitle = 'command-bar-test-tab-title';
@@ -60,7 +60,7 @@ describe('ReportExportDialogFactory', () => {
             url: thePageUrl,
         };
         scanMetadata = {
-            timespan: { scanComplete: theDate },
+            timespan: { scanComplete: scanCompleteDate },
             toolData: theToolData,
             targetAppInfo: targetAppInfo,
         } as ScanMetadata;
@@ -74,7 +74,7 @@ describe('ReportExportDialogFactory', () => {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             getCurrentDate: () => currentDate,
             reportGenerator: reportGeneratorMock.object,
-            getDateFromTimestamp: value => theDate,
+            getDateFromTimestamp: value => scanCompleteDate,
         } as DetailsViewCommandBarDeps;
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
