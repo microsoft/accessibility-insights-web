@@ -35,7 +35,7 @@ describe('visualizationNeedsUpdate', () => {
         });
     });
 
-    test('previous visualization state for given config id is not the same as the new visualization state', () => {
+    it('returns true when previously-disabled visualization is enabled', () => {
         previousVisualizationStates = {
             [id]: false,
         };
@@ -53,14 +53,11 @@ describe('visualizationNeedsUpdate', () => {
         ).toEqual(true);
     });
 
-    test('previous visualization state for given config id is the same as the new visualization state but selector map has changed', () => {
-        const newVisualizationEnabledState = true;
+    it('returns true when previously-enabled visualization is disabled', () => {
         previousVisualizationStates = {
-            [id]: newVisualizationEnabledState,
+            [id]: true,
         };
-
-        newSelectorMapState = {};
-        previousVisualizationSelectorMapData[visualizationType] = null;
+        const newVisualizationEnabledState = false;
 
         expect(
             visualizationNeedsUpdate(
@@ -74,7 +71,49 @@ describe('visualizationNeedsUpdate', () => {
         ).toEqual(true);
     });
 
-    test('previous visualization state for given config id is equivalent to new visualization state and selector map has not changed', () => {
+    it('returns false when previously-disabled visualization is still disabled and selector map has not changed', () => {
+        const newVisualizationEnabledState = false;
+        previousVisualizationStates = {
+            [id]: false,
+        };
+
+        newSelectorMapState = {};
+        previousVisualizationSelectorMapData[visualizationType] = newSelectorMapState;
+
+        expect(
+            visualizationNeedsUpdate(
+                visualizationType,
+                id,
+                newVisualizationEnabledState,
+                newSelectorMapState,
+                previousVisualizationStates,
+                previousVisualizationSelectorMapData,
+            ),
+        ).toEqual(false);
+    });
+
+    it('returns false when previously-disabled visualization is still disabled, regardless of selector map changing,', () => {
+        const newVisualizationEnabledState = false;
+        previousVisualizationStates = {
+            [id]: false,
+        };
+
+        newSelectorMapState = { 'new-state': null };
+        previousVisualizationSelectorMapData[visualizationType] = { 'old-state': null };
+
+        expect(
+            visualizationNeedsUpdate(
+                visualizationType,
+                id,
+                newVisualizationEnabledState,
+                newSelectorMapState,
+                previousVisualizationStates,
+                previousVisualizationSelectorMapData,
+            ),
+        ).toEqual(false);
+    });
+
+    it('returns false when previously-enabled visualization is still enabled and selector map has not changed', () => {
         const newVisualizationEnabledState = true;
         previousVisualizationStates = {
             [id]: newVisualizationEnabledState,
@@ -93,5 +132,26 @@ describe('visualizationNeedsUpdate', () => {
                 previousVisualizationSelectorMapData,
             ),
         ).toEqual(false);
+    });
+
+    it('returns true when previously-enabled visualization is still enabled, but selector map has changed', () => {
+        const newVisualizationEnabledState = true;
+        previousVisualizationStates = {
+            [id]: newVisualizationEnabledState,
+        };
+
+        newSelectorMapState = { 'new-state': null };
+        previousVisualizationSelectorMapData[visualizationType] = { 'old-state': null };
+
+        expect(
+            visualizationNeedsUpdate(
+                visualizationType,
+                id,
+                newVisualizationEnabledState,
+                newSelectorMapState,
+                previousVisualizationStates,
+                previousVisualizationSelectorMapData,
+            ),
+        ).toEqual(true);
     });
 });

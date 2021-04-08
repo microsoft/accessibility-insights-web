@@ -27,8 +27,14 @@ export const visualizationNeedsUpdate: VisualizationNeedsUpdateCallback = (
         return newVisualizationEnabledState;
     }
 
-    return (
-        previousVisualizationStates[id] !== newVisualizationEnabledState ||
-        !isEqual(newSelectorMapState, previousVisualizationSelectorMapData[visualizationType])
+    if (previousVisualizationStates[id] !== newVisualizationEnabledState) {
+        return true;
+    }
+
+    const selectorMapUpdated = !isEqual(
+        newSelectorMapState,
+        previousVisualizationSelectorMapData[visualizationType],
     );
+
+    return newVisualizationEnabledState && selectorMapUpdated;
 };
