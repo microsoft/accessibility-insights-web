@@ -50,9 +50,6 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
         };
         return (
             <div>
-                <a href="#" className={learnMore}>
-                    Learn more about adding failure instances
-                </a>
                 <TextField
                     label="CSS Selector"
                     styles={getStyles}
