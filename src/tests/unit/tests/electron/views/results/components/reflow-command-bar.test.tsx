@@ -72,7 +72,7 @@ describe('ReflowCommandBar', () => {
                 allowsExportReport: true,
                 startOverButtonSettings: _ => {
                     return {
-                        onClick: () => {},
+                        onClick: _ => {},
                         disabled: false,
                     };
                 },
