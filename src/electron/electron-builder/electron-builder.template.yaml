@@ -52,6 +52,7 @@ nsis:
     perMachine: false
     deleteAppDataOnUninstall: true
     include: src/electron/resources/installer.nsh
+    packElevateHelper: false
 publish:
     provider: generic
 
