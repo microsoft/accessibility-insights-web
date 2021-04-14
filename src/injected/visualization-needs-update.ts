@@ -10,7 +10,7 @@ export type VisualizationNeedsUpdateCallback = (
     visualizationType: VisualizationType,
     id: string,
     newVisualizationEnabledState: boolean,
-    newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
+    newSelectorMapState: SelectorToVisualizationMap,
     previousVisualizationStates: DictionaryStringTo<boolean>,
     previousVisualizationSelectorMapData: VisualizationSelectorMapContainer,
 ) => boolean;

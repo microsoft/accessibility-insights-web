@@ -25,7 +25,7 @@ describe('TargetPageVisualizationUpdater', () => {
     let configMock: IMock<VisualizationConfiguration>;
     let testSubject: TargetPageVisualizationUpdater;
 
-    let selectorMapStub: DictionaryStringTo<AssessmentVisualizationInstance>;
+    let selectorMapStub: SelectorToVisualizationMap;
     let stepKeyStub: string;
     let storeDataStub: TargetPageStoreData;
     let newVisualizationEnabledStateStub: boolean;

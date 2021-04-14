@@ -9,7 +9,7 @@ import { DictionaryStringTo } from 'types/common-types';
 describe('visualizationNeedsUpdate', () => {
     let visualizationType: VisualizationType;
     let id: string;
-    let newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>;
+    let newSelectorMapState: SelectorToVisualizationMap;
     let previousVisualizationStates: DictionaryStringTo<boolean>;
     let previousVisualizationSelectorMapData: VisualizationSelectorMapContainer;
 

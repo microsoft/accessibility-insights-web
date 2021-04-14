@@ -5,6 +5,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { TargetPageStoreData } from 'injected/client-store-listener';
 import { GetElementBasedViewModelCallback } from 'injected/element-based-view-model-creator';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { includes } from 'lodash';
 
 import { ManualTestStatus } from '../common/types/manual-test-status';
@@ -12,7 +13,6 @@ import { GeneratedAssessmentInstance } from '../common/types/store-data/assessme
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
-import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export type VisualizationRelatedStoreData = Pick<
     TargetPageStoreData,
@@ -32,7 +32,7 @@ export class SelectorMapHelper {
         visualizationType: VisualizationType,
         stepKey: string,
         visualizationRelatedStoreData: VisualizationRelatedStoreData,
-    ): DictionaryStringTo<AssessmentVisualizationInstance> {
+    ): SelectorToVisualizationMap {
         let selectorMap = {};
         const {
             visualizationScanResultStoreData,
@@ -80,7 +80,7 @@ export class SelectorMapHelper {
         visualizationScanResultData: VisualizationScanResultData,
         unifiedScanData: UnifiedScanResultStoreData,
         cardSelectionStoreData: CardSelectionStoreData,
-    ): DictionaryStringTo<AssessmentVisualizationInstance> {
+    ): SelectorToVisualizationMap {
         let selectorMap = {};
         switch (visualizationType) {
             case VisualizationType.NeedsReview:
@@ -110,12 +110,12 @@ export class SelectorMapHelper {
     private getFilteredSelectorMap(
         generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         testStep: string,
-    ): DictionaryStringTo<AssessmentVisualizationInstance> {
+    ): SelectorToVisualizationMap {
         if (generatedAssessmentInstancesMap == null) {
             return null;
         }
 
-        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {};
+        const selectorMap: SelectorToVisualizationMap = {};
         Object.keys(generatedAssessmentInstancesMap).forEach(identifier => {
             const instance = generatedAssessmentInstancesMap[identifier];
             const stepResult = instance.testStepResults[testStep];

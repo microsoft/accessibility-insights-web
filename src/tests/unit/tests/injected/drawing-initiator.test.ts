@@ -36,7 +36,7 @@ describe('DrawingInitiatorTest', () => {
     test('enableVisualization', () => {
         const visualizationType = -1 as VisualizationType;
         const configId = 'id';
-        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {
+        const selectorMap: SelectorToVisualizationMap = {
             key1: {
                 target: ['element1'],
                 isFailure: false,
