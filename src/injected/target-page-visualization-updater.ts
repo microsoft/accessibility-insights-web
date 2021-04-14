@@ -3,27 +3,31 @@
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { VisualizationType } from 'common/types/visualization-type';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { cloneDeep } from 'lodash';
-import { DictionaryNumberTo, DictionaryStringTo } from 'types/common-types';
 
 import { TargetPageStoreData } from './client-store-listener';
 import { DrawingInitiator } from './drawing-initiator';
-import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { IsVisualizationEnabledCallback } from './is-visualization-enabled';
 import { SelectorMapHelper } from './selector-map-helper';
-import { VisualizationNeedsUpdateCallback } from './visualization-needs-update';
+import {
+    TestStepVisualizationState,
+    VisualizationNeedsUpdateCallback,
+} from './visualization-needs-update';
 
-export type VisualizationSelectorMapContainer = DictionaryNumberTo<
-    DictionaryStringTo<AssessmentVisualizationInstance>
->;
+type TestStepVisualizationStateMap = {
+    // assessment-style-cop.test.ts ensures the assumption this type is making that these IDs are
+    // never repeated between different tests' steps.
+    [testStepConfigId: string]: TestStepVisualizationState;
+};
+
 export type UpdateVisualization = (
     visualizationType: VisualizationType,
     step: string,
     storeData: TargetPageStoreData,
 ) => void;
 export class TargetPageVisualizationUpdater {
-    private previousVisualizationSelectorMapStates: VisualizationSelectorMapContainer = {};
-    private previousVisualizationStates: DictionaryStringTo<boolean> = {};
+    private previousVisualizationStates: TestStepVisualizationStateMap = {};
 
     constructor(
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -55,18 +59,17 @@ export class TargetPageVisualizationUpdater {
             configuration,
             configId,
         );
-        this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
     };
 
     private executeUpdate = (
         visualizationType: VisualizationType,
         stepKey: string,
         storeData: TargetPageStoreData,
-        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+        selectorMap: SelectorToVisualizationMap,
         configuration: VisualizationConfiguration,
         configId: string,
     ) => {
-        const newVisualizationEnabledState = this.isVisualizationEnabled(
+        const visualizationShouldBeEnabled = this.isVisualizationEnabled(
             configuration,
             stepKey,
             storeData.visualizationStoreData,
@@ -74,22 +77,19 @@ export class TargetPageVisualizationUpdater {
             storeData.tabStoreData,
         );
 
-        if (
-            this.visualizationNeedsUpdate(
-                visualizationType,
-                configId,
-                newVisualizationEnabledState,
-                selectorMap,
-                this.previousVisualizationStates,
-                this.previousVisualizationSelectorMapStates,
-            ) === false
-        ) {
+        const oldVisualizationState = this.previousVisualizationStates[configId];
+        const newVisualizationState = {
+            enabled: visualizationShouldBeEnabled,
+            selectorMap,
+        };
+
+        if (!this.visualizationNeedsUpdate(newVisualizationState, oldVisualizationState)) {
             return;
         }
 
-        this.previousVisualizationStates[configId] = newVisualizationEnabledState;
+        this.previousVisualizationStates[configId] = newVisualizationState;
 
-        if (newVisualizationEnabledState) {
+        if (visualizationShouldBeEnabled) {
             this.drawingInitiator.enableVisualization(
                 visualizationType,
                 storeData.featureFlagStoreData,
