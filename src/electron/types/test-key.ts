@@ -1,4 +1,4 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type TestKey = 'automated-checks' | 'needs-review';
+export type TestKey = 'automated-checks' | 'needs-review' | 'tab-stops';

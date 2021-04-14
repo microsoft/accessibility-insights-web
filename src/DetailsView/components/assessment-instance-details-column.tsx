@@ -10,8 +10,7 @@ export interface AssessmentInstanceDetailsColumnProps {
     labelText?: string;
     headerText?: string;
     textContent: string;
-    background: string;
-    tooltipId: string;
+    background?: string;
     customClassName?: string;
 }
 

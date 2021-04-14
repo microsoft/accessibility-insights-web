@@ -43,7 +43,7 @@ function renderDesignPatternWithoutLink(pattern: DesignPattern): JSX.Element {
     return <span className="display-name">{pattern.designPattern}</span>;
 }
 
-export function getFlatDesignPatternStringFromRole(role: string): string {
+export function getFlatDesignPatternStringFromRole(role: string): string | null {
     if (!roleToDesignPatternsMapping[role]) {
         return null;
     }

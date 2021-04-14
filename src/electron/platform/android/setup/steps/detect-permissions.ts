@@ -7,6 +7,6 @@ export const detectPermissions: AndroidSetupStepConfig = (stepTransition, deps) 
     actions: {},
     onEnter: async () => {
         const detected = await deps.hasExpectedPermissions();
-        stepTransition(detected ? 'configuring-port-forwarding' : 'prompt-grant-permissions');
+        stepTransition(detected ? 'grant-overlay-permission' : 'prompt-grant-permissions');
     },
 });

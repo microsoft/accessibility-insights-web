@@ -35,7 +35,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = createActionMock(null);
+        const getCurrentStateMock = createActionMock(undefined);
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
@@ -68,7 +68,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const resetFeatureFlagMock = createActionMock(null);
+        const resetFeatureFlagMock = createActionMock(undefined);
 
         setupActionsMock('resetFeatureFlags', resetFeatureFlagMock.object);
 

@@ -30,7 +30,7 @@ describe('InspectActionCreator', () => {
     });
 
     it('handles GetState message', () => {
-        const getCurrentStateMock = createActionMock(null);
+        const getCurrentStateMock = createActionMock(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const interpreterMock = createInterpreterMock(
             getStoreStateMessage(StoreNames.InspectStore),

@@ -50,7 +50,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
   isOpen={true}
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="Assessment"
-  scanDate={2019-03-12T09:00:00.000Z}
+  scanDate={2021-02-07T05:02:00.000Z}
   updatePersistedDescription={[Function]}
 />
 `;

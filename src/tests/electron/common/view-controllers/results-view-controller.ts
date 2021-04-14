@@ -60,4 +60,9 @@ export class ResultsViewController extends ViewController {
 
         await this.waitForSelector(toggleInStateSelector);
     }
+
+    public async clickStartOver(): Promise<void> {
+        await this.waitForSelector(ResultsViewSelectors.startOverButton);
+        return this.click(ResultsViewSelectors.startOverButton);
+    }
 }

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GuidanceLink } from 'common/guidance-links';
-import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import {
     AndroidScanResults,
     DeviceInfo,
@@ -11,13 +10,13 @@ import {
 import { RuleInformation } from 'electron/platform/android/rule-information';
 
 export function buildScanResultsObject(
-    deviceName: string = null,
-    appIdentifier: string = null,
-    resultsArray: RuleResultsData[] = null,
-    axeView: ViewElementData = null,
-    axeVersion: string = null,
-    screenshotData: string = null,
-    deviceInfo: DeviceInfo = null,
+    deviceName?: string,
+    appIdentifier?: string,
+    resultsArray?: RuleResultsData[],
+    axeView?: ViewElementData,
+    axeVersion?: string,
+    screenshotData?: string,
+    deviceInfo?: DeviceInfo,
 ): AndroidScanResults {
     const scanResults = {};
     const axeContext = {};
@@ -29,7 +28,7 @@ export function buildScanResultsObject(
     }
 
     if (deviceName) {
-        deviceInfo = { ...deviceInfo, name: deviceName };
+        deviceInfo = { ...deviceInfo, name: deviceName } as DeviceInfo;
         axeContext['axeDevice'] = deviceInfo;
         addContext = true;
     }
@@ -74,8 +73,8 @@ export function buildScanResultsObject(
 export function buildRuleResultObject(
     ruleId: string,
     status: string,
-    axeViewId: string = null,
-    props: any = null,
+    axeViewId?: string,
+    props?: any,
 ): RuleResultsData {
     const result = {};
     result['ruleId'] = ruleId;
@@ -122,7 +121,7 @@ export function buildRuleInformation(
         guidance,
         getUnifiedResolutionDelegate: r => {
             expect('getUnifiedResolution').toBe('This code should never execute');
-            return null;
+            return null!;
         },
         getUnifiedResolution: r => {
             const summary: string = 'How to fix ' + ruleId;
@@ -130,7 +129,7 @@ export function buildRuleInformation(
         },
         getResultStatusDelegate: r => {
             expect('includeThisResultDelegate').toBe('This code should never execute');
-            return null;
+            return null!;
         },
         getResultStatus: r => {
             return r.status === 'FAIL' ? 'fail' : 'pass';

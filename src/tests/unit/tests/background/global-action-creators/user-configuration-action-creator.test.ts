@@ -16,8 +16,7 @@ import { createActionMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
     it('handles GetCurrentState message', () => {
-        const payload = null;
-        const getCurrentStateMock = createActionMock<null>(payload);
+        const getCurrentStateMock = createActionMock<void>(undefined);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
         const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 

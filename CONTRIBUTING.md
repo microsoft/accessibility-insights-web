@@ -27,7 +27,7 @@ The convention that we follow is inspired from [SemVer](https://semver.org/) con
 
 | Tag      | What it conveys                                                                                                                             |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| feat     | a commit of the type feat introduces a new feature in master or means completion of task towards a feature                                  |
+| feat     | a commit of the type feat introduces a new feature in main or means completion of task towards a feature                                  |
 | fix      | a commit of the type fix patches a bug or fixes a small known problem                                                                       |
 | chore    | a commit of the type chore updates something in codebase without impacting any production code. eg: updating a grunt task etc.              |
 | refactor | a commit of type refactor specifies a code change that neither fixes a bug nor adds a feature but just refactors a portion of existing code |

@@ -11,6 +11,7 @@ import {
     simulateServiceInstallationError,
     simulateServiceLacksPermissions,
     simulateServiceNotInstalled,
+    simulateInputKeyeventError,
 } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
 describe('mock-adb tests match snapshots after normalizing path', () => {
@@ -91,6 +92,11 @@ describe('mock-adb tests match snapshots after normalizing path', () => {
 
     it.each(definedConfigs)("simulatePortForwardingError(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulatePortForwardingError(commonAdbConfigs[config]);
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+    });
+
+    it.each(definedConfigs)("simulateInputKeyeventError(commonAdbConfigs['%s'])", config => {
+        const mockAdbConfig = simulateInputKeyeventError(commonAdbConfigs[config]);
         expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 });

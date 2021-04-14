@@ -7,12 +7,10 @@ import {
 } from 'common/components/cards/rule-resources';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GuidanceLink } from 'common/guidance-links';
-import { LinkComponentType } from 'common/types/link-component-type';
 import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-import { DictionaryStringTo } from 'types/common-types';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 

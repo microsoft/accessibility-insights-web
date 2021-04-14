@@ -5,7 +5,7 @@ schedules:
       displayName: Weekdays at 10AM UTC (3AM PDT)
       branches:
           include:
-              - master
+              - main
 trigger:
     - build-reliability/*
 pr:

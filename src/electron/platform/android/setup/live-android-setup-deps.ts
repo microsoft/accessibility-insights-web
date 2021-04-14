@@ -4,8 +4,9 @@
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, AdbWrapperFactory, DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
@@ -19,12 +20,18 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
         public readonly fetchDeviceConfig: DeviceConfigFetcher,
         public readonly logger: Logger,
+        private readonly adbWrapperFactory: AdbWrapperFactory,
+        private readonly adbWrapperHolder: AdbWrapperHolder,
     ) {}
 
     public hasAdbPath = async (): Promise<boolean> => {
         try {
             const adbLocation = this.configStore.getState().adbLocation;
-            this.serviceConfig = await this.configFactory.getServiceConfigurator(adbLocation);
+            const adbWrapper: AdbWrapper = await this.adbWrapperFactory.createValidatedAdbWrapper(
+                adbLocation,
+            );
+            this.adbWrapperHolder.setAdb(adbWrapper);
+            this.serviceConfig = this.configFactory.getServiceConfigurator(adbWrapper);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -70,6 +77,14 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
             this.logger.log(error);
         }
         return false;
+    };
+
+    public grantOverlayPermission = async (): Promise<void> => {
+        try {
+            return await this.serviceConfig.grantOverlayPermission();
+        } catch (error) {
+            this.logger.log(error);
+        }
     };
 
     public setupTcpForwarding = async (): Promise<number> => {

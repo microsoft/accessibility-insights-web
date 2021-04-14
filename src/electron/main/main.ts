@@ -81,7 +81,7 @@ const createWindow = () => {
     mainWindow.on('closed', () => {
         // Drop all references to the window object, to force garbage collection
         ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);
-        mainWindow = null;
+        mainWindow = null!;
     });
 
     electronAutoUpdateCheck

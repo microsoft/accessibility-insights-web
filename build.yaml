@@ -3,7 +3,7 @@
 trigger: # trigger only affects CI builds
     branches:
         include:
-            - master
+            - main
 
 pr: # pr does not trigger CI builds
     branches:
@@ -24,7 +24,7 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
-          - script: yarn lint:check
+          - script: yarn lint:check:all
             displayName: check lint errors
             timeoutInMinutes: 5
 

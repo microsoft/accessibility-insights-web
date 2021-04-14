@@ -27,7 +27,7 @@ export class PermissionsStateActionCreator {
     }
 
     private onGetCurrentState = (): void => {
-        this.permissionsStateActions.getCurrentState.invoke(null);
+        this.permissionsStateActions.getCurrentState.invoke();
     };
 
     private onSetPermissionsState = (payload: SetAllUrlsPermissionStatePayload): void => {

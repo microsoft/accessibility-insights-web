@@ -113,7 +113,7 @@ describe('ContentActionMessageCreator', () => {
             },
         };
 
-        const closeContentPanelMock = createActionMock<void>(null);
+        const closeContentPanelMock = createActionMock<void>(undefined);
         actionsMock = createActionsMock('closeContentPanel', closeContentPanelMock.object);
         interpreterMock = createInterpreterMock(Messages.ContentPanel.ClosePanel, payload);
 

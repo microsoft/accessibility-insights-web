@@ -37,7 +37,13 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
     }
 
     private copyButtonClicked = async (event: React.MouseEvent<any>): Promise<void> => {
-        this.toastRef.current.show('Failure details copied.');
+        const toast = this.toastRef.current;
+        if (toast == null) {
+            // This be very rare (only if the button is clicked mid-initial-render of the Toast)
+            return;
+        }
+
+        toast.show('Failure details copied.');
         if (this.props.onClick) {
             this.props.onClick(event);
         }
@@ -46,10 +52,10 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
                 this.getIssueDetailsText(this.props.issueDetailsData),
             );
         } catch (error) {
-            this.toastRef.current.show('Failed to copy failure details. Please try again.');
+            toast.show('Failed to copy failure details. Please try again.');
             return;
         }
-        this.toastRef.current.show('Failure details copied.');
+        toast.show('Failure details copied.');
     };
 
     public render(): JSX.Element {

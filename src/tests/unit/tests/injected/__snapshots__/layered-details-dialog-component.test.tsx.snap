@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LayeredDetailsDialogComponent render component when shadow dom is disabled 1`] = `
+exports[`LayeredDetailsDialogComponent renders per snapshot 1`] = `
 <LayerHost
   dir="ltr"
   id="insights-dialog-layer-host"
@@ -12,43 +12,6 @@ exports[`LayeredDetailsDialogComponent render component when shadow dom is disab
       }
     }
     devToolActionMessageCreator="devToolActionMessageCreator"
-    featureFlagStoreData={
-      Object {
-        "shadowDialog": false,
-      }
-    }
   />
 </LayerHost>
-`;
-
-exports[`LayeredDetailsDialogComponent render component when shadow dom is enabled - isRTL - false 1`] = `
-<DetailsDialog
-  deps={
-    Object {
-      "getRTL": [Function],
-    }
-  }
-  devToolActionMessageCreator="devToolActionMessageCreator"
-  featureFlagStoreData={
-    Object {
-      "shadowDialog": true,
-    }
-  }
-/>
-`;
-
-exports[`LayeredDetailsDialogComponent render component when shadow dom is enabled - isRTL - true 1`] = `
-<DetailsDialog
-  deps={
-    Object {
-      "getRTL": [Function],
-    }
-  }
-  devToolActionMessageCreator="devToolActionMessageCreator"
-  featureFlagStoreData={
-    Object {
-      "shadowDialog": true,
-    }
-  }
-/>
 `;

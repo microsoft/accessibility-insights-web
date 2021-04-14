@@ -11,7 +11,7 @@ purpose alone and we are not intended it to be consumed by the broader open-sour
 
 ## Contributing
 
-To contribute, please visit [accessibility-insights-web](https://github.com/microsoft/accessibility-insights-web/blob/master/README.md) for more information.
+To contribute, please visit [accessibility-insights-web](https://github.com/microsoft/accessibility-insights-web/blob/main/README.md) for more information.
 
 ### Code of Conduct
 

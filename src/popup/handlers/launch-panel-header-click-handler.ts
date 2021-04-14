@@ -30,12 +30,7 @@ export class LaunchPanelHeaderClickHandler {
         });
     }
 
-    public onDismissFeedbackMenu(header: LaunchPanelHeader, event?: any): void {
-        header.setState({ isContextMenuVisible: false });
-    }
-
     public openAdhocToolsPanel(header: LaunchPanelHeader): void {
         header.props.openAdhocToolsPanel();
-        header.props.deps.launchPanelHeaderClickHandler.onDismissFeedbackMenu(header);
     }
 }

@@ -8,7 +8,6 @@ import { ContentActions } from 'background/actions/content-actions';
 import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
-import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { FeatureFlagsController } from 'background/feature-flags-controller';
@@ -66,13 +65,18 @@ import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-crea
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
+import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
+import { TabStopsActions } from 'electron/flux/action/tab-stops-actions';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { AndroidSetupStore } from 'electron/flux/store/android-setup-store';
+import { DeviceConnectionStore } from 'electron/flux/store/device-connection-store';
 import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { ScanStore } from 'electron/flux/store/scan-store';
+import { TabStopsStore } from 'electron/flux/store/tab-stops-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
@@ -81,9 +85,13 @@ import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-s
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
 import { parseDeviceConfig } from 'electron/platform/android/device-config';
 import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { createDeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
+import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
 import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
+import { AndroidBrowserCloseCleanupTasks } from 'electron/platform/android/setup/android-browser-close-cleanup-tasks';
 import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
     AndroidServiceConfiguratorFactory,
@@ -137,8 +145,6 @@ import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub'
 import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
-import { DeviceActions } from '../flux/action/device-actions';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import {
@@ -157,19 +163,19 @@ initializeFabricIcons();
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 
 const userConfigActions = new UserConfigurationActions();
-const deviceActions = new DeviceActions();
 const androidSetupActions = new AndroidSetupActions();
 const windowFrameActions = new WindowFrameActions();
 const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
+const deviceConnectionActions = new DeviceConnectionActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
 const cardSelectionActions = new CardSelectionActions();
 const detailsViewActions = new DetailsViewActions();
 const sidePanelActions = new SidePanelActions();
-const previewFeaturesActions = new PreviewFeaturesActions(); // not really used but needed by DetailsViewStore
 const contentActions = new ContentActions(); // not really used but needed by DetailsViewStore
 const featureFlagActions = new FeatureFlagActions();
 const leftNavActions = new LeftNavActions();
+const tabStopsActions = new TabStopsActions();
 
 const ipcRendererShim = new IpcRendererShim(ipcRenderer);
 ipcRendererShim.initialize();
@@ -212,21 +218,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const fetchDeviceConfig = createDeviceConfigFetcher(axios.get, parseDeviceConfig);
 
-        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(
-            ipcRendererShim,
-            logger,
-        );
-        androidPortCleaner.initialize();
+        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(logger);
 
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
+        const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
+        const adbWrapperHolder = new AdbWrapperHolder();
         const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
-            new AndroidServiceConfiguratorFactory(
-                new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator()),
-                apkLocator,
-                getPortPromise,
-            ),
+            new AndroidServiceConfiguratorFactory(apkLocator, getPortPromise),
             androidPortCleaner,
         );
         const androidSetupStore = new AndroidSetupStore(
@@ -238,6 +238,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
                     userConfigMessageCreator,
                     fetchDeviceConfig,
                     logger,
+                    appiumAdbWrapperFactory,
+                    adbWrapperHolder,
                 ),
             ),
         );
@@ -252,6 +254,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const scanStore = new ScanStore(scanActions);
         scanStore.initialize();
 
+        const deviceConnectionStore = new DeviceConnectionStore(deviceConnectionActions);
+        deviceConnectionStore.initialize();
+
         const cardSelectionStore = new CardSelectionStore(
             cardSelectionActions,
             unifiedScanResultActions,
@@ -259,7 +264,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         cardSelectionStore.initialize();
 
         const detailsViewStore = new DetailsViewStore(
-            previewFeaturesActions,
             contentActions,
             detailsViewActions,
             sidePanelActions,
@@ -277,6 +281,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const leftNavStore = new LeftNavStore(leftNavActions);
         leftNavStore.initialize();
 
+        const tabStopsStore = new TabStopsStore(tabStopsActions);
+        tabStopsStore.initialize();
+
         const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, ipcRendererShim);
         windowFrameUpdater.initialize();
 
@@ -284,12 +291,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             userConfigurationStore,
             windowStateStore,
             scanStore,
+            deviceConnectionStore,
             unifiedScanResultStore,
             cardSelectionStore,
             detailsViewStore,
             featureFlagStore,
             androidSetupStore,
             leftNavStore,
+            tabStopsStore,
         ]);
 
         const fetchScanResults = createScanResultsFetcher(axios.get);
@@ -334,22 +343,43 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
-        const leftNavActionCreator = new LeftNavActionCreator(leftNavActions, cardSelectionActions);
-        const leftNavItems = createLeftNavItems(androidTestConfigs, leftNavActionCreator);
-        const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
+        const deviceFocusController = new DeviceFocusController(
+            adbWrapperHolder,
+            createDeviceFocusCommandSender(axios.get),
+            androidSetupStore,
+        );
 
-        const deviceConnectActionCreator = new DeviceConnectActionCreator(
-            deviceActions,
-            fetchDeviceConfig,
+        const androidBrowserCloseCleanupTasks = new AndroidBrowserCloseCleanupTasks(
+            ipcRendererShim,
+            deviceFocusController,
+            androidPortCleaner,
+            logger,
+        );
+        androidBrowserCloseCleanupTasks.addBrowserCloseListener();
+
+        const tabStopsActionCreator = new TabStopsActionCreator(
+            tabStopsActions,
+            deviceConnectionActions,
+            deviceFocusController,
+            logger,
             telemetryEventHandler,
         );
+
+        const leftNavActionCreator = new LeftNavActionCreator(leftNavActions, cardSelectionActions);
+        const leftNavItems = createLeftNavItems(
+            androidTestConfigs,
+            leftNavActionCreator,
+            tabStopsActionCreator,
+        );
+        const contentPagesInfo = createContentPagesInfo(androidTestConfigs);
+
         const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
         const windowStateActionCreator = new WindowStateActionCreator(
             windowStateActions,
             windowFrameActionCreator,
             userConfigurationStore,
         );
-        const scanActionCreator = new ScanActionCreator(scanActions, deviceActions);
+        const scanActionCreator = new ScanActionCreator(scanActions, deviceConnectionActions);
 
         const featureFlagActionCreator = new FeatureFlagsActionCreator(
             interpreter,
@@ -401,6 +431,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const scanController = new ScanController(
             scanActions,
             unifiedScanResultActions,
+            deviceConnectionActions,
             fetchScanResults,
             unifiedResultsBuilder,
             telemetryEventHandler,
@@ -521,7 +552,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             dropdownClickHandler,
             LinkComponent: ElectronLink,
             fetchScanResults,
-            deviceConnectActionCreator,
             androidSetupActionCreator,
             storesHub,
             scanActionCreator,
@@ -550,6 +580,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             navLinkRenderer: new NavLinkRenderer(),
             getNarrowModeThresholds: getNarrowModeThresholdsForUnified,
             leftNavActionCreator,
+            tabStopsActionCreator: tabStopsActionCreator,
         };
 
         window.insightsUserConfiguration = new UserConfigurationController(interpreter);

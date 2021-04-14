@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -29,14 +30,12 @@ import {
     VisualizationTogglePayload,
 } from './action-payloads';
 import { InspectActions } from './inspect-actions';
-import { PreviewFeaturesActions } from './preview-features-actions';
 
 const visualizationMessages = Messages.Visualizations;
 
 export class ActionCreator {
     private visualizationActions: VisualizationActions;
     private visualizationScanResultActions: VisualizationScanResultActions;
-    private previewFeaturesActions: PreviewFeaturesActions;
     private adHocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
         [VisualizationType.Color]: TelemetryEvents.COLOR_TOGGLE,
         [VisualizationType.Headings]: TelemetryEvents.HEADINGS_TOGGLE,
@@ -48,6 +47,7 @@ export class ActionCreator {
     private inspectActions: InspectActions;
     private cardSelectionActions: CardSelectionActions;
     private unifiedScanResultActions: UnifiedScanResultActions;
+    private sidePanelActions: SidePanelActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -60,11 +60,11 @@ export class ActionCreator {
         private readonly logger: Logger,
     ) {
         this.visualizationActions = actionHub.visualizationActions;
-        this.previewFeaturesActions = actionHub.previewFeaturesActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
         this.cardSelectionActions = actionHub.cardSelectionActions;
         this.unifiedScanResultActions = actionHub.scanResultActions;
+        this.sidePanelActions = actionHub.sidePanelActions;
     }
 
     public registerCallbacks(): void {
@@ -85,10 +85,6 @@ export class ActionCreator {
             this.onRescanVisualization,
         );
 
-        this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.Issues.UpdateSelectedTargets,
-            this.onUpdateIssuesSelectedTargets,
-        );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Issues.UpdateFocusedInstance,
             this.onUpdateFocusedInstance,
@@ -132,12 +128,6 @@ export class ActionCreator {
             visualizationMessages.DetailsView.Close,
             this.onDetailsViewClosed,
         );
-
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.PreviewFeatures.ClosePanel,
-            this.onClosePreviewFeaturesPanel,
-        );
-
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Assessment.AssessmentScanCompleted,
             this.onAssessmentScanCompleted,
@@ -241,14 +231,6 @@ export class ActionCreator {
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
     };
 
-    private onClosePreviewFeaturesPanel = (payload: BaseActionPayload): void => {
-        this.previewFeaturesActions.closePreviewFeatures.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(
-            TelemetryEvents.PREVIEW_FEATURES_CLOSE,
-            payload,
-        );
-    };
-
     private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
         this.visualizationScanResultActions.addTabbedElement.invoke(payload);
     };
@@ -262,10 +244,6 @@ export class ActionCreator {
 
     private onRecordingTerminated = (payload: BaseActionPayload): void => {
         this.visualizationScanResultActions.disableTabStop.invoke(payload);
-    };
-
-    private onUpdateIssuesSelectedTargets = (payload: string[]): void => {
-        this.visualizationScanResultActions.updateIssuesSelectedTargets.invoke(payload);
     };
 
     private onUpdateFocusedInstance = (payload: string[]): void => {
@@ -335,7 +313,7 @@ export class ActionCreator {
         payload: OnDetailsViewOpenPayload,
         tabId: number,
     ): Promise<void> => {
-        this.previewFeaturesActions.closePreviewFeatures.invoke(null);
+        this.sidePanelActions.closeSidePanel.invoke('PreviewFeatures');
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
         await this.detailsViewController
             .showDetailsView(tabId)

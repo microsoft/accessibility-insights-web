@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const hashUtil = require('app-builder-lib/out/util/hash');
 const fs = require('fs');
-const YAML = require('js-yaml');
 const path = require('path');
+const hashUtil = require('app-builder-lib/out/util/hash');
+const YAML = require('js-yaml');
 
 const parentDir = process.argv[2];
 const platform = process.argv[3]; // should be 'mac', 'linux', or 'windows'
@@ -33,7 +33,7 @@ const updateSha512PropertyFromFile = async (objectWithSha512Property, relativeFi
 const updateAllSha512s = async latestContent => {
     await updateSha512PropertyFromFile(latestContent, latestContent.path);
 
-    for (file of latestContent.files) {
+    for (const file of latestContent.files) {
         await updateSha512PropertyFromFile(file, file.url);
     }
 };

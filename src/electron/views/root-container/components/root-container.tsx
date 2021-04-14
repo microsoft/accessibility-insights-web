@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import './root-container.scss';
-
 import {
     withStoreSubscription,
     WithStoreSubscriptionDeps,
@@ -17,8 +15,10 @@ import {
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceConnectionStoreData } from 'electron/flux/types/device-connection-store-data';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { TabStopsStoreData } from 'electron/flux/types/tab-stops-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import {
     DeviceConnectViewContainer,
@@ -30,6 +30,7 @@ import {
     ResultsViewProps,
 } from 'electron/views/results/results-view';
 import * as React from 'react';
+import './root-container.scss';
 
 export type RootContainerDeps = WithStoreSubscriptionDeps<RootContainerState> &
     DeviceConnectViewContainerDeps &
@@ -45,12 +46,14 @@ export type RootContainerState = {
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanStoreData: ScanStoreData;
+    deviceConnectionStoreData: DeviceConnectionStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     androidSetupStoreData: AndroidSetupStoreData;
     leftNavStoreData: LeftNavStoreData;
+    tabStopsStoreData: TabStopsStoreData;
 };
 
 export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerInternal', props => {

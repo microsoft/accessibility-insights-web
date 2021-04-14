@@ -5,7 +5,6 @@ import {
     onRenderPathColumn,
     onRenderSnippetColumn,
 } from 'assessments/common/element-column-renderers';
-import { InstanceTableRow, InstanceTableColumn } from 'assessments/types/instance-table-data';
 
 import { Requirement } from 'assessments/types/requirement';
 import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
@@ -15,7 +14,6 @@ import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
 import { RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
@@ -133,27 +131,6 @@ describe('buildTestStepsFromRules', () => {
         expect(actual.columnsConfig[1].name).toBe('Snippet');
 
         expect(actual.columnsConfig[1].onRender).toBe(onRenderSnippetColumn);
-    }
-
-    function validateInstanceColumnsRender(
-        actualColumns: InstanceTableColumn[],
-        target: string[],
-        html: string,
-        message: string,
-    ): void {
-        const item: InstanceTableRow = {
-            key: 'stub-key',
-            statusChoiceGroup: null,
-            visualizationButton: null,
-            instance: {
-                target: target,
-                html: html,
-                testStepResults: null,
-            },
-        };
-
-        expect(actualColumns[0].onRender(item)).toMatchSnapshot(`render path - ${message}`);
-        expect(actualColumns[1].onRender(item)).toMatchSnapshot(`render snippet - ${message}`);
     }
 
     function expectResultToContainBase(result: Object, base: Object): void {

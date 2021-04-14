@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const androidServiceBin = require('accessibility-insights-for-android-service-bin');
-const merge = require('lodash/merge');
 const path = require('path');
+const androidServiceBin = require('accessibility-insights-for-android-service-bin');
+const yaml = require('js-yaml');
+const merge = require('lodash/merge');
 const sass = require('sass');
 const targets = require('./targets.config');
-const yaml = require('js-yaml');
 
 module.exports = function (grunt) {
     const pkgPath = path.resolve('./node_modules/.bin/pkg');
@@ -395,6 +395,7 @@ module.exports = function (grunt) {
             grunt.log.writeln(`embedding style in ${src}`);
             const fileOptions = { options: { encoding: 'utf8' } };
             const input = grunt.file.read(src, fileOptions);
+            // eslint-disable-next-line no-useless-escape
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
                 const cssFile = path.resolve(cssPath, cssName);
@@ -503,7 +504,7 @@ module.exports = function (grunt) {
         // See electron-userland/electron-builder#3547 and AppImage/AppImageKit#678
         config.linux.artifactName = fullName.replace(/ (- )?/g, '_') + '.${ext}';
 
-        for (fileset of [...config.extraResources, ...config.extraFiles]) {
+        for (const fileset of [...config.extraResources, ...config.extraFiles]) {
             fileset.from = fileset.from.replace(/TARGET_SPECIFIC_PRODUCT_DIR/g, productDir);
         }
 

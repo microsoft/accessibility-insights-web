@@ -27,7 +27,7 @@ export class ScopingActionCreator {
     }
 
     private onGetScopingState = (): void => {
-        this.scopingActions.getCurrentState.invoke(null);
+        this.scopingActions.getCurrentState.invoke();
     };
 
     private onAddSelector = (payload: ScopingPayload): void => {

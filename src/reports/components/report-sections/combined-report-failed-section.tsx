@@ -26,6 +26,7 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
         const ruleCount = cardsViewData.cards.fail.length;
 
         const CollapsibleContent = deps.collapsibleControl({
+            id: 'combined-report-failed-section',
             header: (
                 <CombinedReportResultSectionTitle
                     outcomeCount={ruleCount}

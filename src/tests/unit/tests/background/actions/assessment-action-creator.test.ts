@@ -556,6 +556,34 @@ describe('AssessmentActionCreatorTest', () => {
         );
     });
 
+    it('handles SelectNextRequirement message', () => {
+        const payload: SelectTestSubviewPayload = {
+            selectedTestSubview: 'test-requirement',
+            ...telemetryOnlyPayload,
+        } as SelectTestSubviewPayload;
+
+        const selectNextRequirement = createActionMock(payload);
+        const actionsMock = createActionsMock('selectTestSubview', selectNextRequirement.object);
+        const interpreterMock = createInterpreterMock(
+            AssessmentMessages.SelectNextRequirement,
+            payload,
+        );
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        selectNextRequirement.verifyAll();
+        telemetryEventHandlerMock.verify(
+            tp => tp.publishTelemetry(TelemetryEvents.SELECT_NEXT_REQUIREMENT, payload),
+            Times.once(),
+        );
+    });
+
     it('handles SelectGettingStarted message', () => {
         const payload: SelectGettingStartedPayload = {
             ...telemetryOnlyPayload,

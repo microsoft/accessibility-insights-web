@@ -14,6 +14,7 @@ Throughout most of the code and build commands, Accessibility Insights for Andro
 ### Prerequisites
 
 All the [prerequisites](./building-web.md#Prerequisites) for building Web are also required for Unified.
+Note that if you have Hadoop YARN installed, you will need to replace `yarn` with `yarnpkg` in the commands below.
 
 ### Building
 

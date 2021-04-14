@@ -9,9 +9,9 @@ steps:
     - script: yarn test:unified --ci
       displayName: run unified e2e tests (non-linux)
       condition: and(succeeded(), ne(variables.platform, 'linux'))
-      timeoutInMinutes: 20
+      timeoutInMinutes: 22
 
     - script: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci
       displayName: run unified e2e tests (linux)
       condition: and(succeeded(), eq(variables.platform, 'linux'))
-      timeoutInMinutes: 10
+      timeoutInMinutes: 12

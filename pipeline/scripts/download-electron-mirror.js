@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const pkg = require('../../package.json');
-const { downloadArtifact } = require('@electron/get');
-const extract = require('extract-zip');
 const fs = require('fs');
 const path = require('path');
+const { downloadArtifact } = require('@electron/get');
+const extract = require('extract-zip');
+const pkg = require('../../package.json');
 
 /*
 This script replaces existing electron & chromedriver modules
@@ -27,7 +27,7 @@ if (
     process.exit(1);
 }
 
-const assetNumber = '6179765';
+const assetNumber = '6837137';
 
 const downloadMirrors = async () => {
     const symbolsPath = await downloadElectronSymbolsArtifact('electron', 'symbols');

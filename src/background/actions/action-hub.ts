@@ -12,7 +12,6 @@ import { DetailsViewActions } from './details-view-actions';
 import { DevToolActions } from './dev-tools-actions';
 import { InspectActions } from './inspect-actions';
 import { PathSnippetActions } from './path-snippet-actions';
-import { PreviewFeaturesActions } from './preview-features-actions';
 import { ScopingActions } from './scoping-actions';
 import { UnifiedScanResultActions } from './unified-scan-result-actions';
 
@@ -21,7 +20,6 @@ export class ActionHub {
     public visualizationScanResultActions: VisualizationScanResultActions;
     public tabActions: TabActions;
     public devToolActions: DevToolActions;
-    public previewFeaturesActions: PreviewFeaturesActions;
     public assessmentActions: AssessmentActions;
     public scopingActions: ScopingActions;
     public inspectActions: InspectActions;
@@ -38,7 +36,6 @@ export class ActionHub {
         this.visualizationScanResultActions = new VisualizationScanResultActions();
         this.tabActions = new TabActions();
         this.devToolActions = new DevToolActions();
-        this.previewFeaturesActions = new PreviewFeaturesActions();
         this.assessmentActions = new AssessmentActions();
         this.scopingActions = new ScopingActions();
         this.inspectActions = new InspectActions();

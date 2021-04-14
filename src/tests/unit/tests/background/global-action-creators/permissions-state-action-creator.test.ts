@@ -21,7 +21,7 @@ describe('PermissionsStateActionCreator', () => {
     it('handles getStoreState message', () => {
         const expectedMessage = getStoreStateMessage(StoreNames.PermissionsStateStore);
         const interpreterMock = createInterpreterMock(expectedMessage, null);
-        const getCurrentStateMock = createActionMock(null);
+        const getCurrentStateMock = createActionMock(undefined);
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
         const testSubject = new PermissionsStateActionCreator(
             interpreterMock.object,

@@ -19,6 +19,7 @@ export type TestViewProps = {
     cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     contentPageInfo: ContentPageInfo;
+    tabStopsEnabled: boolean;
 };
 
 export const TestView = NamedFC<TestViewProps>('TestView', props => {
@@ -36,19 +37,19 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
 
     if (scanStatus !== ScanStatus.Completed) {
         return (
-            <>
+            <div>
                 {headerSection}
                 <ScanningSpinner
                     isSpinning={scanStatus === ScanStatus.Scanning}
                     label="Scanning..."
                     aria-live="assertive"
                 />
-            </>
+            </div>
         );
     }
 
     return (
-        <>
+        <div>
             {headerSection}
             <contentPageInfo.instancesSectionComponent
                 deps={deps}
@@ -56,7 +57,8 @@ export const TestView = NamedFC<TestViewProps>('TestView', props => {
                 scanMetadata={scanMetadata}
                 shouldAlertFailuresCount={true}
                 cardsViewData={cardsViewData}
+                tabStopsEnabled={props.tabStopsEnabled}
             />
-        </>
+        </div>
     );
 });

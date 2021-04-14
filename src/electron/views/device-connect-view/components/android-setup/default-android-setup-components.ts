@@ -6,6 +6,7 @@ import { DetectAdbStep } from 'electron/views/device-connect-view/components/and
 import { DetectDevicesStep } from 'electron/views/device-connect-view/components/android-setup/detect-devices-step';
 import { DetectPermissionsStep } from 'electron/views/device-connect-view/components/android-setup/detect-permissions-step';
 import { DetectServiceStep } from 'electron/views/device-connect-view/components/android-setup/detect-service-step';
+import { GrantOverlayPermissionStep } from 'electron/views/device-connect-view/components/android-setup/grant-overlay-permission-step';
 import { InstallingServiceStep } from 'electron/views/device-connect-view/components/android-setup/installing-service-step';
 import { PromptChooseDeviceStep } from 'electron/views/device-connect-view/components/android-setup/prompt-choose-device-step';
 import { PromptConfiguringPortForwardingFailedStep } from 'electron/views/device-connect-view/components/android-setup/prompt-configuring-port-forwarding-failed-step';
@@ -27,6 +28,7 @@ export const defaultAndroidSetupComponents: AndroidSetupStepComponentProvider = 
     'prompt-install-failed': PromptInstallFailedStep,
     'prompt-grant-permissions': PromptGrantPermissionsStep,
     'detect-permissions': DetectPermissionsStep,
+    'grant-overlay-permission': GrantOverlayPermissionStep,
     'installing-service': InstallingServiceStep,
     'detect-devices': DetectDevicesStep,
     'detect-service': DetectServiceStep,

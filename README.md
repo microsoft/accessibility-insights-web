@@ -5,8 +5,8 @@ Licensed under the MIT License.
 
 ## ![Product Logo](./src/icons/brand/blue/brand-blue-48px.png) Accessibility Insights for Web & Android
 
-[![Build Status](https://dev.azure.com/accessibility-insights/accessibility-insights-web/_apis/build/status/accessibility-insights-web%20CI?branchName=master)](https://dev.azure.com/accessibility-insights/accessibility-insights-web/_build/latest?definitionId=37&branchName=master)
-[![codecov](https://codecov.io/gh/microsoft/accessibility-insights-web/branch/master/graph/badge.svg)](https://codecov.io/gh/microsoft/accessibility-insights-web)
+[![Build Status](https://dev.azure.com/accessibility-insights/accessibility-insights-web/_apis/build/status/accessibility-insights-web%20CI?branchName=main)](https://dev.azure.com/accessibility-insights/accessibility-insights-web/_build/latest?definitionId=37&branchName=main)
+[![codecov](https://codecov.io/gh/microsoft/accessibility-insights-web/branch/main/graph/badge.svg)](https://codecov.io/gh/microsoft/accessibility-insights-web)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pbjjkligggfmakdaogkfomddhfmpjeni.svg?label=Version)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)

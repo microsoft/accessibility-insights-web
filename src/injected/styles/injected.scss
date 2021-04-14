@@ -11,6 +11,15 @@
     filter: grayscale(100%) !important;
 }
 
+.insights-formatted-text-spacing-container {
+    line-height: 1.5 !important;
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
+    p {
+        margin-bottom: 2em !important;
+    }
+}
+
 .insights-pseudo-selector-style-container {
     *::before,
     *::after {
@@ -44,17 +53,11 @@
 
     .insights-dialog-container {
         @include max-z-index();
-    }
-
-    .insights-dialog-main-override-shadow {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: $neutral-alpha-60;
-        @include max-z-index();
-        font-family: $fontFamily;
+        position: absolute !important;
+        top: 0px !important;
+        left: 0px !important;
+        padding: 0px !important;
+        margin: 0px !important;
     }
 
     div.insights-dialog-main-container {
@@ -90,22 +93,8 @@
         z-index: 999999999 !important;
     }
 
-    .insights-modal {
-        overflow: hidden !important;
-    }
-
     .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-title {
         padding-left: 19px;
-    }
-
-    .insights-dialog-main-override-shadow {
-        .ms-Dialog-title {
-            font-family: $fontFamily;
-        }
-
-        .ms-button-flex-container {
-            display: flex;
-        }
     }
 
     .insights-dialog-main-override .insights-dialog-main-container .ms-Dialog-inner {
@@ -128,14 +117,6 @@
         }
     }
 
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
-        fill: $communication-primary !important;
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled svg path {
-        fill: $neutral-30 !important;
-    }
-
     .insights-dialog-main-override .file-issue-button,
     .insights-dialog-main-override .copy-issue-details-button {
         margin-left: 8px !important;
@@ -150,155 +131,8 @@
         }
     }
 
-    .insights-dialog-main-override-shadow .file-issue-button,
-    .insights-dialog-main-override-shadow .copy-issue-details-button {
-        margin-left: 8px !important;
-
-        svg path {
-            fill: $neutral-100 !important;
-            fill-opacity: 0.9 !important;
-        }
-    }
-
-    .insights-dialog-main-override ul,
-    .insights-dialog-main-override-shadow ul {
+    .insights-dialog-main-override ul {
         margin-top: 3px !important;
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-container {
-        margin-bottom: 12px !important;
-        position: relative;
-        background-color: $neutral-2;
-        margin: auto;
-        padding: 16px 20px;
-        border: 1px solid $neutral-60;
-        width: 35em;
-        min-width: 27%;
-        text-align: left;
-        box-shadow: 0 4px 8px 0 $neutral-alpha-20, 0 6px 20px 0 $neutral-alpha-20;
-        animation-name: animatetop;
-        animation-duration: 0.4s;
-        align-items: center;
-        top: 30%;
-
-        .insights-dialog-header {
-            margin-top: 15px;
-
-            .ms-Dialog-title {
-                display: inline;
-                font-size: 21px;
-                font-weight: 100;
-            }
-
-            .ms-Dialog-topButton {
-                button {
-                    background-color: transparent;
-                    border: none;
-                    font-size: 16px;
-                    cursor: pointer;
-
-                    &:hover {
-                        color: $communication-shade-20;
-                    }
-                }
-
-                float: right;
-
-                i {
-                    font-style: normal;
-                    font-family: FabricMDL2Icons;
-                }
-            }
-        }
-    }
-
-    .insights-dialog-main-override-shadow .ms-Grid .ms-Grid-row {
-        button {
-            position: relative;
-            font-family: $fontFamily;
-            -webkit-font-smoothing: antialiased;
-            font-size: 14px;
-            font-weight: 400;
-            box-sizing: border-box;
-            display: inline-block;
-            text-align: center;
-            cursor: pointer;
-            vertical-align: top;
-            padding: 0px 16px;
-            min-width: 80px;
-            height: 32px;
-            background-color: $communication-primary;
-            color: $neutral-0;
-            user-select: none;
-            outline: transparent;
-            border-width: 1px;
-            border-style: solid;
-            border-color: transparent;
-            border-image: initial;
-            text-decoration: none;
-            border-radius: 0px;
-
-            &:focus {
-                outline: -webkit-focus-ring-color auto 5px;
-            }
-        }
-
-        button:disabled {
-            background-color: $neutral-4;
-            color: $neutral-30;
-            pointer-events: none;
-        }
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
-        margin-top: 4px;
-
-        button {
-            position: relative;
-            font-family: $fontFamily;
-            -webkit-font-smoothing: antialiased;
-            font-size: 14px;
-            font-weight: 400;
-            box-sizing: border-box;
-            display: inline-block;
-            text-align: center;
-            cursor: pointer;
-            vertical-align: top;
-            padding: 0px 16px;
-            min-width: 80px;
-            height: 32px;
-            background-color: $neutral-4;
-            color: $neutral-80;
-            user-select: none;
-            outline: transparent;
-            border-width: 1px;
-            border-style: solid;
-            border-color: transparent;
-            border-image: initial;
-            text-decoration: none;
-            border-radius: 0px;
-
-            &:focus {
-                outline: -webkit-focus-ring-color auto 5px;
-            }
-
-            svg {
-                margin-left: 4px;
-                margin-right: 4px;
-            }
-        }
-
-        button:disabled {
-            background-color: $neutral-4;
-            color: $neutral-30;
-            pointer-events: none;
-        }
-
-        .ms-Button-label {
-            margin-left: 4px;
-            line-height: 100%;
-            font-weight: 600;
-        }
     }
 
     .insights-dialog-main-override .insights-dialog-inspect-disabled {
@@ -316,8 +150,7 @@
         font-weight: $fontWeightSemiBold;
     }
 
-    .insights-dialog-main-override,
-    .insights-dialog-main-override-shadow {
+    .insights-dialog-main-override {
         .insights-dialog-title {
             margin-bottom: 16px !important;
             padding-bottom: 0px !important;
@@ -424,13 +257,4 @@
         padding: 0 0 0 0 !important;
         margin: 0 0 0 0 !important;
     }
-}
-
-// We need the below styling only when not using shadow dom
-#accessibility-insights-root-container > .insights-dialog-container {
-    position: absolute !important;
-    top: 0px !important;
-    left: 0px !important;
-    padding: 0px !important;
-    margin: 0px !important;
 }

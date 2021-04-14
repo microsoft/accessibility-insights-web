@@ -3,6 +3,7 @@
 exports[`FluentLeftNav render left nav by itself 1`] = `
 <LeftNav
   deps={Object {}}
+  featureFlagStoreData={Object {}}
   selectedKey="automated-checks"
 />
 `;
@@ -34,6 +35,7 @@ exports[`FluentLeftNav render left nav inside panel 1`] = `
   </div>
   <LeftNav
     deps={Object {}}
+    featureFlagStoreData={Object {}}
     selectedKey="automated-checks"
   />
 </GenericPanel>

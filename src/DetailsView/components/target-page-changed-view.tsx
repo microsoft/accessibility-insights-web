@@ -30,8 +30,8 @@ export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>(
         );
         const startOverText = (
             <>
-                'The target page has changed. Use the {startOverButton} button to scan the new
-                target page.'
+                The target page has changed. Use the {startOverButton} button to scan the new target
+                page.
             </>
         );
 

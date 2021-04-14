@@ -32,7 +32,7 @@ export function getReportExportDialogForAssessment(
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
-        scanDate: scanMetadata.timespan.scanComplete,
+        scanDate: props.deps.getCurrentDate(),
         htmlGenerator: description =>
             reportGenerator.generateAssessmentReport(
                 assessmentStoreData,

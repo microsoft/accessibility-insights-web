@@ -4,9 +4,9 @@
 // @ts-check
 const fs = require('fs');
 const path = require('path');
-const { getMemoizedImportsForFile } = require('./import-finder');
 const glob = require('glob');
 const config = require('./config');
+const { getMemoizedImportsForFile } = require('./import-finder');
 
 // "Eligible" means "a file that we might want to list in tsconfig.strictNullChecks.json"
 // "Checked" means "a file that is currently listed in tsconfig.strictNullChecks.json"

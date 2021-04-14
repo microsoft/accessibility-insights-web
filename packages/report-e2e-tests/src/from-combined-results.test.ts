@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import { reporterFactory, CombinedReportParameters } from 'accessibility-insights-report';
 import { resetIds } from 'office-ui-fabric-react';
-import * as path from 'path';
 import * as prettier from 'prettier';
 
 import { combinedResultsWithIssues } from './examples/combined-results-with-issues.input';

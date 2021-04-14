@@ -42,6 +42,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -50,7 +51,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -61,9 +62,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s device-2 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -104,6 +124,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -112,7 +133,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -123,9 +144,28 @@ Success
   "-s device-2 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-2)",
   },
+  "-s device-2 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s emulator-3 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -166,6 +206,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -174,7 +215,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -185,9 +226,28 @@ Success
   "-s emulator-3 shell getprop ro.product.model": Object {
     "stdout": "working mock device (emulator-3)",
   },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -251,6 +311,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -259,7 +320,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -270,9 +331,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -333,6 +413,9 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -344,7 +427,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -358,9 +441,519 @@ Success
     "delayMs": 5000,
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
+  },
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "delayMs": 5000,
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "devices": Object {
+    "delayMs": 5000,
+    "stdout": "List of devices attached
+device-1	device
+",
+  },
+  "start-server": Object {
+    "delayMs": 5000,
+  },
+}
+`;
+
+exports[`mock-adb tests match snapshots after normalizing path simulateInputKeyeventError(commonAdbConfigs['multiple-devices']) 1`] = `
+Object {
+  "-s device-1 devices": Object {
+    "stdout": "List of devices attached
+device-1	device
+device-2	device
+emulator-3	emulator
+",
+  },
+  "-s device-1 features": Object {
+    "stdout": "abb_exec
+fixed_push_symlink_timestamp
+abb
+stat_v2
+apex
+shell_v2
+fixed_push_mkdir
+cmd",
+  },
+  "-s device-1 forward --remove tcp:62442": Object {
+    "stopTestServer": Object {
+      "port": 62442,
+    },
+  },
+  "-s device-1 forward tcp:62442 tcp:62442": Object {
+    "startTestServer": Object {
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
+      "port": 62442,
+    },
+  },
+  "-s device-1 help": Object {
+    "stdout": "--streaming: force streaming APK directly into Package Manager",
+  },
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
+    "stdout": "Performing Streamed Install
+Success
+",
+  },
+  "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
+    "exitCode": 0,
+    "stdout": "",
+  },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
+  "-s device-1 shell dumpsys accessibility": Object {
+    "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
+  },
+  "-s device-1 shell dumpsys media_projection": Object {
+    "stdout": "(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE",
+  },
+  "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
+    versionName=1.3.1",
+  },
+  "-s device-1 shell getprop ro.build.version.release": Object {
+    "stdout": "10",
+  },
+  "-s device-1 shell getprop ro.build.version.sdk": Object {
+    "stdout": "29",
+  },
+  "-s device-1 shell getprop ro.product.model": Object {
+    "stdout": "working mock device (device-1)",
+  },
+  "-s device-1 shell input keyevent 19": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
+  "-s device-2 devices": Object {
+    "stdout": "List of devices attached
+device-1	device
+device-2	device
+emulator-3	emulator
+",
+  },
+  "-s device-2 features": Object {
+    "stdout": "abb_exec
+fixed_push_symlink_timestamp
+abb
+stat_v2
+apex
+shell_v2
+fixed_push_mkdir
+cmd",
+  },
+  "-s device-2 forward --remove tcp:62442": Object {
+    "stopTestServer": Object {
+      "port": 62442,
+    },
+  },
+  "-s device-2 forward tcp:62442 tcp:62442": Object {
+    "startTestServer": Object {
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
+      "port": 62442,
+    },
+  },
+  "-s device-2 help": Object {
+    "stdout": "--streaming: force streaming APK directly into Package Manager",
+  },
+  "-s device-2 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
+    "stdout": "Performing Streamed Install
+Success
+",
+  },
+  "-s device-2 mkdir -p /data/local/tmp/appium_cache": Object {
+    "exitCode": 0,
+    "stdout": "",
+  },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
+  "-s device-2 shell dumpsys accessibility": Object {
+    "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
+  },
+  "-s device-2 shell dumpsys media_projection": Object {
+    "stdout": "(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE",
+  },
+  "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
+    versionName=1.3.1",
+  },
+  "-s device-2 shell getprop ro.build.version.release": Object {
+    "stdout": "10",
+  },
+  "-s device-2 shell getprop ro.build.version.sdk": Object {
+    "stdout": "29",
+  },
+  "-s device-2 shell getprop ro.product.model": Object {
+    "stdout": "working mock device (device-2)",
+  },
+  "-s device-2 shell input keyevent 19": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
+  "-s emulator-3 devices": Object {
+    "stdout": "List of devices attached
+device-1	device
+device-2	device
+emulator-3	emulator
+",
+  },
+  "-s emulator-3 features": Object {
+    "stdout": "abb_exec
+fixed_push_symlink_timestamp
+abb
+stat_v2
+apex
+shell_v2
+fixed_push_mkdir
+cmd",
+  },
+  "-s emulator-3 forward --remove tcp:62442": Object {
+    "stopTestServer": Object {
+      "port": 62442,
+    },
+  },
+  "-s emulator-3 forward tcp:62442 tcp:62442": Object {
+    "startTestServer": Object {
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
+      "port": 62442,
+    },
+  },
+  "-s emulator-3 help": Object {
+    "stdout": "--streaming: force streaming APK directly into Package Manager",
+  },
+  "-s emulator-3 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
+    "stdout": "Performing Streamed Install
+Success
+",
+  },
+  "-s emulator-3 mkdir -p /data/local/tmp/appium_cache": Object {
+    "exitCode": 0,
+    "stdout": "",
+  },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
+  "-s emulator-3 shell dumpsys accessibility": Object {
+    "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
+  },
+  "-s emulator-3 shell dumpsys media_projection": Object {
+    "stdout": "(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE",
+  },
+  "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
+    versionName=1.3.1",
+  },
+  "-s emulator-3 shell getprop ro.build.version.release": Object {
+    "stdout": "10",
+  },
+  "-s emulator-3 shell getprop ro.build.version.sdk": Object {
+    "stdout": "29",
+  },
+  "-s emulator-3 shell getprop ro.product.model": Object {
+    "stdout": "working mock device (emulator-3)",
+  },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'device-2' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-2 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "PUSH PLACEHOLDER for 'emulator-3' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s emulator-3 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "devices": Object {
+    "stdout": "List of devices attached
+device-1	device
+device-2	device
+emulator-3	emulator
+",
+  },
+  "start-server": Object {},
+}
+`;
+
+exports[`mock-adb tests match snapshots after normalizing path simulateInputKeyeventError(commonAdbConfigs['single-device']) 1`] = `
+Object {
+  "-s device-1 devices": Object {
+    "stdout": "List of devices attached
+device-1	device
+",
+  },
+  "-s device-1 features": Object {
+    "stdout": "abb_exec
+fixed_push_symlink_timestamp
+abb
+stat_v2
+apex
+shell_v2
+fixed_push_mkdir
+cmd",
+  },
+  "-s device-1 forward --remove tcp:62442": Object {
+    "stopTestServer": Object {
+      "port": 62442,
+    },
+  },
+  "-s device-1 forward tcp:62442 tcp:62442": Object {
+    "startTestServer": Object {
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
+      "port": 62442,
+    },
+  },
+  "-s device-1 help": Object {
+    "stdout": "--streaming: force streaming APK directly into Package Manager",
+  },
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
+    "stdout": "Performing Streamed Install
+Success
+",
+  },
+  "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
+    "exitCode": 0,
+    "stdout": "",
+  },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
+  "-s device-1 shell dumpsys accessibility": Object {
+    "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
+  },
+  "-s device-1 shell dumpsys media_projection": Object {
+    "stdout": "(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE",
+  },
+  "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
+    versionName=1.3.1",
+  },
+  "-s device-1 shell getprop ro.build.version.release": Object {
+    "stdout": "10",
+  },
+  "-s device-1 shell getprop ro.build.version.sdk": Object {
+    "stdout": "29",
+  },
+  "-s device-1 shell getprop ro.product.model": Object {
+    "stdout": "working mock device (device-1)",
+  },
+  "-s device-1 shell input keyevent 19": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
+  "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
+    "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
+    "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
+  },
+  "devices": Object {
+    "stdout": "List of devices attached
+device-1	device
+",
+  },
+  "start-server": Object {},
+}
+`;
+
+exports[`mock-adb tests match snapshots after normalizing path simulateInputKeyeventError(commonAdbConfigs['slow-single-device']) 1`] = `
+Object {
+  "-s device-1 devices": Object {
+    "delayMs": 5000,
+    "stdout": "List of devices attached
+device-1	device
+",
+  },
+  "-s device-1 features": Object {
+    "delayMs": 5000,
+    "stdout": "abb_exec
+fixed_push_symlink_timestamp
+abb
+stat_v2
+apex
+shell_v2
+fixed_push_mkdir
+cmd",
+  },
+  "-s device-1 forward --remove tcp:62442": Object {
+    "delayMs": 5000,
+    "stopTestServer": Object {
+      "port": 62442,
+    },
+  },
+  "-s device-1 forward tcp:62442 tcp:62442": Object {
+    "delayMs": 5000,
+    "startTestServer": Object {
+      "path": "./src/tests/miscellaneous/mock-service-for-android/AccessibilityInsights",
+      "port": 62442,
+    },
+  },
+  "-s device-1 help": Object {
+    "delayMs": 5000,
+    "stdout": "--streaming: force streaming APK directly into Package Manager",
+  },
+  "-s device-1 install -r ./drop/electron/unified-dev/product/android-service/android-service.apk": Object {
+    "delayMs": 5000,
+    "stdout": "Performing Streamed Install
+Success
+",
+  },
+  "-s device-1 mkdir -p /data/local/tmp/appium_cache": Object {
+    "delayMs": 5000,
+    "exitCode": 0,
+    "stdout": "",
+  },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
+  "-s device-1 shell dumpsys accessibility": Object {
+    "delayMs": 5000,
+    "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
+  },
+  "-s device-1 shell dumpsys media_projection": Object {
+    "delayMs": 5000,
+    "stdout": "(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE",
+  },
+  "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+    "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
+    versionName=1.3.1",
+  },
+  "-s device-1 shell getprop ro.build.version.release": Object {
+    "delayMs": 5000,
+    "stdout": "10",
+  },
+  "-s device-1 shell getprop ro.build.version.sdk": Object {
+    "delayMs": 5000,
+    "stdout": "29",
+  },
+  "-s device-1 shell getprop ro.product.model": Object {
+    "delayMs": 5000,
+    "stdout": "working mock device (device-1)",
+  },
+  "-s device-1 shell input keyevent 19": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stderr": "Disabled by test config",
+  },
+  "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
   },
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
@@ -417,6 +1010,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -425,7 +1019,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -436,9 +1030,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s device-2 devices": Object {
     "stderr": "Disabled by test config",
   },
@@ -475,6 +1088,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -483,7 +1097,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -494,9 +1108,28 @@ Success
   "-s device-2 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-2)",
   },
+  "-s device-2 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s emulator-3 devices": Object {
     "stderr": "Disabled by test config",
   },
@@ -533,6 +1166,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -541,7 +1175,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -552,9 +1186,28 @@ Success
   "-s emulator-3 shell getprop ro.product.model": Object {
     "stdout": "working mock device (emulator-3)",
   },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -612,6 +1265,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -620,7 +1274,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -631,9 +1285,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -689,6 +1362,9 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -700,7 +1376,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -714,9 +1390,36 @@ Success
     "delayMs": 5000,
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
   },
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
@@ -771,6 +1474,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -779,7 +1483,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -790,9 +1494,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s device-2 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -830,6 +1553,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -838,7 +1562,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -849,9 +1573,28 @@ Success
   "-s device-2 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-2)",
   },
+  "-s device-2 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s emulator-3 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -889,6 +1632,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -897,7 +1641,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -908,9 +1652,28 @@ Success
   "-s emulator-3 shell getprop ro.product.model": Object {
     "stdout": "working mock device (emulator-3)",
   },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -971,6 +1734,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -979,7 +1743,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -990,9 +1754,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1049,6 +1832,9 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -1060,7 +1846,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -1074,9 +1860,36 @@ Success
     "delayMs": 5000,
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
   },
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
@@ -1137,6 +1950,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1145,7 +1959,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1156,9 +1970,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s device-2 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -1199,6 +2032,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1207,7 +2041,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1218,9 +2052,28 @@ Success
   "-s device-2 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-2)",
   },
+  "-s device-2 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s emulator-3 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -1261,6 +2114,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1269,7 +2123,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1280,9 +2134,28 @@ Success
   "-s emulator-3 shell getprop ro.product.model": Object {
     "stdout": "working mock device (emulator-3)",
   },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1346,6 +2219,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1354,7 +2228,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1365,9 +2239,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1428,6 +2321,9 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -1439,7 +2335,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -1452,9 +2348,36 @@ Success
     "delayMs": 5000,
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
   },
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
@@ -1515,6 +2438,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1523,7 +2447,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1534,9 +2458,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s device-2 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -1577,6 +2520,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-2 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1585,7 +2529,7 @@ Success
   },
   "-s device-2 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-2 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1596,9 +2540,28 @@ Success
   "-s device-2 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-2)",
   },
+  "-s device-2 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s emulator-3 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -1639,6 +2602,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1647,7 +2611,7 @@ Success
   },
   "-s emulator-3 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s emulator-3 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1658,9 +2622,28 @@ Success
   "-s emulator-3 shell getprop ro.product.model": Object {
     "stdout": "working mock device (emulator-3)",
   },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1724,6 +2707,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1732,7 +2716,7 @@ Success
   },
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "stdout": "10",
@@ -1743,9 +2727,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -1806,6 +2809,9 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
   "-s device-1 shell dumpsys accessibility": Object {
     "stderr": "Disabled by test config",
   },
@@ -1816,7 +2822,7 @@ Success
   "-s device-1 shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice": Object {
     "delayMs": 5000,
     "stdout": "    versionCode=102000 minSdk=24 targetSdk=28
-    versionName=1.2.1",
+    versionName=1.3.1",
   },
   "-s device-1 shell getprop ro.build.version.release": Object {
     "delayMs": 5000,
@@ -1830,9 +2836,36 @@ Success
     "delayMs": 5000,
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
   },
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,
@@ -1893,6 +2926,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1911,9 +2945,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s device-2 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -1954,6 +3007,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-2 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-2 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -1972,9 +3026,28 @@ Success
   "-s device-2 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-2)",
   },
+  "-s device-2 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-2 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-2 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-2 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "-s emulator-3 devices": Object {
     "stdout": "List of devices attached
 device-1	device
@@ -2015,6 +3088,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s emulator-3 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s emulator-3 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -2033,9 +3107,28 @@ Success
   "-s emulator-3 shell getprop ro.product.model": Object {
     "stdout": "working mock device (emulator-3)",
   },
+  "-s emulator-3 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s emulator-3 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s emulator-3 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s emulator-3 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -2099,6 +3192,7 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {},
   "-s device-1 shell dumpsys accessibility": Object {
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
   },
@@ -2117,9 +3211,28 @@ Success
   "-s device-1 shell getprop ro.product.model": Object {
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "stdout": "",
   },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {},
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "regexTarget": "^-s device-1 push .*android-service.apk /data/local/tmp/appium_cache",
     "stdout": "(truncated-package-path)...ed. 32.0 MB/s (181531 bytes in 0.005s)",
@@ -2180,6 +3293,9 @@ Success
     "exitCode": 0,
     "stdout": "",
   },
+  "-s device-1 shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice": Object {
+    "delayMs": 5000,
+  },
   "-s device-1 shell dumpsys accessibility": Object {
     "delayMs": 5000,
     "stdout": "                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}",
@@ -2203,9 +3319,36 @@ Success
     "delayMs": 5000,
     "stdout": "working mock device (device-1)",
   },
+  "-s device-1 shell input keyevent 19": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 20": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 21": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 22": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 61": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
+  "-s device-1 shell input keyevent 66": Object {
+    "delayMs": 5000,
+    "stdout": "",
+  },
   "-s device-1 shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_": Object {
     "delayMs": 5000,
     "stdout": "",
+  },
+  "-s device-1 shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW": Object {
+    "delayMs": 5000,
   },
   "PUSH PLACEHOLDER for 'device-1' - MATCH IS VIA REGEX": Object {
     "delayMs": 5000,

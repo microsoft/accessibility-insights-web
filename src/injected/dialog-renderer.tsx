@@ -8,10 +8,8 @@ import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
 import { NewTabLink } from '../common/components/new-tab-link';
-import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { getPlatform } from '../common/platform';
-import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
@@ -29,17 +27,12 @@ import {
 } from './layered-details-dialog-component';
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
-import { ShadowUtils } from './shadow-utils';
 
 export interface DetailsDialogWindowMessage {
     data: HtmlElementAxeResults;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export type RenderDialog = (
-    data: HtmlElementAxeResults,
-    featureFlagStoreData: FeatureFlagStoreData,
-) => void;
+export type RenderDialog = (data: HtmlElementAxeResults) => void;
 
 export class DialogRenderer {
     private static readonly renderDetailsDialogCommand = 'insights.detailsDialog';
@@ -51,7 +44,6 @@ export class DialogRenderer {
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly navigatorUtils: NavigatorUtils,
-        private readonly shadowUtils: ShadowUtils,
         private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,
@@ -64,10 +56,7 @@ export class DialogRenderer {
         }
     }
 
-    public render: RenderDialog = (
-        data: HtmlElementAxeResults,
-        featureFlagStoreData: FeatureFlagStoreData,
-    ) => {
+    public render: RenderDialog = (data: HtmlElementAxeResults) => {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -77,9 +66,7 @@ export class DialogRenderer {
                 data,
             );
             const target: string[] = this.getTarget(data);
-            const dialogContainer: HTMLDivElement = featureFlagStoreData[FeatureFlags.shadowDialog]
-                ? this.initializeDialogContainerInShadowDom()
-                : this.appendDialogContainer();
+            const dialogContainer: HTMLDivElement = this.appendDialogContainer();
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 IssueFilingUrlStringUtils,
@@ -119,7 +106,6 @@ export class DialogRenderer {
                     userConfigStore={mainWindowContext.getUserConfigStore()}
                     devToolsShortcut={getPlatform(this.windowUtils).devToolsShortcut}
                     devToolActionMessageCreator={mainWindowContext.getDevToolActionMessageCreator()}
-                    featureFlagStoreData={featureFlagStoreData}
                 />,
                 dialogContainer,
             );
@@ -127,7 +113,7 @@ export class DialogRenderer {
             const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
                 win: this.windowUtils.getTopWindow(),
                 command: DialogRenderer.renderDetailsDialogCommand,
-                message: { data: data, featureFlagStoreData: featureFlagStoreData },
+                message: { data: data },
             };
             this.frameCommunicator.sendMessage(windowMessageRequest);
         }
@@ -139,17 +125,8 @@ export class DialogRenderer {
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ): void => {
-        this.render(message.data, message.featureFlagStoreData);
+        this.render(message.data);
     };
-
-    private initializeDialogContainerInShadowDom(): HTMLDivElement {
-        const shadowContainer = this.shadowUtils.getShadowContainer();
-
-        const dialogContainer = this.dom.createElement('div');
-        dialogContainer.className = 'insights-shadow-dialog-container';
-        shadowContainer.appendChild(dialogContainer);
-        return dialogContainer;
-    }
 
     private appendDialogContainer(): HTMLDivElement {
         this.htmlElementUtils.deleteAllElements('.insights-dialog-container');

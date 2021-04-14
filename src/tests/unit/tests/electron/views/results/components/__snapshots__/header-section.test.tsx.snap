@@ -9,12 +9,12 @@ exports[`HeaderSection renders 1`] = `
   >
     test-title
   </h1>
-  <p
+  <div
     className="subtitle"
   >
     <React.Fragment>
       test-description
     </React.Fragment>
-  </p>
+  </div>
 </div>
 `;

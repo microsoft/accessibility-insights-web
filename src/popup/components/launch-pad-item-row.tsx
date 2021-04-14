@@ -14,7 +14,7 @@ export interface LaunchPadItemRowProps {
 
 const descriptionClassName = 'launch-pad-item-description';
 
-export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps, undefined> {
+export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps> {
     private descriptionId = uniqueId(`${descriptionClassName}-`);
     public render(): JSX.Element {
         return (

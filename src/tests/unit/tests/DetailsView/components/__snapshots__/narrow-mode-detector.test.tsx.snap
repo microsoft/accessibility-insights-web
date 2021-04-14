@@ -1,27 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NarrowModeDetector render renders ReactResizeDetector  1`] = `
-<ResizeDetector
-  handleHeight={false}
-  handleWidth={true}
-  nodeType="div"
-  onResize={null}
-  querySelector="body"
-  refreshRate={1000}
-  skipOnMount={false}
-  targetDomEl={null}
-  targetRef={null}
->
-  [Function]
-</ResizeDetector>
-`;
-
 exports[`NarrowModeDetector render renders child component properly when narrow mode is disabled: All narrow mode status values should be false 1`] = `
 <TestComponent
   narrowModeStatus={
     Object {
       "isCommandBarCollapsed": false,
       "isHeaderAndNavCollapsed": false,
+      "isVirtualKeyboardCollapsed": false,
     }
   }
 />

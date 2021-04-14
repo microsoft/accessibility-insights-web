@@ -4,7 +4,6 @@
 import { LeftNavActions } from 'electron/flux/action/left-nav-actions';
 import { LeftNavStore } from 'electron/flux/store/left-nav-store';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
-import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import { createStoreWithNullParams, StoreTester } from 'tests/unit/common/store-tester';
 
 describe('LeftNavStore', () => {

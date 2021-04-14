@@ -22,7 +22,6 @@ describe('LandmarksInstanceDetailsColumnRendererTest', () => {
             <AssessmentInstanceDetailsColumn
                 background={LandmarkFormatter.getStyleForLandmarkRole('banner').borderColor}
                 textContent={'banner: label'}
-                tooltipId={null}
                 customClassName="radio"
             />
         );
@@ -42,7 +41,6 @@ describe('LandmarksInstanceDetailsColumnRendererTest', () => {
             <AssessmentInstanceDetailsColumn
                 background={LandmarkFormatter.getStyleForLandmarkRole('banner').borderColor}
                 textContent={'banner'}
-                tooltipId={null}
                 customClassName="radio"
             />
         );

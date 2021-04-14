@@ -22,6 +22,7 @@ export const INSPECT_OPEN: string = 'InspectOpen';
 export const COPY_ISSUE_DETAILS: string = 'CopyIssueDetails';
 export const FILE_ISSUE_CLICK: string = 'FileIssueClick';
 export const SELECT_REQUIREMENT: string = 'selectRequirement';
+export const SELECT_NEXT_REQUIREMENT: string = 'selectNextRequirement';
 export const SELECT_GETTING_STARTED: string = 'selectGettingStarted';
 export const START_OVER_TEST: string = 'startOverTest';
 export const CANCEL_START_OVER_TEST: string = 'cancelStartOverTest';
@@ -193,7 +194,7 @@ export type NeedsReviewAnalyzerScanTelemetryData = {
     incompleteRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
-export type ValidatePortTelemetryData = {
+export type PortTelemetryData = {
     port: number;
 };
 
@@ -227,6 +228,10 @@ export type ScanIncompleteWarningsTelemetryData = {
     scanIncompleteWarnings: ScanIncompleteWarningId[];
 };
 
+export type DeviceFocusKeyEventTelemetryData = {
+    keyEventCode: number;
+};
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -247,8 +252,9 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | ValidatePortTelemetryData
+    | PortTelemetryData
     | AndroidScanCompletedTelemetryData
     | AndroidScanFailedTelemetryData
+    | DeviceFocusKeyEventTelemetryData
     | ScanIncompleteWarningsTelemetryData
     | SetAllUrlsPermissionTelemetryData;

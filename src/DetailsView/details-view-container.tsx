@@ -9,7 +9,7 @@ import {
     NarrowModeDetector,
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
-import { ISelection, Spinner, SpinnerSize } from 'office-ui-fabric-react';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ThemeDeps } from '../common/components/theme';
 import {
@@ -54,7 +54,6 @@ export type DetailsViewContainerDeps = {
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
     getCardViewData: GetCardViewData;
     getCardSelectionViewData: GetCardSelectionViewData;
-    issuesSelection: ISelection;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     scopingActionMessageCreator: ScopingActionMessageCreator;
     inspectActionMessageCreator: InspectActionMessageCreator;

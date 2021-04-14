@@ -12,6 +12,7 @@ export type AndroidSetupDeps = {
     hasExpectedServiceVersion: () => Promise<boolean>;
     installService: () => Promise<boolean>;
     hasExpectedPermissions: () => Promise<boolean>;
+    grantOverlayPermission: () => Promise<void>;
     setupTcpForwarding: () => Promise<number>;
     removeTcpForwarding: (hostPort: number) => Promise<void>;
     fetchDeviceConfig: (port: number) => Promise<DeviceConfig>;

@@ -17,7 +17,6 @@ import {
     ScanData,
     TestsEnabledState,
 } from 'common/types/store-data/visualization-store-data';
-import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import {
@@ -27,7 +26,6 @@ import {
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { cloneDeep } from 'lodash';
 import { IColumn } from 'office-ui-fabric-react';
-import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';

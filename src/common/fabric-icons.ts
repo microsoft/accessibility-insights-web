@@ -73,6 +73,7 @@ export function initializeFabricIcons(): void {
             textDocument: '\uF029',
             undo: '\uE7A7',
             unknown: '\uE9CE',
+            upArrow: '\uE74A',
             view: '\uE890',
         },
     });

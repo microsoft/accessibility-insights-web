@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import * as classNames from 'classnames';
+import classNames from 'classnames';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import {
@@ -12,7 +12,6 @@ import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import * as styles from 'DetailsView/details-view-body.scss';
-import { ISelection } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -57,7 +56,6 @@ export interface DetailsViewBodyProps {
     dropdownClickHandler: DropdownClickHandler;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    issuesSelection: ISelection;
     issuesTableHandler: IssuesTableHandler;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;

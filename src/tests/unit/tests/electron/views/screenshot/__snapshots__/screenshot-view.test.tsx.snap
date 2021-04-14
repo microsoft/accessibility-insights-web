@@ -2,7 +2,7 @@
 
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData {} 1`] = `
 <div
-  className="screenshotView"
+  className="visualHelperSection"
   data-automation-id="screenshot-view"
   role="complementary"
 >
@@ -19,7 +19,7 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData null 1`] = `
 <div
-  className="screenshotView"
+  className="visualHelperSection"
   data-automation-id="screenshot-view"
   role="complementary"
 >
@@ -36,7 +36,7 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData undefined 1`] = `
 <div
-  className="screenshotView"
+  className="visualHelperSection"
   data-automation-id="screenshot-view"
   role="complementary"
 >
@@ -53,7 +53,7 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 
 exports[`ScreenshotView render matches snapshot when screenshot data is available 1`] = `
 <div
-  className="screenshotView"
+  className="visualHelperSection"
   data-automation-id="screenshot-view"
   role="complementary"
 >

@@ -2,60 +2,42 @@
 
 exports[`element column renderers onRenderPathColumn null target 1`] = `
 <AssessmentInstanceDetailsColumn
-  background={null}
   customClassName="not-applicable"
-  labelText={null}
   textContent=""
-  tooltipId={null}
 />
 `;
 
 exports[`element column renderers onRenderPathColumn one target 1`] = `
 <AssessmentInstanceDetailsColumn
-  background={null}
   customClassName="not-applicable"
-  labelText={null}
   textContent="A"
-  tooltipId={null}
 />
 `;
 
 exports[`element column renderers onRenderPathColumn two targets 1`] = `
 <AssessmentInstanceDetailsColumn
-  background={null}
   customClassName="not-applicable"
-  labelText={null}
   textContent="A;B"
-  tooltipId={null}
 />
 `;
 
 exports[`element column renderers onRenderSnippetColumn null target 1`] = `
 <AssessmentInstanceDetailsColumn
-  background={null}
   customClassName="not-applicable"
-  labelText={null}
   textContent={null}
-  tooltipId={null}
 />
 `;
 
 exports[`element column renderers onRenderSnippetColumn one target 1`] = `
 <AssessmentInstanceDetailsColumn
-  background={null}
   customClassName="not-applicable"
-  labelText={null}
   textContent="X"
-  tooltipId={null}
 />
 `;
 
 exports[`element column renderers onRenderSnippetColumn two targets 1`] = `
 <AssessmentInstanceDetailsColumn
-  background={null}
   customClassName="not-applicable"
-  labelText={null}
   textContent="XY"
-  tooltipId={null}
 />
 `;

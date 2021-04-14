@@ -10,7 +10,7 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: s
     role="heading"
   >
     <button
-      aria-controls="content-container-undefined"
+      aria-controls="content-container-some-id"
       aria-expanded="false"
       aria-label="some button label"
       className="collapsible-control"
@@ -23,7 +23,7 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: s
   <div
     aria-hidden="true"
     className="collapsible-content"
-    id="content-container-undefined"
+    id="content-container-some-id"
   >
     <div>
       Some content
@@ -42,7 +42,7 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: u
     role="heading"
   >
     <button
-      aria-controls="content-container-undefined"
+      aria-controls="content-container-some-id"
       aria-expanded="false"
       className="collapsible-control"
     >
@@ -54,7 +54,7 @@ exports[`ReportCollapsibleContainerControl render with buttonAriaLabel set to: u
   <div
     aria-hidden="true"
     className="collapsible-content"
-    id="content-container-undefined"
+    id="content-container-some-id"
   >
     <div>
       Some content
@@ -73,7 +73,7 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
     role="heading"
   >
     <button
-      aria-controls="content-container-undefined"
+      aria-controls="content-container-some-id"
       aria-expanded="false"
       className="collapsible-control"
     >
@@ -85,7 +85,7 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
   <div
     aria-hidden="true"
     className="collapsible-content"
-    id="content-container-undefined"
+    id="content-container-some-id"
   >
     <div>
       Some content
@@ -104,7 +104,7 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
     role="heading"
   >
     <button
-      aria-controls="content-container-undefined"
+      aria-controls="content-container-some-id"
       aria-expanded="false"
       className="collapsible-control"
     >
@@ -116,7 +116,7 @@ exports[`ReportCollapsibleContainerControl render with containerClassName set to
   <div
     aria-hidden="true"
     className="collapsible-content"
-    id="content-container-undefined"
+    id="content-container-some-id"
   >
     <div>
       Some content
@@ -135,7 +135,7 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
     role="heading"
   >
     <button
-      aria-controls="content-container-undefined"
+      aria-controls="content-container-some-id"
       aria-expanded="false"
       className="collapsible-control"
     >
@@ -147,7 +147,7 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
   <div
     aria-hidden="true"
     className="collapsible-content"
-    id="content-container-undefined"
+    id="content-container-some-id"
   >
     <div>
       Some content
@@ -166,7 +166,7 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
     role="heading"
   >
     <button
-      aria-controls="content-container-undefined"
+      aria-controls="content-container-some-id"
       aria-expanded="false"
       className="collapsible-control"
     >
@@ -178,7 +178,7 @@ exports[`ReportCollapsibleContainerControl render with contentClassName set to: 
   <div
     aria-hidden="true"
     className="collapsible-content"
-    id="content-container-undefined"
+    id="content-container-some-id"
   >
     <div>
       Some content

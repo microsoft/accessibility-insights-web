@@ -28,7 +28,7 @@ export const UrlScanResultsTable = NamedFC<UrlScanResultsTableProps>(
         ];
 
         const rows = results.map(result => {
-            const { url, reportLocation, numFailures } = result;
+            const { url, reportLocation } = result;
             const urlLink = <NewTabLink href={url}>{url}</NewTabLink>;
             const reportLink = (
                 <NewTabLink href={reportLocation} aria-label={`Report for ${url}`}>

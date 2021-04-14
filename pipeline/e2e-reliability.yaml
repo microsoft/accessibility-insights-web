@@ -5,7 +5,7 @@ schedules:
       displayName: Weekdays at 8AM UTC (1AM PDT)
       branches:
           include:
-              - master
+              - main
 trigger:
     - e2e-reliability/*
 pr:

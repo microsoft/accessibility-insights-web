@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { ScreenshotViewSelectors } from 'tests/electron/common/element-identifiers/screenshot-view-selectors';
 import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
-import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { AutomatedChecksViewSelectors } from '../element-identifiers/automated-checks-view-selectors';
 import { ViewController } from './view-controller';
 

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 // @ts-check
-const path = require('path');
 const fs = require('fs');
+const path = require('path');
 const config = require('./config');
 const { writeTsconfigSync } = require('./write-tsconfig');
 

@@ -141,16 +141,12 @@ describe('VisualizationScanResultStoreTest', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withScanResult(visualizationType, scanResult)
-            .withIssuesSelectedTargets(selectorMap)
             .build();
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withIssuesSelectedTargets(selectorMap)
             .build();
 
         createStoreTesterForVisualizationScanResultActions(
@@ -288,9 +284,7 @@ describe('VisualizationScanResultStoreTest', () => {
         const expectedState = new VisualizationScanResultStoreDataBuilder()
             .withSelectorMap(visualizationType, selectorMap)
             .withFullIdToRuleResultMapForIssues(expectedFullIdToResultMap)
-            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToResultMap)
             .withScanResult(visualizationType, scanResult)
-            .withIssuesSelectedTargets(selectorMap)
             .build();
 
         const payload = {
@@ -301,139 +295,6 @@ describe('VisualizationScanResultStoreTest', () => {
 
         createStoreTesterForVisualizationScanResultActions('scanCompleted')
             .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('onUpdateIssuesSelectedTargets', () => {
-        const actionName = 'updateIssuesSelectedTargets';
-
-        const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            '#heading-1': {
-                ruleResults: {
-                    rule1: {
-                        any: [],
-                        none: [],
-                        all: [],
-                        status: false,
-                        ruleId: 'rule1',
-                        selector: '#heading-1',
-                        html: 'html',
-                        failureSummary: 'failureSummary',
-                        help: 'help1',
-                        id: 'id1',
-                        guidanceLinks: [],
-                        helpUrl: 'help1',
-                    },
-                },
-                target: ['#heading-1'],
-            },
-            '#heading-2': {
-                ruleResults: {
-                    rule2: {
-                        any: [],
-                        none: [],
-                        all: [],
-                        status: false,
-                        ruleId: 'rule2',
-                        selector: '#heading-2',
-                        html: 'html',
-                        failureSummary: 'failureSummary',
-                        help: 'help2',
-                        id: 'id2',
-                        guidanceLinks: [],
-                        helpUrl: 'help2',
-                    },
-                },
-                target: ['#heading-2'],
-            },
-        };
-
-        const expectedFullIdToRuleResultMap = {
-            id1: {
-                any: [],
-                none: [],
-                all: [],
-                status: false,
-                ruleId: 'rule1',
-                selector: '#heading-1',
-                html: 'html',
-                failureSummary: 'failureSummary',
-                help: 'help1',
-                id: 'id1',
-                guidanceLinks: [],
-                helpUrl: 'help1',
-            },
-            id2: {
-                any: [],
-                none: [],
-                all: [],
-                status: false,
-                ruleId: 'rule2',
-                selector: '#heading-2',
-                html: 'html',
-                failureSummary: 'failureSummary',
-                help: 'help2',
-                id: 'id2',
-                guidanceLinks: [],
-                helpUrl: 'help2',
-            },
-        };
-
-        const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(VisualizationType.Issues, selectorMap)
-            .withFullIdToRuleResultMapForIssues(expectedFullIdToRuleResultMap)
-            .withSelectedIdToRuleResultMapForIssues(expectedFullIdToRuleResultMap)
-            .withIssuesSelectedTargets(selectorMap)
-            .build();
-
-        const expectedSelectedMap: DictionaryStringTo<HtmlElementAxeResults> = {
-            '#heading-1': {
-                ruleResults: {
-                    rule1: {
-                        any: [],
-                        none: [],
-                        all: [],
-                        status: false,
-                        ruleId: 'rule1',
-                        selector: '#heading-1',
-                        id: 'id1',
-                        html: 'html',
-                        failureSummary: 'failureSummary',
-                        help: 'help1',
-                        guidanceLinks: [],
-                        helpUrl: 'help1',
-                    },
-                },
-                target: ['#heading-1'],
-            },
-        };
-
-        const expectedSelectedIdToRuleResultMap = {
-            id1: {
-                any: [],
-                none: [],
-                all: [],
-                status: false,
-                ruleId: 'rule1',
-                selector: '#heading-1',
-                html: 'html',
-                failureSummary: 'failureSummary',
-                help: 'help1',
-                id: 'id1',
-                guidanceLinks: [],
-                helpUrl: 'help1',
-            },
-        };
-
-        const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withSelectorMap(VisualizationType.Issues, selectorMap)
-            .withFullIdToRuleResultMapForIssues(expectedFullIdToRuleResultMap)
-            .withSelectedIdToRuleResultMapForIssues(expectedSelectedIdToRuleResultMap)
-            .withIssuesSelectedTargets(expectedSelectedMap)
-            .build();
-
-        createStoreTesterForVisualizationScanResultActions(actionName)
-            .withActionParam(['id1', 'not-a-real-id'])
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
@@ -525,7 +386,6 @@ describe('VisualizationScanResultStoreTest', () => {
 
     test('onExistingTabUpdated', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withIssuesSelectedTargets({})
             .withScanResult(VisualizationType.Headings, [])
             .withTabStopsTabbedElements([])
             .build();

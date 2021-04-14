@@ -1,0 +1,19 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+.how-to-test-list {
+    padding-left: 1em;
+}
+.disc-style-type {
+    list-style-type: disc !important;
+}
+.toggle {
+    display: flex;
+    align-items: center;
+
+    :global(.ms-Label) {
+        margin-right: 8px;
+        font-size: 17px;
+        font-weight: 600;
+    }
+}

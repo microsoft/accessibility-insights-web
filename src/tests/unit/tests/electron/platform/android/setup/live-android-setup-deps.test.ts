@@ -5,9 +5,10 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { DeviceInfo } from 'electron/platform/android/adb-wrapper';
+import { AdbWrapper, AdbWrapperFactory, DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfig } from 'electron/platform/android/device-config';
 import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
 import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
@@ -22,6 +23,9 @@ describe('LiveAndroidSetupDeps', () => {
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let fetchConfigMock: IMock<DeviceConfigFetcher>;
     let loggerMock: IMock<Logger>;
+    let adbWrapperFactoryMock: IMock<AdbWrapperFactory>;
+    let adbWrapperHolderMock: IMock<AdbWrapperHolder>;
+    let adbWrapperStub: AdbWrapper;
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
@@ -37,12 +41,18 @@ describe('LiveAndroidSetupDeps', () => {
         );
         fetchConfigMock = Mock.ofInstance((port: number) => new Promise<DeviceConfig>(() => null));
         loggerMock = Mock.ofType<Logger>();
+        adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
+        adbWrapperHolderMock = Mock.ofType<AdbWrapperHolder>(undefined, MockBehavior.Strict);
+        adbWrapperStub = {} as AdbWrapper;
+
         testSubject = new LiveAndroidSetupDeps(
             serviceConfigFactoryMock.object,
             configStoreMock.object,
             configMessageCreatorMock.object,
             fetchConfigMock.object,
             loggerMock.object,
+            adbWrapperFactoryMock.object,
+            adbWrapperHolderMock.object,
         );
     });
 
@@ -59,11 +69,14 @@ describe('LiveAndroidSetupDeps', () => {
             .setup(m => m.getState())
             .returns(() => stateData)
             .verifiable(Times.once());
+        adbWrapperFactoryMock
+            .setup(m => m.createValidatedAdbWrapper(expectedAdbLocation))
+            .returns(() => Promise.resolve(adbWrapperStub));
+        adbWrapperHolderMock.setup(m => m.setAdb(adbWrapperStub)).verifiable();
         serviceConfigFactoryMock
-            .setup(m => m.getServiceConfigurator(expectedAdbLocation))
-            .returns(() => Promise.resolve(serviceConfigMock.object))
+            .setup(m => m.getServiceConfigurator(adbWrapperStub))
+            .returns(() => serviceConfigMock.object)
             .verifiable(Times.once());
-        serviceConfigMock.setup((m: any) => m.then).returns(() => undefined);
         return await testSubject.hasAdbPath();
     }
 
@@ -242,6 +255,22 @@ describe('LiveAndroidSetupDeps', () => {
         const success = await testSubject.hasExpectedPermissions();
 
         expect(success).toBe(true);
+
+        verifyAllMocks();
+    });
+
+    it('grantOverlayPermission catches thrown errors', async () => {
+        // This test has the side effect of ensuring grantOverlayPermission is called
+        // So there is no need for a separate test.
+
+        serviceConfigMock
+            .setup(m => m.grantOverlayPermission())
+            .throws(new Error('Threw during grantOverlayPermission'))
+            .verifiable(Times.once());
+
+        await initializeServiceConfig();
+
+        await testSubject.grantOverlayPermission();
 
         verifyAllMocks();
     });

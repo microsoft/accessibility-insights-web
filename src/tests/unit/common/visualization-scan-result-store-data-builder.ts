@@ -6,8 +6,6 @@ import {
     VisualizationScanResultData,
 } from '../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { HtmlElementAxeResults } from '../../../injected/scanner-utils';
-import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
@@ -20,13 +18,6 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
         elements: TabbedElementData[],
     ): VisualizationScanResultStoreDataBuilder {
         this.data.tabStops.tabbedElements = elements;
-        return this;
-    }
-
-    public withIssuesSelectedTargets(
-        map: DictionaryStringTo<HtmlElementAxeResults>,
-    ): VisualizationScanResultStoreDataBuilder {
-        this.data.issues.selectedAxeResultsMap = map;
         return this;
     }
 
@@ -58,13 +49,6 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
         fullIdToRuleResultMap: any,
     ): VisualizationScanResultStoreDataBuilder {
         this.data.issues.fullIdToRuleResultMap = fullIdToRuleResultMap;
-        return this;
-    }
-
-    public withSelectedIdToRuleResultMapForIssues(
-        selectedIdToRuleResultMap: any,
-    ): VisualizationScanResultStoreDataBuilder {
-        this.data.issues.selectedIdToRuleResultMap = selectedIdToRuleResultMap;
         return this;
     }
 

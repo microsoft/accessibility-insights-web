@@ -1,0 +1,74 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+.virtual-keyboard-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+
+    > * {
+        margin-bottom: 8px;
+    }
+
+    > :last-child {
+        margin-bottom: 0px;
+    }
+
+    :global(.ms-Button-flexContainer) {
+        align-items: flex-end;
+    }
+
+    .inner-button-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        font-weight: 600;
+        margin-bottom: 4px;
+        margin-left: 6px;
+    }
+
+    .button {
+        height: 50px;
+        min-width: 50px;
+        width: 50px;
+        padding: 0;
+        display: flex;
+    }
+
+    .rectangle-button {
+        width: 90px;
+    }
+
+    .arrow-buttons-container {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+
+        .bottom-row-buttons {
+            display: flex;
+            margin-top: 8px;
+
+            > * {
+                margin-right: 8px;
+            }
+
+            :last-child {
+                margin-right: 0px;
+            }
+        }
+    }
+
+    .left {
+        transform: rotate(270deg);
+    }
+
+    .down {
+        transform: rotate(180deg);
+    }
+
+    .right {
+        transform: rotate(90deg);
+    }
+}

@@ -7,7 +7,7 @@ import { GenericPanel } from 'DetailsView/components/generic-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
 import * as styles from 'electron/views/left-nav/fluent-left-nav.scss';
-import { LeftNav, LeftNavDeps } from 'electron/views/left-nav/left-nav';
+import { LeftNav, LeftNavDeps, LeftNavProps } from 'electron/views/left-nav/left-nav';
 import { PanelType } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -21,11 +21,24 @@ export type FluentLeftNavProps = {
     selectedKey: LeftNavItemKey;
     isNavOpen: boolean;
     setSideNavOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
+} & LeftNavProps;
 
 export const FluentLeftNav = NamedFC<FluentLeftNavProps>('LeftNav', props => {
-    const { narrowModeStatus, selectedKey, isNavOpen, deps, setSideNavOpen } = props;
-    const leftNav = <LeftNav selectedKey={selectedKey} deps={deps} />;
+    const {
+        narrowModeStatus,
+        selectedKey,
+        isNavOpen,
+        deps,
+        setSideNavOpen,
+        featureFlagStoreData,
+    } = props;
+    const leftNav = (
+        <LeftNav
+            selectedKey={selectedKey}
+            deps={deps}
+            featureFlagStoreData={featureFlagStoreData}
+        />
+    );
 
     if (!narrowModeStatus.isHeaderAndNavCollapsed) {
         return leftNav;

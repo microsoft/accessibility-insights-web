@@ -26,8 +26,9 @@ async function tryHandleAsPortForwardServer(argv) {
 
     const port = parseInt(process.argv[3], 10);
     const path = process.argv[4];
+    const testLogsDir = process.argv[5];
 
-    await startMockService(port, path);
+    await startMockService(port, path, testLogsDir);
 
     process.send(portForwardProcessReadyMessage);
     return true;
@@ -57,10 +58,10 @@ async function waitForReadyMessage(testServerProcess) {
     });
 }
 
-async function startDetachedPortForwardServer(port, path) {
+async function startDetachedPortForwardServer(port, path, testLogsDir) {
     const testServerProcess = child_process.fork(
         process.argv[1],
-        [portForwardSentinelArgument, port, path],
+        [portForwardSentinelArgument, port, path, testLogsDir],
         {
             detached: true, // avoid having test server exit when adb exits
             stdio: LOG_DETACHED_PROCESS

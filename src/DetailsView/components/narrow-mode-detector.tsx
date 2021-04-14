@@ -8,6 +8,7 @@ import ReactResizeDetector from 'react-resize-detector';
 export type NarrowModeStatus = {
     isHeaderAndNavCollapsed: boolean;
     isCommandBarCollapsed: boolean;
+    isVirtualKeyboardCollapsed: boolean;
 };
 
 export type NarrowModeDetectorDeps = {
@@ -31,7 +32,8 @@ export function getNarrowModeComponentWrapper<P>(
         const isNarrowModeEnabled = props.isNarrowModeEnabled === true;
         const narrowModeThresholds = props.deps.getNarrowModeThresholds();
 
-        const isNarrowerThan = (threshold: number) => dimensions.width < threshold;
+        const isNarrowerThan = (threshold: number | undefined) =>
+            threshold ? threshold > dimensions.width : false;
 
         const narrowModeStatus = {
             isHeaderAndNavCollapsed:
@@ -40,6 +42,9 @@ export function getNarrowModeComponentWrapper<P>(
             isCommandBarCollapsed:
                 isNarrowModeEnabled &&
                 isNarrowerThan(narrowModeThresholds.collapseCommandBarThreshold),
+            isVirtualKeyboardCollapsed:
+                isNarrowModeEnabled &&
+                isNarrowerThan(narrowModeThresholds.collapseVirtualKeyboardThreshold),
         };
         return <props.Component {...childrenProps} narrowModeStatus={narrowModeStatus} />;
     };

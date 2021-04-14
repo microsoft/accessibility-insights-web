@@ -54,21 +54,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         );
     });
 
-    test('updateIssuesSelectedTargets', () => {
-        const selectedTargets: string[] = ['#headings-1', '#landmark-1'];
-        const expectedMessage = {
-            messageType: Messages.Visualizations.Issues.UpdateSelectedTargets,
-            payload: selectedTargets,
-        };
-
-        testSubject.updateIssuesSelectedTargets(selectedTargets);
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-    });
-
     test('updateFocusedInstanceTarget', () => {
         const instanceTarget = ['#headings-1'];
         const expectedMessage = {
@@ -163,6 +148,38 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             .returns(() => telemetry);
 
         testSubject.selectRequirement(event, HeadingsTestStep.headingFunction, view);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+    });
+
+    test('selectNextRequirement', () => {
+        const view = VisualizationType.Headings;
+        const selectedRequirement = HeadingsTestStep.headingFunction;
+        const event = eventStubFactory.createKeypressEvent() as any;
+        const telemetry: RequirementSelectTelemetryData = {
+            triggeredBy: 'keypress',
+            selectedTest: VisualizationType[view],
+            selectedRequirement: selectedRequirement,
+            source: testSource,
+        };
+
+        const expectedMessage = {
+            messageType: Messages.Assessment.SelectNextRequirement,
+            payload: {
+                telemetry: telemetry,
+                selectedTestSubview: selectedRequirement,
+                selectedTest: view,
+            },
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.forSelectRequirement(event, view, selectedRequirement))
+            .returns(() => telemetry);
+
+        testSubject.selectNextRequirement(event, HeadingsTestStep.headingFunction, view);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

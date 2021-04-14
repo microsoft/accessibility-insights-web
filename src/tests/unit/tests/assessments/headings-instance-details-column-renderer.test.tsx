@@ -20,7 +20,6 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 background={'#767676'}
                 labelText={'N/A'}
                 textContent={null}
-                tooltipId={null}
                 customClassName="not-applicable"
             />
         );
@@ -41,7 +40,6 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 background={HeadingFormatter.headingStyles['3'].borderColor}
                 labelText={'H3'}
                 textContent={'heading'}
-                tooltipId={null}
                 customClassName={null}
             />
         );
@@ -62,7 +60,6 @@ describe('HeadingsInstanceDetailsColumnRendererTest', () => {
                 background={'#767676'}
                 labelText={'H7'}
                 textContent={'heading'}
-                tooltipId={null}
                 customClassName={null}
             />
         );

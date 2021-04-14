@@ -29,22 +29,31 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
 >
   <div>
     <p>
-      Uh-oh! It seems the 
+      Uh-oh! It seems the device 
       <strong>
         test device name
       </strong>
-       device has disconnected before the snapshot completed its analysis.
+       has disconnected.
     </p>
     <p>
-      Make sure your device is properly connected, and try rescanning or connecting a different device.
+      To continue using that device, make sure it’s properly connected and then select 
+      <strong>
+        Start over
+      </strong>
+      . To use a different device, select
+       
+      <strong>
+        Connect a new device
+      </strong>
+      .
     </p>
   </div>
   <StyledDialogFooterBase>
     <CustomizedDefaultButton
-      text="Connect a new device"
+      text="Start over"
     />
     <CustomizedDefaultButton
-      text="Rescan device"
+      text="Connect a new device"
     />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>

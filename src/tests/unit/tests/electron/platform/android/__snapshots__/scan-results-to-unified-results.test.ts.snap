@@ -117,7 +117,12 @@ Array [
     "uid": "gguid-mock-stub",
   },
   Object {
-    "descriptors": null,
+    "descriptors": Object {
+      "boundingRectangle": undefined,
+      "className": undefined,
+      "contentDescription": undefined,
+      "text": undefined,
+    },
     "identifiers": Object {
       "conciseName": undefined,
       "identifier": undefined,

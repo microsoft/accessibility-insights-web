@@ -15,6 +15,13 @@ You will need the following tools installed:
 
 -   [Node](https://nodejs.org) >= 14.15.0 (check by running `node --version`) - This is the version being enforced on our builds
 -   [Yarn](https://yarnpkg.com/getting-started/install) >= 1.22.10 (check by running `yarn --version`)
+    -    Note: There is a [known name collision](https://github.com/yarnpkg/yarn/issues/673) between Yarn package manager and Hadoop YARN. If you have Hadoop YARN installed, replace `yarn` with `yarnpkg` in the commands below.
+-   **macOS only** [Xcode](https://wilsonmar.github.io/xcode/#XcodeInstall). This is needed when installing some dev dependencies (like spectron). After installing Xcode, run the following commands from a command terminal:
+```
+    xcode-select --install
+    sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+    sudo xcodebuild -license accept
+```
 
 We recommend [VS Code](https://code.visualstudio.com/) for [editing/debugging](#using-vs-code), but you can use whichever editor you prefer. The [extensions we recommend](../.vscode/extensions.json) should be automatically suggested to you when opening this repository's folder in VS Code.
 
@@ -70,7 +77,7 @@ We expect almost all code to be covered by unit tests (the main exception to thi
 ```sh
 # This runs only unit tests changed in your feature branch
 # Run this regularly during feature development
-yarn test --changedSince master
+yarn test --changedSince main
 
 # Test only files matching a particular name pattern
 yarn test -- -- SomeFile.test.tsx
@@ -82,7 +89,7 @@ yarn watch:test
 yarn test
 
 # -u updates snapshots
-yarn test --changedSince master -u
+yarn test --changedSince main -u
 yarn test -u
 yarn test -- -u -- SomeFile.test.tsx
 ```
@@ -116,7 +123,7 @@ Generally, if a Pull Request doesn't touch any E2E tests, you don't have to run 
 
 ### Commands to run before check in
 
--   You should run a FastPass (formatting and lint checks) before creating a Pull Request to master:
+-   You should run a FastPass (formatting and lint checks) before creating a Pull Request to main:
 
     ```sh
     yarn fastpass

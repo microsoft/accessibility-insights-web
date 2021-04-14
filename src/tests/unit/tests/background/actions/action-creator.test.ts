@@ -17,8 +17,8 @@ import { CardSelectionActions } from 'background/actions/card-selection-actions'
 import { DetailsViewActions } from 'background/actions/details-view-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
-import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
+import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
@@ -52,7 +52,6 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
 const VisualizationMessage = Messages.Visualizations;
-const PreviewFeaturesMessage = Messages.PreviewFeatures;
 
 describe('ActionCreatorTest', () => {
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
@@ -382,23 +381,6 @@ describe('ActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallbacks for onUpdateIssuesSelectedTargets', () => {
-        const selectedTargets = ['#headings-1', '#landmark-1'];
-        const args = [selectedTargets, 1];
-        const actionName = 'updateIssuesSelectedTargets';
-
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.Issues.UpdateSelectedTargets, args)
-            .setupActionOnVisualizationScanResultActions(actionName)
-            .setupVisualizationScanResultActionWithInvokeParameter(actionName, selectedTargets);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallbacks for scrollRequested', () => {
         const visualizationActionName = 'scrollRequested';
         const cardSelectionActionName = 'resetFocusedIdentifier';
@@ -517,7 +499,7 @@ describe('ActionCreatorTest', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.fastPass;
         const updateViewActionName = 'updateSelectedPivotChild';
-        const closePreviewFeaturesActionName = 'closePreviewFeatures';
+        const closeSidePanelActionName = 'closeSidePanel';
         const tabId = 1;
         const actionCreatorPayload: OnDetailsViewOpenPayload = {
             detailsViewType: viewType,
@@ -540,8 +522,11 @@ describe('ActionCreatorTest', () => {
                     updateViewActionName,
                     actionCreatorPayload,
                 )
-                .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
-                .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
+                .setupActionOnSidePanelActions(closeSidePanelActionName)
+                .setupSidePanelActionWithInvokeParameter(
+                    closeSidePanelActionName,
+                    'PreviewFeatures',
+                )
                 .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
                 .setupShowDetailsView(tabId, Promise.resolve());
 
@@ -567,8 +552,11 @@ describe('ActionCreatorTest', () => {
                     updateViewActionName,
                     actionCreatorPayload,
                 )
-                .setupActionOnPreviewFeaturesActions(closePreviewFeaturesActionName)
-                .setupPreviewFeaturesActionWithInvokeParameter(closePreviewFeaturesActionName, null)
+                .setupActionOnSidePanelActions(closeSidePanelActionName)
+                .setupSidePanelActionWithInvokeParameter(
+                    closeSidePanelActionName,
+                    'PreviewFeatures',
+                )
                 .setupTelemetrySend(TelemetryEvents.PIVOT_CHILD_SELECTED, actionCreatorPayload, 1)
                 .setupShowDetailsView(
                     tabId,
@@ -619,31 +607,6 @@ describe('ActionCreatorTest', () => {
             .setupVisualizationScanResultActionWithInvokeParameter(actionName, null);
 
         const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for onClosePreviewFeaturesPanel', () => {
-        const tabId = 1;
-        const actionName = 'closePreviewFeatures';
-        const telemetryData: BaseTelemetryData = {
-            triggeredBy: 'stub triggered by' as TriggeredBy,
-            source: testSource,
-        };
-
-        const telemetryInfo = {
-            telemetryData,
-        };
-
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(PreviewFeaturesMessage.ClosePanel, [telemetryInfo, tabId])
-            .setupActionOnPreviewFeaturesActions(actionName)
-            .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_CLOSE, telemetryInfo, tabId)
-            .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = validator.buildActionCreator();
-
         actionCreator.registerCallbacks();
 
         validator.verifyAll();
@@ -967,13 +930,13 @@ class ActionCreatorValidator {
     private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private detailsViewActionsContainerMock = Mock.ofType(DetailsViewActions);
-    private previewFeaturesActionsContainerMock = Mock.ofType(PreviewFeaturesActions);
+    private sidePanelActionsContainerMock = Mock.ofType(SidePanelActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
     private cardSelectionActionsContainerMock = Mock.ofType(CardSelectionActions);
     private unifiedScanResultsActionsContainerMock = Mock.ofType(UnifiedScanResultActions);
-    private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
+    private sidePanelActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
@@ -995,7 +958,7 @@ class ActionCreatorValidator {
         visualizationActions: this.visualizationActionsContainerMock.object,
         visualizationScanResultActions: this.visualizationScanResultActionsContainerMock.object,
         devToolActions: this.devToolActionsContainerMock.object,
-        previewFeaturesActions: this.previewFeaturesActionsContainerMock.object,
+        sidePanelActions: this.sidePanelActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
         assessmentActions: this.assessmentActionsContainerMock.object,
         inspectActions: this.inspectActionsContainerMock.object,
@@ -1076,14 +1039,14 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupPreviewFeaturesActionWithInvokeParameter(
-        actionName: keyof PreviewFeaturesActions,
+    public setupSidePanelActionWithInvokeParameter(
+        actionName: keyof SidePanelActions,
         expectedInvokeParam: any,
     ): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(
             actionName,
             expectedInvokeParam,
-            this.previewFeaturesActionMocks,
+            this.sidePanelActionMocks,
         );
         return this;
     }
@@ -1214,14 +1177,10 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupActionOnPreviewFeaturesActions(
-        actionName: keyof PreviewFeaturesActions,
+    public setupActionOnSidePanelActions(
+        actionName: keyof SidePanelActions,
     ): ActionCreatorValidator {
-        this.setupAction(
-            actionName,
-            this.previewFeaturesActionMocks,
-            this.previewFeaturesActionsContainerMock,
-        );
+        this.setupAction(actionName, this.sidePanelActionMocks, this.sidePanelActionsContainerMock);
         return this;
     }
 
@@ -1315,7 +1274,7 @@ class ActionCreatorValidator {
         this.verifyAllActions(this.devToolsActionMocks);
         this.verifyAllActions(this.inspectActionsMock);
         this.verifyAllActions(this.detailsViewActionsMocks);
-        this.verifyAllActions(this.previewFeaturesActionMocks);
+        this.verifyAllActions(this.sidePanelActionMocks);
         this.verifyAllActions(this.scopingActionMocks);
         this.verifyAllActions(this.cardSelectionActionsMocks);
     }

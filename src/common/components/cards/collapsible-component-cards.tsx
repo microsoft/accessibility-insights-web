@@ -16,6 +16,7 @@ export type CollapsibleComponentCardsDeps = {
 };
 
 export interface CollapsibleComponentCardsProps {
+    id: string;
     header: JSX.Element;
     content: JSX.Element;
     headingLevel: number;
@@ -23,7 +24,6 @@ export interface CollapsibleComponentCardsProps {
     containerAutomationId?: string;
     containerClassName?: string;
     buttonAriaLabel?: string;
-    id?: string;
     deps: CollapsibleComponentCardsDeps;
     isExpanded?: boolean;
 }
@@ -45,8 +45,8 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
         } = props;
 
         const containerProps = { role: 'heading', 'aria-level': headingLevel };
-        let contentWrapper = null;
-        let collapsedCSSClassName = 'collapsed';
+        let contentWrapper: JSX.Element | null = null;
+        let collapsedCSSClassName: string | null = 'collapsed';
 
         const showContent = isExpanded || false;
 

@@ -6,6 +6,11 @@ const path = require('path');
 const process = require('process');
 const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('../common-file-names.js');
 const {
+    generateAdbLogPath,
+    generateOutputLogsDir,
+    generateServerLogPath,
+} = require('../generate-log-paths.js');
+const {
     startDetachedPortForwardServer,
     stopDetachedPortForwardServer,
     tryHandleAsPortForwardServer,
@@ -55,8 +60,11 @@ async function main() {
         'utf-8',
     );
 
-    const outputLogsDir = path.join(path.dirname(process.execPath), 'logs', currentContext);
+    const outputLogsDir = generateOutputLogsDir(path.dirname(process.execPath), currentContext);
     fs.mkdirSync(outputLogsDir, { recursive: true });
+
+    const adbLogsPath = generateAdbLogPath(outputLogsDir);
+    const serverLogsPath = generateServerLogPath(outputLogsDir);
 
     const outputFile = path.join(outputLogsDir, 'mock_adb_output.json');
 
@@ -77,7 +85,7 @@ async function main() {
     if (result.startTestServer != null) {
         const { port, path } = result.startTestServer;
         stopDetachedPortForwardServer(port);
-        result.testServerPid = await startDetachedPortForwardServer(port, path);
+        result.testServerPid = await startDetachedPortForwardServer(port, path, serverLogsPath);
     }
     if (result.stopTestServer != null) {
         const { port } = result.stopTestServer;
@@ -92,6 +100,10 @@ async function main() {
 
     result.input = process.argv;
     result.inputCommand = inputCommand;
+
+    fs.writeFileSync(adbLogsPath, `ADB ${inputCommand}\n`, {
+        flag: 'a',
+    });
     fs.writeFileSync(outputFile, JSON.stringify(result, null, '    ') + EOL, { flag: 'a' });
 
     const outputConfigFile = path.join(outputLogsDir, fileWithMockAdbConfig);

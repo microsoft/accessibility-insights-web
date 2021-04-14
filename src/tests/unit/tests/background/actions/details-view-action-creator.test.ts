@@ -9,6 +9,7 @@ import { Interpreter } from 'background/interpreter';
 import { SidePanel } from 'background/stores/side-panel';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import {
+    PREVIEW_FEATURES_CLOSE,
     PREVIEW_FEATURES_OPEN,
     SCOPING_CLOSE,
     SCOPING_OPEN,
@@ -135,9 +136,10 @@ describe('DetailsViewActionCreatorTest', () => {
 
     describe('handles close side panel message', () => {
         it.each`
-            messageFriendlyName                    | actualMessage                        | sidePanel     | telemetryEventName
-            ${'Messages.SettingsPanel.ClosePanel'} | ${Messages.SettingsPanel.ClosePanel} | ${'Settings'} | ${SETTINGS_PANEL_CLOSE}
-            ${'Messages.Scoping.ClosePanel'}       | ${Messages.Scoping.ClosePanel}       | ${'Scoping'}  | ${SCOPING_CLOSE}
+            messageFriendlyName                      | actualMessage                          | sidePanel            | telemetryEventName
+            ${'Messages.SettingsPanel.ClosePanel'}   | ${Messages.SettingsPanel.ClosePanel}   | ${'Settings'}        | ${SETTINGS_PANEL_CLOSE}
+            ${'Messages.PreviewFeatures.ClosePanel'} | ${Messages.PreviewFeatures.ClosePanel} | ${'PreviewFeatures'} | ${PREVIEW_FEATURES_CLOSE}
+            ${'Messages.Scoping.ClosePanel'}         | ${Messages.Scoping.ClosePanel}         | ${'Scoping'}         | ${SCOPING_CLOSE}
         `('$messageFriendlyName', ({ actualMessage, sidePanel, telemetryEventName }) => {
             const closeSidePanelMock = createActionMock<SidePanel>(sidePanel);
 

@@ -38,7 +38,7 @@ exports[`LeftNav render 1`] = `
           },
           "index": 2,
           "key": "needs-review",
-          "name": "some display name 2",
+          "name": "some display name 3",
           "onClickNavLink": [Function],
           "onRenderNavLink": [Function],
           "url": "",

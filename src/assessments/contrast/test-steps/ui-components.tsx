@@ -61,7 +61,7 @@ const howToTest: JSX.Element = (
                         Any visual information that indicates the component is in its normal state
                     </li>
                 </ol>
-                Exception: A lower contrast ratio is allowed if either of the following is true:
+                Exception: No minimum contrast ratio is required if either of the following is true:
                 <ol>
                     <li>The component is inactive/disabled.</li>
                     <li>The component's appearance is determined solely by the browser.</li>

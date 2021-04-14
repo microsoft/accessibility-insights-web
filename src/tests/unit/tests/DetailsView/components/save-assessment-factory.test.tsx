@@ -7,13 +7,14 @@ import {
     AssessmentStoreData,
     AssessmentData,
 } from 'common/types/store-data/assessment-result-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     getSaveButtonForAssessment,
     getSaveButtonForFastPass,
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
 } from 'DetailsView/components/save-assessment-factory';
-import { IMock, Mock, Times } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
 describe('SaveAssessmentFactory', () => {
     let deps: SaveAssessmentFactoryDeps;
@@ -48,6 +49,10 @@ describe('SaveAssessmentFactory', () => {
             persistedTabInfo: { title: 'SavedAssessment123' },
         } as AssessmentStoreData;
 
+        const tabStoreData = {
+            title: 'title',
+        } as TabStoreData;
+
         deps = {
             assessmentDataFormatter: assessmentDataFormatterMock.object,
             fileURLProvider: fileURLProviderMock.object,
@@ -57,6 +62,7 @@ describe('SaveAssessmentFactory', () => {
         props = {
             deps,
             assessmentStoreData,
+            tabStoreData,
         } as SaveAssessmentFactoryProps;
     });
 
@@ -64,7 +70,7 @@ describe('SaveAssessmentFactory', () => {
         test('renders save assessment button', () => {
             const assessmentData = props.assessmentStoreData;
             const formattedAssessmentData = JSON.stringify(assessmentData);
-            const title = props.assessmentStoreData.persistedTabInfo.title;
+            const title = props.tabStoreData.title;
 
             assessmentDataFormatterMock
                 .setup(a => a.formatAssessmentData(assessmentData))

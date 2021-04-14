@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GrantOverlayPermissionStep renders 1`] = `
+<AndroidSetupSpinnerStep
+  deps={
+    Object {
+      "LinkComponent": [Function],
+    }
+  }
+  disableCancel={true}
+  spinnerLabel="Granting overlay permission..."
+/>
+`;

@@ -11,6 +11,8 @@ This directory contains the implementation for a `mock-adb` (Android Debug Bridg
 
 ### Usage
 
+Note that if you have Hadoop YARN installed, you will need to replace `yarn` with `yarnpkg` in the commands below.
+
 ```sh
 # This sets up mock-adb to respond as if a single physical device is connected with a working
 # and current install of Accessibility Insights for Android Service.
@@ -36,4 +38,4 @@ In the remote build, these logs are uploaded as artifacts if any end-to-end test
 
 ### Implementation
 
-The `mock-adb` implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/master/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.
+The `mock-adb` implementation is in [bin.js](./app/bin.js). Commands such as `yarn mock-adb` and end-to-end tests call [setupMockAdb](https://github.com/microsoft/accessibility-insights-web/blob/main/src/tests/miscellaneous/mock-adb/setup-mock-adb.js#L28) to write the appropriate config/logging context to disk. `bin.js` gets packaged into an executable that reads the context from disk and runs with the configured behavior.

@@ -2,7 +2,12 @@
 // Licensed under the MIT License.
 
 import ADB from 'appium-adb';
-import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
+import {
+    AdbWrapper,
+    DeviceInfo,
+    KeyEventCode,
+    PackageInfo,
+} from 'electron/platform/android/adb-wrapper';
 import { DictionaryStringTo } from 'types/common-types';
 
 type AdbDevice = {
@@ -77,5 +82,24 @@ export class AppiumAdbWrapper implements AdbWrapper {
     public removeTcpForwarding = async (deviceId: string, localPort: number): Promise<void> => {
         this.adb.setDeviceId(deviceId);
         await this.adb.removePortForward(localPort);
+    };
+
+    public sendKeyEvent = async (deviceId: string, keyEventCode: KeyEventCode): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.shell(['input', 'keyevent', keyEventCode]);
+    };
+
+    public grantOverlayPermission = async (
+        deviceId: string,
+        packageName: string,
+    ): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.shell(['cmd', 'appops', 'reset', packageName]);
+        await this.adb.shell([
+            'pm',
+            'grant',
+            packageName,
+            'android.permission.SYSTEM_ALERT_WINDOW',
+        ]);
     };
 }

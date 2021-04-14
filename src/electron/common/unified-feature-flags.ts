@@ -6,6 +6,7 @@ export class UnifiedFeatureFlags {
     public static readonly logTelemetryToConsole = 'logTelemetryToConsole';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly exportReport = 'exportReport';
+    public static readonly tabStops = 'tabStops';
 }
 
 export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
@@ -34,6 +35,14 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
             displayableDescription: 'Show the export report button on the automated checks window',
             isPreviewFeature: false,
             forceDefault: true,
+        },
+        {
+            id: UnifiedFeatureFlags.tabStops,
+            defaultValue: true,
+            displayableName: 'Show Tab Stops test',
+            displayableDescription: 'Show the Tab Stops test on the Left Nav',
+            isPreviewFeature: false,
+            forceDefault: false,
         },
     ];
 }

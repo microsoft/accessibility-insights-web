@@ -3,7 +3,7 @@
 import { Action } from 'common/flux/action';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
-import { DeviceActions } from 'electron/flux/action/device-actions';
+import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -12,8 +12,8 @@ describe('ScanActionCreator', () => {
 
     let scanActionsMock: IMock<ScanActions>;
     let scanStartedMock: IMock<Action<PortPayload>>;
-    let deviceActionsMock: IMock<DeviceActions>;
-    let resetConnectionMock: IMock<Action<void>>;
+    let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
+    let statusUnknown: IMock<Action<void>>;
 
     let testSubject: ScanActionCreator;
 
@@ -23,14 +23,17 @@ describe('ScanActionCreator', () => {
 
         scanActionsMock.setup(actions => actions.scanStarted).returns(() => scanStartedMock.object);
 
-        deviceActionsMock = Mock.ofType<DeviceActions>();
-        resetConnectionMock = Mock.ofType<Action<void>>();
+        deviceConnectionActionsMock = Mock.ofType<DeviceConnectionActions>();
+        statusUnknown = Mock.ofType<Action<void>>();
 
-        deviceActionsMock
-            .setup(actions => actions.resetConnection)
-            .returns(() => resetConnectionMock.object);
+        deviceConnectionActionsMock
+            .setup(actions => actions.statusUnknown)
+            .returns(() => statusUnknown.object);
 
-        testSubject = new ScanActionCreator(scanActionsMock.object, deviceActionsMock.object);
+        testSubject = new ScanActionCreator(
+            scanActionsMock.object,
+            deviceConnectionActionsMock.object,
+        );
     });
 
     it('scans', () => {
@@ -40,6 +43,6 @@ describe('ScanActionCreator', () => {
             scanStarted => scanStarted.invoke(It.isValue({ port })),
             Times.once(),
         );
-        resetConnectionMock.verify(resetConnection => resetConnection.invoke(), Times.once());
+        statusUnknown.verify(statusUnknown => statusUnknown.invoke(), Times.once());
     });
 });

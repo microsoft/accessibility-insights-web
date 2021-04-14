@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { DictionaryStringTo } from 'types/common-types';
 import { AndroidScanResults, RuleResultsData, ViewElementData } from './android-scan-results';
@@ -62,7 +62,7 @@ function createViewElementLookup(
 
 function addViewElementAndChildren(
     viewElementLookup: DictionaryStringTo<ViewElementData>,
-    element: ViewElementData,
+    element: ViewElementData | null,
 ): void {
     if (element) {
         viewElementLookup[element.axeViewId] = element;
@@ -80,27 +80,21 @@ function createUnifiedResult(
     viewElementLookup: DictionaryStringTo<ViewElementData>,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult {
+    const viewElement = viewElementLookup[ruleResult.axeViewId];
     return {
         uid: uuidGenerator(),
         ruleId: ruleInformation.ruleId,
         status: ruleInformation.getResultStatus(ruleResult),
-        descriptors: getDescriptors(viewElementLookup[ruleResult.axeViewId]),
+        descriptors: {
+            className: viewElement?.className,
+            boundingRectangle: viewElement?.boundsInScreen,
+            contentDescription: viewElement?.contentDescription,
+            text: viewElement?.text,
+        },
         identifiers: {
-            identifier: viewElementLookup[ruleResult.axeViewId]?.className,
-            conciseName: viewElementLookup[ruleResult.axeViewId]?.className,
+            identifier: viewElement?.className,
+            conciseName: viewElement?.className,
         },
         resolution: ruleInformation.getUnifiedResolution(ruleResult),
     };
-}
-
-function getDescriptors(viewElement: ViewElementData): UnifiedDescriptors {
-    if (viewElement) {
-        return {
-            className: viewElement.className,
-            boundingRectangle: viewElement.boundsInScreen,
-            contentDescription: viewElement.contentDescription,
-            text: viewElement.text,
-        };
-    }
-    return null;
 }

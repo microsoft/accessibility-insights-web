@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
-import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';

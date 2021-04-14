@@ -19,7 +19,6 @@ export function frameTitleInstanceDetailsColumnRenderer(
             background={frameConfig.borderColor}
             labelText={frameConfig.contentText}
             textContent={frameTitle}
-            tooltipId={null}
         />
     );
 }

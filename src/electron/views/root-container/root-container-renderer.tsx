@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { Theme, ThemeDeps } from 'common/components/theme';
-import { LeftNavDeps } from 'electron/views/left-nav/left-nav-deps';
 import {
     PlatformBodyClassModifier,
     PlatformBodyClassModifierDeps,

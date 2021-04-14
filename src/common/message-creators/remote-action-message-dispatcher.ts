@@ -11,7 +11,7 @@ import { ActionMessageDispatcher } from './types/dispatcher';
 export class RemoteActionMessageDispatcher implements ActionMessageDispatcher {
     constructor(
         private readonly postMessageDelegate: (message: InterpreterMessage) => Promise<void>,
-        private readonly tabId: number,
+        private readonly tabId: number | null,
         private readonly logger: Logger,
     ) {}
 

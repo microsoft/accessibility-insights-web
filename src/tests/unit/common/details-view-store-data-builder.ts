@@ -8,7 +8,7 @@ import { BaseDataBuilder } from './base-data-builder';
 export class DetailsViewStoreDataBuilder extends BaseDataBuilder<DetailsViewStoreData> {
     constructor() {
         super();
-        this.data = new DetailsViewStore(null, null, null, null).getDefaultState();
+        this.data = new DetailsViewStore(null, null, null).getDefaultState();
     }
 
     public withPreviewFeaturesOpen(isPreviewFeaturesOpen: boolean): DetailsViewStoreDataBuilder {

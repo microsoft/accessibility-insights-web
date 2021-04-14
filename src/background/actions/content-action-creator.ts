@@ -37,7 +37,7 @@ export class ContentActionCreator {
     };
 
     private onCloseContentPanel = (payload: BaseActionPayload): void => {
-        this.contentActions.closeContentPanel.invoke(null);
+        this.contentActions.closeContentPanel.invoke();
         this.telemetryEventHandler.publishTelemetry(CONTENT_PANEL_CLOSED, payload);
     };
 }

@@ -21,11 +21,18 @@ import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-acti
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { AndroidSetupStoreData } from 'electron/flux/types/android-setup-store-data';
+import { DeviceConnectionStatus } from 'electron/flux/types/device-connection-status';
+import { DeviceConnectionStoreData } from 'electron/flux/types/device-connection-store-data';
 import { LeftNavStoreData } from 'electron/flux/types/left-nav-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { TabStopsStoreData } from 'electron/flux/types/tab-stops-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
+import {
+    VisualHelperSectionDeps,
+    VisualHelperSectionProps,
+} from 'electron/types/visual-helper-section';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ContentPanelDeps } from 'electron/views/left-nav/content-panel-deps';
 import { FluentLeftNav } from 'electron/views/left-nav/fluent-left-nav';
@@ -36,7 +43,6 @@ import {
 } from 'electron/views/results/components/reflow-command-bar';
 import { TitleBar, TitleBarDeps } from 'electron/views/results/components/title-bar';
 import { TestView, TestViewDeps } from 'electron/views/results/test-view';
-import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 import * as styles from './results-view.scss';
@@ -48,6 +54,7 @@ export type ResultsViewDeps = ReflowCommandBarDeps &
     LeftNavDeps &
     ContentPanelDeps &
     TestViewDeps &
+    VisualHelperSectionDeps &
     SettingsPanelDeps & {
         scanActionCreator: ScanActionCreator;
         leftNavActionCreator: LeftNavActionCreator;
@@ -62,6 +69,7 @@ export type ResultsViewDeps = ReflowCommandBarDeps &
 export type ResultsViewProps = {
     deps: ResultsViewDeps;
     scanStoreData: ScanStoreData;
+    deviceConnectionStoreData: DeviceConnectionStoreData;
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
@@ -71,6 +79,7 @@ export type ResultsViewProps = {
     androidSetupStoreData: AndroidSetupStoreData;
     leftNavStoreData: LeftNavStoreData;
     narrowModeStatus: NarrowModeStatus;
+    tabStopsStoreData: TabStopsStoreData;
 };
 
 export class ResultsView extends React.Component<ResultsViewProps> {
@@ -115,6 +124,15 @@ export class ResultsView extends React.Component<ResultsViewProps> {
             deps.getDateFromTimestamp,
         );
 
+        const visualHelperSectionProps: VisualHelperSectionProps = {
+            deps: deps,
+            viewModel: screenshotViewModel,
+            narrowModeStatus: this.props.narrowModeStatus,
+            deviceId: this.props.androidSetupStoreData.selectedDevice.id,
+        };
+
+        const VisualHelperSectionComponent = contentPageInfo.visualHelperSection;
+
         return (
             <div className={styles.resultsView} data-automation-id={resultsViewAutomationId}>
                 <TitleBar
@@ -136,10 +154,11 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                                         userConfigurationStoreData={userConfigurationStoreData}
                                         cardsViewData={cardsViewData}
                                         contentPageInfo={contentPageInfo}
+                                        tabStopsEnabled={this.props.tabStopsStoreData.focusTracking}
                                     />
                                 </main>
                             </div>
-                            {<ScreenshotView viewModel={screenshotViewModel} />}
+                            <VisualHelperSectionComponent {...visualHelperSectionProps} />
                             {this.renderDeviceDisconnected()}
                         </div>
                     </div>
@@ -163,6 +182,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                 narrowModeStatus={this.props.narrowModeStatus}
                 selectedKey={this.props.leftNavStoreData.selectedKey}
                 setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
+                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }
@@ -218,7 +238,7 @@ export class ResultsView extends React.Component<ResultsViewProps> {
     }
 
     private renderDeviceDisconnected(): JSX.Element {
-        if (this.props.scanStoreData.status !== ScanStatus.Failed) {
+        if (this.props.deviceConnectionStoreData.status !== DeviceConnectionStatus.Disconnected) {
             return;
         }
 

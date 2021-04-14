@@ -15,6 +15,11 @@ const serviceInfoCommandMatch =
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
 const portForwardingCommandMatch = 'forward tcp:';
 const sdkVersionCommandMatch = 'shell getprop ro.build.version.sdk';
+const inputKeyeventCommandMatch = 'shell input keyevent';
+const resetOverlayPermissionCommandMatch =
+    'shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice';
+const grantOverlayPermissionCommandMatch =
+    'shell pm grant com.microsoft.accessibilityinsightsforandroidservice android.permission.SYSTEM_ALERT_WINDOW';
 
 function addDeviceEnumerationCommands(id, output) {
     output[`-s ${id} ${devicesCommandMatch}`] = cloneDeep(output.devices);
@@ -93,6 +98,30 @@ function addPortForwardingCommands(id, output, port) {
     };
 }
 
+function addInputKeyeventCommands(id, output) {
+    // These are the values thr virtual keyboard uses for focus testing.
+    // See KevEventCode in src/electron/platform/android/adb-wrapper.ts
+    const keyeventCodeMap = {
+        up: 19,
+        down: 20,
+        left: 21,
+        right: 22,
+        tab: 61,
+        enter: 66,
+    };
+
+    for (const keyeventCode of Object.values(keyeventCodeMap)) {
+        output[`-s ${id} ${inputKeyeventCommandMatch} ${keyeventCode}`] = {
+            stdout: '',
+        };
+    }
+}
+
+function addGrantOverlayPermissionCommands(id, output) {
+    output[`-s ${id} ${resetOverlayPermissionCommandMatch}`] = {};
+    output[`-s ${id} ${grantOverlayPermissionCommandMatch}`] = {};
+}
+
 function workingDeviceCommands(deviceIds, port) {
     const output = {
         'start-server': {},
@@ -112,7 +141,9 @@ function workingDeviceCommands(deviceIds, port) {
         addDetectServiceCommands(id, output);
         addInstallServiceCommands(id, output);
         addCheckPermissionsCommands(id, output);
+        addGrantOverlayPermissionCommands(id, output);
         addPortForwardingCommands(id, output, port);
+        addInputKeyeventCommands(id, output);
     }
 
     return output;
@@ -163,6 +194,10 @@ function simulatePortForwardingError(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, portForwardingCommandMatch);
 }
 
+function simulateInputKeyeventError(oldConfig) {
+    return cloneWithDisabledPattern(oldConfig, inputKeyeventCommandMatch);
+}
+
 const physicalDeviceName1 = 'device-1';
 const physicalDeviceName2 = 'device-2';
 const emulatorDeviceName = 'emulator-3';
@@ -188,4 +223,5 @@ module.exports = {
     simulateServiceNotInstalled,
     simulateServiceLacksPermissions,
     simulatePortForwardingError,
+    simulateInputKeyeventError,
 };

@@ -15,6 +15,7 @@ export interface ServiceConfigurator {
     hasRequiredServiceVersion(): Promise<boolean>;
     installRequiredServiceVersion(): Promise<void>;
     hasRequiredPermissions(): Promise<boolean>;
+    grantOverlayPermission(): Promise<void>;
     setupTcpForwarding(): Promise<number>;
     removeTcpForwarding(hostPort: number): Promise<void>;
 }
@@ -81,6 +82,13 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
         );
         const screenshotGranted: boolean = mediaProjectionOutput.includes(this.servicePackageName);
         return screenshotGranted;
+    };
+
+    public grantOverlayPermission = async (): Promise<void> => {
+        return await this.adbWrapper.grantOverlayPermission(
+            this.selectedDeviceId,
+            this.servicePackageName,
+        );
     };
 
     public setupTcpForwarding = async (): Promise<number> => {

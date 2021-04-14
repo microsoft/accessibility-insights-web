@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
 import { DialogRenderer } from '../dialog-renderer';
@@ -20,7 +19,6 @@ const getTargetElementsFromResult = (result: AxeResultsWithFrameLevel, dom: Docu
 export class HighlightBoxDrawer extends BaseDrawer {
     protected elementResults: AxeResultsWithFrameLevel[];
     protected dialogRenderer: DialogRenderer;
-    private featureFlagStoreData: FeatureFlagStoreData;
     private clientUtils: ClientUtils;
 
     public static defaultConfiguration: DrawerConfiguration = {
@@ -54,7 +52,6 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
     public initialize(config: DrawerInitData<HtmlElementAxeResults>): void {
         this.elementResults = config.data;
-        this.featureFlagStoreData = config.featureFlagStoreData;
         this.eraseLayout();
     }
 
@@ -154,7 +151,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
             if (drawerConfig.failureBoxConfig.hasDialogView) {
                 failureBox.addEventListener('click', () => {
-                    this.dialogRenderer.render(data as any, this.featureFlagStoreData);
+                    this.dialogRenderer.render(data);
                 });
             }
             wrapper.appendChild(failureBox);

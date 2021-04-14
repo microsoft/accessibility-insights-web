@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { EXISTING_TAB_URL_UPDATED, SWITCH_BACK_TO_TARGET } from 'common/extension-telemetry-events';
+import { Tab } from 'common/itab';
 import { Logger } from 'common/logging/logger';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
@@ -24,7 +25,7 @@ export class TabActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.NewTabCreated, payload =>
+        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.NewTabCreated, (payload: Tab) =>
             this.tabActions.newTabCreated.invoke(payload),
         );
         this.interpreter.registerTypeToPayloadCallback(

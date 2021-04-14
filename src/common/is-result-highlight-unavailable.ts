@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import {
-    PlatformData,
-    UnifiedResult,
-    ViewPortProperties,
-} from 'common/types/store-data/unified-data-interface';
+import { PlatformData, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/android-scan-results';
 
 export type IsResultHighlightUnavailable = (

@@ -10,7 +10,7 @@ export interface CreateIssueDetailsTextData {
         guidance: GuidanceLink[];
     };
     targetApp: {
-        name: string;
+        name?: string;
         url?: string;
     };
     element: {

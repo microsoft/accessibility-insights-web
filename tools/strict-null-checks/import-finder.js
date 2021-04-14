@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 
 // @ts-check
+const fs = require('fs');
 const path = require('path');
 const ts = require('typescript');
-const fs = require('fs');
 
 const imports = new Map();
 const getMemoizedImportsForFile = (file, srcRoot) => {

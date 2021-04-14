@@ -65,6 +65,7 @@ exports[` render renders normally 1`] = `
       Object {
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
+        "isVirtualKeyboardCollapsed": false,
       }
     }
     selectedPivot={0}
@@ -177,6 +178,7 @@ exports[` render renders normally 1`] = `
       Object {
         "isCommandBarCollapsed": false,
         "isHeaderAndNavCollapsed": false,
+        "isVirtualKeyboardCollapsed": false,
       }
     }
     pathSnippetStoreData={
@@ -259,36 +261,26 @@ exports[` render renders normally 1`] = `
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
           "scanResult": null,
-          "selectedAxeResultsMap": null,
-          "selectedIdToRuleResultMap": null,
         },
         "headings": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
           "scanResult": null,
-          "selectedAxeResultsMap": null,
-          "selectedIdToRuleResultMap": null,
         },
         "issues": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
           "scanResult": null,
-          "selectedAxeResultsMap": null,
-          "selectedIdToRuleResultMap": null,
         },
         "landmarks": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
           "scanResult": null,
-          "selectedAxeResultsMap": null,
-          "selectedIdToRuleResultMap": null,
         },
         "needsReview": Object {
           "fullAxeResultsMap": null,
           "fullIdToRuleResultMap": null,
           "scanResult": null,
-          "selectedAxeResultsMap": null,
-          "selectedIdToRuleResultMap": null,
         },
         "tabStops": Object {
           "tabbedElements": null,

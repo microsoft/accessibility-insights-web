@@ -3,9 +3,9 @@
 
 // In the build loop it can be helpful to know the
 // sha256/512 value of the installer to help debug signing
-const hashUtil = require('app-builder-lib/out/util/hash');
 const fs = require('fs');
 const path = require('path');
+const hashUtil = require('app-builder-lib/out/util/hash');
 
 const parentDir = process.argv[2];
 

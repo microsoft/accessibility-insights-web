@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    getNarrowModeThresholdsForWeb,
-    NarrowModeThresholds,
-} from 'electron/common/narrow-mode-thresholds';
+import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { navMenuSelectors } from '../../common/element-identifiers/details-view-selectors';

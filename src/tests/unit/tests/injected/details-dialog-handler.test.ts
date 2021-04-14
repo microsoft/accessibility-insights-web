@@ -8,7 +8,6 @@ import { DevToolActionMessageCreator } from '../../../../common/message-creators
 import { DevToolStoreData } from '../../../../common/types/store-data/dev-tool-store-data';
 import { DetailsDialog, DetailsDialogState } from '../../../../injected/components/details-dialog';
 import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
-import { DictionaryStringTo } from '../../../../types/common-types';
 import { EventStubFactory } from '../../common/event-stub-factory';
 import { UserConfigurationStoreData } from './../../../../common/types/store-data/user-configuration-store';
 
@@ -18,8 +17,6 @@ describe('DetailsDialogHandlerTest', () => {
     let container: Element;
     let detailsDialog: Element;
     let containerParent: Element;
-    let body: HTMLElement;
-    let featureFlagStoreData: DictionaryStringTo<boolean>;
     let detailsDialogMock: IMock<DetailsDialog>;
 
     beforeEach(() => {
@@ -27,15 +24,9 @@ describe('DetailsDialogHandlerTest', () => {
         testSubject = new DetailsDialogHandler(htmlElementUtilsMock.object);
         container = document.createElement('div');
         detailsDialog = document.createElement('div');
-        detailsDialog.classList.add('insights-shadow-dialog-container');
         container.appendChild(detailsDialog);
         containerParent = document.createElement('div');
         containerParent.appendChild(container);
-        body = document.createElement('div');
-        body.classList.add('insights-modal');
-        featureFlagStoreData = {
-            shadowDialog: true,
-        };
         detailsDialogMock = Mock.ofType<DetailsDialog>();
     });
 
@@ -424,7 +415,7 @@ describe('DetailsDialogHandlerTest', () => {
         htmlElementUtilsMock.verifyAll();
     });
 
-    test('componentDidMount adds listener if clickable objects are available', () => {
+    test('componentDidMount adds store change listeners', () => {
         const devToolStoreMock = Mock.ofType<BaseStore<DevToolStoreData>>(
             undefined,
             MockBehavior.Strict,
@@ -439,37 +430,6 @@ describe('DetailsDialogHandlerTest', () => {
                     repository: 'issTrackPath',
                 },
             },
-        } as any;
-        const clickableMock = Mock.ofInstance({
-            addEventListener: (ev, cb) => {
-                return null;
-            },
-        } as any);
-
-        const evt = {
-            target: clickableMock.object,
-        } as any;
-
-        clickableMock
-            .setup(cM =>
-                cM.addEventListener(
-                    'click',
-                    It.is(param => typeof param === 'function'),
-                ),
-            )
-            .callback((ev, cb) => {
-                cb(evt);
-            })
-            .verifiable(Times.atLeastOnce());
-
-        const shadowRootMock: IMock<Element> = Mock.ofInstance({
-            querySelector: selector => {
-                return null;
-            },
-        } as any);
-
-        const shadowRoot: Element = {
-            shadowRoot: shadowRootMock.object,
         } as any;
 
         devToolStoreMock
@@ -493,23 +453,6 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => userConfigStoreData)
             .verifiable(Times.once());
 
-        shadowRootMock
-            .setup(x => x.querySelector('#insights-shadow-container'))
-            .returns(selector => {
-                return container;
-            })
-            .verifiable(Times.atLeastOnce());
-
-        htmlElementUtilsMock
-            .setup(x => x.querySelector('#insights-shadow-host'))
-            .returns(() => shadowRoot)
-            .verifiable(Times.once());
-
-        htmlElementUtilsMock
-            .setup(x => x.getBody())
-            .returns(() => body)
-            .verifiable(Times.once());
-
         detailsDialogMock
             .setup(dialog => dialog.props)
             .returns(() => {
@@ -517,7 +460,6 @@ describe('DetailsDialogHandlerTest', () => {
                     devToolStore: devToolStoreMock.object,
                     userConfigStore: userConfigStoreMock.object,
                     enableIssueFiling: true,
-                    featureFlagStoreData: featureFlagStoreData,
                 } as any;
             })
             .verifiable(Times.atLeastOnce());
@@ -531,21 +473,11 @@ describe('DetailsDialogHandlerTest', () => {
             )
             .verifiable(Times.once());
 
-        setupDetailsDialogMockForShadowComponents();
-
-        setupDialogContainerQuerySelector(shadowRootMock, clickableMock);
-        setupCloseButtonQuerySelector(shadowRootMock, clickableMock);
-        setupNextButtonQuerySelector(shadowRootMock, clickableMock);
-        setupBackButtonQuerySelector(shadowRootMock, clickableMock);
-        setupInspectButtonQuerySelector(shadowRootMock, clickableMock);
-
         testSubject.componentDidMount(detailsDialogMock.object);
 
         devToolStoreMock.verifyAll();
         userConfigStoreMock.verifyAll();
         detailsDialogMock.verifyAll();
-        shadowRootMock.verifyAll();
-        clickableMock.verifyAll();
     });
 
     test('componentDidMount does not add listener if store not present', () => {
@@ -602,93 +534,6 @@ describe('DetailsDialogHandlerTest', () => {
             [{ devToolStore: {} }, true],
         ])('', (props, expected: boolean) => testHasStoreGivenPropsReturns(props, expected));
     });
-
-    test('closeWindow will remove listener', () => {
-        const shadowRootMock: IMock<Element> = Mock.ofInstance({
-            querySelector: selector => {
-                return null;
-            },
-        } as any);
-
-        shadowRootMock
-            .setup(root => root.querySelector('#insights-shadow-container'))
-            .returns(selector => {
-                return container;
-            })
-            .verifiable(Times.once());
-
-        htmlElementUtilsMock
-            .setup(x => x.getBody())
-            .returns(() => body)
-            .verifiable(Times.once());
-
-        (testSubject as any).closeWindow(shadowRootMock.object);
-
-        expect(body.classList.length).toEqual(0);
-        expect(container.querySelector('.insights-shadow-dialog-container')).toBeNull();
-        shadowRootMock.verifyAll();
-        htmlElementUtilsMock.verifyAll();
-    });
-
-    function setupInspectButtonQuerySelector(
-        shadowRootMock: IMock<Element>,
-        clickableMock: IMock<any>,
-    ): void {
-        shadowRootMock
-            .setup(x => x.querySelector('.insights-dialog-button-inspect'))
-            .returns(selector => {
-                return clickableMock.object;
-            })
-            .verifiable(Times.once());
-    }
-
-    function setupDialogContainerQuerySelector(
-        shadowRootMock: IMock<Element>,
-        clickableMock: IMock<any>,
-    ): void {
-        shadowRootMock
-            .setup(x => x.querySelector('.insights-dialog-main-override-shadow'))
-            .returns(selector => {
-                return clickableMock.object;
-            })
-            .verifiable(Times.once());
-    }
-
-    function setupCloseButtonQuerySelector(
-        shadowRootMock: IMock<Element>,
-        clickableMock: IMock<any>,
-    ): void {
-        shadowRootMock
-            .setup(x => x.querySelector('.insights-dialog-close'))
-            .returns(selector => {
-                return clickableMock.object;
-            })
-            .verifiable(Times.once());
-    }
-
-    function setupNextButtonQuerySelector(
-        shadowRootMock: IMock<Element>,
-        clickableMock: IMock<any>,
-    ): void {
-        shadowRootMock
-            .setup(x => x.querySelector('.insights-dialog-button-right'))
-            .returns(selector => {
-                return clickableMock.object;
-            })
-            .verifiable(Times.once());
-    }
-
-    function setupBackButtonQuerySelector(
-        shadowRootMock: IMock<Element>,
-        clickableMock: IMock<any>,
-    ): void {
-        shadowRootMock
-            .setup(x => x.querySelector('.insights-dialog-button-left'))
-            .returns(selector => {
-                return clickableMock.object;
-            })
-            .verifiable(Times.once());
-    }
 
     function testIsInspectButtonDisabledShouldReflectCanInspect(canInspect: boolean): void {
         detailsDialogMock
@@ -825,40 +670,5 @@ describe('DetailsDialogHandlerTest', () => {
         const parentLayer = document.createElement('div');
         parentLayer.className = 'ms-Layer--fixed';
         return parentLayer;
-    }
-
-    function setupDetailsDialogMockForShadowComponents(): void {
-        setupVerificationForBackButton();
-        setupVerificationForNextButton();
-        setupVerificationForInspectButton();
-    }
-
-    function setupVerificationForBackButton(): void {
-        detailsDialogMock
-            .setup(dialog => dialog.isBackButtonDisabled())
-            .returns(() => false)
-            .verifiable(Times.once());
-
-        detailsDialogMock.setup(dialog => dialog.onClickBackButton()).verifiable(Times.once());
-    }
-
-    function setupVerificationForNextButton(): void {
-        detailsDialogMock
-            .setup(dialog => dialog.isNextButtonDisabled())
-            .returns(() => false)
-            .verifiable(Times.once());
-
-        detailsDialogMock.setup(dialog => dialog.onClickNextButton()).verifiable(Times.once());
-    }
-
-    function setupVerificationForInspectButton(): void {
-        detailsDialogMock
-            .setup(dialog => dialog.isInspectButtonDisabled())
-            .returns(() => false)
-            .verifiable(Times.once());
-
-        detailsDialogMock
-            .setup(dialog => dialog.onClickInspectButton(It.isAny()))
-            .verifiable(Times.once());
     }
 });
