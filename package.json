@@ -181,7 +181,7 @@
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^6.6.5",
         "react-router-dom": "^5.2.0",
-        "ua-parser-js": "^0.7.27",
+        "ua-parser-js": "^0.7.28",
         "uuid": "^8.3.2",
         "webextension-polyfill-ts": "^0.25.0"
     },
