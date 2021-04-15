@@ -161,6 +161,7 @@ describe('WebVisualizationConfigurationFactory', () => {
         });
     });
 
+    // This is important for any data structure which assumes it's safe to use configIds as keys
     test("manually specified visualizaton keys don't overlap with requirement visualization keys", () => {
         for (const assessment of Assessments.all()) {
             const assessmentConfig = testObject.getConfiguration(assessment.visualizationType);
