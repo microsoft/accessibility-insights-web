@@ -129,7 +129,7 @@
         "jest": "^26.6.3",
         "jest-circus": "^26.6.3",
         "jest-junit": "^12.0.0",
-        "js-yaml": "^4.0.0",
+        "js-yaml": "^4.1.0",
         "lerna": "^4.0.0",
         "license-check-and-add": "^4.0.2",
         "make-dir": "^3.1.0",
