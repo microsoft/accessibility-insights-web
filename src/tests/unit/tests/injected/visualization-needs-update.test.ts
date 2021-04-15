@@ -1,157 +1,101 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
-import { VisualizationSelectorMapContainer } from 'injected/target-page-visualization-updater';
-import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
-import { DictionaryStringTo } from 'types/common-types';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
+import {
+    TestStepVisualizationState,
+    visualizationNeedsUpdate,
+} from 'injected/visualization-needs-update';
 
 describe('visualizationNeedsUpdate', () => {
-    let visualizationType: VisualizationType;
-    let id: string;
-    let newSelectorMapState: SelectorToVisualizationMap;
-    let previousVisualizationStates: DictionaryStringTo<boolean>;
-    let previousVisualizationSelectorMapData: VisualizationSelectorMapContainer;
+    const selectorMapA: SelectorToVisualizationMap = {
+        'selector-a': {} as AssessmentVisualizationInstance,
+    };
+    const selectorMapB: SelectorToVisualizationMap = {
+        'selector-b': {} as AssessmentVisualizationInstance,
+    };
+    const irrelevantSelectorMap = selectorMapA;
 
-    beforeEach(() => {
-        visualizationType = -1;
-        id = 'some id';
-        previousVisualizationStates = {};
-        previousVisualizationSelectorMapData = {};
-    });
-
-    [true, false].forEach(newVisualizationEnabledState => {
-        test(`config id does not exist in previous visualization state should return new visualization state ${newVisualizationEnabledState}`, () => {
-            expect(
-                visualizationNeedsUpdate(
-                    visualizationType,
-                    id,
-                    newVisualizationEnabledState,
-                    newSelectorMapState,
-                    previousVisualizationStates,
-                    previousVisualizationSelectorMapData,
-                ),
-            ).toEqual(newVisualizationEnabledState);
+    describe('when there is no previous state', () => {
+        it.each([true, false])('should return %p if new state has enabled=%p', newEnabled => {
+            const oldState: TestStepVisualizationState = undefined;
+            const newState: TestStepVisualizationState = {
+                enabled: newEnabled,
+                selectorMap: irrelevantSelectorMap,
+            };
+            expect(visualizationNeedsUpdate(newState, oldState)).toBe(newEnabled);
         });
     });
 
     it('returns true when previously-disabled visualization is enabled', () => {
-        previousVisualizationStates = {
-            [id]: false,
+        const oldState: TestStepVisualizationState = {
+            enabled: false,
+            selectorMap: irrelevantSelectorMap,
         };
-        const newVisualizationEnabledState = true;
-
-        expect(
-            visualizationNeedsUpdate(
-                visualizationType,
-                id,
-                newVisualizationEnabledState,
-                newSelectorMapState,
-                previousVisualizationStates,
-                previousVisualizationSelectorMapData,
-            ),
-        ).toEqual(true);
+        const newState: TestStepVisualizationState = {
+            enabled: true,
+            selectorMap: irrelevantSelectorMap,
+        };
+        expect(visualizationNeedsUpdate(newState, oldState)).toBe(true);
     });
 
     it('returns true when previously-enabled visualization is disabled', () => {
-        previousVisualizationStates = {
-            [id]: true,
+        const oldState: TestStepVisualizationState = {
+            enabled: true,
+            selectorMap: irrelevantSelectorMap,
         };
-        const newVisualizationEnabledState = false;
-
-        expect(
-            visualizationNeedsUpdate(
-                visualizationType,
-                id,
-                newVisualizationEnabledState,
-                newSelectorMapState,
-                previousVisualizationStates,
-                previousVisualizationSelectorMapData,
-            ),
-        ).toEqual(true);
+        const newState: TestStepVisualizationState = {
+            enabled: false,
+            selectorMap: irrelevantSelectorMap,
+        };
+        expect(visualizationNeedsUpdate(newState, oldState)).toBe(true);
     });
 
     it('returns false when previously-disabled visualization is still disabled and selector map has not changed', () => {
-        const newVisualizationEnabledState = false;
-        previousVisualizationStates = {
-            [id]: false,
+        const oldState: TestStepVisualizationState = {
+            enabled: false,
+            selectorMap: selectorMapA,
         };
-
-        newSelectorMapState = {};
-        previousVisualizationSelectorMapData[visualizationType] = newSelectorMapState;
-
-        expect(
-            visualizationNeedsUpdate(
-                visualizationType,
-                id,
-                newVisualizationEnabledState,
-                newSelectorMapState,
-                previousVisualizationStates,
-                previousVisualizationSelectorMapData,
-            ),
-        ).toEqual(false);
+        const newState: TestStepVisualizationState = {
+            enabled: false,
+            selectorMap: selectorMapA,
+        };
+        expect(visualizationNeedsUpdate(newState, oldState)).toBe(false);
     });
 
     it('returns false when previously-disabled visualization is still disabled, regardless of selector map changing,', () => {
-        const newVisualizationEnabledState = false;
-        previousVisualizationStates = {
-            [id]: false,
+        const oldState: TestStepVisualizationState = {
+            enabled: false,
+            selectorMap: selectorMapA,
         };
-
-        newSelectorMapState = { 'new-state': null };
-        previousVisualizationSelectorMapData[visualizationType] = { 'old-state': null };
-
-        expect(
-            visualizationNeedsUpdate(
-                visualizationType,
-                id,
-                newVisualizationEnabledState,
-                newSelectorMapState,
-                previousVisualizationStates,
-                previousVisualizationSelectorMapData,
-            ),
-        ).toEqual(false);
+        const newState: TestStepVisualizationState = {
+            enabled: false,
+            selectorMap: selectorMapB,
+        };
+        expect(visualizationNeedsUpdate(newState, oldState)).toBe(false);
     });
 
     it('returns false when previously-enabled visualization is still enabled and selector map has not changed', () => {
-        const newVisualizationEnabledState = true;
-        previousVisualizationStates = {
-            [id]: newVisualizationEnabledState,
+        const oldState: TestStepVisualizationState = {
+            enabled: true,
+            selectorMap: selectorMapA,
         };
-
-        newSelectorMapState = {};
-        previousVisualizationSelectorMapData[visualizationType] = newSelectorMapState;
-
-        expect(
-            visualizationNeedsUpdate(
-                visualizationType,
-                id,
-                newVisualizationEnabledState,
-                newSelectorMapState,
-                previousVisualizationStates,
-                previousVisualizationSelectorMapData,
-            ),
-        ).toEqual(false);
+        const newState: TestStepVisualizationState = {
+            enabled: true,
+            selectorMap: selectorMapA,
+        };
+        expect(visualizationNeedsUpdate(newState, oldState)).toBe(false);
     });
 
     it('returns true when previously-enabled visualization is still enabled, but selector map has changed', () => {
-        const newVisualizationEnabledState = true;
-        previousVisualizationStates = {
-            [id]: newVisualizationEnabledState,
+        const oldState: TestStepVisualizationState = {
+            enabled: true,
+            selectorMap: selectorMapA,
         };
-
-        newSelectorMapState = { 'new-state': null };
-        previousVisualizationSelectorMapData[visualizationType] = { 'old-state': null };
-
-        expect(
-            visualizationNeedsUpdate(
-                visualizationType,
-                id,
-                newVisualizationEnabledState,
-                newSelectorMapState,
-                previousVisualizationStates,
-                previousVisualizationSelectorMapData,
-            ),
-        ).toEqual(true);
+        const newState: TestStepVisualizationState = {
+            enabled: true,
+            selectorMap: selectorMapB,
+        };
+        expect(visualizationNeedsUpdate(newState, oldState)).toBe(true);
     });
 });

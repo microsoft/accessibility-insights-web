@@ -15,7 +15,7 @@ import {
 } from './visualization-needs-update';
 
 type TestStepVisualizationStateMap = {
-    [visualizationType in VisualizationType]: {
+    [visualizationType: number]: {
         [testStepConfigId: string]: TestStepVisualizationState;
     };
 };
@@ -26,7 +26,7 @@ export type UpdateVisualization = (
     storeData: TargetPageStoreData,
 ) => void;
 export class TargetPageVisualizationUpdater {
-    private previousVisualizationStates: TestStepVisualizationStateMap;
+    private previousVisualizationStates: TestStepVisualizationStateMap = {};
 
     constructor(
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
