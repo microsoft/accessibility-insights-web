@@ -51,7 +51,6 @@ steps:
 
     - template: ./binskim-analysis.yaml
 
-    - task:
     - template: publish-packed-build-output.yaml
       parameters:
           packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed'
