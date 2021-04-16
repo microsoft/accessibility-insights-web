@@ -14,7 +14,9 @@ const prepareBinskimDir = async () => {
     );
 
     // These assemblies don't have symbols and are intentionally ignored
-    await fs.rmdir(path.join(symbolsPath, 'swiftshader'));
+    const swiftShaderPath = path.join(symbolsPath, 'swiftshader');
+    await fs.unlink(path.join(swiftShaderPath, 'libEGL.dll'));
+    await fs.unlink(path.join(swiftShaderPath, 'libGLESv2.dll'));
     await fs.unlink(path.join(symbolsPath, 'd3dcompiler_47.dll'));
 };
 
