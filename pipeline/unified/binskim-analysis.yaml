@@ -1,0 +1,25 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+steps:
+    - script: yarn copy:prepare-binskim
+      displayName: prepare for BinSkim
+
+    - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
+      displayName: 'run BinSkim'
+      inputs:
+          toolVersion: Latest
+          InputType: Basic
+          Function: analyze
+          AnalyzeTarget: '$(Build.SourcesDirectory)\electron-symbols\*.dll;$(Build.SourcesDirectory)\electron-symbols\*.exe'
+
+    - task: CopyFiles@2
+      displayName: copy BinSkim results
+      inputs:
+          SourceFolder: '$(System.DefaultWorkingDirectory)/_sdt/logs/BinSkim'
+          TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
+          artifactName: 'CodeAnalysisLogs'
+      displayName: publish CodeAnalysisLogs

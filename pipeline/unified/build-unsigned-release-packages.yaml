@@ -49,17 +49,9 @@ steps:
     - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: print out canary file hashes
 
-    - script: yarn copy:prepare-binskim
-      displayName: prepare for binskim
+    - template: binskim-analysis.yaml
 
-    - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-      displayName: 'binskim'
-      inputs:
-          toolVersion: Latest
-          InputType: Basic
-          Function: analyze
-          AnalyzeTarget: '$(Build.SourcesDirectory)\electron-symbols\*.dll;$(Build.SourcesDirectory)\electron-symbols\*.exe'
-
+    - task:
     - template: publish-packed-build-output.yaml
       parameters:
           packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed'
