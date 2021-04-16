@@ -14,8 +14,9 @@ steps:
     - task: NuGetCommand@2
       displayName: Install BinSkim package from NuGet
       condition: and(succeeded(), eq(variables.platform, 'windows'))
-      command: custom
-      arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive'
+      inputs:
+          command: custom
+          arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive'
 
     - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
       displayName: 'run BinSkim'
