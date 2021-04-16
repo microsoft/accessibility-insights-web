@@ -13,6 +13,7 @@ import { UserConfigurationStoreData } from 'common/types/store-data/user-configu
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { InlineStartOverButton } from 'DetailsView/components/inline-start-over-button';
 import * as styles from 'DetailsView/components/issues-table.scss';
+import { FastPassProvider } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialogDeps } from './export-dialog';
@@ -49,10 +50,21 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     public render(): JSX.Element {
         return (
             <div className={styles.issuesTable}>
-                <h1>{this.props.title}</h1>
+                {this.renderTitle()}
                 {this.renderSubtitle()}
                 {this.renderContent()}
             </div>
+        );
+    }
+
+    private renderTitle(): JSX.Element {
+        const stepIndex = FastPassProvider.getStepIndexForTest(this.props.title);
+        const numFastPastTests = FastPassProvider.getAllFastPassVisualizations().length;
+        return (
+            <h1>
+                {this.props.title}
+                {` Step ${stepIndex} of ${numFastPastTests}`}
+            </h1>
         );
     }
 
