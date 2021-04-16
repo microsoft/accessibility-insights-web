@@ -55,7 +55,7 @@ describe('sharedScanResultsStartOverButtonSettings', () => {
         } as ReflowCommandBarDeps;
         props.scanPort = scanPort;
 
-        sharedScanResultsStartOverButtonSettings(props).onClick();
+        sharedScanResultsStartOverButtonSettings(props).onClick(null);
 
         scanActionCreatorMock.verifyAll();
     });
