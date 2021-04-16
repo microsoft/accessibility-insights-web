@@ -3,9 +3,11 @@
 steps:
     - script: yarn copy:prepare-binskim
       displayName: prepare for BinSkim
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
 
     - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
       displayName: 'run BinSkim'
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           toolVersion: Latest
           InputType: Basic
@@ -14,11 +16,13 @@ steps:
 
     - task: CopyFiles@2
       displayName: copy BinSkim results
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           SourceFolder: '$(System.BuildDirectory)/_sdt/logs/BinSkim'
           TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
 
     - task: PublishBuildArtifacts@1
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           pathtoPublish: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
           artifactName: 'CodeAnalysisLogs'
