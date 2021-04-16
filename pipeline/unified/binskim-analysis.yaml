@@ -15,7 +15,7 @@ steps:
     - task: CopyFiles@2
       displayName: copy BinSkim results
       inputs:
-          SourceFolder: '$(System.DefaultWorkingDirectory)/_sdt/logs/BinSkim'
+          SourceFolder: '$(System.BuildDirectory)/_sdt/logs/BinSkim'
           TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
 
     - task: PublishBuildArtifacts@1
