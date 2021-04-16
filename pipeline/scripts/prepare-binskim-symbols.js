@@ -12,6 +12,10 @@ const prepareBinskimDir = async () => {
         path.join(symbolsPath, 'Accessibility Insights for Android.exe'),
         path.join(symbolsPath, 'electron.exe'),
     );
+
+    // These assemblies don't have symbols and are intentionally ignored
+    await fs.rmdir(path.join(symbolsPath, 'swiftshader'));
+    await fs.unlink(path.join(symbolsPath, 'd3dcompiler_47.dll'));
 };
 
 prepareBinskimDir().catch(err => {
