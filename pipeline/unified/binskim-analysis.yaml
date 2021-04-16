@@ -5,6 +5,18 @@ steps:
       displayName: prepare for BinSkim
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
+    - task: NuGetToolInstaller@1
+      displayName: Install NuGet 5.x
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+      inputs:
+          versionSpec: '5.x'
+
+    - task: NuGetCommand@2
+      displayName: Install BinSkim package from NuGet
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+      command: custom
+      arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive'
+
     - task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
       displayName: 'run BinSkim'
       condition: and(succeeded(), eq(variables.platform, 'windows'))
@@ -22,8 +34,8 @@ steps:
           TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
 
     - task: PublishBuildArtifacts@1
+      displayName: publish CodeAnalysisLogs
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           pathtoPublish: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
           artifactName: 'CodeAnalysisLogs'
-      displayName: publish CodeAnalysisLogs
