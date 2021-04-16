@@ -50,6 +50,7 @@ steps:
       displayName: print out canary file hashes
 
     - template: ./binskim-analysis.yaml
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
 
     - template: publish-packed-build-output.yaml
       parameters:
