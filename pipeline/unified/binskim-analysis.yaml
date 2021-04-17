@@ -2,39 +2,39 @@
 # Licensed under the MIT License.
 steps:
     - script: set
-      displayName: display variables
+      displayName: binskim-display variables
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
     - script: yarn copy:prepare-binskim
-      displayName: prepare for BinSkim
+      displayName: binskim-build folder
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
     - task: NuGetToolInstaller@1
-      displayName: Install NuGet 5.x
+      displayName: binskim-install NuGet 5.x
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           versionSpec: '5.x'
 
     - task: NuGetCommand@2
-      displayName: Install BinSkim package from NuGet
+      displayName: binskim-install package from NuGet
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           command: custom
           arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory $(Agent.BuildDirectory)'
 
     - script: node pipeline/scripts/run-binskim.js $(Agent.BuildDirectory) $(Agent.BuildDirectory)/BinSkim/Logs
-      displayName: run-binskim
+      displayName: binskim-scan
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
     - task: CopyFiles@2
-      displayName: copy BinSkim results
+      displayName: binskim-copy results
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           SourceFolder: '$(Agent.BuildDirectory)/BinSkim/Logs'
           TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
 
     - task: PublishBuildArtifacts@1
-      displayName: publish CodeAnalysisLogs
+      displayName: binskim-publish artifact
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           pathtoPublish: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
