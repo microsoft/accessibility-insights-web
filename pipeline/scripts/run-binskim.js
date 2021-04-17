@@ -24,6 +24,7 @@ const runBinSkim = async () => {
                         'netcoreapp3.1',
                         'win-x64',
                         'BinSkim.exe',
+                        '*.*',
                     );
                     console.log(`exe = ${exe}`);
                     if (fs.existsSync(exe)) {
