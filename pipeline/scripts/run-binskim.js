@@ -6,7 +6,7 @@ const path = require('path');
 
 const runBinSkim = async () => {
     const buildDir = process.argv[2];
-    const symbolsPath = path.resolve('electron-symbols');
+    const fileTarget = path.resolve('electron-symbols', '*.*');
 
     fs.readdir(buildDir, (error, files) => {
         if (error) {
@@ -24,12 +24,11 @@ const runBinSkim = async () => {
                         'netcoreapp3.1',
                         'win-x64',
                         'BinSkim.exe',
-                        '*.*',
                     );
                     console.log(`exe = ${exe}`);
                     if (fs.existsSync(exe)) {
                         foundFile = true;
-                        child_process.execFileSync(exe, ['analyze', symbolsPath, '--recurse'], {
+                        child_process.execFileSync(exe, ['analyze', fileTarget, '--recurse'], {
                             stdio: ['pipe', process.stdout, process.stderr],
                         });
                     }
