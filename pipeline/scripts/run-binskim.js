@@ -6,7 +6,7 @@ const path = require('path');
 
 const runBinSkim = async () => {
     const buildDir = process.argv[2];
-    const logDir = process.argv[3];
+    const logDir = path.resolve(process.argv[3]);
     const fileTarget = path.resolve('electron-symbols', '*.*');
 
     fs.readdir(buildDir, (error, files) => {
@@ -28,9 +28,10 @@ const runBinSkim = async () => {
                     );
                     if (fs.existsSync(exe)) {
                         foundFile = true;
+                        fs.mkdirSync(logDir, { recursive: true });
                         child_process.execFileSync(
                             exe,
-                            ['analyze', fileTarget, '--recurse', '--output', logDir, '--verbose'],
+                            ['analyze', fileTarget, '--recurse', '--output', logDir],
                             {
                                 stdio: ['pipe', process.stdout, process.stderr],
                             },
