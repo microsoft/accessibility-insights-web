@@ -1,6 +1,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
+    - script: set
+      displayName: display variables
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+
     - script: yarn copy:prepare-binskim
       displayName: prepare for BinSkim
       condition: and(succeeded(), eq(variables.platform, 'windows'))
