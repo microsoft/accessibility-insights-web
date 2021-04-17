@@ -18,6 +18,8 @@ const prepareBinskimDir = async () => {
     await fs.unlink(path.join(swiftShaderPath, 'libEGL.dll'));
     await fs.unlink(path.join(swiftShaderPath, 'libGLESv2.dll'));
     await fs.unlink(path.join(symbolsPath, 'd3dcompiler_47.dll'));
+
+    console.log(`Symbols prepared in ${symbolsPath}`);
 };
 
 prepareBinskimDir().catch(err => {
