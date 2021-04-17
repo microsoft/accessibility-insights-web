@@ -16,26 +16,17 @@ steps:
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           command: custom
-          arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory $(Agent.BuildDirectory)'
+          arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory $(Agent.BuildDirectory) $(Agent.BuildDirectory)/BinSkim/Logs'
 
     - script: node pipeline/scripts/run-binskim.js $(Agent.BuildDirectory)
       displayName: run-binskim
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
-    #- task: securedevelopmentteam.vss-secure-development-tools.build-task-binskim.BinSkim@3
-    #  displayName: 'run BinSkim'
-    #  condition: and(succeeded(), eq(variables.platform, 'windows'))
-    #  inputs:
-    #      toolVersion: Latest
-    #      InputType: Basic
-    #      Function: analyze
-    #      AnalyzeTarget: '$(Build.SourcesDirectory)\electron-symbols\*.dll;$(Build.SourcesDirectory)\electron-symbols\*.exe'
-
     - task: CopyFiles@2
       displayName: copy BinSkim results
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
-          SourceFolder: '$(Agent.BuildDirectory)/_sdt/logs/BinSkim'
+          SourceFolder: '$(Agent.BuildDirectory)/BinSkim/Logs'
           TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
 
     - task: PublishBuildArtifacts@1
