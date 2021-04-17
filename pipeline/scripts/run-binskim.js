@@ -5,7 +5,7 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const runBinSkim = async () => {
-    const buildDir = process.env['Agent.BuildDirectory'];
+    const buildDir = process.argv[2];
     const symbolsPath = path.resolve('electron-symbols');
 
     fs.readdir(buildDir, (error, files) => {
