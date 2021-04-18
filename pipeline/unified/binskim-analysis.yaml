@@ -22,7 +22,7 @@ steps:
           command: custom
           arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory $(Agent.BuildDirectory)'
 
-    - script: node pipeline/scripts/run-binskim.js $(Agent.BuildDirectory) $(Agent.BuildDirectory)/BinSkim/Logs
+    - script: node pipeline/scripts/run-binskim.js $(Agent.BuildDirectory) $(Agent.BuildDirectory)/BinSkim/Logs/binskim.sarif
       displayName: binskim-scan
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
