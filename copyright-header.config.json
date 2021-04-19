@@ -19,6 +19,8 @@
         "./packages/*/drop",
         "./src/assessments/color/test-steps/flashing-text-example.html",
         "./src/tests/miscellaneous/mock-adb/bin",
+        "./binskim",
+        "./electron-symbols",
         ".gitattribute",
         ".gitattributes",
         ".ignoredRevs",

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-const fs = require('fs-extra');
 const path = require('path');
+const fs = require('fs-extra');
 
 const prepareBinskimDir = async () => {
     const symbolsPath = path.resolve('electron-symbols');

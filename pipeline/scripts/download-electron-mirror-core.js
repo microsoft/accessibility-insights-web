@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 const fs = require('fs');
 const path = require('path');
+const process = require('process');
 const { downloadArtifact } = require('@electron/get');
 const extract = require('extract-zip');
 const pkg = require('../../package.json');
-const process = require('process');
 
 /*
 This script replaces existing electron & chromedriver modules

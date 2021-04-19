@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 const child_process = require('child_process');
-const fs = require('fs-extra');
 const path = require('path');
+const fs = require('fs-extra');
 
 const runBinSkim = async () => {
     const fileTarget = path.resolve('electron-symbols', '*.*');
