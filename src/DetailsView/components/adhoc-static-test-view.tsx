@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { FastPassProvider } from 'fast-pass/fast-pass-provider';
+import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import { ContentReference } from 'views/content/content-page';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
@@ -46,7 +46,9 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
         const displayableData = props.configuration.displayableData;
 
         const stepsText = (): string => {
-            const fastPassProvider = new FastPassProvider(props.featureFlagStoreData);
+            const fastPassProvider = createFastPassProviderWithFeatureFlags(
+                props.featureFlagStoreData,
+            );
             const stepIndex = fastPassProvider.getStepIndexForType(selectedTest);
             const totalTests = fastPassProvider.getNumTests();
 

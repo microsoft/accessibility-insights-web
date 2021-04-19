@@ -9,7 +9,7 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { FastPassProvider } from 'fast-pass/fast-pass-provider';
+import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 
@@ -36,7 +36,9 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
         const subtitle = props.configuration.displayableData.subtitle;
 
         const stepsText = (): string => {
-            const fastPassProvider = new FastPassProvider(props.featureFlagStoreData);
+            const fastPassProvider = createFastPassProviderWithFeatureFlags(
+                props.featureFlagStoreData,
+            );
 
             const stepIndex = fastPassProvider.getStepIndexForType(props.selectedTest);
             const totalTests = fastPassProvider.getNumTests();
