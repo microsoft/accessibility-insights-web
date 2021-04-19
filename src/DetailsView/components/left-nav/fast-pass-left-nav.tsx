@@ -27,12 +27,8 @@ export const FastPassLeftNav = NamedFC<FastPassLeftNavProps>('FastPassLeftNav', 
 
     const { navLinkHandler } = deps;
 
-    // const tests = [VisualizationType.Issues, VisualizationType.TabStops];
-
-    // if (props.featureFlagStoreData[FeatureFlags.needsReview]) {
-    //     tests.push(VisualizationType.NeedsReview);
-    // }
-    const tests = FastPassProvider.getAllFastPassVisualizations();
+    const fastPassProvider = new FastPassProvider(props.featureFlagStoreData);
+    const tests = fastPassProvider.getAllFastPassVisualizations();
 
     return (
         <VisualizationBasedLeftNav
