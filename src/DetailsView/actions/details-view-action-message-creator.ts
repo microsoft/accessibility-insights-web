@@ -555,6 +555,18 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
+    public saveAssessment = (event: React.MouseEvent<any>): void => {
+        const telemetry = this.telemetryFactory.fromDetailsView(event);
+        const payload: BaseActionPayload = {
+            telemetry: telemetry,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.SaveAssessment,
+            payload,
+        });
+    };
+
     public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';

@@ -79,6 +79,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
             "loadAssessment": [Function],
             "removeFailureInstance": [Function],
             "rescanVisualization": [Function],
+            "saveAssessment": [Function],
             "setAllUrlsPermissionState": [Function],
             "setFeatureFlag": [Function],
             "startOverAllAssessments": [Function],
@@ -156,6 +157,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -271,6 +273,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -399,6 +402,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -449,11 +453,14 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 
 exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
 <InsightsCommandButton
+  download="download"
+  href="url"
   iconProps={
     Object {
       "iconName": "Save",
     }
   }
+  onClick={[Function]}
 >
   Save assessment
 </InsightsCommandButton>
@@ -552,6 +559,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -666,6 +674,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],

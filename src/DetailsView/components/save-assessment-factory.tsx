@@ -4,6 +4,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { FileNameBuilder } from 'common/filename-builder';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import { FileURLProvider } from '../../common/file-url-provider';
@@ -13,6 +14,7 @@ export type SaveAssessmentFactoryDeps = {
     fileURLProvider: FileURLProvider;
     fileNameBuilder: FileNameBuilder;
     assessmentDataFormatter: AssessmentDataFormatter;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
 
 export type SaveAssessmentFactoryProps = {
@@ -33,7 +35,7 @@ export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): J
     const fileName = `SavedAssessment_${fileDate}_${fileTitle}.a11ywebassessment`;
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'application/json');
 
-    return <SaveAssessmentButton download={fileName} href={fileURL} />;
+    return <SaveAssessmentButton download={fileName} href={fileURL} {...props} />;
 }
 
 export function getSaveButtonForFastPass(props: SaveAssessmentFactoryProps): JSX.Element | null {

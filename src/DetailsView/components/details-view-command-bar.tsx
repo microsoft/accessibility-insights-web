@@ -23,6 +23,7 @@ import {
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
+import { SaveAssessmentButtonDeps } from 'DetailsView/components/save-assessment-button';
 import {
     SaveAssessmentFactoryDeps,
     SaveAssessmentFactoryProps,
@@ -53,7 +54,8 @@ export type DetailsViewCommandBarDeps = {
 } & ExportDialogDeps &
     SaveAssessmentFactoryDeps &
     StartOverFactoryDeps &
-    LoadAssessmentButtonDeps;
+    LoadAssessmentButtonDeps &
+    SaveAssessmentButtonDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
