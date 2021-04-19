@@ -5,12 +5,12 @@ const fs = require('fs-extra');
 const path = require('path');
 
 const runBinSkim = async () => {
-    const buildDir = process.argv[2];
-    const logFile = path.resolve(process.argv[3]);
-    const logDir = path.dirname(logFile);
     const fileTarget = path.resolve('electron-symbols', '*.*');
+    const binSkimDir = path.resolve('binskim');
+    const logDir = path.resolve(binSkimDir, 'logs');
+    const logFile = path.resolve(logDir, 'binskim.sarif');
 
-    fs.readdir(buildDir, (error, files) => {
+    fs.readdir(binSkimDir, (error, files) => {
         if (error) {
             console.log(error);
         } else {
@@ -20,7 +20,7 @@ const runBinSkim = async () => {
                 if (file.startsWith('Microsoft.CodeAnalysis.BinSkim')) {
                     console.log(`found ${file}`);
                     const exe = path.resolve(
-                        buildDir,
+                        binSkimDir,
                         file,
                         'tools',
                         'netcoreapp3.1',

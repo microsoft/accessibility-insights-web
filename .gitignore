@@ -16,6 +16,7 @@ dist/
 drop/
 test-results/
 electron-symbols/
+binskim/
 *.scss.d.ts
 
 # Dependency directories

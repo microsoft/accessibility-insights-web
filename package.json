@@ -49,6 +49,7 @@
         "null:find-cycles": "node ./tools/strict-null-checks/find-cycles.js",
         "null:progress": "node ./tools/strict-null-checks/progress.js",
         "react-devtools": "react-devtools",
+        "run:binskim": "node ./pipeline/scripts/run-binskim.js",
         "scss:build": "tsm \"src/**/*.scss\"",
         "scss:clean": "grunt clean:scss",
         "serve:mock-service-for-android": "node ./src/tests/miscellaneous/mock-service-for-android/serve.js",

@@ -20,9 +20,9 @@ steps:
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
           command: custom
-          arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory $(Agent.BuildDirectory)'
+          arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory ./binskim -Version 1.7.5'
 
-    - script: node pipeline/scripts/run-binskim.js $(Agent.BuildDirectory) $(Agent.BuildDirectory)/BinSkim/Logs/binskim.sarif
+    - script: yarn run:binskim
       displayName: binskim-scan
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
@@ -30,7 +30,7 @@ steps:
       displayName: binskim-copy results
       condition: and(succeeded(), eq(variables.platform, 'windows'))
       inputs:
-          SourceFolder: '$(Agent.BuildDirectory)/BinSkim/Logs'
+          SourceFolder: './binskim/logs'
           TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
 
     - task: PublishBuildArtifacts@1
