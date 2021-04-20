@@ -56,7 +56,8 @@ const resolveCustomAssetURL = details => {
 };
 
 const downloadElectronArtifact = async (artifactName, artifactSuffix) => {
-    console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
+    const displaySuffix = artifactSuffix ? artifactSuffix : 'default';
+    console.log(`downloading ${artifactName} (${displaySuffix}) at ${pkg.dependencies.electron}`);
     const zipFilePath = await downloadArtifact({
         version: `${pkg.dependencies.electron}`,
         artifactName,
