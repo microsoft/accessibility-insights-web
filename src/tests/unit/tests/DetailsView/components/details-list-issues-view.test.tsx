@@ -59,6 +59,7 @@ describe('DetailsListIssuesView', () => {
                 allCardsCollapsed: true,
             },
             instancesSection: NamedFC<CommonInstancesSectionProps>('test', _ => null),
+            featureFlagStoreData: {},
         } as DetailsListIssuesViewProps;
 
         getStoreDataMock
