@@ -4,7 +4,11 @@
 const core = require('./download-electron-mirror-core');
 
 const downloadMirrorSymbols = async () => {
-    await core.downloadAndExtractElectronArtifact('electron', 'symbols', 'pdb');
+    await core.downloadAndExtractElectronArtifact(
+        'electron',
+        'analysis/binskim/files-to-scan',
+        'pdb',
+    );
 };
 
 downloadMirrorSymbols().catch(err => {

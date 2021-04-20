@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs-extra');
 
 const prepareBinskimDir = async () => {
-    const symbolsPath = path.resolve('electron-symbols');
+    const symbolsPath = path.resolve('analysis/binskim/files-to-scan');
     const productPath = path.resolve('drop/electron/unified-production/packed/win-unpacked');
 
     await fs.copy(productPath, symbolsPath);

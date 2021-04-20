@@ -15,8 +15,7 @@ bundle/
 dist/
 drop/
 test-results/
-electron-symbols/
-binskim/
+analysis/
 *.scss.d.ts
 
 # Dependency directories

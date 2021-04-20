@@ -33,8 +33,7 @@ src/tests/miscellaneous/mock-adb/bin/
 drop/
 extension/
 package/
-binskim/
-electron-symbols/
+analysis/
 LICENSE
 new-appx.ps1
 test-results/
