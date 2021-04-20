@@ -6,7 +6,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { VisualizationType } from 'common/types/visualization-type';
 import { DictionaryStringTo } from 'types/common-types';
 
-const fastPassVisualizations: VisualizationType[] = [
+const fastPassVisualizationTypes: VisualizationType[] = [
     VisualizationType.Issues,
     VisualizationType.TabStops,
 ];
@@ -17,22 +17,22 @@ const fastPassFeatureFlagsToVisualizationTypes: DictionaryStringTo<Visualization
 
 export function createFastPassProviderWithFeatureFlags(featureFlagStoreData: FeatureFlagStoreData) {
     return new FastPassProvider(
-        fastPassVisualizations,
+        fastPassVisualizationTypes,
         fastPassFeatureFlagsToVisualizationTypes,
         featureFlagStoreData,
     );
 }
 export class FastPassProvider {
     constructor(
-        private fastPassVisualizations: VisualizationType[],
-        private fastPassFeatureFlags: DictionaryStringTo<VisualizationType>,
+        private visualizationTypes: VisualizationType[],
+        private featureFlagsToVisualizationTypes: DictionaryStringTo<VisualizationType>,
         private featureFlagStoreData: FeatureFlagStoreData,
     ) {
         this.addVisualizationsWithEnabledFeatureFlags(this.featureFlagStoreData);
     }
 
     public getAllFastPassVisualizations(): VisualizationType[] {
-        return this.fastPassVisualizations.slice();
+        return this.visualizationTypes.slice();
     }
 
     public getNumTests(): number {
@@ -46,12 +46,12 @@ export class FastPassProvider {
     private addVisualizationsWithEnabledFeatureFlags(
         featureFlagStoreData: FeatureFlagStoreData,
     ): void {
-        const visualizations = this.getAllFastPassVisualizations();
-        for (const flag in this.fastPassFeatureFlags) {
+        const visualizationTypes = this.getAllFastPassVisualizations();
+        for (const flag in this.featureFlagsToVisualizationTypes) {
             if (featureFlagStoreData[flag]) {
-                visualizations.push(this.fastPassFeatureFlags[flag]);
+                visualizationTypes.push(this.featureFlagsToVisualizationTypes[flag]);
             }
         }
-        this.fastPassVisualizations = visualizations;
+        this.visualizationTypes = visualizationTypes;
     }
 }
