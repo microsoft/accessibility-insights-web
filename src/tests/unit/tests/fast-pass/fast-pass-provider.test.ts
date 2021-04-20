@@ -43,13 +43,19 @@ describe('FastPassProvider', () => {
         expect(testSubject.getAllFastPassVisualizations()).toEqual(expectedVisualizations);
     });
 
-    it('getNumTests returns the total number of FastPass tests, excluding those with disabled feature flags', () => {
-        expect(testSubject.getNumTests()).toEqual(3);
-    });
+    describe('getStepsText', () => {
+        it('returns expected message for existing visualization', () => {
+            expect(testSubject.getStepsText(stubVisualizationType1)).toBe('Step 1 of 3');
+            expect(testSubject.getStepsText(stubVisualizationType2)).toBe('Step 2 of 3');
+        });
 
-    it('getStepIndexForType returns the step number corresponding to the visualization type', () => {
-        expect(testSubject.getStepIndexForType(stubVisualizationType2)).toEqual(2);
-        expect(testSubject.getStepIndexForType(stubVisualizationType4)).toEqual(0);
+        it('returns expected message for visualization with enabled feature flag', () => {
+            expect(testSubject.getStepsText(stubVisualizationType3)).toBe('Step 3 of 3');
+        });
+
+        it('returns expected message for visualization with disabled feature flag', () => {
+            expect(testSubject.getStepsText(stubVisualizationType4)).toBe('Step 0 of 3');
+        });
     });
 
     function createStubVisualizationType(name: string): VisualizationType {

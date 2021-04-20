@@ -35,12 +35,12 @@ export class FastPassProvider {
         return this.visualizationTypes.slice();
     }
 
-    public getNumTests(): number {
-        return this.getAllFastPassVisualizations().length;
-    }
+    public getStepsText(selectedTest: VisualizationType): string {
+        const visualizations = this.getAllFastPassVisualizations();
+        const stepIndex = visualizations.findIndex(v => v === selectedTest) + 1;
+        const totalTests = visualizations.length;
 
-    public getStepIndexForType(visualizationType: VisualizationType): number {
-        return this.getAllFastPassVisualizations().findIndex(v => v === visualizationType) + 1;
+        return `Step ${stepIndex} of ${totalTests}`;
     }
 
     private addVisualizationsWithEnabledFeatureFlags(

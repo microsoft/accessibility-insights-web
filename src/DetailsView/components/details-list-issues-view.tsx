@@ -39,11 +39,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
             const fastPassProvider = createFastPassProviderWithFeatureFlags(
                 props.featureFlagStoreData,
             );
-
-            const stepIndex = fastPassProvider.getStepIndexForType(props.selectedTest);
-            const totalTests = fastPassProvider.getNumTests();
-
-            return `Step ${stepIndex} of ${totalTests}`;
+            return fastPassProvider.getStepsText(props.selectedTest);
         };
 
         return (

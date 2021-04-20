@@ -49,10 +49,7 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
             const fastPassProvider = createFastPassProviderWithFeatureFlags(
                 props.featureFlagStoreData,
             );
-            const stepIndex = fastPassProvider.getStepIndexForType(selectedTest);
-            const totalTests = fastPassProvider.getNumTests();
-
-            return `Step ${stepIndex} of ${totalTests}`;
+            return fastPassProvider.getStepsText(selectedTest);
         };
 
         if (props.tabStoreData.isChanged) {
