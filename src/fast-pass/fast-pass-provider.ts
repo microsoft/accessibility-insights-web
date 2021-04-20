@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DictionaryStringTo } from 'types/common-types';
@@ -9,11 +8,10 @@ import { DictionaryStringTo } from 'types/common-types';
 const fastPassVisualizationTypes: VisualizationType[] = [
     VisualizationType.Issues,
     VisualizationType.TabStops,
+    VisualizationType.NeedsReview,
 ];
 
-const fastPassFeatureFlagsToVisualizationTypes: DictionaryStringTo<VisualizationType> = {
-    [FeatureFlags.needsReview]: VisualizationType.NeedsReview,
-};
+const fastPassFeatureFlagsToVisualizationTypes: DictionaryStringTo<VisualizationType> = {};
 
 export function createFastPassProviderWithFeatureFlags(featureFlagStoreData: FeatureFlagStoreData) {
     return new FastPassProvider(

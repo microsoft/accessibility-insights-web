@@ -62,7 +62,7 @@ exports[`DetailsListIssuesView should return issues table with scanning to false
   instancesSection={[Function]}
   issuesEnabled={true}
   scanning={false}
-  stepsText="Step 0 of 2"
+  stepsText="Step 0 of 3"
   subtitle={
     <React.Fragment>
       test subtitle

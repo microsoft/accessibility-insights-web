@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
@@ -36,13 +35,6 @@ describe(FastPassLeftNav, () => {
     });
 
     it('renders visualization based left nav with appropriate params', () => {
-        const actual = shallow(<FastPassLeftNav {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-
-    it('includes needs review test when feature flag on', () => {
-        props.featureFlagStoreData[FeatureFlags.needsReview] = true;
-
         const actual = shallow(<FastPassLeftNav {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
     });
