@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { NamedFC } from 'common/react/named-fc';
+import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -24,11 +25,11 @@ export const TabStopsTestingContent = NamedFC<TabStopsTestingContentProps>(
     'TabStopsTestingContent',
     props => {
         const tabStopsActionCreator = props.deps.tabStopsActionCreator;
-        const onToggle = () => {
+        const onToggle = (e: SupportedMouseEvent) => {
             if (props.tabStopsEnabled) {
-                tabStopsActionCreator.disableTabStops();
+                tabStopsActionCreator.disableTabStops(e);
             } else {
-                tabStopsActionCreator.enableTabStops();
+                tabStopsActionCreator.enableTabStops(e);
             }
         };
 

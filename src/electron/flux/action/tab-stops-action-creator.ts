@@ -2,7 +2,9 @@
 // Licensed under the MIT License.
 
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
+import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 import {
     DEVICE_FOCUS_DISABLE,
     DEVICE_FOCUS_ENABLE,
@@ -22,11 +24,18 @@ export class TabStopsActionCreator {
         private readonly deviceFocusController: DeviceFocusController,
         private readonly logger: Logger,
         private readonly telemetryEventHandler: TelemetryEventHandler,
+        private readonly telemetryDataFactory: TelemetryDataFactory,
     ) {}
 
-    public enableTabStops = async () => {
+    public enableTabStops = async (event: SupportedMouseEvent) => {
         try {
-            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {});
+            const telemetry = this.telemetryDataFactory.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.ElectronResultsView,
+            );
+            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ENABLE, {
+                telemetry,
+            });
             await this.deviceFocusController.enableFocusTracking();
             this.tabStopsActions.enableFocusTracking.invoke();
             this.deviceConnectionActions.statusConnected.invoke();
@@ -35,9 +44,15 @@ export class TabStopsActionCreator {
         }
     };
 
-    public disableTabStops = async () => {
+    public disableTabStops = async (event: SupportedMouseEvent) => {
         try {
-            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {});
+            const telemetry = this.telemetryDataFactory.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.ElectronResultsView,
+            );
+            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_DISABLE, {
+                telemetry,
+            });
             await this.deviceFocusController.disableFocusTracking();
             this.tabStopsActions.disableFocusTracking.invoke();
             this.deviceConnectionActions.statusConnected.invoke();
@@ -46,9 +61,15 @@ export class TabStopsActionCreator {
         }
     };
 
-    public startOver = async () => {
+    public startOver = async (event: SupportedMouseEvent) => {
         try {
-            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {});
+            const telemetry = this.telemetryDataFactory.withTriggeredByAndSource(
+                event,
+                TelemetryEventSource.ElectronResultsView,
+            );
+            this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_RESET, {
+                telemetry,
+            });
             await this.deviceFocusController.resetFocusTracking();
             this.tabStopsActions.startOver.invoke();
             this.deviceConnectionActions.statusConnected.invoke();
@@ -131,7 +152,12 @@ export class TabStopsActionCreator {
 
     private commandFailed(error: Error): void {
         this.logger.log('focus controller failure: ' + error);
-        this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ERROR, {});
+        this.telemetryEventHandler.publishTelemetry(DEVICE_FOCUS_ERROR, {
+            telemetry: {
+                source: TelemetryEventSource.ElectronResultsView,
+                triggeredBy: TriggeredByNotApplicable,
+            },
+        });
         this.deviceConnectionActions.statusDisconnected.invoke();
     }
 }

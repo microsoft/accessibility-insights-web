@@ -14,8 +14,10 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 describe('TabStopsTestingContent', () => {
     let tabStopsActionCreatorMock: IMock<TabStopsActionCreator>;
     let props: TabStopsTestingContentProps;
+    let eventStub: any;
 
     beforeEach(() => {
+        eventStub = {};
         tabStopsActionCreatorMock = Mock.ofType<TabStopsActionCreator>(
             undefined,
             MockBehavior.Strict,
@@ -32,10 +34,9 @@ describe('TabStopsTestingContent', () => {
     });
 
     test('toggles tab stops off', () => {
-        tabStopsActionCreatorMock.setup(m => m.disableTabStops()).verifiable();
+        tabStopsActionCreatorMock.setup(m => m.disableTabStops(eventStub)).verifiable();
         const testSubject = shallow(<TabStopsTestingContent {...props} />);
         const onToggle = testSubject.find(Toggle).prop('onClick');
-        const eventStub = null;
         onToggle(eventStub);
 
         tabStopsActionCreatorMock.verifyAll();
@@ -43,10 +44,9 @@ describe('TabStopsTestingContent', () => {
 
     test('toggles tab stops on', () => {
         props.tabStopsEnabled = false;
-        tabStopsActionCreatorMock.setup(m => m.enableTabStops()).verifiable();
+        tabStopsActionCreatorMock.setup(m => m.enableTabStops(eventStub)).verifiable();
         const testSubject = shallow(<TabStopsTestingContent {...props} />);
         const onToggle = testSubject.find(Toggle).prop('onClick');
-        const eventStub = null;
         onToggle(eventStub);
 
         tabStopsActionCreatorMock.verifyAll();
