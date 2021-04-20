@@ -5,6 +5,10 @@ steps:
       displayName: binskim-display variables
       condition: and(succeeded(), eq(variables.platform, 'windows'))
 
+    - script: yarn download:electron-mirror:symbols
+      displayName: download custom electron symbols
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+
     - script: yarn copy:prepare-binskim
       displayName: binskim-build folder
       condition: and(succeeded(), eq(variables.platform, 'windows'))

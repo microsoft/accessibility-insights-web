@@ -3,7 +3,3 @@
 steps:
     - script: yarn download:electron-mirror:binaries
       displayName: download custom electron binaries
-
-    - script: yarn download:electron-mirror:symbols
-      displayName: download custom electron symbols
-      condition: and(succeeded(), eq(variables.platform, 'windows'))
