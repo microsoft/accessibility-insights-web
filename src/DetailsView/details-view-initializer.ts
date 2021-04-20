@@ -396,6 +396,7 @@ if (tabId != null) {
                 detailsViewActionMessageCreator,
                 fileReader,
                 document,
+                tab.id,
             );
 
             const fileNameBuilder = new FileNameBuilder();

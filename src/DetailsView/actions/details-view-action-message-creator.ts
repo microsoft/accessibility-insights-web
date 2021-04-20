@@ -543,12 +543,18 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public loadAssessment = (assessmentData: VersionedAssessmentData): void => {
+    public loadAssessment = (assessmentData: VersionedAssessmentData, tabId: number): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
             telemetry: telemetry,
             versionedAssessmentData: assessmentData,
+            tabId,
         };
+        const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            payload: setDetailsViewRightContentPanelPayload,
+        });
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.LoadAssessment,
             payload,

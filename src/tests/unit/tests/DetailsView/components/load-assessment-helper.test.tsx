@@ -12,6 +12,7 @@ describe('LoadAssessmentHelper', () => {
     const fileReaderMock = Mock.ofType(FileReader);
     const documentMock = Mock.ofType(Document);
     const clickMock = Mock.ofType<() => void>();
+    const tabIdStub = -1;
     let assessmentData: VersionedAssessmentData;
     let content: string;
     let file: File;
@@ -26,7 +27,7 @@ describe('LoadAssessmentHelper', () => {
             .verifiable(Times.once());
 
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData))
+            .setup(d => d.loadAssessment(assessmentData, tabIdStub))
             .verifiable(Times.once());
 
         fileReaderMock.setup(f => f.readAsText(file, 'UTF-8')).verifiable(Times.once());
@@ -61,6 +62,7 @@ describe('LoadAssessmentHelper', () => {
             detailsViewActionMessageCreatorMock.object,
             fileReaderMock.object,
             documentMock.object,
+            tabIdStub,
         );
 
         testLoadAssessmentHelper.getAssessmentForLoad();

@@ -55,6 +55,7 @@ export interface AssessmentActionInstancePayload extends AssessmentToggleActionP
 
 export interface LoadAssessmentPayload extends BaseActionPayload {
     versionedAssessmentData: VersionedAssessmentData;
+    tabId: number;
 }
 export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPayload {
     status?: ManualTestStatus;
