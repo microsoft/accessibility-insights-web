@@ -11,12 +11,16 @@ const fastPassVisualizations: VisualizationType[] = [
     VisualizationType.TabStops,
 ];
 
-const fastPassFeatureFlags: DictionaryStringTo<VisualizationType> = {
+const fastPassFeatureFlagsToVisualizationTypes: DictionaryStringTo<VisualizationType> = {
     [FeatureFlags.needsReview]: VisualizationType.NeedsReview,
 };
 
 export function createFastPassProviderWithFeatureFlags(featureFlagStoreData: FeatureFlagStoreData) {
-    return new FastPassProvider(fastPassVisualizations, fastPassFeatureFlags, featureFlagStoreData);
+    return new FastPassProvider(
+        fastPassVisualizations,
+        fastPassFeatureFlagsToVisualizationTypes,
+        featureFlagStoreData,
+    );
 }
 export class FastPassProvider {
     constructor(

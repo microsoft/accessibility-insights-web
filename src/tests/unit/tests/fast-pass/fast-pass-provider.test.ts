@@ -15,7 +15,7 @@ describe('FastPassProvider', () => {
         stubVisualizationType1,
         stubVisualizationType2,
     ];
-    const stubFastPassFeatureFlags: DictionaryStringTo<VisualizationType> = {
+    const stubFastPassFeatureFlagsToVisualizationTypes: DictionaryStringTo<VisualizationType> = {
         ['enabled feature flag']: stubVisualizationType3,
         ['disabled feature flag']: stubVisualizationType4,
     };
@@ -28,7 +28,7 @@ describe('FastPassProvider', () => {
     beforeEach(() => {
         testSubject = new FastPassProvider(
             stubFastPassVisualizations,
-            stubFastPassFeatureFlags,
+            stubFastPassFeatureFlagsToVisualizationTypes,
             stubFeatureFlagStoreData,
         );
     });
