@@ -6,6 +6,7 @@ exports[`IssuesTableTest automated checks disabled 1`] = `
 >
   <h1>
     test title
+     test steps text
   </h1>
   <div
     className="issuesTableContent"
@@ -64,6 +65,7 @@ exports[`IssuesTableTest includes subtitle if specified 1`] = `
 >
   <h1>
     test title
+     test steps text
   </h1>
   <div
     className="issuesTableSubtitle"
@@ -85,6 +87,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
 >
   <h1>
     test title
+     test steps text
   </h1>
   <div
     className="issuesTableContent"
@@ -204,6 +207,7 @@ exports[`IssuesTableTest spinner for scanning state 1`] = `
 >
   <h1>
     test title
+     test steps text
   </h1>
   <div
     className="issuesTableContent"
@@ -222,6 +226,7 @@ exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
 >
   <h1>
     test title
+     test steps text
   </h1>
   <ScanningSpinner
     isSpinning={true}

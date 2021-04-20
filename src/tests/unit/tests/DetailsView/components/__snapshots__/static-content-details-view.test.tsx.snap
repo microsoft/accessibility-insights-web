@@ -4,7 +4,7 @@ exports[`StaticContentDetailsViewTest renders content page component 1`] = `
 "<div className=\\"staticContentInDetailsView\\">
   <h1>
     my test title
-     
+     test steps text 
     <ContentLink deps={[undefined]} reference={[Function: function () {
                         var args = [];
                         for (var _i = 0; _i < arguments.length; _i++) {
