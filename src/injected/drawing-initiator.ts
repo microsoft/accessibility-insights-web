@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { DictionaryStringTo } from '../types/common-types';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
 import {
     AssessmentVisualizationInstance,
@@ -20,7 +20,7 @@ export class DrawingInitiator {
     public enableVisualization(
         visualizationType: VisualizationType,
         featureFlagStoreData: FeatureFlagStoreData,
-        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+        selectorMap: SelectorToVisualizationMap,
         configId: string,
         processor: VisualizationInstanceProcessorCallback,
     ): void {
@@ -69,7 +69,7 @@ export class DrawingInitiator {
     }
 
     private getElementResults(
-        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+        selectorMap: SelectorToVisualizationMap,
     ): AssessmentVisualizationInstance[] {
         return Object.keys(selectorMap).map(key => selectorMap[key]);
     }
