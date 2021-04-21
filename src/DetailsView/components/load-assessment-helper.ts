@@ -9,6 +9,7 @@ export class LoadAssessmentHelper {
         private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
         private readonly fileReader: FileReader,
         private readonly document: Document,
+        private readonly tabId: number,
     ) {}
 
     public getAssessmentForLoad() {
@@ -19,7 +20,7 @@ export class LoadAssessmentHelper {
         const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
             const content = readerEvent.target.result as string;
             const assessmentData = this.assessmentDataParser.parseAssessmentData(content);
-            this.detailsViewActionMessageCreator.loadAssessment(assessmentData);
+            this.detailsViewActionMessageCreator.loadAssessment(assessmentData, this.tabId);
         };
         const onInputChange = (e: Event) => {
             const file = (e.target as HTMLInputElement).files[0];
