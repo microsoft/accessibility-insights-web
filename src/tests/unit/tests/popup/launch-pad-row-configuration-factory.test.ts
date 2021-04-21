@@ -20,7 +20,7 @@ describe('LaunchPadRowConfigurationFactoryTests', () => {
             iconName: 'Rocket',
             title: 'FastPass',
             description:
-                'Run two tests to find the most common accessibility issues in less than 5 minutes.',
+                'Run three tests to find the most common accessibility issues in less than 5 minutes.',
             onClickTitle: null,
         };
         const adhocRowConfig = {
