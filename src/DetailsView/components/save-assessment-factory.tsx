@@ -4,8 +4,10 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { FileNameBuilder } from 'common/filename-builder';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { SaveAssessmentButton } from 'DetailsView/components/save-assessment-button';
+import {
+    SaveAssessmentButton,
+    SaveAssessmentButtonDeps,
+} from 'DetailsView/components/save-assessment-button';
 import * as React from 'react';
 import { FileURLProvider } from '../../common/file-url-provider';
 
@@ -14,8 +16,7 @@ export type SaveAssessmentFactoryDeps = {
     fileURLProvider: FileURLProvider;
     fileNameBuilder: FileNameBuilder;
     assessmentDataFormatter: AssessmentDataFormatter;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
+} & SaveAssessmentButtonDeps;
 
 export type SaveAssessmentFactoryProps = {
     deps: SaveAssessmentFactoryDeps;
