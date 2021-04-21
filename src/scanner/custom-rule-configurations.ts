@@ -7,7 +7,6 @@ import { cssContentConfiguration } from './custom-rules/css-content-rule';
 import { cssPositioningConfiguration } from './custom-rules/css-positioning-rule';
 import { cuesConfiguration } from './custom-rules/cues-rule';
 import { customWidgetConfiguration } from './custom-rules/custom-widget';
-import { duplicateIdConfiguration } from './custom-rules/duplicate-id-rule';
 import { frameTitleConfiguration } from './custom-rules/frame-title';
 import { headerRuleConfiguration } from './custom-rules/header-rule';
 import { headingConfiguration } from './custom-rules/heading-rule';
@@ -44,5 +43,4 @@ export const configuration: RuleConfiguration[] = [
     headerRuleConfiguration,
     textSpacingConfiguration,
     headersAttributeRuleConfiguration,
-    duplicateIdConfiguration,
 ];
