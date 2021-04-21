@@ -15,6 +15,7 @@ bundle/
 dist/
 drop/
 test-results/
+analysis/
 *.scss.d.ts
 
 # Dependency directories
