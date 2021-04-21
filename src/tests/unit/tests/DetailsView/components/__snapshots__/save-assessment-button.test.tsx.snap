@@ -9,6 +9,7 @@ exports[`SaveAssessmentButton should render per the snapshot 1`] = `
       "iconName": "Save",
     }
   }
+  onClick={[Function]}
 >
   Save assessment
 </InsightsCommandButton>
