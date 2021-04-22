@@ -150,7 +150,7 @@
         "spectron": "^12.0.0",
         "terser-webpack-plugin": "^5.1.1",
         "ts-jest": "^26.5.4",
-        "ts-loader": "^8.1.0",
+        "ts-loader": "^9.0.0",
         "typed-scss-modules": "^4.1.1",
         "typemoq": "^2.1.0",
         "typescript": "^4.2.4",
