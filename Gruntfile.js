@@ -588,7 +588,7 @@ module.exports = function (grunt) {
                 unpackedDirName = 'mac';
                 break;
             case 'linux':
-                unpackedDirName = 'linux';
+                unpackedDirName = 'linux-unpacked';
                 break;
         }
 
