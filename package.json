@@ -49,6 +49,7 @@
         "null:find": "node ./tools/strict-null-checks/find.js",
         "null:find-cycles": "node ./tools/strict-null-checks/find-cycles.js",
         "null:progress": "node ./tools/strict-null-checks/progress.js",
+        "pack:unified:all": "grunt pack-unified-all",
         "react-devtools": "react-devtools",
         "run:binskim": "node ./pipeline/scripts/run-binskim.js",
         "scss:build": "tsm \"src/**/*.scss\"",
