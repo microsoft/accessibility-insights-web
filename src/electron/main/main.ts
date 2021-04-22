@@ -31,6 +31,10 @@ const nativeHighContrastModeListener = new NativeHighContrastModeListener(
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
+if (platformInfo.isLinux()) {
+    app.disableHardwareAcceleration();
+}
+
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
