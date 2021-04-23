@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { WindowUtils } from '../common/window-utils';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
     private onDevToolChangedHandler: () => void;
     private onUserConfigChangedHandler: () => void;
 
-    constructor(private htmlElementUtils: HTMLElementUtils) {}
+    constructor(private htmlElementUtils: HTMLElementUtils, private windowUtils: WindowUtils) {}
 
     public backButtonClickHandler = (dialog: DetailsDialog): void => {
         const currentRuleIndex = dialog.state.currentRuleIndex;
@@ -80,6 +81,25 @@ export class DetailsDialogHandler {
         return `Failure ${dialog.state.currentRuleIndex + 1} of ${
             Object.keys(dialog.props.failedRules).length
         } for this target`;
+    };
+
+    public isTargetPageOriginSecure = (): boolean => {
+        return this.windowUtils.isSecureOrigin();
+    };
+
+    public copyIssueDetailsHelpMessageHandler = (
+        dialog: DetailsDialog,
+        event: React.SyntheticEvent<MouseEvent>,
+    ): void => {
+        if (!this.isTargetPageOriginSecure()) {
+            dialog.setState({ showInsecureOriginPageMessage: true });
+        } else {
+            dialog.setState({ showInsecureOriginPageMessage: false });
+        }
+    };
+
+    public shouldShowInsecureOriginPageMessage = (dialog: DetailsDialog): boolean => {
+        return dialog.state.showInsecureOriginPageMessage;
     };
 
     public onLayoutDidMount = (): void => {

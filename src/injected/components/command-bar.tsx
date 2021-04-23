@@ -39,6 +39,9 @@ export type CommandBarProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldShowInspectButtonMessage: () => boolean;
     devToolsShortcut: string;
+    hasSecureTargetPage: boolean;
+    shouldShowInsecureOriginPageMessage: () => boolean;
+    onClickCopyIssueDetailsButtonHelpMessage: (event: React.MouseEvent<any, MouseEvent>) => void;
 };
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
@@ -67,13 +70,25 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
 
         return (
             <>
-                <CopyIssueDetailsButton
-                    deps={props.deps}
-                    issueDetailsData={issueData}
-                    onClick={props.onClickCopyIssueDetailsButton}
-                />
+                {renderCopyIssueDetailsButton(issueData)}
                 {renderFileIssueButton(issueData)}
             </>
+        );
+    };
+
+    const renderCopyIssueDetailsButton = (issueData: CreateIssueDetailsTextData): JSX.Element => {
+        const onClick = (event: React.MouseEvent<any, MouseEvent>) => {
+            props.onClickCopyIssueDetailsButton(event);
+            props.onClickCopyIssueDetailsButtonHelpMessage(event);
+        };
+
+        return (
+            <CopyIssueDetailsButton
+                deps={props.deps}
+                issueDetailsData={issueData}
+                onClick={onClick}
+                hasSecureTargetPage={props.hasSecureTargetPage}
+            />
         );
     };
 
@@ -98,11 +113,22 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         }
     };
 
+    const renderCopyIssueDetailsMessage = (): JSX.Element => {
+        if (props.shouldShowInsecureOriginPageMessage()) {
+            return (
+                <div role="alert" className="copy-issue-details-button-help">
+                    To copy failure details, first open the details page.
+                </div>
+            );
+        }
+    };
+
     return (
         <div className="insights-dialog-target-button-container">
             {renderInspectButton()}
             {renderIssueButtons()}
             {renderInspectMessage()}
+            {renderCopyIssueDetailsMessage()}
         </div>
     );
 });

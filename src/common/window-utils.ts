@@ -71,4 +71,8 @@ export class WindowUtils {
     public getPlatform(): string {
         return window.navigator.platform;
     }
+
+    public isSecureOrigin(): boolean {
+        return window.isSecureContext;
+    }
 }

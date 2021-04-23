@@ -49,6 +49,7 @@ describe('CopyIssueDetailsButtonTest', () => {
             },
             issueDetailsData: {} as CreateIssueDetailsTextData,
             onClick: onClickMock.object,
+            hasSecureTargetPage: true,
         };
     });
 

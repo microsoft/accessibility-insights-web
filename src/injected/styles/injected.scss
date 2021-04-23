@@ -150,6 +150,13 @@
         font-weight: $fontWeightSemiBold;
     }
 
+    .insights-dialog-main-override .copy-issue-details-button-help {
+        margin-top: 4px !important;
+        font-size: 12px !important;
+        color: $negative-outcome !important;
+        font-weight: $fontWeightSemiBold !important;
+    }
+
     .insights-dialog-main-override {
         .insights-dialog-title {
             margin-bottom: 16px !important;

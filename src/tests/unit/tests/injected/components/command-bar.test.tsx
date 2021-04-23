@@ -54,6 +54,9 @@ describe('CommandBar', () => {
         failedRules: {
             'RR-rule-id': ruleResult,
         },
+        hasSecureTargetPage: true,
+        shouldShowInsecureOriginPageMessage: () => false,
+        onClickCopyIssueDetailsButtonHelpMessage: undefined,
     };
 
     beforeAll(() => {

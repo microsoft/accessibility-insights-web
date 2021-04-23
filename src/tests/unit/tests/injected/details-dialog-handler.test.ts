@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { WindowUtils } from 'common/window-utils';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../../common/base-store';
@@ -18,10 +19,11 @@ describe('DetailsDialogHandlerTest', () => {
     let detailsDialog: Element;
     let containerParent: Element;
     let detailsDialogMock: IMock<DetailsDialog>;
+    let windowUtilsMock: IMock<WindowUtils>;
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
-        testSubject = new DetailsDialogHandler(htmlElementUtilsMock.object);
+        testSubject = new DetailsDialogHandler(htmlElementUtilsMock.object, windowUtilsMock.object);
         container = document.createElement('div');
         detailsDialog = document.createElement('div');
         container.appendChild(detailsDialog);

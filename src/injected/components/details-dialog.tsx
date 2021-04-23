@@ -54,6 +54,7 @@ export interface DetailsDialogState {
     canInspect: boolean;
     userConfigurationStoreData: UserConfigurationStoreData;
     showInspectMessage: boolean;
+    showInsecureOriginPageMessage: boolean;
 }
 
 export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
@@ -65,6 +66,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     public isBackButtonDisabled: () => boolean;
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
+    public onClickCopyIssueDetailsButtonHelpMessage: (ev) => void;
 
     constructor(props: DetailsDialogProps) {
         super(props);
@@ -105,6 +107,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         this.isInspectButtonDisabled = () => {
             return this.props.dialogHandler.isInspectButtonDisabled(this);
         };
+        this.onClickCopyIssueDetailsButtonHelpMessage = (ev: React.SyntheticEvent<MouseEvent>) => {
+            this.props.dialogHandler.copyIssueDetailsHelpMessageHandler(this, ev);
+        };
 
         this.state = {
             showDialog: true,
@@ -114,6 +119,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             // eslint-disable-next-line react/no-unused-state
             showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
+            // eslint-disable-next-line react/no-unused-state
+            showInsecureOriginPageMessage: false,
         };
     }
 
@@ -167,6 +174,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             shouldShowInspectButtonMessage: () =>
                 this.props.dialogHandler.shouldShowInspectButtonMessage(this),
             userConfigurationStoreData: this.state.userConfigurationStoreData,
+            hasSecureTargetPage: this.props.dialogHandler.isTargetPageOriginSecure(),
+            shouldShowInsecureOriginPageMessage: () =>
+                this.props.dialogHandler.shouldShowInsecureOriginPageMessage(this),
+            onClickCopyIssueDetailsButtonHelpMessage: this.onClickCopyIssueDetailsButtonHelpMessage,
         };
 
         return <CommandBar {...props} />;

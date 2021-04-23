@@ -20,6 +20,7 @@ export type CopyIssueDetailsButtonProps = {
     deps: CopyIssueDetailsButtonDeps;
     issueDetailsData: CreateIssueDetailsTextData;
     onClick: (clickEvent: React.MouseEvent<any>) => void;
+    hasSecureTargetPage: boolean;
 };
 
 export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButtonProps> {
@@ -52,8 +53,13 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
                 this.getIssueDetailsText(this.props.issueDetailsData),
             );
         } catch (error) {
-            toast.show('Failed to copy failure details. Please try again.');
-            return;
+            if (this.props.hasSecureTargetPage) {
+                toast.show('Failed to copy failure details. Please try again.');
+                return;
+            } else {
+                toast.show('Failed to copy failure details.');
+                return;
+            }
         }
         toast.show('Failure details copied.');
     };

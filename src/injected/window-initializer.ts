@@ -106,7 +106,7 @@ export class WindowInitializer {
             this.frameCommunicator,
             this.browserAdapter,
             getRTL,
-            new DetailsDialogHandler(htmlElementUtils),
+            new DetailsDialogHandler(htmlElementUtils, this.windowUtils),
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,
