@@ -6,9 +6,9 @@ parameters:
 
 steps:
     - task: CopyFiles@2
-      displayName: 'copy package files to upload'
+      displayName: 'copy unpacked build output to artifact staging directory'
       inputs:
-          SourceFolder: ${{ parameters.packedOutputPath }}
+          SourceFolder: ${{ parameters.unpackedOutputPath }}
           Contents: '**'
           TargetFolder: '$(System.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
           CleanTargetFolder: true
