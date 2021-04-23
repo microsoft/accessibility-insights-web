@@ -1,0 +1,20 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+parameters:
+    unpackedOutputPath: null
+    artifactName: null
+
+steps:
+    - task: CopyFiles@2
+      displayName: 'copy package files to upload'
+      inputs:
+          SourceFolder: ${{ parameters.packedOutputPath }}
+          Contents: '**'
+          TargetFolder: '$(System.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
+          CleanTargetFolder: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.ArtifactStagingDirectory)/${{ parameters.artifactName }}'
+          artifactName: ${{ parameters.artifactName }}
+      displayName: publish artifact ${{ parameters.artifactName }}
