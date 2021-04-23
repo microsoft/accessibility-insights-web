@@ -25,7 +25,19 @@ jobs:
                 pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
                 runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
                 artifact: ${{ parameters.unsignedArtifactName }}
-                path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                path: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
+
+          - script: yarn pack:unified:${{ parameters.channel }}
+            displayName: yarn pack:unified:${{ parameters.channel }}
+
+          - task: CopyFiles@2
+            displayName: 'copy the packed installers for signing'
+            inputs:
+                SourceFolder: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}/packed'
+                contents: |
+                    latest*.yml
+                    Accessibility?Insights?for?Android*.*
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
             displayName: 'Send to ESRP Code Signing service'
