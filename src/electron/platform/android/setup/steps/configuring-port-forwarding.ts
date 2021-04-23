@@ -3,17 +3,25 @@
 
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
+const removeOldForwardedPort = async (deps, store) => {
+    const existingPort = store.getScanPort();
+    if (existingPort != null) {
+        try {
+            deps.logger.log(`removing old tcp:${existingPort} forwarding`);
+            await deps.removeTcpForwarding(existingPort);
+            store.setScanPort(null);
+        } catch (e) {
+            deps.logger.log(`Ignoring error : ${e}`);
+        }
+    }
+};
+
 export const configuringPortForwarding: AndroidSetupStepConfig = (stepTransition, deps, store) => ({
     actions: {},
     onEnter: async () => {
         try {
-            const existingPort = store.getScanPort();
-            if (existingPort != null) {
-                deps.logger.log(`removing old tcp:${existingPort} forwarding`);
-                await deps.removeTcpForwarding(existingPort);
-                store.setScanPort(null);
-                store.setApplicationName(null);
-            }
+            await removeOldForwardedPort(deps, store);
+            store.setApplicationName(null);
 
             const hostPort = await deps.setupTcpForwarding();
             deps.logger.log(`configured forwarding to tcp:${hostPort}`);
