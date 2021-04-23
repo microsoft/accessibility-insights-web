@@ -4,6 +4,7 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
+    channel: null
 
 jobs:
     - template: sign-release-package.yaml
@@ -11,6 +12,7 @@ jobs:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
           signedArtifactName: ${{ parameters.signedArtifactName }}
+          channel: ${{ parameters.channel }}
           vmImage: macOS-10.15
           filePattern: '*.dmg, *.zip'
           platform: mac

@@ -8,6 +8,7 @@ parameters:
     unsignedArtifactName: null
     signedArtifactName: null
     platform: null
+    channel: null
 
 jobs:
     - job: ${{ parameters.signedArtifactName }}
