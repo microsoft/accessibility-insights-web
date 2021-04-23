@@ -100,7 +100,7 @@
         "@types/serve-static": "^1.13.9",
         "@types/ua-parser-js": "^0.7.35",
         "@types/uuid": "^8.3.0",
-        "@typescript-eslint/eslint-plugin": "^4.0.0",
+        "@typescript-eslint/eslint-plugin": "^4.22.0",
         "@typescript-eslint/parser": "^3.10.1",
         "app-builder-lib": "^22.10.4",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
