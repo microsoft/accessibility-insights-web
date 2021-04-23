@@ -53,15 +53,15 @@ steps:
 
     - template: publish-unpacked-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary'
+          unpackedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary'
           artifactName: unified-$(platform)-canary-unsigned
 
     - template: publish-unpacked-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider'
+          unpackedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider'
           artifactName: unified-$(platform)-insider-unsigned
 
     - template: publish-unpacked-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production'
+          unpackedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production'
           artifactName: unified-$(platform)-production-unsigned
