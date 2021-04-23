@@ -1,11 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
+import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepConfig } from 'electron/platform/android/setup/android-setup-steps-configs';
 
-const removeOldForwardedPort = async (deps, store) => {
+const removeOldForwardedPort = async (
+    deps: AndroidSetupDeps,
+    store: AndroidSetupStoreCallbacks,
+) => {
     const existingPort = store.getScanPort();
-    if (existingPort != null) {
+    if (existingPort) {
         try {
             deps.logger.log(`removing old tcp:${existingPort} forwarding`);
             await deps.removeTcpForwarding(existingPort);
@@ -16,7 +21,11 @@ const removeOldForwardedPort = async (deps, store) => {
     }
 };
 
-export const configuringPortForwarding: AndroidSetupStepConfig = (stepTransition, deps, store) => ({
+export const configuringPortForwarding: AndroidSetupStepConfig = (
+    stepTransition,
+    deps: AndroidSetupDeps,
+    store: AndroidSetupStoreCallbacks,
+) => ({
     actions: {},
     onEnter: async () => {
         try {
