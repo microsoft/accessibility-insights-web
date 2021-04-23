@@ -4,6 +4,7 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
+    channel: null
 
 jobs:
     - template: sign-release-package.yaml
