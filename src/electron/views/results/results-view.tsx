@@ -17,7 +17,6 @@ import {
     SettingsPanelDeps,
 } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
-import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -57,7 +56,6 @@ export type ResultsViewDeps = ReflowCommandBarDeps &
     TestViewDeps &
     VisualHelperSectionDeps &
     SettingsPanelDeps & {
-        androidSetupActionCreator: AndroidSetupActionCreator;
         scanActionCreator: ScanActionCreator;
         leftNavActionCreator: LeftNavActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
@@ -239,11 +237,6 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         );
     }
 
-    private reconnectDevice = (): void => {
-        this.props.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
-        this.props.deps.androidSetupActionCreator.rescan();
-    };
-
     private renderDeviceDisconnected(): JSX.Element {
         if (this.props.deviceConnectionStoreData.status !== DeviceConnectionStatus.Disconnected) {
             return;
@@ -252,7 +245,11 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.getConnectedDeviceName()}
-                onConnectNewDevice={this.reconnectDevice}
+                onConnectNewDevice={() =>
+                    this.props.deps.windowStateActionCreator.setRoute({
+                        routeId: 'deviceConnectView',
+                    })
+                }
                 onRescanDevice={() => this.props.deps.scanActionCreator.scan(this.getScanPort())}
             />
         );
