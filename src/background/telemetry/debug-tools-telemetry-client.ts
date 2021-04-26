@@ -28,11 +28,11 @@ export class DebugToolsTelemetryClient implements TelemetryClient {
     }
 
     public enableTelemetry(): void {
-        // no op as we always want to send telemetry to the debug tools page (if there is a connection)
+        // no-op as we always want to send telemetry to the debug tools page (if there is a connection)
     }
 
     public disableTelemetry(): void {
-        // no op as we always want to send telemetry to the debug tools page (if there is a connection)
+        // no-op as we always want to send telemetry to the debug tools page (if there is a connection)
     }
 
     public trackEvent(name: string, properties?: Object): void {

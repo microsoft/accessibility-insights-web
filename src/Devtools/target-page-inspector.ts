@@ -16,7 +16,7 @@ export class TargetPageInspector {
             throw new Error('selector is not a string');
         }
 
-        // handles scaping the quotes safely
+        // handles escaping the quotes safely
         return JSON.stringify(selector);
     };
 }

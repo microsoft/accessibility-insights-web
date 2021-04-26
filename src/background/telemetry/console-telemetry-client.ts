@@ -12,10 +12,10 @@ export class ConsoleTelemetryClient implements TelemetryClient {
     ) {}
 
     public enableTelemetry(): void {
-        // no op
+        // no-op
     }
     public disableTelemetry(): void {
-        // no op
+        // no-op
     }
     public trackEvent(name: string, properties?: { [name: string]: string }): void {
         properties = {
