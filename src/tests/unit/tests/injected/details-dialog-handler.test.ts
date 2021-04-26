@@ -23,6 +23,7 @@ describe('DetailsDialogHandlerTest', () => {
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
+        windowUtilsMock = Mock.ofType(WindowUtils);
         testSubject = new DetailsDialogHandler(htmlElementUtilsMock.object, windowUtilsMock.object);
         container = document.createElement('div');
         detailsDialog = document.createElement('div');

@@ -54,9 +54,9 @@ describe('CommandBar', () => {
         failedRules: {
             'RR-rule-id': ruleResult,
         },
-        hasSecureTargetPage: true,
+        hasSecureTargetPage: undefined,
         shouldShowInsecureOriginPageMessage: () => false,
-        onClickCopyIssueDetailsButtonHelpMessage: undefined,
+        onClickCopyIssueDetailsButtonHelpMessage: () => false,
     };
 
     beforeAll(() => {
@@ -74,6 +74,19 @@ describe('CommandBar', () => {
                 ...defaultCommandBarProps,
 
                 shouldShowInspectButtonMessage: () => show,
+            };
+
+            const wrapper = shallow(<CommandBar {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+            axeConverterMock.verifyAll();
+        });
+
+        test('renders, shows copy button insecure origin message', () => {
+            const props = {
+                ...defaultCommandBarProps,
+
+                shouldShowInsecureOriginPageMessage: () => false,
             };
 
             const wrapper = shallow(<CommandBar {...props} />);

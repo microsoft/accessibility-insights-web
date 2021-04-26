@@ -242,6 +242,8 @@ describe('DetailsDialog', () => {
             getFailureInfo: () => 'Failure 1 of 1 for this target',
             componentDidMount: () => {},
             shouldShowInspectButtonMessage: () => false,
+            isTargetPageOriginSecure: () => true,
+            shouldShowInsecureOriginPageMessage: () => false,
         };
     };
 });

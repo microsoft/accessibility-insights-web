@@ -123,8 +123,11 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
           },
         }
       }
+      hasSecureTargetPage={true}
       onClickCopyIssueDetailsButton={[Function]}
+      onClickCopyIssueDetailsButtonHelpMessage={[Function]}
       onClickInspectButton={[Function]}
+      shouldShowInsecureOriginPageMessage={[Function]}
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -177,6 +180,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
           "onClickBackButton": [Function],
+          "onClickCopyIssueDetailsButtonHelpMessage": [Function],
           "onClickInspectButton": [Function],
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
@@ -203,6 +207,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
               "isBackButtonDisabled": [Function],
               "isInspectButtonDisabled": [Function],
               "isNextButtonDisabled": [Function],
+              "isTargetPageOriginSecure": [Function],
+              "shouldShowInsecureOriginPageMessage": [Function],
               "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
@@ -238,6 +244,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
+            "showInsecureOriginPageMessage": false,
             "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
           },
@@ -287,6 +294,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     "isBackButtonDisabled": [Function],
                     "isInspectButtonDisabled": [Function],
                     "isNextButtonDisabled": [Function],
+                    "isTargetPageOriginSecure": [Function],
+                    "shouldShowInsecureOriginPageMessage": [Function],
                     "shouldShowInspectButtonMessage": [Function],
                   }
                 }
@@ -450,8 +459,11 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                         },
                       }
                     }
+                    hasSecureTargetPage={true}
                     onClickCopyIssueDetailsButton={[Function]}
+                    onClickCopyIssueDetailsButtonHelpMessage={[Function]}
                     onClickInspectButton={[Function]}
+                    shouldShowInsecureOriginPageMessage={[Function]}
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -504,6 +516,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                         "isBackButtonDisabled": [Function],
                         "isInspectButtonDisabled": [Function],
                         "isNextButtonDisabled": [Function],
+                        "isTargetPageOriginSecure": [Function],
+                        "shouldShowInsecureOriginPageMessage": [Function],
                         "shouldShowInspectButtonMessage": [Function],
                       }
                     }
@@ -526,6 +540,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
+          "isTargetPageOriginSecure": [Function],
+          "shouldShowInsecureOriginPageMessage": [Function],
           "shouldShowInspectButtonMessage": [Function],
         }
       }
@@ -542,6 +558,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInsecureOriginPageMessage": false,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
@@ -670,8 +687,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
           },
         }
       }
+      hasSecureTargetPage={true}
       onClickCopyIssueDetailsButton={[Function]}
+      onClickCopyIssueDetailsButtonHelpMessage={[Function]}
       onClickInspectButton={[Function]}
+      shouldShowInsecureOriginPageMessage={[Function]}
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -724,6 +744,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
           "onClickBackButton": [Function],
+          "onClickCopyIssueDetailsButtonHelpMessage": [Function],
           "onClickInspectButton": [Function],
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
@@ -750,6 +771,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
               "isBackButtonDisabled": [Function],
               "isInspectButtonDisabled": [Function],
               "isNextButtonDisabled": [Function],
+              "isTargetPageOriginSecure": [Function],
+              "shouldShowInsecureOriginPageMessage": [Function],
               "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
@@ -785,6 +808,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
+            "showInsecureOriginPageMessage": false,
             "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
           },
@@ -834,6 +858,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                     "isBackButtonDisabled": [Function],
                     "isInspectButtonDisabled": [Function],
                     "isNextButtonDisabled": [Function],
+                    "isTargetPageOriginSecure": [Function],
+                    "shouldShowInsecureOriginPageMessage": [Function],
                     "shouldShowInspectButtonMessage": [Function],
                   }
                 }
@@ -997,8 +1023,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                         },
                       }
                     }
+                    hasSecureTargetPage={true}
                     onClickCopyIssueDetailsButton={[Function]}
+                    onClickCopyIssueDetailsButtonHelpMessage={[Function]}
                     onClickInspectButton={[Function]}
+                    shouldShowInsecureOriginPageMessage={[Function]}
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -1051,6 +1080,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                         "isBackButtonDisabled": [Function],
                         "isInspectButtonDisabled": [Function],
                         "isNextButtonDisabled": [Function],
+                        "isTargetPageOriginSecure": [Function],
+                        "shouldShowInsecureOriginPageMessage": [Function],
                         "shouldShowInspectButtonMessage": [Function],
                       }
                     }
@@ -1073,6 +1104,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
+          "isTargetPageOriginSecure": [Function],
+          "shouldShowInsecureOriginPageMessage": [Function],
           "shouldShowInspectButtonMessage": [Function],
         }
       }
@@ -1089,6 +1122,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInsecureOriginPageMessage": false,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
@@ -1217,8 +1251,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
           },
         }
       }
+      hasSecureTargetPage={true}
       onClickCopyIssueDetailsButton={[Function]}
+      onClickCopyIssueDetailsButtonHelpMessage={[Function]}
       onClickInspectButton={[Function]}
+      shouldShowInsecureOriginPageMessage={[Function]}
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -1271,6 +1308,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
           "onClickBackButton": [Function],
+          "onClickCopyIssueDetailsButtonHelpMessage": [Function],
           "onClickInspectButton": [Function],
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
@@ -1297,6 +1335,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
               "isBackButtonDisabled": [Function],
               "isInspectButtonDisabled": [Function],
               "isNextButtonDisabled": [Function],
+              "isTargetPageOriginSecure": [Function],
+              "shouldShowInsecureOriginPageMessage": [Function],
               "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
@@ -1332,6 +1372,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
+            "showInsecureOriginPageMessage": false,
             "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
           },
@@ -1381,6 +1422,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                     "isBackButtonDisabled": [Function],
                     "isInspectButtonDisabled": [Function],
                     "isNextButtonDisabled": [Function],
+                    "isTargetPageOriginSecure": [Function],
+                    "shouldShowInsecureOriginPageMessage": [Function],
                     "shouldShowInspectButtonMessage": [Function],
                   }
                 }
@@ -1544,8 +1587,11 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                         },
                       }
                     }
+                    hasSecureTargetPage={true}
                     onClickCopyIssueDetailsButton={[Function]}
+                    onClickCopyIssueDetailsButtonHelpMessage={[Function]}
                     onClickInspectButton={[Function]}
+                    shouldShowInsecureOriginPageMessage={[Function]}
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -1598,6 +1644,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                         "isBackButtonDisabled": [Function],
                         "isInspectButtonDisabled": [Function],
                         "isNextButtonDisabled": [Function],
+                        "isTargetPageOriginSecure": [Function],
+                        "shouldShowInsecureOriginPageMessage": [Function],
                         "shouldShowInspectButtonMessage": [Function],
                       }
                     }
@@ -1620,6 +1668,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
+          "isTargetPageOriginSecure": [Function],
+          "shouldShowInsecureOriginPageMessage": [Function],
           "shouldShowInspectButtonMessage": [Function],
         }
       }
@@ -1636,6 +1686,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInsecureOriginPageMessage": false,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
