@@ -13,6 +13,11 @@ import * as React from 'react';
 import { AndroidSetupStepLayout, AndroidSetupStepLayoutProps } from './android-setup-step-layout';
 import { CommonAndroidSetupStepProps } from './android-setup-types';
 
+const startTestingAndResetState = (props: CommonAndroidSetupStepProps) => {
+    props.deps.startTesting();
+    props.deps.androidSetupActionCreator.readyToStart(); // Overloaded to reset to 'connect device state'
+};
+
 export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepProps>(
     'PromptConnectedStartTestingStep',
     (props: CommonAndroidSetupStepProps) => {
@@ -32,7 +37,7 @@ export const PromptConnectedStartTestingStep = NamedFC<CommonAndroidSetupStepPro
             rightFooterButtonProps: {
                 text: 'Start testing',
                 disabled: false,
-                onClick: props.deps.startTesting,
+                onClick: _ => startTestingAndResetState(props),
             },
         };
 
