@@ -5,7 +5,7 @@
 //
 // SCSS modules should instead use /common/styles/colors.scss.
 //
-// If a SCSS module @imports this, the styles will be repeated once per @importing module in the
+// If an SCSS module @imports this, the styles will be repeated once per @importing module in the
 // final packed .css file, which causes perf issues (especially with Chromium's dev tools).
 
 :root {

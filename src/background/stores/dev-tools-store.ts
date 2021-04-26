@@ -45,7 +45,7 @@ export class DevToolStore extends BaseStoreImpl<DevToolStoreData> {
     private onInspectElement = (target: string[]): void => {
         this.state.inspectElement = target;
         this.state.frameUrl = null;
-        // we're only using this to make sure the store proxy emit the change when the user inspect the same element twice
+        // we're only using this to make sure the store proxy emits the change when the user inspects the same element twice
         this.state.inspectElementRequestId++;
         this.emitChanged();
     };
