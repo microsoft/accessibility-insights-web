@@ -45,10 +45,16 @@ describe('Details View -> Overview Page', () => {
         await overviewPage.setFileForUpload(
             './src/tests/end-to-end/test-resources/saved-assessment-files/saved_assessment_test_file.a11ywebassessment',
         );
-        await overviewPage.clickSelector('text=Load Assessment');
+        await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
 
-        //todo: figure out how to check a property in the loaded overview page
-        expect(1).toEqual(1);
+        await overviewPage.waitForSelector(overviewSelectors.outcomeChipFail);
+
+        const summaryBar = await overviewPage.getSelectorElement(
+            overviewSelectors.outcomeSummaryBar,
+        );
+        const label = await summaryBar.evaluate(element => element.getAttribute('aria-label'));
+
+        expect(parseInt(label.charAt(0))).toBeGreaterThan(0);
     });
 });
 

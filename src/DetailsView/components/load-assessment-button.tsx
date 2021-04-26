@@ -16,10 +16,13 @@ export interface LoadAssessmentButtonProps {
     deps: LoadAssessmentButtonDeps;
 }
 
+export const loadAssessmentButtonAutomationId = 'load-assessment-button';
+
 export class LoadAssessmentButton extends React.Component<LoadAssessmentButtonProps> {
     public render(): JSX.Element {
         return (
             <InsightsCommandButton
+                data-automation-id={loadAssessmentButtonAutomationId}
                 iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
                 onClick={() => this.props.deps.loadAssessmentHelper.getAssessmentForLoad()}
             >

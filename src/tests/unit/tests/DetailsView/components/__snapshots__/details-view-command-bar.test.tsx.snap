@@ -328,6 +328,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
 
 exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
 <InsightsCommandButton
+  data-automation-id="load-assessment-button"
   iconProps={
     Object {
       "iconName": "FabricOpenFolderHorizontal",

@@ -21,6 +21,8 @@ export type OutcomeSummaryBarProps = {
     textLabel?: boolean;
 };
 
+export const outcomeSummaryBarAutomationId = 'outcome-summary-bar';
+
 export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', props => {
     const outcomeTypesCount = props.allOutcomeTypes.length;
 
@@ -53,7 +55,12 @@ export const OutcomeSummaryBar = NamedFC<OutcomeSummaryBarProps>('OutcomeSummary
     };
 
     return (
-        <div className="outcome-summary-bar" aria-label={getLabel()} role="img">
+        <div
+            className="outcome-summary-bar"
+            aria-label={getLabel()}
+            role="img"
+            data-automation-id={outcomeSummaryBarAutomationId}
+        >
             {props.allOutcomeTypes.map((outcomeType, index) => {
                 const { iconStyleInverted, countSuffix } = props;
                 const iconMap =

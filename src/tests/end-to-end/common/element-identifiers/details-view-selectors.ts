@@ -6,10 +6,12 @@ import { instanceTableTextContentAutomationId } from 'DetailsView/components/ass
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
+import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-assessment-button';
 import { overviewContainerAutomationId } from 'DetailsView/components/overview-content/overview-content-container';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
+import { outcomeSummaryBarAutomationId } from 'reports/components/outcome-summary-bar';
 import {
     cardsRuleIdAutomationId,
     ruleDetailAutomationId,
@@ -69,6 +71,9 @@ export const fastPassAutomatedChecksSelectors = {
 export const overviewSelectors = {
     overview: getAutomationIdSelector(overviewContainerAutomationId),
     overviewHeading: getAutomationIdSelector(overviewHeadingAutomationId),
+    loadAssessmentButton: getAutomationIdSelector(loadAssessmentButtonAutomationId),
+    outcomeSummaryBar: getAutomationIdSelector(outcomeSummaryBarAutomationId),
+    outcomeChipFail: 'span.outcome-chip-fail',
 };
 
 export const settingsPanelSelectors = {
