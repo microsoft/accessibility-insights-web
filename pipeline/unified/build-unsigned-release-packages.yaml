@@ -54,17 +54,17 @@ steps:
 
     - template: ./binskim-analysis.yaml
 
-    - template: publish-packed-build-output.yaml
+    - template: publish-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed'
+          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary'
           artifactName: unified-$(platform)-canary-unsigned
 
-    - template: publish-packed-build-output.yaml
+    - template: publish-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed'
+          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider'
           artifactName: unified-$(platform)-insider-unsigned
 
-    - template: publish-packed-build-output.yaml
+    - template: publish-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed'
+          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production'
           artifactName: unified-$(platform)-production-unsigned
