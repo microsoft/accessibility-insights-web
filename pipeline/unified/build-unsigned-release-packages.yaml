@@ -48,6 +48,7 @@ steps:
 
     - script: yarn pack:unified:all
       displayName: yarn pack:unified:all
+      condition: ne(variables.platform, 'windows')
 
     - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: print out canary file hashes
