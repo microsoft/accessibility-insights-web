@@ -245,12 +245,11 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.getConnectedDeviceName()}
-                onConnectNewDevice={() =>
+                onRedetectDevice={() =>
                     this.props.deps.windowStateActionCreator.setRoute({
                         routeId: 'deviceConnectView',
                     })
                 }
-                onRescanDevice={() => this.props.deps.scanActionCreator.scan(this.getScanPort())}
             />
         );
     }

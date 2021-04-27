@@ -30,7 +30,6 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { TabStopsStoreData } from 'electron/flux/types/tab-stops-store-data';
 import { ContentPageInfo, ContentPagesInfo } from 'electron/types/content-page-info';
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
-import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { TitleBar } from 'electron/views/results/components/title-bar';
 import { ResultsView, ResultsViewProps } from 'electron/views/results/results-view';
 import { TestView } from 'electron/views/results/test-view';
@@ -245,23 +244,6 @@ describe('ResultsView', () => {
 
             expect(wrapped.find(TitleBar).props().pageTitle).toEqual(expectedTitle);
             expect(wrapped.find(TestView).getElement()).toMatchSnapshot();
-        });
-    });
-
-    describe('DeviceDisconnectedPopup event handlers', () => {
-        it('onRescanDevice', () => {
-            const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
-            props.deps.scanActionCreator = scanActionCreatorMock.object;
-            props.scanStoreData.status = ScanStatus.Failed;
-            props.deviceConnectionStoreData.status = DeviceConnectionStatus.Disconnected;
-            props.androidSetupStoreData.scanPort = scanPort;
-            const wrapped = shallow(<ResultsView {...props} />);
-
-            scanActionCreatorMock.reset(); // this mock is used on componentDidMount, which is not in the scope of this unit test
-
-            wrapped.find(DeviceDisconnectedPopup).prop('onRescanDevice')();
-
-            scanActionCreatorMock.verify(creator => creator.scan(scanPort), Times.once());
         });
     });
 });
