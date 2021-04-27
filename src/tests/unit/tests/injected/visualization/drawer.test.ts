@@ -50,7 +50,7 @@ describe('Drawer', () => {
         eraseLayoutMock.verifyAll();
     });
 
-    test('verifyDefaultStyling', () => {
+    test('verifyDefaultStyling', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -74,7 +74,7 @@ describe('Drawer', () => {
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toEqual(true);
         const overlays = findCurrentDrawerOverlays();
@@ -86,7 +86,7 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyDefaultStyling: visualizations fully visible in client view', () => {
+    test('verifyDefaultStyling: visualizations fully visible in client view', async () => {
         const domMock: IMock<Document> = Mock.ofInstance({
             querySelectorAll: selector => {
                 return null;
@@ -206,14 +206,14 @@ describe('Drawer', () => {
             .build();
 
         testSubject.initialize(createDrawerInfo(elementResults));
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         domMock.verifyAll();
         windowUtilsMock.verifyAll();
         shadowContainerMock.verifyAll();
     });
 
-    test('verifyDefaultStyling: visualizations not fully visible in client view', () => {
+    test('verifyDefaultStyling: visualizations not fully visible in client view', async () => {
         const formatterMock: IMock<NonTextComponentFormatter> = Mock.ofType(
             NonTextComponentFormatter,
         );
@@ -365,7 +365,7 @@ describe('Drawer', () => {
             .build();
 
         testSubject.initialize(createDrawerInfo(elementResults));
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         domMock.verifyAll();
         formatterMock.verifyAll();
@@ -373,7 +373,7 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyDefaultStyling: visualizations fully not visible in client view', () => {
+    test('verifyDefaultStyling: visualizations fully not visible in client view', async () => {
         const domMock: IMock<Document> = Mock.ofInstance({
             querySelectorAll: selector => {
                 return null;
@@ -480,14 +480,14 @@ describe('Drawer', () => {
             .build();
 
         testSubject.initialize(createDrawerInfo(elementResults));
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         domMock.verifyAll();
         shadowContainerMock.verifyAll();
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyDefaultStyling: visualizations not fully visible in client view when body/html overflowX is hidden', () => {
+    test('verifyDefaultStyling: visualizations not fully visible in client view when body/html overflowX is hidden', async () => {
         const domMock: IMock<Document> = Mock.ofInstance({
             querySelectorAll: selector => {
                 return null;
@@ -609,14 +609,14 @@ describe('Drawer', () => {
             .build();
 
         testSubject.initialize(createDrawerInfo(elementResults));
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         domMock.verifyAll();
         shadowContainerMock.verifyAll();
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyDefaultStyling: visualizations not fully visible in client view when body/html overflowY is hidden', () => {
+    test('verifyDefaultStyling: visualizations not fully visible in client view when body/html overflowY is hidden', async () => {
         const domMock: IMock<Document> = Mock.ofInstance({
             querySelectorAll: selector => {
                 return null;
@@ -737,7 +737,7 @@ describe('Drawer', () => {
             .build();
 
         testSubject.initialize(createDrawerInfo(elementResults));
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         domMock.verifyAll();
         shadowContainerMock.verifyAll();
@@ -781,7 +781,7 @@ describe('Drawer', () => {
         createContainerElementMock.verifyAll();
     });
 
-    test('verifyListenersSetupOnDraw', () => {
+    test('verifyListenersSetupOnDraw', async () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         setupGetComputedStyleCalled();
@@ -809,7 +809,7 @@ describe('Drawer', () => {
         setupGetComputedStyleCalled();
         setupAddEventListerCalled(registerHandlerFunc);
         setupRemoveEventListerNotCalled();
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         windowUtilsMock.verifyAll();
 
@@ -860,7 +860,7 @@ describe('Drawer', () => {
             jest.useRealTimers();
         });
 
-        test.each([true, false])(`throttle timeout expired: %p`, throttleTimeoutExpired => {
+        test.each([true, false])(`throttle timeout expired: %p`, async throttleTimeoutExpired => {
             let drawCalledTimes = 1;
             fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
@@ -886,7 +886,7 @@ describe('Drawer', () => {
             setupAddEventListerCalled(registerHandlerFunc);
 
             // draw
-            testSubject.drawLayout();
+            await testSubject.drawLayout();
 
             const drawMock = Mock.ofInstance(() => {});
             (testSubject as any).draw = drawMock.object;
@@ -906,7 +906,7 @@ describe('Drawer', () => {
         });
     });
 
-    test('verifyDrawsOnlyOnceWhenEnabled', () => {
+    test('verifyDrawsOnlyOnceWhenEnabled', async () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         setupGetComputedStyleCalled();
@@ -927,12 +927,12 @@ describe('Drawer', () => {
         (testSubject as any).draw = drawMock.object;
 
         testSubject.eraseLayout();
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         drawMock.verifyAll();
     });
 
-    test('verifyWhenElementResultsIsEmpty', () => {
+    test('verifyWhenElementResultsIsEmpty', async () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
         const elementResults = [];
 
@@ -954,8 +954,8 @@ describe('Drawer', () => {
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
 
-        testSubject.drawLayout();
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toEqual(true);
         const overlays = findCurrentDrawerOverlays();
@@ -964,7 +964,7 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyWhenNoElementsFoundForSelectors', () => {
+    test('verifyWhenNoElementsFoundForSelectors', async () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         windowUtilsMock
@@ -987,7 +987,7 @@ describe('Drawer', () => {
         testSubject.initialize(createDrawerInfo(elementResults));
         expect(testSubject.isOverlayEnabled).toEqual(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toEqual(true);
         const overlays = findCurrentDrawerOverlays();
@@ -996,7 +996,7 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyRemoveLayout', () => {
+    test('verifyRemoveLayout', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -1022,10 +1022,10 @@ describe('Drawer', () => {
 
         anotherDrawer.initialize(createDrawerInfo(elementResults));
 
-        anotherDrawer.drawLayout();
+        await anotherDrawer.drawLayout();
         expect(findAllOverlayContainers().length).toEqual(1);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(findAllOverlayContainers().length).toEqual(2);
         testSubject.eraseLayout();
@@ -1038,7 +1038,7 @@ describe('Drawer', () => {
         windowUtilsMock.verifyAll();
     });
 
-    test('verifyRedraw', () => {
+    test('verifyRedraw', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -1069,17 +1069,17 @@ describe('Drawer', () => {
         anotherDrawer.initialize(createDrawerInfo(elementResults));
 
         // draw with another drawer
-        anotherDrawer.drawLayout();
+        await anotherDrawer.drawLayout();
         expect(findAllOverlayContainers().length).toEqual(1);
 
         // draw first time
         expect(testSubject.isOverlayEnabled).toEqual(false);
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
         expect(testSubject.isOverlayEnabled).toEqual(true);
         expect(findAllOverlayContainers().length).toEqual(2);
 
         // redraw
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
         expect(testSubject.isOverlayEnabled).toEqual(true);
         expect(findAllOverlayContainers().length).toEqual(2);
 
@@ -1092,7 +1092,7 @@ describe('Drawer', () => {
         });
     });
 
-    test('verifyFormatter', () => {
+    test('verifyFormatter', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -1185,7 +1185,7 @@ describe('Drawer', () => {
             .build();
         testSubject.initialize(createDrawerInfo(elementResults));
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toEqual(true);
         formatterMock.verifyAll();

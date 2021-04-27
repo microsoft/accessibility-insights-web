@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NavigatorUtils } from 'common/navigator-utils';
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { IMock, Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';
-import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { HeadingStyleConfiguration } from '../../../../../injected/visualization/heading-formatter';
@@ -20,7 +20,7 @@ describe('IssuesFormatterTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     beforeEach(() => {
         issuesStyle = IssuesFormatter.style;
-        const frameCommunicator: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);
+        const frameMessenger: IMock<FrameMessenger> = Mock.ofType(FrameMessenger);
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const navigatorUtils: IMock<NavigatorUtils> = Mock.ofType(NavigatorUtils);
@@ -29,7 +29,7 @@ describe('IssuesFormatterTests', () => {
         const getRTLMock = Mock.ofInstance(() => null);
         const detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
         testSubject = new IssuesFormatter(
-            frameCommunicator.object,
+            frameMessenger.object,
             htmlElementUtilsMock.object,
             windowUtils.object,
             navigatorUtils.object,

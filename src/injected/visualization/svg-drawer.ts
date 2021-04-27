@@ -119,10 +119,10 @@ export class SVGDrawer extends BaseDrawer {
         this.tabbedElements.forEach((element: TabbedItem) => (element.shouldRedraw = true));
     }
 
-    protected addHighlightsToContainer(): void {
-        const svgElements = this.getHighlightElements();
+    protected addHighlightsToContainer = async (): Promise<void> => {
+        const svgElements = await this.getHighlightElements();
         this.addElementsToSVGContainer(svgElements);
-    }
+    };
 
     protected createContainerElement(): void {
         super.createContainerElement();
@@ -152,8 +152,8 @@ export class SVGDrawer extends BaseDrawer {
         return svg;
     }
 
-    protected handlePositionChange = () => {
-        super.handlePositionChange();
+    protected handlePositionChange = async (): Promise<void> => {
+        await super.handlePositionChange();
         this.setSVGSize();
     };
 

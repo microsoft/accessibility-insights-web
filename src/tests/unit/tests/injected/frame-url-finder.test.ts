@@ -1,122 +1,66 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior } from 'typemoq';
+import { HTMLElementUtils } from 'common/html-element-utils';
+import { WindowUtils } from 'common/window-utils';
+import { FrameUrlFinder } from 'injected/frame-url-finder';
+import { LinkedFrameMessenger } from 'tests/unit/common/linked-frame-messenger';
+import { IMock, Mock } from 'typemoq';
 
-import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { WindowUtils } from '../../../../common/window-utils';
-import {
-    FrameUrlFinder,
-    FrameUrlMessage,
-    TargetMessage,
-} from '../../../../injected/frame-url-finder';
-import {
-    FrameCommunicator,
-    MessageRequest,
-} from '../../../../injected/frameCommunicators/frame-communicator';
+describe(FrameUrlFinder, () => {
+    let parentFrameMessenger: LinkedFrameMessenger;
+    let childFrameMessenger: LinkedFrameMessenger;
+    let parentFrameUrlFinder: FrameUrlFinder;
+    let childFrameUrlFinder: FrameUrlFinder;
+    let parentMockHtmlElementUtils: IMock<HTMLElementUtils>;
+    let childMockHtmlElementUtils: IMock<HTMLElementUtils>;
 
-describe('frameUrlFinderTest', () => {
-    test('constructor', () => {
-        expect(new FrameUrlFinder(null, null, null)).toBeDefined();
-    });
+    beforeEach(() => {
+        [parentFrameMessenger, childFrameMessenger] = LinkedFrameMessenger.createLinkedPair();
 
-    test('initialize', () => {
-        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, null, null);
+        const parentWindowUtils = {
+            getWindow: () => parentFrameMessenger.window,
+        } as WindowUtils;
+        const childWindowUtils = {
+            getWindow: () => childFrameMessenger.window,
+        } as WindowUtils;
 
-        frameCommunicatorMock
-            .setup(mfc =>
-                mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest),
-            )
+        parentMockHtmlElementUtils = Mock.ofType<HTMLElementUtils>();
+        parentMockHtmlElementUtils
+            .setup(m => m.querySelector('#child-frame'))
+            .returns(() => childFrameMessenger.frameElement)
             .verifiable();
+        childMockHtmlElementUtils = Mock.ofType<HTMLElementUtils>();
 
-        testSubject.initialize();
-
-        frameCommunicatorMock.verifyAll();
-    });
-
-    test('processRequest: at target level', () => {
-        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
-        const topWindowStub: any = {};
-        const currentWindowStub: any = {
-            location: { href: 'testURL' },
-        };
-
-        const processRequestMessageStub: TargetMessage = {
-            target: ['abc'],
-        };
-        const sentMessageStub: MessageRequest<FrameUrlMessage> = {
-            command: FrameUrlFinder.SetFrameUrlCommand,
-            win: topWindowStub,
-            message: {
-                frameUrl: 'testURL',
-            },
-        };
-
-        frameCommunicatorMock
-            .setup(mfc => mfc.sendMessage(It.isValue(sentMessageStub)))
-            .verifiable();
-
-        windowUtilsMock
-            .setup(mwu => mwu.getTopWindow())
-            .returns(() => {
-                return topWindowStub;
-            })
-            .verifiable();
-
-        windowUtilsMock
-            .setup(mwu => mwu.getWindow())
-            .returns(() => {
-                return currentWindowStub;
-            })
-            .verifiable();
-
-        const testSubject = new FrameUrlFinder(
-            frameCommunicatorMock.object,
-            windowUtilsMock.object,
-            null,
+        parentFrameUrlFinder = new FrameUrlFinder(
+            parentFrameMessenger,
+            parentWindowUtils,
+            parentMockHtmlElementUtils.object,
         );
-        testSubject.processRequest(processRequestMessageStub);
-
-        windowUtilsMock.verifyAll();
-        frameCommunicatorMock.verifyAll();
+        parentFrameUrlFinder.initialize();
+        childFrameUrlFinder = new FrameUrlFinder(
+            childFrameMessenger,
+            childWindowUtils,
+            childMockHtmlElementUtils.object,
+        );
+        childFrameUrlFinder.initialize();
     });
 
-    test('processRequest: not at target level', () => {
-        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const htmlUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
-        const frameStub = {} as any;
+    it('finds the current window location href at the current target level', async () => {
+        parentFrameMessenger.window.location = { href: 'http://parent.frame' } as Location;
 
-        const processRequestMessageMock: TargetMessage = {
-            target: ['abc', 'def'],
-        };
-        const sentMessageMock: MessageRequest<TargetMessage> = {
-            command: FrameUrlFinder.GetTargetFrameUrlCommand,
-            frame: frameStub,
-            message: {
-                target: ['def'],
-            },
-        };
+        const result = await parentFrameUrlFinder.getTargetFrameUrl(['#parent-element']);
 
-        frameCommunicatorMock
-            .setup(mfc => mfc.sendMessage(It.isValue(sentMessageMock)))
-            .verifiable();
+        expect(result).toBe('http://parent.frame');
+    });
 
-        htmlUtilsMock
-            .setup(mhu => mhu.querySelector('abc'))
-            .returns(() => {
-                return frameStub;
-            })
-            .verifiable();
+    it('finds the child window location href if target points to a child', async () => {
+        childFrameMessenger.window.location = { href: 'http://child.frame' } as Location;
 
-        const testSubject = new FrameUrlFinder(
-            frameCommunicatorMock.object,
-            null,
-            htmlUtilsMock.object,
-        );
-        testSubject.processRequest(processRequestMessageMock);
+        const result = await parentFrameUrlFinder.getTargetFrameUrl([
+            '#child-frame',
+            '#child-element',
+        ]);
 
-        htmlUtilsMock.verifyAll();
-        frameCommunicatorMock.verifyAll();
+        expect(result).toBe('http://child.frame');
     });
 });
