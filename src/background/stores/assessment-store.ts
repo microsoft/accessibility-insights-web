@@ -61,7 +61,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         super(StoreNames.AssessmentStore);
     }
 
-    public generateDefaultState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
+    private generateDefaultState(persistedData: AssessmentStoreData = null): AssessmentStoreData {
         return this.initialAssessmentStoreDataGenerator.generateInitialState(persistedData);
     }
 
@@ -149,7 +149,10 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
     };
 
     private onLoadAssessment = (payload: LoadAssessmentPayload): void => {
-        //update state - ADO #1784187
+        this.state = this.initialAssessmentStoreDataGenerator.generateInitialState(
+            payload.versionedAssessmentData.assessmentData,
+        );
+        this.updateTargetTabWithId(payload.tabId);
     };
 
     private onUpdateTargetTabId = (tabId: number): void => {

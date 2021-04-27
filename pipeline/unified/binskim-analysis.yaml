@@ -1,0 +1,41 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    - task: NuGetToolInstaller@1
+      displayName: binskim-install NuGet 5.x
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+      inputs:
+          versionSpec: '5.x'
+
+    - task: NuGetCommand@2
+      displayName: binskim-install package from NuGet
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+      inputs:
+          command: custom
+          arguments: 'install Microsoft.CodeAnalysis.BinSkim -NonInteractive -Source https://api.nuget.org/v3/index.json -OutputDirectory ./analysis/binskim/tools -Version 1.7.5'
+
+    - script: yarn download:electron-mirror:symbols
+      displayName: binskim-download custom electron symbols
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+
+    - script: yarn copy:prepare-binskim
+      displayName: binskim-build folder
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+
+    - script: yarn run:binskim
+      displayName: binskim-scan
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+
+    - task: CopyFiles@2
+      displayName: binskim-copy results
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+      inputs:
+          SourceFolder: './analysis/binskim/logs'
+          TargetFolder: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
+
+    - task: PublishBuildArtifacts@1
+      displayName: binskim-publish artifact
+      condition: and(succeeded(), eq(variables.platform, 'windows'))
+      inputs:
+          pathtoPublish: '$(System.ArtifactStagingDirectory)/CodeAnalysisLogs'
+          artifactName: 'CodeAnalysisLogs'

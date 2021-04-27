@@ -2,8 +2,14 @@
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import {
+    BaseTelemetryData,
+    TelemetryEventSource,
+    TriggeredByNotApplicable,
+} from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { Logger } from 'common/logging/logger';
+import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 import {
     DEVICE_FOCUS_DISABLE,
     DEVICE_FOCUS_ENABLE,
@@ -28,6 +34,9 @@ describe('TabStopsActionCreator', () => {
     let loggerMock: IMock<Logger>;
     let statusDisconnectedMock: IMock<Action<void>>;
     let statusConnectedMock: IMock<Action<void>>;
+    let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
+    let eventStub: React.SyntheticEvent;
+    let telemetryStub: BaseTelemetryData;
 
     beforeEach(() => {
         tabStopsActionsMock = Mock.ofType<TabStopsActions>();
@@ -47,6 +56,12 @@ describe('TabStopsActionCreator', () => {
         loggerMock = Mock.ofType<Logger>(undefined, MockBehavior.Strict);
         statusDisconnectedMock = Mock.ofType<Action<void>>();
         statusConnectedMock = Mock.ofType<Action<void>>();
+        telemetryDataFactoryMock = Mock.ofType<TelemetryDataFactory>();
+        eventStub = {} as React.SyntheticEvent;
+        telemetryStub = {
+            source: TelemetryEventSource.ElectronResultsView,
+            triggeredBy: 'N/A',
+        };
 
         testSubject = new TabStopsActionCreator(
             tabStopsActionsMock.object,
@@ -54,6 +69,7 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock.object,
             loggerMock.object,
             telemetryEventHandlerMock.object,
+            telemetryDataFactoryMock.object,
         );
     });
 
@@ -62,11 +78,12 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock
                 .setup(m => m.enableFocusTracking())
                 .returns(() => Promise.resolve());
-            setupTelemetryMock(DEVICE_FOCUS_ENABLE, {});
+            setupTelemetryMock(DEVICE_FOCUS_ENABLE, { telemetry: telemetryStub });
+            setupTelemetryDataFactoryMock(eventStub);
             tabStopsActionsMock.setup(m => m.enableFocusTracking).returns(() => actionMock.object);
             setFocusActionsForSuccess();
 
-            await testSubject.enableTabStops();
+            await testSubject.enableTabStops(eventStub);
 
             actionMock.verify(m => m.invoke(), Times.once());
             verifyAllMocks();
@@ -76,11 +93,12 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock
                 .setup(m => m.disableFocusTracking())
                 .returns(() => Promise.resolve());
-            setupTelemetryMock(DEVICE_FOCUS_DISABLE, {});
+            setupTelemetryMock(DEVICE_FOCUS_DISABLE, { telemetry: telemetryStub });
+            setupTelemetryDataFactoryMock(eventStub);
             tabStopsActionsMock.setup(m => m.disableFocusTracking).returns(() => actionMock.object);
             setFocusActionsForSuccess();
 
-            await testSubject.disableTabStops();
+            await testSubject.disableTabStops(eventStub);
 
             actionMock.verify(m => m.invoke(), Times.once());
             verifyAllMocks();
@@ -90,11 +108,12 @@ describe('TabStopsActionCreator', () => {
             deviceFocusControllerMock
                 .setup(m => m.resetFocusTracking())
                 .returns(() => Promise.resolve());
-            setupTelemetryMock(DEVICE_FOCUS_RESET, {});
+            setupTelemetryMock(DEVICE_FOCUS_RESET, { telemetry: telemetryStub });
+            setupTelemetryDataFactoryMock(eventStub);
             tabStopsActionsMock.setup(m => m.startOver).returns(() => actionMock.object);
             setFocusActionsForSuccess();
 
-            await testSubject.startOver();
+            await testSubject.startOver(eventStub);
 
             actionMock.verify(m => m.invoke(), Times.once());
             verifyAllMocks();
@@ -159,7 +178,7 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.sendKeyEvent(keyEventCode))
                 .returns(() => Promise.resolve());
 
-            await testSubject[funcName]();
+            await testSubject[funcName](eventStub);
 
             verifyAllMocks();
         }
@@ -173,11 +192,12 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.enableFocusTracking())
                 .returns(() => Promise.reject(errorMessage));
 
-            setupTelemetryMock(DEVICE_FOCUS_ENABLE, {});
+            setupTelemetryMock(DEVICE_FOCUS_ENABLE, { telemetry: telemetryStub });
+            setupTelemetryDataFactoryMock(eventStub);
             tabStopsActionsMock.setup(m => m.enableFocusTracking).returns(() => actionMock.object);
             setMocksForFocusError();
 
-            await testSubject.enableTabStops();
+            await testSubject.enableTabStops(eventStub);
 
             actionMock.verify(m => m.invoke(), Times.never());
             verifyAllMocks();
@@ -188,11 +208,12 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.disableFocusTracking())
                 .returns(() => Promise.reject(errorMessage));
 
-            setupTelemetryMock(DEVICE_FOCUS_DISABLE, {});
+            setupTelemetryMock(DEVICE_FOCUS_DISABLE, { telemetry: telemetryStub });
+            setupTelemetryDataFactoryMock(eventStub);
             tabStopsActionsMock.setup(m => m.disableFocusTracking).returns(() => actionMock.object);
             setMocksForFocusError();
 
-            await testSubject.disableTabStops();
+            await testSubject.disableTabStops(eventStub);
 
             actionMock.verify(m => m.invoke(), Times.never());
             verifyAllMocks();
@@ -203,11 +224,12 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.resetFocusTracking())
                 .returns(() => Promise.reject(errorMessage));
 
-            setupTelemetryMock(DEVICE_FOCUS_RESET, {});
+            setupTelemetryMock(DEVICE_FOCUS_RESET, { telemetry: telemetryStub });
+            setupTelemetryDataFactoryMock(eventStub);
             tabStopsActionsMock.setup(m => m.startOver).returns(() => actionMock.object);
             setMocksForFocusError();
 
-            await testSubject.startOver();
+            await testSubject.startOver(eventStub);
 
             actionMock.verify(m => m.invoke(), Times.never());
             verifyAllMocks();
@@ -267,14 +289,21 @@ describe('TabStopsActionCreator', () => {
                 .setup(m => m.sendKeyEvent(keyEventCode))
                 .returns(() => Promise.reject(errorMessage));
 
-            await testSubject[funcName]();
+            await testSubject[funcName](eventStub);
 
             verifyAllMocks();
         }
 
         function setMocksForFocusError(): void {
             telemetryEventHandlerMock
-                .setup(m => m.publishTelemetry(DEVICE_FOCUS_ERROR, {}))
+                .setup(m =>
+                    m.publishTelemetry(DEVICE_FOCUS_ERROR, {
+                        telemetry: {
+                            source: TelemetryEventSource.ElectronResultsView,
+                            triggeredBy: TriggeredByNotApplicable,
+                        },
+                    }),
+                )
                 .verifiable(Times.once());
             loggerMock
                 .setup(m => m.log('focus controller failure: ' + errorMessage))
@@ -293,6 +322,12 @@ describe('TabStopsActionCreator', () => {
         telemetryEventHandlerMock
             .setup(m => m.publishTelemetry(eventName, payload))
             .verifiable(Times.once());
+    }
+
+    function setupTelemetryDataFactoryMock(event: SupportedMouseEvent): void {
+        telemetryDataFactoryMock
+            .setup(m => m.withTriggeredByAndSource(event, TelemetryEventSource.ElectronResultsView))
+            .returns(() => telemetryStub);
     }
 
     function verifyAllMocks(): void {

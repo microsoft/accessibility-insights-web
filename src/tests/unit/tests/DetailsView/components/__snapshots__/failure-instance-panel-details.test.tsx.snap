@@ -2,12 +2,6 @@
 
 exports[`FailureInstancePanelDetailsTest renders 1`] = `
 <div>
-  <a
-    className="learnMore"
-    href="#"
-  >
-    Learn more about adding failure instances
-  </a>
   <StyledTextFieldBase
     label="CSS Selector"
     multiline={true}

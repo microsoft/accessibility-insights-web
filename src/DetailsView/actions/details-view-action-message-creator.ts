@@ -543,14 +543,32 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     };
 
-    public loadAssessment = (assessmentData: VersionedAssessmentData): void => {
+    public loadAssessment = (assessmentData: VersionedAssessmentData, tabId: number): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: LoadAssessmentPayload = {
             telemetry: telemetry,
             versionedAssessmentData: assessmentData,
+            tabId,
         };
+        const setDetailsViewRightContentPanelPayload: DetailsViewRightContentPanelType = 'Overview';
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            payload: setDetailsViewRightContentPanelPayload,
+        });
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.LoadAssessment,
+            payload,
+        });
+    };
+
+    public saveAssessment = (event: React.MouseEvent<any>): void => {
+        const telemetry = this.telemetryFactory.fromDetailsView(event);
+        const payload: BaseActionPayload = {
+            telemetry: telemetry,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.SaveAssessment,
             payload,
         });
     };

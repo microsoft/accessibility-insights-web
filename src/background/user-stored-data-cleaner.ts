@@ -9,7 +9,7 @@ export const cleanKeysFromStorage = (
 ): Promise<void> => {
     return storageAdapter.getUserData(userDataKeys).then(userDataKeysMap => {
         each(userDataKeysMap, (value, key) => {
-            // we don't want to do anything special if removing data fail
+            // we don't want to do anything special if removing data fails
             storageAdapter.removeUserData(key).catch(console.error);
         });
     });

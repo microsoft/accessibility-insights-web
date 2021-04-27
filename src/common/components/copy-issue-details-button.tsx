@@ -40,7 +40,7 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
     private copyButtonClicked = async (event: React.MouseEvent<any>): Promise<void> => {
         const toast = this.toastRef.current;
         if (toast == null) {
-            // This be very rare (only if the button is clicked mid-initial-render of the Toast)
+            // This is very rare (only if the button is clicked mid-initial-render of the Toast)
             return;
         }
 

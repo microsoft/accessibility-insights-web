@@ -15,6 +15,7 @@ import {
     ReflowCommandBarProps,
 } from 'electron/views/results/components/reflow-command-bar';
 import { mount, shallow } from 'enzyme';
+import { isMatch } from 'lodash';
 import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -72,7 +73,7 @@ describe('ReflowCommandBar', () => {
                 allowsExportReport: true,
                 startOverButtonSettings: _ => {
                     return {
-                        onClick: () => {},
+                        onClick: e => {},
                         disabled: false,
                     };
                 },
@@ -117,8 +118,11 @@ describe('ReflowCommandBar', () => {
 
             props.currentContentPageInfo.startOverButtonSettings = _ => {
                 return {
-                    onClick: () => {
+                    onClick: e => {
                         clickWasCalled = true;
+
+                        // The event passed through is decorated with other properties so we only check subset.
+                        expect(isMatch(e, eventStub)).toBeTruthy();
                     },
                     disabled: false,
                 };

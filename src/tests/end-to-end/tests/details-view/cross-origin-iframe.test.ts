@@ -80,10 +80,9 @@ describe('scanning', () => {
                 fastPassAutomatedChecksSelectors.ruleDetail,
             );
 
-            expect(ruleDetails).toHaveLength(5);
+            expect(ruleDetails).toHaveLength(4);
 
             const expectedCounts = {
-                'duplicate-id': 1,
                 'frame-title': 2,
                 'html-has-lang': 1,
                 'image-alt': 9,

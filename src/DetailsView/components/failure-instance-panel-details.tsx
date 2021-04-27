@@ -14,7 +14,6 @@ import {
     failureInstanceSnippetErrorIcon,
     failureInstanceSnippetFilledBody,
     failureInstanceSnippetTitle,
-    learnMore,
 } from './failure-instance-panel.scss';
 
 export type FailureInstancePanelDetailsProps = {
@@ -50,9 +49,6 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
         };
         return (
             <div>
-                <a href="#" className={learnMore}>
-                    Learn more about adding failure instances
-                </a>
                 <TextField
                     label="CSS Selector"
                     styles={getStyles}

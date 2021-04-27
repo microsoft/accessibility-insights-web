@@ -46,8 +46,13 @@ steps:
     - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
       displayName: yarn build:unified:all
 
+    - script: yarn pack:unified:all
+      displayName: yarn pack:unified:all
+
     - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: print out canary file hashes
+
+    - template: ./binskim-analysis.yaml
 
     - template: publish-packed-build-output.yaml
       parameters:

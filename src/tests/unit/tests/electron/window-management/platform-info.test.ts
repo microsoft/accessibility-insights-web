@@ -34,6 +34,12 @@ describe(PlatformInfo, () => {
         expect(testSubject.isMac()).toBe(true);
     });
 
+    it('isLinux', () => {
+        processMock.setup(p => p.platform).returns(() => 'linux');
+
+        expect(testSubject.isLinux()).toBe(true);
+    });
+
     describe('getOsName', () => {
         type GetOsTestCase = { platformName: typeof process.platform; osType: OSType };
 

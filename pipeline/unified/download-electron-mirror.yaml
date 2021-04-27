@@ -1,5 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-    - script: yarn download:electron-mirror
-      displayName: download custom electron build
+    - script: yarn download:electron-mirror:binaries
+      displayName: download custom electron binaries

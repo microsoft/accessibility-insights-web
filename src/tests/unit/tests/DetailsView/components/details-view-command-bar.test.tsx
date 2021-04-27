@@ -44,8 +44,8 @@ describe('DetailsViewCommandBar', () => {
 
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
-    let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
-    let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
+    let saveAssessmentButtonPropsStub: SaveAssessmentButtonProps;
+    let loadAssessmentButtonProps: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
@@ -68,6 +68,11 @@ describe('DetailsViewCommandBar', () => {
         startOverComponent = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
+        saveAssessmentButtonPropsStub = {
+            deps: { detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object },
+            download: 'download',
+            href: 'url',
+        };
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -152,12 +157,12 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with save assessment button', () => {
-        const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps} />);
+        const rendered = shallow(<SaveAssessmentButton {...saveAssessmentButtonPropsStub} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('renders with load assessment button', () => {
-        const rendered = shallow(<LoadAssessmentButton {...LoadAssessmentButtonProps} />);
+        const rendered = shallow(<LoadAssessmentButton {...loadAssessmentButtonProps} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
