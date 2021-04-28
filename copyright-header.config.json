@@ -23,6 +23,7 @@
         ".gitattribute",
         ".gitattributes",
         ".ignoredRevs",
+        "**/*.a11ywebassessment",
         "**/.DS_Store",
         "**/*.icns",
         "**/*.scss.d.ts",

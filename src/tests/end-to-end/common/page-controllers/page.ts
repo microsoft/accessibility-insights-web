@@ -216,4 +216,10 @@ export class Page {
             wrappedFunction,
         );
     }
+
+    public async setFileForUpload(filepath: string) {
+        this.underlyingPage.on('filechooser', async fileChooser => {
+            await fileChooser.element().setInputFiles(filepath);
+        });
+    }
 }

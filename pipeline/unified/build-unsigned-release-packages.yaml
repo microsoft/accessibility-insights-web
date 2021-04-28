@@ -48,23 +48,24 @@ steps:
 
     - script: yarn pack:unified:all
       displayName: yarn pack:unified:all
+      condition: ne(variables.platform, 'windows')
 
     - script: node ./pipeline/scripts/print-file-hash-info.js $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed
       displayName: print out canary file hashes
 
     - template: ./binskim-analysis.yaml
 
-    - template: publish-packed-build-output.yaml
+    - template: publish-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed'
+          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-canary'
           artifactName: unified-$(platform)-canary-unsigned
 
-    - template: publish-packed-build-output.yaml
+    - template: publish-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed'
+          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-insider'
           artifactName: unified-$(platform)-insider-unsigned
 
-    - template: publish-packed-build-output.yaml
+    - template: publish-build-output.yaml
       parameters:
-          packedOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed'
+          buildOutputPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-production'
           artifactName: unified-$(platform)-production-unsigned
