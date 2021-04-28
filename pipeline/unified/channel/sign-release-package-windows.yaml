@@ -113,6 +113,12 @@ jobs:
                         }
                     ]
 
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-codesignvalidation.CodeSign@1
+            displayName: codesign validation
+            inputs:
+                Path: $(System.DefaultWorkingDirectory)
+                Targets: +:f|signing-in-progress/**.exe;+:f|drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.dll;drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.exe;
+
           - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} windows
             displayName: update electron-builder latest.yml after signing
 
