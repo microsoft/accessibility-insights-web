@@ -5,45 +5,45 @@ parameters:
     unsignedArtifactName: null
     signedArtifactName: null
 
-jobs:       
+jobs:
     - job: ${{ parameters.signedArtifactName }}
-    pool:
-        vmImage: macOS-10.15
-    steps:
-         - template: ../../install-node-prerequisites.yaml
+      pool:
+          vmImage: macOS-10.15
+      steps:
+          - template: ../../install-node-prerequisites.yaml
 
-        - task: DownloadPipelineArtifact@2
-        inputs:
-            source: 'specific'
-            runVersion: 'specific'
-            project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
-            pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
-            runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
-            artifact: ${{ parameters.unsignedArtifactName }}
-            path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+          - task: DownloadPipelineArtifact@2
+            inputs:
+                source: 'specific'
+                runVersion: 'specific'
+                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
+                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
+                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
+                artifact: ${{ parameters.unsignedArtifactName }}
+                path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
-        - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-        displayName: 'Send to ESRP Code Signing service'
-        inputs:
-            ConnectedServiceName: 'ESRP Code Signing'
-            FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-            Pattern: '*.dmg, *.zip'
-            signConfigType: inlineSignParams
-            inlineOperation: |
-                [
-                    {
-                        "keyCode": "CP-401337-Apple",
-                        "operationSetCode": "MacAppDeveloperSign",
-                        "parameters": [],
-                        "toolName": "sign",
-                        "toolVersion": "1.0"
-                    }
-                ]
+          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+            displayName: 'Send to ESRP Code Signing service'
+            inputs:
+                ConnectedServiceName: 'ESRP Code Signing'
+                FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                Pattern: '*.dmg, *.zip'
+                signConfigType: inlineSignParams
+                inlineOperation: |
+                    [
+                        {
+                            "keyCode": "CP-401337-Apple",
+                            "operationSetCode": "MacAppDeveloperSign",
+                            "parameters": [],
+                            "toolName": "sign",
+                            "toolVersion": "1.0"
+                        }
+                    ]
 
-        - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} mac
-        displayName: update electron-builder latest.yml after signing
+          - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} mac
+            displayName: update electron-builder latest.yml after signing
 
-        - template: ../publish-packed-build-output.yaml
-        parameters:
-            packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-            artifactName: ${{ parameters.signedArtifactName }}
+          - template: ../publish-packed-build-output.yaml
+            parameters:
+                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                artifactName: ${{ parameters.signedArtifactName }}
