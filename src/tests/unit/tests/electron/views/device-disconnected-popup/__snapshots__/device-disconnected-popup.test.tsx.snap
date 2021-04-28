@@ -38,14 +38,14 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
     <p>
       Select 
       <strong>
-        Redetect device
+        Re-detect device
       </strong>
        to continue.
     </p>
   </div>
   <StyledDialogFooterBase>
     <CustomizedDefaultButton
-      text="Redetect device"
+      text="Re-detect device"
     />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>

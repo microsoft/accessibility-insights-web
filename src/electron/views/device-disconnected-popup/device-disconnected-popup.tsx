@@ -42,11 +42,11 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
                         Uh-oh! It seems the device <strong>{deviceName}</strong> has disconnected.
                     </p>
                     <p>
-                        Select <strong>Redetect device</strong> to continue.
+                        Select <strong>Re-detect device</strong> to continue.
                     </p>
                 </div>
                 <DialogFooter>
-                    <DefaultButton text="Redetect device" onClick={onRedetectDevice} />
+                    <DefaultButton text="Re-detect device" onClick={onRedetectDevice} />
                 </DialogFooter>
             </Dialog>
         );
