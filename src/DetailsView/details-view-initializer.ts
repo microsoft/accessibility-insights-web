@@ -26,7 +26,6 @@ import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
-import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
@@ -391,14 +390,6 @@ if (tabId != null) {
 
             const fileReader = new FileReader();
 
-            const loadAssessmentHelper = new LoadAssessmentHelper(
-                assessmentDataParser,
-                detailsViewActionMessageCreator,
-                fileReader,
-                document,
-                tab.id,
-            );
-
             const fileNameBuilder = new FileNameBuilder();
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
@@ -432,7 +423,7 @@ if (tabId != null) {
                 assessmentDataFormatter,
                 assessmentDataParser,
                 fileNameBuilder,
-                loadAssessmentHelper,
+                fileReader,
                 getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
