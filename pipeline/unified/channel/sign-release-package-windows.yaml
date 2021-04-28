@@ -23,6 +23,45 @@ jobs:
                 artifact: ${{ parameters.unsignedArtifactName }}
                 path: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
 
+          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+            displayName: 'Sign artifact binaries'
+            inputs:
+                ConnectedServiceName: 'ESRP Code Signing'
+                FolderPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
+                Pattern: '*.exe, *.dll'
+                signConfigType: inlineSignParams
+                inlineOperation: |
+                    [
+                        {
+                        "keyCode": "CP-230012",
+                        "operationSetCode": "SigntoolSign",
+                        "parameters": [
+                            {
+                            "parameterName": "OpusName",
+                            "parameterValue": "Microsoft"
+                            },
+                            {
+                            "parameterName": "OpusInfo",
+                            "parameterValue": "http://www.microsoft.com"
+                            },
+                            {
+                            "parameterName": "PageHash",
+                            "parameterValue": "/NPH"
+                            },
+                            {
+                            "parameterName": "FileDigest",
+                            "parameterValue": "/fd sha256"
+                            },
+                            {
+                            "parameterName": "TimeStamp",
+                            "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                            }
+                        ],
+                        "toolName": "signtool.exe",
+                        "toolVersion": "6.2.9304.0"
+                        }
+                    ]
+
           - script: yarn pack:unified:${{ parameters.channel }}
             displayName: yarn pack:unified:${{ parameters.channel }}
 
@@ -40,7 +79,7 @@ jobs:
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-                Pattern: '*.exe, *.dll'
+                Pattern: '*.exe'
                 signConfigType: inlineSignParams
                 inlineOperation: |
                     [
