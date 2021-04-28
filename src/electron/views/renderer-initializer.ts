@@ -369,6 +369,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             deviceFocusController,
             logger,
             telemetryEventHandler,
+            telemetryDataFactory,
         );
 
         const leftNavActionCreator = new LeftNavActionCreator(leftNavActions, cardSelectionActions);

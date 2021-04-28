@@ -31,7 +31,7 @@ exports[`AdhocStaticTestView render handles content & guidance 1`] = `
                     var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                     _this._interceptor.intercept(methodInvocation);
                     return methodInvocation.returnValue;
-                }]} />"
+                }]} stepsText=\\"Step 0 of 3\\" />"
 `;
 
 exports[`AdhocStaticTestView render handles content & no guidance 1`] = `
@@ -55,7 +55,7 @@ exports[`AdhocStaticTestView render handles content & no guidance 1`] = `
                     var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                     _this._interceptor.intercept(methodInvocation);
                     return methodInvocation.returnValue;
-                }]} guidance={[undefined]} />"
+                }]} guidance={[undefined]} stepsText=\\"Step 0 of 3\\" />"
 `;
 
 exports[`AdhocStaticTestView render handles no content & guidance 1`] = `
@@ -79,7 +79,7 @@ exports[`AdhocStaticTestView render handles no content & guidance 1`] = `
                     var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                     _this._interceptor.intercept(methodInvocation);
                     return methodInvocation.returnValue;
-                }]} />"
+                }]} stepsText=\\"Step 0 of 3\\" />"
 `;
 
 exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `
@@ -93,7 +93,7 @@ exports[`AdhocStaticTestView render handles no content & no guidance 1`] = `
                     var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                     _this._interceptor.intercept(methodInvocation);
                     return methodInvocation.returnValue;
-                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} />"
+                }]} visualizationEnabled={true} onToggleClick={[Function: clickHandlerStub]} title=\\"test title\\" toggleLabel=\\"test toggle label\\" content={[undefined]} guidance={[undefined]} stepsText=\\"Step 0 of 3\\" />"
 `;
 
-exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} featureFlagStoreData={[undefined]} detailsViewActionMessageCreator={[Function]} />"`;
+exports[`AdhocStaticTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} featureFlagStoreData={{...}} detailsViewActionMessageCreator={[Function]} />"`;

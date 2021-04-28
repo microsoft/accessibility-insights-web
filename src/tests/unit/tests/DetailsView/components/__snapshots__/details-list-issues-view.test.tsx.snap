@@ -58,9 +58,11 @@ exports[`DetailsListIssuesView should return issues table with scanning to false
       "detailsViewActionMessageCreator": Object {},
     }
   }
+  featureFlags={Object {}}
   instancesSection={[Function]}
   issuesEnabled={true}
   scanning={false}
+  stepsText="Step 0 of 3"
   subtitle={
     <React.Fragment>
       test subtitle

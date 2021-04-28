@@ -5,7 +5,6 @@ import * as React from 'react';
 import { ContentInclude, ContentIncludeDeps } from 'views/content/content-include';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
-
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { NamedFC } from '../../common/react/named-fc';
 
@@ -19,6 +18,7 @@ export interface StaticContentDetailsViewProps {
     content: ContentReference;
     guidance: ContentReference;
     onToggleClick: (event) => void;
+    stepsText: string;
 }
 
 export const StaticContentDetailsView = NamedFC<StaticContentDetailsViewProps>(
@@ -27,7 +27,8 @@ export const StaticContentDetailsView = NamedFC<StaticContentDetailsViewProps>(
         return (
             <div className={styles.staticContentInDetailsView}>
                 <h1>
-                    {props.title}{' '}
+                    {props.title}
+                    {` ${props.stepsText} `}
                     <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
                 </h1>
                 <VisualizationToggle

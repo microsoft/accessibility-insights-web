@@ -31,6 +31,11 @@ const nativeHighContrastModeListener = new NativeHighContrastModeListener(
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
 
+if (platformInfo.isLinux()) {
+    // Avoid a conflict between Parallels VM and Electron. See https://github.com/microsoft/accessibility-insights-web/issues/4140
+    app.disableHardwareAcceleration();
+}
+
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 

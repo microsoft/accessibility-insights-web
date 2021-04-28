@@ -33,6 +33,7 @@ src/tests/miscellaneous/mock-adb/bin/
 drop/
 extension/
 package/
+analysis/
 LICENSE
 new-appx.ps1
 test-results/

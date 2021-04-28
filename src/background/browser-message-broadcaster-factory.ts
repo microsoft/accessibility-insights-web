@@ -59,7 +59,7 @@ export class BrowserMessageBroadcasterFactory {
     ) => {
         // We get this message when we have not yet injected our content script on the tab we are
         // sending the message to.
-        // Filtering this out (not log it to the console) to avoid generating meaningless noise
+        // Filtering this out (not logging it to the console) to avoid generating meaningless noise
         if (chromeError.message === connectionErrorMessage) {
             return;
         }

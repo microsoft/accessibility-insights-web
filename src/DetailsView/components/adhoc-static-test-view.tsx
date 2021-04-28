@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import { ContentReference } from 'views/content/content-page';
-
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -45,6 +45,13 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
         );
         const displayableData = props.configuration.displayableData;
 
+        const stepsText = (): string => {
+            const fastPassProvider = createFastPassProviderWithFeatureFlags(
+                props.featureFlagStoreData,
+            );
+            return fastPassProvider.getStepsText(selectedTest);
+        };
+
         if (props.tabStoreData.isChanged) {
             return (
                 <TargetPageChangedView
@@ -65,6 +72,7 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>(
             toggleLabel: displayableData.toggleLabel,
             content: props.content,
             guidance: props.guidance,
+            stepsText: stepsText(),
         };
 
         return <StaticContentDetailsView {...givenProps} />;

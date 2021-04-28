@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 const fs = require('fs');
 const path = require('path');
+const process = require('process');
 const { downloadArtifact } = require('@electron/get');
 const extract = require('extract-zip');
 const pkg = require('../../package.json');
@@ -29,25 +30,9 @@ if (
 
 const assetNumber = '6837137';
 
-const downloadMirrors = async () => {
-    await downloadElectronArtifact('electron', 'node_modules/electron/dist');
-    await downloadElectronArtifact('chromedriver', 'node_modules/electron-chromedriver/bin');
-};
-
-const downloadElectronArtifact = async (artifactName, destinationPath) => {
+const clearAndExtract = async (zipFilePath, destinationPath) => {
     destinationPath = path.resolve(destinationPath);
-    console.log(`downloading ${artifactName} at ${pkg.dependencies.electron}`);
-    const zipFilePath = await downloadArtifact({
-        version: `${pkg.dependencies.electron}`,
-        artifactName,
-        mirrorOptions: {
-            mirror: process.env.ELECTRON_MIRROR_BASE_VAR,
-            customDir: process.env.ELECTRON_MIRROR_CUSTOM_DIR_VAR,
-            resolveAssetURL: resolveCustomAssetURL,
-        },
-        force: true,
-    });
-    console.log(`zip downloaded to dir ${zipFilePath}`);
+
     console.log(`extracting to ${destinationPath}`);
 
     fs.rmdirSync(destinationPath, { recursive: true });
@@ -59,14 +44,40 @@ const resolveCustomAssetURL = details => {
     const opts = details.mirrorOptions;
     const file = details.artifactName.startsWith('SHASUMS256')
         ? details.artifactName
-        : `${[details.artifactName, details.version, details.platform, details.arch].join(
-              '-',
-          )}.zip`;
+        : `${[
+              details.artifactName,
+              details.version,
+              details.platform,
+              details.arch,
+              details.artifactSuffix ? details.artifactSuffix : '',
+          ].join('-')}.zip`.replace('-.', '.');
     const strippedVer = details.version.replace(/^v/, '');
     return `${opts.mirror}/${strippedVer}/${opts.customDir}/${assetNumber}/${file}`;
 };
 
-downloadMirrors().catch(err => {
-    console.error(err);
-    process.exit(1);
-});
+const downloadElectronArtifact = async (artifactName, artifactSuffix) => {
+    const displaySuffix = artifactSuffix ? artifactSuffix : 'default';
+    console.log(`downloading ${artifactName} (${displaySuffix}) at ${pkg.dependencies.electron}`);
+    const zipFilePath = await downloadArtifact({
+        version: `${pkg.dependencies.electron}`,
+        artifactName,
+        artifactSuffix,
+        mirrorOptions: {
+            mirror: process.env.ELECTRON_MIRROR_BASE_VAR,
+            customDir: process.env.ELECTRON_MIRROR_CUSTOM_DIR_VAR,
+            resolveAssetURL: resolveCustomAssetURL,
+        },
+        force: true,
+    });
+    console.log(`zip downloaded to dir ${zipFilePath}`);
+    return zipFilePath;
+};
+
+exports.downloadAndExtractElectronArtifact = async (
+    artifactName,
+    destinationPath,
+    aritifactType,
+) => {
+    const zipFilePath = await downloadElectronArtifact(artifactName, aritifactType);
+    await clearAndExtract(zipFilePath, destinationPath);
+};

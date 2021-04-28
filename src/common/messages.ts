@@ -100,6 +100,7 @@ export const Messages = {
         ScanUpdate: `${messagePrefix}/assessment/scanUpdate`,
         ContinuePreviousAssessment: `${messagePrefix}/assessment/continuePreviousAssessment`,
         LoadAssessment: `${messagePrefix}/assessment/loadAssessment`,
+        SaveAssessment: `${messagePrefix}/assessment/saveAssessment`,
     },
 
     FeatureFlags: {

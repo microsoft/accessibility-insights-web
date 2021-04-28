@@ -2,7 +2,57 @@
 
 exports[`SaveAssessmentFactory getSaveButtonForAssessment renders save assessment button 1`] = `
 <SaveAssessmentButton
+  assessmentStoreData={
+    Object {
+      "assessments": Object {
+        "assessment-1": Object {
+          "fullAxeResultsMap": null,
+          "generatedAssessmentInstancesMap": null,
+          "manualTestStepResultMap": Object {
+            "assessment-1-step-1": Object {
+              "id": "assessment-1-step-1",
+              "instances": Array [],
+              "status": 2,
+            },
+            "removed-step": Object {
+              "id": "123",
+              "instances": Array [],
+              "status": 2,
+            },
+          },
+          "testStepStatus": Object {},
+        },
+      },
+      "persistedTabInfo": Object {
+        "title": "SavedAssessment123",
+      },
+    }
+  }
+  deps={
+    Object {
+      "assessmentDataFormatter": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addVersionNumber": [Function],
+        "formatAssessmentData": [Function],
+      },
+      "fileNameBuilder": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
+      "fileURLProvider": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "provideBlob": undefined,
+        "provideURL": [Function],
+        "windowUtils": undefined,
+      },
+      "getCurrentDate": [Function],
+    }
+  }
   download="SavedAssessment_date_title.a11ywebassessment"
   href="fileURL"
+  tabStoreData={
+    Object {
+      "title": "title",
+    }
+  }
 />
 `;

@@ -1,34 +1,33 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
-import { VisualizationSelectorMapContainer } from 'injected/target-page-visualization-updater';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { isEqual } from 'lodash';
-import { DictionaryStringTo } from 'types/common-types';
+
+export type TestStepVisualizationState = {
+    enabled: boolean;
+    selectorMap: SelectorToVisualizationMap;
+};
 
 export type VisualizationNeedsUpdateCallback = (
-    visualizationType: VisualizationType,
-    id: string,
-    newVisualizationEnabledState: boolean,
-    newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
-    previousVisualizationStates: DictionaryStringTo<boolean>,
-    previousVisualizationSelectorMapData: VisualizationSelectorMapContainer,
+    oldVisualizationState: TestStepVisualizationState,
+    newVisualizationState: TestStepVisualizationState,
 ) => boolean;
 
 export const visualizationNeedsUpdate: VisualizationNeedsUpdateCallback = (
-    visualizationType,
-    id,
-    newVisualizationEnabledState,
-    newSelectorMapState,
-    previousVisualizationStates,
-    previousVisualizationSelectorMapData,
+    newState: TestStepVisualizationState,
+    oldState: TestStepVisualizationState | undefined,
 ) => {
-    if (id in previousVisualizationStates === false) {
-        return newVisualizationEnabledState;
+    if (oldState === undefined) {
+        return newState.enabled;
     }
 
-    return (
-        previousVisualizationStates[id] !== newVisualizationEnabledState ||
-        !isEqual(newSelectorMapState, previousVisualizationSelectorMapData[visualizationType])
-    );
+    if (oldState.enabled !== newState.enabled) {
+        return true;
+    }
+
+    if (!oldState.enabled && !newState.enabled) {
+        return false; // even if selectorMap changed
+    }
+
+    return !isEqual(oldState.selectorMap, newState.selectorMap);
 };

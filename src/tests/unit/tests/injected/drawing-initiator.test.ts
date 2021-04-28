@@ -1,17 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DrawingController, VisualizationWindowMessage } from 'injected/drawing-controller';
+import { DrawingInitiator } from 'injected/drawing-initiator';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
+import { VisualizationInstanceProcessorCallback } from 'injected/visualization-instance-processor';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { getDefaultFeatureFlagsWeb } from '../../../../common/feature-flags';
-import { VisualizationType } from '../../../../common/types/visualization-type';
-import {
-    DrawingController,
-    VisualizationWindowMessage,
-} from '../../../../injected/drawing-controller';
-import { DrawingInitiator } from '../../../../injected/drawing-initiator';
-import { AssessmentVisualizationInstance } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { VisualizationInstanceProcessorCallback } from '../../../../injected/visualization-instance-processor';
-import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
     public processRequest = (message: VisualizationWindowMessage): void => {};
@@ -36,7 +31,7 @@ describe('DrawingInitiatorTest', () => {
     test('enableVisualization', () => {
         const visualizationType = -1 as VisualizationType;
         const configId = 'id';
-        const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {
+        const selectorMap: SelectorToVisualizationMap = {
             key1: {
                 target: ['element1'],
                 isFailure: false,

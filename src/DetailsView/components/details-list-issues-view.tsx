@@ -8,6 +8,8 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 
@@ -22,6 +24,7 @@ export interface DetailsListIssuesViewProps {
     scanMetadata: ScanMetadata;
     cardsViewData: CardsViewModel;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
+    selectedTest: VisualizationType;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -32,11 +35,19 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
         const title = props.configuration.displayableData.title;
         const subtitle = props.configuration.displayableData.subtitle;
 
+        const stepsText = (): string => {
+            const fastPassProvider = createFastPassProviderWithFeatureFlags(
+                props.featureFlagStoreData,
+            );
+            return fastPassProvider.getStepsText(props.selectedTest);
+        };
+
         return (
             <IssuesTable
                 deps={props.deps}
                 title={title}
                 subtitle={subtitle}
+                stepsText={stepsText()}
                 issuesEnabled={scanData.enabled}
                 scanning={isScanning}
                 featureFlags={props.featureFlagStoreData}

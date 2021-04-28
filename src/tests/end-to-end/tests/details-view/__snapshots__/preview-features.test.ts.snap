@@ -128,52 +128,6 @@ exports[`Details View -> Preview Features Panel should match content in snapshot
                     Enables exporting reports to external services
                   </div>
                 </div>
-                <div
-                  class="generic-toggle-component--{{CSS_MODULE_HASH}}"
-                >
-                  <div
-                    class="toggle-container--{{CSS_MODULE_HASH}}"
-                  >
-                    <div
-                      class="toggle-name--{{CSS_MODULE_HASH}}"
-                    >
-                      Needs review
-                    </div>
-                    <div
-                      class="ms-Toggle is-checked is-enabled toggle--{{CSS_MODULE_HASH}} root-000"
-                    >
-                      <div
-                        class="ms-Toggle-innerContainer container-000"
-                      >
-                        <button
-                          aria-checked="true"
-                          aria-label="Needs review"
-                          class="ms-Toggle-background pill-000"
-                          data-is-focusable="true"
-                          id="needsReview"
-                          role="switch"
-                          type="button"
-                        >
-                          <span
-                            class="ms-Toggle-thumb thumb-000"
-                          />
-                        </button>
-                        <label
-                          class="ms-Label ms-Toggle-stateText text-000"
-                          for="needsReview"
-                          id="needsReview-stateText"
-                        >
-                          On
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    class="toggle-description--{{CSS_MODULE_HASH}}"
-                  >
-                    Enable a new test to show automated check rules that might have an accessibility issue and need to be reviewed.
-                  </div>
-                </div>
               </div>
             </div>
           </div>

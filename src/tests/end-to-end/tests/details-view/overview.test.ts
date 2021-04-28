@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
@@ -11,12 +12,14 @@ describe('Details View -> Overview Page', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
+    let backgroundPage: BackgroundPage;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         overviewPage = await openOverviewPage(browser, targetPage);
+        backgroundPage = await browser.backgroundPage();
     });
 
     afterAll(async () => {
@@ -36,6 +39,23 @@ describe('Details View -> Overview Page', () => {
             expect(results).toHaveLength(0);
         },
     );
+
+    it('should load assessment with upload of valid a11yassessment file', async () => {
+        await backgroundPage.enableFeatureFlag('saveAndLoadAssessment');
+        await overviewPage.setFileForUpload(
+            './src/tests/end-to-end/test-resources/saved-assessment-files/saved_assessment_test_file.a11ywebassessment',
+        );
+        await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
+
+        await overviewPage.waitForSelector(overviewSelectors.outcomeChipFail);
+
+        const summaryBar = await overviewPage.getSelectorElement(
+            overviewSelectors.outcomeSummaryBar,
+        );
+        const label = await summaryBar.evaluate(element => element.getAttribute('aria-label'));
+
+        expect(parseInt(label.charAt(0))).toBeGreaterThan(0);
+    });
 });
 
 async function openOverviewPage(

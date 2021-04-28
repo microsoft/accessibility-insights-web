@@ -24,6 +24,7 @@ exports[`DetailsViewContainer render content render once; should call details vi
         "loadAssessment": [Function],
         "removeFailureInstance": [Function],
         "rescanVisualization": [Function],
+        "saveAssessment": [Function],
         "setAllUrlsPermissionState": [Function],
         "setFeatureFlag": [Function],
         "startOverAllAssessments": [Function],
