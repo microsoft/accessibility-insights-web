@@ -25,7 +25,7 @@ jobs:
           - task: CopyFiles@2
             displayName: 'Copy the AppImage file to detachedSignature'
             inputs:
-                SourceFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                SourceFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
                 contents: |
                     Accessibility_Insights_for_Android*.*
                 TargetFolder: '$(System.DefaultWorkingDirectory)/detachedSignature'
@@ -60,12 +60,12 @@ jobs:
                 SourceFolder: $(System.DefaultWorkingDirectory)/detachedSignature
                 contents: |
                     Accessibility_Insights_for_Android*.*
-                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
 
-          - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} linux
+          - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }}/packed linux
             displayName: update electron-builder latest yaml after signing
 
           - template: ../publish-packed-build-output.yaml
             parameters:
-                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
                 artifactName: ${{ parameters.signedArtifactName }}
