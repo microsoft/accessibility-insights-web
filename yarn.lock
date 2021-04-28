@@ -2873,10 +2873,10 @@ app-builder-lib@^22.10.4:
     semver "^7.3.4"
     temp-file "^3.3.7"
 
-appium-adb@^8.12.1:
-  version "8.12.1"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.12.1.tgz#9dce2608763088a44269e5a05a7ca7ca97911e0a"
-  integrity sha512-9lReHGcgA8RwtyV9aWWc2IJNCAuQpTKZqN+gyaJhHlamNF6ylCyaMLALyG/vSOlluBQ55xdW2CnApdYGsWnx5w==
+appium-adb@^8.12.3:
+  version "8.12.3"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.12.3.tgz#f6fc90cfd680ff1d13af08961ecd6cdee5b6f765"
+  integrity sha512-sHfCOuaxH8g/n/DmIfrSEE6lalVB1aqPQmJB2Nnq54NMLEb4MIlr5eI2Rt0Xx/LtkN/SWDtLwS6LyEyBUlECzA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
