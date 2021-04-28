@@ -22,9 +22,6 @@ jobs:
                 artifact: ${{ parameters.unsignedArtifactName }}
                 path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
-          - script: ls -R -l '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-            displayName: 'TEMP - list files before signing'
-
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
             displayName: 'Send to ESRP Code Signing'
             inputs:
@@ -42,9 +39,6 @@ jobs:
                             "toolVersion": "1.0"
                         }
                     ]
-
-          - script: ls -R -l '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-            displayName: 'TEMP - list files after signing'
 
           - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }}/packed linux
             displayName: update electron-builder latest yaml after signing
