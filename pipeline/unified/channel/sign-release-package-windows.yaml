@@ -24,7 +24,7 @@ jobs:
                 path: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'Sign artifact binaries'
+            displayName: 'ESRP: Sign unpacked binaries'
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
@@ -75,7 +75,7 @@ jobs:
                 TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'Send to ESRP Code Signing service'
+            displayName: 'ESRP: Sign packed binary'
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
