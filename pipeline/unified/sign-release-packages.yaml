@@ -12,17 +12,17 @@ resources:
               branches: [main]
 
 jobs:
-    - template: channel/sign-release-packages-for-channel.yaml
-      parameters:
-          unsignedPipelineResource: build-unsigned-release-packages
-          channel: canary
+    #- template: channel/sign-release-packages-for-channel.yaml
+    #  parameters:
+    #      unsignedPipelineResource: build-unsigned-release-packages
+    #      channel: canary
 
     - template: channel/sign-release-packages-for-channel.yaml
       parameters:
           unsignedPipelineResource: build-unsigned-release-packages
           channel: insider
 
-    - template: channel/sign-release-packages-for-channel.yaml
-      parameters:
-          unsignedPipelineResource: build-unsigned-release-packages
-          channel: production
+    #- template: channel/sign-release-packages-for-channel.yaml
+    #  parameters:
+    #      unsignedPipelineResource: build-unsigned-release-packages
+    #      channel: production
