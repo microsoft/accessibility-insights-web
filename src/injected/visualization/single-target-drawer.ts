@@ -23,13 +23,13 @@ export class SingleTargetDrawer implements Drawer {
         this.target = this.getFirstElementTarget(myDocument, elementResults);
     }
 
-    public drawLayout(): void {
+    public drawLayout = async (): Promise<void> => {
         const injectedClassName = this.formatter.getDrawerConfiguration().injectedClassName;
         if (this.target) {
             this.target.classList.add(injectedClassName);
         }
         this.isEnabled = true;
-    }
+    };
 
     public eraseLayout(): void {
         this.isEnabled = false;

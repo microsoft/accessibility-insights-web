@@ -9,7 +9,7 @@ import { VisualizationInstanceProcessorCallback } from 'injected/visualization-i
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 class DrawingControllerStub extends DrawingController {
-    public processRequest = (message: VisualizationWindowMessage): void => {};
+    public processRequest = async (message: VisualizationWindowMessage): Promise<void> => {};
 }
 
 describe('DrawingInitiatorTest', () => {
@@ -28,7 +28,7 @@ describe('DrawingInitiatorTest', () => {
         drawingControllerMock.verifyAll();
     }
 
-    test('enableVisualization', () => {
+    test('enableVisualization', async () => {
         const visualizationType = -1 as VisualizationType;
         const configId = 'id';
         const selectorMap: SelectorToVisualizationMap = {
@@ -76,7 +76,7 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(
+        await testObject.enableVisualization(
             visualizationType,
             getDefaultFeatureFlagsWeb(),
             selectorMap,
@@ -87,7 +87,7 @@ describe('DrawingInitiatorTest', () => {
         verifyAll();
     });
 
-    test('disableVisualization', () => {
+    test('disableVisualization', async () => {
         const visualizationType = -1 as VisualizationType;
         const configId = 'id';
         const expectedvisualizationMessage: VisualizationWindowMessage = {
@@ -104,19 +104,23 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.disableVisualization(visualizationType, getDefaultFeatureFlagsWeb(), configId);
+        await testObject.disableVisualization(
+            visualizationType,
+            getDefaultFeatureFlagsWeb(),
+            configId,
+        );
 
         verifyAll();
     });
 
-    test('enableVisualiztion: selectorMap is null', () => {
+    test('enableVisualiztion: selectorMap is null', async () => {
         const visualizationType = -1 as VisualizationType;
         const step = null;
         const featureFlagStoreData = {};
 
         drawingControllerMock.setup(x => x.processRequest(It.isAny())).verifiable(Times.never());
 
-        testObject.enableVisualization(
+        await testObject.enableVisualization(
             visualizationType,
             featureFlagStoreData,
             null,
@@ -127,7 +131,7 @@ describe('DrawingInitiatorTest', () => {
         verifyAll();
     });
 
-    test('enableVisualization: selectorMap is empty', () => {
+    test('enableVisualization: selectorMap is empty', async () => {
         const visualizationType = -1 as VisualizationType;
         const configId = 'id';
 
@@ -146,7 +150,7 @@ describe('DrawingInitiatorTest', () => {
             })
             .verifiable();
 
-        testObject.enableVisualization(
+        await testObject.enableVisualization(
             visualizationType,
             getDefaultFeatureFlagsWeb(),
             {},

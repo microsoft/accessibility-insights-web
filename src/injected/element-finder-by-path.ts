@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import {
+    CommandMessage,
+    CommandMessageResponse,
+} from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator } from './frameCommunicators/frame-communicator';
-import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
 
 export interface ElementFinderByPathMessage {
     path: string[];
@@ -14,68 +16,62 @@ export class ElementFinderByPath {
 
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,
-        private readonly frameCommunicator: FrameCommunicator,
+        private readonly frameMessenger: FrameMessenger,
     ) {}
 
     public initialize = (): void => {
-        this.frameCommunicator.subscribe(
+        this.frameMessenger.addMessageListener(
             ElementFinderByPath.findElementByPathCommand,
             this.onFindElementByPath,
         );
     };
 
-    protected onFindElementByPath = (
-        result: any | undefined,
-        error: ErrorMessageContent | undefined,
-        messageSourceWindow: Window,
-        responder?: FrameMessageResponseCallback,
-    ): void => {
-        this.processRequest(result).then(
-            result => {
-                responder != null && responder(result, undefined, messageSourceWindow);
-            },
-            err => {
-                responder != null && responder(undefined, err, messageSourceWindow);
-            },
-        );
+    protected onFindElementByPath = async (
+        commandMessage: CommandMessage,
+    ): Promise<CommandMessageResponse | null> => {
+        return await this.processRequest(commandMessage.payload);
     };
 
-    public processRequest = (message: ElementFinderByPathMessage): PromiseLike<string> => {
+    public processRequest = async (
+        message: ElementFinderByPathMessage,
+    ): Promise<CommandMessageResponse> => {
         if (!this.checkSyntax(message.path[0])) {
-            return Promise.reject();
+            throw new Error('Syntax error in specified path');
         }
 
         const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
 
         if (element == null) {
-            return Promise.reject();
+            throw new Error('Element not found for specified path');
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length > 1) {
-            return Promise.reject();
+            throw new Error('Multiple paths specified but expected one');
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {
             const response = element.outerHTML;
-            return Promise.resolve(response);
+            return { payload: response };
         }
 
-        return this.iterateDeeperOnIframe(element, message);
+        return await this.iterateDeeperOnIframe(element, message);
     };
 
-    private iterateDeeperOnIframe = (
+    private iterateDeeperOnIframe = async (
         element: HTMLElement,
         message: ElementFinderByPathMessage,
-    ): PromiseLike<string> => {
+    ): Promise<CommandMessageResponse> => {
         message.path.shift();
 
-        return this.frameCommunicator.sendMessage<ElementFinderByPathMessage, string>({
+        const targetFrame = element as HTMLIFrameElement;
+        const commandMessage: CommandMessage = {
             command: ElementFinderByPath.findElementByPathCommand,
-            frame: element as HTMLIFrameElement,
-            message: {
+            payload: {
                 path: message.path,
-            } as ElementFinderByPathMessage,
-        });
+            },
+        };
+
+        return await this.frameMessenger.sendMessageToFrame(targetFrame, commandMessage);
     };
 
     private checkSyntax = (pathSegment: string): boolean => {

@@ -64,9 +64,7 @@ import { AnalyzerProvider } from './analyzers/analyzer-provider';
 import { filterResultsByRules } from './analyzers/filter-results-by-rules';
 import { UnifiedResultSender } from './analyzers/unified-result-sender';
 import { DrawingInitiator } from './drawing-initiator';
-import { FrameUrlMessageDispatcher } from './frame-url-message-dispatcher';
-import { FrameUrlSearchInitiator } from './frame-url-search-initiator';
-import { FrameCommunicator } from './frameCommunicators/frame-communicator';
+import { FrameUrlController } from './frame-url-controller';
 import { InspectController } from './inspect-controller';
 import { MainWindowContext } from './main-window-context';
 import { PathSnippetController } from './path-snippet-controller';
@@ -78,8 +76,6 @@ import { TargetPageActionMessageCreator } from './target-page-action-message-cre
 import { WindowInitializer } from './window-initializer';
 
 export class MainWindowInitializer extends WindowInitializer {
-    protected frameCommunicator: FrameCommunicator;
-    private frameUrlSearchInitiator: FrameUrlSearchInitiator;
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
     private pathSnippetController: PathSnippetController;
@@ -232,11 +228,6 @@ export class MainWindowInitializer extends WindowInitializer {
             Assessments,
             elementBasedViewModelCreator.getElementBasedViewModel,
         );
-        const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(
-            devToolActionMessageCreator,
-            this.frameCommunicator,
-        );
-        frameUrlMessageDispatcher.initialize();
 
         const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
             this.visualizationStoreProxy,
@@ -278,12 +269,13 @@ export class MainWindowInitializer extends WindowInitializer {
             visualizationStateChangeHandler.updateVisualizationsWithStoreData,
         );
 
-        this.frameUrlSearchInitiator = new FrameUrlSearchInitiator(
+        const frameUrlController = new FrameUrlController(
             this.devToolStoreProxy,
+            devToolActionMessageCreator,
             this.frameUrlFinder,
         );
 
-        this.frameUrlSearchInitiator.listenToStore();
+        frameUrlController.listenToStore();
 
         const iframeDetector = new IframeDetector(document);
         const scanIncompleteWarningDetector = new ScanIncompleteWarningDetector(
@@ -386,7 +378,6 @@ export class MainWindowInitializer extends WindowInitializer {
     protected dispose(): void {
         super.dispose();
 
-        this.frameCommunicator.dispose();
         this.tabStoreProxy.dispose();
         this.visualizationScanResultStoreProxy.dispose();
         this.visualizationStoreProxy.dispose();

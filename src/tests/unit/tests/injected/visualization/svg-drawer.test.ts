@@ -441,7 +441,7 @@ describe('SVGDrawer', () => {
         removeMock.verifyAll();
     });
 
-    test('svg has proper size and a filter child (inside a defs child)', () => {
+    test('svg has proper size and a filter child (inside a defs child)', async () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
         const element = fakeDocument.querySelector<HTMLElement>('#id1');
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
@@ -479,7 +479,7 @@ describe('SVGDrawer', () => {
 
         testSubject.initialize(createDrawerInfo(tabbedElements));
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         const svg = shadowContainer.querySelector('svg');
 
@@ -502,7 +502,7 @@ describe('SVGDrawer', () => {
         drawerUtilsMock.verifyAll();
     });
 
-    test('verify focus indicator drawn on the first tabbable element', () => {
+    test('verify focus indicator drawn on the first tabbable element', async () => {
         fakeDocument.body.innerHTML = "<div id='id1'></div>";
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
@@ -543,7 +543,7 @@ describe('SVGDrawer', () => {
         testSubject.initialize(createDrawerInfo(tabbedElements));
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(true);
 
@@ -557,7 +557,7 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(0);
     });
 
-    test('draw circles with line in between without details', () => {
+    test('draw circles with line in between without details', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -606,7 +606,7 @@ describe('SVGDrawer', () => {
         testSubject.initialize(createDrawerInfo(tabbedElements));
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(true);
 
@@ -621,7 +621,7 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(0);
     });
 
-    test('draw circles with line in between with details', () => {
+    test('draw circles with line in between with details', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -671,7 +671,7 @@ describe('SVGDrawer', () => {
         testSubject.initialize(createDrawerInfo(tabbedElements));
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(true);
 
@@ -686,7 +686,7 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(1);
     });
 
-    test('draw circles with line in between with details', () => {
+    test('draw circles with line in between with details', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -739,7 +739,7 @@ describe('SVGDrawer', () => {
         testSubject.initialize(createDrawerInfo(tabbedElements));
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(true);
 
@@ -754,7 +754,7 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(1);
     });
 
-    test('break graph', () => {
+    test('break graph', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -803,7 +803,7 @@ describe('SVGDrawer', () => {
         testSubject.initialize(createDrawerInfo(tabbedElements));
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(true);
 
@@ -818,7 +818,7 @@ describe('SVGDrawer', () => {
         expect(labels.length).toBe(1);
     });
 
-    test('eraseLayout', () => {
+    test('eraseLayout', async () => {
         fakeDocument.body.innerHTML = `
             <div id='id1'></div>
             <div id='id2'></div>
@@ -867,7 +867,7 @@ describe('SVGDrawer', () => {
         testSubject.initialize(createDrawerInfo(tabbedElements));
         expect(testSubject.isOverlayEnabled).toBeFalsy();
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
         expect(testSubject.isOverlayEnabled).toBe(true);
         testSubject.eraseLayout();
 

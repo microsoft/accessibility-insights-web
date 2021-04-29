@@ -14,9 +14,6 @@ describe('InspectControllerTests', () => {
 
     let elementFinderMock: IMock<ElementFinderByPath>;
     let addCorrespondingSnippetMock: IMock<(snippet: string) => void>;
-    let processRequestCallback: (snippet: string, path: string) => void;
-    let processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
-    let promiseStub;
 
     beforeEach(() => {
         pathSnippetStoreMock = Mock.ofType(PathSnippetStore);
@@ -26,11 +23,6 @@ describe('InspectControllerTests', () => {
         elementFinderMock = Mock.ofType(ElementFinderByPath);
 
         addCorrespondingSnippetMock = Mock.ofInstance((snippet: string) => {});
-
-        processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
-        promiseStub = {
-            then: processRequestPromiseHandlerMock.object,
-        };
 
         testObject = new PathSnippetController(
             pathSnippetStoreMock.object,
@@ -46,19 +38,23 @@ describe('InspectControllerTests', () => {
         };
     });
 
-    test('do not add snippet if path snippet store state is null', () => {
+    test('do not add snippet if path snippet store state is null', async () => {
         pathSnippetStoreState = null;
-        testObject.listenToStore();
+        addCorrespondingSnippetMock.setup(sm => sm(It.isAnyString())).verifiable(Times.never());
+
+        await testObject.listenToStore();
 
         listenAndVerify();
     });
 
-    test('do not add snippet if path is null', () => {
+    test('do not add snippet if path is null', async () => {
         pathSnippetStoreState = {
             path: null,
             snippet: null,
         };
-        testObject.listenToStore();
+        addCorrespondingSnippetMock.setup(sm => sm(It.isAnyString())).verifiable(Times.never());
+
+        await testObject.listenToStore();
 
         listenAndVerify();
     });
@@ -67,45 +63,26 @@ describe('InspectControllerTests', () => {
         const givenPath = '.test path';
         const retrievedSnippet = '<test snippet>';
 
-        setupGetElementFromPath(givenPath);
+        pathSnippetStoreState = {
+            path: givenPath,
+            snippet: null,
+        };
 
+        elementFinderMock
+            .setup(finder => finder.processRequest({ path: [givenPath] }))
+            .returns(() => Promise.resolve({ payload: retrievedSnippet }))
+            .verifiable(Times.once());
         addCorrespondingSnippetMock.setup(sm => sm(retrievedSnippet)).verifiable(Times.once());
 
-        testObject.listenToStore();
-        processRequestCallback(retrievedSnippet, pathSnippetStoreState.path);
+        await testObject.listenToStore();
 
         listenAndVerify();
     });
 
     test('add failure message if no snippet found', async () => {
         const givenPath = '.test path';
-        const retrievedSnippet = 'error';
-        const errorMessage = 'No code snippet is mapped to: ' + retrievedSnippet;
+        const errorMessage = 'No code snippet is mapped to: ' + givenPath;
 
-        setupGetElementFromPath(givenPath);
-
-        addCorrespondingSnippetMock.setup(sm => sm(errorMessage)).verifiable(Times.once());
-
-        testObject.listenToStore();
-        processRequestCallback(errorMessage, pathSnippetStoreState.path);
-
-        listenAndVerify();
-    });
-
-    test("don't call add snippet if path snippet store state has empty path", () => {
-        const givenPath = '';
-
-        pathSnippetStoreState = {
-            path: givenPath,
-            snippet: '',
-        };
-
-        testObject.listenToStore();
-
-        listenAndVerify();
-    });
-
-    function setupGetElementFromPath(givenPath: string): void {
         pathSnippetStoreState = {
             path: givenPath,
             snippet: null,
@@ -116,16 +93,28 @@ describe('InspectControllerTests', () => {
         };
 
         elementFinderMock
-            .setup(finder => finder.processRequest(It.isValue(expectedMessage)))
-            .returns(() => promiseStub)
+            .setup(finder => finder.processRequest(expectedMessage))
+            .returns(() => Promise.reject())
             .verifiable(Times.once());
+        addCorrespondingSnippetMock.setup(sm => sm(errorMessage)).verifiable(Times.once());
 
-        processRequestPromiseHandlerMock
-            .setup(phm => phm(It.isAny(), It.isAny()))
-            .callback((success, error) => {
-                processRequestCallback = success;
-            });
-    }
+        await testObject.listenToStore();
+
+        listenAndVerify();
+    });
+
+    test("don't call add snippet if path snippet store state has empty path", async () => {
+        const givenPath = '';
+
+        pathSnippetStoreState = {
+            path: givenPath,
+            snippet: '',
+        };
+
+        await testObject.listenToStore();
+
+        listenAndVerify();
+    });
 
     function listenAndVerify(): void {
         pathSnippetStoreMock.verifyAll();

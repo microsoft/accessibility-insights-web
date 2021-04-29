@@ -55,17 +55,20 @@ export class HighlightBoxDrawer extends BaseDrawer {
         this.eraseLayout();
     }
 
-    protected addHighlightsToContainer(): void {
-        const highlightElements = this.getHighlightElements();
+    protected addHighlightsToContainer = async (): Promise<void> => {
+        const highlightElements = await this.getHighlightElements();
 
         if (highlightElements.length > 0) {
             for (let elementPos = 0; elementPos < highlightElements.length; elementPos++) {
                 this.containerElement.appendChild(highlightElements[elementPos]);
             }
         }
-    }
+    };
 
-    protected createHighlightElement(element: Element, data: HtmlElementAxeResults): HTMLElement {
+    protected createHighlightElement = async (
+        element: Element,
+        data: HtmlElementAxeResults,
+    ): Promise<HTMLElement> => {
         const currentDom = this.drawerUtils.getDocumentElement();
         const body = currentDom.body;
         const bodyStyle = this.windowUtils.getComputedStyle(body);
@@ -150,8 +153,8 @@ export class HighlightBoxDrawer extends BaseDrawer {
             failureBox.classList.add('failure-label');
 
             if (drawerConfig.failureBoxConfig.hasDialogView) {
-                failureBox.addEventListener('click', () => {
-                    this.dialogRenderer.render(data);
+                failureBox.addEventListener('click', async () => {
+                    await this.dialogRenderer.render(data as any);
                 });
             }
             wrapper.appendChild(failureBox);
@@ -159,7 +162,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
         wrapper.title = drawerConfig.toolTip || '';
         return wrapper;
-    }
+    };
 
     private createtBox(
         wrapper: HTMLDivElement,
@@ -182,7 +185,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
         return box;
     }
 
-    private getHighlightElements(): HTMLElement[] {
+    private getHighlightElements = async (): Promise<HTMLElement[]> => {
         const highlightElements: HTMLElement[] = [];
 
         for (let i = 0; i < this.elementResults.length; i++) {
@@ -190,7 +193,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
             const elementsFound = this.getElementsToHighlight(elementResult, this.dom);
 
             for (let elementPos = 0; elementPos < elementsFound.length; elementPos++) {
-                const element = this.createHighlightElement(
+                const element = await this.createHighlightElement(
                     elementsFound[elementPos],
                     elementResult,
                 );
@@ -200,5 +203,5 @@ export class HighlightBoxDrawer extends BaseDrawer {
             }
         }
         return highlightElements;
-    }
+    };
 }

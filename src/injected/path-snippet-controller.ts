@@ -11,12 +11,12 @@ export class PathSnippetController {
         private readonly addCorrespondingSnippet: (snippet: string) => void,
     ) {}
 
-    public listenToStore = (): void => {
+    public listenToStore = async (): Promise<void> => {
         this.pathSnippetStore.addChangedListener(this.onChangedState);
-        this.onChangedState();
+        await this.onChangedState();
     };
 
-    private onChangedState = (): void => {
+    private onChangedState = async (): Promise<void> => {
         const pathSnippetStoreState = this.pathSnippetStore.getState();
 
         if (pathSnippetStoreState == null) {
@@ -24,24 +24,22 @@ export class PathSnippetController {
         }
 
         if (pathSnippetStoreState.path) {
-            this.getElementFromPath(pathSnippetStoreState.path);
+            await this.getElementFromPath(pathSnippetStoreState.path);
         }
     };
 
-    private getElementFromPath = (path: string): void => {
+    private getElementFromPath = async (path: string): Promise<void> => {
         const splitPath = path.split(';');
         const message = {
             path: splitPath,
         } as ElementFinderByPathMessage;
 
-        this.elementFinderByPath.processRequest(message).then(
-            result => {
-                this.sendBackSnippetFromPath(result);
-            },
-            err => {
-                this.sendBackErrorFromPath(path);
-            },
-        );
+        try {
+            const result = await this.elementFinderByPath.processRequest(message);
+            this.sendBackSnippetFromPath(result.payload);
+        } catch {
+            this.sendBackErrorFromPath(path);
+        }
     };
 
     private sendBackSnippetFromPath = (snippet: string): void => {

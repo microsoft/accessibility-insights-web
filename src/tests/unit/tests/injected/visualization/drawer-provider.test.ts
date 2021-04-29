@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NavigatorUtils } from 'common/navigator-utils';
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { IMock, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';
-import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
@@ -25,7 +25,7 @@ describe('DrawerProviderTests', () => {
     let drawerUtils: IMock<DrawerUtils>;
     let clientUtils: IMock<ClientUtils>;
     let domStub: Document;
-    let frameCommunicator: IMock<FrameCommunicator>;
+    let frameMessenger: IMock<FrameMessenger>;
     const browserAdapter = Mock.ofType<BrowserAdapter>();
     let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
 
@@ -38,7 +38,7 @@ describe('DrawerProviderTests', () => {
         clientUtils = Mock.ofType(ClientUtils);
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
         domStub = {} as Document;
-        frameCommunicator = Mock.ofType(FrameCommunicator);
+        frameMessenger = Mock.ofType(FrameMessenger);
         const getRTLMock = Mock.ofInstance(() => null);
 
         testObject = new DrawerProvider(
@@ -49,7 +49,7 @@ describe('DrawerProviderTests', () => {
             drawerUtils.object,
             clientUtils.object,
             domStub,
-            frameCommunicator.object,
+            frameMessenger.object,
             browserAdapter.object,
             getRTLMock.object,
             detailsDialogHandlerMock.object,
