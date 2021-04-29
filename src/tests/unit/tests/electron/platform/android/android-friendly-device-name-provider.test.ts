@@ -6,6 +6,10 @@ import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/and
 describe('AndroidDeviceFriendlyNameProvider', () => {
     const testSubject = new AndroidFriendlyDeviceNameProvider();
 
+    it.each([null, undefined])('returns same output if input is falsy', input => {
+        expect(testSubject.getFriendlyName(input)).toBe(input);
+    });
+
     it('returns model if no match exists', () => {
         const undefinedDevice = 'No device exists with this model';
 
