@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { AdbWrapper, DeviceInfo, PackageInfo } from 'electron/platform/android/adb-wrapper';
+import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import {
     AndroidServiceApkInfo,
     AndroidServiceApkLocator,
@@ -30,16 +31,22 @@ describe('AndroidServiceConfigurator', () => {
     let adbWrapperMock: IMock<AdbWrapper>;
     let apkLocatorMock: IMock<AndroidServiceApkLocator>;
     let portFinderMock: IMock<PortFinder>;
+    let friendlyDeviceNameProviderMock: IMock<AndroidFriendlyDeviceNameProvider>;
     let testSubject: AndroidServiceConfigurator;
 
     beforeEach(() => {
         adbWrapperMock = Mock.ofType<AdbWrapper>(undefined, MockBehavior.Strict);
         apkLocatorMock = Mock.ofType<AndroidServiceApkLocator>(undefined, MockBehavior.Strict);
         portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
+        friendlyDeviceNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>(
+            undefined,
+            MockBehavior.Strict,
+        );
         testSubject = new AndroidServiceConfigurator(
             adbWrapperMock.object,
             apkLocatorMock.object,
             portFinderMock.object,
+            friendlyDeviceNameProviderMock.object,
         );
         testSubject.setSelectedDevice(testDeviceId);
     });
@@ -48,6 +55,7 @@ describe('AndroidServiceConfigurator', () => {
         adbWrapperMock.verifyAll();
         apkLocatorMock.verifyAll();
         portFinderMock.verifyAll();
+        friendlyDeviceNameProviderMock.verifyAll();
     }
 
     it('getConnectedDevices propagates thrown errors', async () => {
@@ -62,27 +70,43 @@ describe('AndroidServiceConfigurator', () => {
         verifyAllMocks();
     });
 
-    it('getConnectedDevices returns info from AdbWrapper', async () => {
+    it('getConnectedDevices returns info from AdbWrapper and friendly device names', async () => {
+        const rawFriendlyName1 = 'an emulator';
+        const rawFriendlyName2 = 'a device';
+        const friendlyName2 = 'A branded device';
         const expectedDevices: DeviceInfo[] = [
             {
                 id: 'emulator1',
                 isEmulator: true,
-                friendlyName: 'an emulator',
+                friendlyName: rawFriendlyName1,
             },
             {
                 id: 'phone123',
                 isEmulator: false,
-                friendlyName: 'a device',
+                friendlyName: rawFriendlyName2,
             },
         ];
         adbWrapperMock
             .setup(m => m.getConnectedDevices())
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
+        friendlyDeviceNameProviderMock
+            .setup(m => m.getFriendlyName(rawFriendlyName1))
+            .returns(() => rawFriendlyName1)
+            .verifiable(Times.once());
+        friendlyDeviceNameProviderMock
+            .setup(m => m.getFriendlyName(rawFriendlyName2))
+            .returns(() => friendlyName2)
+            .verifiable(Times.once());
 
         const actualDevices = await testSubject.getConnectedDevices();
 
-        expect(actualDevices).toBe(expectedDevices);
+        expect(actualDevices[0].id).toBe(expectedDevices[0].id);
+        expect(actualDevices[0].isEmulator).toBe(expectedDevices[0].isEmulator);
+        expect(actualDevices[0].friendlyName).toBe(rawFriendlyName1);
+        expect(actualDevices[1].id).toBe(expectedDevices[1].id);
+        expect(actualDevices[1].isEmulator).toBe(expectedDevices[1].isEmulator);
+        expect(actualDevices[1].friendlyName).toBe(friendlyName2);
 
         verifyAllMocks();
     });

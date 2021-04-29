@@ -2691,6 +2691,11 @@ ajv@^6.10.0, ajv@^6.12.0, ajv@^6.12.2, ajv@^6.12.4, ajv@^6.12.5, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+android-device-list@^1.2.6:
+  version "1.2.6"
+  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.6.tgz#19259fb038a5fee58a032c3d0daef130a176299f"
+  integrity sha512-o/4nCcpIIG4IGv6KVtUGT8qRu8siEHCwr/bQcOKib2zCPA6nXvhLUadJcKTOd9m9sV50UkcjWZx/YpxHH3oyQw==
+
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
