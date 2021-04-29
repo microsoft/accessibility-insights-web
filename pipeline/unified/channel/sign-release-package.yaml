@@ -16,14 +16,6 @@ steps:
           signConfigType: inlineSignParams
           inlineOperation: ${{ parameters.inlineSignParams }}
 
-    - task: securedevelopmentteam.vss-secure-development-tools.build-task-codesignvalidation.CodeSign@1
-      displayName: codesign validation
-      condition: and(succeeded(), eq(variables.platform, 'windows'))
-      inputs:
-          Path: $(System.DefaultWorkingDirectory)
-          Targets: +:f|signing-in-progress/**.exe;+:f|drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.dll;drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.exe;
-          ExcludePassesFromLog: false
-
     - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }}/packed ${{ parameters.platform }}
       displayName: update electron-builder latest.yml after signing
 

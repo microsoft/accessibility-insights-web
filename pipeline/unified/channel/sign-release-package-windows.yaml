@@ -110,3 +110,10 @@ jobs:
                         "toolVersion": "6.2.9304.0"
                         }
                     ]
+
+          - task: securedevelopmentteam.vss-secure-development-tools.build-task-codesignvalidation.CodeSign@1
+            displayName: codesign validation
+            inputs:
+                Path: $(System.DefaultWorkingDirectory)
+                Targets: +:f|signing-in-progress/**.exe;+:f|drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.dll;drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.exe;
+                ExcludePassesFromLog: false
