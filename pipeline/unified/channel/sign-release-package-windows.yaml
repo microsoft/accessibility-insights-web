@@ -72,16 +72,14 @@ jobs:
                 contents: |
                     latest*.yml
                     Accessibility?Insights?for?Android*.*
-                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
 
-          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'ESRP: Sign packed binary'
-            inputs:
-                ConnectedServiceName: 'ESRP Code Signing'
-                FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-                Pattern: '*.exe'
-                signConfigType: inlineSignParams
-                inlineOperation: |
+          - template: sign-release-package.yaml
+            parameters:
+                filePattern: '*.exe'
+                platform: windows
+                signedArtifactName: ${{ parameters.signedArtifactName }}
+                inlineSignParams: |
                     [
                         {
                         "keyCode": "CP-230012",
@@ -119,11 +117,3 @@ jobs:
                 Path: $(System.DefaultWorkingDirectory)
                 Targets: +:f|signing-in-progress/**.exe;+:f|drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.dll;drop/electron/unified-${{ parameters.channel }}/packed/win-unpacked/**.exe;
                 ExcludePassesFromLog: false
-
-          - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} windows
-            displayName: update electron-builder latest.yml after signing
-
-          - template: ../publish-packed-build-output.yaml
-            parameters:
-                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-                artifactName: ${{ parameters.signedArtifactName }}
