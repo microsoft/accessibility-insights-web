@@ -1,14 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PlatformData } from 'common/types/store-data/unified-data-interface';
+import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToPlatformData } from 'electron/platform/android/scan-results-to-platform-data';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('convertScanResultsToPlatformData', () => {
+    const friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>(
+        undefined,
+        MockBehavior.Strict,
+    );
+
+    friendlyNameProviderMock
+        .setup(m => m.getFriendlyName(It.isAnyString()))
+        .callback(s => {
+            return s;
+        });
     it('produces the pinned output for the pinned example input', () => {
         expect(
-            convertScanResultsToPlatformData(new AndroidScanResults(axeRuleResultExample)),
+            convertScanResultsToPlatformData(
+                new AndroidScanResults(axeRuleResultExample),
+                friendlyNameProviderMock.object,
+            ),
         ).toMatchSnapshot();
     });
 
@@ -36,7 +51,9 @@ describe('convertScanResultsToPlatformData', () => {
             },
             deviceName: 'test-device-name',
         };
-        expect(convertScanResultsToPlatformData(input)).toEqual(expectedOutput);
+        expect(convertScanResultsToPlatformData(input, friendlyNameProviderMock.object)).toEqual(
+            expectedOutput,
+        );
     });
 
     it('omits individual axeDevice properties not present in scanResults', () => {
@@ -47,16 +64,26 @@ describe('convertScanResultsToPlatformData', () => {
             },
             viewPortInfo: {},
         };
-        expect(convertScanResultsToPlatformData(input)).toEqual(expectedOutput);
+        expect(convertScanResultsToPlatformData(input, friendlyNameProviderMock.object)).toEqual(
+            expectedOutput,
+        );
     });
 
     it.each([null, undefined, {}])('outputs null if scanResults is %p', emptyObject => {
-        expect(convertScanResultsToPlatformData(new AndroidScanResults(emptyObject))).toBeNull();
+        expect(
+            convertScanResultsToPlatformData(
+                new AndroidScanResults(emptyObject),
+                friendlyNameProviderMock.object,
+            ),
+        ).toBeNull();
     });
 
     it.each([null, undefined, {}])('outputs null if scanResults.axeContext is %p', emptyObject => {
         expect(
-            convertScanResultsToPlatformData(new AndroidScanResults({ axeContext: emptyObject })),
+            convertScanResultsToPlatformData(
+                new AndroidScanResults({ axeContext: emptyObject }),
+                friendlyNameProviderMock.object,
+            ),
         ).toBeNull();
     });
 
@@ -66,6 +93,7 @@ describe('convertScanResultsToPlatformData', () => {
             expect(
                 convertScanResultsToPlatformData(
                     new AndroidScanResults({ axeContext: { axeDevice: emptyObject } }),
+                    friendlyNameProviderMock.object,
                 ),
             ).toBeNull();
         },
