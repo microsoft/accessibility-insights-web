@@ -14,10 +14,10 @@ const removeOldForwardedPort = async (
         try {
             deps.logger.log(`removing old tcp:${existingPort} forwarding`);
             await deps.removeTcpForwarding(existingPort);
-            store.setScanPort(null);
         } catch (e) {
             deps.logger.log(`Ignoring error : ${e}`);
         }
+        store.setScanPort(null);
     }
 };
 

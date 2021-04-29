@@ -19,17 +19,17 @@ describe('DeviceDisconnectedPopup', () => {
 
     describe('user interaction', () => {
         it('handles on redetect device', () => {
-            const onRedecteDeviceMock: () => void = jest.fn(() => {});
+            const onRedectDeviceMock: () => void = jest.fn(() => {});
 
             const props = {
-                onRedetectDevice: onRedecteDeviceMock,
+                onRedetectDevice: onRedectDeviceMock,
             } as DeviceDisconnectedPopupProps;
 
             const wrapper = shallow(<DeviceDisconnectedPopup {...props} />);
 
             wrapper.find('[text="Re-detect device"]').simulate('click');
 
-            expect(onRedecteDeviceMock).toBeCalledTimes(1);
+            expect(onRedectDeviceMock).toBeCalledTimes(1);
         });
     });
 });
