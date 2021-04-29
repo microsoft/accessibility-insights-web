@@ -1,0 +1,82 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  labels:
+  - "category: engineering"
+  - dependencies
+  versioning-strategy: increase
+  ignore:
+  - dependency-name: axe-core
+    versions:
+    - ">= 0"
+  - dependency-name: electron
+    versions:
+    - ">= 0"
+  - dependency-name: office-ui-fabric-react
+    versions:
+    - ">= 0"
+  - dependency-name: webdriverio
+    versions:
+    - ">=5.0.0"
+  - dependency-name: electron-builder
+    versions:
+    - 22.10.5
+  - dependency-name: electron-updater
+    versions:
+    - 4.3.8
+  - dependency-name: playwright
+    versions:
+    - 1.9.0
+  - dependency-name: app-builder-lib
+    versions:
+    - 22.10.5
+  - dependency-name: simple-git
+    versions:
+    - 2.35.0
+    - 2.35.1
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.28
+    - 14.14.36
+  - dependency-name: webpack
+    versions:
+    - 5.19.0
+    - 5.25.1
+    - 5.26.0
+    - 5.35.1
+  - dependency-name: pkg
+    versions:
+    - 5.0.0
+  - dependency-name: ts-loader
+    versions:
+    - 9.0.0
+    - 9.1.0
+  - dependency-name: react-dom
+    versions:
+    - 17.0.2
+  - dependency-name: "@types/react-dom"
+    versions:
+    - 17.0.3
+  - dependency-name: react-devtools
+    versions:
+    - 4.11.0
+    - 4.12.2
+  - dependency-name: ua-parser-js
+    versions:
+    - 0.7.27
+  - dependency-name: classnames
+    versions:
+    - 2.3.0
+  - dependency-name: eslint
+    versions:
+    - 7.23.0
+  - dependency-name: spectron
+    versions:
+    - 14.0.0
+  commit-message:
+    prefix: chore
+    include: scope
