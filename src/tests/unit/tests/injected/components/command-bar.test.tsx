@@ -68,6 +68,7 @@ describe('CommandBar', () => {
 
     describe('renders', () => {
         const showInspectButtonMessage = [true, false];
+        const showCopyIssueDetailsHelpMessage = [true, false];
 
         it.each(showInspectButtonMessage)('renders, shows inspect button message: %s', show => {
             const props = {
@@ -82,18 +83,21 @@ describe('CommandBar', () => {
             axeConverterMock.verifyAll();
         });
 
-        test('renders, shows copy button insecure origin message', () => {
-            const props = {
-                ...defaultCommandBarProps,
+        it.each(showCopyIssueDetailsHelpMessage)(
+            'renders, shows copy button insecure origin message: %s',
+            show => {
+                const props = {
+                    ...defaultCommandBarProps,
 
-                shouldShowInsecureOriginPageMessage: () => false,
-            };
+                    shouldShowInsecureOriginPageMessage: () => show,
+                };
 
-            const wrapper = shallow(<CommandBar {...props} />);
+                const wrapper = shallow(<CommandBar {...props} />);
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-            axeConverterMock.verifyAll();
-        });
+                expect(wrapper.getElement()).toMatchSnapshot();
+                axeConverterMock.verifyAll();
+            },
+        );
     });
 
     describe('click handlers', () => {

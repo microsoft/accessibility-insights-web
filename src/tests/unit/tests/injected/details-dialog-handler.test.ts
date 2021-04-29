@@ -177,6 +177,56 @@ describe('DetailsDialogHandlerTest', () => {
         devToolStoreMock.verifyAll();
     });
 
+    test.each([true, false])(
+        'copyIssueDetailsHelpMessageHandler when isTargetPageOriginSecure=%s',
+        isTargetPageOriginSecure => {
+            const eventFactory = new EventStubFactory();
+            const event = eventFactory.createMouseClickEvent();
+
+            testSubject.isTargetPageOriginSecure = () => isTargetPageOriginSecure;
+            detailsDialogMock
+                .setup(dialog =>
+                    dialog.setState(
+                        It.isValue({ showInsecureOriginPageMessage: !isTargetPageOriginSecure }),
+                    ),
+                )
+                .verifiable(Times.once());
+
+            testSubject.copyIssueDetailsHelpMessageHandler(detailsDialogMock.object, event as any);
+
+            detailsDialogMock.verifyAll();
+        },
+    );
+
+    test.each([true, false])('isTargetPageOriginSecure=%s', isSecureOrigin => {
+        windowUtilsMock
+            .setup(w => w.isSecureOrigin())
+            .returns(() => isSecureOrigin)
+            .verifiable(Times.once());
+
+        expect(testSubject.isTargetPageOriginSecure()).toEqual(isSecureOrigin);
+
+        windowUtilsMock.verifyAll();
+    });
+
+    test.each([true, false])('shouldShowInsecureOriginPageMessage=%s', show => {
+        detailsDialogMock
+            .setup(dialog => dialog.state)
+            .returns(() => {
+                return {
+                    showInsecureOriginPageMessage: show,
+                } as any;
+            })
+            .verifiable(Times.once());
+
+        const actualState = testSubject.shouldShowInsecureOriginPageMessage(
+            detailsDialogMock.object,
+        );
+        expect(actualState).toEqual(show);
+
+        detailsDialogMock.verifyAll();
+    });
+
     test('showDialog', () => {
         detailsDialogMock
             .setup(dialog =>
