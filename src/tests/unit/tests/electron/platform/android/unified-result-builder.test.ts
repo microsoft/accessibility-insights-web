@@ -16,17 +16,12 @@ describe('buildUnifiedScanCompletedPayload', () => {
     const exampleScanResults = new AndroidScanResults(axeRuleResultExample);
 
     it('builds the payload', () => {
+        let friendlyNameProviderWasPassed = false;
         const generateUIDMock = Mock.ofType<UUIDGenerator>();
         const friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>(
             undefined,
             MockBehavior.Strict,
         );
-        friendlyNameProviderMock
-            .setup(m => m.getFriendlyName(It.isAnyString()))
-            .callback(s => {
-                return s;
-            });
-
         const ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
 
         const getUnifiedResultsMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
@@ -79,7 +74,11 @@ describe('buildUnifiedScanCompletedPayload', () => {
             MockBehavior.Strict,
         );
         getPlatformDataMock
-            .setup(converter => converter(exampleScanResults, friendlyNameProviderMock.object))
+            .setup(converter => converter(exampleScanResults, It.isAny()))
+            .callback((_, provider) => {
+                expect(provider).toBe(friendlyNameProviderMock.object);
+                friendlyNameProviderWasPassed = true;
+            })
             .returns(() => ({
                 osInfo: { name: 'test-os-name', version: 'test-os-version' },
                 viewPortInfo: { width: 1, height: 2, dpi: 3 },
@@ -114,5 +113,6 @@ describe('buildUnifiedScanCompletedPayload', () => {
         const result = testSubject(exampleScanResults);
 
         expect(result).toMatchSnapshot();
+        expect(friendlyNameProviderWasPassed).toBe(true);
     });
 });
