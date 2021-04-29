@@ -74,5 +74,8 @@ export class WindowUtils {
 
     public isSecureOrigin(): boolean {
         return window.isSecureContext;
+
+    public getRandomValueArray(length: number): Uint8Array {
+        return window.crypto.getRandomValues(new Uint8Array(length));
     }
 }

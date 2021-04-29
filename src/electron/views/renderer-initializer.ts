@@ -80,6 +80,7 @@ import { TabStopsStore } from 'electron/flux/store/tab-stops-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { IpcMessageReceiver } from 'electron/ipc/ipc-message-receiver';
 import { IpcRendererShim } from 'electron/ipc/ipc-renderer-shim';
+import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
@@ -223,10 +224,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
+        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider = new AndroidFriendlyDeviceNameProvider();
         const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
         const adbWrapperHolder = new AdbWrapperHolder();
         const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
-            new AndroidServiceConfiguratorFactory(apkLocator, getPortPromise),
+            new AndroidServiceConfiguratorFactory(
+                apkLocator,
+                getPortPromise,
+                friendlyDeviceNameProvider,
+            ),
             androidPortCleaner,
         );
         const androidSetupStore = new AndroidSetupStore(

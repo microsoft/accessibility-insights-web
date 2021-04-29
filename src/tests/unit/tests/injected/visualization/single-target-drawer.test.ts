@@ -43,7 +43,7 @@ describe('SingleTargetDrawer Tests', () => {
         drawerUtilsMock.verifyAll();
     });
 
-    test('drawLayout', () => {
+    test('drawLayout', async () => {
         const dom = TestDocumentCreator.createTestDocument(`
                     <body id='id1'></body>
                 `);
@@ -66,7 +66,7 @@ describe('SingleTargetDrawer Tests', () => {
 
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(true);
 
@@ -74,7 +74,7 @@ describe('SingleTargetDrawer Tests', () => {
         formatterMock.verifyAll();
     });
 
-    test('initialize empty instances when visualization already enabled', () => {
+    test('initialize empty instances when visualization already enabled', async () => {
         const dom = TestDocumentCreator.createTestDocument(`
                     <body id='id1'></body>
                 `);
@@ -96,7 +96,7 @@ describe('SingleTargetDrawer Tests', () => {
         testSubject.initialize(drawerInfo);
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
         testSubject.initialize({ data: [], featureFlagStoreData: getDefaultFeatureFlagsWeb() });
 
         expect(testSubject.isOverlayEnabled).toBe(false);
@@ -105,7 +105,7 @@ describe('SingleTargetDrawer Tests', () => {
         formatterMock.verifyAll();
     });
 
-    test('removeLayout', () => {
+    test('removeLayout', async () => {
         const dom = TestDocumentCreator.createTestDocument(`
                     <body id='id1'></body>
                 `);
@@ -128,7 +128,7 @@ describe('SingleTargetDrawer Tests', () => {
 
         expect(testSubject.isOverlayEnabled).toBe(false);
 
-        testSubject.drawLayout();
+        await testSubject.drawLayout();
         testSubject.eraseLayout();
 
         expect(testSubject.isOverlayEnabled).toBe(false);

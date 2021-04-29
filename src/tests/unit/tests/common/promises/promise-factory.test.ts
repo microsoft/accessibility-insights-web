@@ -1,44 +1,45 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { createDefaultPromiseFactory } from '../../../../../common/promises/promise-factory';
+import { createDefaultPromiseFactory, TimeoutError } from 'common/promises/promise-factory';
 
-// wrote the test following examples from https://jestjs.io/docs/en/tutorial-async
-describe('PromiseFactory', () => {
+describe(createDefaultPromiseFactory, () => {
     const testObject = createDefaultPromiseFactory();
 
     describe('timeout', () => {
-        it('resolves', () => {
-            expect.assertions(1);
-
+        it("propogates an underlying Promise's resolve", async () => {
             const actual = 'the result';
             const resolving = Promise.resolve(actual);
 
             const result = testObject.timeout(resolving, 10);
 
-            return expect(result).resolves.toEqual(actual);
+            await expect(result).resolves.toEqual(actual);
         });
 
-        it('rejects', () => {
-            expect.assertions(1);
-
+        it("propogates an underlying Promise's reject", async () => {
             const reason = 'rejecting!';
             const rejecting = testObject.timeout(Promise.reject(reason), 10);
 
-            return expect(rejecting).rejects.toEqual(reason);
+            await expect(rejecting).rejects.toEqual(reason);
         });
 
-        it('times out', () => {
-            expect.assertions(1);
-
-            const notResolving = new Promise(() => {
-                /* never actually resolve, so it will timeout*/
-            });
-
+        it('rejects with a TimeoutError on timeout', async () => {
             const delay = 1;
+            const timingOut = testObject.timeout(neverResolveAsync(), delay);
 
-            const timingOut = testObject.timeout(notResolving, delay);
-
-            return expect(timingOut).rejects.toEqual(`Timed out ${delay} ms`);
+            await expect(timingOut).rejects.toThrowError(TimeoutError);
         });
+
+        it('rejects with the pinned error message on timeout', async () => {
+            const delay = 1;
+            const timingOut = testObject.timeout(neverResolveAsync(), delay);
+
+            await expect(timingOut).rejects.toThrowErrorMatchingInlineSnapshot(
+                `"Timed out after 1ms"`,
+            );
+        });
+
+        function neverResolveAsync(): Promise<never> {
+            return new Promise(() => {});
+        }
     });
 });

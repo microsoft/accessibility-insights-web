@@ -4,6 +4,7 @@ import {
     ExtensionTypes,
     Notifications,
     Permissions,
+    Runtime,
     Tabs,
     Windows,
 } from 'webextension-polyfill-ts';
@@ -37,6 +38,7 @@ export interface BrowserAdapter {
     ): Promise<Windows.Window>;
     sendMessageToTab(tabId: number, message: any): Promise<void>;
     sendMessageToFrames(message: any): Promise<void>;
+    sendRuntimeMessage(message: any): Promise<any>;
     executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
     insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     createNotification(options: Notifications.CreateNotificationOptions): Promise<string>;
@@ -45,19 +47,11 @@ export interface BrowserAdapter {
     getManageExtensionUrl(): string;
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(
-        callback: (
-            message: any,
-            sender: chrome.runtime.MessageSender,
-            sendResponse: (response: any) => void,
-        ) => void,
+        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void;
 
     removeListenerOnMessage(
-        callback: (
-            message: any,
-            sender: chrome.runtime.MessageSender,
-            sendResponse: (response: any) => void,
-        ) => void,
+        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void;
     connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
     getManifest(): chrome.runtime.Manifest;

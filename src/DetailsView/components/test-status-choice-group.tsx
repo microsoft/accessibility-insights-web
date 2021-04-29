@@ -52,16 +52,8 @@ export class TestStatusChoiceGroup extends React.Component<
                         componentRef={this.compomentRef}
                         selectedKey={this.state.selectedKey}
                         options={[
-                            {
-                                key: ManualTestStatus[ManualTestStatus.PASS],
-                                text: 'Pass',
-                                onRenderLabel: this.onRenderLabel,
-                            },
-                            {
-                                key: ManualTestStatus[ManualTestStatus.FAIL],
-                                text: 'Fail',
-                                onRenderLabel: this.onRenderLabel,
-                            },
+                            this.makeOption(ManualTestStatus.PASS, 'Pass'),
+                            this.makeOption(ManualTestStatus.FAIL, 'Fail'),
                         ]}
                     />
                 </div>
@@ -71,9 +63,18 @@ export class TestStatusChoiceGroup extends React.Component<
         );
     }
 
-    private onRenderLabel = (option: IChoiceGroupOption): JSX.Element => {
+    private makeOption(manualTestStatus: ManualTestStatus, text: string): IChoiceGroupOption {
+        return {
+            key: ManualTestStatus[manualTestStatus],
+            text: text,
+            ariaLabel: this.props.isLabelVisible ? undefined : text,
+            onRenderLabel: this.onRenderOptionLabel,
+        };
+    }
+
+    private onRenderOptionLabel = (option: IChoiceGroupOption): JSX.Element | null => {
         return (
-            <span id={option.labelId} className={styles.radioLabel} aria-label={option.text}>
+            <span id={option.labelId} className={styles.radioLabel}>
                 {this.props.isLabelVisible ? option.text : ''}
             </span>
         );

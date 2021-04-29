@@ -6,34 +6,34 @@ import {
     ElementFinderByPosition,
     ElementFinderByPositionMessage,
 } from 'injected/element-finder-by-position';
-import { ErrorMessageContent } from 'injected/frameCommunicators/error-message-content';
-import { FrameCommunicator } from 'injected/frameCommunicators/frame-communicator';
-import { FrameMessageResponseCallback } from 'injected/frameCommunicators/window-message-handler';
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import {
+    CommandMessage,
+    CommandMessageResponse,
+} from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { ScannerUtils } from 'injected/scanner-utils';
-import { IMock, It, Mock } from 'typemoq';
+import { isFunction } from 'lodash';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 class TestableElementFinder extends ElementFinderByPosition {
     public getOnfindElementByPosition(): (
-        message: ElementFinderByPositionMessage,
-        error: ErrorMessageContent,
-        sourceWin: Window,
-        responder?: FrameMessageResponseCallback,
-    ) => void {
+        message: CommandMessage,
+    ) => Promise<CommandMessageResponse> {
         return this.onfindElementByPosition;
     }
 }
 describe('ElementFinderByPositionTest', () => {
     let testSubject: TestableElementFinder;
-    let frameCommunicatorMock: IMock<FrameCommunicator>;
+    let frameMessengerMock: IMock<FrameMessenger>;
     let clientUtilsMock: IMock<ClientUtils>;
-    let scannerUtils: IMock<ScannerUtils>;
+    let scannerUtilsMock: IMock<ScannerUtils>;
     let elementsFromPointMock: IMock<(x: number, y: number) => Element[]>;
     let domStub: Document;
 
     beforeEach(() => {
-        frameCommunicatorMock = Mock.ofType(FrameCommunicator);
+        frameMessengerMock = Mock.ofType(FrameMessenger);
         clientUtilsMock = Mock.ofType(ClientUtils);
-        scannerUtils = Mock.ofType(ScannerUtils);
+        scannerUtilsMock = Mock.ofType(ScannerUtils);
         elementsFromPointMock = Mock.ofInstance((x: number, y: number) => {
             return null;
         });
@@ -42,68 +42,26 @@ describe('ElementFinderByPositionTest', () => {
         } as Document;
 
         testSubject = new TestableElementFinder(
-            frameCommunicatorMock.object,
+            frameMessengerMock.object,
             clientUtilsMock.object,
-            scannerUtils.object,
+            scannerUtilsMock.object,
             domStub,
         );
     });
 
-    test('initialize', () => {
-        const responderMock = Mock.ofInstance(
-            (result: any, error: ErrorMessageContent, messageSourceWindow: Window) => {},
-        );
-        const processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
-        const processRequestMock = Mock.ofInstance(message => {
-            return null;
-        });
-        const subscribeCallback = testSubject.getOnfindElementByPosition();
-        let successCallback;
-        let errorCallback;
-        const messageStub = {} as ElementFinderByPositionMessage;
-        const resultsStub = [];
-        const errorStub = {} as ErrorMessageContent;
-        const windowStub = {} as Window;
-
-        const processRequestReturnStub = {
-            then: processRequestPromiseHandlerMock.object,
-        } as Q.IPromise<string[]>;
-
-        frameCommunicatorMock
-            .setup(fcm =>
-                fcm.subscribe(
+    test('initialize registers the expected listeners', () => {
+        frameMessengerMock
+            .setup(fm =>
+                fm.addMessageListener(
                     ElementFinderByPosition.findElementByPositionCommand,
-                    subscribeCallback,
+                    It.is(isFunction),
                 ),
             )
             .verifiable();
 
-        processRequestMock
-            .setup(prm => prm(messageStub))
-            .returns(() => processRequestReturnStub)
-            .verifiable();
-
-        processRequestPromiseHandlerMock
-            .setup(prp => prp(It.isAny(), It.isAny()))
-            .callback((success, error) => {
-                successCallback = success;
-                errorCallback = error;
-            });
-
-        responderMock.setup(rm => rm(resultsStub, null, windowStub)).verifiable();
-
-        responderMock.setup(rm => rm(null, errorStub, windowStub)).verifiable();
-
         testSubject.initialize();
-        testSubject.processRequest = processRequestMock.object;
 
-        subscribeCallback(messageStub, null, windowStub, responderMock.object);
-        successCallback(resultsStub);
-        errorCallback(errorStub);
-
-        verifyAll();
-        responderMock.verifyAll();
-        processRequestMock.verifyAll();
+        frameMessengerMock.verifyAll();
     });
 
     test('process request when element is null', async () => {
@@ -113,8 +71,11 @@ describe('ElementFinderByPositionTest', () => {
         };
 
         setupElementsFromPointMock(messageStub, []);
+        clientUtilsMock.setup(cu => cu.getOffset(It.isAny())).verifiable(Times.never());
+        scannerUtilsMock.setup(su => su.getUniqueSelector(It.isAny())).verifiable(Times.never());
 
-        expect(await testSubject.processRequest(messageStub)).toEqual([]);
+        expect(await testSubject.processRequest(messageStub)).toEqual({ payload: [] });
+        verifyAll();
     });
 
     test('process request when element is not iframe', async () => {
@@ -128,7 +89,7 @@ describe('ElementFinderByPositionTest', () => {
         setupElementsFromPointMock(messageStub, [elementStub]);
         setupGetUniqueSelector(elementStub, selector);
 
-        expect(await testSubject.processRequest(messageStub)).toEqual([selector]);
+        expect(await testSubject.processRequest(messageStub)).toEqual({ payload: [selector] });
     });
 
     test('process request when element is in iframe', async () => {
@@ -143,21 +104,21 @@ describe('ElementFinderByPositionTest', () => {
         };
         const selector = 'selectorTest';
         const iframeSelector = 'iframe';
-        const expectedFrameCommunicatorMessage = {
+        const targetFrame = elementStub as HTMLIFrameElement;
+        const commandMessage: CommandMessage = {
             command: ElementFinderByPosition.findElementByPositionCommand,
-            frame: elementStub as HTMLIFrameElement,
-            message: {
+            payload: {
                 x: messageStub.x + window.scrollX - elementRectStub.left,
                 y: messageStub.y + window.scrollY - elementRectStub.top,
-            } as ElementFinderByPositionMessage,
+            },
         };
 
         setupElementsFromPointMock(messageStub, [elementStub]);
         setupGetUniqueSelector(elementStub, iframeSelector);
 
-        frameCommunicatorMock
-            .setup(fcm => fcm.sendMessage(It.isValue(expectedFrameCommunicatorMessage)))
-            .returns(() => Promise.resolve(selector))
+        frameMessengerMock
+            .setup(fm => fm.sendMessageToFrame(targetFrame, commandMessage))
+            .returns(() => Promise.resolve({ payload: selector }))
             .verifiable();
 
         clientUtilsMock
@@ -165,7 +126,9 @@ describe('ElementFinderByPositionTest', () => {
             .returns(() => elementRectStub)
             .verifiable();
 
-        expect(await testSubject.processRequest(messageStub)).toEqual([iframeSelector, selector]);
+        expect(await testSubject.processRequest(messageStub)).toEqual({
+            payload: [iframeSelector, selector],
+        });
 
         verifyAll();
     });
@@ -181,15 +144,15 @@ describe('ElementFinderByPositionTest', () => {
     }
 
     function setupGetUniqueSelector(element: HTMLElement, selector: string): void {
-        scannerUtils
-            .setup(ksm => ksm.getUniqueSelector(element))
+        scannerUtilsMock
+            .setup(su => su.getUniqueSelector(element))
             .returns(() => selector)
             .verifiable();
     }
 
     function verifyAll(): void {
-        frameCommunicatorMock.verifyAll();
+        frameMessengerMock.verifyAll();
         clientUtilsMock.verifyAll();
-        scannerUtils.verifyAll();
+        scannerUtilsMock.verifyAll();
     }
 });

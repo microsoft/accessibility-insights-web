@@ -3,6 +3,8 @@
 
 type TimeoutPromise = <T>(promise: Promise<T>, delayInMilliseconds: number) => Promise<T>;
 
+export class TimeoutError extends Error {}
+
 export type PromiseFactory = {
     timeout: TimeoutPromise;
 };
@@ -11,7 +13,7 @@ const createTimeout: TimeoutPromise = <T>(promise: Promise<T>, delayInMillisecon
     const timeout = new Promise<T>((resolve, reject) => {
         const timeoutId = setTimeout(() => {
             clearTimeout(timeoutId);
-            reject(`Timed out ${delayInMilliseconds} ms`);
+            reject(new TimeoutError(`Timed out after ${delayInMilliseconds}ms`));
         }, delayInMilliseconds);
     });
 

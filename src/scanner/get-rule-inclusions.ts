@@ -12,6 +12,11 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'included',
         reason: 'for parity with video-caption, which axe-core includes by default',
     },
+    'empty-table-header': {
+        status: 'excluded',
+        reason:
+            "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    },
     'form-field-multiple-labels': {
         status: 'excluded',
         reason:
