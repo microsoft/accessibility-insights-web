@@ -72,7 +72,7 @@ jobs:
                 contents: |
                     latest*.yml
                     Accessibility?Insights?for?Android*.*
-                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
 
           - template: sign-release-package.yaml
             parameters:
