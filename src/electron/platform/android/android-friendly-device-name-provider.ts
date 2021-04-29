@@ -13,7 +13,7 @@ export class AndroidFriendlyDeviceNameProvider {
         const names: MarketingInfo[] = getDevicesByModel(model);
 
         if (names.length > 0) {
-            return `${model} (${names[0].brand} ${names[0].name})`;
+            return `${model} [${names[0].brand} ${names[0].name}]`;
         }
 
         return model;
