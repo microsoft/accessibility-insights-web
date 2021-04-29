@@ -5,19 +5,22 @@ import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/and
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToPlatformData } from 'electron/platform/android/scan-results-to-platform-data';
 import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
-import { It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('convertScanResultsToPlatformData', () => {
-    const friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>(
-        undefined,
-        MockBehavior.Strict,
-    );
+describe('convertScanResultsToPlatformData with device name', () => {
+    let friendlyNameProviderMock: IMock<AndroidFriendlyDeviceNameProvider>;
 
-    friendlyNameProviderMock
-        .setup(m => m.getFriendlyName(It.isAnyString()))
-        .callback(s => {
-            return s;
-        });
+    beforeEach(() => {
+        friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        friendlyNameProviderMock
+            .setup(m => m.getFriendlyName(It.isAnyString()))
+            .returns(s => s)
+            .verifiable(Times.once());
+    });
+
     it('produces the pinned output for the pinned example input', () => {
         expect(
             convertScanResultsToPlatformData(
@@ -25,6 +28,7 @@ describe('convertScanResultsToPlatformData', () => {
                 friendlyNameProviderMock.object,
             ),
         ).toMatchSnapshot();
+        friendlyNameProviderMock.verifyAll();
     });
 
     it('populates output from the ScanResults axeDevice properties', () => {
@@ -54,7 +58,12 @@ describe('convertScanResultsToPlatformData', () => {
         expect(convertScanResultsToPlatformData(input, friendlyNameProviderMock.object)).toEqual(
             expectedOutput,
         );
+        friendlyNameProviderMock.verifyAll();
     });
+});
+
+describe('convertScanResultsToPlatformData with undefined device name', () => {
+    const friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>();
 
     it('omits individual axeDevice properties not present in scanResults', () => {
         const input = new AndroidScanResults({ axeContext: { axeDevice: {} } });
