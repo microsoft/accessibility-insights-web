@@ -4,44 +4,119 @@ parameters:
     unsignedPipelineResource: null
     unsignedArtifactName: null
     signedArtifactName: null
+    channel: null
 
 jobs:
-    - template: sign-release-package.yaml
-      parameters:
-          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
-          unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
-          signedArtifactName: ${{ parameters.signedArtifactName }}
+    - job: ${{ parameters.signedArtifactName }}
+      pool:
           vmImage: windows-2019
-          filePattern: '*.exe, *.dll'
-          platform: windows
-          inlineSignParams: |
-              [
-                  {
-                  "keyCode": "CP-230012",
-                  "operationSetCode": "SigntoolSign",
-                  "parameters": [
-                      {
-                      "parameterName": "OpusName",
-                      "parameterValue": "Microsoft"
-                      },
-                      {
-                      "parameterName": "OpusInfo",
-                      "parameterValue": "http://www.microsoft.com"
-                      },
-                      {
-                      "parameterName": "PageHash",
-                      "parameterValue": "/NPH"
-                      },
-                      {
-                      "parameterName": "FileDigest",
-                      "parameterValue": "/fd sha256"
-                      },
-                      {
-                      "parameterName": "TimeStamp",
-                      "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
-                      }
-                  ],
-                  "toolName": "signtool.exe",
-                  "toolVersion": "6.2.9304.0"
-                  }
-              ]
+      steps:
+          - template: ../../install-node-prerequisites.yaml
+
+          - task: DownloadPipelineArtifact@2
+            inputs:
+                source: 'specific'
+                runVersion: 'specific'
+                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
+                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
+                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
+                artifact: ${{ parameters.unsignedArtifactName }}
+                path: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
+
+          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+            displayName: 'ESRP: Sign unpacked binaries'
+            inputs:
+                ConnectedServiceName: 'ESRP Code Signing'
+                FolderPath: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}'
+                Pattern: '*.exe, *.dll'
+                signConfigType: inlineSignParams
+                inlineOperation: |
+                    [
+                        {
+                        "keyCode": "CP-230012",
+                        "operationSetCode": "SigntoolSign",
+                        "parameters": [
+                            {
+                            "parameterName": "OpusName",
+                            "parameterValue": "Microsoft"
+                            },
+                            {
+                            "parameterName": "OpusInfo",
+                            "parameterValue": "http://www.microsoft.com"
+                            },
+                            {
+                            "parameterName": "PageHash",
+                            "parameterValue": "/NPH"
+                            },
+                            {
+                            "parameterName": "FileDigest",
+                            "parameterValue": "/fd sha256"
+                            },
+                            {
+                            "parameterName": "TimeStamp",
+                            "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                            }
+                        ],
+                        "toolName": "signtool.exe",
+                        "toolVersion": "6.2.9304.0"
+                        }
+                    ]
+
+          - script: yarn pack:unified:${{ parameters.channel }}
+            displayName: yarn pack:unified:${{ parameters.channel }}
+
+          - task: CopyFiles@2
+            displayName: 'copy the packed installers for signing'
+            inputs:
+                SourceFolder: '$(System.DefaultWorkingDirectory)/drop/electron/unified-${{ parameters.channel }}/packed'
+                contents: |
+                    latest*.yml
+                    Accessibility?Insights?for?Android*.*
+                TargetFolder: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+
+          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+            displayName: 'ESRP: Sign packed binary'
+            inputs:
+                ConnectedServiceName: 'ESRP Code Signing'
+                FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                Pattern: '*.exe'
+                signConfigType: inlineSignParams
+                inlineOperation: |
+                    [
+                        {
+                        "keyCode": "CP-230012",
+                        "operationSetCode": "SigntoolSign",
+                        "parameters": [
+                            {
+                            "parameterName": "OpusName",
+                            "parameterValue": "Microsoft"
+                            },
+                            {
+                            "parameterName": "OpusInfo",
+                            "parameterValue": "http://www.microsoft.com"
+                            },
+                            {
+                            "parameterName": "PageHash",
+                            "parameterValue": "/NPH"
+                            },
+                            {
+                            "parameterName": "FileDigest",
+                            "parameterValue": "/fd sha256"
+                            },
+                            {
+                            "parameterName": "TimeStamp",
+                            "parameterValue": "/tr \"http://rfc3161.gtm.corp.microsoft.com/TSS/HttpTspServer\" /td sha256"
+                            }
+                        ],
+                        "toolName": "signtool.exe",
+                        "toolVersion": "6.2.9304.0"
+                        }
+                    ]
+
+          - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} windows
+            displayName: update electron-builder latest.yml after signing
+
+          - template: ../publish-packed-build-output.yaml
+            parameters:
+                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+                artifactName: ${{ parameters.signedArtifactName }}
