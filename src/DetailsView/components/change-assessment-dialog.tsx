@@ -7,20 +7,11 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
-import { UrlParser } from 'common/url-parser';
 import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
 import * as styles from 'DetailsView/components/target-change-dialog.scss';
 import { DefaultButton, DialogFooter, DialogType, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-
-export type ChangeAssessmentDialogDeps = {
-    urlParser: UrlParser;
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-};
-
 export interface ChangeAssessmentDialogProps {
-    deps: ChangeAssessmentDialogDeps;
     prevTab: PersistedTabInfo;
     newTab: Tab;
     dialogContentTitle: string;
