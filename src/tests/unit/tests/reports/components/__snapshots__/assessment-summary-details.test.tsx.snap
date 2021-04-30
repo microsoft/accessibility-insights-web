@@ -24,6 +24,7 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
         </div>
         <div
           className="testSummaryStatus"
+          data-automation-id="test-summary-status/Assessment1"
           role="cell"
         >
           <OutcomeIconSet
@@ -50,6 +51,7 @@ exports[`AssessmentSummaryDetails render Correct composition 1`] = `
         </div>
         <div
           className="testSummaryStatus"
+          data-automation-id="test-summary-status/Assessment2"
           role="cell"
         >
           <OutcomeIconSet
@@ -89,6 +91,7 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1
         </div>
         <div
           className="testSummaryStatus"
+          data-automation-id="test-summary-status/test"
           role="cell"
         >
           <OutcomeChipSet
@@ -128,6 +131,7 @@ exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1
         </div>
         <div
           className="testSummaryStatus"
+          data-automation-id="test-summary-status/test"
           role="cell"
         >
           <OutcomeIconSet

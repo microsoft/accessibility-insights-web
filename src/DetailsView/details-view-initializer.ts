@@ -424,6 +424,7 @@ if (tabId != null) {
                 assessmentDataParser,
                 fileNameBuilder,
                 fileReader,
+                document,
                 getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,

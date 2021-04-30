@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
@@ -57,6 +60,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>('LoadAsse
         dialogNoteText:
             "If 'Continue previous' is selected, the assessment selected will not be loaded.",
         dialogWarningText: "If 'Load assessment’ is selected, all previous progress will be lost.",
+        show: props.show,
     };
 
     return <ChangeAssessmentDialog {...dialogProps} />;

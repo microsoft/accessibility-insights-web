@@ -211,7 +211,7 @@ export class Page {
     }
 
     public async setFileForUpload(filepath: string) {
-        this.underlyingPage.on('filechooser', async fileChooser => {
+        this.underlyingPage.once('filechooser', async fileChooser => {
             await fileChooser.element().setInputFiles(filepath);
         });
     }

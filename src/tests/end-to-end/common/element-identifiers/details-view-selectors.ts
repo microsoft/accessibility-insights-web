@@ -10,6 +10,7 @@ import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-as
 import { overviewContainerAutomationId } from 'DetailsView/components/overview-content/overview-content-container';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
+import { testSummaryStatusAutomationId } from 'reports/components/assessment-summary-details';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import { outcomeSummaryBarAutomationId } from 'reports/components/outcome-summary-bar';
 import {
@@ -73,7 +74,8 @@ export const overviewSelectors = {
     overviewHeading: getAutomationIdSelector(overviewHeadingAutomationId),
     loadAssessmentButton: getAutomationIdSelector(loadAssessmentButtonAutomationId),
     outcomeSummaryBar: getAutomationIdSelector(outcomeSummaryBarAutomationId),
-    outcomeChipFail: 'span.outcome-chip-fail',
+    testOutcomeChips: (testName: string) =>
+        getAutomationIdSelector(testSummaryStatusAutomationId(testName)) + ' .outcome-chip',
 };
 
 export const settingsPanelSelectors = {

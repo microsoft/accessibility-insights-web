@@ -4,7 +4,10 @@
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { Tab } from 'common/itab';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    PersistedTabInfo,
+} from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
@@ -17,6 +20,7 @@ export type LoadAssessmentButtonDeps = {
     assessmentDataParser: AssessmentDataParser;
     urlParser: UrlParser;
     fileReader: FileReader;
+    document: Document;
 };
 export interface LoadAssessmentButtonProps {
     deps: LoadAssessmentButtonDeps;
@@ -24,7 +28,10 @@ export interface LoadAssessmentButtonProps {
     assessmentStoreData: AssessmentStoreData;
 }
 export interface LoadAssessmentButtonState {
-    isLoadDialogOpen: boolean;
+    newTab: Tab;
+    prevTab: PersistedTabInfo;
+    loadedAssessmentData?: VersionedAssessmentData;
+    show: boolean;
 }
 
 export const loadAssessmentButtonAutomationId = 'load-assessment-button';
@@ -33,25 +40,26 @@ export class LoadAssessmentButton extends React.Component<
     LoadAssessmentButtonProps,
     LoadAssessmentButtonState
 > {
-    private loadedAssessmentData: VersionedAssessmentData;
     public constructor(props) {
         super(props);
-        this.state = { isLoadDialogOpen: false };
+        this.state = {
+            loadedAssessmentData: null,
+            newTab: this.getNewTab(),
+            prevTab: props.assessmentStoreData.persistedTabInfo,
+            show: false,
+        };
     }
-    public toggleLoadDialog() {
-        console.log('TOGGLE LOAD DIALOGGGG');
-        console.log(this.state.isLoadDialogOpen);
-        this.setState(prevState => ({ isLoadDialogOpen: !prevState.isLoadDialogOpen }));
-        console.log(this.state.isLoadDialogOpen);
-        console.log('end');
+
+    private toggleLoadDialog() {
+        this.setState(prevState => ({ show: !prevState.show }));
     }
 
     private getNewTab(): Tab {
-        if (this.loadedAssessmentData != null) {
+        if (this.state !== undefined && this.state.loadedAssessmentData != null) {
             return {
-                id: this.loadedAssessmentData.assessmentData.persistedTabInfo.id,
-                url: this.loadedAssessmentData.assessmentData.persistedTabInfo.url,
-                title: this.loadedAssessmentData.assessmentData.persistedTabInfo.title,
+                id: this.state.loadedAssessmentData.assessmentData.persistedTabInfo.id,
+                url: this.state.loadedAssessmentData.assessmentData.persistedTabInfo.url,
+                title: this.state.loadedAssessmentData.assessmentData.persistedTabInfo.title,
             };
         }
 
@@ -61,23 +69,25 @@ export class LoadAssessmentButton extends React.Component<
             title: this.props.tabStoreData.title,
         };
     }
+
     public getAssessmentForLoad() {
-        const input = document.createElement('input');
+        const input = this.props.deps.document.createElement('input');
         input.type = 'file';
         input.accept = '.a11ywebassessment';
-        const persistedTabInfo = this.props.assessmentStoreData.persistedTabInfo;
 
         const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
             const content = readerEvent.target.result as string;
-            this.loadedAssessmentData = this.props.deps.assessmentDataParser.parseAssessmentData(
-                content,
-            );
-            if (persistedTabInfo) {
+            this.setState(_ => ({
+                loadedAssessmentData: this.props.deps.assessmentDataParser.parseAssessmentData(
+                    content,
+                ),
+            }));
+            if (this.state.prevTab != null) {
                 this.toggleLoadDialog();
             } else {
                 this.props.deps.detailsViewActionMessageCreator.loadAssessment(
-                    this.loadedAssessmentData,
-                    this.props.tabStoreData.id,
+                    this.state.loadedAssessmentData,
+                    this.state.newTab.id,
                 );
             }
         };
@@ -105,11 +115,11 @@ export class LoadAssessmentButton extends React.Component<
                 <LoadAssessmentDialog
                     {...this.props}
                     tabId={this.props.tabStoreData.id}
-                    loadedAssessmentData={this.loadedAssessmentData}
-                    prevTab={this.props.assessmentStoreData.persistedTabInfo}
-                    newTab={this.getNewTab()}
-                    show={this.state.isLoadDialogOpen}
-                    onClose={this.toggleLoadDialog}
+                    loadedAssessmentData={this.state.loadedAssessmentData}
+                    prevTab={this.state.prevTab}
+                    newTab={this.state.newTab}
+                    show={this.state.show}
+                    onClose={this.toggleLoadDialog.bind(this)}
                 ></LoadAssessmentDialog>
             </>
         );

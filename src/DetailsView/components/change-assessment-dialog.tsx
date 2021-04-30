@@ -10,7 +10,6 @@ import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data
 import { UrlParser } from 'common/url-parser';
 import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
 import * as styles from 'DetailsView/components/target-change-dialog.scss';
-import { isEmpty } from 'lodash';
 import { DefaultButton, DialogFooter, DialogType, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -34,13 +33,14 @@ export interface ChangeAssessmentDialogProps {
     dialogFirstText: JSX.Element;
     dialogNoteText: string;
     dialogWarningText: string;
+    show: boolean;
 }
 
 export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
     'ChangeAssessmentDialog',
     props => {
-        const { prevTab, newTab } = props;
-        if (!showDialog(prevTab, newTab)) {
+        const { show } = props;
+        if (!show) {
             return null;
         }
 
@@ -104,26 +104,6 @@ export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
                     </NewTabLink>
                 </TooltipHost>
             );
-        }
-
-        function showDialog(prevTab: PersistedTabInfo, newTab: Tab): boolean {
-            if (isEmpty(prevTab)) {
-                return false;
-            }
-
-            if (prevTab.appRefreshed) {
-                return true;
-            }
-
-            const { urlParser } = props.deps;
-            const urlChanged =
-                prevTab.url && urlParser.areURLsEqual(prevTab.url, newTab.url) === false;
-
-            return didTargetTabChanged(prevTab, newTab) || urlChanged === true;
-        }
-
-        function didTargetTabChanged(prevTab: PersistedTabInfo, newTab: Tab): boolean {
-            return prevTab.id !== newTab.id;
         }
     },
 );

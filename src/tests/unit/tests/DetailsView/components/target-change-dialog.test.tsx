@@ -10,6 +10,7 @@ import {
     TargetChangeDialogProps,
 } from 'DetailsView/components/target-change-dialog';
 import * as Enzyme from 'enzyme';
+import { shallow } from 'enzyme';
 import Dialog, { TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -92,7 +93,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             newTab,
         };
 
-        const wrapper = Enzyme.shallow(<TargetChangeDialog {...targetChangeProps} />);
+        const wrapper = Enzyme.mount(<TargetChangeDialog {...targetChangeProps} />);
         expect(wrapper.find(BlockingDialog).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).exists()).toBe(true);
         expect(wrapper.find(TooltipHost).length).toEqual(2);
@@ -148,8 +149,8 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             newTab,
         };
 
-        const component = new TargetChangeDialog(targetChangeProps);
-        expect(component.render()).toMatchSnapshot();
+        const wrapper = shallow(<TargetChangeDialog {...targetChangeProps} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('snapshot: render when tab ids are same but url changes', () => {
@@ -178,8 +179,8 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             newTab,
         };
 
-        const component = new TargetChangeDialog(targetChangeProps);
-        expect(component.render()).toMatchSnapshot();
+        const wrapper = shallow(<TargetChangeDialog {...targetChangeProps} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test("snapshot: render when tab ids are same and also url doesn't change", () => {
@@ -207,8 +208,8 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             newTab,
         };
 
-        const component = new TargetChangeDialog(targetChangeProps);
-        expect(component.render()).toMatchSnapshot();
+        const wrapper = shallow(<TargetChangeDialog {...targetChangeProps} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('snapshot: render the only information available in prevTab is appRefreshed', () => {
@@ -235,7 +236,7 @@ describe('TargetChangeDialog test sets for same prev tab and newTab values', () 
             newTab,
         };
 
-        const component = new TargetChangeDialog(targetChangeProps);
-        expect(component.render()).toMatchSnapshot();
+        const wrapper = shallow(<TargetChangeDialog {...targetChangeProps} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
