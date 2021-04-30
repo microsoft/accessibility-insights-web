@@ -34,7 +34,7 @@ describe('Android setup step: promptConnectedStartTesting', () => {
     it('has expected properties', () => {
         const deps = {} as AndroidSetupDeps;
         const step = promptConnectedStartTesting(null, deps);
-        checkExpectedActionsAreDefined(step, ['cancel', 'rescan']);
+        checkExpectedActionsAreDefined(step, ['cancel', 'rescan', 'readyToStart']);
         expect(step.onEnter).not.toBeDefined();
     });
 
@@ -58,5 +58,16 @@ describe('Android setup step: promptConnectedStartTesting', () => {
             storeCallbacksMock.object,
         );
         step.actions.rescan();
+    });
+
+    it('readyToStart transitions to prompt-connect-to-device as expected', () => {
+        stepTransitionMock.setup(m => m('prompt-connect-to-device')).verifiable(Times.once());
+
+        const step = promptConnectedStartTesting(
+            stepTransitionMock.object,
+            depsMock.object,
+            storeCallbacksMock.object,
+        );
+        step.actions.readyToStart();
     });
 });

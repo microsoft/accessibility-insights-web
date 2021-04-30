@@ -950,8 +950,7 @@ exports[`ResultsView when status scan <Failed> 1`] = `
           }
         />
         <DeviceDisconnectedPopup
-          onConnectNewDevice={[Function]}
-          onRescanDevice={[Function]}
+          onRedetectDevice={[Function]}
         />
       </div>
     </div>

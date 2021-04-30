@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Playwright from 'playwright';
 import { ChromiumBrowserContext } from 'playwright';
+import { NestedIframeTargetPage } from 'tests/end-to-end/common/page-controllers/nested-iframe-target-page';
 import { browserLogPath } from './browser-factory';
 import { forceTestFailure } from './force-test-failure';
 import { BackgroundPage, hasBackgroundPageUrl } from './page-controllers/background-page';
@@ -10,7 +11,6 @@ import { DetailsViewPage, detailsViewRelativeUrl } from './page-controllers/deta
 import { Page } from './page-controllers/page';
 import { PopupPage, popupPageRelativeUrl } from './page-controllers/popup-page';
 import { TargetPage, targetPageUrl, TargetPageUrlOptions } from './page-controllers/target-page';
-
 export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private pages: Array<Page> = [];
@@ -59,6 +59,17 @@ export class Browser {
         this.pages.push(page);
         await page.goto(url);
         return page;
+    }
+
+    // TargetPageControllerT should be a subclass of TargetPage with a ctor
+    // that has the same parameters as TargetPage's
+    public async newNestedIframeTargetPage(): Promise<NestedIframeTargetPage> {
+        const underlyingPage = await this.underlyingBrowserContext.newPage();
+        const tabId = await this.getActivePageTabId();
+        const targetPage = new NestedIframeTargetPage(underlyingPage, tabId);
+        this.pages.push(targetPage);
+        await targetPage.goto(NestedIframeTargetPage.url);
+        return targetPage;
     }
 
     public async newTargetPage(urlOptions?: TargetPageUrlOptions): Promise<TargetPage> {

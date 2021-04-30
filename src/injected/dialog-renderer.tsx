@@ -3,6 +3,10 @@
 import { getRTL } from '@uifabric/utilities';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { NavigatorUtils } from 'common/navigator-utils';
+import {
+    CommandMessage,
+    CommandMessageResponse,
+} from 'injected/frameCommunicators/respondable-command-message-communicator';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -18,9 +22,7 @@ import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { ErrorMessageContent } from './frameCommunicators/error-message-content';
-import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
-import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
+import { FrameMessenger } from './frameCommunicators/frame-messenger';
 import {
     LayeredDetailsDialogComponent,
     LayeredDetailsDialogDeps,
@@ -40,7 +42,7 @@ export class DialogRenderer {
     constructor(
         private readonly dom: Document,
         private readonly renderer: typeof ReactDOM.render,
-        private readonly frameCommunicator: FrameCommunicator,
+        private readonly frameMessenger: FrameMessenger,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly navigatorUtils: NavigatorUtils,
@@ -49,14 +51,14 @@ export class DialogRenderer {
         private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {
         if (this.isInMainWindow()) {
-            this.frameCommunicator.subscribe(
+            this.frameMessenger.addMessageListener(
                 DialogRenderer.renderDetailsDialogCommand,
                 this.processRequest,
             );
         }
     }
 
-    public render: RenderDialog = (data: HtmlElementAxeResults) => {
+    public render = async (data: HtmlElementAxeResults): Promise<CommandMessageResponse | null> => {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -109,23 +111,26 @@ export class DialogRenderer {
                 />,
                 dialogContainer,
             );
+            return null;
         } else {
-            const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
-                win: this.windowUtils.getTopWindow(),
+            const message: CommandMessage = {
                 command: DialogRenderer.renderDetailsDialogCommand,
-                message: { data: data },
+                payload: { data: data },
             };
-            this.frameCommunicator.sendMessage(windowMessageRequest);
+            return await this.frameMessenger.sendMessageToWindow(
+                this.windowUtils.getTopWindow(),
+                message,
+            );
         }
     };
 
-    private processRequest = (
-        message: DetailsDialogWindowMessage,
-        error: ErrorMessageContent,
-        sourceWin: Window,
-        responder?: FrameMessageResponseCallback,
-    ): void => {
-        this.render(message.data);
+    private processRequest = async (
+        commandMessage: CommandMessage,
+        sourceWindow: Window,
+    ): Promise<CommandMessageResponse | null> => {
+        const detailsDialogWindowMessage = commandMessage.payload;
+        await this.render(detailsDialogWindowMessage.data);
+        return null;
     };
 
     private appendDialogContainer(): HTMLDivElement {

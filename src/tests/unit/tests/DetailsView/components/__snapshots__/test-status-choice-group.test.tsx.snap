@@ -12,11 +12,13 @@ exports[`TestStatusChoiceGroup render 1`] = `
       options={
         Array [
           Object {
+            "ariaLabel": "Pass",
             "key": "PASS",
             "onRenderLabel": [Function],
             "text": "Pass",
           },
           Object {
+            "ariaLabel": "Fail",
             "key": "FAIL",
             "onRenderLabel": [Function],
             "text": "Fail",
@@ -42,11 +44,13 @@ exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as st
       options={
         Array [
           Object {
+            "ariaLabel": "Pass",
             "key": "PASS",
             "onRenderLabel": [Function],
             "text": "Pass",
           },
           Object {
+            "ariaLabel": "Fail",
             "key": "FAIL",
             "onRenderLabel": [Function],
             "text": "Fail",
@@ -72,11 +76,13 @@ exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status i
       options={
         Array [
           Object {
+            "ariaLabel": "Pass",
             "key": "PASS",
             "onRenderLabel": [Function],
             "text": "Pass",
           },
           Object {
+            "ariaLabel": "Fail",
             "key": "FAIL",
             "onRenderLabel": [Function],
             "text": "Fail",

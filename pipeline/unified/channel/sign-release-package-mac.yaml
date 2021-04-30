@@ -6,21 +6,34 @@ parameters:
     signedArtifactName: null
 
 jobs:
-    - template: sign-release-package.yaml
-      parameters:
-          unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
-          unsignedArtifactName: ${{ parameters.unsignedArtifactName }}
-          signedArtifactName: ${{ parameters.signedArtifactName }}
+    - job: ${{ parameters.signedArtifactName }}
+      pool:
           vmImage: macOS-10.15
-          filePattern: '*.dmg, *.zip'
-          platform: mac
-          inlineSignParams: |
-              [
-                  {
-                      "keyCode": "CP-401337-Apple",
-                      "operationSetCode": "MacAppDeveloperSign",
-                      "parameters": [],
-                      "toolName": "sign",
-                      "toolVersion": "1.0"
-                  }
-              ]
+      steps:
+          - template: ../../install-node-prerequisites.yaml
+
+          - task: DownloadPipelineArtifact@2
+            inputs:
+                source: 'specific'
+                runVersion: 'specific'
+                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
+                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
+                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
+                artifact: ${{ parameters.unsignedArtifactName }}
+                path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+
+          - template: sign-release-package.yaml
+            parameters:
+                filePattern: '*.dmg, *.zip'
+                platform: mac
+                signedArtifactName: ${{ parameters.signedArtifactName }}
+                inlineSignParams: |
+                    [
+                        {
+                            "keyCode": "CP-401337-Apple",
+                            "operationSetCode": "MacAppDeveloperSign",
+                            "parameters": [],
+                            "toolName": "sign",
+                            "toolVersion": "1.0"
+                        }
+                    ]

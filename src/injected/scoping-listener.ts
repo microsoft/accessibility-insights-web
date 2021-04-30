@@ -9,9 +9,6 @@ export type IInspectCallback = (event: MouseEvent, selector: SingleElementSelect
 export class ScopingListener {
     public static onClickTimeout: number = 250;
     public static onHoverTimeout: number = 200;
-    private readonly windowUtils: WindowUtils;
-    private readonly elementFinderByPosition: ElementFinderByPosition;
-    private readonly shadowUtils: ShadowUtils;
     private readonly dom: Document;
     private onInspectClick: IInspectCallback;
     private onInspectHover: (selector: string[]) => void;
@@ -21,14 +18,11 @@ export class ScopingListener {
     public static readonly scopeLayoutContainerId = 'insights-inspect-selector-layout';
 
     constructor(
-        elementFinderByPosition: ElementFinderByPosition,
-        windowUtils: WindowUtils,
-        shadowUtils: ShadowUtils,
+        private readonly elementFinderByPosition: ElementFinderByPosition,
+        private readonly windowUtils: WindowUtils,
+        private readonly shadowUtils: ShadowUtils,
         dom: Document,
     ) {
-        this.windowUtils = windowUtils;
-        this.elementFinderByPosition = elementFinderByPosition;
-        this.shadowUtils = shadowUtils;
         this.dom = dom || document;
     }
 
@@ -83,10 +77,9 @@ export class ScopingListener {
             this.onClickCurrentTimeoutId = null;
         }
 
-        this.onClickCurrentTimeoutId = this.windowUtils.setTimeout(() => {
-            this.processRequestForEvent(event).then(path => {
-                this.onInspectClick(event, path);
-            });
+        this.onClickCurrentTimeoutId = this.windowUtils.setTimeout(async () => {
+            const path = await this.processRequestForEvent(event);
+            this.onInspectClick(event, path);
         }, ScopingListener.onClickTimeout);
     };
 
@@ -96,17 +89,18 @@ export class ScopingListener {
             this.onHoverCurrentTimeoutId = null;
         }
 
-        this.onHoverCurrentTimeoutId = this.windowUtils.setTimeout(() => {
-            this.processRequestForEvent(event).then(path => {
-                this.onInspectHover(path);
-            });
+        this.onHoverCurrentTimeoutId = this.windowUtils.setTimeout(async () => {
+            const path = await this.processRequestForEvent(event);
+            this.onInspectHover(path);
         }, ScopingListener.onHoverTimeout);
     };
 
-    private processRequestForEvent = (event: MouseEvent): PromiseLike<SingleElementSelector> => {
-        return this.elementFinderByPosition.processRequest({
+    private processRequestForEvent = async (event: MouseEvent): Promise<SingleElementSelector> => {
+        const result = await this.elementFinderByPosition.processRequest({
             x: event.clientX,
             y: event.clientY,
         });
+
+        return result.payload;
     };
 }

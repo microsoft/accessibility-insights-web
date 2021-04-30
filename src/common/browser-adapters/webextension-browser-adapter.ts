@@ -5,6 +5,7 @@ import {
     ExtensionTypes,
     Notifications,
     Permissions,
+    Runtime,
     Tabs,
     Windows,
 } from 'webextension-polyfill-ts';
@@ -140,6 +141,10 @@ export abstract class WebExtensionBrowserAdapter
         return browser.runtime.sendMessage(message);
     }
 
+    public async sendRuntimeMessage(message: any): Promise<any> {
+        return await browser.runtime.sendMessage(message);
+    }
+
     public setUserData(items: Object): Promise<void> {
         return browser.storage.local.set(items);
     }
@@ -177,23 +182,15 @@ export abstract class WebExtensionBrowserAdapter
     }
 
     public addListenerOnMessage(
-        callback: (
-            message: any,
-            sender: chrome.runtime.MessageSender,
-            sendResponse: (response: any) => void,
-        ) => void,
+        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void {
-        chrome.runtime.onMessage.addListener(callback);
+        browser.runtime.onMessage.addListener(callback);
     }
 
     public removeListenerOnMessage(
-        callback: (
-            message: any,
-            sender: chrome.runtime.MessageSender,
-            sendResponse: (response: any) => void,
-        ) => void,
+        callback: (message: any, sender: Runtime.MessageSender) => void | Promise<any>,
     ): void {
-        chrome.runtime.onMessage.removeListener(callback);
+        browser.runtime.onMessage.removeListener(callback);
     }
 
     public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {

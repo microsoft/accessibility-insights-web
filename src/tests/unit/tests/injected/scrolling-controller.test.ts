@@ -1,42 +1,50 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
+import {
+    CommandMessage,
+    CommandMessageResponse,
+} from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import {
-    FrameCommunicator,
-    MessageRequest,
-} from '../../../../injected/frameCommunicators/frame-communicator';
 import {
     ScrollingController,
     ScrollingWindowMessage,
 } from '../../../../injected/frameCommunicators/scrolling-controller';
 
 describe('ScrollingControllerTest', () => {
-    let frameCommunicatorMock: IMock<FrameCommunicator>;
+    let frameMessengerMock: IMock<FrameMessenger>;
     let HTMLElementUtilsMock: IMock<HTMLElementUtils>;
 
     beforeEach(() => {
-        frameCommunicatorMock = Mock.ofType(FrameCommunicator);
+        frameMessengerMock = Mock.ofType(FrameMessenger);
         HTMLElementUtilsMock = Mock.ofType(HTMLElementUtils);
     });
 
     test('scroll in current frame', () => {
-        let subscribeCallback: (result: any, error: any, responder?: any) => void;
+        let addMessageCallback: (message: CommandMessage) => Promise<CommandMessageResponse>;
 
-        frameCommunicatorMock
-            .setup(fcm =>
-                fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()),
+        frameMessengerMock
+            .setup(fm =>
+                fm.addMessageListener(
+                    ScrollingController.triggerScrollingCommand,
+                    It.is(isFunction),
+                ),
             )
             .returns((cmd, func) => {
-                subscribeCallback = func;
+                addMessageCallback = func;
             })
-            .verifiable(Times.once());
+            .verifiable();
 
         const message: ScrollingWindowMessage = {
             focusedTarget: ['a'],
         };
-
+        const commandMessage: CommandMessage = {
+            command: ScrollingController.triggerScrollingCommand,
+            payload: message,
+        };
         const targetElementStub = {};
 
         HTMLElementUtilsMock.setup(dm => dm.querySelector(It.isValue('a')))
@@ -50,31 +58,39 @@ describe('ScrollingControllerTest', () => {
         ).verifiable(Times.once());
 
         const testObject = new ScrollingController(
-            frameCommunicatorMock.object,
+            frameMessengerMock.object,
             HTMLElementUtilsMock.object,
         );
 
         testObject.initialize();
-        subscribeCallback(message, null);
+        addMessageCallback(commandMessage);
 
-        frameCommunicatorMock.verifyAll();
+        frameMessengerMock.verifyAll();
         HTMLElementUtilsMock.verifyAll();
     });
 
     test('scroll to nonexistent element is a noop', () => {
-        let subscribeCallback: (result: any, error: any, responder?: any) => void;
+        let addMessageCallback: (message: CommandMessage) => Promise<CommandMessageResponse>;
 
-        frameCommunicatorMock
-            .setup(fcm =>
-                fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()),
+        frameMessengerMock
+            .setup(fm =>
+                fm.addMessageListener(
+                    ScrollingController.triggerScrollingCommand,
+                    It.is(isFunction),
+                ),
             )
             .returns((cmd, func) => {
-                subscribeCallback = func;
+                addMessageCallback = func;
             })
-            .verifiable(Times.once());
+            .verifiable();
 
         const message: ScrollingWindowMessage = {
             focusedTarget: ['a'],
+        };
+
+        const commandMessage: CommandMessage = {
+            command: ScrollingController.triggerScrollingCommand,
+            payload: message,
         };
 
         HTMLElementUtilsMock.setup(dm => dm.querySelector(It.isValue('a')))
@@ -84,34 +100,40 @@ describe('ScrollingControllerTest', () => {
         HTMLElementUtilsMock.setup(h => h.scrollInToView(It.isAny())).verifiable(Times.never());
 
         const testObject = new ScrollingController(
-            frameCommunicatorMock.object,
+            frameMessengerMock.object,
             HTMLElementUtilsMock.object,
         );
 
         testObject.initialize();
-        subscribeCallback(message, null);
+        addMessageCallback(commandMessage);
 
-        frameCommunicatorMock.verifyAll();
+        frameMessengerMock.verifyAll();
         HTMLElementUtilsMock.verifyAll();
     });
 
     test('scroll in other frames', () => {
-        let subscribeCallback: (result: any, error: any, responder?: any) => void;
+        let addMessageCallback: (message: CommandMessage) => Promise<CommandMessageResponse>;
 
-        frameCommunicatorMock
-            .setup(fcm =>
-                fcm.subscribe(It.isValue(ScrollingController.triggerScrollingCommand), It.isAny()),
+        frameMessengerMock
+            .setup(fm =>
+                fm.addMessageListener(
+                    ScrollingController.triggerScrollingCommand,
+                    It.is(isFunction),
+                ),
             )
             .returns((cmd, func) => {
-                subscribeCallback = func;
+                addMessageCallback = func;
             })
-            .verifiable(Times.once());
+            .verifiable();
 
-        const messageToProcess: ScrollingWindowMessage = {
-            focusedTarget: ['a', 'b'],
+        const commandMessageToProcess: CommandMessage = {
+            command: ScrollingController.triggerScrollingCommand,
+            payload: {
+                focusedTarget: ['a', 'b'],
+            },
         };
 
-        const frameStub = {};
+        const frameStub = {} as HTMLIFrameElement;
 
         HTMLElementUtilsMock.setup(dm => dm.querySelector(It.isValue('a')))
             .returns(() => {
@@ -119,27 +141,26 @@ describe('ScrollingControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        const messageToSend: MessageRequest<ScrollingWindowMessage> = {
+        const commandMessageToSend: CommandMessage = {
             command: ScrollingController.triggerScrollingCommand,
-            frame: frameStub,
-            message: {
+            payload: {
                 focusedTarget: ['b'],
             },
-        } as MessageRequest<ScrollingWindowMessage>;
+        } as CommandMessage;
 
-        frameCommunicatorMock
-            .setup(fcm => fcm.sendMessage(It.isValue(messageToSend)))
-            .verifiable(Times.once());
+        frameMessengerMock.setup(fm =>
+            fm.sendMessageToFrame(frameStub, It.isValue(commandMessageToSend)),
+        );
 
         const testObject = new ScrollingController(
-            frameCommunicatorMock.object,
+            frameMessengerMock.object,
             HTMLElementUtilsMock.object,
         );
 
         testObject.initialize();
-        subscribeCallback(messageToProcess, null);
+        addMessageCallback(commandMessageToProcess);
 
-        frameCommunicatorMock.verifyAll();
+        frameMessengerMock.verifyAll();
         HTMLElementUtilsMock.verifyAll();
     });
 });
