@@ -52,7 +52,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>('LoadAsse
         divId: 'load-assessment-dialog-description',
         leftButtonText: 'Continue previous',
         leftButtonOnClick: continuePreviousAssessment,
-        rightButtonText: 'Load Assessment',
+        rightButtonText: 'Load assessment',
         rightButtonOnClick: loadAssessment,
         dialogFirstText: (
             <>Would you like to continue your current assessment or load the new Assessment?</>
