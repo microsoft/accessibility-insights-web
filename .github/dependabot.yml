@@ -1,6 +1,30 @@
 version: 2
 updates:
 - package-ecosystem: npm
+  directory: "/deploy/"
+  schedule:
+    interval: daily
+    time: "11:00"
+    timezone: "America/Los_Angeles" # Pacific Time
+  labels:
+  - "category: engineering"
+  - dependencies
+  commit-message:
+    prefix: chore
+    include: scope
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+    timezone: "America/Los_Angeles" # Pacific Time
+  labels:
+  - "category: engineering"
+  - dependencies
+  commit-message:
+    prefix: chore
+    include: scope
+- package-ecosystem: npm
   directory: "/"
   schedule:
     interval: daily
