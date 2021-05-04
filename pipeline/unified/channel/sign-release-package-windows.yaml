@@ -33,7 +33,7 @@ jobs:
                 inlineOperation: |
                     [
                         {
-                        "keyCode": "CP-230012",
+                        "keyCode": "CP-231552",
                         "operationSetCode": "SigntoolSign",
                         "parameters": [
                             {
