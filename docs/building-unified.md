@@ -39,7 +39,7 @@ See guidance [here](../src/tests/miscellaneous/mock-adb/README.md).
 
 #### Connecting to a real device/emulator
 
-If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand; see [Getting Started with Accessiblity Insights for Android](https://accessibilityinsights.io/docs/en/android/getstarted/setup#getting-started-with-accessibility-insights-for-android) for instructions on how to prepare a device/emulator with the Accessibility Insights for Android Service (follow its steps up until "Install the Accessibility Insights for Android app").
+If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand; see [Getting Started with Accessibility Insights for Android](https://accessibilityinsights.io/docs/en/android/getstarted/setup#getting-started-with-accessibility-insights-for-android) for instructions on how to prepare a device/emulator with the Accessibility Insights for Android Service (follow its steps up until "Install the Accessibility Insights for Android app").
 
 ```sh
 # You can leave off the with:mock-service-for-android if
