@@ -3,7 +3,6 @@
 
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
-import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
 import {
@@ -21,7 +20,7 @@ export type LoadAssessmentDialogDeps = {
 
 export interface LoadAssessmentDialogProps {
     deps: LoadAssessmentDialogDeps;
-    prevTab: PersistedTabInfo;
+    prevTab: Tab;
     newTab: Tab;
     show: boolean;
     loadedAssessmentData: VersionedAssessmentData;

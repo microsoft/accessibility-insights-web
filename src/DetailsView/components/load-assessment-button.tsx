@@ -4,24 +4,20 @@
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { Tab } from 'common/itab';
-import {
-    AssessmentStoreData,
-    PersistedTabInfo,
-} from 'common/types/store-data/assessment-result-data';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { UrlParser } from 'common/url-parser';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { LoadAssessmentDialog } from 'DetailsView/components/load-assessment-dialog';
-import { getAssessmentForLoad } from 'DetailsView/components/load-assessment-helper';
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import * as React from 'react';
 
 export type LoadAssessmentButtonDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentDataParser: AssessmentDataParser;
     urlParser: UrlParser;
-    fileReader: FileReader;
-    document: Document;
+    loadAssessmentHelper: LoadAssessmentHelper;
 };
 export interface LoadAssessmentButtonProps {
     deps: LoadAssessmentButtonDeps;
@@ -30,7 +26,7 @@ export interface LoadAssessmentButtonProps {
 }
 export interface LoadAssessmentButtonState {
     newTargetPageData: Tab;
-    prevTargetPageData: PersistedTabInfo;
+    prevTargetPageData: Tab;
     loadedAssessmentData?: VersionedAssessmentData;
     show: boolean;
 }
@@ -84,15 +80,11 @@ export class LoadAssessmentButton extends React.Component<
                     data-automation-id={loadAssessmentButtonAutomationId}
                     iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
                     onClick={() =>
-                        getAssessmentForLoad(
-                            this.props.deps.assessmentDataParser,
-                            this.props.deps.detailsViewActionMessageCreator,
-                            this.props.deps.document,
+                        this.props.deps.loadAssessmentHelper.getAssessmentForLoad(
                             this.setAssessmentState,
                             this.toggleLoadDialog,
                             this.state.prevTargetPageData,
                             this.state.newTargetPageData.id,
-                            this.props.deps.fileReader,
                         )
                     }
                 >

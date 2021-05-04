@@ -10,6 +10,7 @@ import {
     LoadAssessmentButtonProps,
     LoadAssessmentButtonDeps,
 } from 'DetailsView/components/load-assessment-button';
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -19,8 +20,7 @@ describe('LoadAssessmentButton', () => {
     const detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
     const assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
     const urlParserMock = Mock.ofType(UrlParser);
-    const fileReaderMock = Mock.ofType(FileReader);
-    const documentMock = Mock.ofType(Document);
+    const loadAssessmentHelperMock = Mock.ofType(LoadAssessmentHelper);
 
     const tabStoreData = {
         id: 5,
@@ -32,8 +32,7 @@ describe('LoadAssessmentButton', () => {
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
         assessmentDataParser: assessmentDataParserMock.object,
         urlParser: urlParserMock.object,
-        document: documentMock.object,
-        fileReader: fileReaderMock.object,
+        loadAssessmentHelper: loadAssessmentHelperMock.object,
     } as LoadAssessmentButtonDeps;
     const props = { deps, tabStoreData, assessmentStoreData } as LoadAssessmentButtonProps;
 

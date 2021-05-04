@@ -1,40 +1,48 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDataParser } from 'common/assessment-data-parser';
-import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
+import { Tab } from 'common/itab';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 
-export function getAssessmentForLoad(
-    assessmentDataParser: AssessmentDataParser,
-    detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
-    document: Document,
-    setAssessmentState: Function,
-    toggleLoadAssessmentDialog: Function,
-    prevTargetPageData: PersistedTabInfo,
-    newTargetPageId: number,
-    fileReader: FileReader,
-): void {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.a11ywebassessment';
+export class LoadAssessmentHelper {
+    constructor(
+        private readonly assessmentDataParser: AssessmentDataParser,
+        private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
+        private readonly fileReader: FileReader,
+        private readonly document: Document,
+    ) {}
 
-    const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
-        const content = readerEvent.target.result as string;
-        const parsedAssessmentData = assessmentDataParser.parseAssessmentData(content);
-        setAssessmentState(parsedAssessmentData);
+    public getAssessmentForLoad(
+        setAssessmentState: Function,
+        toggleLoadAssessmentDialog: Function,
+        prevTargetPageData: Tab,
+        newTargetPageId: number,
+    ): void {
+        const input = this.document.createElement('input');
+        input.type = 'file';
+        input.accept = '.a11ywebassessment';
 
-        if (prevTargetPageData != null) {
-            toggleLoadAssessmentDialog();
-        } else {
-            detailsViewActionMessageCreator.loadAssessment(parsedAssessmentData, newTargetPageId);
-        }
-    };
-    const onInputChange = (e: Event) => {
-        const file = (e.target as HTMLInputElement).files[0];
-        fileReader.onload = onReaderLoad;
-        fileReader.readAsText(file, 'UTF-8');
-    };
+        const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
+            const content = readerEvent.target.result as string;
+            const parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
+            setAssessmentState(parsedAssessmentData);
 
-    input.onchange = onInputChange;
-    input.click();
+            if (prevTargetPageData != null) {
+                toggleLoadAssessmentDialog();
+            } else {
+                this.detailsViewActionMessageCreator.loadAssessment(
+                    parsedAssessmentData,
+                    newTargetPageId,
+                );
+            }
+        };
+        const onInputChange = (e: Event) => {
+            const file = (e.target as HTMLInputElement).files[0];
+            this.fileReader.onload = onReaderLoad;
+            this.fileReader.readAsText(file, 'UTF-8');
+        };
+
+        input.onchange = onInputChange;
+        input.click();
+    }
 }

@@ -4,11 +4,11 @@ import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { getAssessmentForLoad } from 'DetailsView/components/load-assessment-helper';
+import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 
 import { IMock, It, Mock, Times } from 'typemoq';
 
-describe('LoadAssessmentButton', () => {
+describe('LoadAssessmentHelper', () => {
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let assessmentDataParserMock: IMock<AssessmentDataParser>;
     let fileReaderMock: IMock<FileReader>;
@@ -21,13 +21,14 @@ describe('LoadAssessmentButton', () => {
         url: 'http://test.com',
         title: 'test',
     } as PersistedTabInfo;
-    const tabIdStub = 1;
+    const tabId = 1;
     let assessmentData: VersionedAssessmentData;
     let content: string;
     let file: File;
     let inputStub;
     let event;
     let readerEvent;
+    let testSubject: LoadAssessmentHelper;
 
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
@@ -71,6 +72,13 @@ describe('LoadAssessmentButton', () => {
                 result: content,
             },
         };
+
+        testSubject = new LoadAssessmentHelper(
+            assessmentDataParserMock.object,
+            detailsViewActionMessageCreatorMock.object,
+            fileReaderMock.object,
+            documentMock.object,
+        );
     });
 
     afterEach(() => {
@@ -83,20 +91,16 @@ describe('LoadAssessmentButton', () => {
 
     it('it loads assessment when prevTargetPageData is null', () => {
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData, tabIdStub))
+            .setup(d => d.loadAssessment(assessmentData, tabId))
             .verifiable(Times.once());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
 
-        getAssessmentForLoad(
-            assessmentDataParserMock.object,
-            detailsViewActionMessageCreatorMock.object,
-            documentMock.object,
+        testSubject.getAssessmentForLoad(
             setAssessmentStateMock.object,
             toggleLoadDialogMock.object,
             null,
-            tabIdStub,
-            fileReaderMock.object,
+            tabId,
         );
 
         inputStub.onchange(event);
@@ -108,20 +112,16 @@ describe('LoadAssessmentButton', () => {
 
     it('toggles dialog when prevTargetPageData is not null', () => {
         detailsViewActionMessageCreatorMock
-            .setup(d => d.loadAssessment(assessmentData, tabIdStub))
+            .setup(d => d.loadAssessment(assessmentData, tabId))
             .verifiable(Times.never());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.once());
 
-        getAssessmentForLoad(
-            assessmentDataParserMock.object,
-            detailsViewActionMessageCreatorMock.object,
-            documentMock.object,
+        testSubject.getAssessmentForLoad(
             setAssessmentStateMock.object,
             toggleLoadDialogMock.object,
             prevTargetPageDataStub,
-            tabIdStub,
-            fileReaderMock.object,
+            tabId,
         );
 
         inputStub.onchange(event);

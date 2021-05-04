@@ -6,13 +6,12 @@ import { BlockingDialog } from 'common/components/blocking-dialog';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
-import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
 import * as styles from 'DetailsView/components/target-change-dialog.scss';
 import { DefaultButton, DialogFooter, DialogType, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 export interface ChangeAssessmentDialogProps {
-    prevTab: PersistedTabInfo;
+    prevTab: Tab;
     newTab: Tab;
     dialogContentTitle: string;
     subtitleAriaId: string;
