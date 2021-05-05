@@ -10,9 +10,9 @@ import {
     ChangeAssessmentDialog,
     ChangeAssessmentDialogProps,
 } from 'DetailsView/components/change-assessment-dialog';
+import * as styles from 'DetailsView/components/target-change-dialog.scss';
 import { isEmpty } from 'lodash';
 import { Link, TooltipHost } from 'office-ui-fabric-react';
-
 import * as React from 'react';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
@@ -31,7 +31,6 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
     const dialogProps: ChangeAssessmentDialogProps = {
         deps: props.deps,
         prevTab: props.prevTab,
-        newTab: props.newTab,
         dialogContentTitle: 'Assessment in progress',
         subtitleAriaId: 'target-change-dialog-description',
         divId: 'target-change-dialog-description',
@@ -42,13 +41,14 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         dialogFirstText: (
             <>
                 Would you like to continue your current assessment on the new target of{' '}
-                {renderCurrentTabLink(props.newTab)}
+                {renderCurrentTabLink(props.newTab)}?
             </>
         ),
         dialogNoteText:
             "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
         dialogWarningText: "If 'Start new' is selected, all previous progress will be lost.",
         show: showTargetChangeDialog(props.prevTab, props.newTab, props.deps.urlParser),
+        rightButtonStyle: styles.restartButton,
     };
 
     return <ChangeAssessmentDialog {...dialogProps} />;

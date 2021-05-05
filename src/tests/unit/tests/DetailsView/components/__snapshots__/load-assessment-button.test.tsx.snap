@@ -63,13 +63,6 @@ exports[`LoadAssessmentButton should render per the snapshot 1`] = `
       }
     }
     loadedAssessmentData={null}
-    newTab={
-      Object {
-        "id": 5,
-        "title": undefined,
-        "url": undefined,
-      }
-    }
     onClose={[Function]}
     show={false}
     tabId={5}

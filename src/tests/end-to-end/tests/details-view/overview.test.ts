@@ -13,6 +13,7 @@ describe('Details View -> Overview Page', () => {
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
     let backgroundPage: BackgroundPage;
+    let loadAssessmentCount: number = 0;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
@@ -51,6 +52,11 @@ describe('Details View -> Overview Page', () => {
         );
         await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
 
+        if (loadAssessmentCount > 0) {
+            await overviewPage.waitForSelector(overviewSelectors.loadAssessmentDialog);
+            await overviewPage.clickSelector(overviewSelectors.loadAssessmentDialogLoadButton);
+        }
+
         // Verify the summary bar counts
         const expectedSummaryBarSelector =
             overviewSelectors.outcomeSummaryBar +
@@ -77,6 +83,7 @@ describe('Details View -> Overview Page', () => {
         await elementHandle.evaluate(element => {
             element.setAttribute('aria-label', '0% Passed, 100% Incomplete, 0% Failed');
         });
+        loadAssessmentCount++;
     });
 });
 

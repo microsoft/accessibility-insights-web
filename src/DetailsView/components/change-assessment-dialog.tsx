@@ -6,24 +6,24 @@ import { BlockingDialog } from 'common/components/blocking-dialog';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { Tab } from 'common/itab';
 import { NamedFC } from 'common/react/named-fc';
+import * as styles from 'DetailsView/components/change-assessment-dialog.scss';
 import * as commonDialogStyles from 'DetailsView/components/common-dialog-styles.scss';
-import * as styles from 'DetailsView/components/target-change-dialog.scss';
 import { DefaultButton, DialogFooter, DialogType, TooltipHost } from 'office-ui-fabric-react';
 import * as React from 'react';
 export interface ChangeAssessmentDialogProps {
     prevTab: Tab;
-    newTab: Tab;
     dialogContentTitle: string;
     subtitleAriaId: string;
     divId: string;
     leftButtonText: string;
-    leftButtonOnClick;
+    leftButtonOnClick: (event: React.MouseEvent<any>) => void;
     rightButtonText: string;
-    rightButtonOnClick;
+    rightButtonOnClick: (event: React.MouseEvent<any>) => void;
     dialogFirstText: JSX.Element;
     dialogNoteText: string;
     dialogWarningText: string;
     show: boolean;
+    rightButtonStyle: string;
 }
 
 export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
@@ -42,10 +42,10 @@ export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
                     title: props.dialogContentTitle,
                 }}
                 modalProps={{
-                    className: styles.targetChangeDialogModal,
+                    className: styles.changeAssessmentDialogModal,
                     containerClassName: css(
                         commonDialogStyles.insightsDialogMainOverride,
-                        styles.targetChangeDialog,
+                        styles.changeAssessmentDialog,
                     ),
                     subtitleAriaId: props.subtitleAriaId,
                 }}
@@ -63,7 +63,7 @@ export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
                 </div>
 
                 <DialogFooter>
-                    <div className={styles.targetChangeDialogButtonContainer}>
+                    <div className={styles.changeAssessmentDialogButtonContainer}>
                         <div className={css(styles.actionCancelButtonCol, styles.continueButton)}>
                             <DefaultButton
                                 autoFocus={true}
@@ -71,7 +71,7 @@ export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
                                 onClick={props.leftButtonOnClick}
                             />
                         </div>
-                        <div className={css(styles.actionCancelButtonCol, styles.restartButton)}>
+                        <div className={css(styles.actionCancelButtonCol, props.rightButtonStyle)}>
                             <DefaultButton
                                 text={props.rightButtonText}
                                 onClick={props.rightButtonOnClick}

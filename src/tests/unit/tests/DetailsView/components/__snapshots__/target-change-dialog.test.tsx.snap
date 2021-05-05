@@ -62,6 +62,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
           test title 2
         </StyledLinkBase>
       </StyledTooltipHostBase>
+      ?
     </React.Fragment>
   }
   dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
@@ -69,19 +70,13 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   divId="target-change-dialog-description"
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
-  newTab={
-    Object {
-      "id": 123,
-      "title": "test title 2",
-      "url": "https://www.abc.com",
-    }
-  }
   prevTab={
     Object {
       "appRefreshed": true,
     }
   }
   rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
   rightButtonText="Start new"
   show={true}
   subtitleAriaId="target-change-dialog-description"
@@ -150,6 +145,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
           test title 2
         </StyledLinkBase>
       </StyledTooltipHostBase>
+      ?
     </React.Fragment>
   }
   dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
@@ -157,13 +153,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   divId="target-change-dialog-description"
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
-  newTab={
-    Object {
-      "id": 123,
-      "title": "test title 2",
-      "url": "https://www.def.com",
-    }
-  }
   prevTab={
     Object {
       "appRefreshed": true,
@@ -173,6 +162,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     }
   }
   rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
   rightButtonText="Start new"
   show={true}
   subtitleAriaId="target-change-dialog-description"
@@ -241,6 +231,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
           test title 2
         </StyledLinkBase>
       </StyledTooltipHostBase>
+      ?
     </React.Fragment>
   }
   dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
@@ -248,13 +239,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   divId="target-change-dialog-description"
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
-  newTab={
-    Object {
-      "id": 123,
-      "title": "test title 2",
-      "url": "https://www.abc.com",
-    }
-  }
   prevTab={
     Object {
       "appRefreshed": true,
@@ -264,6 +248,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     }
   }
   rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
   rightButtonText="Start new"
   show={true}
   subtitleAriaId="target-change-dialog-description"
@@ -332,6 +317,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
           test title 2
         </StyledLinkBase>
       </StyledTooltipHostBase>
+      ?
     </React.Fragment>
   }
   dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
@@ -339,13 +325,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   divId="target-change-dialog-description"
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
-  newTab={
-    Object {
-      "id": 123,
-      "title": "test title 2",
-      "url": "https://www.def.com",
-    }
-  }
   prevTab={
     Object {
       "appRefreshed": false,
@@ -355,6 +334,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     }
   }
   rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
   rightButtonText="Start new"
   show={true}
   subtitleAriaId="target-change-dialog-description"
@@ -423,6 +403,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
           test title 2
         </StyledLinkBase>
       </StyledTooltipHostBase>
+      ?
     </React.Fragment>
   }
   dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
@@ -430,13 +411,6 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
   divId="target-change-dialog-description"
   leftButtonOnClick={[Function]}
   leftButtonText="Continue previous"
-  newTab={
-    Object {
-      "id": 123,
-      "title": "test title 2",
-      "url": "https://www.def.com",
-    }
-  }
   prevTab={
     Object {
       "appRefreshed": false,
@@ -446,6 +420,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
     }
   }
   rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
   rightButtonText="Start new"
   show={true}
   subtitleAriaId="target-change-dialog-description"

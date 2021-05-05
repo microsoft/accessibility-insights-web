@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { Tab } from 'common/itab';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 
 export class LoadAssessmentHelper {
@@ -13,8 +14,8 @@ export class LoadAssessmentHelper {
     ) {}
 
     public getAssessmentForLoad(
-        setAssessmentState: Function,
-        toggleLoadAssessmentDialog: Function,
+        setAssessmentState: (versionedAssessmentData: VersionedAssessmentData) => void,
+        toggleLoadAssessmentDialog: () => void,
         prevTargetPageData: Tab,
         newTargetPageId: number,
     ): void {

@@ -76,6 +76,8 @@ export const overviewSelectors = {
     outcomeSummaryBar: getAutomationIdSelector(outcomeSummaryBarAutomationId),
     testOutcomeChips: (testName: string) =>
         getAutomationIdSelector(testSummaryStatusAutomationId(testName)) + ' .outcome-chip',
+    loadAssessmentDialog: '.ms-Dialog-inner',
+    loadAssessmentDialogLoadButton: '.ms-Dialog-inner >>  text="Load assessment"',
 };
 
 export const settingsPanelSelectors = {

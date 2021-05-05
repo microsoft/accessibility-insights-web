@@ -346,13 +346,6 @@ exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
     assessmentStoreData={Object {}}
     deps={Object {}}
     loadedAssessmentData={null}
-    newTab={
-      Object {
-        "id": 5,
-        "title": "command-bar-test-tab-title",
-        "url": undefined,
-      }
-    }
     onClose={[Function]}
     show={false}
     tabId={5}

@@ -26,8 +26,7 @@ export interface LoadAssessmentButtonProps {
 }
 export interface LoadAssessmentButtonState {
     newTargetPageData: Tab;
-    prevTargetPageData: Tab;
-    loadedAssessmentData?: VersionedAssessmentData;
+    loadedAssessmentData: VersionedAssessmentData;
     show: boolean;
 }
 
@@ -42,7 +41,6 @@ export class LoadAssessmentButton extends React.Component<
         this.state = {
             loadedAssessmentData: null,
             newTargetPageData: this.getNewTab(),
-            prevTargetPageData: props.assessmentStoreData.persistedTabInfo,
             show: false,
         };
     }
@@ -73,20 +71,25 @@ export class LoadAssessmentButton extends React.Component<
         }));
     };
 
+    private handleLoadButtonClick = () => {
+        this.props.deps.loadAssessmentHelper.getAssessmentForLoad(
+            this.setAssessmentState,
+            this.toggleLoadDialog,
+            this.props.assessmentStoreData.persistedTabInfo,
+            this.state.newTargetPageData.id,
+        );
+        this.setState(_ => ({
+            newTargetPageData: this.getNewTab(),
+        }));
+    };
+
     public render(): JSX.Element {
         return (
             <>
                 <InsightsCommandButton
                     data-automation-id={loadAssessmentButtonAutomationId}
                     iconProps={{ iconName: 'FabricOpenFolderHorizontal' }}
-                    onClick={() =>
-                        this.props.deps.loadAssessmentHelper.getAssessmentForLoad(
-                            this.setAssessmentState,
-                            this.toggleLoadDialog,
-                            this.state.prevTargetPageData,
-                            this.state.newTargetPageData.id,
-                        )
-                    }
+                    onClick={this.handleLoadButtonClick}
                 >
                     Load assessment
                 </InsightsCommandButton>
@@ -95,8 +98,7 @@ export class LoadAssessmentButton extends React.Component<
                     {...this.props}
                     tabId={this.props.tabStoreData.id}
                     loadedAssessmentData={this.state.loadedAssessmentData}
-                    prevTab={this.state.prevTargetPageData}
-                    newTab={this.state.newTargetPageData}
+                    prevTab={this.props.assessmentStoreData.persistedTabInfo}
                     show={this.state.show}
                     onClose={this.toggleLoadDialog}
                 ></LoadAssessmentDialog>
