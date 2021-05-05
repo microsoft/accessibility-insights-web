@@ -23,7 +23,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     box-shadow: 0 0 10px 0 $neutral-alpha-60;
     width: 368px;
 
-    // Hack workaround for issue https://github.com/microsoft/accessibility-insights-web/issues/4178
+    // Workaround for issue https://github.com/microsoft/accessibility-insights-web/issues/4178
     //
     // The bug seems to affect only Chromium 91 (not 90 or 92); the workaround can be removed after
     // once Edge/Chrome stable have been on 92 for a few weeks (ie, around September 2021).
