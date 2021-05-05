@@ -26,7 +26,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     // Workaround for issue https://github.com/microsoft/accessibility-insights-web/issues/4178
     //
     // The bug seems to affect only Chromium 91 (not 90 or 92); the workaround can be removed after
-    // once Edge/Chrome stable have been on 92 for a few weeks (ie, around September 2021).
+    // Edge/Chrome stable have been on 92 for a few weeks (ie, around September 2021).
     > .ms-Modal-scrollableContent {
         // This is normally 100vh, but #4178 causes "100vh" to be miscalculated as a very small
         // number. We can unset it in our case because the fixed popup window size means the dialog
