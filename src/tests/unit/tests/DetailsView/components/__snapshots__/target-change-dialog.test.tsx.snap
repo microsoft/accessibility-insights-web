@@ -75,6 +75,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "appRefreshed": true,
     }
   }
+  rightButtonDataAutomationId="target-change-start-new-button"
   rightButtonOnClick={[Function]}
   rightButtonStyle="restartButton"
   rightButtonText="Start new"
@@ -161,6 +162,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "url": "https://www.abc.com",
     }
   }
+  rightButtonDataAutomationId="target-change-start-new-button"
   rightButtonOnClick={[Function]}
   rightButtonStyle="restartButton"
   rightButtonText="Start new"
@@ -247,6 +249,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "url": "https://www.abc.com",
     }
   }
+  rightButtonDataAutomationId="target-change-start-new-button"
   rightButtonOnClick={[Function]}
   rightButtonStyle="restartButton"
   rightButtonText="Start new"
@@ -333,6 +336,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "url": "https://www.abc.com",
     }
   }
+  rightButtonDataAutomationId="target-change-start-new-button"
   rightButtonOnClick={[Function]}
   rightButtonStyle="restartButton"
   rightButtonText="Start new"
@@ -419,6 +423,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       "url": "https://www.abc.com",
     }
   }
+  rightButtonDataAutomationId="target-change-start-new-button"
   rightButtonOnClick={[Function]}
   rightButtonStyle="restartButton"
   rightButtonText="Start new"

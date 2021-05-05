@@ -24,6 +24,7 @@ export interface ChangeAssessmentDialogProps {
     dialogWarningText: string;
     show: boolean;
     rightButtonStyle: string;
+    rightButtonDataAutomationId: string;
 }
 
 export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
@@ -75,6 +76,7 @@ export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
                             <DefaultButton
                                 text={props.rightButtonText}
                                 onClick={props.rightButtonOnClick}
+                                data-automation-id={props.rightButtonDataAutomationId}
                             />
                         </div>
                     </div>

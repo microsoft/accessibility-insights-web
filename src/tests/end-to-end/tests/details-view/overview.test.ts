@@ -53,7 +53,6 @@ describe('Details View -> Overview Page', () => {
         await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
 
         if (loadAssessmentCount > 0) {
-            await overviewPage.waitForSelector(overviewSelectors.loadAssessmentDialog);
             await overviewPage.clickSelector(overviewSelectors.loadAssessmentDialogLoadButton);
         }
 

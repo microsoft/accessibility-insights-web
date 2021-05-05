@@ -18,6 +18,7 @@ export type LoadAssessmentDialogDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 };
 
+export const loadAssessmentDialogLoadButtonAutomationId = 'load-assessment-dialog-load-button';
 export interface LoadAssessmentDialogProps {
     deps: LoadAssessmentDialogDeps;
     prevTab: Tab;
@@ -59,6 +60,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>('LoadAsse
         dialogWarningText: "If 'Load assessment’ is selected, all previous progress will be lost.",
         show: props.show,
         rightButtonStyle: styles.loadButton,
+        rightButtonDataAutomationId: loadAssessmentDialogLoadButtonAutomationId,
     };
 
     return <ChangeAssessmentDialog {...dialogProps} />;

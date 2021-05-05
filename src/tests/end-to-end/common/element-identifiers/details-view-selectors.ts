@@ -7,6 +7,7 @@ import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visu
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-assessment-button';
+import { loadAssessmentDialogLoadButtonAutomationId } from 'DetailsView/components/load-assessment-dialog';
 import { overviewContainerAutomationId } from 'DetailsView/components/overview-content/overview-content-container';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
@@ -76,8 +77,9 @@ export const overviewSelectors = {
     outcomeSummaryBar: getAutomationIdSelector(outcomeSummaryBarAutomationId),
     testOutcomeChips: (testName: string) =>
         getAutomationIdSelector(testSummaryStatusAutomationId(testName)) + ' .outcome-chip',
-    loadAssessmentDialog: '.ms-Dialog-inner',
-    loadAssessmentDialogLoadButton: '.ms-Dialog-inner >>  text="Load assessment"',
+    loadAssessmentDialogLoadButton: getAutomationIdSelector(
+        loadAssessmentDialogLoadButtonAutomationId,
+    ),
 };
 
 export const settingsPanelSelectors = {

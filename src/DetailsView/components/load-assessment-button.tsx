@@ -3,7 +3,6 @@
 
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
-import { Tab } from 'common/itab';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
@@ -25,7 +24,6 @@ export interface LoadAssessmentButtonProps {
     assessmentStoreData: AssessmentStoreData;
 }
 export interface LoadAssessmentButtonState {
-    newTargetPageData: Tab;
     loadedAssessmentData: VersionedAssessmentData;
     show: boolean;
 }
@@ -40,7 +38,6 @@ export class LoadAssessmentButton extends React.Component<
         super(props);
         this.state = {
             loadedAssessmentData: null,
-            newTargetPageData: this.getNewTab(),
             show: false,
         };
     }
@@ -48,22 +45,6 @@ export class LoadAssessmentButton extends React.Component<
     private toggleLoadDialog = () => {
         this.setState(prevState => ({ show: !prevState.show }));
     };
-
-    private getNewTab(): Tab {
-        if (this.state !== undefined && this.state.loadedAssessmentData != null) {
-            return {
-                id: this.state.loadedAssessmentData.assessmentData.persistedTabInfo.id,
-                url: this.state.loadedAssessmentData.assessmentData.persistedTabInfo.url,
-                title: this.state.loadedAssessmentData.assessmentData.persistedTabInfo.title,
-            };
-        }
-
-        return {
-            id: this.props.tabStoreData.id,
-            url: this.props.tabStoreData.url,
-            title: this.props.tabStoreData.title,
-        };
-    }
 
     private setAssessmentState = (parsedAssessmentData: VersionedAssessmentData) => {
         this.setState(_ => ({
@@ -76,11 +57,8 @@ export class LoadAssessmentButton extends React.Component<
             this.setAssessmentState,
             this.toggleLoadDialog,
             this.props.assessmentStoreData.persistedTabInfo,
-            this.state.newTargetPageData.id,
+            this.props.tabStoreData.id,
         );
-        this.setState(_ => ({
-            newTargetPageData: this.getNewTab(),
-        }));
     };
 
     public render(): JSX.Element {
