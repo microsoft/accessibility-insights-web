@@ -23,6 +23,27 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     box-shadow: 0 0 10px 0 $neutral-alpha-60;
     width: 368px;
 
+    // Hack workaround for issue https://github.com/microsoft/accessibility-insights-web/issues/4178
+    //
+    // The bug seems to affect only Chromium 91 (not 90 or 92); the workaround can be removed after
+    // once Edge/Chrome stable have been on 92 for a few weeks (ie, around September 2021).
+    > .ms-Modal-scrollableContent {
+        // This is normally 100vh, but #4178 causes "100vh" to be miscalculated as a very small
+        // number. We can unset it in our case because the fixed popup window size means the dialog
+        // height is fixed at a value that doesn't actually engage max-height anyway.
+        max-height: unset;
+        // Normally, office fabric uses padding of 0/24/24/24 and uses a media query to change it to
+        // 0/16/16/16 at small window widths. #4178 means that the media query doesn't get triggered
+        // like it's supposed to, but since the popup's window width is fixed, we can just force the
+        // correct padding values without using the media query as a workaround.
+        .ms-Dialog-inner {
+            padding-top: 0px;
+            padding-right: 16px;
+            padding-bottom: 16px;
+            padding-left: 16px;
+        }
+    }
+
     .ms-Dialog-title {
         font-weight: $fontWeightSemiBold;
     }
