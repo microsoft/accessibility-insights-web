@@ -175,11 +175,16 @@ describe('DetailsViewCommandBar', () => {
 
     test('renders with report export dialog open', () => {
         const props = getProps();
-        setupReportExportDialogFactory({ isOpen: true });
-
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
         rendered.setState({ isReportExportDialogOpen: true });
 
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with load assessment dialog hidden', () => {
+        const props = getProps();
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isLoadAssessmentDialogOpen: false });
         expect(rendered.getElement()).toMatchSnapshot();
     });
 

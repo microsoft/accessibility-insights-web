@@ -1,8 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
 import { FileNameBuilder } from 'common/filename-builder';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     SaveAssessmentButton,
@@ -22,6 +25,7 @@ export type SaveAssessmentFactoryProps = {
     deps: SaveAssessmentFactoryDeps;
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
+    featureFlagStoreData: FeatureFlagStoreData;
 };
 
 export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): JSX.Element {
@@ -36,7 +40,15 @@ export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): J
     const fileName = `SavedAssessment_${fileDate}_${fileTitle}.a11ywebassessment`;
     const fileURL = props.deps.fileURLProvider.provideURL([assessmentData], 'application/json');
 
-    return <SaveAssessmentButton download={fileName} href={fileURL} {...props} />;
+    return (
+        <FlaggedComponent
+            featureFlag={FeatureFlags.saveAndLoadAssessment}
+            featureFlagStoreData={props.featureFlagStoreData}
+            enableJSXElement={
+                <SaveAssessmentButton download={fileName} href={fileURL} {...props} />
+            }
+        />
+    );
 }
 
 export function getSaveButtonForFastPass(props: SaveAssessmentFactoryProps): JSX.Element | null {
