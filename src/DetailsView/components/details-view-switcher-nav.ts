@@ -9,9 +9,14 @@ import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import {
     CommandBarProps,
+    LoadAssessmentDialogFactory,
     ReportExportDialogFactory,
     SaveAssessmentFactory,
 } from 'DetailsView/components/details-view-command-bar';
+import {
+    getLoadAssessmentDialogForAssessment,
+    getLoadAssessmentDialogForFastPass,
+} from 'DetailsView/components/load-assessment-dialog-factory';
 import {
     getReportExportDialogForAssessment,
     getReportExportDialogForFastPass,
@@ -68,6 +73,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    loadAssessmentDialogFactory: LoadAssessmentDialogFactory;
 }>;
 
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
@@ -80,6 +86,7 @@ type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
     warningConfiguration: WarningConfiguration;
     leftNavHamburgerButton: ReactFCWithDisplayName<ExpandCollpaseLeftNavButtonProps>;
+    loadAssessmentDialogFactory: LoadAssessmentDialogFactory;
 }>;
 
 export type GetDetailsSwitcherNavConfigurationProps = {
@@ -99,6 +106,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
         warningConfiguration: assessmentWarningConfiguration,
         leftNavHamburgerButton: AssessmentLeftNavHamburgerButton,
+        loadAssessmentDialogFactory: getLoadAssessmentDialogForAssessment,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
@@ -110,6 +118,7 @@ const detailsViewSwitcherNavs: {
         getSelectedDetailsView: getFastPassSelectedDetailsView,
         warningConfiguration: fastpassWarningConfiguration,
         leftNavHamburgerButton: FastPassLeftNavHamburgerButton,
+        loadAssessmentDialogFactory: getLoadAssessmentDialogForFastPass,
     },
 };
 

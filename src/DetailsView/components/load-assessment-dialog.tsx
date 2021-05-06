@@ -22,7 +22,7 @@ export const loadAssessmentDialogLoadButtonAutomationId = 'load-assessment-dialo
 export interface LoadAssessmentDialogProps {
     deps: LoadAssessmentDialogDeps;
     prevTab: Tab;
-    show: boolean;
+    isOpen: boolean;
     loadedAssessmentData: VersionedAssessmentData;
     tabId: number;
     onClose: () => void;
@@ -58,7 +58,7 @@ export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>('LoadAsse
         dialogNoteText:
             "If 'Continue previous' is selected, the assessment selected will not be loaded.",
         dialogWarningText: "If 'Load assessment’ is selected, all previous progress will be lost.",
-        show: props.show,
+        isOpen: props.isOpen,
         rightButtonStyle: styles.loadButton,
         rightButtonDataAutomationId: loadAssessmentDialogLoadButtonAutomationId,
     };

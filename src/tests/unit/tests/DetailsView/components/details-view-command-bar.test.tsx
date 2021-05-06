@@ -1,7 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
-import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    PersistedTabInfo,
+} from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -10,6 +13,7 @@ import {
     CommandBarProps,
     DetailsViewCommandBar,
     DetailsViewCommandBarProps,
+    LoadAssessmentDialogFactory,
     ReportExportDialogFactory,
     SaveAssessmentFactory,
 } from 'DetailsView/components/details-view-command-bar';
@@ -21,6 +25,7 @@ import {
     LoadAssessmentButton,
     LoadAssessmentButtonProps,
 } from 'DetailsView/components/load-assessment-button';
+import { LoadAssessmentDialogFactoryProps } from 'DetailsView/components/load-assessment-dialog-factory';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import {
     SaveAssessmentButton,
@@ -42,6 +47,7 @@ describe('DetailsViewCommandBar', () => {
     const thePageUrl = 'command-bar-test-url';
     const reportExportDialogStub = <div>Export dialog</div>;
     const saveAssessmentStub = <div>Save assessment</div>;
+    const loadAssessmentDialogStub = <div>Load Assessment</div>;
 
     let assessmentStoreData: AssessmentStoreData;
     let tabStoreData: TabStoreData;
@@ -53,6 +59,7 @@ describe('DetailsViewCommandBar', () => {
     let showReportExportButton: boolean;
     let reportExportDialogFactory: IMock<ReportExportDialogFactory>;
     let saveAssessmentFactory: IMock<SaveAssessmentFactory>;
+    let loadAssessmentDialogFactory: IMock<LoadAssessmentDialogFactory>;
     let getStartOverComponentMock: IMock<(Props: StartOverFactoryProps) => JSX.Element>;
 
     beforeEach(() => {
@@ -62,6 +69,7 @@ describe('DetailsViewCommandBar', () => {
         );
         reportExportDialogFactory = Mock.ofInstance(props => null);
         saveAssessmentFactory = Mock.ofInstance(props => null);
+        loadAssessmentDialogFactory = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
             id: 5,
@@ -78,6 +86,12 @@ describe('DetailsViewCommandBar', () => {
         };
 
         assessmentStoreData = {} as AssessmentStoreData;
+        assessmentStoreData.persistedTabInfo = {
+            id: 5,
+            title: thePageTitle,
+            isClosed: false,
+            appRefreshed: false,
+        } as PersistedTabInfo;
 
         loadAssessmentButtonPropsStub = {
             deps: {},
@@ -103,6 +117,7 @@ describe('DetailsViewCommandBar', () => {
             StartOverComponentFactory: {
                 getStartOverComponent: getStartOverComponentMock.object,
             } as StartOverComponentFactory,
+            loadAssessmentDialogFactory: loadAssessmentDialogFactory.object,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
         const scanMetadata = {
@@ -116,6 +131,7 @@ describe('DetailsViewCommandBar', () => {
             deps: {
                 detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             },
+            assessmentStoreData,
             tabStoreData,
             switcherNavConfiguration: switcherNavConfiguration,
             scanMetadata: scanMetadata,
@@ -163,6 +179,15 @@ describe('DetailsViewCommandBar', () => {
 
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
         rendered.setState({ isReportExportDialogOpen: true });
+
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with load assessment dialog open', () => {
+        const props = getProps();
+        setupLoadAssessmentDialogFactory({ isOpen: true });
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isLoadAssessmentDialogOpen: true });
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
@@ -341,6 +366,15 @@ describe('DetailsViewCommandBar', () => {
     ): void {
         const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
         reportExportDialogFactory.setup(r => r(argMatcher)).returns(() => reportExportDialogStub);
+    }
+
+    function setupLoadAssessmentDialogFactory(
+        expectedProps?: Partial<LoadAssessmentDialogFactoryProps>,
+    ): void {
+        const argMatcher = isNil(expectedProps) ? It.isAny() : It.isObjectWith(expectedProps);
+        loadAssessmentDialogFactory
+            .setup(ladf => ladf(argMatcher))
+            .returns(() => loadAssessmentDialogStub);
     }
 
     function setupSaveAssessmentFactory(expectedProps?: Partial<SaveAssessmentFactoryProps>): void {

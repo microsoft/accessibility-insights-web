@@ -47,7 +47,7 @@ describe('LoadAssessmentDialog', () => {
             tabId: 5,
             loadedAssessmentData: {} as VersionedAssessmentData,
             onClose: () => {},
-            show: true,
+            isOpen: true,
         };
     });
 

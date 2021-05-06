@@ -13,7 +13,7 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
     </NewTabLinkWithTooltip>
   </div>
   <CommandBarButtonsMenu renderExportReportButton={[Function]} renderSaveAssessmentButton={[Function]} renderLoadAssessmentButton={[Function]} featureFlagStoreData={{...}} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
 </div>"
 `;
 
@@ -57,6 +57,16 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
       Save assessment
     </div>
     <LoadAssessmentButton
+      assessmentStoreData={
+        Object {
+          "persistedTabInfo": Object {
+            "appRefreshed": false,
+            "id": 5,
+            "isClosed": false,
+            "title": "command-bar-test-tab-title",
+          },
+        }
+      }
       deps={
         Object {
           "detailsViewActionMessageCreator": proxy {
@@ -95,11 +105,13 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "saveAndLoadAssessment": true,
         }
       }
+      handleLoadAssessmentButtonClick={[Function]}
       narrowModeStatus={
         Object {
           "isCommandBarCollapsed": false,
         }
       }
+      onClose={[Function]}
       scanMetadata={
         Object {
           "targetAppInfo": Object {
@@ -117,6 +129,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "StartOverComponentFactory": Object {
             "getStartOverComponent": [Function],
           },
+          "loadAssessmentDialogFactory": [Function],
           "shouldShowReportExportButton": [Function],
         }
       }
@@ -136,6 +149,16 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
     Export dialog
   </div>
   <StartOverDialog
+    assessmentStoreData={
+      Object {
+        "persistedTabInfo": Object {
+          "appRefreshed": false,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -198,6 +221,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
+        "loadAssessmentDialogFactory": [Function],
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -253,6 +277,16 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
     Export dialog
   </div>
   <StartOverDialog
+    assessmentStoreData={
+      Object {
+        "persistedTabInfo": Object {
+          "appRefreshed": false,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -315,6 +349,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
+        "loadAssessmentDialogFactory": [Function],
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -330,37 +365,19 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
 `;
 
 exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
-<React.Fragment>
-  <InsightsCommandButton
-    data-automation-id="load-assessment-button"
-    iconProps={
-      Object {
-        "iconName": "FabricOpenFolderHorizontal",
-      }
+<InsightsCommandButton
+  data-automation-id="load-assessment-button"
+  iconProps={
+    Object {
+      "iconName": "FabricOpenFolderHorizontal",
     }
-    onClick={[Function]}
-  >
-    Load assessment
-  </InsightsCommandButton>
-  <LoadAssessment
-    assessmentStoreData={Object {}}
-    deps={Object {}}
-    loadedAssessmentData={null}
-    onClose={[Function]}
-    show={false}
-    tabId={5}
-    tabStoreData={
-      Object {
-        "id": 5,
-        "isClosed": false,
-        "title": "command-bar-test-tab-title",
-      }
-    }
-  />
-</React.Fragment>
+  }
+>
+  Load assessment
+</InsightsCommandButton>
 `;
 
-exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
+exports[`DetailsViewCommandBar renders with load assessment dialog open 1`] = `
 <div
   aria-label="command bar"
   className="detailsViewCommandBar"
@@ -398,9 +415,19 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     />
   </div>
   <div>
-    Export dialog
+    Load Assessment
   </div>
   <StartOverDialog
+    assessmentStoreData={
+      Object {
+        "persistedTabInfo": Object {
+          "appRefreshed": false,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -459,6 +486,131 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
+        "loadAssessmentDialogFactory": [Function],
+        "shouldShowReportExportButton": [Function],
+      }
+    }
+    tabStoreData={
+      Object {
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
+<div
+  aria-label="command bar"
+  className="detailsViewCommandBar"
+  role="region"
+>
+  <div
+    aria-labelledby="switch-to-target"
+    className="detailsViewTargetPage"
+  >
+    <span
+      id="switch-to-target"
+    >
+      Target page: 
+    </span>
+    <NewTabLinkWithTooltip
+      aria-label="Switch to target page: command-bar-test-tab-title"
+      className="targetPageLink"
+      onClick={[Function]}
+      role="link"
+      tooltipContent="Switch to target page: command-bar-test-tab-title"
+    >
+      <span
+        className="targetPageTitle"
+      >
+        command-bar-test-tab-title
+      </span>
+    </NewTabLinkWithTooltip>
+  </div>
+  <div
+    className="detailsViewCommandButtons"
+  >
+    <ReportExportButton
+      buttonRef={[Function]}
+      showReportExportDialog={[Function]}
+    />
+  </div>
+  <div>
+    Export dialog
+  </div>
+  <StartOverDialog
+    assessmentStoreData={
+      Object {
+        "persistedTabInfo": Object {
+          "appRefreshed": false,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
+    deps={
+      Object {
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "saveAssessment": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+      }
+    }
+    dialogState="none"
+    dismissDialog={[Function]}
+    featureFlagStoreData={Object {}}
+    narrowModeStatus={
+      Object {
+        "isCommandBarCollapsed": false,
+      }
+    }
+    scanMetadata={
+      Object {
+        "targetAppInfo": Object {
+          "name": "command-bar-test-tab-title",
+          "url": "command-bar-test-url",
+        },
+      }
+    }
+    switcherNavConfiguration={
+      Object {
+        "CommandBar": [Function],
+        "LeftNav": [Function],
+        "ReportExportDialogFactory": [Function],
+        "SaveAssessmentFactory": [Function],
+        "StartOverComponentFactory": Object {
+          "getStartOverComponent": [Function],
+        },
+        "loadAssessmentDialogFactory": [Function],
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -503,7 +655,7 @@ exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} />
 </div>"
 `;
 
@@ -522,7 +674,7 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
   <div className=\\"detailsViewCommandButtons\\">
     <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
   </div>
-  <StartOverDialog deps={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"test\\" dismissDialog={[Function]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} featureFlagStoreData={{...}} dialogState=\\"test\\" dismissDialog={[Function]} />
 </div>"
 `;
 
@@ -559,6 +711,16 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
     Export dialog
   </div>
   <StartOverDialog
+    assessmentStoreData={
+      Object {
+        "persistedTabInfo": Object {
+          "appRefreshed": false,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -621,6 +783,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
+        "loadAssessmentDialogFactory": [Function],
         "shouldShowReportExportButton": [Function],
       }
     }
@@ -675,6 +838,16 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
     Export dialog
   </div>
   <StartOverDialog
+    assessmentStoreData={
+      Object {
+        "persistedTabInfo": Object {
+          "appRefreshed": false,
+          "id": 5,
+          "isClosed": false,
+          "title": "command-bar-test-tab-title",
+        },
+      }
+    }
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -737,6 +910,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
         "StartOverComponentFactory": Object {
           "getStartOverComponent": [Function],
         },
+        "loadAssessmentDialogFactory": [Function],
         "shouldShowReportExportButton": [Function],
       }
     }

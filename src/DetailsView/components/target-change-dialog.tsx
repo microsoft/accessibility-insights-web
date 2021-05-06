@@ -47,7 +47,7 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
         dialogNoteText:
             "If 'Continue previous' is selected, the previous assessment will be connected to this new page.",
         dialogWarningText: "If 'Start new' is selected, all previous progress will be lost.",
-        show: showTargetChangeDialog(props.prevTab, props.newTab, props.deps.urlParser),
+        isOpen: showTargetChangeDialog(props.prevTab, props.newTab, props.deps.urlParser),
         rightButtonStyle: styles.restartButton,
         rightButtonDataAutomationId: 'target-change-start-new-button',
     };
