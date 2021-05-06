@@ -13,6 +13,7 @@ describe('Details View -> Overview Page', () => {
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
     let backgroundPage: BackgroundPage;
+    let loadAssessmentCount: number = 0;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
@@ -40,23 +41,48 @@ describe('Details View -> Overview Page', () => {
         },
     );
 
-    // This test doesn't currently handle the "ruleset changed between save and load" case;
-    // temporarily skipping it until that support is added in a later PR.
-    it.skip('should load assessment with upload of valid a11yassessment file', async () => {
+    it.each`
+        file
+        ${'web@2.25.0-valid-mixed-results.a11ywebassessment'}
+        ${'web@2.26.0-valid-mixed-results.a11ywebassessment'}
+    `('should display pinned results when loading $file', async ({ file }) => {
         await backgroundPage.enableFeatureFlag('saveAndLoadAssessment');
         await overviewPage.setFileForUpload(
-            './src/tests/end-to-end/test-resources/saved-assessment-files/saved_assessment_test_file.a11ywebassessment',
+            `${__dirname}/../../test-resources/saved-assessment-files/${file}`,
         );
         await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
 
-        await overviewPage.waitForSelector(overviewSelectors.outcomeChipFail);
+        if (loadAssessmentCount > 0) {
+            await overviewPage.clickSelector(overviewSelectors.loadAssessmentDialogLoadButton);
+        }
 
-        const summaryBar = await overviewPage.getSelectorElement(
+        // Verify the summary bar counts
+        const expectedSummaryBarSelector =
+            overviewSelectors.outcomeSummaryBar +
+            `:not([aria-label="0% Passed, 100% Incomplete, 0% Failed"])`;
+        await overviewPage.waitForSelector(expectedSummaryBarSelector);
+
+        // Verify the "Automated checks" counts
+        const automatedChecksOutcomeChips = await overviewPage.getSelectorElements(
+            overviewSelectors.testOutcomeChips('Automated checks'),
+        );
+        const automatedChecksOutcomeTitles = await Promise.all(
+            automatedChecksOutcomeChips.map(async chip => await chip.getAttribute('title')),
+        );
+
+        automatedChecksOutcomeTitles.map(title =>
+            expect(parseInt(title.charAt(0))).toBeGreaterThan(0),
+        );
+
+        const elementHandle = await overviewPage.getSelectorElement(
             overviewSelectors.outcomeSummaryBar,
         );
-        const label = await summaryBar.evaluate(element => element.getAttribute('aria-label'));
 
-        expect(parseInt(label.charAt(0))).toBeGreaterThan(0);
+        //reset aria label for next pass
+        await elementHandle.evaluate(element => {
+            element.setAttribute('aria-label', '0% Passed, 100% Incomplete, 0% Failed');
+        });
+        loadAssessmentCount++;
     });
 });
 

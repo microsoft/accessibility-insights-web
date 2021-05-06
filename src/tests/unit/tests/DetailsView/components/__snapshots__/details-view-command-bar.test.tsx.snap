@@ -122,6 +122,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
       }
       tabStoreData={
         Object {
+          "id": 5,
           "isClosed": false,
           "title": "command-bar-test-tab-title",
         }
@@ -202,6 +203,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -318,6 +320,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -327,17 +330,34 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
 `;
 
 exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
-<InsightsCommandButton
-  data-automation-id="load-assessment-button"
-  iconProps={
-    Object {
-      "iconName": "FabricOpenFolderHorizontal",
+<React.Fragment>
+  <InsightsCommandButton
+    data-automation-id="load-assessment-button"
+    iconProps={
+      Object {
+        "iconName": "FabricOpenFolderHorizontal",
+      }
     }
-  }
-  onClick={[Function]}
->
-  Load assessment
-</InsightsCommandButton>
+    onClick={[Function]}
+  >
+    Load assessment
+  </InsightsCommandButton>
+  <LoadAssessment
+    assessmentStoreData={Object {}}
+    deps={Object {}}
+    loadedAssessmentData={null}
+    onClose={[Function]}
+    show={false}
+    tabId={5}
+    tabStoreData={
+      Object {
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</React.Fragment>
 `;
 
 exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
@@ -444,6 +464,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -605,6 +626,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -720,6 +742,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }

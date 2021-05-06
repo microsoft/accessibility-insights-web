@@ -6,6 +6,9 @@ import { AssessmentSummaryReportModel } from '../assessment-report-model';
 import { OutcomeChipSet } from './outcome-chip-set';
 import { OutcomeIconSet } from './outcome-icon-set';
 
+export const testSummaryStatusAutomationId = (testDisplayName: string) =>
+    `test-summary-status/${testDisplayName}`;
+
 export interface AssessmentSummaryDetailsProps {
     testSummaries: AssessmentSummaryReportModel[];
 }
@@ -32,7 +35,11 @@ export class AssessmentSummaryDetails extends React.Component<AssessmentSummaryD
                     <div role="cell" className={styles.testSummaryDisplayName}>
                         {summary.displayName}
                     </div>
-                    <div role="cell" className={styles.testSummaryStatus}>
+                    <div
+                        role="cell"
+                        className={styles.testSummaryStatus}
+                        data-automation-id={testSummaryStatusAutomationId(summary.displayName)}
+                    >
                         {summary.pass + summary.incomplete + summary.fail > 7 ? (
                             <OutcomeChipSet {...summary} />
                         ) : (
