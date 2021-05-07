@@ -100,6 +100,7 @@ export const Messages = {
         ScanUpdate: `${messagePrefix}/assessment/scanUpdate`,
         ContinuePreviousAssessment: `${messagePrefix}/assessment/continuePreviousAssessment`,
         LoadAssessment: `${messagePrefix}/assessment/loadAssessment`,
+        LoadAssessmentFinishedUpload: `${messagePrefix}/assessment/loadAssessmentFinishedUpload`,
         SaveAssessment: `${messagePrefix}/assessment/saveAssessment`,
     },
 

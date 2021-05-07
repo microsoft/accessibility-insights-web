@@ -3,6 +3,7 @@
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { generateUID, UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
@@ -30,11 +31,12 @@ export const createBuilder = (
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
     getToolData: ToolDataDelegate,
+    friendlyNameProvider: AndroidFriendlyDeviceNameProvider,
 ) => (scanResults: AndroidScanResults): UnifiedScanCompletedPayload => {
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
-        platformInfo: getPlatformData(scanResults) ?? undefined,
+        platformInfo: getPlatformData(scanResults, friendlyNameProvider) ?? undefined,
         toolInfo: getToolData(scanResults),
         timestamp: scanResults.analysisTimestamp ?? undefined,
         targetAppInfo: {
@@ -46,7 +48,10 @@ export const createBuilder = (
     return payload;
 };
 
-export const createDefaultBuilder = (getToolData: ToolDataDelegate) => {
+export const createDefaultBuilder = (
+    getToolData: ToolDataDelegate,
+    friendlyNameProvider: AndroidFriendlyDeviceNameProvider,
+) => {
     return createBuilder(
         convertScanResultsToUnifiedResults,
         convertScanResultsToUnifiedRules,
@@ -54,5 +59,6 @@ export const createDefaultBuilder = (getToolData: ToolDataDelegate) => {
         new RuleInformationProvider(),
         generateUID,
         getToolData,
+        friendlyNameProvider,
     );
 };

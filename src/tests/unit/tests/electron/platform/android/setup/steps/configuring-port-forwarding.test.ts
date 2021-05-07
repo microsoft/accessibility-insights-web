@@ -148,9 +148,10 @@ describe('Android setup step: configuringPortForwarding', () => {
         },
     );
 
-    it('onEnter (with previous state) transitions to prompt-configuring-port-forwarding-failed with old state on removeTcpForwarding failure', async () => {
-        const startingAppName = 'old app';
+    it('onEnter (with previous state) ignores errors from removeTcpForwarding', async () => {
         const startingScanPort = 1;
+        const newScanPort = 2;
+        const deviceConfig = { appIdentifier: 'new app' } as DeviceConfig;
         mockStoreState = {
             appName: 'old app',
             scanPort: startingScanPort,
@@ -161,10 +162,14 @@ describe('Android setup step: configuringPortForwarding', () => {
             .returns(() => Promise.reject(new Error('error from removeTcpForwarding')))
             .verifiable(Times.once());
 
-        depsMock.setup(m => m.setupTcpForwarding()).verifiable(Times.never());
+        depsMock
+            .setup(m => m.setupTcpForwarding())
+            .returns(() => Promise.resolve(newScanPort))
+            .verifiable(Times.once());
 
-        stepTransitionMock
-            .setup(m => m('prompt-configuring-port-forwarding-failed'))
+        depsMock
+            .setup(m => m.fetchDeviceConfig(newScanPort))
+            .returns(_ => Promise.resolve(deviceConfig))
             .verifiable(Times.once());
 
         const step = configuringPortForwarding(
@@ -174,8 +179,8 @@ describe('Android setup step: configuringPortForwarding', () => {
         );
         await step.onEnter();
 
-        expect(mockStoreState.appName).toBe(startingAppName);
-        expect(mockStoreState.scanPort).toBe(startingScanPort);
+        expect(mockStoreState.appName).toBe(deviceConfig.appIdentifier);
+        expect(mockStoreState.scanPort).toBe(newScanPort);
     });
 
     it.each`

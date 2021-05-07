@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`convertScanResultsToPlatformData produces the pinned output for the pinned example input 1`] = `
+exports[`convertScanResultsToPlatformData with device name produces the pinned output for the pinned example input 1`] = `
 Object {
   "deviceName": "Test Android Device",
   "osInfo": Object {

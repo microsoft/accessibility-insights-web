@@ -7,5 +7,6 @@ export const promptConnectedStartTesting: AndroidSetupStepConfig = (stepTransiti
     actions: {
         cancel: () => stepTransition('prompt-choose-device'),
         rescan: () => stepTransition('detect-devices'),
+        readyToStart: () => stepTransition('prompt-connect-to-device'), // Reset state after leaving setup dialogs
     },
 });

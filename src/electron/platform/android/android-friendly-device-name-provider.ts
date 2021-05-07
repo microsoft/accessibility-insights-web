@@ -10,10 +10,12 @@ interface MarketingInfo {
 
 export class AndroidFriendlyDeviceNameProvider {
     public getFriendlyName(model: string): string {
-        const names: MarketingInfo[] = getDevicesByModel(model);
+        if (model) {
+            const names: MarketingInfo[] = getDevicesByModel(model);
 
-        if (names.length > 0) {
-            return `${model} [${names[0].brand} ${names[0].name}]`;
+            if (names.length > 0) {
+                return `${model} [${names[0].brand} ${names[0].name}]`;
+            }
         }
 
         return model;

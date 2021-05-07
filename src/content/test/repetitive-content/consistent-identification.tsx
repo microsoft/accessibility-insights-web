@@ -58,7 +58,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </Markup.HyperLink>
         </Markup.Links>
 
-        <h3>Sufficent techniques</h3>
+        <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G197">
                 Using labels, names, and text alternatives consistently for content that has the same functionality
