@@ -25,7 +25,6 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
         }
       }
       issueDetailsData={Object {}}
-      onClick={[Function]}
     />
     <IssueFilingButton
       deps={
@@ -74,7 +73,6 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
         }
       }
       issueDetailsData={Object {}}
-      onClick={[Function]}
     />
     <IssueFilingButton
       deps={
@@ -129,7 +127,6 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
         }
       }
       issueDetailsData={Object {}}
-      onClick={[Function]}
     />
     <IssueFilingButton
       deps={
@@ -178,7 +175,6 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
         }
       }
       issueDetailsData={Object {}}
-      onClick={[Function]}
     />
     <IssueFilingButton
       deps={

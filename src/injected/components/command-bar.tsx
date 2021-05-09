@@ -40,8 +40,7 @@ export type CommandBarProps = {
     shouldShowInspectButtonMessage: () => boolean;
     devToolsShortcut: string;
     hasSecureTargetPage: boolean;
-    shouldShowInsecureOriginPageMessage: () => boolean;
-    onClickCopyIssueDetailsButtonHelpMessage: (event: React.MouseEvent<any, MouseEvent>) => void;
+    shouldShowInsecureOriginPageMessage: boolean;
 };
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
@@ -77,16 +76,11 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     };
 
     const renderCopyIssueDetailsButton = (issueData: CreateIssueDetailsTextData): JSX.Element => {
-        const onClick = (event: React.MouseEvent<any, MouseEvent>) => {
-            props.onClickCopyIssueDetailsButton(event);
-            props.onClickCopyIssueDetailsButtonHelpMessage(event);
-        };
-
         return (
             <CopyIssueDetailsButton
                 deps={props.deps}
                 issueDetailsData={issueData}
-                onClick={onClick}
+                onClick={props.onClickCopyIssueDetailsButton}
                 hasSecureTargetPage={props.hasSecureTargetPage}
             />
         );
@@ -114,7 +108,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     };
 
     const renderCopyIssueDetailsMessage = (): JSX.Element => {
-        if (props.shouldShowInsecureOriginPageMessage()) {
+        if (props.shouldShowInsecureOriginPageMessage) {
             return (
                 <div role="alert" className="copy-issue-details-button-help">
                     To copy failure details, first open the details page.

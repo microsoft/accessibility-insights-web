@@ -55,8 +55,7 @@ describe('CommandBar', () => {
             'RR-rule-id': ruleResult,
         },
         hasSecureTargetPage: undefined,
-        shouldShowInsecureOriginPageMessage: () => false,
-        onClickCopyIssueDetailsButtonHelpMessage: () => false,
+        shouldShowInsecureOriginPageMessage: false,
     };
 
     beforeAll(() => {
@@ -89,7 +88,7 @@ describe('CommandBar', () => {
                 const props = {
                     ...defaultCommandBarProps,
 
-                    shouldShowInsecureOriginPageMessage: () => show,
+                    shouldShowInsecureOriginPageMessage: show,
                 };
 
                 const wrapper = shallow(<CommandBar {...props} />);

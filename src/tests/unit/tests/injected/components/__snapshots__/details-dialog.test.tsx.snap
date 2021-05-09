@@ -125,9 +125,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
       }
       hasSecureTargetPage={true}
       onClickCopyIssueDetailsButton={[Function]}
-      onClickCopyIssueDetailsButtonHelpMessage={[Function]}
       onClickInspectButton={[Function]}
-      shouldShowInsecureOriginPageMessage={[Function]}
+      shouldShowInsecureOriginPageMessage={false}
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -180,7 +179,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
           "onClickBackButton": [Function],
-          "onClickCopyIssueDetailsButtonHelpMessage": [Function],
+          "onClickCopyIssueDetailsButton": [Function],
           "onClickInspectButton": [Function],
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
@@ -240,6 +239,7 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
           },
           "refs": Object {},
           "setState": [Function],
+          "shouldShowInsecureOriginPageMessage": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
@@ -461,9 +461,8 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                     }
                     hasSecureTargetPage={true}
                     onClickCopyIssueDetailsButton={[Function]}
-                    onClickCopyIssueDetailsButtonHelpMessage={[Function]}
                     onClickInspectButton={[Function]}
-                    shouldShowInsecureOriginPageMessage={[Function]}
+                    shouldShowInsecureOriginPageMessage={false}
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -689,9 +688,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
       }
       hasSecureTargetPage={true}
       onClickCopyIssueDetailsButton={[Function]}
-      onClickCopyIssueDetailsButtonHelpMessage={[Function]}
       onClickInspectButton={[Function]}
-      shouldShowInsecureOriginPageMessage={[Function]}
+      shouldShowInsecureOriginPageMessage={false}
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -744,7 +742,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
           "onClickBackButton": [Function],
-          "onClickCopyIssueDetailsButtonHelpMessage": [Function],
+          "onClickCopyIssueDetailsButton": [Function],
           "onClickInspectButton": [Function],
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
@@ -804,6 +802,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
           },
           "refs": Object {},
           "setState": [Function],
+          "shouldShowInsecureOriginPageMessage": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
@@ -1025,9 +1024,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
                     }
                     hasSecureTargetPage={true}
                     onClickCopyIssueDetailsButton={[Function]}
-                    onClickCopyIssueDetailsButtonHelpMessage={[Function]}
                     onClickInspectButton={[Function]}
-                    shouldShowInsecureOriginPageMessage={[Function]}
+                    shouldShowInsecureOriginPageMessage={false}
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -1253,9 +1251,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
       }
       hasSecureTargetPage={true}
       onClickCopyIssueDetailsButton={[Function]}
-      onClickCopyIssueDetailsButtonHelpMessage={[Function]}
       onClickInspectButton={[Function]}
-      shouldShowInsecureOriginPageMessage={[Function]}
+      shouldShowInsecureOriginPageMessage={false}
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -1308,7 +1305,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
           "onClickBackButton": [Function],
-          "onClickCopyIssueDetailsButtonHelpMessage": [Function],
+          "onClickCopyIssueDetailsButton": [Function],
           "onClickInspectButton": [Function],
           "onClickNextButton": [Function],
           "onHideDialog": [Function],
@@ -1368,6 +1365,7 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
           },
           "refs": Object {},
           "setState": [Function],
+          "shouldShowInsecureOriginPageMessage": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
@@ -1589,9 +1587,8 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
                     }
                     hasSecureTargetPage={true}
                     onClickCopyIssueDetailsButton={[Function]}
-                    onClickCopyIssueDetailsButtonHelpMessage={[Function]}
                     onClickInspectButton={[Function]}
-                    shouldShowInsecureOriginPageMessage={[Function]}
+                    shouldShowInsecureOriginPageMessage={false}
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div

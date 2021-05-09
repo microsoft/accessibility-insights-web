@@ -87,10 +87,11 @@ export class DetailsDialogHandler {
         return this.windowUtils.isSecureOrigin();
     };
 
-    public copyIssueDetailsHelpMessageHandler = (
+    public copyIssueDetailsButtonClickHandler = (
         dialog: DetailsDialog,
-        event: React.SyntheticEvent<MouseEvent>,
+        event: React.MouseEvent<MouseEvent>,
     ): void => {
+        dialog.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked(event);
         if (!this.isTargetPageOriginSecure()) {
             dialog.setState({ showInsecureOriginPageMessage: true });
         } else {

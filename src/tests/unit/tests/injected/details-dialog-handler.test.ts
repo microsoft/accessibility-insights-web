@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { WindowUtils } from 'common/window-utils';
+import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../../common/base-store';
@@ -178,12 +179,34 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test.each([true, false])(
-        'copyIssueDetailsHelpMessageHandler when isTargetPageOriginSecure=%s',
+        'copyIssueDetailsButtonClickHandler when isTargetPageOriginSecure=%s',
         isTargetPageOriginSecure => {
+            const targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>(
+                undefined,
+                MockBehavior.Strict,
+            );
+
             const eventFactory = new EventStubFactory();
             const event = eventFactory.createMouseClickEvent();
 
             testSubject.isTargetPageOriginSecure = () => isTargetPageOriginSecure;
+
+            targetPageActionMessageCreatorMock
+                .setup(creator => creator.copyIssueDetailsClicked(It.isValue(event as any)))
+                .verifiable(Times.atLeastOnce());
+
+            detailsDialogMock
+                .setup(dialog => dialog.props)
+                .returns(() => {
+                    return {
+                        deps: {
+                            targetPageActionMessageCreator:
+                                targetPageActionMessageCreatorMock.object,
+                        },
+                    } as any;
+                })
+                .verifiable(Times.atLeastOnce());
+
             detailsDialogMock
                 .setup(dialog =>
                     dialog.setState(
@@ -192,9 +215,10 @@ describe('DetailsDialogHandlerTest', () => {
                 )
                 .verifiable(Times.once());
 
-            testSubject.copyIssueDetailsHelpMessageHandler(detailsDialogMock.object, event as any);
+            testSubject.copyIssueDetailsButtonClickHandler(detailsDialogMock.object, event as any);
 
             detailsDialogMock.verifyAll();
+            targetPageActionMessageCreatorMock.verifyAll();
         },
     );
 
