@@ -61,7 +61,7 @@ describe('LoadAssessmentButton', () => {
 
     it('should render per the snapshot', () => {
         const rendered = shallow(<LoadAssessmentButton {...props} />);
-        expect(rendered).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     it('should call load button click method on click', () => {

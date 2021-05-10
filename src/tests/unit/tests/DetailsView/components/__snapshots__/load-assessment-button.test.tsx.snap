@@ -1,3 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoadAssessmentButton should render per the snapshot 1`] = `ShallowWrapper {}`;
+exports[`LoadAssessmentButton should render per the snapshot 1`] = `
+<InsightsCommandButton
+  data-automation-id="load-assessment-button"
+  iconProps={
+    Object {
+      "iconName": "FabricOpenFolderHorizontal",
+    }
+  }
+  onClick={[Function]}
+>
+  Load assessment
+</InsightsCommandButton>
+`;
