@@ -2,21 +2,23 @@
 // Licensed under the MIT License.
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import {
+    LoadAssessmentPayload,
     OnDetailsViewPivotSelected,
     SetAllUrlsPermissionStatePayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
     COPY_ISSUE_DETAILS,
-    DETAILS_VIEW_OPEN,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    EXPORT_RESULTS,
+    DETAILS_VIEW_OPEN,
     ExportResultsTelemetryData,
+    EXPORT_RESULTS,
     FeatureFlagToggleTelemetryData,
     LEFT_NAV_PANEL_EXPANDED,
     RequirementActionTelemetryData,
@@ -484,6 +486,46 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                 dispatcher.dispatchMessage(
                     It.isValue(expectedMessageToSetDetailsViewRightContentPanel),
                 ),
+            Times.once(),
+        );
+    });
+
+    test('loadAssessment', () => {
+        const assessmentData: VersionedAssessmentData = {
+            version: 2,
+            assessmentData: {} as AssessmentStoreData,
+        };
+        const tabId = -1;
+        const telemetry: BaseTelemetryData = {
+            triggeredBy: TriggeredByNotApplicable,
+            source: TelemetryEventSource.DetailsView,
+        };
+
+        const expectedMessageToLoadAssessment = {
+            messageType: Messages.Assessment.LoadAssessment,
+            payload: {
+                tabId,
+                versionedAssessmentData: assessmentData,
+                telemetry,
+            } as LoadAssessmentPayload,
+        };
+        const expectedMessageToGoToOverview = {
+            messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
+            payload: 'Overview',
+        };
+
+        telemetryFactoryMock
+            .setup(tf => tf.fromDetailsViewNoTriggeredBy())
+            .returns(() => telemetry);
+
+        testSubject.loadAssessment(assessmentData, tabId);
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessageToLoadAssessment)),
+            Times.once(),
+        );
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessageToGoToOverview)),
             Times.once(),
         );
     });

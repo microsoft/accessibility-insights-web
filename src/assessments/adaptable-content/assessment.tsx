@@ -14,7 +14,7 @@ import { Reflow } from './test-steps/reflow';
 import { ResizeText } from './test-steps/resize-text';
 import { TextSpacing } from './test-steps/text-spacing';
 
-const key = 'textLegibility'; // keeping this as the key for backwards compatability sake, since the test was originally called text legibility
+const key = 'textLegibility'; // keeping this as the key for backward compatability, since the test was originally called text legibility
 const title = 'Adaptable content';
 const { guidance } = content.adaptableContent;
 

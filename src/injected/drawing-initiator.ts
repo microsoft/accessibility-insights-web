@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { DictionaryStringTo } from '../types/common-types';
 import { DrawingController, VisualizationWindowMessage } from './drawing-controller';
 import {
     AssessmentVisualizationInstance,
@@ -11,19 +11,15 @@ import {
 import { VisualizationInstanceProcessorCallback } from './visualization-instance-processor';
 
 export class DrawingInitiator {
-    private drawingController: DrawingController;
+    constructor(private readonly drawingController: DrawingController) {}
 
-    constructor(drawingController: DrawingController) {
-        this.drawingController = drawingController;
-    }
-
-    public enableVisualization(
+    public enableVisualization = async (
         visualizationType: VisualizationType,
         featureFlagStoreData: FeatureFlagStoreData,
-        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+        selectorMap: SelectorToVisualizationMap,
         configId: string,
         processor: VisualizationInstanceProcessorCallback,
-    ): void {
+    ): Promise<void> => {
         if (selectorMap == null) {
             return;
         }
@@ -42,8 +38,8 @@ export class DrawingInitiator {
             configId: configId,
         };
 
-        this.drawingController.processRequest(visualizationMessage);
-    }
+        await this.drawingController.processRequest(visualizationMessage);
+    };
 
     private initializeTargetIndex(elementResults: AxeResultsWithFrameLevel[]): void {
         if (elementResults != null) {
@@ -53,11 +49,11 @@ export class DrawingInitiator {
         }
     }
 
-    public disableVisualization(
+    public disableVisualization = async (
         visualizationType: VisualizationType,
         featureFlagStoreData: FeatureFlagStoreData,
         configId: string,
-    ): void {
+    ): Promise<void> => {
         const visualizationMessage: VisualizationWindowMessage = {
             visualizationType: visualizationType,
             isEnabled: false,
@@ -65,11 +61,11 @@ export class DrawingInitiator {
             configId: configId,
         };
 
-        this.drawingController.processRequest(visualizationMessage);
-    }
+        await this.drawingController.processRequest(visualizationMessage);
+    };
 
     private getElementResults(
-        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+        selectorMap: SelectorToVisualizationMap,
     ): AssessmentVisualizationInstance[] {
         return Object.keys(selectorMap).map(key => selectorMap[key]);
     }

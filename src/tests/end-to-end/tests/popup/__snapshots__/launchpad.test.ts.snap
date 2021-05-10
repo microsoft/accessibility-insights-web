@@ -135,7 +135,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
                     class="launch-pad-item-description"
                     id="launch-pad-item-description-000"
                   >
-                    Run two tests to find the most common accessibility issues in less than 5 minutes.
+                    Run three tests to find the most common accessibility issues in less than 5 minutes.
                   </div>
                 </div>
               </div>
@@ -260,7 +260,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               axe-core
             </a>
           </div>
-           4.1.1
+           4.2.0
         </div>
       </div>
     </div>

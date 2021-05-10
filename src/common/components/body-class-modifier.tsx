@@ -12,7 +12,7 @@ export type BodyClassModifierProps = {
     deps: BodyClassModifierDeps;
 };
 
-// We user our own BodyClassModifier rather than using Helmet's similar functionality because we
+// We use our own BodyClassModifier rather than using Helmet's similar functionality because we
 // need multiple BodyClassModifiers to be able to co-exist without overwriting each other or the
 // body classes office fabric maintains.
 export class BodyClassModifier extends React.Component<BodyClassModifierProps> {

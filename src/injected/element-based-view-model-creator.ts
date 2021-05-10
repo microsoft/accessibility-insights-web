@@ -7,10 +7,9 @@ import {
     UnifiedResult,
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
-import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
 import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
+import { SelectorToVisualizationMap } from 'injected/selector-to-visualization-map';
 import { find } from 'lodash';
-import { DictionaryStringTo } from 'types/common-types';
 
 export interface CheckData {
     // tslint:disable-next-line: no-reserved-keywords
@@ -22,7 +21,7 @@ export interface CheckData {
 export type GetElementBasedViewModelCallback = (
     unifiedScanResultStoreData: UnifiedScanResultStoreData,
     cardSelectionData: CardSelectionStoreData,
-) => DictionaryStringTo<AssessmentVisualizationInstance> | null;
+) => SelectorToVisualizationMap | null;
 
 export class ElementBasedViewModelCreator {
     constructor(
@@ -40,7 +39,7 @@ export class ElementBasedViewModelCreator {
             return null;
         }
 
-        const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
+        const resultDictionary: SelectorToVisualizationMap = {};
         const resultsHighlightStatus = this.getHighlightedResultInstanceIds(
             cardSelectionData,
             unifiedScanResultStoreData,

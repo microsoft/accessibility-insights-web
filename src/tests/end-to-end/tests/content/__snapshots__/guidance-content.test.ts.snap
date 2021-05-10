@@ -6992,7 +6992,7 @@ exports[`Guidance Content pages test/customWidgets/keyboardInteraction/infoAndEx
         Why it matters
       </h2>
       <p>
-        For a web page to be accessible, all of its interactive interface components—including custom widgets—must be operable using a keyboard. Supporting the standard keybord interactions specified by the design patterns makes it easy for keyboard and assistive technology users to interact with custom controls.
+        For a web page to be accessible, all of its interactive interface components—including custom widgets—must be operable using a keyboard. Supporting the standard keyboard interactions specified by the design patterns makes it easy for keyboard and assistive technology users to interact with custom controls.
       </p>
       <ol>
         <li>
@@ -26468,7 +26468,7 @@ exports[`Guidance Content pages test/repetitiveContent/consistentIdentification/
         </a>
       </div>
       <h3>
-        Sufficent techniques
+        Sufficient techniques
       </h3>
       <div
         class="content-hyperlinks"

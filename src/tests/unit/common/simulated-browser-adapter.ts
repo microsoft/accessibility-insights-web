@@ -3,7 +3,7 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
-import { Tabs, Windows } from 'webextension-polyfill-ts';
+import { Runtime, Tabs, Windows } from 'webextension-polyfill-ts';
 
 // This is a mock BrowserAdapter that maintains simulated state about which "windows" and "tabs"
 // exist and which listeners have been registered, and provides a few helper functions to simulate
@@ -35,16 +35,26 @@ export type SimulatedBrowserAdapter = IMock<BrowserAdapter> & {
     // These simulate real "update"/"activate" events (they update the windows/tabs state and send the notifications)
     updateTab: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void;
     activateTab: (tab: chrome.tabs.Tab) => void;
+
+    // This simulates normal browser runtime.onMessage behavior:
+    //  - it loops through each listener previously registered with addListenerOnMessage
+    //  - if any listener returns a Promise (as opposed to undefined), notify will return that
+    //    response Promise and will not call any further listeners
+    //  - if no listener returns a Promise, return undefined after the last listener is done
+    notifyOnMessage: (message: any, sender?: Runtime.MessageSender) => void | Promise<any>;
 };
 
+type MessageListener = (message: any, sender: Runtime.MessageSender) => void | Promise<any>;
+
 export function createSimulatedBrowserAdapter(
-    tabs: chrome.tabs.Tab[],
-    windows: chrome.windows.Window[],
+    tabs?: chrome.tabs.Tab[],
+    windows?: chrome.windows.Window[],
 ): SimulatedBrowserAdapter {
     const mock: Partial<SimulatedBrowserAdapter> &
         IMock<BrowserAdapter> = Mock.ofType<BrowserAdapter>();
-    mock.tabs = [...tabs];
-    mock.windows = [...windows];
+    mock.tabs = [...(tabs ?? [])];
+    mock.windows = [...(windows ?? [])];
+    const messageListeners: MessageListener[] = [];
     mock.setup(m => m.addListenerOnConnect(It.is(isFunction))).callback(
         c => (mock.notifyOnConnect = c),
     );
@@ -62,6 +72,9 @@ export function createSimulatedBrowserAdapter(
     );
     mock.setup(m => m.addListenerOnWindowsFocusChanged(It.is(isFunction))).callback(
         c => (mock.notifyWindowsFocusChanged = c),
+    );
+    mock.setup(m => m.addListenerOnMessage(It.is(isFunction))).callback(c =>
+        messageListeners.push(c),
     );
 
     mock.setup(m => m.getRuntimeLastError()).returns(() => undefined);
@@ -106,5 +119,14 @@ export function createSimulatedBrowserAdapter(
             });
         }
     };
+    mock.notifyOnMessage = (message: any, sender?: Runtime.MessageSender) => {
+        for (const listener of messageListeners) {
+            const maybePromise = listener(message, sender ?? {});
+            if (maybePromise !== undefined) {
+                return maybePromise;
+            }
+        }
+    };
+
     return mock as SimulatedBrowserAdapter;
 }

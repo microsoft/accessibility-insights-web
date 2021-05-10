@@ -28,8 +28,15 @@ export class MessageDistributor {
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
         const isInterpretedUsingTabContext = this.tryInterpretUsingTabContext(message);
+        const isInterpretedAsBackchannelWindowMessage = message.messageType?.startsWith(
+            'backchannel_window_message',
+        );
 
-        if (!isInterpretedUsingGlobalContext && !isInterpretedUsingTabContext) {
+        if (
+            !isInterpretedUsingGlobalContext &&
+            !isInterpretedUsingTabContext &&
+            !isInterpretedAsBackchannelWindowMessage
+        ) {
             this.logger.log('Unable to interpret message - ', message);
         }
     };

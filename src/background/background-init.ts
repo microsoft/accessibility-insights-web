@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
+import { PostMessageContentHandler } from 'background/post-message-content-handler';
+import { PostMessageContentRepository } from 'background/post-message-content-repository';
 import { ConsoleTelemetryClient } from 'background/telemetry/console-telemetry-client';
 import { DebugToolsTelemetryClient } from 'background/telemetry/debug-tools-telemetry-client';
 import { createToolData } from 'common/application-properties-provider';
@@ -205,6 +207,17 @@ async function initialize(): Promise<void> {
 
     const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
     devToolsBackgroundListener.initialize();
+
+    const postMessageContentRepository = new PostMessageContentRepository(
+        DateProvider.getCurrentDate,
+    );
+
+    const postMessageContentHandler = new PostMessageContentHandler(
+        postMessageContentRepository,
+        browserAdapter,
+    );
+
+    postMessageContentHandler.initialize();
 
     window.insightsFeatureFlags = globalContext.featureFlagsController;
     window.insightsUserConfiguration = globalContext.userConfigurationController;

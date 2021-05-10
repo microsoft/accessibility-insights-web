@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -42,10 +43,11 @@ describe('DetailsViewCommandBar', () => {
     const reportExportDialogStub = <div>Export dialog</div>;
     const saveAssessmentStub = <div>Save assessment</div>;
 
+    let assessmentStoreData: AssessmentStoreData;
     let tabStoreData: TabStoreData;
     let startOverComponent: JSX.Element;
-    let SaveAssessmentButtonProps: SaveAssessmentButtonProps;
-    let LoadAssessmentButtonProps: LoadAssessmentButtonProps;
+    let saveAssessmentButtonPropsStub: SaveAssessmentButtonProps;
+    let loadAssessmentButtonPropsStub: LoadAssessmentButtonProps;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let isCommandBarCollapsed: boolean;
     let showReportExportButton: boolean;
@@ -62,12 +64,26 @@ describe('DetailsViewCommandBar', () => {
         saveAssessmentFactory = Mock.ofInstance(props => null);
         getStartOverComponentMock = Mock.ofInstance(props => null);
         tabStoreData = {
+            id: 5,
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
         startOverComponent = null;
         isCommandBarCollapsed = false;
         showReportExportButton = true;
+        saveAssessmentButtonPropsStub = {
+            deps: { detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object },
+            download: 'download',
+            href: 'url',
+        };
+
+        assessmentStoreData = {} as AssessmentStoreData;
+
+        loadAssessmentButtonPropsStub = {
+            deps: {},
+            assessmentStoreData,
+            tabStoreData,
+        } as LoadAssessmentButtonProps;
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -152,12 +168,12 @@ describe('DetailsViewCommandBar', () => {
     });
 
     test('renders with save assessment button', () => {
-        const rendered = shallow(<SaveAssessmentButton {...SaveAssessmentButtonProps} />);
+        const rendered = shallow(<SaveAssessmentButton {...saveAssessmentButtonPropsStub} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('renders with load assessment button', () => {
-        const rendered = shallow(<LoadAssessmentButton {...LoadAssessmentButtonProps} />);
+        const rendered = shallow(<LoadAssessmentButton {...loadAssessmentButtonPropsStub} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 

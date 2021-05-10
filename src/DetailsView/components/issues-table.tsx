@@ -27,6 +27,7 @@ export interface IssuesTableProps {
     deps: IssuesTableDeps;
     title: string;
     subtitle?: JSX.Element;
+    stepsText: string;
     issuesEnabled: boolean;
     scanning: boolean;
     featureFlags: FeatureFlagStoreData;
@@ -49,10 +50,19 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     public render(): JSX.Element {
         return (
             <div className={styles.issuesTable}>
-                <h1>{this.props.title}</h1>
+                {this.renderTitle()}
                 {this.renderSubtitle()}
                 {this.renderContent()}
             </div>
+        );
+    }
+
+    private renderTitle(): JSX.Element {
+        return (
+            <h1>
+                {this.props.title}
+                {` ${this.props.stepsText}`}
+            </h1>
         );
     }
 

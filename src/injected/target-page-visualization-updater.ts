@@ -4,26 +4,29 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { cloneDeep } from 'lodash';
-import { DictionaryNumberTo, DictionaryStringTo } from 'types/common-types';
 
 import { TargetPageStoreData } from './client-store-listener';
 import { DrawingInitiator } from './drawing-initiator';
-import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 import { IsVisualizationEnabledCallback } from './is-visualization-enabled';
 import { SelectorMapHelper } from './selector-map-helper';
-import { VisualizationNeedsUpdateCallback } from './visualization-needs-update';
+import {
+    TestStepVisualizationState,
+    VisualizationNeedsUpdateCallback,
+} from './visualization-needs-update';
 
-export type VisualizationSelectorMapContainer = DictionaryNumberTo<
-    DictionaryStringTo<AssessmentVisualizationInstance>
->;
+type TestStepVisualizationStateMap = {
+    [visualizationType: number]: {
+        [testStepConfigId: string]: TestStepVisualizationState;
+    };
+};
+
 export type UpdateVisualization = (
     visualizationType: VisualizationType,
     step: string,
     storeData: TargetPageStoreData,
 ) => void;
 export class TargetPageVisualizationUpdater {
-    private previousVisualizationSelectorMapStates: VisualizationSelectorMapContainer = {};
-    private previousVisualizationStates: DictionaryStringTo<boolean> = {};
+    private previousVisualizationStates: TestStepVisualizationStateMap = {};
 
     constructor(
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -38,62 +41,30 @@ export class TargetPageVisualizationUpdater {
         stepKey: string,
         storeData: TargetPageStoreData,
     ) => {
-        const selectorMap = this.selectorMapHelper.getSelectorMap(
-            visualizationType,
-            stepKey,
-            storeData,
-        );
         const configuration = this.visualizationConfigurationFactory.getConfiguration(
             visualizationType,
         );
         const configId = configuration.getIdentifier(stepKey);
-        this.executeUpdate(
+
+        const oldState = this.previousVisualizationStates[visualizationType]?.[configId];
+        const newState = this.calculateVisualizationState(
             visualizationType,
+            configuration,
             stepKey,
             storeData,
-            selectorMap,
-            configuration,
-            configId,
-        );
-        this.previousVisualizationSelectorMapStates[configId] = selectorMap;
-    };
-
-    private executeUpdate = (
-        visualizationType: VisualizationType,
-        stepKey: string,
-        storeData: TargetPageStoreData,
-        selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
-        configuration: VisualizationConfiguration,
-        configId: string,
-    ) => {
-        const newVisualizationEnabledState = this.isVisualizationEnabled(
-            configuration,
-            stepKey,
-            storeData.visualizationStoreData,
-            storeData.assessmentStoreData,
-            storeData.tabStoreData,
         );
 
-        if (
-            this.visualizationNeedsUpdate(
-                visualizationType,
-                configId,
-                newVisualizationEnabledState,
-                selectorMap,
-                this.previousVisualizationStates,
-                this.previousVisualizationSelectorMapStates,
-            ) === false
-        ) {
+        if (!this.visualizationNeedsUpdate(newState, oldState)) {
             return;
         }
 
-        this.previousVisualizationStates[configId] = newVisualizationEnabledState;
+        this.updatePreviousVisualizationState(visualizationType, configId, newState);
 
-        if (newVisualizationEnabledState) {
+        if (newState.enabled) {
             this.drawingInitiator.enableVisualization(
                 visualizationType,
                 storeData.featureFlagStoreData,
-                cloneDeep(selectorMap),
+                cloneDeep(newState.selectorMap),
                 configId,
                 configuration.visualizationInstanceProcessor(stepKey),
             );
@@ -105,4 +76,39 @@ export class TargetPageVisualizationUpdater {
             );
         }
     };
+
+    private updatePreviousVisualizationState(
+        visualizationType: VisualizationType,
+        configId: string,
+        newState: TestStepVisualizationState,
+    ) {
+        if (this.previousVisualizationStates[visualizationType] === undefined) {
+            this.previousVisualizationStates[visualizationType] = {};
+        }
+        this.previousVisualizationStates[visualizationType][configId] = newState;
+    }
+
+    private calculateVisualizationState(
+        visualizationType: VisualizationType,
+        configuration: VisualizationConfiguration,
+        stepKey: string,
+        storeData: TargetPageStoreData,
+    ): TestStepVisualizationState {
+        const enabled = this.isVisualizationEnabled(
+            configuration,
+            stepKey,
+            storeData.visualizationStoreData,
+            storeData.assessmentStoreData,
+            storeData.tabStoreData,
+        );
+        const selectorMap = this.selectorMapHelper.getSelectorMap(
+            visualizationType,
+            stepKey,
+            storeData,
+        );
+        return {
+            enabled,
+            selectorMap,
+        };
+    }
 }

@@ -53,6 +53,10 @@ Object {
   "aria-roles": Object {
     "status": "included",
   },
+  "aria-text": Object {
+    "reason": "rule is tagged best-practice",
+    "status": "excluded",
+  },
   "aria-toggle-field-name": Object {
     "status": "included",
   },
@@ -105,7 +109,8 @@ Object {
     "status": "included",
   },
   "duplicate-id": Object {
-    "status": "included",
+    "reason": "Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.",
+    "status": "excluded",
   },
   "duplicate-id-active": Object {
     "status": "included",
@@ -117,6 +122,10 @@ Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
+  "empty-table-header": Object {
+    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+    "status": "excluded",
+  },
   "focus-order-semantics": Object {
     "reason": "rule is tagged experimental",
     "status": "excluded",
@@ -124,6 +133,9 @@ Object {
   "form-field-multiple-labels": Object {
     "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
+  },
+  "frame-focusable-content": Object {
+    "status": "included",
   },
   "frame-tested": Object {
     "reason": "rule is tagged best-practice",
@@ -243,6 +255,9 @@ Object {
   "meta-viewport-large": Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
+  },
+  "nested-interactive": Object {
+    "status": "included",
   },
   "no-autoplay-audio": Object {
     "reason": "rule is tagged experimental",

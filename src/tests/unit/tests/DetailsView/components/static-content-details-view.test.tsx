@@ -51,6 +51,7 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
             onToggleClick: this.onToggleClickMock.object,
             content: Mock.ofType<ContentReference>().object,
             guidance: Mock.ofType<ContentReference>().object,
+            stepsText: 'test steps text',
         } as StaticContentDetailsViewProps;
     }
 

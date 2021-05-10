@@ -1,14 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoadAssessmentButton should render per the snapshot 1`] = `
-<InsightsCommandButton
-  iconProps={
-    Object {
-      "iconName": "FabricOpenFolderHorizontal",
+<React.Fragment>
+  <InsightsCommandButton
+    data-automation-id="load-assessment-button"
+    iconProps={
+      Object {
+        "iconName": "FabricOpenFolderHorizontal",
+      }
     }
-  }
-  onClick={[Function]}
->
-  Load assessment
-</InsightsCommandButton>
+    onClick={[Function]}
+  >
+    Load assessment
+  </InsightsCommandButton>
+  <LoadAssessment
+    assessmentStoreData={Object {}}
+    deps={
+      Object {
+        "assessmentDataParser": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "parseAssessmentData": [Function],
+        },
+        "detailsViewActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "addPathForValidation": [Function],
+          "cancelStartOver": [Function],
+          "cancelStartOverAllAssessments": [Function],
+          "changeAssessmentVisualizationState": [Function],
+          "changeManualRequirementStatus": [Function],
+          "changeManualTestStatus": [Function],
+          "clearPathSnippetData": [Function],
+          "closePreviewFeaturesPanel": [Function],
+          "closeScopingPanel": [Function],
+          "closeSettingsPanel": [Function],
+          "continuePreviousAssessment": [Function],
+          "copyIssueDetailsClicked": [Function],
+          "dispatcher": undefined,
+          "editFailureInstance": [Function],
+          "leftNavPanelExpanded": [Function],
+          "loadAssessment": [Function],
+          "removeFailureInstance": [Function],
+          "rescanVisualization": [Function],
+          "saveAssessment": [Function],
+          "setAllUrlsPermissionState": [Function],
+          "setFeatureFlag": [Function],
+          "startOverAllAssessments": [Function],
+          "switchToTargetTab": [Function],
+          "telemetryFactory": undefined,
+          "undoManualRequirementStatusChange": [Function],
+          "undoManualTestStatusChange": [Function],
+        },
+        "loadAssessmentHelper": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentDataParser": undefined,
+          "detailsViewActionMessageCreator": undefined,
+          "document": undefined,
+          "fileReader": undefined,
+        },
+        "urlParser": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        },
+      }
+    }
+    loadedAssessmentData={null}
+    onClose={[Function]}
+    show={false}
+    tabId={5}
+    tabStoreData={
+      Object {
+        "id": 5,
+      }
+    }
+  />
+</React.Fragment>
 `;

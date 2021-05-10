@@ -5,6 +5,6 @@ import { Drawer, DrawerInitData } from './drawer';
 export class NullDrawer implements Drawer {
     public initialize(drawerData: DrawerInitData<any>): void {}
     public isOverlayEnabled: boolean = false;
-    public drawLayout(): void {}
+    public drawLayout = async (): Promise<void> => {};
     public eraseLayout(): void {}
 }

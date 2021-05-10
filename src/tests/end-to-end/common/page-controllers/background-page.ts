@@ -37,6 +37,13 @@ export class BackgroundPage extends Page {
         }, enableTelemetry);
     }
 
+    public async enableFeatureFlag(flag: string): Promise<void> {
+        await this.waitForInitialization();
+        await this.evaluate(flag => {
+            window.insightsFeatureFlags.enableFeature(flag);
+        }, flag);
+    }
+
     constructor(underlyingPage: Playwright.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }

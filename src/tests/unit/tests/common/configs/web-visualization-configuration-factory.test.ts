@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessments } from 'assessments/assessments';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { each } from 'lodash';
 import { EnumHelper } from '../../../../../common/enum-helper';
@@ -158,6 +159,21 @@ describe('WebVisualizationConfigurationFactory', () => {
             expect(configuration).toBeDefined();
             expect(configuration.key).toBe(key);
         });
+    });
+
+    // This is important for any data structure which assumes it's safe to use configIds as keys
+    test("manually specified visualizaton keys don't overlap with requirement visualization keys", () => {
+        for (const assessment of Assessments.all()) {
+            const assessmentConfig = testObject.getConfiguration(assessment.visualizationType);
+            for (const requirement of assessment.requirements) {
+                const requirementVisualizationKey = assessmentConfig.getIdentifier(requirement.key);
+                const correspondingManuallyKeyedConfiguration = testObject.getConfigurationByKey(
+                    requirementVisualizationKey,
+                );
+
+                expect(correspondingManuallyKeyedConfiguration).toBeUndefined();
+            }
+        }
     });
 
     function testDisplayableData(visualizationType: VisualizationType): void {

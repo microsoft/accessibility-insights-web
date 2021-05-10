@@ -41,11 +41,11 @@ export abstract class BaseDrawer implements Drawer {
 
     public abstract initialize(config: DrawerInitData<any>): void;
 
-    public drawLayout(): void {
+    public drawLayout = async (): Promise<void> => {
         this.addListeners();
-        this.draw();
+        await this.draw();
         this.isEnabled = true;
-    }
+    };
 
     public eraseLayout(): void {
         this.removeListeners();
@@ -53,13 +53,13 @@ export abstract class BaseDrawer implements Drawer {
         this.isEnabled = false;
     }
 
-    protected draw(): void {
+    protected draw = async (): Promise<void> => {
         if (this.containerElement == null) {
             this.createContainerElement();
         }
-        this.addHighlightsToContainer();
+        await this.addHighlightsToContainer();
         this.attachContainerToDom();
-    }
+    };
 
     public get isOverlayEnabled(): boolean {
         return this.isEnabled;
@@ -95,12 +95,12 @@ export abstract class BaseDrawer implements Drawer {
         );
     }
 
-    protected abstract addHighlightsToContainer(): void;
+    protected abstract addHighlightsToContainer(): Promise<void>;
 
-    protected handlePositionChange = () => {
+    protected handlePositionChange = async () => {
         if (this.isEnabled) {
             this.removeContainerElement();
-            this.draw();
+            await this.draw();
         }
     };
 

@@ -25,6 +25,10 @@ export class PlatformInfo {
         return this.getOs() === OSType.Mac;
     }
 
+    public isLinux(): boolean {
+        return this.getOs() === OSType.Linux;
+    }
+
     public getOsName(): string {
         return this.currentProcess.platform || null;
     }

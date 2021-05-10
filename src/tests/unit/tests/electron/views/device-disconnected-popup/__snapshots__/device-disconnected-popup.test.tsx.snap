@@ -36,24 +36,16 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
        has disconnected.
     </p>
     <p>
-      To continue using that device, make sure it’s properly connected and then select 
+      Select 
       <strong>
-        Start over
+        Re-detect device
       </strong>
-      . To use a different device, select
-       
-      <strong>
-        Connect a new device
-      </strong>
-      .
+       to continue.
     </p>
   </div>
   <StyledDialogFooterBase>
     <CustomizedDefaultButton
-      text="Start over"
-    />
-    <CustomizedDefaultButton
-      text="Connect a new device"
+      text="Re-detect device"
     />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>

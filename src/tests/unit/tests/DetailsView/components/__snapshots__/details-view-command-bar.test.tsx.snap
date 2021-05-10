@@ -79,6 +79,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
             "loadAssessment": [Function],
             "removeFailureInstance": [Function],
             "rescanVisualization": [Function],
+            "saveAssessment": [Function],
             "setAllUrlsPermissionState": [Function],
             "setFeatureFlag": [Function],
             "startOverAllAssessments": [Function],
@@ -121,6 +122,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
       }
       tabStoreData={
         Object {
+          "id": 5,
           "isClosed": false,
           "title": "command-bar-test-tab-title",
         }
@@ -156,6 +158,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -200,6 +203,7 @@ exports[`DetailsViewCommandBar renders with export button, save assessment, load
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -271,6 +275,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -315,6 +320,7 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -324,16 +330,34 @@ exports[`DetailsViewCommandBar renders with export button, without save assessme
 `;
 
 exports[`DetailsViewCommandBar renders with load assessment button 1`] = `
-<InsightsCommandButton
-  iconProps={
-    Object {
-      "iconName": "FabricOpenFolderHorizontal",
+<React.Fragment>
+  <InsightsCommandButton
+    data-automation-id="load-assessment-button"
+    iconProps={
+      Object {
+        "iconName": "FabricOpenFolderHorizontal",
+      }
     }
-  }
-  onClick={[Function]}
->
-  Load assessment
-</InsightsCommandButton>
+    onClick={[Function]}
+  >
+    Load assessment
+  </InsightsCommandButton>
+  <LoadAssessment
+    assessmentStoreData={Object {}}
+    deps={Object {}}
+    loadedAssessmentData={null}
+    onClose={[Function]}
+    show={false}
+    tabId={5}
+    tabStoreData={
+      Object {
+        "id": 5,
+        "isClosed": false,
+        "title": "command-bar-test-tab-title",
+      }
+    }
+  />
+</React.Fragment>
 `;
 
 exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
@@ -399,6 +423,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -439,6 +464,7 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -449,11 +475,14 @@ exports[`DetailsViewCommandBar renders with report export dialog open 1`] = `
 
 exports[`DetailsViewCommandBar renders with save assessment button 1`] = `
 <InsightsCommandButton
+  download="download"
+  href="url"
   iconProps={
     Object {
       "iconName": "Save",
     }
   }
+  onClick={[Function]}
 >
   Save assessment
 </InsightsCommandButton>
@@ -552,6 +581,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -596,6 +626,7 @@ exports[`DetailsViewCommandBar renders without export button, save assessment, l
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }
@@ -666,6 +697,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
           "loadAssessment": [Function],
           "removeFailureInstance": [Function],
           "rescanVisualization": [Function],
+          "saveAssessment": [Function],
           "setAllUrlsPermissionState": [Function],
           "setFeatureFlag": [Function],
           "startOverAllAssessments": [Function],
@@ -710,6 +742,7 @@ exports[`DetailsViewCommandBar renders without export button, without save asses
     }
     tabStoreData={
       Object {
+        "id": 5,
         "isClosed": false,
         "title": "command-bar-test-tab-title",
       }

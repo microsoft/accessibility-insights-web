@@ -5,7 +5,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 export interface Drawer {
     initialize(config: DrawerInitData<any>): void;
     isOverlayEnabled: boolean;
-    drawLayout(): void;
+    drawLayout(): Promise<void>;
     eraseLayout(): void;
 }
 

@@ -12,6 +12,7 @@ jobs:
           unsignedPipelineResource: ${{ parameters.unsignedPipelineResource }}
           unsignedArtifactName: unified-windows-${{ parameters.channel }}-unsigned
           signedArtifactName: unified_windows_${{ parameters.channel }}_signed
+          channel: ${{ parameters.channel }}
 
     - template: sign-release-package-mac.yaml
       parameters:

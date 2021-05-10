@@ -6,7 +6,6 @@ import * as React from 'react';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { FeatureFlags } from '../../common/feature-flags';
 import { Messages } from '../../common/messages';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -66,5 +65,4 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createHighlightBoxDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    featureFlagToEnable: FeatureFlags.needsReview,
 };

@@ -71,4 +71,8 @@ export class WindowUtils {
     public getPlatform(): string {
         return window.navigator.platform;
     }
+
+    public getRandomValueArray(length: number): Uint8Array {
+        return window.crypto.getRandomValues(new Uint8Array(length));
+    }
 }

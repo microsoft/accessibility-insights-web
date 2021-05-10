@@ -1,44 +1,25 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 parameters:
-    vmImage: null
     filePattern: null
     inlineSignParams: null
-    unsignedPipelineResource: null
-    unsignedArtifactName: null
     signedArtifactName: null
     platform: null
 
-jobs:
-    - job: ${{ parameters.signedArtifactName }}
-      pool:
-          vmImage: ${{ parameters.vmImage }}
-      steps:
-          - template: ../../install-node-prerequisites.yaml
+steps:
+    - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
+      displayName: 'ESRP signing installer'
+      inputs:
+          ConnectedServiceName: 'ESRP Code Signing'
+          FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
+          Pattern: ${{ parameters.filePattern }}
+          signConfigType: inlineSignParams
+          inlineOperation: ${{ parameters.inlineSignParams }}
 
-          - task: DownloadPipelineArtifact@2
-            inputs:
-                source: 'specific'
-                runVersion: 'specific'
-                project: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.projectID)
-                pipeline: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.pipelineID)
-                runId: $(resources.pipeline.${{ parameters.unsignedPipelineResource }}.runID)
-                artifact: ${{ parameters.unsignedArtifactName }}
-                path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
+    - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }}/packed ${{ parameters.platform }}
+      displayName: update electron-builder latest.yml after signing
 
-          - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'Send to ESRP Code Signing service'
-            inputs:
-                ConnectedServiceName: 'ESRP Code Signing'
-                FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-                Pattern: ${{ parameters.filePattern }}
-                signConfigType: inlineSignParams
-                inlineOperation: ${{ parameters.inlineSignParams }}
-
-          - script: node ./pipeline/scripts/update-latest-yml.js signing-in-progress/${{ parameters.signedArtifactName }} ${{ parameters.platform }}
-            displayName: update electron-builder latest.yml after signing
-
-          - template: ../publish-packed-build-output.yaml
-            parameters:
-                packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
-                artifactName: ${{ parameters.signedArtifactName }}
+    - template: ../publish-packed-build-output.yaml
+      parameters:
+          packedOutputPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
+          artifactName: ${{ parameters.signedArtifactName }}

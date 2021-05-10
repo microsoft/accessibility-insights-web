@@ -85,6 +85,7 @@ describe('IssuesTableTest', () => {
 
 class TestPropsBuilder {
     private title: string = 'test title';
+    private stepsText: string = 'test steps text';
     private subtitle?: JSX.Element;
     private issuesEnabled: boolean;
     private scanning: boolean = false;
@@ -117,6 +118,7 @@ class TestPropsBuilder {
             deps: this.deps,
             title: this.title,
             subtitle: this.subtitle,
+            stepsText: this.stepsText,
             issuesEnabled: this.issuesEnabled,
             scanning: this.scanning,
             featureFlags: this.featureFlags,

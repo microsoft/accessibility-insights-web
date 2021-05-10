@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { SingleElementSelector } from '../../../../common/types/store-data/scoping-store-data';
@@ -26,12 +27,9 @@ describe('ScopingListenerTest', () => {
     let shadowContainerMock: IMock<HTMLElement>;
     let onInspectClickMock: IMock<(event: MouseEvent, selector: SingleElementSelector) => void>;
     let onInspectHoverMock: IMock<(selector: SingleElementSelector) => void>;
-    let promiseStub;
-    let promiseHandlerMock: IMock<(callback: Function) => void>;
     let onClickCurrentTimeoutID: number;
     let onHoverCurrentTimeoutID: number;
     let onClickSetTimeoutHandler: Function;
-    let onClickProcessRequestPromiseCallback: (path: SingleElementSelector) => void;
     let onClick: (event: MouseEvent) => void;
     let addEventListenerMock: IMock<(event: string, callback: (event: MouseEvent) => void) => void>;
     let removeEventListenerMock: IMock<
@@ -43,7 +41,6 @@ describe('ScopingListenerTest', () => {
     let mouseEventStub: MouseEvent;
     let testSubject: TestableScopingListener;
     let onHoverSetTimeoutHandler: Function;
-    let onHoverProcessRequestPromiseCallback: (path: SingleElementSelector) => void;
     let onHover: (event: MouseEvent) => void;
 
     beforeEach(() => {
@@ -56,13 +53,10 @@ describe('ScopingListenerTest', () => {
         createElementMock = Mock.ofInstance(tagName => {
             return null;
         });
-        promiseHandlerMock = Mock.ofInstance(callback => {});
         onClickCurrentTimeoutID = 95;
         onHoverCurrentTimeoutID = -1;
         onClick = null;
         onHover = null;
-        onClickProcessRequestPromiseCallback = null;
-        onHoverProcessRequestPromiseCallback = null;
         onClickSetTimeoutHandler = null;
         onHoverSetTimeoutHandler = null;
 
@@ -80,10 +74,6 @@ describe('ScopingListenerTest', () => {
             clientX: 100,
             clientY: 120,
         } as MouseEvent;
-
-        promiseStub = {
-            then: promiseHandlerMock.object,
-        };
 
         shadowContainerMock = Mock.ofInstance({
             querySelector: selector => {},
@@ -109,7 +99,7 @@ describe('ScopingListenerTest', () => {
         );
     });
 
-    test("start scope layout container doesn't exist and timeout doesn't exist", () => {
+    test("start scope layout container doesn't exist and timeout doesn't exist", async () => {
         const givenPath = ['selector'];
         setupShadowContainerMockQuerySelector(`#${ScopingListener.scopeLayoutContainerId}`, null);
         setupScopeElement();
@@ -119,17 +109,17 @@ describe('ScopingListenerTest', () => {
         setupOnClickSetTimeout(givenPath);
         onClick(mouseEventStub);
         onClickSetTimeoutHandler();
-        onClickProcessRequestPromiseCallback(givenPath);
+        await tick();
 
         setupOnHoverSetTimeout(givenPath);
         onHover(mouseEventStub);
         onHoverSetTimeoutHandler();
-        onHoverProcessRequestPromiseCallback(givenPath);
+        await tick();
 
         verifyAll();
     });
 
-    test("start scope layout container doesn't exist and timeout does exist", () => {
+    test("start scope layout container doesn't exist and timeout does exist", async () => {
         const givenPath = ['selector'];
         setupShadowContainerMockQuerySelector(`#${ScopingListener.scopeLayoutContainerId}`, null);
         setupScopeElement();
@@ -143,15 +133,15 @@ describe('ScopingListenerTest', () => {
         setupOnClickSetTimeout(givenPath, 2);
         onClick(mouseEventStub);
         onClick(mouseEventStub);
+        onClickSetTimeoutHandler();
+        await tick();
 
         setupOnHoverSetTimeout(givenPath, 2);
         onHover(mouseEventStub);
         onHover(mouseEventStub);
 
-        onClickSetTimeoutHandler();
-        onClickProcessRequestPromiseCallback(givenPath);
         onHoverSetTimeoutHandler();
-        onHoverProcessRequestPromiseCallback(givenPath);
+        await tick();
 
         verifyAll();
     });
@@ -246,14 +236,8 @@ describe('ScopingListenerTest', () => {
 
         elementFinderMock
             .setup(ef => ef.processRequest(It.isValue(expectedMessage)))
-            .returns(() => promiseStub)
+            .returns(() => Promise.resolve({ payload: path }))
             .verifiable(Times.atLeastOnce());
-
-        promiseHandlerMock
-            .setup(phm => phm(It.isAny()))
-            .callback(callback => {
-                onClickProcessRequestPromiseCallback = callback;
-            });
 
         onInspectClickMock.setup(ssm => ssm(mouseEventStub, It.isValue(path))).verifiable();
     }
@@ -274,14 +258,8 @@ describe('ScopingListenerTest', () => {
 
         elementFinderMock
             .setup(ef => ef.processRequest(It.isValue(expectedMessage)))
-            .returns(() => promiseStub)
+            .returns(() => Promise.resolve({ payload: path }))
             .verifiable(Times.atLeastOnce());
-
-        promiseHandlerMock
-            .setup(phm => phm(It.isAny()))
-            .callback(callback => {
-                onHoverProcessRequestPromiseCallback = callback;
-            });
 
         onInspectHoverMock.setup(ssm => ssm(It.isValue(path))).verifiable();
     }

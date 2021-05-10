@@ -391,13 +391,6 @@ if (tabId != null) {
 
             const fileReader = new FileReader();
 
-            const loadAssessmentHelper = new LoadAssessmentHelper(
-                assessmentDataParser,
-                detailsViewActionMessageCreator,
-                fileReader,
-                document,
-            );
-
             const fileNameBuilder = new FileNameBuilder();
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
@@ -411,6 +404,13 @@ if (tabId != null) {
             const assessmentViewUpdateHandler = new AssessmentViewUpdateHandler();
 
             const navLinkRenderer = new NavLinkRenderer();
+
+            const loadAssessmentHelper = new LoadAssessmentHelper(
+                assessmentDataParser,
+                detailsViewActionMessageCreator,
+                fileReader,
+                document,
+            );
 
             const deps: DetailsViewContainerDeps = {
                 textContent,

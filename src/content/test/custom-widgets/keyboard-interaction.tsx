@@ -8,8 +8,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>Why it matters</h2>
         <p>
             For a web page to be accessible, all of its interactive interface components—including custom widgets—must be operable using a
-            keyboard. Supporting the standard keybord interactions specified by the design patterns makes it easy for keyboard and assistive
-            technology users to interact with custom controls.
+            keyboard. Supporting the standard keyboard interactions specified by the design patterns makes it easy for keyboard and
+            assistive technology users to interact with custom controls.
         </p>
         <ol>
             <li>

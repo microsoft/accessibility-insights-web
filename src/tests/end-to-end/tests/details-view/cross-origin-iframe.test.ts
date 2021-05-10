@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as path from 'path';
 import { ElementHandle } from 'playwright';
-import * as testResourceServer from '../../../miscellaneous/test-resource-server/resource-server';
-import { ResourceServerConfig } from '../../../miscellaneous/test-resource-server/resource-server-config';
 import { Browser } from '../../common/browser';
 import { ExtraPermissions, launchBrowser } from '../../common/browser-factory';
 import {
@@ -14,24 +11,10 @@ import { DetailsViewPage } from '../../common/page-controllers/details-view-page
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
 
-const testResourceServerConfig: ResourceServerConfig = {
-    port: 9053,
-    absolutePath: path.join(__dirname, '../../test-resources/'),
-};
-
 describe('scanning', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let fastPassAutomatedChecks: DetailsViewPage;
-
-    beforeAll(() => {
-        // we need a second test resource server to get cross-origin content load on the page
-        testResourceServer.startServer(testResourceServerConfig);
-    });
-
-    afterAll(async () => {
-        testResourceServer.stopServer(testResourceServerConfig);
-    });
 
     describe('with localhost permissions only', () => {
         beforeAll(async () => {
@@ -80,10 +63,9 @@ describe('scanning', () => {
                 fastPassAutomatedChecksSelectors.ruleDetail,
             );
 
-            expect(ruleDetails).toHaveLength(5);
+            expect(ruleDetails).toHaveLength(4);
 
             const expectedCounts = {
-                'duplicate-id': 1,
                 'frame-title': 2,
                 'html-has-lang': 1,
                 'image-alt': 9,
