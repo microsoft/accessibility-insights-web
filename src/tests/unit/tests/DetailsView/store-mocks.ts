@@ -60,7 +60,8 @@ export class StoreMocks {
     public permissionsStateStoreMock = Mock.ofType(PermissionsStateStore, MockBehavior.Strict);
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
-    public visualizationScanResultsStoreData = new VisualizationScanResultStoreDataBuilder().build();
+    public visualizationScanResultsStoreData =
+        new VisualizationScanResultStoreDataBuilder().build();
     public detailsViewStoreData = new DetailsViewStoreDataBuilder().build();
     public tabStoreData: TabStoreData = {
         title: 'DetailsViewContainerTest title',

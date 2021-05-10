@@ -50,8 +50,8 @@ export function createSimulatedBrowserAdapter(
     tabs?: chrome.tabs.Tab[],
     windows?: chrome.windows.Window[],
 ): SimulatedBrowserAdapter {
-    const mock: Partial<SimulatedBrowserAdapter> &
-        IMock<BrowserAdapter> = Mock.ofType<BrowserAdapter>();
+    const mock: Partial<SimulatedBrowserAdapter> & IMock<BrowserAdapter> =
+        Mock.ofType<BrowserAdapter>();
     mock.tabs = [...(tabs ?? [])];
     mock.windows = [...(windows ?? [])];
     const messageListeners: MessageListener[] = [];

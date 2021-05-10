@@ -180,9 +180,8 @@ describe('DiagnosticViewToggleTest', () => {
 
             const renderAction = () => component.render();
 
-            const commandName = visualizationConfigurationFactory.getConfiguration(
-                visualizationType,
-            ).chromeCommand;
+            const commandName =
+                visualizationConfigurationFactory.getConfiguration(visualizationType).chromeCommand;
             expect(renderAction).toThrowError(`Cannot find command for name: ${commandName}`);
         });
 
@@ -353,7 +352,8 @@ class DiagnosticViewTogglePropsBuilder {
     private visualizationType: VisualizationType;
     private data: VisualizationStoreData = new VisualizationStoreDataBuilder().build();
     private visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
-    private defaultVisualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
+    private defaultVisualizationConfigurationFactoryMock =
+        Mock.ofType<VisualizationConfigurationFactory>();
     private actionMessageCreatorMock = Mock.ofType(PopupActionMessageCreator);
     private clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
     private telemetrySource: TelemetryEventSource;

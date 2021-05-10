@@ -12,9 +12,8 @@ import { Mock } from 'typemoq';
 
 describe('CollapsibleResultSection', () => {
     it('renders', () => {
-        const collapsibleControlMock = Mock.ofType<
-            (props: CollapsibleComponentCardsProps) => JSX.Element
-        >();
+        const collapsibleControlMock =
+            Mock.ofType<(props: CollapsibleComponentCardsProps) => JSX.Element>();
         const props: CollapsibleResultSectionProps = {
             deps: {
                 collapsibleControl: collapsibleControlMock.object,

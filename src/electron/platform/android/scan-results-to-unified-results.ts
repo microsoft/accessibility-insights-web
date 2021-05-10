@@ -30,9 +30,8 @@ function createUnifiedResultsFromScanResults(
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
-    const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(
-        scanResults,
-    );
+    const viewElementLookup: DictionaryStringTo<ViewElementData> =
+        createViewElementLookup(scanResults);
     const unifiedResults: UnifiedResult[] = [];
 
     for (const ruleResult of scanResults.ruleResults) {

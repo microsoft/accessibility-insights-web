@@ -59,14 +59,16 @@ export const ReflowAssessmentView = NamedFC<ReflowAssessmentViewProps>(
         };
 
         const renderRequirementView = () => {
-            const selectedRequirement: RequirementResult = props.assessmentTestResult.getRequirementResult(
-                props.assessmentNavState.selectedTestSubview,
-            );
+            const selectedRequirement: RequirementResult =
+                props.assessmentTestResult.getRequirementResult(
+                    props.assessmentNavState.selectedTestSubview,
+                );
 
             const nextRequirement = props.assessmentTestResult
                 .getRequirementResults()
-                .find(req => req.definition.order === selectedRequirement.definition.order + 1)
-                ?.definition;
+                .find(
+                    req => req.definition.order === selectedRequirement.definition.order + 1,
+                )?.definition;
 
             return (
                 <RequirementView

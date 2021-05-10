@@ -94,9 +94,8 @@ export class DiagnosticViewToggleFactory {
 
         const enabledTypes: VisualizationType[] = this.visualizationTypes.filter(
             visualizationType => {
-                const config = this.visualizationConfigurationFactory.getConfiguration(
-                    visualizationType,
-                );
+                const config =
+                    this.visualizationConfigurationFactory.getConfiguration(visualizationType);
                 if (config.testMode !== TestMode.Adhoc) {
                     return false;
                 }

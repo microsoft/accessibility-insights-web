@@ -397,7 +397,8 @@ if (tabId != null) {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
-            const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
+            const unifiedResultToIssueFilingDataConverter =
+                new UnifiedResultToIssueFilingDataConverter();
 
             const documentManipulator = new DocumentManipulator(document);
 
@@ -432,8 +433,10 @@ if (tabId != null) {
                 assessmentDataParser,
                 fileNameBuilder,
                 loadAssessmentHelper,
-                getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
-                getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
+                getAssessmentSummaryModelFromProviderAndStoreData:
+                    getAssessmentSummaryModelFromProviderAndStoreData,
+                getAssessmentSummaryModelFromProviderAndStatusData:
+                    getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                 navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),

@@ -161,8 +161,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
             failedRules: this.props.failedRules,
-            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator
-                .copyIssueDetailsClicked,
+            onClickCopyIssueDetailsButton:
+                this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
             onClickInspectButton: this.onClickInspectButton,
             shouldShowInspectButtonMessage: () =>
                 this.props.dialogHandler.shouldShowInspectButtonMessage(this),

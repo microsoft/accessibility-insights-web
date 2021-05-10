@@ -138,7 +138,8 @@ describe('DetailsDialog', () => {
             });
 
             test('on click copy issue details button', () => {
-                const targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>();
+                const targetPageActionMessageCreatorMock =
+                    Mock.ofType<TargetPageActionMessageCreator>();
 
                 const deps = {
                     ...defaultDetailsDialogDeps,

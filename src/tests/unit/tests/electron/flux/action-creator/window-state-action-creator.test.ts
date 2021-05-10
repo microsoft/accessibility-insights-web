@@ -133,10 +133,10 @@ describe(WindowStateActionCreator, () => {
             lastWindowState: WindowState,
             lastWindowBounds: Rectangle,
         ): void {
-            const userConfigStoreDataStub = ({
+            const userConfigStoreDataStub = {
                 lastWindowState: lastWindowState,
                 lastWindowBounds: lastWindowBounds,
-            } as unknown) as UserConfigurationStoreData;
+            } as unknown as UserConfigurationStoreData;
             const shouldSetBounds: boolean = lastWindowBounds !== null;
             const shouldMaximize: boolean = lastWindowState === 'maximized';
             const shouldEnterFullScreen: boolean = lastWindowState === 'full-screen';

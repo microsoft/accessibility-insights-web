@@ -97,9 +97,10 @@ export const Instructions: Requirement = {
         {
             key: 'instructions-info',
             name: 'Instructions',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(
-                propertyBagConfig,
-            ),
+            onRender:
+                PropertyBagColumnRendererFactory.getRenderer<DefaultWidgetPropertyBag>(
+                    propertyBagConfig,
+                ),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

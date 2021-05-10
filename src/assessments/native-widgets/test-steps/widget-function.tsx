@@ -91,9 +91,10 @@ export const WidgetFunction: Requirement = {
         {
             key: 'widget-function-info',
             name: 'Widget function',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<WidgetFunctionPropertyBag>(
-                propertyBagConfig,
-            ),
+            onRender:
+                PropertyBagColumnRendererFactory.getRenderer<WidgetFunctionPropertyBag>(
+                    propertyBagConfig,
+                ),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
