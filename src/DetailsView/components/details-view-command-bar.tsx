@@ -156,20 +156,20 @@ export class DetailsViewCommandBar extends React.Component<
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
-        const saveAssessmentElement: JSX.Element | null = this.renderSaveAssessmentButton();
-        const loadAssessmentElement: JSX.Element | null = this.renderLoadAssessmentButton();
+        const saveAssessmentButtonElement: JSX.Element = this.renderSaveAssessmentButton();
+        const loadAssessmentButtonElement: JSX.Element = this.renderLoadAssessmentButton();
 
         if (
             reportExportElement ||
-            saveAssessmentElement ||
-            loadAssessmentElement ||
+            saveAssessmentButtonElement ||
+            loadAssessmentButtonElement ||
             startOverElement
         ) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
-                    {saveAssessmentElement}
-                    {loadAssessmentElement}
+                    {saveAssessmentButtonElement}
+                    {loadAssessmentButtonElement}
                     {startOverElement}
                 </div>
             );
@@ -232,7 +232,7 @@ export class DetailsViewCommandBar extends React.Component<
         });
     }
 
-    private renderSaveAssessmentButton = (): JSX.Element | null => {
+    private renderSaveAssessmentButton = (): JSX.Element => {
         return (
             <FlaggedComponent
                 featureFlag={FeatureFlags.saveAndLoadAssessment}
@@ -244,7 +244,7 @@ export class DetailsViewCommandBar extends React.Component<
         );
     };
 
-    private renderLoadAssessmentButton = (): JSX.Element | null => {
+    private renderLoadAssessmentButton = (): JSX.Element => {
         return (
             <FlaggedComponent
                 featureFlag={FeatureFlags.saveAndLoadAssessment}
