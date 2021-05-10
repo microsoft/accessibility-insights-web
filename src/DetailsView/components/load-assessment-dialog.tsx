@@ -28,40 +28,44 @@ export interface LoadAssessmentDialogProps {
     onClose: () => void;
 }
 
-export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>('LoadAssessment', props => {
-    const loadAssessment = () => {
-        props.deps.detailsViewActionMessageCreator.loadAssessment(
-            props.loadedAssessmentData,
-            props.tabId,
-        );
-        props.onClose();
-    };
+export const LoadAssessmentDialog = NamedFC<LoadAssessmentDialogProps>(
+    'LoadAssessmentDialog',
+    props => {
+        const loadAssessment = () => {
+            props.deps.detailsViewActionMessageCreator.loadAssessment(
+                props.loadedAssessmentData,
+                props.tabId,
+            );
+            props.onClose();
+        };
 
-    const continuePreviousAssessment = (event: React.MouseEvent<any, MouseEvent>) => {
-        props.deps.detailsViewActionMessageCreator.continuePreviousAssessment(event);
-        props.onClose();
-    };
+        const continuePreviousAssessment = (event: React.MouseEvent<any, MouseEvent>) => {
+            props.deps.detailsViewActionMessageCreator.continuePreviousAssessment(event);
+            props.onClose();
+        };
 
-    const dialogProps: ChangeAssessmentDialogProps = {
-        deps: props.deps,
-        prevTab: props.prevTab,
-        dialogContentTitle: 'Assessment in progress',
-        subtitleAriaId: 'load-assessment-dialog-description',
-        divId: 'load-assessment-dialog-description',
-        leftButtonText: 'Continue previous',
-        leftButtonOnClick: continuePreviousAssessment,
-        rightButtonText: 'Load assessment',
-        rightButtonOnClick: loadAssessment,
-        dialogFirstText: (
-            <>Would you like to continue your current assessment or load the new assessment?</>
-        ),
-        dialogNoteText:
-            "If 'Continue previous' is selected, the assessment selected will not be loaded.",
-        dialogWarningText: "If 'Load assessment’ is selected, all previous progress will be lost.",
-        isOpen: props.isOpen,
-        rightButtonStyle: styles.loadButton,
-        rightButtonDataAutomationId: loadAssessmentDialogLoadButtonAutomationId,
-    };
+        const dialogProps: ChangeAssessmentDialogProps = {
+            deps: props.deps,
+            prevTab: props.prevTab,
+            dialogContentTitle: 'Assessment in progress',
+            subtitleAriaId: 'load-assessment-dialog-description',
+            divId: 'load-assessment-dialog-description',
+            leftButtonText: 'Continue previous',
+            leftButtonOnClick: continuePreviousAssessment,
+            rightButtonText: 'Load assessment',
+            rightButtonOnClick: loadAssessment,
+            dialogFirstText: (
+                <>Would you like to continue your current assessment or load the new assessment?</>
+            ),
+            dialogNoteText:
+                "If 'Continue previous' is selected, the assessment selected will not be loaded.",
+            dialogWarningText:
+                "If 'Load assessment’ is selected, all previous progress will be lost.",
+            isOpen: props.isOpen,
+            rightButtonStyle: styles.loadButton,
+            rightButtonDataAutomationId: loadAssessmentDialogLoadButtonAutomationId,
+        };
 
-    return <ChangeAssessmentDialog {...dialogProps} />;
-});
+        return <ChangeAssessmentDialog {...dialogProps} />;
+    },
+);
