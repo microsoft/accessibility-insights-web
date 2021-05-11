@@ -11226,24 +11226,24 @@ react-copy-to-clipboard@^5.0.3:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
 
-react-devtools-core@4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.0.tgz#fa80ee03b1a975c1d9898e24de841e45a4b22d30"
-  integrity sha512-KR+0pLw8wTjOVr+9AECe5ctmycaAjbmxN3bbdB0vmlwm0JkxNnKMxDzanf+4V8IuPBQWgm8qdWpbSOqhu1l14g==
+react-devtools-core@4.13.2:
+  version "4.13.2"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.2.tgz#61399c6648d3ded5917eaa4e59b474b3fa838faa"
+  integrity sha512-/lA5FVLMhUHrkQwtEf5wZNCKsXmc2RBZMNS/kkq3WlXPg2Y7COUGMh0Lmz34jjMpM0kvLMDuj+DqsPT/jSADbw==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.13.0:
-  version "4.13.0"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.0.tgz#f0c8d920d7ac87e8ee8d0742bd8a8e3643e58ef4"
-  integrity sha512-Ti7hEiIjbZvhpfEokn3ZqKvj0pAlOmaRyRrQhKqY9msYwbA4WmKtDCSDQUN8fOOPIOykvZ0t1gDrq+1PsiYEXQ==
+react-devtools@^4.13.2:
+  version "4.13.2"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.2.tgz#4eb3399a68ba33728f48e32fa1ffef2aec1371c2"
+  integrity sha512-JFNwahGsSQ8ilE25Dqysm7AH5jjKVqI6PhdleeXNGxcbJRMPTYBbR4UvlpZIeccr74pgfu217n6SXkIL6Lfl5w==
   dependencies:
     cross-spawn "^5.0.1"
     electron "^11.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.13.0"
+    react-devtools-core "4.13.2"
     update-notifier "^2.1.0"
 
 react-dom@^16.14.0:
