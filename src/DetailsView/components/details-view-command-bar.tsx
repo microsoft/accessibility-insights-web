@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FlaggedComponent } from 'common/components/flagged-component';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { FeatureFlags } from 'common/feature-flags';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 
 import {
@@ -10,6 +12,7 @@ import {
     UnifiedScanResultStoreData,
 } from 'common/types/store-data/unified-data-interface';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
@@ -17,16 +20,20 @@ import { detailsViewCommandButtons } from 'DetailsView/components/details-view-c
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import {
-    LoadAssessmentButton,
     LoadAssessmentButtonDeps,
+    LoadAssessmentButtonProps,
 } from 'DetailsView/components/load-assessment-button';
+import {
+    LoadAssessmentDialog,
+    LoadAssessmentDialogDeps,
+} from 'DetailsView/components/load-assessment-dialog';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
 import { ReportExportDialogFactoryProps } from 'DetailsView/components/report-export-dialog-factory';
 import {
-    SaveAssessmentFactoryDeps,
-    SaveAssessmentFactoryProps,
-} from 'DetailsView/components/save-assessment-factory';
+    SaveAssessmentButtonFactoryDeps,
+    SaveAssessmentButtonFactoryProps,
+} from 'DetailsView/components/save-assessment-button-factory';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import { StartOverFactoryDeps } from 'DetailsView/components/start-over-component-factory';
 import {
@@ -51,20 +58,24 @@ export type DetailsViewCommandBarDeps = {
     getDateFromTimestamp: (timestamp: string) => Date;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & ExportDialogDeps &
-    SaveAssessmentFactoryDeps &
+    SaveAssessmentButtonFactoryDeps &
+    LoadAssessmentButtonDeps &
     StartOverFactoryDeps &
-    LoadAssessmentButtonDeps;
+    LoadAssessmentDialogDeps;
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type DetailsViewCommandBarState = {
+    isLoadAssessmentDialogOpen: boolean;
     isReportExportDialogOpen: boolean;
+    loadedAssessmentData: VersionedAssessmentData;
     startOverDialogState: StartOverDialogState;
 };
 
 export type ReportExportDialogFactory = (props: ReportExportDialogFactoryProps) => JSX.Element;
 
-export type SaveAssessmentFactory = (props: SaveAssessmentFactoryProps) => JSX.Element;
+export type SaveAssessmentButtonFactory = (props: SaveAssessmentButtonFactoryProps) => JSX.Element;
+export type LoadAssessmentButtonFactory = (props: LoadAssessmentButtonProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -92,7 +103,9 @@ export class DetailsViewCommandBar extends React.Component<
     public constructor(props) {
         super(props);
         this.state = {
+            isLoadAssessmentDialogOpen: false,
             isReportExportDialogOpen: false,
+            loadedAssessmentData: null,
             startOverDialogState: 'none',
         };
     }
@@ -107,6 +120,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderTargetPageInfo()}
                 {this.renderFarItems()}
                 {this.renderExportDialog()}
+                {this.renderLoadAssessmentDialog()}
                 {this.renderStartOverDialog()}
             </div>
         );
@@ -142,20 +156,20 @@ export class DetailsViewCommandBar extends React.Component<
     private renderCommandButtons(): JSX.Element {
         const reportExportElement: JSX.Element = this.renderExportButton();
         const startOverElement: JSX.Element = this.renderStartOverButton();
-        const saveAssessmentElement: JSX.Element | null = this.renderSaveAssessmentButton();
-        const loadAssessmentElement: JSX.Element | null = this.renderLoadAssessmentButton();
+        const saveAssessmentButtonElement: JSX.Element = this.renderSaveAssessmentButton();
+        const loadAssessmentButtonElement: JSX.Element = this.renderLoadAssessmentButton();
 
         if (
             reportExportElement ||
-            saveAssessmentElement ||
-            loadAssessmentElement ||
+            saveAssessmentButtonElement ||
+            loadAssessmentButtonElement ||
             startOverElement
         ) {
             return (
                 <div className={detailsViewCommandButtons}>
                     {reportExportElement}
-                    {saveAssessmentElement}
-                    {loadAssessmentElement}
+                    {saveAssessmentButtonElement}
+                    {loadAssessmentButtonElement}
                     {startOverElement}
                 </div>
             );
@@ -218,20 +232,64 @@ export class DetailsViewCommandBar extends React.Component<
         });
     }
 
-    private renderSaveAssessmentButton = (): JSX.Element | null => {
-        if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return this.props.switcherNavConfiguration.SaveAssessmentFactory({
-                ...this.props,
-            });
-        }
-        return null;
+    private renderSaveAssessmentButton = (): JSX.Element => {
+        return (
+            <FlaggedComponent
+                featureFlag={FeatureFlags.saveAndLoadAssessment}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={this.props.switcherNavConfiguration.SaveAssessmentButton({
+                    ...this.props,
+                })}
+            />
+        );
     };
 
-    private renderLoadAssessmentButton = (): JSX.Element | null => {
-        if (this.props.featureFlagStoreData.saveAndLoadAssessment) {
-            return <LoadAssessmentButton {...this.props} />;
-        }
-        return null;
+    private renderLoadAssessmentButton = (): JSX.Element => {
+        return (
+            <FlaggedComponent
+                featureFlag={FeatureFlags.saveAndLoadAssessment}
+                featureFlagStoreData={this.props.featureFlagStoreData}
+                enableJSXElement={this.props.switcherNavConfiguration.LoadAssessmentButton({
+                    ...this.props,
+                    handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
+                    onClose: this.toggleLoadAssessmentDialog,
+                })}
+            />
+        );
+    };
+
+    private renderLoadAssessmentDialog = (): JSX.Element => {
+        return (
+            <LoadAssessmentDialog
+                {...this.props}
+                isOpen={this.state.isLoadAssessmentDialogOpen}
+                prevTab={this.props.assessmentStoreData.persistedTabInfo}
+                loadedAssessmentData={this.state.loadedAssessmentData}
+                tabId={this.props.tabStoreData.id}
+                onClose={this.toggleLoadAssessmentDialog}
+            />
+        );
+    };
+
+    private toggleLoadAssessmentDialog = () => {
+        this.setState(prevState => ({
+            isLoadAssessmentDialogOpen: !prevState.isLoadAssessmentDialogOpen,
+        }));
+    };
+
+    private setAssessmentState = (parsedAssessmentData: VersionedAssessmentData) => {
+        this.setState(_ => ({
+            loadedAssessmentData: parsedAssessmentData,
+        }));
+    };
+
+    private handleLoadAssessmentButtonClick = () => {
+        this.props.deps.loadAssessmentHelper.getAssessmentForLoad(
+            this.setAssessmentState,
+            this.toggleLoadAssessmentDialog,
+            this.props.assessmentStoreData.persistedTabInfo,
+            this.props.tabStoreData.id,
+        );
     };
 
     private showStartOverDialog = (dialogState: StartOverDialogType) => {

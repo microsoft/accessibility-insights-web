@@ -22,7 +22,7 @@ export interface ChangeAssessmentDialogProps {
     dialogFirstText: JSX.Element;
     dialogNoteText: string;
     dialogWarningText: string;
-    show: boolean;
+    isOpen: boolean;
     rightButtonStyle: string;
     rightButtonDataAutomationId: string;
 }
@@ -30,8 +30,8 @@ export interface ChangeAssessmentDialogProps {
 export const ChangeAssessmentDialog = NamedFC<ChangeAssessmentDialogProps>(
     'ChangeAssessmentDialog',
     props => {
-        const { show } = props;
-        if (!show) {
+        const { isOpen } = props;
+        if (!isOpen) {
             return null;
         }
 

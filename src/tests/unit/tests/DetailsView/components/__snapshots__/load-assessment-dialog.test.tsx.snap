@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadAssessmentDialog should not show when isOpen is set to false 1`] = `
+<ChangeAssessmentDialog
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
+    }
+  }
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment or load the new assessment?
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the assessment selected will not be loaded."
+  dialogWarningText="If 'Load assessment’ is selected, all previous progress will be lost."
+  divId="load-assessment-dialog-description"
+  isOpen={false}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "id": 111,
+      "title": "test title",
+      "url": "https://www.test.com",
+    }
+  }
+  rightButtonDataAutomationId="load-assessment-dialog-load-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="loadButton"
+  rightButtonText="Load assessment"
+  subtitleAriaId="load-assessment-dialog-description"
+/>
+`;
+
+exports[`LoadAssessmentDialog should show when isOpen is set to true 1`] = `
+<ChangeAssessmentDialog
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
+    }
+  }
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment or load the new assessment?
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the assessment selected will not be loaded."
+  dialogWarningText="If 'Load assessment’ is selected, all previous progress will be lost."
+  divId="load-assessment-dialog-description"
+  isOpen={true}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "id": 111,
+      "title": "test title",
+      "url": "https://www.test.com",
+    }
+  }
+  rightButtonDataAutomationId="load-assessment-dialog-load-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="loadButton"
+  rightButtonText="Load assessment"
+  subtitleAriaId="load-assessment-dialog-description"
+/>
+`;

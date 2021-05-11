@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SaveAssessmentFactory getSaveButtonForAssessment renders save assessment button 1`] = `
+exports[`SaveAssessmentButtonFactory getSaveButtonForAssessment renders save assessment button 1`] = `
 <SaveAssessmentButton
   assessmentStoreData={
     Object {

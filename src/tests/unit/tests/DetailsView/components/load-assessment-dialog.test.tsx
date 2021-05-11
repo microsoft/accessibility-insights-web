@@ -47,7 +47,7 @@ describe('LoadAssessmentDialog', () => {
             tabId: 5,
             loadedAssessmentData: {} as VersionedAssessmentData,
             onClose: () => {},
-            show: true,
+            isOpen: true,
         };
     });
 
@@ -73,4 +73,15 @@ describe('LoadAssessmentDialog', () => {
             urlParserMock.verifyAll();
         },
     );
+
+    it('should show when isOpen is set to true', () => {
+        const rendered = shallow(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    it('should not show when isOpen is set to false', () => {
+        loadAssessmentDialogProps.isOpen = false;
+        const rendered = shallow(<LoadAssessmentDialog {...loadAssessmentDialogProps} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 });
