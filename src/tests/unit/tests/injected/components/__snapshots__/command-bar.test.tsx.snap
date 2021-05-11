@@ -97,7 +97,7 @@ exports[`CommandBar renders renders, shows copy button insecure origin message: 
     className="copy-issue-details-button-help"
     role="alert"
   >
-    To copy failure details, first open the details page.
+    To copy failure details, first open the Accessibility Insights for Web page.
   </div>
 </div>
 `;

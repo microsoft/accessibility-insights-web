@@ -111,7 +111,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         if (props.shouldShowInsecureOriginPageMessage) {
             return (
                 <div role="alert" className="copy-issue-details-button-help">
-                    To copy failure details, first open the details page.
+                    To copy failure details, first open the Accessibility Insights for Web page.
                 </div>
             );
         }
