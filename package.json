@@ -146,7 +146,7 @@
         "playwright": "^1.10.0",
         "preprocess": "^3.2.0",
         "prettier": "^2.2.1",
-        "react-devtools": "^4.13.0",
+        "react-devtools": "^4.13.2",
         "regenerator-runtime": "^0.13.7",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
