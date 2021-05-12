@@ -39,6 +39,8 @@ export type CommandBarProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldShowInspectButtonMessage: () => boolean;
     devToolsShortcut: string;
+    hasSecureTargetPage: boolean;
+    shouldShowInsecureOriginPageMessage: boolean;
 };
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
@@ -67,13 +69,20 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
 
         return (
             <>
-                <CopyIssueDetailsButton
-                    deps={props.deps}
-                    issueDetailsData={issueData}
-                    onClick={props.onClickCopyIssueDetailsButton}
-                />
+                {renderCopyIssueDetailsButton(issueData)}
                 {renderFileIssueButton(issueData)}
             </>
+        );
+    };
+
+    const renderCopyIssueDetailsButton = (issueData: CreateIssueDetailsTextData): JSX.Element => {
+        return (
+            <CopyIssueDetailsButton
+                deps={props.deps}
+                issueDetailsData={issueData}
+                onClick={props.onClickCopyIssueDetailsButton}
+                hasSecureTargetPage={props.hasSecureTargetPage}
+            />
         );
     };
 
@@ -98,11 +107,22 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         }
     };
 
+    const renderCopyIssueDetailsMessage = (): JSX.Element => {
+        if (props.shouldShowInsecureOriginPageMessage) {
+            return (
+                <div role="alert" className="copy-issue-details-button-help">
+                    To copy failure details, first open the Accessibility Insights for Web page.
+                </div>
+            );
+        }
+    };
+
     return (
         <div className="insights-dialog-target-button-container">
             {renderInspectButton()}
             {renderIssueButtons()}
             {renderInspectMessage()}
+            {renderCopyIssueDetailsMessage()}
         </div>
     );
 });
