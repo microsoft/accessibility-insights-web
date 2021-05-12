@@ -176,7 +176,7 @@
         "classnames": "^2.3.1",
         "electron": "10.3.0",
         "electron-log": "^4.3.5",
-        "electron-updater": "^4.3.5",
+        "electron-updater": "^4.3.9",
         "idb-keyval": "^5.0.5",
         "lodash": "^4.17.21",
         "luxon": "^1.26.0",
