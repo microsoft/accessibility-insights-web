@@ -12,7 +12,6 @@ import {
     DetailsDialogProps,
 } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { TargetPageActionMessageCreator } from '../../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
@@ -138,15 +137,18 @@ describe('DetailsDialog', () => {
             });
 
             test('on click copy issue details button', () => {
-                const targetPageActionMessageCreatorMock =
-                    Mock.ofType<TargetPageActionMessageCreator>();
+                const clickHandlerMock = Mock.ofInstance(
+                    (component: DetailsDialog, event: React.MouseEvent<MouseEvent>) => {},
+                );
+
+                dialogDetailsHandlerMockObject.copyIssueDetailsButtonClickHandler =
+                    clickHandlerMock.object;
 
                 const deps = {
                     ...defaultDetailsDialogDeps,
                     browserAdapter: {
                         getUrl: url => 'test-url',
                     } as any,
-                    targetPageActionMessageCreator: targetPageActionMessageCreatorMock.object,
                 };
 
                 const props = {
@@ -156,14 +158,14 @@ describe('DetailsDialog', () => {
                     dialogHandler: dialogDetailsHandlerMockObject,
                 };
 
-                const wrapper = shallow(<DetailsDialog {...props} />);
+                const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
 
                 const commandBar = wrapper.find(CommandBar);
 
                 commandBar.prop('onClickCopyIssueDetailsButton')(eventStub);
 
-                targetPageActionMessageCreatorMock.verify(
-                    creator => creator.copyIssueDetailsClicked(eventStub),
+                clickHandlerMock.verify(
+                    handler => handler(wrapper.instance(), eventStub),
                     Times.once(),
                 );
             });
@@ -243,6 +245,8 @@ describe('DetailsDialog', () => {
             getFailureInfo: () => 'Failure 1 of 1 for this target',
             componentDidMount: () => {},
             shouldShowInspectButtonMessage: () => false,
+            isTargetPageOriginSecure: () => true,
+            shouldShowInsecureOriginPageMessage: () => false,
         };
     };
 });
