@@ -7,18 +7,22 @@ Licensed under the MIT License.
     <head>
         <meta charset="utf-8" />
         <title>All Pages</title>
+        <style>
+            iframe {
+                width: 100%;
+                height: 600px;
+            }
+        </style>
     </head>
 
     <body>
         <h1>Page with Images</h1>
-        <iframe name="image-text" src="./image/image-text.html" width="100%" height="50%"> </iframe>
+        <iframe name="image-text" src="./image/image-text.html"></iframe>
+
         <h1>Page with Native Widgets</h1>
-        <iframe
-            name="native-widgets"
-            src="./native-widgets/input-type-radio.html"
-            width="100%"
-            height="50%"
-        >
-        </iframe>
+        <iframe name="native-widgets" src="./native-widgets/input-type-radio.html"></iframe>
+
+        <h1>Page with Custom Widgets</h1>
+        <iframe name="custom-widgets" src="./custom-widgets/custom.html" width="100%"></iframe>
     </body>
 </html>
