@@ -11,14 +11,14 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import {
     getSaveButtonForAssessment,
     getSaveButtonForFastPass,
-    SaveAssessmentFactoryDeps,
-    SaveAssessmentFactoryProps,
-} from 'DetailsView/components/save-assessment-factory';
+    SaveAssessmentButtonFactoryDeps,
+    SaveAssessmentButtonFactoryProps,
+} from 'DetailsView/components/save-assessment-button-factory';
 import { Mock, Times } from 'typemoq';
 
-describe('SaveAssessmentFactory', () => {
-    let deps: SaveAssessmentFactoryDeps;
-    let props: SaveAssessmentFactoryProps;
+describe('SaveAssessmentButtonFactory', () => {
+    let deps: SaveAssessmentButtonFactoryDeps;
+    let props: SaveAssessmentButtonFactoryProps;
     const fileURLProviderMock = Mock.ofType(FileURLProvider);
     const assessmentDataFormatterMock = Mock.ofType(AssessmentDataFormatter);
     const fileNameBuilderMock = Mock.ofType(FileNameBuilder);
@@ -58,12 +58,12 @@ describe('SaveAssessmentFactory', () => {
             fileURLProvider: fileURLProviderMock.object,
             fileNameBuilder: fileNameBuilderMock.object,
             getCurrentDate: getCurrentDateStub,
-        } as SaveAssessmentFactoryDeps;
+        } as SaveAssessmentButtonFactoryDeps;
         props = {
             deps,
             assessmentStoreData,
             tabStoreData,
-        } as SaveAssessmentFactoryProps;
+        } as SaveAssessmentButtonFactoryProps;
     });
 
     describe('getSaveButtonForAssessment', () => {

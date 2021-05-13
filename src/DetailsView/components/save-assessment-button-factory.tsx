@@ -11,20 +11,20 @@ import {
 import * as React from 'react';
 import { FileURLProvider } from '../../common/file-url-provider';
 
-export type SaveAssessmentFactoryDeps = {
+export type SaveAssessmentButtonFactoryDeps = {
     getCurrentDate: () => Date;
     fileURLProvider: FileURLProvider;
     fileNameBuilder: FileNameBuilder;
     assessmentDataFormatter: AssessmentDataFormatter;
 } & SaveAssessmentButtonDeps;
 
-export type SaveAssessmentFactoryProps = {
-    deps: SaveAssessmentFactoryDeps;
+export type SaveAssessmentButtonFactoryProps = {
+    deps: SaveAssessmentButtonFactoryDeps;
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
 };
 
-export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): JSX.Element {
+export function getSaveButtonForAssessment(props: SaveAssessmentButtonFactoryProps): JSX.Element {
     const assessmentData = props.deps.assessmentDataFormatter.formatAssessmentData(
         props.assessmentStoreData,
     );
@@ -39,6 +39,8 @@ export function getSaveButtonForAssessment(props: SaveAssessmentFactoryProps): J
     return <SaveAssessmentButton download={fileName} href={fileURL} {...props} />;
 }
 
-export function getSaveButtonForFastPass(props: SaveAssessmentFactoryProps): JSX.Element | null {
+export function getSaveButtonForFastPass(
+    props: SaveAssessmentButtonFactoryProps,
+): JSX.Element | null {
     return null;
 }

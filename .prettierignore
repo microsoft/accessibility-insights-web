@@ -1,17 +1,18 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+**/*.a11ywebassessment
 **/*.dockerignore
 **/*.gitattributes
 **/*.gitignore
 **/*.icns
 **/*.ico
+**/*.md
 **/*.mp3
 **/*.nsh
 **/*.png
 **/*.snap
 **/*.snap.html
-**/*.md
 **/Dockerfile
 
 .DS_Store

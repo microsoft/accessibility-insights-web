@@ -1,5 +1,107 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CommandBar renders renders, shows copy button insecure origin message: false 1`] = `
+<div
+  className="insights-dialog-target-button-container"
+>
+  <CustomizedDefaultButton
+    className="insights-dialog-button-inspect"
+  >
+    <FileHTMLIcon />
+    <div
+      className="ms-Button-label"
+    >
+      Inspect HTML
+    </div>
+  </CustomizedDefaultButton>
+  <React.Fragment>
+    <CopyIssueDetailsButton
+      deps={
+        Object {
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
+          },
+        }
+      }
+      issueDetailsData={Object {}}
+    />
+    <IssueFilingButton
+      deps={
+        Object {
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
+          },
+        }
+      }
+      issueDetailsData={Object {}}
+      needsSettingsContentRenderer={[Function]}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "None",
+          "isFirstTime": false,
+        }
+      }
+    />
+  </React.Fragment>
+</div>
+`;
+
+exports[`CommandBar renders renders, shows copy button insecure origin message: true 1`] = `
+<div
+  className="insights-dialog-target-button-container"
+>
+  <CustomizedDefaultButton
+    className="insights-dialog-button-inspect"
+  >
+    <FileHTMLIcon />
+    <div
+      className="ms-Button-label"
+    >
+      Inspect HTML
+    </div>
+  </CustomizedDefaultButton>
+  <React.Fragment>
+    <CopyIssueDetailsButton
+      deps={
+        Object {
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
+          },
+        }
+      }
+      issueDetailsData={Object {}}
+    />
+    <IssueFilingButton
+      deps={
+        Object {
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
+          },
+        }
+      }
+      issueDetailsData={Object {}}
+      needsSettingsContentRenderer={[Function]}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "None",
+          "isFirstTime": false,
+        }
+      }
+    />
+  </React.Fragment>
+  <div
+    className="copy-issue-details-button-help"
+    role="alert"
+  >
+    To copy failure details, first open the Accessibility Insights for Web page.
+  </div>
+</div>
+`;
+
 exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
 <div
   className="insights-dialog-target-button-container"

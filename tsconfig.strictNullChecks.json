@@ -35,7 +35,7 @@
         "./src/DetailsView/components/requirement-instructions.tsx",
         "./src/DetailsView/components/requirement-view-title.tsx",
         "./src/DetailsView/components/save-assessment-button.tsx",
-        "./src/DetailsView/components/save-assessment-factory.tsx",
+        "./src/DetailsView/components/save-assessment-button-factory.tsx",
         "./src/DetailsView/components/static-content-details-view.tsx",
         "./src/DetailsView/components/target-page-changed-view.tsx",
         "./src/DetailsView/components/target-page-hidden-bar.tsx",

@@ -130,7 +130,7 @@ export class WindowInitializer {
             this.frameMessenger,
             this.browserAdapter,
             getRTL,
-            new DetailsDialogHandler(htmlElementUtils),
+            new DetailsDialogHandler(htmlElementUtils, this.windowUtils),
         );
         this.drawingController = new DrawingController(
             this.frameMessenger,

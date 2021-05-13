@@ -1,40 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render the only information available in prevTab is appRefreshed 1`] = `
-<BlockingDialog
-  dialogContentProps={
+<ChangeAssessmentDialog
+  deps={
     Object {
-      "title": "Assessment in progress",
-      "type": 0,
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
     }
   }
-  hidden={false}
-  modalProps={
-    Object {
-      "className": "targetChangeDialogModal",
-      "containerClassName": "insightsDialogMainOverride targetChangeDialog",
-      "subtitleAriaId": "target-change-dialog-description",
-    }
-  }
->
-  <div
-    id="target-change-dialog-description"
-  >
-    <div>
-      There is already an assessment running on 
-      <StyledTooltipHostBase
-        calloutProps={
-          Object {
-            "gapSpace": 0,
-          }
-        }
-        id="previous-target-page-link"
-      >
-        <NewTabLink
-          role="link"
-        />
-      </StyledTooltipHostBase>
-      . Would you like to continue your current assessment on the new target of 
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment on the new target of
+       
       <StyledTooltipHostBase
         calloutProps={
           Object {
@@ -55,82 +63,70 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         </StyledLinkBase>
       </StyledTooltipHostBase>
       ?
-    </div>
-    <p>
-      <Term>
-        Note
-      </Term>
-      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-    </p>
-    <p>
-      If 'Start new' is selected, all previous progress will be lost.
-    </p>
-  </div>
-  <StyledDialogFooterBase>
-    <div
-      className="targetChangeDialogButtonContainer"
-    >
-      <div
-        className="actionCancelButtonCol continueButton"
-      >
-        <CustomizedDefaultButton
-          autoFocus={true}
-          onClick={[Function]}
-          text="Continue previous"
-        />
-      </div>
-      <div
-        className="actionCancelButtonCol restartButton"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-    </div>
-  </StyledDialogFooterBase>
-</BlockingDialog>
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+  dialogWarningText="If 'Start new' is selected, all previous progress will be lost."
+  divId="target-change-dialog-description"
+  isOpen={true}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "appRefreshed": true,
+    }
+  }
+  rightButtonDataAutomationId="target-change-start-new-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
+  rightButtonText="Start new"
+  subtitleAriaId="target-change-dialog-description"
+/>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when previous tab info shows app is refreshed 1`] = `
-<BlockingDialog
-  dialogContentProps={
+<ChangeAssessmentDialog
+  deps={
     Object {
-      "title": "Assessment in progress",
-      "type": 0,
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
     }
   }
-  hidden={false}
-  modalProps={
-    Object {
-      "className": "targetChangeDialogModal",
-      "containerClassName": "insightsDialogMainOverride targetChangeDialog",
-      "subtitleAriaId": "target-change-dialog-description",
-    }
-  }
->
-  <div
-    id="target-change-dialog-description"
-  >
-    <div>
-      There is already an assessment running on 
-      <StyledTooltipHostBase
-        calloutProps={
-          Object {
-            "gapSpace": 0,
-          }
-        }
-        content="https://www.abc.com"
-        id="previous-target-page-link"
-      >
-        <NewTabLink
-          href="https://www.abc.com"
-          role="link"
-        >
-          test title 1
-        </NewTabLink>
-      </StyledTooltipHostBase>
-      . Would you like to continue your current assessment on the new target of 
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment on the new target of
+       
       <StyledTooltipHostBase
         calloutProps={
           Object {
@@ -151,82 +147,73 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         </StyledLinkBase>
       </StyledTooltipHostBase>
       ?
-    </div>
-    <p>
-      <Term>
-        Note
-      </Term>
-      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-    </p>
-    <p>
-      If 'Start new' is selected, all previous progress will be lost.
-    </p>
-  </div>
-  <StyledDialogFooterBase>
-    <div
-      className="targetChangeDialogButtonContainer"
-    >
-      <div
-        className="actionCancelButtonCol continueButton"
-      >
-        <CustomizedDefaultButton
-          autoFocus={true}
-          onClick={[Function]}
-          text="Continue previous"
-        />
-      </div>
-      <div
-        className="actionCancelButtonCol restartButton"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-    </div>
-  </StyledDialogFooterBase>
-</BlockingDialog>
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+  dialogWarningText="If 'Start new' is selected, all previous progress will be lost."
+  divId="target-change-dialog-description"
+  isOpen={true}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "appRefreshed": true,
+      "id": 111,
+      "title": "test title 1",
+      "url": "https://www.abc.com",
+    }
+  }
+  rightButtonDataAutomationId="target-change-start-new-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
+  rightButtonText="Start new"
+  subtitleAriaId="target-change-dialog-description"
+/>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same and also url doesn't change 1`] = `
-<BlockingDialog
-  dialogContentProps={
+<ChangeAssessmentDialog
+  deps={
     Object {
-      "title": "Assessment in progress",
-      "type": 0,
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
     }
   }
-  hidden={false}
-  modalProps={
-    Object {
-      "className": "targetChangeDialogModal",
-      "containerClassName": "insightsDialogMainOverride targetChangeDialog",
-      "subtitleAriaId": "target-change-dialog-description",
-    }
-  }
->
-  <div
-    id="target-change-dialog-description"
-  >
-    <div>
-      There is already an assessment running on 
-      <StyledTooltipHostBase
-        calloutProps={
-          Object {
-            "gapSpace": 0,
-          }
-        }
-        content="https://www.abc.com"
-        id="previous-target-page-link"
-      >
-        <NewTabLink
-          href="https://www.abc.com"
-          role="link"
-        >
-          test title 1
-        </NewTabLink>
-      </StyledTooltipHostBase>
-      . Would you like to continue your current assessment on the new target of 
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment on the new target of
+       
       <StyledTooltipHostBase
         calloutProps={
           Object {
@@ -247,82 +234,73 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         </StyledLinkBase>
       </StyledTooltipHostBase>
       ?
-    </div>
-    <p>
-      <Term>
-        Note
-      </Term>
-      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-    </p>
-    <p>
-      If 'Start new' is selected, all previous progress will be lost.
-    </p>
-  </div>
-  <StyledDialogFooterBase>
-    <div
-      className="targetChangeDialogButtonContainer"
-    >
-      <div
-        className="actionCancelButtonCol continueButton"
-      >
-        <CustomizedDefaultButton
-          autoFocus={true}
-          onClick={[Function]}
-          text="Continue previous"
-        />
-      </div>
-      <div
-        className="actionCancelButtonCol restartButton"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-    </div>
-  </StyledDialogFooterBase>
-</BlockingDialog>
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+  dialogWarningText="If 'Start new' is selected, all previous progress will be lost."
+  divId="target-change-dialog-description"
+  isOpen={true}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "appRefreshed": true,
+      "id": 111,
+      "title": "test title 1",
+      "url": "https://www.abc.com",
+    }
+  }
+  rightButtonDataAutomationId="target-change-start-new-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
+  rightButtonText="Start new"
+  subtitleAriaId="target-change-dialog-description"
+/>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when tab ids are same but url changes 1`] = `
-<BlockingDialog
-  dialogContentProps={
+<ChangeAssessmentDialog
+  deps={
     Object {
-      "title": "Assessment in progress",
-      "type": 0,
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
     }
   }
-  hidden={false}
-  modalProps={
-    Object {
-      "className": "targetChangeDialogModal",
-      "containerClassName": "insightsDialogMainOverride targetChangeDialog",
-      "subtitleAriaId": "target-change-dialog-description",
-    }
-  }
->
-  <div
-    id="target-change-dialog-description"
-  >
-    <div>
-      There is already an assessment running on 
-      <StyledTooltipHostBase
-        calloutProps={
-          Object {
-            "gapSpace": 0,
-          }
-        }
-        content="https://www.abc.com"
-        id="previous-target-page-link"
-      >
-        <NewTabLink
-          href="https://www.abc.com"
-          role="link"
-        >
-          test title 1
-        </NewTabLink>
-      </StyledTooltipHostBase>
-      . Would you like to continue your current assessment on the new target of 
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment on the new target of
+       
       <StyledTooltipHostBase
         calloutProps={
           Object {
@@ -343,82 +321,73 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         </StyledLinkBase>
       </StyledTooltipHostBase>
       ?
-    </div>
-    <p>
-      <Term>
-        Note
-      </Term>
-      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-    </p>
-    <p>
-      If 'Start new' is selected, all previous progress will be lost.
-    </p>
-  </div>
-  <StyledDialogFooterBase>
-    <div
-      className="targetChangeDialogButtonContainer"
-    >
-      <div
-        className="actionCancelButtonCol continueButton"
-      >
-        <CustomizedDefaultButton
-          autoFocus={true}
-          onClick={[Function]}
-          text="Continue previous"
-        />
-      </div>
-      <div
-        className="actionCancelButtonCol restartButton"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-    </div>
-  </StyledDialogFooterBase>
-</BlockingDialog>
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+  dialogWarningText="If 'Start new' is selected, all previous progress will be lost."
+  divId="target-change-dialog-description"
+  isOpen={true}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "appRefreshed": false,
+      "id": 111,
+      "title": "test title 1",
+      "url": "https://www.abc.com",
+    }
+  }
+  rightButtonDataAutomationId="target-change-start-new-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
+  rightButtonText="Start new"
+  subtitleAriaId="target-change-dialog-description"
+/>
 `;
 
 exports[`TargetChangeDialog test sets for same prev tab and newTab values snapshot: render when target tab id changed 1`] = `
-<BlockingDialog
-  dialogContentProps={
+<ChangeAssessmentDialog
+  deps={
     Object {
-      "title": "Assessment in progress",
-      "type": 0,
+      "detailsViewActionMessageCreator": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addPathForValidation": [Function],
+        "cancelStartOver": [Function],
+        "cancelStartOverAllAssessments": [Function],
+        "changeAssessmentVisualizationState": [Function],
+        "changeManualRequirementStatus": [Function],
+        "changeManualTestStatus": [Function],
+        "clearPathSnippetData": [Function],
+        "closePreviewFeaturesPanel": [Function],
+        "closeScopingPanel": [Function],
+        "closeSettingsPanel": [Function],
+        "continuePreviousAssessment": [Function],
+        "copyIssueDetailsClicked": [Function],
+        "dispatcher": undefined,
+        "editFailureInstance": [Function],
+        "leftNavPanelExpanded": [Function],
+        "loadAssessment": [Function],
+        "removeFailureInstance": [Function],
+        "rescanVisualization": [Function],
+        "saveAssessment": [Function],
+        "setAllUrlsPermissionState": [Function],
+        "setFeatureFlag": [Function],
+        "startOverAllAssessments": [Function],
+        "switchToTargetTab": [Function],
+        "telemetryFactory": undefined,
+        "undoManualRequirementStatusChange": [Function],
+        "undoManualTestStatusChange": [Function],
+      },
+      "urlParser": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      },
     }
   }
-  hidden={false}
-  modalProps={
-    Object {
-      "className": "targetChangeDialogModal",
-      "containerClassName": "insightsDialogMainOverride targetChangeDialog",
-      "subtitleAriaId": "target-change-dialog-description",
-    }
-  }
->
-  <div
-    id="target-change-dialog-description"
-  >
-    <div>
-      There is already an assessment running on 
-      <StyledTooltipHostBase
-        calloutProps={
-          Object {
-            "gapSpace": 0,
-          }
-        }
-        content="https://www.abc.com"
-        id="previous-target-page-link"
-      >
-        <NewTabLink
-          href="https://www.abc.com"
-          role="link"
-        >
-          test title 1
-        </NewTabLink>
-      </StyledTooltipHostBase>
-      . Would you like to continue your current assessment on the new target of 
+  dialogContentTitle="Assessment in progress"
+  dialogFirstText={
+    <React.Fragment>
+      Would you like to continue your current assessment on the new target of
+       
       <StyledTooltipHostBase
         calloutProps={
           Object {
@@ -439,39 +408,26 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         </StyledLinkBase>
       </StyledTooltipHostBase>
       ?
-    </div>
-    <p>
-      <Term>
-        Note
-      </Term>
-      : If 'Continue previous' is selected, the previous assessment will be connected to this new page.
-    </p>
-    <p>
-      If 'Start new' is selected, all previous progress will be lost.
-    </p>
-  </div>
-  <StyledDialogFooterBase>
-    <div
-      className="targetChangeDialogButtonContainer"
-    >
-      <div
-        className="actionCancelButtonCol continueButton"
-      >
-        <CustomizedDefaultButton
-          autoFocus={true}
-          onClick={[Function]}
-          text="Continue previous"
-        />
-      </div>
-      <div
-        className="actionCancelButtonCol restartButton"
-      >
-        <CustomizedDefaultButton
-          onClick={[Function]}
-          text="Start new"
-        />
-      </div>
-    </div>
-  </StyledDialogFooterBase>
-</BlockingDialog>
+    </React.Fragment>
+  }
+  dialogNoteText="If 'Continue previous' is selected, the previous assessment will be connected to this new page."
+  dialogWarningText="If 'Start new' is selected, all previous progress will be lost."
+  divId="target-change-dialog-description"
+  isOpen={true}
+  leftButtonOnClick={[Function]}
+  leftButtonText="Continue previous"
+  prevTab={
+    Object {
+      "appRefreshed": false,
+      "id": 111,
+      "title": "test title 1",
+      "url": "https://www.abc.com",
+    }
+  }
+  rightButtonDataAutomationId="target-change-start-new-button"
+  rightButtonOnClick={[Function]}
+  rightButtonStyle="restartButton"
+  rightButtonText="Start new"
+  subtitleAriaId="target-change-dialog-description"
+/>
 `;

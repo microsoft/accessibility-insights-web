@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { WindowUtils } from 'common/window-utils';
+import { TargetPageActionMessageCreator } from 'injected/target-page-action-message-creator';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseStore } from '../../../../common/base-store';
@@ -18,10 +20,12 @@ describe('DetailsDialogHandlerTest', () => {
     let detailsDialog: Element;
     let containerParent: Element;
     let detailsDialogMock: IMock<DetailsDialog>;
+    let windowUtilsMock: IMock<WindowUtils>;
 
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
-        testSubject = new DetailsDialogHandler(htmlElementUtilsMock.object);
+        windowUtilsMock = Mock.ofType(WindowUtils);
+        testSubject = new DetailsDialogHandler(htmlElementUtilsMock.object, windowUtilsMock.object);
         container = document.createElement('div');
         detailsDialog = document.createElement('div');
         container.appendChild(detailsDialog);
@@ -172,6 +176,79 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.verifyAll();
         devToolActionMessageCreatorMock.verifyAll();
         devToolStoreMock.verifyAll();
+    });
+
+    test.each([true, false])(
+        'copyIssueDetailsButtonClickHandler when isTargetPageOriginSecure=%s',
+        isTargetPageOriginSecure => {
+            const targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>(
+                undefined,
+                MockBehavior.Strict,
+            );
+
+            const eventFactory = new EventStubFactory();
+            const event = eventFactory.createMouseClickEvent();
+
+            testSubject.isTargetPageOriginSecure = () => isTargetPageOriginSecure;
+
+            targetPageActionMessageCreatorMock
+                .setup(creator => creator.copyIssueDetailsClicked(It.isValue(event as any)))
+                .verifiable(Times.atLeastOnce());
+
+            detailsDialogMock
+                .setup(dialog => dialog.props)
+                .returns(() => {
+                    return {
+                        deps: {
+                            targetPageActionMessageCreator:
+                                targetPageActionMessageCreatorMock.object,
+                        },
+                    } as any;
+                })
+                .verifiable(Times.atLeastOnce());
+
+            detailsDialogMock
+                .setup(dialog =>
+                    dialog.setState(
+                        It.isValue({ showInsecureOriginPageMessage: !isTargetPageOriginSecure }),
+                    ),
+                )
+                .verifiable(Times.once());
+
+            testSubject.copyIssueDetailsButtonClickHandler(detailsDialogMock.object, event as any);
+
+            detailsDialogMock.verifyAll();
+            targetPageActionMessageCreatorMock.verifyAll();
+        },
+    );
+
+    test.each([true, false])('isTargetPageOriginSecure=%s', isSecureOrigin => {
+        windowUtilsMock
+            .setup(w => w.isSecureOrigin())
+            .returns(() => isSecureOrigin)
+            .verifiable(Times.once());
+
+        expect(testSubject.isTargetPageOriginSecure()).toEqual(isSecureOrigin);
+
+        windowUtilsMock.verifyAll();
+    });
+
+    test.each([true, false])('shouldShowInsecureOriginPageMessage=%s', show => {
+        detailsDialogMock
+            .setup(dialog => dialog.state)
+            .returns(() => {
+                return {
+                    showInsecureOriginPageMessage: show,
+                } as any;
+            })
+            .verifiable(Times.once());
+
+        const actualState = testSubject.shouldShowInsecureOriginPageMessage(
+            detailsDialogMock.object,
+        );
+        expect(actualState).toEqual(show);
+
+        detailsDialogMock.verifyAll();
     });
 
     test('showDialog', () => {
