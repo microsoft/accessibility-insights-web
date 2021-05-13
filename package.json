@@ -149,7 +149,7 @@
         "react-devtools": "^4.13.2",
         "regenerator-runtime": "^0.13.7",
         "sass": "^1.32.13",
-        "sass-loader": "^11.1.0",
+        "sass-loader": "^11.1.1",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
         "simple-git": "^2.38.1",
