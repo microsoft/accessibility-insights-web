@@ -27,6 +27,9 @@ declare module 'axe-core/axe' {
     const utils: {
         toArray: Function;
         matchesSelector: Function;
+
+        // this must be surrounded by axe.setup and axe.teardown calls
+        getSelector: (element: HTMLElement) => string;
     };
 
     const _audit: {
@@ -35,4 +38,7 @@ declare module 'axe-core/axe' {
     };
 
     const version: string;
+
+    const setup: (element: HTMLElement) => void;
+    const teardown: () => void;
 }
