@@ -100,7 +100,7 @@ describe('CopyIssueDetailsButtonTest', () => {
 
             verifyMocks();
         });
-        test('shows copy failure message for insecure origin', async () => {
+        test('does not show toast message for insecure origin', async () => {
             navigatorUtilsMock
                 .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
                 .returns(() => {
@@ -116,8 +116,7 @@ describe('CopyIssueDetailsButtonTest', () => {
 
             const toast = result.find(Toast);
 
-            expect(toast.state().toastVisible).toBe(true);
-            expect(toast.state().content).toBe('Failed to copy failure details.');
+            expect(toast.state().toastVisible).toBe(false);
 
             verifyMocks();
         });
