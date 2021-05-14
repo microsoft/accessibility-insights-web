@@ -29,7 +29,7 @@ describe('LaunchPadItemRow', () => {
     };
 
     function getPrivate(obj: LaunchPadItemRow): { descriptionId: string } {
-        return (obj as {}) as { descriptionId: string };
+        return obj as {} as { descriptionId: string };
     }
 
     it('has unique description ids', () => {

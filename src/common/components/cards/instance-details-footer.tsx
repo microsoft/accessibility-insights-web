@@ -53,11 +53,8 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>(
                 return null;
             }
 
-            const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(
-                result,
-                rule,
-                targetAppInfo,
-            );
+            const issueDetailsData: CreateIssueDetailsTextData =
+                deps.unifiedResultToIssueFilingDataConverter.convert(result, rule, targetAppInfo);
 
             const kebabMenuAriaLabel: string = `More Actions for failure instance ${result.identifiers.identifier} in rule ${rule.id}`;
             return (

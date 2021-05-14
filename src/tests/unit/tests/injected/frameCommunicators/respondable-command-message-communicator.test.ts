@@ -334,10 +334,11 @@ describe('RespondableCommandMessageCommunicator', () => {
             );
 
             //send response wrapper to window
-            const windowMessagePromise = await mockBackchannelWindowMessagePoster.notifyOnWindowMessage(
-                commandMessageResponseWrapper,
-                targetWindow,
-            );
+            const windowMessagePromise =
+                await mockBackchannelWindowMessagePoster.notifyOnWindowMessage(
+                    commandMessageResponseWrapper,
+                    targetWindow,
+                );
 
             const [, message] = await Promise.all([windowMessagePromise, commandPromise]); //run response request and sending response at same time
 

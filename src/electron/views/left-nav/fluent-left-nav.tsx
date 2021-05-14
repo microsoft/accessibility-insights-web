@@ -24,14 +24,8 @@ export type FluentLeftNavProps = {
 } & LeftNavProps;
 
 export const FluentLeftNav = NamedFC<FluentLeftNavProps>('LeftNav', props => {
-    const {
-        narrowModeStatus,
-        selectedKey,
-        isNavOpen,
-        deps,
-        setSideNavOpen,
-        featureFlagStoreData,
-    } = props;
+    const { narrowModeStatus, selectedKey, isNavOpen, deps, setSideNavOpen, featureFlagStoreData } =
+        props;
     const leftNav = (
         <LeftNav
             selectedKey={selectedKey}

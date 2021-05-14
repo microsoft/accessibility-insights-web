@@ -8,11 +8,11 @@ import { Theme } from '../../../../../common/components/theme';
 import { configMutator } from '../../../../../common/configuration';
 
 describe('insights renderer', () => {
-    const deps = ({
+    const deps = {
         dom: document,
         render: jest.fn(),
         initializeFabricIcons: jest.fn(),
-    } as Partial<RendererDeps>) as RendererDeps;
+    } as Partial<RendererDeps> as RendererDeps;
 
     beforeEach(() => {
         document.head.innerHTML =

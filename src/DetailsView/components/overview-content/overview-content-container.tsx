@@ -76,10 +76,8 @@ export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContai
         featureFlagStoreData,
     );
 
-    const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
-        filteredProvider,
-        assessmentStoreData,
-    );
+    const summaryData: OverviewSummaryReportModel =
+        getAssessmentSummaryModelFromProviderAndStoreData(filteredProvider, assessmentStoreData);
 
     return (
         <div data-automation-id={overviewContainerAutomationId} className={styles.overview}>

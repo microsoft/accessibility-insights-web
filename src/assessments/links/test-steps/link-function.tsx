@@ -90,9 +90,10 @@ export const LinkFunction: Requirement = {
         {
             key: 'link-function-info',
             name: 'Link info',
-            onRender: PropertyBagColumnRendererFactory.getRenderer<LinkFunctionPropertyBag>(
-                propertyBagConfig,
-            ),
+            onRender:
+                PropertyBagColumnRendererFactory.getRenderer<LinkFunctionPropertyBag>(
+                    propertyBagConfig,
+                ),
         },
     ],
     reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),

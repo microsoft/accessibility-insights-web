@@ -42,12 +42,10 @@ function addDetectServiceCommands(id, output) {
 function addCheckPermissionsCommands(id, output) {
     // These commands appear in the order that they get called by appium-adb
     output[`-s ${id} ${serviceIsRunningCommandMatch}`] = {
-        stdout:
-            '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
+        stdout: '                     Service[label=Accessibility Insights for…, feedbackType[FEEDBACK_SPOKEN, FEEDBACK_HAPTIC, FEEDBACK_AUDIBLE, FEEDBACK_VISUAL, FEEDBACK_GENERIC, FEEDBACK_BRAILLE], capabilities=1, eventTypes=TYPES_ALL_MASK, notificationTimeout=0]}',
     };
     output[`-s ${id} shell dumpsys media_projection`] = {
-        stdout:
-            '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
+        stdout: '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
     };
 }
 
@@ -63,8 +61,7 @@ function addInstallServiceCommands(id, output) {
         stdout: '--streaming: force streaming APK directly into Package Manager',
     };
     output[`-s ${id} features`] = {
-        stdout:
-            'abb_exec\nfixed_push_symlink_timestamp\nabb\nstat_v2\napex\nshell_v2\nfixed_push_mkdir\ncmd',
+        stdout: 'abb_exec\nfixed_push_symlink_timestamp\nabb\nstat_v2\napex\nshell_v2\nfixed_push_mkdir\ncmd',
     };
     output[`-s ${id} shell ls -t -1 /data/local/tmp/appium_cache 2>&1 || echo _ERROR_`] = {
         stdout: '',

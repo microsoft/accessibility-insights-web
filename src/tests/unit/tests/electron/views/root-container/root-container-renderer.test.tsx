@@ -30,11 +30,11 @@ describe('RootContainerRendererTest', () => {
         containerDiv.setAttribute('id', 'root-container');
         dom.appendChild(containerDiv);
 
-        const deps = ({
+        const deps = {
             ipcRendererShim: ipcRendererShim,
             windowStateActionCreator: windowStateActionCreatorMock.object,
             documentManipulator: documentManipulatorMock.object,
-        } as unknown) as RootContainerRendererDeps;
+        } as unknown as RootContainerRendererDeps;
 
         const expectedComponent = (
             <>

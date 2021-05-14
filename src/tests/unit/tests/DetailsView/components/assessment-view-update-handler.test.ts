@@ -174,7 +174,8 @@ describe('AssessmentViewTest', () => {
     });
 
     function setStepNotToScanByDefault(props: AssessmentViewUpdateHandlerProps): void {
-        props.assessmentNavState.selectedTestSubview = assessmentsProvider.all()[0].requirements[1].key;
+        props.assessmentNavState.selectedTestSubview =
+            assessmentsProvider.all()[0].requirements[1].key;
     }
 
     function buildProps(

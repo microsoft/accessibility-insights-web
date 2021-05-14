@@ -44,9 +44,8 @@ describe('PortCleaningServiceConfiguratorFactory', () => {
             .callback(config => (attachedServiceConfig = config as ServiceConfigurator))
             .verifiable(Times.once());
 
-        const finalServiceConfig: ServiceConfigurator = testSubject.getServiceConfigurator(
-            adbWrapperStub,
-        );
+        const finalServiceConfig: ServiceConfigurator =
+            testSubject.getServiceConfigurator(adbWrapperStub);
 
         expect(finalServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
         expect(attachedServiceConfig).toBeInstanceOf(PortCleaningServiceConfigurator);
