@@ -13,7 +13,7 @@ describe('ReactExtensionPoint', () => {
 
     const TestExtensionPoint = reactExtensionPoint<Props>('TestExtensionPoint');
     const OtherExtensionPoint = reactExtensionPoint<{}>('OtherExtensionPoint');
-    const FakeExtensionPoint = ({ other: 'stuff' } as Partial<Extension<any>>) as Extension<any>;
+    const FakeExtensionPoint = { other: 'stuff' } as Partial<Extension<any>> as Extension<any>;
 
     const TestExtension = props => {
         const { title, children } = props;

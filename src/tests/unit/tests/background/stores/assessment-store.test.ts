@@ -100,7 +100,8 @@ describe('AssessmentStore', () => {
             .returns(step => getDefaultManualTestStepResult(step));
 
         indexDBInstanceMock = Mock.ofType<IndexedDBAPI>(undefined, MockBehavior.Strict);
-        initialAssessmentStoreDataGeneratorMock = Mock.ofType<InitialAssessmentStoreDataGenerator>();
+        initialAssessmentStoreDataGeneratorMock =
+            Mock.ofType<InitialAssessmentStoreDataGenerator>();
     });
 
     afterEach(() => {
@@ -1231,16 +1232,17 @@ describe('AssessmentStore', () => {
         'on changeAssessmentVisualizationState: supportsVisualization:$supportsVisualization, ' +
             'startsEnabled:$startsEnabled, payloadEnabled:$payloadEnabled -> finalEnabled:$expectedFinalEnabled',
         ({ supportsVisualization, startsEnabled, payloadEnabled, expectedFinalEnabled }) => {
-            const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
-                selector: {
-                    testStepResults: {
-                        [requirementKey]: {
-                            isVisualizationEnabled: startsEnabled,
-                            isVisualizationSupported: supportsVisualization,
+            const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> =
+                {
+                    selector: {
+                        testStepResults: {
+                            [requirementKey]: {
+                                isVisualizationEnabled: startsEnabled,
+                                isVisualizationSupported: supportsVisualization,
+                            },
                         },
-                    },
-                } as any,
-            };
+                    } as any,
+                };
 
             const assessmentData = new AssessmentDataBuilder()
                 .with('generatedAssessmentInstancesMap', generatedAssessmentInstancesMap)
@@ -1264,9 +1266,8 @@ describe('AssessmentStore', () => {
                 .returns(() => configStub);
 
             const expectedInstancesMap = cloneDeep(generatedAssessmentInstancesMap);
-            expectedInstancesMap.selector.testStepResults[
-                requirementKey
-            ].isVisualizationEnabled = expectedFinalEnabled;
+            expectedInstancesMap.selector.testStepResults[requirementKey].isVisualizationEnabled =
+                expectedFinalEnabled;
 
             const expectedAssessment = new AssessmentDataBuilder()
                 .with('generatedAssessmentInstancesMap', expectedInstancesMap)
@@ -1336,9 +1337,8 @@ describe('AssessmentStore', () => {
         // Selector 2 shouldn't change because it doesn't support visualizations
         // Selector 3 shouldn't change because it has no test step results
         // Selector 4 should toggle from disabled to enabled:
-        expectedInstancesMap.selector4.testStepResults[
-            requirementKey
-        ].isVisualizationEnabled = true;
+        expectedInstancesMap.selector4.testStepResults[requirementKey].isVisualizationEnabled =
+            true;
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('generatedAssessmentInstancesMap', expectedInstancesMap)

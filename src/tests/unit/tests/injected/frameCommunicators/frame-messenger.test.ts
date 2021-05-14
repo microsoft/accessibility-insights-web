@@ -21,10 +21,8 @@ describe('FrameMessenger', () => {
     };
 
     beforeEach(() => {
-        [
-            underlyingCommunicator1,
-            underlyingCommunicator2,
-        ] = LinkedRespondableCommunicator.createLinkedMockPair();
+        [underlyingCommunicator1, underlyingCommunicator2] =
+            LinkedRespondableCommunicator.createLinkedMockPair();
         window1 = underlyingCommunicator1.window;
         frameMessenger1 = new FrameMessenger(underlyingCommunicator1);
         window2 = underlyingCommunicator2.window;

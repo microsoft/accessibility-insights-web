@@ -23,7 +23,7 @@ export class ExtensionPoint<
     TYPE extends string,
     KEY extends string,
     EXT extends {},
-    OUT extends {}
+    OUT extends {},
 > {
     constructor(
         private readonly extensionType: TYPE,

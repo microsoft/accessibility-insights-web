@@ -99,10 +99,8 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> = NamedFC<DetailsViewCommandBarProps>(
-            'test',
-            _ => null,
-        );
+        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> =
+            NamedFC<DetailsViewCommandBarProps>('test', _ => null);
         const LeftNavStub: ReactFCWithDisplayName<LeftNavProps> = NamedFC<LeftNavProps>(
             'test',
             _ => null,

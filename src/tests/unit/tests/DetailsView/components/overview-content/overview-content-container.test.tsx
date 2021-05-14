@@ -50,7 +50,8 @@ describe('OverviewContainer', () => {
     const deps: OverviewContainerDeps = {
         assessmentsProvider: assessmentsProvider,
         actionInitiators: overviewHelpSectionDeps.actionInitiators,
-        getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
+        getAssessmentSummaryModelFromProviderAndStoreData:
+            getAssessmentSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator,
         urlParser: urlParserMock,
         assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,

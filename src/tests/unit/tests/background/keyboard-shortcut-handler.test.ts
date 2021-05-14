@@ -156,9 +156,8 @@ describe('KeyboardShortcutHandler', () => {
         `enables previously-disabled '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(
-                visualizationType,
-            );
+            const configuration =
+                visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             let receivedMessage: Message;
             interpreterMock
@@ -194,9 +193,8 @@ describe('KeyboardShortcutHandler', () => {
         `disables previously-enabled '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(
-                visualizationType,
-            );
+            const configuration =
+                visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             let receivedMessage: Message;
             interpreterMock
@@ -232,9 +230,8 @@ describe('KeyboardShortcutHandler', () => {
         `emits the expected 'enabled' notification when enabling '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(
-                visualizationType,
-            );
+            const configuration =
+                visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             const enableMessage = configuration.displayableData.enableMessage;
             notificationCreatorMock
@@ -252,9 +249,8 @@ describe('KeyboardShortcutHandler', () => {
         `does not emit unexpected 'enabled' notification when enabling '%s' visualizer`,
         async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
-            const configuration = visualizationConfigurationFactory.getConfiguration(
-                visualizationType,
-            );
+            const configuration =
+                visualizationConfigurationFactory.getConfiguration(visualizationType);
 
             notificationCreatorMock
                 .setup(nc => nc.createNotification(It.isAny()))

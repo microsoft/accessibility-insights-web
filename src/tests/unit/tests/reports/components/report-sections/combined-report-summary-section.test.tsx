@@ -19,7 +19,7 @@ describe(CombinedReportSummarySection, () => {
             {
                 id: 'some-rule',
                 nodes: [
-                    ({
+                    {
                         identifiers: {
                             urls: {
                                 urls: [
@@ -29,14 +29,14 @@ describe(CombinedReportSummarySection, () => {
                                 ],
                             },
                         },
-                    } as unknown) as CardResult,
-                    ({
+                    } as unknown as CardResult,
+                    {
                         identifiers: {
                             urls: {
                                 urls: ['http://url-fail/1'],
                             },
                         },
-                    } as unknown) as CardResult,
+                    } as unknown as CardResult,
                 ],
             },
         ],
@@ -46,12 +46,12 @@ describe(CombinedReportSummarySection, () => {
     } as CardRuleResultsByStatus;
 
     it('renders', () => {
-        const props = ({
+        const props = {
             urlResultCounts,
             cardsViewData: {
                 cards,
             },
-        } as unknown) as CombinedReportSectionProps;
+        } as unknown as CombinedReportSectionProps;
         const wrapper = shallow(<CombinedReportSummarySection {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

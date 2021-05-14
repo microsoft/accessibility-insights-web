@@ -104,9 +104,8 @@ export class RespondableCommandMessageCommunicator {
         responseCallback: (response: CommandMessageResponse) => void,
         responsesExpected: 'single' | 'multiple',
     ): void {
-        const commandMessageRequestWrapper = this.createCommandMessageRequestWrapper(
-            commandMessage,
-        );
+        const commandMessageRequestWrapper =
+            this.createCommandMessageRequestWrapper(commandMessage);
         const messageId = commandMessageRequestWrapper.commandMessageId;
 
         let recordedResponseCallback = responseCallback;

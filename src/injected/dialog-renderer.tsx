@@ -64,9 +64,8 @@ export class DialogRenderer {
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
 
             const elementSelector: string = this.getElementSelector(data);
-            const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = this.getFailedRules(
-                data,
-            );
+            const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> =
+                this.getFailedRules(data);
             const target: string[] = this.getTarget(data);
             const dialogContainer: HTMLDivElement = this.appendDialogContainer();
 
@@ -87,8 +86,10 @@ export class DialogRenderer {
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 navigatorUtils: this.navigatorUtils,
-                targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
-                issueFilingActionMessageCreator: mainWindowContext.getIssueFilingActionMessageCreator(),
+                targetPageActionMessageCreator:
+                    mainWindowContext.getTargetPageActionMessageCreator(),
+                issueFilingActionMessageCreator:
+                    mainWindowContext.getIssueFilingActionMessageCreator(),
                 browserAdapter: this.browserAdapter,
                 getRTL: this.getRTLFunc,
                 toolData: mainWindowContext.getToolData(),

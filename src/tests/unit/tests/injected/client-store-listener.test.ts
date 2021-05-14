@@ -22,9 +22,8 @@ describe('ClientStoreListener', () => {
                 null,
                 MockBehavior.Strict,
             );
-            onReadyToExecuteVisualizationUpdatesMock = Mock.ofType<
-                (storeData: TargetPageStoreData) => void
-            >();
+            onReadyToExecuteVisualizationUpdatesMock =
+                Mock.ofType<(storeData: TargetPageStoreData) => void>();
 
             storeHubMock
                 .setup(shm => shm.addChangedListenerToAllStores(It.isAny()))

@@ -11,10 +11,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 function getProps(): CommandBarProps {
-    const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = ({
+    const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
         ReportExportComponentFactory: (p: DetailsViewCommandBarProps) => null,
         StartOverComponentFactory: (p: DetailsViewCommandBarProps) => null,
-    } as unknown) as DetailsViewSwitcherNavConfiguration;
+    } as unknown as DetailsViewSwitcherNavConfiguration;
 
     const props = {
         switcherNavConfiguration: switcherNavConfiguration,

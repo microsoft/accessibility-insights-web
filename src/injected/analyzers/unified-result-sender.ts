@@ -53,7 +53,8 @@ export class UnifiedResultSender {
         converter: ConvertScanResultsToUnifiedResultsDelegate,
         notificationMessage: TextGenerator,
     ) => {
-        const scanIncompleteWarnings = this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
+        const scanIncompleteWarnings =
+            this.scanIncompleteWarningDetector.detectScanIncompleteWarnings();
 
         let telemetry: ScanIncompleteWarningsTelemetryData = null;
 
