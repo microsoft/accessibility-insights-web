@@ -101,7 +101,7 @@
         "@types/react-resize-detector": "^5.0.0",
         "@types/react-router-dom": "^5.1.7",
         "@types/serve-static": "^1.13.9",
-        "@types/ua-parser-js": "^0.7.35",
+        "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^8.3.0",
         "@typescript-eslint/eslint-plugin": "^4.22.1",
         "@typescript-eslint/parser": "^4.23.0",
