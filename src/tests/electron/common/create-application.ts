@@ -36,8 +36,7 @@ export async function createAppController(
         cwd: options.cwd,
         path: Electron,
     });
-
     const client = await app.firstWindow();
-    //await client.reload();
-    return new AppController(client);
+    await client.reload();
+    return new AppController(app, client);
 }

@@ -4,7 +4,7 @@ import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setu
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
-import { Page } from 'playwright';
+import { ElectronApplication, Page } from 'playwright';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
@@ -13,12 +13,10 @@ declare let window: Window & {
     insightsUserConfiguration;
 };
 export class AppController {
-    constructor(public client: Page) {}
+    constructor(public app: ElectronApplication, public client: Page) {}
 
     public async stop(): Promise<void> {
-        if (this.client && !this.client.isClosed()) {
-            await this.client.close();
-        }
+        await this.app.close();
     }
 
     public async waitForTitle(expectedTitle: string): Promise<void> {
