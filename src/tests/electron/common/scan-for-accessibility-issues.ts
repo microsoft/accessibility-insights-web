@@ -39,20 +39,23 @@ async function runAxeScan(client: Page, selector?: string): Promise<PrintableAxe
         },
     };
 
-    const axeResults = await client.evaluate(async selector => {
-        const elementContext = selector === null ? document : { include: [selector] };
+    const axeResults = await client.evaluate(
+        async ({ selector, axeRunOptions }) => {
+            const elementContext = selector === null ? document : { include: [selector] };
 
-        return await window.axe.run(
-            elementContext,
-            axeRunOptions,
-            function (err: Error, results: any): void {
-                if (err) {
-                    throw err;
-                }
-                return results;
-            },
-        );
-    }, selector || null);
+            return await window.axe.run(
+                elementContext,
+                axeRunOptions,
+                function (err: Error, results: any): void {
+                    if (err) {
+                        throw err;
+                    }
+                    return results;
+                },
+            );
+        },
+        { selector, axeRunOptions },
+    );
 
     return prettyPrintAxeViolations(axeResults);
 }
