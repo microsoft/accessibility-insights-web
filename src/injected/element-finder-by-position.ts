@@ -45,7 +45,7 @@ export class ElementFinderByPosition {
             return { payload: path };
         }
 
-        path.push(await this.getUniqueSelector(element));
+        path.push(this.getUniqueSelector(element));
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe') {
             return { payload: path };
