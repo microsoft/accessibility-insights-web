@@ -74,9 +74,10 @@ const createWindow = () => {
         app,
         dialog,
     );
+    const indexPage = shouldOmitCSPForTesting() ? 'index2' : 'index';
 
     mainWindow
-        .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
+        .loadFile(path.resolve(__dirname, `../electron/views/${indexPage}.html`))
         .then(() => console.log('url loaded'))
         .catch(console.log);
 
@@ -99,6 +100,10 @@ const createWindow = () => {
             setupRecurringUpdateCheck();
         })
         .catch(console.log);
+};
+
+const shouldOmitCSPForTesting = () => {
+    return process.env.ACCESSIBILITY_INSIGHTS_TEST_MODE === 'true';
 };
 
 const enableDevMode = (window: BrowserWindow) => {
