@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 //import { source as axeCoreSource } from 'axe-core';
+import { Result } from 'axe-core';
 import * as path from 'path';
 import { Page } from 'playwright';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
-import {
-    prettyPrintAxeViolations,
-    PrintableAxeResult,
-} from 'tests/end-to-end/common/pretty-print-axe-violations';
 
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
 
@@ -29,9 +26,8 @@ async function scanForAccessibilityIssues(
     expect(violations).toStrictEqual([]);
 }
 
-async function runAxeScan(client: Page, selector?: string): Promise<PrintableAxeResult[]> {
+async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
     await injectAxeIfUndefined(client);
-    //await client.waitForFunction(() => { window.axe !== undefined})
     const axeRunOptions = {
         runOnly: {
             type: 'tag',
@@ -41,37 +37,15 @@ async function runAxeScan(client: Page, selector?: string): Promise<PrintableAxe
 
     const axeResults = await client.evaluate(
         async ({ selector, axeRunOptions }) => {
-            const elementContext = selector === null ? document : { include: [selector] };
+            const elementContext = selector === undefined ? document : { include: [selector] };
 
-            return await window.axe.run(
-                elementContext,
-                axeRunOptions,
-                function (err: Error, results: any): void {
-                    if (err) {
-                        throw err;
-                    }
-                    return results;
-                },
-            );
+            const results = await window.axe.run(elementContext, axeRunOptions);
+            return results;
         },
         { selector, axeRunOptions },
     );
-
-    return prettyPrintAxeViolations(axeResults);
+    return axeResults.violations;
 }
-
-// async function injectAxeIfUndefined(client: Page): Promise<void> {
-//     const axeIsUndefined = await client.evaluate(() => {
-//         return (window as any).axe === undefined;
-//     }, null);
-
-//     if (axeIsUndefined) {
-//         await client.addScriptTag({
-//             content: axeCoreSource,
-//             type: 'module',
-//         });
-//     }
-// }
 
 async function injectAxeIfUndefined(client: Page): Promise<void> {
     const axeIsUndefined = await client.evaluate(() => {
