@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { LeftNavItemKey } from 'electron/types/left-nav-item-key';
+import { Page } from 'playwright';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { ScreenshotViewSelectors } from 'tests/electron/common/element-identifiers/screenshot-view-selectors';
 import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
-import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { settingsPanelSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { ViewController } from './view-controller';
 
 export class ResultsViewController extends ViewController {
-    constructor(client: SpectronAsyncClient) {
+    constructor(client: Page) {
         super(client);
     }
 

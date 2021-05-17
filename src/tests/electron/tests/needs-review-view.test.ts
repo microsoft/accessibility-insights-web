@@ -23,7 +23,7 @@ describe('NeedsReviewView', () => {
         );
 
         app = await createApplication({ suppressFirstTimeDialog: true });
-        app.client.browserWindow.setSize(windowWidth, windowHeight);
+        app.client.setViewportSize({ width: windowWidth, height: windowHeight });
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('needs-review');
     });

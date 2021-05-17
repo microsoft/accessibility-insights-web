@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Page } from 'playwright';
 import { ScreenshotViewSelectors } from 'tests/electron/common/element-identifiers/screenshot-view-selectors';
-import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { AutomatedChecksViewSelectors } from '../element-identifiers/automated-checks-view-selectors';
 import { ViewController } from './view-controller';
 
 export class CardsViewController extends ViewController {
-    constructor(client: SpectronAsyncClient) {
+    constructor(client: Page) {
         super(client);
     }
 
@@ -33,7 +33,7 @@ export class CardsViewController extends ViewController {
         expectedTitle: string,
         expectedFailures: number,
     ): Promise<void> {
-        const title = await this.client.getText(
+        const title = await this.client.textContent(
             AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
         );
 
@@ -47,7 +47,7 @@ export class CardsViewController extends ViewController {
     }
 
     public async assertCollapsedRuleGroup(position: number, expectedTitle: string): Promise<void> {
-        const title = await this.client.getText(
+        const title = await this.client.textContent(
             AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
         );
 

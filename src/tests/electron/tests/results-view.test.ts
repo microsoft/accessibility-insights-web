@@ -37,10 +37,11 @@ describe('ResultsView', () => {
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
-        await app.client.browserWindow.setSize(
-            narrowModeThresholds.collapseCommandBarThreshold + 1,
+        app.client.setViewportSize({
+            width: narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
-        );
+        });
+
         await resultsView.waitForSelector(ResultsViewSelectors.leftNav);
         await scanForAccessibilityIssuesInAllModes(app);
     });
@@ -51,13 +52,14 @@ describe('ResultsView', () => {
             config => config.featureFlag === undefined,
         )[testIndex].contentPageInfo.title;
 
-        await app.client.browserWindow.setSize(
-            narrowModeThresholds.collapseCommandBarThreshold + 1,
+        app.client.setViewportSize({
+            width: narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
-        );
+        });
+
         await resultsView.waitForSelector(ResultsViewSelectors.leftNav);
         await resultsView.client.click(ResultsViewSelectors.nthTestInLeftNav(testIndex + 1));
-        const title = await resultsView.client.getText('h1');
+        const title = await resultsView.client.textContent('h1');
         expect(title).toEqual(expectedTestTitle);
     });
 
@@ -139,8 +141,8 @@ describe('ResultsView', () => {
                 ? narrowModeThresholds.collapseCommandBarThreshold - 2
                 : narrowModeThresholds.collapseCommandBarThreshold;
 
-        await app.client.browserWindow.restore();
-        await app.client.browserWindow.setSize(width, height);
+        await app.client.reload();
+        await app.client.setViewportSize({ width, height });
     };
 
     it('command bar reflows when narrow mode threshold is crossed', async () => {

@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as fs from 'fs';
 import * as util from 'util';
-import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import { DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import {
     generateAdbLogPath,
     generateOutputLogsDir,
     generateServerLogPath,
 } from '../../../miscellaneous/mock-adb/generate-log-paths';
+import { Page } from 'playwright';
 
 const readFile = util.promisify(fs.readFile);
 
@@ -16,11 +16,7 @@ export class LogController {
     private adbLogPath: string;
     private serverLogPath: string;
 
-    constructor(
-        currentContext: string,
-        private mockAdbPath: string,
-        private client: SpectronAsyncClient,
-    ) {
+    constructor(currentContext: string, private mockAdbPath: string, private client: Page) {
         this.adbLogPath = this.getAdbLogPath(currentContext);
         this.serverLogPath = this.getServerLogPath(currentContext);
     }
@@ -67,13 +63,17 @@ export class LogController {
         const isLogReady = async () =>
             this.adbLogExists() && (await this.getAdbLog()).includes(contains);
 
-        return this.client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
+        return this.client.waitForFunction(isLogReady, null, {
+            timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS,
+        });
     }
 
     public async waitForServerLogToContain(contains: string) {
         const isLogReady = async () =>
             this.serverLogExists() && (await this.getServerLog()).includes(contains);
 
-        return this.client.waitUntil(isLogReady, { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS });
+        return this.client.waitForFunction(isLogReady, null, {
+            timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS,
+        });
     }
 }

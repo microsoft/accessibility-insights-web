@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { source as axeCoreSource } from 'axe-core';
+//import { source as axeCoreSource } from 'axe-core';
+import * as path from 'path';
+import { Page } from 'playwright';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
-import { SpectronAsyncClient } from 'tests/electron/common/view-controllers/spectron-async-client';
 import {
     prettyPrintAxeViolations,
     PrintableAxeResult,
 } from 'tests/end-to-end/common/pretty-print-axe-violations';
 
-declare let axe;
+import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
+
+declare let window: Window & { axe };
 
 export async function scanForAccessibilityIssuesInAllModes(app: AppController): Promise<void> {
     await scanForAccessibilityIssues(app, true);
@@ -26,12 +29,9 @@ async function scanForAccessibilityIssues(
     expect(violations).toStrictEqual([]);
 }
 
-async function runAxeScan(
-    spectronClient: SpectronAsyncClient,
-    selector?: string,
-): Promise<PrintableAxeResult[]> {
-    await injectAxeIfUndefined(spectronClient);
-
+async function runAxeScan(client: Page, selector?: string): Promise<PrintableAxeResult[]> {
+    await injectAxeIfUndefined(client);
+    //await client.waitForFunction(() => { window.axe !== undefined})
     const axeRunOptions = {
         runOnly: {
             type: 'tag',
@@ -39,31 +39,56 @@ async function runAxeScan(
         },
     };
 
-    const axeResults = await spectronClient.executeAsync(
-        (options, selectorInEvaluate, done) => {
-            const elementContext =
-                selectorInEvaluate === null ? document : { include: [selectorInEvaluate] };
+    const axeResults = await client.evaluate(async selector => {
+        const elementContext = selector === null ? document : { include: [selector] };
 
-            axe.run(elementContext, options, function (err: Error, results: any): void {
+        return await window.axe.run(
+            elementContext,
+            axeRunOptions,
+            function (err: Error, results: any): void {
                 if (err) {
                     throw err;
                 }
-                done(results);
-            });
-        },
-        axeRunOptions,
-        selector,
-    );
+                return results;
+            },
+        );
+    }, selector || null);
 
     return prettyPrintAxeViolations(axeResults);
 }
 
-async function injectAxeIfUndefined(spectronClient: SpectronAsyncClient): Promise<void> {
-    const axeIsUndefined = await spectronClient.execute(() => {
+// async function injectAxeIfUndefined(client: Page): Promise<void> {
+//     const axeIsUndefined = await client.evaluate(() => {
+//         return (window as any).axe === undefined;
+//     }, null);
+
+//     if (axeIsUndefined) {
+//         await client.addScriptTag({
+//             content: axeCoreSource,
+//             type: 'module',
+//         });
+//     }
+// }
+
+async function injectAxeIfUndefined(client: Page): Promise<void> {
+    const axeIsUndefined = await client.evaluate(() => {
         return (window as any).axe === undefined;
-    });
+    }, null);
 
     if (axeIsUndefined) {
-        await spectronClient.execute(axeCoreSource);
+        await injectScriptFile(
+            client,
+            path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
+        );
     }
+}
+
+async function screenshotOnError<T>(client: Page, wrappedFunction: () => Promise<T>): Promise<T> {
+    return await screenshot(path => client.screenshot({ path, fullPage: true }), wrappedFunction);
+}
+
+async function injectScriptFile(client: Page, filePath: string): Promise<void> {
+    await screenshotOnError(client, async () => {
+        await client.addScriptTag({ path: filePath, type: 'module' });
+    });
 }

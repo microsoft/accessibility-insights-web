@@ -91,7 +91,7 @@ describe('Android setup - prompt-choose-device (multiple devices)', () => {
 
         // Select the second item in the list
         await dialog.click(getAutomationIdSelector(deviceDescriptionAutomationId));
-        await dialog.client.keys(downArrowKey);
+        await dialog.client.keyboard.press(downArrowKey);
         await dialog.waitForMilliseconds(1000);
         await dialog.click(getAutomationIdSelector(nextId));
         await dialog.waitForDialogVisible('detect-service');
