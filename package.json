@@ -153,7 +153,7 @@
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
         "simple-git": "^2.39.0",
-        "source-map-loader": "^2.0.1",
+        "source-map-loader": "^2.0.2",
         "spectron": "^13.0.0",
         "terser-webpack-plugin": "^5.1.2",
         "ts-jest": "^26.5.5",
