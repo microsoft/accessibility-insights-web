@@ -171,7 +171,7 @@
         "android-device-list": "^1.2.6",
         "appium-adb": "^8.12.3",
         "applicationinsights-js": "^1.0.21",
-        "axe-core": "4.2.0",
+        "axe-core": "4.2.1",
         "axios": "^0.21.1",
         "classnames": "^2.3.1",
         "electron": "11.4.5",
