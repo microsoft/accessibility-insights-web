@@ -28,7 +28,7 @@ if (
     process.exit(1);
 }
 
-const assetNumber = '6837137';
+const assetNumber = '7912306';
 
 const clearAndExtract = async (zipFilePath, destinationPath) => {
     destinationPath = path.resolve(destinationPath);
