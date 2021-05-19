@@ -2062,10 +2062,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
-"@types/node@*", "@types/node@>= 8", "@types/node@^12.0.12", "@types/node@^14.14.45", "@types/node@^14.14.6":
-  version "14.14.45"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.45.tgz#ec2dfb5566ff814d061aef7e141575aedba245cf"
-  integrity sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==
+"@types/node@*", "@types/node@>= 8", "@types/node@^12.0.12", "@types/node@^14.14.6", "@types/node@^14.17.0":
+  version "14.17.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.0.tgz#3ba770047723b3eeb8dc9fca02cce8a7fb6378da"
+  integrity sha512-w8VZUN/f7SSbvVReb9SWp6cJFevxb4/nkG65yLAya//98WgocKm5PLDAtSs5CtJJJM+kHmJjO/6mmYW4MHShZA==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -5227,19 +5227,10 @@ electron-updater@^4.3.9:
     lodash.isequal "^4.5.0"
     semver "^7.3.5"
 
-electron@11.4.5:
+electron@11.4.5, electron@^11.1.0:
   version "11.4.5"
   resolved "https://registry.yarnpkg.com/electron/-/electron-11.4.5.tgz#71ffeb8be8d04bddcd165ed8460867d6e6a4a396"
   integrity sha512-F1s70t8ZVU7PuXuP7wxbF5muOIRulWvzRAE8MiD5PTomaOar5+I+eR3jD20bs13Z5GdyOQu148WQt8r9h+ALTA==
-  dependencies:
-    "@electron/get" "^1.0.1"
-    "@types/node" "^12.0.12"
-    extract-zip "^1.0.3"
-
-electron@^11.1.0:
-  version "11.4.2"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-11.4.2.tgz#02005d9f5d77ea6485efeffdb5c5433c769ddda4"
-  integrity sha512-P0PRLH7cXp8ZdpA9yVPe7jRVM+QeiAtsadqmqS6XY3AYrsH+7bJnVrNuw6p/fcmp+b/UxWaCexobqQpyFJ5Qkw==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"
@@ -11200,24 +11191,24 @@ react-copy-to-clipboard@^5.0.3:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
 
-react-devtools-core@4.13.2:
-  version "4.13.2"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.2.tgz#61399c6648d3ded5917eaa4e59b474b3fa838faa"
-  integrity sha512-/lA5FVLMhUHrkQwtEf5wZNCKsXmc2RBZMNS/kkq3WlXPg2Y7COUGMh0Lmz34jjMpM0kvLMDuj+DqsPT/jSADbw==
+react-devtools-core@4.13.3:
+  version "4.13.3"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.3.tgz#e303687b8ebd3605a10ac22c49e2fdfad5e037e6"
+  integrity sha512-MKk9NTA9Ym+7vERGLPAH2ODI2YgMCYsEdGIcjs3tsCSctNiEgOSYrQ1rooK9lQIlNKtyTdHVtgD2O6R0WXK7aQ==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.13.2:
-  version "4.13.2"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.2.tgz#4eb3399a68ba33728f48e32fa1ffef2aec1371c2"
-  integrity sha512-JFNwahGsSQ8ilE25Dqysm7AH5jjKVqI6PhdleeXNGxcbJRMPTYBbR4UvlpZIeccr74pgfu217n6SXkIL6Lfl5w==
+react-devtools@^4.13.3:
+  version "4.13.3"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.3.tgz#7583be7f1c9ef182edcc33e1237551b6d00842dd"
+  integrity sha512-R0cwFub12eDDys3UTSTRizKwpWnAlWN53/972nITd+r4MF7qKJDY7/SbUcCf1PWo+y8YkLdNOXExyM1/NZE6fQ==
   dependencies:
     cross-spawn "^5.0.1"
     electron "^11.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.13.2"
+    react-devtools-core "4.13.3"
     update-notifier "^2.1.0"
 
 react-dom@^16.14.0:
