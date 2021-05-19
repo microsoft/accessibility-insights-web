@@ -11,7 +11,6 @@ import {
     CommandMessage,
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
-import { ScannerUtils } from 'injected/scanner-utils';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -26,14 +25,14 @@ describe('ElementFinderByPositionTest', () => {
     let testSubject: TestableElementFinder;
     let frameMessengerMock: IMock<FrameMessenger>;
     let clientUtilsMock: IMock<ClientUtils>;
-    let scannerUtilsMock: IMock<ScannerUtils>;
+    let getUniqueSelectorMock: IMock<(element: HTMLElement) => string>;
     let elementsFromPointMock: IMock<(x: number, y: number) => Element[]>;
     let domStub: Document;
 
     beforeEach(() => {
         frameMessengerMock = Mock.ofType(FrameMessenger);
         clientUtilsMock = Mock.ofType(ClientUtils);
-        scannerUtilsMock = Mock.ofType(ScannerUtils);
+        getUniqueSelectorMock = Mock.ofInstance(e => null);
         elementsFromPointMock = Mock.ofInstance((x: number, y: number) => {
             return null;
         });
@@ -44,7 +43,7 @@ describe('ElementFinderByPositionTest', () => {
         testSubject = new TestableElementFinder(
             frameMessengerMock.object,
             clientUtilsMock.object,
-            scannerUtilsMock.object,
+            getUniqueSelectorMock.object,
             domStub,
         );
     });
@@ -72,7 +71,7 @@ describe('ElementFinderByPositionTest', () => {
 
         setupElementsFromPointMock(messageStub, []);
         clientUtilsMock.setup(cu => cu.getOffset(It.isAny())).verifiable(Times.never());
-        scannerUtilsMock.setup(su => su.getUniqueSelector(It.isAny())).verifiable(Times.never());
+        getUniqueSelectorMock.setup(m => m(It.isAny())).verifiable(Times.never());
 
         expect(await testSubject.processRequest(messageStub)).toEqual({ payload: [] });
         verifyAll();
@@ -144,8 +143,8 @@ describe('ElementFinderByPositionTest', () => {
     }
 
     function setupGetUniqueSelector(element: HTMLElement, selector: string): void {
-        scannerUtilsMock
-            .setup(su => su.getUniqueSelector(element))
+        getUniqueSelectorMock
+            .setup(m => m(element))
             .returns(() => selector)
             .verifiable();
     }
@@ -153,6 +152,6 @@ describe('ElementFinderByPositionTest', () => {
     function verifyAll(): void {
         frameMessengerMock.verifyAll();
         clientUtilsMock.verifyAll();
-        scannerUtilsMock.verifyAll();
+        getUniqueSelectorMock.verifyAll();
     }
 });

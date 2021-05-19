@@ -1,0 +1,69 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Custom Widget Examples</title>
+    </head>
+
+    <body role="main">
+        <h1>Custom Widget Examples</h1>
+
+        <div>
+            <h2>Custom button (with issues)</h2>
+            <div id="button1" role="button">button1</div>
+        </div>
+
+        <div>
+            <h2>Custom menu button (with issues)</h2>
+
+            <div>
+                <button
+                    id="menubutton1"
+                    aria-haspopup="true"
+                    aria-expanded="true"
+                    aria-controls="menu1"
+                    onclick="onMenu1Button()"
+                >
+                    Toggle Menu
+                </button>
+                <ul id="menu1" role="menu" aria-labelledby="menubutton1" class="menu1-expanded">
+                    <button role="menuitem" onclick="onMenu1Item('1')">Action 1</button>
+                    <button role="menuitem" onclick="onMenu1Item('2')">Action 2</button>
+                    <button role="menuitem" onclick="onMenu1Item('3')">Action 3</button>
+                    <button role="menuitem" onclick="onMenu1Item('4')">Action 4</button>
+                </ul>
+            </div>
+            <p>Selected menu action: <span id="menu1-selection">none</span></p>
+            <style>
+                .menu1-collapsed {
+                    display: none;
+                }
+                .menu1-expanded {
+                    display: block;
+                }
+            </style>
+            <script type="text/javascript">
+                function setMenu1ExpandedState(isExpanded) {
+                    const menuButton = document.getElementById('menubutton1');
+                    menuButton.attributes['aria-expanded'].value = isExpanded;
+                    const menu = document.getElementById('menu1');
+                    menu.className = isExpanded ? 'menu1-expanded' : 'menu1-collapsed';
+                }
+                function onMenu1Button() {
+                    const menuButton = document.getElementById('menubutton1');
+                    console.log(menuButton.attributes['aria-expanded'].value);
+                    const isExpanded = menuButton.attributes['aria-expanded'].value === 'true';
+                    setMenu1ExpandedState(!isExpanded);
+                }
+                function onMenu1Item(value) {
+                    document.getElementById('menu1-selection').innerText = value;
+                    setMenu1ExpandedState(false);
+                }
+            </script>
+        </div>
+    </body>
+</html>

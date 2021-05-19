@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Axe from 'axe-core';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { imageConfiguration } from 'scanner/custom-rules/image-rule';
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import { imageConfiguration } from '../../../../../scanner/custom-rules/image-rule';
 
 describe('imageRule', () => {
     describe('verify image rule configs', () => {
@@ -83,12 +82,10 @@ describe('imageRule', () => {
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
         let fixture: HTMLElement;
-        let axe;
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
             fixture = createTestFixture('test-fixture', '');
-            axe = Axe as any;
         });
 
         afterEach(() => {
@@ -269,8 +266,7 @@ describe('imageRule', () => {
         });
 
         function getResultForCheck(data, node: Element): boolean {
-            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
-            return imageConfiguration.checks[0].evaluate.call(data, node);
+            return withAxeSetup(() => imageConfiguration.checks[0].evaluate.call(data, node));
         }
     });
 
