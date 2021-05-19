@@ -179,7 +179,7 @@
         "electron-updater": "^4.3.9",
         "idb-keyval": "^5.0.5",
         "lodash": "^4.17.21",
-        "luxon": "^1.26.0",
+        "luxon": "^1.27.0",
         "office-ui-fabric-react": "7.98.0",
         "portfinder": "^1.0.28",
         "q": "1.5.1",
