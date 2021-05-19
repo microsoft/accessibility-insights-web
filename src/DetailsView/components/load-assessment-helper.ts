@@ -4,6 +4,7 @@ import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { Tab } from 'common/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 
 export class LoadAssessmentHelper {
     constructor(
@@ -11,6 +12,7 @@ export class LoadAssessmentHelper {
         private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
         private readonly fileReader: FileReader,
         private readonly document: Document,
+        private readonly loadAssessmentDataValidator: LoadAssessmentDataValidator,
     ) {}
 
     public getAssessmentForLoad(
@@ -25,7 +27,14 @@ export class LoadAssessmentHelper {
 
         const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
             const content = readerEvent.target.result as string;
+
             const parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
+
+            const results = this.loadAssessmentDataValidator.uploadedDataIsValid(
+                parsedAssessmentData,
+            );
+            console.log(results);
+
             setAssessmentState(parsedAssessmentData);
 
             if (prevTargetPageData != null) {
