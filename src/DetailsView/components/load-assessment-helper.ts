@@ -27,13 +27,21 @@ export class LoadAssessmentHelper {
 
         const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
             const content = readerEvent.target.result as string;
+            let parsedAssessmentData: VersionedAssessmentData;
 
-            const parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
+            try {
+                parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
+            } catch {
+                console.log('Invalid JSON');
+                //toggle invalid data dialog
+                return;
+            }
 
-            const results = this.loadAssessmentDataValidator.uploadedDataIsValid(
-                parsedAssessmentData,
-            );
-            console.log(results);
+            if (!this.loadAssessmentDataValidator.uploadedDataIsValid(parsedAssessmentData)) {
+                console.log('Invalid JSON schema');
+                //toggle invalid data dialog
+                return;
+            }
 
             setAssessmentState(parsedAssessmentData);
 

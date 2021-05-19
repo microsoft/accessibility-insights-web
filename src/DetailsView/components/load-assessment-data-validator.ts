@@ -3,6 +3,8 @@
 import Ajv from 'ajv';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 
@@ -13,42 +15,50 @@ export class LoadAssessmentDataValidator {
         private readonly featureFlagStoreData: FeatureFlagStoreData,
     ) {}
 
-    public uploadedDataIsValid(
-        parsedAssessmentData: VersionedAssessmentData,
-    ): boolean | PromiseLike<any> {
+    public uploadedDataIsValid(parsedAssessmentData: VersionedAssessmentData): boolean {
         const validateFunction = this.ajv.compile(this.getAssessmentSchema());
         const valid = validateFunction(parsedAssessmentData);
-
-        if (!valid) {
-            console.log(validateFunction.errors);
-        }
         return valid;
     }
 
-    private buildAssessmentSchema() {
-        const schema = this.getAssessmentSchemaBase();
+    private getAssessmentSchema() {
+        let schema = this.getAssessmentSchemaBase();
         const assessments = this.getAssessments();
+
         assessments.forEach(assessment => {
-            const assessments = schema.properties.assessmentData.properties.assessments.properties;
-            assessments[assessment.key] = this.getBaseAssessmentObject();
+            schema = this.setAssessmentBaseProperties(schema, assessment);
+
             assessment.requirements.forEach(requirement => {
-                assessments[assessment.key].properties.manualTestStepResultMap.properties[
-                    requirement.key
-                ] = this.getBaseManualTestStepResultMapObject();
-                assessments[assessment.key].properties.testStepStatus.properties[
-                    requirement.key
-                ] = this.getBaseTestStepStatus();
+                schema = this.setRequirementBaseProperties(schema, requirement, assessment.key);
             });
         });
-        console.log(schema);
         return schema;
     }
 
-    private getAssessmentSchema() {
-        return this.buildAssessmentSchema();
+    private setAssessmentBaseProperties(schema: any, assessment: Assessment) {
+        const assessments = schema.properties.assessmentData.properties.assessments.properties;
+        assessments[assessment.key] = this.getBaseAssessmentObject();
+        return schema;
     }
 
-    private getAssessments() {
+    private setRequirementBaseProperties(
+        schema: any,
+        requirement: Requirement,
+        assessmentKey: string,
+    ) {
+        const assessments = schema.properties.assessmentData.properties.assessments.properties;
+
+        assessments[assessmentKey].properties.manualTestStepResultMap.properties[
+            requirement.key
+        ] = this.getBaseManualTestStepResultMapObject();
+
+        assessments[assessmentKey].properties.testStepStatus.properties[
+            requirement.key
+        ] = this.getBaseTestStepStatus();
+        return schema;
+    }
+
+    private getAssessments(): readonly Readonly<Assessment>[] {
         const filteredProvider = assessmentsProviderWithFeaturesEnabled(
             this.assessmentsProvider,
             this.featureFlagStoreData,
@@ -164,266 +174,7 @@ export class LoadAssessmentDataValidator {
                         assessments: {
                             type: 'object',
                             properties: {},
-                            // properties: {
-                            //     'automated-checks': {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //             scanIncompleteWarnings: {
-                            //                 type: 'array',
-                            //             },
-                            //         },
-                            //         additionalProperties: false,
-                            //     },
-                            //     keyboardInteraction: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //         additionalProperties: false,
-                            //     },
-                            //     visibleFocusOrder: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     landmarks: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     repetitiveContent: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     linksAssessment: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     nativeWidgets: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     customWidgets: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     timedEvents: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     errors: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     page: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     parsing: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     images: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     language: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     color: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     textLegibility: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     audioVideoOnly: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     prerecordedMultimedia: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     liveMultimedia: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     sequence: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     semanticsAssessment: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     pointerMotion: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            //     contrast: {
-                            //         type: 'object',
-                            //         properties: {
-                            //             fullAxeResultsMap: { type: ['object', 'null'] },
-                            //             generatedAssessmentInstancesMap: {
-                            //                 type: ['object', 'null'],
-                            //             },
-                            //             manualTestStepResultMap: { type: ['object', 'null'] },
-                            //             testStepStatus: { type: ['object', 'null'] },
-                            //         },
-                            //     },
-                            // },
+                            additionalProperties: false,
                         },
                         resultDescription: {
                             type: 'string',
