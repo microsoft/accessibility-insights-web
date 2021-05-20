@@ -131,6 +131,17 @@
         }
     }
 
+    .file-issue-button,
+    .copy-issue-details-button,
+    .insights-dialog-button-inspect {
+        svg path {
+            @media screen and (forced-colors) {
+                forced-color-adjust: none !important;
+                stroke: ButtonText !important;
+            }
+        }
+    }
+
     .insights-dialog-main-override ul {
         margin-top: 3px !important;
     }
