@@ -125,7 +125,7 @@
             fill: $neutral-100 !important;
             fill-opacity: 0.9 !important;
 
-            @media screen and (forced-colors) : {
+            @media screen and (forced-colors) {
                 fill: inherit !important;
             }
         }
