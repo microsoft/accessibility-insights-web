@@ -255,6 +255,21 @@
         text-align: center !important;
     }
 
+    .insights-highlight-box {
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            outline-color: Highlight !important;
+        }
+    }
+
+    .insights-highlight-text {
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            color: HighlightText !important;
+            background-color: Highlight !important;
+        }
+    }
+
     :host {
         @include max-z-index-1();
         top: 0 !important;
