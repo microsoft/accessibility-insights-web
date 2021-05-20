@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import type * as axe from 'axe-core';
 import { WindowUtils } from 'common/window-utils';
 import { AxeFrameMessenger } from 'injected/frameCommunicators/axe-frame-messenger';
 import { LinkedRespondableCommunicator } from 'tests/unit/common/linked-respondable-communicator';
 import { RecordingLogger } from 'tests/unit/common/recording-logger';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import type * as axe from 'axe-core';
 
 // These can be replaced with axe.* equivalents with axe.core@4.2.1
 type TopicHandler = Parameters<AxeFrameMessenger['open']>[0];
