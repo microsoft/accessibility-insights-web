@@ -148,7 +148,7 @@
         "prettier": "^2.3.0",
         "react-devtools": "^4.13.3",
         "regenerator-runtime": "^0.13.7",
-        "sass": "^1.32.13",
+        "sass": "^1.33.0",
         "sass-loader": "^11.1.1",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
