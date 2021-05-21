@@ -52,7 +52,7 @@
     font-size: 16px !important;
     line-height: 24px !important;
     color: $neutral-100 !important;
-    @media screen and (-ms-high-contrast: active) {
+    @media screen and (forced-colors: active) {
         color: inherit !important;
     }
 }

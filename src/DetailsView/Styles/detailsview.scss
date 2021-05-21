@@ -53,7 +53,7 @@ body {
         .expanded-property-div,
         .property-bag-div,
         .display-name {
-            @media screen and (-ms-high-contrast: active) {
+            @media screen and (forced-colors: active) {
                 color: highlighttext !important;
             }
         }
