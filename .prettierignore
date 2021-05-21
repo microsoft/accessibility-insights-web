@@ -13,6 +13,7 @@
 **/*.snap.html
 **/*.md
 **/Dockerfile
+**/*.a11ywebassessment
 
 .DS_Store
 .dependabot/

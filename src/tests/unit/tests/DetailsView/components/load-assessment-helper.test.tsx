@@ -43,6 +43,13 @@ describe('LoadAssessmentHelper', () => {
         setAssessmentStateMock = Mock.ofType<() => void>();
         toggleLoadDialogMock = Mock.ofType<() => void>();
 
+        loadAssessmentDataValidatorMock
+            .setup(adp => adp.uploadedDataIsValid(It.isAny()))
+            .returns(() => {
+                return true;
+            })
+            .verifiable(Times.once());
+
         assessmentDataParserMock
             .setup(a => a.parseAssessmentData(content))
             .returns(() => assessmentData)
