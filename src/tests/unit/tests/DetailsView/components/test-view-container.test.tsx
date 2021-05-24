@@ -30,11 +30,11 @@ describe('TestViewContainer', () => {
                     getConfiguration: (visualizationType: VisualizationType) => configStub,
                 } as VisualizationConfigurationFactory;
 
-                props = ({
+                props = {
                     someParentProp: 'parent-prop',
                     visualizationConfigurationFactory: configFactoryStub,
                     selectedTest,
-                } as unknown) as TestViewContainerProps;
+                } as unknown as TestViewContainerProps;
             });
 
             it('renders per snapshot with no testViewOverrides', () => {
@@ -53,7 +53,7 @@ describe('TestViewContainer', () => {
             });
 
             function stubContentPageComponent(identifier: string): ContentPageComponent {
-                return (`stub content page component "${identifier}"` as unknown) as ContentPageComponent;
+                return `stub content page component "${identifier}"` as unknown as ContentPageComponent;
             }
         },
     );

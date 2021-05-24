@@ -1,0 +1,95 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/deploy/"
+  schedule:
+    interval: daily
+    time: "11:00"
+    timezone: "America/Los_Angeles" # Pacific Time
+  labels:
+  - "category: engineering"
+  - dependencies
+  commit-message:
+    prefix: chore
+    include: scope
+- package-ecosystem: docker
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+    timezone: "America/Los_Angeles" # Pacific Time
+  labels:
+  - "category: engineering"
+  - dependencies
+  commit-message:
+    prefix: chore
+    include: scope
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "11:00"
+    timezone: "America/Los_Angeles" # Pacific Time
+  labels:
+  - "category: engineering"
+  - dependencies
+  commit-message:
+    prefix: chore
+    include: scope
+  versioning-strategy: increase
+  ignore:
+    # axe-core updates require enough extra validation
+    # on false positives and breaking ai-web, so avoiding
+    # dependabot auto-update for them like other deps.
+  - dependency-name: axe-core
+    versions:
+    - ">= 0"
+    # All electron builds are going to be manually updated
+    # since our release builds use a non-standard Electron build
+    # with distribution-restricted media codecs stripped out
+  - dependency-name: electron
+    versions:
+    - ">= 0"
+    # Spectron major versions are tied to Electron major versions.
+    # We can only take major version updates as part of Electron updates.
+  - dependency-name: spectron
+    versions:
+    - ">=13.0.0"
+    # We use webdriverio only indirectly via spectron; our direct
+    # dependency on the package is only for the sake of typings, so
+    # we stick to the major version of webdriverio used by spectron.
+    #
+    # The spectron issue tracking their update to v5 is
+    # https://github.com/electron-userland/spectron/issues/349
+  - dependency-name: webdriverio
+    versions:
+    - ">=5.0.0"
+    # Major version of @types/node is pinned to match the version of node we
+    # use for builds (ideally, latest LTS)
+  - dependency-name: "@types/node"
+    versions:
+    - ">=15.0.0"
+    # We became far out of date when waiting for a fix to
+    # https://github.com/OfficeDev/office-ui-fabric-react/issues/12195
+    # and it will require a substantial technical debt paydown to update
+    # to latest @fluentui/react. We would like to do so, but will need to
+    # schedule feature work for it; it will require a lot of UI/AT testing.
+    # We can't take individual point updates in the meantime.
+  - dependency-name: office-ui-fabric-react
+    versions:
+    - ">= 0"
+    # The old version of office-ui-fabric-react we're pinned to isn't
+    # compatible with React 17; we should upgrade these when we upgrade
+    # to @fluentui/react
+  - dependency-name: react
+    versions:
+    - ">=17.0.0"
+  - dependency-name: react-dom
+    versions:
+    - ">=17.0.0"
+  - dependency-name: "@types/react"
+    versions:
+    - ">=17.0.0"
+  - dependency-name: "@types/react-dom"
+    versions:
+    - ">=17.0.0"

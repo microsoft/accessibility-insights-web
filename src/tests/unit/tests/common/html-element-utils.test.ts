@@ -179,11 +179,11 @@ describe('HTMLElementUtils', () => {
 
     test('getComputedStyle', () => {
         const element = 'element' as any;
-        const style = ({ style: 'computed' } as any) as CSSStyleDeclaration;
+        const style = { style: 'computed' } as any as CSSStyleDeclaration;
 
         const getComputedStyle = Mock.ofInstance((_: Element) => style);
         getComputedStyle.setup(fn => fn(element)).returns(() => style);
-        const win = ({ getComputedStyle: getComputedStyle.object } as any) as Window;
+        const win = { getComputedStyle: getComputedStyle.object } as any as Window;
 
         const utils = new HTMLElementUtils(null, win);
 
@@ -193,9 +193,9 @@ describe('HTMLElementUtils', () => {
     });
 
     test('getClientRects', () => {
-        const rects = ({ length: 42 } as any) as ClientRectList;
+        const rects = { length: 42 } as any as ClientRectList;
 
-        const element = ({ getClientRects: () => rects } as any) as Element;
+        const element = { getClientRects: () => rects } as any as Element;
 
         const utils = new HTMLElementUtils(null, null);
 
@@ -207,7 +207,7 @@ describe('HTMLElementUtils', () => {
     test('getOffsetHeight', () => {
         const expected = 42;
 
-        const element = ({ offsetHeight: expected } as any) as HTMLElement;
+        const element = { offsetHeight: expected } as any as HTMLElement;
 
         const utils = new HTMLElementUtils(null, null);
 
@@ -219,7 +219,7 @@ describe('HTMLElementUtils', () => {
     test('getOffsetWidth', () => {
         const expected = 2112;
 
-        const element = ({ offsetWidth: expected } as any) as HTMLElement;
+        const element = { offsetWidth: expected } as any as HTMLElement;
 
         const utils = new HTMLElementUtils(null, null);
 

@@ -14,18 +14,15 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     },
     'empty-table-header': {
         status: 'excluded',
-        reason:
-            "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+        reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     },
     'form-field-multiple-labels': {
         status: 'excluded',
-        reason:
-            "only reports needs-review results, but we haven't implemented needs-review content for it yet",
+        reason: "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     },
     'duplicate-id': {
         status: 'excluded',
-        reason:
-            'Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.',
+        reason: 'Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.',
     },
 };
 

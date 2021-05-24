@@ -7,7 +7,7 @@ import { RequirementComparer } from '../../../../../common/assessment/requiremen
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 
 describe('RequirementComparer', () => {
-    const items = ([
+    const items = [
         {
             definition: { name: 'Three', order: 3 },
             data: { stepFinalResult: ManualTestStatus.FAIL },
@@ -24,7 +24,7 @@ describe('RequirementComparer', () => {
             definition: { name: 'Four', order: 4 },
             data: { stepFinalResult: ManualTestStatus.PASS },
         },
-    ] as Partial<RequirementResult>[]) as RequirementResult[];
+    ] as Partial<RequirementResult>[] as RequirementResult[];
 
     it('orders byOrdinal', () => {
         const result = sortBy(items, RequirementComparer.byOrdinal);

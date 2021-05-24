@@ -22,6 +22,7 @@ describe('axe.Check: unique-landmark', () => {
     });
 
     afterEach(() => {
+        axe.teardown();
         fixture.remove();
     });
 
@@ -33,7 +34,7 @@ describe('axe.Check: unique-landmark', () => {
         fixture.innerHTML = `
             <div role="banner" id="landmark1" aria-label="header landmark"></div>
             `;
-        axe._tree = axe.utils.getFlattenedTree(fixture);
+        axe.setup(fixture);
 
         const node = fixture.querySelector('#landmark1');
         expectCheckTrue(node);
@@ -48,7 +49,7 @@ describe('axe.Check: unique-landmark', () => {
             <div id="sectionLabel">section landmark</div>
             <section id="landmark1" aria-labelledby="sectionLabel"></section>
             `;
-        axe._tree = axe.utils.getFlattenedTree(fixture);
+        axe.setup(fixture);
 
         const node = fixture.querySelector('#landmark1');
         expectCheckTrue(node);
@@ -64,7 +65,7 @@ describe('axe.Check: unique-landmark', () => {
             <div role="banner" id="landmark2" aria-label="header landmark">landmark2</div>
             `;
 
-        axe._tree = axe.utils.getFlattenedTree(fixture);
+        axe.setup(fixture);
         const node = fixture.querySelector('#landmark2');
 
         expectCheckTrue(node);
@@ -82,7 +83,7 @@ describe('axe.Check: unique-landmark', () => {
             <div role="banner" id="landmark3" aria-label="some other landmark">landmark3</div>
             `;
 
-            axe._tree = axe.utils.getFlattenedTree(fixture);
+            axe.setup(fixture);
             duplicateLandmark1 = fixture.querySelector('#landmark1');
             duplicateLandmark2 = fixture.querySelector('#landmark2');
             uniqueLandmark = fixture.querySelector('#landmark3');

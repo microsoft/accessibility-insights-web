@@ -54,6 +54,7 @@ export interface DetailsDialogState {
     canInspect: boolean;
     userConfigurationStoreData: UserConfigurationStoreData;
     showInspectMessage: boolean;
+    showInsecureOriginPageMessage: boolean;
 }
 
 export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
@@ -65,6 +66,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     public isBackButtonDisabled: () => boolean;
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
+    public onClickCopyIssueDetailsButton: (ev) => void;
+    public shouldShowInsecureOriginPageMessage: () => boolean;
 
     constructor(props: DetailsDialogProps) {
         super(props);
@@ -105,7 +108,12 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         this.isInspectButtonDisabled = () => {
             return this.props.dialogHandler.isInspectButtonDisabled(this);
         };
-
+        this.onClickCopyIssueDetailsButton = (ev: React.MouseEvent<MouseEvent>) => {
+            this.props.dialogHandler.copyIssueDetailsButtonClickHandler(this, ev);
+        };
+        this.shouldShowInsecureOriginPageMessage = () => {
+            return this.props.dialogHandler.shouldShowInsecureOriginPageMessage(this);
+        };
         this.state = {
             showDialog: true,
             currentRuleIndex: 0,
@@ -114,6 +122,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             // eslint-disable-next-line react/no-unused-state
             showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
+            // eslint-disable-next-line react/no-unused-state
+            showInsecureOriginPageMessage: false,
         };
     }
 
@@ -161,12 +171,13 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
             failedRules: this.props.failedRules,
-            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator
-                .copyIssueDetailsClicked,
+            onClickCopyIssueDetailsButton: this.onClickCopyIssueDetailsButton,
             onClickInspectButton: this.onClickInspectButton,
             shouldShowInspectButtonMessage: () =>
                 this.props.dialogHandler.shouldShowInspectButtonMessage(this),
             userConfigurationStoreData: this.state.userConfigurationStoreData,
+            hasSecureTargetPage: this.props.dialogHandler.isTargetPageOriginSecure(),
+            shouldShowInsecureOriginPageMessage: this.shouldShowInsecureOriginPageMessage(),
         };
 
         return <CommandBar {...props} />;

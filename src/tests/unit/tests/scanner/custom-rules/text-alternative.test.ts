@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Axe from 'axe-core';
+import * as AxeUtils from 'scanner/axe-utils';
+import { textAlternativeConfiguration } from 'scanner/custom-rules/text-alternative';
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import * as AxeUtils from '../../../../../scanner/axe-utils';
-import { textAlternativeConfiguration } from '../../../../../scanner/custom-rules/text-alternative';
 
 describe('text alternative', () => {
     describe('verify text alternative configs', () => {
@@ -25,11 +23,9 @@ describe('text alternative', () => {
 
     describe('verify matches', () => {
         let fixture: HTMLElement;
-        let axeReference;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            axeReference = Axe as any;
         });
 
         afterEach(() => {
@@ -44,10 +40,11 @@ describe('text alternative', () => {
             `;
 
             const element1 = fixture.querySelector('#el1');
+            const result = AxeUtils.withAxeSetup(() =>
+                textAlternativeConfiguration.rule.matches(element1, null),
+            );
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-
-            expect(textAlternativeConfiguration.rule.matches(element1, null)).toBeTruthy();
+            expect(result).toBeTruthy();
         });
 
         it('should not match img elements with alt = "" ', () => {
@@ -58,10 +55,11 @@ describe('text alternative', () => {
             `;
 
             const element2 = fixture.querySelector('#el2');
+            const result = AxeUtils.withAxeSetup(() =>
+                textAlternativeConfiguration.rule.matches(element2, null),
+            );
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-
-            expect(textAlternativeConfiguration.rule.matches(element2, null)).toBeFalsy();
+            expect(result).toBeFalsy();
         });
 
         it('should match img elements with space as alt', () => {
@@ -70,17 +68,18 @@ describe('text alternative', () => {
             `;
 
             const element = fixture.querySelector('#el1');
+            const result = AxeUtils.withAxeSetup(() =>
+                textAlternativeConfiguration.rule.matches(element, null),
+            );
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-
-            expect(textAlternativeConfiguration.rule.matches(element, null)).toBeTruthy();
+            expect(result).toBeTruthy();
         });
     });
 
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
         let fixture: HTMLElement;
-        let axeReference;
+
         const getAccessibleDescriptionMock = GlobalMock.ofInstance(
             AxeUtils.getAccessibleDescription,
             'getAccessibleDescription',
@@ -91,7 +90,6 @@ describe('text alternative', () => {
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
             fixture = createTestFixture('test-fixture', '');
-            axeReference = Axe as any;
         });
 
         afterEach(() => {
@@ -103,16 +101,16 @@ describe('text alternative', () => {
                 <div id="el1" alt="hello"></div>
             `;
             const element1 = fixture.querySelector('#el1');
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
-
             getAccessibleDescriptionMock.setup(getter => getter(It.isAny())).returns(() => '');
 
             dataSetterMock.setup(d => d(It.isAny()));
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = textAlternativeConfiguration.checks[0].evaluate.call(
-                    { data: dataSetterMock.object },
-                    element1,
+                result = AxeUtils.withAxeSetup(() =>
+                    textAlternativeConfiguration.checks[0].evaluate.call(
+                        { data: dataSetterMock.object },
+                        element1,
+                    ),
                 );
             });
             expect(result).toBe(true);
@@ -127,7 +125,6 @@ describe('text alternative', () => {
 
             const element1 = fixture.querySelector('#el1');
 
-            axeReference._tree = axeReference.utils.getFlattenedTree(document.documentElement);
             getAccessibleDescriptionMock.setup(geter => geter(It.isAny())).returns(() => 'hello');
 
             const expectedData = {
@@ -139,9 +136,11 @@ describe('text alternative', () => {
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             let result;
             GlobalScope.using(getAccessibleDescriptionMock).with(() => {
-                result = textAlternativeConfiguration.checks[0].evaluate.call(
-                    { data: dataSetterMock.object },
-                    element1,
+                result = AxeUtils.withAxeSetup(() =>
+                    textAlternativeConfiguration.checks[0].evaluate.call(
+                        { data: dataSetterMock.object },
+                        element1,
+                    ),
                 );
             });
             expect(result).toBe(true);

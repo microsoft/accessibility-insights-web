@@ -293,9 +293,8 @@ export class ActionCreator {
     }
 
     private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
-        const payload: VisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(
-            test,
-        );
+        const payload: VisualizationTogglePayload =
+            this.createVisualizationTogglePayloadWithNullTelemetry(test);
         this.onVisualizationToggle(payload);
     }
 

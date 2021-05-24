@@ -38,11 +38,11 @@ describe('LaunchPad', () => {
     ];
 
     test('render LaunchPad', () => {
-        const deps = ({
+        const deps = {
             axeInfo: {
                 version: AXE_CORE_VERSION,
             },
-        } as any) as LaunchPadDeps;
+        } as any as LaunchPadDeps;
 
         const props: LaunchPadProps = {
             deps,

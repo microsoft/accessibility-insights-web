@@ -9,7 +9,6 @@ import {
     CommandMessage,
     PromiseWindowCommandMessageListener,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
-import { ScannerUtils } from 'injected/scanner-utils';
 import { TabStopsListener } from 'injected/tab-stops-listener';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -17,7 +16,7 @@ describe('TabStopsListenerTest', () => {
     let frameMessengerMock: IMock<FrameMessenger>;
     let windowUtilsMock: IMock<WindowUtils>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
-    let scannerUtilsMock: IMock<ScannerUtils>;
+    let getUniqueSelectorMock: IMock<(element: HTMLElement) => string>;
     let addEventListenerMock;
     let removeEventListenerMock;
     let domMock;
@@ -27,7 +26,7 @@ describe('TabStopsListenerTest', () => {
         frameMessengerMock = Mock.ofType(FrameMessenger);
         windowUtilsMock = Mock.ofType(WindowUtils);
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
-        scannerUtilsMock = Mock.ofType(ScannerUtils);
+        getUniqueSelectorMock = Mock.ofInstance(e => null);
         addEventListenerMock = Mock.ofInstance((eventName, callback) => {});
         removeEventListenerMock = Mock.ofInstance((eventName, callback) => {});
         domMock = {
@@ -38,14 +37,14 @@ describe('TabStopsListenerTest', () => {
             frameMessengerMock.object,
             windowUtilsMock.object,
             htmlElementUtilsMock.object,
-            scannerUtilsMock.object,
+            getUniqueSelectorMock.object,
             domMock as any,
         );
     });
 
     afterEach(() => {
         htmlElementUtilsMock.reset();
-        scannerUtilsMock.reset();
+        getUniqueSelectorMock.reset();
         windowUtilsMock.reset();
         addEventListenerMock.reset();
         removeEventListenerMock.reset();
@@ -160,8 +159,8 @@ describe('TabStopsListenerTest', () => {
             .returns(() => topWindowStub as any)
             .verifiable(Times.once());
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(targetElementStub as any))
+        getUniqueSelectorMock
+            .setup(m => m(targetElementStub as any))
             .returns(() => 'selector')
             .verifiable(Times.once());
 
@@ -181,7 +180,7 @@ describe('TabStopsListenerTest', () => {
 
         testSubject.initialize();
         windowUtilsMock.verifyAll();
-        scannerUtilsMock.verifyAll();
+        getUniqueSelectorMock.verifyAll();
         frameMessengerMock.verifyAll();
         addEventListenerMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
@@ -218,7 +217,7 @@ describe('TabStopsListenerTest', () => {
         testSubject.initialize();
         frameMessengerMock.verifyAll();
         windowUtilsMock.verifyAll();
-        scannerUtilsMock.verifyAll();
+        getUniqueSelectorMock.verifyAll();
         addEventListenerMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
     });
@@ -242,8 +241,8 @@ describe('TabStopsListenerTest', () => {
             .returns(() => true)
             .verifiable(Times.exactly(2));
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(targetElementStub as any))
+        getUniqueSelectorMock
+            .setup(m => m(targetElementStub as any))
             .returns(() => 'selector')
             .verifiable(Times.once());
 
@@ -277,7 +276,7 @@ describe('TabStopsListenerTest', () => {
 
         frameMessengerMock.verifyAll();
         windowUtilsMock.verifyAll();
-        scannerUtilsMock.verifyAll();
+        getUniqueSelectorMock.verifyAll();
         frameMessengerMock.verifyAll();
         addEventListenerMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
@@ -294,9 +293,9 @@ describe('TabStopsListenerTest', () => {
             .returns(() => true)
             .verifiable(Times.exactly(3));
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(currentFocusedElementStub as any))
-            .returns(element => 'selector')
+        getUniqueSelectorMock
+            .setup(m => m(currentFocusedElementStub as any))
+            .returns(() => 'selector')
             .verifiable(Times.once());
 
         addEventListenerMock.setup(a => a('focusin', It.isAny())).verifiable(Times.once());
@@ -409,8 +408,8 @@ describe('TabStopsListenerTest', () => {
             .returns(() => parentWindowStub as any)
             .verifiable(Times.once());
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(frameStub as any))
+        getUniqueSelectorMock
+            .setup(m => m(frameStub as any))
             .returns(() => 'frame1')
             .verifiable(Times.once());
 
@@ -429,7 +428,7 @@ describe('TabStopsListenerTest', () => {
 
         testSubject.initialize();
         windowUtilsMock.verifyAll();
-        scannerUtilsMock.verifyAll();
+        getUniqueSelectorMock.verifyAll();
         frameMessengerMock.verifyAll();
         addEventListenerMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
@@ -474,8 +473,8 @@ describe('TabStopsListenerTest', () => {
 
         tabEventListenMock.setup(t => t(It.isObjectWith(finalEventStub))).verifiable(Times.once());
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(frameStub as any))
+        getUniqueSelectorMock
+            .setup(m => m(frameStub as any))
             .returns(() => 'frame1')
             .verifiable(Times.once());
 
@@ -489,7 +488,7 @@ describe('TabStopsListenerTest', () => {
         testSubject.setTabEventListenerOnMainWindow(tabEventListenMock.object);
         testSubject.initialize();
         windowUtilsMock.verifyAll();
-        scannerUtilsMock.verifyAll();
+        getUniqueSelectorMock.verifyAll();
         frameMessengerMock.verifyAll();
         addEventListenerMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
@@ -527,8 +526,8 @@ describe('TabStopsListenerTest', () => {
             .returns(() => true)
             .verifiable(Times.exactly(2));
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(frameStub as any))
+        getUniqueSelectorMock
+            .setup(m => m(frameStub as any))
             .returns(() => 'frame1')
             .verifiable(Times.once());
 
@@ -587,8 +586,8 @@ describe('TabStopsListenerTest', () => {
 
         tabEventListenMock.setup(t => t(It.isObjectWith(finalEventStub))).verifiable(Times.once());
 
-        scannerUtilsMock
-            .setup(k => k.getUniqueSelector(frameStub as any))
+        getUniqueSelectorMock
+            .setup(m => m(frameStub as any))
             .returns(() => 'frame1')
             .verifiable(Times.once());
 

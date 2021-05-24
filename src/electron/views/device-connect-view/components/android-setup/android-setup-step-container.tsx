@@ -9,9 +9,10 @@ export class AndroidSetupStepContainer extends React.Component<CommonAndroidSetu
     }
 
     public render(): JSX.Element {
-        const Component = this.props.deps.androidSetupStepComponentProvider[
-            this.props.androidSetupStoreData.currentStepId
-        ];
+        const Component =
+            this.props.deps.androidSetupStepComponentProvider[
+                this.props.androidSetupStoreData.currentStepId
+            ];
         return (
             <div data-automation-id={`${this.props.androidSetupStoreData.currentStepId}-content`}>
                 <Component {...this.props} />

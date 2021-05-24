@@ -15,27 +15,27 @@ import * as styles from './cards-visualization-modifier-buttons.scss';
 export type CardsVisualizationModifierButtonsProps = ExpandCollapseAllButtonProps &
     VisualHelperToggleProps;
 
-export type CardsVisualizationModifierButtons = ReactFCWithDisplayName<CardsVisualizationModifierButtonsProps>;
+export type CardsVisualizationModifierButtons =
+    ReactFCWithDisplayName<CardsVisualizationModifierButtonsProps>;
 
-export const ExpandCollapseOnlyModifierButtons: CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModifierButtonsProps>(
-    'ExpandCollapseOnlyModifierButtons',
-    props => {
+export const ExpandCollapseOnlyModifierButtons: CardsVisualizationModifierButtons =
+    NamedFC<CardsVisualizationModifierButtonsProps>('ExpandCollapseOnlyModifierButtons', props => {
         return (
             <div className={styles.cardsVisualizationModifiersContainer}>
                 <ExpandCollapseAllButton {...props} />
             </div>
         );
-    },
-);
+    });
 
-export const ExpandCollapseVisualHelperModifierButtons: CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModifierButtonsProps>(
-    'ExpandCollapseVisualHelperModifierButtons',
-    props => {
-        return (
-            <div className={styles.cardsVisualizationModifiersContainer}>
-                <ExpandCollapseAllButton {...props} />
-                <VisualHelperToggle {...props} />
-            </div>
-        );
-    },
-);
+export const ExpandCollapseVisualHelperModifierButtons: CardsVisualizationModifierButtons =
+    NamedFC<CardsVisualizationModifierButtonsProps>(
+        'ExpandCollapseVisualHelperModifierButtons',
+        props => {
+            return (
+                <div className={styles.cardsVisualizationModifiersContainer}>
+                    <ExpandCollapseAllButton {...props} />
+                    <VisualHelperToggle {...props} />
+                </div>
+            );
+        },
+    );

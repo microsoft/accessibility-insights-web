@@ -119,3 +119,18 @@ export function getImageType(node: HTMLElement): string | null {
 
     return imageType;
 }
+
+// This will throw if called concurrently with an axe-core scan
+export function withAxeSetup(operation: Function, rootElement?: HTMLElement) {
+    axe.setup(rootElement ?? document.documentElement);
+    try {
+        return operation();
+    } finally {
+        axe.teardown();
+    }
+}
+
+// This will throw if called concurrently with an axe-core scan
+export function getUniqueSelector(element: HTMLElement): string {
+    return withAxeSetup(() => axe.utils.getSelector(element));
+}

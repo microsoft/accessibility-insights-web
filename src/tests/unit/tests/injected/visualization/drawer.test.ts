@@ -214,9 +214,8 @@ describe('Drawer', () => {
     });
 
     test('verifyDefaultStyling: visualizations not fully visible in client view', async () => {
-        const formatterMock: IMock<NonTextComponentFormatter> = Mock.ofType(
-            NonTextComponentFormatter,
-        );
+        const formatterMock: IMock<NonTextComponentFormatter> =
+            Mock.ofType(NonTextComponentFormatter);
 
         const domMock: IMock<Document> = Mock.ofInstance({
             querySelectorAll: selector => {

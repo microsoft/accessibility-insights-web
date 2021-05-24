@@ -316,15 +316,15 @@ export class DetailsViewCommandBar extends React.Component<
 
     private renderStartOverButton = () => {
         const startOverProps = this.getStartOverProps();
-        const startOverComponentFactory = this.props.switcherNavConfiguration
-            .StartOverComponentFactory;
+        const startOverComponentFactory =
+            this.props.switcherNavConfiguration.StartOverComponentFactory;
         return startOverComponentFactory.getStartOverComponent(startOverProps);
     };
 
     private getStartOverMenuItem = () => {
         const startOverProps = this.getStartOverProps();
-        const startOverComponentFactory = this.props.switcherNavConfiguration
-            .StartOverComponentFactory;
+        const startOverComponentFactory =
+            this.props.switcherNavConfiguration.StartOverComponentFactory;
         return startOverComponentFactory.getStartOverMenuItem(startOverProps);
     };
 

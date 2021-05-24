@@ -49,6 +49,7 @@ describe('CopyIssueDetailsButtonTest', () => {
             },
             issueDetailsData: {} as CreateIssueDetailsTextData,
             onClick: onClickMock.object,
+            hasSecureTargetPage: true,
         };
     });
 
@@ -56,27 +57,69 @@ describe('CopyIssueDetailsButtonTest', () => {
         const result = Enzyme.shallow(<CopyIssueDetailsButton {...props} />);
         expect(result.debug()).toMatchSnapshot();
     });
+    describe('toast message', () => {
+        test('render after click shows copy success message', async () => {
+            navigatorUtilsMock
+                .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+                .returns(() => {
+                    return Promise.resolve();
+                })
+                .verifiable(Times.once());
 
-    test('render after click shows toast', async () => {
-        navigatorUtilsMock
-            .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
-            .returns(() => {
-                return Promise.resolve();
-            })
-            .verifiable(Times.once());
+            const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
+            const button = result.find(DefaultButton);
+            onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
+            // tslint:disable-next-line: await-promise
+            await button.simulate('click');
 
-        const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
-        const button = result.find(DefaultButton);
-        onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
-        // tslint:disable-next-line: await-promise
-        await button.simulate('click');
+            const toast = result.find(Toast);
 
-        const toast = result.find(Toast);
+            expect(toast.state().toastVisible).toBe(true);
+            expect(toast.state().content).toBe('Failure details copied.');
 
-        expect(toast.state().toastVisible).toBe(true);
-        expect(toast.state().content).toBe('Failure details copied.');
+            verifyMocks();
+        });
+        test('render after click shows copy failure message', async () => {
+            navigatorUtilsMock
+                .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+                .returns(() => {
+                    return Promise.reject();
+                })
+                .verifiable(Times.once());
 
-        verifyMocks();
+            const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
+            const button = result.find(DefaultButton);
+            onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
+            // tslint:disable-next-line: await-promise
+            await button.simulate('click');
+
+            const toast = result.find(Toast);
+
+            expect(toast.state().toastVisible).toBe(true);
+            expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
+
+            verifyMocks();
+        });
+        test('does not show toast message for insecure origin', async () => {
+            navigatorUtilsMock
+                .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+                .returns(() => {
+                    return Promise.reject();
+                })
+                .verifiable(Times.once());
+            props.hasSecureTargetPage = false;
+            const result = Enzyme.mount(<CopyIssueDetailsButton {...props} />);
+            const button = result.find(DefaultButton);
+            onClickMock.setup(m => m(It.isAny())).verifiable(Times.once());
+            // tslint:disable-next-line: await-promise
+            await button.simulate('click');
+
+            const toast = result.find(Toast);
+
+            expect(toast.state().toastVisible).toBe(false);
+
+            verifyMocks();
+        });
     });
 
     function verifyMocks(): void {

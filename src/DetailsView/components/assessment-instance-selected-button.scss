@@ -5,13 +5,13 @@
 .instance-visibility-button {
     color: $primary-text;
     padding-bottom: 6px;
-    @media screen and (-ms-high-contrast: active) {
+    @media screen and (forced-colors: active) {
         color: highlighttext !important;
     }
 }
 
 .instance-visibility-button:focus {
-    @media screen and (-ms-high-contrast: active) {
+    @media screen and (forced-colors: active) {
         outline: 1px highlighttext solid;
     }
 }

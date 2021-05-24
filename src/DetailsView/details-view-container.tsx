@@ -168,7 +168,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 }
 
-export const DetailsView = withStoreSubscription<
-    DetailsViewContainerProps,
-    DetailsViewContainerState
->(DetailsViewContainer);
+export const DetailsView =
+    withStoreSubscription<DetailsViewContainerProps, DetailsViewContainerState>(
+        DetailsViewContainer,
+    );

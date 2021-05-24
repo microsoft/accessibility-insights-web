@@ -363,9 +363,8 @@ describe('TelemetryDataFactoryTest', () => {
             selectedTest: VisualizationType[VisualizationType.Headings],
         };
 
-        const actual: AssessmentTelemetryData = testObject.forAssessmentActionFromDetailsViewNoTriggeredBy(
-            VisualizationType.Headings,
-        );
+        const actual: AssessmentTelemetryData =
+            testObject.forAssessmentActionFromDetailsViewNoTriggeredBy(VisualizationType.Headings);
 
         expect(actual).toEqual(expected);
     });

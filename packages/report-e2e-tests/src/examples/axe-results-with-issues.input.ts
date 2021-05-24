@@ -180,8 +180,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensures <dl> elements are structured correctly',
-                help:
-                    '<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script> or <template> elements',
+                help: '<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script> or <template> elements',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/definition-list?application=webdriverjs',
                 id: 'definition-list',
@@ -633,8 +632,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="description">\n                AU installs universally designed maps at multiple locations on campus.\n              </div>',
+                        html: '<div class="description">\n                AU installs universally designed maps at multiple locations on campus.\n              </div>',
                         impact: null,
                         none: [],
                         target: ['a[href="somepage\\.html\\?ref\\=Slide\\%202"] > .description'],
@@ -2218,8 +2216,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="required">\n          Name:\n          <input type="text" name="name">\n        </div>',
+                        html: '<div class="required">\n          Name:\n          <input type="text" name="name">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['form > .required:nth-child(2)'],
@@ -2267,8 +2264,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="required">\n          Email:\n          <input type="text" name="email">\n        </div>',
+                        html: '<div class="required">\n          Email:\n          <input type="text" name="email">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['.required:nth-child(3)'],
@@ -2316,8 +2312,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div>\n          City:\n          <input type="text" name="city">\n        </div>',
+                        html: '<div>\n          City:\n          <input type="text" name="city">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['form > div:nth-child(4)'],
@@ -2365,8 +2360,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div>\n          State/Province:\n          <input type="text" name="state">\n        </div>',
+                        html: '<div>\n          State/Province:\n          <input type="text" name="state">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['form > div:nth-child(5)'],
@@ -2414,8 +2408,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div>\n          Zip/Postal Code:\n          <input type="text" name="zip">\n        </div>',
+                        html: '<div>\n          Zip/Postal Code:\n          <input type="text" name="zip">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['form > div:nth-child(6)'],
@@ -2463,8 +2456,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div>\n          Country:\n          <input type="text" name="country">\n        </div>',
+                        html: '<div>\n          Country:\n          <input type="text" name="country">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['div:nth-child(7)'],
@@ -2536,8 +2528,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="major">Computer Science <input type="checkbox" name="major_cs"></div>',
+                        html: '<div class="major">Computer Science <input type="checkbox" name="major_cs"></div>',
                         impact: null,
                         none: [],
                         target: ['.major:nth-child(1)'],
@@ -2561,8 +2552,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="major">Engineering <input type="checkbox" name="major_eng"></div>',
+                        html: '<div class="major">Engineering <input type="checkbox" name="major_eng"></div>',
                         impact: null,
                         none: [],
                         target: ['.major:nth-child(2)'],
@@ -2586,8 +2576,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="major">Economics <input type="checkbox" name="major_econ"></div>',
+                        html: '<div class="major">Economics <input type="checkbox" name="major_econ"></div>',
                         impact: null,
                         none: [],
                         target: ['.major:nth-child(3)'],
@@ -2611,8 +2600,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="major">Physics <input type="checkbox" name="major_phy"></div>',
+                        html: '<div class="major">Physics <input type="checkbox" name="major_phy"></div>',
                         impact: null,
                         none: [],
                         target: ['.major:nth-child(4)'],
@@ -2636,8 +2624,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="major">Psychology <input type="checkbox" name="major_psy"></div>',
+                        html: '<div class="major">Psychology <input type="checkbox" name="major_psy"></div>',
                         impact: null,
                         none: [],
                         target: ['.major:nth-child(5)'],
@@ -2661,8 +2648,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="major">Spanish <input type="checkbox" name="major_sp"></div>',
+                        html: '<div class="major">Spanish <input type="checkbox" name="major_sp"></div>',
                         impact: null,
                         none: [],
                         target: ['.major:nth-child(6)'],
@@ -2710,8 +2696,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<p>Please enter the two words you see below, separated by a space</p>',
+                        html: '<p>Please enter the two words you see below, separated by a space</p>',
                         impact: null,
                         none: [],
                         target: ['#captcha > p'],
@@ -2807,8 +2792,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
+                        html: '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
                         impact: null,
                         none: [],
                         target: ['#footer > a:nth-child(2)'],
@@ -2832,8 +2816,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
+                        html: '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
                         impact: null,
                         none: [],
                         target: ['#footer > a[rel="license"]'],
@@ -2957,8 +2940,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="banner">\n      <img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">\n    </div>',
+                        html: '<div id="banner">\n      <img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">\n    </div>',
                         impact: null,
                         none: [],
                         target: ['#banner'],
@@ -2975,8 +2957,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
+                        html: '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
                         impact: null,
                         none: [],
                         target: ['#logo'],
@@ -3112,8 +3093,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="captcha">\n          <b>Security Test</b>\n          <p>Please enter the two words you see below, separated by a space</p>\n          <input type="text" name="captcha">\n          <img src="images/captcha.png">\n        </div>',
+                        html: '<div id="captcha">\n          <b>Security Test</b>\n          <p>Please enter the two words you see below, separated by a space</p>\n          <input type="text" name="captcha">\n          <img src="images/captcha.png">\n        </div>',
                         impact: null,
                         none: [],
                         target: ['#captcha'],
@@ -3147,8 +3127,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="ccLogo">\n        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>\n      </div>',
+                        html: '<div id="ccLogo">\n        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>\n      </div>',
                         impact: null,
                         none: [],
                         target: ['#ccLogo'],
@@ -3463,8 +3442,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
+                        html: '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
                         impact: null,
                         none: [
                             {
@@ -3488,8 +3466,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                         impact: null,
                         none: [
                             {
@@ -3515,8 +3492,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                         impact: null,
                         none: [
                             {
@@ -3542,8 +3518,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                         impact: null,
                         none: [
                             {
@@ -3569,8 +3544,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
+                        html: '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
                         impact: null,
                         none: [
                             {
@@ -3603,8 +3577,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
+                        html: '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
                         impact: null,
                         none: [
                             {
@@ -3672,8 +3645,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                         impact: null,
                         none: [
                             {
@@ -3692,8 +3664,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                         impact: null,
                         none: [
                             {
@@ -3712,8 +3683,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                         impact: null,
                         none: [
                             {
@@ -3749,8 +3719,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
+                        html: '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
                         impact: null,
                         none: [
                             {
@@ -4197,8 +4166,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Slide%202">\n              <img src="images/slide2.jpg">\n              <div class="description">\n                AU installs universally designed maps at multiple locations on campus.\n              </div>\n            </a>',
+                        html: '<a href="somepage.html?ref=Slide%202">\n              <img src="images/slide2.jpg">\n              <div class="description">\n                AU installs universally designed maps at multiple locations on campus.\n              </div>\n            </a>',
                         impact: null,
                         none: [
                             {
@@ -4294,8 +4262,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>',
+                        html: '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>',
                         impact: null,
                         none: [
                             {
@@ -4319,8 +4286,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
+                        html: '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
                         impact: null,
                         none: [
                             {
@@ -4344,8 +4310,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
+                        html: '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
                         impact: null,
                         none: [
                             {
@@ -4370,8 +4335,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensures that lists are structured correctly',
-                help:
-                    '<ul> and <ol> must only directly contain <li>, <script> or <template> elements',
+                help: '<ul> and <ol> must only directly contain <li>, <script> or <template> elements',
                 helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/list?application=webdriverjs',
                 id: 'list',
                 impact: null,
@@ -4396,8 +4360,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<ul class="lentils"><li data-slide="0" class="active"></li><li data-slide="1"></li><li data-slide="2"></li></ul>',
+                        html: '<ul class="lentils"><li data-slide="0" class="active"></li><li data-slide="1"></li><li data-slide="2"></li></ul>',
                         impact: null,
                         none: [
                             {
@@ -4481,8 +4444,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li><a href="#">Visitors</a>\n        <ul>\n          <li><a href="somepage.html?ref=Events">Events</a></li>\n          <li><a href="somepage.html?ref=Campus_Map">Campus Map</a></li>\n          <li><a href="somepage.html?ref=Parking">Parking</a></li>\n        </ul>\n      </li>',
+                        html: '<li><a href="#">Visitors</a>\n        <ul>\n          <li><a href="somepage.html?ref=Events">Events</a></li>\n          <li><a href="somepage.html?ref=Campus_Map">Campus Map</a></li>\n          <li><a href="somepage.html?ref=Parking">Parking</a></li>\n        </ul>\n      </li>',
                         impact: null,
                         none: [],
                         target: ['#menu > li:nth-child(4)'],
@@ -4540,8 +4502,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensure that tables do not have the same summary and caption',
-                help:
-                    'The <caption> element should not contain the same text as the summary attribute',
+                help: 'The <caption> element should not contain the same text as the summary attribute',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/table-duplicate-name?application=webdriverjs',
                 id: 'table-duplicate-name',
@@ -4570,8 +4531,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
             {
                 description:
                     'Ensure that each cell in a table using the headers refers to another cell in that table',
-                help:
-                    'All cells in a table element that use the headers attribute must only refer to other cells of that same table',
+                help: 'All cells in a table element that use the headers attribute must only refer to other cells of that same table',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/td-headers-attr?application=webdriverjs',
                 id: 'td-headers-attr',
@@ -4599,8 +4559,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensure that each table header in a data table refers to data cells',
-                help:
-                    'All th elements and elements with role=columnheader/rowheader must have data cells they describe',
+                help: 'All th elements and elements with role=columnheader/rowheader must have data cells they describe',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/th-has-data-cells?application=webdriverjs',
                 id: 'th-has-data-cells',
@@ -4814,8 +4773,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                     'Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1',
                                 relatedNodes: [
                                     {
-                                        html:
-                                            '<li><a href="#">Visitors</a>\n        <ul>\n          <li><a href="somepage.html?ref=Events">Events</a></li>\n          <li><a href="somepage.html?ref=Campus_Map">Campus Map</a></li>\n          <li><a href="somepage.html?ref=Parking">Parking</a></li>\n        </ul>\n      </li>',
+                                        html: '<li><a href="#">Visitors</a>\n        <ul>\n          <li><a href="somepage.html?ref=Events">Events</a></li>\n          <li><a href="somepage.html?ref=Campus_Map">Campus Map</a></li>\n          <li><a href="somepage.html?ref=Parking">Parking</a></li>\n        </ul>\n      </li>',
                                         target: ['#menu > li:nth-child(4)'],
                                     },
                                 ],
@@ -5824,8 +5782,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                 message: 'Some page content is not contained by landmarks',
                                 relatedNodes: [
                                     {
-                                        html:
-                                            '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
+                                        html: '<img id="logo" src="images/au123456789.gif" alt="logo-441x90" width="441" height="90">',
                                         target: ['#logo'],
                                     },
                                     {
@@ -5849,8 +5806,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['img[src$="slide2\\.jpg"]'],
                                     },
                                     {
-                                        html:
-                                            '<div class="description">\n                AU installs universally designed maps at multiple locations on campus.\n              </div>',
+                                        html: '<div class="description">\n                AU installs universally designed maps at multiple locations on campus.\n              </div>',
                                         target: [
                                             'a[href="somepage\\.html\\?ref\\=Slide\\%202"] > .description',
                                         ],
@@ -5872,8 +5828,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['p:nth-child(3)'],
                                     },
                                     {
-                                        html:
-                                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                                         target: [
                                             '.hr[src$="line_gradient\\.gif"][alt="horizontal\\ line\\ graphic"]:nth-child(4)',
                                         ],
@@ -5887,15 +5842,13 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['p:nth-child(6)'],
                                     },
                                     {
-                                        html:
-                                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                                         target: [
                                             '.hr[src$="line_gradient\\.gif"][alt="horizontal\\ line\\ graphic"]:nth-child(7)',
                                         ],
                                     },
                                     {
-                                        html:
-                                            '<div class="heading">Can you spot the barriers?</div>',
+                                        html: '<div class="heading">Can you spot the barriers?</div>',
                                         target: ['.heading:nth-child(8)'],
                                     },
                                     {
@@ -5903,8 +5856,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['p:nth-child(9)'],
                                     },
                                     {
-                                        html:
-                                            '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
+                                        html: '<img class="hr" src="images/line_gradient.gif" alt="horizontal line graphic">',
                                         target: [
                                             '.hr[src$="line_gradient\\.gif"][alt="horizontal\\ line\\ graphic"]:nth-child(10)',
                                         ],
@@ -6130,38 +6082,31 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['#appForm > .heading'],
                                     },
                                     {
-                                        html:
-                                            '<p class="required reqExample">(required fields are in blue)</p>',
+                                        html: '<p class="required reqExample">(required fields are in blue)</p>',
                                         target: ['.reqExample'],
                                     },
                                     {
-                                        html:
-                                            '<div class="required">\n          Name:\n          <input type="text" name="name">\n        </div>',
+                                        html: '<div class="required">\n          Name:\n          <input type="text" name="name">\n        </div>',
                                         target: ['form > .required:nth-child(2)'],
                                     },
                                     {
-                                        html:
-                                            '<div class="required">\n          Email:\n          <input type="text" name="email">\n        </div>',
+                                        html: '<div class="required">\n          Email:\n          <input type="text" name="email">\n        </div>',
                                         target: ['.required:nth-child(3)'],
                                     },
                                     {
-                                        html:
-                                            '<div>\n          City:\n          <input type="text" name="city">\n        </div>',
+                                        html: '<div>\n          City:\n          <input type="text" name="city">\n        </div>',
                                         target: ['form > div:nth-child(4)'],
                                     },
                                     {
-                                        html:
-                                            '<div>\n          State/Province:\n          <input type="text" name="state">\n        </div>',
+                                        html: '<div>\n          State/Province:\n          <input type="text" name="state">\n        </div>',
                                         target: ['form > div:nth-child(5)'],
                                     },
                                     {
-                                        html:
-                                            '<div>\n          Zip/Postal Code:\n          <input type="text" name="zip">\n        </div>',
+                                        html: '<div>\n          Zip/Postal Code:\n          <input type="text" name="zip">\n        </div>',
                                         target: ['form > div:nth-child(6)'],
                                     },
                                     {
-                                        html:
-                                            '<div>\n          Country:\n          <input type="text" name="country">\n        </div>',
+                                        html: '<div>\n          Country:\n          <input type="text" name="country">\n        </div>',
                                         target: ['div:nth-child(7)'],
                                     },
                                     {
@@ -6169,33 +6114,27 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['div:nth-child(8) > b'],
                                     },
                                     {
-                                        html:
-                                            '<div class="major">Computer Science <input type="checkbox" name="major_cs"></div>',
+                                        html: '<div class="major">Computer Science <input type="checkbox" name="major_cs"></div>',
                                         target: ['.major:nth-child(1)'],
                                     },
                                     {
-                                        html:
-                                            '<div class="major">Engineering <input type="checkbox" name="major_eng"></div>',
+                                        html: '<div class="major">Engineering <input type="checkbox" name="major_eng"></div>',
                                         target: ['.major:nth-child(2)'],
                                     },
                                     {
-                                        html:
-                                            '<div class="major">Economics <input type="checkbox" name="major_econ"></div>',
+                                        html: '<div class="major">Economics <input type="checkbox" name="major_econ"></div>',
                                         target: ['.major:nth-child(3)'],
                                     },
                                     {
-                                        html:
-                                            '<div class="major">Physics <input type="checkbox" name="major_phy"></div>',
+                                        html: '<div class="major">Physics <input type="checkbox" name="major_phy"></div>',
                                         target: ['.major:nth-child(4)'],
                                     },
                                     {
-                                        html:
-                                            '<div class="major">Psychology <input type="checkbox" name="major_psy"></div>',
+                                        html: '<div class="major">Psychology <input type="checkbox" name="major_psy"></div>',
                                         target: ['.major:nth-child(5)'],
                                     },
                                     {
-                                        html:
-                                            '<div class="major">Spanish <input type="checkbox" name="major_sp"></div>',
+                                        html: '<div class="major">Spanish <input type="checkbox" name="major_sp"></div>',
                                         target: ['.major:nth-child(6)'],
                                     },
                                     {
@@ -6203,8 +6142,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['#captcha > b'],
                                     },
                                     {
-                                        html:
-                                            '<p>Please enter the two words you see below, separated by a space</p>',
+                                        html: '<p>Please enter the two words you see below, separated by a space</p>',
                                         target: ['#captcha > p'],
                                     },
                                     {
@@ -6216,8 +6154,7 @@ export const axeResultsWithIssues: AxeReportParameters = {
                                         target: ['img[src$="captcha\\.png"]'],
                                     },
                                     {
-                                        html:
-                                            '<input id="submit" type="submit" name="submit" value="Submit">',
+                                        html: '<input id="submit" type="submit" name="submit" value="Submit">',
                                         target: ['#submit'],
                                     },
                                     {
