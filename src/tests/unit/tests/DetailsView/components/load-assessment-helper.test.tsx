@@ -46,7 +46,7 @@ describe('LoadAssessmentHelper', () => {
         loadAssessmentDataValidatorMock
             .setup(adp => adp.uploadedDataIsValid(It.isAny()))
             .returns(() => {
-                return true;
+                return { dataIsValid: true, errors: null };
             })
             .verifiable(Times.once());
 

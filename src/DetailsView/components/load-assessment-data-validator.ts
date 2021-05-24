@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import Ajv from 'ajv';
+import Ajv, { ErrorObject } from 'ajv';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
@@ -8,6 +8,10 @@ import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 
+export type AjvValidationReturnData = {
+    dataIsValid: boolean;
+    errors: ErrorObject[] | null;
+};
 export class LoadAssessmentDataValidator {
     constructor(
         private readonly ajv: Ajv,
@@ -15,10 +19,12 @@ export class LoadAssessmentDataValidator {
         private readonly featureFlagStoreData: FeatureFlagStoreData,
     ) {}
 
-    public uploadedDataIsValid(parsedAssessmentData: VersionedAssessmentData): boolean {
+    public uploadedDataIsValid(
+        parsedAssessmentData: VersionedAssessmentData,
+    ): AjvValidationReturnData {
         const validateFunction = this.ajv.compile(this.getAssessmentSchema());
         const valid = validateFunction(parsedAssessmentData);
-        return valid;
+        return { dataIsValid: valid, errors: validateFunction.errors } as AjvValidationReturnData;
     }
 
     private getAssessmentSchema() {
