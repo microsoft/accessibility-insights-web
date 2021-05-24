@@ -141,7 +141,6 @@ describe('ResultsView', () => {
                 ? narrowModeThresholds.collapseCommandBarThreshold - 2
                 : narrowModeThresholds.collapseCommandBarThreshold;
 
-        await app.client.reload();
         await app.client.setViewportSize({ width, height });
     };
 

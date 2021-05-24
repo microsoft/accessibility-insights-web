@@ -40,21 +40,22 @@ let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({
-        show: false,
-        // enableRemoteModule required for spectron (https://github.com/electron-userland/spectron/issues/693#issuecomment-696957538)
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        },
-        titleBarStyle: 'hidden',
-        width: mainWindowConfig.defaultWidth,
-        height: mainWindowConfig.defaultHeight,
-        frame: os === OSType.Mac,
-        minHeight: mainWindowConfig.minHeight,
-        minWidth: mainWindowConfig.minWidth,
-        icon: getElectronIconPath(config, os),
-    });
+    mainWindow = mainWindow
+        ? mainWindow
+        : new BrowserWindow({
+              show: false,
+              webPreferences: {
+                  nodeIntegration: true,
+                  contextIsolation: false,
+              },
+              titleBarStyle: 'hidden',
+              width: mainWindowConfig.defaultWidth,
+              height: mainWindowConfig.defaultHeight,
+              frame: os === OSType.Mac,
+              minHeight: mainWindowConfig.minHeight,
+              minWidth: mainWindowConfig.minWidth,
+              icon: getElectronIconPath(config, os),
+          });
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
         mainWindow.setSheetOffset(22);
@@ -74,10 +75,10 @@ const createWindow = () => {
         app,
         dialog,
     );
-    const indexPage = shouldOmitCSPForTesting() ? 'index2' : 'index';
+    //const indexPage = shouldOmitCSPForTesting() ? 'index2' : 'index';
 
     mainWindow
-        .loadFile(path.resolve(__dirname, `../electron/views/${indexPage}.html`))
+        .loadFile(path.resolve(__dirname, `../electron/views/index2.html`))
         .then(() => console.log('url loaded'))
         .catch(console.log);
 
@@ -90,6 +91,7 @@ const createWindow = () => {
     mainWindow.on('closed', () => {
         // Drop all references to the window object, to force garbage collection
         ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);
+        // mainWindow.removeAllListeners();
         mainWindow = null!;
     });
 
