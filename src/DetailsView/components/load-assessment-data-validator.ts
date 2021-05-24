@@ -54,13 +54,11 @@ export class LoadAssessmentDataValidator {
     ) {
         const assessments = schema.properties.assessmentData.properties.assessments.properties;
 
-        assessments[assessmentKey].properties.manualTestStepResultMap.properties[
-            requirement.key
-        ] = this.getBaseManualTestStepResultMapObject();
+        assessments[assessmentKey].properties.manualTestStepResultMap.properties[requirement.key] =
+            this.getBaseManualTestStepResultMapObject();
 
-        assessments[assessmentKey].properties.testStepStatus.properties[
-            requirement.key
-        ] = this.getBaseTestStepStatus();
+        assessments[assessmentKey].properties.testStepStatus.properties[requirement.key] =
+            this.getBaseTestStepStatus();
         return schema;
     }
 

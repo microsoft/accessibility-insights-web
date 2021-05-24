@@ -37,9 +37,8 @@ export class LoadAssessmentHelper {
                 return;
             }
 
-            const validationData = this.loadAssessmentDataValidator.uploadedDataIsValid(
-                parsedAssessmentData,
-            );
+            const validationData =
+                this.loadAssessmentDataValidator.uploadedDataIsValid(parsedAssessmentData);
 
             if (!validationData.dataIsValid) {
                 console.log('Invalid JSON schema');
