@@ -4,7 +4,6 @@ import Ajv, { ErrorObject } from 'ajv';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { Requirement } from 'assessments/types/requirement';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 
@@ -32,32 +31,57 @@ export class LoadAssessmentDataValidator {
         const assessments = this.getAssessments();
 
         assessments.forEach(assessment => {
-            schema = this.setAssessmentBaseProperties(schema, assessment);
+            schema = this.setAssessmentBaseProperties(schema, assessment.key);
 
             assessment.requirements.forEach(requirement => {
-                schema = this.setRequirementBaseProperties(schema, requirement, assessment.key);
+                schema = this.setRequirementBaseProperties(schema, requirement.key, assessment.key);
             });
+        });
+
+        schema = this.setDeprecatedRequirementProperties(schema);
+
+        return schema;
+    }
+
+    private setDeprecatedRequirementProperties(schema: any) {
+        const deprecatedRequirements = [
+            { assessmentKey: 'automated-checks', requirementKey: 'duplicate-id' },
+        ];
+        deprecatedRequirements.forEach(requirement => {
+            if (
+                schema.properties.assessmentData.properties.assessments.properties[
+                    requirement.assessmentKey
+                ] === undefined
+            ) {
+                schema = this.setAssessmentBaseProperties(schema, requirement.assessmentKey);
+            }
+
+            schema = this.setRequirementBaseProperties(
+                schema,
+                requirement.requirementKey,
+                requirement.assessmentKey,
+            );
         });
         return schema;
     }
 
-    private setAssessmentBaseProperties(schema: any, assessment: Assessment) {
+    private setAssessmentBaseProperties(schema: any, assessmentKey: string) {
         const assessments = schema.properties.assessmentData.properties.assessments.properties;
-        assessments[assessment.key] = this.getBaseAssessmentObject();
+        assessments[assessmentKey] = this.getBaseAssessmentObject();
         return schema;
     }
 
     private setRequirementBaseProperties(
         schema: any,
-        requirement: Requirement,
+        requirementKey: string,
         assessmentKey: string,
     ) {
         const assessments = schema.properties.assessmentData.properties.assessments.properties;
 
-        assessments[assessmentKey].properties.manualTestStepResultMap.properties[requirement.key] =
+        assessments[assessmentKey].properties.manualTestStepResultMap.properties[requirementKey] =
             this.getBaseManualTestStepResultMapObject();
 
-        assessments[assessmentKey].properties.testStepStatus.properties[requirement.key] =
+        assessments[assessmentKey].properties.testStepStatus.properties[requirementKey] =
             this.getBaseTestStepStatus();
         return schema;
     }

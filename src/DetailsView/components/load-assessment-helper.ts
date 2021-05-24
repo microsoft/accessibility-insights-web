@@ -42,6 +42,7 @@ export class LoadAssessmentHelper {
 
             if (!validationData.dataIsValid) {
                 console.log('Invalid JSON schema');
+                console.log(validationData.errors);
                 //toggle invalid data dialog
                 return;
             }
