@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import type * as axe from 'axe-core';
 import { Logger } from 'common/logging/logger';
 import { WindowUtils } from 'common/window-utils';
 import {
@@ -9,6 +8,7 @@ import {
     RespondableCommandMessageCommunicator,
     CallbackWindowCommandMessageListener,
 } from './respondable-command-message-communicator';
+import type * as axe from 'axe-core';
 
 // These are the corrected typings from https://github.com/dequelabs/axe-core/pull/2885, which
 // didn't quite make the axe-core 4.2.1 release. They can be replaced with axe.* typings once
