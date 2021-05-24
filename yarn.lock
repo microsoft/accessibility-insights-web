@@ -2704,10 +2704,10 @@ ajv@^6.10.0, ajv@^6.12.0, ajv@^6.12.2, ajv@^6.12.4, ajv@^6.12.5, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-android-device-list@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.6.tgz#19259fb038a5fee58a032c3d0daef130a176299f"
-  integrity sha512-o/4nCcpIIG4IGv6KVtUGT8qRu8siEHCwr/bQcOKib2zCPA6nXvhLUadJcKTOd9m9sV50UkcjWZx/YpxHH3oyQw==
+android-device-list@^1.2.7:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/android-device-list/-/android-device-list-1.2.7.tgz#704bab91698fa352db83955ee07dc89eb14da475"
+  integrity sha512-2YwXSPFMgZEEOLUq2QbWGcB9+YOzTF12Gg9N1Y7WPY6xajLQEl0Lx0/ScyhRpEdg0pWdB3fu01dGpLV2uE2pfg==
 
 ansi-align@^2.0.0:
   version "2.0.0"
