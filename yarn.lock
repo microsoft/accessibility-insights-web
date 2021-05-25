@@ -6929,12 +6929,12 @@ grunt-bom-removal@1.0.1:
   resolved "https://registry.yarnpkg.com/grunt-bom-removal/-/grunt-bom-removal-1.0.1.tgz#477e467827c1406edbf352cf4b08682ee00bdbd2"
   integrity sha1-R35GeCfBQG7b81LPSwhoLuAL29I=
 
-grunt-cli@^1.4.2, grunt-cli@~1.4.2:
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/grunt-cli/-/grunt-cli-1.4.2.tgz#8a83dcc89ebd92d278ccd6014105011cffc71165"
-  integrity sha512-wsu6BZh7KCnfeaSkDrKIAvOlqGKxNRTZjc8xfZlvxCByQIqUfZ31kh5uHpPnhQ4NdVgvaWaVxa1LUbVU80nACw==
+grunt-cli@^1.4.3, grunt-cli@~1.4.2:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/grunt-cli/-/grunt-cli-1.4.3.tgz#22c9f1a3d2780bf9b0d206e832e40f8f499175ff"
+  integrity sha512-9Dtx/AhVeB4LYzsViCjUQkd0Kw0McN2gYpdmGYKtE2a5Yt7v1Q+HYZVWhqXc/kGnxlMtqKDxSwotiGeFmkrCoQ==
   dependencies:
-    grunt-known-options "~1.1.1"
+    grunt-known-options "~2.0.0"
     interpret "~1.1.0"
     liftup "~3.0.1"
     nopt "~4.0.1"
@@ -6985,6 +6985,11 @@ grunt-known-options@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/grunt-known-options/-/grunt-known-options-1.1.1.tgz#6cc088107bd0219dc5d3e57d91923f469059804d"
   integrity sha512-cHwsLqoighpu7TuYj5RonnEuxGVFnztcUqTqp5rXFGYL4OuPFofwC4Ycg7n9fYwvK6F5WbYgeVOwph9Crs2fsQ==
+
+grunt-known-options@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/grunt-known-options/-/grunt-known-options-2.0.0.tgz#cac641e897f9a0a680b8c9839803d35f3325103c"
+  integrity sha512-GD7cTz0I4SAede1/+pAbmJRG44zFLPipVtdL9o3vqx9IEyb7b4/Y3s7r6ofI3CchR5GvYJ+8buCSioDv5dQLiA==
 
 grunt-legacy-log-utils@~2.1.0:
   version "2.1.0"
