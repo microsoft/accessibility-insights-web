@@ -4,6 +4,7 @@ import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { PersistedTabInfo } from 'common/types/store-data/assessment-result-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 
 import { IMock, It, Mock, Times } from 'typemoq';
@@ -16,6 +17,8 @@ describe('LoadAssessmentHelper', () => {
     let setAssessmentStateMock: IMock<(versionedAssessmentData: VersionedAssessmentData) => void>;
     let toggleLoadDialogMock: IMock<() => void>;
     let clickMock: IMock<() => void>;
+    let loadAssessmentDataValidatorMock: IMock<LoadAssessmentDataValidator>;
+
     const prevTargetPageDataStub = {
         id: 1,
         url: 'http://test.com',
@@ -33,11 +36,19 @@ describe('LoadAssessmentHelper', () => {
     beforeEach(() => {
         detailsViewActionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
         assessmentDataParserMock = Mock.ofType(AssessmentDataParser);
+        loadAssessmentDataValidatorMock = Mock.ofType(LoadAssessmentDataValidator);
         fileReaderMock = Mock.ofType(FileReader);
         documentMock = Mock.ofType(Document);
         clickMock = Mock.ofType<() => void>();
         setAssessmentStateMock = Mock.ofType<() => void>();
         toggleLoadDialogMock = Mock.ofType<() => void>();
+
+        loadAssessmentDataValidatorMock
+            .setup(adp => adp.uploadedDataIsValid(It.isAny()))
+            .returns(() => {
+                return { dataIsValid: true, errors: null };
+            })
+            .verifiable(Times.once());
 
         assessmentDataParserMock
             .setup(a => a.parseAssessmentData(content))
@@ -78,6 +89,7 @@ describe('LoadAssessmentHelper', () => {
             detailsViewActionMessageCreatorMock.object,
             fileReaderMock.object,
             documentMock.object,
+            loadAssessmentDataValidatorMock.object,
         );
     });
 
