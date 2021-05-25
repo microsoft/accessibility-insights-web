@@ -2144,12 +2144,12 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-resize-detector@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@types/react-resize-detector/-/react-resize-detector-5.0.0.tgz#18ac4e6d518581bec6345845b7f08232f4cca8a5"
-  integrity sha512-JTqR0G+RcC6Guqi/JXQBq3jewflumUGd4fDUucmZN9L1d8TZuRHzDTtrmgYWrgLvRTBTV6FjegmLeV1UnrIuzw==
+"@types/react-resize-detector@^6.1.0":
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-resize-detector/-/react-resize-detector-6.1.0.tgz#a90fcd74728dacbec6bd4d948af64f6e107ac611"
+  integrity sha512-runvF8/keQK3ipyjb7Ez2RKtaOZgrpqEN2PVCp93B/WavgFEeogFMnplMu4OuhpQHwpcu9UbqFiT2cPWoCWmWQ==
   dependencies:
-    "@types/react" "*"
+    react-resize-detector "*"
 
 "@types/react-router-dom@^5.1.7":
   version "5.1.7"
@@ -11355,7 +11355,7 @@ react-is@^17.0.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.1.tgz#5b3531bd76a645a4c9fb6e693ed36419e3301339"
   integrity sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA==
 
-react-resize-detector@^6.7.2:
+react-resize-detector@*, react-resize-detector@^6.7.2:
   version "6.7.2"
   resolved "https://registry.yarnpkg.com/react-resize-detector/-/react-resize-detector-6.7.2.tgz#780901b8b5f6a26cccbb12fc0518e03196d58c50"
   integrity sha512-+W8DcJtXHXUa3NtBe8jw26IGs7rDTZNaLz7LefbqN1nvTVqZD4ThC6el3XNPHaIL9498nSYGnjLLYkSXlR3eOA==
