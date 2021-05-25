@@ -11,32 +11,32 @@ export interface InvalidLoadAssessmentDialogProps {
     onOkClick: () => void;
 }
 
-export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogProps>('InvalidLoadAssessmentDialog', props => {
-    const onDismiss = (): void => {
-        props.onClose();
-    };
-    return (
-        <Dialog
-            hidden={!props.isOpen}
-            //JG note: clean this up and sub in onClose if we don't have something to add on line 15
-            onDismiss={onDismiss}
-            dialogContentProps={{
-                type: DialogType.normal,
-                title: 'Oops! Accessibility Insights can’t open this file. Please select a valid *.a11yAssessment file',
-            }}
-            modalProps={{
-                isBlocking: true,
-                containerClassName: styles.invalidLoadAssessmentDialog,
-                onDismissed: props.onClose,
-            }}
-        >
-            <DialogFooter>
-                <PrimaryButton
-                        onClick={props.onOkClick}
-                    >
-                        OK
-                </PrimaryButton>
-            </DialogFooter>
-        </Dialog>
-    );
- });
+export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogProps>(
+    'InvalidLoadAssessmentDialog',
+    props => {
+        const onDismiss = (): void => {
+            props.onClose();
+        };
+        return (
+            <Dialog
+                hidden={!props.isOpen}
+                //JG note: clean this up and sub in onClose if we don't have something to add on line 15
+                onDismiss={onDismiss}
+                dialogContentProps={{
+                    type: DialogType.normal,
+                    title: 'Oops! Accessibility Insights can’t open this file.',
+                    subText: 'Please select a valid *.a11yAssessment file',
+                }}
+                modalProps={{
+                    isBlocking: false,
+                    containerClassName: styles.invalidLoadAssessmentDialog,
+                    onDismissed: props.onClose,
+                }}
+            >
+                <DialogFooter>
+                    <PrimaryButton onClick={props.onOkClick}>OK</PrimaryButton>
+                </DialogFooter>
+            </Dialog>
+        );
+    },
+);
