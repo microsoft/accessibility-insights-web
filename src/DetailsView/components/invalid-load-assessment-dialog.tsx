@@ -16,9 +16,13 @@ export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogPr
         const onDismiss = (): void => {
             props.onClose();
         };
+        if (!props.isOpen) {
+            return null;
+        }
+
         return (
             <Dialog
-                hidden={!props.isOpen}
+                hidden={false}
                 //JG note: clean this up and sub in onClose if we don't have something to add on line 15
                 onDismiss={onDismiss}
                 dialogContentProps={{
