@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -22,10 +23,12 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
@@ -406,11 +409,20 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
+            const ajv = new Ajv();
+
+            const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
+                ajv,
+                Assessments,
+                featureFlagStore.getState() as FeatureFlagStoreData,
+            );
+
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
                 detailsViewActionMessageCreator,
                 fileReader,
                 document,
+                loadAssessmentDataValidator,
             );
 
             const deps: DetailsViewContainerDeps = {
