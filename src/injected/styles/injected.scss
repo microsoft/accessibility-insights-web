@@ -131,13 +131,14 @@
         }
     }
 
-    .file-issue-button,
-    .copy-issue-details-button,
-    .insights-dialog-button-inspect {
+    .insights-dialog-main-override .file-issue-button,
+    .insights-dialog-main-override .copy-issue-details-button,
+    .insights-dialog-main-override .insights-dialog-button-inspect {
         svg path {
             @media screen and (forced-colors) {
                 forced-color-adjust: none !important;
                 stroke: ButtonText !important;
+                fill: ButtonFace !important;
             }
         }
     }
