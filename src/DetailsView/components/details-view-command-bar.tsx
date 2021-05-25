@@ -252,7 +252,6 @@ export class DetailsViewCommandBar extends React.Component<
                 enableJSXElement={this.props.switcherNavConfiguration.LoadAssessmentButton({
                     ...this.props,
                     handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
-                    onClose: this.toggleLoadAssessmentDialog,
                 })}
             />
         );
