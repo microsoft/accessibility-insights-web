@@ -2067,9 +2067,9 @@
   integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
 "@types/node@*", "@types/node@>= 8", "@types/node@^12.0.12", "@types/node@^14.14.6", "@types/node@^14.17.0":
-  version "14.17.0"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.0.tgz#3ba770047723b3eeb8dc9fca02cce8a7fb6378da"
-  integrity sha512-w8VZUN/f7SSbvVReb9SWp6cJFevxb4/nkG65yLAya//98WgocKm5PLDAtSs5CtJJJM+kHmJjO/6mmYW4MHShZA==
+  version "14.17.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.1.tgz#5e07e0cb2ff793aa7a1b41deae76221e6166049f"
+  integrity sha512-/tpUyFD7meeooTRwl3sYlihx2BrJE7q9XF71EguPFIySj9B7qgnRtHsHTho+0AUm4m1SvWGm6uSncrR94q6Vtw==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -8316,10 +8316,10 @@ jest-jasmine2@^26.6.3:
     pretty-format "^26.6.2"
     throat "^5.0.0"
 
-jest-junit@^12.0.0:
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-12.0.0.tgz#3ebd4a6a84b50c4ab18323a8f7d9cceb9d845df6"
-  integrity sha512-+8K35LlboWiPuCnXSyiid7rFdxNlpCWWM20WEYe6IZH6psfUWKZmSpSRQ5tk0C0cBeDsvsnIzcef5mYhyJsbug==
+jest-junit@^12.1.0:
+  version "12.1.0"
+  resolved "https://registry.yarnpkg.com/jest-junit/-/jest-junit-12.1.0.tgz#f27173529e7f8f10eac37beb30f8b9bc97e8f3c3"
+  integrity sha512-Z45INyzEAqTkCHX/hGCPgVFfZP3hQVgI68CgoEwkCiBuxETsPsniq5yPd8oxbMMHtDCpUlxXzoq7jY35dcuLKw==
   dependencies:
     mkdirp "^1.0.4"
     strip-ansi "^5.2.0"
