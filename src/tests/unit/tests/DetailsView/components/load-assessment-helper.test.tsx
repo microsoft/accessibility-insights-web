@@ -111,6 +111,8 @@ describe('LoadAssessmentHelper', () => {
         testSubject.getAssessmentForLoad(
             setAssessmentStateMock.object,
             toggleLoadDialogMock.object,
+            //replace with invalidDialogMock
+            toggleLoadDialogMock.object,
             null,
             tabId,
         );
@@ -131,6 +133,8 @@ describe('LoadAssessmentHelper', () => {
 
         testSubject.getAssessmentForLoad(
             setAssessmentStateMock.object,
+            toggleLoadDialogMock.object,
+            //replace with invalidDialogMock
             toggleLoadDialogMock.object,
             prevTargetPageDataStub,
             tabId,

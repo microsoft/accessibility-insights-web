@@ -8,7 +8,6 @@ import * as React from 'react';
 export interface InvalidLoadAssessmentDialogProps {
     isOpen: boolean;
     onClose: () => void;
-    onOkClick: () => void;
 }
 
 export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogProps>(
@@ -34,7 +33,7 @@ export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogPr
                 }}
             >
                 <DialogFooter>
-                    <PrimaryButton onClick={props.onOkClick}>OK</PrimaryButton>
+                    <PrimaryButton onClick={props.onClose}>OK</PrimaryButton>
                 </DialogFooter>
             </Dialog>
         );
