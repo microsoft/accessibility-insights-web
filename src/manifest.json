@@ -38,7 +38,7 @@
         "_execute_browser_action": {
             "suggested_key": {
                 "windows": "Alt+Shift+K",
-                "mac": "MacCtrl+Shift+K",
+                "mac": "Alt+Shift+K",
                 "chromeos": "Alt+Shift+K",
                 "linux": "Alt+Shift+K"
             },
@@ -47,7 +47,7 @@
         "01_toggle-issues": {
             "suggested_key": {
                 "windows": "Alt+Shift+1",
-                "mac": "MacCtrl+Shift+1",
+                "mac": "Alt+Shift+1",
                 "chromeos": "Alt+Shift+1",
                 "linux": "Alt+Shift+1"
             },
@@ -56,7 +56,7 @@
         "02_toggle-landmarks": {
             "suggested_key": {
                 "windows": "Alt+Shift+2",
-                "mac": "MacCtrl+Shift+2",
+                "mac": "Alt+Shift+2",
                 "chromeos": "Alt+Shift+2",
                 "linux": "Alt+Shift+2"
             },
@@ -65,7 +65,7 @@
         "03_toggle-headings": {
             "suggested_key": {
                 "windows": "Alt+Shift+3",
-                "mac": "MacCtrl+Shift+3",
+                "mac": "Alt+Shift+3",
                 "chromeos": "Alt+Shift+3",
                 "linux": "Alt+Shift+3"
             },
