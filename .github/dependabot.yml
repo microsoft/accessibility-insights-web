@@ -97,4 +97,4 @@ updates:
     # pausing updates until we have a fix.
   - dependency-name: electron-builder
     versions:
-    - ">=22.9.1"
+    - ">22.9.1"
