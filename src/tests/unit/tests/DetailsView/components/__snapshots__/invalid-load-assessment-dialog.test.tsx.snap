@@ -6,7 +6,7 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
-      "subText": "Please select a valid *.a11yAssessment file",
+      "subText": "Please select a valid *.a11ywebassessment file",
       "title": "Oops! Accessibility Insights can’t open this file.",
       "type": 0,
     }

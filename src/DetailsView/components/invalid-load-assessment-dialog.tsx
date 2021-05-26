@@ -24,7 +24,7 @@ export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogPr
                 dialogContentProps={{
                     type: DialogType.normal,
                     title: 'Oops! Accessibility Insights can’t open this file.',
-                    subText: 'Please select a valid *.a11yAssessment file',
+                    subText: 'Please select a valid *.a11ywebassessment file',
                 }}
                 modalProps={{
                     isBlocking: false,
