@@ -2144,10 +2144,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.14.7":
-  version "16.14.7"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.7.tgz#b62bd8cc4675d6fe3976126cdd208deda267f1fb"
-  integrity sha512-JhbikeQ1i18ut9Sro3j/xvhN073zJA9sqGqbwJByhOfLPXxEJdqjal9piZd9tmVEC+LP6RN2dLvWx9Hbr0reTw==
+"@types/react@*", "@types/react@^16", "@types/react@^16.14.8":
+  version "16.14.8"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.8.tgz#4aee3ab004cb98451917c9b7ada3c7d7e52db3fe"
+  integrity sha512-QN0/Qhmx+l4moe7WJuTxNiTsjBwlBGHqKGvInSQCBdo7Qio0VtOqwsC0Wq7q3PbJlB0cR4Y4CVo1OOe6BOsOmA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -11223,24 +11223,24 @@ react-copy-to-clipboard@^5.0.3:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
 
-react-devtools-core@4.13.3:
-  version "4.13.3"
-  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.3.tgz#e303687b8ebd3605a10ac22c49e2fdfad5e037e6"
-  integrity sha512-MKk9NTA9Ym+7vERGLPAH2ODI2YgMCYsEdGIcjs3tsCSctNiEgOSYrQ1rooK9lQIlNKtyTdHVtgD2O6R0WXK7aQ==
+react-devtools-core@4.13.5:
+  version "4.13.5"
+  resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.13.5.tgz#803e9ae8f7ab46deaa04129b376f3f21b2eb6ef1"
+  integrity sha512-k+P5VSKM6P22Go9IQ8dJmjj9fbztvKt1iRDI/4wS5oTvd1EnytIJMYB59wZt+D3kgp64jklNX/MRmY42xAQ08g==
   dependencies:
     shell-quote "^1.6.1"
     ws "^7"
 
-react-devtools@^4.13.3:
-  version "4.13.3"
-  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.3.tgz#7583be7f1c9ef182edcc33e1237551b6d00842dd"
-  integrity sha512-R0cwFub12eDDys3UTSTRizKwpWnAlWN53/972nITd+r4MF7qKJDY7/SbUcCf1PWo+y8YkLdNOXExyM1/NZE6fQ==
+react-devtools@^4.13.5:
+  version "4.13.5"
+  resolved "https://registry.yarnpkg.com/react-devtools/-/react-devtools-4.13.5.tgz#918426ed4802d24e743a675c653d9802c74bf93e"
+  integrity sha512-7Q8ZkhXmN+hbtGc9mOMJUhk4yio8fmX6SOUG1VohDVvOATQPIm7EPNW7ZhzQG0S6k03JpzbcqW9qITGM8v6shw==
   dependencies:
     cross-spawn "^5.0.1"
     electron "^11.1.0"
     ip "^1.1.4"
     minimist "^1.2.3"
-    react-devtools-core "4.13.3"
+    react-devtools-core "4.13.5"
     update-notifier "^2.1.0"
 
 react-dom@^16.14.0:
