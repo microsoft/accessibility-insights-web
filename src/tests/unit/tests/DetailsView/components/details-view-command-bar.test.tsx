@@ -192,6 +192,21 @@ describe('DetailsViewCommandBar', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
+    test('renders with invalid load assessment dialog hidden', () => {
+        const props = getProps();
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isInvalidLoadAssessmentDialogOpen: false });
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with invalid load assessment dialog open', () => {
+        const props = getProps();
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isInvalidLoadAssessmentDialogOpen: true });
+
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
     test('renders with save assessment button', () => {
         const rendered = shallow(<SaveAssessmentButton {...saveAssessmentButtonPropsStub} />);
         expect(rendered.getElement()).toMatchSnapshot();

@@ -13,9 +13,6 @@ export interface InvalidLoadAssessmentDialogProps {
 export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogProps>(
     'InvalidLoadAssessmentDialog',
     props => {
-        const onDismiss = (): void => {
-            props.onClose();
-        };
         if (!props.isOpen) {
             return null;
         }
@@ -23,8 +20,7 @@ export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogPr
         return (
             <Dialog
                 hidden={false}
-                //JG note: clean this up and sub in onClose if we don't have something to add on line 15
-                onDismiss={onDismiss}
+                onDismiss={props.onClose}
                 dialogContentProps={{
                     type: DialogType.normal,
                     title: 'Oops! Accessibility Insights can’t open this file.',
