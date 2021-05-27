@@ -33,9 +33,9 @@ export function createSimulatedWindowUtils(
 
     //overrides default WindowUtils.addEventListener (which calls window.addEventListener)
     //to add to eventListeners[]
-    mock.setup(m =>
-        m.addEventListener(window, 'message', It.is(isFunction), false),
-    ).callback((window, command, callback) => mock.eventListeners.push(callback));
+    mock.setup(m => m.addEventListener(window, 'message', It.is(isFunction), false)).callback(
+        (window, command, callback) => mock.eventListeners.push(callback),
+    );
 
     mock.notifyOnMessageEvent = messageEvent => {
         for (const listener of mock.eventListeners) {
@@ -57,8 +57,8 @@ export function createSimulatedWindowMessagePoster(): SimulatedWindowMessagePost
     // Tests may modify this state directly; updates will be reflected in the following default mock implementations:
     // * this.object.addMessageListener
     // * this.notifyOnWindowMessage
-    const mock: Partial<SimulatedWindowMessagePoster> &
-        IMock<WindowMessagePoster> = Mock.ofType<WindowMessagePoster>();
+    const mock: Partial<SimulatedWindowMessagePoster> & IMock<WindowMessagePoster> =
+        Mock.ofType<WindowMessagePoster>();
     mock.messageListeners = [];
 
     mock.setup(m => m.addMessageListener(It.is(isFunction))).callback(callback =>

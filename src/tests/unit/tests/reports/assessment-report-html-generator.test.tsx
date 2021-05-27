@@ -68,7 +68,8 @@ describe('AssessmentReportHtmlGenerator', () => {
         const expectedHtml = `<html lang="en">${expectedBody}</html>`;
 
         const testDate = new Date(2018, 9, 19, 11, 25);
-        const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
+        const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator =
+            new AssessmentDefaultMessageGenerator();
 
         dateGetterMock.setup(dg => dg()).returns(() => testDate);
 

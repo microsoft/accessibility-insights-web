@@ -99,10 +99,8 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function getProps(): DetailsViewCommandBarProps {
-        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> = NamedFC<DetailsViewCommandBarProps>(
-            'test',
-            _ => null,
-        );
+        const CommandBarStub: ReactFCWithDisplayName<DetailsViewCommandBarProps> =
+            NamedFC<DetailsViewCommandBarProps>('test', _ => null);
         const LeftNavStub: ReactFCWithDisplayName<LeftNavProps> = NamedFC<LeftNavProps>(
             'test',
             _ => null,
@@ -190,6 +188,21 @@ describe('DetailsViewCommandBar', () => {
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
         rendered.setState({ isLoadAssessmentDialogOpen: true });
+
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with invalid load assessment dialog hidden', () => {
+        const props = getProps();
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isInvalidLoadAssessmentDialogOpen: false });
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with invalid load assessment dialog open', () => {
+        const props = getProps();
+        const rendered = shallow(<DetailsViewCommandBar {...props} />);
+        rendered.setState({ isInvalidLoadAssessmentDialogOpen: true });
 
         expect(rendered.getElement()).toMatchSnapshot();
     });

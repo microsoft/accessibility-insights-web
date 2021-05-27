@@ -224,17 +224,19 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider = new AndroidFriendlyDeviceNameProvider();
+        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider =
+            new AndroidFriendlyDeviceNameProvider();
         const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
         const adbWrapperHolder = new AdbWrapperHolder();
-        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
-            new AndroidServiceConfiguratorFactory(
-                apkLocator,
-                getPortPromise,
-                friendlyDeviceNameProvider,
-            ),
-            androidPortCleaner,
-        );
+        const serviceConfigFactory: ServiceConfiguratorFactory =
+            new PortCleaningServiceConfiguratorFactory(
+                new AndroidServiceConfiguratorFactory(
+                    apkLocator,
+                    getPortPromise,
+                    friendlyDeviceNameProvider,
+                ),
+                androidPortCleaner,
+            );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(

@@ -84,6 +84,41 @@ describe('Details View -> Overview Page', () => {
         });
         loadAssessmentCount++;
     });
+
+    it.each`
+        file
+        ${'web@2.26.0-invalid-extra-property-mixed-results.a11ywebassessment'}
+        ${'web@2.26.0-invalid-json-mixed-results.a11ywebassessment'}
+    `(
+        'should display invalid data dialog and not load assessment when loading $file',
+        async ({ file }) => {
+            await backgroundPage.enableFeatureFlag('saveAndLoadAssessment');
+
+            const elementHandle = await overviewPage.getSelectorElement(
+                overviewSelectors.outcomeSummaryBar,
+            );
+
+            let originalOutcomeSummaryAriaLabel: string;
+
+            await elementHandle.evaluate(element => {
+                originalOutcomeSummaryAriaLabel = element.getAttribute('aria-label');
+            });
+
+            await overviewPage.setFileForUpload(
+                `${__dirname}/../../test-resources/saved-assessment-files/${file}`,
+            );
+
+            await overviewPage.waitForTimeout(750);
+
+            let currentOutcomeSummaryAriaLabel: string;
+
+            await elementHandle.evaluate(element => {
+                currentOutcomeSummaryAriaLabel = element.getAttribute('aria-label');
+            });
+
+            expect(originalOutcomeSummaryAriaLabel).toEqual(currentOutcomeSummaryAriaLabel);
+        },
+    );
 });
 
 async function openOverviewPage(

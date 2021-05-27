@@ -20,9 +20,9 @@ describe('ContentLink', () => {
 
     const openContentPage = jest.fn();
 
-    const contentActionMessageCreator = ({
+    const contentActionMessageCreator = {
         openContentPage,
-    } as Partial<ContentActionMessageCreator>) as ContentActionMessageCreator;
+    } as Partial<ContentActionMessageCreator> as ContentActionMessageCreator;
 
     const deps = {
         contentProvider,

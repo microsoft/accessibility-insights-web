@@ -183,9 +183,8 @@ describe('BackchannelWindowMessageTranslator', () => {
             stringifiedMessageData: 'string_data',
             messageType: 'backchannel_window_message.retrieve_response',
         };
-        const backchannelResponseMessage = testSubject.tryParseBackchannelRetrieveResponseMessage(
-            message,
-        );
+        const backchannelResponseMessage =
+            testSubject.tryParseBackchannelRetrieveResponseMessage(message);
         expect(backchannelResponseMessage).toHaveProperty(
             'messageType',
             'backchannel_window_message.retrieve_response',
@@ -196,9 +195,8 @@ describe('BackchannelWindowMessageTranslator', () => {
 
     test('fails to create a Backchannel Retrieve Response Message based on improper input', () => {
         const message = { isMessage: false };
-        const backchannelResponseMessage = testSubject.tryParseBackchannelRetrieveResponseMessage(
-            message,
-        );
+        const backchannelResponseMessage =
+            testSubject.tryParseBackchannelRetrieveResponseMessage(message);
         expect(backchannelResponseMessage).toEqual(null);
     });
 

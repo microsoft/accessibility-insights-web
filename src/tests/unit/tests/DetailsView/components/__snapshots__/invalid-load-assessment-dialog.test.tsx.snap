@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InvalidLoadAssessmentDialog should not show when isOpen is set to false 1`] = `null`;
+
+exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "subText": "Please select a valid *.a11ywebassessment file",
+      "title": "Oops! Accessibility Insights can’t open this file.",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "containerClassName": "invalidLoadAssessmentDialog",
+      "isBlocking": false,
+      "onDismissed": [Function],
+    }
+  }
+  onDismiss={[Function]}
+>
+  <StyledDialogFooterBase>
+    <CustomizedPrimaryButton
+      onClick={[Function]}
+    >
+      OK
+    </CustomizedPrimaryButton>
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
