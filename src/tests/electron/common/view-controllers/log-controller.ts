@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as fs from 'fs';
 import * as util from 'util';
+import { DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
+import { tick } from 'tests/unit/common/tick';
 import {
     generateAdbLogPath,
     generateOutputLogsDir,
     generateServerLogPath,
 } from '../../../miscellaneous/mock-adb/generate-log-paths';
-import { DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import { tick } from 'tests/unit/common/tick';
 
 const readFile = util.promisify(fs.readFile);
 export class LogController {
@@ -58,30 +58,21 @@ export class LogController {
         return fs.existsSync(this.adbLogPath);
     }
 
-    public waitUntil = async (waitFunction): Promise<void> => {
-        while (true) {
-            const value = await waitFunction();
-            if (value === true) {
-                return;
-            }
-            await tick();
-        }
-    };
-
-    public waitUntilWithOptions = async (waitFunction, args?, options?): Promise<void> => {
+    public waitUntil = async (waitFunction, args?, options?): Promise<void> => {
         const { timeout } = options ? options : { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS };
-        const endTime = Number(new Date()) + timeout;
-        while (true) {
+        let currentTime = Number(new Date());
+        const endTime = currentTime + timeout;
+
+        do {
             const value = args ? await waitFunction(...args) : await waitFunction();
             if (value === true) {
                 return value;
-            } else if (Number(new Date()) < endTime) {
-                await tick();
-                continue;
             } else {
-                throw new Error('timed out');
+                await tick();
+                currentTime = Number(new Date());
             }
-        }
+        } while (currentTime < endTime);
+        throw new Error('timed out!');
     };
 
     public waitForAdbLogToExist = async () => {
@@ -93,10 +84,7 @@ export class LogController {
     };
 
     private waitForLogToContain = async (contains, log) => {
-        return await this.waitUntilWithOptions((log, contains) => log.includes(contains), [
-            log,
-            contains,
-        ]);
+        return await this.waitUntil((log, contains) => log.includes(contains), [log, contains]);
     };
 
     public waitForAdbLogToContain = async (contains: string) => {
