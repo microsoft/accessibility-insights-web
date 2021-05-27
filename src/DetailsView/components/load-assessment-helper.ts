@@ -17,6 +17,7 @@ export class LoadAssessmentHelper {
 
     public getAssessmentForLoad(
         setAssessmentState: (versionedAssessmentData: VersionedAssessmentData) => void,
+        toggleInvalidLoadAssessmentDialog: () => void,
         toggleLoadAssessmentDialog: () => void,
         prevTargetPageData: Tab,
         newTargetPageId: number,
@@ -32,8 +33,7 @@ export class LoadAssessmentHelper {
             try {
                 parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
             } catch {
-                console.log('Invalid JSON');
-                //toggle invalid data dialog
+                toggleInvalidLoadAssessmentDialog();
                 return;
             }
 
@@ -41,9 +41,7 @@ export class LoadAssessmentHelper {
                 this.loadAssessmentDataValidator.uploadedDataIsValid(parsedAssessmentData);
 
             if (!validationData.dataIsValid) {
-                console.log('Invalid JSON schema');
-                console.log(validationData.errors);
-                //toggle invalid data dialog
+                toggleInvalidLoadAssessmentDialog();
                 return;
             }
 

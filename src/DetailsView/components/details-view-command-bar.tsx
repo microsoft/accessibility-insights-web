@@ -19,6 +19,7 @@ import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-button
 import { detailsViewCommandButtons } from 'DetailsView/components/details-view-command-bar.scss';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
+import { InvalidLoadAssessmentDialog } from 'DetailsView/components/invalid-load-assessment-dialog';
 import {
     LoadAssessmentButtonDeps,
     LoadAssessmentButtonProps,
@@ -66,6 +67,7 @@ export type DetailsViewCommandBarDeps = {
 export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type DetailsViewCommandBarState = {
+    isInvalidLoadAssessmentDialogOpen: boolean;
     isLoadAssessmentDialogOpen: boolean;
     isReportExportDialogOpen: boolean;
     loadedAssessmentData: VersionedAssessmentData;
@@ -103,6 +105,7 @@ export class DetailsViewCommandBar extends React.Component<
     public constructor(props) {
         super(props);
         this.state = {
+            isInvalidLoadAssessmentDialogOpen: false,
             isLoadAssessmentDialogOpen: false,
             isReportExportDialogOpen: false,
             loadedAssessmentData: null,
@@ -120,6 +123,7 @@ export class DetailsViewCommandBar extends React.Component<
                 {this.renderTargetPageInfo()}
                 {this.renderFarItems()}
                 {this.renderExportDialog()}
+                {this.renderInvalidLoadAssessmentDialog()}
                 {this.renderLoadAssessmentDialog()}
                 {this.renderStartOverDialog()}
             </div>
@@ -270,6 +274,22 @@ export class DetailsViewCommandBar extends React.Component<
         );
     };
 
+    private renderInvalidLoadAssessmentDialog = (): JSX.Element => {
+        return (
+            <InvalidLoadAssessmentDialog
+                {...this.props}
+                isOpen={this.state.isInvalidLoadAssessmentDialogOpen}
+                onClose={this.toggleInvalidLoadAssessmentDialog}
+            />
+        );
+    };
+
+    private toggleInvalidLoadAssessmentDialog = () => {
+        this.setState(prevState => ({
+            isInvalidLoadAssessmentDialogOpen: !prevState.isInvalidLoadAssessmentDialogOpen,
+        }));
+    };
+
     private toggleLoadAssessmentDialog = () => {
         this.setState(prevState => ({
             isLoadAssessmentDialogOpen: !prevState.isLoadAssessmentDialogOpen,
@@ -285,6 +305,7 @@ export class DetailsViewCommandBar extends React.Component<
     private handleLoadAssessmentButtonClick = () => {
         this.props.deps.loadAssessmentHelper.getAssessmentForLoad(
             this.setAssessmentState,
+            this.toggleInvalidLoadAssessmentDialog,
             this.toggleLoadAssessmentDialog,
             this.props.assessmentStoreData.persistedTabInfo,
             this.props.tabStoreData.id,

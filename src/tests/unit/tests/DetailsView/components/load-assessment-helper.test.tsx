@@ -16,6 +16,7 @@ describe('LoadAssessmentHelper', () => {
     let documentMock: IMock<Document>;
     let setAssessmentStateMock: IMock<(versionedAssessmentData: VersionedAssessmentData) => void>;
     let toggleLoadDialogMock: IMock<() => void>;
+    let toggleInvalidLoadDialogMock: IMock<() => void>;
     let clickMock: IMock<() => void>;
     let loadAssessmentDataValidatorMock: IMock<LoadAssessmentDataValidator>;
 
@@ -42,6 +43,7 @@ describe('LoadAssessmentHelper', () => {
         clickMock = Mock.ofType<() => void>();
         setAssessmentStateMock = Mock.ofType<() => void>();
         toggleLoadDialogMock = Mock.ofType<() => void>();
+        toggleInvalidLoadDialogMock = Mock.ofType<() => void>();
 
         loadAssessmentDataValidatorMock
             .setup(adp => adp.uploadedDataIsValid(It.isAny()))
@@ -107,9 +109,11 @@ describe('LoadAssessmentHelper', () => {
             .verifiable(Times.once());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
 
         testSubject.getAssessmentForLoad(
             setAssessmentStateMock.object,
+            toggleInvalidLoadDialogMock.object,
             toggleLoadDialogMock.object,
             null,
             tabId,
@@ -128,9 +132,64 @@ describe('LoadAssessmentHelper', () => {
             .verifiable(Times.never());
 
         toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.once());
+        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
 
         testSubject.getAssessmentForLoad(
             setAssessmentStateMock.object,
+            toggleInvalidLoadDialogMock.object,
+            toggleLoadDialogMock.object,
+            prevTargetPageDataStub,
+            tabId,
+        );
+
+        inputStub.onchange(event);
+        fileReaderMock.object.onload(readerEvent);
+    });
+
+    it('toggles invalid dialog when validationData is not valid', () => {
+        detailsViewActionMessageCreatorMock
+            .setup(d => d.loadAssessment(assessmentData, tabId))
+            .verifiable(Times.never());
+
+        toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.once());
+
+        loadAssessmentDataValidatorMock
+            .setup(adp => adp.uploadedDataIsValid(It.isAny()))
+            .returns(() => {
+                return { dataIsValid: false, errors: null };
+            })
+            .verifiable(Times.once());
+
+        testSubject.getAssessmentForLoad(
+            setAssessmentStateMock.object,
+            toggleInvalidLoadDialogMock.object,
+            toggleLoadDialogMock.object,
+            prevTargetPageDataStub,
+            tabId,
+        );
+
+        inputStub.onchange(event);
+        fileReaderMock.object.onload(readerEvent);
+    });
+
+    it('toggles invalid dialog when parsed data is not valid JSON', () => {
+        detailsViewActionMessageCreatorMock
+            .setup(d => d.loadAssessment(assessmentData, tabId))
+            .verifiable(Times.never());
+
+        toggleLoadDialogMock.setup(ldm => ldm()).verifiable(Times.never());
+        toggleInvalidLoadDialogMock.setup(ldm => ldm()).verifiable(Times.once());
+
+        let errorToThrow: Error;
+        assessmentDataParserMock
+            .setup(a => a.parseAssessmentData(content))
+            .throws(errorToThrow)
+            .verifiable(Times.once());
+
+        testSubject.getAssessmentForLoad(
+            setAssessmentStateMock.object,
+            toggleInvalidLoadDialogMock.object,
             toggleLoadDialogMock.object,
             prevTargetPageDataStub,
             tabId,
