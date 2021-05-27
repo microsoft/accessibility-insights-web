@@ -75,10 +75,9 @@ const createWindow = () => {
         app,
         dialog,
     );
-    //const indexPage = shouldOmitCSPForTesting() ? 'index2' : 'index';
 
     mainWindow
-        .loadFile(path.resolve(__dirname, `../electron/views/index2.html`))
+        .loadFile(path.resolve(__dirname, `../electron/views/index.html`))
         .then(() => console.log('url loaded'))
         .catch(console.log);
 
@@ -103,11 +102,6 @@ const createWindow = () => {
         })
         .catch(console.log);
 };
-
-const shouldOmitCSPForTesting = () => {
-    return process.env.ACCESSIBILITY_INSIGHTS_TEST_MODE === 'true';
-};
-
 const enableDevMode = (window: BrowserWindow) => {
     if (process.env.DEV_MODE === 'true') {
         const devTools = new BrowserWindow();

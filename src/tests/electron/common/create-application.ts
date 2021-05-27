@@ -35,6 +35,7 @@ export async function createAppController(
         env: options.env,
         cwd: options.cwd,
         path: Electron,
+        bypassCSP: true,
     });
     const client = await app.firstWindow();
     await client.reload();
