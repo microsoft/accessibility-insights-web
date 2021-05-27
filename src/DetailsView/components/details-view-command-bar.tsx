@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { NewTabLinkWithTooltip } from 'common/components/new-tab-link-with-tooltip';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { FeatureFlags } from 'common/feature-flags';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 
 import {
@@ -237,28 +235,16 @@ export class DetailsViewCommandBar extends React.Component<
     }
 
     private renderSaveAssessmentButton = (): JSX.Element => {
-        return (
-            <FlaggedComponent
-                featureFlag={FeatureFlags.saveAndLoadAssessment}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={this.props.switcherNavConfiguration.SaveAssessmentButton({
-                    ...this.props,
-                })}
-            />
-        );
+        return this.props.switcherNavConfiguration.SaveAssessmentButton({
+            ...this.props,
+        });
     };
 
     private renderLoadAssessmentButton = (): JSX.Element => {
-        return (
-            <FlaggedComponent
-                featureFlag={FeatureFlags.saveAndLoadAssessment}
-                featureFlagStoreData={this.props.featureFlagStoreData}
-                enableJSXElement={this.props.switcherNavConfiguration.LoadAssessmentButton({
-                    ...this.props,
-                    handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
-                })}
-            />
-        );
+        return this.props.switcherNavConfiguration.LoadAssessmentButton({
+            ...this.props,
+            handleLoadAssessmentButtonClick: this.handleLoadAssessmentButtonClick,
+        });
     };
 
     private renderLoadAssessmentDialog = (): JSX.Element => {
