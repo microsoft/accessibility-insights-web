@@ -29,18 +29,21 @@ export class FixInstructionProcessor {
     );
 
     private readonly foregroundRecommendedColorText = 'Use foreground color: ';
-    // the following warnings can be disabled because the values are actually constant strings and the string template is used merely for ease of reading
-    // eslint-disable-next-line security/detect-non-literal-regexp
     private readonly foregroundRecommendedRegExp = new RegExp(
         `${this.foregroundRecommendedColorText}${this.colorValueMatcher}`,
         'i',
     );
     private readonly backgroundRecommendedColorText = 'Use background color: ';
-    // eslint-disable-next-line security/detect-non-literal-regexp
     private readonly backgroundRecommendedRegExp = new RegExp(
         `${this.backgroundRecommendedColorText}${this.colorValueMatcher}`,
         'i',
     );    
+
+    private readonly contrastRatioText = 'Expected contrast ratio of ';
+    private readonly contrastRatioRegExp = new RegExp(
+        `${this.contrastRatioText}`,
+        'i',
+    );  
     /**
      * main function that gets called. called in fix-instruction-panel. 
      * 
@@ -50,17 +53,16 @@ export class FixInstructionProcessor {
     public process(fixInstruction: string): JSX.Element {
         
         const matches = this.getColorMatches(fixInstruction);
+
         //maybe run it again to get the recommended colors into the matches variable. 
-        console.log(matches);// matches is where we are getting the hex values. 
-        //FIXME:
-        console.log("Forefround color: " + matches[0].colorHexValue);
-        console.log("background color: " + matches[1].colorHexValue);
-        const recommendation = new RecommendColor(matches[0].colorHexValue, matches[1].colorHexValue);
+        let contrastIndex = fixInstruction.substring(this.contrastRatioRegExp.exec(fixInstruction).index + this.contrastRatioText.length);
+        //contrastIndex = 4.5:1...
+        const contrastRatio = contrastIndex.substring(0, contrastIndex.indexOf(":"));
+        console.log("THIS IS THE CONTRAST RATIO: " + contrastRatio);
+        const recommendation = new RecommendColor(matches[0].colorHexValue, matches[1].colorHexValue, parseFloat(contrastRatio));
         fixInstruction += "." + recommendation.sentence;
         this.getRecommendedColorMatches(fixInstruction, matches);
-        //TODO: maybe call the color recommend here. add the sentence to the fixInstructions. 
-        //Question how do we add the colorBox/find the index. 
-        return this.splitFixInstruction(fixInstruction, matches);//prob call it inside the function
+        return this.splitFixInstruction(fixInstruction, matches);
     }
 
     /**
