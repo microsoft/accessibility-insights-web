@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
+import { ElectronApplication, Page } from 'playwright';
 import { AndroidSetupViewController } from 'tests/electron/common/view-controllers/android-setup-view-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
-import { ElectronApplication, Page } from 'playwright';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 
 declare let window: Window & {

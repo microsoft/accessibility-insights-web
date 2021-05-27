@@ -143,7 +143,7 @@ jobs:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
-      # condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
 
     - job: 'e2e_unified_linux'
       pool:
@@ -160,4 +160,4 @@ jobs:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
           - template: pipeline/unified/unified-e2e-publish-results.yaml
-      # condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
