@@ -36,7 +36,7 @@ describe('TabStopsView', () => {
         app = await createApplication({ suppressFirstTimeDialog: true });
         await app.setFeatureFlag(UnifiedFeatureFlags.tabStops, true);
         await app.client.setViewportSize({ width: windowWidth, height: windowHeight });
-        logController = new LogController(logsContext, mockAdbFolder, app.client);
+        logController = new LogController(logsContext, mockAdbFolder);
         tabStopsViewController = new TabStopsViewController(app.client);
         virtualKeyboardViewController = new VirtualKeyboardViewController(app.client);
         resultsViewController = await app.openResultsView();
@@ -44,7 +44,7 @@ describe('TabStopsView', () => {
     });
 
     afterEach(async () => {
-        if (app != null) {
+        if (app != null && !app.client.isClosed()) {
             await app.stop();
         }
     });

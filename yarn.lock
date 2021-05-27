@@ -10419,9 +10419,9 @@ pkg@^5.1.0:
     tslib "2.1.0"
 
 playwright@1.12.0-next:
-  version "1.12.0-next-alpha-may-25-2021"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.12.0-next-alpha-may-25-2021.tgz#34029de55ad60b4691885b196e3adb0565d02cab"
-  integrity sha512-f0tMd32TMJAbt8dtV1zW/v/f7dU18CpxkuN3Y+JilU4wxZp9ypbAAhUSQuR7RM3pcZPtdbbRjpTQjQaU/bGb8g==
+  version "1.12.0-next-alpha-may-27-2021"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.12.0-next-alpha-may-27-2021.tgz#938602554343e42631bea93311b3afa649a76f97"
+  integrity sha512-sXTKMqzJ29iUBBkd7Ffoep97ixyiOsh1Xriv+6phWXxdgzu6VLzDAmVkRzTGHGr3sjaqU962R7U6FyM9bXSk3g==
   dependencies:
     commander "^6.1.0"
     debug "^4.1.1"

@@ -6,7 +6,6 @@ import { DeviceConnectionDialogController } from 'tests/electron/common/view-con
 import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
 import { ElectronApplication, Page } from 'playwright';
 import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
-import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from 'tests/end-to-end/common/timeouts';
 
 declare let window: Window & {
     featureFlagsController;
@@ -21,12 +20,12 @@ export class AppController {
 
     public async waitForTitle(expectedTitle: string): Promise<void> {
         const timeout = DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS;
+        const title = await this.client.title();
         await this.client.waitForFunction(
-            async ({ expectedTitle, client }) => {
-                const title = await client.title();
+            ({ expectedTitle, title }) => {
                 return title === expectedTitle;
             },
-            { expectedTitle, client: this.client },
+            { expectedTitle, title },
             {
                 timeout,
             },
@@ -102,7 +101,7 @@ export class AppController {
                 return initialized;
             },
             propertyName,
-            { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, polling: 'raf' },
+            { timeout: 6000, polling: 50 },
         );
     }
 }

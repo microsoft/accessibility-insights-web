@@ -2,21 +2,20 @@
 // Licensed under the MIT License.
 import * as fs from 'fs';
 import * as util from 'util';
-import { DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import {
     generateAdbLogPath,
     generateOutputLogsDir,
     generateServerLogPath,
 } from '../../../miscellaneous/mock-adb/generate-log-paths';
-import { Page } from 'playwright';
+import { DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
+import { tick } from 'tests/unit/common/tick';
 
 const readFile = util.promisify(fs.readFile);
-
 export class LogController {
     private adbLogPath: string;
     private serverLogPath: string;
 
-    constructor(currentContext: string, private mockAdbPath: string, private client: Page) {
+    constructor(currentContext: string, private mockAdbPath: string) {
         this.adbLogPath = this.getAdbLogPath(currentContext);
         this.serverLogPath = this.getServerLogPath(currentContext);
     }
@@ -56,24 +55,57 @@ export class LogController {
     }
 
     private serverLogExists(): boolean {
-        return fs.existsSync(this.serverLogPath);
+        return fs.existsSync(this.adbLogPath);
     }
 
-    public async waitForAdbLogToContain(contains: string) {
-        const isLogReady = async () =>
-            this.adbLogExists() && (await this.getAdbLog()).includes(contains);
+    public waitUntil = async (waitFunction): Promise<void> => {
+        while (true) {
+            const value = await waitFunction();
+            if (value === true) {
+                return;
+            }
+            await tick();
+        }
+    };
 
-        return this.client.waitForFunction(isLogReady, null, {
-            timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS,
-        });
-    }
+    public waitUntilWithOptions = async (waitFunction, args?, options?): Promise<void> => {
+        const { timeout } = options ? options : { timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS };
+        const endTime = Number(new Date()) + timeout;
+        while (true) {
+            const value = args ? await waitFunction(...args) : await waitFunction();
+            if (value === true) {
+                return value;
+            } else if (Number(new Date()) < endTime) {
+                await tick();
+                continue;
+            } else {
+                throw new Error('timed out');
+            }
+        }
+    };
 
-    public async waitForServerLogToContain(contains: string) {
-        const isLogReady = async () =>
-            this.serverLogExists() && (await this.getServerLog()).includes(contains);
+    public waitForAdbLogToExist = async () => {
+        await this.waitUntil(this.adbLogExists.bind(this));
+    };
 
-        return this.client.waitForFunction(isLogReady, null, {
-            timeout: DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS,
-        });
-    }
+    public waitForServerLogToExist = async () => {
+        await this.waitUntil(this.serverLogExists.bind(this));
+    };
+
+    private waitForLogToContain = async (contains, log) => {
+        return await this.waitUntilWithOptions((log, contains) => log.includes(contains), [
+            log,
+            contains,
+        ]);
+    };
+
+    public waitForAdbLogToContain = async (contains: string) => {
+        await this.waitForAdbLogToExist();
+        await this.waitForLogToContain(contains, await this.getAdbLog());
+    };
+
+    public waitForServerLogToContain = async (contains: string) => {
+        await this.waitForServerLogToExist();
+        await this.waitForLogToContain(contains, await this.getServerLog());
+    };
 }
