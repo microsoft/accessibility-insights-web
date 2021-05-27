@@ -5,6 +5,8 @@ import * as styles from 'DetailsView/components/invalid-load-assessment-dialog.s
 import { Dialog, DialogFooter, DialogType, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+export const invalidLoadAssessmentDialogOkButtonAutomationId =
+    'invalid-load-assessment-dialog-ok-button';
 export interface InvalidLoadAssessmentDialogProps {
     isOpen: boolean;
     onClose: () => void;
@@ -33,7 +35,12 @@ export const InvalidLoadAssessmentDialog = NamedFC<InvalidLoadAssessmentDialogPr
                 }}
             >
                 <DialogFooter>
-                    <PrimaryButton onClick={props.onClose}>OK</PrimaryButton>
+                    <PrimaryButton
+                        data-automation-id={invalidLoadAssessmentDialogOkButtonAutomationId}
+                        onClick={props.onClose}
+                    >
+                        OK
+                    </PrimaryButton>
                 </DialogFooter>
             </Dialog>
         );
