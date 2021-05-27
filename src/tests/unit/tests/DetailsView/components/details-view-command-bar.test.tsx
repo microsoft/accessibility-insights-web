@@ -5,7 +5,6 @@ import {
     AssessmentStoreData,
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -134,24 +133,23 @@ describe('DetailsViewCommandBar', () => {
             narrowModeStatus: {
                 isCommandBarCollapsed,
             },
-            featureFlagStoreData: {} as FeatureFlagStoreData,
         } as DetailsViewCommandBarProps;
     }
 
-    test('renders with export button, save assessment, load, assessment, and start over', () => {
-        testOnPivot(true, true, true, true);
+    test('renders with export button and start over', () => {
+        testOnPivot(true, true);
     });
 
-    test('renders without export button, save assessment, load assessment, and start over', () => {
-        testOnPivot(false, false, false, false);
+    test('renders without export button and without start over', () => {
+        testOnPivot(false, false);
     });
 
-    test('renders with export button, without save assessment, without load assessment, without start over', () => {
-        testOnPivot(true, false, false, false);
+    test('renders with export button, without start over', () => {
+        testOnPivot(true, false);
     });
 
-    test('renders without export button, without save assessment, without load assessment, with start over', () => {
-        testOnPivot(false, false, false, true);
+    test('renders without export button, with start over', () => {
+        testOnPivot(false, true);
     });
 
     test('renders null when tab closed', () => {
@@ -341,12 +339,7 @@ describe('DetailsViewCommandBar', () => {
         });
     });
 
-    function testOnPivot(
-        renderExportResults: boolean,
-        renderSaveAssessment: boolean,
-        renderLoadAssessment: boolean,
-        renderStartOver: boolean,
-    ): void {
+    function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
         showReportExportButton = renderExportResults;
 
         if (renderStartOver) {
@@ -354,8 +347,6 @@ describe('DetailsViewCommandBar', () => {
         }
 
         const props = getProps();
-
-        props.featureFlagStoreData = { saveAndLoadAssessment: renderSaveAssessment };
 
         setupSaveAssessmentButtonFactory(props);
         setupStartOverButtonFactory(props);

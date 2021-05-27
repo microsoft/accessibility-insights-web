@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ExportDialogWithLocalState,
@@ -12,6 +13,7 @@ export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;
     dismissExportDialog: () => void;
     afterDialogDismissed: () => void;
+    featureFlagStoreData?: FeatureFlagStoreData;
 };
 
 export function getReportExportDialogForAssessment(

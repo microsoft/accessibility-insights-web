@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { StartOverMenuItem } from 'DetailsView/components/start-over-component-factory';
 import { CommandBarButton, IButton, IContextualMenuItem, IRefObject } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import * as styles from './command-bar-buttons-menu.scss';
 
 export type CommandBarButtonsMenuProps = {
@@ -14,7 +12,6 @@ export type CommandBarButtonsMenuProps = {
     renderLoadAssessmentButton?: () => JSX.Element | null;
     getStartOverMenuItem: () => StartOverMenuItem;
     buttonRef: IRefObject<IButton>;
-    featureFlagStoreData?: FeatureFlagStoreData;
 };
 
 export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
@@ -27,11 +24,7 @@ export const CommandBarButtonsMenu = NamedFC<CommandBarButtonsMenuProps>(
             key: 'export report',
             onRender: () => <div role="menuitem">{exportButton}</div>,
         });
-        if (
-            props.featureFlagStoreData?.[FeatureFlags.saveAndLoadAssessment] &&
-            props.renderSaveAssessmentButton &&
-            props.renderLoadAssessmentButton
-        ) {
+        if (props.renderSaveAssessmentButton && props.renderLoadAssessmentButton) {
             overflowItems.push(
                 {
                     key: 'save assessment',
