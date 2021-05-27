@@ -3,16 +3,20 @@
 steps:
     - script: docker build -t app .
       displayName: setup docker
+      timeoutInMinutes: 10
 
     - script: docker run --network=host -i app --ci
       displayName: run e2e tests on docker
+      timeoutInMinutes: 25
 
     - bash: |
           export CONTAINERID=$(docker ps -alq)
           echo "##vso[task.setvariable variable=CONTAINER_ID]$CONTAINERID"
       displayName: get container id for docker
       condition: succeededOrFailed()
+      timeoutInMinutes: 1
 
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       displayName: copy test results from docker to base agent
       condition: succeededOrFailed()
+      timeoutInMinutes: 1
