@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import os from 'os';
-import process from 'process';
+import * as os from 'os';
+import * as process from 'process';
 
 // See https://github.com/microsoft/accessibility-insights-web/issues/4271
 const isMacCIAgent = process.env['CI'] != null && os.platform() === 'darwin';
