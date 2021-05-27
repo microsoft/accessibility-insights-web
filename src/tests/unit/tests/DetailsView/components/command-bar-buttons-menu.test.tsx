@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     CommandBarButtonsMenu,
     CommandBarButtonsMenuProps,
@@ -30,7 +29,6 @@ describe('CommandBarButtonsMenu', () => {
 
             getStartOverMenuItem: getStartOverMenuItemMock.object,
             buttonRef: {} as RefObject<IButton>,
-            featureFlagStoreData: {} as FeatureFlagStoreData,
         } as CommandBarButtonsMenuProps;
     });
 
@@ -39,13 +37,12 @@ describe('CommandBarButtonsMenu', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders all child buttons, including child behind the feature flag', () => {
+    it('renders all child buttons,', () => {
         setupExportReportMenuItem();
         setupSaveAssessmentMenuItem();
         setupLoadAssessmentMenuItem();
         setupStartOverMenuItem();
 
-        commandBarButtonsMenuProps.featureFlagStoreData = { saveAndLoadAssessment: true };
         const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
         const renderedProps = wrapper.getElement().props;
         const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
@@ -61,22 +58,6 @@ describe('CommandBarButtonsMenu', () => {
         renderExportReportComponentMock.verifyAll();
         renderSaveAssessmentButtonMock.verifyAll();
         renderLoadAssessmentButtonMock.verifyAll();
-        getStartOverMenuItemMock.verifyAll();
-    });
-
-    it('renders child buttons with the exception of child behind feature flag', () => {
-        setupExportReportMenuItem();
-        setupStartOverMenuItem();
-
-        const wrapper = shallow(<CommandBarButtonsMenu {...commandBarButtonsMenuProps} />);
-        const renderedProps = wrapper.getElement().props;
-        const overflowItems: IOverflowSetItemProps[] = renderedProps.menuProps?.items;
-        expect(overflowItems).toBeDefined();
-        expect(overflowItems).toHaveLength(2);
-        expect(overflowItems[0].onRender()).toMatchSnapshot('render export report menuitem');
-        expect(overflowItems[1].onRender()).toMatchSnapshot('render start over menuitem');
-
-        renderExportReportComponentMock.verifyAll();
         getStartOverMenuItemMock.verifyAll();
     });
 
