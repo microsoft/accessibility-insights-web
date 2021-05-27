@@ -60,7 +60,6 @@ export class RecommendColor{
 
     private recommendAColor(contrast : number, toBeChanged : number[] , originalPair : number, toLightenDarken : boolean, colorContrast: number) : object{
         let preContrast : number = -1;
-        console.log("CONTRAST in RecommendaColor: " + colorContrast);
         while(contrast < colorContrast && contrast !== preContrast){
             preContrast = contrast;
             toBeChanged = this.darkenLighten(toBeChanged, toLightenDarken);
@@ -78,8 +77,6 @@ export class RecommendColor{
          * TODO: look into font size to recommend the right colors
          * with the right ratios
          */
-         console.log("CONTRAST in REcommend: " + colorContrast);
-
         let lighter : number, darker : number, contrast : number;      
         let foreLum = this.getLuminance(fore);
         let backLum = this.getLuminance(back);  

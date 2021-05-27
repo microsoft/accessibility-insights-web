@@ -53,12 +53,8 @@ export class FixInstructionProcessor {
     public process(fixInstruction: string): JSX.Element {
         
         const matches = this.getColorMatches(fixInstruction);
-
-        //maybe run it again to get the recommended colors into the matches variable. 
         let contrastIndex = fixInstruction.substring(this.contrastRatioRegExp.exec(fixInstruction).index + this.contrastRatioText.length);
-        //contrastIndex = 4.5:1...
         const contrastRatio = contrastIndex.substring(0, contrastIndex.indexOf(":"));
-        console.log("THIS IS THE CONTRAST RATIO: " + contrastRatio);
         const recommendation = new RecommendColor(matches[0].colorHexValue, matches[1].colorHexValue, parseFloat(contrastRatio));
         fixInstruction += "." + recommendation.sentence;
         this.getRecommendedColorMatches(fixInstruction, matches);
@@ -102,9 +98,9 @@ export class FixInstructionProcessor {
         if (!colorRegex.test(fixInstruction)) {
             return null;
         }
-        //TODO: we need to make our own REGEX 
+
         const match = colorRegex.exec(fixInstruction);
-        //colorRegex.exec() finds the index where the regex starts in fixInstructions
+
         if (match == null || match[1] == null) {
             return null;
         }
@@ -117,8 +113,8 @@ export class FixInstructionProcessor {
                 colorHexValue,
             };
         }
+        
         return {
-            //finding the index for recommendation should be: match.index + this.foregroundRecommendColorText.length + colorHexValue.length
             splitIndex: match.index + this.foregroundColorText.length + colorHexValue.length,
             colorHexValue,
         };
