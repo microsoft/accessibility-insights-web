@@ -46,7 +46,6 @@ import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import * as styles from './details-view-command-bar.scss';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -79,7 +78,6 @@ export type LoadAssessmentButtonFactory = (props: LoadAssessmentButtonProps) => 
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
-    featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
@@ -186,7 +184,6 @@ export class DetailsViewCommandBar extends React.Component<
                 renderExportReportButton={this.renderExportButton}
                 renderSaveAssessmentButton={this.renderSaveAssessmentButton}
                 renderLoadAssessmentButton={this.renderLoadAssessmentButton}
-                featureFlagStoreData={this.props.featureFlagStoreData}
                 getStartOverMenuItem={this.getStartOverMenuItem}
                 buttonRef={ref => {
                     this.exportDialogCloseFocus = ref;
