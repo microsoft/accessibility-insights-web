@@ -107,9 +107,8 @@ describe('Details View -> Overview Page', () => {
             await overviewPage.setFileForUpload(
                 `${__dirname}/../../test-resources/saved-assessment-files/${file}`,
             );
-            await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
 
-            await overviewPage.waitForTimeout(500);
+            await overviewPage.waitForTimeout(750);
 
             let currentOutcomeSummaryAriaLabel: string;
 
