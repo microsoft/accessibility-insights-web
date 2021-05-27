@@ -32,7 +32,7 @@ export class CardsViewController extends ViewController {
         expectedTitle: string,
         expectedFailures: number,
     ): Promise<void> {
-        const title = await this.client.textContent(
+        const title = await this.client.innerText(
             AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
         );
 
@@ -46,7 +46,7 @@ export class CardsViewController extends ViewController {
     }
 
     public async assertCollapsedRuleGroup(position: number, expectedTitle: string): Promise<void> {
-        const title = await this.client.textContent(
+        const title = await this.client.innerText(
             AutomatedChecksViewSelectors.nthRuleGroupTitle(position),
         );
 

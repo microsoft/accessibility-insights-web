@@ -78,7 +78,7 @@ export abstract class ViewController {
 
     public async itemTextIncludesTarget(selector: string, target: string): Promise<boolean> {
         return await this.screenshotOnError(async () => {
-            const itemText: string = await this.client.textContent(selector);
+            const itemText: string = await this.client.innerText(selector);
             return itemText.includes(target);
         });
     }
