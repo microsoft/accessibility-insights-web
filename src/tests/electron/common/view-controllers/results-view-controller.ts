@@ -22,7 +22,6 @@ export class ResultsViewController extends ViewController {
     }
 
     public async openSettingsPanel(): Promise<void> {
-        await this.waitForSelector(ResultsViewSelectors.settingsButton);
         await this.click(ResultsViewSelectors.settingsButton);
         await this.waitForSelector(settingsPanelSelectors.settingsPanel);
         await this.waitForMilliseconds(750); // Allow for fabric's panel animation to settle
@@ -30,7 +29,6 @@ export class ResultsViewController extends ViewController {
 
     public async clickLeftNavItem(key: LeftNavItemKey): Promise<void> {
         const selector = this.getSelectorForLeftNavItemLink(key);
-        await this.waitForSelector(selector);
         await this.click(selector);
     }
 
@@ -62,7 +60,6 @@ export class ResultsViewController extends ViewController {
     }
 
     public async clickStartOver(): Promise<void> {
-        await this.waitForSelector(ResultsViewSelectors.startOverButton);
-        return this.click(ResultsViewSelectors.startOverButton);
+        return await this.click(ResultsViewSelectors.startOverButton);
     }
 }

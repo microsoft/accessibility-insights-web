@@ -15,7 +15,6 @@ export class VirtualKeyboardViewController extends ViewController {
         const automationId = buildKeyboardButtonAutomationId(KeyEventCode[virtualKey]);
         const selector = getAutomationIdSelector(automationId);
 
-        await this.waitForSelector(selector);
         await this.client.click(selector);
     }
 }

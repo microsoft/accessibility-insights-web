@@ -24,7 +24,6 @@ export class CardsViewController extends ViewController {
 
     public async toggleRuleGroupAtPosition(position: number): Promise<void> {
         const selector = AutomatedChecksViewSelectors.nthRuleGroupCollapseExpandButton(position);
-        await this.waitForSelector(selector);
         await this.client.click(selector);
     }
 
