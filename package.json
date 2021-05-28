@@ -123,7 +123,7 @@
         "extract-zip": "^2.0.1",
         "fake-indexeddb": "^3.1.2",
         "fork-ts-checker-webpack-plugin": "^6.2.10",
-        "grunt": "^1.4.0",
+        "grunt": "^1.4.1",
         "grunt-bom-removal": "1.0.1",
         "grunt-cli": "^1.4.3",
         "grunt-concurrent": "^3.0.0",
@@ -162,7 +162,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^4.2.4",
         "webdriverio": "^4.13.0",
-        "webpack": "^5.37.1",
+        "webpack": "^5.38.1",
         "webpack-cli": "^4.7.0",
         "webpack-node-externals": "^3.0.0"
     },
