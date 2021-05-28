@@ -11,11 +11,15 @@ export async function createApplication(options?: any): Promise<AppController> {
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
 
     const unifiedOptions = {
+        ...options,
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
+            DEV_MODE: true,
+            ...process.env,
+            ...options.env,
         },
-        ...options,
     };
+
     const appController = await createAppController(targetApp, unifiedOptions);
 
     if (options?.suppressFirstTimeDialog === true) {
