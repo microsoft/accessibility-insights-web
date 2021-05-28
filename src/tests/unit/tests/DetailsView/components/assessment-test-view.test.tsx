@@ -1,30 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-
-import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import {
     AssessmentData,
     AssessmentStoreData,
-} from '../../../../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
+} from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
 import {
     ScanData,
     TestsEnabledState,
     VisualizationStoreData,
-} from '../../../../../common/types/store-data/visualization-store-data';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+} from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import {
     AssessmentTestView,
     AssessmentTestViewDeps,
     AssessmentTestViewProps,
-} from '../../../../../DetailsView/components/assessment-test-view';
-import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
+} from 'DetailsView/components/assessment-test-view';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
 describe('AssessmentTestView', () => {
     let props: AssessmentTestViewProps;
@@ -44,7 +44,7 @@ describe('AssessmentTestView', () => {
     let warningConfigurationStub: WarningConfiguration;
 
     const selectedTestStep = 'step';
-    const selectedTest = -1;
+    const selectedTest = -1 as VisualizationType;
     const testStatusStub = false;
 
     beforeEach(() => {
