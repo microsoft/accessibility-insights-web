@@ -77,7 +77,7 @@ const createWindow = () => {
     );
 
     mainWindow
-        .loadFile(path.resolve(__dirname, `../electron/views/index.html`))
+        .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
         .then(() => console.log('url loaded'))
         .catch(console.log);
 
@@ -90,7 +90,6 @@ const createWindow = () => {
     mainWindow.on('closed', () => {
         // Drop all references to the window object, to force garbage collection
         ipcMessageDispatcher.unregisterMessageSink(mainWindowMessageSink);
-        // mainWindow.removeAllListeners();
         mainWindow = null!;
     });
 
