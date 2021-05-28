@@ -102,7 +102,9 @@ describe('Details View -> Overview Page', () => {
                 `${__dirname}/../../test-resources/saved-assessment-files/${file}`,
             );
 
-            await overviewPage.waitForTimeout(750);
+            await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
+
+            await overviewPage.clickSelector(overviewSelectors.invalidLoadAssessmentDialogOkButton);
 
             let currentOutcomeSummaryAriaLabel: string;
 
