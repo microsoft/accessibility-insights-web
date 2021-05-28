@@ -3,3 +3,4 @@
 import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from './timeouts';
 
 jest.setTimeout(DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
+jest.retryTimes(3);
