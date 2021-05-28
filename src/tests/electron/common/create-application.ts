@@ -14,7 +14,6 @@ export async function createApplication(options?: any): Promise<AppController> {
         ...options,
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
-            DEV_MODE: true,
             ...process.env,
             ...options.env,
         },
