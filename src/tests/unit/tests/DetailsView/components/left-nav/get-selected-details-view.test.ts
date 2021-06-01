@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     getAssessmentSelectedDetailsView,
     GetAssessmentSelectedDetailsViewProps,
     getFastPassSelectedDetailsView,
     GetFastPassSelectedDetailsViewProps,
-} from '../../../../../../DetailsView/components/left-nav/get-selected-details-view';
+} from 'DetailsView/components/left-nav/get-selected-details-view';
 
 describe('getAssessmentSelectedDetailsView', () => {
     it('should return selected test type from store data', () => {
-        const expectedValue = -1;
+        const expectedValue = -1 as VisualizationType;
         const props = {
             assessmentStoreData: {
                 assessmentNavState: {
@@ -24,7 +25,7 @@ describe('getAssessmentSelectedDetailsView', () => {
 
 describe('getFastPassSelectedDetailsView', () => {
     it('should return selected fast pass details view', () => {
-        const expectedValue = -1;
+        const expectedValue = -1 as VisualizationType;
         const props = {
             visualizationStoreData: {
                 selectedFastPassDetailsView: expectedValue,
