@@ -9,16 +9,18 @@ import {
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
-import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
-import { shallow } from 'enzyme';
-import * as React from 'react';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     ReflowAssessmentView,
     ReflowAssessmentViewDeps,
     ReflowAssessmentViewProps,
-} from '../../../../../DetailsView/components/reflow-assessment-view';
+} from 'DetailsView/components/reflow-assessment-view';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import { shallow } from 'enzyme';
+import * as React from 'react';
 
 describe('AssessmentViewTest', () => {
+    const visualizationType = -1 as VisualizationType;
     let assessmentDataStub = {} as AssessmentData;
 
     let requirementStub: Requirement;
@@ -65,7 +67,7 @@ describe('AssessmentViewTest', () => {
             },
             getRequirementResult: _ => requirementResultStub,
             getRequirementResults: () => [requirementResultStub, requirementResultStubTwo],
-            visualizationType: -1,
+            visualizationType: visualizationType,
         } as AssessmentTestResult;
 
         assessmentInstanceTableHandlerStub = {
@@ -86,7 +88,7 @@ describe('AssessmentViewTest', () => {
             scanningInProgress: true,
             selectedRequirementIsEnabled: true,
             assessmentNavState: {
-                selectedTestType: -1,
+                selectedTestType: visualizationType,
             },
             assessmentData: assessmentDataStub,
             assessmentTestResult: assessmentTestResultStub,
