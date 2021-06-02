@@ -28,13 +28,35 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
       }
     />
     <span>
-      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use foreground color: 
+    </span>
+    <span
+      className="fixInstructionColorBox"
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+        }
+      }
+    />
+    <span>
+      #ffffff (with original background color ratio is: 3.05) to meet expected contrast ratio. Use background color: 
+    </span>
+    <span
+      className="fixInstructionColorBox"
+      style={
+        Object {
+          "backgroundColor": "#5e6572",
+        }
+      }
+    />
+    <span>
+      #5e6572 (with original foreground color ratio is: 4.86) to meet expected contrast ratio.
     </span>
   </span>
   <span
     className="screenReaderOnly"
   >
-    Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+    Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use foreground color: #ffffff (with original background color ratio is: 3.05) to meet expected contrast ratio. Use background color: #5e6572 (with original foreground color ratio is: 4.86) to meet expected contrast ratio.
   </span>
 </React.Fragment>
 `;
@@ -95,13 +117,35 @@ exports[`FixInstructionProcessor foreground and background color on the message 
       }
     />
     <span>
-      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use foreground color: 
+    </span>
+    <span
+      className="fixInstructionColorBox"
+      style={
+        Object {
+          "backgroundColor": "#5e6572",
+        }
+      }
+    />
+    <span>
+      #5e6572 (with original background color ratio is: 4.86) to meet expected contrast ratio. Use background color: 
+    </span>
+    <span
+      className="fixInstructionColorBox"
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+        }
+      }
+    />
+    <span>
+      #ffffff (with original foreground color ratio is: 3.05) to meet expected contrast ratio.
     </span>
   </span>
   <span
     className="screenReaderOnly"
   >
-    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use foreground color: #5e6572 (with original background color ratio is: 4.86) to meet expected contrast ratio. Use background color: #ffffff (with original foreground color ratio is: 3.05) to meet expected contrast ratio.
   </span>
 </React.Fragment>
 `;
@@ -168,13 +212,35 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
       }
     />
     <span>
-      #AAAAAA, second background color: #bbBBbb
+      #AAAAAA, second background color: #bbBBbb. Use foreground color: 
+    </span>
+    <span
+      className="fixInstructionColorBox"
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+        }
+      }
+    />
+    <span>
+      #ffffff (with original background color ratio is: 2.32) to meet expected contrast ratio. Use background color: 
+    </span>
+    <span
+      className="fixInstructionColorBox"
+      style={
+        Object {
+          "backgroundColor": "#737373",
+        }
+      }
+    />
+    <span>
+      #737373 (with original foreground color ratio is: 4.74) to meet expected contrast ratio.
     </span>
   </span>
   <span
     className="screenReaderOnly"
   >
-    first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
+    first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb. Use foreground color: #ffffff (with original background color ratio is: 2.32) to meet expected contrast ratio. Use background color: #737373 (with original foreground color ratio is: 4.74) to meet expected contrast ratio.
   </span>
 </React.Fragment>
 `;

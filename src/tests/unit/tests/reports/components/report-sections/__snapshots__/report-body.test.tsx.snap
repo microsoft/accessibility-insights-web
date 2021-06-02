@@ -60,9 +60,15 @@ exports[`ReportBody renders 1`] = `
       proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "backgroundColorText": "background color: ",
+        "backgroundRecommendedColorText": "Use background color: ",
+        "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         "colorValueMatcher": "(#[0-9a-f]{6})",
+        "contrastRatioRegExp": /Expected contrast ratio of /i,
+        "contrastRatioText": "Expected contrast ratio of ",
         "foregroundColorText": "foreground color: ",
+        "foregroundRecommendedColorText": "Use foreground color: ",
+        "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
       }
     }
@@ -205,9 +211,15 @@ exports[`ReportBody renders 1`] = `
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
+          "backgroundRecommendedColorText": "Use background color: ",
+          "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorValueMatcher": "(#[0-9a-f]{6})",
+          "contrastRatioRegExp": /Expected contrast ratio of /i,
+          "contrastRatioText": "Expected contrast ratio of ",
           "foregroundColorText": "foreground color: ",
+          "foregroundRecommendedColorText": "Use foreground color: ",
+          "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
@@ -348,9 +360,15 @@ exports[`ReportBody renders 1`] = `
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
+          "backgroundRecommendedColorText": "Use background color: ",
+          "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorValueMatcher": "(#[0-9a-f]{6})",
+          "contrastRatioRegExp": /Expected contrast ratio of /i,
+          "contrastRatioText": "Expected contrast ratio of ",
           "foregroundColorText": "foreground color: ",
+          "foregroundRecommendedColorText": "Use foreground color: ",
+          "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
@@ -491,9 +509,15 @@ exports[`ReportBody renders 1`] = `
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
+          "backgroundRecommendedColorText": "Use background color: ",
+          "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorValueMatcher": "(#[0-9a-f]{6})",
+          "contrastRatioRegExp": /Expected contrast ratio of /i,
+          "contrastRatioText": "Expected contrast ratio of ",
           "foregroundColorText": "foreground color: ",
+          "foregroundRecommendedColorText": "Use foreground color: ",
+          "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
@@ -634,9 +658,15 @@ exports[`ReportBody renders 1`] = `
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "backgroundColorText": "background color: ",
+            "backgroundRecommendedColorText": "Use background color: ",
+            "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "colorValueMatcher": "(#[0-9a-f]{6})",
+            "contrastRatioRegExp": /Expected contrast ratio of /i,
+            "contrastRatioText": "Expected contrast ratio of ",
             "foregroundColorText": "foreground color: ",
+            "foregroundRecommendedColorText": "Use foreground color: ",
+            "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
@@ -777,9 +807,15 @@ exports[`ReportBody renders 1`] = `
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "backgroundColorText": "background color: ",
+            "backgroundRecommendedColorText": "Use background color: ",
+            "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "colorValueMatcher": "(#[0-9a-f]{6})",
+            "contrastRatioRegExp": /Expected contrast ratio of /i,
+            "contrastRatioText": "Expected contrast ratio of ",
             "foregroundColorText": "foreground color: ",
+            "foregroundRecommendedColorText": "Use foreground color: ",
+            "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
@@ -920,9 +956,15 @@ exports[`ReportBody renders 1`] = `
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "backgroundColorText": "background color: ",
+            "backgroundRecommendedColorText": "Use background color: ",
+            "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "colorValueMatcher": "(#[0-9a-f]{6})",
+            "contrastRatioRegExp": /Expected contrast ratio of /i,
+            "contrastRatioText": "Expected contrast ratio of ",
             "foregroundColorText": "foreground color: ",
+            "foregroundRecommendedColorText": "Use foreground color: ",
+            "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           }
         }
@@ -1066,9 +1108,15 @@ exports[`ReportBody renders 1`] = `
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "backgroundColorText": "background color: ",
+          "backgroundRecommendedColorText": "Use background color: ",
+          "backgroundRecommendedRegExp": /Use background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "backgroundRegExp": /background color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorValueMatcher": "(#[0-9a-f]{6})",
+          "contrastRatioRegExp": /Expected contrast ratio of /i,
+          "contrastRatioText": "Expected contrast ratio of ",
           "foregroundColorText": "foreground color: ",
+          "foregroundRecommendedColorText": "Use foreground color: ",
+          "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }

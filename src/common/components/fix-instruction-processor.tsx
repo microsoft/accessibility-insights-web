@@ -53,11 +53,18 @@ export class FixInstructionProcessor {
     public process(fixInstruction: string): JSX.Element {
         
         const matches = this.getColorMatches(fixInstruction);
-        let contrastIndex = fixInstruction.substring(this.contrastRatioRegExp.exec(fixInstruction).index + this.contrastRatioText.length);
-        const contrastRatio = contrastIndex.substring(0, contrastIndex.indexOf(":"));
-        const recommendation = new RecommendColor(matches[0].colorHexValue, matches[1].colorHexValue, parseFloat(contrastRatio));
-        fixInstruction += "." + recommendation.sentence;
-        this.getRecommendedColorMatches(fixInstruction, matches);
+        
+        if(matches.length === 2){
+            let contrastRatio: number = 4.5;
+            if(this.contrastRatioRegExp.exec(fixInstruction) !== null){
+                let contrastIndex = fixInstruction.substring(this.contrastRatioRegExp.exec(fixInstruction).index + this.contrastRatioText.length);
+                contrastRatio = parseFloat(contrastIndex.substring(0, contrastIndex.indexOf(":")));
+            }
+            const recommendation = new RecommendColor(matches[0].colorHexValue, matches[1].colorHexValue, contrastRatio);
+            fixInstruction += "." + recommendation.sentence;
+            this.getRecommendedColorMatches(fixInstruction, matches);
+        }
+        
         return this.splitFixInstruction(fixInstruction, matches);
     }
 
@@ -130,7 +137,7 @@ export class FixInstructionProcessor {
     private splitFixInstruction(fixInstruction: string, matches: ColorMatch[]): JSX.Element {
         //it makes sure that the matches are in order. 
         const sortedMatches = matches.sort((a, b) => a.splitIndex - b.splitIndex);
-        console.log(fixInstruction);
+        //console.log(fixInstruction);
         if (sortedMatches.length === 0) {
             return <>{fixInstruction}</>;
         }
