@@ -14,6 +14,8 @@ module.exports = {
     globalTeardown: `${currentDir}/setup/global-teardown.ts`,
     globals: {
         rootDir: path.resolve(__dirname, rootDir),
+        // Playwright requires this, but Jest's jsdom testEnvironment doesn't define it as of Jest 27
+        setImmediate: callback => setTimeout(callback, 0),
     },
     moduleDirectories: [...baseConfig.moduleDirectories, 'src'],
     moduleFileExtensions: ['ts', 'tsx', 'json', 'js'],

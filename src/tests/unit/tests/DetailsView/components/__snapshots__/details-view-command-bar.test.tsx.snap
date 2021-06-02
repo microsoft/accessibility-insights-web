@@ -12,10 +12,10 @@ exports[`DetailsViewCommandBar renders with buttons collapsed into a menu 1`] = 
       </span>
     </NewTabLinkWithTooltip>
   </div>
-  <CommandBarButtonsMenu renderExportReportButton={[Function]} renderSaveAssessmentButton={[Function]} renderLoadAssessmentButton={[Function]} getStartOverMenuItem={[Function]} buttonRef={[Function: buttonRef]} />
-  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function]} />
-  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function]} />
+  <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} renderSaveAssessmentButton={[Function (anonymous)]} renderLoadAssessmentButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
+  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
+  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"none\\" dismissDialog={[Function (anonymous)]} />
 </div>"
 `;
 
@@ -2105,11 +2105,11 @@ exports[`DetailsViewCommandBar renders with start assessment over dialog open 1`
     </NewTabLinkWithTooltip>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
+    <ReportExportButton showReportExportDialog={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
   </div>
-  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function]} />
-  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"assessment\\" dismissDialog={[Function]} />
+  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
+  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"assessment\\" dismissDialog={[Function (anonymous)]} />
 </div>"
 `;
 
@@ -2126,11 +2126,11 @@ exports[`DetailsViewCommandBar renders with start test over dialog open 1`] = `
     </NewTabLinkWithTooltip>
   </div>
   <div className=\\"detailsViewCommandButtons\\">
-    <ReportExportButton showReportExportDialog={[Function]} buttonRef={[Function: buttonRef]} />
+    <ReportExportButton showReportExportDialog={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
   </div>
-  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function]} />
-  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function]} />
-  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"test\\" dismissDialog={[Function]} />
+  <InvalidLoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} onClose={[Function (anonymous)]} />
+  <LoadAssessmentDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} isOpen={false} prevTab={{...}} loadedAssessmentData={{...}} tabId={5} onClose={[Function (anonymous)]} />
+  <StartOverDialog deps={{...}} assessmentStoreData={{...}} tabStoreData={{...}} switcherNavConfiguration={{...}} scanMetadata={{...}} narrowModeStatus={{...}} dialogState=\\"test\\" dismissDialog={[Function (anonymous)]} />
 </div>"
 `;
 
