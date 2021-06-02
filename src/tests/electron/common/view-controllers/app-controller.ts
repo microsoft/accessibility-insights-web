@@ -15,7 +15,9 @@ export class AppController {
     constructor(public app: ElectronApplication, public client: Page) {}
 
     public async stop(): Promise<void> {
-        await this.app.close();
+        if (this.app && !this.client.isClosed()) {
+            await this.app.close();
+        }
     }
 
     public async waitForTitle(expectedTitle: string): Promise<void> {

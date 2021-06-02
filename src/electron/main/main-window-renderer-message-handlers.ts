@@ -109,7 +109,11 @@ export class MainWindowRendererMessageHandlers {
         this.populateCallbacks();
 
         this.ipcMainHandlers.forEach(callback => {
-            this.ipcMain.handle(callback.eventName, callback.eventHandler);
+            try {
+                this.ipcMain.handle(callback.eventName, callback.eventHandler);
+            } catch (err) {
+                console.error(err);
+            }
         });
 
         this.ipcMainListeners.forEach(callback => {
@@ -156,7 +160,11 @@ export class MainWindowRendererMessageHandlers {
     };
 
     private onCloseMessageFromRenderer = (): void => {
-        this.browserWindow.close();
+        try {
+            this.browserWindow.close();
+        } catch (err) {
+            console.error(err);
+        }
     };
 
     private onSetSizeAndCenterFromRenderer = (_: IpcMainEvent, args: SetSizePayload): void => {

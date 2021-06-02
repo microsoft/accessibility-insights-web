@@ -10,12 +10,24 @@ export async function createApplication(options?: any): Promise<AppController> {
         (global as any).rootDir
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
 
+    const relevantEnvVariables = [
+        'ANDROID_HOME',
+        'DEV_MODE',
+        'MOCK_ADB_CONFIG',
+        'RUN_RELEASE_TESTS',
+    ];
+    const processOptions = {};
+    relevantEnvVariables.forEach(prop => {
+        if (process.env[prop]) {
+            processOptions[prop] = process.env[prop];
+        }
+    });
     const unifiedOptions = {
         ...options,
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
             ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA: 'true',
-            ...process.env,
+            ...processOptions,
             ...options.env,
         },
     };

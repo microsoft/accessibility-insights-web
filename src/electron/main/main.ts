@@ -40,22 +40,20 @@ let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
-    mainWindow = mainWindow
-        ? mainWindow
-        : new BrowserWindow({
-              show: false,
-              webPreferences: {
-                  nodeIntegration: true,
-                  contextIsolation: false,
-              },
-              titleBarStyle: 'hidden',
-              width: mainWindowConfig.defaultWidth,
-              height: mainWindowConfig.defaultHeight,
-              frame: os === OSType.Mac,
-              minHeight: mainWindowConfig.minHeight,
-              minWidth: mainWindowConfig.minWidth,
-              icon: getElectronIconPath(config, os),
-          });
+    mainWindow = new BrowserWindow({
+        show: false,
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false,
+        },
+        titleBarStyle: 'hidden',
+        width: mainWindowConfig.defaultWidth,
+        height: mainWindowConfig.defaultHeight,
+        frame: os === OSType.Mac,
+        minHeight: mainWindowConfig.minHeight,
+        minWidth: mainWindowConfig.minWidth,
+        icon: getElectronIconPath(config, os),
+    });
     if (platformInfo.isMac()) {
         // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
         mainWindow.setSheetOffset(22);
