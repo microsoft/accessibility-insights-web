@@ -14,6 +14,7 @@ export async function createApplication(options?: any): Promise<AppController> {
         ...options,
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
+            ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA: 'true',
             ...process.env,
             ...options.env,
         },
@@ -38,6 +39,7 @@ export async function createAppController(
         bypassCSP: true,
     });
     const client = await app.firstWindow();
+
     await client.reload();
 
     return new AppController(app, client);
