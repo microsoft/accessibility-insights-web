@@ -5,10 +5,12 @@
 //
 // The use of function() {} syntax over arrow functions is important for IE compat (see #1875).
 //
-// The "istanbul ignore next" excludes the function from code coverage to prevent code cov from
+// The "istanbul ignore file" excludes file from code coverage to prevent code cov from
 // injecting functions that interfere with eval in the unit tests.
 //
-/* istanbul ignore next */
+// @ts-expect-error unused const is a workaround for https://github.com/swc-project/swc/issues/1165
+/* istanbul ignore file */ const swcIssue1165Workaround = true;
+
 export const addEventListenerForCollapsibleSection = function (doc: Document): void {
     const collapsibles = doc.getElementsByClassName('collapsible-container');
 
