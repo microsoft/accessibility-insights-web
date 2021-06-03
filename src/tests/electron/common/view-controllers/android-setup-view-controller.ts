@@ -12,7 +12,7 @@ export class AndroidSetupViewController extends ViewController {
     }
 
     public async waitForDialogVisible(dialogStep: AndroidSetupStepId): Promise<void> {
-        await this.waitForSelector(getAutomationIdSelector(`${dialogStep}-content`), 20000);
+        await this.waitForSelector(getAutomationIdSelector(`${dialogStep}-content`), 25000);
     }
 
     // validates and starts scanning
