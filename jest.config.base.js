@@ -21,11 +21,6 @@ module.exports = {
     coverageDirectory: '<rootDir>/test-results/unit/coverage',
     coverageReporters: ['text', 'lcov', 'cobertura'],
     displayName: '<should be overriden by individual jest.configs>',
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.json',
-        },
-    },
     moduleDirectories: ['node_modules'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     moduleNameMapper: {
