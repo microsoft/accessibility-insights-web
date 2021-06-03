@@ -16,10 +16,12 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
 
     const unifiedOptions = {
+        ...options,
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
+            ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA: 'true',
+            ...options.env,
         },
-        ...options,
     };
     const appController = await createAppController(targetApp, unifiedOptions);
     await appController.initialize();
