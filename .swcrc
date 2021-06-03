@@ -8,5 +8,11 @@
     "module": {
         "type": "commonjs",
         "noInterop": true
+    },
+    "env": {
+        "targets": {
+            "chrome": "88",
+            "firefox": "87"
+        }
     }
 }
