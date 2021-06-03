@@ -15,6 +15,11 @@
     "workspaces": [
         "packages/*"
     ],
+    "browserslist": [
+        "chrome 88",
+        "edge 88",
+        "firefox 87"
+    ],
     "scripts": {
         "ada-cat": "grunt ada-cat",
         "assessment": "npm-run-all --serial scss:clean fastpass build:all test test:e2e test:unified",
