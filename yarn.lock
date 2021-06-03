@@ -2060,7 +2060,7 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/node@*", "@types/node@^12.0.12", "@types/node@^14.14.6", "@types/node@^14.17.2", "@types/node@^14.6.2":
+"@types/node@*", "@types/node@>= 8", "@types/node@^12.0.12", "@types/node@^14.14.6", "@types/node@^14.17.2", "@types/node@^14.6.2":
   version "14.17.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.17.2.tgz#1e94476db57ec93a372c7f7d29aa5707cfb92339"
   integrity sha512-sld7b/xmFum66AAKuz/rp/CUO8+98fMpyQ3SBfzzBNGMd/1iHBTAg9oyAvcYlAj46bpc74r91jSw2iFdnx29nw==
@@ -4924,9 +4924,9 @@ electron@12.0.9:
     extract-zip "^1.0.3"
 
 electron@^11.1.0:
-  version "11.4.7"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-11.4.7.tgz#8833297da7f188cf33ef1cf55d47051144fa1e87"
-  integrity sha512-ZObBEsLrD1mIjF15tClcyDsOisOmwpE/+EcZNhBmB5N2WBjskhQHkFczNEOSTTzQ9w0kSWQUPQjLbmKQ3fD/NQ==
+  version "11.4.5"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-11.4.5.tgz#71ffeb8be8d04bddcd165ed8460867d6e6a4a396"
+  integrity sha512-F1s70t8ZVU7PuXuP7wxbF5muOIRulWvzRAE8MiD5PTomaOar5+I+eR3jD20bs13Z5GdyOQu148WQt8r9h+ALTA==
   dependencies:
     "@electron/get" "^1.0.1"
     "@types/node" "^12.0.12"

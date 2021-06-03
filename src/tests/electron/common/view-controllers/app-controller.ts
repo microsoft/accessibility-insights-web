@@ -12,7 +12,14 @@ declare let window: Window & {
     insightsUserConfiguration;
 };
 export class AppController {
-    constructor(public app: ElectronApplication, public client: Page) {}
+    public client: Page;
+
+    constructor(public app: ElectronApplication) {}
+
+    public initialize = async () => {
+        this.client = await this.app.firstWindow();
+        await this.client.reload();
+    };
 
     public async stop(): Promise<void> {
         if (this.app && !this.client.isClosed()) {
@@ -65,18 +72,18 @@ export class AppController {
         return resultsView;
     }
 
+    public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
+        await this.waitForWindowPropertyInitialized('insightsUserConfiguration');
+        await this.client.evaluate(
+            `window.insightsUserConfiguration.setHighContrastMode(${expectedHighContrastMode})`,
+        );
+    }
+
     public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
         await this.waitForWindowPropertyInitialized('insightsUserConfiguration');
 
         await this.client.evaluate(
             `window.insightsUserConfiguration.setHighContrastMode(${enableHighContrast})`,
-        );
-    }
-
-    public async waitForHighContrastMode(expectedHighContrastMode: boolean): Promise<void> {
-        await this.waitForWindowPropertyInitialized('insightsUserConfiguration');
-        await this.client.evaluate(
-            `window.insightsUserConfiguration.setHighContrastMode(${expectedHighContrastMode})`,
         );
     }
 

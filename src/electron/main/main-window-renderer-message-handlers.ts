@@ -112,6 +112,7 @@ export class MainWindowRendererMessageHandlers {
             try {
                 this.ipcMain.handle(callback.eventName, callback.eventHandler);
             } catch (err) {
+                //we tried to register the handler twice
                 console.error(err);
             }
         });
@@ -163,6 +164,7 @@ export class MainWindowRendererMessageHandlers {
         try {
             this.browserWindow.close();
         } catch (err) {
+            //already closed, likely in tests
             console.error(err);
         }
     };

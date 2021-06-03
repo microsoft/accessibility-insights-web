@@ -42,10 +42,7 @@ const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         show: false,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        },
+        webPreferences: { nodeIntegration: true, contextIsolation: false },
         titleBarStyle: 'hidden',
         width: mainWindowConfig.defaultWidth,
         height: mainWindowConfig.defaultHeight,
