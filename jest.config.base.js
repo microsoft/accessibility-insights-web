@@ -1,5 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+const fs = require('fs');
+const path = require('path');
+const swcrc = JSON.parse(fs.readFileSync(path.join(__dirname, '.swcrc')));
+
 module.exports = {
     clearMocks: true,
     collectCoverage: true,
@@ -49,6 +53,6 @@ module.exports = {
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],
     transform: {
-        '^.+\\.(ts|tsx)$': 'ts-jest',
+        '^.+\\.(ts|tsx|js|jsx)$': ['@swc/jest', swcrc],
     },
 };
