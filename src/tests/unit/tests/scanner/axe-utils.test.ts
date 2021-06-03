@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as AxeUtils from 'scanner/axe-utils';
-import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
-import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior } from 'typemoq';
 
 describe('AxeUtils', () => {
     describe('getMatchesFromRule', () => {
@@ -44,23 +43,24 @@ describe('AxeUtils', () => {
     });
 
     describe('getAccessibleText', () => {
-        it.each([true, false])(
-            'calls axe.commons.text.accessibleText with given node & isLabelledByContext %p',
-            isLabelledByContext => {
-                const accessibleTextMock = Mock.ofInstance(
-                    (node, context) => '',
-                    MockBehavior.Strict,
-                );
-                const elementStub = {} as HTMLElement;
-                accessibleTextMock
-                    .setup(m => m(It.isValue(elementStub), isLabelledByContext))
-                    .verifiable(Times.once());
-                withAxeCommonsMocked('text', { accessibleText: accessibleTextMock.object }, () => {
-                    AxeUtils.getAccessibleText(elementStub, isLabelledByContext);
-                });
-                accessibleTextMock.verifyAll();
-            },
-        );
+        let fixture: HTMLElement;
+
+        beforeEach(() => {
+            fixture = createTestFixture('test-fixture', '');
+        });
+
+        afterEach(() => {
+            document.body.querySelector('#test-fixture').remove();
+        });
+
+        it("successfully identifies an img element's alt text as accessible text", () => {
+            fixture.innerHTML = `<img id="test-subject" alt="alt value"/>`;
+            const testSubject = fixture.querySelector(`#test-subject`) as HTMLElement;
+
+            const result = AxeUtils.withAxeSetup(() => AxeUtils.getAccessibleText(testSubject));
+
+            expect(result).toEqual('alt value');
+        });
     });
 
     describe('getAccessibleDescription', () => {
