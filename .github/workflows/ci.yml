@@ -83,6 +83,7 @@ jobs:
       timeout-minutes: 3
 
   codeql:
+    steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
 
