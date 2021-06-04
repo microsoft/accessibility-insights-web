@@ -31,6 +31,7 @@ import { HelpUrlGetter } from 'scanner/help-url-getter';
 import { mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-links';
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
+import { RuleProcessor } from 'scanner/rule-processor';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
@@ -91,9 +92,13 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
     } as DocumentUtils;
     const messageDecorator = new MessageDecorator(configuration, new CheckMessageTransformer());
     const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
-    const resultDecorator = new ResultDecorator(titleProvider, messageDecorator, (ruleId, axeHelpUrl) =>
-        helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
+    const ruleProcessor = new RuleProcessor();
+    const resultDecorator = new ResultDecorator(
+        titleProvider,
+        messageDecorator,
+        (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
         mapAxeTagsToGuidanceLinks,
+        ruleProcessor,
     );
     const getUnifiedResults = new ConvertScanResultsToUnifiedResults(generateUID, getFixResolution, getCheckResolution).automatedChecksConversion;
 
