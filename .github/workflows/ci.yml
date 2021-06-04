@@ -34,9 +34,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles(''**/yarn.lock'') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -76,9 +76,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles(''**/yarn.lock'') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -122,9 +122,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles(''**/yarn.lock'') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -179,9 +179,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-playwright:v1.10.0-focal-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        key: ${{ runner.os }}-playwright:v1.10.0-focal-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles(''**/yarn.lock'') }}
         restore-keys: |
-          ${{ runner.os }}-playwright:v1.10.0-focal-yarn-
+          ${{ runner.os }}-playwright:v1.10.0-focal-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -234,9 +234,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles(''**/yarn.lock'') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -279,9 +279,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles(''**/yarn.lock'') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
