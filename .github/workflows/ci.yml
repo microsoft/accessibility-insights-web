@@ -44,22 +44,26 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v2
-      with: { node-version: "${{ env.NODE_VERSION }}" }
+      with: { node-version: "14.17.0" }
       timeout-minutes: 2
 
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
+    - name: query yarn cache path
+      id: yarn-cache-path
       run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
 
-    - uses: actions/cache@v2
-      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+    - name: restore yarn cache
+      uses: actions/cache@v2
       with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-v2-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-yarn-v2-
+      timeout-minutes: 5
 
-    - run: yarn install --frozen-lockfile
+    - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
     - run: yarn lint:check:all
@@ -78,7 +82,7 @@ jobs:
       timeout-minutes: 5
 
     - run: yarn test --ci
-      timeout-minutes: 15
+      timeout-minutes: 10
 
     - name: upload artifact unit-tests-results
       uses: actions/upload-artifact@v2
@@ -116,7 +120,23 @@ jobs:
       with: { node-version: "${{ env.NODE_VERSION }}" }
       timeout-minutes: 2
 
-    - run: yarn install --frozen-lockfile
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-playwrightv1.10.0-focal-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-v2-
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
     - run: yarn build
@@ -124,7 +144,7 @@ jobs:
 
     - name: yarn test:e2e
       run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci
-      timeout-minutes: 5
+      timeout-minutes: 15
 
     - name: upload artifact e2e-web-tests-results
       uses: actions/upload-artifact@v2
@@ -146,7 +166,6 @@ jobs:
   
   e2e-unified-tests:
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.10.0-focal
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -155,7 +174,23 @@ jobs:
       with: { node-version: "${{ env.NODE_VERSION }}" }
       timeout-minutes: 2
 
-    - run: yarn install --frozen-lockfile
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-v2-
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
     - run: yarn build:unified
@@ -163,7 +198,7 @@ jobs:
 
     - name: yarn test:unified
       run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci
-      timeout-minutes: 5
+      timeout-minutes: 15
 
     - name: upload artifact e2e-unified-tests-results
       uses: actions/upload-artifact@v2
@@ -183,7 +218,23 @@ jobs:
       with: { node-version: "${{ env.NODE_VERSION }}" }
       timeout-minutes: 2
 
-    - run: yarn install --frozen-lockfile
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-v2-
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
     - run: yarn build:package:report
