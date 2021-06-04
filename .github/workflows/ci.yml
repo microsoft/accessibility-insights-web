@@ -10,16 +10,12 @@ on:
   schedule:
     - cron: '0 19 * * 0'
 
-defaults:
-  runs-on: ubuntu-20.04
-  run:
-    shell: bash
-
 env:
   NODE_VERSION: 14.17.0
 
 jobs:
   build:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -43,6 +39,7 @@ jobs:
       timeout-minutes: 5
     
   unit-tests:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -83,6 +80,7 @@ jobs:
       timeout-minutes: 3
 
   codeql:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -94,6 +92,7 @@ jobs:
       timeout-minutes: 5
 
   e2e-web-tests:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -119,6 +118,7 @@ jobs:
       timeout-minutes: 3
   
   e2e-unified-tests:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -144,6 +144,7 @@ jobs:
       timeout-minutes: 3
 
   e2e-report-tests:
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
