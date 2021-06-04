@@ -254,7 +254,7 @@ jobs:
       if: ${{ always() }}
       with:
         name: e2e-unified-tests-results
-        path: test-results/unified
+        path: test-results/electron
       timeout-minutes: 3
 
   e2e-report-tests:
