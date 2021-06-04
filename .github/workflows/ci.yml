@@ -129,7 +129,7 @@ jobs:
 
   e2e-web-tests:
     runs-on: ubuntu-20.04
-    container: ${{ env.PLAYWRIGHT_DOCKER_IMAGE }}
+    container: "${{ env.PLAYWRIGHT_DOCKER_IMAGE }}"
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
