@@ -10,7 +10,6 @@ on:
 
 env:
   NODE_VERSION: 14.17.0
-  PLAYWRIGHT_DOCKER_IMAGE: mcr.microsoft.com/playwright:v1.10.0-focal
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Tests that use Playwright use the Docker image's browser
 
 jobs:
@@ -129,7 +128,7 @@ jobs:
 
   e2e-web-tests:
     runs-on: ubuntu-20.04
-    container: "${{ env.PLAYWRIGHT_DOCKER_IMAGE }}"
+    container: mcr.microsoft.com/playwright:v1.10.0-focal
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
