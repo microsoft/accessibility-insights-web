@@ -1,0 +1,168 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  schedule:
+    - cron: '0 19 * * 0'
+
+defaults:
+  runs-on: ubuntu-20.04
+  run:
+    shell: bash
+
+env:
+  NODE_VERSION: 14.17.0
+
+jobs:
+  build:
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: ${{ env.NODE_VERSION }} }
+      timeout-minutes: 2
+
+    - run: yarn install --frozen-lockfile
+      timeout-minutes: 10
+
+    # CG and NOTICE generation would go here
+
+    - run: yarn build:all
+      timeout-minutes: 10
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: ${{ job.name }}-results
+        path: drop
+      timeout-minutes: 5
+    
+  unit-tests:
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: ${{ env.NODE_VERSION }} }
+      timeout-minutes: 2
+
+    - run: yarn install --frozen-lockfile
+      timeout-minutes: 10
+
+    - run: yarn lint:check:all
+      timeout-minutes: 5
+
+    - run: yarn format:check
+      timeout-minutes: 5
+
+    - run: yarn copyright:check
+      timeout-minutes: 1
+
+    - run: yarn scss:build
+      timeout-minutes: 3
+
+    - run: yarn null:check
+      timeout-minutes: 5
+
+    - run: yarn test --ci
+      timeout-minutes: 15
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: ${{ job.name }}-results
+        path: test-results/unit
+      timeout-minutes: 5
+
+    - run: yarn publish-code-coverage
+      timeout-minutes: 3
+
+  codeql:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: github/codeql-action/init@v1
+      timeout-minutes: 2
+
+    - uses: github/codeql-action/analyze@v1
+      timeout-minutes: 5
+
+  e2e-web-tests:
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: ${{ env.NODE_VERSION }} }
+      timeout-minutes: 2
+
+    - run: yarn install --frozen-lockfile
+      timeout-minutes: 10
+
+    - run: yarn build
+      timeout-minutes: 5
+
+    - run: yarn test:e2e --ci
+      timeout-minutes: 5
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: ${{ job.name }}-results
+        path: test-results/e2e
+      timeout-minutes: 3
+  
+  e2e-unified-tests:
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: ${{ env.NODE_VERSION }} }
+      timeout-minutes: 2
+
+    - run: yarn install --frozen-lockfile
+      timeout-minutes: 10
+
+    - run: yarn build:unified
+      timeout-minutes: 5
+
+    - run: yarn test:unified --ci
+      timeout-minutes: 5
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: ${{ job.name }}-results
+        path: test-results/unified
+      timeout-minutes: 3
+
+  e2e-report-tests:
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: ${{ env.NODE_VERSION }} }
+      timeout-minutes: 2
+
+    - run: yarn install --frozen-lockfile
+      timeout-minutes: 10
+
+    - run: yarn build:package:report
+      timeout-minutes: 5
+
+    - run: yarn test:report:e2e --ci
+      timeout-minutes: 5
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: ${{ job.name }}-results
+        path: packages/report-e2e-tests/test-results
+      timeout-minutes: 3
