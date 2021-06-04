@@ -10,12 +10,11 @@ on:
 
 env:
   NODE_VERSION: 14.17.0
-  # Jobs that require Playwright should override this and use a different yarn cache key
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
 jobs:
   build:
     runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -57,6 +56,7 @@ jobs:
     
   unit-tests:
     runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -102,6 +102,7 @@ jobs:
 
   lints:
     runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -159,7 +160,6 @@ jobs:
   e2e-web-tests:
     runs-on: ubuntu-20.04
     container: mcr.microsoft.com/playwright:v1.10.0-focal
-    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -214,6 +214,7 @@ jobs:
   
   e2e-unified-tests:
     runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -258,6 +259,7 @@ jobs:
 
   e2e-report-tests:
     runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
