@@ -10,7 +10,8 @@ on:
 
 env:
   NODE_VERSION: 14.17.0
-  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Tests that use Playwright use the Docker image's browser
+  # Jobs that require Playwright should override this and use a different yarn cache key
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
 
 jobs:
   build:
@@ -83,21 +84,6 @@ jobs:
     - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
-    - run: yarn lint:check:all
-      timeout-minutes: 5
-
-    - run: yarn format:check
-      timeout-minutes: 5
-
-    - run: yarn copyright:check
-      timeout-minutes: 1
-
-    - run: yarn scss:build
-      timeout-minutes: 3
-
-    - run: yarn null:check
-      timeout-minutes: 5
-
     - run: yarn test --ci
       timeout-minutes: 10
 
@@ -114,11 +100,49 @@ jobs:
     - run: yarn publish-code-coverage
       timeout-minutes: 3
 
-  codeql:
+  lints:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    - run: yarn copyright:check
+      timeout-minutes: 1
+
+    - run: yarn format:check
+      timeout-minutes: 5
+
+    - run: yarn lint:check:all
+      timeout-minutes: 5
+
+    - run: yarn scss:build
+      timeout-minutes: 3
+
+    - run: yarn null:check
+      timeout-minutes: 5
 
     - uses: github/codeql-action/init@v1
       timeout-minutes: 2
@@ -129,6 +153,7 @@ jobs:
   e2e-web-tests:
     runs-on: ubuntu-20.04
     container: mcr.microsoft.com/playwright:v1.10.0-focal
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0 }
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -150,7 +175,7 @@ jobs:
           node_modules
         key: ${{ runner.os }}-playwright:v1.10.0-focal-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-
+          ${{ runner.os }}-playwright:v1.10.0-focal-yarn-
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
