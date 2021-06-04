@@ -14,8 +14,7 @@ describe('FixInstructionProcessor', () => {
             'there is nothing that will trigger the processor to change the fix instruction here';
 
         const result = testSubject.process(fixInstruction);
-console.log(result);
-        expect(result).toMatchSnapshot(); 
+        expect(result).toMatchSnapshot();
     });
 
     test('foreground color on the message', () => {

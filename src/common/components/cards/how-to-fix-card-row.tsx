@@ -24,7 +24,6 @@ export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>(
     'HowToFixWebCardRow',
     ({ deps, ...props }) => {
         const { any: anyOf, all, none } = props.propertyData;
-        console.time("colorRecommend");
         const renderFixInstructionsContent = () => {
             return (
                 <div className={styles.howToFixContent}>
@@ -43,8 +42,6 @@ export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>(
                 </div>
             );
         };
-        console.timeEnd("colorRecommend");
-
         const turnStringToMessageObject = (s: string) => {
             return { message: s };
         };

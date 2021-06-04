@@ -20,12 +20,14 @@ export interface FixInstructionPanelProps {
 export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
     'FixInstructionPanel',
     props => {
+        console.log(props);
         const { fixInstructionProcessor } = props.deps;
 
         const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
             if (checkCount === 1) {
                 return 'Fix the following:';
             }
+
             if (checkType === CheckType.Any) {
                 return 'Fix ONE of the following:';
             } else {
@@ -37,7 +39,6 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
             const instructionList = props.checks.map((check, checkIndex) => {
                 return (
                     <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>
-
                         {fixInstructionProcessor.process(check.message)}
                     </li>
                 );
