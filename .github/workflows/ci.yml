@@ -10,6 +10,8 @@ on:
 
 env:
   NODE_VERSION: 14.17.0
+  PLAYWRIGHT_DOCKER_IMAGE: mcr.microsoft.com/playwright:v1.10.0-focal
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 # Tests that use Playwright use the Docker image's browser
 
 jobs:
   build:
@@ -22,7 +24,23 @@ jobs:
       with: { node-version: "${{ env.NODE_VERSION }}" }
       timeout-minutes: 2
 
-    - run: yarn install --frozen-lockfile
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
     # CG and NOTICE generation would go here
@@ -44,7 +62,7 @@ jobs:
       timeout-minutes: 2
 
     - uses: actions/setup-node@v2
-      with: { node-version: "14.17.0" }
+      with: { node-version: "${{ env.NODE_VERSION }}" }
       timeout-minutes: 2
 
     - name: query yarn cache path
@@ -58,9 +76,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-v2-
+          ${{ runner.os }}-yarn-
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -111,7 +129,7 @@ jobs:
 
   e2e-web-tests:
     runs-on: ubuntu-20.04
-    container: mcr.microsoft.com/playwright:v1.10.0-focal
+    container: ${{ env.PLAYWRIGHT_DOCKER_IMAGE }}
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -131,9 +149,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-playwrightv1.10.0-focal-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-playwright:v1.10.0-focal-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-v2-
+          ${{ runner.os }}-yarn-
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -185,9 +203,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-v2-
+          ${{ runner.os }}-yarn-
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
@@ -229,9 +247,9 @@ jobs:
         path: |
           ${{ steps.yarn-cache-path.outputs.dir }}
           node_modules
-        key: ${{ runner.os }}-yarn-v2-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock', '.github/workflows/ci.yml') }}
         restore-keys: |
-          ${{ runner.os }}-yarn-v2-
+          ${{ runner.os }}-yarn-
       timeout-minutes: 5
 
     - run: yarn install --frozen-lockfile --prefer-offline
