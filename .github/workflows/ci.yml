@@ -4,8 +4,6 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
   pull_request:
   schedule:
     - cron: '0 19 * * 0'
@@ -34,7 +32,7 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: ${{ job.name }}-results
+        name: build-results
         path: drop
       timeout-minutes: 5
     
@@ -84,7 +82,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: ${{ job.name }}-results
+        name: unit-tests-results
         path: test-results/unit
       timeout-minutes: 5
 
@@ -126,7 +124,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: ${{ job.name }}-results
+        name: e2e-web-tests-results
         path: test-results/e2e
       timeout-minutes: 3
   
@@ -153,7 +151,7 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: ${{ job.name }}-results
+        name: e2e-unified-tests-results
         path: test-results/unified
       timeout-minutes: 3
 
@@ -179,6 +177,6 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: ${{ job.name }}-results
+        name: e2e-report-tests-results
         path: packages/report-e2e-tests/test-results
       timeout-minutes: 3
