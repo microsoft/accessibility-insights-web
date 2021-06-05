@@ -194,13 +194,10 @@ jobs:
     - run: yarn build
       timeout-minutes: 5
 
-    - name: identify tests to run
-      id: chunk-tests
-      run: yarn test:e2e --listTests | node src/tests/common/chunk-tests --index ${{ matrix.chunk-index }} --total ${{ matrix.strategy.chunk-index.length }}
-      outputs: 'test_match'
-
     - name: yarn test:e2e
-      run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=${{ steps.chunk-tests.outputs.test_match }}
+      run: |
+        TEST_MATCH=$(yarn test:e2e --listTests | node src/tests/common/chunk-tests --index ${{ matrix.chunk-index }} --total ${{ matrix.strategy.chunk-index.length }})
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=$TEST_MATCH
       timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results

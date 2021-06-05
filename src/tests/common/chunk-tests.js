@@ -24,4 +24,4 @@ const selectedFilePaths = chunk(testFilePaths, filesPerChunk)[index];
 const pathRegexes = selectedFilePaths.map(path => path.replace(/\\/g, '/'));
 const testMatch = pathRegexes.join('|');
 
-console.log(`::set-output name=test_match::${testMatch}`);
+console.log(testMatch);
