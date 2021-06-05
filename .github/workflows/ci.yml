@@ -160,6 +160,10 @@ jobs:
   e2e-web-tests:
     runs-on: ubuntu-20.04
     container: mcr.microsoft.com/playwright:v1.10.0-focal
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk-index: [0, 1]
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
@@ -190,15 +194,20 @@ jobs:
     - run: yarn build
       timeout-minutes: 5
 
+    - name: identify tests to run
+      id: chunk-tests
+      run: yarn test:e2e --listTests | node src/tests/common/chunk-tests --index ${{ matrix.chunk-index }} --total ${{ matrix.strategy.chunk-index.length }}
+      outputs: 'test_match'
+
     - name: yarn test:e2e
-      run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci
-      timeout-minutes: 15
+      run: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=${{ steps.chunk-tests.outputs.test_match }}
+      timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: e2e-web-tests-results
+        name: e2e-web-tests-${{ matrix.chunk-index }}-results
         path: test-results/e2e/junit-e2e.xml
       timeout-minutes: 3
 
@@ -206,7 +215,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ failure() }}
       with:
-        name: e2e-web-tests-debug-logs
+        name: e2e-web-tests-${{ matrix.chunk-index }}-debug-logs
         path: |
           test-results/e2e/chrome-logs
           test-results/e2e/failure-screenshots
@@ -215,6 +224,9 @@ jobs:
   e2e-unified-tests:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    strategy:
+      matrix:
+        index: [1, 2, 3, 4, 5]
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
