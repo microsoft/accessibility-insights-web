@@ -198,7 +198,7 @@ jobs:
 
     - name: yarn test:e2e
       run: |
-        TEST_MATCH=$(yarn test:chunk --scenario e2e --index ${{ matrix.chunk-index }} --total ${{ strategy.job-total }})
+        TEST_MATCH=$(node ./src/tests/common/chunk-tests.js --scenario e2e --index ${{ matrix.chunk-index }} --total ${{ strategy.job-total }})
         xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=$TEST_MATCH
       timeout-minutes: 10
 
@@ -261,7 +261,7 @@ jobs:
 
     - name: yarn test:unified
       run: |
-        TEST_MATCH=$(yarn test:chunk --scenario unified --index ${{ matrix.chunk-index }} --total ${{ strategy.job-total }})
+        TEST_MATCH=$(node ./src/tests/common/chunk-tests.js --scenario unified --index ${{ matrix.chunk-index }} --total ${{ strategy.job-total }})
         xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci --testMatch=$TEST_MATCH
       timeout-minutes: 15
 
