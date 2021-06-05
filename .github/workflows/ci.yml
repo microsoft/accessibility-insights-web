@@ -196,7 +196,8 @@ jobs:
 
     - name: yarn test:e2e
       run: |
-        TEST_MATCH=$($(yarn test:e2e --listTests) | node src/tests/common/chunk-tests --index ${{ matrix.chunk-index }} --total 2)
+        yarn test:e2e --listTests > ${{ runner.temp }}/e2eTestList.txt
+        TEST_MATCH=$(node src/tests/common/chunk-tests --testListFile ${{ runner.temp }}/e2eTestList.txt --index ${{ matrix.chunk-index }} --total 2)
         xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=$TEST_MATCH
       timeout-minutes: 10
 

@@ -9,10 +9,10 @@ const fs = require('fs');
 const process = require('process');
 const { chunk } = require('lodash');
 const yargs = require('yargs');
-const { index, total } = yargs.demandOption(['index', 'total']).argv;
+const { index, total, testListFile } = yargs.demandOption(['index', 'total', 'testListFile']).argv;
 
 const testFilePaths = fs
-    .readFileSync(process.stdin.fd, 'utf-8')
+    .readFileSync(testListFile, 'utf-8')
     .toString()
     .split(/\r?\n/)
     .sort()
