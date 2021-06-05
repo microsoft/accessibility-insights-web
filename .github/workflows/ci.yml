@@ -196,7 +196,7 @@ jobs:
 
     - name: yarn test:e2e
       run: |
-        TEST_MATCH=$(yarn test:e2e --listTests | node src/tests/common/chunk-tests --index ${{ matrix.chunk-index }} --total ${{ matrix.strategy.chunk-index.length }})
+        TEST_MATCH=$($(yarn test:e2e --listTests) | node src/tests/common/chunk-tests --index ${{ matrix.chunk-index }} --total 2)
         xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=$TEST_MATCH
       timeout-minutes: 10
 
@@ -221,9 +221,6 @@ jobs:
   e2e-unified-tests:
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
-    strategy:
-      matrix:
-        index: [1, 2, 3, 4, 5]
     steps:
     - uses: actions/checkout@v2
       timeout-minutes: 2
