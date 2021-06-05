@@ -269,7 +269,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: e2e-unified-tests-results
+        name: e2e-unified-tests-${{ matrix.chunk-index }}-results
         path: test-results/electron
       timeout-minutes: 3
 
