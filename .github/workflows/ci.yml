@@ -158,13 +158,15 @@ jobs:
       timeout-minutes: 10
 
   e2e-web-tests:
-    name: e2e-web-tests (${{ matrix.chunk-index }}/${{ strategy.job-total }})
+    name: e2e-web-tests (${{ strategy.job-index + 1 }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     container: mcr.microsoft.com/playwright:v1.10.0-focal
     strategy:
       fail-fast: false
       matrix:
-        chunk-index: [1, 2]
+        test-filename-prefix-pattern:
+          - "[a-m]"
+          - "[^a-m]"
 
     steps:
     - uses: actions/checkout@v2
@@ -188,8 +190,7 @@ jobs:
 
     - name: yarn test:e2e
       run: |
-        TEST_MATCH=$(node ./src/tests/common/chunk-tests.js --scenario e2e --index ${{ matrix.chunk-index }} --total ${{ strategy.job-total }})
-        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch=$TEST_MATCH
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
       timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results
@@ -211,13 +212,15 @@ jobs:
       timeout-minutes: 3
   
   e2e-unified-tests:
-    name: e2e-unified-tests (${{ matrix.chunk-index }}/${{ strategy.job-total }})
+    name: e2e-unified-tests (${{ strategy.job-index + 1 }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
     env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
     strategy:
       fail-fast: false
       matrix:
-        chunk-index: [1, 2]
+        test-filename-prefix-pattern:
+          - "a" # about half the tests start with "android-setup-"
+          - "[^a]"
 
     steps:
     - uses: actions/checkout@v2
@@ -251,8 +254,7 @@ jobs:
 
     - name: yarn test:unified
       run: |
-        TEST_MATCH=$(node ./src/tests/common/chunk-tests.js --scenario unified --index ${{ matrix.chunk-index }} --total ${{ strategy.job-total }})
-        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci --testMatch=$TEST_MATCH
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
       timeout-minutes: 15
 
     - name: upload artifact e2e-unified-tests-results
