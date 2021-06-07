@@ -70,6 +70,7 @@ exports[`ReportBody renders 1`] = `
         "foregroundRecommendedColorText": "Use foreground color: ",
         "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "originalMiddleSentence": " and the original foreground color: ",
         "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
       }
     }
@@ -227,6 +228,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -382,6 +384,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -537,6 +540,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -692,6 +696,7 @@ exports[`ReportBody renders 1`] = `
             "foregroundRecommendedColorText": "Use foreground color: ",
             "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "originalMiddleSentence": " and the original foreground color: ",
             "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
           }
         }
@@ -847,6 +852,7 @@ exports[`ReportBody renders 1`] = `
             "foregroundRecommendedColorText": "Use foreground color: ",
             "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "originalMiddleSentence": " and the original foreground color: ",
             "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
           }
         }
@@ -1002,6 +1008,7 @@ exports[`ReportBody renders 1`] = `
             "foregroundRecommendedColorText": "Use foreground color: ",
             "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "originalMiddleSentence": " and the original foreground color: ",
             "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
           }
         }
@@ -1160,6 +1167,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }

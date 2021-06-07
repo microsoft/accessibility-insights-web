@@ -44,7 +44,7 @@ export class ReportHtmlGenerator {
             description,
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
-                //recommendColor: this.recommendColor,
+                recommendColor: this.recommendColor,
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,

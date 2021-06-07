@@ -71,6 +71,7 @@ describe('ReportHtmlGenerator', () => {
         const sectionProps: ReportBodyProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,

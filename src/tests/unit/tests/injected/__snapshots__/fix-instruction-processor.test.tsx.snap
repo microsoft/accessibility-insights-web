@@ -6,56 +6,33 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
     aria-hidden="true"
   >
     <span>
-      <li>
-         
+      <span>
         Element has insufficient color contrast of 2.52 (background color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#8a94a8",
-              }
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#8a94a8",
             }
-          />
-        </span>
-         
+          }
+        />
         #8a94a8, foreground color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#e7ecd8",
-              }
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#e7ecd8",
             }
-          />
-        </span>
-        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
-      </li>
-    </span>
-    <span>
-      <li>
-         
-         Use background color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#5e6572",
-              }
-            }
-          />
-        </span>
-        #5e6572 to meet a contrast ratio of 4.86:1.
-      </li>
+          }
+        />
+        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+      </span>
     </span>
   </span>
   <span
     className="screenReaderOnly"
   >
-    Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use background color: #5e6572 to meet a contrast ratio of 4.86:1.
+    Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
   </span>
 </React.Fragment>
 `;
@@ -68,7 +45,7 @@ exports[`FixInstructionProcessor background color on the message 1`] = `
   <span
     className="screenReaderOnly"
   >
-    color contrast of 2.52 (background color: #8a94a8; nothing else to match here)
+    color contrast of 2.52 (background color: #8a94a8; nothing else to match here).
   </span>
 </React.Fragment>
 `;
@@ -79,56 +56,33 @@ exports[`FixInstructionProcessor foreground and background color on the message 
     aria-hidden="true"
   >
     <span>
-      <li>
-         
+      <span>
         Element has insufficient color contrast of 2.52 (foreground color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#8a94a8",
-              }
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#8a94a8",
             }
-          />
-        </span>
-         
+          }
+        />
         #8a94a8, background color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#e7ecd8",
-              }
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#e7ecd8",
             }
-          />
-        </span>
-        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
-      </li>
-    </span>
-    <span>
-      <li>
-         
-         Use foreground color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#5e6572",
-              }
-            }
-          />
-        </span>
-        #5e6572 to meet a contrast ratio of 4.86:1.
-      </li>
+          }
+        />
+        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+      </span>
     </span>
   </span>
   <span
     className="screenReaderOnly"
   >
-    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use foreground color: #5e6572 to meet a contrast ratio of 4.86:1.
+    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
   </span>
 </React.Fragment>
 `;
@@ -141,14 +95,14 @@ exports[`FixInstructionProcessor foreground color on the message 1`] = `
   <span
     className="screenReaderOnly"
   >
-    color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)
+    color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here).
   </span>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor no background nor foreground on the message 1`] = `
 <React.Fragment>
-  there is nothing that will trigger the processor to change the fix instruction here
+  there is nothing that will trigger the processor to change the fix instruction here.
 </React.Fragment>
 `;
 
@@ -158,62 +112,39 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
     aria-hidden="true"
   >
     <span>
-      <li>
-         
+      <span>
         first foreground color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#ffffff",
-              }
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#ffffff",
             }
-          />
-        </span>
-         
+          }
+        />
         #ffffff, second foreground: #000000, first background color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#AAAAAA",
-              }
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#AAAAAA",
             }
-          />
-        </span>
-        #AAAAAA, second background color: #bbBBbb.
-      </li>
-    </span>
-    <span>
-      <li>
-         
-         Use background color: 
-        <span>
-          <span
-            className="fixInstructionColorBox"
-            style={
-              Object {
-                "backgroundColor": "#737373",
-              }
-            }
-          />
-        </span>
-        #737373 to meet a contrast ratio of 4.74:1.
-      </li>
+          }
+        />
+        , second foreground: #000000, first background color: 
+      </span>
     </span>
   </span>
   <span
     className="screenReaderOnly"
   >
-    first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb. Use background color: #737373 to meet a contrast ratio of 4.74:1.
+    first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb.
   </span>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor when we have nothing to process 1`] = `
 <React.Fragment>
-  nothing to process
+  nothing to process.
 </React.Fragment>
 `;

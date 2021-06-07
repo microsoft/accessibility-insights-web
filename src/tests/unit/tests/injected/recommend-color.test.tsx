@@ -42,7 +42,7 @@ describe('Recommend Color', () => {
     });
 
     test('Large Font Recommendation', () => {
-        testSubject.getRecommendColor('#fefefe', '#21809d', 4.5);
+        testSubject.getRecommendColor('#0000D6', '#575757', 3.0);
 
         const result = testSubject.sentence;
 

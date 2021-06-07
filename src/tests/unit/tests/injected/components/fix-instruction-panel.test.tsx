@@ -21,7 +21,7 @@ describe('FixInstructionPanelTests', () => {
             undefined,
             MockBehavior.Strict,
         );
-        //recommendColorMock = Mock.ofType<RecommendColor>(undefined, MockBehavior.Strict);
+        recommendColorMock = Mock.ofType<RecommendColor>(undefined, MockBehavior.Strict);
         fixInstructionProcessorMock
             .setup(processor => processor.process(It.isAnyString(), recommendation))
             .returns(instruction => <>{instruction}</>);
