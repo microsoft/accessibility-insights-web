@@ -165,8 +165,8 @@ jobs:
       fail-fast: false
       matrix:
         test-filename-prefix-pattern:
-          - "[a-m]"
-          - "[^a-m]"
+          - "[a-k]"
+          - "[^a-k]"
 
     steps:
     - uses: actions/checkout@v2
