@@ -5,6 +5,7 @@ import {
     FixInstructionPanelProps,
 } from 'common/components/fix-instruction-panel';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { CheckType } from 'common/types/check-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -12,14 +13,17 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 describe('FixInstructionPanelTests', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
+    let recommendColorMock: IMock<RecommendColor>;
+    let recommendation: RecommendColor;
 
     beforeEach(() => {
         fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(
             undefined,
             MockBehavior.Strict,
         );
+        //recommendColorMock = Mock.ofType<RecommendColor>(undefined, MockBehavior.Strict);
         fixInstructionProcessorMock
-            .setup(processor => processor.process(It.isAnyString()))
+            .setup(processor => processor.process(It.isAnyString(), recommendation))
             .returns(instruction => <>{instruction}</>);
     });
 
@@ -43,6 +47,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
             },
         };
 
@@ -66,6 +71,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
             },
         };
 
@@ -94,6 +100,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
             },
         };
 
@@ -111,6 +118,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
             },
         };
 

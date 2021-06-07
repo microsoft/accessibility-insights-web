@@ -5,6 +5,7 @@ import {
     HowToFixWebCardRowProps,
 } from 'common/components/cards/how-to-fix-card-row';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -13,9 +14,11 @@ import { Mock } from 'typemoq';
 describe('HowToFixWebCardRow', () => {
     it('renders', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const recommendColorMock = Mock.ofType(RecommendColor);
         const props: HowToFixWebCardRowProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
                 LinkComponent: {} as LinkComponentType,
             },
             index: 22,

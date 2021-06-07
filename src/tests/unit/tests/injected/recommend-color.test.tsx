@@ -5,8 +5,12 @@ import { RecommendColor } from 'common/components/recommend-color';
 describe('Recommend Color', () => {
     let testSubject: RecommendColor;
 
+    beforeEach(() => {
+        testSubject = new RecommendColor();
+    });
+
     test('White on White recommendation', () => {
-        testSubject = new RecommendColor('#ffffff', '#ffffff', 4.5);
+        testSubject.getRecommendColor('#ffffff', '#ffffff', 4.5);
 
         const result = testSubject.sentence;
 
@@ -14,7 +18,7 @@ describe('Recommend Color', () => {
     });
 
     test('Black on black recommendation', () => {
-        testSubject = new RecommendColor('#000000', '#000000', 4.5);
+        testSubject.getRecommendColor('#000000', '#000000', 4.5);
 
         const result = testSubject.sentence;
 
@@ -22,7 +26,7 @@ describe('Recommend Color', () => {
     });
 
     test('Same Color recommendation', () => {
-        testSubject = new RecommendColor('#8a94a8', '#8a94a8', 4.5);
+        testSubject.getRecommendColor('#8a94a8', '#8a94a8', 4.5);
 
         const result = testSubject.sentence;
 
@@ -30,7 +34,7 @@ describe('Recommend Color', () => {
     });
 
     test('Normal Font Recommendation', () => {
-        testSubject = new RecommendColor('#8a94a8', '#8a94a8', 4.5);
+        testSubject.getRecommendColor('#fefefe', '#21809d', 4.5);
 
         const result = testSubject.sentence;
 
@@ -38,7 +42,7 @@ describe('Recommend Color', () => {
     });
 
     test('Large Font Recommendation', () => {
-        testSubject = new RecommendColor('#8a94a8', '#8a94a8', 3.0);
+        testSubject.getRecommendColor('#fefefe', '#21809d', 4.5);
 
         const result = testSubject.sentence;
 

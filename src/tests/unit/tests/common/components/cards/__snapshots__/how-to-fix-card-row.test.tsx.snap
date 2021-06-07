@@ -36,6 +36,9 @@ exports[`HowToFixWebCardRow renders 1`] = `
               "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
               "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
             },
+            "recommendColor": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            },
           }
         }
         renderTitleElement={[Function]}
@@ -66,6 +69,9 @@ exports[`HowToFixWebCardRow renders 1`] = `
               "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
               "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
               "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
+            },
+            "recommendColor": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             },
           }
         }

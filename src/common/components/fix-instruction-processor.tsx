@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import * as styles from './cards/fix-instruction-color-box.scss';
-import {RecommendColor} from 'common/components/recommend-color';
+import { RecommendColor } from 'common/components/recommend-color';
 
 type ColorMatch = {
     splitIndex: number;
@@ -34,54 +34,68 @@ export class FixInstructionProcessor {
     private readonly backgroundRecommendedRegExp = new RegExp(
         `${this.backgroundRecommendedColorText}${this.colorValueMatcher}`,
         'i',
-    );    
+    );
 
     private readonly contrastRatioText = 'Expected contrast ratio of ';
-    private readonly contrastRatioRegExp = new RegExp(
-        `${this.contrastRatioText}`,
-        'i',
-    );  
+    private readonly contrastRatioRegExp = new RegExp(`${this.contrastRatioText}`, 'i');
     private readonly recommendEndSentence = ' to meet a contrast ratio of #.##:1.';
 
-    public process(fixInstruction: string): JSX.Element {
+    public process(fixInstruction: string, recommendation: RecommendColor): JSX.Element {
         const matches = this.getColorMatches(fixInstruction);
-        
-        if(matches.length === 2){
-            fixInstruction = this.getColorRecommendation(fixInstruction, matches);
+
+        if (matches.length === 2) {
+            fixInstruction = this.getColorRecommendation(fixInstruction, matches, recommendation);
         }
-        
+
         return this.splitFixInstruction(fixInstruction, matches);
     }
 
-    private getColorRecommendation(fixInstruction: string, matches: ColorMatch[]) {
+    private getColorRecommendation(
+        fixInstruction: string,
+        matches: ColorMatch[],
+        recommendation: RecommendColor,
+    ) {
         let contrastRatio: number = 4.5;
         if (this.contrastRatioRegExp.exec(fixInstruction) !== null) {
             const indexContrast: number = this.contrastRatioRegExp.exec(fixInstruction).index;
-            let contrastIndex = fixInstruction.substring(indexContrast + this.contrastRatioText.length);
-            contrastRatio = parseFloat(contrastIndex.substring(0, contrastIndex.indexOf(":")));
+            let contrastIndex = fixInstruction.substring(
+                indexContrast + this.contrastRatioText.length,
+            );
+            contrastRatio = parseFloat(contrastIndex.substring(0, contrastIndex.indexOf(':')));
         }
-        const recommendation = new RecommendColor(matches[0].colorHexValue, matches[1].colorHexValue, contrastRatio);
-        fixInstruction += "." + recommendation.sentence;
+
+        fixInstruction +=
+            '.' +
+            recommendation.getRecommendColor(
+                matches[0].colorHexValue,
+                matches[1].colorHexValue,
+                contrastRatio,
+            );
         this.getRecommendedColorMatches(fixInstruction, matches);
         return fixInstruction;
     }
 
-
     private getColorMatches(fixInstruction: string): ColorMatch[] {
         const foregroundMatch = this.getColorMatch(fixInstruction, this.foregroundRegExp);
         const backgroundMatch = this.getColorMatch(fixInstruction, this.backgroundRegExp);
-        
+
         return [foregroundMatch, backgroundMatch].filter(match => match != null) as ColorMatch[];
     }
 
-    private getRecommendedColorMatches(fixInstruction: string, matches: ColorMatch[]){
-        const foregroundRecommededMatch = this.getColorMatch(fixInstruction, this.foregroundRecommendedRegExp);
-        if(foregroundRecommededMatch !== null){
+    private getRecommendedColorMatches(fixInstruction: string, matches: ColorMatch[]) {
+        const foregroundRecommededMatch = this.getColorMatch(
+            fixInstruction,
+            this.foregroundRecommendedRegExp,
+        );
+        if (foregroundRecommededMatch !== null) {
             matches.push(foregroundRecommededMatch);
         }
 
-        const backgroundRecommededMatch = this.getColorMatch(fixInstruction, this.backgroundRecommendedRegExp);
-        if(backgroundRecommededMatch !== null ){
+        const backgroundRecommededMatch = this.getColorMatch(
+            fixInstruction,
+            this.backgroundRecommendedRegExp,
+        );
+        if (backgroundRecommededMatch !== null) {
             matches.push(backgroundRecommededMatch);
         }
     }
@@ -99,13 +113,17 @@ export class FixInstructionProcessor {
 
         const colorHexValue = match[1];
 
-        if(colorRegex === this.foregroundRecommendedRegExp || colorRegex === this.backgroundRecommendedRegExp){
+        if (
+            colorRegex === this.foregroundRecommendedRegExp ||
+            colorRegex === this.backgroundRecommendedRegExp
+        ) {
             return {
-                splitIndex: match.index + this.foregroundRecommendedColorText.length + colorHexValue.length,
+                splitIndex:
+                    match.index + this.foregroundRecommendedColorText.length + colorHexValue.length,
                 colorHexValue,
             };
         }
-        
+
         return {
             splitIndex: match.index + this.foregroundColorText.length + colorHexValue.length,
             colorHexValue,
@@ -122,8 +140,14 @@ export class FixInstructionProcessor {
         let keyIndex = 0;
 
         const result: JSX.Element[] = [];
-        if(matches.length >= 2){
-            this.bulletAndColorBoxOutput(sortedMatches, fixInstruction, insertionIndex, result, keyIndex);
+        if (matches.length >= 2) {
+            this.bulletAndColorBoxOutput(
+                sortedMatches,
+                fixInstruction,
+                insertionIndex,
+                result,
+                keyIndex,
+            );
         }
 
         return (
@@ -134,7 +158,13 @@ export class FixInstructionProcessor {
         );
     }
 
-    private bulletAndColorBoxOutput(sortedMatches: ColorMatch[], fixInstruction: string, insertionIndex: number, result: JSX.Element[], keyIndex: number) {
+    private bulletAndColorBoxOutput(
+        sortedMatches: ColorMatch[],
+        fixInstruction: string,
+        insertionIndex: number,
+        result: JSX.Element[],
+        keyIndex: number,
+    ) {
         for (let i: number = 0; i < sortedMatches.length; i++) {
             let match: ColorMatch = sortedMatches[i];
             let colorEndIndex = match.splitIndex - match.colorHexValue.length;
@@ -145,25 +175,44 @@ export class FixInstructionProcessor {
                 colorEndIndex = sortedMatches[i].splitIndex - match.colorHexValue.length;
                 const middleSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);
                 insertionIndex = colorEndIndex;
-                colorEndIndex = sortedMatches[i + 1].splitIndex - this.foregroundRecommendedColorText.length - match.colorHexValue.length - 1;
+                colorEndIndex =
+                    sortedMatches[i + 1].splitIndex -
+                    this.foregroundRecommendedColorText.length -
+                    match.colorHexValue.length -
+                    1;
                 const endSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);
                 result.push(
                     <span key={`instruction-split-${keyIndex++}`}>
-                        <li> {beforeColorBox}
-                            <span key={`instruction-split-${keyIndex++}`}>{this.createColorBox(match.colorHexValue, keyIndex++)}</span> {middleSubstring}
-                            <span key={`instruction-split-${keyIndex++}`}>{this.createColorBox(sortedMatches[i].colorHexValue, keyIndex++)}</span>{endSubstring}
+                        <li>
+                            {' '}
+                            {beforeColorBox}
+                            <span key={`instruction-split-${keyIndex++}`}>
+                                {this.createColorBox(match.colorHexValue, keyIndex++)}
+                            </span>{' '}
+                            {middleSubstring}
+                            <span key={`instruction-split-${keyIndex++}`}>
+                                {this.createColorBox(sortedMatches[i].colorHexValue, keyIndex++)}
+                            </span>
+                            {endSubstring}
                         </li>
-                    </span>);
+                    </span>,
+                );
                 insertionIndex = colorEndIndex;
             } else {
                 colorEndIndex = match.splitIndex + this.recommendEndSentence.length;
                 const endSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);
                 result.push(
                     <span key={`instruction-split-${keyIndex++}`}>
-                        <li> {beforeColorBox}
-                            <span key={`instruction-split-${keyIndex++}`}>{this.createColorBox(match.colorHexValue, keyIndex++)}</span>{endSubstring}
+                        <li>
+                            {' '}
+                            {beforeColorBox}
+                            <span key={`instruction-split-${keyIndex++}`}>
+                                {this.createColorBox(match.colorHexValue, keyIndex++)}
+                            </span>
+                            {endSubstring}
                         </li>
-                    </span>);
+                    </span>,
+                );
                 insertionIndex = colorEndIndex;
             }
         }

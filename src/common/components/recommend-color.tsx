@@ -7,7 +7,7 @@ const MINCOLORCOMPONENT: number = 0;
 export class RecommendColor {
     private _sentence: string;
 
-    constructor(fore: string, back: string, contrast: number) {
+    public getRecommendColor(fore: string, back: string, contrast: number) {
         this._sentence = this.recommend(this.hexToRGB(fore), this.hexToRGB(back), contrast);
     }
 

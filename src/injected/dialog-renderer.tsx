@@ -7,6 +7,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { getPlatform } from '../common/platform';
@@ -74,6 +75,7 @@ export class DialogRenderer {
             );
 
             const fixInstructionProcessor = new FixInstructionProcessor();
+            const recommendColor = new RecommendColor();
 
             const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
                 IssueFilingUrlStringUtils.getSelectorLastPart,
@@ -82,6 +84,7 @@ export class DialogRenderer {
             const deps: LayeredDetailsDialogDeps = {
                 axeResultToIssueFilingDataConverter,
                 fixInstructionProcessor,
+                recommendColor,
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 navigatorUtils: this.navigatorUtils,
