@@ -185,12 +185,16 @@ jobs:
     - run: yarn install --frozen-lockfile --prefer-offline
       timeout-minutes: 10
 
-    - run: yarn build
+    - run: yarn build:prod
       timeout-minutes: 5
 
     - name: yarn test:e2e
       run: |
         xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+      env:
+        # If you need to debug Playwright/Chromium, using pw:* instead may help
+        DEBUG: pw:api
+        WEB_E2E_TARGET: 'production'
       timeout-minutes: 10
 
     - name: upload artifact e2e-web-tests-results
