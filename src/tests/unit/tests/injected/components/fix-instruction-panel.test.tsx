@@ -13,7 +13,6 @@ import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 describe('FixInstructionPanelTests', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
-    let recommendColorMock: IMock<RecommendColor>;
     let recommendation: RecommendColor;
 
     beforeEach(() => {
@@ -21,7 +20,6 @@ describe('FixInstructionPanelTests', () => {
             undefined,
             MockBehavior.Strict,
         );
-        recommendColorMock = Mock.ofType<RecommendColor>(undefined, MockBehavior.Strict);
         fixInstructionProcessorMock
             .setup(processor => processor.process(It.isAnyString(), recommendation))
             .returns(instruction => <>{instruction}</>);
@@ -47,7 +45,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
-                recommendColor: recommendColorMock.object,
+                recommendColor: recommendation,
             },
         };
 
@@ -71,7 +69,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
-                recommendColor: recommendColorMock.object,
+                recommendColor: recommendation,
             },
         };
 
@@ -100,7 +98,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
-                recommendColor: recommendColorMock.object,
+                recommendColor: recommendation,
             },
         };
 
@@ -118,7 +116,7 @@ describe('FixInstructionPanelTests', () => {
             renderTitleElement: renderTitleAsDiv,
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
-                recommendColor: recommendColorMock.object,
+                recommendColor: recommendation,
             },
         };
 
