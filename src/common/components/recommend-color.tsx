@@ -166,6 +166,6 @@ export class RecommendColor {
             ' to meet a contrast ratio of ' + 
             contrast + 
             ':1.';
-        return sentence
+        return sentence;
     }
 }

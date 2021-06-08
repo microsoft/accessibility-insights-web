@@ -185,6 +185,9 @@ export class FixInstructionProcessor {
                 insertionIndex = 0;
             } else {
                 insertionIndex = match.splitIndex - this.foregroundRecommendedColorText.length - match.colorHexValue.length - 1;
+                if(i > 2){
+                    insertionIndex -= 3;
+                }
             }
             let colorEndIndex = match.splitIndex - match.colorHexValue.length;
             const beforeColorBox = fixInstruction.substring(insertionIndex, colorEndIndex);
@@ -195,14 +198,14 @@ export class FixInstructionProcessor {
             insertionIndex = colorEndIndex;
             let endSubstring = "";
             if (i === 1) {
-                endSubstring = fixInstruction.substring(insertionIndex, fixInstruction.indexOf(this.contrastRatioText) + this.contrastRatioText.length + 5);
+                endSubstring = fixInstruction.substring(insertionIndex, fixInstruction.indexOf(this.contrastRatioText) + this.contrastRatioText.length + 6);
                 result.push(
                     <span key={`instruction-split-${keyIndex++}`}>                        
                         {this.addBulletPoint(keyIndex, beforeColorBox, match, middleSubstring, sortedMatches, i, endSubstring)}
                     </span>
                 )
             } else {
-                colorEndIndex = sortedMatches[i].splitIndex + this.colorValueMatcher.length + this.recommendEndSentence.length;
+                colorEndIndex = sortedMatches[i].splitIndex + this.recommendEndSentence.length;
                 endSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);         
                 result.push(
                     <span key={`instruction-split-${keyIndex++}`}>
