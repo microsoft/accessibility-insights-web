@@ -150,7 +150,7 @@
         "pkg": "^5.2.1",
         "playwright": "^1.11.1",
         "preprocess": "^3.2.0",
-        "prettier": "^2.3.0",
+        "prettier": "^2.3.1",
         "react-devtools": "^4.13.5",
         "regenerator-runtime": "^0.13.7",
         "sass": "^1.34.1",
