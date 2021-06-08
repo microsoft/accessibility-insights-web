@@ -2,7 +2,7 @@
 
 exports[`Recommend Color Black on black recommendation 1`] = `" "`;
 
-exports[`Recommend Color Large Font Recommendation 1`] = `"   Use background color: #8d8d8d and the original foreground color: #000000 to meet a contrast ratio of 3.21:1."`;
+exports[`Recommend Color Large Font Recommendation 1`] = `" Use foreground color: #000001 and the original background color: #f55266 to meet a contrast ratio of 3.00:1. Or use background color: #f55266 and the original foreground color: #000001 to meet a contrast ratio of 3.19:1."`;
 
 exports[`Recommend Color Normal Font Recommendation 1`] = `" Use foreground color: #ffffff and the original background color: #1f7995 to meet a contrast ratio of 4.53:1. Or use background color: #1f7995 and the original foreground color: #ffffff to meet a contrast ratio of 4.93:1."`;
 

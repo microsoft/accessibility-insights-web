@@ -47,8 +47,6 @@ export class RecommendColor {
                 color[i] = Math.floor(component * num);
             } else if (shade) {
                 color[i] = MAXCOLORCOMPONENT;
-            } else {
-                color[i] = MINCOLORCOMPONENT;
             }
         }
 
