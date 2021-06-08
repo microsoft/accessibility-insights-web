@@ -37,6 +37,97 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
 </React.Fragment>
 `;
 
+exports[`FixInstructionProcessor background and foreground on the message (mind the order) 2`] = `
+<React.Fragment>
+  <span
+    aria-hidden="true"
+  >
+    <span>
+      <span>
+        Element has insufficient color contrast of 2.52 (background color: 
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#21809d",
+            }
+          }
+        />
+        #21809d, foreground color: 
+        <span
+          className="fixInstructionColorBox"
+          style={
+            Object {
+              "backgroundColor": "#fcfcfc",
+            }
+          }
+        />
+        #fcfcfc, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
+      </span>
+    </span>
+    <span>
+      <ul>
+        <li>
+          <span>
+             Use foreground color: 
+            <span
+              className="fixInstructionColorBox"
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                }
+              }
+            />
+            #ffffff and the original background color: 
+            <span
+              className="fixInstructionColorBox"
+              style={
+                Object {
+                  "backgroundColor": "#1f7995",
+                }
+              }
+            />
+            #1f7995 to meet a contrast ratio of 4.53:1.
+          </span>
+        </li>
+      </ul>
+    </span>
+    <span>
+      <ul>
+        <li>
+          <span>
+             Or use background color: 
+            <span
+              className="fixInstructionColorBox"
+              style={
+                Object {
+                  "backgroundColor": "#1f7995",
+                }
+              }
+            />
+            #1f7995 and the original foreground color: 
+            <span
+              className="fixInstructionColorBox"
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                }
+              }
+            />
+            #ffffff to meet a contrast ratio of 4.84:1.
+          </span>
+        </li>
+      </ul>
+    </span>
+  </span>
+  <span
+    className="screenReaderOnly"
+  >
+    Element has insufficient color contrast of 2.52 (background color: #21809d, foreground color: #fcfcfc, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1. Use foreground color: #ffffff and the original background color: #1f7995 to meet a contrast ratio of 4.53:1. Or use background color: #1f7995 and the original foreground color: #ffffff to meet a contrast ratio of 4.84:1.
+  </span>
+</React.Fragment>
+`;
+
 exports[`FixInstructionProcessor background color on the message 1`] = `
 <React.Fragment>
   <span

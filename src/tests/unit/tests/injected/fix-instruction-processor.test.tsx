@@ -74,4 +74,14 @@ describe('FixInstructionProcessor', () => {
 
         expect(result).toMatchSnapshot();
     });
+
+    test('background and foreground on the message (mind the order)', () => {
+        const fixInstruction =
+            'Element has insufficient color contrast of 2.52 (background color: #21809d, foreground color: #fcfcfc, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1';
+
+        const recommendColor: RecommendColor = new RecommendColor();
+        const result = testSubject.process(fixInstruction, recommendColor);
+
+        expect(result).toMatchSnapshot();
+    });
 });

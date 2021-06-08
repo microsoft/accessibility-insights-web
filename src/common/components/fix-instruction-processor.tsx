@@ -112,9 +112,9 @@ export class FixInstructionProcessor {
 
         const match = colorRegex.exec(fixInstruction);
 
-        if (match == null || match[1] == null) {
-            return null;
-        }
+        //if (match == null || match[1] == null) {
+        //    return null;
+        //}
 
         const colorHexValue = match[1];
 
