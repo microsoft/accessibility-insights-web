@@ -25,7 +25,7 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
             }
           }
         />
-        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
       </span>
     </span>
   </span>
@@ -75,7 +75,7 @@ exports[`FixInstructionProcessor foreground and background color on the message 
             }
           }
         />
-        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1.
       </span>
     </span>
   </span>
@@ -131,7 +131,7 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
             }
           }
         />
-        , second foreground: #000000, first background color: 
+         second foreground: #000000, first background color: 
       </span>
     </span>
   </span>
