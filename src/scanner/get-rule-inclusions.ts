@@ -26,7 +26,7 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
     },
     'label-content-name-mismatch': {
         status: 'included',
-        reason: 'for parity with video-caption, which axe-core includes by default',
+        reason: 'to include in Needs Review since its an experimental rule',
     },
 };
 

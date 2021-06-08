@@ -186,7 +186,7 @@ Object {
     "status": "included",
   },
   "label-content-name-mismatch": Object {
-    "reason": "for parity with video-caption, which axe-core includes by default",
+    "reason": "to include in Needs Review since its an experimental rule",
     "status": "included",
   },
   "label-title-only": Object {
