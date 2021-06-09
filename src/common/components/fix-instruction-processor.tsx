@@ -65,7 +65,10 @@ export class FixInstructionProcessor {
             );
             contrastRatio = parseFloat(contrastIndex.substring(0, contrastIndex.indexOf(':')));
         }
-        if(recommendation.sentence === undefined){
+        
+        if(recommendation.sentence === 'Color suggestion text'){
+            return fixInstruction;
+        } else {
             fixInstruction +=
                 recommendation.getRecommendColor(
                     matches[0].colorHexValue,

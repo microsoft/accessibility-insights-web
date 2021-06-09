@@ -76,6 +76,8 @@ export class RecommendColor {
     }
 
     private recommend(fore: number[], back: number[], colorContrast: number) {
+        const foreOriginal = this.rgbToHex(fore[0], fore[1], fore[2]);
+        const backOriginal = this.rgbToHex(back[0], back[1], back[2]);
         let lighter: number, darker: number, contrast: number;
         let foreLum = this.getLuminance(fore);
         let backLum = this.getLuminance(back);
@@ -100,9 +102,6 @@ export class RecommendColor {
         let sentence: string = ' ',
             foreRec: string,
             backRec: string;
-
-        const foreOriginal = this.rgbToHex(fore[0], fore[1], fore[2]);
-        const backOriginal = this.rgbToHex(back[0], back[1], back[2]);
         
         if (lighter === foreLum) {
             if (recommendLightened[1] > colorContrast) {
