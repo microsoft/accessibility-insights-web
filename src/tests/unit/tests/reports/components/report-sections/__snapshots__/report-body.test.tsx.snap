@@ -70,6 +70,7 @@ exports[`ReportBody renders 1`] = `
         "foregroundRecommendedColorText": "Use foreground color: ",
         "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
         "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "originalMiddleSentence": " and the original foreground color: ",
         "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
       }
     }
@@ -77,6 +78,11 @@ exports[`ReportBody renders 1`] = `
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
+    recommendColor={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      }
+    }
     scanMetadata={
       Object {
         "targetAppInfo": Object {
@@ -222,6 +228,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -229,6 +236,11 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      recommendColor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        }
+      }
       scanMetadata={
         Object {
           "targetAppInfo": Object {
@@ -372,6 +384,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -379,6 +392,11 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      recommendColor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        }
+      }
       scanMetadata={
         Object {
           "targetAppInfo": Object {
@@ -522,6 +540,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -529,6 +548,11 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      recommendColor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        }
+      }
       scanMetadata={
         Object {
           "targetAppInfo": Object {
@@ -672,6 +696,7 @@ exports[`ReportBody renders 1`] = `
             "foregroundRecommendedColorText": "Use foreground color: ",
             "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "originalMiddleSentence": " and the original foreground color: ",
             "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
           }
         }
@@ -679,6 +704,11 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
+        recommendColor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          }
+        }
         scanMetadata={
           Object {
             "targetAppInfo": Object {
@@ -822,6 +852,7 @@ exports[`ReportBody renders 1`] = `
             "foregroundRecommendedColorText": "Use foreground color: ",
             "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "originalMiddleSentence": " and the original foreground color: ",
             "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
           }
         }
@@ -829,6 +860,11 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
+        recommendColor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          }
+        }
         scanMetadata={
           Object {
             "targetAppInfo": Object {
@@ -972,6 +1008,7 @@ exports[`ReportBody renders 1`] = `
             "foregroundRecommendedColorText": "Use foreground color: ",
             "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
             "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "originalMiddleSentence": " and the original foreground color: ",
             "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
           }
         }
@@ -979,6 +1016,11 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
+        recommendColor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          }
+        }
         scanMetadata={
           Object {
             "targetAppInfo": Object {
@@ -1125,6 +1167,7 @@ exports[`ReportBody renders 1`] = `
           "foregroundRecommendedColorText": "Use foreground color: ",
           "foregroundRecommendedRegExp": /Use foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
           "foregroundRegExp": /foreground color: \\(#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "originalMiddleSentence": " and the original foreground color: ",
           "recommendEndSentence": " to meet a contrast ratio of #.##:1.",
         }
       }
@@ -1132,6 +1175,11 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      recommendColor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        }
+      }
       scanMetadata={
         Object {
           "targetAppInfo": Object {

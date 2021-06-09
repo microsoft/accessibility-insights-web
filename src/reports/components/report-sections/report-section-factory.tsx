@@ -10,6 +10,7 @@ import { CardsViewModel } from '../../../common/types/store-data/card-view-model
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
+import { RecommendColor } from 'common/components/recommend-color';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
     CommonInstancesSectionDeps &
@@ -18,6 +19,7 @@ export type SectionDeps = NotApplicableChecksSectionDeps &
 export type SectionProps = {
     deps: SectionDeps;
     fixInstructionProcessor: FixInstructionProcessor;
+    recommendColor: RecommendColor;
     description: string;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;

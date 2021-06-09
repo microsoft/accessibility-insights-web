@@ -7,8 +7,8 @@ const MINCOLORCOMPONENT: number = 0;
 export class RecommendColor {
     private _sentence: string;
 
-    constructor(fore: string, back: string, contrast: number) {
-        this._sentence = this.recommend(this.hexToRGB(fore), this.hexToRGB(back), contrast);
+    public getRecommendColor(fore: string, back: string, contrast: number): string {
+        return this._sentence = this.recommend(this.hexToRGB(fore), this.hexToRGB(back), contrast);
     }
 
     public get sentence(): string {
@@ -47,8 +47,6 @@ export class RecommendColor {
                 color[i] = Math.floor(component * num);
             } else if (shade) {
                 color[i] = MAXCOLORCOMPONENT;
-            } else {
-                color[i] = MINCOLORCOMPONENT;
             }
         }
 
@@ -78,6 +76,8 @@ export class RecommendColor {
     }
 
     private recommend(fore: number[], back: number[], colorContrast: number) {
+        const foreOriginal = this.rgbToHex(fore[0], fore[1], fore[2]);
+        const backOriginal = this.rgbToHex(back[0], back[1], back[2]);
         let lighter: number, darker: number, contrast: number;
         let foreLum = this.getLuminance(fore);
         let backLum = this.getLuminance(back);
@@ -99,10 +99,10 @@ export class RecommendColor {
         recommendLightened = this.recommendAColor(contrast, lightened, darker, true, colorContrast);
         recommendDarkened = this.recommendAColor(contrast, darkened, lighter, false, colorContrast);
 
-        let sentence: string = '',
+        let sentence: string = ' ',
             foreRec: string,
             backRec: string;
-
+        
         if (lighter === foreLum) {
             if (recommendLightened[1] > colorContrast) {
                 foreRec = this.rgbToHex(
@@ -110,12 +110,7 @@ export class RecommendColor {
                     recommendLightened[0][1],
                     recommendLightened[0][2],
                 );
-                sentence =
-                    ' Use foreground color: ' +
-                    foreRec +
-                    ' to meet a contrast ratio of ' +
-                    recommendLightened[1].toFixed(2) +
-                    ':1.';
+                sentence = this.createSentence(foreRec, recommendLightened[1].toFixed(2), sentence, true, backOriginal);
             }
             if (recommendDarkened[1] > colorContrast) {
                 backRec = this.rgbToHex(
@@ -123,13 +118,7 @@ export class RecommendColor {
                     recommendDarkened[0][1],
                     recommendDarkened[0][2],
                 );
-                sentence =
-                    sentence +
-                    ' Use background color: ' +
-                    backRec +
-                    ' to meet a contrast ratio of ' +
-                    recommendDarkened[1].toFixed(2) +
-                    ':1.';
+                sentence += this.createSentence(backRec, recommendDarkened[1].toFixed(2), sentence, false, foreOriginal);
             }
         } else {
             if (recommendDarkened[1] > colorContrast) {
@@ -138,12 +127,7 @@ export class RecommendColor {
                     recommendDarkened[0][1],
                     recommendDarkened[0][2],
                 );
-                sentence =
-                    ' Use foreground color: ' +
-                    foreRec +
-                    ' to meet a contrast ratio of ' +
-                    recommendDarkened[1].toFixed(2) +
-                    ':1.';
+                sentence = this.createSentence(foreRec, recommendDarkened[1].toFixed(2), sentence, true, backOriginal);
             }
             if (recommendLightened[1] > colorContrast) {
                 backRec = this.rgbToHex(
@@ -151,16 +135,34 @@ export class RecommendColor {
                     recommendLightened[0][1],
                     recommendLightened[0][2],
                 );
-                sentence =
-                    sentence +
-                    ' Use background color: ' +
-                    backRec +
-                    ' to meet a contrast ratio of ' +
-                    recommendLightened[1].toFixed(2) +
-                    ':1.';
+                sentence += this.createSentence(backRec, recommendLightened[1].toFixed(2), sentence, false, foreOriginal);
             }
         }
+        return sentence;
+    }
 
+    private createSentence(rec: string, contrast: number, sentence: string, foreBack: boolean, original: string){
+        if(foreBack){
+            sentence = 
+                ' Use foreground color: ' + 
+                rec + 
+                ' and the original background color: ';
+        } else {
+            if (sentence === ' ') {
+                sentence += " Use";
+            } else {
+                sentence = " Or use";
+            }
+            sentence += 
+                ' background color: ' + 
+                rec + 
+                ' and the original foreground color: ';
+        }
+        sentence += 
+            original + 
+            ' to meet a contrast ratio of ' + 
+            contrast + 
+            ':1.';
         return sentence;
     }
 }
