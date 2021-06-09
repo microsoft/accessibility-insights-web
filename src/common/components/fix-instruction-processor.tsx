@@ -65,19 +65,18 @@ export class FixInstructionProcessor {
             );
             contrastRatio = parseFloat(contrastIndex.substring(0, contrastIndex.indexOf(':')));
         }
-        
-        if(recommendation.sentence === 'Color suggestion text'){
+
+        if (recommendation.sentence === 'Color suggestion text') {
             return fixInstruction;
         } else {
-            fixInstruction +=
-                recommendation.getRecommendColor(
-                    matches[0].colorHexValue,
-                    matches[1].colorHexValue,
-                    contrastRatio,
-                );
+            fixInstruction += recommendation.getRecommendColor(
+                matches[0].colorHexValue,
+                matches[1].colorHexValue,
+                contrastRatio,
+            );
             this.getRecommendedColorMatches(fixInstruction, matches);
         }
-        
+
         return fixInstruction;
     }
 
@@ -138,12 +137,12 @@ export class FixInstructionProcessor {
         };
     }
 
-    private getOriginalColorMatch(fixInstruction: string, match: ColorMatch): ColorMatch{
+    private getOriginalColorMatch(fixInstruction: string, match: ColorMatch): ColorMatch {
         const split = match.splitIndex + this.originalMiddleSentence.length;
         return {
-            splitIndex: split + match.colorHexValue.length, 
-            colorHexValue: fixInstruction.substring(split, split + match.colorHexValue.length)
-        }
+            splitIndex: split + match.colorHexValue.length,
+            colorHexValue: fixInstruction.substring(split, split + match.colorHexValue.length),
+        };
     }
 
     private splitFixInstruction(fixInstruction: string, matches: ColorMatch[]): JSX.Element {
@@ -182,13 +181,16 @@ export class FixInstructionProcessor {
         keyIndex: number,
     ) {
         for (let i: number = 0; i < sortedMatches.length; i++) {
-            
             let match: ColorMatch = sortedMatches[i];
-            if(i === 0){
+            if (i === 0) {
                 insertionIndex = 0;
             } else {
-                insertionIndex = match.splitIndex - this.foregroundRecommendedColorText.length - match.colorHexValue.length - 1;
-                if(i > 2){
+                insertionIndex =
+                    match.splitIndex -
+                    this.foregroundRecommendedColorText.length -
+                    match.colorHexValue.length -
+                    1;
+                if (i > 2) {
                     insertionIndex -= 3;
                 }
             }
@@ -199,31 +201,60 @@ export class FixInstructionProcessor {
             colorEndIndex = sortedMatches[i].splitIndex - match.colorHexValue.length;
             const middleSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);
             insertionIndex = colorEndIndex;
-            let endSubstring = "";
+            let endSubstring = '';
             if (i === 1) {
-                endSubstring = fixInstruction.substring(insertionIndex, fixInstruction.indexOf(this.contrastRatioText) + this.contrastRatioText.length + 6);
+                endSubstring = fixInstruction.substring(
+                    insertionIndex,
+                    fixInstruction.indexOf(this.contrastRatioText) +
+                        this.contrastRatioText.length +
+                        6,
+                );
                 result.push(
-                    <span key={`instruction-split-${keyIndex++}`}>                        
-                        {this.addBulletPoint(keyIndex, beforeColorBox, match, middleSubstring, sortedMatches, i, endSubstring)}
-                    </span>
-                )
+                    <span key={`instruction-split-${keyIndex++}`}>
+                        {this.addBulletPoint(
+                            keyIndex,
+                            beforeColorBox,
+                            match,
+                            middleSubstring,
+                            sortedMatches,
+                            i,
+                            endSubstring,
+                        )}
+                    </span>,
+                );
             } else {
                 colorEndIndex = sortedMatches[i].splitIndex + this.recommendEndSentence.length;
-                endSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);         
+                endSubstring = fixInstruction.substring(insertionIndex, colorEndIndex);
                 result.push(
                     <span key={`instruction-split-${keyIndex++}`}>
                         <ul key={`instruction-split-${keyIndex++}`}>
                             <li key={`instruction-split-${keyIndex++}`}>
-                                {this.addBulletPoint(keyIndex, beforeColorBox, match, middleSubstring, sortedMatches, i, endSubstring)}
+                                {this.addBulletPoint(
+                                    keyIndex,
+                                    beforeColorBox,
+                                    match,
+                                    middleSubstring,
+                                    sortedMatches,
+                                    i,
+                                    endSubstring,
+                                )}
                             </li>
                         </ul>
-                    </span>
+                    </span>,
                 );
             }
         }
     }
 
-    private addBulletPoint(keyIndex: number, beforeColorBox: string, match: ColorMatch, middleSubstring: string, sortedMatches: ColorMatch[], i: number, endSubstring: string): JSX.Element {
+    private addBulletPoint(
+        keyIndex: number,
+        beforeColorBox: string,
+        match: ColorMatch,
+        middleSubstring: string,
+        sortedMatches: ColorMatch[],
+        i: number,
+        endSubstring: string,
+    ): JSX.Element {
         return (
             <span key={`instruction-split-${keyIndex++}`}>
                 {beforeColorBox}

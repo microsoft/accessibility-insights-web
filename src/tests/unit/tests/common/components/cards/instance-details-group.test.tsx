@@ -24,7 +24,7 @@ describe('InstanceDetailsGroup', () => {
         const props: InstanceDetailsGroupProps = {
             deps: depsStub,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
-            recommendColor: recommendColorMock, 
+            recommendColor: recommendColorMock,
             rule: rule,
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
