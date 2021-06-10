@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RecommendColor } from 'common/components/recommend-color';
 import * as React from 'react';
 import * as styles from './cards/fix-instruction-color-box.scss';
-import { RecommendColor } from 'common/components/recommend-color';
 
 type ColorMatch = {
     splitIndex: number;
@@ -46,7 +46,7 @@ export class FixInstructionProcessor {
         fixInstruction += '.';
         const matches = this.getColorMatches(fixInstruction);
 
-        if (matches.length === 2) {
+        if (matches.length === 2 && fixInstruction != null) {
             fixInstruction = this.getColorRecommendation(fixInstruction, matches, recommendation);
         }
         return this.splitFixInstruction(fixInstruction, matches);
@@ -58,17 +58,16 @@ export class FixInstructionProcessor {
         recommendation: RecommendColor,
     ) {
         let contrastRatio: number = 4.5;
-        if (this.contrastRatioRegExp.exec(fixInstruction) !== null) {
-            const indexContrast: number = this.contrastRatioRegExp.exec(fixInstruction).index;
-            let contrastIndex = fixInstruction.substring(
+        const regularExpExpectation = this.contrastRatioRegExp.exec(fixInstruction);
+        if (regularExpExpectation != null) {
+            const indexContrast = regularExpExpectation.index;
+            const contrastIndex = fixInstruction.substring(
                 indexContrast + this.contrastRatioText.length,
             );
             contrastRatio = parseFloat(contrastIndex.substring(0, contrastIndex.indexOf(':')));
         }
 
-        if (recommendation.sentence === 'Color suggestion text') {
-            return fixInstruction;
-        } else {
+        if (recommendation.sentence !== 'Color suggestion text') {
             fixInstruction += recommendation.getRecommendColor(
                 matches[0].colorHexValue,
                 matches[1].colorHexValue,
@@ -114,9 +113,9 @@ export class FixInstructionProcessor {
 
         const match = colorRegex.exec(fixInstruction);
 
-        //if (match == null || match[1] == null) {
-        //    return null;
-        //}
+        if (match == null || match[1] == null) {
+            return null;
+        }
 
         const colorHexValue = match[1];
 
@@ -151,8 +150,8 @@ export class FixInstructionProcessor {
             return <>{fixInstruction}</>;
         }
 
-        let insertionIndex = 0;
-        let keyIndex = 0;
+        const insertionIndex = 0;
+        const keyIndex = 0;
 
         const result: JSX.Element[] = [];
         if (matches.length >= 2) {
@@ -181,7 +180,7 @@ export class FixInstructionProcessor {
         keyIndex: number,
     ) {
         for (let i: number = 0; i < sortedMatches.length; i++) {
-            let match: ColorMatch = sortedMatches[i];
+            const match: ColorMatch = sortedMatches[i];
             if (i === 0) {
                 insertionIndex = 0;
             } else {

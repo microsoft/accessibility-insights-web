@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CommonInstancesSectionDeps } from 'common/components/cards/common-instances-section-props';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
@@ -10,7 +11,6 @@ import { CardsViewModel } from '../../../common/types/store-data/card-view-model
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
-import { RecommendColor } from 'common/components/recommend-color';
 
 export type SectionDeps = NotApplicableChecksSectionDeps &
     CommonInstancesSectionDeps &

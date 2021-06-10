@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { RecommendColor } from 'common/components/recommend-color';
 import { NavigatorUtils } from 'common/navigator-utils';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FixInstructionProcessor } from '../common/components/fix-instruction-processor';
-import { RecommendColor } from 'common/components/recommend-color';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { getPlatform } from '../common/platform';
