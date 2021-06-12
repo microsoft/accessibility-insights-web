@@ -53,10 +53,6 @@ Object {
   "aria-roles": Object {
     "status": "included",
   },
-  "aria-text": Object {
-    "reason": "rule is tagged best-practice",
-    "status": "excluded",
-  },
   "aria-toggle-field-name": Object {
     "status": "included",
   },
@@ -122,10 +118,6 @@ Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
   },
-  "empty-table-header": Object {
-    "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
-    "status": "excluded",
-  },
   "focus-order-semantics": Object {
     "reason": "rule is tagged experimental",
     "status": "excluded",
@@ -133,9 +125,6 @@ Object {
   "form-field-multiple-labels": Object {
     "reason": "only reports needs-review results, but we haven't implemented needs-review content for it yet",
     "status": "excluded",
-  },
-  "frame-focusable-content": Object {
-    "status": "included",
   },
   "frame-tested": Object {
     "reason": "rule is tagged best-practice",
@@ -255,9 +244,6 @@ Object {
   "meta-viewport-large": Object {
     "reason": "rule is tagged best-practice",
     "status": "excluded",
-  },
-  "nested-interactive": Object {
-    "status": "included",
   },
   "no-autoplay-audio": Object {
     "reason": "rule is tagged experimental",

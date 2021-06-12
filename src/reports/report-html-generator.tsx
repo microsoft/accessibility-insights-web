@@ -5,6 +5,7 @@ import { FixInstructionProcessor } from 'common/components/fix-instruction-proce
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { RecommendColor } from 'common/components/recommend-color';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
@@ -27,6 +28,7 @@ export class ReportHtmlGenerator {
         private readonly utcDateConverter: (scanDate: Date) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
+        private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
     ) {}
 
@@ -42,6 +44,7 @@ export class ReportHtmlGenerator {
             description,
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
+                recommendColor: this.recommendColor,
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
@@ -54,6 +57,7 @@ export class ReportHtmlGenerator {
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
+            recommendColor: this.recommendColor,
             scanMetadata,
         } as SectionProps;
 

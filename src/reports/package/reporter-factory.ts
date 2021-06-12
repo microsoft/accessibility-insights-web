@@ -32,6 +32,7 @@ import { mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-link
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';
@@ -59,6 +60,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
 
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
+    const recommendColor = new RecommendColor();
 
     const toolData = createToolData(
         'axe-core',
@@ -83,6 +85,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         DateProvider.getUTCStringFromDate,
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,
+        recommendColor,
         getPropertyConfiguration,
     );
 
@@ -149,6 +152,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
     );
 
     const fixInstructionProcessor = new FixInstructionProcessor();
+    const recommendColor = new RecommendColor();
 
     const reportHtmlGenerator = new CombinedReportHtmlGenerator(
         CombinedReportSectionFactory,
@@ -158,6 +162,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         DateProvider.getTimeStringFromSeconds,
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,
+        recommendColor,
         getPropertyConfiguration,
     );
     const deps = {

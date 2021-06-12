@@ -8,7 +8,7 @@ exports[`IssueFilingButtonTest onclick: invalid settings, %s 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <testRenderer deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </Fragment>"
 `;
 
@@ -20,7 +20,7 @@ exports[`IssueFilingButtonTest onclick: valid settings, file bug and set %s to f
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </Fragment>"
 `;
 
@@ -32,7 +32,7 @@ exports[`IssueFilingButtonTest render: isSettingsValid: false 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </Fragment>"
 `;
 
@@ -44,6 +44,6 @@ exports[`IssueFilingButtonTest render: isSettingsValid: true 1`] = `
       File issue
     </div>
   </CustomizedDefaultButton>
-  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <testRenderer deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </Fragment>"
 `;

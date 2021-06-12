@@ -29,6 +29,7 @@ import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/car
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { RecommendColor } from 'common/components/recommend-color';
 import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
 import { DocumentManipulator } from 'common/document-manipulator';
@@ -224,19 +225,17 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider =
-            new AndroidFriendlyDeviceNameProvider();
+        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider = new AndroidFriendlyDeviceNameProvider();
         const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
         const adbWrapperHolder = new AdbWrapperHolder();
-        const serviceConfigFactory: ServiceConfiguratorFactory =
-            new PortCleaningServiceConfiguratorFactory(
-                new AndroidServiceConfiguratorFactory(
-                    apkLocator,
-                    getPortPromise,
-                    friendlyDeviceNameProvider,
-                ),
-                androidPortCleaner,
-            );
+        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
+            new AndroidServiceConfiguratorFactory(
+                apkLocator,
+                getPortPromise,
+                friendlyDeviceNameProvider,
+            ),
+            androidPortCleaner,
+        );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
@@ -466,6 +465,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         );
 
         const fixInstructionProcessor = new FixInstructionProcessor();
+        const recommendColor = new RecommendColor();
 
         const issueFilingController = new IssueFilingControllerImpl(
             shell.openExternal,
@@ -510,6 +510,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
             fixInstructionProcessor,
+            recommendColor,
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
@@ -540,6 +541,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             DateProvider.getUTCStringFromDate,
             GetGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor,
+            recommendColor,
             getPropertyConfiguration,
         );
 

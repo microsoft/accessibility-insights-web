@@ -13,6 +13,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { FileNameBuilder } from 'common/filename-builder';
@@ -317,6 +318,7 @@ if (tabId != null) {
             const reportNameGenerator = new WebReportNameGenerator();
 
             const fixInstructionProcessor = new FixInstructionProcessor();
+            const recommendColor = new RecommendColor();
 
             const reportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
@@ -325,6 +327,7 @@ if (tabId != null) {
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
+                recommendColor,
                 getPropertyConfiguration,
             );
 
@@ -428,6 +431,7 @@ if (tabId != null) {
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
+                recommendColor,
                 axeResultToIssueFilingDataConverter,
                 unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
