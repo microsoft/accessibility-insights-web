@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`handles children 1`] = `
+exports[` handles children 1`] = `
 <StyledTooltipHostBase
   calloutProps={
     Object {
@@ -25,7 +25,7 @@ exports[`handles children 1`] = `
 </StyledTooltipHostBase>
 `;
 
-exports[`renders with null tooltip content 1`] = `
+exports[` renders with null tooltip content 1`] = `
 <StyledTooltipHostBase
   calloutProps={
     Object {
@@ -47,7 +47,7 @@ exports[`renders with null tooltip content 1`] = `
 </StyledTooltipHostBase>
 `;
 
-exports[`renders with tooltip content 1`] = `
+exports[` renders with tooltip content 1`] = `
 <StyledTooltipHostBase
   calloutProps={
     Object {
