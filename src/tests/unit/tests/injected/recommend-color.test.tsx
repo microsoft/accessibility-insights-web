@@ -48,4 +48,12 @@ describe('Recommend Color', () => {
 
         expect(result).toMatchSnapshot();
     });
+
+    test('Incorrect Input', () => {
+        testSubject.getRecommendColor('color', 'color', 4.5);
+
+        const result = testSubject.sentence;
+
+        expect(result).toMatchSnapshot();
+    });
 });
