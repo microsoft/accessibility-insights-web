@@ -23,7 +23,10 @@ export class RecommendColor {
 
     private hexToRGB(hex: string): number[] {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
+        if (result != null) {
+            return [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)];
+        }
+        return [0, 0, 0];
     }
 
     private getLuminance(color: number[]): number {
@@ -185,10 +188,10 @@ export class RecommendColor {
         original: string,
     ) {
         if (foreBack) {
-            sentence = '. Use foreground color: ' + rec + ' and the original background color: ';
+            sentence = ' Use foreground color: ' + rec + ' and the original background color: ';
         } else {
             if (sentence === ' ') {
-                sentence += '. Use';
+                sentence += ' Use';
             } else {
                 sentence = ' Or use';
             }

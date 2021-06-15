@@ -28,8 +28,8 @@ import { allCardInteractionsSupported } from 'common/components/cards/card-inter
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { RecommendColor } from 'common/components/recommend-color';
+import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
 import { DocumentManipulator } from 'common/document-manipulator';
@@ -225,17 +225,19 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
-        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider = new AndroidFriendlyDeviceNameProvider();
+        const friendlyDeviceNameProvider: AndroidFriendlyDeviceNameProvider =
+            new AndroidFriendlyDeviceNameProvider();
         const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
         const adbWrapperHolder = new AdbWrapperHolder();
-        const serviceConfigFactory: ServiceConfiguratorFactory = new PortCleaningServiceConfiguratorFactory(
-            new AndroidServiceConfiguratorFactory(
-                apkLocator,
-                getPortPromise,
-                friendlyDeviceNameProvider,
-            ),
-            androidPortCleaner,
-        );
+        const serviceConfigFactory: ServiceConfiguratorFactory =
+            new PortCleaningServiceConfiguratorFactory(
+                new AndroidServiceConfiguratorFactory(
+                    apkLocator,
+                    getPortPromise,
+                    friendlyDeviceNameProvider,
+                ),
+                androidPortCleaner,
+            );
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(

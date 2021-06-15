@@ -4,8 +4,8 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
-import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { RecommendColor } from 'common/components/recommend-color';
+import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';

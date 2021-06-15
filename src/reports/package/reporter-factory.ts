@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
+import { RecommendColor } from 'common/components/recommend-color';
 import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
@@ -32,7 +33,6 @@ import { mapAxeTagsToGuidanceLinks } from 'scanner/map-axe-tags-to-guidance-link
 import { MessageDecorator } from 'scanner/message-decorator';
 import { ResultDecorator } from 'scanner/result-decorator';
 import { FixInstructionProcessor } from '../../common/components/fix-instruction-processor';
-import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from '../../common/configs/unified-result-property-configurations';
 import { DateProvider } from '../../common/date-provider';
 import { initializeFabricIcons } from '../../common/fabric-icons';

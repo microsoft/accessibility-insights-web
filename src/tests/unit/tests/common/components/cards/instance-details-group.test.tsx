@@ -6,8 +6,8 @@ import {
     InstanceDetailsGroupProps,
 } from 'common/components/cards/instance-details-group';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
-import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { RecommendColor } from 'common/components/recommend-color';
+import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
