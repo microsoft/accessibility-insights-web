@@ -6,7 +6,7 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { isEmpty } from 'lodash';
 
-export type TextGenerator = (unifiedResults: UnifiedResult[]) => string;
+export type TextGenerator = (unifiedResults: UnifiedResult[]) => string | null;
 
 export class NotificationTextCreator {
     constructor(private scanIncompleteWarningDetector: ScanIncompleteWarningDetector) {}

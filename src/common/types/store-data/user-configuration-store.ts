@@ -20,8 +20,8 @@ export interface UserConfigurationStoreData {
     // null if the path to adb is unknown
     adbLocation: string | null;
 
-    lastWindowState: WindowState;
-    lastWindowBounds: Rectangle;
+    lastWindowState: WindowState | null;
+    lastWindowBounds: Rectangle | null;
 }
 
 export interface IssueFilingServicePropertiesMap {
