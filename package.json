@@ -90,7 +90,7 @@
         "@electron/get": "^1.12.4",
         "@swc/core": "^1.2.60",
         "@types/applicationinsights-js": "^1.0.7",
-        "@types/chrome": "0.0.144",
+        "@types/chrome": "0.0.145",
         "@types/enzyme": "^3.10.8",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^26.0.23",
