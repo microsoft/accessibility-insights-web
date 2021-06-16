@@ -8,7 +8,7 @@ declare interface AxeResult {
 declare interface AxeRule {
     id: string;
     nodes: AxeNodeResult[];
-    description?: string;
+    description: string;
     help?: string;
 }
 

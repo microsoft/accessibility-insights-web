@@ -20,7 +20,7 @@ export class MessageDecorator {
             return;
         }
 
-        results.description = ruleConfiguration.rule.description;
+        results.description = ruleConfiguration.rule.description ?? 'No description is available';
         results.help = ruleConfiguration.rule.help;
 
         results.nodes.forEach(resultNode => {

@@ -3,7 +3,7 @@
 export interface AxeRule {
     id: string;
     nodes: AxeNodeResult[];
-    description?: string;
+    description: string;
     helpUrl?: string;
     help?: string;
     tags?: string[];
