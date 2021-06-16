@@ -27,14 +27,13 @@ export class BrowserPermissionsTracker {
     }
 
     private updatePermissionState = async (): Promise<void> => {
-        let permissionState: boolean;
+        let permissionState: boolean = false;
 
         try {
             permissionState = await this.browserAdapter.containsPermissions(
                 allUrlAndFilePermissions,
             );
         } catch (error) {
-            permissionState = false;
             this.logger.log(permissionsCheckErrorMessage);
         } finally {
             const message: Message = {
