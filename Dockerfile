@@ -5,7 +5,7 @@
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-FROM mcr.microsoft.com/playwright:v1.11.0-focal
+FROM mcr.microsoft.com/playwright:v1.12.2-focal
 
 USER root
 
