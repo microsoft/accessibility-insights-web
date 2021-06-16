@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CommonInstancesSectionDeps } from 'common/components/cards/common-instances-section-props';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { NamedFC } from 'common/react/named-fc';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -22,6 +23,7 @@ describe('ReportBody', () => {
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const recommendColorMock = Mock.ofType(RecommendColor);
         const toolData = {
             scanEngineProperties: {
                 name: 'engine-name',
@@ -38,6 +40,7 @@ describe('ReportBody', () => {
         const detailsProps: SectionProps = {
             deps: {} as CommonInstancesSectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
+            recommendColor: recommendColorMock.object,
             pageTitle,
             pageUrl,
             description: 'test description',
