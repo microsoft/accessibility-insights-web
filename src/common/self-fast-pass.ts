@@ -5,7 +5,7 @@ import { NeedsReviewAdHocVisualization } from 'ad-hoc-visualizations/needs-revie
 import { Analyzer, RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from '../injected/scanner-utils';
-import { ScanResults } from '../scanner/iruleresults';
+import { RuleConfiguration, ScanResults } from '../scanner/iruleresults';
 import { HTMLElementUtils } from './html-element-utils';
 import { Logger } from './logging/logger';
 
@@ -23,17 +23,18 @@ export interface LoggedNode {
     none: FormattedCheckResult[];
 }
 
-export type SelfValidatorAnalyzerDeps = {
+export type SelfFastPassAnalyzerDeps = {
     scannerUtils: ScannerUtils;
     htmlUtils: HTMLElementUtils;
     logger: Logger;
 };
 
-type ResultType = 'incomplete' | 'violations';
+export type ResultType = 'incomplete' | 'violations' | 'inapplicable' | 'passing';
+const allResultTypes: ResultType[] = ['incomplete', 'violations', 'inapplicable', 'passing'];
 
 class SelfFastPassAnalyzer implements Analyzer {
     constructor(
-        private readonly deps: SelfValidatorAnalyzerDeps,
+        private readonly deps: SelfFastPassAnalyzerDeps,
         private readonly config: RuleAnalyzerConfiguration,
         private readonly relevantResultTypes: ResultType[],
     ) {}
@@ -75,7 +76,7 @@ class SelfFastPassAnalyzer implements Analyzer {
 }
 
 class SelfFastPassAnalyzerProvider extends AnalyzerProvider {
-    constructor(private readonly deps: SelfValidatorAnalyzerDeps) {
+    constructor(private readonly deps: SelfFastPassAnalyzerDeps) {
         super(null, null, null, null, null, null, null, null, null, null, null);
     }
 
@@ -92,13 +93,15 @@ class SelfFastPassAnalyzerProvider extends AnalyzerProvider {
 
 export class SelfFastPass {
     private readonly analyzerProvider: AnalyzerProvider;
+    private readonly analyzerDeps: SelfFastPassAnalyzerDeps;
 
     constructor(scannerUtils: ScannerUtils, htmlUtils: HTMLElementUtils, logger: Logger) {
-        this.analyzerProvider = new SelfFastPassAnalyzerProvider({
+        this.analyzerDeps = {
             scannerUtils,
             htmlUtils,
             logger,
-        });
+        };
+        this.analyzerProvider = new SelfFastPassAnalyzerProvider(this.analyzerDeps);
     }
 
     public automatedChecks(): void {
@@ -107,6 +110,15 @@ export class SelfFastPass {
 
     public needsReview(): void {
         NeedsReviewAdHocVisualization.getAnalyzer(this.analyzerProvider).analyze();
+    }
+
+    public customScan(axeRuleIds: string[], relevantResultTypes?: ResultType[]): void {
+        const analyzer = new SelfFastPassAnalyzer(
+            this.analyzerDeps,
+            { rules: axeRuleIds } as RuleAnalyzerConfiguration,
+            relevantResultTypes ?? allResultTypes,
+        );
+        analyzer.analyze();
     }
 }
 

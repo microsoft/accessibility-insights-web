@@ -16,19 +16,21 @@ describe('SelfFastPass', () => {
 
     const failedSelectors: string[] = ['failed-div1', 'failed-div2'];
     const incompleteSelectors: string[] = ['incomplete-div1', 'incomplete-div2'];
-    const failedDomElements: DictionaryStringTo<string> = {
+    const domElements: DictionaryStringTo<string> = {
         [failedSelectors[0]]: failedSelectors[0] + 'element',
         [failedSelectors[1]]: failedSelectors[1] + 'element',
-    };
-    const incompleteDomElements: DictionaryStringTo<string> = {
         [incompleteSelectors[0]]: incompleteSelectors[0] + 'element',
         [incompleteSelectors[1]]: incompleteSelectors[1] + 'element',
     };
 
     beforeEach(() => {
         scannerUtilsMock = Mock.ofType(ScannerUtils, MockBehavior.Strict);
-        htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
+        htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         loggerMock = Mock.ofType<Logger>();
+
+        htmlElementUtilsMock
+            .setup(utils => utils.querySelector(It.isAnyString()))
+            .returns(selector => domElements[selector] as any);
 
         testObject = new SelfFastPass(
             scannerUtilsMock.object,
@@ -47,21 +49,14 @@ describe('SelfFastPass', () => {
             })
             .verifiable(Times.once());
 
-        failedSelectors.forEach(selector => {
-            htmlElementUtilsMock
-                .setup(utils => utils.querySelector(selector))
-                .returns(() => failedDomElements[selector] as any)
-                .verifiable(Times.once());
-        });
-
+        const expectedViolationLog = getExpectedLoggedResults(getViolationScanResult());
         loggerMock
-            .setup(logger => logger.log(It.isValue(getLoggedViolationScanResult())))
+            .setup(logger => logger.log(It.isValue(expectedViolationLog)))
             .verifiable(Times.once());
 
         testObject.automatedChecks();
 
         scannerUtilsMock.verifyAll();
-        htmlElementUtilsMock.verifyAll();
         loggerMock.verifyAll();
     });
 
@@ -87,30 +82,44 @@ describe('SelfFastPass', () => {
             })
             .verifiable(Times.once());
 
-        failedSelectors.forEach(selector => {
-            htmlElementUtilsMock
-                .setup(utils => utils.querySelector(selector))
-                .returns(() => failedDomElements[selector] as any)
-                .verifiable(Times.once());
-        });
-        incompleteSelectors.forEach(selector => {
-            htmlElementUtilsMock
-                .setup(utils => utils.querySelector(selector))
-                .returns(() => incompleteDomElements[selector] as any)
-                .verifiable(Times.once());
-        });
+        const expectedViolationLog = getExpectedLoggedResults(getViolationScanResult());
+        const expectedIncompleteLog = getExpectedLoggedResults(getIncompleteScanResult());
 
         loggerMock
-            .setup(logger => logger.log(It.isValue(getLoggedViolationScanResult())))
+            .setup(logger => logger.log(It.isValue(expectedViolationLog)))
             .verifiable(Times.once());
         loggerMock
-            .setup(logger => logger.log(It.isValue(getLoggedIncompleteScanResult())))
+            .setup(logger => logger.log(It.isValue(expectedIncompleteLog)))
             .verifiable(Times.once());
 
         testObject.needsReview();
 
         scannerUtilsMock.verifyAll();
-        htmlElementUtilsMock.verifyAll();
+        loggerMock.verifyAll();
+    });
+
+    test('customScan for violations of one rule', () => {
+        const selectedRuleId = 'rule0';
+        const expectedSelector = failedSelectors[0];
+
+        scannerUtilsMock
+            .setup(ksu => ksu.scan({ testsToRun: [selectedRuleId] }, It.isAny()))
+            .callback((rules, handleAxeResult) => {
+                const customResult = {
+                    violations: getStubScanResults([expectedSelector]),
+                } as ScanResults;
+                handleAxeResult(customResult);
+            })
+            .verifiable(Times.once());
+
+        const expectedLogOutput = getExpectedLoggedResults(getStubScanResults([expectedSelector]));
+        loggerMock
+            .setup(logger => logger.log(It.isValue(expectedLogOutput)))
+            .verifiable(Times.once());
+
+        testObject.customScan([selectedRuleId], ['violations']);
+
+        scannerUtilsMock.verifyAll();
         loggerMock.verifyAll();
     });
 
@@ -120,6 +129,14 @@ describe('SelfFastPass', () => {
             violations: getViolationScanResult(),
             incomplete: getIncompleteScanResult(),
         } as ScanResults;
+    }
+
+    function getViolationScanResult(): AxeRule[] {
+        return getStubScanResults(failedSelectors);
+    }
+
+    function getIncompleteScanResult(): AxeRule[] {
+        return getStubScanResults(incompleteSelectors);
     }
 
     function getPassScanResult(): AxeRule[] {
@@ -135,80 +152,30 @@ describe('SelfFastPass', () => {
         ] as AxeRule[];
     }
 
-    function getViolationScanResult(): AxeRule[] {
-        const violationRules: AxeRule[] = [];
-
-        failedSelectors.forEach((failedSelector, index) => {
-            violationRules.push({
-                id: 'failed-rule' + index,
-                help: 'help content',
-                nodes: [
-                    {
-                        target: [failedSelector],
-                        all: [],
-                        any: null,
-                        none: [],
-                        failureSummary: 'failure summary',
-                        html: 'html data',
-                    },
-                ],
-            } as AxeRule);
-        });
-
-        return violationRules;
+    function getStubScanResults(selectors: string[]) {
+        return selectors.map(
+            (selector, index) =>
+                ({
+                    id: 'rule' + index,
+                    help: 'help content',
+                    nodes: [
+                        {
+                            target: [selector],
+                            all: [],
+                            any: null,
+                            none: [],
+                            failureSummary: 'failure summary',
+                            html: 'html data',
+                        },
+                    ],
+                } as AxeRule),
+        );
     }
 
-    function getIncompleteScanResult(): AxeRule[] {
-        const incompleteRules: AxeRule[] = [];
-
-        incompleteSelectors.forEach((incompleteSelector, index) => {
-            incompleteRules.push({
-                id: 'incomplete-rule' + index,
-                help: 'help content',
-                nodes: [
-                    {
-                        target: [incompleteSelector],
-                        all: [],
-                        any: null,
-                        none: [],
-                        failureSummary: 'failure summary',
-                        html: 'html data',
-                    },
-                ],
-            } as AxeRule);
-        });
-
-        return incompleteRules;
-    }
-
-    function getLoggedViolationScanResult(): LoggedRule[] {
-        const violationRules = getViolationScanResult();
-        const loggedViolationRules: LoggedRule[] = [];
-
-        violationRules.forEach(rule => {
-            loggedViolationRules.push({
-                id: rule.id,
-                description: rule.description,
-                nodes: rule.nodes.map(node => {
-                    return {
-                        all: node.all,
-                        any: node.any,
-                        none: node.none,
-                        target: node.target,
-                        domElement: failedDomElements[node.target[0]] as any,
-                    } as LoggedNode;
-                }),
-            });
-        });
-
-        return loggedViolationRules;
-    }
-
-    function getLoggedIncompleteScanResult(): LoggedRule[] {
-        const incompleteRules = getIncompleteScanResult();
+    function getExpectedLoggedResults(rules: AxeRule[]): LoggedRule[] {
         const loggedIncompleteRules: LoggedRule[] = [];
 
-        incompleteRules.forEach(rule => {
+        for (const rule of rules) {
             loggedIncompleteRules.push({
                 id: rule.id,
                 description: rule.description,
@@ -218,11 +185,11 @@ describe('SelfFastPass', () => {
                         any: node.any,
                         none: node.none,
                         target: node.target,
-                        domElement: incompleteDomElements[node.target[0]] as any,
+                        domElement: domElements[node.target[0]] as any,
                     } as LoggedNode;
                 }),
             });
-        });
+        }
 
         return loggedIncompleteRules;
     }
