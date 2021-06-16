@@ -4,6 +4,7 @@ import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { Tab } from 'common/itab';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 
 export class LoadAssessmentHelper {
     constructor(
@@ -11,10 +12,12 @@ export class LoadAssessmentHelper {
         private readonly detailsViewActionMessageCreator: DetailsViewActionMessageCreator,
         private readonly fileReader: FileReader,
         private readonly document: Document,
+        private readonly loadAssessmentDataValidator: LoadAssessmentDataValidator,
     ) {}
 
     public getAssessmentForLoad(
         setAssessmentState: (versionedAssessmentData: VersionedAssessmentData) => void,
+        toggleInvalidLoadAssessmentDialog: () => void,
         toggleLoadAssessmentDialog: () => void,
         prevTargetPageData: Tab,
         newTargetPageId: number,
@@ -25,7 +28,23 @@ export class LoadAssessmentHelper {
 
         const onReaderLoad = (readerEvent: ProgressEvent<FileReader>) => {
             const content = readerEvent.target.result as string;
-            const parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
+            let parsedAssessmentData: VersionedAssessmentData;
+
+            try {
+                parsedAssessmentData = this.assessmentDataParser.parseAssessmentData(content);
+            } catch {
+                toggleInvalidLoadAssessmentDialog();
+                return;
+            }
+
+            const validationData =
+                this.loadAssessmentDataValidator.uploadedDataIsValid(parsedAssessmentData);
+
+            if (!validationData.dataIsValid) {
+                toggleInvalidLoadAssessmentDialog();
+                return;
+            }
+
             setAssessmentState(parsedAssessmentData);
 
             if (prevTargetPageData != null) {

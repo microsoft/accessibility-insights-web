@@ -284,9 +284,8 @@ export class AssessmentBuilder {
             key: assessment.storeDataKey,
             getAnalyzer: getAnalyzer,
             getIdentifier: getIdentifier,
-            visualizationInstanceProcessor: AssessmentBuilder.getVisualizationInstanceProcessor(
-                requirements,
-            ),
+            visualizationInstanceProcessor:
+                AssessmentBuilder.getVisualizationInstanceProcessor(requirements),
             getDrawer: getDrawer,
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),

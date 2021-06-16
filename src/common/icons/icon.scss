@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@use "sass:math";
+
 @mixin getCheckContainerStyle($height, $border-size: 1px) {
     position: relative;
     width: ($height - $border-size * 2);
@@ -12,10 +14,10 @@
 @mixin check-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
     // maxTickLength = iconSize - borderthickness - spacingBetweenCircleAndTick
     $maxTickLength: ($iconSize - $border-size * 2 - 2);
-    $check-height: ($maxTickLength / 2);
-    $bottom-value: (($maxTickLength - $check-height) /2 + 1);
+    $check-height: math.div($maxTickLength, 2);
+    $bottom-value: (math.div($maxTickLength - $check-height, 2) + 1);
     $left-value: ($bottom-value);
-    $check-line-thickness: (2/14 * $iconSize);
+    $check-line-thickness: (math.div(2, 14) * $iconSize);
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
@@ -27,13 +29,13 @@
 
 @mixin cross-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
     $true-icon-size: ($iconSize - $border-size * 2);
-    $width-value: (2/14 * $true-icon-size);
+    $width-value: (math.div(2, 14) * $true-icon-size);
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
-        $cross-line-height: (8/14 * $true-icon-size);
-        $bottom-value: (($true-icon-size - $cross-line-height) / 2);
-        $left-value: (($true-icon-size - $width-value) / 2);
+        $cross-line-height: (math.div(8, 14) * $true-icon-size);
+        $bottom-value: math.div($true-icon-size - $cross-line-height, 2);
+        $left-value: math.div($true-icon-size - $width-value, 2);
 
         svg circle {
             fill: $iconColor;
@@ -49,12 +51,12 @@
 
 @mixin inapplicable-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
     $true-icon-size: ($iconSize - $border-size * 2);
-    $width-value: (1/7 * $true-icon-size);
+    $width-value: (math.div(1, 7) * $true-icon-size);
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
-        $inapplicable-line-height: (4/7 * $true-icon-size);
-        $bottom-value: (($true-icon-size - $inapplicable-line-height) / 2);
-        $left-value: (($true-icon-size - $width-value) / 2);
+        $inapplicable-line-height: (math.div(4, 7) * $true-icon-size);
+        $bottom-value: math.div($true-icon-size - $inapplicable-line-height, 2);
+        $left-value: math.div($true-icon-size - $width-value, 2);
     }
 }

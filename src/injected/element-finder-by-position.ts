@@ -6,7 +6,6 @@ import {
     CommandMessageResponse,
 } from 'injected/frameCommunicators/respondable-command-message-communicator';
 import { BoundRectAccessor, ClientUtils } from './client-utils';
-import { ScannerUtils } from './scanner-utils';
 
 export interface ElementFinderByPositionMessage {
     x: number;
@@ -19,7 +18,7 @@ export class ElementFinderByPosition {
     constructor(
         private readonly frameMessenger: FrameMessenger,
         private readonly clientUtils: ClientUtils,
-        private readonly scannerUtils: ScannerUtils,
+        private readonly getUniqueSelector: (element: HTMLElement) => string,
         private readonly dom: Document,
     ) {}
 
@@ -46,7 +45,7 @@ export class ElementFinderByPosition {
             return { payload: path };
         }
 
-        path.push(this.scannerUtils.getUniqueSelector(element));
+        path.push(this.getUniqueSelector(element));
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe') {
             return { payload: path };

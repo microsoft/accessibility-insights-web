@@ -16,5 +16,5 @@ export type ActionBag<ActionT> = {
 // the type parameter of the Action corresponding to actionName.
 export type StateMachineActionCallback<
     ActionT extends ActionBag<ActionT>,
-    actionName extends keyof ActionT
+    actionName extends keyof ActionT,
 > = Parameters<ActionT[actionName]['addListener']>[0];

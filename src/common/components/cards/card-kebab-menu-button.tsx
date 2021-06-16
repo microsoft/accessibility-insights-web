@@ -185,9 +185,10 @@ export class CardKebabMenuButton extends React.Component<
         const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(
             userConfigurationStoreData.bugService,
         );
-        const selectedIssueFilingServiceData: IssueFilingServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
-            userConfigurationStoreData.bugServicePropertiesMap,
-        );
+        const selectedIssueFilingServiceData: IssueFilingServiceProperties =
+            selectedIssueFilingService.getSettingsFromStoreData(
+                userConfigurationStoreData.bugServicePropertiesMap,
+            );
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
             isOpen: this.state.showNeedsSettingsContent,

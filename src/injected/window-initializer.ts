@@ -12,6 +12,7 @@ import { BackchannelWindowMessageTranslator } from 'injected/frameCommunicators/
 import { BrowserBackchannelWindowMessagePoster } from 'injected/frameCommunicators/browser-backchannel-window-message-poster';
 import { FrameMessenger } from 'injected/frameCommunicators/frame-messenger';
 import { RespondableCommandMessageCommunicator } from 'injected/frameCommunicators/respondable-command-message-communicator';
+import { getUniqueSelector } from 'scanner/axe-utils';
 import * as UAParser from 'ua-parser-js';
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -21,7 +22,6 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
-import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
 import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
@@ -32,7 +32,6 @@ import { ElementFinderByPosition } from './element-finder-by-position';
 import { FrameUrlFinder } from './frame-url-finder';
 import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-axe-results-helper';
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
-import { ScannerUtils } from './scanner-utils';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
 import { TabStopsListener } from './tab-stops-listener';
@@ -40,6 +39,9 @@ import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-re
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
+
+// Required to initialize axe-core with our ruleset/branding
+import 'scanner/exposed-apis';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -53,7 +55,6 @@ export class WindowInitializer {
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
     protected clientUtils: ClientUtils;
-    protected scannerUtils: ScannerUtils;
     protected visualizationConfigurationFactory: VisualizationConfigurationFactory;
     protected frameMessenger: FrameMessenger;
     protected respondableCommandMessageCommunicator: RespondableCommandMessageCommunicator;
@@ -71,7 +72,6 @@ export class WindowInitializer {
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
         const logger = createDefaultLogger();
-        this.scannerUtils = new ScannerUtils(scan, logger);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
@@ -116,7 +116,8 @@ export class WindowInitializer {
             this.frameMessenger,
             this.windowUtils,
             htmlElementUtils,
-            this.scannerUtils,
+            getUniqueSelector,
+            document,
         );
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
@@ -166,7 +167,7 @@ export class WindowInitializer {
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameMessenger,
             this.clientUtils,
-            this.scannerUtils,
+            getUniqueSelector,
             document,
         );
         this.elementFinderByPosition.initialize();

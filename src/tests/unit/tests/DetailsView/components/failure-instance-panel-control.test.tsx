@@ -86,7 +86,8 @@ describe('FailureInstancePanelControlTest', () => {
         const flaggedComponent = wrapper.find(FlaggedComponent);
         const flaggedComponentProps = flaggedComponent.props();
         const failureInstancePanelDetails = flaggedComponentProps.enableJSXElement;
-        const failureInstancePanelDetailsProps = failureInstancePanelDetails.props as FailureInstancePanelDetailsProps;
+        const failureInstancePanelDetailsProps =
+            failureInstancePanelDetails.props as FailureInstancePanelDetailsProps;
         failureInstancePanelDetailsProps.onSelectorChange(eventStub, selector);
 
         expect(wrapper.state().currentInstance.path).toEqual(selector);
@@ -114,7 +115,8 @@ describe('FailureInstancePanelControlTest', () => {
         const flaggedComponent = wrapper.find(FlaggedComponent);
         const flaggedComponentProps = flaggedComponent.props();
         const failureInstancePanelDetails = flaggedComponentProps.enableJSXElement;
-        const failureInstancePanelDetailsProps = failureInstancePanelDetails.props as FailureInstancePanelDetailsProps;
+        const failureInstancePanelDetailsProps =
+            failureInstancePanelDetails.props as FailureInstancePanelDetailsProps;
         failureInstancePanelDetailsProps.onValidateSelector(eventStub);
 
         addPathForValidationMock.verifyAll();

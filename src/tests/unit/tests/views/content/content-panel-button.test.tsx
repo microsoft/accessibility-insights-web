@@ -16,7 +16,7 @@ describe('ContentPanelButton', () => {
 
     const deps = {
         contentProvider: ContentPage.provider(content),
-        contentActionMessageCreator: ({} as any) as ContentActionMessageCreator,
+        contentActionMessageCreator: {} as any as ContentActionMessageCreator,
     };
 
     it('renders from content', () => {

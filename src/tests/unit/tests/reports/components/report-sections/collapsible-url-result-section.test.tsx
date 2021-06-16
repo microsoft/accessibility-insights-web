@@ -11,9 +11,8 @@ import { It, Mock } from 'typemoq';
 
 describe('CollapsibleUrlResultSection', () => {
     it('renders', () => {
-        const collapsibleControlMock = Mock.ofType<
-            (props: CollapsibleComponentCardsProps) => JSX.Element
-        >();
+        const collapsibleControlMock =
+            Mock.ofType<(props: CollapsibleComponentCardsProps) => JSX.Element>();
         const containerId = 'container-id';
         const props: CollapsibleUrlResultSectionProps = {
             deps: {

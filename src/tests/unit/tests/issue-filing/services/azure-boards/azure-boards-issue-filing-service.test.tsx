@@ -10,7 +10,8 @@ import { AzureBoardsSettingsForm } from '../../../../../../issue-filing/services
 
 describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';
-    const issueDetailsLocationStub: AzureBoardsIssueDetailField = 'some location' as AzureBoardsIssueDetailField;
+    const issueDetailsLocationStub: AzureBoardsIssueDetailField =
+        'some location' as AzureBoardsIssueDetailField;
     const azureBoardsIssueFilingService = getAzureBoardsIssueFilingService(null);
 
     it('static properties', () => {

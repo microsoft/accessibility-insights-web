@@ -26,9 +26,8 @@ export interface PreviewFeaturesContainerProps {
 export const PreviewFeaturesContainer = NamedFC<PreviewFeaturesContainerProps>(
     'PreviewFeaturesContainer',
     props => {
-        const displayableFeatureFlags: DisplayableFeatureFlag[] = props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(
-            props.featureFlagData,
-        );
+        const displayableFeatureFlags: DisplayableFeatureFlag[] =
+            props.previewFeatureFlagsHandler.getDisplayableFeatureFlags(props.featureFlagData);
 
         if (displayableFeatureFlags.length === 0) {
             return (

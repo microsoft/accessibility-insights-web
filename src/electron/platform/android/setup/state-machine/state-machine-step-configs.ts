@@ -10,7 +10,7 @@ export type StateMachineStepConfig<
     StepIdT extends string,
     ActionT extends ActionBag<ActionT>,
     DepsT,
-    StoreCallbacksT
+    StoreCallbacksT,
 > = (
     stepTransition: (stepId: StepIdT) => void,
     deps: DepsT,
@@ -21,7 +21,7 @@ export type StateMachineStepConfigs<
     StepIdT extends string,
     ActionT extends ActionBag<ActionT>,
     DepsT,
-    StoreCallbacksT
+    StoreCallbacksT,
 > = {
     [stepId in StepIdT]: StateMachineStepConfig<StepIdT, ActionT, DepsT, StoreCallbacksT>;
 };
@@ -30,7 +30,7 @@ export const createStateMachineSteps = <
     StepIdT extends string,
     ActionT extends ActionBag<ActionT>,
     DepsT,
-    StoreCallbacksT
+    StoreCallbacksT,
 >(
     configs: StateMachineStepConfigs<StepIdT, ActionT, DepsT, StoreCallbacksT>,
     stepTransition: (stepId: StepIdT) => void,

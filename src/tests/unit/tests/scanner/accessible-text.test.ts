@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
-import { setAxeGlobalTreeTo } from '../../common/axe-internals';
+import { withAxeSetup } from 'scanner/axe-utils';
 
 describe('axe.commons.text.accessibleText examples', () => {
     let fixture;
@@ -19,8 +19,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
         const element1 = fixture.querySelector('#el1');
 
-        setAxeGlobalTreeTo(document.documentElement);
-        const accessibleText = Axe.commons.text.accessibleText(element1, false);
+        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(element1, false));
         expect(accessibleText).toBe('hello');
     });
 
@@ -33,8 +32,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
         const element2 = fixture.querySelector('#el2');
 
-        setAxeGlobalTreeTo(document.documentElement);
-        const accessibleText = Axe.commons.text.accessibleText(element2, false);
+        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(element2, false));
         expect(accessibleText).toBe('hello');
     });
 
@@ -46,9 +44,7 @@ describe('axe.commons.text.accessibleText examples', () => {
 
         const span = fixture.querySelector('#del_row2');
 
-        setAxeGlobalTreeTo(document.documentElement);
-
-        const accessibleText = Axe.commons.text.accessibleText(span, false);
+        const accessibleText = withAxeSetup(() => Axe.commons.text.accessibleText(span, false));
         expect(accessibleText).toBe('Delete HolidayLetter.pdf');
     });
 

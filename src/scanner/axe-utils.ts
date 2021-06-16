@@ -22,8 +22,8 @@ export function getOptionsFromCheck(checkId: string): any {
     return axe._audit.checks[checkId].options;
 }
 
-export function getAccessibleText(node: HTMLElement, isLabelledByContext: boolean): string {
-    return axe.commons.text.accessibleText(node, isLabelledByContext);
+export function getAccessibleText(node: HTMLElement): string {
+    return axe.commons.text.accessibleText(node);
 }
 
 export function getAccessibleDescription(node: HTMLElement): string {
@@ -87,7 +87,7 @@ export function getImageCodedAs(node: HTMLElement): ImageCodedAs | null {
         return 'Decorative';
     }
 
-    if (getAccessibleText(node, false) !== '' || isWhiteSpace(alt)) {
+    if (getAccessibleText(node) !== '' || isWhiteSpace(alt)) {
         return 'Meaningful';
     }
 
@@ -118,4 +118,19 @@ export function getImageType(node: HTMLElement): string | null {
     }
 
     return imageType;
+}
+
+// This will throw if called concurrently with an axe-core scan
+export function withAxeSetup(operation: Function, rootElement?: HTMLElement) {
+    axe.setup(rootElement ?? document.documentElement);
+    try {
+        return operation();
+    } finally {
+        axe.teardown();
+    }
+}
+
+// This will throw if called concurrently with an axe-core scan
+export function getUniqueSelector(element: HTMLElement): string {
+    return withAxeSetup(() => axe.utils.getSelector(element));
 }

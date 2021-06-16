@@ -23,7 +23,7 @@ describe('RootContainer', () => {
         storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(BaseClientStoresHub);
 
         deps = { storesHub: storeHubMock.object } as RootContainerDeps;
-        props = ({
+        props = {
             deps,
             storeState: {
                 windowStateStoreData: {
@@ -43,7 +43,7 @@ describe('RootContainer', () => {
                     rules: {},
                 },
             },
-        } as unknown) as RootContainerProps;
+        } as unknown as RootContainerProps;
     });
 
     describe('renders', () => {

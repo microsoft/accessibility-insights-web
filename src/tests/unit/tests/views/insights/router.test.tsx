@@ -7,7 +7,7 @@ import { StaticRouter } from 'react-router';
 import { RouterDeps, RouterSwitch } from 'views/insights/router';
 
 describe('router', () => {
-    const deps = ('DEPS' as Partial<RouterDeps>) as RouterDeps;
+    const deps = 'DEPS' as Partial<RouterDeps> as RouterDeps;
     const context = {};
 
     it('renders content page', () => {

@@ -26,9 +26,8 @@ export class TelemetryEventHandler {
         const telemetryInfo: any = payload.telemetry;
         this.addBasicDataToTelemetry(telemetryInfo);
 
-        const flattenTelemetryInfo: DictionaryStringTo<string> = this.flattenTelemetryInfo(
-            telemetryInfo,
-        );
+        const flattenTelemetryInfo: DictionaryStringTo<string> =
+            this.flattenTelemetryInfo(telemetryInfo);
         this.telemetryClient.trackEvent(eventName, flattenTelemetryInfo);
     }
 

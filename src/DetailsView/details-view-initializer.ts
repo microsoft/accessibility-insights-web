@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -12,6 +13,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { FileNameBuilder } from 'common/filename-builder';
@@ -22,10 +24,12 @@ import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
@@ -314,6 +318,7 @@ if (tabId != null) {
             const reportNameGenerator = new WebReportNameGenerator();
 
             const fixInstructionProcessor = new FixInstructionProcessor();
+            const recommendColor = new RecommendColor();
 
             const reportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
@@ -322,6 +327,7 @@ if (tabId != null) {
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
+                recommendColor,
                 getPropertyConfiguration,
             );
 
@@ -397,7 +403,8 @@ if (tabId != null) {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
-            const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
+            const unifiedResultToIssueFilingDataConverter =
+                new UnifiedResultToIssueFilingDataConverter();
 
             const documentManipulator = new DocumentManipulator(document);
 
@@ -405,16 +412,26 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
+            const ajv = new Ajv();
+
+            const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
+                ajv,
+                Assessments,
+                featureFlagStore.getState() as FeatureFlagStoreData,
+            );
+
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
                 detailsViewActionMessageCreator,
                 fileReader,
                 document,
+                loadAssessmentDataValidator,
             );
 
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
+                recommendColor,
                 axeResultToIssueFilingDataConverter,
                 unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
@@ -432,8 +449,10 @@ if (tabId != null) {
                 assessmentDataParser,
                 fileNameBuilder,
                 loadAssessmentHelper,
-                getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
-                getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
+                getAssessmentSummaryModelFromProviderAndStoreData:
+                    getAssessmentSummaryModelFromProviderAndStoreData,
+                getAssessmentSummaryModelFromProviderAndStatusData:
+                    getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
                 getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration,
                 navLinkHandler: new NavLinkHandler(detailsViewActionMessageCreator),

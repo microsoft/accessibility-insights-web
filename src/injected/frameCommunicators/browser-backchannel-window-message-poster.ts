@@ -38,10 +38,8 @@ export class BrowserBackchannelWindowMessagePoster implements WindowMessagePoste
     }
 
     public postMessage(win: Window, message: any): void {
-        const {
-            windowMessageMetadata: windowMessage,
-            backchannelMessage,
-        } = this.backchannelWindowMessageTranslator.splitWindowMessage(message);
+        const { windowMessageMetadata: windowMessage, backchannelMessage } =
+            this.backchannelWindowMessageTranslator.splitWindowMessage(message);
 
         this.browserAdapter.sendRuntimeMessage(backchannelMessage);
         this.windowUtils.postMessage(win, windowMessage, '*');
@@ -63,9 +61,10 @@ export class BrowserBackchannelWindowMessagePoster implements WindowMessagePoste
         // window.addEventListener
         const windowSource = windowMessageEvent.source as Window;
 
-        const backchannelRetrieveMessage = this.backchannelWindowMessageTranslator.tryCreateBackchannelReceiveMessage(
-            windowMessageEvent.data,
-        );
+        const backchannelRetrieveMessage =
+            this.backchannelWindowMessageTranslator.tryCreateBackchannelReceiveMessage(
+                windowMessageEvent.data,
+            );
         if (backchannelRetrieveMessage == null) {
             return; // the window message wasn't ours, so we ignore it
         }
@@ -83,9 +82,10 @@ export class BrowserBackchannelWindowMessagePoster implements WindowMessagePoste
             }
         }
 
-        const responseMessage = this.backchannelWindowMessageTranslator.tryParseBackchannelRetrieveResponseMessage(
-            rawBackchannelResponse,
-        );
+        const responseMessage =
+            this.backchannelWindowMessageTranslator.tryParseBackchannelRetrieveResponseMessage(
+                rawBackchannelResponse,
+            );
         if (responseMessage !== null) {
             const synthesizedMessage = JSON.parse(responseMessage.stringifiedMessageData);
             this.listeners.forEach(listener => {

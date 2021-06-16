@@ -4,12 +4,13 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { VisualizationType } from 'common/types/visualization-type';
 import { includes, keys } from 'lodash';
 
 describe('AssessmentsProviderTest', () => {
-    const firstType = 45;
-    const secondType = 21;
-    const invalidType = 99;
+    const firstType = 45 as VisualizationType;
+    const secondType = 21 as VisualizationType;
+    const invalidType = 99 as VisualizationType;
     const firstKey = 'forty-five';
     const secondKey = 'twenty-one';
     const invalidKey = 'ninety-nine';

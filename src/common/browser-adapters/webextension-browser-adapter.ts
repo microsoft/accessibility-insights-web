@@ -15,7 +15,8 @@ import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
 export abstract class WebExtensionBrowserAdapter
-    implements BrowserAdapter, StorageAdapter, CommandsAdapter {
+    implements BrowserAdapter, StorageAdapter, CommandsAdapter
+{
     public abstract getManageExtensionUrl(): string;
 
     public getAllWindows(getInfo: Windows.GetAllGetInfoType): Promise<Windows.Window[]> {

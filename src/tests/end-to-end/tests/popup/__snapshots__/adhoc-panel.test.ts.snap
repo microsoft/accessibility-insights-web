@@ -45,6 +45,18 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
       <div
         class="insights-highlight-box"
         style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        title="Failed rules: frame-title"
+      >
+        <div
+          class="insights-highlight-text failure-label"
+          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+        >
+          !
+        </div>
+      </div>
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: html-has-lang"
       >
         <div
@@ -96,6 +108,18 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
     <div
       class="insights-container insights-highlight-container insights-heading"
     >
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        title=""
+      >
+        <div
+          class="insights-highlight-text text-label"
+          style="background: rgb(0, 102, 204); color: rgb(255, 255, 255); text-align: center !important;"
+        >
+          H1
+        </div>
+      </div>
       <div
         class="insights-highlight-box"
         style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"

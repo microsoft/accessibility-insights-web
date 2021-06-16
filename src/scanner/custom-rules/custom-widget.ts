@@ -55,7 +55,7 @@ function createSelector(): string {
 }
 
 function evaluateCustomWidget(node: HTMLElement): boolean {
-    const accessibleName = AxeUtils.getAccessibleText(node, false);
+    const accessibleName = AxeUtils.getAccessibleText(node);
     const role = node.getAttribute('role');
     const describedBy = AxeUtils.getAccessibleDescription(node);
     const htmlCues = generateHTMLCuesDictionary(node);

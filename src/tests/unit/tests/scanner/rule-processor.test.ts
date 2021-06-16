@@ -1,20 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AxeNodeResult, AxeRule, FormattedCheckResult } from '../../../../scanner/iruleresults';
-import { Processor } from '../../../../scanner/processor';
-import { DictionaryStringTo } from '../../../../types/common-types';
+import { AxeNodeResult, AxeRule, FormattedCheckResult } from 'scanner/iruleresults';
+import { RuleProcessor } from 'scanner/rule-processor';
+import { DictionaryStringTo } from 'types/common-types';
 
-describe('getDefaultAxeRules', () => {
+describe('RuleProcessor', () => {
     let suppressedChecks: DictionaryStringTo<FormattedCheckResult>;
     let nonSuppressedCheck: FormattedCheckResult;
+    let testSubject: RuleProcessor;
 
     beforeEach(() => {
-        Processor.suppressedMessages = [
+        testSubject = new RuleProcessor([
             'Required ARIA child role not present: listbox',
             'Required ARIA child role not present: textbox',
-        ].map(message => {
-            return message.toLowerCase().trim();
-        });
+        ]);
 
         suppressedChecks = {
             requiredChildrenListbox: {
@@ -65,7 +64,7 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule);
+        const actual = testSubject.suppressChecksByMessages(initialAxeRule);
 
         expect(actual).toEqual(expectedAxeRule);
     });
@@ -84,7 +83,7 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule);
+        const actual = testSubject.suppressChecksByMessages(initialAxeRule);
 
         expect(actual).toEqual(initialAxeRule);
     });
@@ -108,7 +107,7 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule, false);
+        const actual = testSubject.suppressChecksByMessages(initialAxeRule, false);
         expect(actual).toEqual(expectedAxeRule);
     });
 
@@ -138,7 +137,7 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule);
+        const actual = testSubject.suppressChecksByMessages(initialAxeRule);
         expect(actual).toEqual(expectedAxeRule);
     });
 
@@ -170,7 +169,7 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule);
+        const actual = testSubject.suppressChecksByMessages(initialAxeRule);
         expect(actual).toEqual(expectedAxeRule);
     });
 
@@ -189,7 +188,7 @@ describe('getDefaultAxeRules', () => {
             description: 'description',
         };
 
-        const actual = Processor.suppressChecksByMessages(initialAxeRule);
+        const actual = testSubject.suppressChecksByMessages(initialAxeRule);
         expect(actual).toBeNull();
     });
 });

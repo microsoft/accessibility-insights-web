@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Requirement } from 'assessments/types/requirement';
 import { ManualTestStepResult } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     RequirementTableSection,
     RequirementTableSectionProps,
@@ -43,7 +43,7 @@ describe('RequirementTableSection', () => {
         props = {
             assessmentNavState: {
                 selectedTestSubview: 'some test view',
-                selectedTestType: -1,
+                selectedTestType: -1 as VisualizationType,
             },
             manualRequirementResultMap: manualRequirementResultMapStub,
             assessmentInstanceTableHandler: assessmentInstanceTableHandlerStub,

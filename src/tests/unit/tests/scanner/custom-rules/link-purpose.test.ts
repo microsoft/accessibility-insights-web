@@ -39,7 +39,7 @@ describe('link purpose', () => {
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
-            getAccessibleTextMock.setup(m => m(It.isAny(), false)).returns(_ => 'accessible-text');
+            getAccessibleTextMock.setup(m => m(It.isAny())).returns(_ => 'accessible-text');
             getAccessibleDescriptionMock
                 .setup(m => m(It.isAny()))
                 .returns(_ => 'accessible-description');

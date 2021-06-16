@@ -12,7 +12,7 @@ import * as WebDriverIO from 'webdriverio';
 
 export function getSpectronAsyncClient(client: SpectronClient, browserWindow: SpectronWindow) {
     const typedAsyncClient: SpectronAsyncClient = {
-        browserWindow: (browserWindow as unknown) as SpectronAsyncWindow,
+        browserWindow: browserWindow as unknown as SpectronAsyncWindow,
         $: (selector: string) => client.$(selector),
         $$: (selector: string) => client.$$(selector),
         click: async (selector: string) => {

@@ -86,7 +86,8 @@ describe('TabContextFactoryTest', () => {
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
         mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
-        const visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();
+        const visualizationConfigurationFactoryMock =
+            Mock.ofType<VisualizationConfigurationFactory>();
         visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
             .returns(theType => getConfigs(theType));

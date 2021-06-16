@@ -13,7 +13,6 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
-    public static readonly saveAndLoadAssessment = 'saveAndLoadAssessment';
 }
 
 export interface FeatureFlagDetail {
@@ -96,14 +95,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
-            forceDefault: false,
-        },
-        {
-            id: FeatureFlags.saveAndLoadAssessment,
-            defaultValue: false,
-            displayableName: 'Save / Load Assessment',
-            displayableDescription: 'Enables saving and loading assessments.',
-            isPreviewFeature: false,
             forceDefault: false,
         },
     ];

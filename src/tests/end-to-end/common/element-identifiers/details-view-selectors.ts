@@ -6,6 +6,7 @@ import { instanceTableTextContentAutomationId } from 'DetailsView/components/ass
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
+import { invalidLoadAssessmentDialogOkButtonAutomationId } from 'DetailsView/components/invalid-load-assessment-dialog';
 import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-assessment-button';
 import { loadAssessmentDialogLoadButtonAutomationId } from 'DetailsView/components/load-assessment-dialog';
 import { overviewContainerAutomationId } from 'DetailsView/components/overview-content/overview-content-container';
@@ -79,6 +80,9 @@ export const overviewSelectors = {
         getAutomationIdSelector(testSummaryStatusAutomationId(testName)) + ' .outcome-chip',
     loadAssessmentDialogLoadButton: getAutomationIdSelector(
         loadAssessmentDialogLoadButtonAutomationId,
+    ),
+    invalidLoadAssessmentDialogOkButton: getAutomationIdSelector(
+        invalidLoadAssessmentDialogOkButtonAutomationId,
     ),
 };
 

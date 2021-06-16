@@ -24,29 +24,31 @@ export type UnifiedScanCompletedPayloadBuilder = (
     scanResults: AndroidScanResults,
 ) => UnifiedScanCompletedPayload;
 
-export const createBuilder = (
-    getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
-    getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
-    getPlatformData: ConvertScanResultsToPlatformDataDelegate,
-    ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGenerator,
-    getToolData: ToolDataDelegate,
-    friendlyNameProvider: AndroidFriendlyDeviceNameProvider,
-) => (scanResults: AndroidScanResults): UnifiedScanCompletedPayload => {
-    const payload: UnifiedScanCompletedPayload = {
-        scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
-        rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
-        platformInfo: getPlatformData(scanResults, friendlyNameProvider) ?? undefined,
-        toolInfo: getToolData(scanResults),
-        timestamp: scanResults.analysisTimestamp ?? undefined,
-        targetAppInfo: {
-            name: scanResults.appIdentifier ?? undefined,
-        },
-        scanIncompleteWarnings: [],
-        screenshotData: scanResults.screenshot ?? undefined,
+export const createBuilder =
+    (
+        getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
+        getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
+        getPlatformData: ConvertScanResultsToPlatformDataDelegate,
+        ruleInformationProvider: RuleInformationProviderType,
+        uuidGenerator: UUIDGenerator,
+        getToolData: ToolDataDelegate,
+        friendlyNameProvider: AndroidFriendlyDeviceNameProvider,
+    ) =>
+    (scanResults: AndroidScanResults): UnifiedScanCompletedPayload => {
+        const payload: UnifiedScanCompletedPayload = {
+            scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
+            rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
+            platformInfo: getPlatformData(scanResults, friendlyNameProvider) ?? undefined,
+            toolInfo: getToolData(scanResults),
+            timestamp: scanResults.analysisTimestamp ?? undefined,
+            targetAppInfo: {
+                name: scanResults.appIdentifier ?? undefined,
+            },
+            scanIncompleteWarnings: [],
+            screenshotData: scanResults.screenshot ?? undefined,
+        };
+        return payload;
     };
-    return payload;
-};
 
 export const createDefaultBuilder = (
     getToolData: ToolDataDelegate,
