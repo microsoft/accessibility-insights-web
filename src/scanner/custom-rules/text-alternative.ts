@@ -27,7 +27,7 @@ function matches(node: HTMLElement): boolean {
 }
 
 function evaluateTextAlternative(node: HTMLElement): boolean {
-    const accessibleName: string = AxeUtils.getAccessibleText(node, false);
+    const accessibleName: string = AxeUtils.getAccessibleText(node);
     const accessibleDescription: string = AxeUtils.getAccessibleDescription(node);
     const imageType: string | null = AxeUtils.getImageType(node);
     const role: string | null = node.getAttribute('role');

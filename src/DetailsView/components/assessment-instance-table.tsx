@@ -55,11 +55,12 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
             );
         }
 
-        const items: InstanceTableRow[] = this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
-            this.props.instancesMap,
-            this.props.assessmentNavState,
-            this.props.hasVisualHelper,
-        );
+        const items: InstanceTableRow[] =
+            this.props.assessmentInstanceTableHandler.createAssessmentInstanceTableItems(
+                this.props.instancesMap,
+                this.props.assessmentNavState,
+                this.props.hasVisualHelper,
+            );
 
         const columns: IColumn[] = this.props.assessmentInstanceTableHandler.getColumnConfigs(
             this.props.instancesMap,

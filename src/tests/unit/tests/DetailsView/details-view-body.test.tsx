@@ -52,15 +52,12 @@ describe('DetailsViewBody', () => {
         beforeEach(() => {
             setSideNavOpenMock = Mock.ofInstance(() => {});
             selectedTest = -1;
-            const RightPanelStub: Readonly<
-                ReactFCWithDisplayName<RightPanelProps>
-            > = NamedFC<RightPanelProps>('test', _ => null);
-            const CommandBarStub: Readonly<
-                ReactFCWithDisplayName<DetailsViewCommandBarProps>
-            > = NamedFC<DetailsViewCommandBarProps>('test', _ => null);
-            const LeftNavStub: Readonly<
-                ReactFCWithDisplayName<LeftNavProps>
-            > = NamedFC<LeftNavProps>('test', _ => null);
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<RightPanelProps>> =
+                NamedFC<RightPanelProps>('test', _ => null);
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewCommandBarProps>> =
+                NamedFC<DetailsViewCommandBarProps>('test', _ => null);
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<LeftNavProps>> =
+                NamedFC<LeftNavProps>('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;

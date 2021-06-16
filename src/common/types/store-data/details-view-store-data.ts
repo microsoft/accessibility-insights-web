@@ -6,6 +6,6 @@ import { CurrentPanel } from './current-panel';
 export interface DetailsViewStoreData {
     detailsViewRightContentPanel: DetailsViewRightContentPanelType;
     currentPanel: CurrentPanel;
-    contentPath: string;
-    contentTitle: string;
+    contentPath: string | null;
+    contentTitle: string | null;
 }

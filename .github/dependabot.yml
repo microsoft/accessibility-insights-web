@@ -93,3 +93,8 @@ updates:
   - dependency-name: "@types/react-dom"
     versions:
     - ">=17.0.0"
+    # electron-builder 22.10.5 broke our signed Mac builds. Temporarily
+    # pausing updates until we have a fix.
+  - dependency-name: electron-builder
+    versions:
+    - ">22.9.1"

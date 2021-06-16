@@ -38,9 +38,8 @@ describe('makeDetailsSection', () => {
     beforeEach(() => {
         toUtcStringMock = Mock.ofInstance(DateProvider.getUTCStringFromDate, MockBehavior.Strict);
         toUtcStringMock.setup(getter => getter(scanDate)).returns(() => '2018-03-12 11:24 PM UTC');
-        getDisplayedScanTargetInfoMock = Mock.ofType<
-            (scanMetadata: ScanMetadata) => ScanDetailInfo
-        >();
+        getDisplayedScanTargetInfoMock =
+            Mock.ofType<(scanMetadata: ScanMetadata) => ScanDetailInfo>();
         getDisplayedScanTargetInfoMock
             .setup(g => g(scanMetadata))
             .returns(() => displayedScanTargetInfo);

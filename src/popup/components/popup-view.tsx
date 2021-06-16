@@ -142,11 +142,12 @@ export class PopupView extends React.Component<PopupViewProps> {
     private renderLaunchPad(): JSX.Element {
         const { popupActionMessageCreator } = this.props.deps;
 
-        const rowConfigs: LaunchPadRowConfiguration[] = this.props.launchPadRowConfigurationFactory.createRowConfigs(
-            this,
-            popupActionMessageCreator,
-            this.props.popupHandlers.popupViewControllerHandler,
-        );
+        const rowConfigs: LaunchPadRowConfiguration[] =
+            this.props.launchPadRowConfigurationFactory.createRowConfigs(
+                this,
+                popupActionMessageCreator,
+                this.props.popupHandlers.popupViewControllerHandler,
+            );
 
         const onClickTutorialLink = event => popupActionMessageCreator.openTutorial(event);
 

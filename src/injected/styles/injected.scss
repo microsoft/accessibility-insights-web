@@ -66,12 +66,12 @@
         user-select: text;
         min-width: 520px;
         svg {
-            @media screen and (-ms-high-contrast: active) {
+            @media screen and (forced-colors: active) {
                 fill: inherit !important;
             }
         }
         path {
-            @media screen and (-ms-high-contrast: active) {
+            @media screen and (forced-colors: active) {
                 fill: inherit !important;
             }
         }
@@ -104,7 +104,7 @@
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
         fill: $primary-text !important;
 
-        @media screen and (-ms-high-contrast: active) {
+        @media screen and (forced-colors: active) {
             fill: inherit !important;
         }
     }
@@ -112,7 +112,7 @@
     .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
         fill: $neutral-30 !important;
 
-        @media screen and (-ms-high-contrast: active) {
+        @media screen and (forced-colors: active) {
             fill: inherit !important;
         }
     }
@@ -125,8 +125,20 @@
             fill: $neutral-100 !important;
             fill-opacity: 0.9 !important;
 
-            @media screen and (-ms-high-contrast: active) {
+            @media screen and (forced-colors) {
                 fill: inherit !important;
+            }
+        }
+    }
+
+    .insights-dialog-main-override .file-issue-button,
+    .insights-dialog-main-override .copy-issue-details-button,
+    .insights-dialog-main-override .insights-dialog-button-inspect {
+        svg path {
+            @media screen and (forced-colors) {
+                forced-color-adjust: none !important;
+                stroke: ButtonText !important;
+                fill: ButtonFace !important;
             }
         }
     }
@@ -137,6 +149,7 @@
 
     .insights-dialog-main-override .insights-dialog-inspect-disabled {
         margin-top: 4px !important;
+        margin-bottom: 8px !important;
         font-size: 12px !important;
         color: $negative-outcome !important;
         font-weight: $fontWeightSemiBold !important;
@@ -148,6 +161,13 @@
         font-size: 12px !important;
         color: $negative-outcome;
         font-weight: $fontWeightSemiBold;
+    }
+
+    .insights-dialog-main-override .copy-issue-details-button-help {
+        margin-top: 4px !important;
+        font-size: 12px !important;
+        color: $negative-outcome !important;
+        font-weight: $fontWeightSemiBold !important;
     }
 
     .insights-dialog-main-override {
@@ -245,6 +265,21 @@
         float: right !important;
         position: relative !important;
         text-align: center !important;
+    }
+
+    .insights-highlight-container .insights-highlight-box {
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            outline-color: Highlight !important;
+        }
+    }
+
+    .insights-highlight-container .insights-highlight-text {
+        @include ms-high-contrast-override {
+            forced-color-adjust: none;
+            color: HighlightText !important;
+            background-color: Highlight !important;
+        }
     }
 
     :host {

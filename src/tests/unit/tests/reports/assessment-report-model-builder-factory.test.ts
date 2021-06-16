@@ -14,7 +14,8 @@ describe('AssessmentReportModelBuilderFactory', () => {
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
         const targetAppInfo: TargetAppData = { stub: 'targetAppInfo' } as any;
         const reportDate = new Date(2018, 9, 19, 10, 53);
-        const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();
+        const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator =
+            new AssessmentDefaultMessageGenerator();
 
         const actual = testSubject.create(
             assessmentsProvider,

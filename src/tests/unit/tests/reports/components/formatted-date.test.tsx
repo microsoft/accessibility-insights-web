@@ -7,17 +7,17 @@ describe('FormattedDate', () => {
     describe('render', () => {
         test('end of last millennium', () => {
             const date = DateTime.fromISO('1999-12-31T23:59:59', { zone: 'utc' }).toJSDate();
-            testDate('en-us', date, '12/31/1999, 11:59:59 PM GMT');
+            testDate('en-us', date, '12/31/1999, 11:59:59 PM UTC');
         });
 
         test('start of this millennium', () => {
             const date = DateTime.fromISO('2000-01-01T00:00:00', { zone: 'utc' }).toJSDate();
-            testDate('en-us', date, '1/1/2000, 12:00:00 AM GMT');
+            testDate('en-us', date, '1/1/2000, 12:00:00 AM UTC');
         });
 
         (platformSupportsNonEnLocales() ? test : test.skip)('German format', () => {
             const date = DateTime.fromISO('1999-12-31T23:59:59', { zone: 'utc' }).toJSDate();
-            testDate('de', date, '31.12.1999, 23:59:59 GMT');
+            testDate('de', date, '31.12.1999, 23:59:59 UTC');
         });
 
         function testDate(lang: string, date: Date, expected: string): void {

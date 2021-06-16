@@ -18,7 +18,7 @@ export function evaluateCues(node: HTMLElement): boolean {
     // tslint:disable-next-line:no-invalid-this
     this.data({
         element: getNativeWidgetElementType(node),
-        accessibleName: AxeUtils.getAccessibleText(node, false),
+        accessibleName: AxeUtils.getAccessibleText(node),
         htmlCues: generateHTMLCuesDictionary(node),
         ariaCues: generateARIACuesDictionary(node),
     });

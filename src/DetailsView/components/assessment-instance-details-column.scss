@@ -31,7 +31,7 @@
 .instance-header {
     color: $primary-text;
     white-space: pre;
-    @media screen and (-ms-high-contrast: active) {
+    @media screen and (forced-colors: active) {
         color: inherit;
     }
 }
@@ -40,7 +40,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     color: $secondary-text;
-    @media screen and (-ms-high-contrast: active) {
+    @media screen and (forced-colors: active) {
         color: inherit;
     }
 }

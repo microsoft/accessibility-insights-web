@@ -59,6 +59,6 @@ describe('FastPassProvider', () => {
     });
 
     function createStubVisualizationType(name: string): VisualizationType {
-        return (`${name} visualization type` as unknown) as VisualizationType;
+        return `${name} visualization type` as unknown as VisualizationType;
     }
 });

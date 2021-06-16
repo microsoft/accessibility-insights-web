@@ -34,9 +34,8 @@ export class NotificationCreator {
         visualizationType: VisualizationType,
         warnings: ScanIncompleteWarningId[],
     ): void {
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(
-            visualizationType,
-        );
+        const configuration =
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const notificationMessage = configuration.getNotificationMessage(
             selectorMap,
             key,

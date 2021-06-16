@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Axe from 'axe-core';
-
-import { uniqueLandmarkConfiguration } from '../../../../../scanner/custom-rules/unique-landmark';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { uniqueLandmarkConfiguration } from 'scanner/custom-rules/unique-landmark';
 
 describe('unique-landmark', () => {
     let fixture: HTMLElement;
-    const axe = Axe as any;
 
     beforeEach(() => {
         fixture = document.createElement('div');
@@ -27,8 +25,8 @@ describe('unique-landmark', () => {
     it('should not match because not a landmark', () => {
         fixture.innerHTML = `<h1>header</h1>`;
         const node = fixture.querySelector(`h1`);
-        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
-        expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toBe(false);
+        const result = withAxeSetup(() => uniqueLandmarkConfiguration.rule.matches(node, null));
+        expect(result).toBe(false);
     });
 
     it('should pass because is a landmark', () => {
@@ -52,15 +50,19 @@ describe('unique-landmark', () => {
             it(`should match because it is a ${elementType} with a label`, () => {
                 fixture.innerHTML = `<${elementType} aria-label="sample label">some ${elementType}</${elementType}>`;
                 const node = fixture.querySelector(`${elementType}`);
-                axe._tree = axe.utils.getFlattenedTree(document.documentElement);
-                expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toEqual(true);
+                const result = withAxeSetup(() =>
+                    uniqueLandmarkConfiguration.rule.matches(node, null),
+                );
+                expect(result).toEqual(true);
             });
 
             it(`should not match because it is a ${elementType} without a label`, () => {
                 fixture.innerHTML = `<${elementType}>some ${elementType}</${elementType}>`;
                 const node = fixture.querySelector(`${elementType}`);
-                axe._tree = axe.utils.getFlattenedTree(document.documentElement);
-                expect(uniqueLandmarkConfiguration.rule.matches(node, null)).toEqual(false);
+                const result = withAxeSetup(() =>
+                    uniqueLandmarkConfiguration.rule.matches(node, null),
+                );
+                expect(result).toEqual(false);
             });
         });
     });

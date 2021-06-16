@@ -14,9 +14,8 @@ export class PortCleaningServiceConfiguratorFactory implements ServiceConfigurat
     ) {}
 
     public getServiceConfigurator = (adbWrapper: AdbWrapper): ServiceConfigurator => {
-        const serviceConfig: ServiceConfigurator = this.innerFactory.getServiceConfigurator(
-            adbWrapper,
-        );
+        const serviceConfig: ServiceConfigurator =
+            this.innerFactory.getServiceConfigurator(adbWrapper);
         const portCleaningServiceConfig = new PortCleaningServiceConfigurator(
             serviceConfig,
             this.androidPortCleaner,

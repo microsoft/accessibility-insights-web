@@ -88,8 +88,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensures <dl> elements are structured correctly',
-                help:
-                    '<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script> or <template> elements',
+                help: '<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script> or <template> elements',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/definition-list?application=webdriverjs',
                 id: 'definition-list',
@@ -647,8 +646,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
+                        html: '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
                         impact: null,
                         none: [
                             {
@@ -672,8 +670,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
+                        html: '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
                         impact: null,
                         none: [
                             {
@@ -697,8 +694,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
+                        html: '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
                         impact: null,
                         none: [
                             {
@@ -722,8 +718,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
+                        html: '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
                         impact: null,
                         none: [
                             {
@@ -747,8 +742,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [
                             {
@@ -855,8 +849,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [],
                         target: ['header'],
@@ -952,8 +945,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_1" aria-labelledby="ablemenu__link_1">',
+                        html: '<ul role="menu" id="ablemenu__sub_1" aria-labelledby="ablemenu__link_1">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_1'],
@@ -969,8 +961,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=News">News</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=News">News</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_1 > li[role="menuitem"]:nth-child(1)'],
@@ -986,8 +977,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Governance">Governance</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Governance">Governance</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_1 > li[role="menuitem"]:nth-child(2)'],
@@ -1003,8 +993,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Diversity">Diversity</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Diversity">Diversity</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_1 > li[role="menuitem"]:nth-child(3)'],
@@ -1020,8 +1009,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Contact%20Us">Contact Us</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Contact%20Us">Contact Us</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_1 > li[role="menuitem"]:nth-child(4)'],
@@ -1053,8 +1041,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_2" aria-labelledby="ablemenu__link_2">',
+                        html: '<ul role="menu" id="ablemenu__sub_2" aria-labelledby="ablemenu__link_2">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_2'],
@@ -1070,8 +1057,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Degree%20Programs">Degree Programs</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Degree%20Programs">Degree Programs</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_2 > li[role="menuitem"]:nth-child(1)'],
@@ -1087,8 +1073,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=AU%20Faculty">AU Faculty</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=AU%20Faculty">AU Faculty</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_2 > li[role="menuitem"]:nth-child(2)'],
@@ -1104,8 +1089,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Distance%20Learning">Distance Learning</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Distance%20Learning">Distance Learning</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_2 > li[role="menuitem"]:nth-child(3)'],
@@ -1121,8 +1105,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Libraries">Libraries</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Libraries">Libraries</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_2 > li[role="menuitem"]:nth-child(4)'],
@@ -1154,8 +1137,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_3" aria-labelledby="ablemenu__link_3">',
+                        html: '<ul role="menu" id="ablemenu__sub_3" aria-labelledby="ablemenu__link_3">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_3'],
@@ -1171,8 +1153,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Undergraduate">Undergraduate</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Undergraduate">Undergraduate</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_3 > li[role="menuitem"]:nth-child(1)'],
@@ -1188,8 +1169,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Graduate">Graduate</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Graduate">Graduate</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_3 > li[role="menuitem"]:nth-child(2)'],
@@ -1205,8 +1185,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Tuition">Tuition</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Tuition">Tuition</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_3 > li[role="menuitem"]:nth-child(3)'],
@@ -1222,8 +1201,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Financial%20Aid">Financial Aid</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Financial%20Aid">Financial Aid</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_3 > li[role="menuitem"]:nth-child(4)'],
@@ -1255,8 +1233,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_4" aria-labelledby="ablemenu__link_4">',
+                        html: '<ul role="menu" id="ablemenu__sub_4" aria-labelledby="ablemenu__link_4">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_4'],
@@ -1272,8 +1249,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Events">Events</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Events">Events</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_4 > li[role="menuitem"]:nth-child(1)'],
@@ -1289,8 +1265,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Campus_Map">Campus Map</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Campus_Map">Campus Map</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_4 > li[role="menuitem"]:nth-child(2)'],
@@ -1306,8 +1281,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li role="menuitem">\n              <a href="somepage.html?ref=Parking">Parking</a>\n            </li>',
+                        html: '<li role="menuitem">\n              <a href="somepage.html?ref=Parking">Parking</a>\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_4 > li[role="menuitem"]:nth-child(3)'],
@@ -1355,8 +1329,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -1436,8 +1409,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="modalContent" role="dialog" aria-labelledby="modalHeading">',
+                        html: '<div id="modalContent" role="dialog" aria-labelledby="modalHeading">',
                         impact: null,
                         none: [],
                         target: ['#modalContent'],
@@ -1491,8 +1463,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [],
                         target: ['header'],
@@ -1636,8 +1607,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -1713,8 +1683,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [],
                         target: ['header'],
@@ -1858,8 +1827,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -1935,8 +1903,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [],
                         target: ['header'],
@@ -2080,8 +2047,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -2148,8 +2114,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [
                             {
@@ -2419,8 +2384,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [
                             {
@@ -2589,8 +2553,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
+                        html: '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_1'],
@@ -2613,8 +2576,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
+                        html: '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_2'],
@@ -2637,8 +2599,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
+                        html: '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_3'],
@@ -2661,8 +2622,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
+                        html: '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_4'],
@@ -2685,8 +2645,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -2798,8 +2757,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
+                        html: '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_1'],
@@ -2815,8 +2773,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
+                        html: '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_2'],
@@ -2832,8 +2789,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
+                        html: '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_3'],
@@ -2849,8 +2805,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
+                        html: '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_4'],
@@ -2866,8 +2821,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -2978,8 +2932,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button type="button" title="Show menu keyboard shortcuts"><img src="images/help.png" alt="" role="presentation"></button>',
+                        html: '<button type="button" title="Show menu keyboard shortcuts"><img src="images/help.png" alt="" role="presentation"></button>',
                         impact: null,
                         none: [],
                         target: ['button[title="Show\\ menu\\ keyboard\\ shortcuts"]'],
@@ -2995,8 +2948,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button type="button" class="btn-prev"><img src="images/arrow-left.png" alt="Previous slide"></button>',
+                        html: '<button type="button" class="btn-prev"><img src="images/arrow-left.png" alt="Previous slide"></button>',
                         impact: null,
                         none: [],
                         target: ['.btn-prev'],
@@ -3012,8 +2964,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button type="button" class="btn-next"><img src="images/arrow-right.png" alt="Next slide"></button>',
+                        html: '<button type="button" class="btn-next"><img src="images/arrow-right.png" alt="Next slide"></button>',
                         impact: null,
                         none: [],
                         target: ['.btn-next'],
@@ -3029,8 +2980,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button data-slide="0"><span class="clipped">Slide </span> 1<span class="clipped current-slide">(current slide)</span></button>',
+                        html: '<button data-slide="0"><span class="clipped">Slide </span> 1<span class="clipped current-slide">(current slide)</span></button>',
                         impact: null,
                         none: [],
                         target: ['button[data-slide="\\30 "]'],
@@ -3046,8 +2996,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button data-slide="1"><span class="clipped">Slide </span> 2</button>',
+                        html: '<button data-slide="1"><span class="clipped">Slide </span> 2</button>',
                         impact: null,
                         none: [],
                         target: ['button[data-slide="\\31 "]'],
@@ -3063,8 +3012,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button data-slide="2"><span class="clipped">Slide </span> 3</button>',
+                        html: '<button data-slide="2"><span class="clipped">Slide </span> 3</button>',
                         impact: null,
                         none: [],
                         target: ['button[data-slide="\\32 "]'],
@@ -3134,8 +3082,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
+                        html: '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_1'],
@@ -3159,8 +3106,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
+                        html: '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_2'],
@@ -3184,8 +3130,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
+                        html: '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_3'],
@@ -3209,8 +3154,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
+                        html: '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_4'],
@@ -3234,8 +3178,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div class="description">\n            AU installs universally designed maps at multiple locations on campus.\n            See all <a href="somepage.html?ref=Slide%201">campus map locations</a>.\n          </div>',
+                        html: '<div class="description">\n            AU installs universally designed maps at multiple locations on campus.\n            See all <a href="somepage.html?ref=Slide%201">campus map locations</a>.\n          </div>',
                         impact: null,
                         none: [],
                         target: ['.current > .description'],
@@ -3285,8 +3228,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button data-slide="0"><span class="clipped">Slide </span> 1<span class="clipped current-slide">(current slide)</span></button>',
+                        html: '<button data-slide="0"><span class="clipped">Slide </span> 1<span class="clipped current-slide">(current slide)</span></button>',
                         impact: null,
                         none: [],
                         target: ['button[data-slide="\\30 "]'],
@@ -3310,8 +3252,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button data-slide="1"><span class="clipped">Slide </span> 2</button>',
+                        html: '<button data-slide="1"><span class="clipped">Slide </span> 2</button>',
                         impact: null,
                         none: [],
                         target: ['button[data-slide="\\31 "]'],
@@ -3335,8 +3276,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button data-slide="2"><span class="clipped">Slide </span> 3</button>',
+                        html: '<button data-slide="2"><span class="clipped">Slide </span> 3</button>',
                         impact: null,
                         none: [],
                         target: ['button[data-slide="\\32 "]'],
@@ -5160,8 +5100,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<label id="captcha_label" for="captcha_answer">2 plus two equals </label>',
+                        html: '<label id="captcha_label" for="captcha_answer">2 plus two equals </label>',
                         impact: null,
                         none: [],
                         target: ['#captcha_label'],
@@ -5185,8 +5124,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
+                        html: '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
                         impact: null,
                         none: [],
                         target: ['#captcha_answer'],
@@ -5258,8 +5196,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
+                        html: '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
                         impact: null,
                         none: [],
                         target: ['footer > a:nth-child(2)'],
@@ -5283,8 +5220,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
+                        html: '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
                         impact: null,
                         none: [],
                         target: ['footer > a[rel="license"]'],
@@ -5392,8 +5328,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
+                        html: '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_1'],
@@ -5410,8 +5345,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_1" aria-labelledby="ablemenu__link_1">',
+                        html: '<ul role="menu" id="ablemenu__sub_1" aria-labelledby="ablemenu__link_1">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_1'],
@@ -5428,8 +5362,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
+                        html: '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_2'],
@@ -5446,8 +5379,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_2" aria-labelledby="ablemenu__link_2">',
+                        html: '<ul role="menu" id="ablemenu__sub_2" aria-labelledby="ablemenu__link_2">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_2'],
@@ -5464,8 +5396,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
+                        html: '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_3'],
@@ -5482,8 +5413,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_3" aria-labelledby="ablemenu__link_3">',
+                        html: '<ul role="menu" id="ablemenu__sub_3" aria-labelledby="ablemenu__link_3">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_3'],
@@ -5500,8 +5430,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
+                        html: '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__link_4'],
@@ -5518,8 +5447,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<ul role="menu" id="ablemenu__sub_4" aria-labelledby="ablemenu__link_4">',
+                        html: '<ul role="menu" id="ablemenu__sub_4" aria-labelledby="ablemenu__link_4">',
                         impact: null,
                         none: [],
                         target: ['#ablemenu__sub_4'],
@@ -5536,8 +5464,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<h2 id="carouselHeading" class="clipped">Featured Story Slideshow</h2>',
+                        html: '<h2 id="carouselHeading" class="clipped">Featured Story Slideshow</h2>',
                         impact: null,
                         none: [],
                         target: ['#carouselHeading'],
@@ -5792,8 +5719,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
+                        html: '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
                         impact: null,
                         none: [],
                         target: ['#captcha_answer'],
@@ -5855,8 +5781,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">',
+                        html: '<img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">',
                         impact: null,
                         none: [],
                         target: ['#logo'],
@@ -5941,8 +5866,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -6010,8 +5934,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-cs1"><abbr title="Computer Science">CS</abbr></th>',
+                        html: '<th scope="col" id="subj-cs1"><abbr title="Computer Science">CS</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-cs1'],
@@ -6028,8 +5951,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-eng1"><abbr title="English">Eng</abbr></th>',
+                        html: '<th scope="col" id="subj-eng1"><abbr title="English">Eng</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eng1'],
@@ -6046,8 +5968,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-eco1"><abbr title="Economics">Eco</abbr></th>',
+                        html: '<th scope="col" id="subj-eco1"><abbr title="Economics">Eco</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eco1'],
@@ -6064,8 +5985,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-phy1"><abbr title="Physics">Phy</abbr></th>',
+                        html: '<th scope="col" id="subj-phy1"><abbr title="Physics">Phy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-phy1'],
@@ -6082,8 +6002,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-psy1"><abbr title="Psychology">Psy</abbr></th>',
+                        html: '<th scope="col" id="subj-psy1"><abbr title="Psychology">Psy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-psy1'],
@@ -6100,8 +6019,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-spa1"><abbr title="Spanish">Spa</abbr></th>',
+                        html: '<th scope="col" id="subj-spa1"><abbr title="Spanish">Spa</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-spa1'],
@@ -6118,8 +6036,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-cs2"><abbr title="Computer Science">CS</abbr></th>',
+                        html: '<th scope="col" id="subj-cs2"><abbr title="Computer Science">CS</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-cs2'],
@@ -6136,8 +6053,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-eng2"><abbr title="English">Eng</abbr></th>',
+                        html: '<th scope="col" id="subj-eng2"><abbr title="English">Eng</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eng2'],
@@ -6154,8 +6070,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-eco2"><abbr title="Economics">Eco</abbr></th>',
+                        html: '<th scope="col" id="subj-eco2"><abbr title="Economics">Eco</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eco2'],
@@ -6172,8 +6087,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-phy2"><abbr title="Physics">Phy</abbr></th>',
+                        html: '<th scope="col" id="subj-phy2"><abbr title="Physics">Phy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-phy2'],
@@ -6190,8 +6104,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-psy2"><abbr title="Psychology">Psy</abbr></th>',
+                        html: '<th scope="col" id="subj-psy2"><abbr title="Psychology">Psy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-psy2'],
@@ -6208,8 +6121,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<th scope="col" id="subj-spa2"><abbr title="Spanish">Spa</abbr></th>',
+                        html: '<th scope="col" id="subj-spa2"><abbr title="Spanish">Spa</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-spa2'],
@@ -6328,8 +6240,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="captcha"><h3>Security Question</h3><label id="captcha_label" for="captcha_answer">2 plus two equals </label><input id="captcha_answer" name="captcha_answer" type="text" required="required"></div>',
+                        html: '<div id="captcha"><h3>Security Question</h3><label id="captcha_label" for="captcha_answer">2 plus two equals </label><input id="captcha_answer" name="captcha_answer" type="text" required="required"></div>',
                         impact: null,
                         none: [],
                         target: ['#captcha'],
@@ -6346,8 +6257,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<label id="captcha_label" for="captcha_answer">2 plus two equals </label>',
+                        html: '<label id="captcha_label" for="captcha_answer">2 plus two equals </label>',
                         impact: null,
                         none: [],
                         target: ['#captcha_label'],
@@ -6364,8 +6274,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="ccLogo">\n        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>\n      </div>',
+                        html: '<div id="ccLogo">\n        <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>\n      </div>',
                         impact: null,
                         none: [],
                         target: ['#ccLogo'],
@@ -6416,8 +6325,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="modalContent" role="dialog" aria-labelledby="modalHeading">',
+                        html: '<div id="modalContent" role="dialog" aria-labelledby="modalHeading">',
                         impact: null,
                         none: [],
                         target: ['#modalContent'],
@@ -6434,8 +6342,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<button type="button" id="modalXButton" aria-label="Close dialog">x</button>',
+                        html: '<button type="button" id="modalXButton" aria-label="Close dialog">x</button>',
                         impact: null,
                         none: [],
                         target: ['#modalXButton'],
@@ -6479,8 +6386,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>',
+                        html: '<h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>',
                         impact: null,
                         none: [],
                         target: ['header > h1'],
@@ -6496,8 +6402,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<h2 id="carouselHeading" class="clipped">Featured Story Slideshow</h2>',
+                        html: '<h2 id="carouselHeading" class="clipped">Featured Story Slideshow</h2>',
                         impact: null,
                         none: [],
                         target: ['#carouselHeading'],
@@ -6864,8 +6769,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
+                        html: '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
                         impact: null,
                         none: [
                             {
@@ -6875,8 +6779,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 message: 'Form field does not have multiple label elements',
                                 relatedNodes: [
                                     {
-                                        html:
-                                            '<label id="captcha_label" for="captcha_answer">2 plus two equals </label>',
+                                        html: '<label id="captcha_label" for="captcha_answer">2 plus two equals </label>',
                                         target: ['#captcha_label'],
                                     },
                                 ],
@@ -6906,8 +6809,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>',
+                        html: '<h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>',
                         impact: null,
                         none: [],
                         target: ['header > h1'],
@@ -6923,8 +6825,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<h2 id="carouselHeading" class="clipped">Featured Story Slideshow</h2>',
+                        html: '<h2 id="carouselHeading" class="clipped">Featured Story Slideshow</h2>',
                         impact: null,
                         none: [],
                         target: ['#carouselHeading'],
@@ -7103,8 +7004,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">',
+                        html: '<img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">',
                         impact: null,
                         none: [
                             {
@@ -7160,8 +7060,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img src="images/slide2.jpg" alt="A large bronze tactile map with a speaker for audio output">',
+                        html: '<img src="images/slide2.jpg" alt="A large bronze tactile map with a speaker for audio output">',
                         impact: null,
                         none: [
                             {
@@ -7233,8 +7132,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
+                        html: '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
                         impact: null,
                         none: [
                             {
@@ -7267,8 +7165,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">',
+                        html: '<img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">',
                         impact: null,
                         none: [
                             {
@@ -7302,8 +7199,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img src="images/slide2.jpg" alt="A large bronze tactile map with a speaker for audio output">',
+                        html: '<img src="images/slide2.jpg" alt="A large bronze tactile map with a speaker for audio output">',
                         impact: null,
                         none: [
                             {
@@ -7354,8 +7250,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
+                        html: '<img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png">',
                         impact: null,
                         none: [
                             {
@@ -7615,8 +7510,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                     {
                         all: [],
                         any: [],
-                        html:
-                            '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
+                        html: '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
                         impact: null,
                         none: [
                             {
@@ -7939,8 +7833,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
+                        html: '<input id="captcha_answer" name="captcha_answer" type="text" required="required">',
                         impact: null,
                         none: [
                             {
@@ -7984,8 +7877,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [],
                         target: ['header'],
@@ -8069,8 +7961,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 message: 'Document does not have more than one banner landmark',
                                 relatedNodes: [
                                     {
-                                        html:
-                                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                                         target: ['header'],
                                     },
                                 ],
@@ -8186,8 +8077,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
+                        html: '<header role="banner">\n\t    <h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>\n    </header>',
                         impact: null,
                         none: [],
                         target: ['header'],
@@ -8247,8 +8137,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<div id="carousel" role="region" aria-describedby="carouselHeading">',
+                        html: '<div id="carousel" role="region" aria-describedby="carouselHeading">',
                         impact: null,
                         none: [],
                         target: ['#carousel'],
@@ -8315,8 +8204,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
+                        html: '<a href="somepage.html?ref=About" id="ablemenu__link_1" aria-owns="ablemenu__sub_1" aria-controls="ablemenu__sub_1" aria-haspopup="true" aria-expanded="false">About</a>',
                         impact: null,
                         none: [
                             {
@@ -8340,8 +8228,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
+                        html: '<a href="somepage.html?ref=Academics" id="ablemenu__link_2" aria-owns="ablemenu__sub_2" aria-controls="ablemenu__sub_2" aria-haspopup="true" aria-expanded="false">Academics</a>',
                         impact: null,
                         none: [
                             {
@@ -8365,8 +8252,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
+                        html: '<a href="somepage.html?ref=Admissions" id="ablemenu__link_3" aria-owns="ablemenu__sub_3" aria-controls="ablemenu__sub_3" aria-haspopup="true" aria-expanded="false">Admissions</a>',
                         impact: null,
                         none: [
                             {
@@ -8390,8 +8276,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
+                        html: '<a href="somepage.html?ref=Visitors" id="ablemenu__link_4" aria-owns="ablemenu__sub_4" aria-controls="ablemenu__sub_4" aria-haspopup="true" aria-expanded="false">Visitors</a>',
                         impact: null,
                         none: [
                             {
@@ -8513,8 +8398,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>',
+                        html: '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a>',
                         impact: null,
                         none: [
                             {
@@ -8538,8 +8422,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
+                        html: '<a href="http://washington.edu/accesscomputing/AU">University of Washington</a>',
                         impact: null,
                         none: [
                             {
@@ -8563,8 +8446,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
+                        html: '<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>',
                         impact: null,
                         none: [
                             {
@@ -8589,8 +8471,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensures that lists are structured correctly',
-                help:
-                    '<ul> and <ol> must only directly contain <li>, <script> or <template> elements',
+                help: '<ul> and <ol> must only directly contain <li>, <script> or <template> elements',
                 helpUrl: 'https://dequeuniversity.com/rules/axe/3.3/list?application=webdriverjs',
                 id: 'list',
                 impact: null,
@@ -8651,8 +8532,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li class="active"><button data-slide="0"><span class="clipped">Slide </span> 1<span class="clipped current-slide">(current slide)</span></button></li>',
+                        html: '<li class="active"><button data-slide="0"><span class="clipped">Slide </span> 1<span class="clipped current-slide">(current slide)</span></button></li>',
                         impact: null,
                         none: [],
                         target: ['.active'],
@@ -8668,8 +8548,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li><button data-slide="1"><span class="clipped">Slide </span> 2</button></li>',
+                        html: '<li><button data-slide="1"><span class="clipped">Slide </span> 2</button></li>',
                         impact: null,
                         none: [],
                         target: ['.lentils > li:nth-child(2)'],
@@ -8685,8 +8564,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li><button data-slide="2"><span class="clipped">Slide </span> 3</button></li>',
+                        html: '<li><button data-slide="2"><span class="clipped">Slide </span> 3</button></li>',
                         impact: null,
                         none: [],
                         target: ['.lentils > li:nth-child(3)'],
@@ -8702,8 +8580,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li>\n              <label for="cs">Computer Science</label>\n              <input type="checkbox" name="major_cs" id="cs">\n            </li>',
+                        html: '<li>\n              <label for="cs">Computer Science</label>\n              <input type="checkbox" name="major_cs" id="cs">\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#majors > ul > li:nth-child(1)'],
@@ -8719,8 +8596,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li>\n              <label for="eng">Engineering</label>\n              <input type="checkbox" name="major_eng" id="eng">\n            </li>',
+                        html: '<li>\n              <label for="eng">Engineering</label>\n              <input type="checkbox" name="major_eng" id="eng">\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#majors > ul > li:nth-child(2)'],
@@ -8736,8 +8612,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li>\n              <label for="eco">Economics</label>\n              <input type="checkbox" name="major_econ" id="eco">\n            </li>',
+                        html: '<li>\n              <label for="eco">Economics</label>\n              <input type="checkbox" name="major_econ" id="eco">\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#majors > ul > li:nth-child(3)'],
@@ -8753,8 +8628,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li>\n              <label for="phy">Physics</label>\n              <input type="checkbox" name="major_phy" id="phy">\n            </li>',
+                        html: '<li>\n              <label for="phy">Physics</label>\n              <input type="checkbox" name="major_phy" id="phy">\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#majors > ul > li:nth-child(4)'],
@@ -8770,8 +8644,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li>\n              <label for="psy">Psychology</label>\n              <input type="checkbox" name="major_psy" id="psy">\n            </li>',
+                        html: '<li>\n              <label for="psy">Psychology</label>\n              <input type="checkbox" name="major_psy" id="psy">\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#majors > ul > li:nth-child(5)'],
@@ -8787,8 +8660,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 relatedNodes: [],
                             },
                         ],
-                        html:
-                            '<li>\n              <label for="spa">Spanish</label>\n              <input type="checkbox" name="major_sp" id="spa">\n            </li>',
+                        html: '<li>\n              <label for="spa">Spanish</label>\n              <input type="checkbox" name="major_sp" id="spa">\n            </li>',
                         impact: null,
                         none: [],
                         target: ['#majors > ul > li:nth-child(6)'],
@@ -8814,13 +8686,11 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                                 message: 'Page has at least one level-one heading',
                                 relatedNodes: [
                                     {
-                                        html:
-                                            '<h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>',
+                                        html: '<h1>\n  \t    <img id="logo" src="images/au123456789.gif" alt="Accessible University" width="441" height="90">\n      </h1>',
                                         target: ['header > h1'],
                                     },
                                     {
-                                        html:
-                                            '<h1 id="modalHeading">Eighteen Accessibility Issues</h1>',
+                                        html: '<h1 id="modalHeading">Eighteen Accessibility Issues</h1>',
                                         target: ['#modalHeading'],
                                     },
                                 ],
@@ -8936,8 +8806,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-cs1"><abbr title="Computer Science">CS</abbr></th>',
+                        html: '<th scope="col" id="subj-cs1"><abbr title="Computer Science">CS</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-cs1'],
@@ -8961,8 +8830,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-eng1"><abbr title="English">Eng</abbr></th>',
+                        html: '<th scope="col" id="subj-eng1"><abbr title="English">Eng</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eng1'],
@@ -8986,8 +8854,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-eco1"><abbr title="Economics">Eco</abbr></th>',
+                        html: '<th scope="col" id="subj-eco1"><abbr title="Economics">Eco</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eco1'],
@@ -9011,8 +8878,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-phy1"><abbr title="Physics">Phy</abbr></th>',
+                        html: '<th scope="col" id="subj-phy1"><abbr title="Physics">Phy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-phy1'],
@@ -9036,8 +8902,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-psy1"><abbr title="Psychology">Psy</abbr></th>',
+                        html: '<th scope="col" id="subj-psy1"><abbr title="Psychology">Psy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-psy1'],
@@ -9061,8 +8926,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-spa1"><abbr title="Spanish">Spa</abbr></th>',
+                        html: '<th scope="col" id="subj-spa1"><abbr title="Spanish">Spa</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-spa1'],
@@ -9086,8 +8950,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-cs2"><abbr title="Computer Science">CS</abbr></th>',
+                        html: '<th scope="col" id="subj-cs2"><abbr title="Computer Science">CS</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-cs2'],
@@ -9111,8 +8974,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-eng2"><abbr title="English">Eng</abbr></th>',
+                        html: '<th scope="col" id="subj-eng2"><abbr title="English">Eng</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eng2'],
@@ -9136,8 +8998,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-eco2"><abbr title="Economics">Eco</abbr></th>',
+                        html: '<th scope="col" id="subj-eco2"><abbr title="Economics">Eco</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-eco2'],
@@ -9161,8 +9022,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-phy2"><abbr title="Physics">Phy</abbr></th>',
+                        html: '<th scope="col" id="subj-phy2"><abbr title="Physics">Phy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-phy2'],
@@ -9186,8 +9046,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-psy2"><abbr title="Psychology">Psy</abbr></th>',
+                        html: '<th scope="col" id="subj-psy2"><abbr title="Psychology">Psy</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-psy2'],
@@ -9211,8 +9070,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
                             },
                         ],
                         any: [],
-                        html:
-                            '<th scope="col" id="subj-spa2"><abbr title="Spanish">Spa</abbr></th>',
+                        html: '<th scope="col" id="subj-spa2"><abbr title="Spanish">Spa</abbr></th>',
                         impact: null,
                         none: [],
                         target: ['#subj-spa2'],
@@ -9294,8 +9152,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensure that tables do not have the same summary and caption',
-                help:
-                    'The <caption> element should not contain the same text as the summary attribute',
+                help: 'The <caption> element should not contain the same text as the summary attribute',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/table-duplicate-name?application=webdriverjs',
                 id: 'table-duplicate-name',
@@ -9324,8 +9181,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
             {
                 description:
                     'Ensure that each cell in a table using the headers refers to another cell in that table',
-                help:
-                    'All cells in a table element that use the headers attribute must only refer to other cells of that same table',
+                help: 'All cells in a table element that use the headers attribute must only refer to other cells of that same table',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/td-headers-attr?application=webdriverjs',
                 id: 'td-headers-attr',
@@ -9353,8 +9209,7 @@ export const axeResultsWithoutIssues: AxeReportParameters = {
             },
             {
                 description: 'Ensure that each table header in a data table refers to data cells',
-                help:
-                    'All th elements and elements with role=columnheader/rowheader must have data cells they describe',
+                help: 'All th elements and elements with role=columnheader/rowheader must have data cells they describe',
                 helpUrl:
                     'https://dequeuniversity.com/rules/axe/3.3/th-has-data-cells?application=webdriverjs',
                 id: 'th-has-data-cells',

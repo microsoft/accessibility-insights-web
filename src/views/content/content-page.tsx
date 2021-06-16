@@ -76,8 +76,10 @@ export function ContentProvider(root: ContentTree): ContentProvider {
 
     type TreeEntry = { path: string; leaf: ContentPageComponent };
     const flattenTree = (tree: ContentTree): TreeEntry[] => {
-        const prefixEntry = (prefix: string) => ({ path, leaf }: TreeEntry) =>
-            ({ path: prefix + '/' + path, leaf } as TreeEntry);
+        const prefixEntry =
+            (prefix: string) =>
+            ({ path, leaf }: TreeEntry) =>
+                ({ path: prefix + '/' + path, leaf } as TreeEntry);
 
         const entries = toPairs(tree).map(([key, leaf]) =>
             isContentPageComponent(leaf)

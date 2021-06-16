@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CommonInstancesSectionDeps } from 'common/components/cards/common-instances-section-props';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
 
@@ -18,6 +19,7 @@ export type SectionDeps = NotApplicableChecksSectionDeps &
 export type SectionProps = {
     deps: SectionDeps;
     fixInstructionProcessor: FixInstructionProcessor;
+    recommendColor: RecommendColor;
     description: string;
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;

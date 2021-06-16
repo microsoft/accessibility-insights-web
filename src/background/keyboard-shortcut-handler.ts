@@ -42,7 +42,8 @@ export class KeyboardShortcutHandler {
     ) {}
 
     public initialize(): void {
-        this.commandToVisualizationType = this.visualizationConfigurationFactory.getChromeCommandToVisualizationTypeMap();
+        this.commandToVisualizationType =
+            this.visualizationConfigurationFactory.getChromeCommandToVisualizationTypeMap();
         this.commandsAdapter.addCommandListener(this.onCommand);
     }
 
@@ -127,9 +128,8 @@ export class KeyboardShortcutHandler {
             return;
         }
 
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(
-            visualizationType,
-        );
+        const configuration =
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const scanData = configuration.getStoreData(data.tests);
 
         if (!scanData.enabled) {
@@ -152,18 +152,16 @@ export class KeyboardShortcutHandler {
         state: VisualizationStoreData,
         tabId: number,
     ): void {
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(
-            visualizationType,
-        );
+        const configuration =
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const scanData: ScanData = configuration.getStoreData(state.tests);
         const tabContext = this.tabToContextMap[tabId];
 
         const action = VisualizationMessages.Common.Toggle;
         const toEnabled = !scanData.enabled;
 
-        const telemetryInfo: ToggleTelemetryData = this.telemetryDataFactory.forVisualizationToggleByCommand(
-            toEnabled,
-        );
+        const telemetryInfo: ToggleTelemetryData =
+            this.telemetryDataFactory.forVisualizationToggleByCommand(toEnabled);
 
         const payload: VisualizationTogglePayload = {
             enabled: toEnabled,
