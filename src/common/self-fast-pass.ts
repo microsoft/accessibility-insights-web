@@ -31,7 +31,7 @@ export type SelfValidatorAnalyzerDeps = {
 
 type ResultType = 'incomplete' | 'violations';
 
-class SelfValidatorAnalyzer implements Analyzer {
+class SelfFastPassAnalyzer implements Analyzer {
     constructor(
         private readonly deps: SelfValidatorAnalyzerDeps,
         private readonly config: RuleAnalyzerConfiguration,
@@ -74,7 +74,7 @@ class SelfValidatorAnalyzer implements Analyzer {
     };
 }
 
-class SelfValidatorAnalyzerProvider extends AnalyzerProvider {
+class SelfFastPassAnalyzerProvider extends AnalyzerProvider {
     constructor(private readonly deps: SelfValidatorAnalyzerDeps) {
         super(null, null, null, null, null, null, null, null, null, null, null);
     }
@@ -82,19 +82,19 @@ class SelfValidatorAnalyzerProvider extends AnalyzerProvider {
     public override createRuleAnalyzerUnifiedScanForNeedsReview(
         config: RuleAnalyzerConfiguration,
     ): Analyzer {
-        return new SelfValidatorAnalyzer(this.deps, config, ['violations', 'incomplete']);
+        return new SelfFastPassAnalyzer(this.deps, config, ['violations', 'incomplete']);
     }
 
     public override createRuleAnalyzerUnifiedScan(config: RuleAnalyzerConfiguration): Analyzer {
-        return new SelfValidatorAnalyzer(this.deps, config, ['violations']);
+        return new SelfFastPassAnalyzer(this.deps, config, ['violations']);
     }
 }
 
-export class A11YSelfValidator {
+export class SelfFastPass {
     private readonly analyzerProvider: AnalyzerProvider;
 
     constructor(scannerUtils: ScannerUtils, htmlUtils: HTMLElementUtils, logger: Logger) {
-        this.analyzerProvider = new SelfValidatorAnalyzerProvider({
+        this.analyzerProvider = new SelfFastPassAnalyzerProvider({
             scannerUtils,
             htmlUtils,
             logger,
@@ -108,4 +108,8 @@ export class A11YSelfValidator {
     public needsReview(): void {
         NeedsReviewAdHocVisualization.getAnalyzer(this.analyzerProvider).analyze();
     }
+}
+
+export interface SelfFastPassContainer {
+    selfFastPass: SelfFastPass;
 }

@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualization';
+import { HTMLElementUtils } from 'common/html-element-utils';
+import { Logger } from 'common/logging/logger';
+import { SelfFastPass, LoggedNode, LoggedRule } from 'common/self-fast-pass';
+import { ScannerUtils } from 'injected/scanner-utils';
+import { ScanResults } from 'scanner/iruleresults';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
-import { A11YSelfValidator, LoggedNode, LoggedRule } from '../../../../common/a11y-self-validator';
-import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { Logger } from '../../../../common/logging/logger';
-import { ScannerUtils } from '../../../../injected/scanner-utils';
-import { ScanResults } from '../../../../scanner/iruleresults';
-import { DictionaryStringTo } from '../../../../types/common-types';
-
-describe('A11YAutoCheckTest', () => {
+describe('SelfFastPass', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let loggerMock: IMock<Logger>;
-    let testObject: A11YSelfValidator;
+    let testObject: SelfFastPass;
 
     const failedSelectors: string[] = ['failed-div1', 'failed-div2'];
     const failedDomElements: DictionaryStringTo<string> = {
@@ -26,20 +26,20 @@ describe('A11YAutoCheckTest', () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
         loggerMock = Mock.ofType<Logger>();
 
-        testObject = new A11YSelfValidator(
+        testObject = new SelfFastPass(
             scannerUtilsMock.object,
             htmlElementUtilsMock.object,
             loggerMock.object,
         );
     });
 
-    test('scan', () => {
+    test('automatedChecks', () => {
         const scannerResultStub = getAxeScanResult();
 
         scannerUtilsMock
             .setup(ksu =>
                 ksu.scan(
-                    null,
+                    { testsToRun: null },
                     It.is(param => typeof param === 'function'),
                 ),
             )
@@ -59,7 +59,7 @@ describe('A11YAutoCheckTest', () => {
             .setup(logger => logger.log(It.isValue(getLoggedViolationScanResult())))
             .verifiable(Times.once());
 
-        testObject.validate();
+        testObject.automatedChecks();
 
         scannerUtilsMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
