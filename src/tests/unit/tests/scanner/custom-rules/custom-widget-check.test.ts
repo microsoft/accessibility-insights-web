@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 import { difference, map } from 'lodash';
-import { customWidgetConfiguration } from '../../../../../scanner/custom-rules/custom-widget';
-import { ICheckConfiguration } from '../../../../../scanner/iruleresults';
+import { withAxeSetup } from 'scanner/axe-utils';
+import { customWidgetConfiguration } from 'scanner/custom-rules/custom-widget';
+import { ICheckConfiguration } from 'scanner/iruleresults';
 
 const axe = Axe as any;
 const fixture = createTestFixture('test-fixture', '');
@@ -11,7 +12,6 @@ const fixture = createTestFixture('test-fixture', '');
 const context = {
     _data: null,
     data: function (d: any): any {
-        // tslint:disable-next-line:no-invalid-this
         this._data = d;
     },
 };
@@ -28,15 +28,21 @@ describe('custom-widget check', () => {
         context._data = null;
     });
 
+    afterEach(() => {
+        axe.teardown();
+    });
+
     it('creates expected data object', () => {
         fixture.innerHTML = `
             <div id="myElement"/>
             `;
 
         const node = fixture.querySelector('#myElement');
-        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
+        const result = withAxeSetup(() =>
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        );
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(result).toBeTruthy();
         expect(context._data).toEqual({
             accessibleName: '',
             role: null,
@@ -54,9 +60,11 @@ describe('custom-widget check', () => {
             `;
 
         const node = fixture.querySelector('#myElement');
-        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
+        const result = withAxeSetup(() =>
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        );
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(result).toBeTruthy();
         expect(context._data.describedBy).toEqual('my description');
     });
 
@@ -64,10 +72,13 @@ describe('custom-widget check', () => {
         fixture.innerHTML = `
             <div id="myElement" />my text
             `;
-        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
 
         const node = fixture.querySelector('#myElement');
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        const result = withAxeSetup(() =>
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        );
+
+        expect(result).toBeTruthy();
         expect(context._data.accessibleName).toEqual('my text');
     });
 
@@ -77,10 +88,12 @@ describe('custom-widget check', () => {
             role="sandwich"/>
             `;
 
-        axe._tree = axe.utils.getFlattenedTree(document.documentElement);
         const node = fixture.querySelector('#myElement');
+        const result = withAxeSetup(() =>
+            customWidgetConfiguration.checks[0].evaluate.call(context, node),
+        );
 
-        expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
+        expect(result).toBeTruthy();
         expect(context._data.role).toEqual('sandwich');
     });
 });
@@ -172,10 +185,8 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
-            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
-
-            customWidgetConfiguration.checks[0].evaluate.call(context, node);
+            withAxeSetup(() => customWidgetConfiguration.checks[0].evaluate.call(context, node));
 
             expect(context._data.ariaCues[attribute]).toEqual('value');
         });
@@ -191,10 +202,8 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
-            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
-
-            customWidgetConfiguration.checks[0].evaluate.call(context, node);
+            withAxeSetup(() => customWidgetConfiguration.checks[0].evaluate.call(context, node));
 
             expect(context._data.ariaCues[attribute]).toBeUndefined();
         });
@@ -210,10 +219,8 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
-            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
-
-            customWidgetConfiguration.checks[0].evaluate.call(context, node);
+            withAxeSetup(() => customWidgetConfiguration.checks[0].evaluate.call(context, node));
 
             expect(context._data.htmlCues[attribute]).toEqual('value');
         });
@@ -229,10 +236,8 @@ describe('custom-widget check', () => {
                 `="value" />
         `;
 
-            axe._tree = axe.utils.getFlattenedTree(document.documentElement);
             const node = fixture.querySelector('#myElement');
-
-            customWidgetConfiguration.checks[0].evaluate.call(context, node);
+            withAxeSetup(() => customWidgetConfiguration.checks[0].evaluate.call(context, node));
 
             expect(context._data.htmlCues[attribute]).toBeUndefined();
         });

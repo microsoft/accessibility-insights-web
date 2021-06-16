@@ -21,12 +21,11 @@ export type DetailsViewContentProps = DetailsViewContainerProps & {
 };
 
 export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewContent', props => {
-    const selectedDetailsViewSwitcherNavConfiguration = props.deps.getDetailsSwitcherNavConfiguration(
-        {
+    const selectedDetailsViewSwitcherNavConfiguration =
+        props.deps.getDetailsSwitcherNavConfiguration({
             selectedDetailsViewPivot:
                 props.storeState.visualizationStoreData.selectedDetailsViewPivot,
-        },
-    );
+        });
 
     const renderHeader = () => {
         const storeState = props.storeState;
@@ -73,9 +72,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             },
         );
 
-        const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(
-            storeState,
-        );
+        const selectedTest =
+            selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
         const cardsViewData = props.deps.getCardViewData(
             props.storeState.unifiedScanResultStoreData.rules,

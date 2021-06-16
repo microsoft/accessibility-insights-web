@@ -38,7 +38,7 @@ export function isImage(node: HTMLElement): boolean {
 }
 
 function evaluateImageFunction(node: HTMLElement): boolean {
-    const accessibleName: string = AxeUtils.getAccessibleText(node, false);
+    const accessibleName: string = AxeUtils.getAccessibleText(node);
     const codedAs: string | null = AxeUtils.getImageCodedAs(node);
     const imageType: string | null = AxeUtils.getImageType(node);
     const role: string | null = node.getAttribute('role');

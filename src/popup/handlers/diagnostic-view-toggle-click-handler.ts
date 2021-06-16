@@ -28,9 +28,8 @@ export class DiagnosticViewClickHandler {
         visualizationType: VisualizationType,
         event: React.MouseEvent<HTMLElement>,
     ): void {
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(
-            visualizationType,
-        );
+        const configuration =
+            this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const scanData = configuration.getStoreData(visualizationStoreData.tests);
         const newValue = !scanData.enabled;
         const source = TelemetryEventSource.AdHocTools;

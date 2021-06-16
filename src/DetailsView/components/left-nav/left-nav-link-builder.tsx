@@ -242,8 +242,8 @@ export class LeftNavLinkBuilder {
         const { outcomeTypeSemanticsFromTestStatus, navLinkRenderer } = deps;
         const name = requirement.name;
         const displayedIndex = `${testIndex}.${requirementIndex}`;
-        const narratorRequirementStatus = outcomeTypeSemanticsFromTestStatus(requirementStatus)
-            .pastTense;
+        const narratorRequirementStatus =
+            outcomeTypeSemanticsFromTestStatus(requirementStatus).pastTense;
 
         const baselink = this.buildBaseLink(
             name,

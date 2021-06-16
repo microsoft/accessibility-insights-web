@@ -4,6 +4,7 @@
         "./.dependabot",
         "./.git",
         "./.github",
+        "./.swcrc",
         "./.vs",
         "./.vscode",
         "./dist",

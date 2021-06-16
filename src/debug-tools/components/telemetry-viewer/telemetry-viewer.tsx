@@ -56,12 +56,8 @@ export class TelemetryViewer extends React.Component<TelemetryViewerProps, Telem
     private renderCommonFields(): JSX.Element {
         const lastMessage = this.state.telemetryMessages[0];
 
-        const {
-            applicationBuild,
-            applicationName,
-            applicationVersion,
-            installationId,
-        } = lastMessage;
+        const { applicationBuild, applicationName, applicationVersion, installationId } =
+            lastMessage;
 
         const props = {
             applicationBuild,

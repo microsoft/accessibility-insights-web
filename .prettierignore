@@ -14,11 +14,13 @@
 **/*.snap
 **/*.snap.html
 **/Dockerfile
+**/*.a11ywebassessment
 
 .DS_Store
 .dependabot/
 .github/
 .prettierignore
+.swcrc
 .yarnrc
 .vs/
 AppXManifest.xml

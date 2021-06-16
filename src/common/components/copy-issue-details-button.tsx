@@ -44,7 +44,6 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
             return;
         }
 
-        toast.show('Failure details copied.');
         if (this.props.onClick) {
             this.props.onClick(event);
         }
@@ -55,11 +54,8 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         } catch (error) {
             if (this.props.hasSecureTargetPage) {
                 toast.show('Failed to copy failure details. Please try again.');
-                return;
-            } else {
-                toast.show('Failed to copy failure details.');
-                return;
             }
+            return;
         }
         toast.show('Failure details copied.');
     };

@@ -34,7 +34,7 @@ function evaluateLinkPurpose(
     virtualNode: any,
     context: any,
 ): boolean {
-    const accessibleName: string = AxeUtils.getAccessibleText(node, false);
+    const accessibleName: string = AxeUtils.getAccessibleText(node);
     const accessibleDescription: string = AxeUtils.getAccessibleDescription(node);
     const url = node.getAttribute('href');
 

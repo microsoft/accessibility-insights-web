@@ -163,11 +163,12 @@ export class PopupInitializer {
         const visualizationConfigurationFactory = new WebVisualizationConfigurationFactory();
         const launchPadRowConfigurationFactory = new LaunchPadRowConfigurationFactory();
 
-        const diagnosticViewClickHandler: DiagnosticViewClickHandler = new DiagnosticViewClickHandler(
-            telemetryFactory,
-            visualizationActionCreator,
-            visualizationConfigurationFactory,
-        );
+        const diagnosticViewClickHandler: DiagnosticViewClickHandler =
+            new DiagnosticViewClickHandler(
+                telemetryFactory,
+                visualizationActionCreator,
+                visualizationConfigurationFactory,
+            );
 
         const popupViewControllerHandler = new PopupViewControllerHandler();
         const dropdownClickHandler = new DropdownClickHandler(
@@ -186,9 +187,8 @@ export class PopupInitializer {
             ...contentActionMessageCreator.initiators,
         };
 
-        const visualizationTypes = EnumHelper.getNumericValues<VisualizationType>(
-            VisualizationType,
-        );
+        const visualizationTypes =
+            EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
         const storesHub = new BaseClientStoresHub<PopupViewControllerState>([
             visualizationStore,
             launchPanelStateStore,

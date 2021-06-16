@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { withAxeCommonsMocked } from 'tests/unit/tests/scanner/mock-axe-utils';
-import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
-import * as AxeUtils from '../../../../scanner/axe-utils';
-import { setAxeGlobalTreeTo } from '../../common/axe-internals';
+import * as AxeUtils from 'scanner/axe-utils';
+import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior } from 'typemoq';
 
 describe('AxeUtils', () => {
     describe('getMatchesFromRule', () => {
@@ -46,23 +43,24 @@ describe('AxeUtils', () => {
     });
 
     describe('getAccessibleText', () => {
-        it.each([true, false])(
-            'calls axe.commons.text.accessibleText with given node & isLabelledByContext %p',
-            isLabelledByContext => {
-                const accessibleTextMock = Mock.ofInstance(
-                    (node, context) => '',
-                    MockBehavior.Strict,
-                );
-                const elementStub = {} as HTMLElement;
-                accessibleTextMock
-                    .setup(m => m(It.isValue(elementStub), isLabelledByContext))
-                    .verifiable(Times.once());
-                withAxeCommonsMocked('text', { accessibleText: accessibleTextMock.object }, () => {
-                    AxeUtils.getAccessibleText(elementStub, isLabelledByContext);
-                });
-                accessibleTextMock.verifyAll();
-            },
-        );
+        let fixture: HTMLElement;
+
+        beforeEach(() => {
+            fixture = createTestFixture('test-fixture', '');
+        });
+
+        afterEach(() => {
+            document.body.querySelector('#test-fixture').remove();
+        });
+
+        it("successfully identifies an img element's alt text as accessible text", () => {
+            fixture.innerHTML = `<img id="test-subject" alt="alt value"/>`;
+            const testSubject = fixture.querySelector(`#test-subject`) as HTMLElement;
+
+            const result = AxeUtils.withAxeSetup(() => AxeUtils.getAccessibleText(testSubject));
+
+            expect(result).toEqual('alt value');
+        });
     });
 
     describe('getAccessibleDescription', () => {
@@ -81,9 +79,10 @@ describe('AxeUtils', () => {
                 <img id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getAccessibleDescription(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
             expect(result).toEqual('');
         });
 
@@ -94,9 +93,10 @@ describe('AxeUtils', () => {
                 <div id="el3"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getAccessibleDescription(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
             expect(result).toEqual('hello');
         });
 
@@ -107,9 +107,10 @@ describe('AxeUtils', () => {
                 <div id="el3">world</div>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getAccessibleDescription(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
             expect(result).toEqual('hello world');
         });
     });
@@ -130,9 +131,10 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" />
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
         });
 
@@ -141,9 +143,10 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
         });
 
@@ -152,9 +155,10 @@ describe('AxeUtils', () => {
                 <img id="el1" alt aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
         });
 
@@ -163,9 +167,10 @@ describe('AxeUtils', () => {
                 <svg id="el1" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
         });
 
@@ -174,9 +179,10 @@ describe('AxeUtils', () => {
                 <i id="el1" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
         });
 
@@ -185,9 +191,10 @@ describe('AxeUtils', () => {
                 <div id="el1" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
         });
 
@@ -196,9 +203,10 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="some value"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -207,9 +215,10 @@ describe('AxeUtils', () => {
                 <img id="el1" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -219,9 +228,10 @@ describe('AxeUtils', () => {
                 <div id="some"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -230,9 +240,10 @@ describe('AxeUtils', () => {
                 <img id="el1" title="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -241,9 +252,10 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="   "/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -252,9 +264,10 @@ describe('AxeUtils', () => {
                 <svg id="el1" role="img" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -263,9 +276,10 @@ describe('AxeUtils', () => {
                 <i id="el1" role="img" title="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -275,9 +289,10 @@ describe('AxeUtils', () => {
                 <p id="el2">some</p>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
         });
 
@@ -286,9 +301,10 @@ describe('AxeUtils', () => {
                 <img id="el1"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toBeNull();
         });
 
@@ -298,9 +314,10 @@ describe('AxeUtils', () => {
                 <div id="some-id"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            setAxeGlobalTreeTo(document.documentElement);
+            const result = AxeUtils.withAxeSetup(() =>
+                AxeUtils.getImageCodedAs(element1 as HTMLElement),
+            );
 
-            const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toBeNull();
         });
     });
@@ -557,6 +574,72 @@ describe('AxeUtils', () => {
             const element = fixture.querySelector('#el1');
             const result = AxeUtils.hasCustomWidgetMarkup(element as HTMLElement);
             expect(result).toBe(true);
+        });
+    });
+
+    describe('getUniqueSelector', () => {
+        const fixtureId = 'fixture-id';
+        let fixture: HTMLElement;
+        beforeEach(() => {
+            fixture = createTestFixture(fixtureId, '');
+        });
+
+        afterEach(() => {
+            document.body.querySelector(`#${fixtureId}`).remove();
+        });
+
+        it('Returns CSS selector which represents the input element', () => {
+            expect(AxeUtils.getUniqueSelector(fixture)).toBe('#fixture-id');
+        });
+
+        it('Throws if axe.setup has already been invoked (ie, a scan is in progress)', () => {
+            AxeUtils.withAxeSetup(() => {
+                expect(() =>
+                    AxeUtils.getUniqueSelector(fixture),
+                ).toThrowErrorMatchingInlineSnapshot(
+                    `"Axe is already setup. Call \`axe.teardown()\` before calling \`axe.setup\` again."`,
+                );
+            });
+        });
+
+        it('Does not leak an axe.setup state', () => {
+            AxeUtils.getUniqueSelector(fixture);
+
+            expect(() => AxeUtils.getUniqueSelector(fixture)).not.toThrow();
+        });
+
+        it('Does not leak an axe.setup state, even if an error occurs', () => {
+            const nonfunctionalElement = {} as HTMLElement;
+            expect(() => AxeUtils.getUniqueSelector(nonfunctionalElement)).toThrow();
+
+            expect(() => AxeUtils.getUniqueSelector(fixture)).not.toThrow();
+        });
+    });
+
+    describe('withAxeSetup', () => {
+        it('Throws if axe.setup has already been invoked (ie, a scan is in progress)', () => {
+            AxeUtils.withAxeSetup(() => {
+                expect(() => AxeUtils.withAxeSetup(() => {})).toThrowErrorMatchingInlineSnapshot(
+                    `"Axe is already setup. Call \`axe.teardown()\` before calling \`axe.setup\` again."`,
+                );
+            });
+        });
+
+        it('Does not leak an axe.setup state', () => {
+            AxeUtils.withAxeSetup(() => {});
+
+            expect(() => AxeUtils.withAxeSetup(() => {})).not.toThrow();
+        });
+
+        it('Propagates errors without leaking axe.setup state', () => {
+            const testError = new Error('test error');
+            expect(() =>
+                AxeUtils.withAxeSetup(() => {
+                    throw testError;
+                }),
+            ).toThrowError(testError);
+
+            expect(() => AxeUtils.withAxeSetup(() => {})).not.toThrow();
         });
     });
 

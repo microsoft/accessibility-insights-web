@@ -62,9 +62,10 @@ export class IssueFilingDialog extends React.Component<
     public render(): JSX.Element {
         const { onClose, isOpen, deps } = this.props;
         const { selectedIssueFilingService } = this.state;
-        const selectedIssueFilingServiceData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
-            this.state.issueFilingServicePropertiesMap,
-        );
+        const selectedIssueFilingServiceData =
+            this.state.selectedIssueFilingService.getSettingsFromStoreData(
+                this.state.issueFilingServicePropertiesMap,
+            );
         const isSettingsValid = selectedIssueFilingService.isSettingsValid(
             selectedIssueFilingServiceData,
         );

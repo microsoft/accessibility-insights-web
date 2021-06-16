@@ -12,8 +12,9 @@ describe('AssessmentSummaryDetails', () => {
     describe('render', () => {
         test('Correct composition', () => {
             const props: AssessmentSummaryDetailsProps = {
-                testSummaries: AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel()
-                    .reportSummaryDetailsData,
+                testSummaries:
+                    AssessmentReportBuilderTestHelper.getAssessmentsSummaryReportModel()
+                        .reportSummaryDetailsData,
             };
 
             const wrapper = shallow(<AssessmentSummaryDetails {...props} />);

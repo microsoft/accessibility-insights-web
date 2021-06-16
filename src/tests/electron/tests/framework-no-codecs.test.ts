@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { readFileSync } from 'fs';
 import * as path from 'path';
 import { createAppController } from 'tests/electron/common/create-application';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { CodecTestViewController } from 'tests/electron/common/view-controllers/codecs-test-view-controller';
+import { electronBuildId } from '../../../../pipeline/scripts/electron-build-id.js';
 
 /*
 We bundle a mirrored version of electron with no
@@ -35,5 +37,26 @@ const releaseTests = process.env.RUN_RELEASE_TESTS === 'true';
         it('has error when loading mp3 <audio> in renderer process', async () => {
             expect(await viewContoller.client.getAttribute('#audio', 'data-err')).toEqual('4');
         });
+
+        it('uses expected build during release', async () => {
+            const buildId = await viewContoller.client.execute(() => {
+                return (window as any).process.versions['microsoft-build'];
+            });
+            expect(buildId).toBe(electronBuildId);
+        });
     },
 );
+
+it('electron versions in package.json and build id are updated together', async () => {
+    const mainPackage = JSON.parse(readFileSync('package.json', { encoding: 'utf-8' }));
+    const versions = {
+        electronVersion: mainPackage.dependencies.electron,
+        electronBuildId,
+    };
+    expect(versions).toMatchInlineSnapshot(`
+        Object {
+          "electronBuildId": "7912306",
+          "electronVersion": "11.4.5",
+        }
+    `);
+});

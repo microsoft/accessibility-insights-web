@@ -4,6 +4,7 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     CommandBarProps,
     DetailsViewCommandBarProps,
@@ -21,7 +22,7 @@ describe('ShouldShowReportExportButton', () => {
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
     const scanData = {} as ScanData;
-    const selectedTest = -1;
+    const selectedTest = -1 as VisualizationType;
 
     beforeEach(() => {
         visualizationConfigurationFactoryMock = Mock.ofType<VisualizationConfigurationFactory>();

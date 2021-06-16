@@ -9,7 +9,8 @@ describe('AssessmentReportInstanceListTest', () => {
     describe('render', () => {
         test('snippet and path', () => {
             const props = {
-                instances: AssessmentReportBuilderTestHelper.getInstanceReportModelStep1PassStep2Fail(),
+                instances:
+                    AssessmentReportBuilderTestHelper.getInstanceReportModelStep1PassStep2Fail(),
             };
 
             const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
@@ -19,7 +20,8 @@ describe('AssessmentReportInstanceListTest', () => {
 
         test('comment', () => {
             const props = {
-                instances: AssessmentReportBuilderTestHelper.getInstanceReportModelManualStep4Fail(),
+                instances:
+                    AssessmentReportBuilderTestHelper.getInstanceReportModelManualStep4Fail(),
             };
 
             const wrapper = shallow(<AssessmentReportInstanceList {...props} />);
@@ -39,7 +41,8 @@ describe('AssessmentReportInstanceListTest', () => {
 
         test('simple rows first - property bag rows second', () => {
             const props = {
-                instances: AssessmentReportBuilderTestHelper.getInstanceWithMixOfSimpleAndComplexValues(),
+                instances:
+                    AssessmentReportBuilderTestHelper.getInstanceWithMixOfSimpleAndComplexValues(),
             };
 
             const wrapper = shallow(<AssessmentReportInstanceList {...props} />);

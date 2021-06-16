@@ -76,9 +76,7 @@ describe('native widgets default', () => {
             getAccessibleDescriptionMock
                 .setup(m => m(nodeStub))
                 .returns(v => expectedData.accessibleDescription);
-            getAccessibleTextMock
-                .setup(m => m(nodeStub, false))
-                .returns(n => expectedData.accessibleName);
+            getAccessibleTextMock.setup(m => m(nodeStub)).returns(n => expectedData.accessibleName);
 
             let result;
             GlobalScope.using(getAccessibleDescriptionMock, getAccessibleTextMock).with(() => {

@@ -3,9 +3,9 @@
 
 import { DocumentUtils } from 'scanner/document-utils';
 import { MessageDecorator } from 'scanner/message-decorator';
-import { Processor } from 'scanner/processor';
 import { ResultDecorator } from 'scanner/result-decorator';
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { RuleProcessor } from 'scanner/rule-processor';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ResultDecorator', () => {
     let instanceStub;
@@ -14,6 +14,7 @@ describe('ResultDecorator', () => {
     let documentUtilsMock: IMock<DocumentUtils>;
     let messageDecoratorMock: IMock<MessageDecorator>;
     let getHelpUrlMock: IMock<(rule, axeHelpUrl) => string>;
+    let ruleProcessorMock: IMock<RuleProcessor>;
     let urlStub: string;
 
     beforeEach(() => {
@@ -37,6 +38,7 @@ describe('ResultDecorator', () => {
         messageDecoratorMock = Mock.ofType(MessageDecorator, MockBehavior.Strict);
         getHelpUrlMock = Mock.ofInstance(rule => null, MockBehavior.Strict);
         documentUtilsMock = Mock.ofType(DocumentUtils);
+        ruleProcessorMock = Mock.ofType(RuleProcessor, MockBehavior.Strict);
 
         documentUtilsMock
             .setup(dum => dum.title())
@@ -55,6 +57,7 @@ describe('ResultDecorator', () => {
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
                 stubTagToLinkMapper,
+                ruleProcessorMock.object,
             );
             expect(resultDecorator).not.toBeNull();
         });
@@ -86,12 +89,6 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
-                Processor.suppressChecksByMessages,
-                'suppressChecksByMessages',
-                Processor,
-                MockBehavior.Strict,
-            );
 
             messageDecoratorMock
                 .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
@@ -99,8 +96,8 @@ describe('ResultDecorator', () => {
 
             getHelpUrlMock.setup(gchm => gchm(instanceStub.id, It.isAny())).returns(() => urlStub);
 
-            suppressChecksByMessagesMock
-                .setup(scbmm => scbmm(instanceStub, true))
+            ruleProcessorMock
+                .setup(m => m.suppressChecksByMessages(instanceStub, true))
                 .returns(result => {
                     return result;
                 })
@@ -111,14 +108,12 @@ describe('ResultDecorator', () => {
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
                 mockTagToLinkMapper.object,
+                ruleProcessorMock.object,
             );
-            let decoratedResult;
-            GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
-            });
+            const decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
 
             expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
-            suppressChecksByMessagesMock.verifyAll();
+            ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
             mockTagToLinkMapper.verifyAll();
@@ -174,12 +169,6 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
-                Processor.suppressChecksByMessages,
-                'suppressChecksByMessages',
-                Processor,
-                MockBehavior.Strict,
-            );
 
             tagToLinkMapperMock
                 .setup(m => m(['tag1']))
@@ -206,15 +195,15 @@ describe('ResultDecorator', () => {
                 .setup(gchm => gchm(inapplicableInstance.id, It.isAny()))
                 .returns(() => urlStub2);
 
-            suppressChecksByMessagesMock
-                .setup(scbmm => scbmm(violationInstance, true))
+            ruleProcessorMock
+                .setup(m => m.suppressChecksByMessages(violationInstance, true))
                 .returns(result => {
                     return result;
                 })
                 .verifiable();
 
-            suppressChecksByMessagesMock
-                .setup(scbmm => scbmm(inapplicableInstance, false))
+            ruleProcessorMock
+                .setup(m => m.suppressChecksByMessages(inapplicableInstance, false))
                 .returns(result => {
                     return result;
                 })
@@ -225,16 +214,14 @@ describe('ResultDecorator', () => {
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
                 tagToLinkMapperMock.object,
+                ruleProcessorMock.object,
             );
-            let decoratedResult;
-            GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(
-                    nonEmptyResultWithInapplicable as any,
-                );
-            });
+            const decoratedResult = testSubject.decorateResults(
+                nonEmptyResultWithInapplicable as any,
+            );
 
             expect(decoratedResult).toEqual(resultStubWithGuidanceLinks);
-            suppressChecksByMessagesMock.verifyAll();
+            ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
             tagToLinkMapperMock.verifyAll();
@@ -254,12 +241,6 @@ describe('ResultDecorator', () => {
                 targetPageTitle: 'test title',
                 targetPageUrl: 'https://test_url',
             };
-            const suppressChecksByMessagesMock = GlobalMock.ofInstance(
-                Processor.suppressChecksByMessages,
-                'suppressChecksByMessages',
-                Processor,
-                MockBehavior.Strict,
-            );
 
             instanceStub.nodes = [];
 
@@ -267,8 +248,8 @@ describe('ResultDecorator', () => {
                 .setup(mdm => mdm.decorateResultWithMessages(instanceStub))
                 .verifiable(Times.once());
 
-            suppressChecksByMessagesMock
-                .setup(scbmm => scbmm(instanceStub, true))
+            ruleProcessorMock
+                .setup(m => m.suppressChecksByMessages(instanceStub, true))
                 .returns(result => {
                     return null;
                 })
@@ -279,14 +260,13 @@ describe('ResultDecorator', () => {
                 messageDecoratorMock.object,
                 getHelpUrlMock.object,
                 tagToLinkMapper,
+                ruleProcessorMock.object,
             );
-            let decoratedResult;
-            GlobalScope.using(suppressChecksByMessagesMock).with(() => {
-                decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
-            });
+
+            const decoratedResult = testSubject.decorateResults(nonEmptyResultStub);
 
             expect(decoratedResult).toEqual(emptyResultsStub);
-            suppressChecksByMessagesMock.verifyAll();
+            ruleProcessorMock.verifyAll();
             documentUtilsMock.verifyAll();
             messageDecoratorMock.verifyAll();
         });

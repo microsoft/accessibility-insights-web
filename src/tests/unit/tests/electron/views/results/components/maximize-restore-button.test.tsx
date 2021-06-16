@@ -29,7 +29,8 @@ describe('MaximizeRestoreButton', () => {
     });
 
     it('handles click', () => {
-        const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
+        const eventStub =
+            new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
         const onClickMock = Mock.ofInstance(() => {});
         const props: MaximizeRestoreButtonProps = {
             isMaximized: false,

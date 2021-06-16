@@ -39,7 +39,7 @@ export function evaluateWidgetFunction(node: HTMLElement): boolean {
     // tslint:disable-next-line:no-invalid-this
     this.data({
         element: getNativeWidgetElementType(node),
-        accessibleName: AxeUtils.getAccessibleText(node, false),
+        accessibleName: AxeUtils.getAccessibleText(node),
         role: node.getAttribute('role'),
         ariaAttributes: AxeUtils.getAttributes(node, ariaAttributes),
         tabIndex: node.getAttribute('tabindex'),

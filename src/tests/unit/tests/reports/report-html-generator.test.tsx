@@ -4,6 +4,7 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NullComponent } from 'common/components/null-component';
+import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
@@ -31,6 +32,7 @@ describe('ReportHtmlGenerator', () => {
         const pageUrl: string = 'https://page-url/';
         const description: string = 'description';
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
         const cardInteractionSupport = noCardInteractionsSupported;
 
@@ -69,6 +71,7 @@ describe('ReportHtmlGenerator', () => {
         const sectionProps: ReportBodyProps = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorMock.object,
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,
@@ -77,6 +80,7 @@ describe('ReportHtmlGenerator', () => {
                 LinkComponent: NewTabLink,
             } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
+            recommendColor: recommendColorMock.object,
             sectionFactory: sectionFactoryMock.object as ReportBodySectionFactory,
             description,
             toUtcString: getUTCStringFromDateStub,
@@ -111,6 +115,7 @@ describe('ReportHtmlGenerator', () => {
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
             fixInstructionProcessorMock.object,
+            recommendColorMock.object,
             getPropertyConfigurationStub,
         );
 

@@ -43,10 +43,8 @@ describe(AxeFrameMessenger, () => {
         MockBehavior.Strict);
         logger = new RecordingLogger();
 
-        [
-            parentLinkedCommunicator,
-            childLinkedCommunicator,
-        ] = LinkedRespondableCommunicator.createLinkedMockPair();
+        [parentLinkedCommunicator, childLinkedCommunicator] =
+            LinkedRespondableCommunicator.createLinkedMockPair();
         parentWindow = parentLinkedCommunicator.window;
         parentWindowUtils = { getParentWindow: () => null } as WindowUtils;
         parentMessenger = new AxeFrameMessenger(
