@@ -5,7 +5,7 @@ import { NeedsReviewAdHocVisualization } from 'ad-hoc-visualizations/needs-revie
 import { Analyzer, RuleAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { ScannerUtils } from '../injected/scanner-utils';
-import { RuleConfiguration, ScanResults } from '../scanner/iruleresults';
+import { ScanResults } from '../scanner/iruleresults';
 import { HTMLElementUtils } from './html-element-utils';
 import { Logger } from './logging/logger';
 
