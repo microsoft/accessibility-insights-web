@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
@@ -12,7 +11,6 @@ describe('Details View -> Overview Page', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
-    let backgroundPage: BackgroundPage;
     let loadAssessmentCount: number = 0;
 
     beforeAll(async () => {
@@ -20,7 +18,6 @@ describe('Details View -> Overview Page', () => {
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         overviewPage = await openOverviewPage(browser, targetPage);
-        backgroundPage = await browser.backgroundPage();
     });
 
     afterAll(async () => {
@@ -46,7 +43,6 @@ describe('Details View -> Overview Page', () => {
         ${'web@2.25.0-valid-mixed-results.a11ywebassessment'}
         ${'web@2.26.0-valid-mixed-results.a11ywebassessment'}
     `('should display pinned results when loading $file', async ({ file }) => {
-        await backgroundPage.enableFeatureFlag('saveAndLoadAssessment');
         await overviewPage.setFileForUpload(
             `${__dirname}/../../test-resources/saved-assessment-files/${file}`,
         );
@@ -92,8 +88,6 @@ describe('Details View -> Overview Page', () => {
     `(
         'should display invalid data dialog and not load assessment when loading $file',
         async ({ file }) => {
-            await backgroundPage.enableFeatureFlag('saveAndLoadAssessment');
-
             const elementHandle = await overviewPage.getSelectorElement(
                 overviewSelectors.outcomeSummaryBar,
             );
@@ -108,7 +102,9 @@ describe('Details View -> Overview Page', () => {
                 `${__dirname}/../../test-resources/saved-assessment-files/${file}`,
             );
 
-            await overviewPage.waitForTimeout(750);
+            await overviewPage.clickSelector(overviewSelectors.loadAssessmentButton);
+
+            await overviewPage.clickSelector(overviewSelectors.invalidLoadAssessmentDialogOkButton);
 
             let currentOutcomeSummaryAriaLabel: string;
 

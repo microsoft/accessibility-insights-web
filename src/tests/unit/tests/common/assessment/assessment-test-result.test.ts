@@ -1,22 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { Mock } from 'typemoq';
 import {
     AssessmentTestProviderDeps,
     AssessmentTestResult,
-} from '../../../../../common/assessment/assessment-test-result';
-import { RequirementResult } from '../../../../../common/assessment/requirement';
-import {
-    ManualTestStatus,
-    ManualTestStatusData,
-} from '../../../../../common/types/manual-test-status';
-import { AssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
+} from 'common/assessment/assessment-test-result';
+import { RequirementResult } from 'common/assessment/requirement';
+import { ManualTestStatus, ManualTestStatusData } from 'common/types/manual-test-status';
+import { AssessmentData } from 'common/types/store-data/assessment-result-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { Mock } from 'typemoq';
 
 describe('AssessmentTestResult', () => {
-    const assessmentType = -2112;
+    const assessmentType = -1 as VisualizationType;
     const key = 'TheKey';
     const definition = { key, visualizationType: assessmentType } as Assessment;
     const assessmentProvider = {

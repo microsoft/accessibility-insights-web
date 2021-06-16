@@ -45,7 +45,7 @@ function evaluateLinkFunction(
     virtualNode: any,
     context: any,
 ): boolean {
-    const accessibleName = AxeUtils.getAccessibleText(node, false);
+    const accessibleName = AxeUtils.getAccessibleText(node);
     const ariaValues = AxeUtils.getPropertyValuesMatching(node, /^aria-/);
     const role = node.getAttribute('role');
     const tabIndex = node.getAttribute('tabindex');

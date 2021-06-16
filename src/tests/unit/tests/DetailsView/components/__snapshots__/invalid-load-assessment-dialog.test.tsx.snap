@@ -23,6 +23,7 @@ exports[`InvalidLoadAssessmentDialog should show when isOpen is set to true 1`] 
 >
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton
+      data-automation-id="invalid-load-assessment-dialog-ok-button"
       onClick={[Function]}
     >
       OK
