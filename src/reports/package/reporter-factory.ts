@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createToolData } from 'common/application-properties-provider';
+import { RecommendColor } from 'common/components/recommend-color';
 import { getA11yInsightsWebRuleUrl } from 'common/configs/a11y-insights-rule-resources';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
@@ -60,6 +61,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
 
     const reactStaticRenderer = new ReactStaticRenderer();
     const fixInstructionProcessor = new FixInstructionProcessor();
+    const recommendColor = new RecommendColor();
 
     const toolData = createToolData(
         'axe-core',
@@ -84,6 +86,7 @@ const axeResultsReportGenerator = (parameters: AxeReportParameters) => {
         DateProvider.getUTCStringFromDate,
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,
+        recommendColor,
         getPropertyConfiguration,
     );
 
@@ -154,6 +157,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
     );
 
     const fixInstructionProcessor = new FixInstructionProcessor();
+    const recommendColor = new RecommendColor();
 
     const reportHtmlGenerator = new CombinedReportHtmlGenerator(
         CombinedReportSectionFactory,
@@ -163,6 +167,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
         DateProvider.getTimeStringFromSeconds,
         GetGuidanceTagsFromGuidanceLinks,
         fixInstructionProcessor,
+        recommendColor,
         getPropertyConfiguration,
     );
     const deps = {

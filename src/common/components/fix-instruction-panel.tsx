@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { CheckType } from 'common/types/check-type';
 import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
@@ -8,6 +9,7 @@ import * as styles from './fix-instruction-panel.scss';
 
 export interface FixInstructionPanelDeps {
     fixInstructionProcessor: FixInstructionProcessor;
+    recommendColor: RecommendColor;
 }
 
 export interface FixInstructionPanelProps {
@@ -37,7 +39,7 @@ export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>(
             const instructionList = props.checks.map((check, checkIndex) => {
                 return (
                     <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>
-                        {fixInstructionProcessor.process(check.message)}
+                        {fixInstructionProcessor.process(check.message, props.deps.recommendColor)}
                     </li>
                 );
             });

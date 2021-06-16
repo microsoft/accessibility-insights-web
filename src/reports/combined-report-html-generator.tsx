@@ -4,6 +4,7 @@
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
+import { RecommendColor } from 'common/components/recommend-color';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
@@ -29,6 +30,7 @@ export class CombinedReportHtmlGenerator {
         private readonly secondsToTimeStringConverter: (seconds: number) => string,
         private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
+        private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
     ) {}
 
@@ -44,6 +46,7 @@ export class CombinedReportHtmlGenerator {
             scanMetadata,
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
+                recommendColor: this.recommendColor,
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
