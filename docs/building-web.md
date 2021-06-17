@@ -167,3 +167,7 @@ tools console from the context of the "DetailsView", "Popup", or "Insights" page
 
 -   `window.selfFastPass.automatedChecks()`
 -   `window.selfFastPass.needsReview()`
+
+You can also use `window.selfFastPass.customScan(['axe-rule-id'])` to scan with a specific set of rules. This is mostly used to run
+self-tests of various assessment requirements. For example, to see all the elements our Custom Widgets requirements would pick up,
+you could use `window.selfFastPass.customScan(['custom-widget'])`.
