@@ -64,7 +64,7 @@ yarn watch:build:web
 
 -   Look for the ![Dev Logo](../src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 
--   (Optional) run `yarn react-devtools` to open a standalone React DevTools instance that will automatically connect to any open popup or detailsView pages from a dev build of the extension.
+-   (Optional) run `yarn react-devtools:setup && yarn react-devtools` to open a standalone React DevTools instance that will automatically connect to any open popup or detailsView pages from a dev build of the extension.
 
 ### Testing
 
