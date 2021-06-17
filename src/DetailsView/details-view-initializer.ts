@@ -57,8 +57,6 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
-import { A11YSelfValidator } from '../common/a11y-self-validator';
-import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
@@ -88,6 +86,7 @@ import { UserConfigMessageCreator } from '../common/message-creators/user-config
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
+import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
@@ -131,7 +130,7 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 
-declare const window: AutoChecker & Window;
+declare const window: SelfFastPassContainer & Window;
 
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
@@ -516,12 +515,12 @@ if (tabId != null) {
 
             renderer.render();
 
-            const a11ySelfValidator = new A11YSelfValidator(
+            const selfFastPass = new SelfFastPass(
                 new ScannerUtils(scan, logger),
                 new HTMLElementUtils(),
                 logger,
             );
-            window.A11YSelfValidator = a11ySelfValidator;
+            window.selfFastPass = selfFastPass;
         },
         () => {
             const renderer = createNullifiedRenderer(
