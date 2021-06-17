@@ -24,16 +24,16 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
 }
 
 export function normalizeId(htmlString: string): string {
-    // matches a string like: id="*"
+    // matches a string like: id="*" or for="*"
     // we process only the string value on the right side
-    const idAttributeMatcher = /id="([^".]+)"/g;
+    const idAttributeMatcher = /(id|for)="([^".]+)"/g;
 
-    return htmlString.replace(idAttributeMatcher, (_, idMatch: string) => {
+    return htmlString.replace(idAttributeMatcher, (_wholeMatch, attrName, idMatch: string) => {
         const officeFabricIdMatcher = /^([a-zA-Z-_]+)(\d+)(-{0,1}\w+)?$/;
 
         const idValue = idMatch.replace(officeFabricIdMatcher, `$1000$3`);
 
-        return `id="${idValue}"`;
+        return `${attrName}="${idValue}"`;
     });
 }
 

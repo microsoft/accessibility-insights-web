@@ -18,12 +18,29 @@ describe('element-snapshot-formatter', () => {
             ${'element2-label'}    | ${'element000-label'}
             ${'element-id3'}       | ${'element-id000'}
             ${'element-id4-label'} | ${'element-id000-label'}
-        `('from "$actualId" to "${expectedId}"', ({ actualId, expectedId }) => {
+        `('from id="$actualId" to id="${expectedId}"', ({ actualId, expectedId }) => {
             const actualHtml = buildSimpleHtmlFragment('id', actualId);
 
             const result = normalizeId(actualHtml);
 
             const expected = buildSimpleHtmlFragment('id', expectedId);
+
+            expect(result).toEqual(expected);
+        });
+
+        it.each`
+            actualId               | expectedId
+            ${'custom-id'}         | ${'custom-id'}
+            ${'element1'}          | ${'element000'}
+            ${'element2-label'}    | ${'element000-label'}
+            ${'element-id3'}       | ${'element-id000'}
+            ${'element-id4-label'} | ${'element-id000-label'}
+        `('from for="$actualId" to for="${expectedId}"', ({ actualId, expectedId }) => {
+            const actualHtml = buildSimpleHtmlFragment('for', actualId);
+
+            const result = normalizeId(actualHtml);
+
+            const expected = buildSimpleHtmlFragment('for', expectedId);
 
             expect(result).toEqual(expected);
         });
