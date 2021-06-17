@@ -15712,7 +15712,7 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
                 <br />
                             &lt;/script&gt;
                 <br />
-                            &lt;label for="name1"&gt; First name&lt;/label&gt;
+                            &lt;label for="name000"&gt; First name&lt;/label&gt;
                 <br />
                             &lt;input onBlur="check();" type="text"
                 <br />
@@ -15795,7 +15795,7 @@ exports[`Guidance Content pages test/keyboard/noKeyboardTraps/infoAndExamples ma
                 <br />
                             &lt;/script&gt;
                 <br />
-                            &lt;label id="l000" for="name1"&gt; First name&lt;/label&gt;
+                            &lt;label id="l000" for="name000"&gt; First name&lt;/label&gt;
                 <br />
                             &lt;input onBlur="check();" type="text" id="name000"&gt;
               </div>
