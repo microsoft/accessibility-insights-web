@@ -165,17 +165,17 @@ export class FixInstructionProcessor {
             return <>{fixInstruction}</>;
         }
 
-        const recommendations: JSX.Element[][] = [];
+        const recommendations: JSX.Element[] = [];
         const howToFixMatches = matches.slice(0, 2);
         const recommendationMatches = matches.slice(2);
 
-        const results = this.getInstructionWithBoxes(howToFixMatches, fixInstruction);
+        const results = this.getInstructionWithAndWithoutBoxes(howToFixMatches, fixInstruction);
 
         if (recommendationStrings.length === 0) {
             return <>{results}</>;
         }
 
-        const recommendationOne = this.getInstructionWithBoxes(
+        const recommendationOne = this.getInstructionWithAndWithoutBoxes(
             recommendationMatches.slice(0, 2),
             recommendationStrings[0],
         );
@@ -183,25 +183,26 @@ export class FixInstructionProcessor {
         recommendations.push(recommendationOne);
 
         if (recommendationStrings.length > 1) {
-            const recommendationTwo = this.getInstructionWithBoxes(
+            const recommendationTwo = this.getInstructionWithAndWithoutBoxes(
                 recommendationMatches.slice(2),
                 recommendationStrings[1],
             );
             recommendations.push(recommendationTwo);
         }
 
-        this.addRecommendationsToResults(results, recommendations);
-
-        return <>{results}</>;
+        return this.addRecommendationsToResults(results, recommendations);
     }
 
-    private addRecommendationsToResults(results: JSX.Element[], recommendations: JSX.Element[][]) {
-        results.push(
-            <ul key="recommendations-list">
-                {recommendations.map((rec, idx) => (
-                    <li key={`recommendation-${idx}`}>{rec}</li>
-                ))}
-            </ul>,
+    private addRecommendationsToResults(results: JSX.Element, recommendations: JSX.Element[]) {
+        return (
+            <>
+                {results}
+                <ul key="recommendations-list">
+                    {recommendations.map((rec, idx) => (
+                        <li key={`recommendation-${idx}`}>{rec}</li>
+                    ))}
+                </ul>
+            </>
         );
     }
 
@@ -224,6 +225,18 @@ export class FixInstructionProcessor {
 
         result.push(<span key={`instruction-split-${keyIndex++}`}>{coda}</span>);
         return result;
+    }
+
+    private getInstructionWithAndWithoutBoxes(matches: ColorMatch[], fixInstruction: string) {
+        // this is necessary to ensure Narrator reads the instruction without pauses
+        return (
+            <>
+                <span aria-hidden="true">
+                    {this.getInstructionWithBoxes(matches, fixInstruction)}
+                </span>
+                <span className={styles.screenReaderOnly}>{fixInstruction}</span>
+            </>
+        );
     }
 
     private createColorBox(colorHexValue: string, keyIndex: number): JSX.Element {
