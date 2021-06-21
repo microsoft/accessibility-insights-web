@@ -92,7 +92,7 @@ function testCuesEvaluateWithData(expectedData, nodeData): void {
     const dataSetterMock = Mock.ofInstance(data => {});
 
     dataSetterMock.setup(m => m(It.isValue(expectedData))).verifiable(Times.once());
-    getAccessibleTextMock.setup(m => m(nodeStub, false)).returns(n => expectedData.accessibleName);
+    getAccessibleTextMock.setup(m => m(nodeStub)).returns(n => expectedData.accessibleName);
 
     let result;
     GlobalScope.using(getAccessibleTextMock).with(() => {
