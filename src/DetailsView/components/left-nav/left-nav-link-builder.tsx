@@ -7,7 +7,7 @@ import { gettingStartedSubview } from 'common/types/store-data/assessment-result
 import {
     onTestGettingStartedClick,
     onTestRequirementClick,
-    ReflowAssessmentLeftNavLink,
+    AssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -89,51 +89,6 @@ export class LeftNavLinkBuilder {
         return overviewLink;
     }
 
-    public buildAssessmentTestLinks(
-        deps: AssessmentLinkBuilderDeps,
-        onLinkClick: onBaseLeftNavItemClick,
-        assessmentsProvider: AssessmentsProvider,
-        assessmentsData: DictionaryStringTo<ManualTestStatusData>,
-        startingIndex: number,
-    ): BaseLeftNavLink[] {
-        const {
-            getStatusForTest,
-            outcomeTypeSemanticsFromTestStatus,
-            outcomeStatsFromManualTestStatus,
-            navLinkRenderer,
-        } = deps;
-
-        const assessments = assessmentsProvider.all();
-        let index = startingIndex;
-
-        const testLinks = map(assessments, assessment => {
-            const stepStatus = assessmentsData[assessment.key];
-            const stats = outcomeStatsFromManualTestStatus(stepStatus);
-            const status = getStatusForTest(stats);
-            const narratorTestStatus = outcomeTypeSemanticsFromTestStatus(status).pastTense;
-            const name = assessment.title;
-
-            const baselink = this.buildBaseLink(
-                name,
-                VisualizationType[assessment.visualizationType],
-                index,
-                navLinkRenderer.renderAssessmentTestLink,
-                onLinkClick,
-            );
-
-            const assessmentLink = {
-                ...baselink,
-                status,
-                title: `${index}: ${name} (${narratorTestStatus})`,
-            };
-
-            index++;
-            return assessmentLink;
-        });
-
-        return testLinks;
-    }
-
     public buildReflowAssessmentTestLinks(
         deps: AssessmentLinkBuilderDeps,
         assessmentsProvider: AssessmentsProvider,
@@ -169,7 +124,7 @@ export class LeftNavLinkBuilder {
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
         isExpanded: boolean,
         onRightPanelContentSwitch: () => void,
-    ): ReflowAssessmentLeftNavLink => {
+    ): AssessmentLeftNavLink => {
         const {
             getStatusForTest,
             outcomeTypeSemanticsFromTestStatus,

@@ -34,10 +34,6 @@ export type AssessmentLeftNavProps = {
 };
 
 export type AssessmentLeftNavLink = {
-    status: ManualTestStatus;
-} & BaseLeftNavLink;
-
-export type ReflowAssessmentLeftNavLink = {
     testType: VisualizationType;
     status: ManualTestStatus;
 } & BaseLeftNavLink;
@@ -50,7 +46,8 @@ export type TestRequirementLeftNavLink = {
     displayedIndex: string;
     testType: VisualizationType;
     requirementKey: string;
-} & AssessmentLeftNavLink;
+    status: ManualTestStatus;
+} & BaseLeftNavLink;
 
 export type onTestRequirementClick = (
     event: React.MouseEvent<HTMLElement>,
