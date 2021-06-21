@@ -77,7 +77,7 @@ describe(AssessmentLeftNav, () => {
     it('renders with reflow feature flag enabled', () => {
         leftNavLinkBuilderMock
             .setup(lnlbm =>
-                lnlbm.buildReflowAssessmentTestLinks(
+                lnlbm.buildAssessmentTestLinks(
                     deps,
                     assessmentsProviderStub,
                     assessmentsDataStub,

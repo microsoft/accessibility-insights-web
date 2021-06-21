@@ -238,7 +238,7 @@ describe('LeftNavBuilder', () => {
                 .setup(mock => mock(testStatusStub))
                 .returns(() => narratorStatusStub);
 
-            const links = testSubject.buildReflowAssessmentTestLinks(
+            const links = testSubject.buildAssessmentTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,

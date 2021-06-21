@@ -46,14 +46,14 @@ export type VisualizationConfigurationLinkBuilderDeps = {
     navLinkRenderer: NavLinkRenderer;
 };
 
-export function generateReflowAssessmentTestKey(
+export function generateAssessmentTestKey(
     test: VisualizationType,
     selectedSubview: string,
 ): string {
     return `${VisualizationType[test]}: ${selectedSubview}`;
 }
 
-export type reflowAssessmentTestKeyGenerator = typeof generateReflowAssessmentTestKey;
+export type assessmentTestKeyGenerator = typeof generateAssessmentTestKey;
 
 export class LeftNavLinkBuilder {
     public buildOverviewLink(
@@ -89,7 +89,7 @@ export class LeftNavLinkBuilder {
         return overviewLink;
     }
 
-    public buildReflowAssessmentTestLinks(
+    public buildAssessmentTestLinks(
         deps: AssessmentLinkBuilderDeps,
         assessmentsProvider: AssessmentsProvider,
         assessmentsData: DictionaryStringTo<ManualTestStatusData>,
@@ -202,7 +202,7 @@ export class LeftNavLinkBuilder {
 
         const baselink = this.buildBaseLink(
             name,
-            generateReflowAssessmentTestKey(test, requirement.key),
+            generateAssessmentTestKey(test, requirement.key),
             requirementIndex,
             navLinkRenderer.renderRequirementLink,
             onClick,
@@ -228,7 +228,7 @@ export class LeftNavLinkBuilder {
             testType,
             ...this.buildBaseLink(
                 'Getting started',
-                generateReflowAssessmentTestKey(testType, gettingStartedSubview),
+                generateAssessmentTestKey(testType, gettingStartedSubview),
                 0,
                 renderGettingStartedLink,
                 onClick,

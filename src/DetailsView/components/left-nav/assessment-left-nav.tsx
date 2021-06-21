@@ -85,7 +85,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
     );
 
     links = links.concat(
-        leftNavLinkBuilder.buildReflowAssessmentTestLinks(
+        leftNavLinkBuilder.buildAssessmentTestLinks(
             deps,
             assessmentsProvider,
             assessmentsData,
