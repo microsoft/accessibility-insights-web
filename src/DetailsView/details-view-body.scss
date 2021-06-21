@@ -31,12 +31,9 @@
     align-content: stretch;
     padding-left: 0px;
     padding-right: 0px;
-    grid-template-columns: $detailsViewLeftNavWidth 1fr;
-    grid-template-rows: 1fr;
     width: 100%;
     min-height: 0;
     height: 100%;
-    grid-template-columns: $reflowLeftNavWidth 1fr;
 
     :global(.ms-Pivot) {
         border-bottom: 1px solid $neutral-8;
