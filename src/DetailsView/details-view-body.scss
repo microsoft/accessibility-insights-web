@@ -9,15 +9,12 @@
 .details-view-content-pane-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
     padding-bottom: 1px;
     box-sizing: border-box;
-    max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-    &:global(.reflow-ui) {
-        width: calc(100vw - (#{$reflowLeftNavWidth}));
-        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
-    }
+    width: calc(100vw - (#{$reflowLeftNavWidth}));
+    height: 100%;
+    max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+
     &.narrow-mode {
         width: 100%;
     }
