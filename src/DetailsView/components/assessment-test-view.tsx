@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { RequirementResult } from 'common/assessment/requirement';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
     GettingStartedView,
@@ -18,7 +15,6 @@ import {
     TargetChangeDialogDeps,
 } from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
-import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
 import {
@@ -34,10 +30,7 @@ import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-
 export type AssessmentTestViewDeps = ScanIncompleteWarningDeps &
     TargetChangeDialogDeps &
     GettingStartedViewDeps &
-    RequirementViewDeps & {
-        assessmentsProvider: AssessmentsProvider;
-        assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
-    };
+    RequirementViewDeps;
 
 export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
@@ -57,6 +50,7 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
         const scanningInProgress: boolean = props.visualizationStoreData.scanning !== null;
         const assessmentNavState = props.assessmentStoreData.assessmentNavState;
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const assessment = deps.assessmentsProvider.forType(assessmentNavState.selectedTestType);
         const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
         const prevTarget = props.assessmentStoreData.persistedTabInfo;
         const selectedRequirementIsEnabled = props.configuration.getTestStatus(
@@ -68,52 +62,9 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             url: props.tabStoreData.url,
             title: props.tabStoreData.title,
         };
-        const assessmentTestResult = new AssessmentTestResult(
-            deps.assessmentsProvider,
-            assessmentNavState.selectedTestType,
-            assessmentData,
-        );
-        const assessment = assessmentTestResult.definition;
 
-        const renderGettingStartedView = () => (
-            <GettingStartedView deps={deps} assessment={assessmentTestResult.definition} />
-        );
-
-        const renderRequirementView = () => {
-            const selectedRequirement: RequirementResult =
-                assessmentTestResult.getRequirementResult(assessmentNavState.selectedTestSubview);
-
-            const nextRequirement = assessment.requirements.find(
-                r => r.order === selectedRequirement.definition.order + 1,
-            );
-
-            return (
-                <RequirementView
-                    deps={deps}
-                    requirement={selectedRequirement.definition}
-                    assessmentsProvider={deps.assessmentsProvider}
-                    assessmentNavState={assessmentNavState}
-                    instancesMap={assessmentData.generatedAssessmentInstancesMap}
-                    isRequirementEnabled={selectedRequirementIsEnabled}
-                    isRequirementScanned={selectedRequirement.data.isStepScanned}
-                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    pathSnippetStoreData={props.pathSnippetStoreData}
-                    scanningInProgress={scanningInProgress}
-                    manualRequirementResultMap={assessmentData.manualTestStepResultMap}
-                    assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
-                    assessmentData={assessmentData}
-                    currentTarget={currentTarget}
-                    prevTarget={prevTarget}
-                    nextRequirement={nextRequirement}
-                />
-            );
-        };
-
-        const mainContent =
-            assessmentNavState.selectedTestSubview === gettingStartedSubview
-                ? renderGettingStartedView()
-                : renderRequirementView();
+        const isGettingStartedSelected =
+            assessmentNavState.selectedTestSubview === gettingStartedSubview;
 
         return (
             <>
@@ -124,7 +75,22 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                     test={assessmentNavState.selectedTestType}
                 />
                 <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
-                {mainContent}
+                {isGettingStartedSelected ? (
+                    <GettingStartedView deps={deps} assessment={assessment} />
+                ) : (
+                    <RequirementView
+                        deps={deps}
+                        assessmentNavState={assessmentNavState}
+                        isRequirementEnabled={selectedRequirementIsEnabled}
+                        assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                        pathSnippetStoreData={props.pathSnippetStoreData}
+                        scanningInProgress={scanningInProgress}
+                        assessmentData={assessmentData}
+                        currentTarget={currentTarget}
+                        prevTarget={prevTarget}
+                    />
+                )}
             </>
         );
     },
