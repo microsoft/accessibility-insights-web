@@ -39,7 +39,6 @@ exports[`GettingStartedViewTest renders with content from props 1`] = `
     nextRequirement={
       Object {
         "key": "expectedNextRequirement",
-        "order": 1,
       }
     }
   />

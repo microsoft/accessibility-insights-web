@@ -79,7 +79,6 @@ exports[`RequirementViewTest renders with content from props 1`] = `
             </p>,
             "key": "test-requirement-key",
             "name": "test-requirement-name",
-            "order": 1,
           }
         }
         selectedRequirementHasVisualHelper={true}
@@ -101,8 +100,7 @@ exports[`RequirementViewTest renders with content from props 1`] = `
     }
     nextRequirement={
       Object {
-        "key": "next-requirement-key",
-        "order": 2,
+        "key": "other-requirement-key",
       }
     }
   />
