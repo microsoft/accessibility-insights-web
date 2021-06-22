@@ -4,6 +4,10 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
+    GettingStartedView,
+    GettingStartedViewDeps,
+} from 'DetailsView/components/getting-started-view';
+import {
     ReflowAssessmentView,
     ReflowAssessmentViewDeps,
 } from 'DetailsView/components/reflow-assessment-view';
@@ -11,11 +15,18 @@ import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
 } from 'DetailsView/components/scan-incomplete-warning';
+import {
+    TargetChangeDialog,
+    TargetChangeDialogDeps,
+} from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
-import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    gettingStartedSubview,
+} from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -23,7 +34,9 @@ import { VisualizationStoreData } from '../../common/types/store-data/visualizat
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
 export type AssessmentTestViewDeps = ReflowAssessmentViewDeps &
-    ScanIncompleteWarningDeps & {
+    ScanIncompleteWarningDeps &
+    TargetChangeDialogDeps &
+    GettingStartedViewDeps & {
         assessmentsProvider: AssessmentsProvider;
         assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     };
@@ -63,6 +76,32 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             assessmentData,
         );
 
+        const renderGettingStartedView = () => (
+            <GettingStartedView deps={deps} assessment={assessmentTestResult.definition} />
+        );
+
+        const renderRequirementView = () => (
+            <ReflowAssessmentView
+                deps={deps}
+                scanningInProgress={isScanning}
+                selectedRequirementIsEnabled={selectedRequirementIsEnabled}
+                assessmentNavState={assessmentNavState}
+                assessmentData={assessmentData}
+                assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
+                assessmentTestResult={assessmentTestResult}
+                assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                featureFlagStoreData={props.featureFlagStoreData}
+                pathSnippetStoreData={props.pathSnippetStoreData}
+                prevTarget={prevTarget}
+                currentTarget={currentTarget}
+            />
+        );
+
+        const mainContent =
+            assessmentNavState.selectedTestSubview === gettingStartedSubview
+                ? renderGettingStartedView()
+                : renderRequirementView();
+
         return (
             <>
                 <ScanIncompleteWarning
@@ -71,20 +110,8 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                     warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
                     test={assessmentNavState.selectedTestType}
                 />
-                <ReflowAssessmentView
-                    deps={deps}
-                    currentTarget={currentTarget}
-                    prevTarget={prevTarget}
-                    scanningInProgress={isScanning}
-                    selectedRequirementIsEnabled={selectedRequirementIsEnabled}
-                    assessmentNavState={assessmentNavState}
-                    assessmentData={assessmentData}
-                    assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
-                    assessmentTestResult={assessmentTestResult}
-                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    pathSnippetStoreData={props.pathSnippetStoreData}
-                />
+                <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
+                {mainContent}
             </>
         );
     },
