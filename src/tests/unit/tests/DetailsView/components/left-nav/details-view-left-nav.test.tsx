@@ -87,7 +87,7 @@ describe(DetailsViewLeftNav, () => {
                     visualizationType: selectedTestStub,
                     featureFlagStoreData: featureFlagDataStub,
                     selectedSubview: selectedTestSubview,
-                    deps: { generateReflowAssessmentTestKey: generateAssessmentTestKey },
+                    deps: { generateAssessmentTestKey },
                     assessmentsProvider: assessmentProviderStub,
                 }),
             ),
