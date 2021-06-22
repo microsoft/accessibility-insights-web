@@ -2,11 +2,15 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
+import { TestStepData } from 'common/types/manual-test-status';
 import {
+    AssessmentData,
     AssessmentNavState,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
+    RequirementIdToResultMap,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
@@ -28,35 +32,45 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { DictionaryStringTo } from 'types/common-types';
 
 describe('RequirementViewTest', () => {
+    let assessmentStub: Assessment;
     let requirementStub: Requirement;
+    let nextRequirementStub: Requirement;
     let assessmentNavState: AssessmentNavState;
-    let selectedRequirementStub: Requirement;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let props: RequirementViewProps;
-    let manualRequirementResultMapStub: DictionaryStringTo<ManualTestStepResult>;
+    let assessmentDataStub: AssessmentData;
     let assessmentInstanceTableHandlerStub: AssessmentInstanceTableHandler;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let pathSnippetStoreDataStub: PathSnippetStoreData;
     let updateHandlerMock: IMock<AssessmentViewUpdateHandler>;
+
     beforeEach(() => {
         requirementStub = {
+            key: 'test-requirement-key',
             name: 'test-requirement-name',
             description: <div>test-description</div>,
             howToTest: <p>how-to-test-stub</p>,
+            getVisualHelperToggle: (props: VisualHelperToggleConfig) => (
+                <div>test-visual-helper-toggle</div>
+            ),
+            order: 1,
         } as Requirement;
-
+        nextRequirementStub = {
+            key: 'next-requirement-key',
+            order: 2,
+        } as Requirement;
+        assessmentStub = {
+            requirements: [requirementStub, nextRequirementStub],
+        } as Assessment;
         assessmentNavState = {
             selectedTestType: VisualizationType.Headings,
             selectedTestSubview: 'test-requirement-name',
         };
 
-        selectedRequirementStub = {
-            getVisualHelperToggle: (props: VisualHelperToggleConfig) => (
-                <div>test-visual-helper-toggle</div>
-            ),
-        } as Readonly<Requirement>;
-
         assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
+        assessmentsProviderMock
+            .setup(ap => ap.forType(assessmentNavState.selectedTestType))
+            .returns(() => assessmentStub);
         assessmentsProviderMock
             .setup(ap =>
                 ap.getStep(
@@ -64,13 +78,21 @@ describe('RequirementViewTest', () => {
                     assessmentNavState.selectedTestSubview,
                 ),
             )
-            .returns(() => selectedRequirementStub);
+            .returns(() => requirementStub);
         assessmentInstanceTableHandlerStub = {
             changeRequirementStatus: null,
         } as AssessmentInstanceTableHandler;
-        manualRequirementResultMapStub = {
-            'some manual test step result id': null,
-        };
+
+        assessmentDataStub = {
+            generatedAssessmentInstancesMap: {} as DictionaryStringTo<GeneratedAssessmentInstance>,
+            manualTestStepResultMap: {
+                'some manual test step result id': null,
+            } as RequirementIdToResultMap,
+            testStepStatus: {
+                [requirementStub.key]: { isStepScanned: true } as TestStepData,
+            },
+        } as AssessmentData;
+
         featureFlagStoreDataStub = {
             'some feature flag': true,
         };
@@ -80,20 +102,18 @@ describe('RequirementViewTest', () => {
         updateHandlerMock = Mock.ofType(AssessmentViewUpdateHandler);
 
         props = {
-            deps: { assessmentViewUpdateHandler: updateHandlerMock.object } as RequirementViewDeps,
-            requirement: requirementStub,
-            assessmentsProvider: assessmentsProviderMock.object,
+            deps: {
+                assessmentViewUpdateHandler: updateHandlerMock.object,
+                assessmentsProvider: assessmentsProviderMock.object,
+            } as RequirementViewDeps,
             assessmentNavState: assessmentNavState,
-            instancesMap: {} as DictionaryStringTo<GeneratedAssessmentInstance>,
             isRequirementEnabled: true,
-            isRequirementScanned: true,
-            manualRequirementResultMap: manualRequirementResultMapStub,
             assessmentInstanceTableHandler: assessmentInstanceTableHandlerStub,
             featureFlagStoreData: featureFlagStoreDataStub,
             pathSnippetStoreData: pathSnippetStoreDataStub,
             prevTarget: { id: 4 },
             currentTarget: { id: 5 },
-            assessmentData: {},
+            assessmentData: assessmentDataStub,
         } as RequirementViewProps;
     });
 
