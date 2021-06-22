@@ -18,6 +18,7 @@ import {
     AssessmentViewUpdateHandler,
     AssessmentViewUpdateHandlerProps,
 } from 'DetailsView/components/assessment-view-update-handler';
+import { NextRequirementButton } from 'DetailsView/components/next-requirement-button';
 import {
     RequirementView,
     RequirementViewDeps,
@@ -33,7 +34,7 @@ import { DictionaryStringTo } from 'types/common-types';
 describe('RequirementViewTest', () => {
     let assessmentStub: Assessment;
     let requirementStub: Requirement;
-    let nextRequirementStub: Requirement;
+    let otherRequirementStub: Requirement;
     let assessmentNavState: AssessmentNavState;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let props: RequirementViewProps;
@@ -54,12 +55,12 @@ describe('RequirementViewTest', () => {
             ),
             order: 1,
         } as Requirement;
-        nextRequirementStub = {
+        otherRequirementStub = {
             key: 'next-requirement-key',
             order: 2,
         } as Requirement;
         assessmentStub = {
-            requirements: [requirementStub, nextRequirementStub],
+            requirements: [requirementStub, otherRequirementStub],
         } as Assessment;
         assessmentNavState = {
             selectedTestType: VisualizationType.Headings,
@@ -120,6 +121,34 @@ describe('RequirementViewTest', () => {
         const rendered = shallow(<RequirementView {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    describe('nextRequirement handling', () => {
+        it('passes along nextRequirement if one exists', () => {
+            assessmentStub.requirements = [requirementStub, otherRequirementStub];
+            requirementStub.order = 1;
+            otherRequirementStub.order = 2;
+
+            const rendered = shallow(<RequirementView {...props} />);
+            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
+                otherRequirementStub,
+            );
+        });
+
+        it('passes a null nextRequirement if none exist', () => {
+            assessmentStub.requirements = [requirementStub];
+            const rendered = shallow(<RequirementView {...props} />);
+            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+        });
+
+        it('passes a null nextRequirement if we are the last requirement', () => {
+            assessmentStub.requirements = [requirementStub, otherRequirementStub];
+            requirementStub.order = 2;
+            otherRequirementStub.order = 1;
+
+            const rendered = shallow(<RequirementView {...props} />);
+            expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
+        });
     });
 
     test('componentDidUpdate', () => {
