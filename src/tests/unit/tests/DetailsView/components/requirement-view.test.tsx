@@ -9,7 +9,6 @@ import {
     AssessmentData,
     AssessmentNavState,
     GeneratedAssessmentInstance,
-    ManualTestStepResult,
     RequirementIdToResultMap,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
