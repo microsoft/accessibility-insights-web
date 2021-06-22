@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createAutomatedChecksInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
-import { RequirementComparer } from 'common/assessment/requirement-comparer';
 import { VisualizationType } from 'common/types/visualization-type';
 import { title } from 'content/strings/application';
 import { test as content } from 'content/test';
@@ -30,7 +29,6 @@ const config: AssistedAssessment = {
     gettingStarted,
     guidance,
     requirements: buildTestStepsFromRules(getDefaultRules()),
-    requirementOrder: RequirementComparer.byOutcomeAndName,
     extensions: [excludePassingInstancesFromAssessmentReport],
 };
 

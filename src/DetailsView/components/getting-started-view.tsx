@@ -21,7 +21,7 @@ export const GettingStartedView = NamedFC<GettingStartedViewProps>(
     ({ deps, assessment }) => {
         const { gettingStarted, title, guidance, visualizationType, requirements } = assessment;
 
-        const firstRequirement = requirements.find(r => r.order === 1);
+        const firstRequirement = requirements[0] ?? null;
 
         return (
             <div className={styles.gettingStartedView}>

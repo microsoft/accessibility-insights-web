@@ -10,7 +10,6 @@ import { InstanceIdentifierGenerator } from 'background/instance-identifier-gene
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
-import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
@@ -77,7 +76,6 @@ describe('AssessmentBuilderTest', () => {
 
         const manual = AssessmentBuilder.Manual(baseAssessment);
 
-        expect(manual.requirementOrder).toBe(RequirementComparer.byOrdinal);
         expect(manual.initialDataCreator).toBe(createInitialAssessmentTestData);
 
         Object.keys(baseAssessment).forEach(assessmentKey => {
@@ -224,7 +222,6 @@ describe('AssessmentBuilderTest', () => {
             ],
             storeDataKey: 'headingsAssessment',
             visualizationConfiguration: {},
-            requirementOrder: RequirementComparer.byOutcomeAndName,
         };
 
         const nonDefaultAssessment: AssistedAssessment = {
@@ -234,9 +231,6 @@ describe('AssessmentBuilderTest', () => {
 
         const assisted = AssessmentBuilder.Assisted(assistedAssessment);
         const nonDefaultAssisted = AssessmentBuilder.Assisted(nonDefaultAssessment);
-
-        expect(assisted.requirementOrder).toBe(RequirementComparer.byOutcomeAndName);
-        expect(nonDefaultAssisted.requirementOrder).toBe(RequirementComparer.byOutcomeAndName);
 
         const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
         const manualRequirement = [requirement1, requirement2, requirement3, requirement3];

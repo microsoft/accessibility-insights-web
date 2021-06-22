@@ -23,8 +23,8 @@ describe('GettingStartedViewTest', () => {
                 guidance: { pageTitle: 'some page title' } as ContentPageComponent,
                 visualizationType: -1 as VisualizationType,
                 requirements: [
-                    { key: 'expectedNextRequirement', order: 1 },
-                    { key: 'shouldntAppearInSnapshots', order: 2 },
+                    { key: 'expectedNextRequirement' },
+                    { key: 'shouldntAppearInSnapshots' },
                 ],
             } as Assessment,
         };

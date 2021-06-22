@@ -88,8 +88,9 @@ export class RequirementView extends React.Component<RequirementViewProps> {
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestSubview,
         );
-        const nextRequirement =
-            assessment.requirements.find(r => r.order === requirement.order + 1) ?? null;
+        const requirementIndex = assessment.requirements.findIndex(r => r.key === requirement.key);
+        const nextRequirement = assessment.requirements[requirementIndex + 1] ?? null;
+
         const isRequirementScanned =
             this.props.assessmentData.testStepStatus[requirement.key].isStepScanned;
 

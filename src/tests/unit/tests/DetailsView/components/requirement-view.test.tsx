@@ -53,11 +53,9 @@ describe('RequirementViewTest', () => {
             getVisualHelperToggle: (props: VisualHelperToggleConfig) => (
                 <div>test-visual-helper-toggle</div>
             ),
-            order: 1,
         } as Requirement;
         otherRequirementStub = {
-            key: 'next-requirement-key',
-            order: 2,
+            key: 'other-requirement-key',
         } as Requirement;
         assessmentStub = {
             requirements: [requirementStub, otherRequirementStub],
@@ -126,8 +124,6 @@ describe('RequirementViewTest', () => {
     describe('nextRequirement handling', () => {
         it('passes along nextRequirement if one exists', () => {
             assessmentStub.requirements = [requirementStub, otherRequirementStub];
-            requirementStub.order = 1;
-            otherRequirementStub.order = 2;
 
             const rendered = shallow(<RequirementView {...props} />);
             expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBe(
@@ -137,14 +133,13 @@ describe('RequirementViewTest', () => {
 
         it('passes a null nextRequirement if none exist', () => {
             assessmentStub.requirements = [requirementStub];
+
             const rendered = shallow(<RequirementView {...props} />);
             expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
         });
 
         it('passes a null nextRequirement if we are the last requirement', () => {
-            assessmentStub.requirements = [requirementStub, otherRequirementStub];
-            requirementStub.order = 2;
-            otherRequirementStub.order = 1;
+            assessmentStub.requirements = [otherRequirementStub, requirementStub];
 
             const rendered = shallow(<RequirementView {...props} />);
             expect(rendered.find(NextRequirementButton).prop('nextRequirement')).toBeNull();
