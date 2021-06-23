@@ -98,7 +98,7 @@
         "@types/jsdom": "^16.2.11",
         "@types/lodash": "^4.14.170",
         "@types/luxon": "^1.27.0",
-        "@types/node": "^14.17.3",
+        "@types/node": "^14.17.4",
         "@types/q": "^1.5.4",
         "@types/react": "^16.14.8",
         "@types/react-copy-to-clipboard": "^5.0.0",
