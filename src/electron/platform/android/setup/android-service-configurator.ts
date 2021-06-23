@@ -58,8 +58,7 @@ export class AndroidServiceConfigurator implements ServiceConfigurator {
     public hasRequiredServiceVersion = async (): Promise<boolean> => {
         const installedVersion = await this.getInstalledVersion(this.selectedDeviceId);
         if (installedVersion) {
-            const targetVersion = '3.2.1';
-            return installedVersion === targetVersion;
+            return true;
         }
 
         return false;
