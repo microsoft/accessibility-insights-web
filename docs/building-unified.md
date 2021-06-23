@@ -39,7 +39,9 @@ See guidance [here](../src/tests/miscellaneous/mock-adb/README.md).
 
 #### Connecting to a real device/emulator
 
-If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. You'll need to install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) beforehand; see [Getting Started with Accessibility Insights for Android](https://accessibilityinsights.io/docs/en/android/getstarted/setup#getting-started-with-accessibility-insights-for-android) for instructions on how to prepare a device/emulator with the Accessibility Insights for Android Service (follow its steps up until "Install the Accessibility Insights for Android app").
+If you _do_ need to work with an actual Android device/VM, you'll want to install [Android Studio](https://developer.android.com/studio/) and use it to connect to a device and/or start an emulator. The Unified app will automatically detect and install the [Accessibility Insights for Android Service](https://github.com/microsoft/accessibility-insights-for-android-service) onto your device; see [Getting Started with Accessibility Insights for Android](https://accessibilityinsights.io/docs/en/android/getstarted/setup#getting-started-with-accessibility-insights-for-android) for more info on how to prepare a device/emulator with the Accessibility Insights for Android Service.
+
+Note: If you want to use a modified version of Accessibility Insights for Android Service, follow the [Manual installation](https://accessibilityinsights.io/docs/en/android/getstarted/setup/#manual-installation) steps and update [hasRequiredServiceVersion](https://github.com/microsoft/accessibility-insights-web/blob/18a2317856addd6e4398d9c63c000cf0d04665e1/src/electron/platform/android/setup/android-service-configurator.ts#L58) to return true for your scenario. **Do not push this change.**
 
 ```sh
 # You can leave off the with:mock-service-for-android if
