@@ -26,7 +26,10 @@ $detailsViewHeaderBarHeight: 40px !default;
 $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 $detailsViewCommandBarBorderHeight: 1px !default;
-$detailsViewLeftNavWidth: 200px !default;
+
+$detailsViewLeftNavWidth: 250px !default;
+$detailsViewLeftNavBorderWidth: 1px;
+
 $detailsViewTotalHeaderHeight: (
     #{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight}
 );
@@ -45,6 +48,3 @@ $fastPassRightPanelMarginTop: 24px !default;
     font-weight: $fontWeightSemiBold;
     font-size: 17px;
 }
-
-$reflowLeftNavWidth: 250px !default;
-$reflowLeftNavBorderWidth: 1px;

@@ -71,28 +71,17 @@ export interface DetailsViewBodyProps {
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
-        const bodyLayoutClassName = classNames({
-            [styles.detailsViewBodyNavContentLayout]: true,
-            'reflow-ui': true,
-        });
-
-        const bodyContentClassName = classNames({
-            [styles.detailsViewBodyContentPane]: true,
-            'reflow-ui': true,
-        });
-
         const bodyContentContainerClassName = classNames(styles.detailsViewContentPaneContainer, {
             [styles.narrowMode]: this.props.narrowModeStatus.isHeaderAndNavCollapsed,
-            'reflow-ui': true,
         });
 
         return (
             <div className={styles.detailsViewBody}>
-                <div className={bodyLayoutClassName}>
+                <div className={styles.detailsViewBodyNavContentLayout}>
                     {this.renderNavBar()}
                     <div className={bodyContentContainerClassName}>
                         {this.renderCommandBar()}
-                        <div className={bodyContentClassName}>
+                        <div className={styles.detailsViewBodyContentPane}>
                             {this.getTargetPageHiddenBar()}
                             <div className={styles.view} role="main">
                                 {this.renderRightPanel()}

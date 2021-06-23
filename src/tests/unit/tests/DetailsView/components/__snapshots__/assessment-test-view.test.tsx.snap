@@ -1,85 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AssessmentTestView assessment view, isScanning is false 1`] = `
+exports[`AssessmentTestView renders with a GettingStartedView when a Getting started item is selected 1`] = `
 <React.Fragment>
   <ScanIncompleteWarning
     deps={
       Object {
+        "assessmentsProvider": Object {
+          "forType": [Function],
+        },
         "detailsViewActionMessageCreator": Object {},
       }
     }
     test={-1}
     warningConfiguration={Object {}}
   />
-  <ReflowAssessmentView
-    assessmentData={Object {}}
-    assessmentInstanceTableHandler={Object {}}
-    assessmentNavState={
+  <TargetChangeDialog
+    deps={
       Object {
-        "selectedTestSubview": "step",
-        "selectedTestType": -1,
-      }
-    }
-    assessmentTestResult={
-      AssessmentTestResult {
-        "assessmentProvider": undefined,
-        "data": Object {},
-        "deps": Object {
-          "getRequirementsResults": [Function],
-          "outcomeStatsFromManualTestStatus": [Function],
+        "assessmentsProvider": Object {
+          "forType": [Function],
         },
-        "visualizationType": -1,
+        "detailsViewActionMessageCreator": Object {},
       }
     }
-    currentTarget={
+    newTab={
       Object {
         "id": -2,
         "title": "test title",
         "url": "test url",
       }
     }
+  />
+  <GettingStartedView
+    assessment={Object {}}
     deps={
       Object {
+        "assessmentsProvider": Object {
+          "forType": [Function],
+        },
         "detailsViewActionMessageCreator": Object {},
       }
     }
-    featureFlagStoreData={Object {}}
-    pathSnippetStoreData={Object {}}
-    scanningInProgress={false}
-    selectedRequirementIsEnabled={false}
   />
 </React.Fragment>
 `;
 
-exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
+exports[`AssessmentTestView renders with a RequirementView when a requirement is selected 1`] = `
 <React.Fragment>
   <ScanIncompleteWarning
     deps={
       Object {
+        "assessmentsProvider": Object {
+          "forType": [Function],
+        },
         "detailsViewActionMessageCreator": Object {},
       }
     }
     test={-1}
     warningConfiguration={Object {}}
   />
-  <ReflowAssessmentView
+  <TargetChangeDialog
+    deps={
+      Object {
+        "assessmentsProvider": Object {
+          "forType": [Function],
+        },
+        "detailsViewActionMessageCreator": Object {},
+      }
+    }
+    newTab={
+      Object {
+        "id": -2,
+        "title": "test title",
+        "url": "test url",
+      }
+    }
+  />
+  <RequirementView
     assessmentData={Object {}}
     assessmentInstanceTableHandler={Object {}}
     assessmentNavState={
       Object {
         "selectedTestSubview": "step",
         "selectedTestType": -1,
-      }
-    }
-    assessmentTestResult={
-      AssessmentTestResult {
-        "assessmentProvider": undefined,
-        "data": Object {},
-        "deps": Object {
-          "getRequirementsResults": [Function],
-          "outcomeStatsFromManualTestStatus": [Function],
-        },
-        "visualizationType": -1,
       }
     }
     currentTarget={
@@ -91,13 +94,16 @@ exports[`AssessmentTestView assessment view, isScanning is true 1`] = `
     }
     deps={
       Object {
+        "assessmentsProvider": Object {
+          "forType": [Function],
+        },
         "detailsViewActionMessageCreator": Object {},
       }
     }
     featureFlagStoreData={Object {}}
+    isRequirementEnabled={false}
     pathSnippetStoreData={Object {}}
     scanningInProgress={true}
-    selectedRequirementIsEnabled={false}
   />
 </React.Fragment>
 `;

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Requirement } from 'assessments/types/requirement';
+import { Assessment } from 'assessments/types/iassessment';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     GettingStartedView,
     GettingStartedViewDeps,
@@ -16,13 +17,16 @@ describe('GettingStartedViewTest', () => {
     beforeEach(() => {
         props = {
             deps: {} as GettingStartedViewDeps,
-            gettingStartedContent: <div>test-getting-started-content</div>,
-            title: 'some title',
-            guidance: { pageTitle: 'some page title' } as ContentPageComponent,
-            nextRequirement: {
-                key: 'some requirement key',
-            } as Requirement,
-            currentTest: -1,
+            assessment: {
+                gettingStarted: <div>test-getting-started-content</div>,
+                title: 'some title',
+                guidance: { pageTitle: 'some page title' } as ContentPageComponent,
+                visualizationType: -1 as VisualizationType,
+                requirements: [
+                    { key: 'expectedNextRequirement' },
+                    { key: 'shouldntAppearInSnapshots' },
+                ],
+            } as Assessment,
         };
     });
 

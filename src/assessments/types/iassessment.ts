@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
-import { RequirementOrdering } from 'common/assessment/requirement';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { AnyExtension } from 'common/extensibility/extension-point';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -16,7 +15,6 @@ interface BaseAssessment {
     guidance?: ContentPageComponent;
     requirements: Requirement[];
     featureFlag?: { required?: string[] };
-    requirementOrder?: RequirementOrdering;
     extensions?: AnyExtension[];
     initialDataCreator?: InitialDataCreator;
 }
@@ -30,5 +28,4 @@ export interface AssistedAssessment extends BaseAssessment {
 
 export interface Assessment extends BaseAssessment {
     getVisualizationConfiguration: () => AssessmentVisualizationConfiguration;
-    requirementOrder: RequirementOrdering;
 }
