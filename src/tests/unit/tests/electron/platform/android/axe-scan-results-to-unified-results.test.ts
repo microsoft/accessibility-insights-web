@@ -7,7 +7,7 @@ import {
     AndroidScanResults,
     RuleResultsData,
 } from 'electron/platform/android/android-scan-results';
-import { convertAxeScanResultsToUnifiedResults } from 'electron/platform/android/axe-results-to-unified-results';
+import { convertAxeScanResultsToUnifiedResults } from 'electron/platform/android/axe-scan-results-to-unified-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
@@ -18,7 +18,7 @@ import {
     buildViewElement,
 } from './scan-results-helpers';
 
-describe('AxeResultsToUnifiedResults', () => {
+describe('AxeScanResultsToUnifiedResults', () => {
     let generateGuidMock: IMock<() => string>;
     let ruleInformationProviderMock: IMock<RuleInformationProviderType>;
 

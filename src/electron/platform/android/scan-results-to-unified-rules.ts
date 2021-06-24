@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
-import { convertAtfsScanResultsToUnifiedRules } from 'electron/platform/android/atfa-results-to-unified-rules';
-import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-results-to-unified-rules';
+import { convertAtfsScanResultsToUnifiedRules } from 'electron/platform/android/atfa-scan-results-to-unified-rules';
+import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-scan-results-to-unified-rules';
 import { AndroidScanResults } from './android-scan-results';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 

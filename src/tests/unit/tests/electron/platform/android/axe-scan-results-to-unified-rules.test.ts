@@ -7,7 +7,7 @@ import {
     AndroidScanResults,
     RuleResultsData,
 } from 'electron/platform/android/android-scan-results';
-import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-results-to-unified-rules';
+import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-scan-results-to-unified-rules';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
