@@ -7,9 +7,9 @@ import {
     AndroidScanResults,
     RuleResultsData,
 } from 'electron/platform/android/android-scan-results';
+import { convertAxeScanResultsToUnifiedResults } from 'electron/platform/android/axe-results-to-unified-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { convertScanResultsToUnifiedResults } from 'electron/platform/android/scan-results-to-unified-results';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     buildRuleInformation,
@@ -18,7 +18,7 @@ import {
     buildViewElement,
 } from './scan-results-helpers';
 
-describe('ScanResultsToUnifiedResults', () => {
+describe('AxeResultsToUnifiedResults', () => {
     let generateGuidMock: IMock<() => string>;
     let ruleInformationProviderMock: IMock<RuleInformationProviderType>;
 
@@ -89,7 +89,7 @@ describe('ScanResultsToUnifiedResults', () => {
     }
 
     test('Null ScanResults input returns empty output', () => {
-        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
+        const results: UnifiedResult[] = convertAxeScanResultsToUnifiedResults(
             null,
             ruleInformationProviderMock.object,
             null,
@@ -100,7 +100,7 @@ describe('ScanResultsToUnifiedResults', () => {
 
     test('ScanResults with no RuleResults returns empty output', () => {
         const scanResults: AndroidScanResults = buildScanResultsObject();
-        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
+        const results: UnifiedResult[] = convertAxeScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,
             null,
@@ -157,7 +157,7 @@ describe('ScanResultsToUnifiedResults', () => {
             ruleResults,
             viewElementTree,
         );
-        const results: UnifiedResult[] = convertScanResultsToUnifiedResults(
+        const results: UnifiedResult[] = convertAxeScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,
             generateGuidMock.object,

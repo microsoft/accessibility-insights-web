@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
+exports[`AxeResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
 
-exports[`ScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+exports[`AxeResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
 
-exports[`ScanResultsToUnifiedResults ScanResults with passes, failures, view IDs, and excluded results 1`] = `
+exports[`AxeResultsToUnifiedResults ScanResults with passes, failures, view IDs, and excluded results 1`] = `
 Array [
   Object {
     "descriptors": Object {
