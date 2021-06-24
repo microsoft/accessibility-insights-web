@@ -179,12 +179,12 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@7.13.13", "@babel/parser@^7.1.0", "@babel/parser@^7.7.2":
+"@babel/parser@7.13.13":
   version "7.13.13"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.13.13.tgz#42f03862f4aed50461e543270916b47dd501f0df"
   integrity sha512-OhsyMrqygfk5v8HmWwOzlYjJrtLaFhF34MrfG/Z73DgYCI6ojNUTUp2TYbtnjo8PegeJp12eamsNettCQjKjVw==
 
-"@babel/parser@^7.12.13", "@babel/parser@^7.14.2", "@babel/parser@^7.14.3":
+"@babel/parser@^7.1.0", "@babel/parser@^7.12.13", "@babel/parser@^7.14.2", "@babel/parser@^7.14.3", "@babel/parser@^7.7.2":
   version "7.14.4"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.14.4.tgz#a5c560d6db6cd8e6ed342368dea8039232cbab18"
   integrity sha512-ArliyUsWDUqEGfWcmzpGUzNfLxTdTp6WU4IuP6QFSp9gGfWS6boxFCkJSJ/L4+RG8z/FnIU3WxCk6hPL9SSWeA==
@@ -310,7 +310,7 @@
     debug "^4.1.0"
     globals "^11.1.0"
 
-"@babel/types@7.13.12", "@babel/types@^7.0.0", "@babel/types@^7.3.0", "@babel/types@^7.3.3":
+"@babel/types@7.13.12":
   version "7.13.12"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.13.12.tgz#edbf99208ef48852acdff1c8a681a1e4ade580cd"
   integrity sha512-K4nY2xFN4QMvQwkQ+zmBDp6ANMbVNw6BbxWmYA4qNjhR9W+Lj/8ky5MEY2Me5r+B2c6/v6F53oMndG+f9s3IiA==
@@ -319,7 +319,7 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@babel/types@^7.12.13", "@babel/types@^7.13.12", "@babel/types@^7.14.0", "@babel/types@^7.14.2", "@babel/types@^7.14.4":
+"@babel/types@^7.0.0", "@babel/types@^7.12.13", "@babel/types@^7.13.12", "@babel/types@^7.14.0", "@babel/types@^7.14.2", "@babel/types@^7.14.4", "@babel/types@^7.3.0", "@babel/types@^7.3.3":
   version "7.14.4"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.14.4.tgz#bfd6980108168593b38b3eb48a24aa026b919bc0"
   integrity sha512-lCj4aIs0xUefJFQnwwQv2Bxg7Omd6bgquZ6LGC+gGMh6/s5qDVfjuCMlDmYQ15SLsWHd9n+X3E75lKIhl5Lkiw==
@@ -9865,10 +9865,10 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-pkg@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.2.1.tgz#929294d2dedbcd4427cfc00121a80c151a2a1d4c"
-  integrity sha512-kQ5Fla+76rdmFJNrEOgoklxAURl3uvhvX+m4LCQCRrI+q2lOgsx9pS02NhNuDVnyXsthluAuXCh5SKcMyw+cWw==
+pkg@^5.3.0:
+  version "5.3.0"
+  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.3.0.tgz#27b5a0afd7cd2b85199cc1ab95e6d19ac5ae3fcd"
+  integrity sha512-/DGG+QcSPraMAIxaoGCNqb2A6Xkm2jBQMsj2mjb4ag236ByTY9Xhpikvj5ixwlSQV0euuJw4fphKCd5YHRPS8w==
   dependencies:
     "@babel/parser" "7.13.13"
     "@babel/types" "7.13.12"
