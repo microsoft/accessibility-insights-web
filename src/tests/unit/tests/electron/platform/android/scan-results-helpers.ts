@@ -18,7 +18,29 @@ export function buildScanResultsObject(
     screenshotData?: string,
     deviceInfo?: DeviceInfo,
 ): AndroidScanResults {
-    const scanResults = {};
+    return new AndroidScanResults({
+        AxeResults: buildAxeResultsObject(
+            deviceName,
+            appIdentifier,
+            resultsArray,
+            axeView,
+            axeVersion,
+            screenshotData,
+            deviceInfo,
+        ),
+    });
+}
+
+export function buildAxeResultsObject(
+    deviceName?: string,
+    appIdentifier?: string,
+    resultsArray?: RuleResultsData[],
+    axeView?: ViewElementData,
+    axeVersion?: string,
+    screenshotData?: string,
+    deviceInfo?: DeviceInfo,
+): any {
+    const axeResults = {};
     const axeContext = {};
     let addContext = false;
 
@@ -60,14 +82,14 @@ export function buildScanResultsObject(
     }
 
     if (resultsArray) {
-        scanResults['axeRuleResults'] = resultsArray;
+        axeResults['axeRuleResults'] = resultsArray;
     }
 
     if (addContext) {
-        scanResults['axeContext'] = axeContext;
+        axeResults['axeContext'] = axeContext;
     }
 
-    return new AndroidScanResults(scanResults);
+    return axeResults;
 }
 
 export function buildRuleResultObject(
