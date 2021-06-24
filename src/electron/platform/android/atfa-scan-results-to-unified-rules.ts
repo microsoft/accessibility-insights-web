@@ -12,7 +12,7 @@ export type ConvertScanResultsToUnifiedRulesDelegate = (
     uuidGenerator: UUIDGenerator,
 ) => UnifiedRule[];
 
-export function convertAtfsScanResultsToUnifiedRules(
+export function convertAtfaScanResultsToUnifiedRules(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
