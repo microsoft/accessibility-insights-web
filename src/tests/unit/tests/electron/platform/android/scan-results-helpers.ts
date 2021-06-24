@@ -19,7 +19,7 @@ export function buildScanResultsObject(
     deviceInfo?: DeviceInfo,
 ): AndroidScanResults {
     return new AndroidScanResults({
-        AxeResults: buildAxeResultsObject(
+        AxeResults: buildAxeScanResultsObject(
             deviceName,
             appIdentifier,
             resultsArray,
@@ -31,7 +31,7 @@ export function buildScanResultsObject(
     });
 }
 
-export function buildAxeResultsObject(
+export function buildAxeScanResultsObject(
     deviceName?: string,
     appIdentifier?: string,
     resultsArray?: RuleResultsData[],
