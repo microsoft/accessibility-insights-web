@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
-import { convertAtfaScanResultsToUnifiedRules } from 'electron/platform/android/atfa-scan-results-to-unified-rules';
-import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-scan-results-to-unified-rules';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { AndroidScanResults } from './android-scan-results';
 import { RuleInformationProviderType } from './rule-information-provider-type';
@@ -18,14 +16,15 @@ export function convertScanResultsToUnifiedRules(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
+    converters: ConvertScanResultsToUnifiedRulesDelegate[],
 ): UnifiedRule[] {
-    return convertAxeScanResultsToUnifiedRules(
-        scanResults,
-        ruleInformationProvider,
-        uuidGenerator,
-    ).concat(
-        convertAtfaScanResultsToUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
-    );
+    const unifiedRules: UnifiedRule[] = [];
+
+    converters?.forEach(converter => {
+        unifiedRules.push(...converter(scanResults, ruleInformationProvider, uuidGenerator));
+    });
+
+    return unifiedRules;
 }
 
 export function createUnifiedRuleFromRuleResult(
