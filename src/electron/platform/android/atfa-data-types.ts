@@ -17,10 +17,10 @@ export interface SpannableString {
 export interface ViewHierarchyElement {
     'ViewHierarchyElement.accessibilityClassName': string;
     'ViewHierarchyElement.id': number;
-    'ViewHierarchyElement.boundsInScreen': AtfaBoundingRectangle;
     'ViewHierarchyElement.className': string;
-    'ViewHierarchyElement.contentDescription': SpannableString;
-    'ViewHierarchyElement.text': SpannableString;
+    'ViewHierarchyElement.boundsInScreen'?: AtfaBoundingRectangle;
+    'ViewHierarchyElement.contentDescription'?: SpannableString;
+    'ViewHierarchyElement.text'?: SpannableString;
 }
 
 // Source: https://github.com/google/Accessibility-Test-Framework-for-Android/blob/master/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityHierarchyCheckResult.java
@@ -28,6 +28,6 @@ export interface AccessibilityHierarchyCheckResult {
     'AccessibilityHierarchyCheckResult.element': ViewHierarchyElement;
     'AccessibilityHierarchyCheckResult.resultId': number;
     'AccessibilityHierarchyCheckResult.checkClass': string;
-    'AccessibilityHierarchyCheckResult.type': string; // TODO: make an enum
-    'AccessibilityHierarchyCheckResult.metadata': any;
+    'AccessibilityHierarchyCheckResult.type': string; // TODO: make an enum?
+    'AccessibilityHierarchyCheckResult.metadata'?: any;
 }
