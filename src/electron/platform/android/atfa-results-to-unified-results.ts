@@ -7,17 +7,18 @@ import {
     AndroidScanResults,
     BoundingRectangle,
     RuleResultsData,
-    ViewElementData,
 } from 'electron/platform/android/android-scan-results';
 import {
-    ATFABoundingRectangle,
+    AccessibilityHierarchyCheckResult,
+    AtfaBoundingRectangle,
     ViewHierarchyElement,
 } from 'electron/platform/android/atfa-data-types';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { DictionaryStringTo } from 'types/common-types';
 
-export function convertATFAResultsToUnifiedResults(
+const includedResults = ['ERROR', 'WARNING'];
+
+export function convertAtfaScanResultsToUnifiedResults(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
@@ -26,42 +27,27 @@ export function convertATFAResultsToUnifiedResults(
         return [];
     }
 
-    return createUnifiedResultsFromScanResults(scanResults, ruleInformationProvider, uuidGenerator);
-}
-
-function createUnifiedResultsFromScanResults(
-    scanResults: AndroidScanResults,
-    ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGenerator,
-): UnifiedResult[] {
-    const viewElementLookup: DictionaryStringTo<ViewHierarchyElement> = {};
     const unifiedResults: UnifiedResult[] = [];
 
     for (const atfaResult of scanResults.atfaResults) {
-        const viewElement: ViewHierarchyElement =
-            atfaResult['AccessibilityHierarchyCheckResult.element'];
-        if (viewElement) {
-            const key = keyFromElement(viewElement);
-
-            // TODO: Use the same element each time?
-            if (!viewElementLookup[key]) {
-                viewElementLookup[key] = viewElement;
-            }
-
-            const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
-                atfaResult['AccessibilityHierarchyCheckResult.checkClass'],
-            );
-
-            if (ruleInformation) {
-                unifiedResults.push(
-                    createUnifiedResult(
-                        ruleInformation,
-                        atfaResult,
-                        key,
-                        viewElement,
-                        uuidGenerator,
-                    ),
+        if (includeBasedOnResult(atfaResult)) {
+            const viewElement: ViewHierarchyElement =
+                atfaResult['AccessibilityHierarchyCheckResult.element'];
+            if (viewElement) {
+                const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
+                    atfaResult['AccessibilityHierarchyCheckResult.checkClass'],
                 );
+
+                if (ruleInformation) {
+                    unifiedResults.push(
+                        createUnifiedResult(
+                            ruleInformation,
+                            atfaResult,
+                            viewElement,
+                            uuidGenerator,
+                        ),
+                    );
+                }
             }
         }
     }
@@ -69,22 +55,17 @@ function createUnifiedResultsFromScanResults(
     return unifiedResults;
 }
 
-function keyFromElement(element: ViewHierarchyElement): string {
-    return `atfa-${element['ViewHierarchyElement.id']}`;
-}
-
 function createUnifiedResult(
     ruleInformation: RuleInformation,
-    atfaResult,
-    key: string,
+    atfaResult: AccessibilityHierarchyCheckResult,
     viewElement: ViewHierarchyElement,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult {
     const ruleResult: RuleResultsData = {
-        axeViewId: key,
-        ruleId: null, // TBD
-        status: null, // TBD
-        props: null, // TBD
+        axeViewId: `atfa-${viewElement['ViewHierarchyElement.id']}`,
+        ruleId: ruleInformation.ruleId,
+        status: atfaResult['AccessibilityHierarchyCheckResult.type'],
+        props: atfaResult['AccessibilityHierarchyCheckResult.metadata'],
     };
     return {
         uid: uuidGenerator(),
@@ -109,7 +90,13 @@ function createUnifiedResult(
     };
 }
 
-function convertBoundingRectangle(boundingRectangle: ATFABoundingRectangle): BoundingRectangle {
+function includeBasedOnResult(atfaResult: AccessibilityHierarchyCheckResult): boolean {
+    const resultType: string | null = atfaResult['AccessibilityHierarchyCheckResult.type'] ?? null;
+
+    return includedResults.includes(resultType);
+}
+
+function convertBoundingRectangle(boundingRectangle: AtfaBoundingRectangle): BoundingRectangle {
     if (!boundingRectangle) {
         return null;
     }

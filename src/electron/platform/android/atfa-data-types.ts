@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export interface ATFABoundingRectangle {
+export interface AtfaBoundingRectangle {
     'Rect.bottom': number;
     'Rect.left': number;
     'Rect.right': number;
@@ -17,7 +17,7 @@ export interface SpannableString {
 export interface ViewHierarchyElement {
     'ViewHierarchyElement.accessibilityClassName': string;
     'ViewHierarchyElement.id': number;
-    'ViewHierarchyElement.boundsInScreen': any;
+    'ViewHierarchyElement.boundsInScreen': AtfaBoundingRectangle;
     'ViewHierarchyElement.className': string;
     'ViewHierarchyElement.contentDescription': SpannableString;
     'ViewHierarchyElement.text': SpannableString;
@@ -30,10 +30,4 @@ export interface AccessibilityHierarchyCheckResult {
     'AccessibilityHierarchyCheckResult.checkClass': string;
     'AccessibilityHierarchyCheckResult.type': string; // TODO: make an enum
     'AccessibilityHierarchyCheckResult.metadata': any;
-}
-
-// Source: https://github.com/google/Accessibility-Test-Framework-for-Android/blob/master/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityHierarchyCheck.java
-export interface AccessibilityHierarchyCheck {
-    class: string;
-    titleMessage: string;
 }

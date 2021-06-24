@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
-import { convertAtfsScanResultsToUnifiedRules } from 'electron/platform/android/atfa-results-to-unified-rules';
 import { AndroidScanResults } from './android-scan-results';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
@@ -13,21 +12,7 @@ export type ConvertScanResultsToUnifiedRulesDelegate = (
     uuidGenerator: UUIDGenerator,
 ) => UnifiedRule[];
 
-export function convertScanResultsToUnifiedRules(
-    scanResults: AndroidScanResults,
-    ruleInformationProvider: RuleInformationProviderType,
-    uuidGenerator: UUIDGenerator,
-): UnifiedRule[] {
-    return convertAxeScanResultsToUnifiedRules(
-        scanResults,
-        ruleInformationProvider,
-        uuidGenerator,
-    ).concat(
-        convertAtfsScanResultsToUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
-    );
-}
-
-function convertAxeScanResultsToUnifiedRules(
+export function convertAtfsScanResultsToUnifiedRules(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
@@ -39,8 +24,8 @@ function convertAxeScanResultsToUnifiedRules(
     const unifiedRules: UnifiedRule[] = [];
     const ruleIds: Set<string> = new Set();
 
-    for (const result of scanResults.ruleResults) {
-        const ruleId = result.ruleId;
+    for (const atfaResult of scanResults.atfaResults) {
+        const ruleId: string = atfaResult['AccessibilityHierarchyCheckResult.checkClass'];
         if (!ruleIds.has(ruleId)) {
             const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
+import { convertAtfaScanResultsToUnifiedResults } from 'electron/platform/android/atfa-results-to-unified-results';
 import { DictionaryStringTo } from 'types/common-types';
 import { AndroidScanResults, RuleResultsData, ViewElementData } from './android-scan-results';
 import { RuleInformation } from './rule-information';
@@ -18,18 +19,24 @@ export function convertScanResultsToUnifiedResults(
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
-    if (!scanResults || !scanResults.ruleResults) {
-        return [];
-    }
-
-    return createUnifiedResultsFromScanResults(scanResults, ruleInformationProvider, uuidGenerator);
+    return convertAxeScanResultsToUnifiedResults(
+        scanResults,
+        ruleInformationProvider,
+        uuidGenerator,
+    ).concat(
+        convertAtfaScanResultsToUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
+    );
 }
 
-function createUnifiedResultsFromScanResults(
+function convertAxeScanResultsToUnifiedResults(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
+    if (!scanResults || !scanResults.ruleResults) {
+        return [];
+    }
+
     const viewElementLookup: DictionaryStringTo<ViewElementData> =
         createViewElementLookup(scanResults);
     const unifiedResults: UnifiedResult[] = [];

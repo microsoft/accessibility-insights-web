@@ -1,10 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-import {
-    AccessibilityHierarchyCheck,
-    AccessibilityHierarchyCheckResult,
-} from 'electron/platform/android/atfa-data-types';
+import { AccessibilityHierarchyCheckResult } from 'electron/platform/android/atfa-data-types';
 
 export interface RuleResultsData {
     axeViewId: string;
@@ -80,9 +77,5 @@ export class AndroidScanResults {
 
     public get atfaResults(): AccessibilityHierarchyCheckResult[] {
         return this.rawData.ATFAResults || [];
-    }
-
-    public get atfaRules(): AccessibilityHierarchyCheck[] {
-        return this.rawData.ATFARules || [];
     }
 }
