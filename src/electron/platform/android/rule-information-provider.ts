@@ -122,6 +122,8 @@ export class RuleInformationProvider {
 
     private getStandardResultStatus = (ruleResultsData: RuleResultsData): InstanceResultStatus => {
         switch (ruleResultsData.status) {
+            case 'ERROR':
+            case 'WARNING':
             case 'FAIL':
                 return 'fail';
             default:

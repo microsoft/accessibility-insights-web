@@ -11,6 +11,7 @@ import {
 import {
     AccessibilityHierarchyCheckResult,
     AtfaBoundingRectangle,
+    SpannableString,
     ViewHierarchyElement,
 } from 'electron/platform/android/atfa-data-types';
 import { RuleInformation } from 'electron/platform/android/rule-information';
@@ -76,11 +77,10 @@ function createUnifiedResult(
             boundingRectangle: convertBoundingRectangle(
                 viewElement?.['ViewHierarchyElement.boundsInScreen'],
             ),
-            contentDescription:
-                viewElement?.['ViewHierarchyElement.contentDescription'][
-                    'SpannableString.rawString'
-                ],
-            text: viewElement?.['ViewHierarchyElement.text']['SpannableString.rawString'],
+            contentDescription: getRawString(
+                viewElement?.['ViewHierarchyElement.contentDescription'],
+            ),
+            text: getRawString(viewElement?.['ViewHierarchyElement.text']),
         },
         identifiers: {
             identifier: viewElement?.['ViewHierarchyElement.accessibilityClassName'],
@@ -88,6 +88,13 @@ function createUnifiedResult(
         },
         resolution: ruleInformation.getUnifiedResolution(ruleResult),
     };
+}
+
+function getRawString(spannableString?: SpannableString): string {
+    if (spannableString) {
+        return spannableString['SpannableString.rawString'] ?? null;
+    }
+    return null;
 }
 
 function includeBasedOnResult(atfaResult: AccessibilityHierarchyCheckResult): boolean {
