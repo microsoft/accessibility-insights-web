@@ -4,8 +4,8 @@
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
-import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
+import { createUnifiedRuleFromRuleResult } from 'electron/platform/android/scan-results-to-unified-rules';
 
 export function convertAxeScanResultsToUnifiedRules(
     scanResults: AndroidScanResults,
@@ -32,17 +32,4 @@ export function convertAxeScanResultsToUnifiedRules(
     }
 
     return unifiedRules;
-}
-
-function createUnifiedRuleFromRuleResult(
-    ruleInformation: RuleInformation,
-    uuidGenerator: UUIDGenerator,
-): UnifiedRule {
-    return {
-        uid: uuidGenerator(),
-        id: ruleInformation.ruleId,
-        description: ruleInformation.ruleDescription,
-        url: ruleInformation.ruleLink,
-        guidance: ruleInformation.guidance,
-    };
 }

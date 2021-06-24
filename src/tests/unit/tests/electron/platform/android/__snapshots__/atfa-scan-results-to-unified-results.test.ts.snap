@@ -54,7 +54,7 @@ Array [
   },
   Object {
     "descriptors": Object {
-      "boundingRectangle": null,
+      "boundingRectangle": undefined,
       "className": "viewClass2",
       "contentDescription": "id4",
       "text": null,

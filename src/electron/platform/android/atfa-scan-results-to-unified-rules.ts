@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
+import { createUnifiedRuleFromRuleResult } from 'electron/platform/android/scan-results-to-unified-rules';
 import { AndroidScanResults } from './android-scan-results';
-import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 
 export type ConvertScanResultsToUnifiedRulesDelegate = (
@@ -37,17 +37,4 @@ export function convertAtfaScanResultsToUnifiedRules(
     }
 
     return unifiedRules;
-}
-
-function createUnifiedRuleFromRuleResult(
-    ruleInformation: RuleInformation,
-    uuidGenerator: UUIDGenerator,
-): UnifiedRule {
-    return {
-        uid: uuidGenerator(),
-        id: ruleInformation.ruleId,
-        description: ruleInformation.ruleDescription,
-        url: ruleInformation.ruleLink,
-        guidance: ruleInformation.guidance,
-    };
 }
