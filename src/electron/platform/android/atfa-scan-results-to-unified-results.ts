@@ -90,7 +90,7 @@ function createUnifiedResult(
     };
 }
 
-function getRawString(spannableString?: SpannableString): string {
+function getRawString(spannableString?: SpannableString): string | null {
     if (spannableString) {
         return spannableString['SpannableString.rawString'] ?? null;
     }
@@ -103,9 +103,11 @@ function includeBasedOnResult(atfaResult: AccessibilityHierarchyCheckResult): bo
     return includedResults.includes(resultType);
 }
 
-function convertBoundingRectangle(boundingRectangle: AtfaBoundingRectangle): BoundingRectangle {
+function convertBoundingRectangle(
+    boundingRectangle?: AtfaBoundingRectangle,
+): BoundingRectangle | undefined {
     if (!boundingRectangle) {
-        return null;
+        return undefined;
     }
 
     return {
