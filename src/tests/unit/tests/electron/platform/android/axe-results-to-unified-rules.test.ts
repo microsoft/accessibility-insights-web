@@ -7,9 +7,9 @@ import {
     AndroidScanResults,
     RuleResultsData,
 } from 'electron/platform/android/android-scan-results';
+import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-results-to-unified-rules';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
-import { convertScanResultsToUnifiedRules } from 'electron/platform/android/scan-results-to-unified-rules';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
@@ -18,7 +18,7 @@ import {
     buildScanResultsObject,
 } from './scan-results-helpers';
 
-describe('ScanResultsToUnifiedRules', () => {
+describe('AxeScanResultsToUnifiedRules', () => {
     let ruleInformationProviderMock: IMock<RuleInformationProviderType>;
 
     let generateGuidMock: IMock<() => string>;
@@ -96,7 +96,7 @@ describe('ScanResultsToUnifiedRules', () => {
     });
 
     test('Null ScanResults input returns empty output', () => {
-        const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             null,
             ruleInformationProviderMock.object,
             null,
@@ -107,7 +107,7 @@ describe('ScanResultsToUnifiedRules', () => {
 
     test('ScanResults with no RuleResults returns empty output', () => {
         const scanResults: AndroidScanResults = buildScanResultsObject(deviceName, appIdentifier);
-        const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
             null,
@@ -128,7 +128,7 @@ describe('ScanResultsToUnifiedRules', () => {
             appIdentifier,
             ruleResults,
         );
-        const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
             generateGuidMock.object,
@@ -145,7 +145,7 @@ describe('ScanResultsToUnifiedRules', () => {
             appIdentifier,
             ruleResults,
         );
-        const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
             generateGuidMock.object,
@@ -166,7 +166,7 @@ describe('ScanResultsToUnifiedRules', () => {
             appIdentifier,
             ruleResults,
         );
-        const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
             generateGuidMock.object,
@@ -196,7 +196,7 @@ describe('ScanResultsToUnifiedRules', () => {
             appIdentifier,
             ruleResults,
         );
-        const results: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
             generateGuidMock.object,

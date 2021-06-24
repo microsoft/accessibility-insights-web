@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanResultsToUnifiedRules Null ScanResults input returns empty output 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedRules Null ScanResults input returns empty output 1`] = `Array []`;
 
-exports[`ScanResultsToUnifiedRules ScanResults with 1 supported rule 1`] = `
+exports[`AxeScanResultsToUnifiedRules ScanResults with 1 supported rule 1`] = `
 Array [
   Object {
     "description": "This describes Rule #1",
@@ -14,7 +14,7 @@ Array [
 ]
 `;
 
-exports[`ScanResultsToUnifiedRules ScanResults with 1 supported rule that repeats 1`] = `
+exports[`AxeScanResultsToUnifiedRules ScanResults with 1 supported rule that repeats 1`] = `
 Array [
   Object {
     "description": "This describes Rule #1",
@@ -26,7 +26,7 @@ Array [
 ]
 `;
 
-exports[`ScanResultsToUnifiedRules ScanResults with a mix of supported rules, unsupported rules, and excluded results 1`] = `
+exports[`AxeScanResultsToUnifiedRules ScanResults with a mix of supported rules, unsupported rules, and excluded results 1`] = `
 Array [
   Object {
     "description": "This describes Rule #3",
@@ -71,6 +71,6 @@ Array [
 ]
 `;
 
-exports[`ScanResultsToUnifiedRules ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedRules ScanResults with no RuleResults returns empty output 1`] = `Array []`;
 
-exports[`ScanResultsToUnifiedRules ScanResults with only unsupported rules 1`] = `Array []`;
+exports[`AxeScanResultsToUnifiedRules ScanResults with only unsupported rules 1`] = `Array []`;
