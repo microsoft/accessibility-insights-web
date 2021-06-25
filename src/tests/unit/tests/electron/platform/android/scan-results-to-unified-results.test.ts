@@ -39,14 +39,6 @@ describe('ScanResultsToUnifiesRules', () => {
     });
 
     it('calls each specified converter in turn and concatenates results', () => {
-        let callbacks: number = 0;
-        let converter1Callback: number = 0;
-        let converter2Callback: number = 0;
-
-        const unifiedResult0: UnifiedResult = { placeholder: 0 } as unknown as UnifiedResult;
-        const unifiedResult1: UnifiedResult = { placeholder: 1 } as unknown as UnifiedResult;
-        const unifiedResult2: UnifiedResult = { placeholder: 2 } as unknown as UnifiedResult;
-
         const converter1 = (
             results: AndroidScanResults,
             provider: RuleInformationProvider,
@@ -55,8 +47,7 @@ describe('ScanResultsToUnifiesRules', () => {
             expect(results).toBe(scanResults);
             expect(provider).toBe(ruleInformationProviderMock.object);
             expect(uuidGenerator).toBe(uuidGeneratorMock.object);
-            converter1Callback = callbacks++;
-            return [unifiedResult0];
+            return [{ placeholder: 0 } as unknown as UnifiedResult];
         };
         const converter2 = (
             results: AndroidScanResults,
@@ -66,24 +57,19 @@ describe('ScanResultsToUnifiesRules', () => {
             expect(results).toBe(scanResults);
             expect(provider).toBe(ruleInformationProviderMock.object);
             expect(uuidGenerator).toBe(uuidGeneratorMock.object);
-            converter2Callback = callbacks++;
-            return [unifiedResult1, unifiedResult2];
+            return [
+                { placeholder: 1 } as unknown as UnifiedResult,
+                { placeholder: 2 } as unknown as UnifiedResult,
+            ];
         };
 
-        const convertedRules: UnifiedResult[] = convertScanResultsToUnifiedResults(
+        const unifiedResults: UnifiedResult[] = convertScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,
             uuidGeneratorMock.object,
             [converter1, converter2],
         );
 
-        expect(converter1Callback).toBe(0);
-        expect(converter2Callback).toBe(1);
-        expect(callbacks).toBe(2);
-
-        expect(convertedRules.length).toBe(3);
-        expect(convertedRules[0]).toBe(unifiedResult0);
-        expect(convertedRules[1]).toBe(unifiedResult1);
-        expect(convertedRules[2]).toBe(unifiedResult2);
+        expect(unifiedResults).toMatchSnapshot();
     });
 });

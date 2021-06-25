@@ -38,15 +38,7 @@ describe('ScanResultsToUnifiesRules', () => {
         expect(convertedRules.length).toBe(0);
     });
 
-    it('calls each specified converter in turn and concatenates results', () => {
-        let callbacks: number = 0;
-        let converter1Callback: number = 0;
-        let converter2Callback: number = 0;
-
-        const unifiedRule0: UnifiedRule = { placeholder: 0 } as unknown as UnifiedRule;
-        const unifiedRule1: UnifiedRule = { placeholder: 1 } as unknown as UnifiedRule;
-        const unifiedRule2: UnifiedRule = { placeholder: 2 } as unknown as UnifiedRule;
-
+    it('calls each specified converter in turn and concatenates rules', () => {
         const converter1 = (
             results: AndroidScanResults,
             provider: RuleInformationProvider,
@@ -55,8 +47,7 @@ describe('ScanResultsToUnifiesRules', () => {
             expect(results).toBe(scanResults);
             expect(provider).toBe(ruleInformationProviderMock.object);
             expect(uuidGenerator).toBe(uuidGeneratorMock.object);
-            converter1Callback = callbacks++;
-            return [unifiedRule0];
+            return [{ placeholder: 0 } as unknown as UnifiedRule];
         };
         const converter2 = (
             results: AndroidScanResults,
@@ -66,24 +57,19 @@ describe('ScanResultsToUnifiesRules', () => {
             expect(results).toBe(scanResults);
             expect(provider).toBe(ruleInformationProviderMock.object);
             expect(uuidGenerator).toBe(uuidGeneratorMock.object);
-            converter2Callback = callbacks++;
-            return [unifiedRule1, unifiedRule2];
+            return [
+                { placeholder: 1 } as unknown as UnifiedRule,
+                { placeholder: 2 } as unknown as UnifiedRule,
+            ];
         };
 
-        const convertedRules: UnifiedRule[] = convertScanResultsToUnifiedRules(
+        const unifiedRules: UnifiedRule[] = convertScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
             uuidGeneratorMock.object,
             [converter1, converter2],
         );
 
-        expect(converter1Callback).toBe(0);
-        expect(converter2Callback).toBe(1);
-        expect(callbacks).toBe(2);
-
-        expect(convertedRules.length).toBe(3);
-        expect(convertedRules[0]).toBe(unifiedRule0);
-        expect(convertedRules[1]).toBe(unifiedRule1);
-        expect(convertedRules[2]).toBe(unifiedRule2);
+        expect(unifiedRules).toMatchSnapshot();
     });
 });
