@@ -31,7 +31,7 @@ export function convertAtfaScanResultsToUnifiedResults(
     const unifiedResults: UnifiedResult[] = [];
 
     for (const atfaResult of scanResults.atfaResults) {
-        if (includeBasedOnResult(atfaResult)) {
+        if (includeBasedOnResultType(atfaResult)) {
             const viewElement: ViewHierarchyElement =
                 atfaResult['AccessibilityHierarchyCheckResult.element'];
             if (viewElement) {
@@ -97,7 +97,7 @@ function getRawString(spannableString?: SpannableString): string | null {
     return null;
 }
 
-function includeBasedOnResult(atfaResult: AccessibilityHierarchyCheckResult): boolean {
+function includeBasedOnResultType(atfaResult: AccessibilityHierarchyCheckResult): boolean {
     const resultType: string | null = atfaResult['AccessibilityHierarchyCheckResult.type'] ?? null;
 
     return includedResults.includes(resultType);
