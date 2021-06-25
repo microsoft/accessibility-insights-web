@@ -76,6 +76,6 @@ export class AndroidScanResults {
     }
 
     public get atfaResults(): AccessibilityHierarchyCheckResult[] {
-        return this.rawData.ATFAResults || [];
+        return this.rawData?.ATFAResults || [];
     }
 }
