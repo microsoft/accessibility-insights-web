@@ -28,6 +28,7 @@ import { allCardInteractionsSupported } from 'common/components/cards/card-inter
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
@@ -309,7 +310,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             tabStopsStore,
         ]);
 
-        const fetchScanResults = createScanResultsFetcher(axios.get);
+        const fetchScanResults = createScanResultsFetcher(axios.get, featureFlagStore);
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
@@ -466,6 +467,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         );
 
         const fixInstructionProcessor = new FixInstructionProcessor();
+        const recommendColor = new RecommendColor();
 
         const issueFilingController = new IssueFilingControllerImpl(
             shell.openExternal,
@@ -510,6 +512,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
             fixInstructionProcessor,
+            recommendColor,
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
@@ -540,6 +543,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             DateProvider.getUTCStringFromDate,
             GetGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor,
+            recommendColor,
             getPropertyConfiguration,
         );
 

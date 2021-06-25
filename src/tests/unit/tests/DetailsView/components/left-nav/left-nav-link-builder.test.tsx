@@ -185,69 +185,6 @@ describe('LeftNavBuilder', () => {
     describe('buildAssessmentTestLinks', () => {
         it('should build links for assessments', () => {
             const startingIndexStub = -1;
-            const assessmentStub = {
-                key: 'some key',
-                title: 'some title',
-                visualizationType: 1,
-            } as Assessment;
-            const assessmentsStub = [assessmentStub, assessmentStub];
-            const stepStatusStub: ManualTestStatusData = {};
-            const outcomeStatsStub = {} as RequirementOutcomeStats;
-            const testStatusStub = -2 as ManualTestStatus;
-            const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;
-
-            assessmentsDataStub = {
-                [assessmentStub.key]: stepStatusStub,
-            };
-
-            assessmentProviderMock.setup(apm => apm.all()).returns(() => assessmentsStub);
-
-            outcomeStatsFromManualTestStatusMock
-                .setup(mock => mock(stepStatusStub))
-                .returns(() => outcomeStatsStub);
-
-            getStatusForTestMock
-                .setup(mock => mock(outcomeStatsStub))
-                .returns(() => testStatusStub);
-
-            outcomeTypeFromTestStatusMock
-                .setup(mock => mock(testStatusStub))
-                .returns(() => narratorStatusStub);
-
-            const links = testSubject.buildAssessmentTestLinks(
-                deps,
-                onLinkClickMock.object,
-                assessmentProviderMock.object,
-                assessmentsDataStub,
-                startingIndexStub,
-            );
-
-            links.forEach((actual, linkIndex) => {
-                const expected = {
-                    name: assessmentStub.title,
-                    key: VisualizationType[assessmentStub.visualizationType],
-                    forceAnchor: true,
-                    url: '',
-                    index: startingIndexStub + linkIndex,
-                    iconProps: {
-                        className: 'hidden',
-                    },
-                    onClickNavLink: onLinkClickMock.object,
-                    status: testStatusStub,
-                    title: `${startingIndexStub + linkIndex}: ${assessmentStub.title} (${
-                        narratorStatusStub.pastTense
-                    })`,
-                    onRenderNavLink: navLinkRendererMock.object.renderAssessmentTestLink,
-                };
-
-                expect(actual).toMatchObject(expected);
-            });
-        });
-    });
-
-    describe('buildReflowAssessmentTestLinks', () => {
-        it('should build links for assessments', () => {
-            const startingIndexStub = -1;
             const requirementStubA = {
                 name: 'requirement-name-1',
                 key: 'requirement-key-1',
@@ -301,7 +238,7 @@ describe('LeftNavBuilder', () => {
                 .setup(mock => mock(testStatusStub))
                 .returns(() => narratorStatusStub);
 
-            const links = testSubject.buildReflowAssessmentTestLinks(
+            const links = testSubject.buildAssessmentTestLinks(
                 deps,
                 assessmentProviderMock.object,
                 assessmentsDataStub,

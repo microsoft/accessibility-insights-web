@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { Tab } from 'common/itab';
 import {
     AssessmentData,
     AssessmentNavState,
-    GeneratedAssessmentInstance,
-    ManualTestStepResult,
     PersistedTabInfo,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -28,33 +27,27 @@ import {
 } from 'DetailsView/components/requirement-view-title';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import * as React from 'react';
-import { DictionaryStringTo } from 'types/common-types';
 import * as styles from './requirement-view.scss';
 
 export type RequirementViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentViewUpdateHandler: AssessmentViewUpdateHandler;
+    assessmentsProvider: AssessmentsProvider;
+    assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
 } & RequirementViewTitleDeps &
     AssessmentViewUpdateHandlerDeps;
 
 export interface RequirementViewProps {
     deps: RequirementViewDeps;
-    requirement: Requirement;
-    assessmentsProvider: AssessmentsProvider;
     assessmentNavState: AssessmentNavState;
-    instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>;
     isRequirementEnabled: boolean;
-    isRequirementScanned: boolean;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     scanningInProgress: boolean;
-    manualRequirementResultMap: DictionaryStringTo<ManualTestStepResult>;
-    assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     assessmentData: AssessmentData;
     currentTarget: Tab;
     prevTarget: PersistedTabInfo;
-    nextRequirement: Requirement;
 }
 
 export class RequirementView extends React.Component<RequirementViewProps> {
@@ -87,18 +80,28 @@ export class RequirementView extends React.Component<RequirementViewProps> {
     }
 
     public render(): JSX.Element {
-        const requirement: Readonly<Requirement> = this.props.assessmentsProvider.getStep(
+        const { deps } = this.props;
+        const assessment: Readonly<Assessment> = deps.assessmentsProvider.forType(
+            this.props.assessmentNavState.selectedTestType,
+        );
+        const requirement: Readonly<Requirement> = deps.assessmentsProvider.getStep(
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestSubview,
         );
+        const requirementIndex = assessment.requirements.findIndex(r => r.key === requirement.key);
+        const nextRequirement = assessment.requirements[requirementIndex + 1] ?? null;
+
+        const isRequirementScanned =
+            this.props.assessmentData.testStepStatus[requirement.key].isStepScanned;
+
         const requirementHasVisualHelper = !!requirement.getVisualHelperToggle;
 
         const visualHelperToggleConfig: VisualHelperToggleConfig = {
             deps: this.props.deps,
             assessmentNavState: this.props.assessmentNavState,
-            instancesMap: this.props.instancesMap,
+            instancesMap: this.props.assessmentData.generatedAssessmentInstancesMap,
             isStepEnabled: this.props.isRequirementEnabled,
-            isStepScanned: this.props.isRequirementScanned,
+            isStepScanned: isRequirementScanned,
         };
 
         const visualHelperToggle = requirementHasVisualHelper
@@ -110,37 +113,39 @@ export class RequirementView extends React.Component<RequirementViewProps> {
                 <div>
                     <RequirementViewTitle
                         deps={this.props.deps}
-                        name={this.props.requirement.name}
-                        guidanceLinks={this.props.requirement.guidanceLinks}
-                        infoAndExamples={this.props.requirement.infoAndExamples}
+                        name={requirement.name}
+                        guidanceLinks={requirement.guidanceLinks}
+                        infoAndExamples={requirement.infoAndExamples}
                     />
                     <div className={styles.mainContent}>
-                        {this.props.requirement.description}
+                        {requirement.description}
                         {visualHelperToggle}
-                        <RequirementInstructions howToTest={this.props.requirement.howToTest} />
+                        <RequirementInstructions howToTest={requirement.howToTest} />
                         <RequirementTableSection
                             requirement={requirement}
                             assessmentNavState={this.props.assessmentNavState}
-                            instancesMap={this.props.instancesMap}
-                            manualRequirementResultMap={this.props.manualRequirementResultMap}
+                            instancesMap={this.props.assessmentData.generatedAssessmentInstancesMap}
+                            manualRequirementResultMap={
+                                this.props.assessmentData.manualTestStepResultMap
+                            }
                             assessmentInstanceTableHandler={
                                 this.props.assessmentInstanceTableHandler
                             }
-                            assessmentsProvider={this.props.assessmentsProvider}
+                            assessmentsProvider={deps.assessmentsProvider}
                             featureFlagStoreData={this.props.featureFlagStoreData}
                             pathSnippetStoreData={this.props.pathSnippetStoreData}
                             scanningInProgress={this.props.scanningInProgress}
                             selectedRequirementHasVisualHelper={requirementHasVisualHelper}
-                            isRequirementScanned={this.props.isRequirementScanned}
+                            isRequirementScanned={isRequirementScanned}
                             assessmentDefaultMessageGenerator={
-                                this.props.assessmentDefaultMessageGenerator
+                                deps.assessmentDefaultMessageGenerator
                             }
                         />
                     </div>
                 </div>
                 <NextRequirementButton
                     deps={this.props.deps}
-                    nextRequirement={this.props.nextRequirement}
+                    nextRequirement={nextRequirement}
                     currentTest={this.props.assessmentNavState.selectedTestType}
                     className={styles.nextRequirementButton}
                 />

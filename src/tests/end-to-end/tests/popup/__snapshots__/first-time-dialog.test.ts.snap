@@ -78,7 +78,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                   />
                   <label
                     class="ms-Checkbox-label label-000"
-                    for="checkbox-10"
+                    for="checkbox-000"
                   >
                     <div
                       class="ms-Checkbox-checkbox checkbox-000"

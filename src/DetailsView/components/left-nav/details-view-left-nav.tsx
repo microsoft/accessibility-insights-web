@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
-import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
+import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { Switcher, SwitcherDeps } from 'DetailsView/components/switcher';
 import { mapValues } from 'lodash';
 import { INav } from 'office-ui-fabric-react';
@@ -54,7 +54,7 @@ export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewL
         featureFlagStoreData,
         assessmentsProvider,
         deps: {
-            generateReflowAssessmentTestKey,
+            generateAssessmentTestKey: generateAssessmentTestKey,
         },
     });
     const filteredProvider = assessmentsProviderWithFeaturesEnabled(

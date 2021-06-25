@@ -7,6 +7,7 @@ export class UnifiedFeatureFlags {
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly exportReport = 'exportReport';
     public static readonly tabStops = 'tabStops';
+    public static readonly atfaResults = 'atfaResults';
 }
 
 export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
@@ -41,6 +42,14 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
             defaultValue: true,
             displayableName: 'Show Tab Stops test',
             displayableDescription: 'Show the Tab Stops test on the Left Nav',
+            isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: UnifiedFeatureFlags.atfaResults,
+            defaultValue: false,
+            displayableName: 'Show ATFA results',
+            displayableDescription: 'Show the Accessibility Test Framework for Android results',
             isPreviewFeature: false,
             forceDefault: false,
         },

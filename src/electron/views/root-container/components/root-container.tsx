@@ -78,5 +78,6 @@ export const RootContainerInternal = NamedFC<RootContainerProps>('RootContainerI
     return <DeviceConnectViewContainer {...storeState} {...rest} />;
 });
 
-export const RootContainer =
-    withStoreSubscription<RootContainerProps, RootContainerState>(RootContainerInternal);
+export const RootContainer = withStoreSubscription<RootContainerProps, RootContainerState>(
+    RootContainerInternal,
+);

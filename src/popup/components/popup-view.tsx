@@ -234,5 +234,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     };
 }
 
-export const PopupViewWithStoreSubscription =
-    withStoreSubscription<PopupViewProps, PopupViewControllerState>(PopupView);
+export const PopupViewWithStoreSubscription = withStoreSubscription<
+    PopupViewProps,
+    PopupViewControllerState
+>(PopupView);

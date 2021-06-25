@@ -45,7 +45,7 @@ export function evaluateNativeWidget(node: HTMLElement): boolean {
     // tslint:disable-next-line:no-invalid-this
     this.data({
         element: getNativeWidgetElementType(node),
-        accessibleName: AxeUtils.getAccessibleText(node, false),
+        accessibleName: AxeUtils.getAccessibleText(node),
         accessibleDescription: AxeUtils.getAccessibleDescription(node),
     });
     return true;

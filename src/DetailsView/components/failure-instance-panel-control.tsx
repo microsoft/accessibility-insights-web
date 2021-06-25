@@ -141,7 +141,7 @@ export class FailureInstancePanelControl extends React.Component<
                     styles={getStyles}
                     multiline={true}
                     rows={8}
-                    value={this.state.currentInstance.failureDescription}
+                    value={this.state.currentInstance.failureDescription ?? ''}
                     onChange={this.onFailureDescriptionChange}
                     resizable={false}
                     placeholder="Comment"

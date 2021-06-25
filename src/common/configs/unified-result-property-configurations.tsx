@@ -5,6 +5,7 @@ import { ContentDescriptionCardRow } from 'common/components/cards/content-descr
 import { RichResolutionCardRow } from 'common/components/cards/rich-resolution-card-row';
 import { TextCardRow } from 'common/components/cards/text-card-row';
 import { UrlsCardRow } from 'common/components/cards/urls-card-row';
+import { RecommendColor } from 'common/components/recommend-color';
 import { LinkComponentType } from 'common/types/link-component-type';
 import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
 import { PathCardRow } from '../components/cards/path-card-row';
@@ -32,6 +33,7 @@ export const AllPropertyTypes: PropertyType[] = [
 
 export interface CardRowDeps {
     fixInstructionProcessor: FixInstructionProcessor;
+    recommendColor: RecommendColor;
     LinkComponent: LinkComponentType;
 }
 

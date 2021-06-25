@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Recommend Color Black on black recommendation 1`] = `" "`;
+
+exports[`Recommend Color Incorrect Input 1`] = `" "`;
+
+exports[`Recommend Color Large Font Recommendation 1`] = `" Use foreground color: #000001 and the original background color: #9a3743 to meet a contrast ratio of 3.00:1. Or use background color: #f55266 and the original foreground color: #0000d6 to meet a contrast ratio of 3.19:1."`;
+
+exports[`Recommend Color Normal Font Recommendation 1`] = `" Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1. Or use background color: #1f7995 and the original foreground color: #fefefe to meet a contrast ratio of 4.93:1."`;
+
+exports[`Recommend Color Same Color recommendation 1`] = `"   Use background color: #292d33 and the original foreground color: #8a94a8 to meet a contrast ratio of 4.54:1."`;
+
+exports[`Recommend Color White on White recommendation 1`] = `"   Use background color: #717171 and the original foreground color: #ffffff to meet a contrast ratio of 4.88:1."`;

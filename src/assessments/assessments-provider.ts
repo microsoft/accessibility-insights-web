@@ -44,7 +44,7 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         if (index === -1) {
             return null;
         }
-        return { ...steps[index], order: index + 1 };
+        return { ...steps[index] };
     }
 
     public getStepMap(visualizationType: VisualizationType): DictionaryStringTo<Requirement> {
@@ -54,9 +54,8 @@ export class AssessmentsProviderImpl implements AssessmentsProvider {
         }
         const steps = assessment.requirements;
 
-        let index = 1;
         return steps.reduce((map, step) => {
-            map[step.key] = { ...step, order: index++ };
+            map[step.key] = { ...step };
             return map;
         }, {});
     }

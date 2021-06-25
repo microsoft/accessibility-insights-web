@@ -9,15 +9,12 @@
 .details-view-content-pane-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    width: 100%;
     padding-bottom: 1px;
     box-sizing: border-box;
-    max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
-    &:global(.reflow-ui) {
-        width: calc(100vw - (#{$reflowLeftNavWidth}));
-        max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
-    }
+    width: calc(100vw - (#{$detailsViewLeftNavWidth}));
+    height: 100%;
+    max-height: calc(100vh - (#{$detailsViewHeaderBarHeight}));
+
     &.narrow-mode {
         width: 100%;
     }
@@ -31,12 +28,9 @@
     align-content: stretch;
     padding-left: 0px;
     padding-right: 0px;
-    grid-template-columns: $detailsViewLeftNavWidth 1fr;
-    grid-template-rows: 1fr;
     width: 100%;
     min-height: 0;
     height: 100%;
-    grid-template-columns: $reflowLeftNavWidth 1fr;
 
     :global(.ms-Pivot) {
         border-bottom: 1px solid $neutral-8;
