@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
-import { RuleInformation } from 'electron/platform/android/rule-information';
+import { createUnifiedRuleFromRuleResult } from 'electron/platform/android/scan-results-to-unified-rules';
 import { AndroidScanResults } from './android-scan-results';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 
@@ -12,30 +12,29 @@ export type ConvertScanResultsToUnifiedRulesDelegate = (
     uuidGenerator: UUIDGenerator,
 ) => UnifiedRule[];
 
-export function convertScanResultsToUnifiedRules(
+export function convertAtfaScanResultsToUnifiedRules(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
-    converters: ConvertScanResultsToUnifiedRulesDelegate[],
 ): UnifiedRule[] {
-    const unifiedRules: UnifiedRule[] = [];
+    if (!scanResults) {
+        return [];
+    }
 
-    converters?.forEach(converter => {
-        unifiedRules.push(...converter(scanResults, ruleInformationProvider, uuidGenerator));
-    });
+    const unifiedRules: UnifiedRule[] = [];
+    const ruleIds: Set<string> = new Set();
+
+    for (const atfaResult of scanResults.atfaResults) {
+        const ruleId: string = atfaResult['AccessibilityHierarchyCheckResult.checkClass'];
+        if (!ruleIds.has(ruleId)) {
+            const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
+
+            if (ruleInformation) {
+                unifiedRules.push(createUnifiedRuleFromRuleResult(ruleInformation, uuidGenerator));
+                ruleIds.add(ruleId);
+            }
+        }
+    }
 
     return unifiedRules;
-}
-
-export function createUnifiedRuleFromRuleResult(
-    ruleInformation: RuleInformation,
-    uuidGenerator: UUIDGenerator,
-): UnifiedRule {
-    return {
-        uid: uuidGenerator(),
-        id: ruleInformation.ruleId,
-        description: ruleInformation.ruleDescription,
-        url: ruleInformation.ruleLink,
-        guidance: ruleInformation.guidance,
-    };
 }

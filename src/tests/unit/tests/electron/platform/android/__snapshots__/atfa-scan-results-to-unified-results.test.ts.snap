@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AtfaScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
+
+exports[`AtfaScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+
+exports[`AtfaScanResultsToUnifiedResults ScanResults with skipped, info, warnings, errors, view IDs, and excluded results 1`] = `
+Array [
+  Object {
+    "descriptors": Object {
+      "boundingRectangle": Object {
+        "bottom": 300,
+        "left": 100,
+        "right": 200,
+        "top": 0,
+      },
+      "className": "viewClass1",
+      "contentDescription": "id2",
+      "text": null,
+    },
+    "identifiers": Object {
+      "conciseName": "viewClass1",
+      "identifier": "accessible name #1",
+    },
+    "resolution": Object {
+      "howToFixSummary": "How to fix My Rule #1",
+    },
+    "ruleId": "My Rule #1",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "boundingRectangle": Object {
+        "bottom": 300,
+        "left": 100,
+        "right": 200,
+        "top": 0,
+      },
+      "className": "viewClass1",
+      "contentDescription": "id2",
+      "text": null,
+    },
+    "identifiers": Object {
+      "conciseName": "viewClass1",
+      "identifier": "accessible name #1",
+    },
+    "resolution": Object {
+      "howToFixSummary": "How to fix My Rule #1",
+    },
+    "ruleId": "My Rule #1",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "boundingRectangle": undefined,
+      "className": "viewClass2",
+      "contentDescription": "id4",
+      "text": null,
+    },
+    "identifiers": Object {
+      "conciseName": "viewClass2",
+      "identifier": "accessible name #2",
+    },
+    "resolution": Object {
+      "howToFixSummary": "How to fix My Rule #2",
+    },
+    "ruleId": "My Rule #2",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+]
+`;
