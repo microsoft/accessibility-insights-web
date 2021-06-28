@@ -40,6 +40,7 @@ describe('Popup -> Launch Pad', () => {
 
             const results = await scanForAccessibilityIssues(popupPage, '*');
             expect(results).toHaveLength(0);
+            expect(false).toBeTruthy();
         },
     );
 });
