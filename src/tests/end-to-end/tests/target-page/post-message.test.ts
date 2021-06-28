@@ -31,7 +31,12 @@ describe('Target Page window.postMessage behavior', () => {
     });
 
     afterEach(async () => {
-        await browser?.close();
+        await 
+        try {
+            await browser?.close();
+        } catch (e) {
+            console.log(e);
+        }();
     });
 
     // We're doing one combined test rather than an it.each(spoofingScenarios) only for performance
