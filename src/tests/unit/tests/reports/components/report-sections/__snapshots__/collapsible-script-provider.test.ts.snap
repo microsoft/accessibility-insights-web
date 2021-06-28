@@ -2,37 +2,36 @@
 
 exports[`CollapsibleScriptProvider produces script source that matches snapshot 1`] = `
 "(function (doc) {
-  const collapsibles = doc.getElementsByClassName(\\"collapsible-container\\");
+  const collapsibles = doc.getElementsByClassName('collapsible-container');
+
   for (let index = 0; index < collapsibles.length; index++) {
     const container = collapsibles.item(index);
-    const button =
-      container === null || container === void 0
-        ? void 0
-        : container.querySelector(\\".collapsible-control\\");
+    const button = container === null || container === void 0 ? void 0 : container.querySelector('.collapsible-control');
+
     if (button == null) {
       continue;
     }
-    button.addEventListener(\\"click\\", function () {
-      var ref;
-      const content =
-        (ref = button.parentElement) === null || ref === void 0
-          ? void 0
-          : ref.nextElementSibling;
+
+    button.addEventListener('click', function () {
+      var _a;
+
+      const content = (_a = button.parentElement) === null || _a === void 0 ? void 0 : _a.nextElementSibling;
+
       if (content == null) {
         throw Error(\`Expected button element's parent to have a next sibling\`);
       }
-      const wasExpandedBefore =
-        button.getAttribute(\\"aria-expanded\\") === \\"false\\" ? false : true;
+
+      const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
       const isExpandedAfter = !wasExpandedBefore;
-      button.setAttribute(\\"aria-expanded\\", isExpandedAfter + \\"\\");
-      content.setAttribute(\\"aria-hidden\\", !isExpandedAfter + \\"\\");
+      button.setAttribute('aria-expanded', isExpandedAfter + '');
+      content.setAttribute('aria-hidden', !isExpandedAfter + '');
+
       if (isExpandedAfter) {
-        container.classList.remove(\\"collapsed\\");
+        container.classList.remove('collapsed');
       } else {
-        container.classList.add(\\"collapsed\\");
+        container.classList.add('collapsed');
       }
     });
   }
-})(document);
-"
+})(document)"
 `;

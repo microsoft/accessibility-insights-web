@@ -21,6 +21,11 @@ module.exports = {
     coverageDirectory: '<rootDir>/test-results/unit/coverage',
     coverageReporters: ['text', 'lcov', 'cobertura'],
     displayName: '<should be overriden by individual jest.configs>',
+    globals: {
+        'ts-jest': {
+            tsconfig: '<rootDir>/tsconfig.json',
+        },
+    },
     moduleDirectories: ['node_modules'],
     moduleFileExtensions: ['ts', 'js', 'json'],
     moduleNameMapper: {
@@ -44,6 +49,6 @@ module.exports = {
     testMatch: ['**/*.spec.[tj]s', '**/*.test.[tj]s'],
     testPathIgnorePatterns: ['/dist/', '/out/'],
     transform: {
-        '^.+\\.(ts|tsx|js|jsx)$': [`${__dirname}/src/tests/common/swc-transformer`],
+        '^.+\\.(ts|tsx)$': 'ts-jest',
     },
 };

@@ -6,7 +6,7 @@ import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
 import { DocumentUtils } from './document-utils';
 import { AxeRule, RuleResult, ScanResults } from './iruleresults';
 import { MessageDecorator } from './message-decorator';
-import { RuleProcessor } from './rule-processor';
+import { Processor } from './processor';
 
 export class ResultDecorator {
     constructor(
@@ -14,7 +14,6 @@ export class ResultDecorator {
         private readonly messageDecorator: MessageDecorator,
         private readonly getHelpUrl: (ruleId: string, axeHelpUrl?: string) => string | undefined,
         private readonly mapAxeTagsToGuidanceLinks: (axeTags?: string[]) => HyperlinkDefinition[],
-        private readonly ruleProcessor: RuleProcessor,
     ) {}
 
     public decorateResults(results: Axe.AxeResults): ScanResults {
@@ -37,10 +36,7 @@ export class ResultDecorator {
     ): RuleResult[] {
         return ruleResults.reduce((filteredArray: RuleResult[], result: AxeRule) => {
             this.messageDecorator.decorateResultWithMessages(result);
-            const processedResult = this.ruleProcessor.suppressChecksByMessages(
-                result,
-                !isInapplicable,
-            );
+            const processedResult = Processor.suppressChecksByMessages(result, !isInapplicable);
 
             if (processedResult != null) {
                 filteredArray.push({

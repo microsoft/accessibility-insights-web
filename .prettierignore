@@ -20,7 +20,6 @@
 .dependabot/
 .github/
 .prettierignore
-.swcrc
 .yarnrc
 .vs/
 AppXManifest.xml

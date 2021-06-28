@@ -16,7 +16,6 @@ import { Launcher } from './launcher';
 import { mapAxeTagsToGuidanceLinks } from './map-axe-tags-to-guidance-links';
 import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
-import { RuleProcessor } from './rule-processor';
 import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
@@ -33,13 +32,11 @@ export const scan = (
     const scanParameterGenerator = new ScanParameterGenerator(ruleIncludedStatus);
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration, getA11yInsightsWebRuleUrl);
-    const ruleProcessor = new RuleProcessor();
     const resultDecorator = new ResultDecorator(
         documentUtils,
         messageDecorator,
         (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
         mapAxeTagsToGuidanceLinks,
-        ruleProcessor,
     );
     const launcher = new Launcher(axe, scanParameterGenerator, document, options);
     const axeResponseHandler = new AxeResponseHandler(
