@@ -128,7 +128,7 @@ export class RuleInformationProvider {
                 this.getStandardResultStatus, // TODO: Confirm
             ),
             DuplicateSpeakableTextCheck: new RuleInformation(
-                'DuplicateSpeakableTextCheck ',
+                'DuplicateSpeakableTextCheck',
                 `${this.ruleLinkBaseUrl}/duplicate-descriptions/`,
                 'Clickable View objects that do not perform the same function must not have the same speakable text.',
                 [link.WCAG_4_1_2],
