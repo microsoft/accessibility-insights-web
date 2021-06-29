@@ -36,7 +36,7 @@ export function convertAtfaScanResultsToUnifiedResults(
                 atfaResult['AccessibilityHierarchyCheckResult.element'];
             if (viewElement) {
                 const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
-                    atfaResult['AccessibilityHierarchyCheckResult.checkClass'],
+                    atfaResult['AccessibilityCheckResult.checkClass'],
                 );
 
                 if (ruleInformation) {
