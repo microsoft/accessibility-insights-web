@@ -27,7 +27,7 @@ export interface ViewHierarchyElement {
 export interface AccessibilityHierarchyCheckResult {
     'AccessibilityHierarchyCheckResult.element': ViewHierarchyElement;
     'AccessibilityHierarchyCheckResult.resultId': number;
-    'AccessibilityHierarchyCheckResult.checkClass': string;
-    'AccessibilityHierarchyCheckResult.type': string; // TODO: make an enum?
+    'AccessibilityCheckResult.checkClass': string;
+    'AccessibilityCheckResult.type': string; // TODO: make an enum?
     'AccessibilityHierarchyCheckResult.metadata'?: any;
 }

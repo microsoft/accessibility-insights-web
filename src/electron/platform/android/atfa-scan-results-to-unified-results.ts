@@ -65,7 +65,7 @@ function createUnifiedResult(
     const ruleResult: RuleResultsData = {
         axeViewId: `atfa-${viewElement['ViewHierarchyElement.id']}`,
         ruleId: ruleInformation.ruleId,
-        status: atfaResult['AccessibilityHierarchyCheckResult.type'],
+        status: atfaResult['AccessibilityCheckResult.type'],
         props: atfaResult['AccessibilityHierarchyCheckResult.metadata'],
     };
     return {
@@ -98,7 +98,7 @@ function getRawString(spannableString?: SpannableString): string | null {
 }
 
 function includeBasedOnResultType(atfaResult: AccessibilityHierarchyCheckResult): boolean {
-    const resultType: string | null = atfaResult['AccessibilityHierarchyCheckResult.type'] ?? null;
+    const resultType: string | null = atfaResult['AccessibilityCheckResult.type'] ?? null;
 
     return includedResults.includes(resultType);
 }
