@@ -187,20 +187,20 @@ export class RuleInformationProvider {
                 }),
                 this.getStandardResultStatus,
             ),
-            // ImageContrastCheck: new RuleInformation(
-            //     'ImageContrastCheck',
-            //     `TBD`,
-            //     'Meaningful graphics must have sufficient contrast.',
-            //     [link.WCAG_1_4_11],
-            //     () => ({
-            //         howToFixSummary: `Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.`,
-            //         richResolution: {
-            //             labelType: 'check',
-            //             contentId: 'android/atfa/ImageContrastCheck',
-            //         },
-            //     }),
-            //     this.getStandardResultStatus,
-            // ),
+            ImageContrastCheck: new RuleInformation(
+                'ImageContrastCheck',
+                `${this.ruleLinkBaseUrl}/image-contrast/`,
+                'Meaningful graphics must have sufficient contrast.',
+                [link.WCAG_1_4_11],
+                () => ({
+                    howToFixSummary: `Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.`,
+                    richResolution: {
+                        labelType: 'check',
+                        contentId: 'android/atfa/ImageContrastCheck',
+                    },
+                }),
+                this.getStandardResultStatus,
+            ),
         };
     }
 
