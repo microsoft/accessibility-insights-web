@@ -22,12 +22,7 @@ describe('Tab stops visualization', () => {
     });
 
     afterEach(async () => {
-        await 
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }();
+        await browser?.close();
     });
 
     it('should show the expected visuals in the target page after enabling from popup and tabbing through target page', async () => {

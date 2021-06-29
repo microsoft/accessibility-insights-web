@@ -21,21 +21,11 @@ describe('Settings Dropdown', () => {
     });
 
     afterEach(async () => {
-        await 
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }AllPages();
+        await browser?.closeAllPages();
     });
 
     afterAll(async () => {
-        await 
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }();
+        await browser?.close();
     });
 
     it('content should match snapshot', async () => {

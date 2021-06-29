@@ -25,12 +25,7 @@ describe('Details View -> Settings Panel', () => {
     });
 
     afterAll(async () => {
-        await 
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }();
+        await browser?.close();
     });
 
     describe('Telemetry toggle', () => {

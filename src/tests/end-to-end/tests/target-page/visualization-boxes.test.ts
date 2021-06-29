@@ -23,12 +23,7 @@ describe('Target Page visualization boxes', () => {
     });
 
     afterEach(async () => {
-        await 
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }();
+        await browser?.close();
     });
 
     const adhocTools = ['Landmarks', 'Headings', 'Automated checks'];

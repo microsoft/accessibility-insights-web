@@ -22,12 +22,7 @@ describe('scanning', () => {
         });
 
         afterAll(async () => {
-            await 
-        try {
             await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }();
         });
 
         it('does not get results from inside cross-origin iframes', async () => {
@@ -60,12 +55,7 @@ describe('scanning', () => {
         });
 
         afterAll(async () => {
-            await 
-        try {
             await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }();
         });
 
         it('does find results from inside cross-origin iframes', async () => {
