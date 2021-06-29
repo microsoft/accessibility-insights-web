@@ -29,8 +29,8 @@ bundle/
 dist/
 docs/art/ada-cat.ansi256.txt
 docs/LICENSE.txt
-src/electron/resources/license_en.txt
-src/electron/resources/license.txt
+src/electron/resources/mit_license_en.txt
+src/electron/resources/mit_license.txt
 src/NOTICE.html
 src/tests/miscellaneous/mock-adb/bin/
 drop/
