@@ -17,7 +17,7 @@ export class RuleInformationProvider {
         this.supportedRules = {
             ColorContrast: new RuleInformation(
                 'ColorContrast',
-                `${this.ruleLinkBaseUrl}/color-contrast/`,
+                `${this.ruleLinkBaseUrl}/text-color-contrast/`,
                 'Text elements must have sufficient contrast against the background.',
                 [link.WCAG_1_4_3],
                 () => ({
@@ -168,6 +168,20 @@ export class RuleInformationProvider {
                     richResolution: {
                         labelType: 'check',
                         contentId: 'android/atfa/RedundantDescriptionCheck',
+                    },
+                }),
+                this.getStandardResultStatus,
+            ),
+            TextContrastCheck: new RuleInformation(
+                'TextContrastCheck',
+                `${this.ruleLinkBaseUrl}/text-color-contrast/`,
+                'Text elements must have sufficient contrast against the background.',
+                [link.WCAG_1_4_3],
+                () => ({
+                    howToFixSummary: `If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.`,
+                    richResolution: {
+                        labelType: 'check',
+                        contentId: 'android/atfa/TextContrastCheck',
                     },
                 }),
                 this.getStandardResultStatus,

@@ -225,6 +225,31 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </span>
                 );
             }
+            case 'android/atfa/TextContrastCheck': {
+                return (
+                    <div className={styles.combinationLists}>
+                        <ul className={styles.multiLineTextYesBullet}>
+                            <li list-style-type="disc">
+                                If the text is intended to be invisible, it passes.
+                            </li>
+                            <li list-style-type="disc">
+                                If the text is intended to be visible, use{' '}
+                                <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
+                                    Accessibility Insights for Windows
+                                </LinkComponent>{' '}
+                                (or the{' '}
+                                <LinkComponent href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+                                    Colour Contrast Analyser
+                                </LinkComponent>{' '}
+                                if you're testing on a Mac) to manually verify that it has
+                                sufficient contrast compared to the background. If the background is
+                                an image or gradient, test an area where contrast appears to be
+                                lowest.
+                            </li>
+                        </ul>
+                    </div>
+                );
+            }
             case 'android/atfa/ImageContrastCheck': {
                 return (
                     <span>

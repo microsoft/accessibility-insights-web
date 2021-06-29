@@ -315,6 +315,43 @@ exports[`RichResolutionContent renders static content with id=android/atfa/Redun
 </span>
 `;
 
+exports[`RichResolutionContent renders static content with id=android/atfa/TextContrastCheck 1`] = `
+<div
+  className="combinationLists"
+>
+  <ul
+    className="multiLineTextYesBullet"
+  >
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be invisible, it passes.
+    </li>
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be visible, use
+       
+      <stubLinkComponent
+        href="https://go.microsoft.com/fwlink/?linkid=2075365"
+      >
+        Accessibility Insights for Windows
+      </stubLinkComponent>
+       
+      (or the
+       
+      <stubLinkComponent
+        href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+      >
+        Colour Contrast Analyser
+      </stubLinkComponent>
+       
+      if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
+    </li>
+  </ul>
+</div>
+`;
+
 exports[`RichResolutionContent renders static content with id=android/atfa/TraversalOrderCheck 1`] = `
 <span>
   Good: If the app's view hierarchy doesn't create a logical traversal order, use 

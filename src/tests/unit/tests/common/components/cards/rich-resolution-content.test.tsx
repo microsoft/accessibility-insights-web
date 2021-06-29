@@ -31,6 +31,7 @@ describe('RichResolutionContent', () => {
         'android/atfa/LinkPurposeUnclearCheck',
         'android/atfa/RedundantDescriptionCheck',
         'android/atfa/TraversalOrderCheck',
+        'android/atfa/TextContrastCheck',
         'android/atfa/ImageContrastCheck',
     ])('renders static content with id=%s', testId => {
         const props: RichResolutionContentProps = {
