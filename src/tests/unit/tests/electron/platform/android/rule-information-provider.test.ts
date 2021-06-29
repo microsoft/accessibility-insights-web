@@ -179,6 +179,46 @@ describe('RuleInformationProvider', () => {
         expect(ruleInformation.getResultStatus(ruleResult)).toBe('fail');
     });
 
+    test('getRuleInformation returns correct data for ClassNameCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('ClassNameCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for ClickableSpanCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('ClickableSpanCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for DuplicateClickableBoundsCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('DuplicateClickableBoundsCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for DuplicateSpeakableTextCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('DuplicateSpeakableTextCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for LinkPurposeUnclearCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('LinkPurposeUnclearCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for RedundantDescriptionCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('RedundantDescriptionCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for TraversalOrderCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('TraversalOrderCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('getRuleInformation returns correct data for ImageContrastCheck rule', () => {
+        const unifiedResolution = validateUnifiedResolution('ImageContrastCheck', null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
     type ruleStatusTestCase = {
         ruleId: string;
         status: string;
@@ -215,6 +255,26 @@ describe('RuleInformationProvider', () => {
             ruleId: 'ImageViewName',
             status: 'FAIL',
             outcome: 'fail',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'ERROR',
+            outcome: 'fail',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'WARNING',
+            outcome: 'fail',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'INFO',
+            outcome: 'pass',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'NOT_RUN',
+            outcome: 'pass',
         },
     ];
 
