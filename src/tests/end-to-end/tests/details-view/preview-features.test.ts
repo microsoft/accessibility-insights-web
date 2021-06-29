@@ -24,7 +24,11 @@ describe('Details View -> Preview Features Panel', () => {
     });
 
     afterAll(async () => {
-        await browser?.close();
+        try {
+            await browser?.close();
+        } catch (e) {
+            console.log(e);
+        }
     });
 
     it('should match content in snapshot', async () => {

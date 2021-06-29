@@ -20,7 +20,11 @@ describe('Guidance Content pages', () => {
     });
 
     afterAll(async () => {
-        await browser?.close();
+        try {
+            await browser?.close();
+        } catch (e) {
+            console.log(e);
+        }
     });
 
     describe.each(contentPaths)('%s', path => {

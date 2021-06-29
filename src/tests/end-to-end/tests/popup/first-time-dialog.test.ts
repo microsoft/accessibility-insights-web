@@ -18,7 +18,11 @@ describe('First time Dialog', () => {
     });
 
     afterEach(async () => {
-        await browser?.close();
+        try {
+            await browser?.close();
+        } catch (e) {
+            console.log(e);
+        }
     });
 
     async function newPopupPage(): Promise<PopupPage> {
