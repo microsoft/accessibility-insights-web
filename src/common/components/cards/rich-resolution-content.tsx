@@ -89,6 +89,149 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </span>
                 );
             }
+            case 'android/atfa/ClassNameCheck': {
+                return (
+                    <span>
+                        Provide a <Markup.Code>className</Markup.Code> value within the element's{' '}
+                        <LinkComponent href="https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html">
+                            AccessibilityNodeInfo
+                        </LinkComponent>{' '}
+                        that:
+                        <ol>
+                            <li>Closely describes the element's function,</li>
+                            <li>Matches a class that extends android.view.View,</li>
+                            <li>Is provided with the Android SDK or support libraries, and</li>
+                            <li>Is as far down Android's class hierarchy as possible.</li>
+                        </ol>
+                        Note: Do not attempt to fix this issue by adding the class name to the
+                        object's ContentDescription, as that approach can cause some assistive
+                        technologies to announce the class twice.
+                    </span>
+                );
+            }
+            case 'android/atfa/ClickableSpanCheck': {
+                return (
+                    <span>
+                        <ul>
+                            <li>
+                                Implement the link using{' '}
+                                <LinkComponent href="https://developer.android.com/reference/android/text/style/URLSpan.html">
+                                    URLSpan
+                                </LinkComponent>{' '}
+                                or
+                                <LinkComponent href="https://developer.android.com/reference/android/text/util/Linkify.html">
+                                    Linkify
+                                </LinkComponent>
+                                .
+                            </li>
+                            <li>
+                                If you use <Markup.Code>URLSpan</Markup.Code>, provide a non-null
+                                absolute URL (such as{' '}
+                                <Markup.Code>https://example.com/page.html</Markup.Code>), not a
+                                relative URL (such as <Markup.Code>/page.html</Markup.Code>).
+                            </li>
+                        </ul>
+                    </span>
+                );
+            }
+            case 'android/atfa/DuplicateClickableBoundsCheck': {
+                return (
+                    <span>
+                        When clickable <Markup.Code>Views</Markup.Code> are nested, implement click
+                        handling so that only one
+                        <Markup.Code>View</Markup.Code> handles clicks for any single action. <br />
+                        If a <Markup.Code>View</Markup.Code> that's clickable by default (such as a{' '}
+                        <Markup.Code>button</Markup.Code>) is not intended to be clickable, remove
+                        its <Markup.Code>OnClickListener</Markup.Code>, or set{' '}
+                        <Markup.Code>android:clickable="false"</Markup.Code>.
+                    </span>
+                );
+            }
+            case 'android/atfa/DuplicateSpeakableTextCheck': {
+                return (
+                    <span>
+                        If clickable <Markup.Code>View</Markup.Code> objects perform the <i>same</i>{' '}
+                        function, they can have the same speakable text; no changes are needed.
+                        <br />
+                        If two or more clickable <Markup.Code>View</Markup.Code> objects perform{' '}
+                        <i>different</i> functions, give them unique speakable text.
+                    </span>
+                );
+            }
+            case 'android/atfa/LinkPurposeUnclearCheck': {
+                return (
+                    <span>
+                        Describe the unique purpose of the link using any of the following:
+                        <ul>
+                            <li>Good: Programmatically related context, or</li>
+                            <li>Better: Accessible name and/or accessible description, or</li>
+                            <li>Best: Link text</li>
+                        </ul>
+                        Programmatically related context includes:
+                        <ul>
+                            <li>
+                                Text in the same sentence, paragraph, list item, or table cell as
+                                the link
+                            </li>
+                            <li>Text in a parent list item</li>
+                            <li>
+                                Text in a table header cell associated with the cell that contains
+                                the link
+                            </li>
+                        </ul>
+                        Writing tips:
+                        <ul>
+                            <li>
+                                If a link's destination is a document or web application, the name
+                                of the document or application is sufficient.
+                            </li>
+                            <li>
+                                Links with different destinations should have different
+                                descriptions; links with the same destination should have the same
+                                description.
+                            </li>
+                            <li>
+                                Programmatically related context is easier to understand when it
+                                precedes the link.
+                            </li>
+                        </ul>
+                    </span>
+                );
+            }
+            case 'android/atfa/RedundantDescriptionCheck': {
+                return (
+                    <span>
+                        Don't include an element's role (type), state, or available actions in the
+                        following attributes: <Markup.Code>android:contentDescription</Markup.Code>,
+                        <Markup.Code>android:text</Markup.Code>,{' '}
+                        <Markup.Code>android:hint</Markup.Code>.
+                    </span>
+                );
+            }
+            case 'android/atfa/TraversalOrderCheck': {
+                return (
+                    <span>
+                        Good: If the app's view hierarchy doesn't create a logical traversal order,
+                        use <Markup.Code>android:accessibilityTraversalBefore</Markup.Code> or
+                        <Markup.Code>android:accessibilityTraversalAfter</Markup.Code> attributes to
+                        create an order that makes sense to TalkBack users. Make sure that the
+                        attributes do not create any loops or traps that prevent the user from
+                        accessing all interactive elements.
+                        <br />
+                        Better: Restructure the view hierarchy to create a logical traversal order
+                        that does not require use of{' '}
+                        <Markup.Code>android:accessibilityTraversalBefore</Markup.Code> or
+                        <Markup.Code>android:accessibilityTraversalAfter</Markup.Code> attributes.
+                    </span>
+                );
+            }
+            case 'android/atfa/ImageContrastCheck': {
+                return (
+                    <span>
+                        Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.
+                    </span>
+                );
+            }
             case 'web/aria-input-field-name': {
                 return (
                     <div>
