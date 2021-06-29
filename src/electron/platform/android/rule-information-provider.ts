@@ -243,6 +243,7 @@ export class RuleInformationProvider {
         switch (ruleResultsData.status) {
             case 'ERROR':
             case 'WARNING':
+                return 'unknown';
             case 'FAIL':
                 return 'fail';
             default:

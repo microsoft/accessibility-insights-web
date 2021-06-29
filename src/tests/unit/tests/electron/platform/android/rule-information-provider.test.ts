@@ -259,12 +259,12 @@ describe('RuleInformationProvider', () => {
         {
             ruleId: 'ClassNameCheck',
             status: 'ERROR',
-            outcome: 'fail',
+            outcome: 'unknown',
         },
         {
             ruleId: 'ClassNameCheck',
             status: 'WARNING',
-            outcome: 'fail',
+            outcome: 'unknown',
         },
         {
             ruleId: 'ClassNameCheck',
