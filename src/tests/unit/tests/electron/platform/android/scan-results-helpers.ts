@@ -193,8 +193,8 @@ export function buildAtfaResult(
     const result = {};
     result['AccessibilityHierarchyCheckResult.element'] = element;
     result['AccessibilityHierarchyCheckResult.resultId'] = resultId;
-    result['AccessibilityHierarchyCheckResult.checkClass'] = checkClass;
-    result['AccessibilityHierarchyCheckResult.type'] = type;
+    result['AccessibilityCheckResult.checkClass'] = checkClass;
+    result['AccessibilityCheckResult.type'] = type;
     if (metadata) {
         result['AccessibilityHierarchyCheckResult.metadata'] = metadata;
     }
