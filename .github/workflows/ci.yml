@@ -1,0 +1,314 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+name: CI
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 19 * * 0'
+
+env:
+  NODE_VERSION: 14.17.0
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    # CG and NOTICE generation would go here
+
+    - run: yarn build:all
+      timeout-minutes: 10
+
+    - name: upload artifact build-results
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-results
+        path: drop
+      timeout-minutes: 5
+    
+  unit-tests:
+    runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    - run: yarn test --ci
+      timeout-minutes: 10
+
+    - name: upload artifact unit-tests-results
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: unit-tests-results
+        path: |
+          test-results/unit/junit.xml
+          test-results/unit/coverage/cobertura-coverage.xml
+      timeout-minutes: 5
+
+    - run: yarn publish-code-coverage
+      timeout-minutes: 3
+
+  lints:
+    runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    - run: yarn copyright:check
+      timeout-minutes: 1
+
+    - run: yarn format:check
+      timeout-minutes: 5
+
+    - run: yarn lint:check:all
+      timeout-minutes: 5
+
+    - run: yarn scss:build
+      timeout-minutes: 3
+
+    - run: yarn null:check
+      timeout-minutes: 5
+
+  codeql:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: github/codeql-action/init@v1
+      timeout-minutes: 2
+
+    - uses: github/codeql-action/analyze@v1
+      timeout-minutes: 10
+
+  e2e-web-tests:
+    name: e2e-web-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
+    runs-on: ubuntu-20.04
+    container: mcr.microsoft.com/playwright:v1.10.0-focal
+    strategy:
+      fail-fast: false
+      matrix:
+        test-filename-prefix-pattern:
+          - "[a-k]"
+          - "[^a-k]"
+
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    # Intentionally omitting caching; it would need a separate, larger
+    # cache bucket to account for differences in container image and
+    # PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD, and that would eat so far into
+    # our 5GB cache quota that we'd run into issues with useful main builds'
+    # caches being evicted anytime dependabot filed a few PRs in a row.
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    - run: yarn build:prod
+      timeout-minutes: 5
+
+    - name: yarn test:e2e
+      run: |
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+      env:
+        # If you need to debug Playwright/Chromium, using pw:* instead may help
+        DEBUG: pw:api
+        WEB_E2E_TARGET: 'production'
+      timeout-minutes: 10
+
+    - name: upload artifact e2e-web-tests-results
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: e2e-web-tests-${{ matrix.chunk-index }}-results
+        path: test-results/e2e/junit-e2e.xml
+      timeout-minutes: 3
+
+    - name: upload artifact e2e-web-tests-debug-logs
+      uses: actions/upload-artifact@v2
+      if: ${{ failure() }}
+      with:
+        name: e2e-web-tests-${{ matrix.chunk-index }}-debug-logs
+        path: |
+          test-results/e2e/chrome-logs
+          test-results/e2e/failure-screenshots
+      timeout-minutes: 3
+  
+  e2e-unified-tests:
+    name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
+    runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    strategy:
+      fail-fast: false
+      matrix:
+        test-filename-prefix-pattern:
+          - "a" # about half the tests start with "android-setup-"
+          - "[^a]"
+
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    - run: yarn build:unified
+      timeout-minutes: 5
+
+    - name: yarn test:unified
+      run: |
+        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+      timeout-minutes: 15
+
+    - name: upload artifact e2e-unified-tests-results
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: e2e-unified-tests-${{ matrix.chunk-index }}-results
+        path: test-results/electron
+      timeout-minutes: 3
+
+  e2e-report-tests:
+    runs-on: ubuntu-20.04
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    steps:
+    - uses: actions/checkout@v2
+      timeout-minutes: 2
+
+    - uses: actions/setup-node@v2
+      with: { node-version: "${{ env.NODE_VERSION }}" }
+      timeout-minutes: 2
+
+    - name: query yarn cache path
+      id: yarn-cache-path
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+      timeout-minutes: 1
+
+    - name: restore yarn cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ${{ steps.yarn-cache-path.outputs.dir }}
+          node_modules
+        key: ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-${{ hashFiles('.github/workflows/ci.yml') }}
+      timeout-minutes: 5
+
+    - run: yarn install --frozen-lockfile --prefer-offline
+      timeout-minutes: 10
+
+    - run: yarn build:package:report
+      timeout-minutes: 5
+
+    - run: yarn test:report:e2e --ci
+      timeout-minutes: 5
+
+    - name: upload artifact e2e-report-tests-results
+      uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: e2e-report-tests-results
+        path: packages/report-e2e-tests/test-results
+      timeout-minutes: 3
