@@ -20,11 +20,51 @@ Object {
 }
 `;
 
+exports[`RuleInformationProvider getRuleInformation returns correct data for ClassNameCheck rule 1`] = `
+Object {
+  "howToFixSummary": "Provide a className value within the element's AccessibilityNodeInfo that: 1. Closely describes the element's function, 2. Matches a class that extends android.view.View, 3. Is provided with the Android SDK or support libraries, and 4. Is as far down Android's class hierarchy as possible.",
+  "richResolution": Object {
+    "contentId": "android/atfa/ClassNameCheck",
+    "labelType": "check",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for ClickableSpanCheck rule 1`] = `
+Object {
+  "howToFixSummary": "Implement the link using URLSpan or Linkify. If you use URLSpan, provide a non-null absolute URL (such as https://example.com/page.html), not a relative URL (such as /page.html).",
+  "richResolution": Object {
+    "contentId": "android/atfa/ClickableSpanCheck",
+    "labelType": "check",
+  },
+}
+`;
+
 exports[`RuleInformationProvider getRuleInformation returns correct data for ColorContrast rule 1`] = `
 Object {
   "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
   "richResolution": Object {
     "contentId": "android/ColorContrast",
+    "labelType": "check",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for DuplicateClickableBoundsCheck rule 1`] = `
+Object {
+  "howToFixSummary": "When clickable Views are nested, implement click handling so that only one View handles clicks for any single action. If a View that is clickable by default (such as a button) is not intended to be clickable, remove its OnClickListener, or set android:clickable=\\"false\\".",
+  "richResolution": Object {
+    "contentId": "android/atfa/DuplicateClickableBoundsCheck",
+    "labelType": "check",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for DuplicateSpeakableTextCheck rule 1`] = `
+Object {
+  "howToFixSummary": "If clickable View objects perform the same function, they can have the same speakable text; no changes are needed. If two or more clickable View objects perform different functions, give them unique speakable text.",
+  "richResolution": Object {
+    "contentId": "android/atfa/DuplicateSpeakableTextCheck",
     "labelType": "check",
   },
 }
@@ -40,12 +80,52 @@ Object {
 }
 `;
 
+exports[`RuleInformationProvider getRuleInformation returns correct data for ImageContrastCheck rule 1`] = `
+Object {
+  "howToFixSummary": "Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.",
+  "richResolution": Object {
+    "contentId": "android/atfa/ImageContrastCheck",
+    "labelType": "check",
+  },
+}
+`;
+
 exports[`RuleInformationProvider getRuleInformation returns correct data for ImageViewName rule 1`] = `
 Object {
   "howToFixSummary": "The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.",
   "richResolution": Object {
     "contentId": "android/ImageViewName",
     "labelType": "fix",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for LinkPurposeUnclearCheck rule 1`] = `
+Object {
+  "howToFixSummary": "Describe the unique purpose of the link using any of the following: Good: Programmatically related context, or Better: Accessible name and/or accessible description, or Best: Link text",
+  "richResolution": Object {
+    "contentId": "android/atfa/LinkPurposeUnclearCheck",
+    "labelType": "check",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for RedundantDescriptionCheck rule 1`] = `
+Object {
+  "howToFixSummary": "Don't include an element's role (type), state, or available actions in the following attributes: android:contentDescription, android:text, android:hint.",
+  "richResolution": Object {
+    "contentId": "android/atfa/RedundantDescriptionCheck",
+    "labelType": "check",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for TextContrastCheck rule 1`] = `
+Object {
+  "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
+  "richResolution": Object {
+    "contentId": "android/atfa/TextContrastCheck",
+    "labelType": "check",
   },
 }
 `;
@@ -60,6 +140,16 @@ Object {
       "logicalWidth": "42.222",
     },
     "labelType": "fix",
+  },
+}
+`;
+
+exports[`RuleInformationProvider getRuleInformation returns correct data for TraversalOrderCheck rule 1`] = `
+Object {
+  "howToFixSummary": "Good: If the app's view hierarchy doesn't create a logical traversal order with attributes. Better: Restructure the view hierarchy to create a logical traversal order that doesn't require attributes.",
+  "richResolution": Object {
+    "contentId": "android/atfa/TraversalOrderCheck",
+    "labelType": "check",
   },
 }
 `;

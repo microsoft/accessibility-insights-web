@@ -65,6 +65,24 @@ describe('RuleInformationProvider', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
     });
 
+    test.each([
+        'ActiveViewName',
+        'ClassNameCheck',
+        'ClickableSpanCheck',
+        'DuplicateClickableBoundsCheck',
+        'DuplicateSpeakableTextCheck',
+        'EditTextValue',
+        'ImageContrastCheck',
+        'ImageViewName',
+        'LinkPurposeUnclearCheck',
+        'RedundantDescriptionCheck',
+        'TextContrastCheck',
+        'TraversalOrderCheck',
+    ])('getRuleInformation returns correct data for %s rule', (ruleId: string) => {
+        const unifiedResolution = validateUnifiedResolution(ruleId, null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
     function validateUnifiedResolution(
         ruleId: string,
         ruleResult: RuleResultsData,
@@ -114,21 +132,6 @@ describe('RuleInformationProvider', () => {
             95,
         );
         const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for ActiveViewName rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ActiveViewName', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for EditTextValue rule', () => {
-        const unifiedResolution = validateUnifiedResolution('EditTextValue', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for ImageViewName rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ImageViewName', null);
         expect(unifiedResolution).toMatchSnapshot();
     });
 
@@ -215,6 +218,26 @@ describe('RuleInformationProvider', () => {
             ruleId: 'ImageViewName',
             status: 'FAIL',
             outcome: 'fail',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'ERROR',
+            outcome: 'unknown',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'WARNING',
+            outcome: 'unknown',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'INFO',
+            outcome: 'pass',
+        },
+        {
+            ruleId: 'ClassNameCheck',
+            status: 'NOT_RUN',
+            outcome: 'pass',
         },
     ];
 

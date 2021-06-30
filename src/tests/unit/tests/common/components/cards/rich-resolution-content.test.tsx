@@ -24,6 +24,15 @@ describe('RichResolutionContent', () => {
         'web/color-contrast',
         'web/th-has-data-cells',
         'web/link-in-text-block',
+        'android/atfa/ClassNameCheck',
+        'android/atfa/ClickableSpanCheck',
+        'android/atfa/DuplicateClickableBoundsCheck',
+        'android/atfa/DuplicateSpeakableTextCheck',
+        'android/atfa/LinkPurposeUnclearCheck',
+        'android/atfa/RedundantDescriptionCheck',
+        'android/atfa/TraversalOrderCheck',
+        'android/atfa/TextContrastCheck',
+        'android/atfa/ImageContrastCheck',
     ])('renders static content with id=%s', testId => {
         const props: RichResolutionContentProps = {
             deps,
