@@ -125,7 +125,7 @@ export class RuleInformationProvider {
                         contentId: 'android/atfa/DuplicateClickableBoundsCheck',
                     },
                 }),
-                this.getStandardResultStatus, // TODO: Confirm
+                this.getStandardResultStatus,
             ),
             DuplicateSpeakableTextCheck: new RuleInformation(
                 'DuplicateSpeakableTextCheck',
