@@ -136,7 +136,12 @@ exports[`RichResolutionContent renders static content with id=android/atfa/Class
       Closely describes the element's function,
     </li>
     <li>
-      Matches a class that extends android.view.View,
+      Matches a class that extends
+       
+      <Code>
+        android.view.View
+      </Code>
+      ,
     </li>
     <li>
       Is provided with the Android SDK or support libraries, and
@@ -145,7 +150,11 @@ exports[`RichResolutionContent renders static content with id=android/atfa/Class
       Is as far down Android's class hierarchy as possible.
     </li>
   </ol>
-  Note: Do not attempt to fix this issue by adding the class name to the object's ContentDescription, as that approach can cause some assistive technologies to announce the class twice.
+  Note: Do not attempt to fix this issue by adding the class name to the object's 
+  <Code>
+    ContentDescription
+  </Code>
+  , as that approach can cause some assistive technologies to announce the class twice.
 </span>
 `;
 

@@ -99,13 +99,16 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                         that:
                         <ol>
                             <li>Closely describes the element's function,</li>
-                            <li>Matches a class that extends android.view.View,</li>
+                            <li>
+                                Matches a class that extends{' '}
+                                <Markup.Code>android.view.View</Markup.Code>,
+                            </li>
                             <li>Is provided with the Android SDK or support libraries, and</li>
                             <li>Is as far down Android's class hierarchy as possible.</li>
                         </ol>
                         Note: Do not attempt to fix this issue by adding the class name to the
-                        object's ContentDescription, as that approach can cause some assistive
-                        technologies to announce the class twice.
+                        object's <Markup.Code>ContentDescription</Markup.Code>, as that approach can
+                        cause some assistive technologies to announce the class twice.
                     </span>
                 );
             }
