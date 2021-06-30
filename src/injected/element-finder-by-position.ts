@@ -38,7 +38,7 @@ export class ElementFinderByPosition {
     public processRequest = async (
         message: ElementFinderByPositionMessage,
     ): Promise<CommandMessageResponse> => {
-        let path = [];
+        let path: string[] = [];
         const element = this.getElementByPosition(message);
 
         if (element == null) {
@@ -74,7 +74,9 @@ export class ElementFinderByPosition {
         return await this.frameMessenger.sendMessageToFrame(targetFrame, commandMessage);
     };
 
-    private getElementByPosition = (message: ElementFinderByPositionMessage): HTMLElement => {
+    private getElementByPosition = (
+        message: ElementFinderByPositionMessage,
+    ): HTMLElement | undefined => {
         const elements = this.dom.elementsFromPoint(message.x, message.y) as HTMLElement[];
 
         for (let pos = 0; pos < elements.length; pos++) {
