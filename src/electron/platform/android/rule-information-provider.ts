@@ -101,7 +101,7 @@ export class RuleInformationProvider {
                 'ClickableSpanCheck',
                 `${this.ruleLinkBaseUrl}/link-purpose-unclear/`,
                 "A TextView widget must not contain ClickableSpan objects that aren't URLSpans with absolute URLs.",
-                [link.WCAG_4_1_2],
+                [link.WCAG_2_4_4, link.WCAG_4_1_2],
                 () => ({
                     howToFixSummary:
                         'Implement the link using URLSpan or Linkify. If you use URLSpan, provide a non-null absolute URL (such as https://example.com/page.html), not a relative URL (such as /page.html).',
