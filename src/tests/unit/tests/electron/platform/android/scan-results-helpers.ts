@@ -162,8 +162,10 @@ export function buildRuleInformation(
             return null!;
         },
         getResultStatus: r => {
-            return r.status === 'FAIL' || r.status === 'ERROR' || r.status === 'WARNING'
+            return r.status === 'FAIL'
                 ? 'fail'
+                : r.status === 'ERROR' || r.status === 'WARNING'
+                ? 'unknown'
                 : 'pass';
         },
     } as RuleInformation;
