@@ -122,16 +122,6 @@ Object {
 
 exports[`RuleInformationProvider getRuleInformation returns correct data for TextContrastCheck rule 1`] = `
 Object {
-  "howToFixSummary": "Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.",
-  "richResolution": Object {
-    "contentId": "android/atfa/ImageContrastCheck",
-    "labelType": "check",
-  },
-}
-`;
-
-exports[`RuleInformationProvider getRuleInformation returns correct data for TextContrastCheck rule 2`] = `
-Object {
   "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
   "richResolution": Object {
     "contentId": "android/atfa/TextContrastCheck",

@@ -214,7 +214,7 @@ describe('RuleInformationProvider', () => {
         expect(unifiedResolution).toMatchSnapshot();
     });
 
-    test('getRuleInformation returns correct data for TextContrastCheck rule', () => {
+    test('getRuleInformation returns correct data for ImageContrastCheck rule', () => {
         const unifiedResolution = validateUnifiedResolution('ImageContrastCheck', null);
         expect(unifiedResolution).toMatchSnapshot();
     });
