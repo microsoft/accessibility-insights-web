@@ -21,11 +21,7 @@ describe('Details View -> Overview Page', () => {
     });
 
     afterAll(async () => {
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }
+        await browser?.close();
     });
 
     it.each([true, false])(

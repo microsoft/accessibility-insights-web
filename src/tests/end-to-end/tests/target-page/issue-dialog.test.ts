@@ -22,11 +22,7 @@ describe('Target Page issue dialog', () => {
     });
 
     afterAll(async () => {
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }
+        await browser?.close();
     });
 
     it('should pass accessibility validation', async () => {

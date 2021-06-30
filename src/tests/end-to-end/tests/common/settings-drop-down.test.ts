@@ -25,11 +25,7 @@ describe('Settings Dropdown', () => {
     });
 
     afterAll(async () => {
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }
+        await browser?.close();
     });
 
     it('content should match snapshot', async () => {

@@ -15,11 +15,7 @@ describe('Details View -> Assessment -> Landmarks', () => {
     });
 
     afterEach(async () => {
-        try {
-            await browser?.close();
-        } catch (e) {
-            console.log(e);
-        }
+        await browser?.close();
     });
 
     describe('Primary content', () => {
