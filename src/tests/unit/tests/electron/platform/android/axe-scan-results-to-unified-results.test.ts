@@ -5,7 +5,7 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
 import {
     AndroidScanResults,
-    RuleResultsData,
+    AxeRuleResultsData,
 } from 'electron/platform/android/android-scan-results';
 import { convertAxeScanResultsToUnifiedResults } from 'electron/platform/android/axe-scan-results-to-unified-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
@@ -13,7 +13,7 @@ import { RuleInformationProviderType } from 'electron/platform/android/rule-info
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     buildRuleInformation,
-    buildRuleResultObject,
+    buildAxeRuleResultObject,
     buildScanResultsObject,
     buildViewElement,
 } from './scan-results-helpers';
@@ -114,15 +114,15 @@ describe('AxeScanResultsToUnifiedResults', () => {
         const id2: string = 'id2';
         const id3: string = 'id3';
         const id4: string = 'id4';
-        const ruleResults: RuleResultsData[] = [
-            buildRuleResultObject(ruleId1, 'FAIL', id1),
-            buildRuleResultObject('unsupported Rule #1', 'PASS', id2),
-            buildRuleResultObject(ruleId2, 'FAIL', id3),
-            buildRuleResultObject(ruleId2, 'PASS', id4),
-            buildRuleResultObject('unsupported Rule #2', 'FAIL', id1),
-            buildRuleResultObject(ruleId4, 'PASS', id2),
-            buildRuleResultObject(ruleId3, 'PASS', id2),
-            buildRuleResultObject(ruleId2, 'UNKNOWN', 'does not exist'), // Force "unknown" cases
+        const ruleResults: AxeRuleResultsData[] = [
+            buildAxeRuleResultObject(ruleId1, 'FAIL', id1),
+            buildAxeRuleResultObject('unsupported Rule #1', 'PASS', id2),
+            buildAxeRuleResultObject(ruleId2, 'FAIL', id3),
+            buildAxeRuleResultObject(ruleId2, 'PASS', id4),
+            buildAxeRuleResultObject('unsupported Rule #2', 'FAIL', id1),
+            buildAxeRuleResultObject(ruleId4, 'PASS', id2),
+            buildAxeRuleResultObject(ruleId3, 'PASS', id2),
+            buildAxeRuleResultObject(ruleId2, 'UNKNOWN', 'does not exist'), // Force "unknown" cases
         ];
 
         const viewElementTree = buildViewElement(

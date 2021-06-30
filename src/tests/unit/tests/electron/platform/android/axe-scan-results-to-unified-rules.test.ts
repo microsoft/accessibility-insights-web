@@ -5,7 +5,7 @@ import { generateUID } from 'common/uid-generator';
 import { link } from 'content/link';
 import {
     AndroidScanResults,
-    RuleResultsData,
+    AxeRuleResultsData,
 } from 'electron/platform/android/android-scan-results';
 import { convertAxeScanResultsToUnifiedRules } from 'electron/platform/android/axe-scan-results-to-unified-rules';
 import { RuleInformation } from 'electron/platform/android/rule-information';
@@ -14,7 +14,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     buildRuleInformation,
-    buildRuleResultObject,
+    buildAxeRuleResultObject,
     buildScanResultsObject,
 } from './scan-results-helpers';
 
@@ -117,10 +117,10 @@ describe('AxeScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with only unsupported rules', () => {
-        const ruleResults: RuleResultsData[] = [
-            buildRuleResultObject('unsupported 1', 'PASS'),
-            buildRuleResultObject('unsupported 2', 'FAIL'),
-            buildRuleResultObject('unsupported 3', 'PASS'),
+        const ruleResults: AxeRuleResultsData[] = [
+            buildAxeRuleResultObject('unsupported 1', 'PASS'),
+            buildAxeRuleResultObject('unsupported 2', 'FAIL'),
+            buildAxeRuleResultObject('unsupported 3', 'PASS'),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
@@ -138,7 +138,7 @@ describe('AxeScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with 1 supported rule', () => {
-        const ruleResults: RuleResultsData[] = [buildRuleResultObject(ruleId1, 'PASS')];
+        const ruleResults: AxeRuleResultsData[] = [buildAxeRuleResultObject(ruleId1, 'PASS')];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
             deviceName,
@@ -155,10 +155,10 @@ describe('AxeScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with 1 supported rule that repeats', () => {
-        const ruleResults: RuleResultsData[] = [
-            buildRuleResultObject(ruleId1, 'FAIL'),
-            buildRuleResultObject(ruleId1, 'PASS'),
-            buildRuleResultObject(ruleId1, 'FAIL'),
+        const ruleResults: AxeRuleResultsData[] = [
+            buildAxeRuleResultObject(ruleId1, 'FAIL'),
+            buildAxeRuleResultObject(ruleId1, 'PASS'),
+            buildAxeRuleResultObject(ruleId1, 'FAIL'),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
@@ -176,19 +176,19 @@ describe('AxeScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with a mix of supported rules, unsupported rules, and excluded results', () => {
-        const ruleResults: RuleResultsData[] = [
-            buildRuleResultObject(ruleId3, 'FAIL'),
-            buildRuleResultObject('not supported', 'PASS'),
-            buildRuleResultObject(ruleId1, 'FAIL'),
-            buildRuleResultObject(ruleId2, 'PASS'),
-            buildRuleResultObject(ruleId1, 'FAIL'),
-            buildRuleResultObject(ruleId1, 'FAIL'),
-            buildRuleResultObject('sorry', 'FAIL'),
-            buildRuleResultObject(ruleId2, 'PASS'),
-            buildRuleResultObject(ruleId4, 'PASS'),
-            buildRuleResultObject(ruleId1, 'PASS'),
-            buildRuleResultObject(ruleId3, 'FAIL'),
-            buildRuleResultObject('thanks for playing', 'FAIL'),
+        const ruleResults: AxeRuleResultsData[] = [
+            buildAxeRuleResultObject(ruleId3, 'FAIL'),
+            buildAxeRuleResultObject('not supported', 'PASS'),
+            buildAxeRuleResultObject(ruleId1, 'FAIL'),
+            buildAxeRuleResultObject(ruleId2, 'PASS'),
+            buildAxeRuleResultObject(ruleId1, 'FAIL'),
+            buildAxeRuleResultObject(ruleId1, 'FAIL'),
+            buildAxeRuleResultObject('sorry', 'FAIL'),
+            buildAxeRuleResultObject(ruleId2, 'PASS'),
+            buildAxeRuleResultObject(ruleId4, 'PASS'),
+            buildAxeRuleResultObject(ruleId1, 'PASS'),
+            buildAxeRuleResultObject(ruleId3, 'FAIL'),
+            buildAxeRuleResultObject('thanks for playing', 'FAIL'),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(

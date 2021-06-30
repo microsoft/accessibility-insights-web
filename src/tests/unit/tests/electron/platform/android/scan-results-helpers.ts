@@ -3,8 +3,8 @@
 import { GuidanceLink } from 'common/guidance-links';
 import {
     AndroidScanResults,
+    AxeRuleResultsData,
     DeviceInfo,
-    RuleResultsData,
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
 import {
@@ -18,7 +18,7 @@ import { RuleInformation } from 'electron/platform/android/rule-information';
 export function buildScanResultsObject(
     deviceName?: string,
     appIdentifier?: string,
-    resultsArray?: RuleResultsData[],
+    resultsArray?: AxeRuleResultsData[],
     axeView?: ViewElementData,
     axeVersion?: string,
     screenshotData?: string,
@@ -42,7 +42,7 @@ export function buildScanResultsObject(
 export function buildAxeScanResultsObject(
     deviceName?: string,
     appIdentifier?: string,
-    resultsArray?: RuleResultsData[],
+    resultsArray?: AxeRuleResultsData[],
     axeView?: ViewElementData,
     axeVersion?: string,
     screenshotData?: string,
@@ -100,12 +100,12 @@ export function buildAxeScanResultsObject(
     return axeResults;
 }
 
-export function buildRuleResultObject(
+export function buildAxeRuleResultObject(
     ruleId: string,
     status: string,
     axeViewId?: string,
     props?: any,
-): RuleResultsData {
+): AxeRuleResultsData {
     const result = {};
     result['ruleId'] = ruleId;
     result['status'] = status;
@@ -116,7 +116,7 @@ export function buildRuleResultObject(
         result['props'] = props;
     }
 
-    return result as RuleResultsData;
+    return result as AxeRuleResultsData;
 }
 
 export function buildViewElement(

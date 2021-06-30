@@ -8,7 +8,7 @@ import { RuleResultsData } from 'electron/platform/android/android-scan-results'
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 
-import { buildRuleResultObject } from './scan-results-helpers';
+import { buildAxeRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {
     let provider: RuleInformationProvider;
@@ -39,7 +39,7 @@ describe('RuleInformationProvider', () => {
             right: right,
         };
 
-        return buildRuleResultObject('TouchSizeWcag', status, null, props);
+        return buildAxeRuleResultObject('TouchSizeWcag', status, null, props);
     }
 
     function buildColorContrastRuleResultObject(
@@ -58,7 +58,7 @@ describe('RuleInformationProvider', () => {
         props['Background Color'] = background;
         props['Confidence in Color Detection'] = confidence;
 
-        return buildRuleResultObject('ColorContrast', status, null, props);
+        return buildAxeRuleResultObject('ColorContrast', status, null, props);
     }
 
     test('getRuleInformation returns null for an unknown ruleId', () => {
@@ -221,7 +221,7 @@ describe('RuleInformationProvider', () => {
     test.each(ruleIdsToTest)(
         'getResultStatus evaulates properly for %s',
         (testCase: ruleStatusTestCase) => {
-            const ruleResult = buildRuleResultObject(testCase.ruleId, testCase.status);
+            const ruleResult = buildAxeRuleResultObject(testCase.ruleId, testCase.status);
             const ruleInformation: RuleInformation = provider.getRuleInformation(testCase.ruleId);
             expect(ruleInformation.getResultStatus(ruleResult)).toBe(testCase.outcome);
         },
