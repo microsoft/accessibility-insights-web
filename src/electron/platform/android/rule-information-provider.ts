@@ -146,7 +146,7 @@ export class RuleInformationProvider {
                 'LinkPurposeUnclearCheck',
                 `${this.ruleLinkBaseUrl}/link-purpose-unclear/`,
                 "A link's purpose must be described by the link text alone, or by the link text together with the preceding page content.",
-                [link.WCAG_2_4_4, link.WCAG_4_1_2],
+                [link.WCAG_2_4_4],
                 () => ({
                     howToFixSummary:
                         'Describe the unique purpose of the link using any of the following: Good: Programmatically related context, or Better: Accessible name and/or accessible description, or Best: Link text',
