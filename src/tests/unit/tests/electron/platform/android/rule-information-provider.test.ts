@@ -65,6 +65,24 @@ describe('RuleInformationProvider', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
     });
 
+    test.each([
+        'ActiveViewName',
+        'ClassNameCheck',
+        'ClickableSpanCheck',
+        'DuplicateClickableBoundsCheck',
+        'DuplicateSpeakableTextCheck',
+        'EditTextValue',
+        'ImageContrastCheck',
+        'ImageViewName',
+        'LinkPurposeUnclearCheck',
+        'RedundantDescriptionCheck',
+        'TextContrastCheck',
+        'TraversalOrderCheck',
+    ])('getRuleInformation returns correct data for %s rule', (ruleId: string) => {
+        const unifiedResolution = validateUnifiedResolution(ruleId, null);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
     function validateUnifiedResolution(
         ruleId: string,
         ruleResult: RuleResultsData,
@@ -117,21 +135,6 @@ describe('RuleInformationProvider', () => {
         expect(unifiedResolution).toMatchSnapshot();
     });
 
-    test('getRuleInformation returns correct data for ActiveViewName rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ActiveViewName', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for EditTextValue rule', () => {
-        const unifiedResolution = validateUnifiedResolution('EditTextValue', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for ImageViewName rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ImageViewName', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
     test('ColorContrast getResultStatus returns unknown when confidence is defined and High', () => {
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
             'FAIL',
@@ -177,51 +180,6 @@ describe('RuleInformationProvider', () => {
         );
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
         expect(ruleInformation.getResultStatus(ruleResult)).toBe('fail');
-    });
-
-    test('getRuleInformation returns correct data for ClassNameCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ClassNameCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for ClickableSpanCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ClickableSpanCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for DuplicateClickableBoundsCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('DuplicateClickableBoundsCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for DuplicateSpeakableTextCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('DuplicateSpeakableTextCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for LinkPurposeUnclearCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('LinkPurposeUnclearCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for RedundantDescriptionCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('RedundantDescriptionCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for TraversalOrderCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('TraversalOrderCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for ImageContrastCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('ImageContrastCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation returns correct data for TextContrastCheck rule', () => {
-        const unifiedResolution = validateUnifiedResolution('TextContrastCheck', null);
-        expect(unifiedResolution).toMatchSnapshot();
     });
 
     type ruleStatusTestCase = {
