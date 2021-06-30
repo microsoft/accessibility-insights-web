@@ -99,7 +99,7 @@ describe('AxeScanResultsToUnifiedResults', () => {
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
-        const scanResults: AndroidScanResults = buildScanResultsObject();
+        const scanResults: AndroidScanResults = buildScanResultsObject({});
         const results: UnifiedResult[] = convertAxeScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,
@@ -151,12 +151,12 @@ describe('AxeScanResultsToUnifiedResults', () => {
             ],
         );
 
-        const scanResults: AndroidScanResults = buildScanResultsObject(
-            'Some device',
-            'Some app',
+        const scanResults: AndroidScanResults = buildScanResultsObject({
+            deviceName: 'Some device',
+            appIdentifier: 'Some app',
             ruleResults,
-            viewElementTree,
-        );
+            axeView: viewElementTree,
+        });
         const results: UnifiedResult[] = convertAxeScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,

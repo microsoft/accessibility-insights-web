@@ -15,82 +15,70 @@ import {
 } from 'electron/platform/android/atfa-data-types';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 
+export interface AxeScanResultsParameters {
+    deviceName?: string;
+    appIdentifier?: string;
+    ruleResults?: AxeRuleResultsData[];
+    axeView?: ViewElementData;
+    axeVersion?: string;
+    screenshotData?: string;
+    deviceInfo?: DeviceInfo;
+}
+
 export function buildScanResultsObject(
-    deviceName?: string,
-    appIdentifier?: string,
-    resultsArray?: AxeRuleResultsData[],
-    axeView?: ViewElementData,
-    axeVersion?: string,
-    screenshotData?: string,
-    deviceInfo?: DeviceInfo,
+    axeParameters: AxeScanResultsParameters,
     atfaResults?: AccessibilityHierarchyCheckResult[],
 ): AndroidScanResults {
     return new AndroidScanResults({
-        AxeResults: buildAxeScanResultsObject(
-            deviceName,
-            appIdentifier,
-            resultsArray,
-            axeView,
-            axeVersion,
-            screenshotData,
-            deviceInfo,
-        ),
+        AxeResults: buildAxeScanResultsObject(axeParameters),
         ATFAResults: atfaResults,
     });
 }
 
-export function buildAxeScanResultsObject(
-    deviceName?: string,
-    appIdentifier?: string,
-    resultsArray?: AxeRuleResultsData[],
-    axeView?: ViewElementData,
-    axeVersion?: string,
-    screenshotData?: string,
-    deviceInfo?: DeviceInfo,
-): any {
+export function buildAxeScanResultsObject(parameters: AxeScanResultsParameters): any {
     const axeResults = {};
     const axeContext = {};
     let addContext = false;
 
-    if (deviceInfo) {
+    if (parameters.deviceInfo) {
+        axeContext['axeDevice'] = parameters.deviceInfo;
+        addContext = true;
+    }
+
+    if (parameters.deviceName) {
+        const deviceInfo = { ...parameters.deviceInfo, name: parameters.deviceName } as DeviceInfo;
         axeContext['axeDevice'] = deviceInfo;
         addContext = true;
     }
 
-    if (deviceName) {
-        deviceInfo = { ...deviceInfo, name: deviceName } as DeviceInfo;
-        axeContext['axeDevice'] = deviceInfo;
-        addContext = true;
-    }
-
-    if (appIdentifier) {
+    if (parameters.appIdentifier) {
         const axeMetaData = {};
-        axeMetaData['appIdentifier'] = appIdentifier;
+        axeMetaData['appIdentifier'] = parameters.appIdentifier;
         axeContext['axeMetaData'] = axeMetaData;
         addContext = true;
     }
 
-    if (axeView) {
-        axeContext['axeView'] = axeView;
+    if (parameters.axeView) {
+        axeContext['axeView'] = parameters.axeView;
         addContext = true;
     }
 
-    if (axeVersion) {
+    if (parameters.axeVersion) {
         if (axeContext['axeMetaData'] == null) {
             axeContext['axeMetaData'] = {};
         }
 
-        axeContext['axeMetaData']['axeVersion'] = axeVersion;
+        axeContext['axeMetaData']['axeVersion'] = parameters.axeVersion;
         addContext = true;
     }
 
-    if (screenshotData) {
-        axeContext['screenshot'] = screenshotData;
+    if (parameters.screenshotData) {
+        axeContext['screenshot'] = parameters.screenshotData;
         addContext = true;
     }
 
-    if (resultsArray) {
-        axeResults['axeRuleResults'] = resultsArray;
+    if (parameters.ruleResults) {
+        axeResults['axeRuleResults'] = parameters.ruleResults;
     }
 
     if (addContext) {

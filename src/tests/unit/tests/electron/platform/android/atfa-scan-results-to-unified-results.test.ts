@@ -82,7 +82,7 @@ describe('AtfaScanResultsToUnifiedResults', () => {
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
-        const scanResults: AndroidScanResults = buildScanResultsObject();
+        const scanResults: AndroidScanResults = buildScanResultsObject({});
         const results: UnifiedResult[] = convertAtfaScanResultsToUnifiedResults(
             scanResults,
             ruleInformationProviderMock.object,
@@ -141,13 +141,10 @@ describe('AtfaScanResultsToUnifiedResults', () => {
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
-            'Some device',
-            'Some app',
-            null,
-            null,
-            null,
-            null,
-            null,
+            {
+                deviceName: 'Some device',
+                appIdentifier: 'Some app',
+            },
             ruleResults,
         );
         const results: UnifiedResult[] = convertAtfaScanResultsToUnifiedResults(

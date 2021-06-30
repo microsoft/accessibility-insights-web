@@ -91,7 +91,10 @@ describe('AftaScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
-        const scanResults: AndroidScanResults = buildScanResultsObject(deviceName, appIdentifier);
+        const scanResults: AndroidScanResults = buildScanResultsObject({
+            deviceName,
+            appIdentifier,
+        });
         const results: UnifiedRule[] = convertAtfaScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
@@ -109,13 +112,7 @@ describe('AftaScanResultsToUnifiedRules', () => {
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
-            deviceName,
-            appIdentifier,
-            null,
-            null,
-            null,
-            null,
-            null,
+            { deviceName, appIdentifier },
             ruleResults,
         );
         const results: UnifiedRule[] = convertAtfaScanResultsToUnifiedRules(
@@ -133,13 +130,7 @@ describe('AftaScanResultsToUnifiedRules', () => {
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
-            deviceName,
-            appIdentifier,
-            null,
-            null,
-            null,
-            null,
-            null,
+            { deviceName, appIdentifier },
             ruleResults,
         );
         const results: UnifiedRule[] = convertAtfaScanResultsToUnifiedRules(
@@ -159,13 +150,7 @@ describe('AftaScanResultsToUnifiedRules', () => {
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
-            deviceName,
-            appIdentifier,
-            null,
-            null,
-            null,
-            null,
-            null,
+            { deviceName, appIdentifier },
             ruleResults,
         );
         const results: UnifiedRule[] = convertAtfaScanResultsToUnifiedRules(
@@ -192,13 +177,7 @@ describe('AftaScanResultsToUnifiedRules', () => {
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
-            deviceName,
-            appIdentifier,
-            null,
-            null,
-            null,
-            null,
-            null,
+            { deviceName, appIdentifier },
             ruleResults,
         );
         const results: UnifiedRule[] = convertAtfaScanResultsToUnifiedRules(

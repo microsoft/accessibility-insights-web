@@ -106,7 +106,10 @@ describe('AxeScanResultsToUnifiedRules', () => {
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
-        const scanResults: AndroidScanResults = buildScanResultsObject(deviceName, appIdentifier);
+        const scanResults: AndroidScanResults = buildScanResultsObject({
+            deviceName,
+            appIdentifier,
+        });
         const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
@@ -123,11 +126,11 @@ describe('AxeScanResultsToUnifiedRules', () => {
             buildAxeRuleResultObject('unsupported 3', 'PASS'),
         ];
 
-        const scanResults: AndroidScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject({
             deviceName,
             appIdentifier,
             ruleResults,
-        );
+        });
         const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
@@ -140,11 +143,11 @@ describe('AxeScanResultsToUnifiedRules', () => {
     test('ScanResults with 1 supported rule', () => {
         const ruleResults: AxeRuleResultsData[] = [buildAxeRuleResultObject(ruleId1, 'PASS')];
 
-        const scanResults: AndroidScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject({
             deviceName,
             appIdentifier,
             ruleResults,
-        );
+        });
         const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
@@ -161,11 +164,11 @@ describe('AxeScanResultsToUnifiedRules', () => {
             buildAxeRuleResultObject(ruleId1, 'FAIL'),
         ];
 
-        const scanResults: AndroidScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject({
             deviceName,
             appIdentifier,
             ruleResults,
-        );
+        });
         const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
@@ -191,11 +194,11 @@ describe('AxeScanResultsToUnifiedRules', () => {
             buildAxeRuleResultObject('thanks for playing', 'FAIL'),
         ];
 
-        const scanResults: AndroidScanResults = buildScanResultsObject(
+        const scanResults: AndroidScanResults = buildScanResultsObject({
             deviceName,
             appIdentifier,
             ruleResults,
-        );
+        });
         const results: UnifiedRule[] = convertAxeScanResultsToUnifiedRules(
             scanResults,
             ruleInformationProviderMock.object,
