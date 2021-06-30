@@ -175,6 +175,7 @@ describe('Target Page window.postMessage behavior', () => {
         );
 
         expect(repeatedMessagesWithDirections).toEqual([]);
+        expect(true).toBeTruthy(); // cause e2e pr builds to run.
     });
 
     const spoofedAxeMessage = JSON.stringify({
