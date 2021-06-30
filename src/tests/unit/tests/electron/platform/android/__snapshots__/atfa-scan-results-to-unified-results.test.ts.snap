@@ -26,7 +26,7 @@ Array [
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -49,7 +49,7 @@ Array [
       "howToFixSummary": "How to fix My Rule #1",
     },
     "ruleId": "My Rule #1",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
   Object {
@@ -67,7 +67,7 @@ Array [
       "howToFixSummary": "How to fix My Rule #2",
     },
     "ruleId": "My Rule #2",
-    "status": "fail",
+    "status": "unknown",
     "uid": "gguid-mock-stub",
   },
 ]
