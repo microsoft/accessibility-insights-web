@@ -296,7 +296,7 @@ module.exports = function (grunt) {
         if (productCategory === 'electron') {
             productCategorySpecificCopyFiles.push(
                 {
-                    src: 'src/electron/resources/license_en.txt',
+                    src: 'src/electron/resources/mit_license_en.txt',
                     dest: `${dropExtensionPath}/LICENSE`,
                 },
                 {
