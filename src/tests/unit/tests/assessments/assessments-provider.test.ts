@@ -73,11 +73,9 @@ describe('AssessmentsProviderTest', () => {
 
         const stepOne = provider.getStep(firstType, stepOneKey);
         expect(stepOne.key).toEqual(stepOneKey);
-        expect(stepOne.order).toBe(1);
 
         const stepTwo = provider.getStep(firstType, stepTwoKey);
         expect(stepTwo.key).toEqual(stepTwoKey);
-        expect(stepTwo.order).toBe(2);
 
         const invalidTest = provider.getStep(invalidType, stepOneKey);
         expect(invalidTest).toBeNull();
@@ -125,18 +123,14 @@ describe('AssessmentsProviderTest', () => {
         expect(includes(keys(firstSteps), beta)).toBeTruthy();
 
         expect(firstSteps[alpha].key).toBe(alpha);
-        expect(firstSteps[alpha].order).toBe(1);
         expect(firstSteps[beta].key).toBe(beta);
-        expect(firstSteps[beta].order).toBe(2);
 
         expect(keys(secondSteps).length).toBe(2);
         expect(includes(keys(secondSteps), gamma)).toBeTruthy();
         expect(includes(keys(secondSteps), delta)).toBeTruthy();
 
         expect(secondSteps[gamma].key).toEqual(gamma);
-        expect(secondSteps[gamma].order).toEqual(1);
         expect(secondSteps[delta].key).toEqual(delta);
-        expect(secondSteps[delta].order).toEqual(2);
 
         expect(invalidSteps).toBeNull();
     });

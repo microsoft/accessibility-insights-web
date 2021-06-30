@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import {
     AssessmentData,
     AssessmentStoreData,
+    gettingStartedSubview,
 } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from 'common/types/store-data/path-snippet-store-data';
@@ -20,6 +23,8 @@ import {
     AssessmentTestViewProps,
 } from 'DetailsView/components/assessment-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { GettingStartedView } from 'DetailsView/components/getting-started-view';
+import { RequirementView } from 'DetailsView/components/requirement-view';
 import { WarningConfiguration } from 'DetailsView/components/warning-configuration';
 import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
 import { shallow } from 'enzyme';
@@ -42,6 +47,8 @@ describe('AssessmentTestView', () => {
     let pathSnippetStoreDataStub: PathSnippetStoreData;
     let switcherNavConfigurationStub: DetailsViewSwitcherNavConfiguration;
     let warningConfigurationStub: WarningConfiguration;
+    let assessmentsProviderStub: AssessmentsProvider;
+    let assessmentStub: Assessment;
 
     const selectedTestStep = 'step';
     const selectedTest = -1 as VisualizationType;
@@ -74,14 +81,20 @@ describe('AssessmentTestView', () => {
         detailsViewActionMessageCreator = {} as DetailsViewActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
         assessmentDataStub = {} as AssessmentData;
+        assessmentStub = {} as Assessment;
         pathSnippetStoreDataStub = {} as PathSnippetStoreData;
         warningConfigurationStub = {} as WarningConfiguration;
         switcherNavConfigurationStub = {
             warningConfiguration: warningConfigurationStub,
         } as DetailsViewSwitcherNavConfiguration;
 
+        assessmentsProviderStub = {
+            forType: _ => assessmentStub,
+        } as AssessmentsProvider;
+
         props = {
             deps: {
+                assessmentsProvider: assessmentsProviderStub,
                 detailsViewActionMessageCreator,
             } as AssessmentTestViewDeps,
             configuration,
@@ -100,32 +113,55 @@ describe('AssessmentTestView', () => {
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
-            .returns(() => scanDataStub)
-            .verifiable();
+            .returns(() => scanDataStub);
+    });
 
+    function setSelectedSubview(subview: string) {
+        assessmentStoreDataStub.assessmentNavState.selectedTestSubview = subview;
+        getAssessmentDataMock.reset();
         getAssessmentDataMock
             .setup(gadm => gadm(assessmentStoreDataStub))
-            .returns(() => assessmentDataStub)
-            .verifiable();
+            .returns(() => assessmentDataStub);
+        getTestStatusMock.setup(gtsm => gtsm(scanDataStub, subview)).returns(() => testStatusStub);
+    }
 
-        getTestStatusMock
-            .setup(gtsm => gtsm(scanDataStub, selectedTestStep))
-            .returns(() => testStatusStub)
-            .verifiable();
-    });
-    test('assessment view, isScanning is true', () => {
-        const actual = shallow(<AssessmentTestView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+    it('renders with a GettingStartedView when a Getting started item is selected', () => {
+        setSelectedSubview(gettingStartedSubview);
+        const testSubject = shallow(<AssessmentTestView {...props} />);
+
+        expect(testSubject.exists(GettingStartedView)).toBe(true);
+        expect(testSubject.exists(RequirementView)).toBe(false);
+
+        expect(testSubject.getElement()).toMatchSnapshot();
         verifyAll();
     });
 
-    it('assessment view, isScanning is false', () => {
-        props.visualizationStoreData.scanning = null;
+    it('renders with a RequirementView when a requirement is selected', () => {
+        setSelectedSubview(selectedTestStep);
+        const testSubject = shallow(<AssessmentTestView {...props} />);
 
-        const actual = shallow(<AssessmentTestView {...props} />);
-        expect(actual.getElement()).toMatchSnapshot();
+        expect(testSubject.exists(RequirementView)).toBe(true);
+        expect(testSubject.exists(GettingStartedView)).toBe(false);
+
+        expect(testSubject.getElement()).toMatchSnapshot();
         verifyAll();
     });
+
+    it.each`
+        scanningInput                      | expectedRequirementViewProp
+        ${null}                            | ${false}
+        ${'requirement-key-being-scanned'} | ${true}
+    `(
+        'translates visualizationStoreData.scanning=$scanningInput as RequirementView scanningInProgress=$expectedRequirementViewProp',
+        ({ scanningInput, expectedRequirementViewProp }) => {
+            setSelectedSubview(selectedTestStep);
+            props.visualizationStoreData.scanning = scanningInput;
+            const testSubject = shallow(<AssessmentTestView {...props} />);
+
+            const actualProp = testSubject.find(RequirementView).prop('scanningInProgress');
+            expect(actualProp).toBe(expectedRequirementViewProp);
+        },
+    );
 
     function verifyAll(): void {
         getStoreDataMock.verifyAll();

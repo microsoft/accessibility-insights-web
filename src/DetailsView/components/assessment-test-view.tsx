@@ -1,32 +1,36 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import {
-    ReflowAssessmentView,
-    ReflowAssessmentViewDeps,
-} from 'DetailsView/components/reflow-assessment-view';
+    GettingStartedView,
+    GettingStartedViewDeps,
+} from 'DetailsView/components/getting-started-view';
+import { RequirementView, RequirementViewDeps } from 'DetailsView/components/requirement-view';
 import {
     ScanIncompleteWarning,
     ScanIncompleteWarningDeps,
 } from 'DetailsView/components/scan-incomplete-warning';
+import {
+    TargetChangeDialog,
+    TargetChangeDialogDeps,
+} from 'DetailsView/components/target-change-dialog';
 import * as React from 'react';
-import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
-import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
+import {
+    AssessmentStoreData,
+    gettingStartedSubview,
+} from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 
-export type AssessmentTestViewDeps = ReflowAssessmentViewDeps &
-    ScanIncompleteWarningDeps & {
-        assessmentsProvider: AssessmentsProvider;
-        assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
-    };
+export type AssessmentTestViewDeps = ScanIncompleteWarningDeps &
+    TargetChangeDialogDeps &
+    GettingStartedViewDeps &
+    RequirementViewDeps;
 
 export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
@@ -43,9 +47,10 @@ export interface AssessmentTestViewProps {
 export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
     'AssessmentTestView',
     ({ deps, ...props }) => {
-        const isScanning: boolean = props.visualizationStoreData.scanning !== null;
+        const scanningInProgress: boolean = props.visualizationStoreData.scanning !== null;
         const assessmentNavState = props.assessmentStoreData.assessmentNavState;
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const assessment = deps.assessmentsProvider.forType(assessmentNavState.selectedTestType);
         const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);
         const prevTarget = props.assessmentStoreData.persistedTabInfo;
         const selectedRequirementIsEnabled = props.configuration.getTestStatus(
@@ -57,11 +62,9 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
             url: props.tabStoreData.url,
             title: props.tabStoreData.title,
         };
-        const assessmentTestResult = new AssessmentTestResult(
-            deps.assessmentsProvider,
-            assessmentNavState.selectedTestType,
-            assessmentData,
-        );
+
+        const isGettingStartedSelected =
+            assessmentNavState.selectedTestSubview === gettingStartedSubview;
 
         return (
             <>
@@ -71,20 +74,23 @@ export const AssessmentTestView = NamedFC<AssessmentTestViewProps>(
                     warningConfiguration={props.switcherNavConfiguration.warningConfiguration}
                     test={assessmentNavState.selectedTestType}
                 />
-                <ReflowAssessmentView
-                    deps={deps}
-                    currentTarget={currentTarget}
-                    prevTarget={prevTarget}
-                    scanningInProgress={isScanning}
-                    selectedRequirementIsEnabled={selectedRequirementIsEnabled}
-                    assessmentNavState={assessmentNavState}
-                    assessmentData={assessmentData}
-                    assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
-                    assessmentTestResult={assessmentTestResult}
-                    assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    pathSnippetStoreData={props.pathSnippetStoreData}
-                />
+                <TargetChangeDialog deps={deps} prevTab={prevTarget} newTab={currentTarget} />
+                {isGettingStartedSelected ? (
+                    <GettingStartedView deps={deps} assessment={assessment} />
+                ) : (
+                    <RequirementView
+                        deps={deps}
+                        assessmentNavState={assessmentNavState}
+                        isRequirementEnabled={selectedRequirementIsEnabled}
+                        assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
+                        featureFlagStoreData={props.featureFlagStoreData}
+                        pathSnippetStoreData={props.pathSnippetStoreData}
+                        scanningInProgress={scanningInProgress}
+                        assessmentData={assessmentData}
+                        currentTarget={currentTarget}
+                        prevTarget={prevTarget}
+                    />
+                )}
             </>
         );
     },

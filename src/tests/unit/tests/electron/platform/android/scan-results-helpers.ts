@@ -7,6 +7,12 @@ import {
     RuleResultsData,
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
+import {
+    AccessibilityHierarchyCheckResult,
+    AtfaBoundingRectangle,
+    SpannableString,
+    ViewHierarchyElement,
+} from 'electron/platform/android/atfa-data-types';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 
 export function buildScanResultsObject(
@@ -17,8 +23,32 @@ export function buildScanResultsObject(
     axeVersion?: string,
     screenshotData?: string,
     deviceInfo?: DeviceInfo,
+    atfaResults?: AccessibilityHierarchyCheckResult[],
 ): AndroidScanResults {
-    const scanResults = {};
+    return new AndroidScanResults({
+        AxeResults: buildAxeScanResultsObject(
+            deviceName,
+            appIdentifier,
+            resultsArray,
+            axeView,
+            axeVersion,
+            screenshotData,
+            deviceInfo,
+        ),
+        ATFAResults: atfaResults,
+    });
+}
+
+export function buildAxeScanResultsObject(
+    deviceName?: string,
+    appIdentifier?: string,
+    resultsArray?: RuleResultsData[],
+    axeView?: ViewElementData,
+    axeVersion?: string,
+    screenshotData?: string,
+    deviceInfo?: DeviceInfo,
+): any {
+    const axeResults = {};
     const axeContext = {};
     let addContext = false;
 
@@ -60,14 +90,14 @@ export function buildScanResultsObject(
     }
 
     if (resultsArray) {
-        scanResults['axeRuleResults'] = resultsArray;
+        axeResults['axeRuleResults'] = resultsArray;
     }
 
     if (addContext) {
-        scanResults['axeContext'] = axeContext;
+        axeResults['axeContext'] = axeContext;
     }
 
-    return new AndroidScanResults(scanResults);
+    return axeResults;
 }
 
 export function buildRuleResultObject(
@@ -132,7 +162,83 @@ export function buildRuleInformation(
             return null!;
         },
         getResultStatus: r => {
-            return r.status === 'FAIL' ? 'fail' : 'pass';
+            return r.status === 'FAIL' || r.status === 'ERROR' || r.status === 'WARNING'
+                ? 'fail'
+                : 'pass';
         },
     } as RuleInformation;
+}
+
+export function buildAtfaResult(
+    accessibilityClassName: string,
+    id: number,
+    className: string,
+    resultId: number,
+    checkClass: string,
+    type: string,
+    boundsInScreen?: any,
+    contentDescription?: string,
+    text?: string,
+    metadata?: any,
+): AccessibilityHierarchyCheckResult {
+    const element: ViewHierarchyElement = buildAtfaElement(
+        accessibilityClassName,
+        id,
+        className,
+        boundsInScreen,
+        contentDescription,
+        text,
+    );
+
+    const result = {};
+    result['AccessibilityHierarchyCheckResult.element'] = element;
+    result['AccessibilityHierarchyCheckResult.resultId'] = resultId;
+    result['AccessibilityCheckResult.checkClass'] = checkClass;
+    result['AccessibilityCheckResult.type'] = type;
+    if (metadata) {
+        result['AccessibilityHierarchyCheckResult.metadata'] = metadata;
+    }
+
+    return result as AccessibilityHierarchyCheckResult;
+}
+
+function buildAtfaRectangle(boundsInScreen: any): AtfaBoundingRectangle {
+    const r = {};
+    r['Rect.bottom'] = boundsInScreen.bottom;
+    r['Rect.left'] = boundsInScreen.left;
+    r['Rect.right'] = boundsInScreen.right;
+    r['Rect.top'] = boundsInScreen.top;
+
+    return r as AtfaBoundingRectangle;
+}
+
+function buildAtfaSpannableString(rawString: string): SpannableString {
+    const s = {};
+    s['SpannableString.rawString'] = rawString;
+    return s as SpannableString;
+}
+
+function buildAtfaElement(
+    accessibilityClassName: string,
+    id: number,
+    className: string,
+    boundsInScreen?: any,
+    contentDescription?: string,
+    text?: string,
+): ViewHierarchyElement {
+    const e = {};
+    e['ViewHierarchyElement.accessibilityClassName'] = accessibilityClassName;
+    e['ViewHierarchyElement.id'] = id;
+    e['ViewHierarchyElement.className'] = className;
+
+    if (boundsInScreen) {
+        e['ViewHierarchyElement.boundsInScreen'] = buildAtfaRectangle(boundsInScreen);
+    }
+    if (contentDescription) {
+        e['ViewHierarchyElement.contentDescription'] = buildAtfaSpannableString(contentDescription);
+    }
+    if (text) {
+        e['ViewHierarchyElement.contentDescription'] = buildAtfaSpannableString(text);
+    }
+    return e as ViewHierarchyElement;
 }
