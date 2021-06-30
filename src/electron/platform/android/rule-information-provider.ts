@@ -17,7 +17,7 @@ export class RuleInformationProvider {
         this.supportedRules = {
             ColorContrast: new RuleInformation(
                 'ColorContrast',
-                `${this.ruleLinkBaseUrl}/text-color-contrast/`,
+                `${this.ruleLinkBaseUrl}/color-contrast/`,
                 'Text elements must have sufficient contrast against the background.',
                 [link.WCAG_1_4_3],
                 () => ({
@@ -174,7 +174,7 @@ export class RuleInformationProvider {
             ),
             TextContrastCheck: new RuleInformation(
                 'TextContrastCheck',
-                `${this.ruleLinkBaseUrl}/text-color-contrast/`,
+                `${this.ruleLinkBaseUrl}/color-contrast/`,
                 'Text elements must have sufficient contrast against the background.',
                 [link.WCAG_1_4_3],
                 () => ({
