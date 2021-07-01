@@ -132,8 +132,7 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                 return (
                     <span>
                         If clickable <Markup.Code>View</Markup.Code> objects have the <i>same</i>{' '}
-                        speakable text and perform the <i>same</i>
-                        function, they pass.
+                        speakable text and perform the <i>same</i> function, they pass.
                         <br />
                         If clickable <Markup.Code>View</Markup.Code> objects have the <i>same</i>{' '}
                         speakable text but perform <i>different</i> functions, they fail.
