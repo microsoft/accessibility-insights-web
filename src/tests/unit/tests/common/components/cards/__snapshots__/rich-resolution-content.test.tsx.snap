@@ -118,117 +118,47 @@ exports[`RichResolutionContent renders static content with id=android/ImageViewN
 
 exports[`RichResolutionContent renders static content with id=android/atfa/ClassNameCheck 1`] = `
 <span>
-  Provide a 
-  <Code>
-    className
-  </Code>
-   value within the element's
-   
   <stubLinkComponent
-    href="https://developer.android.com/reference/android/view/accessibility/AccessibilityNodeInfo.html"
+    href="https://developer.android.com/training/accessibility/testing.html#manual"
   >
-    AccessibilityNodeInfo
+    Manually test
   </stubLinkComponent>
    
-  that:
-  <ol>
-    <li>
-      Closely describes the element's function,
-    </li>
-    <li>
-      Matches a class that extends
-       
-      <Code>
-        android.view.View
-      </Code>
-      ,
-    </li>
-    <li>
-      Is provided with the Android SDK or support libraries, and
-    </li>
-    <li>
-      Is as far down Android's class hierarchy as possible.
-    </li>
-  </ol>
-  Note: Do not attempt to fix this issue by adding the class name to the object's 
-  <Code>
-    ContentDescription
-  </Code>
-  , as that approach can cause some assistive technologies to announce the class twice.
+  the control to verify that users receive sufficient information to understand the object's function.
 </span>
 `;
 
 exports[`RichResolutionContent renders static content with id=android/atfa/ClickableSpanCheck 1`] = `
 <span>
-  <ul>
-    <li>
-      Implement the link using
-       
-      <stubLinkComponent
-        href="https://developer.android.com/reference/android/text/style/URLSpan.html"
-      >
-        URLSpan
-      </stubLinkComponent>
-       
-      or
-      <stubLinkComponent
-        href="https://developer.android.com/reference/android/text/util/Linkify.html"
-      >
-        Linkify
-      </stubLinkComponent>
-      .
-    </li>
-    <li>
-      If you use 
-      <Code>
-        URLSpan
-      </Code>
-      , provide a non-null absolute URL (such as
-       
-      <Code>
-        https://example.com/page.html
-      </Code>
-      ), not a relative URL (such as 
-      <Code>
-        /page.html
-      </Code>
-      ).
-    </li>
-  </ul>
+  <stubLinkComponent
+    href="https://developer.android.com/training/accessibility/testing.html#manual"
+  >
+    Manually test
+  </stubLinkComponent>
+   
+  the item containing the link and verify that the hyperlinked text is announced and appears in the “Links” section of Talkback’s Context Menu.
 </span>
 `;
 
 exports[`RichResolutionContent renders static content with id=android/atfa/DuplicateClickableBoundsCheck 1`] = `
 <span>
-  When clickable 
-  <Code>
-    Views
-  </Code>
-   are nested, implement click handling so that only one
-  <Code>
-    View
-  </Code>
-   handles clicks for any single action. 
-  <br />
-  If a 
-  <Code>
-    View
-  </Code>
-   that's clickable by default (such as a
+  Turn on
    
-  <Code>
-    button
-  </Code>
-  ) is not intended to be clickable, remove its 
-  <Code>
-    OnClickListener
-  </Code>
-  , or set
+  <stubLinkComponent
+    href="https://support.google.com/accessibility/android/answer/6301490"
+  >
+    Switch Access for Android
+  </stubLinkComponent>
    
-  <Code>
-    android:clickable="false"
-  </Code>
-  .
+  or use the
+   
+  <stubLinkComponent
+    href="https://accessibilityinsights.io/docs/en/android/getstarted/fastpass/#complete-the-manual-test-for-tab-stops"
+  >
+    TabStops feature
+  </stubLinkComponent>
+   
+  to navigate through the elements in the application. If an element appears to be focused more than once, there may be multiple interactive elements occupying the same screen location.
 </span>
 `;
 
@@ -238,47 +168,64 @@ exports[`RichResolutionContent renders static content with id=android/atfa/Dupli
   <Code>
     View
   </Code>
-   objects perform the 
+   objects have the 
   <i>
     same
   </i>
    
-  function, they can have the same speakable text; no changes are needed.
+  speakable text and perform the 
+  <i>
+    same
+  </i>
+  function, they pass.
   <br />
-  If two or more clickable 
+  If clickable 
   <Code>
     View
   </Code>
-   objects perform
+   objects have the 
+  <i>
+    same
+  </i>
    
+  speakable text but perform 
   <i>
     different
   </i>
-   functions, give them unique speakable text.
+   functions, they fail.
 </span>
 `;
 
 exports[`RichResolutionContent renders static content with id=android/atfa/ImageContrastCheck 1`] = `
 <span>
-  Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.
+  Use
+   
+  <stubLinkComponent
+    href="https://go.microsoft.com/fwlink/?linkid=2075365"
+  >
+    Accessibility Insights for Windows
+  </stubLinkComponent>
+   
+  (or the
+   
+  <stubLinkComponent
+    href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+  >
+    Colour Contrast Analyser
+  </stubLinkComponent>
+   
+  if you're testing on a Mac) to manually verify that the
+   
+  <Code>
+    ImageView
+  </Code>
+   has sufficient contrast compared to the background. If the background is an image or gradient, test an area where the contrast appears to be the lowest.
 </span>
 `;
 
 exports[`RichResolutionContent renders static content with id=android/atfa/LinkPurposeUnclearCheck 1`] = `
 <span>
-  Describe the unique purpose of the link using any of the following:
-  <ul>
-    <li>
-      Good: Programmatically related context, or
-    </li>
-    <li>
-      Better: Accessible name and/or accessible description, or
-    </li>
-    <li>
-      Best: Link text
-    </li>
-  </ul>
-  Programmatically related context includes:
+  Examine the link in the context of the app to verify that the link's unique purpose is described by the link together with its preceding page content, which includes:
   <ul>
     <li>
       Text in the same sentence, paragraph, list item, or table cell as the link
@@ -287,19 +234,7 @@ exports[`RichResolutionContent renders static content with id=android/atfa/LinkP
       Text in a parent list item
     </li>
     <li>
-      Text in a table header cell associated with the cell that contains the link
-    </li>
-  </ul>
-  Writing tips:
-  <ul>
-    <li>
-      If a link's destination is a document or web application, the name of the document or application is sufficient.
-    </li>
-    <li>
-      Links with different destinations should have different descriptions; links with the same destination should have the same description.
-    </li>
-    <li>
-      Programmatically related context is easier to understand when it precedes the link.
+      Text in the table header cell that's associated with cell that contains the link
     </li>
   </ul>
 </span>
@@ -307,20 +242,7 @@ exports[`RichResolutionContent renders static content with id=android/atfa/LinkP
 
 exports[`RichResolutionContent renders static content with id=android/atfa/RedundantDescriptionCheck 1`] = `
 <span>
-  Don't include an element's role (type), state, or available actions in the following attributes: 
-  <Code>
-    android:contentDescription
-  </Code>
-  ,
-  <Code>
-    android:text
-  </Code>
-  ,
-   
-  <Code>
-    android:hint
-  </Code>
-  .
+  Listen to TalkBack's announcement of the element to verify that the item's role (type), state, and/or available actions are announced only once.
 </span>
 `;
 
@@ -363,26 +285,7 @@ exports[`RichResolutionContent renders static content with id=android/atfa/TextC
 
 exports[`RichResolutionContent renders static content with id=android/atfa/TraversalOrderCheck 1`] = `
 <span>
-  Good: If the app's view hierarchy doesn't create a logical traversal order, use 
-  <Code>
-    android:accessibilityTraversalBefore
-  </Code>
-   or
-  <Code>
-    android:accessibilityTraversalAfter
-  </Code>
-   attributes to create an order that makes sense to TalkBack users. Make sure that the attributes do not create any loops or traps that prevent the user from accessing all interactive elements.
-  <br />
-  Better: Restructure the view hierarchy to create a logical traversal order that does not require use of
-   
-  <Code>
-    android:accessibilityTraversalBefore
-  </Code>
-   or
-  <Code>
-    android:accessibilityTraversalAfter
-  </Code>
-   attributes.
+  Turn on Talkback. Swipe right to move accessibility focus forward through the elements on the screen, then swipe left to navigate backwards. Verify that focus moves through the elements in a logical, consistent order when navigating forwards or backwards.
 </span>
 `;
 
