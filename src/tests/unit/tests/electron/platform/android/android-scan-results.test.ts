@@ -7,7 +7,7 @@ import {
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
 import { set } from 'lodash';
-import { buildRuleResultObject, buildViewElement } from './scan-results-helpers';
+import { buildAxeRuleResultObject, buildViewElement } from './scan-results-helpers';
 
 describe('AndroidScanResults', () => {
     it.each`
@@ -71,7 +71,10 @@ describe('AndroidScanResults', () => {
     }
 
     function getTestRuleResults(): RuleResultsData[] {
-        return [buildRuleResultObject('Rule1', 'PASS'), buildRuleResultObject('Rule2', 'FAIL')];
+        return [
+            buildAxeRuleResultObject('Rule1', 'PASS'),
+            buildAxeRuleResultObject('Rule2', 'FAIL'),
+        ];
     }
 
     function getTestViewElementData(): ViewElementData {
