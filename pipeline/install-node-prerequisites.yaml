@@ -3,8 +3,8 @@
 steps:
     - task: NodeTool@0
       inputs:
-          versionSpec: '14.15.0'
-      displayName: use node 14.15.0
+          versionSpec: '14.17.1'
+      displayName: use node 14.17.1
       timeoutInMinutes: 2
 
     - script: npm install yarn@1.22.10 -g
