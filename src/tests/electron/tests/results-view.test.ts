@@ -3,6 +3,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { createApplication } from 'tests/electron/common/create-application';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
@@ -26,6 +27,7 @@ describe('ResultsView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         resultsView = await app.openResultsView();
         await resultsView.waitForScreenshotViewVisible();
     });
@@ -65,7 +67,7 @@ describe('ResultsView', () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
-    it('ScreenshotView renders screenshot image from specified source', async () => {
+    it('ScreenshotView renders screenshot image from specified source for v1 results', async () => {
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
             'AccessibilityInsights/result.json',
@@ -85,13 +87,50 @@ describe('ResultsView', () => {
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
-    it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
+    it('ScreenshotView renders screenshot image from specified source for results_v2', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        const resultExamplePath = path.join(
+            testResourceServerConfig.absolutePath,
+            'AccessibilityInsights/result_v2.json',
+        );
+        const axeRuleResultExample = JSON.parse(
+            fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
+        );
+        const expectedScreenshotImage =
+            'data:image/png;base64,' + axeRuleResultExample.AxeResults.axeContext.screenshot;
+
+        await resultsView.waitForSelector(ScreenshotViewSelectors.screenshotImage);
+        const actualScreenshotImage = await resultsView.client.getAttribute(
+            ScreenshotViewSelectors.screenshotImage,
+            'src',
+        );
+
+        expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
+    });
+
+    it('ScreenshotView renders expected number/size of highlight boxes in expected positions for v1 results', async () => {
         await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
 
         const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);
         const styles = await Promise.all(boxes.map(async b => await b.getAttribute('style')));
         const actualHighlightBoxStyles = styles.map(extractPositionStyles);
         verifyHighlightBoxStyles(actualHighlightBoxStyles, [
+            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
+            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
+            { width: 10.7407, height: 6.04167, top: 10.4167, left: 13.4259 },
+            { width: 48.6111, height: 4.94792, top: 23.5417, left: 25.6481 },
+        ]);
+    });
+
+    it('ScreenshotView renders expected number/size of highlight boxes in expected positions for results_v2', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
+
+        const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);
+        const styles = await Promise.all(boxes.map(async b => await b.getAttribute('style')));
+        const actualHighlightBoxStyles = styles.map(extractPositionStyles);
+        verifyHighlightBoxStyles(actualHighlightBoxStyles, [
+            // TODO update highlight box styles for results_v2
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
             { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
             { width: 10.7407, height: 6.04167, top: 10.4167, left: 13.4259 },
