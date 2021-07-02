@@ -30,12 +30,12 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should use the expected window title', async () => {
-        openResultsAndCardsViews();
+        await openResultsAndCardsViews();
         await app.waitForTitle('Accessibility Insights for Android - Automated checks');
     });
 
     it('displays automated checks results collapsed by default', async () => {
-        openResultsAndCardsViews();
+        await openResultsAndCardsViews();
         await cardsView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await cardsView.queryRuleGroupContents();
@@ -44,7 +44,7 @@ describe('AutomatedChecksView', () => {
 
     it('supports expanding and collapsing rule groups with results (v1)', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
-        openResultsAndCardsViews();
+        await openResultsAndCardsViews();
 
         await cardsView.waitForHighlightBoxCount(4);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
@@ -74,7 +74,7 @@ describe('AutomatedChecksView', () => {
 
     it('supports expanding and collapsing rule groups with results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
-        openResultsAndCardsViews();
+        await openResultsAndCardsViews();
 
         await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
@@ -103,7 +103,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
-        openResultsAndCardsViews();
+        await openResultsAndCardsViews();
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
