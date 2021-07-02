@@ -263,7 +263,7 @@ describe('RuleInformationProvider', () => {
 
     it.each([
         ['available when ATFA flag is disabled', false],
-        ['not available when ATFA flag is enabled', false],
+        ['not available when ATFA flag is enabled', true],
     ])('Axe ColorContrast rule is %s', async (testName, flag) => {
         const atfaEnabledStore: FeatureFlagStoreData = {
             [UnifiedFeatureFlags.atfaResults]: flag,
