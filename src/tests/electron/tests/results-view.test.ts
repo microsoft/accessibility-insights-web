@@ -27,9 +27,6 @@ describe('ResultsView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-
-        resultsView = await app.openResultsView();
-        await resultsView.waitForScreenshotViewVisible();
     });
 
     afterEach(async () => {
@@ -39,6 +36,8 @@ describe('ResultsView', () => {
     });
 
     it('should pass accessibility validation when left nav is showing', async () => {
+        await openResultsView();
+
         await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
@@ -53,6 +52,8 @@ describe('ResultsView', () => {
             config => config.featureFlag === undefined,
         )[testIndex].contentPageInfo.title;
 
+        await openResultsView();
+
         await app.client.browserWindow.setSize(
             narrowModeThresholds.collapseCommandBarThreshold + 1,
             height,
@@ -64,11 +65,14 @@ describe('ResultsView', () => {
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
+        await openResultsView();
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
     it('ScreenshotView renders screenshot image from specified source for v1 results', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
+        await openResultsView();
+
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
             'AccessibilityInsights/result.json',
@@ -90,6 +94,8 @@ describe('ResultsView', () => {
 
     it('ScreenshotView renders screenshot image from specified source for results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        await openResultsView();
+
         await resultsView.clickStartOver();
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
@@ -112,6 +118,8 @@ describe('ResultsView', () => {
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions for v1 results', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
+        await openResultsView();
+
         await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
 
         const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);
@@ -127,7 +135,8 @@ describe('ResultsView', () => {
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions for results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
-        await resultsView.clickStartOver();
+        await openResultsView();
+
         await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
 
         const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);
@@ -185,6 +194,7 @@ describe('ResultsView', () => {
     };
 
     it('command bar reflows when narrow mode threshold is crossed', async () => {
+        await openResultsView();
         await setupWindowForCommandBarReflowTest('narrow');
         await resultsView.waitForSelector(ResultsViewSelectors.leftNavHamburgerButton);
 
@@ -197,6 +207,7 @@ describe('ResultsView', () => {
     };
 
     it('hamburger button click opens and closes left nav', async () => {
+        await openResultsView();
         await setupWindowForCommandBarReflowTest('narrow');
         await waitForFluentLeftNavToDisappear();
         await resultsView.client.click(ResultsViewSelectors.leftNavHamburgerButton);
@@ -209,6 +220,7 @@ describe('ResultsView', () => {
     });
 
     it('left nav closes when item is selected', async () => {
+        await openResultsView();
         await setupWindowForCommandBarReflowTest('narrow');
         await resultsView.client.click(ResultsViewSelectors.leftNavHamburgerButton);
         await resultsView.waitForSelector(ResultsViewSelectors.fluentLeftNav);
@@ -219,7 +231,13 @@ describe('ResultsView', () => {
     });
 
     it('export report button exists', async () => {
+        await openResultsView();
         await setupWindowForCommandBarReflowTest('wide');
         await resultsView.waitForSelector(ResultsViewSelectors.exportReportButton);
     });
+
+    async function openResultsView(): Promise<void> {
+        resultsView = await app.openResultsView();
+        await resultsView.waitForScreenshotViewVisible();
+    }
 });
