@@ -96,7 +96,6 @@ describe('ResultsView', () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openResultsView();
 
-        await resultsView.clickStartOver();
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
             'AccessibilityInsights/result_v2.json',
