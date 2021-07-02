@@ -12,7 +12,6 @@ import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/set
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let cardsView: CardsViewController;
-    let resultsView: ResultsViewController;
 
     beforeEach(async () => {
         await setupMockAdb(
@@ -108,7 +107,7 @@ describe('AutomatedChecksView', () => {
     });
 
     async function openResultsAndCardsViews(): Promise<void> {
-        resultsView = await app.openResultsView();
+        const resultsView = await app.openResultsView();
         await resultsView.waitForScreenshotViewVisible();
         cardsView = resultsView.createCardsViewController();
     }
