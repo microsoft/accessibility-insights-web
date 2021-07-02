@@ -26,9 +26,7 @@ export function convertAxeScanResultsToUnifiedResults(
     const unifiedResults: UnifiedResult[] = [];
 
     for (const ruleResult of scanResults.ruleResults) {
-        const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
-            ruleResult.ruleId,
-        );
+        const ruleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
 
         if (ruleInformation) {
             unifiedResults.push(

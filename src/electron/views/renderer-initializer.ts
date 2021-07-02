@@ -437,7 +437,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             'axe-android',
         );
 
-        const unifiedResultsBuilder = createDefaultBuilder(getToolData, friendlyDeviceNameProvider);
+        const unifiedResultsBuilder = createDefaultBuilder(
+            getToolData,
+            friendlyDeviceNameProvider,
+            featureFlagStore,
+        );
         const scanController = new ScanController(
             scanActions,
             unifiedScanResultActions,
