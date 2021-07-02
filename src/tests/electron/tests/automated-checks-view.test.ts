@@ -71,6 +71,10 @@ describe('AutomatedChecksView', () => {
 
     it('supports expanding and collapsing rule groups with results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        const resultsView = await app.openResultsView();
+        await resultsView.waitForScreenshotViewVisible();
+        cardsView = resultsView.createCardsViewController();
+
         await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
 
