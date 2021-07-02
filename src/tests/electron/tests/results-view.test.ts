@@ -132,11 +132,9 @@ describe('ResultsView', () => {
         const styles = await Promise.all(boxes.map(async b => await b.getAttribute('style')));
         const actualHighlightBoxStyles = styles.map(extractPositionStyles);
         verifyHighlightBoxStyles(actualHighlightBoxStyles, [
-            // TODO update highlight box styles for results_v2
-            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
-            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
-            { width: 10.7407, height: 6.04167, top: 10.4167, left: 13.4259 },
-            { width: 48.6111, height: 4.94792, top: 23.5417, left: 25.6481 },
+            { width: 73.6111, height: 3.42593, top: 38.7037, left: 13.1481 },
+            { width: 73.6111, height: 3.42593, top: 38.7037, left: 13.1481 },
+            { width: 100, height: 35.4167, top: 42.1296, left: 0 },
         ]);
     });
 
