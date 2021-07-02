@@ -27,7 +27,7 @@ describe('ResultsView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
+
         resultsView = await app.openResultsView();
         await resultsView.waitForScreenshotViewVisible();
     });
@@ -68,6 +68,7 @@ describe('ResultsView', () => {
     });
 
     it('ScreenshotView renders screenshot image from specified source for v1 results', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
             'AccessibilityInsights/result.json',
@@ -109,6 +110,7 @@ describe('ResultsView', () => {
     });
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions for v1 results', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
 
         const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);

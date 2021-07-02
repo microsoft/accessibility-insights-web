@@ -19,7 +19,6 @@ describe('AutomatedChecksView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         const resultsView = await app.openResultsView();
         await resultsView.waitForScreenshotViewVisible();
         cardsView = resultsView.createCardsViewController();
@@ -43,6 +42,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('supports expanding and collapsing rule groups with results (v1)', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         await cardsView.waitForHighlightBoxCount(4);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
 

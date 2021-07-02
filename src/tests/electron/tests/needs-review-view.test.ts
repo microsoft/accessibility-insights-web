@@ -24,7 +24,6 @@ describe('NeedsReviewView', () => {
         );
 
         app = await createApplication({ suppressFirstTimeDialog: true });
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         app.client.browserWindow.setSize(windowWidth, windowHeight);
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('needs-review');
@@ -41,6 +40,7 @@ describe('NeedsReviewView', () => {
     });
 
     it('displays needs review results with one failing result (results v1)', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         const cardsView = resultsViewController.createCardsViewController();
         await cardsView.waitForRuleGroupCount(1);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
