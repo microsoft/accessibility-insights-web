@@ -21,9 +21,9 @@ describe('AutomatedChecksView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        resultsView = await app.openResultsView();
-        await resultsView.waitForScreenshotViewVisible();
-        cardsView = resultsView.createCardsViewController();
+        // resultsView = await app.openResultsView();
+        // await resultsView.waitForScreenshotViewVisible();
+        // cardsView = resultsView.createCardsViewController();
     });
 
     afterEach(async () => {
@@ -71,9 +71,11 @@ describe('AutomatedChecksView', () => {
         await cardsView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
-    it('supports expanding and collapsing rule groups with results_v2', async () => {
+    it.only('supports expanding and collapsing rule groups with results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
-        await resultsView.clickStartOver();
+        resultsView = await app.openResultsView();
+        await resultsView.waitForScreenshotViewVisible();
+        cardsView = resultsView.createCardsViewController();
 
         await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
