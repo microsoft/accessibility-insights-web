@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { createApplication } from 'tests/electron/common/create-application';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -23,6 +24,7 @@ describe('NeedsReviewView', () => {
         );
 
         app = await createApplication({ suppressFirstTimeDialog: true });
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
         app.client.browserWindow.setSize(windowWidth, windowHeight);
         resultsViewController = await app.openResultsView();
         await resultsViewController.clickLeftNavItem('needs-review');
@@ -38,7 +40,7 @@ describe('NeedsReviewView', () => {
         await app.waitForTitle('Accessibility Insights for Android - Needs review');
     });
 
-    it('displays needs review results with one failing result', async () => {
+    it('displays needs review results with one failing result (results v1)', async () => {
         const cardsView = resultsViewController.createCardsViewController();
         await cardsView.waitForRuleGroupCount(1);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
@@ -48,6 +50,19 @@ describe('NeedsReviewView', () => {
         await cardsView.assertExpandedRuleGroup(1, 'ColorContrast', 1);
 
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
+    });
+
+    it('displays needs review results with 6 failing results (results_v2)', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        const cardsView = resultsViewController.createCardsViewController();
+        await cardsView.waitForRuleGroupCount(1);
+        expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
+        await cardsView.waitForHighlightBoxCount(5);
+
+        await cardsView.toggleRuleGroupAtPosition(1);
+        await cardsView.assertExpandedRuleGroup(1, 'TextContrastCheck', 5);
+
+        expect(await cardsView.queryRuleGroupContents()).toHaveLength(5);
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
