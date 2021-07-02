@@ -4,5 +4,5 @@
 import { RuleInformation } from './rule-information';
 
 export interface RuleInformationProviderType {
-    getRuleInformation(ruleId: string): RuleInformation;
+    getRuleInformation(ruleId: string): RuleInformation | null;
 }

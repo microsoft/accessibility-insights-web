@@ -271,7 +271,7 @@ export class RuleInformationProvider {
         }
     };
 
-    public getRuleInformation(ruleId: string): RuleInformation {
+    public getRuleInformation(ruleId: string): RuleInformation | null {
         if (this.isRuleDisabledByAtfaResultsFeatureFlag(ruleId)) {
             return null;
         }
