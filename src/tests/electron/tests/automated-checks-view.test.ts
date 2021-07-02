@@ -6,11 +6,13 @@ import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { CardsViewController } from 'tests/electron/common/view-controllers/cards-view-controller';
+import { ResultsViewController } from 'tests/electron/common/view-controllers/results-view-controller';
 import { commonAdbConfigs, setupMockAdb } from 'tests/miscellaneous/mock-adb/setup-mock-adb';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
     let cardsView: CardsViewController;
+    let resultsView: ResultsViewController;
 
     beforeEach(async () => {
         await setupMockAdb(
@@ -19,7 +21,7 @@ describe('AutomatedChecksView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        const resultsView = await app.openResultsView();
+        resultsView = await app.openResultsView();
         await resultsView.waitForScreenshotViewVisible();
         cardsView = resultsView.createCardsViewController();
     });
@@ -71,9 +73,7 @@ describe('AutomatedChecksView', () => {
 
     it('supports expanding and collapsing rule groups with results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
-        const resultsView = await app.openResultsView();
-        await resultsView.waitForScreenshotViewVisible();
-        cardsView = resultsView.createCardsViewController();
+        await resultsView.clickStartOver();
 
         await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);

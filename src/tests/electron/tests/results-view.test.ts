@@ -90,6 +90,7 @@ describe('ResultsView', () => {
 
     it('ScreenshotView renders screenshot image from specified source for results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        await resultsView.clickStartOver();
         const resultExamplePath = path.join(
             testResourceServerConfig.absolutePath,
             'AccessibilityInsights/result_v2.json',
@@ -126,8 +127,7 @@ describe('ResultsView', () => {
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions for results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
-        resultsView = await app.openResultsView();
-        await resultsView.waitForScreenshotViewVisible();
+        await resultsView.clickStartOver();
         await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
 
         const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);
