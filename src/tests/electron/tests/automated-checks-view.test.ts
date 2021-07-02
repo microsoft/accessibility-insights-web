@@ -21,9 +21,6 @@ describe('AutomatedChecksView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        // resultsView = await app.openResultsView();
-        // await resultsView.waitForScreenshotViewVisible();
-        // cardsView = resultsView.createCardsViewController();
     });
 
     afterEach(async () => {
@@ -33,10 +30,12 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should use the expected window title', async () => {
+        openResultsAndCardsViews();
         await app.waitForTitle('Accessibility Insights for Android - Automated checks');
     });
 
     it('displays automated checks results collapsed by default', async () => {
+        openResultsAndCardsViews();
         await cardsView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await cardsView.queryRuleGroupContents();
@@ -45,6 +44,8 @@ describe('AutomatedChecksView', () => {
 
     it('supports expanding and collapsing rule groups with results (v1)', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
+        openResultsAndCardsViews();
+
         await cardsView.waitForHighlightBoxCount(4);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
 
@@ -71,11 +72,9 @@ describe('AutomatedChecksView', () => {
         await cardsView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
-    it.only('supports expanding and collapsing rule groups with results_v2', async () => {
+    it('supports expanding and collapsing rule groups with results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
-        resultsView = await app.openResultsView();
-        await resultsView.waitForScreenshotViewVisible();
-        cardsView = resultsView.createCardsViewController();
+        openResultsAndCardsViews();
 
         await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
@@ -104,6 +103,13 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {
+        openResultsAndCardsViews();
         await scanForAccessibilityIssuesInAllModes(app);
     });
+
+    async function openResultsAndCardsViews(): Promise<void> {
+        resultsView = await app.openResultsView();
+        await resultsView.waitForScreenshotViewVisible();
+        cardsView = resultsView.createCardsViewController();
+    }
 });
