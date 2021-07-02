@@ -4,10 +4,13 @@ import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 import { AccessibilityHierarchyCheckResult } from 'electron/platform/android/atfa-data-types';
 
 export interface RuleResultsData {
-    axeViewId: string;
     ruleId: string;
     status: string;
     props: any;
+}
+
+export interface AxeRuleResultsData extends RuleResultsData {
+    axeViewId: string;
 }
 
 export interface ViewElementData {
@@ -53,7 +56,7 @@ export class AndroidScanResults {
         return this.getAxeResults()?.axeContext?.axeView || null;
     }
 
-    public get ruleResults(): RuleResultsData[] {
+    public get ruleResults(): AxeRuleResultsData[] {
         return this.getAxeResults()?.axeRuleResults || [];
     }
 

@@ -49,7 +49,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         return this.onRenderOption(option);
     };
 
-    private onOptionChange = (event, option?: IDropdownOption): void => {
+    private onOptionChange = (event, option: IDropdownOption): void => {
         this.setState({ selectedKey: option.key as any });
         this.props.deps.detailsViewActionMessageCreator.sendPivotItemClicked(
             DetailsViewPivotType[option.key],

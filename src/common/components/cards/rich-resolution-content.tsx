@@ -89,6 +89,137 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </span>
                 );
             }
+            case 'android/atfa/ClassNameCheck': {
+                return (
+                    <span>
+                        <LinkComponent href="https://developer.android.com/training/accessibility/testing.html#manual">
+                            Manually test
+                        </LinkComponent>{' '}
+                        the control to verify that users receive sufficient information to
+                        understand the object's function.
+                    </span>
+                );
+            }
+            case 'android/atfa/ClickableSpanCheck': {
+                return (
+                    <span>
+                        <LinkComponent href="https://developer.android.com/training/accessibility/testing.html#manual">
+                            Manually test
+                        </LinkComponent>{' '}
+                        the item containing the link and verify that the hyperlinked text is
+                        announced and appears in the “Links” section of Talkback’s Context Menu.
+                    </span>
+                );
+            }
+            case 'android/atfa/DuplicateClickableBoundsCheck': {
+                return (
+                    <span>
+                        Turn on{' '}
+                        <LinkComponent href="https://support.google.com/accessibility/android/answer/6301490">
+                            Switch Access for Android
+                        </LinkComponent>{' '}
+                        or use the{' '}
+                        <LinkComponent href="https://accessibilityinsights.io/docs/en/android/getstarted/fastpass/#complete-the-manual-test-for-tab-stops">
+                            TabStops feature
+                        </LinkComponent>{' '}
+                        to navigate through the elements in the application. If an element appears
+                        to be focused more than once, there may be multiple interactive elements
+                        occupying the same screen location.
+                    </span>
+                );
+            }
+            case 'android/atfa/DuplicateSpeakableTextCheck': {
+                return (
+                    <span>
+                        If clickable <Markup.Code>View</Markup.Code> objects have the <i>same</i>{' '}
+                        speakable text and perform the <i>same</i> function, they pass.
+                        <br />
+                        If clickable <Markup.Code>View</Markup.Code> objects have the <i>same</i>{' '}
+                        speakable text but perform <i>different</i> functions, they fail.
+                    </span>
+                );
+            }
+            case 'android/atfa/LinkPurposeUnclearCheck': {
+                return (
+                    <span>
+                        Examine the link in the context of the app to verify that the link's unique
+                        purpose is described by the link together with its preceding page content,
+                        which includes:
+                        <ul>
+                            <li>
+                                Text in the same sentence, paragraph, list item, or table cell as
+                                the link
+                            </li>
+                            <li>Text in a parent list item</li>
+                            <li>
+                                Text in the table header cell that's associated with cell that
+                                contains the link
+                            </li>
+                        </ul>
+                    </span>
+                );
+            }
+            case 'android/atfa/RedundantDescriptionCheck': {
+                return (
+                    <span>
+                        Listen to TalkBack's announcement of the element to verify that the item's
+                        role (type), state, and/or available actions are announced only once.
+                    </span>
+                );
+            }
+            case 'android/atfa/TraversalOrderCheck': {
+                return (
+                    <span>
+                        Turn on Talkback. Swipe right to move accessibility focus forward through
+                        the elements on the screen, then swipe left to navigate backwards. Verify
+                        that focus moves through the elements in a logical, consistent order when
+                        navigating forwards or backwards.
+                    </span>
+                );
+            }
+            case 'android/atfa/TextContrastCheck': {
+                return (
+                    <div className={styles.combinationLists}>
+                        <ul className={styles.multiLineTextYesBullet}>
+                            <li list-style-type="disc">
+                                If the text is intended to be invisible, it passes.
+                            </li>
+                            <li list-style-type="disc">
+                                If the text is intended to be visible, use{' '}
+                                <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
+                                    Accessibility Insights for Windows
+                                </LinkComponent>{' '}
+                                (or the{' '}
+                                <LinkComponent href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+                                    Colour Contrast Analyser
+                                </LinkComponent>{' '}
+                                if you're testing on a Mac) to manually verify that it has
+                                sufficient contrast compared to the background. If the background is
+                                an image or gradient, test an area where contrast appears to be
+                                lowest.
+                            </li>
+                        </ul>
+                    </div>
+                );
+            }
+            case 'android/atfa/ImageContrastCheck': {
+                return (
+                    <span>
+                        Use{' '}
+                        <LinkComponent href="https://go.microsoft.com/fwlink/?linkid=2075365">
+                            Accessibility Insights for Windows
+                        </LinkComponent>{' '}
+                        (or the{' '}
+                        <LinkComponent href="https://developer.paciellogroup.com/resources/contrastanalyser/">
+                            Colour Contrast Analyser
+                        </LinkComponent>{' '}
+                        if you're testing on a Mac) to manually verify that the{' '}
+                        <Markup.Code>ImageView</Markup.Code> has sufficient contrast compared to the
+                        background. If the background is an image or gradient, test an area where
+                        the contrast appears to be the lowest.
+                    </span>
+                );
+            }
             case 'web/aria-input-field-name': {
                 return (
                     <div>

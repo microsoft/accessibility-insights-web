@@ -87,7 +87,8 @@ export const TargetChangeDialog = NamedFC<TargetChangeDialogProps>('TargetChange
             return true;
         }
 
-        const urlChanged = prevTab.url && urlParser.areURLsEqual(prevTab.url, newTab.url) === false;
+        const urlChanged =
+            prevTab.url && newTab.url && urlParser.areURLsEqual(prevTab.url, newTab.url) === false;
 
         return didTargetTabChanged(prevTab, newTab) || urlChanged === true;
     }

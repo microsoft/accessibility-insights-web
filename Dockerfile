@@ -16,6 +16,8 @@ RUN apt-get update && apt-get install -y curl && \
   apt-get install -y --allow-downgrades nodejs=14.17.1* && \
   rm -rf /var/lib/apt/lists/*
 
+RUN npm install -g yarn@1.22.10
+
 WORKDIR /app
 
 COPY package.json yarn.lock /app/

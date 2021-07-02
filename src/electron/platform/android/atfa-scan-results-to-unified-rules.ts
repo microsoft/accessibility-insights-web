@@ -25,7 +25,7 @@ export function convertAtfaScanResultsToUnifiedRules(
     const ruleIds: Set<string> = new Set();
 
     for (const atfaResult of scanResults.atfaResults) {
-        const ruleId: string = atfaResult['AccessibilityHierarchyCheckResult.checkClass'];
+        const ruleId: string = atfaResult['AccessibilityCheckResult.checkClass'];
         if (!ruleIds.has(ruleId)) {
             const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
 

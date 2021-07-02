@@ -116,6 +116,179 @@ exports[`RichResolutionContent renders static content with id=android/ImageViewN
 </span>
 `;
 
+exports[`RichResolutionContent renders static content with id=android/atfa/ClassNameCheck 1`] = `
+<span>
+  <stubLinkComponent
+    href="https://developer.android.com/training/accessibility/testing.html#manual"
+  >
+    Manually test
+  </stubLinkComponent>
+   
+  the control to verify that users receive sufficient information to understand the object's function.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/ClickableSpanCheck 1`] = `
+<span>
+  <stubLinkComponent
+    href="https://developer.android.com/training/accessibility/testing.html#manual"
+  >
+    Manually test
+  </stubLinkComponent>
+   
+  the item containing the link and verify that the hyperlinked text is announced and appears in the “Links” section of Talkback’s Context Menu.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/DuplicateClickableBoundsCheck 1`] = `
+<span>
+  Turn on
+   
+  <stubLinkComponent
+    href="https://support.google.com/accessibility/android/answer/6301490"
+  >
+    Switch Access for Android
+  </stubLinkComponent>
+   
+  or use the
+   
+  <stubLinkComponent
+    href="https://accessibilityinsights.io/docs/en/android/getstarted/fastpass/#complete-the-manual-test-for-tab-stops"
+  >
+    TabStops feature
+  </stubLinkComponent>
+   
+  to navigate through the elements in the application. If an element appears to be focused more than once, there may be multiple interactive elements occupying the same screen location.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/DuplicateSpeakableTextCheck 1`] = `
+<span>
+  If clickable 
+  <Code>
+    View
+  </Code>
+   objects have the 
+  <i>
+    same
+  </i>
+   
+  speakable text and perform the 
+  <i>
+    same
+  </i>
+   function, they pass.
+  <br />
+  If clickable 
+  <Code>
+    View
+  </Code>
+   objects have the 
+  <i>
+    same
+  </i>
+   
+  speakable text but perform 
+  <i>
+    different
+  </i>
+   functions, they fail.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/ImageContrastCheck 1`] = `
+<span>
+  Use
+   
+  <stubLinkComponent
+    href="https://go.microsoft.com/fwlink/?linkid=2075365"
+  >
+    Accessibility Insights for Windows
+  </stubLinkComponent>
+   
+  (or the
+   
+  <stubLinkComponent
+    href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+  >
+    Colour Contrast Analyser
+  </stubLinkComponent>
+   
+  if you're testing on a Mac) to manually verify that the
+   
+  <Code>
+    ImageView
+  </Code>
+   has sufficient contrast compared to the background. If the background is an image or gradient, test an area where the contrast appears to be the lowest.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/LinkPurposeUnclearCheck 1`] = `
+<span>
+  Examine the link in the context of the app to verify that the link's unique purpose is described by the link together with its preceding page content, which includes:
+  <ul>
+    <li>
+      Text in the same sentence, paragraph, list item, or table cell as the link
+    </li>
+    <li>
+      Text in a parent list item
+    </li>
+    <li>
+      Text in the table header cell that's associated with cell that contains the link
+    </li>
+  </ul>
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/RedundantDescriptionCheck 1`] = `
+<span>
+  Listen to TalkBack's announcement of the element to verify that the item's role (type), state, and/or available actions are announced only once.
+</span>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/TextContrastCheck 1`] = `
+<div
+  className="combinationLists"
+>
+  <ul
+    className="multiLineTextYesBullet"
+  >
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be invisible, it passes.
+    </li>
+    <li
+      list-style-type="disc"
+    >
+      If the text is intended to be visible, use
+       
+      <stubLinkComponent
+        href="https://go.microsoft.com/fwlink/?linkid=2075365"
+      >
+        Accessibility Insights for Windows
+      </stubLinkComponent>
+       
+      (or the
+       
+      <stubLinkComponent
+        href="https://developer.paciellogroup.com/resources/contrastanalyser/"
+      >
+        Colour Contrast Analyser
+      </stubLinkComponent>
+       
+      if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`RichResolutionContent renders static content with id=android/atfa/TraversalOrderCheck 1`] = `
+<span>
+  Turn on Talkback. Swipe right to move accessibility focus forward through the elements on the screen, then swipe left to navigate backwards. Verify that focus moves through the elements in a logical, consistent order when navigating forwards or backwards.
+</span>
+`;
+
 exports[`RichResolutionContent renders static content with id=web/aria-input-field-name 1`] = `
 <div>
   Inspect the element using the
