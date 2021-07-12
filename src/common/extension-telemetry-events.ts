@@ -215,6 +215,21 @@ export type InstanceCount = {
     };
 };
 
+export type AtfaInstanceCount = {
+    ERROR: {
+        [ruleId: string]: number;
+    };
+    WARNING: {
+        [ruleId: string]: number;
+    };
+    INFO: {
+        [ruleId: string]: number;
+    };
+    RESOLVED: {
+        [ruleId: string]: number;
+    };
+};
+
 export type AndroidScanFailedTelemetryData = {
     port: number;
     scanDuration: number;

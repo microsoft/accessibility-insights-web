@@ -2,7 +2,11 @@
 // Licensed under the MIT License.
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    AtfaInstanceCount,
+    InstanceCount,
+    TelemetryEventSource,
+} from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import {
     SCAN_COMPLETED,
@@ -16,6 +20,7 @@ import {
     AndroidScanResults,
     AxeRuleResultsData,
 } from 'electron/platform/android/android-scan-results';
+import { AccessibilityHierarchyCheckResult } from 'electron/platform/android/atfa-data-types';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 
@@ -57,13 +62,15 @@ export class ScanController {
 
         const scanDuration = scanCompletedTime - scanStartedTime;
 
-        const instanceCount = this.buildInstanceCount(data.axeRuleResults);
+        const axeInstanceCount = this.buildAxeInstanceCount(data.axeRuleResults);
+        const atfaInstanceCount = this.buildAtfaInstanceCount(data.atfaResults);
 
         this.telemetryEventHandler.publishTelemetry(SCAN_COMPLETED, {
             telemetry: {
                 port,
                 scanDuration,
-                ...instanceCount,
+                ...axeInstanceCount,
+                ...atfaInstanceCount,
             },
         });
 
@@ -74,7 +81,7 @@ export class ScanController {
         this.deviceConnectionActions.statusConnected.invoke(null);
     }
 
-    private buildInstanceCount(axeRuleResults: AxeRuleResultsData[]): InstanceCount {
+    private buildAxeInstanceCount(axeRuleResults: AxeRuleResultsData[]): InstanceCount {
         return axeRuleResults.reduce<InstanceCount>(
             (accumulator, currentRuleResult) => {
                 if (accumulator[currentRuleResult.status][currentRuleResult.ruleId] == null) {
@@ -86,6 +93,28 @@ export class ScanController {
                 return accumulator;
             },
             { PASS: {}, FAIL: {}, INCOMPLETE: {} },
+        );
+    }
+
+    private buildAtfaInstanceCount(
+        atfaResults: AccessibilityHierarchyCheckResult[],
+    ): AtfaInstanceCount {
+        return atfaResults.reduce<AtfaInstanceCount>(
+            (accumulator, currentResult) => {
+                const status = currentResult['AccessibilityCheckResult.type'];
+                const ruleId = currentResult['AccessibilityCheckResult.checkClass'];
+
+                if (status !== 'NOT_RUN') {
+                    if (accumulator[status][ruleId] == null) {
+                        accumulator[status][ruleId] = 1;
+                    } else {
+                        accumulator[status][ruleId]++;
+                    }
+                }
+
+                return accumulator;
+            },
+            { ERROR: {}, WARNING: {}, INFO: {}, RESOLVED: {} },
         );
     }
 
