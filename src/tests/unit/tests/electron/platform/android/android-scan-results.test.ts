@@ -31,10 +31,10 @@ describe('AndroidScanResults', () => {
         ${'rawData.axeContext.axeMetaData'}                              | ${undefined}                | ${'appIdentifier'}     | ${null}
         ${'rawData.axeContext'}                                          | ${undefined}                | ${'appIdentifier'}     | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'appIdentifier'}     | ${null}
-        ${'rawData.axeRuleResults'}                                      | ${getTestRuleResults()}     | ${'ruleResults'}       | ${getTestRuleResults()}
-        ${'rawData.AxeResults.axeRuleResults'}                           | ${getTestRuleResults()}     | ${'ruleResults'}       | ${getTestRuleResults()}
-        ${'rawData.axeRuleResults'}                                      | ${undefined}                | ${'ruleResults'}       | ${[]}
-        ${'rawData'}                                                     | ${undefined}                | ${'ruleResults'}       | ${[]}
+        ${'rawData.axeRuleResults'}                                      | ${getTestRuleResults()}     | ${'axeRuleResults'}    | ${getTestRuleResults()}
+        ${'rawData.AxeResults.axeRuleResults'}                           | ${getTestRuleResults()}     | ${'axeRuleResults'}    | ${getTestRuleResults()}
+        ${'rawData.axeRuleResults'}                                      | ${undefined}                | ${'axeRuleResults'}    | ${[]}
+        ${'rawData'}                                                     | ${undefined}                | ${'axeRuleResults'}    | ${[]}
         ${'rawData.axeContext.axeView'}                                  | ${getTestViewElementData()} | ${'viewElementTree'}   | ${getTestViewElementData()}
         ${'rawData.AxeResults.axeContext.axeView'}                       | ${getTestViewElementData()} | ${'viewElementTree'}   | ${getTestViewElementData()}
         ${'rawData.axeContext'}                                          | ${undefined}                | ${'viewElementTree'}   | ${null}
