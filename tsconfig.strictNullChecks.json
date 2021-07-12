@@ -558,6 +558,7 @@
         "src/electron/main/**/*",
         "src/electron/platform/android/setup/state-machine/**/*",
         "src/electron/resources/**/*",
+        "src/electron/views/automated-checks/**/*",
         "src/fast-pass/**/*",
         "src/icons/**/*",
         "src/issue-filing/common/markup/**/*",
