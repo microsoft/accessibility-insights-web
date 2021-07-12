@@ -14,7 +14,7 @@ import { DeviceConnectionActions } from 'electron/flux/action/device-connection-
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import {
     AndroidScanResults,
-    RuleResultsData,
+    AxeRuleResultsData,
 } from 'electron/platform/android/android-scan-results';
 import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
@@ -57,7 +57,7 @@ export class ScanController {
 
         const scanDuration = scanCompletedTime - scanStartedTime;
 
-        const instanceCount = this.buildInstanceCount(data.ruleResults);
+        const instanceCount = this.buildInstanceCount(data.axeRuleResults);
 
         this.telemetryEventHandler.publishTelemetry(SCAN_COMPLETED, {
             telemetry: {
@@ -74,8 +74,8 @@ export class ScanController {
         this.deviceConnectionActions.statusConnected.invoke(null);
     }
 
-    private buildInstanceCount(ruleResults: RuleResultsData[]): InstanceCount {
-        return ruleResults.reduce<InstanceCount>(
+    private buildInstanceCount(axeRuleResults: AxeRuleResultsData[]): InstanceCount {
+        return axeRuleResults.reduce<InstanceCount>(
             (accumulator, currentRuleResult) => {
                 if (accumulator[currentRuleResult.status][currentRuleResult.ruleId] == null) {
                     accumulator[currentRuleResult.status][currentRuleResult.ruleId] = 1;

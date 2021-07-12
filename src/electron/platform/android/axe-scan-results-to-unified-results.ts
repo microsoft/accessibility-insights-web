@@ -17,7 +17,7 @@ export function convertAxeScanResultsToUnifiedResults(
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
-    if (!scanResults || !scanResults.ruleResults) {
+    if (!scanResults || !scanResults.axeRuleResults) {
         return [];
     }
 
@@ -25,7 +25,7 @@ export function convertAxeScanResultsToUnifiedResults(
         createViewElementLookup(scanResults);
     const unifiedResults: UnifiedResult[] = [];
 
-    for (const ruleResult of scanResults.ruleResults) {
+    for (const ruleResult of scanResults.axeRuleResults) {
         const ruleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
 
         if (ruleInformation) {
