@@ -58,6 +58,6 @@ Array [
 ]
 `;
 
-exports[`AftaScanResultsToUnifiedRules ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+exports[`AftaScanResultsToUnifiedRules ScanResults with no CheckResults returns empty output 1`] = `Array []`;
 
 exports[`AftaScanResultsToUnifiedRules ScanResults with only unsupported rules 1`] = `Array []`;
