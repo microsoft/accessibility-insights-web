@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID, UUIDGenerator } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
@@ -58,12 +59,13 @@ export const createBuilder =
 export const createDefaultBuilder = (
     getToolData: ToolDataDelegate,
     friendlyNameProvider: AndroidFriendlyDeviceNameProvider,
+    featureFlagsStore: FeatureFlagStore,
 ) => {
     return createBuilder(
         convertAllScanResultsToUnifiedResults,
         convertAllScanResultsToUnifiedRules,
         convertScanResultsToPlatformData,
-        new RuleInformationProvider(),
+        new RuleInformationProvider(featureFlagsStore),
         generateUID,
         getToolData,
         friendlyNameProvider,

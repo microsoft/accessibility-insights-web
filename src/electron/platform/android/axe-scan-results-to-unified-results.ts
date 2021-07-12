@@ -5,8 +5,8 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
 import {
     AndroidScanResults,
+    AxeRuleResultsData,
     ViewElementData,
-    RuleResultsData,
 } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
@@ -26,9 +26,7 @@ export function convertAxeScanResultsToUnifiedResults(
     const unifiedResults: UnifiedResult[] = [];
 
     for (const ruleResult of scanResults.ruleResults) {
-        const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
-            ruleResult.ruleId,
-        );
+        const ruleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
 
         if (ruleInformation) {
             unifiedResults.push(
@@ -66,7 +64,7 @@ function addViewElementAndChildren(
 
 function createUnifiedResult(
     ruleInformation: RuleInformation,
-    ruleResult: RuleResultsData,
+    ruleResult: AxeRuleResultsData,
     viewElementLookup: DictionaryStringTo<ViewElementData>,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult {

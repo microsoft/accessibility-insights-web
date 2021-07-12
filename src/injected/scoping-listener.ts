@@ -12,8 +12,8 @@ export class ScopingListener {
     private readonly dom: Document;
     private onInspectClick: IInspectCallback;
     private onInspectHover: (selector: string[]) => void;
-    private onClickCurrentTimeoutId: number = null;
-    private onHoverCurrentTimeoutId: number = null;
+    private onClickCurrentTimeoutId: number | null = null;
+    private onHoverCurrentTimeoutId: number | null = null;
 
     public static readonly scopeLayoutContainerId = 'insights-inspect-selector-layout';
 

@@ -35,7 +35,7 @@ export function convertAtfaScanResultsToUnifiedResults(
             const viewElement: ViewHierarchyElement =
                 atfaResult['AccessibilityHierarchyCheckResult.element'];
             if (viewElement) {
-                const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(
+                const ruleInformation = ruleInformationProvider.getRuleInformation(
                     atfaResult['AccessibilityCheckResult.checkClass'],
                 );
 
@@ -63,7 +63,6 @@ function createUnifiedResult(
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult {
     const ruleResult: RuleResultsData = {
-        axeViewId: `atfa-${viewElement['ViewHierarchyElement.id']}`,
         ruleId: ruleInformation.ruleId,
         status: atfaResult['AccessibilityCheckResult.type'],
         props: atfaResult['AccessibilityHierarchyCheckResult.metadata'],

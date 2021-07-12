@@ -1,20 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     InstanceResultStatus,
     UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
+import { IMock, Mock } from 'typemoq';
 
-import { buildRuleResultObject } from './scan-results-helpers';
+import { buildAxeRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {
     let provider: RuleInformationProvider;
+    let featureFlagStoreMock: IMock<FeatureFlagStore>;
+
+    const storeDataStub: FeatureFlagStoreData = {
+        [UnifiedFeatureFlags.atfaResults]: false,
+    };
 
     beforeAll(() => {
-        provider = new RuleInformationProvider();
+        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
+        featureFlagStoreMock.setup(store => store.getState()).returns(() => storeDataStub);
+        provider = new RuleInformationProvider(featureFlagStoreMock.object);
     });
 
     function buildTouchSizeWcagRuleResultObject(
@@ -39,7 +50,7 @@ describe('RuleInformationProvider', () => {
             right: right,
         };
 
-        return buildRuleResultObject('TouchSizeWcag', status, null, props);
+        return buildAxeRuleResultObject('TouchSizeWcag', status, null, props);
     }
 
     function buildColorContrastRuleResultObject(
@@ -58,7 +69,7 @@ describe('RuleInformationProvider', () => {
         props['Background Color'] = background;
         props['Confidence in Color Detection'] = confidence;
 
-        return buildRuleResultObject('ColorContrast', status, null, props);
+        return buildAxeRuleResultObject('ColorContrast', status, null, props);
     }
 
     test('getRuleInformation returns null for an unknown ruleId', () => {
@@ -244,9 +255,27 @@ describe('RuleInformationProvider', () => {
     test.each(ruleIdsToTest)(
         'getResultStatus evaulates properly for %s',
         (testCase: ruleStatusTestCase) => {
-            const ruleResult = buildRuleResultObject(testCase.ruleId, testCase.status);
+            const ruleResult = buildAxeRuleResultObject(testCase.ruleId, testCase.status);
             const ruleInformation: RuleInformation = provider.getRuleInformation(testCase.ruleId);
             expect(ruleInformation.getResultStatus(ruleResult)).toBe(testCase.outcome);
         },
     );
+
+    it.each([
+        ['available when ATFA flag is disabled', false],
+        ['not available when ATFA flag is enabled', true],
+    ])('Axe ColorContrast rule is %s', async (testName, flag) => {
+        const atfaEnabledStore: FeatureFlagStoreData = {
+            [UnifiedFeatureFlags.atfaResults]: flag,
+        };
+        featureFlagStoreMock.setup(store => store.getState()).returns(() => atfaEnabledStore);
+
+        const ruleInfo: RuleInformation | null = provider.getRuleInformation('ColorContrast');
+
+        if (flag) {
+            expect(ruleInfo).toBeFalsy();
+        } else {
+            expect(ruleInfo).toBeTruthy();
+        }
+    });
 });

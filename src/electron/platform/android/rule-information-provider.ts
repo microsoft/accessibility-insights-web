@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     InstanceResultStatus,
     UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
 import { link } from 'content/link';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { DictionaryStringTo } from 'types/common-types';
 
 import { RuleResultsData } from './android-scan-results';
@@ -12,8 +15,9 @@ import { RuleInformation } from './rule-information';
 
 export class RuleInformationProvider {
     private supportedRules: DictionaryStringTo<RuleInformation>;
+    private readonly rulesToDisableWithAtfaResults: string[];
     private readonly ruleLinkBaseUrl = 'https://accessibilityinsights.io/info-examples/android';
-    constructor() {
+    constructor(readonly featureFlagStore: FeatureFlagStore) {
         this.supportedRules = {
             ColorContrast: new RuleInformation(
                 'ColorContrast',
@@ -216,6 +220,8 @@ export class RuleInformationProvider {
                 this.getStandardResultStatus,
             ),
         };
+
+        this.rulesToDisableWithAtfaResults = ['ColorContrast'];
     }
 
     private getTouchSizeUnifiedResolution = (
@@ -265,9 +271,23 @@ export class RuleInformationProvider {
         }
     };
 
-    public getRuleInformation(ruleId: string): RuleInformation {
+    public getRuleInformation(ruleId: string): RuleInformation | null {
+        if (this.isRuleDisabledByAtfaResultsFeatureFlag(ruleId)) {
+            return null;
+        }
+
         const ruleInfo = this.supportedRules[ruleId];
         return ruleInfo || null;
+    }
+
+    private isRuleDisabledByAtfaResultsFeatureFlag(ruleId: string): boolean {
+        const featureFlagStoreData: FeatureFlagStoreData = this.featureFlagStore.getState();
+
+        if (featureFlagStoreData[UnifiedFeatureFlags.atfaResults]) {
+            return this.rulesToDisableWithAtfaResults.includes(ruleId);
+        }
+
+        return false;
     }
 
     private floorTo3Decimal(num: number): number {
