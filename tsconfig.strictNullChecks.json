@@ -482,6 +482,7 @@
         "./src/tests/unit/common/assessment-data-builder.ts",
         "./src/tests/unit/common/assessment-store-tester.ts",
         "./src/tests/unit/common/base-data-builder.ts",
+        "./src/tests/unit/common/debounce-faker.ts",
         "./src/tests/unit/common/event-stub-factory.ts",
         "./src/tests/unit/common/fail-test-on-error-logger.ts",
         "./src/tests/unit/common/html-collection-of-builder.ts",

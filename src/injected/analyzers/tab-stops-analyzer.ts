@@ -3,81 +3,53 @@
 import { Logger } from 'common/logging/logger';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { TabStopEvent } from 'common/types/tab-stop-event';
-import { WindowUtils } from 'common/window-utils';
+import { BaseAnalyzer } from 'injected/analyzers/base-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import * as Q from 'q';
+import { debounce, DebouncedFunc } from 'lodash';
 
 import { TabStopsListener } from '../tab-stops-listener';
 import { FocusAnalyzerConfiguration, ScanBasePayload, ScanUpdatePayload } from './analyzer';
-import { BaseAnalyzer } from './base-analyzer';
 
 export interface ProgressResult<T> {
     result: T;
 }
 
 export class TabStopsAnalyzer extends BaseAnalyzer {
-    private tabStopsListener: TabStopsListener;
-    private deferred: Q.Deferred<AxeAnalyzerResult>;
-    private windowUtils: WindowUtils;
-
+    private debouncedProcessTabEvents: DebouncedFunc<() => void> | null = null;
     private pendingTabbedElements: TabStopEvent[] = [];
-    private onTabbedTimeoutId: number;
     protected config: FocusAnalyzerConfiguration;
 
     constructor(
         config: FocusAnalyzerConfiguration,
-        tabStopsListener: TabStopsListener,
-        windowUtils: WindowUtils,
+        private readonly tabStopsListener: TabStopsListener,
         sendMessageDelegate: (message) => void,
         scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         logger: Logger,
+        private readonly debounceImpl: typeof debounce = debounce,
     ) {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
-        this.tabStopsListener = tabStopsListener;
-        this.windowUtils = windowUtils;
     }
 
-    public analyze(): void {
-        // We intentionally float this promise; the current analyzer API is that analyze starts the
-        // analysis and it's allowed to continue running for arbitrarily long until teardown() is called.
-        // We use a Promise for this internally only so we can reuse Q's "onprogress" behavior.
-        this.getResults().progress(this.onProgress).catch(this.logger.error);
-    }
-
-    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
-        this.deferred = Q.defer<AxeAnalyzerResult>();
+    protected getResults = async (): Promise<AxeAnalyzerResult> => {
+        this.debouncedProcessTabEvents?.cancel();
+        this.debouncedProcessTabEvents = this.debounceImpl(this.processTabEvents, 50);
         this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
-            if (this.onTabbedTimeoutId != null) {
-                this.windowUtils.clearTimeout(this.onTabbedTimeoutId);
-                this.onTabbedTimeoutId = null;
-            }
-
             this.pendingTabbedElements.push(tabEvent);
-
-            this.onTabbedTimeoutId = this.windowUtils.setTimeout(() => {
-                this.deferred.notify({
-                    result: this.pendingTabbedElements,
-                });
-                this.onTabbedTimeoutId = null;
-                this.pendingTabbedElements = [];
-            }, 50);
+            this.debouncedProcessTabEvents();
         });
-
         this.tabStopsListener.startListenToTabStops();
-        this.analyzerSetupComplete();
-        return this.deferred.promise;
+        return this.emptyResults;
     };
 
-    private analyzerSetupComplete(): void {
-        this.onResolve(this.emptyResults);
-    }
+    private processTabEvents = (): void => {
+        const results = this.pendingTabbedElements;
+        this.pendingTabbedElements = [];
 
-    protected onProgress = (progressResult: ProgressResult<TabStopEvent[]>): void => {
         const payload: ScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,
-            tabbedElements: progressResult.result,
-            results: progressResult.result,
+            tabbedElements: results,
+            results: results,
         };
 
         const message = {
@@ -88,7 +60,9 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     };
 
     public teardown(): void {
+        this.debouncedProcessTabEvents?.cancel();
         this.tabStopsListener.stopListenToTabStops();
+
         const payload: ScanBasePayload = {
             key: this.config.key,
             testType: this.config.testType,
