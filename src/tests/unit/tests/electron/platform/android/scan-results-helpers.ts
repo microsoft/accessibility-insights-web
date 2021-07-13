@@ -215,8 +215,8 @@ function buildAtfaSpannableStringViaSpan(textViaSpan: string): SpannableString {
 
 function verifyAndBuildSpannableString(
     fieldName: string,
-    value: string,
-    valueViaSpan: string,
+    value?: string,
+    valueViaSpan?: string,
 ): SpannableString | null {
     if (value && valueViaSpan) {
         throw Error(`${fieldName} can't be both direct and indirect!`);
