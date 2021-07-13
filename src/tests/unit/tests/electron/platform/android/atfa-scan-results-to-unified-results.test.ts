@@ -105,7 +105,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
                 className: className1,
-                resultId: 1,
                 checkClass: ruleId1,
                 type: 'ERROR',
                 boundsInScreen: { top: 0, left: 100, right: 200, bottom: 300 },
@@ -115,7 +114,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
                 className: className1,
-                resultId: 2,
                 checkClass: ruleId1,
                 type: 'WARNING',
                 boundsInScreen: { top: 0, left: 100, right: 200, bottom: 300 },
@@ -125,21 +123,18 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
                 className: className1,
-                resultId: 3,
                 checkClass: ruleId3,
                 type: 'INFO',
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
                 className: className1,
-                resultId: 4,
                 checkClass: ruleId3,
                 type: 'NOT_RUN',
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName2,
                 className: className2,
-                resultId: 5,
                 checkClass: ruleId2,
                 type: 'ERROR',
                 contentDescription: id3,
@@ -148,7 +143,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName2,
                 className: className2,
-                resultId: 6,
                 checkClass: 'Unknown rule',
                 type: 'ERROR',
             }),

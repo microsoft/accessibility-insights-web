@@ -25,7 +25,6 @@ export interface ViewHierarchyElement {
 // Source: https://github.com/google/Accessibility-Test-Framework-for-Android/blob/master/src/main/java/com/google/android/apps/common/testing/accessibility/framework/AccessibilityHierarchyCheckResult.java
 export interface AccessibilityHierarchyCheckResult {
     'AccessibilityHierarchyCheckResult.element': ViewHierarchyElement;
-    'AccessibilityHierarchyCheckResult.resultId': number;
     'AccessibilityCheckResult.checkClass': string;
     'AccessibilityCheckResult.type': string; // TODO: make an enum?
     'AccessibilityHierarchyCheckResult.metadata'?: any;

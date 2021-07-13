@@ -169,7 +169,6 @@ export interface AtfaElementParameters {
 }
 
 export interface AtfaResultParameters extends AtfaElementParameters {
-    resultId: number;
     checkClass: string;
     type: string;
 }
@@ -181,7 +180,6 @@ export function buildAtfaResult(
 
     const result = {};
     result['AccessibilityHierarchyCheckResult.element'] = element;
-    result['AccessibilityHierarchyCheckResult.resultId'] = resultParameters.resultId;
     result['AccessibilityCheckResult.checkClass'] = resultParameters.checkClass;
     result['AccessibilityCheckResult.type'] = resultParameters.type;
     if (resultParameters.metadata) {
