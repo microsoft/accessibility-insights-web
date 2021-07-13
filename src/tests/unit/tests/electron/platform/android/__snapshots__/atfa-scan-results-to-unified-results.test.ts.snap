@@ -15,8 +15,8 @@ Array [
         "top": 0,
       },
       "className": "viewClass1",
-      "contentDescription": "id2",
-      "text": null,
+      "contentDescription": "id1",
+      "text": "id2",
     },
     "identifiers": Object {
       "conciseName": "viewClass1",
@@ -38,8 +38,8 @@ Array [
         "top": 0,
       },
       "className": "viewClass1",
-      "contentDescription": "id2",
-      "text": null,
+      "contentDescription": "id1",
+      "text": "id2",
     },
     "identifiers": Object {
       "conciseName": "viewClass1",
@@ -56,8 +56,8 @@ Array [
     "descriptors": Object {
       "boundingRectangle": undefined,
       "className": "viewClass2",
-      "contentDescription": "id4",
-      "text": null,
+      "contentDescription": "id3",
+      "text": "id4",
     },
     "identifiers": Object {
       "conciseName": "viewClass2",

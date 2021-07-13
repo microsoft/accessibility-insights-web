@@ -221,9 +221,7 @@ function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarc
         );
     }
     if (elementParameters.text) {
-        e['ViewHierarchyElement.contentDescription'] = buildAtfaSpannableString(
-            elementParameters.text,
-        );
+        e['ViewHierarchyElement.text'] = buildAtfaSpannableString(elementParameters.text);
     }
     return e as ViewHierarchyElement;
 }
