@@ -11,7 +11,6 @@ import { VisualizationStore } from 'background/stores/visualization-store';
 import { Messages } from 'common/messages';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { WindowUtils } from 'common/window-utils';
-import * as Q from 'q';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
 import { itIsFunction } from 'tests/unit/common/it-is-function';
 import { VisualizationStoreDataBuilder } from 'tests/unit/common/visualization-store-data-builder';
@@ -138,7 +137,8 @@ class InjectorControllerValidator {
     private mockInterpreter = Mock.ofType(Interpreter, MockBehavior.Strict);
     private mockInspectStore = Mock.ofType(InspectStore, MockBehavior.Strict);
     private mockTabStore = Mock.ofType(TabStore, MockBehavior.Strict);
-    private injectedScriptsDeferred = Q.defer<void>();
+    private injectedScriptsDeferred: Promise<void>;
+    private injectedScriptsDeferredResolver: () => void;
 
     private mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
     private setTimeoutHandler: Function;
@@ -269,17 +269,20 @@ class InjectorControllerValidator {
         calledWithTabId: number,
         numTimes: number,
     ): InjectorControllerValidator {
+        this.injectedScriptsDeferred = new Promise(resolve => {
+            this.injectedScriptsDeferredResolver = resolve;
+        });
         this.mockInjector
             .setup(injector => injector.injectScripts(calledWithTabId))
-            .returns(() => this.injectedScriptsDeferred.promise as any)
+            .returns(() => this.injectedScriptsDeferred)
             .verifiable(Times.exactly(numTimes));
 
         return this;
     }
 
-    public invokeInjectedPromise(): Q.Promise<void> {
-        this.injectedScriptsDeferred.resolve();
-        return this.injectedScriptsDeferred.promise;
+    public async invokeInjectedPromise(): Promise<void> {
+        this.injectedScriptsDeferredResolver();
+        return await this.injectedScriptsDeferred;
     }
 
     public verifyAll(): void {

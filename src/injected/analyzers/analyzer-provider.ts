@@ -6,7 +6,6 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
 import {
@@ -106,7 +105,6 @@ export class AnalyzerProvider {
         return new TabStopsAnalyzer(
             config,
             this.tabStopsListener,
-            new WindowUtils(),
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
             this.logger,
