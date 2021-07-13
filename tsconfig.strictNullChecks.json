@@ -530,7 +530,13 @@
         "./src/views/insights/dependencies.ts",
         "./src/views/insights/renderer.tsx",
         "./src/views/insights/router.tsx",
-        "./src/views/page/page.tsx"
+        "./src/views/page/page.tsx",
+        "./src/tests/unit/common/simulated-window.ts",
+        "./src/tests/unit/common/recording-logger.ts",
+        "./src/tests/unit/common/linked-respondable-communicator.ts",
+        "./src/tests/unit/common/linked-frame-messenger.ts",
+        "./src/tests/unit/common/details-view-store-data-builder.ts",
+        "./src/tests/end-to-end/common/window-message-recorder.ts"
     ],
     "include": [
         "src/DetailsView/actions/**/*",
