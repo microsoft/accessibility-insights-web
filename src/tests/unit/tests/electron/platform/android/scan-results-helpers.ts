@@ -164,7 +164,9 @@ export interface AtfaElementParameters {
     className: string;
     boundsInScreen?: any;
     contentDescription?: string;
+    contentDescriptionViaSpan?: string;
     text?: string;
+    textViaSpan?: string;
     metadata?: any;
 }
 
@@ -205,6 +207,32 @@ function buildAtfaSpannableString(rawString: string): SpannableString {
     return s as SpannableString;
 }
 
+function buildAtfaSpannableStringViaSpan(textViaSpan: string): SpannableString {
+    const s = {};
+    s['SpannableString.rawString'] = { 'SpannableStringInternal.mText': textViaSpan };
+    return s as SpannableString;
+}
+
+function verifyAndBuildSpannableString(
+    fieldName: string,
+    value: string,
+    valueViaSpan: string,
+): SpannableString | null {
+    if (value && valueViaSpan) {
+        throw Error(`${fieldName} can't be both direct and indirect!`);
+    }
+
+    if (value) {
+        return buildAtfaSpannableString(value);
+    }
+
+    if (valueViaSpan) {
+        return buildAtfaSpannableStringViaSpan(valueViaSpan);
+    }
+
+    return null;
+}
+
 function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarchyElement {
     const e = {};
     e['ViewHierarchyElement.accessibilityClassName'] = elementParameters.accessibilityClassName;
@@ -215,13 +243,31 @@ function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarc
             elementParameters.boundsInScreen,
         );
     }
-    if (elementParameters.contentDescription) {
-        e['ViewHierarchyElement.contentDescription'] = buildAtfaSpannableString(
-            elementParameters.contentDescription,
-        );
+
+    if (elementParameters.contentDescription && elementParameters.contentDescriptionViaSpan) {
+        throw Error("contentDescription can't be both direct and indirect");
     }
-    if (elementParameters.text) {
-        e['ViewHierarchyElement.text'] = buildAtfaSpannableString(elementParameters.text);
+    if (elementParameters.text && elementParameters.textViaSpan) {
+        throw Error("text can't be both direct and indirect");
     }
+
+    const contentDescription = verifyAndBuildSpannableString(
+        'contentDescription',
+        elementParameters.contentDescription,
+        elementParameters.contentDescriptionViaSpan,
+    );
+    if (contentDescription) {
+        e['ViewHierarchyElement.contentDescription'] = contentDescription;
+    }
+
+    const text = verifyAndBuildSpannableString(
+        'text',
+        elementParameters.text,
+        elementParameters.textViaSpan,
+    );
+    if (text) {
+        e['ViewHierarchyElement.text'] = text;
+    }
+
     return e as ViewHierarchyElement;
 }

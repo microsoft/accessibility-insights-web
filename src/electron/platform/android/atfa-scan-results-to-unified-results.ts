@@ -76,10 +76,10 @@ function createUnifiedResult(
             boundingRectangle: convertBoundingRectangle(
                 viewElement?.['ViewHierarchyElement.boundsInScreen'],
             ),
-            contentDescription: getRawString(
+            contentDescription: getStringFromSpannableString(
                 viewElement?.['ViewHierarchyElement.contentDescription'],
             ),
-            text: getRawString(viewElement?.['ViewHierarchyElement.text']),
+            text: getStringFromSpannableString(viewElement?.['ViewHierarchyElement.text']),
         },
         identifiers: {
             identifier: viewElement?.['ViewHierarchyElement.accessibilityClassName'],
@@ -89,9 +89,11 @@ function createUnifiedResult(
     };
 }
 
-function getRawString(spannableString?: SpannableString): string | null {
+function getStringFromSpannableString(spannableString?: SpannableString): string | null {
     if (spannableString) {
-        return spannableString['SpannableString.rawString'] ?? null;
+        const rawString = spannableString['SpannableString.rawString'];
+        const textFromSpan = rawString['SpannableStringInternal.mText'];
+        return textFromSpan ?? rawString ?? null;
     }
     return null;
 }

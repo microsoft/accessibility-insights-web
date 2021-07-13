@@ -8,9 +8,13 @@ export interface AtfaBoundingRectangle {
     'Rect.top': number;
 }
 
+export interface SpannableStringInternal {
+    'SpannableStringInternal.mText': string;
+}
+
 // Source: https://github.com/google/Accessibility-Test-Framework-for-Android/blob/master/src/main/java/com/google/android/apps/common/testing/accessibility/framework/replacements/SpannableString.java
 export interface SpannableString {
-    'SpannableString.rawString': string;
+    'SpannableString.rawString': SpannableStringInternal | string;
 }
 
 // Source: https://github.com/google/Accessibility-Test-Framework-for-Android/blob/master/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/ViewHierarchyElement.java

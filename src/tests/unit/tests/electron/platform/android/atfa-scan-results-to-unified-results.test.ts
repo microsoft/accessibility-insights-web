@@ -92,6 +92,79 @@ describe('AtfaScanResultsToUnifiedResults', () => {
         verifyMockCounts(0, 0, 0, 0);
     });
 
+    test('ScanResults with contentDescription and text fields specified directly and via Span', () => {
+        const accessibilityClassName: string = 'accessible name #1';
+        const className: string = 'viewClass1';
+        const checkClass = ruleId1;
+        const type: string = 'ERROR';
+        const contentDescription: string = 'contentDescription (direct)';
+        const contentDescriptionViaSpan: string = 'contentDescription (via Span)';
+        const text: string = 'text (direct)';
+        const textViaSpan: string = 'text (via Span)';
+
+        const ruleResults: AccessibilityHierarchyCheckResult[] = [
+            buildAtfaResult({
+                accessibilityClassName,
+                className,
+                checkClass,
+                type,
+                contentDescription,
+            }),
+            buildAtfaResult({
+                accessibilityClassName,
+                className,
+                checkClass,
+                type,
+                contentDescriptionViaSpan,
+            }),
+            buildAtfaResult({
+                accessibilityClassName,
+                className,
+                checkClass,
+                type,
+                text,
+            }),
+            buildAtfaResult({
+                accessibilityClassName,
+                className,
+                checkClass,
+                type,
+                textViaSpan,
+            }),
+            buildAtfaResult({
+                accessibilityClassName,
+                className,
+                checkClass,
+                type,
+                contentDescription,
+                textViaSpan,
+            }),
+            buildAtfaResult({
+                accessibilityClassName,
+                className,
+                checkClass,
+                type,
+                contentDescription,
+                text,
+            }),
+        ];
+
+        const scanResults: AndroidScanResults = buildScanResultsObject(
+            {
+                deviceName: 'Some device',
+                appIdentifier: 'Some app',
+            },
+            ruleResults,
+        );
+        const results: UnifiedResult[] = convertAtfaScanResultsToUnifiedResults(
+            scanResults,
+            ruleInformationProviderMock.object,
+            generateGuidMock.object,
+        );
+        expect(results).toMatchSnapshot();
+        verifyMockCounts(6, 0, 0, 0);
+    });
+
     test('ScanResults with skipped, info, warnings, errors, view IDs, and excluded results', () => {
         const accessibilityClassName1: string = 'accessible name #1';
         const accessibilityClassName2: string = 'accessible name #2';
