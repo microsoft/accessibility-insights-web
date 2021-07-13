@@ -8,7 +8,6 @@ import { ForRuleAnalyzerScanCallback } from 'common/types/analyzer-telemetry-cal
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { ScopingStoreData } from 'common/types/store-data/scoping-store-data';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import * as Q from 'q';
 import { ScanResults } from 'scanner/iruleresults';
 import { ScanOptions } from 'scanner/scan-options';
 
@@ -37,34 +36,33 @@ export class RuleAnalyzer extends BaseAnalyzer {
         super(config, sendMessageDelegate, scanIncompleteWarningDetector, logger);
     }
 
-    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
-        const deferred = Q.defer<AxeAnalyzerResult>();
-        const scopingState = this.scopingStore.getState().selectors;
-        const include = scopingState[ScopingInputTypes.include];
-        const exclude = scopingState[ScopingInputTypes.exclude];
+    protected getResults = (): Promise<AxeAnalyzerResult> => {
+        return new Promise(resolve => {
+            const scopingState = this.scopingStore.getState().selectors;
+            const include = scopingState[ScopingInputTypes.include];
+            const exclude = scopingState[ScopingInputTypes.exclude];
 
-        const scanOptions: ScanOptions = {
-            testsToRun: this.getRulesToRun(),
-            include: include,
-            exclude: exclude,
-        };
-
-        const scanCallback = (resultsFromScan: ScanResults): void => {
-            const resultProcessor = this.config.resultProcessor(this.scanner);
-            const result: AxeAnalyzerResult = {
-                results: resultProcessor(resultsFromScan),
+            const scanOptions: ScanOptions = {
+                testsToRun: this.getRulesToRun(),
                 include: include,
                 exclude: exclude,
-                originalResult: resultsFromScan,
             };
 
-            deferred.resolve(result);
-        };
+            const scanCallback = (resultsFromScan: ScanResults): void => {
+                const resultProcessor = this.config.resultProcessor(this.scanner);
+                const result: AxeAnalyzerResult = {
+                    results: resultProcessor(resultsFromScan),
+                    include: include,
+                    exclude: exclude,
+                    originalResult: resultsFromScan,
+                };
 
-        this.startTime = this.dateGetter().getTime();
-        this.scanner.scan(scanOptions, scanCallback);
+                resolve(result);
+            };
 
-        return deferred.promise;
+            this.startTime = this.dateGetter().getTime();
+            this.scanner.scan(scanOptions, scanCallback);
+        });
     };
 
     protected getRulesToRun(): string[] {

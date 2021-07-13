@@ -100,7 +100,7 @@ export class TabStopsListener {
         return this.frameMessenger.sendMessageToWindow(this.windowUtils.getParentWindow(), message);
     };
 
-    private getFrameElementForWindow(win: Window): HTMLIFrameElement {
+    private getFrameElementForWindow(win: Window): HTMLIFrameElement | null {
         const frames = this.getAllFrames();
 
         for (let index = 0; index < frames.length; index++) {

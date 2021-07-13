@@ -185,7 +185,6 @@
         "luxon": "^1.27.0",
         "office-ui-fabric-react": "7.98.0",
         "portfinder": "^1.0.28",
-        "q": "1.5.1",
         "react": "^16.14.0",
         "react-copy-to-clipboard": "^5.0.3",
         "react-dom": "^16.14.0",

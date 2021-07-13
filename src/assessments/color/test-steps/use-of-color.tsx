@@ -65,5 +65,5 @@ export const UseOfColor: Requirement = {
             }),
         ),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
-    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-gray-scale-container'),
 };
