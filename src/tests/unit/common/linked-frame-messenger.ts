@@ -41,6 +41,9 @@ export class LinkedFrameMessenger extends FrameMessenger {
         targetFrame: HTMLIFrameElement,
         message: CommandMessage,
     ): Promise<CommandMessageResponse> {
+        if (targetFrame.contentWindow == null) {
+            throw new Error('Test is unexpectedly using a targetFrame with null contentWindow');
+        }
         return await this.sendMessageToWindow(targetFrame.contentWindow, message);
     }
 
@@ -54,6 +57,7 @@ export class LinkedFrameMessenger extends FrameMessenger {
         }
         const listener = this.otherMessenger.listeners[message.command];
         expect(listener).not.toBeUndefined();
-        return await listener(message, this.window);
+        const listenerResponse = await listener(message, this.window);
+        return listenerResponse ?? { payload: null };
     }
 }

@@ -44,7 +44,11 @@ export class LinkedRespondableCommunicator extends RespondableCommandMessageComm
         const listener = this.other.asyncListeners[commandMessage.command];
         this.assertListenerExists(listener, commandMessage.command);
 
-        return await this.other.asyncListeners[commandMessage.command](commandMessage, this.window);
+        const listenerResponse = await this.other.asyncListeners[commandMessage.command](
+            commandMessage,
+            this.window,
+        );
+        return listenerResponse ?? { payload: null };
     }
 
     public sendCallbackCommandMessage(
