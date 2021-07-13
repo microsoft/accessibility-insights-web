@@ -161,7 +161,6 @@ export function buildRuleInformation(
 
 export interface AtfaElementParameters {
     accessibilityClassName: string;
-    id: number;
     className: string;
     boundsInScreen?: any;
     contentDescription?: string;
@@ -208,16 +207,9 @@ function buildAtfaSpannableString(rawString: string): SpannableString {
     return s as SpannableString;
 }
 
-function buildAtfaSpannableStringInternal(internalText: string): SpannableString {
-    const s = {};
-    s['SpannableString.rawString'] = { 'SpannableStringInternal.mText': internalText };
-    return s as SpannableString;
-}
-
 function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarchyElement {
     const e = {};
     e['ViewHierarchyElement.accessibilityClassName'] = elementParameters.accessibilityClassName;
-    e['ViewHierarchyElement.id'] = elementParameters.id;
     e['ViewHierarchyElement.className'] = elementParameters.className;
 
     if (elementParameters.boundsInScreen) {

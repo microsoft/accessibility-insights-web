@@ -104,7 +104,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
         const ruleResults: AccessibilityHierarchyCheckResult[] = [
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
-                id: 0,
                 className: className1,
                 resultId: 1,
                 checkClass: ruleId1,
@@ -115,7 +114,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
-                id: 0,
                 className: className1,
                 resultId: 2,
                 checkClass: ruleId1,
@@ -126,7 +124,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
-                id: 0,
                 className: className1,
                 resultId: 3,
                 checkClass: ruleId3,
@@ -134,7 +131,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName1,
-                id: 0,
                 className: className1,
                 resultId: 4,
                 checkClass: ruleId3,
@@ -142,7 +138,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName2,
-                id: 0,
                 className: className2,
                 resultId: 5,
                 checkClass: ruleId2,
@@ -152,7 +147,6 @@ describe('AtfaScanResultsToUnifiedResults', () => {
             }),
             buildAtfaResult({
                 accessibilityClassName: accessibilityClassName2,
-                id: 0,
                 className: className2,
                 resultId: 6,
                 checkClass: 'Unknown rule',

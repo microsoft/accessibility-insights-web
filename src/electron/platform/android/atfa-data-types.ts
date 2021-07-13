@@ -16,7 +16,6 @@ export interface SpannableString {
 // Source: https://github.com/google/Accessibility-Test-Framework-for-Android/blob/master/src/main/java/com/google/android/apps/common/testing/accessibility/framework/uielement/ViewHierarchyElement.java
 export interface ViewHierarchyElement {
     'ViewHierarchyElement.accessibilityClassName': string;
-    'ViewHierarchyElement.id': number;
     'ViewHierarchyElement.className': string;
     'ViewHierarchyElement.boundsInScreen'?: AtfaBoundingRectangle;
     'ViewHierarchyElement.contentDescription'?: SpannableString;
