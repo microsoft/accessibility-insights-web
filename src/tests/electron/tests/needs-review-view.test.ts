@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { createApplication } from 'tests/electron/common/create-application';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
@@ -24,8 +25,6 @@ describe('NeedsReviewView', () => {
 
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.client.browserWindow.setSize(windowWidth, windowHeight);
-        resultsViewController = await app.openResultsView();
-        await resultsViewController.clickLeftNavItem('needs-review');
     });
 
     afterEach(async () => {
@@ -35,10 +34,13 @@ describe('NeedsReviewView', () => {
     });
 
     it('should use the expected window title', async () => {
+        await openNeedsReview();
         await app.waitForTitle('Accessibility Insights for Android - Needs review');
     });
 
-    it('displays needs review results with one failing result', async () => {
+    it('displays needs review results with one failing result (results v1)', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
+        await openNeedsReview();
         const cardsView = resultsViewController.createCardsViewController();
         await cardsView.waitForRuleGroupCount(1);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
@@ -50,13 +52,34 @@ describe('NeedsReviewView', () => {
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
     });
 
+    it('displays needs review results with 5 failing results (results_v2)', async () => {
+        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
+        await openNeedsReview();
+        const cardsView = resultsViewController.createCardsViewController();
+        await cardsView.waitForRuleGroupCount(1);
+        expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
+        await cardsView.waitForHighlightBoxCount(5);
+
+        await cardsView.toggleRuleGroupAtPosition(1);
+        await cardsView.assertExpandedRuleGroup(1, 'TextContrastCheck', 5);
+
+        expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
+    });
+
     it('should pass accessibility validation in all contrast modes', async () => {
+        await openNeedsReview();
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
     it('export report button does not exist', async () => {
+        await openNeedsReview();
         await resultsViewController.waitForSelectorToDisappear(
             ResultsViewSelectors.exportReportButton,
         );
     });
+
+    async function openNeedsReview(): Promise<void> {
+        resultsViewController = await app.openResultsView();
+        await resultsViewController.clickLeftNavItem('needs-review');
+    }
 });
