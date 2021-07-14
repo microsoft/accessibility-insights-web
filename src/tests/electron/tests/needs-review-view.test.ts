@@ -61,8 +61,8 @@ describe('NeedsReviewView', () => {
         await cardsView.waitForHighlightBoxCount(5);
         await cardsView.assertCollapsedRuleGroup(1, 'TextContrastCheck');
 
-        // await cardsView.toggleRuleGroupAtPosition(1);
-        // await cardsView.assertExpandedRuleGroup(1, 'TextContrastCheck', 5);
+        await cardsView.toggleRuleGroupAtPosition(1);
+        await cardsView.assertExpandedRuleGroup(1, 'TextContrastCheck', 5);
 
         // expect(await cardsView.queryRuleGroupContents()).toHaveLength(5);
     });
