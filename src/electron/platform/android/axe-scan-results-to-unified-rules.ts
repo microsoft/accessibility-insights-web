@@ -19,7 +19,7 @@ export function convertAxeScanResultsToUnifiedRules(
     const unifiedRules: UnifiedRule[] = [];
     const ruleIds: Set<string> = new Set();
 
-    for (const result of scanResults.ruleResults) {
+    for (const result of scanResults.axeRuleResults) {
         const ruleId = result.ruleId;
         if (!ruleIds.has(ruleId)) {
             const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);

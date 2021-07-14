@@ -21,7 +21,10 @@ import { ScanController } from 'electron/platform/android/scan-controller';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
-import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import {
+    axeRuleResultExample,
+    scanResultV2Example,
+} from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ScanController', () => {
@@ -110,7 +113,102 @@ describe('ScanController', () => {
         );
     });
 
-    it('scans and handle successful response', async () => {
+    it('scans and handle successful v2 response', async () => {
+        const scanResults = new AndroidScanResults(scanResultV2Example);
+
+        fetchScanResultsMock
+            .setup(fetch => fetch(port))
+            .returns(() => Promise.resolve(scanResults));
+
+        telemetryEventHandlerMock
+            .setup(handler =>
+                handler.publishTelemetry(SCAN_STARTED, It.isValue(expectedScanStartedTelemetry)),
+            )
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
+
+        telemetryEventHandlerMock
+            .setup(handler =>
+                handler.publishTelemetry(
+                    SCAN_COMPLETED,
+                    It.isValue({
+                        telemetry: {
+                            port,
+                            scanDuration: 135000,
+                            PASS: {
+                                ColorContrast: 2,
+                                ActiveViewName: 4,
+                                DontMoveAccessibilityFocus: 1,
+                                TouchSizeWcag: 3,
+                            },
+                            FAIL: {
+                                ImageViewName: 1,
+                                TouchSizeWcag: 1,
+                                ColorContrast: 2,
+                                EditTextValue: 1,
+                                EditTextName: 1,
+                            },
+                            INCOMPLETE: {
+                                ColorContrast: 2,
+                            },
+                            ERROR: {
+                                EditableContentDescCheck: 1,
+                                TouchTargetSizeCheck: 1,
+                            },
+                            WARNING: {
+                                TextContrastCheck: 5,
+                            },
+                            INFO: {
+                                DuplicateSpeakableTextCheck: 1,
+                            },
+                            RESOLVED: {},
+                        },
+                    }),
+                ),
+            )
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
+
+        const unifiedPayload: UnifiedScanCompletedPayload = {
+            rules: [],
+            scanResult: [],
+            targetAppInfo: {
+                name: 'test-target-app-info-name',
+                url: 'test-target-app-info-url',
+            },
+            toolInfo: {
+                applicationProperties: null,
+                scanEngineProperties: {
+                    name: 'test-scan-engine-name',
+                    version: 'test-scan-engine-version',
+                },
+            },
+            timestamp: 'timestamp',
+            scanIncompleteWarnings: ['test-scan-incomplete-warning' as ScanIncompleteWarningId],
+        };
+
+        unifiedResultsBuilderMock
+            .setup(builder => builder(scanResults))
+            .returns(() => unifiedPayload);
+
+        const unifiedScanCompletedMock = Mock.ofType<Action<UnifiedScanCompletedPayload>>();
+        unifiedScanCompletedMock
+            .setup(action => action.invoke(unifiedPayload))
+            .verifiable(Times.once());
+
+        unifiedScanResultActionsMock
+            .setup(actions => actions.scanCompleted)
+            .returns(() => unifiedScanCompletedMock.object);
+
+        testSubject.initialize();
+
+        await tick();
+
+        scanCompletedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
+        deviceConnectedMock.verify(m => m.invoke(null), Times.once());
+
+        telemetryEventHandlerMock.verifyAll();
+    });
+
+    it('scans and handle successful v2 response', async () => {
         const scanResults = new AndroidScanResults(axeRuleResultExample);
 
         fetchScanResultsMock
@@ -145,6 +243,10 @@ describe('ScanController', () => {
                                 ColorContrast: 1,
                             },
                             INCOMPLETE: {},
+                            ERROR: {},
+                            WARNING: {},
+                            INFO: {},
+                            RESOLVED: {},
                         },
                     }),
                 ),

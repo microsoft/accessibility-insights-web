@@ -56,7 +56,7 @@ export class AndroidScanResults {
         return this.getAxeResults()?.axeContext?.axeView || null;
     }
 
-    public get ruleResults(): AxeRuleResultsData[] {
+    public get axeRuleResults(): AxeRuleResultsData[] {
         return this.getAxeResults()?.axeRuleResults || [];
     }
 

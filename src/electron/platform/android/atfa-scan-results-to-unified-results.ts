@@ -24,7 +24,7 @@ export function convertAtfaScanResultsToUnifiedResults(
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
 ): UnifiedResult[] {
-    if (!scanResults || !scanResults.ruleResults) {
+    if (!scanResults || !scanResults.atfaResults) {
         return [];
     }
 

@@ -115,7 +115,7 @@ Array [
 ]
 `;
 
-exports[`AtfaScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+exports[`AtfaScanResultsToUnifiedResults ScanResults with no CheckResults returns empty output 1`] = `Array []`;
 
 exports[`AtfaScanResultsToUnifiedResults ScanResults with skipped, info, warnings, errors, view IDs, and excluded results 1`] = `
 Array [

@@ -90,7 +90,7 @@ describe('AftaScanResultsToUnifiedRules', () => {
         verifyMockCounts(0, 0, 0, 0);
     });
 
-    test('ScanResults with no RuleResults returns empty output', () => {
+    test('ScanResults with no CheckResults returns empty output', () => {
         const scanResults: AndroidScanResults = buildScanResultsObject({
             deviceName,
             appIdentifier,
