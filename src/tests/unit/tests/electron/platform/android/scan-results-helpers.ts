@@ -244,13 +244,6 @@ function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarc
         );
     }
 
-    if (elementParameters.contentDescription && elementParameters.contentDescriptionViaSpan) {
-        throw Error("contentDescription can't be both direct and indirect");
-    }
-    if (elementParameters.text && elementParameters.textViaSpan) {
-        throw Error("text can't be both direct and indirect");
-    }
-
     const contentDescription = verifyAndBuildSpannableString(
         'contentDescription',
         elementParameters.contentDescription,
