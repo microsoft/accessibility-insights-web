@@ -35,7 +35,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     shouldShowExportReport: () => false,
     displayableData: {
         title: 'Color',
-        enableMessage: 'Changing color to greyscale...',
+        enableMessage: 'Changing color to grayscale...',
         toggleLabel: 'Show grayscale',
         linkToDetailsViewText: 'How to test color',
     },
@@ -46,7 +46,7 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     getIdentifier: () => colorTestKey,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap => null,
-    getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
+    getDrawer: provider => provider.createSingleTargetDrawer('insights-gray-scale-container'),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
     guidance,
