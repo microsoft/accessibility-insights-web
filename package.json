@@ -94,7 +94,7 @@
         "@types/chrome": "0.0.145",
         "@types/enzyme": "^3.10.9",
         "@types/enzyme-adapter-react-16": "^1.0.6",
-        "@types/jest": "^26.0.23",
+        "@types/jest": "^26.0.24",
         "@types/jsdom": "^16.2.13",
         "@types/lodash": "^4.14.170",
         "@types/luxon": "^1.27.1",
