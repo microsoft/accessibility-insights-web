@@ -159,34 +159,33 @@ export function buildRuleInformation(
     } as RuleInformation;
 }
 
+export interface AtfaElementParameters {
+    accessibilityClassName: string;
+    className: string;
+    boundsInScreen?: any;
+    contentDescription?: string;
+    contentDescriptionViaSpan?: string;
+    text?: string;
+    textViaSpan?: string;
+    metadata?: any;
+}
+
+export interface AtfaResultParameters extends AtfaElementParameters {
+    checkClass: string;
+    type: string;
+}
+
 export function buildAtfaResult(
-    accessibilityClassName: string,
-    id: number,
-    className: string,
-    resultId: number,
-    checkClass: string,
-    type: string,
-    boundsInScreen?: any,
-    contentDescription?: string,
-    text?: string,
-    metadata?: any,
+    resultParameters: AtfaResultParameters,
 ): AccessibilityHierarchyCheckResult {
-    const element: ViewHierarchyElement = buildAtfaElement(
-        accessibilityClassName,
-        id,
-        className,
-        boundsInScreen,
-        contentDescription,
-        text,
-    );
+    const element: ViewHierarchyElement = buildAtfaElement(resultParameters);
 
     const result = {};
     result['AccessibilityHierarchyCheckResult.element'] = element;
-    result['AccessibilityHierarchyCheckResult.resultId'] = resultId;
-    result['AccessibilityCheckResult.checkClass'] = checkClass;
-    result['AccessibilityCheckResult.type'] = type;
-    if (metadata) {
-        result['AccessibilityHierarchyCheckResult.metadata'] = metadata;
+    result['AccessibilityCheckResult.checkClass'] = resultParameters.checkClass;
+    result['AccessibilityCheckResult.type'] = resultParameters.type;
+    if (resultParameters.metadata) {
+        result['AccessibilityHierarchyCheckResult.metadata'] = resultParameters.metadata;
     }
 
     return result as AccessibilityHierarchyCheckResult;
@@ -208,27 +207,60 @@ function buildAtfaSpannableString(rawString: string): SpannableString {
     return s as SpannableString;
 }
 
-function buildAtfaElement(
-    accessibilityClassName: string,
-    id: number,
-    className: string,
-    boundsInScreen?: any,
-    contentDescription?: string,
-    text?: string,
-): ViewHierarchyElement {
-    const e = {};
-    e['ViewHierarchyElement.accessibilityClassName'] = accessibilityClassName;
-    e['ViewHierarchyElement.id'] = id;
-    e['ViewHierarchyElement.className'] = className;
+function buildAtfaSpannableStringViaSpan(textViaSpan: string): SpannableString {
+    const s = {};
+    s['SpannableString.rawString'] = { 'SpannableStringInternal.mText': textViaSpan };
+    return s as SpannableString;
+}
 
-    if (boundsInScreen) {
-        e['ViewHierarchyElement.boundsInScreen'] = buildAtfaRectangle(boundsInScreen);
+function verifyAndBuildSpannableString(
+    fieldName: string,
+    value?: string,
+    valueViaSpan?: string,
+): SpannableString | null {
+    if (value && valueViaSpan) {
+        throw Error(`${fieldName} can't be both direct and indirect!`);
     }
+
+    if (value) {
+        return buildAtfaSpannableString(value);
+    }
+
+    if (valueViaSpan) {
+        return buildAtfaSpannableStringViaSpan(valueViaSpan);
+    }
+
+    return null;
+}
+
+function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarchyElement {
+    const e = {};
+    e['ViewHierarchyElement.accessibilityClassName'] = elementParameters.accessibilityClassName;
+    e['ViewHierarchyElement.className'] = elementParameters.className;
+
+    if (elementParameters.boundsInScreen) {
+        e['ViewHierarchyElement.boundsInScreen'] = buildAtfaRectangle(
+            elementParameters.boundsInScreen,
+        );
+    }
+
+    const contentDescription = verifyAndBuildSpannableString(
+        'contentDescription',
+        elementParameters.contentDescription,
+        elementParameters.contentDescriptionViaSpan,
+    );
     if (contentDescription) {
-        e['ViewHierarchyElement.contentDescription'] = buildAtfaSpannableString(contentDescription);
+        e['ViewHierarchyElement.contentDescription'] = contentDescription;
     }
+
+    const text = verifyAndBuildSpannableString(
+        'text',
+        elementParameters.text,
+        elementParameters.textViaSpan,
+    );
     if (text) {
-        e['ViewHierarchyElement.contentDescription'] = buildAtfaSpannableString(text);
+        e['ViewHierarchyElement.text'] = text;
     }
+
     return e as ViewHierarchyElement;
 }

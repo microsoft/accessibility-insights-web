@@ -20,12 +20,12 @@ export type ScanIncompleteWarningProps = {
 };
 
 export class ScanIncompleteWarning extends React.PureComponent<ScanIncompleteWarningProps> {
-    public render(): JSX.Element {
+    public render() {
         if (!this.shouldShowMessage(this.props)) {
             return null;
         }
 
-        const messages = [];
+        const messages: JSX.Element[] = [];
         forOwn(this.props.warningConfiguration, (render, warningId: ScanIncompleteWarningId) => {
             if (!this.props.warnings.includes(warningId)) {
                 return;

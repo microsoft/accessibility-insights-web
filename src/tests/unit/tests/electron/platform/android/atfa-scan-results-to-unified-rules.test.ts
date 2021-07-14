@@ -106,9 +106,24 @@ describe('AftaScanResultsToUnifiedRules', () => {
 
     test('ScanResults with only unsupported rules', () => {
         const ruleResults: AccessibilityHierarchyCheckResult[] = [
-            buildAtfaResult(accessibilityClassName1, 0, className1, 1, 'unsupported 1', 'ERROR'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 2, 'unsupported 2', 'ERROR'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 3, 'unsupported 3', 'ERROR'),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: 'unsupported 1',
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: 'unsupported 2',
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: 'unsupported 3',
+                type: 'ERROR',
+            }),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
@@ -126,7 +141,12 @@ describe('AftaScanResultsToUnifiedRules', () => {
 
     test('ScanResults with 1 supported rule', () => {
         const ruleResults: AccessibilityHierarchyCheckResult[] = [
-            buildAtfaResult(accessibilityClassName1, 0, className1, 1, ruleId1, 'ERROR'),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId1,
+                type: 'ERROR',
+            }),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
@@ -144,9 +164,24 @@ describe('AftaScanResultsToUnifiedRules', () => {
 
     test('ScanResults with 1 supported rule that repeats', () => {
         const ruleResults: AccessibilityHierarchyCheckResult[] = [
-            buildAtfaResult(accessibilityClassName1, 0, className1, 1, ruleId1, 'ERROR'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 2, ruleId1, 'ERROR'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 3, ruleId1, 'ERROR'),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId1,
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId1,
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId1,
+                type: 'ERROR',
+            }),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
@@ -166,14 +201,54 @@ describe('AftaScanResultsToUnifiedRules', () => {
         const accessibilityClassName2: string = 'accessible name #2';
         const className2: string = 'viewClass2';
         const ruleResults: AccessibilityHierarchyCheckResult[] = [
-            buildAtfaResult(accessibilityClassName1, 0, className1, 1, ruleId1, 'ERROR'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 2, ruleId1, 'WARNING'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 3, ruleId3, 'INFO'),
-            buildAtfaResult(accessibilityClassName1, 0, className1, 4, ruleId3, 'NOT_RUN'),
-            buildAtfaResult(accessibilityClassName2, 0, className2, 5, ruleId2, 'ERROR'),
-            buildAtfaResult(accessibilityClassName2, 0, className2, 6, 'Unknown rule #1', 'ERROR'),
-            buildAtfaResult(accessibilityClassName2, 0, className2, 7, 'Unknown rule #2', 'ERROR'),
-            buildAtfaResult(accessibilityClassName2, 0, className2, 8, 'Unknown rule #2', 'ERROR'),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId1,
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId1,
+                type: 'WARNING',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId3,
+                type: 'INFO',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName1,
+                className: className1,
+                checkClass: ruleId3,
+                type: 'NOT_RUN',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName2,
+                className: className2,
+                checkClass: ruleId2,
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName2,
+                className: className2,
+                checkClass: 'Unknown rule #1',
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName2,
+                className: className2,
+                checkClass: 'Unknown rule #2',
+                type: 'ERROR',
+            }),
+            buildAtfaResult({
+                accessibilityClassName: accessibilityClassName2,
+                className: className2,
+                checkClass: 'Unknown rule #3',
+                type: 'ERROR',
+            }),
         ];
 
         const scanResults: AndroidScanResults = buildScanResultsObject(
