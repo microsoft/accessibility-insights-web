@@ -192,7 +192,7 @@
         "react-router-dom": "^5.2.0",
         "ua-parser-js": "^0.7.28",
         "uuid": "^8.3.2",
-        "webextension-polyfill-ts": "^0.25.0"
+        "webextension-polyfill-ts": "^0.26.0"
     },
     "resolutions": {
         "@types/node": "^14.14.6",
