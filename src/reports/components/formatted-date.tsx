@@ -23,8 +23,7 @@ export class FormattedDate extends React.Component<FormattedDateProps> {
         const localizedUtcDateTime = utcDateTime.setLocale(
             this.props.deps.globalization.languageCode,
         );
-        return localizedUtcDateTime.toLocaleString({
-            ...DateTime.DATETIME_FULL_WITH_SECONDS,
+        return localizedUtcDateTime.toLocaleString(DateTime.DATETIME_FULL_WITH_SECONDS, {
             month: 'numeric',
             timeZoneName: 'short',
         });
