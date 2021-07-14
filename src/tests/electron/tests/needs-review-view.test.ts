@@ -52,7 +52,7 @@ describe('NeedsReviewView', () => {
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
     });
 
-    it('displays needs review results with 5 failing results (results_v2)', async () => {
+    it.only('displays needs review results with 5 failing results (results_v2)', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openNeedsReview();
         const cardsView = resultsViewController.createCardsViewController();
