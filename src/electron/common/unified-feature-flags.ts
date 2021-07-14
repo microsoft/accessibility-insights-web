@@ -47,7 +47,7 @@ export function getAllFeatureFlagDetailsUnified(): FeatureFlagDetail[] {
         },
         {
             id: UnifiedFeatureFlags.atfaResults,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Show ATFA results',
             displayableDescription: 'Show the Accessibility Test Framework for Android results',
             isPreviewFeature: false,
