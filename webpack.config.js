@@ -56,9 +56,6 @@ const scssRule = (useHash = true) => ({
             loader: MiniCssExtractPlugin.loader,
             options: {
                 esModule: true,
-                modules: {
-                    namedExport: true,
-                },
             },
         },
         {
