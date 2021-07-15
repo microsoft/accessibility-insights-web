@@ -202,7 +202,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: e2e-web-tests-${{ matrix.chunk-index }}-results
+        name: e2e-web-tests-${{ strategy.job-index }}-results
         path: test-results/e2e/junit-e2e.xml
       timeout-minutes: 3
 
@@ -210,7 +210,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ failure() }}
       with:
-        name: e2e-web-tests-${{ matrix.chunk-index }}-debug-logs
+        name: e2e-web-tests-${{ strategy.job-index }}-debug-logs
         path: |
           test-results/e2e/chrome-logs
           test-results/e2e/failure-screenshots
@@ -266,7 +266,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: e2e-unified-tests-${{ matrix.chunk-index }}-results
+        name: e2e-unified-tests-${{ strategy.job-index }}-results
         path: test-results/electron
       timeout-minutes: 3
 
