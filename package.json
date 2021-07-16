@@ -169,7 +169,7 @@
     },
     "dependencies": {
         "accessibility-insights-for-android-service-bin": "1.4.0",
-        "ajv": "^8.6.1",
+        "ajv": "^8.6.2",
         "android-device-list": "^1.2.7",
         "appium-adb": "^8.13.1",
         "applicationinsights-js": "^1.0.21",
