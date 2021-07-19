@@ -60,6 +60,10 @@ $outcome-count-border-size: 1.5px;
         font-weight: 700;
         margin-left: -8px;
         height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
+
+        @media screen and (forced-colors: active) {
+            padding-top: 2px;
+        }
     }
     &.outcome-chip-pass {
         @include check-icon-styles($outcome-chip-icon-size, 0px, $outcome-pass-color);
