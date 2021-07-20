@@ -43,10 +43,11 @@ button.kebab-menu-button {
     background: transparent;
 
     svg {
+        stroke: $primary-text;
         @media screen and (forced-colors: active) {
             fill: inherit !important;
+            stroke: ButtonText !important;
         }
-        stroke: $primary-text;
     }
 
     &:hover {

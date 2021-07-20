@@ -26,6 +26,9 @@
 
         svg {
             fill: $secondary-text;
+            @media screen and (forced-colors: active) {
+                stroke: ButtonText !important;
+            }
         }
 
         label {
