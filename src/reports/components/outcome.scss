@@ -63,6 +63,7 @@ $outcome-count-border-size: 1.5px;
 
         @media screen and (forced-colors: active) {
             padding-top: 2px;
+            padding-bottom: 1px;
         }
     }
     &.outcome-chip-pass {
