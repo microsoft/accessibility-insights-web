@@ -45,7 +45,7 @@ button.kebab-menu-button {
     svg {
         stroke: $primary-text;
         @media screen and (forced-colors: active) {
-            fill: inherit !important;
+            fill: ButtonFace !important;
             stroke: ButtonText !important;
         }
     }
