@@ -92,23 +92,6 @@ describe('ResultsView', () => {
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
-    it('ScreenshotView renders expected number/size of highlight boxes in expected positions for v1 results', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
-        await openResultsView();
-
-        await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);
-
-        const boxes = await resultsView.client.$$(ScreenshotViewSelectors.highlightBox);
-        const styles = await Promise.all(boxes.map(async b => await b.getAttribute('style')));
-        const actualHighlightBoxStyles = styles.map(extractPositionStyles);
-        verifyHighlightBoxStyles(actualHighlightBoxStyles, [
-            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
-            { width: 10.7407, height: 6.04167, top: 3.28125, left: 89.2593 },
-            { width: 10.7407, height: 6.04167, top: 10.4167, left: 13.4259 },
-            { width: 48.6111, height: 4.94792, top: 23.5417, left: 25.6481 },
-        ]);
-    });
-
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions for results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openResultsView();

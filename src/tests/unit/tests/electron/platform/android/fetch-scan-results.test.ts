@@ -18,7 +18,7 @@ describe('fetchScanResults', () => {
     let testSubject: ScanResultsFetcher;
 
     const storeDataStub: FeatureFlagStoreData = {
-        [UnifiedFeatureFlags.atfaResults]: false,
+        [UnifiedFeatureFlags.atfaResults]: true,
     };
     const port = 10101;
 
@@ -60,17 +60,9 @@ describe('fetchScanResults', () => {
         await expect(testSubject(port)).rejects.toMatch(reason);
     });
 
-    it.each([
-        ['enabled', true],
-        ['disabled', false],
-    ])('calls expected API when atfaResults feature flag is %s', async (testName, flag) => {
-        storeDataStub[UnifiedFeatureFlags.atfaResults] = flag;
-        const versionNumber = flag ? '_v2' : '';
-
+    it('calls expected API when ', async () => {
         httpGetMock
-            .setup(getter =>
-                getter(`http://localhost:${port}/AccessibilityInsights/result${versionNumber}`),
-            )
+            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result_v2`))
             .returns(() => Promise.resolve({} as AxiosResponse<any>))
             .verifiable(Times.once());
 
