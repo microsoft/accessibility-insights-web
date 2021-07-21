@@ -75,7 +75,7 @@ export class AndroidScanResults {
     }
 
     private getAxeResults(): any {
-        return this.rawData?.AxeResults ?? this.rawData;
+        return this.rawData?.AxeResults;
     }
 
     public get atfaResults(): AccessibilityHierarchyCheckResult[] {
