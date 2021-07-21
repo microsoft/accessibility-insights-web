@@ -60,7 +60,7 @@ describe('fetchScanResults', () => {
         await expect(testSubject(port)).rejects.toMatch(reason);
     });
 
-    it('calls expected API when ', async () => {
+    it('calls expected API', async () => {
         httpGetMock
             .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result_v2`))
             .returns(() => Promise.resolve({} as AxiosResponse<any>))
