@@ -69,29 +69,6 @@ describe('ResultsView', () => {
         await scanForAccessibilityIssuesInAllModes(app);
     });
 
-    it('ScreenshotView renders screenshot image from specified source for v1 results', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
-        await openResultsView();
-
-        const resultExamplePath = path.join(
-            testResourceServerConfig.absolutePath,
-            'AccessibilityInsights/result.json',
-        );
-        const axeRuleResultExample = JSON.parse(
-            fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }),
-        );
-        const expectedScreenshotImage =
-            'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
-
-        await resultsView.waitForSelector(ScreenshotViewSelectors.screenshotImage);
-        const actualScreenshotImage = await resultsView.client.getAttribute(
-            ScreenshotViewSelectors.screenshotImage,
-            'src',
-        );
-
-        expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
-    });
-
     it('ScreenshotView renders screenshot image from specified source for results_v2', async () => {
         app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openResultsView();
