@@ -24,7 +24,6 @@ describe('FeatureFlagsTest', () => {
             [UnifiedFeatureFlags.showAllFeatureFlags]: false,
             [UnifiedFeatureFlags.exportReport]: true,
             [UnifiedFeatureFlags.tabStops]: true,
-            [UnifiedFeatureFlags.atfaResults]: true,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);
