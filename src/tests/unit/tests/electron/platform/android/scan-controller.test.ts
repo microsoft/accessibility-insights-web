@@ -21,9 +21,7 @@ import { ScanController } from 'electron/platform/android/scan-controller';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
-import {
-    scanResultV2Example,
-} from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ScanController', () => {

@@ -9,9 +9,7 @@ import { ConvertScanResultsToPlatformDataDelegate } from 'electron/platform/andr
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'electron/platform/android/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'electron/platform/android/scan-results-to-unified-rules';
 import { createBuilder } from 'electron/platform/android/unified-result-builder';
-import {
-    scanResultV2Example,
-} from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('buildUnifiedScanCompletedPayload', () => {
