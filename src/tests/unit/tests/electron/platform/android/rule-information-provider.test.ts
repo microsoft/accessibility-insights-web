@@ -1,31 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     InstanceResultStatus,
     UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { RuleResultsData } from 'electron/platform/android/android-scan-results';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
-import { IMock, Mock } from 'typemoq';
 
 import { buildAxeRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {
     let provider: RuleInformationProvider;
-    let featureFlagStoreMock: IMock<FeatureFlagStore>;
-
-    const storeDataStub: FeatureFlagStoreData = {
-        [UnifiedFeatureFlags.atfaResults]: false,
-    };
 
     beforeAll(() => {
-        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
-        featureFlagStoreMock.setup(store => store.getState()).returns(() => storeDataStub);
-        provider = new RuleInformationProvider(featureFlagStoreMock.object);
+        provider = new RuleInformationProvider();
     });
 
     function buildTouchSizeWcagRuleResultObject(
@@ -51,25 +40,6 @@ describe('RuleInformationProvider', () => {
         };
 
         return buildAxeRuleResultObject('TouchSizeWcag', status, null, props);
-    }
-
-    function buildColorContrastRuleResultObject(
-        status: string,
-        ratio: number,
-        foreground: string,
-        background: string,
-        confidence: string,
-    ): RuleResultsData {
-        const props = {};
-        // This is based on the output of the Android service
-        if (ratio) {
-            props['Color Contrast Ratio'] = ratio;
-        }
-        props['Foreground Color'] = foreground;
-        props['Background Color'] = background;
-        props['Confidence in Color Detection'] = confidence;
-
-        return buildAxeRuleResultObject('ColorContrast', status, null, props);
     }
 
     test('getRuleInformation returns null for an unknown ruleId', () => {
@@ -108,32 +78,6 @@ describe('RuleInformationProvider', () => {
         return unifiedResolution;
     }
 
-    test('getRuleInformation returns correct data for ColorContrast rule', () => {
-        const testRuleId: string = 'ColorContrast';
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
-            'FAIL',
-            2.798498811425733,
-            'ff979797',
-            'fffafafa',
-            'High',
-        );
-        const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('getRuleInformation handles no foreground/background color values', () => {
-        const testRuleId: string = 'ColorContrast';
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
-            'FAIL',
-            null,
-            null,
-            null,
-            'None',
-        );
-        const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
-        expect(unifiedResolution).toMatchSnapshot();
-    });
-
     test('getRuleInformation returns correct data for TouchSizeWcag rule', () => {
         const testRuleId: string = 'TouchSizeWcag';
         const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject(
@@ -144,42 +88,6 @@ describe('RuleInformationProvider', () => {
         );
         const unifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
         expect(unifiedResolution).toMatchSnapshot();
-    });
-
-    test('ColorContrast getResultStatus returns unknown when confidence is defined and High', () => {
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
-            'FAIL',
-            2.798498811425733,
-            'ff979797',
-            'fffafafa',
-            'High',
-        );
-        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.getResultStatus(ruleResult)).toBe('unknown');
-    });
-
-    test('ColorContrast getResultStatus returns pass when confidence is defined but not High', () => {
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
-            'FAIL',
-            2.798498811425733,
-            'ff979797',
-            'fffafafa',
-            'Medium',
-        );
-        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.getResultStatus(ruleResult)).toBe('pass');
-    });
-
-    test('ColorContrast getResultStatus returns pass when confidence is not defined', () => {
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject(
-            'PASS',
-            null,
-            null,
-            null,
-            null,
-        );
-        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
-        expect(ruleInformation.getResultStatus(ruleResult)).toBe('pass');
     });
 
     test('TouchSizeWcag getResultStatus returns fail', () => {
@@ -260,22 +168,4 @@ describe('RuleInformationProvider', () => {
             expect(ruleInformation.getResultStatus(ruleResult)).toBe(testCase.outcome);
         },
     );
-
-    it.each([
-        ['available when ATFA flag is disabled', false],
-        ['not available when ATFA flag is enabled', true],
-    ])('Axe ColorContrast rule is %s', async (testName, flag) => {
-        const atfaEnabledStore: FeatureFlagStoreData = {
-            [UnifiedFeatureFlags.atfaResults]: flag,
-        };
-        featureFlagStoreMock.setup(store => store.getState()).returns(() => atfaEnabledStore);
-
-        const ruleInfo: RuleInformation | null = provider.getRuleInformation('ColorContrast');
-
-        if (flag) {
-            expect(ruleInfo).toBeFalsy();
-        } else {
-            expect(ruleInfo).toBeTruthy();
-        }
-    });
 });

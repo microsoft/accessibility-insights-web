@@ -1,15 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleInformationProvider getRuleInformation handles no foreground/background color values 1`] = `
-Object {
-  "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
-  "richResolution": Object {
-    "contentId": "android/ColorContrast",
-    "labelType": "check",
-  },
-}
-`;
-
 exports[`RuleInformationProvider getRuleInformation returns correct data for ActiveViewName rule 1`] = `
 Object {
   "howToFixSummary": "The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)",
@@ -35,16 +25,6 @@ Object {
   "howToFixSummary": "Implement the link using URLSpan or Linkify. If you use URLSpan, provide a non-null absolute URL (such as https://example.com/page.html), not a relative URL (such as /page.html).",
   "richResolution": Object {
     "contentId": "android/atfa/ClickableSpanCheck",
-    "labelType": "check",
-  },
-}
-`;
-
-exports[`RuleInformationProvider getRuleInformation returns correct data for ColorContrast rule 1`] = `
-Object {
-  "howToFixSummary": "If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.",
-  "richResolution": Object {
-    "contentId": "android/ColorContrast",
     "labelType": "check",
   },
 }

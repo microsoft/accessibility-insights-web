@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { createApplication } from 'tests/electron/common/create-application';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
@@ -40,38 +39,7 @@ describe('AutomatedChecksView', () => {
         expect(collapsibleContentElements).toHaveLength(0);
     });
 
-    it('supports expanding and collapsing rule groups with results (v1)', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, false);
-        await openResultsAndCardsViews();
-
-        await cardsView.waitForHighlightBoxCount(4);
-        expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
-
-        await cardsView.toggleRuleGroupAtPosition(1);
-        await cardsView.assertExpandedRuleGroup(1, 'ImageViewName', 1);
-
-        await cardsView.toggleRuleGroupAtPosition(2);
-        await cardsView.assertExpandedRuleGroup(2, 'ActiveViewName', 2);
-
-        await cardsView.toggleRuleGroupAtPosition(3);
-        await cardsView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
-
-        await cardsView.waitForHighlightBoxCount(4);
-        expect(await cardsView.queryRuleGroupContents()).toHaveLength(3);
-
-        await cardsView.toggleRuleGroupAtPosition(1);
-        await cardsView.assertCollapsedRuleGroup(1, 'ImageViewName');
-
-        await cardsView.toggleRuleGroupAtPosition(2);
-        await cardsView.assertCollapsedRuleGroup(2, 'ActiveViewName');
-
-        await cardsView.waitForHighlightBoxCount(1);
-        expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
-        await cardsView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
-    });
-
     it('supports expanding and collapsing rule groups with results_v2', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openResultsAndCardsViews();
 
         await cardsView.waitForHighlightBoxCount(3);

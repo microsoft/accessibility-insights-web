@@ -65,7 +65,7 @@ export const createDefaultBuilder = (
         convertAllScanResultsToUnifiedResults,
         convertAllScanResultsToUnifiedRules,
         convertScanResultsToPlatformData,
-        new RuleInformationProvider(featureFlagsStore),
+        new RuleInformationProvider(),
         generateUID,
         getToolData,
         friendlyNameProvider,

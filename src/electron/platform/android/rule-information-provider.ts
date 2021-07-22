@@ -1,13 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import {
     InstanceResultStatus,
     UnifiedResolution,
 } from 'common/types/store-data/unified-data-interface';
 import { link } from 'content/link';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { DictionaryStringTo } from 'types/common-types';
 
 import { RuleResultsData } from './android-scan-results';
@@ -15,24 +12,9 @@ import { RuleInformation } from './rule-information';
 
 export class RuleInformationProvider {
     private supportedRules: DictionaryStringTo<RuleInformation>;
-    private readonly rulesToDisableWithAtfaResults: string[];
     private readonly ruleLinkBaseUrl = 'https://accessibilityinsights.io/info-examples/android';
-    constructor(readonly featureFlagStore: FeatureFlagStore) {
+    constructor() {
         this.supportedRules = {
-            ColorContrast: new RuleInformation(
-                'ColorContrast',
-                `${this.ruleLinkBaseUrl}/color-contrast/`,
-                'Text elements must have sufficient contrast against the background.',
-                [link.WCAG_1_4_3],
-                () => ({
-                    howToFixSummary: `If the text is intended to be invisible, it passes. If the text is intended to be visible, use Accessibility Insights for Windows (or the Colour Contrast Analyzer if you're testing on a Mac) to manually verify that it has sufficient contrast compared to the background. If the background is an image or gradient, test an area where contrast appears to be lowest.`,
-                    richResolution: {
-                        labelType: 'check',
-                        contentId: 'android/ColorContrast',
-                    },
-                }),
-                this.getColorContrastResultStatus,
-            ),
             TouchSizeWcag: new RuleInformation(
                 'TouchSizeWcag',
                 `${this.ruleLinkBaseUrl}/touch-size-wcag/`,
@@ -220,8 +202,6 @@ export class RuleInformationProvider {
                 this.getStandardResultStatus,
             ),
         };
-
-        this.rulesToDisableWithAtfaResults = ['ColorContrast'];
     }
 
     private getTouchSizeUnifiedResolution = (
@@ -247,18 +227,6 @@ export class RuleInformationProvider {
         };
     };
 
-    private getColorContrastResultStatus = (
-        ruleResultsData: RuleResultsData,
-    ): InstanceResultStatus => {
-        if (
-            ruleResultsData.status === 'FAIL' &&
-            ruleResultsData.props['Confidence in Color Detection'] === 'High'
-        )
-            return 'unknown';
-
-        return 'pass';
-    };
-
     private getStandardResultStatus = (ruleResultsData: RuleResultsData): InstanceResultStatus => {
         switch (ruleResultsData.status) {
             case 'ERROR':
@@ -272,22 +240,8 @@ export class RuleInformationProvider {
     };
 
     public getRuleInformation(ruleId: string): RuleInformation | null {
-        if (this.isRuleDisabledByAtfaResultsFeatureFlag(ruleId)) {
-            return null;
-        }
-
         const ruleInfo = this.supportedRules[ruleId];
         return ruleInfo || null;
-    }
-
-    private isRuleDisabledByAtfaResultsFeatureFlag(ruleId: string): boolean {
-        const featureFlagStoreData: FeatureFlagStoreData = this.featureFlagStore.getState();
-
-        if (featureFlagStoreData[UnifiedFeatureFlags.atfaResults]) {
-            return this.rulesToDisableWithAtfaResults.includes(ruleId);
-        }
-
-        return false;
     }
 
     private floorTo3Decimal(num: number): number {
