@@ -70,7 +70,6 @@ describe('ResultsView', () => {
     });
 
     it('ScreenshotView renders screenshot image from specified source for results_v2', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openResultsView();
 
         const resultExamplePath = path.join(
@@ -93,7 +92,6 @@ describe('ResultsView', () => {
     });
 
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions for results_v2', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openResultsView();
 
         await resultsView.waitForSelector(ScreenshotViewSelectors.highlightBox);

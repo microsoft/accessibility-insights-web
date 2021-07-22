@@ -39,7 +39,6 @@ describe('NeedsReviewView', () => {
     });
 
     it('displays needs review results with 5 failing results (results_v2)', async () => {
-        app.setFeatureFlag(UnifiedFeatureFlags.atfaResults, true);
         await openNeedsReview();
         const cardsView = resultsViewController.createCardsViewController();
         await cardsView.waitForRuleGroupCount(1);
