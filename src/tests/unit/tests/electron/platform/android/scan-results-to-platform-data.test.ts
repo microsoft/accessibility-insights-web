@@ -4,9 +4,7 @@ import { PlatformData } from 'common/types/store-data/unified-data-interface';
 import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/android-friendly-device-name-provider';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import { convertScanResultsToPlatformData } from 'electron/platform/android/scan-results-to-platform-data';
-import {
-    scanResultV2Example,
-} from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('convertScanResultsToPlatformData with device name', () => {
@@ -35,13 +33,15 @@ describe('convertScanResultsToPlatformData with device name', () => {
 
     it('populates output from the ScanResults axeDevice properties', () => {
         const input = new AndroidScanResults({
-            axeContext: {
-                axeDevice: {
-                    dpi: 1.2,
-                    name: 'test-device-name',
-                    osVersion: 'test-os-version',
-                    screenHeight: 1,
-                    screenWidth: 2,
+            AxeResults: {
+                axeContext: {
+                    axeDevice: {
+                        dpi: 1.2,
+                        name: 'test-device-name',
+                        osVersion: 'test-os-version',
+                        screenHeight: 1,
+                        screenWidth: 2,
+                    },
                 },
             },
         });
@@ -68,7 +68,7 @@ describe('convertScanResultsToPlatformData with undefined device name', () => {
     const friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>();
 
     it('omits individual axeDevice properties not present in scanResults', () => {
-        const input = new AndroidScanResults({ axeContext: { axeDevice: {} } });
+        const input = new AndroidScanResults({ AxeResults: { axeContext: { axeDevice: {} } } });
         const expectedOutput: PlatformData = {
             osInfo: {
                 name: 'Android',
