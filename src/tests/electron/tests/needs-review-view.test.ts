@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { createApplication } from 'tests/electron/common/create-application';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
 import { scanForAccessibilityIssuesInAllModes } from 'tests/electron/common/scan-for-accessibility-issues';

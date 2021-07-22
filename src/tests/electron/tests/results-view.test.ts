@@ -3,7 +3,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { createApplication } from 'tests/electron/common/create-application';
 import { ResultsViewSelectors } from 'tests/electron/common/element-identifiers/results-view-selectors';
