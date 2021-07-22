@@ -3,6 +3,15 @@
     "version": "0.1.2",
     "description": "Accessibility Insights UI Components",
     "license": "MIT",
+    "files": [
+        "../../LICENSE",
+        "./drop",
+        "README.md"
+    ],
+    "main": "drop/index.js",
+    "scripts": {
+        "build": "grunt build-package-ui"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/Microsoft/accessibility-insights-web"
