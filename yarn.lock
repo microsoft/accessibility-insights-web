@@ -5051,10 +5051,10 @@ electron-chromedriver@^11.0.0:
     "@electron/get" "^1.12.2"
     extract-zip "^2.0.0"
 
-electron-log@^4.3.5:
-  version "4.3.5"
-  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.3.5.tgz#2aad5f93842b9b5214a1b4a10e47b5ac5c9ec104"
-  integrity sha512-J5Ew3axdk7W4jzzxKLSAi1sqbcAoo9CzHuBVsG0tT47j256xKulNrWFf3lZmHJ1KDXOQUcuwOngQF0jjmpEdpw==
+electron-log@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/electron-log/-/electron-log-4.4.0.tgz#0f350004565bb246e58e7b4af0b320c9f7aef3e8"
+  integrity sha512-LOp3elm5mOAAoQmvK8ZOaD75m6DvybWNMkwd8ZtZm23bymbxI///bZ42r/XvqKgmFCnv32/L+fz0mkDE4DMA/g==
 
 electron-publish@22.11.7:
   version "22.11.7"
