@@ -41,8 +41,8 @@ this or not, but in the interest of keeping it easy, we want to lean towards usi
 decisions between the two of them for "directory layout", "which tools run repo-wide vs
 per-package", etc.
 
-## Current (Oct 2020) package layout
+## Current (July 2021) package layout
 
-* `/src/packages/accessibility-insights-ui/root`: current home of future `/packages/ui`
-* `/src/reports/package/root`: current home of future `/packages/report`
+* `/packages/ui`: current home of former `/src/packages/accessibility-insights-ui/root`
+* `/packages/report`: current home of former `/src/reports/package/root`
 * `/package.json`/`/src`: current home of web, unified, and most of the build rules for ui/report

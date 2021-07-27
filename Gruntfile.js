@@ -164,12 +164,6 @@ module.exports = function (grunt) {
                         src: path.join(packageUIBundlePath, 'ui.css'),
                         dest: path.join(packageUIDropPath, 'ui.css'),
                     },
-                    {
-                        cwd: './src/packages/accessibility-insights-ui/root',
-                        src: '*',
-                        dest: packageUIDropPath,
-                        expand: true,
-                    },
                 ],
             },
         },

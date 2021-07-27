@@ -12,41 +12,41 @@ import { buildAxeRuleResultObject, buildViewElement } from './scan-results-helpe
 describe('AndroidScanResults', () => {
     it.each`
         rawDataPath                                                      | rawDataValue                | scanResultProp         | expectedValue
-        ${'rawData.axeContext.axeMetaData.axeVersion'}                   | ${'test-axe-version'}       | ${'axeVersion'}        | ${'test-axe-version'}
         ${'rawData.AxeResults.axeContext.axeMetaData.axeVersion'}        | ${'test-axe-version'}       | ${'axeVersion'}        | ${'test-axe-version'}
-        ${'rawData.axeContext.axeMetaData'}                              | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
+        ${'rawData.AxeResults.axeContext.axeMetaData'}                   | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
         ${'rawData'}                                                     | ${undefined}                | ${'axeVersion'}        | ${'no-version'}
-        ${'rawData.axeContext.axeDevice.name'}                           | ${'test-name'}              | ${'deviceName'}        | ${'test-name'}
         ${'rawData.AxeResults.axeContext.axeDevice.name'}                | ${'test-name'}              | ${'deviceName'}        | ${'test-name'}
-        ${'rawData.axeContext.axeDevice'}                                | ${undefined}                | ${'deviceName'}        | ${null}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'deviceName'}        | ${null}
+        ${'rawData.AxeResults.axeContext.axeDevice'}                     | ${undefined}                | ${'deviceName'}        | ${null}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'deviceName'}        | ${null}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'deviceName'}        | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'deviceName'}        | ${null}
-        ${'rawData.axeContext.axeDevice'}                                | ${getTestDeviceInfo()}      | ${'deviceInfo'}        | ${getTestDeviceInfo()}
         ${'rawData.AxeResults.axeContext.axeDevice'}                     | ${getTestDeviceInfo()}      | ${'deviceInfo'}        | ${getTestDeviceInfo()}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'deviceInfo'}        | ${null}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'deviceInfo'}        | ${null}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'deviceInfo'}        | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'deviceInfo'}        | ${null}
-        ${'rawData.axeContext.axeMetaData.appIdentifier'}                | ${'test-app-identifier'}    | ${'appIdentifier'}     | ${'test-app-identifier'}
         ${'rawData.AxeResults.axeContext.axeMetaData.appIdentifier'}     | ${'test-app-identifier'}    | ${'appIdentifier'}     | ${'test-app-identifier'}
-        ${'rawData.axeContext.axeMetaData'}                              | ${undefined}                | ${'appIdentifier'}     | ${null}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'appIdentifier'}     | ${null}
+        ${'rawData.AxeResults.axeContext.axeMetaData'}                   | ${undefined}                | ${'appIdentifier'}     | ${null}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'appIdentifier'}     | ${null}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'appIdentifier'}     | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'appIdentifier'}     | ${null}
-        ${'rawData.axeRuleResults'}                                      | ${getTestRuleResults()}     | ${'axeRuleResults'}    | ${getTestRuleResults()}
         ${'rawData.AxeResults.axeRuleResults'}                           | ${getTestRuleResults()}     | ${'axeRuleResults'}    | ${getTestRuleResults()}
-        ${'rawData.axeRuleResults'}                                      | ${undefined}                | ${'axeRuleResults'}    | ${[]}
+        ${'rawData.AxeResults.axeRuleResults'}                           | ${undefined}                | ${'axeRuleResults'}    | ${[]}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'axeRuleResults'}    | ${[]}
         ${'rawData'}                                                     | ${undefined}                | ${'axeRuleResults'}    | ${[]}
-        ${'rawData.axeContext.axeView'}                                  | ${getTestViewElementData()} | ${'viewElementTree'}   | ${getTestViewElementData()}
         ${'rawData.AxeResults.axeContext.axeView'}                       | ${getTestViewElementData()} | ${'viewElementTree'}   | ${getTestViewElementData()}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'viewElementTree'}   | ${null}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'viewElementTree'}   | ${null}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'viewElementTree'}   | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'viewElementTree'}   | ${null}
-        ${'rawData.axeContext.screenshot'}                               | ${'test-screenshot-data'}   | ${'screenshot'}        | ${{ base64PngData: 'test-screenshot-data' }}
         ${'rawData.AxeResults.axeContext.screenshot'}                    | ${'test-screenshot-data'}   | ${'screenshot'}        | ${{ base64PngData: 'test-screenshot-data' }}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'screenshot'}        | ${null}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'screenshot'}        | ${null}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'screenshot'}        | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'screenshot'}        | ${null}
-        ${'rawData.axeContext.axeMetaData.analysisTimestamp'}            | ${'test-timestamp'}         | ${'analysisTimestamp'} | ${'test-timestamp'}
         ${'rawData.AxeResults.axeContext.axeMetaData.analysisTimestamp'} | ${'test-timestamp'}         | ${'analysisTimestamp'} | ${'test-timestamp'}
-        ${'rawData.axeContext.axeMetaData'}                              | ${undefined}                | ${'analysisTimestamp'} | ${null}
-        ${'rawData.axeContext'}                                          | ${undefined}                | ${'analysisTimestamp'} | ${null}
+        ${'rawData.AxeResults.axeContext.axeMetaData'}                   | ${undefined}                | ${'analysisTimestamp'} | ${null}
+        ${'rawData.AxeResults.axeContext'}                               | ${undefined}                | ${'analysisTimestamp'} | ${null}
+        ${'rawData.AxeResults'}                                          | ${undefined}                | ${'analysisTimestamp'} | ${null}
         ${'rawData'}                                                     | ${undefined}                | ${'analysisTimestamp'} | ${null}
     `(
         'get ScanResult.$scanResultProp when $rawDataPath = $rawDataValue',

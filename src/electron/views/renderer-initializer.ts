@@ -310,7 +310,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             tabStopsStore,
         ]);
 
-        const fetchScanResults = createScanResultsFetcher(axios.get, featureFlagStore);
+        const fetchScanResults = createScanResultsFetcher(axios.get);
 
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 

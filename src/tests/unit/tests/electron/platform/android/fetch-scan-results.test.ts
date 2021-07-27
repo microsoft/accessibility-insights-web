@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AxiosResponse } from 'axios';
-import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
 import {
     createScanResultsFetcher,
@@ -14,19 +11,13 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('fetchScanResults', () => {
     let httpGetMock: IMock<HttpGet>;
-    let featureFlagStoreMock: IMock<FeatureFlagStore>;
     let testSubject: ScanResultsFetcher;
 
-    const storeDataStub: FeatureFlagStoreData = {
-        [UnifiedFeatureFlags.atfaResults]: false,
-    };
     const port = 10101;
 
     beforeEach(() => {
         httpGetMock = Mock.ofType<HttpGet>();
-        featureFlagStoreMock = Mock.ofType<FeatureFlagStore>();
-        featureFlagStoreMock.setup(store => store.getState()).returns(() => storeDataStub);
-        testSubject = createScanResultsFetcher(httpGetMock.object, featureFlagStoreMock.object);
+        testSubject = createScanResultsFetcher(httpGetMock.object);
     });
 
     it('returns a ScanResults instance', async () => {
@@ -42,7 +33,7 @@ describe('fetchScanResults', () => {
         };
 
         httpGetMock
-            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result`))
+            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result_v2`))
             .returns(() => Promise.resolve({ data } as AxiosResponse<any>));
 
         const result = await testSubject(port);
@@ -54,23 +45,15 @@ describe('fetchScanResults', () => {
         const reason = 'test exception reason';
 
         httpGetMock
-            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result`))
+            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result_v2`))
             .returns(() => Promise.reject(reason));
 
         await expect(testSubject(port)).rejects.toMatch(reason);
     });
 
-    it.each([
-        ['enabled', true],
-        ['disabled', false],
-    ])('calls expected API when atfaResults feature flag is %s', async (testName, flag) => {
-        storeDataStub[UnifiedFeatureFlags.atfaResults] = flag;
-        const versionNumber = flag ? '_v2' : '';
-
+    it('calls expected API', async () => {
         httpGetMock
-            .setup(getter =>
-                getter(`http://localhost:${port}/AccessibilityInsights/result${versionNumber}`),
-            )
+            .setup(getter => getter(`http://localhost:${port}/AccessibilityInsights/result_v2`))
             .returns(() => Promise.resolve({} as AxiosResponse<any>))
             .verifiable(Times.once());
 

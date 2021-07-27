@@ -574,7 +574,6 @@
         "src/fast-pass/**/*",
         "src/icons/**/*",
         "src/issue-filing/common/markup/**/*",
-        "src/packages/accessibility-insights-ui/root/**/*",
         "src/popup/actions/**/*",
         "src/report-export/**/*",
         "src/reports/package/root/**/*",
