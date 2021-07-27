@@ -178,6 +178,12 @@
             font-size: 21px !important;
             font-weight: $fontWeightSemiBold !important;
             letter-spacing: -0.02em !important;
+            svg {
+                @media screen and (forced-colors: active) {
+                    fill: ButtonFace !important;
+                    stroke: ButtonText !important;
+                }
+            }
         }
 
         .insights-dialog-section-title {
