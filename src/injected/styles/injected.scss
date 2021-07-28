@@ -65,14 +65,11 @@
         max-width: 25%;
         user-select: text;
         min-width: 520px;
-        svg {
+        svg path {
             @media screen and (forced-colors: active) {
-                fill: inherit !important;
-            }
-        }
-        path {
-            @media screen and (forced-colors: active) {
-                fill: inherit !important;
+                forced-color-adjust: none !important;
+                stroke: ButtonText !important;
+                fill: ButtonText !important;
             }
         }
     }
@@ -125,7 +122,7 @@
             fill: $neutral-100 !important;
             fill-opacity: 0.9 !important;
 
-            @media screen and (forced-colors) {
+            @media screen and (forced-colors: active) {
                 fill: inherit !important;
             }
         }
@@ -135,7 +132,7 @@
     .insights-dialog-main-override .copy-issue-details-button,
     .insights-dialog-main-override .insights-dialog-button-inspect {
         svg path {
-            @media screen and (forced-colors) {
+            @media screen and (forced-colors: active) {
                 forced-color-adjust: none !important;
                 stroke: ButtonText !important;
                 fill: ButtonFace !important;
@@ -178,12 +175,6 @@
             font-size: 21px !important;
             font-weight: $fontWeightSemiBold !important;
             letter-spacing: -0.02em !important;
-            svg {
-                @media screen and (forced-colors: active) {
-                    fill: ButtonFace !important;
-                    stroke: ButtonText !important;
-                }
-            }
         }
 
         .insights-dialog-section-title {
