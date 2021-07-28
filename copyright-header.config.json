@@ -35,8 +35,8 @@
         "**/bundle",
         "**/drop",
         "**/test-results",
+        "**/yarn.lock",
         "Dockerfile",
-        "yarn.lock",
         ".eslintignore"
     ],
     "licenseFormats": {
