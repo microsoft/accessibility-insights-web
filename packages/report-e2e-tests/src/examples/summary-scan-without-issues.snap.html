@@ -434,6 +434,13 @@
         margin-left: -8px;
         height: 13px;
       }
+      @media screen and (forced-colors: active) {
+        .outcome-chip .count {
+          forced-color-adjust: none;
+          border-color: CanvasText !important;
+          color: CanvasText;
+        }
+      }
       .outcome-chip.outcome-chip-pass .check-container {
         position: relative;
         width: 16px;
