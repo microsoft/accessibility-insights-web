@@ -436,8 +436,9 @@
       }
       @media screen and (forced-colors: active) {
         .outcome-chip .count {
-          padding-top: 2px;
-          padding-bottom: 1px;
+          forced-color-adjust: none;
+          border-color: CanvasText !important;
+          color: CanvasText;
         }
       }
       .outcome-chip.outcome-chip-pass .check-container {

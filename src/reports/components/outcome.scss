@@ -62,8 +62,9 @@ $outcome-count-border-size: 1.5px;
         height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
 
         @media screen and (forced-colors: active) {
-            padding-top: 2px;
-            padding-bottom: 1px;
+            forced-color-adjust: none;
+            border-color: CanvasText !important;
+            color: CanvasText;
         }
     }
     &.outcome-chip-pass {
