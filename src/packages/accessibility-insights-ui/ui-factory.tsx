@@ -4,6 +4,7 @@
 import { CheckIcon } from 'common/icons/check-icon';
 import { CrossIcon } from 'common/icons/cross-icon';
 import { NamedFC } from 'common/react/named-fc';
+import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
 import * as React from 'react';
 import { ContentView, ContentViewDeps } from 'views/content/content-view';
 import { GuidanceTitle } from 'views/content/guidance-title';
@@ -12,11 +13,12 @@ import { createMarkup, MarkupDeps } from 'views/content/markup';
 type UIOptions = {
     applicationTitle: string;
     setPageTitle: boolean;
+    getNarrowModeThresholds: () => NarrowModeThresholds;
 };
 
 const nullCreator = () => {};
 
-export const contentViewFactory = ({ applicationTitle }: UIOptions) => {
+export const contentViewFactory = ({ applicationTitle, getNarrowModeThresholds }: UIOptions) => {
     const contentViewDeps: ContentViewDeps = {
         textContent: {
             applicationTitle,
@@ -26,7 +28,7 @@ export const contentViewFactory = ({ applicationTitle }: UIOptions) => {
         },
         storesHub: null,
         storesActionCreator: null,
-        getNarrowModeThresholds: null,
+        getNarrowModeThresholds,
     };
 
     return NamedFC('ContentView', props => (
