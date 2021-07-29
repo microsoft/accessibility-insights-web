@@ -4,7 +4,7 @@
 import { CheckIcon } from 'common/icons/check-icon';
 import { CrossIcon } from 'common/icons/cross-icon';
 import { NamedFC } from 'common/react/named-fc';
-import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
+import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
 import * as React from 'react';
 import { ContentView, ContentViewDeps } from 'views/content/content-view';
 import { GuidanceTitle } from 'views/content/guidance-title';

@@ -8,6 +8,7 @@ import { initializeFabricIcons } from 'common/fabric-icons';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { RemoteActionMessageDispatcher } from 'common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from 'common/message-creators/store-action-message-creator-factory';
+import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { StoreProxy } from 'common/store-proxy';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { StoreNames } from 'common/stores/store-names';
@@ -26,7 +27,6 @@ import {
 import { defaultDateFormatter } from 'debug-tools/components/telemetry-viewer/telemetry-messages-list';
 import { TelemetryListener } from 'debug-tools/controllers/telemetry-listener';
 import { DebugToolsNavStore } from 'debug-tools/stores/debug-tools-nav-store';
-import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as UAParser from 'ua-parser-js';
