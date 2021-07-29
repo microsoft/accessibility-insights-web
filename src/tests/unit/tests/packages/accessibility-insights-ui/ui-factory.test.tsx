@@ -10,9 +10,14 @@ import { GuidanceTitle } from 'views/content/guidance-title';
 
 describe('UIFactory', () => {
     const applicationTitle = 'THE_APPLICATION_TITLE';
+    const narrowModeThresholds = {
+        collapseHeaderAndNavThreshold: 600,
+        collapseCommandBarThreshold: 960,
+    };
     const options = {
         applicationTitle,
         setPageTitle: true,
+        getNarrowModeThresholds: () => narrowModeThresholds,
     };
     const ui = UIFactory(options);
 
@@ -63,6 +68,7 @@ describe('UIFactory', () => {
             const opts = (markup as any).options;
             expect(opts.applicationTitle).toEqual(applicationTitle);
             expect(opts.setPageTitle).toEqual(true);
+            expect(opts.getNarrowModeThresholds()).toEqual(narrowModeThresholds);
         });
     });
 

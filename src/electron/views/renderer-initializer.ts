@@ -45,6 +45,7 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { getNarrowModeThresholdsForUnified } from 'common/narrow-mode-thresholds';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -58,7 +59,6 @@ import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-acti
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
-import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';

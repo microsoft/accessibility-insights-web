@@ -23,6 +23,7 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
@@ -35,7 +36,6 @@ import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-av
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
-import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';

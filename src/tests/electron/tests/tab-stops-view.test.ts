@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { getNarrowModeThresholdsForUnified } from 'common/narrow-mode-thresholds';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import { createApplication } from 'tests/electron/common/create-application';
