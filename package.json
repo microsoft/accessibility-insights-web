@@ -109,7 +109,7 @@
         "@types/uuid": "^8.3.1",
         "@typescript-eslint/eslint-plugin": "^4.28.5",
         "@typescript-eslint/parser": "^4.28.5",
-        "app-builder-lib": "^22.11.8",
+        "app-builder-lib": "^22.11.11",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
         "commander": "^8.1.0",
