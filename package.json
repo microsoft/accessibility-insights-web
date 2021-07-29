@@ -179,7 +179,7 @@
         "electron": "11.4.5",
         "electron-log": "^4.4.0",
         "electron-updater": "^4.3.9",
-        "idb-keyval": "^5.0.6",
+        "idb-keyval": "^5.1.0",
         "lodash": "^4.17.21",
         "luxon": "^1.27.0",
         "office-ui-fabric-react": "7.98.0",
