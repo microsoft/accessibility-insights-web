@@ -91,7 +91,7 @@
         "@electron/get": "^1.12.4",
         "@swc/core": "^1.2.66",
         "@types/applicationinsights-js": "^1.0.7",
-        "@types/chrome": "0.0.148",
+        "@types/chrome": "0.0.149",
         "@types/enzyme": "^3.10.9",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^26.0.24",
@@ -163,7 +163,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^4.3.5",
         "webdriverio": "^4.13.0",
-        "webpack": "^5.47.0",
+        "webpack": "^5.47.1",
         "webpack-cli": "^4.7.2",
         "webpack-node-externals": "^3.0.0"
     },
