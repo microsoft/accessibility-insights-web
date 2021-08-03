@@ -92,6 +92,19 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
+    it('hasAdbPath returns false when adbLocation is null', async () => {
+        const stateData = { adbLocation: null } as UserConfigurationStoreData;
+        configStoreMock
+            .setup(m => m.getState())
+            .returns(() => stateData)
+            .verifiable(Times.once());
+
+        const success: boolean = await testSubject.hasAdbPath();
+        expect(success).toBe(false);
+
+        verifyAllMocks();
+    });
+
     it('hasAdbPath chains and returns true on success', async () => {
         const success: boolean = await initializeServiceConfig();
         expect(success).toBe(true);
