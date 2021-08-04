@@ -34,5 +34,5 @@ export interface AdbWrapper {
 }
 
 export interface AdbWrapperFactory {
-    createValidatedAdbWrapper(sdkRoot: string): Promise<AdbWrapper>;
+    createValidatedAdbWrapper(sdkRoot: string | null): Promise<AdbWrapper>;
 }
