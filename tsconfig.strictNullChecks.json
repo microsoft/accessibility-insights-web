@@ -292,6 +292,7 @@
         "./src/electron/platform/android/setup/android-setup-deps.ts",
         "./src/electron/platform/android/setup/android-setup-start-listener.ts",
         "./src/electron/platform/android/setup/android-setup-step-id.ts",
+        "./src/electron/platform/android/setup/live-android-setup-deps.ts",
         "./src/electron/platform/android/setup/port-cleaning-service-configurator-factory.ts",
         "./src/electron/platform/android/setup/port-cleaning-service-configurator.ts",
         "./src/electron/platform/android/test-configs/automated-checks/results-filter.ts",
@@ -541,6 +542,7 @@
     "include": [
         "src/DetailsView/actions/**/*",
         "src/Devtools/**/*",
+        "src/ad-hoc-visualizations/calculated-tab-stops/**/*",
         "src/assessments/language/common/**/*",
         "src/background/global-action-creators/registrar/**/*",
         "src/background/injector/**/*",
