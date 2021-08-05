@@ -89,7 +89,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.12.4",
-        "@swc/core": "^1.2.66",
+        "@swc/core": "^1.2.74",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.152",
         "@types/enzyme": "^3.10.9",
@@ -171,7 +171,7 @@
         "accessibility-insights-for-android-service-bin": "1.4.0",
         "ajv": "^8.6.2",
         "android-device-list": "^1.2.7",
-        "appium-adb": "^8.13.1",
+        "appium-adb": "^8.13.2",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "4.2.1",
         "axios": "^0.21.1",
