@@ -4,6 +4,7 @@
         "strictNullChecks": true
     },
     "files": [
+        "././src/tests/end-to-end/common/page-controllers/nested-iframe-target-page.ts",
         "./src/DetailsView/bundled-details-view-styles.ts",
         "./src/DetailsView/components/action-and-cancel-buttons-component.tsx",
         "./src/DetailsView/components/assessment-instance-details-column.tsx",
