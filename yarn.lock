@@ -1983,10 +1983,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.152":
-  version "0.0.152"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.152.tgz#365ab9ed8f6e67af6a2281003e46a5cac6a917fb"
-  integrity sha512-QrdSrlqQW+vFFmYGK8ZsBmH9SpldWc59XwKbwnetRerJ0JvTG6JtafSPL6qQFYSPRSwMK7H1qbeT7HGly87zLw==
+"@types/chrome@0.0.154":
+  version "0.0.154"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.154.tgz#7992e97364f4447e961028ad07ac843d0b052c2d"
+  integrity sha512-6QmP744MeMUZUIUHED4d4L2la5dIF1e6bcrkGF4yGQTyO94ER+r++Ss165wkzA5cAGUYt8kToDa6L9xtNqVMxg==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
