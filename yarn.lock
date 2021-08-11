@@ -2267,10 +2267,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.14.12":
-  version "16.14.12"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.12.tgz#1e38e2114e568f6541f88628a207f72630ee161f"
-  integrity sha512-7nOJgNsRbARhZhvwPm7cnzahtzEi5VJ9OvcQk8ExEEb1t+zaFklwLVkJz7G1kfxX4X/mDa/icTmzE0vTmqsqBg==
+"@types/react@*", "@types/react@^16", "@types/react@^16.14.13":
+  version "16.14.13"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.13.tgz#14f77c75ea581fa632907440dfda23b3c6ab24c9"
+  integrity sha512-KznsRYfqPmbcA5pMxc4mYQ7UgsJa2tAgKE2YwEmY5xKaTVZXLAY/ImBohyQHnEoIjxIJR+Um4FmaEYDr3q3zlg==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
