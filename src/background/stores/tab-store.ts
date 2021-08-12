@@ -54,7 +54,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
     };
 
     private onNewTabCreated = (payload: Tab): void => {
-        if (payload.id !== null && payload.id !== undefined) { 
+        if (payload.id !== null && payload.id !== undefined) {
             this.state.id = payload.id;
         }
         if (payload.title) {
@@ -92,7 +92,7 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
     };
 
     private originsMatch = (url1: string | null, url2: string | null): boolean => {
-        if (url1 === null && url2 === null) {
+        if (url1 == null && url2 == null) {
             return true;
         }
         if (url1 !== null && url2 !== null) {
