@@ -54,15 +54,9 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
     };
 
     private onNewTabCreated = (payload: Tab): void => {
-        if (payload.id !== null && payload.id !== undefined) {
-            this.state.id = payload.id;
-        }
-        if (payload.title) {
-            this.state.title = payload.title;
-        }
-        if (payload.url) {
-            this.state.url = payload.url;
-        }
+        this.state.id = payload.id;
+        this.state.title = payload.title;
+        this.state.url = payload.url;
         this.state.isClosed = false;
         this.state.isChanged = false;
         this.state.isOriginChanged = false;
@@ -91,11 +85,11 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         }
     };
 
-    private originsMatch = (url1: string | null, url2: string | null): boolean => {
+    private originsMatch = (url1: string, url2: string): boolean => {
         if (url1 == null && url2 == null) {
             return true;
         }
-        if (url1 !== null && url2 !== null) {
+        if (url1 != null && url2 != null) {
             return new URL(url1).origin === new URL(url2).origin;
         }
         return false;
