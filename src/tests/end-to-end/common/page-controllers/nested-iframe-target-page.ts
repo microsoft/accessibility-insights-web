@@ -52,7 +52,7 @@ export class NestedIframeTargetPage extends TargetPage {
         if (id === 'grandchild') {
             return this.underlyingPage.mainFrame().childFrames()[0].childFrames()[0];
         }
-        throw 'Error: invalid ID';
+        throw new Error('Error: invalid ID');
     }
 
     private windowMessageRecorders: { [frameId in NestedIframeId]: WindowMessageRecorder };
