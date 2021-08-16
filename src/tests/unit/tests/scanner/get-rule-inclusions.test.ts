@@ -27,7 +27,6 @@ describe('getRuleInclusions', () => {
             },
         });
     });
-
     it('respects explicit overrides and populates reason', () => {
         const overrideReason = 'unit test override';
         const fakeOverrides: DictionaryStringTo<RuleIncluded> = {

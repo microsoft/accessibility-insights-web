@@ -17,7 +17,13 @@ const needsReviewTestKey = AdHocTestkeys.NeedsReview;
 const issuesTestKey = AdHocTestkeys.Issues;
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['aria-input-field-name', 'color-contrast', 'th-has-data-cells', 'link-in-text-block'],
+    rules: [
+        'aria-input-field-name',
+        'color-contrast',
+        'th-has-data-cells',
+        'link-in-text-block',
+        'scrollable-region-focusable',
+    ],
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
         telemetryFactory.forNeedsReviewAnalyzerScan,
