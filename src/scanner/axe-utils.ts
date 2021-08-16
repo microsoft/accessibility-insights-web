@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
-import './axe-extension';
 
 import { DictionaryStringTo } from '../types/common-types';
 
