@@ -72,6 +72,7 @@ describe('SelfFastPass', () => {
                             'color-contrast',
                             'th-has-data-cells',
                             'link-in-text-block',
+                            'scrollable-region-focusable',
                         ],
                     },
                     It.isAny(),
