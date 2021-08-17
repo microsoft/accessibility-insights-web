@@ -185,7 +185,7 @@
         "office-ui-fabric-react": "7.98.0",
         "portfinder": "^1.0.28",
         "react": "^16.14.0",
-        "react-copy-to-clipboard": "^5.0.3",
+        "react-copy-to-clipboard": "^5.0.4",
         "react-dom": "^16.14.0",
         "react-helmet": "^6.1.0",
         "react-resize-detector": "^6.7.6",
