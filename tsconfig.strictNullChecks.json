@@ -472,6 +472,7 @@
         "./src/tests/end-to-end/common/force-test-failure.ts",
         "./src/tests/end-to-end/common/manifest-overide.ts",
         "./src/tests/end-to-end/common/page-controllers/content-page.ts",
+        "./src/tests/end-to-end/common/page-controllers/nested-iframe-target-page.ts",
         "./src/tests/end-to-end/common/page-controllers/page.ts",
         "./src/tests/end-to-end/common/page-controllers/popup-page.ts",
         "./src/tests/end-to-end/common/page-controllers/target-page.ts",
