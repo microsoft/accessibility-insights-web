@@ -301,6 +301,14 @@ export const RichResolutionContent = NamedFC<RichResolutionContentProps>(
                     </div>
                 );
             }
+            case 'web/scrollable-region-focusable': {
+                return (
+                    <span>
+                        Examine the element and ensure that, if there is scrollable content, the
+                        elements are accessible by keyboard.
+                    </span>
+                );
+            }
             default: {
                 throw new Error(
                     `Cannot render RichResolutionContent with unrecognized contentId ${contentId}`,

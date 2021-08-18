@@ -24,6 +24,7 @@ describe('RichResolutionContent', () => {
         'web/color-contrast',
         'web/th-has-data-cells',
         'web/link-in-text-block',
+        'web/scrollable-region-focusable',
         'android/atfa/ClassNameCheck',
         'android/atfa/ClickableSpanCheck',
         'android/atfa/DuplicateClickableBoundsCheck',
