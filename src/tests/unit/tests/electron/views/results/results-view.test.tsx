@@ -48,11 +48,9 @@ describe('ResultsView', () => {
     let getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
     let getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
     let getDateFromTimestampMock: IMock<(timestamp: string) => Date>;
-    let scanPort: number;
     const resultsFilter: ResultsFilter = _ => true;
 
     beforeEach(() => {
-        scanPort = 11111;
         isResultHighlightUnavailableStub = () => null;
         const cardSelectionStoreData = {} as CardSelectionStoreData;
         const resultsHighlightStatus = {
@@ -132,7 +130,6 @@ describe('ResultsView', () => {
             },
             cardSelectionStoreData,
             androidSetupStoreData: {
-                scanPort: scanPort,
                 selectedDevice: {
                     id: 'some-id',
                 },
@@ -215,9 +212,8 @@ describe('ResultsView', () => {
 
     it('triggers scan when first mounted', () => {
         const scanActionCreatorMock = Mock.ofType(ScanActionCreator);
-        scanActionCreatorMock.setup(creator => creator.scan(scanPort)).verifiable(Times.once());
+        scanActionCreatorMock.setup(creator => creator.scan()).verifiable(Times.once());
         props.deps.scanActionCreator = scanActionCreatorMock.object;
-        props.androidSetupStoreData.scanPort = scanPort;
 
         shallow(<ResultsView {...props} />);
 

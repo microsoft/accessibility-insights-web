@@ -9,8 +9,8 @@ export class ScanActionCreator {
         private readonly deviceConnectionActions: DeviceConnectionActions,
     ) {}
 
-    public scan(port: number): void {
+    public scan(): void {
         this.deviceConnectionActions.statusUnknown.invoke();
-        this.scanActions.scanStarted.invoke({ port });
+        this.scanActions.scanStarted.invoke();
     }
 }

@@ -3,19 +3,18 @@
 const path = require('path');
 const { apkVersionName } = require('accessibility-insights-for-android-service-bin');
 const cloneDeep = require('lodash/cloneDeep');
-
-const successfulTestServerContentPath = path.join(
-    __dirname,
-    '../mock-service-for-android/AccessibilityInsights',
-);
+const serviceResponseData = require('./service-response-data');
 
 const devicesCommandMatch = 'devices';
 const serviceInfoCommandMatch =
     'shell dumpsys package com.microsoft.accessibilityinsightsforandroidservice';
 const serviceIsRunningCommandMatch = 'shell dumpsys accessibility';
-const portForwardingCommandMatch = 'forward tcp:';
 const sdkVersionCommandMatch = 'shell getprop ro.build.version.sdk';
 const inputKeyeventCommandMatch = 'shell input keyevent';
+const readContentCommandMatch =
+    'shell content read --uri content://com.microsoft.accessibilityinsightsforandroidservice';
+const callContentCommandMatch =
+    'shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method';
 const resetOverlayPermissionCommandMatch =
     'shell cmd appops reset com.microsoft.accessibilityinsightsforandroidservice';
 const grantOverlayPermissionCommandMatch =
@@ -46,6 +45,34 @@ function addCheckPermissionsCommands(id, output) {
     };
     output[`-s ${id} shell dumpsys media_projection`] = {
         stdout: '(com.microsoft.accessibilityinsightsforandroidservice, uid=12354): TYPE_SCREEN_CAPTURE',
+    };
+}
+
+function addServiceContentCommands(id, output) {
+    output[
+        `-s ${id} shell content read --uri content://com.microsoft.accessibilityinsightsforandroidservice/result`
+    ] = {
+        stdout: serviceResponseData.result,
+    };
+    output[
+        `-s ${id} shell content read --uri content://com.microsoft.accessibilityinsightsforandroidservice/config`
+    ] = {
+        stdout: serviceResponseData.config,
+    };
+    output[
+        `-s ${id} shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Enable`
+    ] = {
+        stdout: '',
+    };
+    output[
+        `-s ${id} shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Disable`
+    ] = {
+        stdout: '',
+    };
+    output[
+        `-s ${id} shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Reset`
+    ] = {
+        stdout: '',
     };
 }
 
@@ -83,18 +110,6 @@ function addInstallServiceCommands(id, output) {
     };
 }
 
-function addPortForwardingCommands(id, output, port) {
-    output[`-s ${id} ${portForwardingCommandMatch}${port} tcp:62442`] = {
-        startTestServer: {
-            port,
-            path: successfulTestServerContentPath,
-        },
-    };
-    output[`-s ${id} forward --remove tcp:${port}`] = {
-        stopTestServer: { port },
-    };
-}
-
 function addInputKeyeventCommands(id, output) {
     // These are the values thr virtual keyboard uses for focus testing.
     // See KevEventCode in src/electron/platform/android/adb-wrapper.ts
@@ -119,7 +134,7 @@ function addGrantOverlayPermissionCommands(id, output) {
     output[`-s ${id} ${grantOverlayPermissionCommandMatch}`] = {};
 }
 
-function workingDeviceCommands(deviceIds, port) {
+function workingDeviceCommands(deviceIds) {
     const output = {
         'start-server': {},
         devices: {
@@ -136,10 +151,10 @@ function workingDeviceCommands(deviceIds, port) {
         addDeviceEnumerationCommands(id, output);
         addDeviceDetailCommands(id, output);
         addDetectServiceCommands(id, output);
+        addServiceContentCommands(id, output);
         addInstallServiceCommands(id, output);
         addCheckPermissionsCommands(id, output);
         addGrantOverlayPermissionCommands(id, output);
-        addPortForwardingCommands(id, output, port);
         addInputKeyeventCommands(id, output);
     }
 
@@ -187,8 +202,12 @@ function simulateServiceLacksPermissions(oldConfig) {
     return cloneWithDisabledPattern(oldConfig, serviceIsRunningCommandMatch);
 }
 
-function simulatePortForwardingError(oldConfig) {
-    return cloneWithDisabledPattern(oldConfig, portForwardingCommandMatch);
+function simulateReadContentError(oldConfig) {
+    return cloneWithDisabledPattern(oldConfig, readContentCommandMatch);
+}
+
+function simulateCallContentError(oldConfig) {
+    return cloneWithDisabledPattern(oldConfig, callContentCommandMatch);
 }
 
 function simulateInputKeyeventError(oldConfig) {
@@ -201,15 +220,13 @@ const emulatorDeviceName = 'emulator-3';
 
 module.exports = {
     commonAdbConfigs: {
-        'single-device': workingDeviceCommands([physicalDeviceName1], 62442),
-        'multiple-devices': workingDeviceCommands(
-            [physicalDeviceName1, physicalDeviceName2, emulatorDeviceName],
-            62442,
-        ),
-        'slow-single-device': delayAllCommands(
-            5000,
-            workingDeviceCommands([physicalDeviceName1], 62442),
-        ),
+        'single-device': workingDeviceCommands([physicalDeviceName1]),
+        'multiple-devices': workingDeviceCommands([
+            physicalDeviceName1,
+            physicalDeviceName2,
+            emulatorDeviceName,
+        ]),
+        'slow-single-device': delayAllCommands(5000, workingDeviceCommands([physicalDeviceName1])),
     },
     delayAllCommands,
     physicalDeviceName1,
@@ -219,6 +236,7 @@ module.exports = {
     simulateServiceInstallationError,
     simulateServiceNotInstalled,
     simulateServiceLacksPermissions,
-    simulatePortForwardingError,
+    simulateCallContentError,
+    simulateReadContentError,
     simulateInputKeyeventError,
 };

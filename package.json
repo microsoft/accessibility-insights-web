@@ -168,7 +168,7 @@
         "webpack-node-externals": "^3.0.0"
     },
     "dependencies": {
-        "accessibility-insights-for-android-service-bin": "1.4.0",
+        "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.6.2",
         "android-device-list": "^1.2.7",
         "appium-adb": "^8.13.2",
@@ -183,7 +183,6 @@
         "lodash": "^4.17.21",
         "luxon": "^2.0.2",
         "office-ui-fabric-react": "7.98.0",
-        "portfinder": "^1.0.28",
         "react": "^16.14.0",
         "react-copy-to-clipboard": "^5.0.4",
         "react-dom": "^16.14.0",

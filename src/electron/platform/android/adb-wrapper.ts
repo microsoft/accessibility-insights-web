@@ -27,10 +27,11 @@ export interface AdbWrapper {
     getDumpsysOutput(deviceId: string, serviceToQuery: string): Promise<string>;
     installService(deviceId: string, apkLocation: string): Promise<void>;
     uninstallService(deviceId: string, packageName: string): Promise<void>;
-    setTcpForwarding(deviceId: string, localPort: number, devicePort: number): Promise<number>;
-    removeTcpForwarding(deviceId: string, devicePort: number): Promise<void>;
     sendKeyEvent(deviceId: string, keyEventCode: KeyEventCode): Promise<void>;
-    grantOverlayPermission: (deviceId: string, packageName: string) => Promise<void>;
+    grantPermission(deviceId: string, packageName: string, permission: string): Promise<void>;
+    hasPermission(deviceId: string, permissionName: string, matchString: string): Promise<boolean>;
+    readContent: (deviceId: string, contentUri: string) => Promise<string>;
+    callContent: (deviceId: string, contentUri: string, method: string) => Promise<void>;
 }
 
 export interface AdbWrapperFactory {
