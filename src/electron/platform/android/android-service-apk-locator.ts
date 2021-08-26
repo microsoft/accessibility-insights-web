@@ -3,6 +3,7 @@
 import * as path from 'path';
 import { apkVersionName } from 'accessibility-insights-for-android-service-bin';
 
+export const AndroidServicePackageName = 'com.microsoft.accessibilityinsightsforandroidservice';
 export type AndroidServiceApkInfo = {
     path: string;
     versionName: string;

@@ -5,16 +5,16 @@ import { AndroidSetupActions } from 'electron/flux/action/android-setup-actions'
 import { AndroidSetupStoreCallbacks } from 'electron/flux/types/android-setup-state-machine-types';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 import { AndroidSetupStepId } from 'electron/platform/android/setup/android-setup-step-id';
-import { configuringPortForwarding } from 'electron/platform/android/setup/steps/configuring-port-forwarding';
 import { detectDevices } from 'electron/platform/android/setup/steps/detect-devices';
 import { detectPermissions } from 'electron/platform/android/setup/steps/detect-permissions';
 import { detectService } from 'electron/platform/android/setup/steps/detect-service';
+import { establishingConnection } from 'electron/platform/android/setup/steps/establishing-connection';
 import { grantOverlayPermission } from 'electron/platform/android/setup/steps/grant-overlay-permission';
 import { installingService } from 'electron/platform/android/setup/steps/installing-service';
 import { promptChooseDevice } from 'electron/platform/android/setup/steps/prompt-choose-device';
-import { promptConfiguringPortForwardingFailed } from 'electron/platform/android/setup/steps/prompt-configuring-port-forwarding-failed';
 import { promptConnectToDevice } from 'electron/platform/android/setup/steps/prompt-connect-to-device';
 import { promptConnectedStartTesting } from 'electron/platform/android/setup/steps/prompt-connected-start-testing';
+import { promptEstablishingConnectionFailed } from 'electron/platform/android/setup/steps/prompt-establishing-connection-failed';
 import { promptGrantPermissions } from 'electron/platform/android/setup/steps/prompt-grant-permissions';
 import { promptInstallService } from 'electron/platform/android/setup/steps/prompt-install-service';
 import { promptLocateAdb } from 'electron/platform/android/setup/steps/prompt-locate-adb';
@@ -53,7 +53,7 @@ export const allAndroidSetupStepConfigs: AndroidSetupStepConfigs = {
     'detect-permissions': detectPermissions,
     'prompt-grant-permissions': promptGrantPermissions,
     'grant-overlay-permission': grantOverlayPermission,
-    'configuring-port-forwarding': configuringPortForwarding,
-    'prompt-configuring-port-forwarding-failed': promptConfiguringPortForwardingFailed,
+    'establish-connection': establishingConnection,
+    'prompt-establishing-connection-failed': promptEstablishingConnectionFailed,
     'prompt-connected-start-testing': promptConnectedStartTesting,
 };

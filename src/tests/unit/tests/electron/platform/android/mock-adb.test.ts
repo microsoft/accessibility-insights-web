@@ -7,7 +7,8 @@ import {
     commonAdbConfigs,
     MockAdbConfig,
     simulateNoDevicesConnected,
-    simulatePortForwardingError,
+    simulateReadContentError,
+    simulateCallContentError,
     simulateServiceInstallationError,
     simulateServiceLacksPermissions,
     simulateServiceNotInstalled,
@@ -75,6 +76,16 @@ describe('mock-adb tests match snapshots after normalizing path', () => {
         expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 
+    it.each(definedConfigs)("simulateReadContentError(commonAdbConfigs['%s'])", config => {
+        const mockAdbConfig = simulateReadContentError(commonAdbConfigs[config]);
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+    });
+
+    it.each(definedConfigs)("simulateCallContentError(commonAdbConfigs['%s'])", config => {
+        const mockAdbConfig = simulateCallContentError(commonAdbConfigs[config]);
+        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
+    });
+
     it.each(definedConfigs)("simulateServiceNotInstalled(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulateServiceNotInstalled(commonAdbConfigs[config]);
         expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
@@ -87,11 +98,6 @@ describe('mock-adb tests match snapshots after normalizing path', () => {
 
     it.each(definedConfigs)("simulateServiceInstallationError(commonAdbConfigs['%s'])", config => {
         const mockAdbConfig = simulateServiceInstallationError(commonAdbConfigs[config]);
-        expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
-    });
-
-    it.each(definedConfigs)("simulatePortForwardingError(commonAdbConfigs['%s'])", config => {
-        const mockAdbConfig = simulatePortForwardingError(commonAdbConfigs[config]);
         expect(standardizeAllPaths(mockAdbConfig)).toMatchSnapshot();
     });
 

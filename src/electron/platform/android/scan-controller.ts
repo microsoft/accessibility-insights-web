@@ -13,7 +13,6 @@ import {
     SCAN_FAILED,
     SCAN_STARTED,
 } from 'electron/common/electron-telemetry-events';
-import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import {
@@ -21,43 +20,41 @@ import {
     AxeRuleResultsData,
 } from 'electron/platform/android/android-scan-results';
 import { AccessibilityHierarchyCheckResult } from 'electron/platform/android/atfa-data-types';
-import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
+import { DeviceCommunicator } from 'electron/platform/android/device-communicator';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
+import { isObject } from 'lodash';
 
 export class ScanController {
     constructor(
         private readonly scanActions: ScanActions,
         private readonly unifiedScanResultAction: UnifiedScanResultActions,
         private readonly deviceConnectionActions: DeviceConnectionActions,
-        private readonly fetchScanResults: ScanResultsFetcher,
         private readonly unifiedResultsBuilder: UnifiedScanCompletedPayloadBuilder,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentDate: () => Date,
         private readonly logger: Logger,
+        private readonly deviceCommunicator: DeviceCommunicator,
     ) {}
 
     public initialize(): void {
         this.scanActions.scanStarted.addListener(this.onScanStarted);
     }
 
-    private onScanStarted = (payload: PortPayload) => {
-        const port = payload.port;
-
+    private onScanStarted = () => {
         this.telemetryEventHandler.publishTelemetry(SCAN_STARTED, {
             telemetry: {
-                port,
                 source: TelemetryEventSource.ElectronDeviceConnect,
             },
         });
 
         const scanStartedTime = this.getCurrentDate().getTime();
 
-        this.fetchScanResults(port)
-            .then(this.scanCompleted.bind(this, scanStartedTime, port))
-            .catch(this.scanFailed.bind(this, scanStartedTime, port));
+        this.fetchScanResults()
+            .then(this.scanCompleted.bind(this, scanStartedTime))
+            .catch(this.scanFailed.bind(this, scanStartedTime));
     };
 
-    private scanCompleted(scanStartedTime: number, port: number, data: AndroidScanResults): void {
+    private scanCompleted(scanStartedTime: number, data: AndroidScanResults): void {
         const scanCompletedTime = this.getCurrentDate().getTime();
 
         const scanDuration = scanCompletedTime - scanStartedTime;
@@ -67,7 +64,6 @@ export class ScanController {
 
         this.telemetryEventHandler.publishTelemetry(SCAN_COMPLETED, {
             telemetry: {
-                port,
                 scanDuration,
                 ...axeInstanceCount,
                 ...atfaInstanceCount,
@@ -118,7 +114,7 @@ export class ScanController {
         );
     }
 
-    private scanFailed(scanStartedTime: number, port: number, error: Error): void {
+    private scanFailed(scanStartedTime: number, error: Error): void {
         this.logger.error('scan failed: ', error);
 
         const scanCompletedTime = this.getCurrentDate().getTime();
@@ -127,7 +123,6 @@ export class ScanController {
 
         this.telemetryEventHandler.publishTelemetry(SCAN_FAILED, {
             telemetry: {
-                port,
                 scanDuration,
             },
         });
@@ -135,4 +130,14 @@ export class ScanController {
         this.scanActions.scanFailed.invoke(null);
         this.deviceConnectionActions.statusDisconnected.invoke(null);
     }
+
+    private fetchScanResults = async (): Promise<AndroidScanResults> => {
+        const results = await this.deviceCommunicator.fetchContent('result');
+        const parsedResults = JSON.parse(results);
+        if (!isObject(parsedResults)) {
+            throw new Error(`parseScanResults: invalid object: ${parsedResults}`);
+        }
+        const scanResults = new AndroidScanResults(parsedResults);
+        return scanResults;
+    };
 }
