@@ -2163,10 +2163,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.172.tgz#aad774c28e7bfd7a67de25408e03ee5a8c3d028a"
   integrity sha512-/BHF5HAx3em7/KkzVKm3LrsD6HZAXuXO1AJZQ3cRRBZj4oHZDviWPYu0aEplAqDFNHZPW6d3G7KN+ONcCCC7pw==
 
-"@types/luxon@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.0.0.tgz#3dd1d8c51b49e34585c5158ba3393e95c51fee89"
-  integrity sha512-L7iL3FitRSeuz8fbeLtql7qU6inHVtwEDWI1+vBXgyp0J2tmxOD7TgMBiEQjII/Y/TPcwrKasXb1BPuiCXRgxg==
+"@types/luxon@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.0.2.tgz#89db62ab8299ed3a703e75eef525d6bdf94349bc"
+  integrity sha512-CUrDlIVYv7TNkdQV8YfT2WGAHyMAwFIT1PXoUcQhX2EFMVL20lxEQHWc73gdJfRtMsI6Vc22HvR7eUN0jkx6+w==
 
 "@types/mime@^1":
   version "1.3.2"
@@ -2990,10 +2990,10 @@ app-builder-lib@^22.13.1:
     semver "^7.3.5"
     temp-file "^3.4.0"
 
-appium-adb@^8.13.2:
-  version "8.13.2"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.13.2.tgz#199f1192d63f296e400b5b918a1645fe3c7b948b"
-  integrity sha512-Zz4Yb9runc3MSVeSE9yRS0B0mrdodnXk9gUBjdsRMySgHtEr5INCh/OVSjJfVl4OQ/RA/YcVDlrR3Cl+K2wmfA==
+appium-adb@^8.14.0:
+  version "8.14.0"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.14.0.tgz#e512b5b277ac3e0ded9c24a717adab6858b9584a"
+  integrity sha512-y8Wass/sLS9eN36YAap5jGwKuAS04ji8YMqKDiHeXnudaDq0h/glDiTWd0ZOPPhBrjLMkkJbZdt311HwKb242A==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
