@@ -2163,10 +2163,10 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.172.tgz#aad774c28e7bfd7a67de25408e03ee5a8c3d028a"
   integrity sha512-/BHF5HAx3em7/KkzVKm3LrsD6HZAXuXO1AJZQ3cRRBZj4oHZDviWPYu0aEplAqDFNHZPW6d3G7KN+ONcCCC7pw==
 
-"@types/luxon@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.0.0.tgz#3dd1d8c51b49e34585c5158ba3393e95c51fee89"
-  integrity sha512-L7iL3FitRSeuz8fbeLtql7qU6inHVtwEDWI1+vBXgyp0J2tmxOD7TgMBiEQjII/Y/TPcwrKasXb1BPuiCXRgxg==
+"@types/luxon@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-2.0.2.tgz#89db62ab8299ed3a703e75eef525d6bdf94349bc"
+  integrity sha512-CUrDlIVYv7TNkdQV8YfT2WGAHyMAwFIT1PXoUcQhX2EFMVL20lxEQHWc73gdJfRtMsI6Vc22HvR7eUN0jkx6+w==
 
 "@types/mime@^1":
   version "1.3.2"
