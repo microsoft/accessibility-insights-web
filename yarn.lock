@@ -4386,10 +4386,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.16.3:
-  version "3.16.3"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.16.3.tgz#884f6f59336a5f080196e82855cdfb9725184c7d"
-  integrity sha512-h2AiKHbsoj0RwI4mQqteOhdYxeKClV8QK0LoB92QDaggKgkQ+PSQyLGu0uV8bhXdyuPKB9VvdcCJa6k7OSlo5w==
+core-js-bundle@^3.16.4:
+  version "3.16.4"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.16.4.tgz#fba653f50ec7262c3447a52b307c916222e0debb"
+  integrity sha512-kUA4ejSo/I7qIu0IRo+aWTEGmNmOmexMtfhy3aLnf9gywkv1Va5wkhfsrBiKViSX/0z5bYnd6gv+r5tGV2dFRQ==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
