@@ -106,7 +106,7 @@ export class NestedIframeTargetPage extends TargetPage {
                     parent: window.parent,
                     child: window.frames[0],
                 }[destRelationshipToSource];
-                destWindow.postMessage(data, '*');
+                destWindow!.postMessage(data, '*');
             },
             { destRelationshipToSource, data },
         );
