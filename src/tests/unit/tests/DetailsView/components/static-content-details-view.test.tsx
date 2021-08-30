@@ -45,7 +45,7 @@ class StaticContentDetailsViewPropsBuilder extends BaseDataBuilder<StaticContent
         super();
 
         this.data = {
-            deps: 'stub-deps' as StaticContentDetailsViewDeps,
+            deps: 'stub-deps' as unknown as StaticContentDetailsViewDeps,
             title: 'my test title',
             visualizationEnabled: true,
             toggleLabel: 'my test toggle label',
