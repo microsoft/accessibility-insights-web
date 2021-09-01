@@ -250,25 +250,28 @@ describe('IssueFilingDialog', () => {
         ['dialog is not open & props have not changed', false, {}],
     ];
 
-    it.each(scenarios)('componentDidUpdate %s', (_, isOpenVal, additionalProperties) => {
-        const testSubject = shallow(<IssueFilingDialog {...props} />);
-        const newProps = {
-            ...props,
-            isOpen: isOpenVal,
-            ...additionalProperties,
-        } as IssueFilingDialogProps;
-        const differentServiceData = {
-            differentProperty: 'different_property',
-        };
+    it.each(scenarios)(
+        'componentDidUpdate %s',
+        (_, isOpenVal: boolean, additionalProperties: Partial<IssueFilingDialogProps>) => {
+            const testSubject = shallow(<IssueFilingDialog {...props} />);
+            const newProps = {
+                ...props,
+                isOpen: isOpenVal,
+                ...additionalProperties,
+            } as IssueFilingDialogProps;
+            const differentServiceData = {
+                differentProperty: 'different_property',
+            };
 
-        isSettingsValidMock
-            .setup(isSettingsValid => isSettingsValid(differentServiceData))
-            .returns(() => true);
-        getSettingsFromStoreDataMock
-            .setup(mock => mock(It.isValue(newProps.issueFilingServicePropertiesMap)))
-            .returns(() => differentServiceData);
+            isSettingsValidMock
+                .setup(isSettingsValid => isSettingsValid(differentServiceData))
+                .returns(() => true);
+            getSettingsFromStoreDataMock
+                .setup(mock => mock(It.isValue(newProps.issueFilingServicePropertiesMap)))
+                .returns(() => differentServiceData);
 
-        testSubject.setProps(newProps);
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
+            testSubject.setProps(newProps);
+            expect(testSubject.getElement()).toMatchSnapshot();
+        },
+    );
 });

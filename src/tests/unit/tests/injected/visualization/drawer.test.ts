@@ -1,19 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getDefaultFeatureFlagsWeb } from 'common/feature-flags';
+import { WindowUtils } from 'common/window-utils';
+import { BoundingRect } from 'injected/bounding-rect';
+import { ClientUtils } from 'injected/client-utils';
+import { DialogRenderer } from 'injected/dialog-renderer';
+import { HtmlElementAxeResults } from 'injected/scanner-utils';
+import { ShadowUtils } from 'injected/shadow-utils';
+import { DrawerInitData } from 'injected/visualization/drawer';
+import { DrawerUtils } from 'injected/visualization/drawer-utils';
+import { DrawerConfiguration, Formatter } from 'injected/visualization/formatter';
+import { HighlightBoxDrawer } from 'injected/visualization/highlight-box-drawer';
+import { NonTextComponentFormatter } from 'injected/visualization/non-text-component-formatter';
+import { TestDocumentCreator } from 'tests/unit/common/test-document-creator';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { IActionN } from 'typemoq/_all';
-import { getDefaultFeatureFlagsWeb } from '../../../../../common/feature-flags';
-import { WindowUtils } from '../../../../../common/window-utils';
-import { ClientUtils } from '../../../../../injected/client-utils';
-import { DialogRenderer } from '../../../../../injected/dialog-renderer';
-import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
-import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { DrawerInitData } from '../../../../../injected/visualization/drawer';
-import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
-import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
-import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
-import { NonTextComponentFormatter } from '../../../../../injected/visualization/non-text-component-formatter';
-import { TestDocumentCreator } from '../../../common/test-document-creator';
 
 describe('Drawer', () => {
     const defaultStyleStub: CSSStyleDeclaration = {
@@ -264,7 +265,7 @@ describe('Drawer', () => {
                 };
             },
         } as any;
-        const boundingRect: ClientRect = {
+        const boundingRect: BoundingRect = {
             left: 0,
             right: 2003,
             width: 2006,
