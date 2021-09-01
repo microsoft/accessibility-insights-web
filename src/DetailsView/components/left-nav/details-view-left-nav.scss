@@ -21,6 +21,10 @@
         }
         .ms-Nav-link {
             height: fit-content;
+            width: unset;
+        }
+        button.ms-Nav-link {
+            width: 100%;
         }
         .overview-label {
             padding-left: 10%;

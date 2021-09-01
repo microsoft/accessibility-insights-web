@@ -9,14 +9,12 @@
 }
 
 .left-nav-link-container {
-    padding-left: 5%;
-    padding-right: 8%;
-    width: 200px;
+    margin-left: 10px;
     color: $primary-text;
     display: flex;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    height: 100%;
+    min-height: 44px;
     align-items: center;
     .link-icon {
         font-size: 24px;
