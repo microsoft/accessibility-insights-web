@@ -3,8 +3,7 @@
 @import '../../../common/styles/common.scss';
 
 #side-nav-container {
-    max-width: 25%;
-    min-width: $detailsViewLeftNavWidth;
+    width: $detailsViewLeftNavWidth;
 }
 
 .left-nav-panel {
