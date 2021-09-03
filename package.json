@@ -157,7 +157,7 @@
         "simple-git": "^2.45.0",
         "source-map-loader": "^3.0.0",
         "spectron": "^13.0.0",
-        "terser-webpack-plugin": "^5.2.0",
+        "terser-webpack-plugin": "^5.2.1",
         "ts-loader": "^9.2.5",
         "typed-scss-modules": "^4.1.1",
         "typemoq": "^2.1.0",
