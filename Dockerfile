@@ -38,4 +38,4 @@ ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" y
 FROM setup AS unified
 RUN yarn build:unified --no-cache
 COPY . .
-ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:unified $@", ""]
+ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:unified --ci $@", ""]

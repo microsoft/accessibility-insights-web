@@ -2,14 +2,12 @@
 // Licensed under the MIT License.
 import * as fs from 'fs';
 import * as util from 'util';
-import { DEFAULT_WAIT_FOR_LOG_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import { tick } from 'tests/unit/common/tick';
 import {
     generateAdbLogPath,
     generateOutputLogsDir,
     generateServerLogPath,
 } from '../../../miscellaneous/mock-adb/generate-log-paths';
-import { Page } from 'playwright';
 
 const readFile = util.promisify(fs.readFile);
 export class LogController {
