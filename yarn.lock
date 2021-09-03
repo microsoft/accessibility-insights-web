@@ -4396,10 +4396,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.17.0:
-  version "3.17.0"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.17.0.tgz#45f80b7a250e86627300e3362535837fbdfee48c"
-  integrity sha512-IeTpOUsnJqEwGVmwBB3eHbs/XOtnbrfZ9z3YOv/ikaAszufbm5jE1WQm4EnFgAiT4AhORgRM+4//BTlYI+450Q==
+core-js-bundle@^3.17.2:
+  version "3.17.2"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.17.2.tgz#5908863edf4b8367bf1ecd4f24f002a061390bb7"
+  integrity sha512-BsxDSFYQ3eX0cTTvDBntROv2YxkD+a612HyTxyCgNMN0jBvKkEWB5r4lBY+oXGhHQ1XgQ25F28OJnlzA/GMGrw==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
@@ -11222,10 +11222,10 @@ sass-loader@^12.1.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.38.2:
-  version "1.38.2"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.38.2.tgz#970045d9966180002a8c8f3820fc114cddb42822"
-  integrity sha512-Bz1fG6qiyF0FX6m/I+VxtdVKz1Dfmg/e9kfDy2PhWOkq3T384q2KxwIfP0fXpeI+EyyETdOauH+cRHQDFASllA==
+sass@^1.39.0:
+  version "1.39.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.39.0.tgz#6c64695d1c437767c8f1a4e471288e831f81d035"
+  integrity sha512-F4o+RhJkNOIG0b6QudYU8c78ZADKZjKDk5cyrf8XTKWfrgbtyVVXImFstJrc+1pkQDCggyidIOytq6gS4gCCZg==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
