@@ -24,8 +24,6 @@ describe('NeedsReviewView', () => {
 
         app = await createApplication({ suppressFirstTimeDialog: true });
         app.client.setViewportSize({ width, height });
-        resultsViewController = await app.openResultsView();
-        await resultsViewController.clickLeftNavItem('needs-review');
     });
 
     afterEach(async () => {
