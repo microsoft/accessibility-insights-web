@@ -7,6 +7,7 @@ export interface AppOptions {
     suppressFirstTimeDialog: boolean;
     env?: {
         ANDROID_HOME?: string;
+        DISPLAY?: any;
     };
 }
 
@@ -14,6 +15,16 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
     const targetApp = `${
         (global as any).rootDir
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
+
+    if (process.env.DISPLAY) {
+        if (!options) {
+            options = { suppressFirstTimeDialog: false, env: {} };
+        }
+        if (!options.env) {
+            options.env = {};
+        }
+        options.env.DISPLAY = process.env.DISPLAY;
+    }
 
     const unifiedOptions = {
         ...options,
@@ -38,7 +49,7 @@ export async function createAppController(
     options?: Partial<AppOptions>,
 ): Promise<AppController> {
     const app = await electron.launch({
-        args: [targetApp],
+        args: ['--enable-logging', '--ignore_gpu_blacklist', '--disable_splash_screen', targetApp],
         env: options.env,
         path: Electron,
         bypassCSP: true,

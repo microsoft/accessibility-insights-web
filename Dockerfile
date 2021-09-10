@@ -36,6 +36,20 @@ COPY . .
 ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:e2e $@", ""]
 
 FROM setup AS unified
+RUN apt-get update && \
+    apt-get install -y xvfb \
+    libgbm1 \
+    libxss1 \
+    libnss3 \
+    libgtk-3-dev \
+    libasound2-dev \
+    unzip \
+    dos2unix \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN yarn build:unified --no-cache
 COPY . .
-ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:unified --ci $@", ""]
+ADD unified-entrypoint.sh /unified-entrypoint.sh
+RUN chmod +x /unified-entrypoint.sh
+RUN dos2unix /unified-entrypoint.sh
+ENTRYPOINT ["/unified-entrypoint.sh"]
