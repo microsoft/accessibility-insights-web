@@ -9489,6 +9489,23 @@ office-ui-fabric-react@7.98.0:
     prop-types "^15.7.2"
     tslib "^1.10.0"
 
+office-ui-fabric-react@7.98.1:
+  version "7.98.1"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.98.1.tgz#687778890cf9ccba47166749211a81d67be1d69f"
+  integrity sha512-Lr8iAIiWcDzKqBnCGk8m62c9fyJ96TzQxvNuCB6V89J5YAFJKXb1GwSKxKJATvP5qSCYF78UpvIPFdsJLiGqKw==
+  dependencies:
+    "@fluentui/react-focus" "^7.1.0"
+    "@microsoft/load-themed-styles" "^1.10.26"
+    "@uifabric/foundation" "^7.5.14"
+    "@uifabric/icons" "^7.3.13"
+    "@uifabric/merge-styles" "^7.8.6"
+    "@uifabric/react-hooks" "^7.0.15"
+    "@uifabric/set-version" "^7.0.5"
+    "@uifabric/styling" "^7.10.14"
+    "@uifabric/utilities" "^7.12.5"
+    prop-types "^15.7.2"
+    tslib "^1.10.0"
+
 omggif@^1.0.10, omggif@^1.0.9:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/omggif/-/omggif-1.0.10.tgz#ddaaf90d4a42f532e9e7cb3a95ecdd47f17c7b19"

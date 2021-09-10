@@ -183,7 +183,7 @@
         "idb-keyval": "^5.0.6",
         "lodash": "^4.17.21",
         "luxon": "^1.27.0",
-        "office-ui-fabric-react": "7.98.0",
+        "office-ui-fabric-react": "7.98.1",
         "portfinder": "^1.0.28",
         "q": "1.5.1",
         "react": "^16.14.0",
