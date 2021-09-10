@@ -96,7 +96,7 @@ describe('AdhocStaticTestView', () => {
         ];
 
         it.each(scenarios)('handles %s', (_, content, guidance) => {
-            props.deps = 'stub-deps' as AdhocStaticTestViewDeps;
+            props.deps = 'stub-deps' as unknown as AdhocStaticTestViewDeps;
             props.tabStoreData = {
                 isChanged: false,
             };

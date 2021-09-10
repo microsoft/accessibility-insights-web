@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BoundingRect } from '../bounding-rect';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { CustomWidgetsFormatter } from './custom-widgets-formatter';
 import { DrawerConfiguration } from './formatter';
@@ -22,7 +23,7 @@ export class NonTextComponentFormatter extends CustomWidgetsFormatter {
         return drawerConfig;
     }
 
-    private getBoundingRectWithPadding = (element: Element) => {
+    private getBoundingRectWithPadding = (element: Element): BoundingRect => {
         const baseBoundingRect = this.getBoundingRect(element);
         return {
             bottom: baseBoundingRect.bottom + NonTextComponentFormatter.PADDING_VALUE,
