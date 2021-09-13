@@ -38,11 +38,10 @@ ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" y
 FROM setup as unified-docker
 RUN yarn build:unified --no-cache
 COPY . .
-
-# since we need our chromium to run in 'headful' mode (for testing chrome extension)
-# we need a fake display (to run headful chromium), which we create by starting a Virtualized X server environment using xvfb-run
-# man page for command: https://manpages.ubuntu.com/manpages/xenial/man1/xvfb-run.1.html
-ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:unified $@", ""]
+ADD unified-entrypoint.sh /unified-entrypoint.sh
+RUN chmod +x /unified-entrypoint.sh
+RUN dos2unix /unified-entrypoint.sh
+ENTRYPOINT ["/unified-entrypoint.sh"]
 
 FROM setup AS unified
 RUN apt-get update && \
