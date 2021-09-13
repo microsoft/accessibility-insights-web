@@ -46,6 +46,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 RUN yarn build:unified --no-cache
 COPY . .
+RUN true
 ADD unified-entrypoint.sh /unified-entrypoint.sh
 RUN chmod +x /unified-entrypoint.sh
 RUN dos2unix /unified-entrypoint.sh
