@@ -36,6 +36,14 @@ COPY . .
 ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" yarn test:e2e $@", ""]
 
 FROM setup as unified-docker
+RUN apt-get update && \
+    apt-get install -y xvfb \
+    libgbm1 \
+    libnss3 \
+    libgtk-3-dev \
+    libasound2-dev \
+    dos2unix \
+    && rm -rf /var/lib/apt/lists/*
 RUN yarn build:unified --no-cache
 COPY . .
 ADD unified-entrypoint.sh /unified-entrypoint.sh
