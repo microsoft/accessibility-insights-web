@@ -6,7 +6,6 @@ import {
     InstanceIdentifierGenerator,
     UniquelyIdentifiableInstances,
 } from 'background/instance-identifier-generator';
-import { RequirementComparer } from 'common/assessment/requirement-comparer';
 import { AssessmentVisualizationConfiguration } from 'common/configs/assessment-visualization-configuration';
 import { Messages } from 'common/messages';
 import { ManualTestStatus } from 'common/types/manual-test-status';
@@ -124,7 +123,6 @@ export class AssessmentBuilder {
     public static Manual(assessment: ManualAssessment): Assessment {
         const { key, requirements } = assessment;
 
-        assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.initialDataCreator =
             assessment.initialDataCreator || createInitialAssessmentTestData;
 
@@ -193,7 +191,6 @@ export class AssessmentBuilder {
 
         return {
             getVisualizationConfiguration: () => visualizationConfiguration,
-            requirementOrder: RequirementComparer.byOrdinal,
             ...assessment,
         } as Assessment;
     }
@@ -201,7 +198,6 @@ export class AssessmentBuilder {
     public static Assisted(assessment: AssistedAssessment): Assessment {
         const { key, requirements } = assessment;
 
-        assessment.requirementOrder = assessment.requirementOrder || RequirementComparer.byOrdinal;
         assessment.initialDataCreator =
             assessment.initialDataCreator || createInitialAssessmentTestData;
 

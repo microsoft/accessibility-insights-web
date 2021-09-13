@@ -64,7 +64,7 @@ yarn watch:build:web
 
 -   Look for the ![Dev Logo](../src/icons/brand/gray/brand-gray-16px.png) extension icon to the right of the address bar
 
--   (Optional) run `yarn react-devtools` to open a standalone React DevTools instance that will automatically connect to any open popup or detailsView pages from a dev build of the extension.
+-   (Optional) run `yarn react-devtools:setup && yarn react-devtools` to open a standalone React DevTools instance that will automatically connect to any open popup or detailsView pages from a dev build of the extension.
 
 ### Testing
 
@@ -159,3 +159,15 @@ To attach VS Code as a debugger to a separate instance of Chrome, make sure you'
 To debug using an external tool, run the `Debug current test file outside VS Code` task. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
 You can start an interactive watch session that automatically runs tests affected by uncommitted changes. To do this, run `Begin Jest watch session` from the command palette.
+
+### Self-FastPass
+
+Accessibility Insights for Web supports running some of its own FastPass checks against itself. To do so, open the F12 browser developer
+tools console from the context of the "DetailsView", "Popup", or "Insights" pages, and run:
+
+-   `window.selfFastPass.automatedChecks()`
+-   `window.selfFastPass.needsReview()`
+
+You can also use `window.selfFastPass.customScan(['axe-rule-id'])` to scan with a specific set of rules. This is mostly used to run
+self-tests of various assessment requirements. For example, to see all the elements our Custom Widgets requirements would pick up,
+you could use `window.selfFastPass.customScan(['custom-widget'])`.

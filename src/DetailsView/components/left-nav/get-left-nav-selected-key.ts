@@ -3,11 +3,11 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { GettingStarted, RequirementName } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { reflowAssessmentTestKeyGenerator } from 'DetailsView/components/left-nav/left-nav-link-builder';
+import { assessmentTestKeyGenerator } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { VisualizationType } from '../../../common/types/visualization-type';
 
 export type GetLeftNavSelectedKeyDeps = {
-    generateReflowAssessmentTestKey: reflowAssessmentTestKeyGenerator;
+    generateAssessmentTestKey: assessmentTestKeyGenerator;
 };
 
 export type GetLeftNavSelectedKeyProps = {
@@ -27,8 +27,5 @@ export function getTestViewKey(props: GetLeftNavSelectedKeyProps): string {
         return VisualizationType[props.visualizationType];
     }
 
-    return props.deps.generateReflowAssessmentTestKey(
-        props.visualizationType,
-        props.selectedSubview,
-    );
+    return props.deps.generateAssessmentTestKey(props.visualizationType, props.selectedSubview);
 }

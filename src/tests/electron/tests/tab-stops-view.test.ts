@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as path from 'path';
-import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
+import { getNarrowModeThresholdsForUnified } from 'common/narrow-mode-thresholds';
 import { UnifiedFeatureFlags } from 'electron/common/unified-feature-flags';
 import { KeyEventCode } from 'electron/platform/android/adb-wrapper';
 import { createApplication } from 'tests/electron/common/create-application';
@@ -40,7 +40,11 @@ describe('TabStopsView', () => {
         tabStopsViewController = new TabStopsViewController(app.client);
         virtualKeyboardViewController = new VirtualKeyboardViewController(app.client);
         resultsViewController = await app.openResultsView();
+        await logController.waitForAdbLogToContain('/result');
+        logController.resetAdbLog();
         await resultsViewController.clickLeftNavItem('tab-stops');
+        await logController.waitForAdbLogToContain('Reset');
+        logController.resetAdbLog();
     });
 
     afterEach(async () => {
@@ -61,8 +65,6 @@ describe('TabStopsView', () => {
         KeyEventCode.Tab,
         KeyEventCode.Enter,
     ])('virtual keyboard sends keyevent %s', async (keyCode: KeyEventCode) => {
-        logController.resetAdbLog();
-
         await virtualKeyboardViewController.clickVirtualKey(keyCode);
         await logController.waitForAdbLogToContain(keyCode.toString());
 
@@ -70,50 +72,44 @@ describe('TabStopsView', () => {
         expect(adbLog).toMatchSnapshot();
     });
 
-    it('toggling show tab stops sends corresponding service commands', async () => {
-        logController.resetServerLog();
+    it('toggling show tab stops sends corresponding adb commands', async () => {
+        await tabStopsViewController.clickToggleTabStops();
+        await logController.waitForAdbLogToContain('Enable');
+        expect(await logController.getAdbLog()).toMatchSnapshot('enable');
+
+        logController.resetAdbLog();
 
         await tabStopsViewController.clickToggleTabStops();
-        await tabStopsViewController.clickToggleTabStops();
-        await logController.waitForServerLogToContain('Disable');
-
-        const serverLog = await logController.getServerLog();
-        expect(serverLog).toMatchSnapshot();
+        await logController.waitForAdbLogToContain('Disable');
+        expect(await logController.getAdbLog()).toMatchSnapshot('disable');
     });
 
-    it('clicking start over sends corresponding service command', async () => {
-        logController.resetServerLog();
-
+    it('clicking start over sends corresponding adb command', async () => {
         await resultsViewController.clickStartOver();
-        await logController.waitForServerLogToContain('Reset');
-
-        const serverLog = await logController.getServerLog();
-        expect(serverLog).toMatchSnapshot();
+        await logController.waitForAdbLogToContain('Reset');
+        const adbLog = await logController.getAdbLog();
+        expect(adbLog).toMatchSnapshot();
     });
 
-    it('leaving tab stops sends reset service command', async () => {
-        logController.resetServerLog();
-
+    it('leaving tab stops sends reset adb command', async () => {
         await resultsViewController.clickLeftNavItem('automated-checks');
-        await logController.waitForServerLogToContain('Reset');
-
-        const serverLog = await logController.getServerLog();
-        expect(serverLog).toMatchSnapshot();
+        await logController.waitForAdbLogToContain('Reset');
+        const adbLog = await logController.getAdbLog();
+        expect(adbLog).toMatchSnapshot();
     });
 
-    it('exiting while tab stops are active sends reset service command', async () => {
-        logController.resetServerLog();
+    it('exiting while tab stops are active sends reset adb command', async () => {
         await tabStopsViewController.clickToggleTabStops();
-        await logController.waitForServerLogToContain('Enable');
-        logController.resetServerLog();
+        await logController.waitForAdbLogToContain('Enable');
+        logController.resetAdbLog();
 
         if (app != null) {
             await app.stop();
         }
 
-        await logController.waitForServerLogToContain('Reset');
-        const serverLog = await logController.getServerLog();
-        expect(serverLog).toMatchSnapshot();
+        await logController.waitForAdbLogToContain('Reset');
+        const adbLog = await logController.getAdbLog();
+        expect(adbLog).toMatchSnapshot();
     });
 
     it('should pass accessibility validation in all contrast modes', async () => {

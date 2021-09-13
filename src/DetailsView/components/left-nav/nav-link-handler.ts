@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    ReflowAssessmentLeftNavLink,
+    AssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -60,7 +60,7 @@ export class NavLinkHandler {
 
     public onTestHeadingClick = (
         event: React.MouseEvent<HTMLElement>,
-        item: ReflowAssessmentLeftNavLink,
+        item: AssessmentLeftNavLink,
     ) => {
         if (item.isExpanded) {
             this.detailsViewActionMessageCreator.collapseTestNav();

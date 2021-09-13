@@ -9,5 +9,6 @@
         "type": "commonjs",
         "noInterop": true
     },
-    "env": {}
+    "env": {},
+    "sourceMaps": "inline"
 }

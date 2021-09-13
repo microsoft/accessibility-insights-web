@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { DocumentManipulator } from 'common/document-manipulator';
 import { Logger } from 'common/logging/logger';
+import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { textContent } from 'content/strings/text-content';
-import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';

@@ -12,7 +12,7 @@ import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 export class AppiumAdbWrapperFactory implements AdbWrapperFactory {
     public constructor(private readonly adbCreator: AppiumAdbCreator) {}
 
-    public createValidatedAdbWrapper = async (sdkRoot: string): Promise<AdbWrapper> => {
+    public createValidatedAdbWrapper = async (sdkRoot: string | null): Promise<AdbWrapper> => {
         const parameters: AppiumAdbCreateParameters = sdkRoot
             ? {
                   sdkRoot,

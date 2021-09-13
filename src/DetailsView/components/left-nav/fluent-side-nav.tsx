@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import classNames from 'classnames';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { GenericPanel } from 'DetailsView/components/generic-panel';
 import {
@@ -66,7 +65,7 @@ export class FluentSideNav extends React.Component<FluentSideNavProps> {
 
         const navPanel = (
             <GenericPanel
-                className={classNames(styles.leftNavPanel, 'reflow-ui')}
+                className={styles.leftNavPanel}
                 isOpen={this.props.isSideNavOpen}
                 isLightDismiss
                 hasCloseButton={false}

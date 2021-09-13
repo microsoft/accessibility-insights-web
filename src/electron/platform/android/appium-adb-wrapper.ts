@@ -69,37 +69,41 @@ export class AppiumAdbWrapper implements AdbWrapper {
         await this.adb.uninstallApk(packageName);
     };
 
-    public setTcpForwarding = async (
-        deviceId: string,
-        localPort: number,
-        devicePort: number,
-    ): Promise<number> => {
-        this.adb.setDeviceId(deviceId);
-        await this.adb.forwardPort(localPort, devicePort);
-        return localPort;
-    };
-
-    public removeTcpForwarding = async (deviceId: string, localPort: number): Promise<void> => {
-        this.adb.setDeviceId(deviceId);
-        await this.adb.removePortForward(localPort);
-    };
-
     public sendKeyEvent = async (deviceId: string, keyEventCode: KeyEventCode): Promise<void> => {
         this.adb.setDeviceId(deviceId);
         await this.adb.shell(['input', 'keyevent', keyEventCode]);
     };
 
-    public grantOverlayPermission = async (
+    public grantPermission = async (
         deviceId: string,
         packageName: string,
+        permission: string,
     ): Promise<void> => {
         this.adb.setDeviceId(deviceId);
         await this.adb.shell(['cmd', 'appops', 'reset', packageName]);
-        await this.adb.shell([
-            'pm',
-            'grant',
-            packageName,
-            'android.permission.SYSTEM_ALERT_WINDOW',
-        ]);
+        await this.adb.shell(['pm', 'grant', packageName, permission]);
+    };
+
+    public hasPermission = async (
+        deviceId: string,
+        permissionName: string,
+        matchString: string,
+    ): Promise<boolean> => {
+        const output: string = await this.getDumpsysOutput(deviceId, permissionName);
+        return output.includes(matchString);
+    };
+
+    public readContent = async (deviceId: string, contentUri: string): Promise<string> => {
+        this.adb.setDeviceId(deviceId);
+        return await this.adb.shell(['content', 'read', '--uri', contentUri]);
+    };
+
+    public callContent = async (
+        deviceId: string,
+        contentUri: string,
+        command: string,
+    ): Promise<void> => {
+        this.adb.setDeviceId(deviceId);
+        await this.adb.shell(['content', 'call', '--uri', contentUri, '--method', command]);
     };
 }

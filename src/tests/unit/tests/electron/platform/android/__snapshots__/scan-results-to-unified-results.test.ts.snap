@@ -1,138 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
-
-exports[`ScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
-
-exports[`ScanResultsToUnifiedResults ScanResults with passes, failures, view IDs, and excluded results 1`] = `
+exports[`ScanResultsToUnifiesRules calls each specified converter in turn and concatenates results 1`] = `
 Array [
   Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
-        "bottom": 800,
-        "left": 10,
-        "right": 600,
-        "top": 0,
-      },
-      "className": "myClass1",
-      "contentDescription": "myDescription1",
-      "text": "myText1",
-    },
-    "identifiers": Object {
-      "conciseName": "myClass1",
-      "identifier": "myClass1",
-    },
-    "resolution": Object {
-      "howToFixSummary": "How to fix My Rule #1",
-    },
-    "ruleId": "My Rule #1",
-    "status": "fail",
-    "uid": "gguid-mock-stub",
+    "placeholder": 0,
   },
   Object {
-    "descriptors": Object {
-      "boundingRectangle": null,
-      "className": "myClass3",
-      "contentDescription": null,
-      "text": null,
-    },
-    "identifiers": Object {
-      "conciseName": "myClass3",
-      "identifier": "myClass3",
-    },
-    "resolution": Object {
-      "howToFixSummary": "How to fix My Rule #2",
-    },
-    "ruleId": "My Rule #2",
-    "status": "fail",
-    "uid": "gguid-mock-stub",
+    "placeholder": 1,
   },
   Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
-        "bottom": 300,
-        "left": 10,
-        "right": 500,
-        "top": 50,
-      },
-      "className": "myClass4",
-      "contentDescription": "myDescription4",
-      "text": "myText4",
-    },
-    "identifiers": Object {
-      "conciseName": "myClass4",
-      "identifier": "myClass4",
-    },
-    "resolution": Object {
-      "howToFixSummary": "How to fix My Rule #2",
-    },
-    "ruleId": "My Rule #2",
-    "status": "pass",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
-        "bottom": 50,
-        "left": 20,
-        "right": 35,
-        "top": 10,
-      },
-      "className": "myClass2",
-      "contentDescription": null,
-      "text": null,
-    },
-    "identifiers": Object {
-      "conciseName": "myClass2",
-      "identifier": "myClass2",
-    },
-    "resolution": Object {
-      "howToFixSummary": "How to fix My Rule #4",
-    },
-    "ruleId": "My Rule #4",
-    "status": "pass",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": Object {
-        "bottom": 50,
-        "left": 20,
-        "right": 35,
-        "top": 10,
-      },
-      "className": "myClass2",
-      "contentDescription": null,
-      "text": null,
-    },
-    "identifiers": Object {
-      "conciseName": "myClass2",
-      "identifier": "myClass2",
-    },
-    "resolution": Object {
-      "howToFixSummary": "How to fix My Rule #3",
-    },
-    "ruleId": "My Rule #3",
-    "status": "pass",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": Object {
-      "boundingRectangle": undefined,
-      "className": undefined,
-      "contentDescription": undefined,
-      "text": undefined,
-    },
-    "identifiers": Object {
-      "conciseName": undefined,
-      "identifier": undefined,
-    },
-    "resolution": Object {
-      "howToFixSummary": "How to fix My Rule #2",
-    },
-    "ruleId": "My Rule #2",
-    "status": "pass",
-    "uid": "gguid-mock-stub",
+    "placeholder": 2,
   },
 ]
 `;

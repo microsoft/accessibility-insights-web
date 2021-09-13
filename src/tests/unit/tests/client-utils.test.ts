@@ -1,13 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BoundingRect } from 'injected/bounding-rect';
+import { BoundRectAccessor, ClientUtils, ScrollAccessor } from 'injected/client-utils';
 import { IMock, Mock } from 'typemoq';
-
-import {
-    BoundRectAccessor,
-    ClientRectOffset,
-    ClientUtils,
-    ScrollAccessor,
-} from '../../../injected/client-utils';
 
 class ScrollAccessorStub implements ScrollAccessor {
     public scrollX: number = 0;
@@ -15,7 +10,7 @@ class ScrollAccessorStub implements ScrollAccessor {
 }
 
 class BoundRectAccessorStub implements BoundRectAccessor {
-    public getBoundingClientRect(): ClientRectOffset {
+    public getBoundingClientRect(): BoundingRect {
         return null;
     }
 }
@@ -47,6 +42,10 @@ describe('ClientUtilsTest', () => {
                 return {
                     top: elementTop,
                     left: elementLeft,
+                    bottom: 0,
+                    right: 0,
+                    width: 0,
+                    height: 0,
                 };
             });
 
@@ -67,7 +66,7 @@ describe('ClientUtilsTest', () => {
         const elementTop = 100;
         const elementLeft = 25;
 
-        const elementRect: ClientRect = {
+        const elementRect: BoundingRect = {
             left: elementLeft,
             top: elementTop,
             bottom: 0,

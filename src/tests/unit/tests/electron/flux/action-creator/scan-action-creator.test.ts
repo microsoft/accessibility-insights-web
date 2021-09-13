@@ -2,16 +2,13 @@
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
-import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 describe('ScanActionCreator', () => {
-    const port = 1111;
-
     let scanActionsMock: IMock<ScanActions>;
-    let scanStartedMock: IMock<Action<PortPayload>>;
+    let scanStartedMock: IMock<Action<void>>;
     let deviceConnectionActionsMock: IMock<DeviceConnectionActions>;
     let statusUnknown: IMock<Action<void>>;
 
@@ -19,7 +16,7 @@ describe('ScanActionCreator', () => {
 
     beforeEach(() => {
         scanActionsMock = Mock.ofType<ScanActions>();
-        scanStartedMock = Mock.ofType<Action<PortPayload>>();
+        scanStartedMock = Mock.ofType<Action<void>>();
 
         scanActionsMock.setup(actions => actions.scanStarted).returns(() => scanStartedMock.object);
 
@@ -37,12 +34,9 @@ describe('ScanActionCreator', () => {
     });
 
     it('scans', () => {
-        testSubject.scan(port);
+        testSubject.scan();
 
-        scanStartedMock.verify(
-            scanStarted => scanStarted.invoke(It.isValue({ port })),
-            Times.once(),
-        );
+        scanStartedMock.verify(scanStarted => scanStarted.invoke(), Times.once());
         statusUnknown.verify(statusUnknown => statusUnknown.invoke(), Times.once());
     });
 });

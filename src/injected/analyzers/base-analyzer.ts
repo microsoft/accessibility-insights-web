@@ -5,7 +5,6 @@ import { Message } from 'common/message';
 import { AxeAnalyzerResult } from 'common/types/axe-analyzer-result';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-import * as Q from 'q';
 
 import { Analyzer, AnalyzerConfiguration, ScanCompletedPayload } from './analyzer';
 
@@ -32,8 +31,8 @@ export class BaseAnalyzer implements Analyzer {
 
     public teardown(): void {}
 
-    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
-        return Q(this.emptyResults);
+    protected getResults = (): Promise<AxeAnalyzerResult> => {
+        return Promise.resolve(this.emptyResults);
     };
 
     protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {

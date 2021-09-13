@@ -5,7 +5,6 @@ import ADB from 'appium-adb';
 import { KeyEventCode, PackageInfo } from 'electron/platform/android/adb-wrapper';
 import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 describe('AppiumAdbWrapper tests', () => {
     let adbMock: IMock<ADB>;
     let testSubject: AppiumAdbWrapper;
@@ -14,11 +13,16 @@ describe('AppiumAdbWrapper tests', () => {
     const emulatorModel: string = 'model1';
     const deviceId: string = 'id2';
     const deviceModel: string = 'model2';
-    const testPackageName: string = 'myCoolPackage';
+    const testPackageName: string = 'my_service';
     const testDumpsysService = 'super_widget';
     const expectedPathToApk: string = './some/path/package.apk';
-    const testLocalPortNumber: number = 123;
-    const testDevicePortNumber: number = 456;
+    const testConfig = {
+        deviceName: 'my device',
+        packageName: 'app.company.com',
+        irrelevantOtherProperty: 'should not appear in output',
+    };
+
+    const testContentUri: string = `content://${testPackageName}`;
 
     beforeEach(() => {
         adbMock = Mock.ofType<ADB>(undefined, MockBehavior.Strict);
@@ -281,55 +285,67 @@ describe('AppiumAdbWrapper tests', () => {
         adbMock.verifyAll();
     });
 
-    it('setTcpForwarding, propagates error', async () => {
-        const expectedMessage: string = 'Thrown duriung setTcpForwarding';
-        adbMock
-            .setup(m => m.setDeviceId(emulatorId))
-            .throws(new Error(expectedMessage))
-            .verifiable(Times.once());
-
-        await expect(
-            testSubject.setTcpForwarding(emulatorId, testLocalPortNumber, testDevicePortNumber),
-        ).rejects.toThrowError(expectedMessage);
-
-        adbMock.verifyAll();
-    });
-
-    it('setTcpForwarding, succeeds', async () => {
+    it('readContent, succeeds', async () => {
+        const testContentType = 'config';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
-            .setup(m => m.forwardPort(testLocalPortNumber, testDevicePortNumber))
+            .setup(m =>
+                m.shell(['content', 'read', '--uri', `${testContentUri}/${testContentType}`]),
+            )
+            .returns(() => testConfig.toString())
             .verifiable(Times.once());
 
-        const output = await testSubject.setTcpForwarding(
+        const config = await testSubject.readContent(
             emulatorId,
-            testLocalPortNumber,
-            testDevicePortNumber,
+            `${testContentUri}/${testContentType}`,
         );
-        expect(output).toBe(testLocalPortNumber);
+
+        expect(config).toBe(testConfig.toString());
 
         adbMock.verifyAll();
     });
 
-    it('removeTcpForwarding, propagates error', async () => {
-        const expectedMessage: string = 'Thrown during removeTcpForwarding';
+    it('readContent, propagates error', async () => {
+        const testContentType = 'config';
+        const expectedErrorMsg: string = 'Thrown during readContent';
         adbMock
             .setup(m => m.setDeviceId(emulatorId))
-            .throws(new Error(expectedMessage))
+            .throws(new Error(expectedErrorMsg))
             .verifiable(Times.once());
 
         await expect(
-            testSubject.removeTcpForwarding(emulatorId, testLocalPortNumber),
-        ).rejects.toThrowError(expectedMessage);
+            testSubject.readContent(emulatorId, `${testPackageName}/${testContentType}`),
+        ).rejects.toThrowError(expectedErrorMsg);
 
         adbMock.verifyAll();
     });
 
-    it('removeTcpForwarding, succeeds', async () => {
+    it('callContent, succeeds', async () => {
+        const testCommand = 'DO_SOMETHING';
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
-        adbMock.setup(m => m.removePortForward(testLocalPortNumber)).verifiable(Times.once());
+        adbMock
+            .setup(m =>
+                m.shell(['content', 'call', '--uri', `${testContentUri}`, '--method', testCommand]),
+            )
+            .returns(() => Promise.resolve())
+            .verifiable(Times.once());
 
-        await testSubject.removeTcpForwarding(emulatorId, testLocalPortNumber);
+        await testSubject.callContent(emulatorId, `${testContentUri}`, testCommand);
+
+        adbMock.verifyAll();
+    });
+
+    it('callContent, propagates error', async () => {
+        const testCommand = 'DO_SOMETHING';
+        const expectedErrorMsg: string = 'Thrown during callContent';
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .throws(new Error(expectedErrorMsg))
+            .verifiable(Times.once());
+
+        await expect(
+            testSubject.callContent(emulatorId, testContentUri, testCommand),
+        ).rejects.toThrowError(expectedErrorMsg);
 
         adbMock.verifyAll();
     });
@@ -371,9 +387,65 @@ describe('AppiumAdbWrapper tests', () => {
         });
     });
 
-    it('grantOverlayPermission, calls expected adb commands', async () => {
+    it('hasPermission, returns true if matchString is in dumpsys output', async () => {
+        const checkPermissionCommand = `dumpsys my_permission`;
+        const permissionIndicator = 'MY_PERMISSION="granted"';
+        const permissionSuccessOutput = `hooray yes ${permissionIndicator}`;
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.exactly(1));
+        adbMock
+            .setup(m => m.shell(checkPermissionCommand.split(/\s+/)))
+            .returns(() => Promise.resolve(permissionSuccessOutput))
+            .verifiable(Times.once());
+
+        const hasPermission = await testSubject.hasPermission(
+            emulatorId,
+            'my_permission',
+            permissionIndicator,
+        );
+        expect(hasPermission).toEqual(true);
+        adbMock.verifyAll();
+    });
+
+    it('hasPermission, returns false if matchString is not in dumpsys output', async () => {
+        const checkPermissionCommand = `dumpsys my_permission`;
+        const permissionIndicator = 'MY_PERMISSION="granted"';
+        const permissionFailOutput = `indicator NOT present!`;
+        adbMock
+            .setup(m => m.setDeviceId(emulatorId))
+            .verifiable(Times.exactly(1), ExpectedCallType.InSequence);
+        adbMock
+            .setup(m => m.shell(checkPermissionCommand.split(/\s+/)))
+            .returns(() => Promise.resolve(permissionFailOutput))
+            .verifiable(Times.once());
+
+        const hasPermission = await testSubject.hasPermission(
+            emulatorId,
+            'my_permission',
+            permissionIndicator,
+        );
+        expect(hasPermission).toEqual(false);
+        adbMock.verifyAll();
+    });
+
+    it('hasPermission, propagates errors from dumpsys output', async () => {
+        const permissionIndicator = 'MY_PERMISSION="granted"';
+        const errorMessage = `error thrown in dumpsys!`;
+        adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.exactly(1));
+        adbMock
+            .setup(m => m.shell(['dumpsys', 'my_permission']))
+            .throws(new Error(errorMessage))
+            .verifiable(Times.once());
+
+        await expect(
+            testSubject.hasPermission(emulatorId, 'my_permission', permissionIndicator),
+        ).rejects.toThrowError(errorMessage);
+        adbMock.verifyAll();
+    });
+
+    it('grantPermission, calls expected adb commands', async () => {
         const resetCommand = `cmd appops reset ${testPackageName}`;
-        const grantCommand = `pm grant ${testPackageName} android.permission.SYSTEM_ALERT_WINDOW`;
+        const testPermission = 'android.permission.SYSTEM_ALERT_WINDOW';
+        const grantCommand = `pm grant ${testPackageName} ${testPermission}`;
 
         adbMock
             .setup(m => m.setDeviceId(emulatorId))
@@ -385,13 +457,13 @@ describe('AppiumAdbWrapper tests', () => {
             .setup(m => m.shell(grantCommand.split(/\s+/)))
             .verifiable(Times.once(), ExpectedCallType.InSequence);
 
-        await testSubject.grantOverlayPermission(emulatorId, testPackageName);
+        await testSubject.grantPermission(emulatorId, testPackageName, testPermission);
 
         adbMock.verifyAll();
     });
 
-    it('grantOverlayPermission, propagates error', async () => {
-        const expectedMessage: string = 'Thrown during grantOverlayPermission';
+    it('grantPermission, propagates error', async () => {
+        const expectedMessage: string = 'Thrown during grantPermission';
 
         adbMock.setup(m => m.setDeviceId(emulatorId)).verifiable(Times.once());
         adbMock
@@ -400,7 +472,7 @@ describe('AppiumAdbWrapper tests', () => {
             .verifiable(Times.once());
 
         await expect(
-            testSubject.grantOverlayPermission(emulatorId, testPackageName),
+            testSubject.grantPermission(emulatorId, testPackageName, 'testPermission'),
         ).rejects.toThrowError(expectedMessage);
 
         adbMock.verifyAll();

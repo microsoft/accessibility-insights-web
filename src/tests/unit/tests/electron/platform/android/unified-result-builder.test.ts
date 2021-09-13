@@ -9,13 +9,13 @@ import { ConvertScanResultsToPlatformDataDelegate } from 'electron/platform/andr
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'electron/platform/android/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'electron/platform/android/scan-results-to-unified-rules';
 import { createBuilder } from 'electron/platform/android/unified-result-builder';
-import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 describe('buildUnifiedScanCompletedPayload', () => {
-    const exampleScanResults = new AndroidScanResults(axeRuleResultExample);
+    const exampleV2ScanResults = new AndroidScanResults(scanResultV2Example);
 
-    it('builds the payload', () => {
+    it('builds the payload (v2)', () => {
         let friendlyNameProviderWasPassed = false;
         const generateUIDMock = Mock.ofType<UUIDGenerator>();
         const friendlyNameProviderMock = Mock.ofType<AndroidFriendlyDeviceNameProvider>(
@@ -28,7 +28,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
         getUnifiedResultsMock
             .setup(converter =>
                 converter(
-                    exampleScanResults,
+                    exampleV2ScanResults,
                     ruleInformationProviderMock.object,
                     generateUIDMock.object,
                 ),
@@ -53,7 +53,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
         getUnifiedRulesMock
             .setup(converter =>
                 converter(
-                    exampleScanResults,
+                    exampleV2ScanResults,
                     ruleInformationProviderMock.object,
                     generateUIDMock.object,
                 ),
@@ -74,7 +74,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
             MockBehavior.Strict,
         );
         getPlatformDataMock
-            .setup(converter => converter(exampleScanResults, It.isAny()))
+            .setup(converter => converter(exampleV2ScanResults, It.isAny()))
             .callback((_, provider) => {
                 expect(provider).toBe(friendlyNameProviderMock.object);
                 friendlyNameProviderWasPassed = true;
@@ -87,7 +87,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
 
         const getToolDataMock = Mock.ofType<ToolDataDelegate>();
         getToolDataMock
-            .setup(getter => getter(exampleScanResults))
+            .setup(getter => getter(exampleV2ScanResults))
             .returns(() => {
                 return {
                     applicationProperties: {
@@ -110,7 +110,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
             getToolDataMock.object,
             friendlyNameProviderMock.object,
         );
-        const result = testSubject(exampleScanResults);
+        const result = testSubject(exampleV2ScanResults);
 
         expect(result).toMatchSnapshot();
         expect(friendlyNameProviderWasPassed).toBe(true);

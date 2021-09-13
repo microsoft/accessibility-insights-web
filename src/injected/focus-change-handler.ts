@@ -10,7 +10,7 @@ import {
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class FocusChangeHandler {
-    private previousFocusedTarget: string[];
+    private previousFocusedTarget: string[] | null;
     constructor(
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
         private scrollingController: ScrollingController,
@@ -22,7 +22,7 @@ export class FocusChangeHandler {
         this.previousFocusedTarget = newTarget;
     };
 
-    private handleFocusChange = (newTarget: string[]) => {
+    private handleFocusChange = (newTarget: string[] | null) => {
         if (
             newTarget == null ||
             (this.previousFocusedTarget != null && newTarget === this.previousFocusedTarget)
@@ -37,14 +37,14 @@ export class FocusChangeHandler {
         this.targetPageActionMessageCreator.scrollRequested();
     };
 
-    private getTarget(storeData: TargetPageStoreData): string[] {
+    private getTarget(storeData: TargetPageStoreData): string[] | null {
         return (
             // We need to check the visualization store data since the assessment UX uses it.
             storeData.visualizationStoreData.focusedTarget || this.getCardResultTarget(storeData)
         );
     }
 
-    private getCardResultTarget(storeData: TargetPageStoreData): string[] {
+    private getCardResultTarget(storeData: TargetPageStoreData): string[] | null {
         if (
             storeData.cardSelectionStoreData.focusedResultUid == null ||
             isEmpty(storeData.unifiedScanResultStoreData.results)

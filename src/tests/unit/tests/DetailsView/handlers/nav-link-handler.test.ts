@@ -5,7 +5,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
 import {
-    ReflowAssessmentLeftNavLink,
+    AssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
@@ -128,7 +128,7 @@ describe('NavLinkHandler', () => {
             const testHeadingLink = {
                 testType: irrelevantVisualizationType,
                 isExpanded: false,
-            } as ReflowAssessmentLeftNavLink;
+            } as AssessmentLeftNavLink;
             detailsViewActionMessageCreatorMock
                 .setup(amc => amc.expandTestNav(testHeadingLink.testType))
                 .verifiable();
@@ -143,7 +143,7 @@ describe('NavLinkHandler', () => {
             const testHeadingLink = {
                 testType: irrelevantVisualizationType,
                 isExpanded: true,
-            } as ReflowAssessmentLeftNavLink;
+            } as AssessmentLeftNavLink;
             detailsViewActionMessageCreatorMock.setup(amc => amc.collapseTestNav()).verifiable();
 
             testSubject.onTestHeadingClick(eventStub, testHeadingLink);

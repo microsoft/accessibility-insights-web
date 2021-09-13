@@ -43,7 +43,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
       resizable={false}
       rows={8}
       styles={[Function]}
-      value={null}
+      value=""
     />
     <div>
       <ActionAndCancelButtonsComponent
@@ -98,7 +98,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
       resizable={false}
       rows={8}
       styles={[Function]}
-      value={null}
+      value=""
     />
     <div>
       <ActionAndCancelButtonsComponent

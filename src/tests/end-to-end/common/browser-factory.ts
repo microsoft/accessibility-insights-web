@@ -29,8 +29,8 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     const browserInstanceId = generateUID();
 
     // only unpacked extension paths are supported
-    const devExtensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
-    const manifestPath = getManifestPath(devExtensionPath);
+    const extensionPath = getExtensionPath();
+    const manifestPath = getManifestPath(extensionPath);
 
     const manifestOveride = await ManifestOveride.fromManifestPath(manifestPath);
     addPermissions(extensionOptions, manifestOveride);
@@ -41,7 +41,7 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     // It would be good to try out using a persistent browser and creating a context per test,
     // rather than creating a browser per test. Doing a 1:1 browser:context mapping for now to
     // simplify the initial migration from Puppeteer to Playwright.
-    const playwrightContext = await launchNewBrowserContext(userDataDir, devExtensionPath);
+    const playwrightContext = await launchNewBrowserContext(userDataDir, extensionPath);
 
     const browser = new Browser(
         browserInstanceId,
@@ -55,6 +55,11 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
     }
 
     return browser;
+}
+
+function getExtensionPath(): string {
+    const target = process.env['WEB_E2E_TARGET'] ?? 'dev';
+    return `${(global as any).rootDir}/drop/extension/${target}/product`;
 }
 
 function getManifestPath(extensionPath: string): string {
@@ -137,9 +142,6 @@ async function launchNewBrowserContext(
             '--no-sandbox',
             // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
             '--noerrdialogs',
-            // Writes a verbose chrome log at ${userDataDir}/chrome_debug.log, useful for debugging page crashes
-            '--enable-logging',
-            '--v=1',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
     });

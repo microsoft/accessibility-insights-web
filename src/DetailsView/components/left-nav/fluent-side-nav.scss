@@ -3,13 +3,12 @@
 @import '../../../common/styles/common.scss';
 
 #side-nav-container {
-    max-width: 25%;
-    min-width: $reflowLeftNavWidth;
+    width: $detailsViewLeftNavWidth;
 }
 
 .left-nav-panel {
     :global(.ms-Panel-main) {
-        width: $reflowLeftNavWidth;
+        width: $detailsViewLeftNavWidth;
     }
     :global(.ms-Panel-content) {
         padding: 0px;

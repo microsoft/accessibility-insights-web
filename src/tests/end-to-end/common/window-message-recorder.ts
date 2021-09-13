@@ -29,6 +29,7 @@ export class WindowMessageRecorder {
                     data: ev.data,
                     // prettier-ignore
                     senderRelationship: (
+                        ev.source == null ? 'unknown' :
                         ev.source === window ? 'self' :
                         ev.source === window.top ? 'top' :
                         ev.source === window.parent ? 'parent' :

@@ -24,6 +24,7 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
     const unifiedOptions = {
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
+            DEBUG_MODE: 'true',
         },
         ...options,
     };

@@ -11,6 +11,9 @@ exports[`RequirementViewTest renders with content from props 1`] = `
           "assessmentViewUpdateHandler": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           },
+          "assessmentsProvider": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          },
         }
       }
       name="test-requirement-name"
@@ -67,7 +70,15 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         }
         requirement={
           Object {
+            "description": <div>
+              test-description
+            </div>,
             "getVisualHelperToggle": [Function],
+            "howToTest": <p>
+              how-to-test-stub
+            </p>,
+            "key": "test-requirement-key",
+            "name": "test-requirement-name",
           }
         }
         selectedRequirementHasVisualHelper={true}
@@ -82,6 +93,14 @@ exports[`RequirementViewTest renders with content from props 1`] = `
         "assessmentViewUpdateHandler": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         },
+        "assessmentsProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        },
+      }
+    }
+    nextRequirement={
+      Object {
+        "key": "other-requirement-key",
       }
     }
   />

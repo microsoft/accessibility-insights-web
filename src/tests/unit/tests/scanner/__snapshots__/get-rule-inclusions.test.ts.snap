@@ -290,7 +290,8 @@ Object {
     "status": "excluded",
   },
   "scrollable-region-focusable": Object {
-    "status": "included",
+    "reason": "only reports to needs-review results due to potential false-positives",
+    "status": "excluded",
   },
   "select-name": Object {
     "status": "included",

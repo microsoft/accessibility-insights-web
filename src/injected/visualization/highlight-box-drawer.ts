@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { WindowUtils } from '../../common/window-utils';
+import { WindowUtils } from 'common/window-utils';
+import { BoundingRect } from '../bounding-rect';
 import { ClientUtils } from '../client-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
@@ -81,7 +82,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
             ) as DrawerConfiguration;
         }
 
-        let elementBoundingClientRect: ClientRect = element.getBoundingClientRect();
+        let elementBoundingClientRect: BoundingRect = element.getBoundingClientRect();
         if (drawerConfig.getBoundingRect) {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }

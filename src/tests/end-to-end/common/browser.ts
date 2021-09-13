@@ -26,6 +26,16 @@ export class Browser {
     }
 
     public async close(): Promise<void> {
+        try {
+            await this.unsafeClose();
+        } catch (e) {
+            console.log('Suppressing failure on browser close: ', e);
+        }
+    }
+
+    // Due to an update in Playwright, closing the browser like below causes transient issues
+    // in the E2E tests; notating this as unsafeClose until that issue is resolved.
+    private async unsafeClose(): Promise<void> {
         if (null == this.underlyingBrowserContext) {
             return;
         }

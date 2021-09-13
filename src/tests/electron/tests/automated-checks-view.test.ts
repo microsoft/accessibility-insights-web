@@ -18,9 +18,6 @@ describe('AutomatedChecksView', () => {
             'beforeEach',
         );
         app = await createApplication({ suppressFirstTimeDialog: true });
-        const resultsView = await app.openResultsView();
-        await resultsView.waitForScreenshotViewVisible();
-        cardsView = resultsView.createCardsViewController();
     });
 
     afterEach(async () => {
@@ -30,44 +27,55 @@ describe('AutomatedChecksView', () => {
     });
 
     it('should use the expected window title', async () => {
+        await openResultsAndCardsViews();
         await app.waitForTitle('Accessibility Insights for Android - Automated checks');
     });
 
     it('displays automated checks results collapsed by default', async () => {
+        await openResultsAndCardsViews();
         await cardsView.waitForRuleGroupCount(3);
 
         const collapsibleContentElements = await cardsView.queryRuleGroupContents();
         expect(collapsibleContentElements).toHaveLength(0);
     });
 
-    it('supports expanding and collapsing rule groups', async () => {
-        await cardsView.waitForHighlightBoxCount(4);
+    it('supports expanding and collapsing rule groups with results_v2', async () => {
+        await openResultsAndCardsViews();
+
+        await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(0);
 
         await cardsView.toggleRuleGroupAtPosition(1);
-        await cardsView.assertExpandedRuleGroup(1, 'ImageViewName', 1);
+        await cardsView.assertExpandedRuleGroup(1, 'EditTextValue', 1);
 
         await cardsView.toggleRuleGroupAtPosition(2);
-        await cardsView.assertExpandedRuleGroup(2, 'ActiveViewName', 2);
+        await cardsView.assertExpandedRuleGroup(2, 'TouchSizeWcag', 1);
 
         await cardsView.toggleRuleGroupAtPosition(3);
-        await cardsView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
+        await cardsView.assertExpandedRuleGroup(3, 'ImageViewName', 1);
 
-        await cardsView.waitForHighlightBoxCount(4);
+        await cardsView.waitForHighlightBoxCount(3);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(3);
 
         await cardsView.toggleRuleGroupAtPosition(1);
-        await cardsView.assertCollapsedRuleGroup(1, 'ImageViewName');
+        await cardsView.assertCollapsedRuleGroup(1, 'EditTextValue');
 
         await cardsView.toggleRuleGroupAtPosition(2);
-        await cardsView.assertCollapsedRuleGroup(2, 'ActiveViewName');
+        await cardsView.assertCollapsedRuleGroup(2, 'TouchSizeWcag');
 
         await cardsView.waitForHighlightBoxCount(1);
         expect(await cardsView.queryRuleGroupContents()).toHaveLength(1);
-        await cardsView.assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
+        await cardsView.assertExpandedRuleGroup(3, 'ImageViewName', 1);
     });
 
-    it('should pass accessibility rvalidation in all contrast modes', async () => {
+    it('should pass accessibility validation in all contrast modes', async () => {
+        await openResultsAndCardsViews();
         await scanForAccessibilityIssuesInAllModes(app);
     });
+
+    async function openResultsAndCardsViews(): Promise<void> {
+        const resultsView = await app.openResultsView();
+        await resultsView.waitForScreenshotViewVisible();
+        cardsView = resultsView.createCardsViewController();
+    }
 });

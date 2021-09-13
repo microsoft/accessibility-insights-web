@@ -1,13 +1,12 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "target": "es2017",
-        "module": "amd",
-        "lib": ["es2017", "dom", "scripthost"],
+        "target": "es2020",
+        "module": "es2020",
+        "lib": ["es2020", "dom", "scripthost"],
         "outDir": "./dist/",
         "rootDir": "./",
         "baseUrl": "./src",
-        "typeRoots": ["node_modules/@types"],
         "strictNullChecks": false,
         "noUnusedLocals": true
     },
