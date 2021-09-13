@@ -4,5 +4,12 @@ steps:
     - script: docker build -t app --target unified-docker .
       displayName: setup docker
 
+    - bash: |
+          export DISPLAY=":99"
+      displayName: export display env variable
+
+    - script: 'Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &'
+      displayName: configure display with xvfb
+
     - script: docker run --network=host -i app --ci
       displayName: run e2e tests on docker
