@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-    - script: 'export DISPLAY=:99'
+    - script: 'export DISPLAY=":99.0"'
       displayName: export display env variable
 
     - script: 'Xvfb :99 -screen 0 1024x768x24 &'
