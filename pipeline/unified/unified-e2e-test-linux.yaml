@@ -4,5 +4,5 @@ steps:
     - script: DOCKER_BUILDKIT=1 docker build -t app --target unified-docker .
       displayName: setup docker
 
-    - script: docker run --network=host -i app sh -c "xvfb-run yarn test:unified --ci",
+    - script: docker run --network=host -i app sh -c "yarn test:unified --ci",
       displayName: run e2e tests on docker
