@@ -5,6 +5,6 @@ steps:
       displayName: build:unified
       timeoutInMinutes: 5
 
-    - script: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci
+    - script: xvfb-run yarn test:unified --ci
       displayName: run electron e2e tests
       timeoutInMinutes: 12
