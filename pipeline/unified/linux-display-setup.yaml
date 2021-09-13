@@ -3,5 +3,6 @@
 steps:
     - script: export DISPLAY=:99
       displayName: export display env variable
+
     - script: Xvfb :99 -screen 0 1024x768x24 &
       displayName: configure display with xvfb
