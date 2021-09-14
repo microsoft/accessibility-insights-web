@@ -6,3 +6,13 @@ steps:
 
     - script: docker run --network=host -i app sh -c "yarn test:unified --ci"
       displayName: run e2e tests on docker
+
+    - bash: |
+          export CONTAINERID=$(docker ps -alq)
+          echo "##vso[task.setvariable variable=CONTAINER_ID]$CONTAINERID"
+      displayName: get container id for docker
+      condition: succeededOrFailed()
+
+    - script: docker cp $(CONTAINER_ID):/app/test-results/ .
+      displayName: copy test results from docker to base agent
+      condition: succeededOrFailed()
