@@ -37,7 +37,7 @@ if (platformInfo.isLinux()) {
 }
 
 const webPreferences =
-    process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true'
+    process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_LINUX_TESTS === 'true'
         ? {
               webgl: true,
               webSecurity: false,

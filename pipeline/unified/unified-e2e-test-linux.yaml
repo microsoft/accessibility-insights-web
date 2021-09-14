@@ -16,3 +16,7 @@ steps:
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       displayName: copy test results from docker to base agent
       condition: succeededOrFailed()
+
+    - script: docker cp $(CONTAINER_ID):/app/drop/.
+      displayName: copy mock adb folder from docker to base agent
+      condition: succeededOrFailed()
