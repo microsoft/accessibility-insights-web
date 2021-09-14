@@ -18,7 +18,6 @@ export class AppController {
 
     public initialize = async () => {
         this.client = await this.app.firstWindow();
-        await this.client.reload();
     };
 
     public async stop(): Promise<void> {

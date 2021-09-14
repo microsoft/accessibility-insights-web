@@ -52,7 +52,7 @@ export async function createAppController(
         args: ['--enable-logging', '--ignore_gpu_blacklist', '--disable_splash_screen', targetApp],
         env: options.env,
         path: Electron,
-        bypassCSP: true,
+        bypassCSP: true, //allow injecting axe despite privacy headers
     });
 
     return new AppController(app);
