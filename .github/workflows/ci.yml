@@ -257,6 +257,14 @@ jobs:
     - run: yarn build:unified
       timeout-minutes: 5
 
+    - run: sudo apt-get install xvfb
+
+    - run: |
+          export DISPLAY=":99"
+
+    - run: |
+        'Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &'
+
     - name: yarn test:unified
       run: |
         xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
