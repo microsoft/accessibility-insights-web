@@ -89,7 +89,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.13.0",
-        "@swc/core": "^1.2.83",
+        "@swc/core": "^1.2.87",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.157",
         "@types/enzyme": "^3.10.9",
@@ -107,7 +107,7 @@
         "@types/serve-static": "^1.13.10",
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^8.3.1",
-        "@typescript-eslint/eslint-plugin": "^4.31.0",
+        "@typescript-eslint/eslint-plugin": "^4.31.1",
         "@typescript-eslint/parser": "^4.31.1",
         "app-builder-lib": "^22.14.1",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
