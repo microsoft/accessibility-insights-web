@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Electron from 'electron';
 import { _electron as electron } from 'playwright';
 import { AppController } from './view-controllers/app-controller';
 export interface AppOptions {
@@ -52,7 +51,6 @@ export async function createAppController(
     const app = await electron.launch({
         args: ['--enable-logging', '--ignore_gpu_blacklist', '--disable_splash_screen', targetApp],
         env: options.env,
-        path: Electron,
         bypassCSP: true, //allow injecting axe despite privacy headers
     });
 
