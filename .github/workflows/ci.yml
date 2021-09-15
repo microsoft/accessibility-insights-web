@@ -226,6 +226,8 @@ jobs:
         test-filename-prefix-pattern:
           - "a" # about half the tests start with "android-setup-"
           - "[^a]"
+    env:
+      DISPLAY: :99
 
     steps:
     - uses: actions/checkout@v2
@@ -261,8 +263,7 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get install -y xvfb libgbm1 libxss1 libnss3 libgtk-3-dev libasound2-dev
-        # start xvfb in the background
-        export DISPLAY=:99
+        # start xvfb on default display (:99 from env)
         sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24 &
 
     - name: yarn test:unified
