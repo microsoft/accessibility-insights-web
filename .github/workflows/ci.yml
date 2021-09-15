@@ -270,7 +270,7 @@ jobs:
     - name: Setup xvfb part 3
       if: runner.os == 'Linux'
       run: |
-        sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24
+        sudo /usr/bin/Xvfb ${{ DISPLAY }} -screen 0 1024x768x24
 
     - name: yarn test:unified
       run: |
