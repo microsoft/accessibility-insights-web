@@ -2129,11 +2129,11 @@
                 continue;
               }
               button.addEventListener("click", function () {
-                var ref4;
+                var ref;
                 const content =
-                  (ref4 = button.parentElement) === null || ref4 === void 0
+                  (ref = button.parentElement) === null || ref === void 0
                     ? void 0
-                    : ref4.nextElementSibling;
+                    : ref.nextElementSibling;
                 if (content == null) {
                   throw Error(
                     `Expected button element's parent to have a next sibling`
