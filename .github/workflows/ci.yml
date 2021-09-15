@@ -267,7 +267,7 @@ jobs:
 
     - name: yarn test:unified
       run: |
-        xvfb-run --server-args="${{ env.DISPLAY }} -screen 0 1024x768x24" yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+        xvfb-run --server-args=":99 -screen 0 1024x768x24" yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
       timeout-minutes: 15
 
     - name: upload artifact e2e-unified-tests-results
