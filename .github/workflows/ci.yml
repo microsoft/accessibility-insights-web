@@ -263,7 +263,8 @@ jobs:
         DISPLAY: :99
       run: |
         sudo apt-get install -y xvfb libgbm1 libxss1 libnss3 libgtk-3-dev libasound2-dev
-        sudo /usr/bin/Xvfb ${{ env.DISPLAY}} -screen 0 1024x768x24 &
+        export DISPLAY=:99
+        sudo /usr/bin/Xvfb ${{ env.DISPLAY }} -screen 0 1024x768x24
 
     - name: yarn test:unified
       run: |
