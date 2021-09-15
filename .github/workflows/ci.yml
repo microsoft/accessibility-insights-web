@@ -264,7 +264,7 @@ jobs:
       run: |
         sudo apt-get install -y xvfb libgbm1 libxss1 libnss3 libgtk-3-dev libasound2-dev
         export DISPLAY=:99
-        xvfb-run --server-args=":99 -screen 0 1024x768x24" 
+        sudo /usr/bin/Xvfb :99 -screen 0 1024x768x24 &
 
     - name: yarn test:unified
       run: |
