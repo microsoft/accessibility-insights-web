@@ -219,15 +219,13 @@ jobs:
   e2e-unified-tests:
     name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1, DISPLAY: :99 }
     strategy:
       fail-fast: false
       matrix:
         test-filename-prefix-pattern:
           - "a" # about half the tests start with "android-setup-"
           - "[^a]"
-    env:
-      DISPLAY: :99
 
     steps:
     - uses: actions/checkout@v2
