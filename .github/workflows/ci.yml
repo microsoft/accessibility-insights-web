@@ -264,6 +264,12 @@ jobs:
         export DISPLAY=:99
         sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24
 
+    - name: Setup xvfb part 2
+      if: runner.os == 'Linux'
+      run: |
+        export DISPLAY=:99
+        sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24
+
     - name: yarn test:unified
       run: |
         yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
