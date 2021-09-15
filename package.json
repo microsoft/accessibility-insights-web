@@ -150,7 +150,7 @@
         "preprocess": "^3.2.0",
         "prettier": "^2.3.2",
         "regenerator-runtime": "^0.13.9",
-        "sass": "^1.39.2",
+        "sass": "^1.41.0",
         "sass-loader": "^12.1.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
