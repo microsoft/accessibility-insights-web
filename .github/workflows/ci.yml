@@ -219,7 +219,9 @@ jobs:
   e2e-unified-tests:
     name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1, DISPLAY: :99 }
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      DISPLAY: :99
     strategy:
       fail-fast: false
       matrix:
