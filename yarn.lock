@@ -6936,12 +6936,12 @@ icss-utils@^5.0.0, icss-utils@^5.1.0:
   resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-5.1.0.tgz#c6be6858abd013d768e98366ae47e25d5887b1ae"
   integrity sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==
 
-idb-keyval@^5.1.3:
-  version "5.1.3"
-  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-5.1.3.tgz#6ef5dff371897c23f144322dc6374eadd6a345d9"
-  integrity sha512-N9HbCK/FaXSRVI+k6Xq4QgWxbcZRUv+SfG1y7HJ28JdV8yEJu6k+C/YLea7npGckX2DQJeEVuMc4bKOBeU/2LQ==
+idb-keyval@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-6.0.1.tgz#f05e5fb67fee20cc51cc394425c44f1fcb3bccc2"
+  integrity sha512-P31GNg/TpD/HOpmeS2rV92+8Tdg/P3foF6zyTb/Tiujx1AQzoYNh3vTgU1gEf5CohYsrf0hnrtjRVT/eq8P0Xw==
   dependencies:
-    safari-14-idb-fix "^1.0.4"
+    safari-14-idb-fix "^2.0.2"
 
 identity-obj-proxy@^3.0.0:
   version "3.0.0"
@@ -11184,10 +11184,10 @@ rxjs@^6.6.0:
   dependencies:
     tslib "^1.9.0"
 
-safari-14-idb-fix@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/safari-14-idb-fix/-/safari-14-idb-fix-1.0.4.tgz#5c68ba63e2a8ae0d89a0aa1e13fe89e3aef7da19"
-  integrity sha512-4+Y2baQdgJpzu84d0QjySl70Kyygzf0pepVg8NVg4NnQEPpfC91fAn0baNvtStlCjUUxxiu0BOMiafa98fRRuA==
+safari-14-idb-fix@^2.0.2:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/safari-14-idb-fix/-/safari-14-idb-fix-2.0.3.tgz#d6ea1b8f1b74b3b4f30913ae971e2de8eb4ca900"
+  integrity sha512-0GTmL1Vfg9bt2BQTdM2Xxhbi5QOwl9QEGk8s1oHJw8Lyr+cpGw1/kpS7rhsyWQIV4ils0WvjRTzYRuJtMAAhtg==
 
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
