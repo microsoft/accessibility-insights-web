@@ -89,7 +89,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.13.0",
-        "@swc/core": "^1.2.83",
+        "@swc/core": "^1.2.87",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.157",
         "@types/enzyme": "^3.10.9",
@@ -98,7 +98,7 @@
         "@types/jsdom": "^16.2.13",
         "@types/lodash": "^4.14.172",
         "@types/luxon": "^2.0.4",
-        "@types/node": "^14.17.15",
+        "@types/node": "^14.17.16",
         "@types/react": "^16.14.15",
         "@types/react-copy-to-clipboard": "^5.0.1",
         "@types/react-dom": "^16.9.14",
@@ -169,7 +169,7 @@
     },
     "dependencies": {
         "accessibility-insights-for-android-service-bin": "2.0.0",
-        "ajv": "^8.6.2",
+        "ajv": "^8.6.3",
         "android-device-list": "^1.2.7",
         "appium-adb": "^8.14.0",
         "applicationinsights-js": "^1.0.21",
