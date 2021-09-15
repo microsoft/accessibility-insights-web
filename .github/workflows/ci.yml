@@ -261,8 +261,6 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get install -y xvfb libgbm1 libxss1 libnss3 libgtk-3-dev libasound2-dev
-        export DISPLAY=:99
-        sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24
 
     - name: Setup xvfb part 2
       if: runner.os == 'Linux'
