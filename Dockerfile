@@ -5,7 +5,7 @@
 # reference: https://stackoverflow.com/a/51683309/3711475
 # reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-in-docker
 
-FROM mcr.microsoft.com/playwright:v1.14.0-focal AS setup
+FROM mcr.microsoft.com/playwright:v1.14.1-focal AS setup
 
 USER root
 
@@ -28,7 +28,6 @@ COPY . /app
 
 FROM setup AS web
 RUN yarn build:dev --no-cache
-COPY . .
 
 # since we need our chromium to run in 'headful' mode (for testing chrome extension)
 # we need a fake display (to run headful chromium), which we create by starting a Virtualized X server environment using xvfb-run
@@ -45,7 +44,6 @@ RUN apt-get update && \
     dos2unix \
     && rm -rf /var/lib/apt/lists/*
 RUN yarn build:unified --no-cache
-COPY . .
 ADD unified-entrypoint.sh /unified-entrypoint.sh
 RUN chmod +x /unified-entrypoint.sh
 RUN dos2unix /unified-entrypoint.sh
@@ -64,7 +62,6 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 RUN yarn build:unified --no-cache
-COPY . .
 ADD unified-entrypoint.sh /unified-entrypoint.sh
 RUN chmod +x /unified-entrypoint.sh
 RUN dos2unix /unified-entrypoint.sh
