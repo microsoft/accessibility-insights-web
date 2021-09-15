@@ -53,7 +53,6 @@ export async function createAppController(
         env: options.env,
         bypassCSP: true, //allow injecting axe despite privacy headers
     });
-    console.log('app is  ' + app);
 
     return new AppController(app);
 }
