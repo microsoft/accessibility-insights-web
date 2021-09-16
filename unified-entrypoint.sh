@@ -8,8 +8,6 @@ sleep 2
 export DISPLAY=:99
 Xvfb $DISPLAY -screen 0 1024x768x24
 
-export DEBUG=pw:api
-
 echo "Executing command $@"
 
 exec "$@"

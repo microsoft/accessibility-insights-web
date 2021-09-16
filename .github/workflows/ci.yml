@@ -222,7 +222,6 @@ jobs:
     env:
       PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
       DISPLAY: :99
-      DEBUG: pw:api
     strategy:
       fail-fast: false
       matrix:
