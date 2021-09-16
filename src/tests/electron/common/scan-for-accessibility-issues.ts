@@ -53,10 +53,12 @@ async function injectAxeIfUndefined(client: Page): Promise<void> {
         path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
     );
 
-    let axeIsUndefined = false;
+    let axeIsUndefined = await client.evaluate(() => {
+        return (window as any).axe === undefined;
+    }, null);
     let countUndefinedChecks = 0;
 
-    while (!axeIsUndefined) {
+    while (axeIsUndefined) {
         countUndefinedChecks++;
         console.log(`Undefined checks count is: ${countUndefinedChecks}`);
         axeIsUndefined = await client.evaluate(() => {
