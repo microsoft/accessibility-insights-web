@@ -48,6 +48,7 @@ async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
 }
 
 async function injectAxeIfUndefined(client: Page): Promise<void> {
+    console.log(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
     await injectScriptFile(
         client,
         path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
