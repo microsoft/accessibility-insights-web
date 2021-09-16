@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-    - script: docker build -t app .
+    - script: docker build -t app --target web .
       displayName: setup docker
 
     - script: docker run --network=host -i app --ci

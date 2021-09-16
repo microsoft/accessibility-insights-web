@@ -36,14 +36,24 @@ if (platformInfo.isLinux()) {
     app.disableHardwareAcceleration();
 }
 
+const webPreferences =
+    process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_LINUX_TESTS === 'true'
+        ? {
+              webgl: true,
+              webSecurity: false,
+              experimentalFeatures: true,
+              experimentalCanvasFeatures: true,
+              nodeIntegration: true,
+              contextIsolation: false,
+          }
+        : { nodeIntegration: true, contextIsolation: false };
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         show: false,
-        // enableRemoteModule required for spectron (https://github.com/electron-userland/spectron/issues/693#issuecomment-696957538)
-        webPreferences: { nodeIntegration: true, enableRemoteModule: true },
+        webPreferences,
         titleBarStyle: 'hidden',
         width: mainWindowConfig.defaultWidth,
         height: mainWindowConfig.defaultHeight,
@@ -97,7 +107,6 @@ const createWindow = () => {
         })
         .catch(console.log);
 };
-
 const enableDevMode = (window: BrowserWindow) => {
     if (process.env.DEV_MODE === 'true') {
         const devTools = new BrowserWindow();

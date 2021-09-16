@@ -219,7 +219,9 @@ jobs:
   e2e-unified-tests:
     name: e2e-unified-tests (${{ strategy.job-index }}/${{ strategy.job-total }})
     runs-on: ubuntu-20.04
-    env: { PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1 }
+    env:
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      DISPLAY: :99
     strategy:
       fail-fast: false
       matrix:
@@ -257,9 +259,18 @@ jobs:
     - run: yarn build:unified
       timeout-minutes: 5
 
+    - name: Setup xvfb
+      if: runner.os == 'Linux'
+      env:
+        DISPLAY: :99
+      run: |
+        sudo apt-get install -y xvfb libgbm1 libxss1 libnss3 libgtk-3-dev libasound2-dev
+        # start xvfb on default display (:99 from env)
+        sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24 &
+
     - name: yarn test:unified
       run: |
-        xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
+        yarn test:unified --ci --testMatch="<rootDir>/**/${{ matrix.test-filename-prefix-pattern }}*.test.ts"
       timeout-minutes: 15
 
     - name: upload artifact e2e-unified-tests-results
