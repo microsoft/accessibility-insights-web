@@ -48,16 +48,10 @@ async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
 }
 
 async function injectAxeIfUndefined(client: Page): Promise<void> {
-    const axeIsUndefined = await client.evaluate(() => {
-        return (window as any).axe === undefined;
-    }, null);
-
-    if (axeIsUndefined) {
-        await injectScriptFile(
-            client,
-            path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
-        );
-    }
+    await injectScriptFile(
+        client,
+        path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
+    );
 }
 
 async function screenshotOnError<T>(client: Page, wrappedFunction: () => Promise<T>): Promise<T> {
