@@ -36,24 +36,27 @@ if (platformInfo.isLinux()) {
     app.disableHardwareAcceleration();
 }
 
-const webPreferences =
-    process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_LINUX_TESTS === 'true'
-        ? {
-              webgl: true,
-              webSecurity: false,
-              experimentalFeatures: true,
-              experimentalCanvasFeatures: true,
-              nodeIntegration: true,
-              contextIsolation: false,
-          }
-        : { nodeIntegration: true, contextIsolation: false };
+//these preferences allow electron to run in the linux test environment
+const linuxTestWebPreferences = {
+    webgl: true,
+    webSecurity: false,
+    experimentalFeatures: true,
+    experimentalCanvasFeatures: true,
+    nodeIntegration: true,
+    contextIsolation: false,
+};
+const standardWebPreferences = { nodeIntegration: true, contextIsolation: false };
+
 let recurringUpdateCheck;
 const electronAutoUpdateCheck = new AutoUpdaterClient(autoUpdater);
 
 const createWindow = () => {
     mainWindow = new BrowserWindow({
         show: false,
-        webPreferences,
+        webPreferences:
+            process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_LINUX_TESTS === 'true'
+                ? linuxTestWebPreferences
+                : standardWebPreferences,
         titleBarStyle: 'hidden',
         width: mainWindowConfig.defaultWidth,
         height: mainWindowConfig.defaultHeight,

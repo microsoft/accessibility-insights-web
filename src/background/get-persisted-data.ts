@@ -24,11 +24,11 @@ const keyToPersistedDataMapping = {
 export function getPersistedData(
     indexedDBInstance: IndexedDBAPI,
     dataKeysToFetch: string[],
-    options?: { noPersistedData: boolean }, // this option is for tests to ensure they can use mock-adb
+    options?: { ignorePersistedData: boolean }, // this option is for tests to ensure they can use mock-adb
 ): Promise<PersistedData> {
     const persistedData = {} as PersistedData;
-    if (options?.noPersistedData) {
-        return Promise.resolve(persistedData);
+    if (options?.ignorePersistedData) {
+        return Promise.resolve(persistedData); //empty object
     }
 
     const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
