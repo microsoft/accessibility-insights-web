@@ -30,7 +30,6 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
         ...options,
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
-            ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA: 'true',
             ACCESSIBILITY_INSIGHTS_ELECTRON_LINUX_TESTS: 'true',
             ...options.env,
         },

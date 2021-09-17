@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-//import { source as axeCoreSource } from 'axe-core';
 import * as path from 'path';
 import { Result } from 'axe-core';
 import { Page } from 'playwright';
