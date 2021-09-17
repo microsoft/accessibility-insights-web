@@ -260,11 +260,12 @@ jobs:
     - run: yarn build:unified
       timeout-minutes: 5
 
-    - name: Setup xvfb
+    - run: yarn playwright install-deps chromium
+      timeout-minutes: 5
+
+    - name: configure xvfb to use DISPLAY var from env
       if: runner.os == 'Linux'
       run: |
-        sudo apt-get install -y xvfb libgbm1 libxss1 libnss3 libgtk-3-dev libasound2-dev
-        # start xvfb on default display (:99 from env)
         sudo /usr/bin/Xvfb $DISPLAY -screen 0 1024x768x24 &
 
     - name: yarn test:unified
