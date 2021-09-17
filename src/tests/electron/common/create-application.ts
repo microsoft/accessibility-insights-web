@@ -17,6 +17,7 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
     }/drop/electron/unified-dev/product/bundle/main.bundle.js`;
 
     if (process.env.DISPLAY) {
+        // we need the DISPLAY env variable for running tests in linux
         if (!options) {
             options = { suppressFirstTimeDialog: false, env: {} };
         }
@@ -31,6 +32,7 @@ export async function createApplication(options?: AppOptions): Promise<AppContro
         env: {
             ANDROID_HOME: `${(global as any).rootDir}/drop/mock-adb`,
             ACCESSIBILITY_INSIGHTS_ELECTRON_LINUX_TESTS: 'true',
+            ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA: 'true',
             ...options.env,
         },
     };
