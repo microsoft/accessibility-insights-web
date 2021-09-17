@@ -5,8 +5,8 @@ import { Result } from 'axe-core';
 import { Page } from 'playwright';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
-import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
 import { tick } from 'tests/unit/common/tick';
+import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
 
 declare let window: Window & { axe };
 
