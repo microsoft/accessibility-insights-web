@@ -13,7 +13,7 @@ steps:
       displayName: get container id for docker
       condition: succeededOrFailed()
 
-    - script: docker cp $(CONTAINER_ID):/app/test-results/ ./test-results
+    - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       displayName: copy test results from docker to base agent
       condition: succeededOrFailed()
 

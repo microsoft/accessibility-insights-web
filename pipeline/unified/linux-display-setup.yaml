@@ -1,9 +1,0 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-steps:
-    - bash: |
-          export DISPLAY=":99"
-      displayName: export display env variable
-
-    - script: 'Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &'
-      displayName: configure display with xvfb

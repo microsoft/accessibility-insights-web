@@ -36,13 +36,9 @@ ENTRYPOINT ["/bin/sh", "-c", "xvfb-run --server-args=\"-screen 0 1024x768x24\" y
 
 FROM setup as unified-docker
 RUN apt-get update && \
-    apt-get install -y xvfb \
-    libgbm1 \
-    libnss3 \
-    libgtk-3-dev \
-    libasound2-dev \
-    dos2unix \
+    apt-get install -y dos2unix \
     && rm -rf /var/lib/apt/lists/*
+RUN yarn playwright install-deps chromium
 RUN yarn build:unified --no-cache
 ADD unified-entrypoint.sh /unified-entrypoint.sh
 RUN chmod +x /unified-entrypoint.sh
@@ -51,16 +47,9 @@ ENTRYPOINT ["/unified-entrypoint.sh"]
 
 FROM setup AS unified
 RUN apt-get update && \
-    apt-get install -y xvfb \
-    libgbm1 \
-    libxss1 \
-    libnss3 \
-    libgtk-3-dev \
-    libasound2-dev \
-    unzip \
-    dos2unix \
+    apt-get install -y dos2unix \
     && rm -rf /var/lib/apt/lists/*
-
+RUN yarn playwright install-deps chromium
 RUN yarn build:unified --no-cache
 ADD unified-entrypoint.sh /unified-entrypoint.sh
 RUN chmod +x /unified-entrypoint.sh
