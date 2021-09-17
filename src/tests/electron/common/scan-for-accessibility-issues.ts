@@ -47,7 +47,7 @@ async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
 }
 
 async function injectAxeIfUndefined(client: Page): Promise<void> {
-    let axeIsUndefined = await client.evaluate(() => {
+    const axeIsUndefined = await client.evaluate(() => {
         return (window as any).axe === undefined;
     }, null);
 
@@ -56,11 +56,6 @@ async function injectAxeIfUndefined(client: Page): Promise<void> {
             client,
             path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
         );
-        // handle the race condition where axe is injected but
-        // the client tries to run a11y checks before the window is ready
-        await client.waitForFunction(() => {
-            return (window as any).axe !== undefined;
-        });
     }
 }
 
@@ -71,5 +66,6 @@ async function screenshotOnError<T>(client: Page, wrappedFunction: () => Promise
 async function injectScriptFile(client: Page, filePath: string): Promise<void> {
     await screenshotOnError(client, async () => {
         await client.addScriptTag({ path: filePath, type: 'module' });
+        await client.waitForLoadState(); //wait for the script to be available
     });
 }
