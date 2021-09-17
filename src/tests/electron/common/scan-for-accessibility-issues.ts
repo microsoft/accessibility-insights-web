@@ -56,6 +56,10 @@ async function injectAxeIfUndefined(client: Page): Promise<void> {
             client,
             path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'),
         );
+
+        await client.waitForFunction(() => {
+            return (window as any).axe !== undefined;
+        });
     }
 }
 
