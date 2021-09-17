@@ -5,7 +5,6 @@ import { Result } from 'axe-core';
 import { Page } from 'playwright';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 
-import { tick } from 'tests/unit/common/tick';
 import { screenshotOnError as screenshot } from '../../end-to-end/common/screenshot-on-error';
 
 declare let window: Window & { axe };
@@ -48,7 +47,7 @@ async function runAxeScan(client: Page, selector?: string): Promise<Result[]> {
 }
 
 async function injectAxeIfUndefined(client: Page): Promise<void> {
-    const axeIsUndefined = await client.evaluate(() => {
+    let axeIsUndefined = await client.evaluate(() => {
         return (window as any).axe === undefined;
     }, null);
 
@@ -59,7 +58,9 @@ async function injectAxeIfUndefined(client: Page): Promise<void> {
         );
         // handle the race condition where axe is injected but
         // the client tries to run a11y checks before the window is ready
-        await tick();
+        await client.waitForFunction(() => {
+            return (window as any).axe !== undefined;
+        });
     }
 }
 
