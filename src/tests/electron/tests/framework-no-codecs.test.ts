@@ -39,7 +39,7 @@ const releaseTests = process.env.RUN_RELEASE_TESTS === 'true';
         });
 
         it('uses expected build during release', async () => {
-            const buildId = await viewContoller.client.execute(() => {
+            const buildId = await viewContoller.client.evaluate(() => {
                 return (window as any).process.versions['microsoft-build'];
             });
             expect(buildId).toBe(electronBuildId);
@@ -54,9 +54,9 @@ it('electron versions in package.json and build id are updated together', async 
         electronBuildId,
     };
     expect(versions).toMatchInlineSnapshot(`
-        Object {
-          "electronBuildId": "7912306",
-          "electronVersion": "11.4.5",
-        }
-    `);
+Object {
+  "electronBuildId": "9728310",
+  "electronVersion": "14.0.0",
+}
+`);
 });
