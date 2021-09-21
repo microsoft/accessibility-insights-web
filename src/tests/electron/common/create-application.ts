@@ -52,7 +52,7 @@ export async function createAppController(
 ): Promise<AppController> {
     const app = await electron.launch({
         args: ['--enable-logging', '--ignore_gpu_blacklist', '--disable_splash_screen', targetApp],
-        env: options.env,
+        env: options?.env || {}, // make env an empty object if we don't have one
         path: Electron,
         bypassCSP: true, //allow injecting axe despite privacy headers
     });

@@ -21,25 +21,28 @@ const releaseTests = process.env.RUN_RELEASE_TESTS === 'true';
     'electron bundled without proprietary audio-video codecs',
     () => {
         let appController: AppController;
-        let viewContoller: CodecTestViewController;
+        let viewController: CodecTestViewController;
 
         beforeEach(async () => {
             appController = await createAppController(
                 path.resolve(__dirname, '..', '..', 'miscellaneous', 'codecs', 'codecs-test.js'),
             );
-            viewContoller = new CodecTestViewController(appController.client);
-            await viewContoller.waitForAudioVisible();
+            await appController.initialize();
+            viewController = new CodecTestViewController(appController.client);
+            await viewController.waitForAudioVisible();
         });
 
-        afterEach(async () => await appController.stop());
+        afterEach(async () => {
+            if (appController != null) await appController.stop();
+        });
 
         // https://html.spec.whatwg.org/multipage/media.html#error-codes:dom-mediaerror-media_err_src_not_supported
         it('has error when loading mp3 <audio> in renderer process', async () => {
-            expect(await viewContoller.client.getAttribute('#audio', 'data-err')).toEqual('4');
+            expect(await viewController.client.getAttribute('#audio', 'data-err')).toEqual('4');
         });
 
         it('uses expected build during release', async () => {
-            const buildId = await viewContoller.client.evaluate(() => {
+            const buildId = await viewController.client.evaluate(() => {
                 return (window as any).process.versions['microsoft-build'];
             });
             expect(buildId).toBe(electronBuildId);
