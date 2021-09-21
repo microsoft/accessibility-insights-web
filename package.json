@@ -112,7 +112,7 @@
         "@types/ua-parser-js": "^0.7.36",
         "@types/uuid": "^8.3.1",
         "@typescript-eslint/eslint-plugin": "^4.31.1",
-        "@typescript-eslint/parser": "^4.31.1",
+        "@typescript-eslint/parser": "^4.31.2",
         "app-builder-lib": "^22.14.2",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
