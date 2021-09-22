@@ -4,8 +4,6 @@ import { WebVisualizationConfigurationFactory } from 'common/configs/web-visuali
 import { DocumentManipulator } from 'common/document-manipulator';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-import { A11YSelfValidator } from '../common/a11y-self-validator';
-import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../common/components/new-tab-link';
@@ -21,6 +19,7 @@ import { RemoteActionMessageDispatcher } from '../common/message-creators/remote
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
+import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
@@ -48,7 +47,7 @@ import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { TargetTabFinder, TargetTabInfo } from './target-tab-finder';
 
-declare let window: AutoChecker & Window;
+declare let window: SelfFastPassContainer & Window;
 
 export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
@@ -245,11 +244,11 @@ export class PopupInitializer {
         renderer.render();
         popupActionMessageCreator.popupInitialized(tab);
 
-        const a11ySelfValidator = new A11YSelfValidator(
+        const selfFastPass = new SelfFastPass(
             new ScannerUtils(scan, this.logger),
             new HTMLElementUtils(),
             this.logger,
         );
-        window.A11YSelfValidator = a11ySelfValidator;
+        window.selfFastPass = selfFastPass;
     };
 }

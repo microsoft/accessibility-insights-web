@@ -35,6 +35,9 @@ linux:
     artifactName: ${productName}.${ext}
     target: AppImage
 
+appImage:
+    license: src/electron/resources/mit_license.txt
+
 mac:
     artifactName: ${productName}.${ext}
     icon: TARGET_SPECIFIC
@@ -53,6 +56,8 @@ nsis:
     deleteAppDataOnUninstall: true
     include: src/electron/resources/installer.nsh
     packElevateHelper: false
+    license: src/electron/resources/mit_license.txt
+
 publish:
     provider: generic
 

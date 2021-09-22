@@ -2,135 +2,154 @@
 
 exports[`FixInstructionProcessor background and foreground on the message (mind the order) 1`] = `
 <React.Fragment>
-  <span
-    aria-hidden="true"
-  >
-    <span>
-      Element has insufficient color contrast of 2.52 (background color: 
+  <React.Fragment>
+    <span
+      aria-hidden="true"
+    >
+      <span>
+        Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#e7ecd8",
+          }
+        }
+      />
+      <span>
+        #8a94a8, foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#8a94a8",
+          }
+        }
+      />
+      <span>
+        #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+      </span>
     </span>
     <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#8a94a8",
-        }
-      }
-    />
-    <span>
-      #8a94a8, foreground color: 
+      className="screenReaderOnly"
+    >
+      Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
     </span>
-    <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#e7ecd8",
-        }
-      }
-    />
-    <span>
-      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-    </span>
-  </span>
-  <span
-    className="screenReaderOnly"
-  >
-    Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-  </span>
-</React.Fragment>
-`;
-
-exports[`FixInstructionProcessor background color on the message 1`] = `
-<React.Fragment>
-  <span
-    aria-hidden="true"
-  >
-    <span>
-      color contrast of 2.52 (background color: 
-    </span>
-    <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#8a94a8",
-        }
-      }
-    />
-    <span>
-      #8a94a8; nothing else to match here)
-    </span>
-  </span>
-  <span
-    className="screenReaderOnly"
-  >
-    color contrast of 2.52 (background color: #8a94a8; nothing else to match here)
-  </span>
+  </React.Fragment>
+  <ul>
+    <li>
+      <React.Fragment>
+        <span
+          aria-hidden="true"
+        >
+          <span>
+            test return value
+          </span>
+        </span>
+        <span
+          className="screenReaderOnly"
+        >
+          test return value
+        </span>
+      </React.Fragment>
+    </li>
+  </ul>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor foreground and background color on the message (mind the order) 1`] = `
 <React.Fragment>
-  <span
-    aria-hidden="true"
-  >
-    <span>
-      Element has insufficient color contrast of 2.52 (foreground color: 
+  <React.Fragment>
+    <span
+      aria-hidden="true"
+    >
+      <span>
+        Element has insufficient color contrast of 2.52 (foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#8a94a8",
+          }
+        }
+      />
+      <span>
+        #8a94a8, background color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#e7ecd8",
+          }
+        }
+      />
+      <span>
+        #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+      </span>
     </span>
     <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#8a94a8",
-        }
-      }
-    />
-    <span>
-      #8a94a8, background color: 
+      className="screenReaderOnly"
+    >
+      Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
     </span>
-    <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#e7ecd8",
-        }
-      }
-    />
-    <span>
-      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-    </span>
-  </span>
-  <span
-    className="screenReaderOnly"
-  >
-    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-  </span>
+  </React.Fragment>
+  <ul>
+    <li>
+      <React.Fragment>
+        <span
+          aria-hidden="true"
+        >
+          <span>
+            test return value
+          </span>
+        </span>
+        <span
+          className="screenReaderOnly"
+        >
+          test return value
+        </span>
+      </React.Fragment>
+    </li>
+  </ul>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor foreground color on the message 1`] = `
 <React.Fragment>
-  <span
-    aria-hidden="true"
-  >
-    <span>
-      color contrast of 2.52 (foreground color: 
+  <React.Fragment>
+    <span
+      aria-hidden="true"
+    >
+      <span>
+        color contrast of 2.52 (foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#8a94a8",
+          }
+        }
+      />
+      <span>
+        #8a94a8; nothing else to match here)
+      </span>
     </span>
     <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#8a94a8",
-        }
-      }
-    />
-    <span>
-      #8a94a8; nothing else to match here)
+      className="screenReaderOnly"
+    >
+      color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)
     </span>
-  </span>
-  <span
-    className="screenReaderOnly"
-  >
-    color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)
-  </span>
+  </React.Fragment>
 </React.Fragment>
 `;
 
@@ -140,42 +159,274 @@ exports[`FixInstructionProcessor no background nor foreground on the message 1`]
 </React.Fragment>
 `;
 
+exports[`FixInstructionProcessor recommendColor has one recommendation 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    <span
+      aria-hidden="true"
+    >
+      <span>
+        Element has insufficient color contrast of 4.48 (foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#fefefe",
+          }
+        }
+      />
+      <span>
+        #fefefe, background color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#21809d",
+          }
+        }
+      />
+      <span>
+        #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+      </span>
+    </span>
+    <span
+      className="screenReaderOnly"
+    >
+      Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+    </span>
+  </React.Fragment>
+  <ul>
+    <li>
+      <React.Fragment>
+        <span
+          aria-hidden="true"
+        >
+          <span>
+            Use foreground color: 
+          </span>
+          <span
+            aria-hidden={true}
+            className="fixInstructionColorBox"
+            style={
+              Object {
+                "backgroundColor": "#ffffff",
+              }
+            }
+          />
+          <span>
+            #ffffff and the original background color: 
+          </span>
+          <span
+            aria-hidden={true}
+            className="fixInstructionColorBox"
+            style={
+              Object {
+                "backgroundColor": "#21809d",
+              }
+            }
+          />
+          <span>
+            #21809d to meet a contrast ratio of 4.53:1
+          </span>
+        </span>
+        <span
+          className="screenReaderOnly"
+        >
+          Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1
+        </span>
+      </React.Fragment>
+    </li>
+    <li>
+      <React.Fragment>
+        <span
+          aria-hidden="true"
+        >
+          <span>
+            Or use background color: 
+          </span>
+          <span
+            aria-hidden={true}
+            className="fixInstructionColorBox"
+            style={
+              Object {
+                "backgroundColor": "#1f7995",
+              }
+            }
+          />
+          <span>
+            #1f7995 and the original foreground color: 
+          </span>
+          <span
+            aria-hidden={true}
+            className="fixInstructionColorBox"
+            style={
+              Object {
+                "backgroundColor": "#fcfcfc",
+              }
+            }
+          />
+          <span>
+            #fcfcfc to meet a contrast ratio of 4.84:1.
+          </span>
+        </span>
+        <span
+          className="screenReaderOnly"
+        >
+          Or use background color: #1f7995 and the original foreground color: #fcfcfc to meet a contrast ratio of 4.84:1.
+        </span>
+      </React.Fragment>
+    </li>
+  </ul>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor recommendColor has two recommendations 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    <span
+      aria-hidden="true"
+    >
+      <span>
+        Element has insufficient color contrast of 4.48 (foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#fefefe",
+          }
+        }
+      />
+      <span>
+        #fefefe, background color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#21809d",
+          }
+        }
+      />
+      <span>
+        #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+      </span>
+    </span>
+    <span
+      className="screenReaderOnly"
+    >
+      Element has insufficient color contrast of 4.48 (foreground color: #fefefe, background color: #21809d, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1
+    </span>
+  </React.Fragment>
+  <ul>
+    <li>
+      <React.Fragment>
+        <span
+          aria-hidden="true"
+        >
+          <span>
+            Use foreground color: 
+          </span>
+          <span
+            aria-hidden={true}
+            className="fixInstructionColorBox"
+            style={
+              Object {
+                "backgroundColor": "#ffffff",
+              }
+            }
+          />
+          <span>
+            #ffffff and the original background color: 
+          </span>
+          <span
+            aria-hidden={true}
+            className="fixInstructionColorBox"
+            style={
+              Object {
+                "backgroundColor": "#21809d",
+              }
+            }
+          />
+          <span>
+            #21809d to meet a contrast ratio of 4.53:1.
+          </span>
+        </span>
+        <span
+          className="screenReaderOnly"
+        >
+          Use foreground color: #ffffff and the original background color: #21809d to meet a contrast ratio of 4.53:1.
+        </span>
+      </React.Fragment>
+    </li>
+  </ul>
+</React.Fragment>
+`;
+
 exports[`FixInstructionProcessor we assume only one instance of fore/background color, second instance will be ignored 1`] = `
 <React.Fragment>
-  <span
-    aria-hidden="true"
-  >
-    <span>
-      first foreground color: 
+  <React.Fragment>
+    <span
+      aria-hidden="true"
+    >
+      <span>
+        first foreground color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#ffffff",
+          }
+        }
+      />
+      <span>
+        #ffffff, second foreground: #000000, first background color: 
+      </span>
+      <span
+        aria-hidden={true}
+        className="fixInstructionColorBox"
+        style={
+          Object {
+            "backgroundColor": "#AAAAAA",
+          }
+        }
+      />
+      <span>
+        #AAAAAA, second background color: #bbBBbb
+      </span>
     </span>
     <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#ffffff",
-        }
-      }
-    />
-    <span>
-      #ffffff, second foreground: #000000, first background color: 
+      className="screenReaderOnly"
+    >
+      first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
     </span>
-    <span
-      className="fixInstructionColorBox"
-      style={
-        Object {
-          "backgroundColor": "#AAAAAA",
-        }
-      }
-    />
-    <span>
-      #AAAAAA, second background color: #bbBBbb
-    </span>
-  </span>
-  <span
-    className="screenReaderOnly"
-  >
-    first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
-  </span>
+  </React.Fragment>
+  <ul>
+    <li>
+      <React.Fragment>
+        <span
+          aria-hidden="true"
+        >
+          <span>
+            test return value
+          </span>
+        </span>
+        <span
+          className="screenReaderOnly"
+        >
+          test return value
+        </span>
+      </React.Fragment>
+    </li>
+  </ul>
 </React.Fragment>
 `;
 

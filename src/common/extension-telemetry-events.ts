@@ -194,12 +194,10 @@ export type NeedsReviewAnalyzerScanTelemetryData = {
     incompleteRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
-export type PortTelemetryData = {
-    port: number;
+export type AndroidScanStartedTelemetryData = {
+    source: TelemetryEventSource;
 };
-
 export type AndroidScanCompletedTelemetryData = {
-    port: number;
     scanDuration: number;
 } & InstanceCount;
 
@@ -215,8 +213,23 @@ export type InstanceCount = {
     };
 };
 
+export type AtfaInstanceCount = {
+    ERROR: {
+        [ruleId: string]: number;
+    };
+    WARNING: {
+        [ruleId: string]: number;
+    };
+    INFO: {
+        [ruleId: string]: number;
+    };
+    RESOLVED: {
+        [ruleId: string]: number;
+    };
+};
+
 export type AndroidScanFailedTelemetryData = {
-    port: number;
+    port?: number;
     scanDuration: number;
 };
 
@@ -252,7 +265,7 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | PortTelemetryData
+    | AndroidScanStartedTelemetryData
     | AndroidScanCompletedTelemetryData
     | AndroidScanFailedTelemetryData
     | DeviceFocusKeyEventTelemetryData

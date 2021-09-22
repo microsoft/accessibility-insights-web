@@ -370,7 +370,6 @@ exports[`ResultsView when status scan <Completed> 1`] = `
             },
           }
         }
-        scanPort={11111}
         scanStoreData={
           Object {
             "status": 2,
@@ -793,7 +792,6 @@ exports[`ResultsView when status scan <Failed> 1`] = `
         }
         isSideNavOpen={true}
         scanMetadata={null}
-        scanPort={11111}
         scanStoreData={
           Object {
             "status": 3,
@@ -1204,7 +1202,6 @@ exports[`ResultsView when status scan <Scanning> 1`] = `
         }
         isSideNavOpen={true}
         scanMetadata={null}
-        scanPort={11111}
         scanStoreData={
           Object {
             "status": 1,
@@ -1612,7 +1609,6 @@ exports[`ResultsView when status scan <undefined> 1`] = `
         }
         isSideNavOpen={true}
         scanMetadata={null}
-        scanPort={11111}
         scanStoreData={
           Object {
             "status": undefined,

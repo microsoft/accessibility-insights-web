@@ -13,8 +13,6 @@ export type AndroidSetupStepTransitionCallback = (nextStep: AndroidSetupStepId) 
 export type AndroidSetupStoreCallbacks = {
     setSelectedDevice: (device: DeviceInfo) => void;
     setAvailableDevices: (devices: DeviceInfo[]) => void;
-    getScanPort: () => number | undefined;
-    setScanPort: (scanPort?: number) => void;
     setApplicationName: (appName?: string) => void;
 };
 

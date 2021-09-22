@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.`
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { BaseLeftNavLink } from 'DetailsView/components/base-left-nav';
 import {
-    ReflowAssessmentLeftNavLink,
+    AssessmentLeftNavLink,
     TestGettingStartedNavLink,
     TestRequirementLeftNavLink,
 } from 'DetailsView/components/left-nav/assessment-left-nav';
+import { NavLinkHandler } from 'DetailsView/components/left-nav/nav-link-handler';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { BaseLeftNavLink } from '../../../../../DetailsView/components/base-left-nav';
-import { NavLinkHandler } from '../../../../../DetailsView/components/left-nav/nav-link-handler';
 
 describe('NavLinkHandler', () => {
+    const irrelevantVisualizationType = -1 as VisualizationType;
     let detailsViewActionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let testSubject: NavLinkHandler;
     let eventStub: React.MouseEvent<HTMLElement>;
@@ -83,7 +84,7 @@ describe('NavLinkHandler', () => {
         it('should call selectRequirement and changeRightContentPanel with appropriate params', () => {
             const requirementLink = {
                 requirementKey: 'some requirement',
-                testType: -1,
+                testType: irrelevantVisualizationType,
             } as TestRequirementLeftNavLink;
             detailsViewActionMessageCreatorMock
                 .setup(amc =>
@@ -107,7 +108,7 @@ describe('NavLinkHandler', () => {
     describe('onGettingStartedClick', () => {
         it('should call selectGettingStarted and changeRightContentPanel with appropriate params', () => {
             const gettingStartedLink = {
-                testType: -1,
+                testType: irrelevantVisualizationType,
             } as TestGettingStartedNavLink;
             detailsViewActionMessageCreatorMock
                 .setup(amc => amc.selectGettingStarted(eventStub, gettingStartedLink.testType))
@@ -125,9 +126,9 @@ describe('NavLinkHandler', () => {
     describe('onTestHeadingClick with unexpanded link', () => {
         it('should call expandTestNav with appropriate params', () => {
             const testHeadingLink = {
-                testType: -1,
+                testType: irrelevantVisualizationType,
                 isExpanded: false,
-            } as ReflowAssessmentLeftNavLink;
+            } as AssessmentLeftNavLink;
             detailsViewActionMessageCreatorMock
                 .setup(amc => amc.expandTestNav(testHeadingLink.testType))
                 .verifiable();
@@ -140,9 +141,9 @@ describe('NavLinkHandler', () => {
     describe('onTestHeadingClick with already expanded link', () => {
         it('should call expandTestNav with appropriate params', () => {
             const testHeadingLink = {
-                testType: -1,
+                testType: irrelevantVisualizationType,
                 isExpanded: true,
-            } as ReflowAssessmentLeftNavLink;
+            } as AssessmentLeftNavLink;
             detailsViewActionMessageCreatorMock.setup(amc => amc.collapseTestNav()).verifiable();
 
             testSubject.onTestHeadingClick(eventStub, testHeadingLink);

@@ -4,16 +4,13 @@
 import { AppiumAdbCreator } from 'electron/platform/android/appium-adb-creator';
 import { AppiumAdbWrapper } from 'electron/platform/android/appium-adb-wrapper';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
-import { PortFinder } from 'electron/platform/android/setup/android-service-configurator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('AppiumAdbWrapperFactory tests', () => {
     let adbCreatorMock: IMock<AppiumAdbCreator>;
-    let portFinderMock: IMock<PortFinder>;
 
     beforeEach(() => {
         adbCreatorMock = Mock.ofType<AppiumAdbCreator>(undefined, MockBehavior.Strict);
-        portFinderMock = Mock.ofType<PortFinder>(undefined, MockBehavior.Strict);
     });
 
     it('createValidatedAdbWrapper creates without parameters if no sdkRoot is provided', async () => {
@@ -26,7 +23,6 @@ describe('AppiumAdbWrapperFactory tests', () => {
         expect(await factory.createValidatedAdbWrapper(null)).toBeInstanceOf(AppiumAdbWrapper);
 
         adbCreatorMock.verifyAll();
-        portFinderMock.verifyAll();
     });
 
     it('createValidatedAdbWrapper creates with sdkRoot if it is provided', async () => {
@@ -42,7 +38,6 @@ describe('AppiumAdbWrapperFactory tests', () => {
         );
 
         adbCreatorMock.verifyAll();
-        portFinderMock.verifyAll();
     });
 
     it('createValidatedAdbWrapper propagates error to caller', async () => {
@@ -56,6 +51,5 @@ describe('AppiumAdbWrapperFactory tests', () => {
         await expect(factory.createValidatedAdbWrapper(null)).rejects.toThrowError(expectedMessage);
 
         adbCreatorMock.verifyAll();
-        portFinderMock.verifyAll();
     });
 });

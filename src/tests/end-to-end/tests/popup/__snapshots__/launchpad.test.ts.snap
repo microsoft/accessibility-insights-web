@@ -260,7 +260,7 @@ exports[`Popup -> Launch Pad content should match snapshot 1`] = `
               axe-core
             </a>
           </div>
-           4.2.1
+           4.3.2
         </div>
       </div>
     </div>

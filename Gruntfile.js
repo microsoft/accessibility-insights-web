@@ -164,12 +164,6 @@ module.exports = function (grunt) {
                         src: path.join(packageUIBundlePath, 'ui.css'),
                         dest: path.join(packageUIDropPath, 'ui.css'),
                     },
-                    {
-                        cwd: './src/packages/accessibility-insights-ui/root',
-                        src: '*',
-                        dest: packageUIDropPath,
-                        expand: true,
-                    },
                 ],
             },
         },
@@ -296,7 +290,7 @@ module.exports = function (grunt) {
         if (productCategory === 'electron') {
             productCategorySpecificCopyFiles.push(
                 {
-                    src: 'src/electron/resources/license_en.txt',
+                    src: 'src/electron/resources/mit_license_en.txt',
                     dest: `${dropExtensionPath}/LICENSE`,
                 },
                 {

@@ -1,24 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-
-import { ContentReference } from 'views/content/content-page';
-import { DisplayableVisualizationTypeData } from '../../../../../common/types/displayable-visualization-type-data';
 import {
     ScanData,
     TestsEnabledState,
     VisualizationStoreData,
-} from '../../../../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
+} from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     AdhocStaticTestView,
     AdhocStaticTestViewDeps,
     AdhocStaticTestViewProps,
-} from '../../../../../DetailsView/components/adhoc-static-test-view';
-import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+} from 'DetailsView/components/adhoc-static-test-view';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { IMock, Mock, MockBehavior } from 'typemoq';
+import { ContentReference } from 'views/content/content-page';
 
 describe('AdhocStaticTestView', () => {
     let props: AdhocStaticTestViewProps;
@@ -86,17 +85,18 @@ describe('AdhocStaticTestView', () => {
     });
 
     describe('render', () => {
-        const guidanceMock = Mock.ofType<ContentReference>();
-        const contentMock = Mock.ofType<ContentReference>();
+        const stubGuidance = 'stub-guidance' as ContentReference;
+        const stubContent = 'stub-content' as ContentReference;
 
         const scenarios = [
-            ['content & guidance', contentMock.object, guidanceMock.object],
-            ['content & no guidance', contentMock.object, null],
-            ['no content & guidance', null, guidanceMock.object],
+            ['content & guidance', stubContent, stubGuidance],
+            ['content & no guidance', stubContent, null],
+            ['no content & guidance', null, stubGuidance],
             ['no content & no guidance', null, null],
         ];
 
         it.each(scenarios)('handles %s', (_, content, guidance) => {
+            props.deps = 'stub-deps' as unknown as AdhocStaticTestViewDeps;
             props.tabStoreData = {
                 isChanged: false,
             };

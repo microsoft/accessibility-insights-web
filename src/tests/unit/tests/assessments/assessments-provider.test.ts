@@ -4,12 +4,13 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { Requirement } from 'assessments/types/requirement';
+import { VisualizationType } from 'common/types/visualization-type';
 import { includes, keys } from 'lodash';
 
 describe('AssessmentsProviderTest', () => {
-    const firstType = 45;
-    const secondType = 21;
-    const invalidType = 99;
+    const firstType = 45 as VisualizationType;
+    const secondType = 21 as VisualizationType;
+    const invalidType = 99 as VisualizationType;
     const firstKey = 'forty-five';
     const secondKey = 'twenty-one';
     const invalidKey = 'ninety-nine';
@@ -72,11 +73,9 @@ describe('AssessmentsProviderTest', () => {
 
         const stepOne = provider.getStep(firstType, stepOneKey);
         expect(stepOne.key).toEqual(stepOneKey);
-        expect(stepOne.order).toBe(1);
 
         const stepTwo = provider.getStep(firstType, stepTwoKey);
         expect(stepTwo.key).toEqual(stepTwoKey);
-        expect(stepTwo.order).toBe(2);
 
         const invalidTest = provider.getStep(invalidType, stepOneKey);
         expect(invalidTest).toBeNull();
@@ -124,18 +123,14 @@ describe('AssessmentsProviderTest', () => {
         expect(includes(keys(firstSteps), beta)).toBeTruthy();
 
         expect(firstSteps[alpha].key).toBe(alpha);
-        expect(firstSteps[alpha].order).toBe(1);
         expect(firstSteps[beta].key).toBe(beta);
-        expect(firstSteps[beta].order).toBe(2);
 
         expect(keys(secondSteps).length).toBe(2);
         expect(includes(keys(secondSteps), gamma)).toBeTruthy();
         expect(includes(keys(secondSteps), delta)).toBeTruthy();
 
         expect(secondSteps[gamma].key).toEqual(gamma);
-        expect(secondSteps[gamma].order).toEqual(1);
         expect(secondSteps[delta].key).toEqual(delta);
-        expect(secondSteps[delta].order).toEqual(2);
 
         expect(invalidSteps).toBeNull();
     });

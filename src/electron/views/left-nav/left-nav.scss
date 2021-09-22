@@ -5,9 +5,9 @@
 .left-nav {
     display: flex;
     flex-direction: column;
-    min-width: $reflowLeftNavWidth;
-    max-width: $reflowLeftNavWidth;
-    border-right: $reflowLeftNavBorderWidth solid $neutral-alpha-8;
+    min-width: $detailsViewLeftNavWidth;
+    max-width: $detailsViewLeftNavWidth;
+    border-right: $detailsViewLeftNavBorderWidth solid $neutral-alpha-8;
     background-color: $neutral-0;
 
     .header-container {

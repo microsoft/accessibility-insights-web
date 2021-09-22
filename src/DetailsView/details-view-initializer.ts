@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import Ajv from 'ajv';
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
@@ -12,6 +13,7 @@ import { AssessmentDataFormatter } from 'common/assessment-data-formatter';
 import { AssessmentDataParser } from 'common/assessment-data-parser';
 import { BrowserAdapterFactory } from 'common/browser-adapters/browser-adapter-factory';
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
+import { RecommendColor } from 'common/components/recommend-color';
 import { ThemeInnerState } from 'common/components/theme';
 import { WebVisualizationConfigurationFactory } from 'common/configs/web-visualization-configuration-factory';
 import { FileNameBuilder } from 'common/filename-builder';
@@ -21,17 +23,19 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
+import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
-import { getNarrowModeThresholdsForWeb } from 'electron/common/narrow-mode-thresholds';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
@@ -53,8 +57,6 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { WebReportNameGenerator } from 'reports/report-name-generator';
 import * as UAParser from 'ua-parser-js';
-import { A11YSelfValidator } from '../common/a11y-self-validator';
-import { AutoChecker } from '../common/auto-checker';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
@@ -84,6 +86,7 @@ import { UserConfigMessageCreator } from '../common/message-creators/user-config
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { getCardViewData } from '../common/rule-based-view-model-provider';
+import { SelfFastPass, SelfFastPassContainer } from '../common/self-fast-pass';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
@@ -127,7 +130,7 @@ import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-to
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 
-declare const window: AutoChecker & Window;
+declare const window: SelfFastPassContainer & Window;
 
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const browserAdapterFactory = new BrowserAdapterFactory(userAgentParser);
@@ -314,6 +317,7 @@ if (tabId != null) {
             const reportNameGenerator = new WebReportNameGenerator();
 
             const fixInstructionProcessor = new FixInstructionProcessor();
+            const recommendColor = new RecommendColor();
 
             const reportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
@@ -322,6 +326,7 @@ if (tabId != null) {
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
+                recommendColor,
                 getPropertyConfiguration,
             );
 
@@ -406,16 +411,26 @@ if (tabId != null) {
 
             const navLinkRenderer = new NavLinkRenderer();
 
+            const ajv = new Ajv();
+
+            const loadAssessmentDataValidator = new LoadAssessmentDataValidator(
+                ajv,
+                Assessments,
+                featureFlagStore.getState() as FeatureFlagStoreData,
+            );
+
             const loadAssessmentHelper = new LoadAssessmentHelper(
                 assessmentDataParser,
                 detailsViewActionMessageCreator,
                 fileReader,
                 document,
+                loadAssessmentDataValidator,
             );
 
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
+                recommendColor,
                 axeResultToIssueFilingDataConverter,
                 unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
@@ -500,12 +515,12 @@ if (tabId != null) {
 
             renderer.render();
 
-            const a11ySelfValidator = new A11YSelfValidator(
+            const selfFastPass = new SelfFastPass(
                 new ScannerUtils(scan, logger),
                 new HTMLElementUtils(),
                 logger,
             );
-            window.A11YSelfValidator = a11ySelfValidator;
+            window.selfFastPass = selfFastPass;
         },
         () => {
             const renderer = createNullifiedRenderer(

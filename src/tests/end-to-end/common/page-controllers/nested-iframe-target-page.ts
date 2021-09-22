@@ -52,6 +52,7 @@ export class NestedIframeTargetPage extends TargetPage {
         if (id === 'grandchild') {
             return this.underlyingPage.mainFrame().childFrames()[0].childFrames()[0];
         }
+        throw new Error('Error: invalid ID');
     }
 
     private windowMessageRecorders: { [frameId in NestedIframeId]: WindowMessageRecorder };
@@ -78,7 +79,7 @@ export class NestedIframeTargetPage extends TargetPage {
             data: recordedMessage.data,
         });
 
-        const translatedMessages = [];
+        const translatedMessages: NestedIframeWindowMessageRecord[] = [];
         for (const frameId of ['top', 'child', 'grandchild'] as const) {
             const messages = await this.windowMessageRecorders[frameId].getRecordedMessages();
             translatedMessages.push(...messages.map(m => translateMessage(frameId, m)));
@@ -105,7 +106,7 @@ export class NestedIframeTargetPage extends TargetPage {
                     parent: window.parent,
                     child: window.frames[0],
                 }[destRelationshipToSource];
-                destWindow.postMessage(data, '*');
+                destWindow!.postMessage(data, '*');
             },
             { destRelationshipToSource, data },
         );

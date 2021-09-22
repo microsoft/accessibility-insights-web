@@ -36,7 +36,7 @@ describe('ClientStoreListener', () => {
         });
 
         test('registerOnReadyToExecuteVisualizationCallback: no store data', () => {
-            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => false);
+            storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => null);
             triggerOnChange();
             onReadyToExecuteVisualizationUpdatesMock.verify(
                 callback => callback(It.isAny()),
@@ -50,7 +50,7 @@ describe('ClientStoreListener', () => {
                     scanning: null,
                 },
             } as TargetPageStoreData;
-            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => true);
+
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => storeDataMock);
 
             triggerOnChange();
@@ -67,7 +67,7 @@ describe('ClientStoreListener', () => {
                     scanning: 'something',
                 },
             } as TargetPageStoreData;
-            storeHubMock.setup(shm => shm.hasStoreData()).returns(() => true);
+
             storeHubMock.setup(shm => shm.getAllStoreData()).returns(() => storeDataMock);
 
             triggerOnChange();

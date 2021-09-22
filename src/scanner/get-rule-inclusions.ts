@@ -24,9 +24,9 @@ export const explicitRuleOverrides: DictionaryStringTo<RuleIncluded> = {
         status: 'excluded',
         reason: 'Based on feedback from users we tested to check the user impact of duplicate ID failures on static elements. We found no user impact on the experience with any of the ATs including Narrator, JAWS, NVDA, Dragon, and Windows Speech Recognition. After further discussions with the Tooling Advisory Board, we decided to make this a best practice rule. See #4102.',
     },
-    'label-content-name-mismatch': {
-        status: 'included',
-        reason: 'to include in Needs Review since its an experimental rule',
+    'scrollable-region-focusable': {
+        status: 'excluded',
+        reason: 'only reports to needs-review results due to potential false-positives',
     },
 };
 

@@ -4,6 +4,7 @@
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { NullComponent } from 'common/components/null-component';
+import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import {
@@ -35,6 +36,7 @@ describe('CombinedReportHtmlGenerator', () => {
     const getTimeStringFromSecondsStub: typeof DateProvider.getTimeStringFromSeconds = () => '';
 
     const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+    const recommendColorStub = {} as RecommendColor;
     const getPropertyConfigurationStub = (id: string) => null;
     const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
@@ -96,6 +98,7 @@ describe('CombinedReportHtmlGenerator', () => {
             getTimeStringFromSecondsStub,
             getGuidanceTagsStub,
             fixInstructionProcessorMock.object,
+            recommendColorStub,
             getPropertyConfigurationStub,
         );
     });
@@ -104,6 +107,7 @@ describe('CombinedReportHtmlGenerator', () => {
         const sectionProps: ReportBodyProps<CombinedReportSectionProps> = {
             deps: {
                 fixInstructionProcessor: fixInstructionProcessorMock.object,
+                recommendColor: recommendColorStub,
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,

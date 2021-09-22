@@ -196,6 +196,7 @@ export class Page {
     public async injectScriptFile(filePath: string): Promise<void> {
         await this.screenshotOnError(async () => {
             await this.underlyingPage.addScriptTag({ path: filePath });
+            await this.underlyingPage.waitForLoadState();
         });
     }
 

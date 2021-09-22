@@ -57,5 +57,6 @@ export const DebugTools = NamedFC<DebugToolsViewProps>('DebugToolsView', ({ deps
     );
 });
 
-export const DebugToolsView =
-    withStoreSubscription<DebugToolsViewProps, DebugToolsViewState>(DebugTools);
+export const DebugToolsView = withStoreSubscription<DebugToolsViewProps, DebugToolsViewState>(
+    DebugTools,
+);

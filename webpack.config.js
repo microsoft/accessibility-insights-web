@@ -122,12 +122,26 @@ const unifiedConfig = {
     target: 'electron-main',
 };
 
+function isReactDevtoolsInstalled() {
+    try {
+        require.resolve('react-devtools');
+        return true;
+    } catch (error) {
+        if (error.code === 'MODULE_NOT_FOUND') {
+            return false;
+        } else {
+            throw error;
+        }
+    }
+}
+const reactDevtoolsEntryFiles = isReactDevtoolsInstalled() ? ['react-devtools'] : [];
+
 const devConfig = {
     ...commonConfig,
     entry: {
         ...commonEntryFiles,
-        detailsView: ['react-devtools', ...commonEntryFiles.detailsView],
-        popup: ['react-devtools', ...commonEntryFiles.popup],
+        detailsView: [...reactDevtoolsEntryFiles, ...commonEntryFiles.detailsView],
+        popup: [...reactDevtoolsEntryFiles, ...commonEntryFiles.popup],
     },
     name: 'dev',
     mode: 'development',

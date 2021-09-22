@@ -193,7 +193,7 @@ describe('HTMLElementUtils', () => {
     });
 
     test('getClientRects', () => {
-        const rects = { length: 42 } as any as ClientRectList;
+        const rects = { length: 42 } as any as DOMRectList;
 
         const element = { getClientRects: () => rects } as any as Element;
 

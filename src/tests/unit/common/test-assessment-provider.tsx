@@ -5,7 +5,6 @@ import { Assessment } from 'assessments/types/iassessment';
 import { IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ContentPage } from 'views/content/content-page';
-import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
 import { AssessmentVisualizationConfiguration } from '../../../common/configs/assessment-visualization-configuration';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { AssessmentData } from '../../../common/types/store-data/assessment-result-data';
@@ -75,7 +74,6 @@ const assessmentWithColumns: Assessment = {
             getAssessmentData: data => data.assessments['assessment-1'],
         } as AssessmentVisualizationConfiguration;
     },
-    requirementOrder: RequirementComparer.byOrdinal,
 };
 
 const simpleAssessment = {
@@ -109,7 +107,6 @@ const simpleAssessment = {
             getAssessmentData: data => data.assessments['assessment-2'],
         } as AssessmentVisualizationConfiguration;
     },
-    requirementOrder: RequirementComparer.byOrdinal,
 };
 
 const automatedAssessment: Assessment = {
@@ -147,7 +144,6 @@ const automatedAssessment: Assessment = {
             getAssessmentData: data => data.assessments['assessment-3'],
         } as AssessmentVisualizationConfiguration;
     },
-    requirementOrder: RequirementComparer.byOutcomeAndName,
 };
 
 function getInstanceStatusColumns(): Readonly<IColumn>[] {

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
-import { WindowUtils } from '../../common/window-utils';
+import { TabbableElementsHelper } from 'common/tabbable-elements-helper';
+import { WindowUtils } from 'common/window-utils';
+import { BoundingRectOffset } from '../bounding-rect';
 import { ClientUtils } from '../client-utils';
-import { ClientRectOffset } from '../client-utils';
 import { DrawerUtils } from './drawer-utils';
 import { Point } from './point';
 
@@ -116,7 +116,7 @@ export class CenterPositionCalculator {
         dom: Document,
         element: HTMLAreaElement,
         image: HTMLImageElement,
-        offset: ClientRectOffset,
+        offset: BoundingRectOffset,
         bodyStyle: CSSStyleDeclaration,
         docStyle: CSSStyleDeclaration,
     ): Point {

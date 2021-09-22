@@ -84,7 +84,7 @@ export type ResultsViewProps = {
 
 export class ResultsView extends React.Component<ResultsViewProps> {
     public componentDidMount(): void {
-        this.props.deps.scanActionCreator.scan(this.getScanPort());
+        this.props.deps.scanActionCreator.scan();
     }
 
     public render(): JSX.Element {
@@ -196,10 +196,6 @@ export class ResultsView extends React.Component<ResultsViewProps> {
         return this.props.androidSetupStoreData.selectedDevice?.friendlyName;
     }
 
-    private getScanPort(): number {
-        return this.props.androidSetupStoreData.scanPort;
-    }
-
     private getScanMetadata(
         status: ScanStatus,
         unifiedScanResultStoreData: UnifiedScanResultStoreData,
@@ -229,7 +225,6 @@ export class ResultsView extends React.Component<ResultsViewProps> {
                 isSideNavOpen={this.props.leftNavStoreData.leftNavVisible}
                 narrowModeStatus={this.props.narrowModeStatus}
                 scanMetadata={scanMetadata}
-                scanPort={this.getScanPort()}
                 scanStoreData={this.props.scanStoreData}
                 setSideNavOpen={this.props.deps.leftNavActionCreator.setLeftNavVisible}
                 currentContentPageInfo={this.getContentPageInfo()}

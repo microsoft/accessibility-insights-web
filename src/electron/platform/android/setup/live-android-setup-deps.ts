@@ -5,20 +5,19 @@ import { UserConfigurationStore } from 'background/stores/global/user-configurat
 import { Logger } from 'common/logging/logger';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { AdbWrapper, AdbWrapperFactory, DeviceInfo } from 'electron/platform/android/adb-wrapper';
-import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
+import { DeviceConfig } from 'electron/platform/android/device-config';
 import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
-import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { DeviceConfigurator } from 'electron/platform/android/setup/android-device-configurator';
+import { DeviceConfiguratorFactory } from 'electron/platform/android/setup/android-device-configurator-factory';
 import { AndroidSetupDeps } from 'electron/platform/android/setup/android-setup-deps';
 
 export class LiveAndroidSetupDeps implements AndroidSetupDeps {
-    private serviceConfig: ServiceConfigurator;
+    private deviceConfig: DeviceConfigurator;
 
     constructor(
-        private readonly configFactory: ServiceConfiguratorFactory,
+        private readonly configFactory: DeviceConfiguratorFactory,
         private readonly configStore: UserConfigurationStore,
         private readonly userConfigMessageCreator: UserConfigMessageCreator,
-        public readonly fetchDeviceConfig: DeviceConfigFetcher,
         public readonly logger: Logger,
         private readonly adbWrapperFactory: AdbWrapperFactory,
         private readonly adbWrapperHolder: AdbWrapperHolder,
@@ -31,7 +30,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
                 adbLocation,
             );
             this.adbWrapperHolder.setAdb(adbWrapper);
-            this.serviceConfig = this.configFactory.getServiceConfigurator(adbWrapper);
+            this.deviceConfig = this.configFactory.getDeviceConfigurator(adbWrapper);
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -44,16 +43,16 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
     };
 
     public getDevices = async (): Promise<DeviceInfo[]> => {
-        return await this.serviceConfig.getConnectedDevices();
+        return await this.deviceConfig.getConnectedDevices();
     };
 
     public setSelectedDeviceId = (deviceId: string): void => {
-        this.serviceConfig.setSelectedDevice(deviceId);
+        this.deviceConfig.setSelectedDevice(deviceId);
     };
 
     public hasExpectedServiceVersion = async (): Promise<boolean> => {
         try {
-            return await this.serviceConfig.hasRequiredServiceVersion();
+            return await this.deviceConfig.hasRequiredServiceVersion();
         } catch (error) {
             this.logger.log(error);
         }
@@ -62,7 +61,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public installService = async (): Promise<boolean> => {
         try {
-            await this.serviceConfig.installRequiredServiceVersion();
+            await this.deviceConfig.installRequiredServiceVersion();
             return true;
         } catch (error) {
             this.logger.log(error);
@@ -72,7 +71,7 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public hasExpectedPermissions = async (): Promise<boolean> => {
         try {
-            return await this.serviceConfig.hasRequiredPermissions();
+            return await this.deviceConfig.hasRequiredPermissions();
         } catch (error) {
             this.logger.log(error);
         }
@@ -81,17 +80,13 @@ export class LiveAndroidSetupDeps implements AndroidSetupDeps {
 
     public grantOverlayPermission = async (): Promise<void> => {
         try {
-            return await this.serviceConfig.grantOverlayPermission();
+            return await this.deviceConfig.grantOverlayPermission();
         } catch (error) {
             this.logger.log(error);
         }
     };
 
-    public setupTcpForwarding = async (): Promise<number> => {
-        return await this.serviceConfig.setupTcpForwarding();
-    };
-
-    public removeTcpForwarding = async (hostPort: number): Promise<void> => {
-        await this.serviceConfig.removeTcpForwarding(hostPort);
+    public fetchDeviceConfig = async (): Promise<DeviceConfig> => {
+        return await this.deviceConfig.fetchDeviceConfig();
     };
 }

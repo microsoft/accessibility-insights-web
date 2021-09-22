@@ -3,8 +3,8 @@
 exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] = `
 "<Fragment>
   <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
-    <LaunchPanelHeader deps={{...}} title=\\"test title\\" popupWindow={[undefined]} openAdhocToolsPanel={[Function]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function]} diagnosticViewToggleFactory={[undefined]} />
+    <LaunchPanelHeader deps={{...}} title=\\"test title\\" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
+    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={[undefined]} />
   </div>
   <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
 </Fragment>"
@@ -13,7 +13,7 @@ exports[`PopupView render actual content render toggles view: ad-hoc tools 1`] =
 exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 "<Fragment>
   <div className=\\"ms-Fabric launch-panel\\" id=\\"new-launch-pad\\">
-    <LaunchPanelHeader deps={{...}} title=\\"test title\\" subtitle={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function]} featureFlags={{...}} />
+    <LaunchPanelHeader deps={{...}} title=\\"test title\\" subtitle={{...}} popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
     <LaunchPad deps={{...}} productName=\\"test title\\" rowConfigs={[undefined]} version=\\"2\\" />
   </div>
   <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
@@ -32,8 +32,8 @@ exports[`PopupView render actual content render toggles view: launch pad: subtit
 exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
 "<Fragment>
   <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
-    <LaunchPanelHeader deps={{...}} title=\\"test title\\" popupWindow={[undefined]} openAdhocToolsPanel={[Function]} featureFlags={{...}} />
-    <AdHocToolsPanel backLinkHandler={[Function]} diagnosticViewToggleFactory={{...}} />
+    <LaunchPanelHeader deps={{...}} title=\\"test title\\" popupWindow={[undefined]} openAdhocToolsPanel={[Function (anonymous)]} featureFlags={{...}} />
+    <AdHocToolsPanel backLinkHandler={[Function (anonymous)]} diagnosticViewToggleFactory={{...}} />
   </div>
   <TelemetryPermissionDialog deps={{...}} isFirstTime={true} />
 </Fragment>"

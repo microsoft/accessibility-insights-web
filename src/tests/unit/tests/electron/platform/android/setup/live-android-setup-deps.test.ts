@@ -7,21 +7,19 @@ import { UserConfigMessageCreator } from 'common/message-creators/user-config-me
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { AdbWrapper, AdbWrapperFactory, DeviceInfo } from 'electron/platform/android/adb-wrapper';
 import { DeviceConfig } from 'electron/platform/android/device-config';
-import { DeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
 import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
-import { ServiceConfigurator } from 'electron/platform/android/setup/android-service-configurator';
-import { ServiceConfiguratorFactory } from 'electron/platform/android/setup/android-service-configurator-factory';
+import { DeviceConfigurator } from 'electron/platform/android/setup/android-device-configurator';
+import { DeviceConfiguratorFactory } from 'electron/platform/android/setup/android-device-configurator-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('LiveAndroidSetupDeps', () => {
     const expectedAdbLocation = 'Expected ADB location';
 
-    let serviceConfigFactoryMock: IMock<ServiceConfiguratorFactory>;
-    let serviceConfigMock: IMock<ServiceConfigurator>;
+    let deviceConfigFactoryMock: IMock<DeviceConfiguratorFactory>;
+    let deviceConfigMock: IMock<DeviceConfigurator>;
     let configStoreMock: IMock<UserConfigurationStore>;
     let configMessageCreatorMock: IMock<UserConfigMessageCreator>;
-    let fetchConfigMock: IMock<DeviceConfigFetcher>;
     let loggerMock: IMock<Logger>;
     let adbWrapperFactoryMock: IMock<AdbWrapperFactory>;
     let adbWrapperHolderMock: IMock<AdbWrapperHolder>;
@@ -29,27 +27,25 @@ describe('LiveAndroidSetupDeps', () => {
     let testSubject: LiveAndroidSetupDeps;
 
     beforeEach(() => {
-        serviceConfigFactoryMock = Mock.ofType<ServiceConfiguratorFactory>(
+        deviceConfigFactoryMock = Mock.ofType<DeviceConfiguratorFactory>(
             undefined,
             MockBehavior.Strict,
         );
-        serviceConfigMock = Mock.ofType<ServiceConfigurator>(undefined, MockBehavior.Strict);
+        deviceConfigMock = Mock.ofType<DeviceConfigurator>(undefined, MockBehavior.Strict);
         configStoreMock = Mock.ofType<UserConfigurationStore>(undefined, MockBehavior.Strict);
         configMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>(
             undefined,
             MockBehavior.Strict,
         );
-        fetchConfigMock = Mock.ofInstance((port: number) => new Promise<DeviceConfig>(() => null));
         loggerMock = Mock.ofType<Logger>();
         adbWrapperFactoryMock = Mock.ofType<AdbWrapperFactory>(undefined, MockBehavior.Strict);
         adbWrapperHolderMock = Mock.ofType<AdbWrapperHolder>(undefined, MockBehavior.Strict);
         adbWrapperStub = {} as AdbWrapper;
 
         testSubject = new LiveAndroidSetupDeps(
-            serviceConfigFactoryMock.object,
+            deviceConfigFactoryMock.object,
             configStoreMock.object,
             configMessageCreatorMock.object,
-            fetchConfigMock.object,
             loggerMock.object,
             adbWrapperFactoryMock.object,
             adbWrapperHolderMock.object,
@@ -57,8 +53,8 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     function verifyAllMocks(): void {
-        serviceConfigFactoryMock.verifyAll();
-        serviceConfigMock.verifyAll();
+        deviceConfigFactoryMock.verifyAll();
+        deviceConfigMock.verifyAll();
         configStoreMock.verifyAll();
         configMessageCreatorMock.verifyAll();
     }
@@ -73,9 +69,9 @@ describe('LiveAndroidSetupDeps', () => {
             .setup(m => m.createValidatedAdbWrapper(expectedAdbLocation))
             .returns(() => Promise.resolve(adbWrapperStub));
         adbWrapperHolderMock.setup(m => m.setAdb(adbWrapperStub)).verifiable();
-        serviceConfigFactoryMock
-            .setup(m => m.getServiceConfigurator(adbWrapperStub))
-            .returns(() => serviceConfigMock.object)
+        deviceConfigFactoryMock
+            .setup(m => m.getDeviceConfigurator(adbWrapperStub))
+            .returns(() => deviceConfigMock.object)
             .verifiable(Times.once());
         return await testSubject.hasAdbPath();
     }
@@ -122,7 +118,7 @@ describe('LiveAndroidSetupDeps', () => {
                 friendlyName: 'a device',
             },
         ];
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.getConnectedDevices())
             .returns(() => Promise.resolve(expectedDevices))
             .verifiable(Times.once());
@@ -137,9 +133,7 @@ describe('LiveAndroidSetupDeps', () => {
 
     it('setSelectedDeviceId chains to service configurator', async () => {
         const expectedDeviceId: string = 'abc-123';
-        serviceConfigMock
-            .setup(m => m.setSelectedDevice(expectedDeviceId))
-            .verifiable(Times.once());
+        deviceConfigMock.setup(m => m.setSelectedDevice(expectedDeviceId)).verifiable(Times.once());
         await initializeServiceConfig();
 
         testSubject.setSelectedDeviceId(expectedDeviceId);
@@ -148,7 +142,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns false on error', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.hasRequiredServiceVersion())
             .throws(new Error('Threw during hasExpectedServiceVersion'))
             .verifiable(Times.once());
@@ -162,7 +156,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns false if service configurator returns false', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.hasRequiredServiceVersion())
             .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
@@ -176,7 +170,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedServiceVersion returns true if service configurator returns true', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.hasRequiredServiceVersion())
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
@@ -190,7 +184,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('installService returns false on error', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.installRequiredServiceVersion())
             .throws(new Error('Threw during installService'))
             .verifiable(Times.once());
@@ -204,7 +198,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('installService returns true on success', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.installRequiredServiceVersion())
             .returns(() => Promise.resolve())
             .verifiable(Times.once());
@@ -218,7 +212,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedPermissions returns false on error', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.hasRequiredPermissions())
             .throws(new Error('Threw during hasExpectedPermissions'))
             .verifiable(Times.once());
@@ -232,7 +226,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedPermissions returns false if service configurator returns false', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.hasRequiredPermissions())
             .returns(() => Promise.resolve(false))
             .verifiable(Times.once());
@@ -246,7 +240,7 @@ describe('LiveAndroidSetupDeps', () => {
     });
 
     it('hasExpectedPermissions returns true if service configurator returns true', async () => {
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.hasRequiredPermissions())
             .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
@@ -263,7 +257,7 @@ describe('LiveAndroidSetupDeps', () => {
         // This test has the side effect of ensuring grantOverlayPermission is called
         // So there is no need for a separate test.
 
-        serviceConfigMock
+        deviceConfigMock
             .setup(m => m.grantOverlayPermission())
             .throws(new Error('Threw during grantOverlayPermission'))
             .verifiable(Times.once());
@@ -275,62 +269,33 @@ describe('LiveAndroidSetupDeps', () => {
         verifyAllMocks();
     });
 
-    it('setupTcpForwarding propagates error from serviceConfig.setupTcpForwarding', async () => {
-        const serviceConfigErrorMessage = 'error from serviceConfig';
-        serviceConfigMock
-            .setup(m => m.setupTcpForwarding())
-            .returns(() => Promise.reject(new Error(serviceConfigErrorMessage)))
+    it('fetchDeviceConfig returns info from configurator', async () => {
+        const testConfig: DeviceConfig = {
+            deviceName: 'test-device',
+            appIdentifier: 'test-identifier',
+        };
+
+        deviceConfigMock
+            .setup(m => m.fetchDeviceConfig())
+            .returns(() => Promise.resolve(testConfig))
             .verifiable(Times.once());
         await initializeServiceConfig();
 
-        await expect(testSubject.setupTcpForwarding()).rejects.toThrowError(
-            serviceConfigErrorMessage,
-        );
-
+        const config = await testSubject.fetchDeviceConfig();
+        expect(config).toEqual(testConfig);
         verifyAllMocks();
     });
 
-    it('setupTcpForwarding propagates output from serviceConfig.setupTcpForwarding', async () => {
-        const serviceConfigOutput = 63000;
-        serviceConfigMock
-            .setup(m => m.setupTcpForwarding())
-            .returns(() => Promise.resolve(serviceConfigOutput))
-            .verifiable(Times.once());
+    it('fetchDeviceConfig catches thrown errors', async () => {
+        const expectedError = 'error thrown in configurator';
         await initializeServiceConfig();
 
-        const output = await testSubject.setupTcpForwarding();
-
-        expect(output).toBe(serviceConfigOutput);
-
-        verifyAllMocks();
-    });
-
-    it('removeTcpForwarding propagates error from serviceConfig.removeTcpForwarding', async () => {
-        const port = 2;
-        const serviceConfigErrorMessage = 'error from serviceConfig';
-        serviceConfigMock
-            .setup(m => m.removeTcpForwarding(port))
-            .returns(() => Promise.reject(new Error(serviceConfigErrorMessage)))
+        deviceConfigMock
+            .setup(m => m.fetchDeviceConfig())
+            .throws(new Error(expectedError))
             .verifiable(Times.once());
-        await initializeServiceConfig();
 
-        await expect(testSubject.removeTcpForwarding(port)).rejects.toThrowError(
-            serviceConfigErrorMessage,
-        );
-
-        verifyAllMocks();
-    });
-
-    it('removeTcpForwarding propagates to serviceConfig.removeTcpForwarding', async () => {
-        const port = 63000;
-        serviceConfigMock
-            .setup(m => m.removeTcpForwarding(port))
-            .returns(() => Promise.resolve())
-            .verifiable(Times.once());
-        await initializeServiceConfig();
-
-        await testSubject.removeTcpForwarding(port);
-
+        await expect(testSubject.fetchDeviceConfig()).rejects.toThrow(expectedError);
         verifyAllMocks();
     });
 });
