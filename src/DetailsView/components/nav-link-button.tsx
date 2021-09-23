@@ -16,6 +16,7 @@ export const NavLinkButton = NamedFC<NavLinkButtonProps>('NavLinkButton', props 
         <Link
             data-automation-id={link.key}
             aria-expanded={link.isExpanded}
+            aria-current={props['aria-current']}
             title={link.title || link.name}
             onClick={e => link.onClickNavLink(e, link)}
             className={css(styles.navLinkButton, props.className)}

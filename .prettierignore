@@ -11,6 +11,7 @@
 **/*.mp3
 **/*.nsh
 **/*.png
+**/*.sh
 **/*.snap
 **/*.snap.html
 **/Dockerfile
