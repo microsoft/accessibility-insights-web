@@ -11,7 +11,11 @@ steps:
       condition: and(succeeded(), ne(variables.platform, 'linux'))
       timeoutInMinutes: 22
 
-    - script: xvfb-run --server-args="-screen 0 1024x768x24" yarn test:unified --ci
-      displayName: run unified e2e tests (linux)
+    - script: DOCKER_BUILDKIT=1 docker build -t app --target unified .
+      displayName: setup docker
       condition: and(succeeded(), eq(variables.platform, 'linux'))
-      timeoutInMinutes: 12
+
+    - script: docker run --network=host -i app sh -c "yarn test:unified --ci"
+      displayName: run unified tests on docker
+      condition: and(succeeded(), eq(variables.platform, 'linux'))
+      timeoutInMinutes: 22

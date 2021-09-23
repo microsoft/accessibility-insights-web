@@ -186,7 +186,9 @@ const indexedDBDataKeysToFetch = [
 
 const logger = createDefaultLogger();
 
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
+    ignorePersistedData: process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true', // this option is for tests to ensure they can use mock-adb
+})
     .then((persistedData: Partial<PersistedData>) => {
         const installationData: InstallationData = persistedData.installationData;
 
