@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@use "sass:math";
+@use 'sass:math';
 
 @mixin getCheckContainerStyle($height, $border-size: 1px) {
     position: relative;
