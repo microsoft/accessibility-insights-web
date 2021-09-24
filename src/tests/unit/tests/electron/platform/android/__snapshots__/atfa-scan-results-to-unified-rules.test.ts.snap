@@ -40,7 +40,7 @@ Array [
     "guidance": Array [
       Object {
         "href": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html",
-        "tags": undefined,
+        "tags": Array [],
         "text": "WCAG 1.1.1",
       },
     ],
