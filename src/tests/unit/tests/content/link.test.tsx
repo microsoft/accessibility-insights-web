@@ -4,7 +4,6 @@ import { link } from '../../../../content/link';
 
 describe('link', () => {
     test('guidanceLinkTo returns a valid GuidanceLink', () => {
-        console.log(link['WCAG_1_3_4']);
         expect(link['WCAG_1_1_1']).toBeDefined();
     });
 
