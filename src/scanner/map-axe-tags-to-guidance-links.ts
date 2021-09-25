@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HyperlinkDefinition } from 'common/types/hyperlink-definition';
-import { guidanceMetadataByAxeTag } from 'content/guidance-metadata-by-axe-tag';
+import { GuidanceMetadata, guidanceMetadataByAxeTag } from 'content/guidance-metadata-by-axe-tag';
 import { link } from 'content/link';
 import { sortBy } from 'lodash';
 
@@ -25,8 +25,8 @@ function mapAxeTagToGuidanceLink(axeTag: string): HyperlinkDefinition | null {
     if (axeTag === 'best-practice') {
         return BestPractice;
     }
-    const metadata = guidanceMetadataByAxeTag[axeTag] ?? null;
-    if (metadata == null) {
+    const metadata: GuidanceMetadata = guidanceMetadataByAxeTag[axeTag] ?? null;
+    if (metadata === null) {
         return null;
     }
 

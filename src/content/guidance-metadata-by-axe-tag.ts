@@ -1,6 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { guidanceTags } from 'common/guidance-links';
+import { GuidanceTag, guidanceTags } from 'common/guidance-links';
+
+export interface GuidanceMetadata {
+    name: string;
+    linkTag: string;
+    link: string;
+    guidanceTags: GuidanceTag[];
+}
 
 // Maps from axe-core rule/result objects' tags property (eg, "wcag1411") to the guidance
 // metadata used within our application, including the link tag (eg, WCAG_1_4_11)
