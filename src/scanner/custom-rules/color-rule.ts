@@ -13,7 +13,7 @@ export const colorConfiguration: RuleConfiguration = {
     ],
     rule: {
         id: 'select-body',
-        selector: 'body',
+        selector: '*',
         any: [colorCheckId],
         matches: () => isInTopWindow(window),
         enabled: false,
