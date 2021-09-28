@@ -10,8 +10,7 @@ export const filterNeedsReviewResults = (results: ScanResults): ScanResults => {
         v =>
             v.id !== 'aria-input-field-name' &&
             v.id !== 'color-contrast' &&
-            v.id !== 'th-has-data-cells' &&
-            v.id !== 'label-content-name-mismatch',
+            v.id !== 'th-has-data-cells',
     );
     results.incomplete = results.incomplete.filter(i => i.id !== 'link-in-text-block');
 
