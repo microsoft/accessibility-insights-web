@@ -147,6 +147,7 @@
         "./src/background/shortcuts-page-controller.ts",
         "./src/background/storage-data.ts",
         "./src/background/stores/base-store-impl.ts",
+        "./src/background/stores/card-selection-store.ts",
         "./src/background/stores/details-view-store.ts",
         "./src/background/stores/dev-tools-store.ts",
         "./src/background/stores/global/command-store.ts",
