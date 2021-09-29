@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { RuleConfiguration } from '../iruleresults';
 
-const colorCheckId: string = 'select-document';
+const colorCheckId: string = 'select-all-elements';
 
 export const colorConfiguration: RuleConfiguration = {
     checks: [
@@ -12,7 +12,7 @@ export const colorConfiguration: RuleConfiguration = {
         },
     ],
     rule: {
-        id: 'select-document',
+        id: 'select-all-elements',
         selector: '*',
         any: [colorCheckId],
         matches: () => isInTopWindow(window),

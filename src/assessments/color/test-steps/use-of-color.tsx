@@ -59,7 +59,7 @@ export const UseOfColor: Requirement = {
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({
-                rules: ['select-document'],
+                rules: ['select-all-elements'],
                 key: ColorSensoryTestStep.useOfColor,
                 testType: VisualizationType.ColorSensoryAssessment,
             }),
