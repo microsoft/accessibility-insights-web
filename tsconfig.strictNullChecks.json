@@ -154,6 +154,7 @@
         "./src/background/stores/global/permissions-state-store.ts",
         "./src/background/stores/global/scoping-store.ts",
         "./src/background/stores/global/user-configuration-store.ts",
+        "./src/background/stores/inspect-store.ts",
         "./src/background/stores/path-snippet-store.ts",
         "./src/background/stores/side-panel.ts",
         "./src/background/stores/store-hub.ts",
