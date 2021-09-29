@@ -6,10 +6,10 @@ describe('ColorRule', () => {
     describe('verify color configs', () => {
         it('should have correct props', () => {
             expect(colorConfiguration.checks[0].evaluate(null, null, null, null)).toBeTruthy();
-            expect(colorConfiguration.checks[0].id).toBe('select-all-elements');
-            expect(colorConfiguration.rule.id).toBe('select-all-elements');
-            expect(colorConfiguration.rule.selector).toBe('*');
-            expect(colorConfiguration.rule.any[0]).toBe('select-all-elements');
+            expect(colorConfiguration.checks[0].id).toBe('select-html');
+            expect(colorConfiguration.rule.id).toBe('select-html');
+            expect(colorConfiguration.rule.selector).toBe('html');
+            expect(colorConfiguration.rule.any[0]).toBe('select-html');
         });
     });
 
