@@ -71,17 +71,18 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
             reportExportServiceProvider,
             onExportLinkClick,
             html,
+            fileName,
             fileURLProvider,
         } = this.props;
 
         const exportToCodepen = featureFlagStoreData[FeatureFlags.exportReportOptions];
         const exportToJSON = featureFlagStoreData[FeatureFlags.exportReportJSON];
-        const fileURL = fileURLProvider.provideURL([this.props.html], 'text/html');
+        const fileURL = fileURLProvider.provideURL([html], 'text/html');
 
         const items: IContextualMenuItem[] = [
             reportExportServiceProvider
                 .forKey('html')
-                .generateMenuItem(onExportLinkClick, fileURL, html),
+                .generateMenuItem(onExportLinkClick, fileURL, fileName),
         ];
 
         if (exportToJSON) {

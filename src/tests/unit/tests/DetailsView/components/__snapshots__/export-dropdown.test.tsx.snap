@@ -16,7 +16,7 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
     items={
       Array [
         Object {
-          "download": "<some html>",
+          "download": "A file name",
           "href": "a file url",
           "key": "html",
           "onClick": [Function],
@@ -57,7 +57,7 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
     items={
       Array [
         Object {
-          "download": "<some html>",
+          "download": "A file name",
           "href": "a file url",
           "key": "html",
           "onClick": [Function],
