@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type ReportExportServiceKey = 'download' | 'codepen';
+import { IContextualMenuItem } from 'office-ui-fabric-react';
+
+export type ReportExportServiceKey = 'html' | 'codepen' | 'json';
 
 export type ReportExportFormProps = ReportExportProps & { onSubmit: () => void };
 
@@ -13,6 +15,13 @@ export type ReportExportProps = {
 
 export type ReportExportService = {
     key: ReportExportServiceKey;
-    displayName: string;
-    exportForm: React.ComponentType<ReportExportFormProps>;
+    generateMenuItem: (
+        onMenuItemClick: (
+            event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
+            selectedServiceKey: ReportExportServiceKey,
+        ) => void,
+        href?: string,
+        download?: string,
+    ) => IContextualMenuItem;
+    exportForm?: React.ComponentType<ReportExportFormProps>;
 };

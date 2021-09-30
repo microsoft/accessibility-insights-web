@@ -52,6 +52,14 @@ class CodePenExportForm extends React.Component<ReportExportFormProps> {
 
 export const CodePenReportExportService: ReportExportService = {
     key: codePenReportExportServiceKey,
-    displayName: 'CodePen',
     exportForm: CodePenExportForm,
+    generateMenuItem: (onMenuItemClick, _, __) => {
+        return {
+            key: codePenReportExportServiceKey,
+            name: 'to CodePen',
+            onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
+                onMenuItemClick(e, codePenReportExportServiceKey);
+            },
+        };
+    },
 };
