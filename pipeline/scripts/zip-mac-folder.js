@@ -17,12 +17,14 @@ const parentDir = process.argv[2];
 const files = fs.readdirSync(parentDir);
 const existingDmg = files.find(f => path.extname(f) === '.dmg');
 const appName = path.basename(existingDmg, path.extname(existingDmg));
+const cmd = `${sevenBin.path7za}`;
+const args = ['a', `${appName}.zip`, '-r', 'mac'];
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
 console.log(`path to 7z: ${sevenBin.path7za}`);
 
-child_process.execSync(`${sevenBin.path7za} a "${appName}.zip" -r mac`, {
+child_process.execFileSync(cmd, args, {
     cwd: parentDir,
     stdio: 'inherit',
 });
