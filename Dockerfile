@@ -9,9 +9,13 @@ FROM mcr.microsoft.com/playwright:v1.15.0-focal AS setup
 
 USER root
 
+# We need to update certificates before we can successfully update and install node
+# This is a workaround for https://github.com/nodesource/distributions/issues/1266 
 # Downgrading from nodejs 16.3.0 to 14.* is both for consistency with our other build
 # environments and a workaround for https://github.com/nodejs/node/issues/39019
-RUN apt-get update && apt-get install -y curl && \
+RUN apt-get update ; apt-get install ca-certificates \
+    && apt-get update \
+    && apt-get install -y curl && \
   curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && \
   apt-get install -y --allow-downgrades nodejs=14.* && \
   rm -rf /var/lib/apt/lists/*
