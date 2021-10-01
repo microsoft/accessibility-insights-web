@@ -103,7 +103,7 @@ export const guidelineMetadata = {
     'WCAG 1.2.2': {
         number: '1.2.2',
         axeTag: 'wcag122',
-        name: 'Audio Description or Media Alternative (Prerecorded)',
+        name: 'Captions (Prerecorded)',
         linkName: 'WCAG 1.2.2',
         linkTag: 'WCAG_1_2_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html',
@@ -112,7 +112,7 @@ export const guidelineMetadata = {
     'WCAG 1.2.3': {
         number: '1.2.3',
         axeTag: 'wcag123',
-        name: 'Audio description or media alternative (prerecorded)',
+        name: 'Audio Description or Media Alternative (Prerecorded)',
         linkName: 'WCAG 1.2.3',
         linkTag: 'WCAG_1_2_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded',
