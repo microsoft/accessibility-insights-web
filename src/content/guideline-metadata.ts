@@ -3,6 +3,8 @@
 import { GuidanceTag, guidanceTags } from 'common/guidance-links';
 
 export interface GuidelineMetadata {
+    number: string;
+    axeTag: string;
     name: string;
     linkName: string;
     linkTag: string;
