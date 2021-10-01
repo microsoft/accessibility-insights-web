@@ -2897,10 +2897,10 @@ app-builder-lib@^22.14.3:
     semver "^7.3.5"
     temp-file "^3.4.0"
 
-appium-adb@^8.16.0:
-  version "8.16.0"
-  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.16.0.tgz#f00303de0d704c9c32fb0da3aee9517aa51cb154"
-  integrity sha512-hvilQMFZT97o+wygO/aKBMeQIfseJPH7oEmx31IRIXx74YhPyRG3csIm7G76XRGnJDrIUXndcOim6caWu2oiDg==
+appium-adb@^8.16.1:
+  version "8.16.1"
+  resolved "https://registry.yarnpkg.com/appium-adb/-/appium-adb-8.16.1.tgz#8d856324167b30536d11127da56dde665aefb7ca"
+  integrity sha512-xGvqn37JZeBZkh/+WMa9+UUf4nSOvBSFL5+npjYOY082CIhX32EpZuluSHc3JhPVOXBvof1Z1VagGvgsv+QYvQ==
   dependencies:
     "@babel/runtime" "^7.0.0"
     adbkit-apkreader "^3.1.2"
@@ -9814,10 +9814,10 @@ pkg@^5.3.2:
     stream-meter "^1.0.4"
     tslib "2.1.0"
 
-playwright@^1.15.0:
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.15.0.tgz#c8c75287541e75317988b973a306d2f61065aefb"
-  integrity sha512-JtagFVjNvccP1rIixHB/4KbR+BzMTJLty6mo71YLatvJR9ZH+PX8DLlhw1KDdIH2YGMSQGf2ihh4KAp9tsklxQ==
+playwright@^1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.15.1.tgz#f53dae5fbbe9c7b1eca06e2638af8196e0deec96"
+  integrity sha512-MQaKii1mhfoZF0+HXE4h5s2CwZNJmcASlmI097yosoZ9Fo5RW9RkLN5VMCbSw9xTyoqo6vdE6Df0OFpupYjBow==
   dependencies:
     commander "^6.1.0"
     debug "^4.1.1"
