@@ -174,7 +174,7 @@
         "accessibility-insights-for-android-service-bin": "2.0.0",
         "ajv": "^8.6.3",
         "android-device-list": "^1.2.7",
-        "appium-adb": "^8.16.0",
+        "appium-adb": "^8.16.1",
         "applicationinsights-js": "^1.0.21",
         "axe-core": "4.3.2",
         "axios": "^0.22.0",
