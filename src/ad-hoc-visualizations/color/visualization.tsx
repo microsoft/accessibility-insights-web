@@ -16,7 +16,7 @@ const { guidance } = content.color;
 const colorTestKey = AdHocTestkeys.Color;
 
 const colorRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['select-body'],
+    rules: ['select-html'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
     key: colorTestKey,
