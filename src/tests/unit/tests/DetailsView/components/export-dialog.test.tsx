@@ -4,7 +4,6 @@ import { FeatureFlags } from 'common/feature-flags';
 import { shallow } from 'enzyme';
 import { Dialog, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import { ReportExportService } from 'report-export/types/report-export-service';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
@@ -23,15 +22,21 @@ describe('ExportDialog', () => {
         MockBehavior.Strict,
     );
     const fileProviderMock = Mock.ofType<FileURLProvider>();
-    const reportExportServiceProvider = Mock.ofType<ReportExportServiceProvider>();
     const eventStub = 'event stub' as any;
     const onExportClickMock = Mock.ofInstance(() => {});
     const afterDismissedMock = Mock.ofInstance(() => null);
-    const reportExportServiceStub = {
-        key: 'html',
-        generateMenuItem: () => null,
-        exportForm: CodePenReportExportService.exportForm,
-    } as ReportExportService;
+    const reportExportServicesStub = [
+        {
+            key: 'html',
+            generateMenuItem: () => null,
+            exportForm: CodePenReportExportService.exportForm,
+        },
+        {
+            key: 'json',
+            generateMenuItem: () => null,
+            exportForm: CodePenReportExportService.exportForm,
+        },
+    ] as ReportExportService[];
     let props: ExportDialogProps;
 
     beforeEach(() => {
@@ -40,12 +45,10 @@ describe('ExportDialog', () => {
         detailsViewActionMessageCreatorMock.reset();
         onExportClickMock.reset();
         fileProviderMock.reset();
-        reportExportServiceProvider.reset();
 
         const deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreatorMock.object,
             fileURLProvider: fileProviderMock.object,
-            reportExportServiceProvider: reportExportServiceProvider.object,
         };
 
         props = {
@@ -60,6 +63,7 @@ describe('ExportDialog', () => {
             onExportClick: onExportClickMock.object,
             featureFlagStoreData: {},
             afterDismissed: afterDismissedMock.object,
+            reportExportServices: reportExportServicesStub,
         };
     });
 
@@ -84,9 +88,7 @@ describe('ExportDialog', () => {
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
                 .verifiable(Times.once());
-            reportExportServiceProvider
-                .setup(p => p.forKey(It.isAny()))
-                .returns(() => reportExportServiceStub);
+
             props.isOpen = true;
             fileProviderMock
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
@@ -95,6 +97,32 @@ describe('ExportDialog', () => {
             const wrapper = shallow(<ExportDialog {...props} />);
             const elem = wrapper.debug();
             expect(elem).toMatchSnapshot();
+
+            fileProviderMock.verifyAll();
+        });
+
+        it('without export dropdown due to lack of service', () => {
+            props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
+            props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
+            props.reportExportServices = [
+                {
+                    key: 'html',
+                    generateMenuItem: () => null,
+                    exportForm: CodePenReportExportService.exportForm,
+                },
+            ] as ReportExportService[];
+
+            detailsViewActionMessageCreatorMock
+                .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
+                .verifiable(Times.once());
+
+            props.isOpen = true;
+            fileProviderMock
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
+                .returns(() => 'fake-url')
+                .verifiable(Times.once());
+            const wrapper = shallow(<ExportDialog {...props} />);
+            expect(wrapper.debug()).toMatchSnapshot();
 
             fileProviderMock.verifyAll();
         });

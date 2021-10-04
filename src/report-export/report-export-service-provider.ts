@@ -8,11 +8,13 @@ import {
 export class ReportExportServiceProvider {
     constructor(private readonly services: ReportExportService[]) {}
 
-    public all(): ReportExportService[] {
-        return this.services;
+    public servicesForFastPass(): ReportExportService[] {
+        const keysForFastpass: ReportExportServiceKey[] = ['html', 'codepen'];
+        return this.services.filter(s => keysForFastpass.includes(s.key));
     }
 
-    public forKey(key: ReportExportServiceKey): ReportExportService | undefined {
-        return this.services.find(service => service.key === key);
+    public servicesForAssessment(): ReportExportService[] {
+        const keysForAssessment: ReportExportServiceKey[] = ['html', 'json', 'codepen'];
+        return this.services.filter(s => keysForAssessment.includes(s.key));
     }
 }

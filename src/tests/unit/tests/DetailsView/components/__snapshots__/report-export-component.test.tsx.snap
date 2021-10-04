@@ -38,6 +38,14 @@ exports[`ReportExportComponentTest render 1`] = `
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
     reportExportFormat="Assessment"
+    reportExportServices={
+      Array [
+        Object {
+          "generateMenuItem": null,
+          "key": "html",
+        },
+      ]
+    }
   />
 </React.Fragment>
 `;
@@ -79,6 +87,14 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
     reportExportFormat="Assessment"
+    reportExportServices={
+      Array [
+        Object {
+          "generateMenuItem": null,
+          "key": "html",
+        },
+      ]
+    }
   />
 </React.Fragment>
 `;
@@ -120,6 +136,14 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
     reportExportFormat="Assessment"
+    reportExportServices={
+      Array [
+        Object {
+          "generateMenuItem": null,
+          "key": "html",
+        },
+      ]
+    }
   />
 </React.Fragment>
 `;
@@ -162,6 +186,14 @@ exports[`ReportExportComponentTest user interactions edit text field: test conte
     onDescriptionChange={[Function]}
     onExportClick={[Function]}
     reportExportFormat="Assessment"
+    reportExportServices={
+      Array [
+        Object {
+          "generateMenuItem": null,
+          "key": "html",
+        },
+      ]
+    }
   />
 </React.Fragment>
 `;

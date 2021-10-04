@@ -8,6 +8,11 @@ import {
 } from 'DetailsView/components/export-dialog-with-local-state';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import * as React from 'react';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+
+export type ReportExportDialogFactoryDeps = {
+    reportExportServiceProvider: ReportExportServiceProvider;
+};
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;
@@ -50,6 +55,7 @@ export function getReportExportDialogForAssessment(
         isOpen,
         dismissExportDialog,
         afterDialogDismissed,
+        reportExportServices: deps.reportExportServiceProvider.servicesForAssessment(),
     };
     return <ExportDialogWithLocalState {...dialogProps} />;
 }
@@ -92,6 +98,7 @@ export function getReportExportDialogForFastPass(
         isOpen,
         dismissExportDialog,
         afterDialogDismissed,
+        reportExportServices: deps.reportExportServiceProvider.servicesForFastPass(),
     };
 
     return <ExportDialogWithLocalState {...dialogProps} />;
