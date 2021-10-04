@@ -12,39 +12,31 @@ import {
     SCAN_FAILED,
     SCAN_STARTED,
 } from 'electron/common/electron-telemetry-events';
-import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { AndroidScanResults } from 'electron/platform/android/android-scan-results';
-import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
+import { DeviceCommunicator } from 'electron/platform/android/device-communicator';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 import { isFunction } from 'lodash';
 import { tick } from 'tests/unit/common/tick';
-import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
+import { scanResultV2Example } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 import { ExpectedCallType, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ScanController', () => {
-    const port = 1111;
-
-    const payload: PortPayload = {
-        port,
-    };
-
     const expectedScanStartedTelemetry = {
         telemetry: {
-            port,
             source: TelemetryEventSource.ElectronDeviceConnect,
         },
     };
 
+    let deviceCommunicatorMock: IMock<DeviceCommunicator>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let fetchScanResultsMock: IMock<ScanResultsFetcher>;
     let getCurrentDateMock: IMock<() => Date>;
     let loggerMock: IMock<Logger>;
 
     let scanActionsMock: IMock<ScanActions>;
-    let scanStartedMock: IMock<Action<PortPayload>>;
+    let scanStartedMock: IMock<Action<void>>;
     let scanCompletedMock: IMock<Action<void>>;
     let scanFailedMock: IMock<Action<void>>;
 
@@ -59,14 +51,13 @@ describe('ScanController', () => {
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
-        fetchScanResultsMock = Mock.ofType<ScanResultsFetcher>();
+        deviceCommunicatorMock = Mock.ofType<DeviceCommunicator>();
         scanActionsMock = Mock.ofType<ScanActions>();
 
-        scanStartedMock = Mock.ofType<Action<PortPayload>>();
+        scanStartedMock = Mock.ofType<Action<void>>();
         scanStartedMock
             .setup(scanStarted => scanStarted.addListener(It.is(isFunction)))
-            .callback(listener => listener(payload));
-
+            .callback(listener => listener());
         scanCompletedMock = Mock.ofType<Action<void>>();
         scanFailedMock = Mock.ofType<Action<void>>();
 
@@ -102,20 +93,21 @@ describe('ScanController', () => {
             scanActionsMock.object,
             unifiedScanResultActionsMock.object,
             deviceConnectionActionsMock.object,
-            fetchScanResultsMock.object,
             unifiedResultsBuilderMock.object,
             telemetryEventHandlerMock.object,
             getCurrentDateMock.object,
             loggerMock.object,
+            deviceCommunicatorMock.object,
         );
     });
 
-    it('scans and handle successful response', async () => {
-        const scanResults = new AndroidScanResults(axeRuleResultExample);
+    it('scans and handles successful v2 response', async () => {
+        const scanResults = new AndroidScanResults(scanResultV2Example);
 
-        fetchScanResultsMock
-            .setup(fetch => fetch(port))
-            .returns(() => Promise.resolve(scanResults));
+        deviceCommunicatorMock
+            .setup(m => m.fetchContent('result'))
+            .returns(() => Promise.resolve(JSON.stringify(scanResultV2Example)))
+            .verifiable(Times.once());
 
         telemetryEventHandlerMock
             .setup(handler =>
@@ -129,22 +121,34 @@ describe('ScanController', () => {
                     SCAN_COMPLETED,
                     It.isValue({
                         telemetry: {
-                            port,
                             scanDuration: 135000,
                             PASS: {
-                                ImageViewName: 7,
-                                ColorContrast: 7,
-                                ActiveViewName: 5,
+                                ColorContrast: 2,
+                                ActiveViewName: 4,
                                 DontMoveAccessibilityFocus: 1,
-                                TouchSizeWcag: 6,
+                                TouchSizeWcag: 3,
                             },
                             FAIL: {
                                 ImageViewName: 1,
-                                ActiveViewName: 2,
                                 TouchSizeWcag: 1,
-                                ColorContrast: 1,
+                                ColorContrast: 2,
+                                EditTextValue: 1,
+                                EditTextName: 1,
                             },
-                            INCOMPLETE: {},
+                            INCOMPLETE: {
+                                ColorContrast: 2,
+                            },
+                            ERROR: {
+                                EditableContentDescCheck: 1,
+                                TouchTargetSizeCheck: 1,
+                            },
+                            WARNING: {
+                                TextContrastCheck: 5,
+                            },
+                            INFO: {
+                                DuplicateSpeakableTextCheck: 1,
+                            },
+                            RESOLVED: {},
                         },
                     }),
                 ),
@@ -190,11 +194,16 @@ describe('ScanController', () => {
         deviceConnectedMock.verify(m => m.invoke(null), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
+        deviceCommunicatorMock.verifyAll();
     });
 
     it('scans and handle error ', async () => {
-        const errorReason = 'dummy reason';
-        fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.reject(errorReason));
+        const errorReason = 'fake reason';
+
+        deviceCommunicatorMock
+            .setup(m => m.fetchContent('result'))
+            .returns(() => Promise.reject(errorReason))
+            .verifiable(Times.once());
 
         telemetryEventHandlerMock
             .setup(handler =>
@@ -208,7 +217,6 @@ describe('ScanController', () => {
                     SCAN_FAILED,
                     It.isValue({
                         telemetry: {
-                            port,
                             scanDuration: 135000,
                         },
                     }),
@@ -223,7 +231,7 @@ describe('ScanController', () => {
         scanFailedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
         loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
         deviceDisconnectedMock.verify(m => m.invoke(null), Times.once());
-
+        deviceCommunicatorMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 });

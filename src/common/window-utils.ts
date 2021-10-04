@@ -48,7 +48,7 @@ export class WindowUtils {
         return window.getComputedStyle(elt, pseudoElt);
     }
 
-    public getTopWindow(): Window {
+    public getTopWindow(): Window | null {
         return window.top;
     }
 

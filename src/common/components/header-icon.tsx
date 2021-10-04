@@ -32,5 +32,6 @@ export const HeaderIconComponent = NamedFC<HeaderIconProps>('HeaderIconComponent
     return enableHighContrast ? highContrastIcon : defaultIcon;
 });
 
-export const HeaderIcon =
-    withStoreSubscription<HeaderIconProps, HeaderIconState>(HeaderIconComponent);
+export const HeaderIcon = withStoreSubscription<HeaderIconProps, HeaderIconState>(
+    HeaderIconComponent,
+);

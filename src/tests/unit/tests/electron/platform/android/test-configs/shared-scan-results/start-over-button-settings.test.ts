@@ -44,16 +44,14 @@ describe('sharedScanResultsStartOverButtonSettings', () => {
     });
 
     it('clickHandler is called properly', () => {
-        const scanPort = 1234;
         const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(
             undefined,
             MockBehavior.Strict,
         );
-        scanActionCreatorMock.setup(m => m.scan(scanPort)).verifiable(Times.once());
+        scanActionCreatorMock.setup(m => m.scan()).verifiable(Times.once());
         props.deps = {
             scanActionCreator: scanActionCreatorMock.object,
         } as ReflowCommandBarDeps;
-        props.scanPort = scanPort;
 
         sharedScanResultsStartOverButtonSettings(props).onClick(null);
 

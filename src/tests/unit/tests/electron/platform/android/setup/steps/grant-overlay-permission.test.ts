@@ -38,7 +38,7 @@ describe('Android setup step: grantOverlayPermission', () => {
         expect(step.onEnter).toBeDefined();
     });
 
-    it('onEnter transitions to configuring-port-forwarding on success', async () => {
+    it('onEnter transitions to establish-connection on success', async () => {
         const p = Promise.resolve();
 
         depsMock
@@ -46,7 +46,7 @@ describe('Android setup step: grantOverlayPermission', () => {
             .returns(_ => p)
             .verifiable(Times.once());
 
-        stepTransitionMock.setup(m => m('configuring-port-forwarding')).verifiable();
+        stepTransitionMock.setup(m => m('establish-connection')).verifiable();
 
         const step = grantOverlayPermission(
             stepTransitionMock.object,

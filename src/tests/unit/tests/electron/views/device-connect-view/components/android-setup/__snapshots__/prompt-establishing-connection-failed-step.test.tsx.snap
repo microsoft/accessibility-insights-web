@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PromptEstablishingConnectionFailedStep renders with device 1`] = `
+<AndroidSetupStepLayout
+  headerText="Establishing connection failed"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/establishingConnection"
+    >
+      Troubleshooting guidance
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": undefined,
+      "text": "Next",
+    }
+  }
+>
+  <p>
+    We were unable to connect to the Accessibility Insights for Android Service on your device. Please reconnect your device and try again.
+  </p>
+  <DeviceDescription
+    className="deviceDescription"
+    deviceInfo={
+      Object {
+        "friendlyName": "Super-Duper Gadget",
+        "id": "1",
+        "isEmulator": false,
+      }
+    }
+  />
+  <CustomizedPrimaryButton
+    data-automation-id="try-again"
+    onClick={[Function]}
+    text="Try again"
+  />
+</AndroidSetupStepLayout>
+`;
+
+exports[`PromptEstablishingConnectionFailedStep renders with emulator 1`] = `
+<AndroidSetupStepLayout
+  headerText="Establishing connection failed"
+  leftFooterButtonProps={
+    Object {
+      "onClick": [Function],
+      "text": "Cancel",
+    }
+  }
+  moreInfoLink={
+    <LinkComponent
+      href="https://aka.ms/accessibility-insights-for-android/establishingConnection"
+    >
+      Troubleshooting guidance
+    </LinkComponent>
+  }
+  rightFooterButtonProps={
+    Object {
+      "disabled": true,
+      "onClick": undefined,
+      "text": "Next",
+    }
+  }
+>
+  <p>
+    We were unable to connect to the Accessibility Insights for Android Service on your device. Please reconnect your device and try again.
+  </p>
+  <DeviceDescription
+    className="deviceDescription"
+    deviceInfo={
+      Object {
+        "friendlyName": "Emulator Extraordinaire",
+        "id": "1",
+        "isEmulator": true,
+      }
+    }
+  />
+  <CustomizedPrimaryButton
+    data-automation-id="try-again"
+    onClick={[Function]}
+    text="Try again"
+  />
+</AndroidSetupStepLayout>
+`;

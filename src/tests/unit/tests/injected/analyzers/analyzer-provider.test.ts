@@ -7,7 +7,6 @@ import { IMock, Mock } from 'typemoq';
 
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { WindowUtils } from '../../../../../common/window-utils';
 import {
     AnalyzerConfiguration,
     FocusAnalyzerConfiguration,
@@ -143,7 +142,6 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createFocusTrackingAnalyzer(config);
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BaseAnalyzer);
-        expect(openAnalyzer.windowUtils).toBeInstanceOf(WindowUtils);
         expect(openAnalyzer.tabStopsListener).toEqual(tabStopsListener.object);
         expect(openAnalyzer.config).toEqual(config);
         expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);

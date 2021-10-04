@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NarrowModeThresholds } from 'common/narrow-mode-thresholds';
 import { ReactFCWithDisplayName } from 'common/react/named-fc';
-import { NarrowModeThresholds } from 'electron/common/narrow-mode-thresholds';
 import * as React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 

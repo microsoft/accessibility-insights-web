@@ -34,10 +34,6 @@ export type AssessmentLeftNavProps = {
 };
 
 export type AssessmentLeftNavLink = {
-    status: ManualTestStatus;
-} & BaseLeftNavLink;
-
-export type ReflowAssessmentLeftNavLink = {
     testType: VisualizationType;
     status: ManualTestStatus;
 } & BaseLeftNavLink;
@@ -50,7 +46,8 @@ export type TestRequirementLeftNavLink = {
     displayedIndex: string;
     testType: VisualizationType;
     requirementKey: string;
-} & AssessmentLeftNavLink;
+    status: ManualTestStatus;
+} & BaseLeftNavLink;
 
 export type onTestRequirementClick = (
     event: React.MouseEvent<HTMLElement>,
@@ -88,7 +85,7 @@ export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeft
     );
 
     links = links.concat(
-        leftNavLinkBuilder.buildReflowAssessmentTestLinks(
+        leftNavLinkBuilder.buildAssessmentTestLinks(
             deps,
             assessmentsProvider,
             assessmentsData,

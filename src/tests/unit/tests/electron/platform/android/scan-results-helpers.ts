@@ -3,79 +3,97 @@
 import { GuidanceLink } from 'common/guidance-links';
 import {
     AndroidScanResults,
+    AxeRuleResultsData,
     DeviceInfo,
-    RuleResultsData,
     ViewElementData,
 } from 'electron/platform/android/android-scan-results';
+import {
+    AccessibilityHierarchyCheckResult,
+    AtfaBoundingRectangle,
+    SpannableString,
+    ViewHierarchyElement,
+} from 'electron/platform/android/atfa-data-types';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 
+export interface AxeScanResultsParameters {
+    deviceName?: string;
+    appIdentifier?: string;
+    ruleResults?: AxeRuleResultsData[];
+    axeView?: ViewElementData;
+    axeVersion?: string;
+    screenshotData?: string;
+    deviceInfo?: DeviceInfo;
+}
+
 export function buildScanResultsObject(
-    deviceName?: string,
-    appIdentifier?: string,
-    resultsArray?: RuleResultsData[],
-    axeView?: ViewElementData,
-    axeVersion?: string,
-    screenshotData?: string,
-    deviceInfo?: DeviceInfo,
+    axeParameters: AxeScanResultsParameters,
+    atfaResults?: AccessibilityHierarchyCheckResult[],
 ): AndroidScanResults {
-    const scanResults = {};
+    return new AndroidScanResults({
+        AxeResults: buildAxeScanResultsObject(axeParameters),
+        ATFAResults: atfaResults,
+    });
+}
+
+export function buildAxeScanResultsObject(parameters: AxeScanResultsParameters): any {
+    const axeResults = {};
     const axeContext = {};
     let addContext = false;
 
-    if (deviceInfo) {
+    if (parameters.deviceInfo) {
+        axeContext['axeDevice'] = parameters.deviceInfo;
+        addContext = true;
+    }
+
+    if (parameters.deviceName) {
+        const deviceInfo = { ...parameters.deviceInfo, name: parameters.deviceName } as DeviceInfo;
         axeContext['axeDevice'] = deviceInfo;
         addContext = true;
     }
 
-    if (deviceName) {
-        deviceInfo = { ...deviceInfo, name: deviceName } as DeviceInfo;
-        axeContext['axeDevice'] = deviceInfo;
-        addContext = true;
-    }
-
-    if (appIdentifier) {
+    if (parameters.appIdentifier) {
         const axeMetaData = {};
-        axeMetaData['appIdentifier'] = appIdentifier;
+        axeMetaData['appIdentifier'] = parameters.appIdentifier;
         axeContext['axeMetaData'] = axeMetaData;
         addContext = true;
     }
 
-    if (axeView) {
-        axeContext['axeView'] = axeView;
+    if (parameters.axeView) {
+        axeContext['axeView'] = parameters.axeView;
         addContext = true;
     }
 
-    if (axeVersion) {
+    if (parameters.axeVersion) {
         if (axeContext['axeMetaData'] == null) {
             axeContext['axeMetaData'] = {};
         }
 
-        axeContext['axeMetaData']['axeVersion'] = axeVersion;
+        axeContext['axeMetaData']['axeVersion'] = parameters.axeVersion;
         addContext = true;
     }
 
-    if (screenshotData) {
-        axeContext['screenshot'] = screenshotData;
+    if (parameters.screenshotData) {
+        axeContext['screenshot'] = parameters.screenshotData;
         addContext = true;
     }
 
-    if (resultsArray) {
-        scanResults['axeRuleResults'] = resultsArray;
+    if (parameters.ruleResults) {
+        axeResults['axeRuleResults'] = parameters.ruleResults;
     }
 
     if (addContext) {
-        scanResults['axeContext'] = axeContext;
+        axeResults['axeContext'] = axeContext;
     }
 
-    return new AndroidScanResults(scanResults);
+    return axeResults;
 }
 
-export function buildRuleResultObject(
+export function buildAxeRuleResultObject(
     ruleId: string,
     status: string,
     axeViewId?: string,
     props?: any,
-): RuleResultsData {
+): AxeRuleResultsData {
     const result = {};
     result['ruleId'] = ruleId;
     result['status'] = status;
@@ -86,7 +104,7 @@ export function buildRuleResultObject(
         result['props'] = props;
     }
 
-    return result as RuleResultsData;
+    return result as AxeRuleResultsData;
 }
 
 export function buildViewElement(
@@ -132,7 +150,117 @@ export function buildRuleInformation(
             return null!;
         },
         getResultStatus: r => {
-            return r.status === 'FAIL' ? 'fail' : 'pass';
+            return r.status === 'FAIL'
+                ? 'fail'
+                : r.status === 'ERROR' || r.status === 'WARNING'
+                ? 'unknown'
+                : 'pass';
         },
     } as RuleInformation;
+}
+
+export interface AtfaElementParameters {
+    accessibilityClassName: string;
+    className: string;
+    boundsInScreen?: any;
+    contentDescription?: string;
+    contentDescriptionViaSpan?: string;
+    text?: string;
+    textViaSpan?: string;
+    metadata?: any;
+}
+
+export interface AtfaResultParameters extends AtfaElementParameters {
+    checkClass: string;
+    type: string;
+}
+
+export function buildAtfaResult(
+    resultParameters: AtfaResultParameters,
+): AccessibilityHierarchyCheckResult {
+    const element: ViewHierarchyElement = buildAtfaElement(resultParameters);
+
+    const result = {};
+    result['AccessibilityHierarchyCheckResult.element'] = element;
+    result['AccessibilityCheckResult.checkClass'] = resultParameters.checkClass;
+    result['AccessibilityCheckResult.type'] = resultParameters.type;
+    if (resultParameters.metadata) {
+        result['AccessibilityHierarchyCheckResult.metadata'] = resultParameters.metadata;
+    }
+
+    return result as AccessibilityHierarchyCheckResult;
+}
+
+function buildAtfaRectangle(boundsInScreen: any): AtfaBoundingRectangle {
+    const r = {};
+    r['Rect.bottom'] = boundsInScreen.bottom;
+    r['Rect.left'] = boundsInScreen.left;
+    r['Rect.right'] = boundsInScreen.right;
+    r['Rect.top'] = boundsInScreen.top;
+
+    return r as AtfaBoundingRectangle;
+}
+
+function buildAtfaSpannableString(rawString: string): SpannableString {
+    const s = {};
+    s['SpannableString.rawString'] = rawString;
+    return s as SpannableString;
+}
+
+function buildAtfaSpannableStringViaSpan(textViaSpan: string): SpannableString {
+    const s = {};
+    s['SpannableString.rawString'] = { 'SpannableStringInternal.mText': textViaSpan };
+    return s as SpannableString;
+}
+
+function verifyAndBuildSpannableString(
+    fieldName: string,
+    value?: string,
+    valueViaSpan?: string,
+): SpannableString | null {
+    if (value && valueViaSpan) {
+        throw Error(`${fieldName} can't be both direct and indirect!`);
+    }
+
+    if (value) {
+        return buildAtfaSpannableString(value);
+    }
+
+    if (valueViaSpan) {
+        return buildAtfaSpannableStringViaSpan(valueViaSpan);
+    }
+
+    return null;
+}
+
+function buildAtfaElement(elementParameters: AtfaElementParameters): ViewHierarchyElement {
+    const e = {};
+    e['ViewHierarchyElement.accessibilityClassName'] = elementParameters.accessibilityClassName;
+    e['ViewHierarchyElement.className'] = elementParameters.className;
+
+    if (elementParameters.boundsInScreen) {
+        e['ViewHierarchyElement.boundsInScreen'] = buildAtfaRectangle(
+            elementParameters.boundsInScreen,
+        );
+    }
+
+    const contentDescription = verifyAndBuildSpannableString(
+        'contentDescription',
+        elementParameters.contentDescription,
+        elementParameters.contentDescriptionViaSpan,
+    );
+    if (contentDescription) {
+        e['ViewHierarchyElement.contentDescription'] = contentDescription;
+    }
+
+    const text = verifyAndBuildSpannableString(
+        'text',
+        elementParameters.text,
+        elementParameters.textViaSpan,
+    );
+    if (text) {
+        e['ViewHierarchyElement.text'] = text;
+    }
+
+    return e as ViewHierarchyElement;
 }

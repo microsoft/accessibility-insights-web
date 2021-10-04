@@ -13,7 +13,8 @@ const {
     simulateServiceNotInstalled,
     simulateServiceInstallationError,
     simulateServiceLacksPermissions,
-    simulatePortForwardingError,
+    simulateCallContentError,
+    simulateReadContentError,
     simulateInputKeyeventError,
 } = require('./common-adb-configs');
 const { fileWithExpectedLoggingPath, fileWithMockAdbConfig } = require('./common-file-names.js');
@@ -52,6 +53,7 @@ module.exports = {
     simulateServiceNotInstalled,
     simulateServiceInstallationError,
     simulateServiceLacksPermissions,
-    simulatePortForwardingError,
+    simulateCallContentError,
+    simulateReadContentError,
     simulateInputKeyeventError,
 };

@@ -17,7 +17,7 @@ const { guidance } = content.headings;
 const headingsTestKey = AdHocTestkeys.Headings;
 
 const headingsRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
-    rules: ['heading-order'],
+    rules: ['collect-headings'],
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forTestScan,
     key: headingsTestKey,

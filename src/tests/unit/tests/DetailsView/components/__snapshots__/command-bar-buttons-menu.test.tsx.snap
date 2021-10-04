@@ -20,6 +20,14 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
           "onRender": [Function],
         },
         Object {
+          "key": "save assessment",
+          "onRender": [Function],
+        },
+        Object {
+          "key": "load assessment",
+          "onRender": [Function],
+        },
+        Object {
           "key": "start over",
         },
       ],
@@ -29,7 +37,7 @@ exports[`CommandBarButtonsMenu renders CommandBarButtonsMenu 1`] = `
 />
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons, including child behind the feature flag: render export report menuitem 1`] = `
+exports[`CommandBarButtonsMenu renders all child buttons,: render export report menuitem 1`] = `
 <div
   role="menuitem"
 >
@@ -39,7 +47,7 @@ exports[`CommandBarButtonsMenu renders all child buttons, including child behind
 </div>
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons, including child behind the feature flag: render load assessment menuitem 1`] = `
+exports[`CommandBarButtonsMenu renders all child buttons,: render load assessment menuitem 1`] = `
 <div
   role="menuitem"
 >
@@ -49,7 +57,7 @@ exports[`CommandBarButtonsMenu renders all child buttons, including child behind
 </div>
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons, including child behind the feature flag: render save assessment menuitem 1`] = `
+exports[`CommandBarButtonsMenu renders all child buttons,: render save assessment menuitem 1`] = `
 <div
   role="menuitem"
 >
@@ -59,23 +67,7 @@ exports[`CommandBarButtonsMenu renders all child buttons, including child behind
 </div>
 `;
 
-exports[`CommandBarButtonsMenu renders all child buttons, including child behind the feature flag: render start over menuitem 1`] = `
-<React.Fragment>
-  Start over button
-</React.Fragment>
-`;
-
-exports[`CommandBarButtonsMenu renders child buttons with the exception of child behind feature flag: render export report menuitem 1`] = `
-<div
-  role="menuitem"
->
-  <React.Fragment>
-    Report export button
-  </React.Fragment>
-</div>
-`;
-
-exports[`CommandBarButtonsMenu renders child buttons with the exception of child behind feature flag: render start over menuitem 1`] = `
+exports[`CommandBarButtonsMenu renders all child buttons,: render start over menuitem 1`] = `
 <React.Fragment>
   Start over button
 </React.Fragment>

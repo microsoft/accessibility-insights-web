@@ -6,10 +6,11 @@ const process = require('process');
 const { downloadArtifact } = require('@electron/get');
 const extract = require('extract-zip');
 const pkg = require('../../package.json');
+const { electronBuildId } = require('./electron-build-id');
 
 /*
 This script replaces existing electron & chromedriver modules
-with mirror dependencies specified by `assetNumber` and pipeline
+with mirror dependencies specified by `electronBuildId` and pipeline
 build variables. We use this to avoid bundling non-freely-redistributable 
 media codecs in our release builds. The version of Electron published to 
 npm includes these as part of Chromium; our release builds use a 
@@ -27,8 +28,6 @@ if (
     );
     process.exit(1);
 }
-
-const assetNumber = '7912306';
 
 const clearAndExtract = async (zipFilePath, destinationPath) => {
     destinationPath = path.resolve(destinationPath);
@@ -52,7 +51,7 @@ const resolveCustomAssetURL = details => {
               details.artifactSuffix ? details.artifactSuffix : '',
           ].join('-')}.zip`.replace('-.', '.');
     const strippedVer = details.version.replace(/^v/, '');
-    return `${opts.mirror}/${strippedVer}/${opts.customDir}/${assetNumber}/${file}`;
+    return `${opts.mirror}/${strippedVer}/${opts.customDir}/${electronBuildId}/${file}`;
 };
 
 const downloadElectronArtifact = async (artifactName, artifactSuffix) => {

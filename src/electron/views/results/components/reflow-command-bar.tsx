@@ -33,7 +33,6 @@ export type ReflowCommandBarDeps = {
 
 export interface ReflowCommandBarProps {
     deps: ReflowCommandBarDeps;
-    scanPort: number;
     scanStoreData: ScanStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     cardsViewData: CardsViewModel;

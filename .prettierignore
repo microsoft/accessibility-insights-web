@@ -11,14 +11,17 @@
 **/*.mp3
 **/*.nsh
 **/*.png
+**/*.sh
 **/*.snap
 **/*.snap.html
 **/Dockerfile
+**/*.a11ywebassessment
 
 .DS_Store
 .dependabot/
 .github/
 .prettierignore
+.swcrc
 .yarnrc
 .vs/
 AppXManifest.xml
@@ -27,8 +30,8 @@ bundle/
 dist/
 docs/art/ada-cat.ansi256.txt
 docs/LICENSE.txt
-src/electron/resources/license_en.txt
-src/electron/resources/license.txt
+src/electron/resources/mit_license_en.txt
+src/electron/resources/mit_license.txt
 src/NOTICE.html
 src/tests/miscellaneous/mock-adb/bin/
 drop/

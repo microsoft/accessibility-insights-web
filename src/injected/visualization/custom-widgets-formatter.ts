@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BoundingRect } from '../bounding-rect';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { DrawerUtils } from './drawer-utils';
 import { DrawerConfiguration } from './formatter';
@@ -22,7 +23,7 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
         return drawerConfig;
     }
 
-    protected getBoundingRect = (element: Element) => {
+    protected getBoundingRect = (element: Element): BoundingRect => {
         if (this.isCompositeCustomWidget(element)) {
             return DrawerUtils.getBoundingClientRectIncludingChildren(element);
         } else {

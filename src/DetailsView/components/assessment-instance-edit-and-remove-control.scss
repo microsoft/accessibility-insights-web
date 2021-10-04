@@ -7,7 +7,7 @@
     font-size: 16px;
     line-height: 24px;
     color: $negative-outcome;
-    @media screen and (-ms-high-contrast: active) {
+    @media screen and (forced-colors: active) {
         color: inherit;
     }
 }

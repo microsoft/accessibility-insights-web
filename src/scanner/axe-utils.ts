@@ -22,8 +22,8 @@ export function getOptionsFromCheck(checkId: string): any {
     return axe._audit.checks[checkId].options;
 }
 
-export function getAccessibleText(node: HTMLElement, isLabelledByContext: boolean): string {
-    return axe.commons.text.accessibleText(node, isLabelledByContext);
+export function getAccessibleText(node: HTMLElement): string {
+    return axe.commons.text.accessibleText(node);
 }
 
 export function getAccessibleDescription(node: HTMLElement): string {
@@ -87,7 +87,7 @@ export function getImageCodedAs(node: HTMLElement): ImageCodedAs | null {
         return 'Decorative';
     }
 
-    if (getAccessibleText(node, false) !== '' || isWhiteSpace(alt)) {
+    if (getAccessibleText(node) !== '' || isWhiteSpace(alt)) {
         return 'Meaningful';
     }
 

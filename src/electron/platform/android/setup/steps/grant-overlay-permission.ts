@@ -7,6 +7,6 @@ export const grantOverlayPermission: AndroidSetupStepConfig = (stepTransition, d
     actions: {},
     onEnter: async () => {
         await deps.grantOverlayPermission();
-        stepTransition('configuring-port-forwarding');
+        stepTransition('establish-connection');
     },
 });

@@ -9,7 +9,7 @@ export const sharedScanResultsStartOverButtonSettings = (
     props: ReflowCommandBarProps,
 ): StartOverButtonSettings => {
     return {
-        onClick: () => props.deps.scanActionCreator.scan(props.scanPort),
+        onClick: () => props.deps.scanActionCreator.scan(),
         disabled: props.scanStoreData.status === ScanStatus.Scanning,
     };
 };

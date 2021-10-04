@@ -2,7 +2,7 @@
 
 exports[`StartOverDropdownTest render 1`] = `
 "<div>
-  <InsightsCommandButton iconProps={{...}} text=\\"Start over\\" ariaLabel=\\"start over menu\\" onClick={[Function]} menuIconProps={{...}} componentRef={{...}} />
+  <InsightsCommandButton iconProps={{...}} text=\\"Start over\\" ariaLabel=\\"start over menu\\" onClick={[Function (anonymous)]} menuIconProps={{...}} componentRef={{...}} />
 </div>"
 `;
 

@@ -7,7 +7,7 @@
     top: $default-title-height;
     .left-nav-panel {
         :global(.ms-Panel-main) {
-            width: calc(#{$reflowLeftNavWidth} + #{$reflowLeftNavBorderWidth});
+            width: calc(#{$detailsViewLeftNavWidth} + #{$detailsViewLeftNavBorderWidth});
         }
         :global(.ms-Panel-content) {
             padding: 0px;

@@ -25,7 +25,7 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.manualInstanceDetails]: false,
             [FeatureFlags.debugTools]: false,
             [FeatureFlags.exportReportOptions]: false,
-            [FeatureFlags.saveAndLoadAssessment]: false,
+            [FeatureFlags.exportReportJSON]: false,
         };
 
         const featureFlagValueKeys = keys(featureFlagValues);

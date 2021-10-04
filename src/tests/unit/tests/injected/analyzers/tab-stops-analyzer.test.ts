@@ -4,39 +4,48 @@
 import { Message } from 'common/message';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
-import { WindowUtils } from 'common/window-utils';
-import { FocusAnalyzerConfiguration, ScanBasePayload } from 'injected/analyzers/analyzer';
+import { FocusAnalyzerConfiguration } from 'injected/analyzers/analyzer';
 import { TabStopsAnalyzer } from 'injected/analyzers/tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TabStopsListener } from 'injected/tab-stops-listener';
+import { DebounceFaker } from 'tests/unit/common/debounce-faker';
 import { failTestOnErrorLogger } from 'tests/unit/common/fail-test-on-error-logger';
-import { itIsFunction } from 'tests/unit/common/it-is-function';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('TabStopsAnalyzer', () => {
-    let windowUtilsMock: IMock<WindowUtils>;
     let sendMessageMock: IMock<(message) => void>;
     let configStub: FocusAnalyzerConfiguration;
-    let typeStub: VisualizationType;
+    let visualizationTypeStub: VisualizationType;
     let testSubject: TabStopsAnalyzer;
     let tabStopsListenerMock: IMock<TabStopsListener>;
-    let tabEventHandler: (tabEvent: TabStopEvent) => void;
-    let setTimeOutCallBack: () => void;
+    let simulateTabEvent: (tabEvent: TabStopEvent) => void;
     let scanIncompleteWarningDetectorMock: IMock<ScanIncompleteWarningDetector>;
+    let emptyScanCompleteMessage: Message;
+    let debounceFaker: DebounceFaker<() => void>;
+    const tabEventStub1: TabStopEvent = {
+        target: ['selector1'],
+        html: 'test',
+        timestamp: 1,
+    };
+    const tabEventStub2: TabStopEvent = {
+        target: ['selector2'],
+        html: 'test',
+        timestamp: 2,
+    };
 
     beforeEach(() => {
-        windowUtilsMock = Mock.ofType(WindowUtils);
         scanIncompleteWarningDetectorMock = Mock.ofType<ScanIncompleteWarningDetector>();
         sendMessageMock = Mock.ofInstance(message => {}, MockBehavior.Strict);
         configStub = {
-            analyzerProgressMessageType: 'sample progress message type',
-            analyzerTerminatedMessageType: 'fun terminated message',
-            analyzerMessageType: 'sample message type',
+            analyzerProgressMessageType: 'ScanUpdated message type',
+            analyzerTerminatedMessageType: 'ScanTerminated message type',
+            analyzerMessageType: 'ScanCompleted message type',
             key: 'sample key',
             testType: -1,
         };
-        tabEventHandler = null;
-        setTimeOutCallBack = null;
+        simulateTabEvent = null;
+        debounceFaker = new DebounceFaker();
         tabStopsListenerMock = Mock.ofType(TabStopsListener);
 
         scanIncompleteWarningDetectorMock
@@ -46,128 +55,111 @@ describe('TabStopsAnalyzer', () => {
         testSubject = new TabStopsAnalyzer(
             configStub,
             tabStopsListenerMock.object,
-            windowUtilsMock.object,
             sendMessageMock.object,
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,
+            debounceFaker.debounce,
         );
-        typeStub = -1 as VisualizationType;
-    });
+        visualizationTypeStub = -1 as VisualizationType;
 
-    test('analyze', (done: () => void) => {
-        const tabEventStub: TabStopEvent = {
-            target: ['selector'],
-            html: 'test',
-            timestamp: 1,
-        };
-        const resultsStub = {};
-        const expectedBaseMessage: Message = {
+        emptyScanCompleteMessage = {
             messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
-                selectorMap: resultsStub,
+                selectorMap: {},
                 scanResult: null,
-                testType: typeStub,
+                testType: visualizationTypeStub,
                 scanIncompleteWarnings: [],
             },
         };
-        const expectedOnProgressMessage: Message = {
-            messageType: configStub.analyzerProgressMessageType,
-            payload: {
-                key: configStub.key,
-                testType: configStub.testType,
-                tabbedElements: [tabEventStub],
-                results: [tabEventStub],
-            },
-        };
-
-        setupTabStopsListenerForStartTabStops();
-        setupWindowUtils();
-        setupSendMessageMock(expectedBaseMessage);
-        setupSendMessageMock(expectedOnProgressMessage, () => {
-            verifyAll();
-            expect((testSubject as any).onTabbedTimeoutId).toBeNull();
-            done();
-        });
-
-        testSubject.analyze();
-
-        tabEventHandler(tabEventStub);
-        setTimeOutCallBack();
     });
 
-    test('analyze: multiple events together (simulate timeoutId already created)', (completeSignal: () => void) => {
-        const tabEventStub1: TabStopEvent = {
-            target: ['selector'],
-            html: 'test',
-            timestamp: 1,
-        };
-        const tabEventStub2: TabStopEvent = {
-            target: ['selector2'],
-            html: 'test',
-            timestamp: 2,
-        };
-        const onTabbedTimoutIdStub = -1;
-        const resultsStub = {};
-        const expectedBaseMessage: Message = {
-            messageType: configStub.analyzerMessageType,
-            payload: {
-                key: configStub.key,
-                selectorMap: resultsStub,
-                scanResult: null,
-                testType: typeStub,
-                scanIncompleteWarnings: [],
-            },
-        };
-        const expectedOnProgressMessage: Message = {
-            messageType: configStub.analyzerProgressMessageType,
-            payload: {
-                key: configStub.key,
-                testType: configStub.testType,
-                tabbedElements: [tabEventStub1, tabEventStub2],
-                results: [tabEventStub1, tabEventStub2],
-            },
-        };
+    describe('analyze', () => {
+        it('emits an empty ScanCompleted message immediately on startup', async () => {
+            setupTabStopsListenerForStartTabStops();
+            setupSendMessageMock(emptyScanCompleteMessage);
 
-        (testSubject as any).onTabbedTimeoutId = onTabbedTimoutIdStub;
-        (testSubject as any).pendingTabbedElements = [tabEventStub1];
+            testSubject.analyze();
+            await tick();
 
-        setupTabStopsListenerForStartTabStops();
-        setupWindowUtils();
-        setupSendMessageMock(expectedBaseMessage);
-        setupSendMessageMock(expectedOnProgressMessage, () => {
             verifyAll();
-            expect((testSubject as any).onTabbedTimeoutId).toBeNull();
-            completeSignal();
         });
 
-        testSubject.analyze();
+        it('emits ScanUpdated messages when tab events are detected', async () => {
+            const expectedScanUpdatedMessage: Message = {
+                messageType: configStub.analyzerProgressMessageType,
+                payload: {
+                    key: configStub.key,
+                    testType: configStub.testType,
+                    tabbedElements: [tabEventStub1],
+                    results: [tabEventStub1],
+                },
+            };
 
-        tabEventHandler(tabEventStub2);
-        setTimeOutCallBack();
-    });
+            setupTabStopsListenerForStartTabStops();
+            setupSendMessageMock(emptyScanCompleteMessage);
+            testSubject.analyze();
+            await tick();
 
-    test('teardown', () => {
-        tabStopsListenerMock.setup(tslm => tslm.stopListenToTabStops()).verifiable(Times.once());
+            setupSendMessageMock(expectedScanUpdatedMessage);
+            simulateTabEvent(tabEventStub1);
 
-        const payload: ScanBasePayload = {
-            key: configStub.key,
-            testType: configStub.testType,
-        };
+            debounceFaker.flush();
 
-        setupSendMessageMock({
-            messageType: configStub.analyzerTerminatedMessageType,
-            payload,
+            verifyAll();
         });
 
-        testSubject.teardown();
+        it('batches ScanUpdated messages for tab events detected in quick succession', async () => {
+            const expectedScanUpdatedMessage: Message = {
+                messageType: configStub.analyzerProgressMessageType,
+                payload: {
+                    key: configStub.key,
+                    testType: configStub.testType,
+                    tabbedElements: [tabEventStub1, tabEventStub2],
+                    results: [tabEventStub1, tabEventStub2],
+                },
+            };
 
-        verifyAll();
+            setupTabStopsListenerForStartTabStops();
+            setupSendMessageMock(emptyScanCompleteMessage);
+            testSubject.analyze();
+            await tick();
+
+            setupSendMessageMock(expectedScanUpdatedMessage);
+            simulateTabEvent(tabEventStub1);
+            simulateTabEvent(tabEventStub2);
+
+            debounceFaker.flush();
+
+            verifyAll();
+        });
+
+        it('emits a ScanTerminated message and stops emitting ScanUpdated messages after teardown() is invoked', async () => {
+            setupTabStopsListenerForStartTabStops();
+            setupSendMessageMock(emptyScanCompleteMessage);
+            testSubject.analyze();
+            await tick();
+
+            tabStopsListenerMock
+                .setup(tslm => tslm.stopListenToTabStops())
+                .verifiable(Times.once());
+            setupSendMessageMock({
+                messageType: configStub.analyzerTerminatedMessageType,
+                payload: { key: configStub.key, testType: configStub.testType },
+            });
+
+            testSubject.teardown();
+            await tick();
+            verifyAll();
+
+            simulateTabEvent(tabEventStub1); // no corresponding setupSendMessageMock
+            debounceFaker.flush();
+            verifyAll();
+        });
     });
 
     function verifyAll(): void {
         tabStopsListenerMock.verifyAll();
-        windowUtilsMock.verifyAll();
         sendMessageMock.verifyAll();
     }
 
@@ -175,23 +167,15 @@ describe('TabStopsAnalyzer', () => {
         tabStopsListenerMock
             .setup(tslm => tslm.setTabEventListenerOnMainWindow(It.isAny()))
             .callback((callback: (tabEvent: TabStopEvent) => void) => {
-                tabEventHandler = callback;
+                simulateTabEvent = callback;
             })
             .verifiable(Times.once());
 
         tabStopsListenerMock.setup(t => t.startListenToTabStops()).verifiable(Times.once());
     }
 
-    function setupWindowUtils(): void {
-        windowUtilsMock
-            .setup(w => w.setTimeout(itIsFunction, 50))
-            .callback((callback, timeout) => {
-                setTimeOutCallBack = callback;
-            })
-            .verifiable(Times.once());
-    }
-
     function setupSendMessageMock(message, callback?): void {
+        sendMessageMock.reset();
         sendMessageMock
             .setup(smm => smm(It.isValue(message)))
             .callback(callback)

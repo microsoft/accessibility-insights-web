@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { generateReflowAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
+import { generateAssessmentTestKey } from 'DetailsView/components/left-nav/left-nav-link-builder';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
@@ -87,7 +87,7 @@ describe(DetailsViewLeftNav, () => {
                     visualizationType: selectedTestStub,
                     featureFlagStoreData: featureFlagDataStub,
                     selectedSubview: selectedTestSubview,
-                    deps: { generateReflowAssessmentTestKey },
+                    deps: { generateAssessmentTestKey },
                     assessmentsProvider: assessmentProviderStub,
                 }),
             ),

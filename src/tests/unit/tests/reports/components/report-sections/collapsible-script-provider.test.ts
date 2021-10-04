@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
+import { format } from 'prettier';
 import {
     addEventListenerForCollapsibleSection,
     getDefaultAddListenerForCollapsibleSection,
@@ -9,7 +10,10 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CollapsibleScriptProvider', () => {
     it('produces script source that matches snapshot', () => {
-        expect(getDefaultAddListenerForCollapsibleSection()).toMatchSnapshot();
+        const source = getDefaultAddListenerForCollapsibleSection();
+        // Required to get a consistent snapshot with --coverage=false vs --coverage=true
+        const formattedSource = format(source, { parser: 'babel' }).replace(/\n\n/g, '\n');
+        expect(formattedSource).toMatchSnapshot();
     });
 
     it('produces script source that does not use IE-incompatible arrow functions', () => {

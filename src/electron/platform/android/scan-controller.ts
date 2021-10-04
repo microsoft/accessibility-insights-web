@@ -2,68 +2,71 @@
 // Licensed under the MIT License.
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
+import {
+    AtfaInstanceCount,
+    InstanceCount,
+    TelemetryEventSource,
+} from 'common/extension-telemetry-events';
 import { Logger } from 'common/logging/logger';
 import {
     SCAN_COMPLETED,
     SCAN_FAILED,
     SCAN_STARTED,
 } from 'electron/common/electron-telemetry-events';
-import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceConnectionActions } from 'electron/flux/action/device-connection-actions';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import {
     AndroidScanResults,
-    RuleResultsData,
+    AxeRuleResultsData,
 } from 'electron/platform/android/android-scan-results';
-import { ScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
+import { AccessibilityHierarchyCheckResult } from 'electron/platform/android/atfa-data-types';
+import { DeviceCommunicator } from 'electron/platform/android/device-communicator';
 import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
+import { isObject } from 'lodash';
 
 export class ScanController {
     constructor(
         private readonly scanActions: ScanActions,
         private readonly unifiedScanResultAction: UnifiedScanResultActions,
         private readonly deviceConnectionActions: DeviceConnectionActions,
-        private readonly fetchScanResults: ScanResultsFetcher,
         private readonly unifiedResultsBuilder: UnifiedScanCompletedPayloadBuilder,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentDate: () => Date,
         private readonly logger: Logger,
+        private readonly deviceCommunicator: DeviceCommunicator,
     ) {}
 
     public initialize(): void {
         this.scanActions.scanStarted.addListener(this.onScanStarted);
     }
 
-    private onScanStarted = (payload: PortPayload) => {
-        const port = payload.port;
-
+    private onScanStarted = () => {
         this.telemetryEventHandler.publishTelemetry(SCAN_STARTED, {
             telemetry: {
-                port,
                 source: TelemetryEventSource.ElectronDeviceConnect,
             },
         });
 
         const scanStartedTime = this.getCurrentDate().getTime();
 
-        this.fetchScanResults(port)
-            .then(this.scanCompleted.bind(this, scanStartedTime, port))
-            .catch(this.scanFailed.bind(this, scanStartedTime, port));
+        this.fetchScanResults()
+            .then(this.scanCompleted.bind(this, scanStartedTime))
+            .catch(this.scanFailed.bind(this, scanStartedTime));
     };
 
-    private scanCompleted(scanStartedTime: number, port: number, data: AndroidScanResults): void {
+    private scanCompleted(scanStartedTime: number, data: AndroidScanResults): void {
         const scanCompletedTime = this.getCurrentDate().getTime();
 
         const scanDuration = scanCompletedTime - scanStartedTime;
 
-        const instanceCount = this.buildInstanceCount(data.ruleResults);
+        const axeInstanceCount = this.buildAxeInstanceCount(data.axeRuleResults);
+        const atfaInstanceCount = this.buildAtfaInstanceCount(data.atfaResults);
 
         this.telemetryEventHandler.publishTelemetry(SCAN_COMPLETED, {
             telemetry: {
-                port,
                 scanDuration,
-                ...instanceCount,
+                ...axeInstanceCount,
+                ...atfaInstanceCount,
             },
         });
 
@@ -74,8 +77,8 @@ export class ScanController {
         this.deviceConnectionActions.statusConnected.invoke(null);
     }
 
-    private buildInstanceCount(ruleResults: RuleResultsData[]): InstanceCount {
-        return ruleResults.reduce<InstanceCount>(
+    private buildAxeInstanceCount(axeRuleResults: AxeRuleResultsData[]): InstanceCount {
+        return axeRuleResults.reduce<InstanceCount>(
             (accumulator, currentRuleResult) => {
                 if (accumulator[currentRuleResult.status][currentRuleResult.ruleId] == null) {
                     accumulator[currentRuleResult.status][currentRuleResult.ruleId] = 1;
@@ -89,7 +92,29 @@ export class ScanController {
         );
     }
 
-    private scanFailed(scanStartedTime: number, port: number, error: Error): void {
+    private buildAtfaInstanceCount(
+        atfaResults: AccessibilityHierarchyCheckResult[],
+    ): AtfaInstanceCount {
+        return atfaResults.reduce<AtfaInstanceCount>(
+            (accumulator, currentResult) => {
+                const status = currentResult['AccessibilityCheckResult.type'];
+                const ruleId = currentResult['AccessibilityCheckResult.checkClass'];
+
+                if (status !== 'NOT_RUN') {
+                    if (accumulator[status][ruleId] == null) {
+                        accumulator[status][ruleId] = 1;
+                    } else {
+                        accumulator[status][ruleId]++;
+                    }
+                }
+
+                return accumulator;
+            },
+            { ERROR: {}, WARNING: {}, INFO: {}, RESOLVED: {} },
+        );
+    }
+
+    private scanFailed(scanStartedTime: number, error: Error): void {
         this.logger.error('scan failed: ', error);
 
         const scanCompletedTime = this.getCurrentDate().getTime();
@@ -98,7 +123,6 @@ export class ScanController {
 
         this.telemetryEventHandler.publishTelemetry(SCAN_FAILED, {
             telemetry: {
-                port,
                 scanDuration,
             },
         });
@@ -106,4 +130,14 @@ export class ScanController {
         this.scanActions.scanFailed.invoke(null);
         this.deviceConnectionActions.statusDisconnected.invoke(null);
     }
+
+    private fetchScanResults = async (): Promise<AndroidScanResults> => {
+        const results = await this.deviceCommunicator.fetchContent('result');
+        const parsedResults = JSON.parse(results);
+        if (!isObject(parsedResults)) {
+            throw new Error(`parseScanResults: invalid object: ${parsedResults}`);
+        }
+        const scanResults = new AndroidScanResults(parsedResults);
+        return scanResults;
+    };
 }

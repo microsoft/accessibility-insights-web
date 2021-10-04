@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientRectOffset } from '../client-utils';
+import { BoundingRect, BoundingRectOffset } from '../bounding-rect';
+
 export class DrawerUtils {
     private dom: Document;
     public clientWindowOffsetThreshold: number = 5;
@@ -9,11 +10,11 @@ export class DrawerUtils {
         this.dom = dom;
     }
 
-    public getContainerLeftOffset(offset: ClientRectOffset): number {
+    public getContainerLeftOffset(offset: BoundingRectOffset): number {
         return Math.max(this.clientWindowOffsetThreshold, offset.left);
     }
 
-    public getContainerTopOffset(offset: ClientRectOffset): number {
+    public getContainerTopOffset(offset: BoundingRectOffset): number {
         return Math.max(this.clientWindowOffsetThreshold, offset.top);
     }
 
@@ -22,7 +23,7 @@ export class DrawerUtils {
     }
 
     public getContainerWidth(
-        offset: ClientRectOffset,
+        offset: BoundingRectOffset,
         doc: Document,
         elementBoundingClientRectWidth: number,
         bodyStyle: CSSStyleDeclaration,
@@ -45,7 +46,7 @@ export class DrawerUtils {
     }
 
     public getContainerHeight(
-        offset: ClientRectOffset,
+        offset: BoundingRectOffset,
         doc: Document,
         elementBoundingClientRectHeight: number,
         bodyStyle: CSSStyleDeclaration,
@@ -68,7 +69,7 @@ export class DrawerUtils {
     }
 
     public isOutsideOfDocument(
-        offset: ClientRectOffset,
+        offset: BoundingRectOffset,
         doc: Document,
         bodyStyle: CSSStyleDeclaration,
         docStyle: CSSStyleDeclaration,
@@ -114,8 +115,8 @@ export class DrawerUtils {
         return Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight);
     }
 
-    public static getBoundingClientRectIncludingChildren(element: Element): ClientRect {
-        const rects: ClientRect[] = [];
+    public static getBoundingClientRectIncludingChildren(element: Element): BoundingRect {
+        const rects: DOMRect[] = [];
         for (let i = 0; i < element.children.length; i++) {
             const boundingRect = element.children[i].getBoundingClientRect();
             if (boundingRect.height * boundingRect.width > 0) {

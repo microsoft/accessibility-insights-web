@@ -1,23 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TabStopsView clicking start over sends corresponding service command 1`] = `
-"GET /AccessibilityInsights/FocusTracking/Reset
+exports[`TabStopsView clicking start over sends corresponding adb command 1`] = `
+"ADB -s device-1 shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Reset
 "
 `;
 
-exports[`TabStopsView exiting while tab stops are active sends reset service command 1`] = `
-"GET /AccessibilityInsights/FocusTracking/Reset
+exports[`TabStopsView exiting while tab stops are active sends reset adb command 1`] = `
+"ADB -s device-1 shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Reset
 "
 `;
 
-exports[`TabStopsView leaving tab stops sends reset service command 1`] = `
-"GET /AccessibilityInsights/FocusTracking/Reset
+exports[`TabStopsView leaving tab stops sends reset adb command 1`] = `
+"ADB -s device-1 shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Reset
 "
 `;
 
-exports[`TabStopsView toggling show tab stops sends corresponding service commands 1`] = `
-"GET /AccessibilityInsights/FocusTracking/Enable
-GET /AccessibilityInsights/FocusTracking/Disable
+exports[`TabStopsView toggling show tab stops sends corresponding adb commands: disable 1`] = `
+"ADB -s device-1 shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Disable
+"
+`;
+
+exports[`TabStopsView toggling show tab stops sends corresponding adb commands: enable 1`] = `
+"ADB -s device-1 shell content call --uri content://com.microsoft.accessibilityinsightsforandroidservice --method FocusTracking/Enable
 "
 `;
 

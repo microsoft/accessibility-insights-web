@@ -28,7 +28,8 @@ export async function setupMockAdb(
 export type CommonAdbConfigName = 'single-device';
 export const commonAdbConfigs: { [configName in CommonAdbConfigName]: MockAdbConfig };
 export function simulateNoDevicesConnected(config: MockAdbConfig): MockAdbConfig;
-export function simulatePortForwardingError(config: MockAdbConfig): MockAdbConfig;
+export function simulateReadContentError(config: MockAdbConfig): MockAdbConfig;
+export function simulateCallContentError(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceLacksPermissions(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceNotInstalled(config: MockAdbConfig): MockAdbConfig;
 export function simulateServiceInstallationError(config: MockAdbConfig): MockAdbConfig;

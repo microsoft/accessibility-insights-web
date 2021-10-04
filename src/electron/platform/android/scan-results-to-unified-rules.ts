@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UUIDGenerator } from 'common/uid-generator';
+import { RuleInformation } from 'electron/platform/android/rule-information';
 import { AndroidScanResults } from './android-scan-results';
-import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 
 export type ConvertScanResultsToUnifiedRulesDelegate = (
@@ -16,30 +16,18 @@ export function convertScanResultsToUnifiedRules(
     scanResults: AndroidScanResults,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGenerator,
+    converters: ConvertScanResultsToUnifiedRulesDelegate[],
 ): UnifiedRule[] {
-    if (!scanResults) {
-        return [];
-    }
-
     const unifiedRules: UnifiedRule[] = [];
-    const ruleIds: Set<string> = new Set();
 
-    for (const result of scanResults.ruleResults) {
-        const ruleId = result.ruleId;
-        if (!ruleIds.has(ruleId)) {
-            const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
-
-            if (ruleInformation) {
-                unifiedRules.push(createUnifiedRuleFromRuleResult(ruleInformation, uuidGenerator));
-                ruleIds.add(ruleId);
-            }
-        }
-    }
+    converters?.forEach(converter => {
+        unifiedRules.push(...converter(scanResults, ruleInformationProvider, uuidGenerator));
+    });
 
     return unifiedRules;
 }
 
-function createUnifiedRuleFromRuleResult(
+export function createUnifiedRuleFromRuleResult(
     ruleInformation: RuleInformation,
     uuidGenerator: UUIDGenerator,
 ): UnifiedRule {

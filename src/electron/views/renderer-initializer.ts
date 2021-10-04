@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
-import axios from 'axios';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { ContentActions } from 'background/actions/content-actions';
@@ -28,6 +27,7 @@ import { allCardInteractionsSupported } from 'common/components/cards/card-inter
 import { ExpandCollapseVisualHelperModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { RecommendColor } from 'common/components/recommend-color';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { config } from 'common/configuration';
 import { DateProvider } from 'common/date-provider';
@@ -44,6 +44,7 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { getNarrowModeThresholdsForUnified } from 'common/narrow-mode-thresholds';
 import { NavigatorUtils } from 'common/navigator-utils';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
@@ -57,7 +58,6 @@ import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-acti
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { createContentPagesInfo } from 'electron/common/content-page-info-factory';
 import { createLeftNavItems } from 'electron/common/left-nav-item-factory';
-import { getNarrowModeThresholdsForUnified } from 'electron/common/narrow-mode-thresholds';
 import { getAllFeatureFlagDetailsUnified } from 'electron/common/unified-feature-flags';
 import { AndroidSetupActionCreator } from 'electron/flux/action-creator/android-setup-action-creator';
 import { LeftNavActionCreator } from 'electron/flux/action-creator/left-nav-action-creator';
@@ -84,24 +84,19 @@ import { AndroidFriendlyDeviceNameProvider } from 'electron/platform/android/and
 import { AndroidServiceApkLocator } from 'electron/platform/android/android-service-apk-locator';
 import { AndroidSetupTelemetrySender } from 'electron/platform/android/android-setup-telemetry-sender';
 import { AppiumAdbWrapperFactory } from 'electron/platform/android/appium-adb-wrapper-factory';
-import { parseDeviceConfig } from 'electron/platform/android/device-config';
-import { createDeviceConfigFetcher } from 'electron/platform/android/device-config-fetcher';
-import { createDeviceFocusCommandSender } from 'electron/platform/android/device-focus-command-sender';
+import { DeviceCommunicator } from 'electron/platform/android/device-communicator';
 import { DeviceFocusController } from 'electron/platform/android/device-focus-controller';
-import { createScanResultsFetcher } from 'electron/platform/android/fetch-scan-results';
 import { LiveAppiumAdbCreator } from 'electron/platform/android/live-appium-adb-creator';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { AdbWrapperHolder } from 'electron/platform/android/setup/adb-wrapper-holder';
 import { AndroidBrowserCloseCleanupTasks } from 'electron/platform/android/setup/android-browser-close-cleanup-tasks';
-import { AndroidPortCleaner } from 'electron/platform/android/setup/android-port-cleaner';
 import {
-    AndroidServiceConfiguratorFactory,
-    ServiceConfiguratorFactory,
-} from 'electron/platform/android/setup/android-service-configurator-factory';
+    AndroidDeviceConfiguratorFactory,
+    DeviceConfiguratorFactory,
+} from 'electron/platform/android/setup/android-device-configurator-factory';
 import { AndroidSetupStartListener } from 'electron/platform/android/setup/android-setup-start-listener';
 import { createAndroidSetupStateMachineFactory } from 'electron/platform/android/setup/android-setup-state-machine-factory';
 import { LiveAndroidSetupDeps } from 'electron/platform/android/setup/live-android-setup-deps';
-import { PortCleaningServiceConfiguratorFactory } from 'electron/platform/android/setup/port-cleaning-service-configurator-factory';
 import { androidTestConfigs } from 'electron/platform/android/test-configs/android-test-configs';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UnifiedSettingsProvider } from 'electron/settings/unified-settings-provider';
@@ -120,7 +115,6 @@ import { PlainTextFormatter } from 'issue-filing/common/markup/plain-text-format
 import { IssueFilingServiceProviderForUnifiedImpl } from 'issue-filing/issue-filing-service-provider-for-unified-impl';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
-import { getPortPromise } from 'portfinder';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
@@ -192,7 +186,9 @@ const indexedDBDataKeysToFetch = [
 
 const logger = createDefaultLogger();
 
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
+    ignorePersistedData: process.env.ACCESSIBILITY_INSIGHTS_ELECTRON_CLEAR_DATA === 'true', // this option is for tests to ensure they can use mock-adb
+})
     .then((persistedData: Partial<PersistedData>) => {
         const installationData: InstallationData = persistedData.installationData;
 
@@ -217,10 +213,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         const dispatcher = new DirectActionMessageDispatcher(interpreter);
         const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
 
-        const fetchDeviceConfig = createDeviceConfigFetcher(axios.get, parseDeviceConfig);
-
-        const androidPortCleaner: AndroidPortCleaner = new AndroidPortCleaner(logger);
-
         const apkLocator: AndroidServiceApkLocator = new AndroidServiceApkLocator(
             ipcRendererShim.getAppPath,
         );
@@ -228,23 +220,18 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             new AndroidFriendlyDeviceNameProvider();
         const appiumAdbWrapperFactory = new AppiumAdbWrapperFactory(new LiveAppiumAdbCreator());
         const adbWrapperHolder = new AdbWrapperHolder();
-        const serviceConfigFactory: ServiceConfiguratorFactory =
-            new PortCleaningServiceConfiguratorFactory(
-                new AndroidServiceConfiguratorFactory(
-                    apkLocator,
-                    getPortPromise,
-                    friendlyDeviceNameProvider,
-                ),
-                androidPortCleaner,
-            );
+        const deviceConfigFactory: DeviceConfiguratorFactory = new AndroidDeviceConfiguratorFactory(
+            apkLocator,
+            friendlyDeviceNameProvider,
+        );
+
         const androidSetupStore = new AndroidSetupStore(
             androidSetupActions,
             createAndroidSetupStateMachineFactory(
                 new LiveAndroidSetupDeps(
-                    serviceConfigFactory,
+                    deviceConfigFactory,
                     userConfigurationStore,
                     userConfigMessageCreator,
-                    fetchDeviceConfig,
                     logger,
                     appiumAdbWrapperFactory,
                     adbWrapperHolder,
@@ -309,8 +296,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             tabStopsStore,
         ]);
 
-        const fetchScanResults = createScanResultsFetcher(axios.get);
-
         const featureFlagsController = new FeatureFlagsController(featureFlagStore, interpreter);
 
         const userConfigurationActionCreator = new UserConfigurationActionCreator(
@@ -351,16 +336,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
 
         const androidSetupActionCreator = new AndroidSetupActionCreator(androidSetupActions);
 
-        const deviceFocusController = new DeviceFocusController(
-            adbWrapperHolder,
-            createDeviceFocusCommandSender(axios.get),
-            androidSetupStore,
-        );
+        const deviceCommunicator = new DeviceCommunicator(adbWrapperHolder, androidSetupStore);
+
+        const deviceFocusController = new DeviceFocusController(deviceCommunicator);
 
         const androidBrowserCloseCleanupTasks = new AndroidBrowserCloseCleanupTasks(
             ipcRendererShim,
             deviceFocusController,
-            androidPortCleaner,
             logger,
         );
         androidBrowserCloseCleanupTasks.addBrowserCloseListener();
@@ -436,16 +418,20 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             'axe-android',
         );
 
-        const unifiedResultsBuilder = createDefaultBuilder(getToolData, friendlyDeviceNameProvider);
+        const unifiedResultsBuilder = createDefaultBuilder(
+            getToolData,
+            friendlyDeviceNameProvider,
+            featureFlagStore,
+        );
         const scanController = new ScanController(
             scanActions,
             unifiedScanResultActions,
             deviceConnectionActions,
-            fetchScanResults,
             unifiedResultsBuilder,
             telemetryEventHandler,
             DateProvider.getCurrentDate,
             logger,
+            deviceCommunicator,
         );
 
         scanController.initialize();
@@ -466,6 +452,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
         );
 
         const fixInstructionProcessor = new FixInstructionProcessor();
+        const recommendColor = new RecommendColor();
 
         const issueFilingController = new IssueFilingControllerImpl(
             shell.openExternal,
@@ -510,6 +497,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             collapsibleControl: CardsCollapsibleControl,
             cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
             fixInstructionProcessor,
+            recommendColor,
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
@@ -540,6 +528,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             DateProvider.getUTCStringFromDate,
             GetGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor,
+            recommendColor,
             getPropertyConfiguration,
         );
 
@@ -560,7 +549,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch)
             windowStateActionCreator,
             dropdownClickHandler,
             LinkComponent: ElectronLink,
-            fetchScanResults,
             androidSetupActionCreator,
             storesHub,
             scanActionCreator,

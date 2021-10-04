@@ -31,7 +31,6 @@ describe('ReflowCommandBar', () => {
     let scanDateStub: Date;
     let narrowModeStatusStub: NarrowModeStatus;
     let props: ReflowCommandBarProps;
-    let scanPortStub: number;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
@@ -54,7 +53,6 @@ describe('ReflowCommandBar', () => {
         };
         scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);
-        scanPortStub = 1111;
 
         props = {
             deps: {
@@ -65,7 +63,6 @@ describe('ReflowCommandBar', () => {
             cardsViewData: cardsViewDataStub,
             featureFlagStoreData: featureFlagStoreDataStub,
             scanMetadata: scanMetadataStub,
-            scanPort: scanPortStub,
             narrowModeStatus: narrowModeStatusStub,
             isSideNavOpen: true,
             setSideNavOpen: () => null,

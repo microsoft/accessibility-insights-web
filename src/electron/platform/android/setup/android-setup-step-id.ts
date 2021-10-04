@@ -14,6 +14,6 @@ export type AndroidSetupStepId =
     | 'detect-permissions'
     | 'prompt-grant-permissions'
     | 'grant-overlay-permission'
-    | 'configuring-port-forwarding'
-    | 'prompt-configuring-port-forwarding-failed'
+    | 'establish-connection'
+    | 'prompt-establishing-connection-failed'
     | 'prompt-connected-start-testing';
