@@ -3,6 +3,7 @@
 import { InsightsCommandButton } from 'common/components/controls/insights-command-button';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ReportExportService } from 'report-export/types/report-export-service';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -20,6 +21,9 @@ describe('ReportExportComponentTest', () => {
     let htmlGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
+    const reportExportServicesStub: ReportExportService[] = [
+        { key: 'html', generateMenuItem: null },
+    ];
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
@@ -41,6 +45,7 @@ describe('ReportExportComponentTest', () => {
                 'test-feature-flag': true,
             },
             onDialogDismiss: () => null,
+            reportExportServices: reportExportServicesStub,
         };
     });
 

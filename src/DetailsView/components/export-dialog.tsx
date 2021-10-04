@@ -5,8 +5,10 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { ExportDropdown } from 'DetailsView/components/export-dropdown';
 import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import {
+    ReportExportService,
+    ReportExportServiceKey,
+} from 'report-export/types/report-export-service';
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
@@ -25,12 +27,12 @@ export interface ExportDialogProps {
     onExportClick: () => void;
     featureFlagStoreData: FeatureFlagStoreData;
     afterDismissed?: () => void;
+    reportExportServices: ReportExportService[];
 }
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     fileURLProvider: FileURLProvider;
-    reportExportServiceProvider: ReportExportServiceProvider;
 }
 
 export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
@@ -61,10 +63,14 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     };
 
     const fileURL = props.deps.fileURLProvider.provideURL([props.html], 'text/html');
-    const exportService = props.deps.reportExportServiceProvider.forKey(serviceKey);
+    const exportService = props.reportExportServices.find(s => s.key === serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
-    const exportToCodepen = props.featureFlagStoreData[FeatureFlags.exportReportOptions];
-    const exportToJSON = props.featureFlagStoreData[FeatureFlags.exportReportJSON];
+    const exportToCodepen =
+        props.featureFlagStoreData[FeatureFlags.exportReportOptions] &&
+        props.reportExportServices.some(s => s.key === 'codepen');
+    const exportToJSON =
+        props.featureFlagStoreData[FeatureFlags.exportReportJSON] &&
+        props.reportExportServices.some(s => s.key === 'json');
 
     const getSingleExportToHtmlButton = () => {
         return (
@@ -89,7 +95,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                     featureFlagStoreData={props.featureFlagStoreData}
                     html={props.html}
                     onExportLinkClick={onExportLinkClick}
-                    reportExportServiceProvider={props.deps.reportExportServiceProvider}
+                    reportExportServices={props.reportExportServices}
                 />
                 {ExportForm && (
                     <ExportForm
