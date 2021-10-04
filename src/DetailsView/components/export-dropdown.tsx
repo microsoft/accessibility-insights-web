@@ -6,8 +6,10 @@ import { FileURLProvider } from 'common/file-url-provider';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ContextualMenu, IContextualMenuItem, IPoint, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import {
+    ReportExportService,
+    ReportExportServiceKey,
+} from 'report-export/types/report-export-service';
 
 export interface ExportDropdownState {
     isContextMenuVisible: boolean;
@@ -19,7 +21,7 @@ export interface ExportDropdownProps {
         event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
         selectedServiceKey: ReportExportServiceKey,
     ) => void;
-    reportExportServiceProvider: ReportExportServiceProvider;
+    reportExportServices: ReportExportService[];
     fileName: string;
     html: string;
     fileURLProvider: FileURLProvider;
@@ -66,38 +68,39 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-        const {
-            featureFlagStoreData,
-            reportExportServiceProvider,
-            onExportLinkClick,
-            html,
-            fileName,
-            fileURLProvider,
-        } = this.props;
+        const { featureFlagStoreData, html, fileName, fileURLProvider } = this.props;
 
         const exportToCodepen = featureFlagStoreData[FeatureFlags.exportReportOptions];
         const exportToJSON = featureFlagStoreData[FeatureFlags.exportReportJSON];
         const fileURL = fileURLProvider.provideURL([html], 'text/html');
 
-        const items: IContextualMenuItem[] = [
-            reportExportServiceProvider
-                .forKey('html')
-                .generateMenuItem(onExportLinkClick, fileURL, fileName),
-        ];
+        const items: IContextualMenuItem[] = [];
+        this.tryAddMenuItemForKey('html', items, fileURL, fileName);
 
         if (exportToJSON) {
-            items.push(
-                reportExportServiceProvider.forKey('json').generateMenuItem(onExportLinkClick),
-            );
+            this.tryAddMenuItemForKey('json', items);
         }
 
         if (exportToCodepen) {
-            items.push(
-                reportExportServiceProvider.forKey('codepen').generateMenuItem(onExportLinkClick),
-            );
+            this.tryAddMenuItemForKey('codepen', items);
         }
 
         return items;
+    }
+
+    private tryAddMenuItemForKey(
+        key: ReportExportServiceKey,
+        items: IContextualMenuItem[],
+        href?: string,
+        download?: string,
+    ) {
+        const { reportExportServices, onExportLinkClick } = this.props;
+
+        const service = reportExportServices.find(s => s.key === key);
+
+        if (service === undefined) return;
+
+        items.push(service.generateMenuItem(onExportLinkClick, href, download));
     }
 
     private openDropdown = (event): void => {
