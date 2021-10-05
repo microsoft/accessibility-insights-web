@@ -71,9 +71,14 @@ describe('AssessmentJsonExportGenerator', () => {
             description,
         );
 
-        expect(actualJson).toEqual(
-            '{"url":"testUrl","title":"testTitle","date":"2018-10-19T18:25:00.000Z","comment":"generateJson-description","version":"extensionVersion","results":[]}',
-        );
+        const parsedResults = JSON.parse(actualJson);
+
+        expect(parsedResults.url).toBe('testUrl');
+        expect(parsedResults.title).toBe('testTitle');
+        expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(parsedResults.date)).toBe(true);
+        expect(parsedResults.comment).toBe('generateJson-description');
+        expect(parsedResults.version).toBe('extensionVersion');
+        expect(parsedResults.results).toEqual([]);
 
         factoryMock.verifyAll();
         dateGetterMock.verifyAll();
