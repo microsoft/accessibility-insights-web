@@ -131,6 +131,16 @@ export class DetailsViewPage extends Page {
         await download.delete();
         return suggestedName;
     }
+
+    public async closeExportDialog(): Promise<void> {
+        await this.keyPress('Escape');
+        await this.keyPress('Escape');
+    }
+
+    public async countMenuItems(): Promise<number> {
+        const menuLocator = this.underlyingPage.locator(overviewSelectors.exportReportDropdownMenu);
+        return await menuLocator.locator('li').count();
+    }
 }
 
 export function detailsViewRelativeUrl(targetTabId: number): string {

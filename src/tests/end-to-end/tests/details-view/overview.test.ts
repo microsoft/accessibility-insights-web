@@ -131,8 +131,26 @@ describe('Details View -> Overview Page', () => {
         await overviewPage.openExportDropdown();
         // const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsJSON);
         let fileName;
+        await overviewPage.closeExportDialog();
         expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.json$/)));
     });
+
+    it.each([true, false])(
+        'should show correct number of items in export dropdown menu with codepen feature flag = %s',
+        async codepenFlag => {
+            await backgroundPage.enableFeatureFlag('exportReportJSON');
+            codepenFlag
+                ? await backgroundPage.enableFeatureFlag('exportReportOptions')
+                : await backgroundPage.disableFeatureFlag('exportReportOptions');
+
+            await overviewPage.openExportDropdown();
+            const items = (await overviewPage.countMenuItems()).valueOf();
+            await overviewPage.closeExportDialog();
+
+            const expectedItems = codepenFlag ? 3 : 2;
+            expect(items).toEqual(expectedItems);
+        },
+    );
 });
 
 async function openOverviewPage(

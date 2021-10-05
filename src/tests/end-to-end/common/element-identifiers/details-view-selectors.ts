@@ -6,6 +6,7 @@ import { instanceTableTextContentAutomationId } from 'DetailsView/components/ass
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
 import { reportExportDropdownAutomationId } from 'DetailsView/components/export-dropdown';
+import { reportExportDropdownMenuAutomationId } from 'DetailsView/components/export-dropdown';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { invalidLoadAssessmentDialogOkButtonAutomationId } from 'DetailsView/components/invalid-load-assessment-dialog';
 import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-assessment-button';
@@ -92,6 +93,7 @@ export const overviewSelectors = {
     exportDropdown: getAutomationIdSelector(reportExportDropdownAutomationId),
     exportAsJSON: getAutomationIdSelector(reportExportAsJsonAutomationId),
     exportAsHTML: getAutomationIdSelector(reportExportAsHtmlAutomationId),
+    exportReportDropdownMenu: `div#${reportExportDropdownMenuAutomationId}`,
 };
 
 export const settingsPanelSelectors = {
