@@ -4,6 +4,7 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
 <div>
   <CustomizedPrimaryButton
     ariaLabel="export options menu"
+    data-automation-id="report-export-dropdown"
     menuIconProps={
       Object {
         "iconName": "ChevronDown",
@@ -13,6 +14,7 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
     text="Export"
   />
   <StyledWithResponsiveMode
+    id="report-export-dropdown-menu"
     items={
       Array [
         Object {
@@ -45,6 +47,7 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
 <div>
   <CustomizedPrimaryButton
     ariaLabel="export options menu"
+    data-automation-id="report-export-dropdown"
     menuIconProps={
       Object {
         "iconName": "ChevronDown",
@@ -54,6 +57,7 @@ exports[`ExportDropdown handles click to show menu with feature flags but missin
     text="Export"
   />
   <StyledWithResponsiveMode
+    id="report-export-dropdown-menu"
     items={
       Array [
         Object {
@@ -80,6 +84,7 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
 <div>
   <CustomizedPrimaryButton
     ariaLabel="export options menu"
+    data-automation-id="report-export-dropdown"
     menuIconProps={
       Object {
         "iconName": "ChevronDown",
@@ -89,6 +94,7 @@ exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
     text="Export"
   />
   <StyledWithResponsiveMode
+    id="report-export-dropdown-menu"
     items={
       Array [
         Object {
@@ -109,6 +115,7 @@ exports[`ExportDropdown renders without menu items 1`] = `
 <div>
   <CustomizedPrimaryButton
     ariaLabel="export options menu"
+    data-automation-id="report-export-dropdown"
     menuIconProps={
       Object {
         "iconName": "ChevronDown",
@@ -124,6 +131,7 @@ exports[`ExportDropdown should dismiss the contextMenu 1`] = `
 <div>
   <CustomizedPrimaryButton
     ariaLabel="export options menu"
+    data-automation-id="report-export-dropdown"
     menuIconProps={
       Object {
         "iconName": "ChevronDown",
