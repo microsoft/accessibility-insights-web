@@ -50,7 +50,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(props.description);
         detailsViewActionMessageCreator.exportResultsClicked(
             props.reportExportFormat,
-            props.html,
+            selectedServiceKey,
             event,
         );
         setServiceKey(selectedServiceKey);

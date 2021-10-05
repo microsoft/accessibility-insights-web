@@ -86,7 +86,7 @@ describe('ExportDialog', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
             props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
             detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
+                .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
 
             props.isOpen = true;
@@ -113,7 +113,7 @@ describe('ExportDialog', () => {
             ] as ReportExportService[];
 
             detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
+                .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
 
             props.isOpen = true;
@@ -174,7 +174,7 @@ describe('ExportDialog', () => {
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
 
             detailsViewActionMessageCreatorMock
-                .setup(a => a.exportResultsClicked(props.reportExportFormat, props.html, eventStub))
+                .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
 
             const wrapper = shallow(<ExportDialog {...props} />);

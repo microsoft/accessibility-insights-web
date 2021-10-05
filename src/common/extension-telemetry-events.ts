@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
+import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { SingleElementSelector } from './types/store-data/scoping-store-data';
 
 export const POPUP_INITIALIZED: string = 'PopupInitialized';
@@ -112,7 +113,7 @@ export type FeatureFlagToggleTelemetryData = {
 
 export type ExportResultsTelemetryData = {
     exportResultsType: string;
-    exportResultsData: number;
+    exportResultsService: ReportExportServiceKey;
 } & BaseTelemetryData;
 
 export type DetailsViewOpenTelemetryData = {
