@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 
 import { DictionaryStringTo } from '../types/common-types';
 import {
@@ -81,16 +82,16 @@ export class TelemetryDataFactory {
         };
     }
 
-    public forExportedHtml(
+    public forExportedResults(
         reportExportFormat: ReportExportFormat,
-        html: string,
+        selectedServiceKey: ReportExportServiceKey,
         event: SupportedMouseEvent,
         source: TelemetryEventSource,
     ): ExportResultsTelemetryData {
         return {
             ...this.withTriggeredByAndSource(event, source),
             exportResultsType: reportExportFormat,
-            exportResultsData: html.length,
+            exportResultsService: selectedServiceKey,
         };
     }
 

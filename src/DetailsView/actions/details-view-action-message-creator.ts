@@ -34,6 +34,7 @@ import { ManualTestStatus } from 'common/types/manual-test-status';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import * as React from 'react';
+import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
@@ -104,12 +105,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
     public exportResultsClicked(
         reportExportFormat: ReportExportFormat,
-        exportedHtml: string,
+        selectedServiceKey: ReportExportServiceKey,
         event: React.MouseEvent<HTMLElement>,
     ): void {
-        const telemetryData = this.telemetryFactory.forExportedHtml(
+        const telemetryData = this.telemetryFactory.forExportedResults(
             reportExportFormat,
-            exportedHtml,
+            selectedServiceKey,
             event,
             TelemetryEvents.TelemetryEventSource.DetailsView,
         );
