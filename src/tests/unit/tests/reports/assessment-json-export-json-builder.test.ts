@@ -503,9 +503,8 @@ describe('Assessment JSON export builder', () => {
             fs.readFileSync(reportModelSample, { encoding: 'utf-8' }),
         );
 
-        // This is necessary because JSON.parse doesn't properly parse the JSON date into a Javascript date.
-        // The date is in JS date format when it comes into the function within the application
-        assessmentData.scanDetails.reportDate = date;
+        const dateStub = { toISOString: () => 'time' } as Date;
+        assessmentData.scanDetails.reportDate = dateStub;
         const generatedJson = buildAssessmentJsonExportData(comment, version, assessmentData);
         const jsonString = JSON.stringify(generatedJson, null, '  ');
         expect(jsonString).toMatchSnapshot();

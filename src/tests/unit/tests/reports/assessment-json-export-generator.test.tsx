@@ -24,13 +24,14 @@ describe('AssessmentJsonExportGenerator', () => {
         const targetAppInfo: TargetAppData = { stub: 'targetAppInfo' } as any;
         const description = 'generateJson-description';
         const testDate = new Date(2018, 9, 19, 11, 25);
+        const dateStub = { toISOString: () => 'time' } as Date;
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
         const modelStub: ReportModel = {
             scanDetails: {
                 url: 'testUrl',
                 targetPage: 'testTitle',
-                reportDate: testDate,
+                reportDate: dateStub,
             },
             passedDetailsData: [],
             incompleteDetailsData: [],
@@ -71,14 +72,9 @@ describe('AssessmentJsonExportGenerator', () => {
             description,
         );
 
-        const parsedResults = JSON.parse(actualJson);
-
-        expect(parsedResults.url).toBe('testUrl');
-        expect(parsedResults.title).toBe('testTitle');
-        expect(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(parsedResults.date)).toBe(true);
-        expect(parsedResults.comment).toBe('generateJson-description');
-        expect(parsedResults.version).toBe('extensionVersion');
-        expect(parsedResults.results).toEqual([]);
+        expect(actualJson).toEqual(
+            '{"url":"testUrl","title":"testTitle","date":"time","comment":"generateJson-description","version":"extensionVersion","results":[]}',
+        );
 
         factoryMock.verifyAll();
         dateGetterMock.verifyAll();

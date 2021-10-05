@@ -4,7 +4,7 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
 "{
   \\"url\\": \\"https://www.washington.edu/accesscomputing/AU/before.html\\",
   \\"title\\": \\"Accessible University Demo Site - Inaccessible Version\\",
-  \\"date\\": \\"2021-11-01T18:05:00.000Z\\",
+  \\"date\\": \\"time\\",
   \\"comment\\": \\"test user comment\\",
   \\"version\\": \\"2.28.0\\",
   \\"results\\": [
