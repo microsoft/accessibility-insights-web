@@ -5,13 +5,17 @@ import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
+import { reportExportDropdownAutomationId } from 'DetailsView/components/export-dropdown';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
 import { invalidLoadAssessmentDialogOkButtonAutomationId } from 'DetailsView/components/invalid-load-assessment-dialog';
 import { loadAssessmentButtonAutomationId } from 'DetailsView/components/load-assessment-button';
 import { loadAssessmentDialogLoadButtonAutomationId } from 'DetailsView/components/load-assessment-dialog';
 import { overviewContainerAutomationId } from 'DetailsView/components/overview-content/overview-content-container';
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
+import { reportExportButtonAutomationId } from 'DetailsView/components/report-export-button';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
+import { reportExportAsHtmlAutomationId } from 'report-export/services/html-report-export-service';
+import { reportExportAsJsonAutomationId } from 'report-export/services/json-report-export-service';
 import { testSummaryStatusAutomationId } from 'reports/components/assessment-summary-details';
 import { failureCountAutomationId } from 'reports/components/outcome-chip';
 import { outcomeSummaryBarAutomationId } from 'reports/components/outcome-summary-bar';
@@ -84,6 +88,10 @@ export const overviewSelectors = {
     invalidLoadAssessmentDialogOkButton: getAutomationIdSelector(
         invalidLoadAssessmentDialogOkButtonAutomationId,
     ),
+    exportReportButton: getAutomationIdSelector(reportExportButtonAutomationId),
+    exportDropdown: getAutomationIdSelector(reportExportDropdownAutomationId),
+    exportAsJSON: getAutomationIdSelector(reportExportAsJsonAutomationId),
+    exportAsHTML: getAutomationIdSelector(reportExportAsHtmlAutomationId),
 };
 
 export const settingsPanelSelectors = {

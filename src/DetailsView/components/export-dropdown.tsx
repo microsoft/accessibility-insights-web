@@ -26,6 +26,8 @@ export interface ExportDropdownProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
+export const reportExportDropdownAutomationId = 'report-export-dropdown';
+
 export class ExportDropdown extends React.Component<ExportDropdownProps, ExportDropdownState> {
     constructor(props: ExportDropdownProps) {
         super(props);
@@ -45,6 +47,7 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
                     menuIconProps={{
                         iconName: 'ChevronDown',
                     }}
+                    data-automation-id={reportExportDropdownAutomationId}
                 />
                 {this.renderContextMenu()}
             </div>

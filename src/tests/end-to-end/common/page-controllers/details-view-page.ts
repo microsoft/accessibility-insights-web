@@ -6,6 +6,7 @@ import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
     detailsViewSelectors,
     settingsPanelSelectors,
+    overviewSelectors,
 } from '../element-identifiers/details-view-selectors';
 import { Page, PageOptions } from './page';
 
@@ -112,6 +113,23 @@ export class DetailsViewPage extends Page {
             : settingsPanelSelectors.disabledToggle(toggleSelector);
 
         await this.waitForSelector(toggleInStateSelector);
+    }
+
+    public async openExportDropdown(): Promise<void> {
+        await this.waitForSelector(overviewSelectors.exportReportButton);
+        await this.clickSelector(overviewSelectors.exportReportButton);
+        await this.waitForSelector(overviewSelectors.exportDropdown);
+        await this.clickSelector(overviewSelectors.exportDropdown);
+    }
+
+    public async downloadExportReport(selector: string): Promise<string> {
+        const [download] = await Promise.all([
+            this.underlyingPage.waitForEvent('download'),
+            this.clickSelector(selector),
+        ]);
+        const suggestedName = download.suggestedFilename();
+        await download.delete();
+        return suggestedName;
     }
 }
 
