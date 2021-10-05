@@ -2228,10 +2228,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.14.15":
-  version "16.14.15"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.15.tgz#95d8fa3148050e94bcdc5751447921adbe19f9e6"
-  integrity sha512-jOxlBV9RGZhphdeqJTCv35VZOkjY+XIEY2owwSk84BNDdDv2xS6Csj6fhi+B/q30SR9Tz8lDNt/F2Z5RF3TrRg==
+"@types/react@*", "@types/react@^16", "@types/react@^16.14.16":
+  version "16.14.16"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.16.tgz#0ad1adaefbba4ccc307ddf364d071b3c81e0ce30"
+  integrity sha512-7waDQ0h1TkAk99S04wV0LUiiSXpT02lzrdDF4WZFqn2W0XE5ICXLBMtqXWZ688aX2dJislQ3knmZX/jH53RluQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -9827,10 +9827,10 @@ pkg-up@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-pkg@^5.3.2:
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.3.2.tgz#f86520a83579f38f54684f4f873433b09af65dcb"
-  integrity sha512-78X8Tt71TI11XjkZm/r9shTdFRooFiiRcT8nfYeeOou5VKCkCysQauwAAkJKb5yjfrUhk3CBNL4zv22/iLpdnw==
+pkg@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.3.3.tgz#5ad1dadfc4e55169f0e1046626e669e0428d4cd7"
+  integrity sha512-48qPxwyPvKfUuXxeK+kS3mBvfWWTX2khAdceDThbWCc8OUz3RFyO1Ft8SVkq2gQfPU2DtiPtWaf2SKH0Dlx59g==
   dependencies:
     "@babel/parser" "7.13.13"
     "@babel/types" "7.13.12"
