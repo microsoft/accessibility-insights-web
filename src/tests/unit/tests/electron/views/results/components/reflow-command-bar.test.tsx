@@ -18,6 +18,7 @@ import { mount, shallow } from 'enzyme';
 import { isMatch } from 'lodash';
 import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportGenerator } from 'reports/report-generator';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
@@ -31,6 +32,7 @@ describe('ReflowCommandBar', () => {
     let scanDateStub: Date;
     let narrowModeStatusStub: NarrowModeStatus;
     let props: ReflowCommandBarProps;
+    let reportExportServiceProviderMock: IMock<ReportExportServiceProvider>;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
@@ -53,11 +55,13 @@ describe('ReflowCommandBar', () => {
         };
         scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);
-
+        reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
+        setReportExportServiceProviderForFastPass();
         props = {
             deps: {
                 scanActionCreator: null,
                 reportGenerator: reportGeneratorMock.object,
+                reportExportServiceProvider: reportExportServiceProviderMock.object,
             } as ReflowCommandBarDeps,
             scanStoreData: {} as ScanStoreData,
             cardsViewData: cardsViewDataStub,
@@ -78,6 +82,16 @@ describe('ReflowCommandBar', () => {
         };
     });
 
+    function setReportExportServiceProviderForFastPass(): void {
+        reportExportServiceProviderMock
+            .setup(r => r.servicesForFastPass())
+            .returns(() => [
+                { key: 'html', generateMenuItem: null },
+                { key: 'codepen', generateMenuItem: null },
+            ])
+            .verifiable(Times.once());
+    }
+
     describe('renders', () => {
         it('with start over button disabled', () => {
             props.currentContentPageInfo.startOverButtonSettings = _ => {
@@ -90,6 +104,7 @@ describe('ReflowCommandBar', () => {
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
             expect(rendered.getElement()).toMatchSnapshot();
+            reportExportServiceProviderMock.verifyAll();
         });
 
         it('does not create report export when scan metadata is null', () => {

@@ -7,17 +7,15 @@ import { ExportDropdown, ExportDropdownProps } from 'DetailsView/components/expo
 import { shallow } from 'enzyme';
 import { ContextualMenu, PrimaryButton } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { CodePenReportExportService } from 'report-export/services/code-pen-report-export-service';
 import {
     ReportExportService,
     ReportExportServiceKey,
 } from 'report-export/types/report-export-service';
-import { It, Mock, Times } from 'typemoq';
+import { Mock } from 'typemoq';
 
 describe('ExportDropdown', () => {
     const fileProviderMock = Mock.ofType<FileURLProvider>();
-    const reportExportServiceProvider = Mock.ofType<ReportExportServiceProvider>();
     const event = {
         currentTarget: 'test target',
     } as React.MouseEvent<any>;
@@ -40,16 +38,19 @@ describe('ExportDropdown', () => {
         };
     };
 
+    const makeReportExportServicesForKeys = (keys: ReportExportServiceKey[]) => {
+        return keys.map(key => makeReportExportServiceStub(key));
+    };
+
     beforeEach(() => {
         props = {
             onExportLinkClick: null,
-            reportExportServiceProvider: reportExportServiceProvider.object,
+            reportExportServices: null,
             fileName: 'A file name',
             html: '<some html>',
             fileURLProvider: fileProviderMock.object,
             featureFlagStoreData: {},
         };
-        reportExportServiceProvider.reset();
         fileProviderMock
             .setup(f => f.provideURL(['<some html>'], 'text/html'))
             .returns(() => 'a file url');
@@ -62,31 +63,34 @@ describe('ExportDropdown', () => {
     });
 
     it('handles click to show menu without feature flags', () => {
-        reportExportServiceProvider
-            .setup(p => p.forKey('html'))
-            .returns(key => makeReportExportServiceStub(key))
-            .verifiable(Times.once());
+        props.reportExportServices = makeReportExportServicesForKeys(['html']);
 
         const rendered = shallow(<ExportDropdown {...props} />);
         rendered.find(PrimaryButton).simulate('click', event);
 
         expect(rendered.getElement()).toMatchSnapshot();
-        reportExportServiceProvider.verifyAll();
     });
 
     it('handles click to show menu with feature flags', () => {
         props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
         props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
-        reportExportServiceProvider
-            .setup(p => p.forKey(It.isAny()))
-            .returns(key => makeReportExportServiceStub(key))
-            .verifiable(Times.exactly(3));
+        props.reportExportServices = makeReportExportServicesForKeys(['html', 'json', 'codepen']);
 
         const rendered = shallow(<ExportDropdown {...props} />);
         rendered.find(PrimaryButton).simulate('click', event);
 
         expect(rendered.getElement()).toMatchSnapshot();
-        reportExportServiceProvider.verifyAll();
+    });
+
+    it('handles click to show menu with feature flags but missing json', () => {
+        props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
+        props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
+        props.reportExportServices = makeReportExportServicesForKeys(['html', 'codepen']);
+
+        const rendered = shallow(<ExportDropdown {...props} />);
+        rendered.find(PrimaryButton).simulate('click', event);
+
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     it('handles click on menu item', () => {
@@ -95,10 +99,7 @@ describe('ExportDropdown', () => {
             wasClicked = true;
         };
         props.onExportLinkClick = onClick;
-        reportExportServiceProvider
-            .setup(p => p.forKey('html'))
-            .returns(key => makeReportExportServiceStub(key))
-            .verifiable(Times.once());
+        props.reportExportServices = makeReportExportServicesForKeys(['html']);
 
         const rendered = shallow(<ExportDropdown {...props} />);
         rendered.find(PrimaryButton).simulate('click', event);
@@ -109,13 +110,10 @@ describe('ExportDropdown', () => {
             .onClick();
 
         expect(wasClicked).toBeTruthy();
-        reportExportServiceProvider.verifyAll();
     });
 
     it('should dismiss the contextMenu', () => {
-        reportExportServiceProvider
-            .setup(p => p.forKey('html'))
-            .returns(key => makeReportExportServiceStub(key));
+        props.reportExportServices = makeReportExportServicesForKeys(['html']);
 
         const rendered = shallow(<ExportDropdown {...props} />);
         rendered.find(PrimaryButton).simulate('click', event);

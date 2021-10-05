@@ -3,6 +3,7 @@
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
+import { ReportExportService } from 'report-export/types/report-export-service';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
@@ -22,6 +23,7 @@ export interface ExportDialogWithLocalStateProps {
     featureFlagStoreData: FeatureFlagStoreData;
     dismissExportDialog: () => void;
     afterDialogDismissed: () => void;
+    reportExportServices: ReportExportService[];
 }
 
 interface ExportDialogWithLocalStateState {
@@ -71,6 +73,7 @@ export class ExportDialogWithLocalState extends React.Component<
                 onExportClick={this.generateHtml}
                 featureFlagStoreData={featureFlagStoreData}
                 afterDismissed={this.props.afterDialogDismissed}
+                reportExportServices={this.props.reportExportServices}
             />
         );
     }

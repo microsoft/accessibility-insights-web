@@ -41,6 +41,41 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
 </div>
 `;
 
+exports[`ExportDropdown handles click to show menu with feature flags but missing json 1`] = `
+<div>
+  <CustomizedPrimaryButton
+    ariaLabel="export options menu"
+    menuIconProps={
+      Object {
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+    text="Export"
+  />
+  <StyledWithResponsiveMode
+    items={
+      Array [
+        Object {
+          "download": "A file name",
+          "href": "a file url",
+          "key": "html",
+          "onClick": [Function],
+        },
+        Object {
+          "download": undefined,
+          "href": undefined,
+          "key": "codepen",
+          "onClick": [Function],
+        },
+      ]
+    }
+    onDismiss={[Function]}
+    target="test target"
+  />
+</div>
+`;
+
 exports[`ExportDropdown handles click to show menu without feature flags 1`] = `
 <div>
   <CustomizedPrimaryButton

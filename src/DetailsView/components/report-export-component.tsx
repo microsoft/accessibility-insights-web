@@ -4,6 +4,7 @@ import { InsightsCommandButton } from 'common/components/controls/insights-comma
 import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
+import { ReportExportService } from 'report-export/types/report-export-service';
 import { ReportGenerator } from 'reports/report-generator';
 
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
@@ -22,6 +23,7 @@ export interface ReportExportComponentProps {
     getExportDescription: () => string;
     featureFlagStoreData: FeatureFlagStoreData;
     onDialogDismiss?: () => void;
+    reportExportServices: ReportExportService[];
 }
 
 export interface ReportExportComponentState {
@@ -102,6 +104,7 @@ export class ReportExportComponent extends React.Component<
                     onExportClick={this.generateHtml}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                     afterDismissed={this.props.onDialogDismiss}
+                    reportExportServices={this.props.reportExportServices}
                 />
             </>
         );

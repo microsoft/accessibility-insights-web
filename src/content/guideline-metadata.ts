@@ -2,8 +2,11 @@
 // Licensed under the MIT License.
 import { GuidanceTag, guidanceTags } from 'common/guidance-links';
 
-export interface GuidanceMetadata {
+export interface GuidelineMetadata {
+    number: string;
+    axeTag: string;
     name: string;
+    linkName: string;
     linkTag: string;
     link: string;
     guidanceTags: GuidanceTag[];
@@ -20,314 +23,525 @@ export interface GuidanceMetadata {
 // * experimental is omitted (we only show them at all in needs-review)
 // * wcag123 tags for AAA requirements are omitted (to avoid user confusion about whether we support
 //   AAA assessments)
-export const guidanceMetadataByAxeTag = {
-    wcag111: {
-        name: 'WCAG 1.1.1',
+const axeTagToGuidelineKeyMap = {
+    wcag111: 'WCAG 1.1.1',
+    wcag121: 'WCAG 1.2.1',
+    wcag122: 'WCAG 1.2.2',
+    wcag123: 'WCAG 1.2.3',
+    wcag124: 'WCAG 1.2.4',
+    wcag125: 'WCAG 1.2.5',
+    wcag131: 'WCAG 1.3.1',
+    wcag132: 'WCAG 1.3.2',
+    wcag133: 'WCAG 1.3.3',
+    wcag134: 'WCAG 1.3.4',
+    wcag135: 'WCAG 1.3.5',
+    wcag141: 'WCAG 1.4.1',
+    wcag142: 'WCAG 1.4.2',
+    wcag143: 'WCAG 1.4.3',
+    wcag144: 'WCAG 1.4.4',
+    wcag145: 'WCAG 1.4.5',
+    wcag1410: 'WCAG 1.4.10',
+    wcag1411: 'WCAG 1.4.11',
+    wcag1412: 'WCAG 1.4.12',
+    wcag1413: 'WCAG 1.4.13',
+    wcag211: 'WCAG 2.1.1',
+    wcag212: 'WCAG 2.1.2',
+    wcag214: 'WCAG 2.1.4',
+    wcag221: 'WCAG 2.2.1',
+    wcag222: 'WCAG 2.2.2',
+    wcag231: 'WCAG 2.3.1',
+    wcag241: 'WCAG 2.4.1',
+    wcag242: 'WCAG 2.4.2',
+    wcag243: 'WCAG 2.4.3',
+    wcag244: 'WCAG 2.4.4',
+    wcag245: 'WCAG 2.4.5',
+    wcag246: 'WCAG 2.4.6',
+    wcag247: 'WCAG 2.4.7',
+    wcag251: 'WCAG 2.5.1',
+    wcag252: 'WCAG 2.5.2',
+    wcag253: 'WCAG 2.5.3',
+    wcag254: 'WCAG 2.5.4',
+    wcag255: 'WCAG 2.5.5',
+    wcag311: 'WCAG 3.1.1',
+    wcag312: 'WCAG 3.1.2',
+    wcag321: 'WCAG 3.2.1',
+    wcag322: 'WCAG 3.2.2',
+    wcag323: 'WCAG 3.2.3',
+    wcag324: 'WCAG 3.2.4',
+    wcag331: 'WCAG 3.3.1',
+    wcag332: 'WCAG 3.3.2',
+    wcag333: 'WCAG 3.3.3',
+    wcag334: 'WCAG 3.3.4',
+    wcag411: 'WCAG 4.1.1',
+    wcag412: 'WCAG 4.1.2',
+    wcag413: 'WCAG 4.1.3',
+};
+
+export const getGuidelineKeyByAxeTag = (axeTag: string): string => {
+    return axeTagToGuidelineKeyMap[axeTag];
+};
+
+export const guidelineMetadata = {
+    'WCAG 1.1.1': {
+        number: '1.1.1',
+        axeTag: 'wcag111',
+        name: 'Non-text Content',
+        linkName: 'WCAG 1.1.1',
         linkTag: 'WCAG_1_1_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-content.html',
         guidanceTags: [],
     },
-    wcag121: {
-        name: 'WCAG 1.2.1',
+    'WCAG 1.2.1': {
+        number: '1.2.1',
+        axeTag: 'wcag121',
+        name: 'Audio-only and Video-only (Prerecorded)',
+        linkName: 'WCAG 1.2.1',
         linkTag: 'WCAG_1_2_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded',
         guidanceTags: [],
     },
-    wcag122: {
-        name: 'WCAG 1.2.2',
+    'WCAG 1.2.2': {
+        number: '1.2.2',
+        axeTag: 'wcag122',
+        name: 'Captions (Prerecorded)',
+        linkName: 'WCAG 1.2.2',
         linkTag: 'WCAG_1_2_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded.html',
         guidanceTags: [],
     },
-    wcag123: {
-        name: 'WCAG 1.2.3',
+    'WCAG 1.2.3': {
+        number: '1.2.3',
+        axeTag: 'wcag123',
+        name: 'Audio Description or Media Alternative (Prerecorded)',
+        linkName: 'WCAG 1.2.3',
         linkTag: 'WCAG_1_2_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded',
         guidanceTags: [],
     },
-    wcag124: {
-        name: 'WCAG 1.2.4',
+    'WCAG 1.2.4': {
+        number: '1.2.4',
+        axeTag: 'wcag124',
+        name: 'Captions (Live)',
+        linkName: 'WCAG 1.2.4',
         linkTag: 'WCAG_1_2_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/captions-live.html',
         guidanceTags: [],
     },
-    wcag125: {
-        name: 'WCAG 1.2.5',
+    'WCAG 1.2.5': {
+        number: '1.2.5',
+        axeTag: 'wcag125',
+        name: 'Audio Description (Prerecorded)',
+        linkName: 'WCAG 1.2.5',
         linkTag: 'WCAG_1_2_5',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded',
         guidanceTags: [],
     },
-    wcag131: {
-        name: 'WCAG 1.3.1',
+    'WCAG 1.3.1': {
+        number: '1.3.1',
+        axeTag: 'wcag131',
+        name: 'Info and Relationships',
+        linkName: 'WCAG 1.3.1',
         linkTag: 'WCAG_1_3_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships',
         guidanceTags: [],
     },
-    wcag132: {
-        name: 'WCAG 1.3.2',
+    'WCAG 1.3.2': {
+        number: '1.3.2',
+        axeTag: 'wcag132',
+        name: 'Meaningful Sequence',
+        linkName: 'WCAG 1.3.2',
         linkTag: 'WCAG_1_3_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html',
         guidanceTags: [],
     },
-    wcag133: {
-        name: 'WCAG 1.3.3',
+    'WCAG 1.3.3': {
+        number: '1.3.3',
+        axeTag: 'wcag133',
+        name: 'Sensory Characteristics',
+        linkName: 'WCAG 1.3.3',
         linkTag: 'WCAG_1_3_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html',
         guidanceTags: [],
     },
-    wcag134: {
-        name: 'WCAG 1.3.4',
+    'WCAG 1.3.4': {
+        number: '1.3.4',
+        axeTag: 'wcag134',
+        name: 'Orientation',
+        linkName: 'WCAG 1.3.4',
         linkTag: 'WCAG_1_3_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag135: {
-        name: 'WCAG 1.3.5',
+    'WCAG 1.3.5': {
+        number: '1.3.5',
+        axeTag: 'wcag135',
+        name: 'Identify Input Purpose',
+        linkName: 'WCAG 1.3.5',
         linkTag: 'WCAG_1_3_5',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag141: {
-        name: 'WCAG 1.4.1',
+    'WCAG 1.4.1': {
+        number: '1.4.1',
+        axeTag: 'wcag141',
+        name: 'Use of Color',
+        linkName: 'WCAG 1.4.1',
         linkTag: 'WCAG_1_4_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html',
         guidanceTags: [],
     },
-    wcag142: {
-        name: 'WCAG 1.4.2',
+    'WCAG 1.4.2': {
+        number: '1.4.2',
+        axeTag: 'wcag142',
+        name: 'Audio Control',
+        linkName: 'WCAG 1.4.2',
         linkTag: 'WCAG_1_4_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/audio-control.html',
         guidanceTags: [],
     },
-    wcag143: {
-        name: 'WCAG 1.4.3',
+    'WCAG 1.4.3': {
+        number: '1.4.3',
+        axeTag: 'wcag143',
+        name: 'Contrast (Minimum)',
+        linkName: 'WCAG 1.4.3',
         linkTag: 'WCAG_1_4_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html',
         guidanceTags: [],
     },
-    wcag144: {
-        name: 'WCAG 1.4.4',
+    'WCAG 1.4.4': {
+        number: '1.4.4',
+        axeTag: 'wcag144',
+        name: 'Resize text',
+        linkName: 'WCAG 1.4.4',
         linkTag: 'WCAG_1_4_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html',
         guidanceTags: [],
     },
-    wcag145: {
-        name: 'WCAG 1.4.5',
+    'WCAG 1.4.5': {
+        number: '1.4.5',
+        axeTag: 'wcag145',
+        name: 'Images of Text',
+        linkName: 'WCAG 1.4.5',
         linkTag: 'WCAG_1_4_5',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html',
         guidanceTags: [],
     },
-    wcag1410: {
+    'WCAG 1.4.10': {
+        number: '1.4.10',
+        axeTag: 'wcag1410',
+        name: 'Reflow',
         linkTag: 'WCAG_1_4_10',
-        name: 'WCAG 1.4.10',
+        linkName: 'WCAG 1.4.10',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag1411: {
+    'WCAG 1.4.11': {
+        number: '1.4.11',
+        axeTag: 'wcag1411',
+        name: 'Non-text Contrast',
         linkTag: 'WCAG_1_4_11',
-        name: 'WCAG 1.4.11',
+        linkName: 'WCAG 1.4.11',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag1412: {
+    'WCAG 1.4.12': {
+        number: '1.4.12',
+        axeTag: 'wcag1412',
+        name: 'Text Spacing',
         linkTag: 'WCAG_1_4_12',
-        name: 'WCAG 1.4.12',
+        linkName: 'WCAG 1.4.12',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag1413: {
+    'WCAG 1.4.13': {
+        number: '1.4.13',
+        axeTag: 'wcag1413',
+        name: 'Content on Hover or Focus',
         linkTag: 'WCAG_1_4_13',
-        name: 'WCAG 1.4.13',
+        linkName: 'WCAG 1.4.13',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag211: {
-        name: 'WCAG 2.1.1',
+    'WCAG 2.1.1': {
+        number: '2.1.1',
+        axeTag: 'wcag211',
+        name: 'Keyboard',
+        linkName: 'WCAG 2.1.1',
         linkTag: 'WCAG_2_1_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html',
         guidanceTags: [],
     },
-    wcag212: {
-        name: 'WCAG 2.1.2',
+    'WCAG 2.1.2': {
+        number: '2.1.2',
+        axeTag: 'wcag212',
+        name: 'No Keyboard Trap',
+        linkName: 'WCAG 2.1.2',
         linkTag: 'WCAG_2_1_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html',
         guidanceTags: [],
     },
-    wcag214: {
-        name: 'WCAG 2.1.4',
+    'WCAG 2.1.4': {
+        number: '2.1.4',
+        axeTag: 'wcag214',
+        name: 'Character Key Shortcuts',
+        linkName: 'WCAG 2.1.4',
         linkTag: 'WCAG_2_1_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag221: {
-        name: 'WCAG 2.2.1',
+    'WCAG 2.2.1': {
+        number: '2.2.1',
+        axeTag: 'wcag221',
+        name: 'Timing Adjustable',
+        linkName: 'WCAG 2.2.1',
         linkTag: 'WCAG_2_2_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html',
         guidanceTags: [],
     },
-    wcag222: {
-        name: 'WCAG 2.2.2',
+    'WCAG 2.2.2': {
+        number: '2.2.2',
+        axeTag: 'wcag222',
+        name: 'Pause, Stop, Hide',
+        linkName: 'WCAG 2.2.2',
         linkTag: 'WCAG_2_2_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide',
         guidanceTags: [],
     },
     // wcag223: intentionally omitted, AAA
     // wcag224: intentionally omitted, AAA
-    wcag231: {
-        name: 'WCAG 2.3.1',
+    'WCAG 2.3.1': {
+        number: '2.3.1',
+        axeTag: 'wcag231',
+        name: 'Three Flashes or Below Threshold',
+        linkName: 'WCAG 2.3.1',
         linkTag: 'WCAG_2_3_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html',
         guidanceTags: [],
     },
-    wcag241: {
-        name: 'WCAG 2.4.1',
+    'WCAG 2.4.1': {
+        number: '2.4.1',
+        axeTag: 'wcag241',
+        name: 'Bypass Blocks',
+        linkName: 'WCAG 2.4.1',
         linkTag: 'WCAG_2_4_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks',
         guidanceTags: [],
     },
-    wcag242: {
-        name: 'WCAG 2.4.2',
+    'WCAG 2.4.2': {
+        number: '2.4.2',
+        axeTag: 'wcag242',
+        name: 'Page Titled',
+        linkName: 'WCAG 2.4.2',
         linkTag: 'WCAG_2_4_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/page-titled.html',
         guidanceTags: [],
     },
-    wcag243: {
-        name: 'WCAG 2.4.3',
+    'WCAG 2.4.3': {
+        number: '2.4.3',
+        axeTag: 'wcag243',
+        name: 'Focus Order',
+        linkName: 'WCAG 2.4.3',
         linkTag: 'WCAG_2_4_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html',
         guidanceTags: [],
     },
-    wcag244: {
-        name: 'WCAG 2.4.4',
+    'WCAG 2.4.4': {
+        number: '2.4.4',
+        axeTag: 'wcag244',
+        name: 'Link Purpose (In Context)',
+        linkName: 'WCAG 2.4.4',
         linkTag: 'WCAG_2_4_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context.html',
         guidanceTags: [],
     },
-    wcag245: {
-        name: 'WCAG 2.4.5',
+    'WCAG 2.4.5': {
+        number: '2.4.5',
+        axeTag: 'wcag245',
+        name: 'Multiple Ways',
+        linkName: 'WCAG 2.4.5',
         linkTag: 'WCAG_2_4_5',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html',
         guidanceTags: [],
     },
-    wcag246: {
-        name: 'WCAG 2.4.6',
+    'WCAG 2.4.6': {
+        number: '2.4.6',
+        axeTag: 'wcag246',
+        name: 'Headings and Labels',
+        linkName: 'WCAG 2.4.6',
         linkTag: 'WCAG_2_4_6',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels',
         guidanceTags: [],
     },
-    wcag247: {
-        name: 'WCAG 2.4.7',
+    'WCAG 2.4.7': {
+        number: '2.4.7',
+        axeTag: 'wcag247',
+        name: 'Focus Visible',
+        linkName: 'WCAG 2.4.7',
         linkTag: 'WCAG_2_4_7',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html',
         guidanceTags: [],
     },
     // wcag248: intentionally omitted, AAA
     // wcag249: intentionally omitted, AAA
-    wcag251: {
-        name: 'WCAG 2.5.1',
+    'WCAG 2.5.1': {
+        number: '2.5.1',
+        axeTag: 'wcag251',
+        name: 'Pointer Gestures',
+        linkName: 'WCAG 2.5.1',
         linkTag: 'WCAG_2_5_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag252: {
-        name: 'WCAG 2.5.2',
+    'WCAG 2.5.2': {
+        number: '2.5.2',
+        axeTag: 'wcag252',
+        name: 'Pointer Cancellation',
+        linkName: 'WCAG 2.5.2',
         linkTag: 'WCAG_2_5_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag253: {
-        name: 'WCAG 2.5.3',
+    'WCAG 2.5.3': {
+        number: '2.5.3',
+        axeTag: 'wcag253',
+        name: 'Label in Name',
+        linkName: 'WCAG 2.5.3',
         linkTag: 'WCAG_2_5_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag254: {
-        name: 'WCAG 2.5.4',
+    'WCAG 2.5.4': {
+        number: '2.5.4',
+        axeTag: 'wcag254',
+        name: 'Motion Actuation',
+        linkName: 'WCAG 2.5.4',
         linkTag: 'WCAG_2_5_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
     },
-    wcag255: {
-        name: 'WCAG 2.5.5',
+    'WCAG 2.5.5': {
+        number: '2.5.5',
+        axeTag: 'wcag255',
+        name: 'Target Size',
+        linkName: 'WCAG 2.5.5',
         linkTag: 'WCAG_2_5_5',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/target-size.html',
         guidanceTags: [],
     },
-    wcag311: {
-        name: 'WCAG 3.1.1',
+    'WCAG 3.1.1': {
+        number: '3.1.1',
+        axeTag: 'wcag311',
+        name: 'Language of Page',
+        linkName: 'WCAG 3.1.1',
         linkTag: 'WCAG_3_1_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html',
         guidanceTags: [],
     },
-    wcag312: {
-        name: 'WCAG 3.1.2',
+    'WCAG 3.1.2': {
+        number: '3.1.2',
+        axeTag: 'wcag312',
+        name: 'Language of Parts',
+        linkName: 'WCAG 3.1.2',
         linkTag: 'WCAG_3_1_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html',
         guidanceTags: [],
     },
-    wcag321: {
-        name: 'WCAG 3.2.1',
+    'WCAG 3.2.1': {
+        number: '3.2.1',
+        axeTag: 'wcag321',
+        name: 'On Focus',
+        linkName: 'WCAG 3.2.1',
         linkTag: 'WCAG_3_2_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html',
         guidanceTags: [],
     },
-    wcag322: {
-        name: 'WCAG 3.2.2',
+    'WCAG 3.2.2': {
+        number: '3.2.2',
+        axeTag: 'wcag322',
+        name: 'On Input',
+        linkName: 'WCAG 3.2.2',
         linkTag: 'WCAG_3_2_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/on-input.html',
         guidanceTags: [],
     },
-    wcag323: {
-        name: 'WCAG 3.2.3',
+    'WCAG 3.2.3': {
+        number: '3.2.3',
+        axeTag: 'wcag323',
+        name: 'Consistent Navigation',
+        linkName: 'WCAG 3.2.3',
         linkTag: 'WCAG_3_2_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation',
         guidanceTags: [],
     },
-    wcag324: {
-        name: 'WCAG 3.2.4',
+    'WCAG 3.2.4': {
+        number: '3.2.4',
+        axeTag: 'wcag324',
+        name: 'Consistent Identification',
+        linkName: 'WCAG 3.2.4',
         linkTag: 'WCAG_3_2_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification',
         guidanceTags: [],
     },
     // wcag325: intentionally omitted, AAA
-    wcag331: {
-        name: 'WCAG 3.3.1',
+    'WCAG 3.3.1': {
+        number: '3.3.1',
+        axeTag: 'wcag331',
+        name: 'Error Identification',
+        linkName: 'WCAG 3.3.1',
         linkTag: 'WCAG_3_3_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/error-identification.html',
         guidanceTags: [],
     },
-    wcag332: {
-        name: 'WCAG 3.3.2',
+    'WCAG 3.3.2': {
+        number: '3.3.2',
+        axeTag: 'wcag332',
+        name: 'Labels or Instructions',
+        linkName: 'WCAG 3.3.2',
         linkTag: 'WCAG_3_3_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html',
         guidanceTags: [],
     },
-    wcag333: {
-        name: 'WCAG 3.3.3',
+    'WCAG 3.3.3': {
+        number: '3.3.3',
+        axeTag: 'wcag333',
+        name: 'Error Suggestion',
+        linkName: 'WCAG 3.3.3',
         linkTag: 'WCAG_3_3_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion.html',
         guidanceTags: [],
     },
-    wcag334: {
-        name: 'WCAG 3.3.4',
+    'WCAG 3.3.4': {
+        number: '3.3.4',
+        axeTag: 'wcag334',
+        name: 'Error Prevention (Legal, Financial, Data)',
+        linkName: 'WCAG 3.3.4',
         linkTag: 'WCAG_3_3_4',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html',
         guidanceTags: [],
     },
-    wcag411: {
-        name: 'WCAG 4.1.1',
+    'WCAG 4.1.1': {
+        number: '4.1.1',
+        axeTag: 'wcag411',
+        name: 'Parsing',
+        linkName: 'WCAG 4.1.1',
         linkTag: 'WCAG_4_1_1',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html',
         guidanceTags: [],
     },
-    wcag412: {
-        name: 'WCAG 4.1.2',
+    'WCAG 4.1.2': {
+        number: '4.1.2',
+        axeTag: 'wcag412',
+        name: 'Name, Role, Value',
+        linkName: 'WCAG 4.1.2',
         linkTag: 'WCAG_4_1_2',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html',
         guidanceTags: [],
     },
-    wcag413: {
-        name: 'WCAG 4.1.3',
+    'WCAG 4.1.3': {
+        number: '4.1.3',
+        axeTag: 'wcag413',
+        name: 'Status Messages',
+        linkName: 'WCAG 4.1.3',
         linkTag: 'WCAG_4_1_3',
         link: 'https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html',
         guidanceTags: [guidanceTags.WCAG_2_1],
