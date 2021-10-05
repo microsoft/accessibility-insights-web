@@ -113,7 +113,7 @@
         "@types/uuid": "^8.3.1",
         "@typescript-eslint/eslint-plugin": "^4.32.0",
         "@typescript-eslint/parser": "^4.32.0",
-        "app-builder-lib": "^22.14.3",
+        "app-builder-lib": "^22.14.4",
         "case-sensitive-paths-webpack-plugin": "^2.4.0",
         "codecov": "^3.8.3",
         "commander": "^8.2.0",
@@ -166,7 +166,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^4.4.3",
         "webdriverio": "^4.13.0",
-        "webpack": "^5.56.0",
+        "webpack": "^5.56.1",
         "webpack-cli": "^4.8.0",
         "webpack-node-externals": "^3.0.0"
     },
