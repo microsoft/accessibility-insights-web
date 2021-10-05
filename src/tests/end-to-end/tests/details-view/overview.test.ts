@@ -129,9 +129,7 @@ describe('Details View -> Overview Page', () => {
     it('should download .json when Export as JSON is clicked', async () => {
         await backgroundPage.enableFeatureFlag('exportReportJSON');
         await overviewPage.openExportDropdown();
-        // const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsJSON);
-        let fileName;
-        await overviewPage.closeExportDialog();
+        const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsJSON);
         expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.json$/)));
     });
 
