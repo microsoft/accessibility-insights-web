@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import * as fs from 'fs';
+import * as path from 'path';
 import { buildAssessmentJsonExportData } from 'reports/assessment-json-export-json-builder';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { IMock, Mock } from 'typemoq';
@@ -489,5 +491,23 @@ describe('Assessment JSON export builder', () => {
             expect(item.wcagNumber.localeCompare(wcagNumberForCompare)).toBe(1);
             wcagNumberForCompare = item.wcagNumber;
         });
+    });
+
+    test('export JSON matches snapshot', () => {
+        const reportModelSample = path.join(
+            __dirname,
+            '../test-resources/reports/json-export-report-model-data.json',
+        );
+
+        const assessmentData = JSON.parse(
+            fs.readFileSync(reportModelSample, { encoding: 'utf-8' }),
+        );
+
+        // This is necessary because JSON.parse doesn't properly parse the JSON date into a Javascript date.
+        // The date is in JS date format when it comes into the function within the application
+        assessmentData.scanDetails.reportDate = date;
+        const generatedJson = buildAssessmentJsonExportData(comment, version, assessmentData);
+        const jsonString = JSON.stringify(generatedJson, null, '  ');
+        expect(jsonString).toMatchSnapshot();
     });
 });
