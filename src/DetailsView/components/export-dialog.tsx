@@ -18,13 +18,15 @@ import * as styles from './export-dialog.scss';
 export interface ExportDialogProps {
     deps: ExportDialogDeps;
     isOpen: boolean;
-    fileName: string;
+    htmlFileName: string;
+    jsonFileName: string;
     description: string;
-    html: string;
+    htmlExportData: string;
+    jsonExportData: string;
     onClose: () => void;
     onDescriptionChange: (value: string) => void;
     reportExportFormat: ReportExportFormat;
-    onExportClick: () => void;
+    generateExports: () => void;
     featureFlagStoreData: FeatureFlagStoreData;
     afterDismissed?: () => void;
     reportExportServices: ReportExportService[];
@@ -50,11 +52,10 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(props.description);
         detailsViewActionMessageCreator.exportResultsClicked(
             props.reportExportFormat,
-            props.html,
+            selectedServiceKey,
             event,
         );
         setServiceKey(selectedServiceKey);
-        props.onExportClick();
         props.onClose();
     };
 
@@ -62,7 +63,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(value);
     };
 
-    const fileURL = props.deps.fileURLProvider.provideURL([props.html], 'text/html');
+    const htmlFileUrl = props.deps.fileURLProvider.provideURL([props.htmlExportData], 'text/html');
     const exportService = props.reportExportServices.find(s => s.key === serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
     const exportToCodepen =
@@ -75,11 +76,12 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     const getSingleExportToHtmlButton = () => {
         return (
             <PrimaryButton
-                onClick={event =>
-                    onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'html')
-                }
-                download={props.fileName}
-                href={fileURL}
+                onClick={event => {
+                    props.generateExports();
+                    onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'html');
+                }}
+                download={props.htmlFileName}
+                href={htmlFileUrl}
             >
                 Export
             </PrimaryButton>
@@ -90,18 +92,23 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         return (
             <>
                 <ExportDropdown
-                    fileName={props.fileName}
+                    htmlFileName={props.htmlFileName}
+                    jsonFileName={props.jsonFileName}
                     fileURLProvider={props.deps.fileURLProvider}
                     featureFlagStoreData={props.featureFlagStoreData}
-                    html={props.html}
+                    htmlExportData={props.htmlExportData}
+                    jsonExportData={props.jsonExportData}
+                    generateExports={props.generateExports}
                     onExportLinkClick={onExportLinkClick}
                     reportExportServices={props.reportExportServices}
                 />
                 {ExportForm && (
                     <ExportForm
-                        fileName={props.fileName}
+                        htmlFileName={props.htmlFileName}
+                        jsonFileName={props.jsonFileName}
                         description={props.description}
-                        html={props.html}
+                        htmlExportData={props.htmlExportData}
+                        jsonExportData={props.jsonExportData}
                         onSubmit={() => {
                             setServiceKey(null);
                         }}

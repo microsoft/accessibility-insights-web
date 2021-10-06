@@ -18,6 +18,7 @@ export interface ReportExportComponentProps {
     reportExportFormat: ReportExportFormat;
     pageTitle: string;
     scanDate: Date;
+    jsonGenerator: (descriptionPlaceholder: string) => string;
     htmlGenerator: (descriptionPlaceholder: string) => string;
     updatePersistedDescription: (value: string) => void;
     getExportDescription: () => string;
@@ -28,9 +29,11 @@ export interface ReportExportComponentProps {
 
 export interface ReportExportComponentState {
     isOpen: boolean;
-    exportName: string;
+    htmlExportName: string;
+    jsonExportName: string;
     exportDescription: string;
-    exportData: string;
+    htmlExportData: string;
+    jsonExportData: string;
 }
 
 export const exportReportCommandBarButtonId = 'export-report-command-bar-button';
@@ -43,9 +46,11 @@ export class ReportExportComponent extends React.Component<
         super(props);
         this.state = {
             isOpen: false,
-            exportName: '',
+            htmlExportName: '',
+            jsonExportName: '',
             exportDescription: '',
-            exportData: '',
+            htmlExportData: '',
+            jsonExportData: '',
         };
     }
 
@@ -63,26 +68,51 @@ export class ReportExportComponent extends React.Component<
             const { htmlGenerator } = prevProps;
 
             return {
-                exportDescription: '',
-                exportData: htmlGenerator(prevState.exportDescription),
+                htmlExportData: htmlGenerator(prevState.exportDescription),
             };
         });
     };
 
+    private generateJson = () => {
+        this.setState((prevState, prevProps) => ({
+            jsonExportData: prevProps.jsonGenerator(prevState.exportDescription),
+        }));
+    };
+
+    private generateExports = () => {
+        this.generateJson();
+        this.generateHtml();
+        this.setState({ exportDescription: '' });
+    };
+
     private onExportButtonClick = () => {
         const { deps, reportExportFormat, scanDate, pageTitle } = this.props;
-        const exportName = deps.reportGenerator.generateName(
+        const htmlExportName = deps.reportGenerator.generateName(
             reportExportFormat,
             scanDate,
             pageTitle,
+            '.html',
+        );
+        const jsonExportName = deps.reportGenerator.generateName(
+            reportExportFormat,
+            scanDate,
+            pageTitle,
+            '.json',
         );
         const exportDescription = this.props.getExportDescription();
-        this.setState({ exportDescription, exportName, isOpen: true });
+        this.setState({ exportDescription, htmlExportName, jsonExportName, isOpen: true });
     };
 
     public render(): JSX.Element {
         const { deps, reportExportFormat } = this.props;
-        const { isOpen, exportName, exportDescription, exportData } = this.state;
+        const {
+            isOpen,
+            htmlExportName,
+            jsonExportName,
+            exportDescription,
+            htmlExportData,
+            jsonExportData,
+        } = this.state;
         return (
             <>
                 <InsightsCommandButton
@@ -95,13 +125,15 @@ export class ReportExportComponent extends React.Component<
                 <ExportDialog
                     deps={deps}
                     isOpen={isOpen}
-                    fileName={exportName}
+                    htmlFileName={htmlExportName}
+                    jsonFileName={jsonExportName}
                     description={exportDescription}
-                    html={exportData}
+                    htmlExportData={htmlExportData}
+                    jsonExportData={jsonExportData}
+                    generateExports={this.generateExports}
                     onClose={this.onDismissExportDialog}
                     onDescriptionChange={this.onExportDescriptionChange}
                     reportExportFormat={reportExportFormat}
-                    onExportClick={this.generateHtml}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                     afterDismissed={this.props.onDialogDismiss}
                     reportExportServices={this.props.reportExportServices}

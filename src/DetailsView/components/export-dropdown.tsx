@@ -21,9 +21,12 @@ export interface ExportDropdownProps {
         event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>,
         selectedServiceKey: ReportExportServiceKey,
     ) => void;
+    generateExports: () => void;
     reportExportServices: ReportExportService[];
-    fileName: string;
-    html: string;
+    htmlFileName: string;
+    jsonFileName: string;
+    htmlExportData: string;
+    jsonExportData: string;
     fileURLProvider: FileURLProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }
@@ -68,17 +71,25 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-        const { featureFlagStoreData, html, fileName, fileURLProvider } = this.props;
+        const {
+            featureFlagStoreData,
+            htmlExportData,
+            jsonExportData,
+            htmlFileName,
+            jsonFileName,
+            fileURLProvider,
+        } = this.props;
 
         const exportToCodepen = featureFlagStoreData[FeatureFlags.exportReportOptions];
         const exportToJSON = featureFlagStoreData[FeatureFlags.exportReportJSON];
-        const fileURL = fileURLProvider.provideURL([html], 'text/html');
+        const htmlFileUrl = fileURLProvider.provideURL([htmlExportData], 'text/html');
+        const jsonFileUrl = fileURLProvider.provideURL([jsonExportData], 'application/json');
 
         const items: IContextualMenuItem[] = [];
-        this.tryAddMenuItemForKey('html', items, fileURL, fileName);
+        this.tryAddMenuItemForKey('html', items, htmlFileUrl, htmlFileName);
 
         if (exportToJSON) {
-            this.tryAddMenuItemForKey('json', items);
+            this.tryAddMenuItemForKey('json', items, jsonFileUrl, jsonFileName);
         }
 
         if (exportToCodepen) {
@@ -104,6 +115,7 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
     }
 
     private openDropdown = (event): void => {
+        this.props.generateExports();
         this.setState({ target: event.currentTarget, isContextMenuVisible: true });
     };
 

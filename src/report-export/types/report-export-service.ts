@@ -8,8 +8,10 @@ export type ReportExportServiceKey = 'html' | 'codepen' | 'json';
 export type ReportExportFormProps = ReportExportProps & { onSubmit: () => void };
 
 export type ReportExportProps = {
-    html: string;
-    fileName: string;
+    htmlExportData: string;
+    htmlFileName: string;
+    jsonFileName: string;
+    jsonExportData: string;
     description: string;
 };
 

@@ -19,6 +19,7 @@ exports[`ReportExportComponentTest render 1`] = `
       Object {
         "reportGenerator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
           "reportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
@@ -31,12 +32,14 @@ exports[`ReportExportComponentTest render 1`] = `
         "test-feature-flag": true,
       }
     }
-    fileName=""
-    html=""
+    generateExports={[Function]}
+    htmlExportData=""
+    htmlFileName=""
     isOpen={false}
+    jsonExportData=""
+    jsonFileName=""
     onClose={[Function]}
     onDescriptionChange={[Function]}
-    onExportClick={[Function]}
     reportExportFormat="Assessment"
     reportExportServices={
       Array [
@@ -69,6 +72,7 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
       Object {
         "reportGenerator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
           "reportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
@@ -81,11 +85,65 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
         "test-feature-flag": true,
       }
     }
-    html=""
+    generateExports={[Function]}
+    htmlExportData=""
     isOpen={true}
+    jsonExportData=""
     onClose={[Function]}
     onDescriptionChange={[Function]}
-    onExportClick={[Function]}
+    reportExportFormat="Assessment"
+    reportExportServices={
+      Array [
+        Object {
+          "generateMenuItem": null,
+          "key": "html",
+        },
+      ]
+    }
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions clicking export on the dialog should trigger generateExports with the current exportDescription 1`] = `
+<React.Fragment>
+  <InsightsCommandButton
+    data-automation-id="export-report-command-bar-button"
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </InsightsCommandButton>
+  <ExportDialog
+    afterDismissed={[Function]}
+    deps={
+      Object {
+        "reportGenerator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentJsonExportGenerator": undefined,
+          "assessmentReportHtmlGenerator": undefined,
+          "reportHtmlGenerator": undefined,
+          "reportNameGenerator": undefined,
+        },
+      }
+    }
+    description=""
+    featureFlagStoreData={
+      Object {
+        "test-feature-flag": true,
+      }
+    }
+    generateExports={[Function]}
+    htmlExportData="test html"
+    htmlFileName=""
+    isOpen={false}
+    jsonExportData="test json"
+    jsonFileName=""
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
     reportExportFormat="Assessment"
     reportExportServices={
       Array [
@@ -118,6 +176,7 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
       Object {
         "reportGenerator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
           "reportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
@@ -130,11 +189,12 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
         "test-feature-flag": true,
       }
     }
-    html=""
+    generateExports={[Function]}
+    htmlExportData=""
     isOpen={false}
+    jsonExportData=""
     onClose={[Function]}
     onDescriptionChange={[Function]}
-    onExportClick={[Function]}
     reportExportFormat="Assessment"
     reportExportServices={
       Array [
@@ -167,6 +227,7 @@ exports[`ReportExportComponentTest user interactions edit text field: test conte
       Object {
         "reportGenerator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
           "reportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
@@ -179,12 +240,14 @@ exports[`ReportExportComponentTest user interactions edit text field: test conte
         "test-feature-flag": true,
       }
     }
-    fileName=""
-    html=""
+    generateExports={[Function]}
+    htmlExportData=""
+    htmlFileName=""
     isOpen={false}
+    jsonExportData=""
+    jsonFileName=""
     onClose={[Function]}
     onDescriptionChange={[Function]}
-    onExportClick={[Function]}
     reportExportFormat="Assessment"
     reportExportServices={
       Array [

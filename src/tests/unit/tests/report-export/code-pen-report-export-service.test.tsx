@@ -14,8 +14,10 @@ describe('CodePenReportExportService', () => {
         beforeEach(() => {
             props = {
                 description: 'test-description',
-                fileName: 'test-filename',
-                html: 'test-html',
+                htmlFileName: 'test-html-filename',
+                jsonFileName: 'test-json-filename',
+                htmlExportData: 'test-html',
+                jsonExportData: 'test-json',
                 onSubmit: null,
             };
         });
