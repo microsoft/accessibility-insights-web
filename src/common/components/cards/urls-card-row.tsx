@@ -64,7 +64,11 @@ function getBaseAwareUrls(propertyData: UrlsPropertyData): BaselineAwareUrl[] {
 
 function getBaselineHighlight(baselineAwareUrl: BaselineAwareUrl): JSX.Element {
     if (baselineAwareUrl.status === 'new') {
-        return <span className={styles.urlsRowContentNewFailure}>{'  NEW!'}</span>;
+        return (
+            <span key="status" className={styles.urlsRowContentNewFailure}>
+                {'  NEW!'}
+            </span>
+        );
     }
     return null;
 }
