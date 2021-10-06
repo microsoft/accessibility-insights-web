@@ -2228,10 +2228,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.14.15":
-  version "16.14.15"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.15.tgz#95d8fa3148050e94bcdc5751447921adbe19f9e6"
-  integrity sha512-jOxlBV9RGZhphdeqJTCv35VZOkjY+XIEY2owwSk84BNDdDv2xS6Csj6fhi+B/q30SR9Tz8lDNt/F2Z5RF3TrRg==
+"@types/react@*", "@types/react@^16", "@types/react@^16.14.16":
+  version "16.14.16"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.16.tgz#0ad1adaefbba4ccc307ddf364d071b3c81e0ce30"
+  integrity sha512-7waDQ0h1TkAk99S04wV0LUiiSXpT02lzrdDF4WZFqn2W0XE5ICXLBMtqXWZ688aX2dJislQ3knmZX/jH53RluQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -8570,10 +8570,10 @@ mini-create-react-context@^0.4.0:
     "@babel/runtime" "^7.5.5"
     tiny-warning "^1.0.3"
 
-mini-css-extract-plugin@2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.3.0.tgz#87515f185533752944d753ac7216fc876779dafe"
-  integrity sha512-uzWaOwC+gJrnKbr23J1ZRWx/Wd9W9Ce1mKPlsBGBV/r8zG7/G7oKMxGmxbI65pVGbae2cR7CUx9Ulk0HQt8BfQ==
+mini-css-extract-plugin@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-2.4.1.tgz#3f3eb6576fb29dd00c423c365e6d3aa59c48ca2a"
+  integrity sha512-97R1JD3GCG7wN5DNM6JrJMxnWNGf2oDlwRgoDc4HOQ5GprahF98mvcPvDMTb5eI1n3vmmMzCpbXH8tpcnr/Nmw==
   dependencies:
     schema-utils "^3.1.0"
 
