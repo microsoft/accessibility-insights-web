@@ -24,7 +24,7 @@ exports[`ExportDropdown handles click to show menu with feature flags 1`] = `
           "onClick": [Function],
         },
         Object {
-          "download": undefined,
+          "download": "json file name",
           "href": undefined,
           "key": "json",
           "onClick": [Function],

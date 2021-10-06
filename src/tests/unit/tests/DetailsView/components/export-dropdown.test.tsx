@@ -16,6 +16,7 @@ import { Mock } from 'typemoq';
 
 describe('ExportDropdown', () => {
     const fileProviderMock = Mock.ofType<FileURLProvider>();
+    const generateExportsMock = Mock.ofType<() => void>();
     const event = {
         currentTarget: 'test target',
     } as React.MouseEvent<any>;
@@ -46,8 +47,11 @@ describe('ExportDropdown', () => {
         props = {
             onExportLinkClick: null,
             reportExportServices: null,
-            fileName: 'A file name',
-            html: '<some html>',
+            htmlFileName: 'A file name',
+            jsonFileName: 'json file name',
+            htmlExportData: '<some html>',
+            jsonExportData: '{}',
+            generateExports: generateExportsMock.object,
             fileURLProvider: fileProviderMock.object,
             featureFlagStoreData: {},
         };

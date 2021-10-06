@@ -12,7 +12,7 @@ export const reportExportAsJsonAutomationId = 'report-export-as-json';
 export const JsonReportExportService: ReportExportService = {
     key: jsonReportExportServiceKey,
     displayName: 'JSON',
-    generateMenuItem: (onMenuItemClick, _, __) => {
+    generateMenuItem: (onMenuItemClick, href, download) => {
         return {
             key: jsonReportExportServiceKey,
             name: 'as JSON',
@@ -20,6 +20,8 @@ export const JsonReportExportService: ReportExportService = {
                 onMenuItemClick(e, jsonReportExportServiceKey);
             },
             'data-automation-id': reportExportAsJsonAutomationId,
+            href,
+            download,
         };
     },
 };

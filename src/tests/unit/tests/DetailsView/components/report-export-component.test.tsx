@@ -19,6 +19,7 @@ describe('ReportExportComponentTest', () => {
     let props: ReportExportComponentProps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
+    let jsonGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
     const reportExportServicesStub: ReportExportService[] = [
@@ -31,6 +32,7 @@ describe('ReportExportComponentTest', () => {
             reportGenerator: reportGeneratorMock.object,
         } as ReportExportComponentDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
+        jsonGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
         getDescriptionMock = Mock.ofInstance(() => '');
         props = {
@@ -38,6 +40,7 @@ describe('ReportExportComponentTest', () => {
             reportExportFormat: 'Assessment',
             pageTitle: 'test title',
             scanDate: new Date(2019, 5, 28),
+            jsonGenerator: jsonGeneratorMock.object,
             htmlGenerator: htmlGeneratorMock.object,
             updatePersistedDescription: updateDescriptionMock.object,
             getExportDescription: getDescriptionMock.object,
@@ -61,7 +64,12 @@ describe('ReportExportComponentTest', () => {
 
             reportGeneratorMock
                 .setup(rgm =>
-                    rgm.generateName(props.reportExportFormat, props.scanDate, props.pageTitle),
+                    rgm.generateName(
+                        props.reportExportFormat,
+                        props.scanDate,
+                        props.pageTitle,
+                        '.html',
+                    ),
                 )
                 .verifiable(Times.once());
             getDescriptionMock
@@ -94,7 +102,12 @@ describe('ReportExportComponentTest', () => {
             const wrapper = shallow(<ReportExportComponent {...props} />);
             reportGeneratorMock
                 .setup(rgm =>
-                    rgm.generateName(props.reportExportFormat, props.scanDate, props.pageTitle),
+                    rgm.generateName(
+                        props.reportExportFormat,
+                        props.scanDate,
+                        props.pageTitle,
+                        '.html',
+                    ),
                 )
                 .verifiable(Times.once());
             getDescriptionMock
@@ -136,7 +149,7 @@ describe('ReportExportComponentTest', () => {
             updateDescriptionMock.verifyAll();
         });
 
-        test('clicking export on the dialog should trigger generateHtml with the current exportDescription', () => {
+        test('clicking export on the dialog should trigger generateExports with the current exportDescription', () => {
             const wrapper = shallow(<ReportExportComponent {...props} />);
             wrapper.setState({ exportDescription: testContentWithSpecials });
 
@@ -145,11 +158,19 @@ describe('ReportExportComponentTest', () => {
                 .returns(() => 'test html')
                 .verifiable(Times.once());
 
+            jsonGeneratorMock
+                .setup(jgm => jgm(testContentWithSpecials))
+                .returns(() => 'test json')
+                .verifiable(Times.once());
+
             const dialog = wrapper.find(ExportDialog);
 
-            dialog.props().onExportClick();
+            dialog.props().generateExports();
+
+            expect(wrapper.getElement()).toMatchSnapshot();
 
             htmlGeneratorMock.verifyAll();
+            jsonGeneratorMock.verifyAll();
         });
     });
 });
