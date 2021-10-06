@@ -2228,10 +2228,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16", "@types/react@^16.14.15":
-  version "16.14.15"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.15.tgz#95d8fa3148050e94bcdc5751447921adbe19f9e6"
-  integrity sha512-jOxlBV9RGZhphdeqJTCv35VZOkjY+XIEY2owwSk84BNDdDv2xS6Csj6fhi+B/q30SR9Tz8lDNt/F2Z5RF3TrRg==
+"@types/react@*", "@types/react@^16", "@types/react@^16.14.16":
+  version "16.14.16"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.14.16.tgz#0ad1adaefbba4ccc307ddf364d071b3c81e0ce30"
+  integrity sha512-7waDQ0h1TkAk99S04wV0LUiiSXpT02lzrdDF4WZFqn2W0XE5ICXLBMtqXWZ688aX2dJislQ3knmZX/jH53RluQ==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -12596,10 +12596,10 @@ webpack-sources@^3.2.0:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.0.tgz#b16973bcf844ebcdb3afde32eda1c04d0b90f89d"
   integrity sha512-fahN08Et7P9trej8xz/Z7eRu8ltyiygEo/hnRi9KqBUs80KeDcnf96ZJo++ewWd84fEf3xSX9bp4ZS9hbw0OBw==
 
-webpack@^5.56.1:
-  version "5.56.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.56.1.tgz#e39d1d1f1acdb6f07e346f74b7dcfe323da4ded9"
-  integrity sha512-MRbTPooHJuSAfbx7Lh/qEMRUe/d0p4cRj2GPo/fq+4JUeR/+Q1EfLvS1lexslbMcJZyPXxxz/k/NzVepkA5upA==
+webpack@^5.57.1:
+  version "5.57.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.57.1.tgz#ead5ace2c17ecef2ae8126f143bfeaa7f55eab44"
+  integrity sha512-kHszukYjTPVfCOEyrUthA3jqJwduY/P3eO8I0gMNOZGIQWKAwZftxmp5hq6paophvwo9NoUrcZOecs9ulOyyTg==
   dependencies:
     "@types/eslint-scope" "^3.7.0"
     "@types/estree" "^0.0.50"
