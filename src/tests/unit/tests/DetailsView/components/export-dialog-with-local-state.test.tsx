@@ -7,6 +7,7 @@ import {
 } from 'DetailsView/components/export-dialog-with-local-state';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ReportExportService } from 'report-export/types/report-export-service';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
@@ -26,6 +27,9 @@ describe('ExportDialogWithLocalState', () => {
     const pageTitle = 'test title';
     const reportExportFormat = 'Assessment';
     const exportName = 'export name';
+    const reportExportServicesStub: ReportExportService[] = [
+        { key: 'html', generateMenuItem: null },
+    ];
 
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
@@ -51,6 +55,7 @@ describe('ExportDialogWithLocalState', () => {
             isOpen: true,
             dismissExportDialog: dismissDialogMock.object,
             afterDialogDismissed: afterDialogDismissedMock.object,
+            reportExportServices: reportExportServicesStub,
         };
     });
 

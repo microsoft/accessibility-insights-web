@@ -26,6 +26,14 @@ exports[`ExportDialogWithLocalState clicking export on the dialog should trigger
   onDescriptionChange={[Function]}
   onExportClick={[Function]}
   reportExportFormat="Assessment"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+    ]
+  }
 />
 `;
 
@@ -55,6 +63,14 @@ exports[`ExportDialogWithLocalState edit text field: test content with special c
   onDescriptionChange={[Function]}
   onExportClick={[Function]}
   reportExportFormat="Assessment"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+    ]
+  }
 />
 `;
 
@@ -84,6 +100,14 @@ exports[`ExportDialogWithLocalState on dialog opened 1`] = `
   onDescriptionChange={[Function]}
   onExportClick={[Function]}
   reportExportFormat="Assessment"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+    ]
+  }
 />
 `;
 
@@ -113,6 +137,14 @@ exports[`ExportDialogWithLocalState render with dialog closed 1`] = `
   onDescriptionChange={[Function]}
   onExportClick={[Function]}
   reportExportFormat="Assessment"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+    ]
+  }
 />
 `;
 
@@ -142,5 +174,13 @@ exports[`ExportDialogWithLocalState render with dialog open 1`] = `
   onDescriptionChange={[Function]}
   onExportClick={[Function]}
   reportExportFormat="Assessment"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+    ]
+  }
 />
 `;

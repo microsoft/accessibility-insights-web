@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { ExportDropdown } from 'DetailsView/components/export-dropdown';
 import { Dialog, DialogFooter, DialogType, PrimaryButton, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import {
+    ReportExportService,
+    ReportExportServiceKey,
+} from 'report-export/types/report-export-service';
 import { ReportExportFormat } from '../../common/extension-telemetry-events';
 import { FileURLProvider } from '../../common/file-url-provider';
 import { NamedFC } from '../../common/react/named-fc';
@@ -25,12 +27,12 @@ export interface ExportDialogProps {
     onExportClick: () => void;
     featureFlagStoreData: FeatureFlagStoreData;
     afterDismissed?: () => void;
+    reportExportServices: ReportExportService[];
 }
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     fileURLProvider: FileURLProvider;
-    reportExportServiceProvider: ReportExportServiceProvider;
 }
 
 export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
@@ -48,7 +50,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
         props.onDescriptionChange(props.description);
         detailsViewActionMessageCreator.exportResultsClicked(
             props.reportExportFormat,
-            props.html,
+            selectedServiceKey,
             event,
         );
         setServiceKey(selectedServiceKey);
@@ -61,14 +63,20 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     };
 
     const fileURL = props.deps.fileURLProvider.provideURL([props.html], 'text/html');
-    const exportService = props.deps.reportExportServiceProvider.forKey(serviceKey);
+    const exportService = props.reportExportServices.find(s => s.key === serviceKey);
     const ExportForm = exportService ? exportService.exportForm : null;
+    const exportToCodepen =
+        props.featureFlagStoreData[FeatureFlags.exportReportOptions] &&
+        props.reportExportServices.some(s => s.key === 'codepen');
+    const exportToJSON =
+        props.featureFlagStoreData[FeatureFlags.exportReportJSON] &&
+        props.reportExportServices.some(s => s.key === 'json');
 
     const getSingleExportToHtmlButton = () => {
         return (
             <PrimaryButton
                 onClick={event =>
-                    onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'download')
+                    onExportLinkClick(event as React.MouseEvent<HTMLAnchorElement>, 'html')
                 }
                 download={props.fileName}
                 href={fileURL}
@@ -81,25 +89,13 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     const getMultiOptionExportButton = () => {
         return (
             <>
-                <PrimaryButton
-                    text="Export"
-                    split
-                    splitButtonAriaLabel="Export HTML to any of these format options"
-                    aria-roledescription="split button"
-                    menuProps={{
-                        items: props.deps.reportExportServiceProvider.all().map(service => ({
-                            key: service.key,
-                            text: service.displayName,
-                            onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
-                                onExportLinkClick(e, service.key);
-                            },
-                        })),
-                    }}
-                    onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                        onExportLinkClick(e, 'download');
-                    }}
-                    download={props.fileName}
-                    href={fileURL}
+                <ExportDropdown
+                    fileName={props.fileName}
+                    fileURLProvider={props.deps.fileURLProvider}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    html={props.html}
+                    onExportLinkClick={onExportLinkClick}
+                    reportExportServices={props.reportExportServices}
                 />
                 {ExportForm && (
                     <ExportForm
@@ -113,6 +109,14 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 )}
             </>
         );
+    };
+
+    const renderExportButton = () => {
+        if (!(exportToCodepen || exportToJSON)) {
+            return getSingleExportToHtmlButton();
+        }
+
+        return getMultiOptionExportButton();
     };
 
     return (
@@ -139,14 +143,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
                 value={props.description}
                 ariaLabel="Provide result description"
             />
-            <DialogFooter>
-                <FlaggedComponent
-                    featureFlag={FeatureFlags.exportReportOptions}
-                    featureFlagStoreData={props.featureFlagStoreData}
-                    enableJSXElement={getMultiOptionExportButton()}
-                    disableJSXElement={getSingleExportToHtmlButton()}
-                />
-            </DialogFooter>
+            <DialogFooter>{renderExportButton()}</DialogFooter>
         </Dialog>
     );
 });

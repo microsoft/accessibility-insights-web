@@ -23,6 +23,25 @@ exports[`ExportDialog renders with CodePen export form 1`] = `
 </form>
 `;
 
+exports[`ExportDialog renders with export dropdown 1`] = `
+"<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
+  <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value=\\"description\\" ariaLabel=\\"Provide result description\\" />
+  <StyledDialogFooterBase>
+    <ExportDropdown fileName=\\"THE REPORT FILE NAME\\" fileURLProvider={[Function: function () {
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            args[_i] = arguments[_i];
+                        }
+                        _this._interceptor.removeInvocation(invocation_1);
+                        var method = new MethodInfo(target, p);
+                        var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                        _this._interceptor.intercept(methodInvocation);
+                        return methodInvocation.returnValue;
+                    }] { provideURL: [Function (anonymous)], [Symbol(Symbol.toStringTag)]: [Function: bound toString] }} featureFlagStoreData={{...}} html=\\"fake html\\" onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>"
+`;
+
 exports[`ExportDialog renders with open false 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
@@ -52,43 +71,13 @@ exports[`ExportDialog renders with open false 1`] = `
     value="description"
   />
   <StyledDialogFooterBase>
-    <FlaggedComponent
-      disableJSXElement={
-        <CustomizedPrimaryButton
-          download="THE REPORT FILE NAME"
-          href="fake-url"
-          onClick={[Function]}
-        >
-          Export
-        </CustomizedPrimaryButton>
-      }
-      enableJSXElement={
-        <React.Fragment>
-          <CustomizedPrimaryButton
-            aria-roledescription="split button"
-            download="THE REPORT FILE NAME"
-            href="fake-url"
-            menuProps={
-              Object {
-                "items": Array [
-                  Object {
-                    "key": "codepen",
-                    "onClick": [Function],
-                    "text": "CodePen",
-                  },
-                ],
-              }
-            }
-            onClick={[Function]}
-            split={true}
-            splitButtonAriaLabel="Export HTML to any of these format options"
-            text="Export"
-          />
-        </React.Fragment>
-      }
-      featureFlag="exportReportOptions"
-      featureFlagStoreData={Object {}}
-    />
+    <CustomizedPrimaryButton
+      download="THE REPORT FILE NAME"
+      href="fake-url"
+      onClick={[Function]}
+    >
+      Export
+    </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
 `;
@@ -122,43 +111,24 @@ exports[`ExportDialog renders with open true 1`] = `
     value="description"
   />
   <StyledDialogFooterBase>
-    <FlaggedComponent
-      disableJSXElement={
-        <CustomizedPrimaryButton
-          download="THE REPORT FILE NAME"
-          href="fake-url"
-          onClick={[Function]}
-        >
-          Export
-        </CustomizedPrimaryButton>
-      }
-      enableJSXElement={
-        <React.Fragment>
-          <CustomizedPrimaryButton
-            aria-roledescription="split button"
-            download="THE REPORT FILE NAME"
-            href="fake-url"
-            menuProps={
-              Object {
-                "items": Array [
-                  Object {
-                    "key": "codepen",
-                    "onClick": [Function],
-                    "text": "CodePen",
-                  },
-                ],
-              }
-            }
-            onClick={[Function]}
-            split={true}
-            splitButtonAriaLabel="Export HTML to any of these format options"
-            text="Export"
-          />
-        </React.Fragment>
-      }
-      featureFlag="exportReportOptions"
-      featureFlagStoreData={Object {}}
-    />
+    <CustomizedPrimaryButton
+      download="THE REPORT FILE NAME"
+      href="fake-url"
+      onClick={[Function]}
+    >
+      Export
+    </CustomizedPrimaryButton>
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>
+`;
+
+exports[`ExportDialog renders without export dropdown due to lack of service 1`] = `
+"<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
+  <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value=\\"description\\" ariaLabel=\\"Provide result description\\" />
+  <StyledDialogFooterBase>
+    <CustomizedPrimaryButton onClick={[Function: onClick]} download=\\"THE REPORT FILE NAME\\" href=\\"fake-url\\">
+      Export
+    </CustomizedPrimaryButton>
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>"
 `;
