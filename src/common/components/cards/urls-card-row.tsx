@@ -4,11 +4,13 @@
 import { CardRowProps } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { BaselineAwareUrl } from 'reports/package/accessibilityInsightsReport';
 import { SimpleCardRow } from './simple-card-row';
 import * as styles from './urls-card-row.scss';
 
 export interface UrlsPropertyData {
-    urls: string[];
+    urls?: string[];
+    baselineAwareUrls?: BaselineAwareUrl[];
 }
 
 export interface UrlsCardRowProps extends CardRowProps {
@@ -16,12 +18,17 @@ export interface UrlsCardRowProps extends CardRowProps {
 }
 
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
+    const baselineAwareUrls = getBaseAwareUrls(props.propertyData);
+
     const renderUrlContent = () => {
         return (
             <ul className={styles.urlsRowContent}>
-                {props.propertyData.urls.map((url, index) => (
+                {baselineAwareUrls.map((baselineAwareUrl, index) => (
                     <li key={`urls-${index}`}>
-                        <deps.LinkComponent href={url}>{url}</deps.LinkComponent>
+                        <deps.LinkComponent href={baselineAwareUrl.url}>
+                            {baselineAwareUrl.url}
+                        </deps.LinkComponent>
+                        {getBaselineHighlight(baselineAwareUrl)}
                     </li>
                 ))}
             </ul>
@@ -36,3 +43,28 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
         />
     );
 });
+
+function getBaseAwareUrls(propertyData: UrlsPropertyData): BaselineAwareUrl[] {
+    // TODO DHT: Error handling?
+
+    const baselineAwareUrls: BaselineAwareUrl[] = propertyData.baselineAwareUrls;
+    const urls: string[] = propertyData.urls;
+
+    if (baselineAwareUrls) {
+        return baselineAwareUrls;
+    }
+
+    const convertedArray: BaselineAwareUrl[] = [];
+    urls.forEach(url => {
+        convertedArray.push({ url, status: 'unknown' });
+    });
+
+    return convertedArray;
+}
+
+function getBaselineHighlight(baselineAwareUrl: BaselineAwareUrl): JSX.Element {
+    if (baselineAwareUrl.status === 'new') {
+        return <span className={styles.urlsRowContentNewFailure}>{'  NEW!'}</span>;
+    }
+    return null;
+}

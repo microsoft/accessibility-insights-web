@@ -80,7 +80,7 @@ export class CombinedResultsToCardsModelConverter {
             status: 'fail',
             ruleId: rule.ruleId,
             identifiers: {
-                urls: { urls: failureData.urls },
+                urls: { urls: failureData.urls, baselineAwareUrls: failureData.baselineAwareUrls },
                 identifier: cssSelector,
                 conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
                 'css-selector': cssSelector,

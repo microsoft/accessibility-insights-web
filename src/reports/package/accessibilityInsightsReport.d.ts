@@ -75,8 +75,16 @@ declare namespace AccessibilityInsightsReport {
         failureSummary?: string,
     }
 
+    export type BaselineStatus = 'unknown' | 'existing' | 'new';
+
+    export type BaselineAwareUrl = {
+        url: string,
+        status: BaselineStatus
+    }
+
     export type FailureData = {
-        urls: string[],
+        urls?: string[],
+        baselineAwareUrls?: BaselineAwareUrl[],
         elementSelector: string,
         snippet: string,
         fix: HowToFixData,
