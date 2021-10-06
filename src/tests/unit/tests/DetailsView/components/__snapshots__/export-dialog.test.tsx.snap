@@ -27,7 +27,7 @@ exports[`ExportDialog renders with export dropdown 1`] = `
 "<StyledWithResponsiveMode hidden={false} onDismiss={[Function: onDismiss]} dialogContentProps={{...}} modalProps={{...}}>
   <StyledTextFieldBase multiline={true} autoFocus={true} rows={8} resizable={false} onChange={[Function: onDescriptionChange]} value=\\"description\\" ariaLabel=\\"Provide result description\\" />
   <StyledDialogFooterBase>
-    <ExportDropdown fileName=\\"THE REPORT FILE NAME\\" fileURLProvider={[Function: function () {
+    <ExportDropdown htmlFileName=\\"THE REPORT FILE NAME\\" jsonFileName=\\"JSON file name\\" fileURLProvider={[Function: function () {
                         var args = [];
                         for (var _i = 0; _i < arguments.length; _i++) {
                             args[_i] = arguments[_i];
@@ -37,7 +37,7 @@ exports[`ExportDialog renders with export dropdown 1`] = `
                         var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                         _this._interceptor.intercept(methodInvocation);
                         return methodInvocation.returnValue;
-                    }] { provideURL: [Function (anonymous)], [Symbol(Symbol.toStringTag)]: [Function: bound toString] }} featureFlagStoreData={{...}} html=\\"fake html\\" onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
+                    }] { provideURL: [Function (anonymous)], [Symbol(Symbol.toStringTag)]: [Function: bound toString] }} featureFlagStoreData={{...}} htmlExportData=\\"fake html\\" jsonExportData=\\"fake json\\" generateExports={[Function: proxy]} onExportLinkClick={[Function: onExportLinkClick]} reportExportServices={{...}} />
   </StyledDialogFooterBase>
 </StyledWithResponsiveMode>"
 `;

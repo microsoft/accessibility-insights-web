@@ -41,7 +41,15 @@ export function getReportExportDialogForAssessment(
         pageTitle: scanMetadata.targetAppInfo.name,
         scanDate: props.deps.getCurrentDate(),
         htmlGenerator: description =>
-            reportGenerator.generateAssessmentReport(
+            reportGenerator.generateAssessmentHTMLReport(
+                assessmentStoreData,
+                assessmentsProvider,
+                featureFlagStoreData,
+                scanMetadata.targetAppInfo,
+                description,
+            ),
+        jsonGenerator: description =>
+            reportGenerator.generateAssessmentJsonExport(
                 assessmentStoreData,
                 assessmentsProvider,
                 featureFlagStoreData,
@@ -92,6 +100,7 @@ export function getReportExportDialogForFastPass(
                 description,
                 props.scanMetadata,
             ),
+        jsonGenerator: () => null,
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,

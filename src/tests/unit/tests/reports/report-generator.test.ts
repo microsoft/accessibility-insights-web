@@ -4,6 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
@@ -16,6 +17,7 @@ describe('ReportGenerator', () => {
     const date = new Date(2018, 2, 12, 15, 46);
     const title = 'title';
     const url = 'http://url/';
+    const fileExtension = '.html';
     const description = 'description';
     const cardsViewDataStub = {
         cards: exampleUnifiedStatusResults,
@@ -37,12 +39,17 @@ describe('ReportGenerator', () => {
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
+    let assessmentJsonExportGeneratorMock: IMock<AssessmentJsonExportGenerator>;
 
     beforeEach(() => {
         nameBuilderMock = Mock.ofType<ReportNameGenerator>(undefined, MockBehavior.Strict);
         dataBuilderMock = Mock.ofType<ReportHtmlGenerator>(undefined, MockBehavior.Strict);
         assessmentReportHtmlGeneratorMock = Mock.ofType(
             AssessmentReportHtmlGenerator,
+            MockBehavior.Strict,
+        );
+        assessmentJsonExportGeneratorMock = Mock.ofType(
+            AssessmentJsonExportGenerator,
             MockBehavior.Strict,
         );
     });
@@ -58,6 +65,7 @@ describe('ReportGenerator', () => {
             nameBuilderMock.object,
             dataBuilderMock.object,
             assessmentReportHtmlGeneratorMock.object,
+            assessmentJsonExportGeneratorMock.object,
         );
         const actual = testObject.generateFastPassAutomatedChecksReport(
             cardsViewDataStub,
@@ -91,8 +99,9 @@ describe('ReportGenerator', () => {
             nameBuilderMock.object,
             dataBuilderMock.object,
             assessmentReportHtmlGeneratorMock.object,
+            assessmentJsonExportGeneratorMock.object,
         );
-        const actual = testObject.generateAssessmentReport(
+        const actual = testObject.generateAssessmentHTMLReport(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
@@ -107,7 +116,12 @@ describe('ReportGenerator', () => {
     test('generateName', () => {
         nameBuilderMock
             .setup(builder =>
-                builder.generateName('InsightsScan', It.isValue(date), It.isValue(title)),
+                builder.generateName(
+                    'InsightsScan',
+                    It.isValue(date),
+                    It.isValue(title),
+                    It.isValue(fileExtension),
+                ),
             )
             .returns(() => 'returned-name')
             .verifiable(Times.once());
@@ -116,8 +130,9 @@ describe('ReportGenerator', () => {
             nameBuilderMock.object,
             dataBuilderMock.object,
             assessmentReportHtmlGeneratorMock.object,
+            assessmentJsonExportGeneratorMock.object,
         );
-        const actual = testObject.generateName('InsightsScan', date, title);
+        const actual = testObject.generateName('InsightsScan', date, title, fileExtension);
 
         const expected = 'returned-name';
         expect(actual).toEqual(expected);

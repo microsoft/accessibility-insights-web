@@ -8,6 +8,7 @@ describe('WebReportNameGenerator', () => {
     const theBase = 'BASE';
     const theTitle = 'Title';
     const theDate = new Date();
+    const theExtension = '.html';
 
     const dateSegment = 'date segment';
     const titleSegment = 'title segment';
@@ -27,9 +28,9 @@ describe('WebReportNameGenerator', () => {
     });
 
     it('generateName', () => {
-        const actual = testObject.generateName(theBase, theDate, theTitle);
+        const actual = testObject.generateName(theBase, theDate, theTitle, theExtension);
 
-        const expected = `${theBase}_${dateSegment}_${titleSegment}.html`;
+        const expected = `${theBase}_${dateSegment}_${titleSegment}${theExtension}`;
         expect(actual).toEqual(expected);
 
         fileNameBuilderMock.verifyAll();
