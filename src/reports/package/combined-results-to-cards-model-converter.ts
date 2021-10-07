@@ -77,13 +77,13 @@ export class CombinedResultsToCardsModelConverter {
 
         const urls: any = {};
         if (failureData.baselineAwareUrls) {
-            urls.baselineAwareUrls = failureData.baselineAwareUrls;
+            urls.urlInfos = failureData.baselineAwareUrls;
         } else if (failureData.urls) {
-            const baselineAwareUrls: UrlInfo[] = []
+            const urlInfos: UrlInfo[] = []
             failureData.urls.map(url => {
-                baselineAwareUrls.push({url, baselineStatus: 'unknown'});
+                urlInfos.push({url, baselineStatus: 'unknown'});
             })
-            urls.baselineAwareUrls = baselineAwareUrls;
+            urls.urlInfos = urlInfos;
         }
 
         return {

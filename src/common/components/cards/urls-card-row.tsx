@@ -9,7 +9,7 @@ import { SimpleCardRow } from './simple-card-row';
 import * as styles from './urls-card-row.scss';
 
 export interface UrlsPropertyData {
-    baselineAwareUrls: UrlInfo[];
+    urlInfos: UrlInfo[];
 }
 
 export interface UrlsCardRowProps extends CardRowProps {
@@ -17,17 +17,15 @@ export interface UrlsCardRowProps extends CardRowProps {
 }
 
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
-    const baselineAwareUrls = props.propertyData.baselineAwareUrls;
+    const urlInfos = props.propertyData.urlInfos;
 
     const renderUrlContent = () => {
         return (
             <ul className={styles.urlsRowContent}>
-                {baselineAwareUrls.map((baselineAwareUrl, index) => (
+                {urlInfos.map((urlInfo, index) => (
                     <li key={`urls-${index}`}>
-                        <deps.LinkComponent href={baselineAwareUrl.url}>
-                            {baselineAwareUrl.url}
-                        </deps.LinkComponent>
-                        {getBaselineHighlight(baselineAwareUrl)}
+                        <deps.LinkComponent href={urlInfo.url}>{urlInfo.url}</deps.LinkComponent>
+                        {getBaselineHighlight(urlInfo)}
                     </li>
                 ))}
             </ul>
@@ -43,8 +41,8 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
     );
 });
 
-function getBaselineHighlight(baselineAwareUrl: UrlInfo): JSX.Element | null {
-    if (baselineAwareUrl.baselineStatus === 'new') {
+function getBaselineHighlight(urlInfo: UrlInfo): JSX.Element | null {
+    if (urlInfo.baselineStatus === 'new') {
         return (
             <span key="status" className={styles.urlsRowContentNewFailure}>
                 {'  NEW!'}

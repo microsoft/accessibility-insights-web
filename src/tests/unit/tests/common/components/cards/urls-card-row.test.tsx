@@ -11,7 +11,7 @@ describe('UrlsCardRow', () => {
     it('renders with string-only URLs', () => {
         const props: UrlsCardRowProps = {
             propertyData: {
-                baselineAwareUrls: [
+                urlInfos: [
                     { url: 'https://www.test.com', baselineStatus: 'unknown' },
                     { url: 'https://www.test.com/more/tests', baselineStatus: 'unknown' },
                 ],
@@ -28,7 +28,7 @@ describe('UrlsCardRow', () => {
     it('renders with baseline-aware URLs', () => {
         const props: UrlsCardRowProps = {
             propertyData: {
-                baselineAwareUrls: [
+                urlInfos: [
                     { url: 'https://www.test.com', baselineStatus: 'unknown' },
                     { url: 'https://www.test.com/more/tests', baselineStatus: 'existing' },
                     { url: 'https://www.test.com/still/more/tests', baselineStatus: 'new' },
