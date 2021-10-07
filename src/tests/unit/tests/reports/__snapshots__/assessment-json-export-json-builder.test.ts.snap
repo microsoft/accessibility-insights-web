@@ -590,8 +590,18 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
     {
       \\"wcagNumber\\": \\"2.1.1\\",
       \\"wcagName\\": \\"Keyboard\\",
-      \\"status\\": \\"incomplete\\",
-      \\"requirementsFailed\\": [],
+      \\"status\\": \\"fail\\",
+      \\"requirementsFailed\\": [
+        {
+          \\"requirementKey\\": \\"keyboard-navigation\\",
+          \\"requirementDescription\\": \\"Users must be able to navigate to all interactive interface components using a keyboard\\",
+          \\"instances\\": [
+            {
+              \\"comment\\": \\"This is a test comment\\"
+            }
+          ]
+        }
+      ],
       \\"requirementsPassed\\": [
         {
           \\"requirementKey\\": \\"frame-focusable-content\\",
@@ -603,10 +613,6 @@ exports[`Assessment JSON export builder export JSON matches snapshot 1`] = `
         }
       ],
       \\"requirementsIncomplete\\": [
-        {
-          \\"requirementKey\\": \\"keyboard-navigation\\",
-          \\"requirementDescription\\": \\"Users must be able to navigate to all interactive interface components using a keyboard\\"
-        },
         {
           \\"requirementKey\\": \\"on-keystroke-timing\\",
           \\"requirementDescription\\": \\"Components must not require specific timings for individual keystrokes\\"
