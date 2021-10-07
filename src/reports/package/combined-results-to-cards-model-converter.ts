@@ -80,7 +80,7 @@ export class CombinedResultsToCardsModelConverter {
             const urlInfos: UrlInfo[] = []
             failureData.urls.map(url => {
                 if (url.url) {
-                    urlInfos.push({...url});
+                    urlInfos.push({url: url.url, baselineStatus: url.baselineStatus || 'unknown'});
                 } else {
                     urlInfos.push({url, baselineStatus: 'unknown'});
                 }
