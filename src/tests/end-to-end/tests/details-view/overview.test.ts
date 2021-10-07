@@ -120,14 +120,12 @@ describe('Details View -> Overview Page', () => {
     );
 
     it('should download .html when Export as HTML is clicked', async () => {
-        await backgroundPage.enableFeatureFlag('exportReportJSON');
         await overviewPage.openExportDropdown();
         const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsHTML);
         expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.html$/)));
     });
 
     it('should download .json when Export as JSON is clicked', async () => {
-        await backgroundPage.enableFeatureFlag('exportReportJSON');
         await overviewPage.openExportDropdown();
         const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsJSON);
         expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.json$/)));
@@ -136,7 +134,6 @@ describe('Details View -> Overview Page', () => {
     it.each([true, false])(
         'should show correct number of items in export dropdown menu with codepen feature flag = %s',
         async codepenFlag => {
-            await backgroundPage.enableFeatureFlag('exportReportJSON');
             codepenFlag
                 ? await backgroundPage.enableFeatureFlag('exportReportOptions')
                 : await backgroundPage.disableFeatureFlag('exportReportOptions');
