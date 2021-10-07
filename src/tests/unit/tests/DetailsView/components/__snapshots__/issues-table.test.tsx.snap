@@ -179,6 +179,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
           "getDateFromTimestamp": [Function],
           "reportGenerator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "assessmentJsonExportGenerator": undefined,
             "assessmentReportHtmlGenerator": undefined,
             "reportHtmlGenerator": undefined,
             "reportNameGenerator": undefined,

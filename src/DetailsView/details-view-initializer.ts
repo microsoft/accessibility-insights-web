@@ -39,6 +39,7 @@ import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-acti
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
+import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
@@ -343,14 +344,23 @@ if (tabId != null) {
                 globalization,
             };
 
+            const assessmentReportModelBuilderFactory = new AssessmentReportModelBuilderFactory();
+
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,
-                new AssessmentReportModelBuilderFactory(),
+                assessmentReportModelBuilderFactory,
                 DateProvider.getCurrentDate,
                 extensionVersion,
                 axeVersion,
                 browserSpec,
+                assessmentDefaultMessageGenerator,
+            );
+
+            const assessmentJsonExportGenerator = new AssessmentJsonExportGenerator(
+                assessmentReportModelBuilderFactory,
+                DateProvider.getCurrentDate,
+                extensionVersion,
                 assessmentDefaultMessageGenerator,
             );
 
@@ -388,6 +398,7 @@ if (tabId != null) {
                 reportNameGenerator,
                 reportHtmlGenerator,
                 assessmentReportHtmlGenerator,
+                assessmentJsonExportGenerator,
             );
 
             const assessmentDataFormatter = new AssessmentDataFormatter();

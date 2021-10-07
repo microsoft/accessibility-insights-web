@@ -10,13 +10,15 @@ const jsonReportExportServiceKey: ReportExportServiceKey = 'json';
 export const JsonReportExportService: ReportExportService = {
     key: jsonReportExportServiceKey,
     displayName: 'JSON',
-    generateMenuItem: (onMenuItemClick, _, __) => {
+    generateMenuItem: (onMenuItemClick, href, download) => {
         return {
             key: jsonReportExportServiceKey,
             name: 'as JSON',
             onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
                 onMenuItemClick(e, jsonReportExportServiceKey);
             },
+            href,
+            download,
         };
     },
 };
