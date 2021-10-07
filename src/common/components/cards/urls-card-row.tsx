@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { CardRowProps } from 'common/configs/unified-result-property-configurations';
+import { CardRowDeps, CardRowProps } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { UrlInfo } from 'reports/package/accessibilityInsightsReport';
@@ -22,12 +22,7 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
     const renderUrlContent = () => {
         return (
             <ul className={styles.urlsRowContent}>
-                {urlInfos.map((urlInfo, index) => (
-                    <li key={`urls-${index}`}>
-                        <deps.LinkComponent href={urlInfo.url}>{urlInfo.url}</deps.LinkComponent>
-                        {getBaselineHighlight(urlInfo)}
-                    </li>
-                ))}
+                {urlInfos.map((urlInfo, index) => getUrlListItem(urlInfo, index, deps))}
             </ul>
         );
     };
@@ -41,13 +36,27 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
     );
 });
 
-function getBaselineHighlight(urlInfo: UrlInfo): JSX.Element | null {
-    if (urlInfo.baselineStatus === 'new') {
+const isNewViolation = (urlInfo: UrlInfo): boolean => {
+    return urlInfo.baselineStatus === 'new';
+};
+
+function getUrlListItem(urlInfo: UrlInfo, index: number, deps: CardRowDeps): JSX.Element {
+    const key = `urls-${index}`;
+
+    if (isNewViolation(urlInfo)) {
         return (
-            <span key="status" className={styles.urlsRowContentNewFailure}>
-                {'  NEW!'}
-            </span>
+            <li key={key} aria-label={`NEW ${urlInfo.url}`}>
+                <deps.LinkComponent href={urlInfo.url}>{urlInfo.url}</deps.LinkComponent>
+                <span key="new" aria-hidden="true" className={styles.urlsRowContentNewFailure}>
+                    {'  NEW!'}
+                </span>
+            </li>
         );
     }
-    return null;
+
+    return (
+        <li key={key}>
+            <deps.LinkComponent href={urlInfo.url}>{urlInfo.url}</deps.LinkComponent>
+        </li>
+    );
 }
