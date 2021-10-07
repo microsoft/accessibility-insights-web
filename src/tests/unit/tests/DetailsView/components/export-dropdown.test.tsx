@@ -77,7 +77,6 @@ describe('ExportDropdown', () => {
 
     it('handles click to show menu with feature flags', () => {
         props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-        props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
         props.reportExportServices = makeReportExportServicesForKeys(['html', 'json', 'codepen']);
 
         const rendered = shallow(<ExportDropdown {...props} />);
@@ -88,7 +87,6 @@ describe('ExportDropdown', () => {
 
     it('handles click to show menu with feature flags but missing json', () => {
         props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-        props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
         props.reportExportServices = makeReportExportServicesForKeys(['html', 'codepen']);
 
         const rendered = shallow(<ExportDropdown {...props} />);

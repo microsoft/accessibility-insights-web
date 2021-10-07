@@ -39,6 +39,16 @@ describe('ExportDialog', () => {
     ] as ReportExportService[];
     let props: ExportDialogProps;
 
+    const onlyIncludeHtmlService = () => {
+        props.reportExportServices = [
+            {
+                key: 'html',
+                generateMenuItem: () => null,
+                exportForm: CodePenReportExportService.exportForm,
+            },
+        ] as ReportExportService[];
+    };
+
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
@@ -74,6 +84,7 @@ describe('ExportDialog', () => {
 
         it.each(isOpenOptions)('with open %p', isOpen => {
             props.isOpen = isOpen;
+            onlyIncludeHtmlService();
             fileProviderMock
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
@@ -86,7 +97,6 @@ describe('ExportDialog', () => {
 
         it('with export dropdown', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-            props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
@@ -105,15 +115,7 @@ describe('ExportDialog', () => {
 
         it('without export dropdown due to lack of service', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-            props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
-            props.reportExportServices = [
-                {
-                    key: 'html',
-                    generateMenuItem: () => null,
-                    exportForm: CodePenReportExportService.exportForm,
-                },
-            ] as ReportExportService[];
-
+            onlyIncludeHtmlService();
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
@@ -166,6 +168,7 @@ describe('ExportDialog', () => {
 
         it('handles click on export button', () => {
             const unchangedDescription = 'description';
+            onlyIncludeHtmlService();
             onDescriptionChangeMock
                 .setup(dc => dc(It.isValue(unchangedDescription)))
                 .verifiable(Times.once());
@@ -183,9 +186,9 @@ describe('ExportDialog', () => {
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
-            const flaggedComponent = wrapper.find(PrimaryButton);
+            const component = wrapper.find(PrimaryButton);
 
-            flaggedComponent.simulate('click', eventStub);
+            component.simulate('click', eventStub);
 
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
