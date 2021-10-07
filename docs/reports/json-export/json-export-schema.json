@@ -1,0 +1,121 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "properties": {
+        "url": {
+            "type": "string"
+        },
+        "title": {
+            "type": "string"
+        },
+        "date": {
+            "type": "string"
+        },
+        "comment": {
+            "type": "string"
+        },
+        "version": {
+            "type": "string"
+        },
+        "results": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "wcagNumber": {
+                        "type": "string"
+                    },
+                    "wcagName": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "requirementsFailed": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "requirementKey": {
+                                        "type": "string"
+                                    },
+                                    "requirementDescription": {
+                                        "type": "string"
+                                    },
+                                    "instances": {
+                                        "type": "array",
+                                        "items": [
+                                            {
+                                                "type": "object",
+                                                "properties": {
+                                                    "path": {
+                                                        "type": "string"
+                                                    },
+                                                    "snippet": {
+                                                        "type": "string"
+                                                    },
+                                                    "comment": {
+                                                        "type": "string"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "requirementKey",
+                                    "requirementDescription",
+                                    "instances"
+                                ]
+                            }
+                        ]
+                    },
+                    "requirementsPassed": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "requirementKey": {
+                                        "type": "string"
+                                    },
+                                    "requirementDescription": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["requirementKey", "requirementDescription"]
+                            }
+                        ]
+                    },
+                    "requirementsIncomplete": {
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "requirementKey": {
+                                        "type": "string"
+                                    },
+                                    "requirementDescription": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": ["requirementKey", "requirementDescription"]
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "wcagNumber",
+                    "wcagName",
+                    "status",
+                    "requirementsFailed",
+                    "requirementsPassed",
+                    "requirementsIncomplete"
+                ]
+            }
+        }
+    },
+    "required": ["url", "title", "date", "comment", "version", "results"]
+}
