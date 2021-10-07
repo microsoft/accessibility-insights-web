@@ -9,7 +9,7 @@ describe('OutcomeCounter', () => {
         {
             identifiers: {
                 urls: {
-                    baselineAwareUrls: [
+                    urlInfos: [
                         { url: 'http://url-fail/1', baselineStatus: 'unknown' },
                         { url: 'http://url-fail/2', baselineStatus: 'existing' },
                         { url: 'http://url-fail/3', baselineStatus: 'new' },
@@ -20,7 +20,7 @@ describe('OutcomeCounter', () => {
         {
             identifiers: {
                 urls: {
-                    baselineAwareUrls: [
+                    urlInfos: [
                         { url: 'http://url-fail/1', baselineStatus: 'existing' },
                         { url: 'http://url-fail/2', baselineStatus: 'new' },
                     ],
@@ -30,7 +30,7 @@ describe('OutcomeCounter', () => {
         {
             identifiers: {
                 urls: {
-                    baselineAwareUrls: [],
+                    urlInfos: [],
                 },
             },
         } as unknown as CardResult,

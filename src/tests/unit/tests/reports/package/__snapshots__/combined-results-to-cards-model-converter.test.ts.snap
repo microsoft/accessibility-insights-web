@@ -26,7 +26,7 @@ Object {
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "existing",
                     "url": "https://example.com/failed-rule-1/only-violation",
@@ -53,7 +53,7 @@ Object {
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
@@ -102,7 +102,7 @@ Object {
               "css-selector": ".failed-rule-2-selector-1",
               "identifier": ".failed-rule-2-selector-1",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "existing",
                     "url": "https://example.com/failed-rule-2/only-violation",
@@ -129,7 +129,7 @@ Object {
               "css-selector": ".failed-rule-2-selector-2",
               "identifier": ".failed-rule-2-selector-2",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/1",
@@ -220,7 +220,7 @@ Object {
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-1/only-violation",
@@ -247,7 +247,7 @@ Object {
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
@@ -296,7 +296,7 @@ Object {
               "css-selector": ".failed-rule-2-selector-1",
               "identifier": ".failed-rule-2-selector-1",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-2/only-violation",
@@ -323,7 +323,7 @@ Object {
               "css-selector": ".failed-rule-2-selector-2",
               "identifier": ".failed-rule-2-selector-2",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/1",
@@ -481,7 +481,7 @@ Object {
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-1/only-violation",
@@ -508,7 +508,7 @@ Object {
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
               "urls": Object {
-                "baselineAwareUrls": Array [
+                "urlInfos": Array [
                   Object {
                     "status": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",

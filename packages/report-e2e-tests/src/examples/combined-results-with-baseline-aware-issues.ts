@@ -26,7 +26,7 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                     key: 'failed-rule-1',
                     failed: [
                         {
-                            baselineAwareUrls: [
+                            urlInfos: [
                                 { url: 'https://url/rule-1/failure-1', baselineStatus: 'existing' },
                             ],
                             elementSelector: '.rule-1-selector-1',
@@ -76,7 +76,7 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                             },
                         },
                         {
-                            baselineAwareUrls: [
+                            urlInfos: [
                                 { url: 'https://url/rule-1/failure-1', baselineStatus: 'existing' },
                                 { url: 'https://url/rule1/failure-2', baselineStatus: 'new' },
                             ],
@@ -132,7 +132,7 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                     key: 'failed-rule-2',
                     failed: [
                         {
-                            baselineAwareUrls: [
+                            urlInfos: [
                                 { url: 'https://url/rule2/failure1', baselineStatus: 'new' },
                             ],
                             elementSelector: '.rule-2-selector-1',

@@ -76,8 +76,8 @@ export class CombinedResultsToCardsModelConverter {
         const cssSelector = failureData.elementSelector;
 
         const urls: any = {};
-        if (failureData.baselineAwareUrls) {
-            urls.urlInfos = failureData.baselineAwareUrls;
+        if (failureData.urlInfos) {
+            urls.urlInfos = failureData.urlInfos;
         } else if (failureData.urls) {
             const urlInfos: UrlInfo[] = []
             failureData.urls.map(url => {
