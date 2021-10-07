@@ -3137,9 +3137,7 @@
                     "showPassingInstances": false
                 }
             ]
-        }
-    ],
-    "incompleteDetailsData": [
+        },
         {
             "key": "keyboardInteraction",
             "displayName": "Keyboard",
@@ -3178,7 +3176,16 @@
                         ],
                         "requirementType": "manual"
                     },
-                    "instances": [],
+                    "instances": [
+                        {
+                            "props": [
+                                {
+                                    "key": "Comment",
+                                    "value": "This is a test comment"
+                                }
+                            ]
+                        }
+                    ],
                     "defaultMessageComponent": {
                         "message": {
                             "type": "div",
@@ -3194,7 +3201,15 @@
                         "instanceCount": 0
                     },
                     "showPassingInstances": true
-                },
+                }
+            ]
+        }
+    ],
+    "incompleteDetailsData": [
+        {
+            "key": "keyboardInteraction",
+            "displayName": "Keyboard",
+            "steps": [
                 {
                     "key": "no-keyboard-traps",
                     "header": {
