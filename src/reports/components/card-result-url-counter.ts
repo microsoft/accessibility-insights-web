@@ -4,8 +4,8 @@
 import { CardResult } from 'common/types/store-data/card-view-model';
 
 export const getCardResultUrlCount = (cardResult: CardResult) => {
-    const urls = cardResult.identifiers.urls.urls;
-    const baselineAwareUrls = cardResult.identifiers.urls.baselineAwareUrls;
+    const urls = cardResult.identifiers.urls?.urls;
+    const baselineAwareUrls = cardResult.identifiers.urls?.baselineAwareUrls;
 
     if (baselineAwareUrls) {
         return baselineAwareUrls.length;
