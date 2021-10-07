@@ -1,5 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CombinedResultsToCardsModelConverter with a mixture of url specifications 1`] = `
+Object {
+  "allCardsCollapsed": true,
+  "cards": Object {
+    "fail": Array [
+      Object {
+        "description": "failed-rule-1 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/common-tag-failed-rule-1-specific-tag",
+            "text": "guidance for common-tag-failed-rule-1-specific-tag",
+          },
+        ],
+        "id": "failed-rule-1",
+        "isExpanded": false,
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "<div>snippet 1</div>",
+            },
+            "highlightStatus": "unavailable",
+            "identifiers": Object {
+              "conciseName": ".failed-rule-1-selector-1",
+              "css-selector": ".failed-rule-1-selector-1",
+              "identifier": ".failed-rule-1-selector-1",
+              "urls": Object {
+                "urlInfos": Array [
+                  Object {
+                    "baselineStatus": "unknown",
+                    "url": "https://example.com/failed-rule-1/violation-1",
+                  },
+                  Object {
+                    "baselineStatus": "unknown",
+                    "url": "https://example.com/failed-rule-1/violation-2",
+                  },
+                  Object {
+                    "baselineStatus": "new",
+                    "url": "https://example.com/failed-rule-1/violation-3",
+                  },
+                ],
+              },
+            },
+            "isSelected": false,
+            "resolution": Object {
+              "how-to-fix": "fix Violation 1 of rule failed-rule-1",
+              "howToFixSummary": "Violation 1 of rule failed-rule-1",
+            },
+            "ruleId": "failed-rule-1",
+            "status": "fail",
+            "uid": "test uid",
+          },
+        ],
+        "url": "url for failed-rule-1 with default url https://example.com/rules/failed-rule-1",
+      },
+    ],
+    "inapplicable": Array [
+      Object {
+        "description": "inapplicable-rule-1 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/common-tag-inapplicable-rule-1-specific-tag",
+            "text": "guidance for common-tag-inapplicable-rule-1-specific-tag",
+          },
+        ],
+        "id": "inapplicable-rule-1",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "url for inapplicable-rule-1 with default url https://example.com/rules/inapplicable-rule-1",
+      },
+    ],
+    "pass": Array [
+      Object {
+        "description": "passed-rule-1 description",
+        "guidance": Array [
+          Object {
+            "href": "https://guidance-link-stub/common-tag-passed-rule-1-specific-tag",
+            "text": "guidance for common-tag-passed-rule-1-specific-tag",
+          },
+        ],
+        "id": "passed-rule-1",
+        "isExpanded": false,
+        "nodes": Array [],
+        "url": "url for passed-rule-1 with default url https://example.com/rules/passed-rule-1",
+      },
+    ],
+    "unknown": Array [],
+  },
+  "visualHelperEnabled": false,
+}
+`;
+
 exports[`CombinedResultsToCardsModelConverter with baseline-aware issues 1`] = `
 Object {
   "allCardsCollapsed": true,
@@ -28,7 +119,7 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "existing",
+                    "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-1/only-violation",
                   },
                 ],
@@ -55,15 +146,15 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
                   },
                   Object {
-                    "status": "existing",
+                    "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-1/violations/2",
                   },
                   Object {
-                    "status": "new",
+                    "baselineStatus": "new",
                     "url": "https://example.com/failed-rule-1/violations/3",
                   },
                 ],
@@ -104,7 +195,7 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "existing",
+                    "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-2/only-violation",
                   },
                 ],
@@ -131,15 +222,15 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/1",
                   },
                   Object {
-                    "status": "existing",
+                    "baselineStatus": "existing",
                     "url": "https://example.com/failed-rule-2/violations/2",
                   },
                   Object {
-                    "status": "new",
+                    "baselineStatus": "new",
                     "url": "https://example.com/failed-rule-2/violations/3",
                   },
                 ],
@@ -222,7 +313,7 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/only-violation",
                   },
                 ],
@@ -249,15 +340,15 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
                   },
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/2",
                   },
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/3",
                   },
                 ],
@@ -298,7 +389,7 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/only-violation",
                   },
                 ],
@@ -325,15 +416,15 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/1",
                   },
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/2",
                   },
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-2/violations/3",
                   },
                 ],
@@ -483,7 +574,7 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/only-violation",
                   },
                 ],
@@ -510,15 +601,15 @@ Object {
               "urls": Object {
                 "urlInfos": Array [
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/1",
                   },
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/2",
                   },
                   Object {
-                    "status": "unknown",
+                    "baselineStatus": "unknown",
                     "url": "https://example.com/failed-rule-1/violations/3",
                   },
                 ],
