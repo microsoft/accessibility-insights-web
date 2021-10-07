@@ -9,8 +9,7 @@ import { SimpleCardRow } from './simple-card-row';
 import * as styles from './urls-card-row.scss';
 
 export interface UrlsPropertyData {
-    urls?: string[];
-    baselineAwareUrls?: BaselineAwareUrl[];
+    baselineAwareUrls: BaselineAwareUrl[];
 }
 
 export interface UrlsCardRowProps extends CardRowProps {
@@ -18,7 +17,7 @@ export interface UrlsCardRowProps extends CardRowProps {
 }
 
 export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...props }) => {
-    const baselineAwareUrls = getBaseAwareUrls(props.propertyData);
+    const baselineAwareUrls = props.propertyData.baselineAwareUrls;
 
     const renderUrlContent = () => {
         return (
@@ -43,22 +42,6 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
         />
     );
 });
-
-function getBaseAwareUrls(propertyData: UrlsPropertyData): BaselineAwareUrl[] {
-    const baselineAwareUrls: BaselineAwareUrl[] = propertyData.baselineAwareUrls;
-    const urls: string[] = propertyData.urls;
-
-    if (baselineAwareUrls) {
-        return baselineAwareUrls;
-    }
-
-    const convertedArray: BaselineAwareUrl[] = [];
-    urls.forEach(url => {
-        convertedArray.push({ url, status: 'unknown' });
-    });
-
-    return convertedArray;
-}
 
 function getBaselineHighlight(baselineAwareUrl: BaselineAwareUrl): JSX.Element {
     if (baselineAwareUrl.status === 'new') {

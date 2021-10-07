@@ -220,8 +220,11 @@ Object {
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
               "urls": Object {
-                "urls": Array [
-                  "https://example.com/failed-rule-1/only-violation",
+                "baselineAwareUrls": Array [
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/only-violation",
+                  },
                 ],
               },
             },
@@ -244,10 +247,19 @@ Object {
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
               "urls": Object {
-                "urls": Array [
-                  "https://example.com/failed-rule-1/violations/1",
-                  "https://example.com/failed-rule-1/violations/2",
-                  "https://example.com/failed-rule-1/violations/3",
+                "baselineAwareUrls": Array [
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/violations/1",
+                  },
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/violations/2",
+                  },
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/violations/3",
+                  },
                 ],
               },
             },
@@ -284,8 +296,11 @@ Object {
               "css-selector": ".failed-rule-2-selector-1",
               "identifier": ".failed-rule-2-selector-1",
               "urls": Object {
-                "urls": Array [
-                  "https://example.com/failed-rule-2/only-violation",
+                "baselineAwareUrls": Array [
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-2/only-violation",
+                  },
                 ],
               },
             },
@@ -308,10 +323,19 @@ Object {
               "css-selector": ".failed-rule-2-selector-2",
               "identifier": ".failed-rule-2-selector-2",
               "urls": Object {
-                "urls": Array [
-                  "https://example.com/failed-rule-2/violations/1",
-                  "https://example.com/failed-rule-2/violations/2",
-                  "https://example.com/failed-rule-2/violations/3",
+                "baselineAwareUrls": Array [
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-2/violations/1",
+                  },
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-2/violations/2",
+                  },
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-2/violations/3",
+                  },
                 ],
               },
             },
@@ -457,8 +481,11 @@ Object {
               "css-selector": ".failed-rule-1-selector-1",
               "identifier": ".failed-rule-1-selector-1",
               "urls": Object {
-                "urls": Array [
-                  "https://example.com/failed-rule-1/only-violation",
+                "baselineAwareUrls": Array [
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/only-violation",
+                  },
                 ],
               },
             },
@@ -481,10 +508,19 @@ Object {
               "css-selector": ".failed-rule-1-selector-2",
               "identifier": ".failed-rule-1-selector-2",
               "urls": Object {
-                "urls": Array [
-                  "https://example.com/failed-rule-1/violations/1",
-                  "https://example.com/failed-rule-1/violations/2",
-                  "https://example.com/failed-rule-1/violations/3",
+                "baselineAwareUrls": Array [
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/violations/1",
+                  },
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/violations/2",
+                  },
+                  Object {
+                    "status": "unknown",
+                    "url": "https://example.com/failed-rule-1/violations/3",
+                  },
                 ],
               },
             },

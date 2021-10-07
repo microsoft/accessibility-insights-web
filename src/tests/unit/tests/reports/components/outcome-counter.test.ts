@@ -9,25 +9,11 @@ describe('OutcomeCounter', () => {
         {
             identifiers: {
                 urls: {
-                    urls: ['http://url-fail/1', 'http://url-fail/2'],
-                },
-            },
-        } as unknown as CardResult,
-        {
-            identifiers: {
-                urls: {
                     baselineAwareUrls: [
                         { url: 'http://url-fail/1', status: 'unknown' },
                         { url: 'http://url-fail/2', status: 'existing' },
                         { url: 'http://url-fail/3', status: 'new' },
                     ],
-                },
-            },
-        } as unknown as CardResult,
-        {
-            identifiers: {
-                urls: {
-                    urls: ['http://url-fail/1'],
                 },
             },
         } as unknown as CardResult,
@@ -44,13 +30,6 @@ describe('OutcomeCounter', () => {
         {
             identifiers: {
                 urls: {
-                    urls: [],
-                },
-            },
-        } as unknown as CardResult,
-        {
-            identifiers: {
-                urls: {
                     baselineAwareUrls: [],
                 },
             },
@@ -61,10 +40,10 @@ describe('OutcomeCounter', () => {
     ];
 
     it('counts by cards', () => {
-        expect(countByCards(testCards)).toEqual(7);
+        expect(countByCards(testCards)).toEqual(4);
     });
 
     it('counts by identifier urls', () => {
-        expect(countByIdentifierUrls(testCards)).toEqual(8);
+        expect(countByIdentifierUrls(testCards)).toEqual(5);
     });
 });

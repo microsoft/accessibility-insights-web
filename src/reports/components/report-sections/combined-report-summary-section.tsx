@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { getCardResultUrlCount } from 'reports/components/card-result-url-counter';
 
 import { CombinedReportSectionProps } from 'reports/components/report-sections/combined-report-section-factory';
 import { UrlsSummarySection } from 'reports/components/report-sections/urls-summary-section';
@@ -16,7 +15,7 @@ export const CombinedReportSummarySection = NamedFC<CombinedReportSectionProps>(
         let failedInstances = 0;
         cards.fail.forEach(failedScanResult => {
             failedScanResult.nodes.forEach(failureNode => {
-                failedInstances += getCardResultUrlCount(failureNode);
+                failedInstances += failureNode.identifiers.urls.baselineAwareUrls.length;
             });
         });
 

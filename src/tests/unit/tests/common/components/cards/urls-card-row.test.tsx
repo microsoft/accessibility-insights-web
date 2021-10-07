@@ -10,7 +10,12 @@ import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-lin
 describe('UrlsCardRow', () => {
     it('renders with string-only URLs', () => {
         const props: UrlsCardRowProps = {
-            propertyData: { urls: ['https://www.test.com', 'https://www.test.com/more/tests'] },
+            propertyData: {
+                baselineAwareUrls: [
+                    { url: 'https://www.test.com', status: 'unknown' },
+                    { url: 'https://www.test.com/more/tests', status: 'unknown' },
+                ],
+            },
             deps: {
                 LinkComponent: NewTabLinkWithConfirmationDialog,
             } as CardRowDeps,
