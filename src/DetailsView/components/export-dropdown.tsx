@@ -86,16 +86,12 @@ export class ExportDropdown extends React.Component<ExportDropdownProps, ExportD
         } = this.props;
 
         const exportToCodepen = featureFlagStoreData[FeatureFlags.exportReportOptions];
-        const exportToJSON = featureFlagStoreData[FeatureFlags.exportReportJSON];
         const htmlFileUrl = fileURLProvider.provideURL([htmlExportData], 'text/html');
         const jsonFileUrl = fileURLProvider.provideURL([jsonExportData], 'application/json');
 
         const items: IContextualMenuItem[] = [];
         this.tryAddMenuItemForKey('html', items, htmlFileUrl, htmlFileName);
-
-        if (exportToJSON) {
-            this.tryAddMenuItemForKey('json', items, jsonFileUrl, jsonFileName);
-        }
+        this.tryAddMenuItemForKey('json', items, jsonFileUrl, jsonFileName);
 
         if (exportToCodepen) {
             this.tryAddMenuItemForKey('codepen', items);

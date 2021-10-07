@@ -69,9 +69,7 @@ export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => 
     const exportToCodepen =
         props.featureFlagStoreData[FeatureFlags.exportReportOptions] &&
         props.reportExportServices.some(s => s.key === 'codepen');
-    const exportToJSON =
-        props.featureFlagStoreData[FeatureFlags.exportReportJSON] &&
-        props.reportExportServices.some(s => s.key === 'json');
+    const exportToJSON = props.reportExportServices.some(s => s.key === 'json');
 
     const getSingleExportToHtmlButton = () => {
         return (
