@@ -172,6 +172,4 @@ describe(CombinedResultsToCardsModelConverter, () => {
             tags: ['common-tag', `${ruleId}-specific-tag`],
         };
     }
-
-    // TODO DHT: Add tests with BaselineAwareUrls
 });
