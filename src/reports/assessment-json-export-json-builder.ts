@@ -122,11 +122,11 @@ function processFailedDetailsData(
                 const currentInstance: AssessmentJsonExportFailureInstance = {};
                 instance.props.forEach(prop => {
                     if (prop.key === 'Comment') {
-                        currentInstance.comment = prop.value as string;
+                        currentInstance.comment = prop.value.toString();
                     } else if (prop.key === 'Path') {
-                        currentInstance.path = prop.value as string;
+                        currentInstance.path = prop.value.toString();
                     } else if (prop.key === 'Snippet') {
-                        currentInstance.snippet = prop.value as string;
+                        currentInstance.snippet = prop.value.toString();
                     }
                 });
                 currentInstances.push(currentInstance);
