@@ -83,8 +83,7 @@ declare namespace AccessibilityInsightsReport {
     }
 
     export type FailureData = {
-        urlInfos?: string[] | UrlInfo[];
-        urls?: string[],
+        urls?: string[] | UrlInfo[];
         elementSelector: string,
         snippet: string,
         fix: HowToFixData,
