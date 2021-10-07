@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
@@ -12,12 +13,14 @@ describe('Details View -> Overview Page', () => {
     let targetPage: TargetPage;
     let overviewPage: DetailsViewPage;
     let loadAssessmentCount: number = 0;
+    let backgroundPage: BackgroundPage;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         await browser.newPopupPage(targetPage); // Required for the details view to register as having permissions/being open
         overviewPage = await openOverviewPage(browser, targetPage);
+        backgroundPage = await browser.backgroundPage();
     });
 
     afterAll(async () => {
@@ -113,6 +116,37 @@ describe('Details View -> Overview Page', () => {
             });
 
             expect(originalOutcomeSummaryAriaLabel).toEqual(currentOutcomeSummaryAriaLabel);
+        },
+    );
+
+    it('should download .html when Export as HTML is clicked', async () => {
+        await backgroundPage.enableFeatureFlag('exportReportJSON');
+        await overviewPage.openExportDropdown();
+        const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsHTML);
+        expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.html$/)));
+    });
+
+    it('should download .json when Export as JSON is clicked', async () => {
+        await backgroundPage.enableFeatureFlag('exportReportJSON');
+        await overviewPage.openExportDropdown();
+        const fileName = await overviewPage.downloadExportReport(overviewSelectors.exportAsJSON);
+        expect(fileName).toEqual(expect.stringMatching(new RegExp(/.+\.json$/)));
+    });
+
+    it.each([true, false])(
+        'should show correct number of items in export dropdown menu with codepen feature flag = %s',
+        async codepenFlag => {
+            await backgroundPage.enableFeatureFlag('exportReportJSON');
+            codepenFlag
+                ? await backgroundPage.enableFeatureFlag('exportReportOptions')
+                : await backgroundPage.disableFeatureFlag('exportReportOptions');
+
+            await overviewPage.openExportDropdown();
+            const items = (await overviewPage.countMenuItems()).valueOf();
+            await overviewPage.closeExportDialog();
+
+            const expectedItems = codepenFlag ? 3 : 2;
+            expect(items).toEqual(expectedItems);
         },
     );
 });

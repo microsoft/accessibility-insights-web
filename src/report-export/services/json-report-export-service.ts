@@ -7,6 +7,8 @@ import {
 
 const jsonReportExportServiceKey: ReportExportServiceKey = 'json';
 
+export const reportExportAsJsonAutomationId = 'report-export-as-json';
+
 export const JsonReportExportService: ReportExportService = {
     key: jsonReportExportServiceKey,
     displayName: 'JSON',
@@ -17,6 +19,7 @@ export const JsonReportExportService: ReportExportService = {
             onClick: (e: React.MouseEvent<HTMLButtonElement>) => {
                 onMenuItemClick(e, jsonReportExportServiceKey);
             },
+            'data-automation-id': reportExportAsJsonAutomationId,
             href,
             download,
         };

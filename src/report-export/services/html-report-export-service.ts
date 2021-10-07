@@ -7,6 +7,8 @@ import {
 
 const htmlReportExportServiceKey: ReportExportServiceKey = 'html';
 
+export const reportExportAsHtmlAutomationId = 'report-export-as-html';
+
 export const HtmlReportExportService: ReportExportService = {
     key: htmlReportExportServiceKey,
     generateMenuItem: (onMenuItemClick, href, download) => {
@@ -18,6 +20,7 @@ export const HtmlReportExportService: ReportExportService = {
             },
             href,
             download,
+            'data-automation-id': reportExportAsHtmlAutomationId,
         };
     },
 };

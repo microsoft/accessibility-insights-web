@@ -10,12 +10,15 @@ export interface ReportExportButtonProps {
     buttonRef?: IRefObject<IButton>;
 }
 
+export const reportExportButtonAutomationId = 'report-export-button';
+
 export const ReportExportButton = NamedFC<ReportExportButtonProps>('ReportExportButton', props => {
     return (
         <InsightsCommandButton
             iconProps={{ iconName: 'Export' }}
             onClick={props.showReportExportDialog}
             componentRef={props.buttonRef}
+            data-automation-id={reportExportButtonAutomationId}
         >
             Export result
         </InsightsCommandButton>
