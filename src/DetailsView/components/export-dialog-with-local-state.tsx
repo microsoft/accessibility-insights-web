@@ -70,7 +70,6 @@ export class ExportDialogWithLocalState extends React.Component<
     private generateExports = () => {
         this.generateJson();
         this.generateHtml();
-        this.setState({ exportDescription: '' });
     };
 
     public render(): JSX.Element {

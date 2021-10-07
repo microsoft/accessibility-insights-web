@@ -14,7 +14,7 @@ exports[`ExportDialogWithLocalState clicking export on the dialog triggers gener
       },
     }
   }
-  description=""
+  description="test content with special characters: <> $ \\" \` '"
   featureFlagStoreData={
     Object {
       "test-feature-flag": true,
