@@ -27,7 +27,7 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                     failed: [
                         {
                             baselineAwareUrls: [
-                                { url: 'https://url/rule-1/failure-1', status: 'existing' },
+                                { url: 'https://url/rule-1/failure-1', baselineStatus: 'existing' },
                             ],
                             elementSelector: '.rule-1-selector-1',
                             snippet: '<div>snippet 1</div>',
@@ -77,8 +77,8 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                         },
                         {
                             baselineAwareUrls: [
-                                { url: 'https://url/rule-1/failure-1', status: 'existing' },
-                                { url: 'https://url/rule1/failure-2', status: 'new' },
+                                { url: 'https://url/rule-1/failure-1', baselineStatus: 'existing' },
+                                { url: 'https://url/rule1/failure-2', baselineStatus: 'new' },
                             ],
                             elementSelector: '.rule-1-selector-2',
                             snippet: '<div>snippet 2</div>',
@@ -133,7 +133,7 @@ export const combinedResultsWithBaselineAwareIssues: CombinedReportParameters = 
                     failed: [
                         {
                             baselineAwareUrls: [
-                                { url: 'https://url/rule2/failure1', status: 'new' },
+                                { url: 'https://url/rule2/failure1', baselineStatus: 'new' },
                             ],
                             elementSelector: '.rule-2-selector-1',
                             snippet: '<div>snippet</div>',

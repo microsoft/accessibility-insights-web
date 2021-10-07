@@ -44,7 +44,7 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
 });
 
 function getBaselineHighlight(baselineAwareUrl: BaselineAwareUrl): JSX.Element | null {
-    if (baselineAwareUrl.status === 'new') {
+    if (baselineAwareUrl.baselineStatus === 'new') {
         return (
             <span key="status" className={styles.urlsRowContentNewFailure}>
                 {'  NEW!'}

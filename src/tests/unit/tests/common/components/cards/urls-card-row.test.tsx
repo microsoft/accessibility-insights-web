@@ -12,8 +12,8 @@ describe('UrlsCardRow', () => {
         const props: UrlsCardRowProps = {
             propertyData: {
                 baselineAwareUrls: [
-                    { url: 'https://www.test.com', status: 'unknown' },
-                    { url: 'https://www.test.com/more/tests', status: 'unknown' },
+                    { url: 'https://www.test.com', baselineStatus: 'unknown' },
+                    { url: 'https://www.test.com/more/tests', baselineStatus: 'unknown' },
                 ],
             },
             deps: {
@@ -29,9 +29,9 @@ describe('UrlsCardRow', () => {
         const props: UrlsCardRowProps = {
             propertyData: {
                 baselineAwareUrls: [
-                    { url: 'https://www.test.com', status: 'unknown' },
-                    { url: 'https://www.test.com/more/tests', status: 'existing' },
-                    { url: 'https://www.test.com/still/more/tests', status: 'new' },
+                    { url: 'https://www.test.com', baselineStatus: 'unknown' },
+                    { url: 'https://www.test.com/more/tests', baselineStatus: 'existing' },
+                    { url: 'https://www.test.com/still/more/tests', baselineStatus: 'new' },
                 ],
             },
             deps: {

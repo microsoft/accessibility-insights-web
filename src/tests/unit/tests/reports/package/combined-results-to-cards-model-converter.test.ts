@@ -138,7 +138,7 @@ describe(CombinedResultsToCardsModelConverter, () => {
                     elementSelector: `.${ruleId}-selector-1`,
                     fix: makeHowToFixData(ruleId, 1),
                     snippet: `<div>snippet 1</div>`,
-                    baselineAwareUrls: [ {url: `https://example.com/${ruleId}/only-violation`, status: 'existing'}, ]
+                    baselineAwareUrls: [ {url: `https://example.com/${ruleId}/only-violation`, baselineStatus: 'existing'}, ]
                 },
                 {
                     rule: makeRule(ruleId),
@@ -146,9 +146,9 @@ describe(CombinedResultsToCardsModelConverter, () => {
                     fix: makeHowToFixData(ruleId, 2),
                     snippet: `<div>snippet 2</div>`,
                     baselineAwareUrls: [
-                        {url: `https://example.com/${ruleId}/violations/1`, status: 'unknown'}, 
-                        {url: `https://example.com/${ruleId}/violations/2`, status: 'existing'}, 
-                        {url: `https://example.com/${ruleId}/violations/3`, status: 'new'},
+                        {url: `https://example.com/${ruleId}/violations/1`, baselineStatus: 'unknown'}, 
+                        {url: `https://example.com/${ruleId}/violations/2`, baselineStatus: 'existing'}, 
+                        {url: `https://example.com/${ruleId}/violations/3`, baselineStatus: 'new'},
                     ]
                 }
             ]

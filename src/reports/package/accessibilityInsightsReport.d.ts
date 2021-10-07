@@ -79,7 +79,7 @@ declare namespace AccessibilityInsightsReport {
 
     export type BaselineAwareUrl = {
         url: string,
-        status: BaselineStatus
+        baselineStatus: BaselineStatus
     }
 
     export type FailureData = {

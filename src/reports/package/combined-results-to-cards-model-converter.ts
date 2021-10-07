@@ -81,7 +81,7 @@ export class CombinedResultsToCardsModelConverter {
         } else if (failureData.urls) {
             const baselineAwareUrls: BaselineAwareUrl[] = []
             failureData.urls.map(url => {
-                baselineAwareUrls.push({url, status: 'unknown'});
+                baselineAwareUrls.push({url, baselineStatus: 'unknown'});
             })
             urls.baselineAwareUrls = baselineAwareUrls;
         }
