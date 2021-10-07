@@ -75,12 +75,19 @@ export class CombinedResultsToCardsModelConverter {
         const rule = failureData.rule;
         const cssSelector = failureData.elementSelector;
 
+        const urls: any = {};
+        if (failureData.baselineAwareUrls) {
+            urls.baselineAwareUrls = failureData.baselineAwareUrls;
+        } else if (failureData.urls) {
+            urls.urls = failureData.urls;
+        }
+
         return {
             uid: this.uuidGenerator(),
             status: 'fail',
             ruleId: rule.ruleId,
             identifiers: {
-                urls: { urls: failureData.urls, baselineAwareUrls: failureData.baselineAwareUrls },
+                urls,
                 identifier: cssSelector,
                 conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(cssSelector),
                 'css-selector': cssSelector,

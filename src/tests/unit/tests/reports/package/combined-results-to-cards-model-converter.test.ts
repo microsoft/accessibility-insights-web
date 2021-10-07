@@ -57,6 +57,18 @@ describe(CombinedResultsToCardsModelConverter, () => {
         expect(cardsViewModel).toMatchSnapshot();
     });
 
+    it('with baseline-aware issues', () => {
+        const input: GroupedResults = {
+            failed: [makeBaselineAwareFailuresGroup('failed-rule-1'), makeBaselineAwareFailuresGroup('failed-rule-2')],
+            passed: [makeRule('passed-rule-1')],
+            notApplicable: [makeRule('inapplicable-rule-1')],
+        };
+
+        const cardsViewModel = testSubject.convertResults(input);
+
+        expect(cardsViewModel).toMatchSnapshot();
+    });
+
     it('without issues', () => {
         const input: GroupedResults = {
             failed: [],
@@ -117,6 +129,32 @@ describe(CombinedResultsToCardsModelConverter, () => {
         };
     }
 
+    function makeBaselineAwareFailuresGroup(ruleId: string): FailuresGroup {
+        return {
+            key: ruleId,
+            failed: [
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-1`,
+                    fix: makeHowToFixData(ruleId, 1),
+                    snippet: `<div>snippet 1</div>`,
+                    baselineAwareUrls: [ {url: `https://example.com/${ruleId}/only-violation`, status: 'existing'}, ]
+                },
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-2`,
+                    fix: makeHowToFixData(ruleId, 2),
+                    snippet: `<div>snippet 2</div>`,
+                    baselineAwareUrls: [
+                        {url: `https://example.com/${ruleId}/violations/1`, status: 'unknown'}, 
+                        {url: `https://example.com/${ruleId}/violations/2`, status: 'existing'}, 
+                        {url: `https://example.com/${ruleId}/violations/3`, status: 'new'},
+                    ]
+                }
+            ]
+        };
+    }
+
     function makeHowToFixData(ruleId: string, failureId: number): HowToFixData {
         return  {
             any: [],
@@ -134,4 +172,6 @@ describe(CombinedResultsToCardsModelConverter, () => {
             tags: ['common-tag', `${ruleId}-specific-tag`],
         };
     }
+
+    // TODO DHT: Add tests with BaselineAwareUrls
 });

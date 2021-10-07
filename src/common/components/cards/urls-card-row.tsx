@@ -45,8 +45,6 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
 });
 
 function getBaseAwareUrls(propertyData: UrlsPropertyData): BaselineAwareUrl[] {
-    // TODO DHT: Error handling?
-
     const baselineAwareUrls: BaselineAwareUrl[] = propertyData.baselineAwareUrls;
     const urls: string[] = propertyData.urls;
 
