@@ -8,7 +8,7 @@ import { UUIDGenerator } from "common/uid-generator";
 import { ResolutionCreator } from "injected/adapters/resolution-creator";
 import { IssueFilingUrlStringUtils } from "issue-filing/common/issue-filing-url-string-utils";
 import { isNil } from "lodash";
-import { AxeRuleData, BaselineAwareUrl, FailureData, FailuresGroup, GroupedResults } from "reports/package/accessibilityInsightsReport";
+import { AxeRuleData, FailureData, FailuresGroup, GroupedResults, UrlInfo } from "reports/package/accessibilityInsightsReport";
 import { HelpUrlGetter } from "scanner/help-url-getter";
 
 export class CombinedResultsToCardsModelConverter {
@@ -79,7 +79,7 @@ export class CombinedResultsToCardsModelConverter {
         if (failureData.baselineAwareUrls) {
             urls.baselineAwareUrls = failureData.baselineAwareUrls;
         } else if (failureData.urls) {
-            const baselineAwareUrls: BaselineAwareUrl[] = []
+            const baselineAwareUrls: UrlInfo[] = []
             failureData.urls.map(url => {
                 baselineAwareUrls.push({url, baselineStatus: 'unknown'});
             })

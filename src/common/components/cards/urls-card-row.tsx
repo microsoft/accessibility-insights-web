@@ -4,12 +4,12 @@
 import { CardRowProps } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
-import { BaselineAwareUrl } from 'reports/package/accessibilityInsightsReport';
+import { UrlInfo } from 'reports/package/accessibilityInsightsReport';
 import { SimpleCardRow } from './simple-card-row';
 import * as styles from './urls-card-row.scss';
 
 export interface UrlsPropertyData {
-    baselineAwareUrls: BaselineAwareUrl[];
+    baselineAwareUrls: UrlInfo[];
 }
 
 export interface UrlsCardRowProps extends CardRowProps {
@@ -43,7 +43,7 @@ export const UrlsCardRow = NamedFC<UrlsCardRowProps>('UrlsCardRow', ({ deps, ...
     );
 });
 
-function getBaselineHighlight(baselineAwareUrl: BaselineAwareUrl): JSX.Element | null {
+function getBaselineHighlight(baselineAwareUrl: UrlInfo): JSX.Element | null {
     if (baselineAwareUrl.baselineStatus === 'new') {
         return (
             <span key="status" className={styles.urlsRowContentNewFailure}>
