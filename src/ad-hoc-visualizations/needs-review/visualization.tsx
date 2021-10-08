@@ -23,6 +23,7 @@ const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
         'th-has-data-cells',
         'link-in-text-block',
         'scrollable-region-focusable',
+        'label-content-name-mismatch',
     ],
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     telemetryProcessor: (telemetryFactory: TelemetryDataFactory) =>
