@@ -8,9 +8,32 @@ import * as React from 'react';
 import { NewTabLinkWithConfirmationDialog } from 'reports/components/new-tab-link-confirmation-dialog';
 
 describe('UrlsCardRow', () => {
-    it('renders', () => {
+    it('renders with string-only URLs', () => {
         const props: UrlsCardRowProps = {
-            propertyData: { urls: ['https://www.test.com', 'https://www.test.com/more/tests'] },
+            propertyData: {
+                urlInfos: [
+                    { url: 'https://www.test.com', baselineStatus: 'unknown' },
+                    { url: 'https://www.test.com/more/tests', baselineStatus: 'unknown' },
+                ],
+            },
+            deps: {
+                LinkComponent: NewTabLinkWithConfirmationDialog,
+            } as CardRowDeps,
+            index: -1,
+        };
+        const testSubject = shallow(<UrlsCardRow {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with baseline-aware URLs', () => {
+        const props: UrlsCardRowProps = {
+            propertyData: {
+                urlInfos: [
+                    { url: 'https://www.test.com', baselineStatus: 'unknown' },
+                    { url: 'https://www.test.com/more/tests', baselineStatus: 'existing' },
+                    { url: 'https://www.test.com/still/more/tests', baselineStatus: 'new' },
+                ],
+            },
             deps: {
                 LinkComponent: NewTabLinkWithConfirmationDialog,
             } as CardRowDeps,

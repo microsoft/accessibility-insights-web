@@ -22,10 +22,10 @@ describe(CombinedReportSummarySection, () => {
                     {
                         identifiers: {
                             urls: {
-                                urls: [
-                                    'http://url-fail/1',
-                                    'http://url-fail/2',
-                                    'http://url-fail/3',
+                                urlInfos: [
+                                    { url: 'http://url-fail/1', baselineStatus: 'unknown' },
+                                    { url: 'http://url-fail/2', baselineStatus: 'unknown' },
+                                    { url: 'http://url-fail/3', baselineStatus: 'unknown' },
                                 ],
                             },
                         },
@@ -33,7 +33,7 @@ describe(CombinedReportSummarySection, () => {
                     {
                         identifiers: {
                             urls: {
-                                urls: ['http://url-fail/1'],
+                                urlInfos: [{ url: 'http://url-fail/1', baselineStatus: 'unknown' }],
                             },
                         },
                     } as unknown as CardResult,
