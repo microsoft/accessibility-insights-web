@@ -45,8 +45,10 @@ function getUrlListItem(urlInfo: UrlInfo, index: number, deps: CardRowDeps): JSX
 
     if (isNewViolation(urlInfo)) {
         return (
-            <li key={key} aria-label={`NEW ${urlInfo.url}`}>
-                <deps.LinkComponent href={urlInfo.url}>{urlInfo.url}</deps.LinkComponent>
+            <li key={key}>
+                <deps.LinkComponent aria-label={`NEW ${urlInfo.url}`} href={urlInfo.url}>
+                    {urlInfo.url}
+                </deps.LinkComponent>
                 <span key="new" aria-hidden="true" className={styles.urlsRowContentNewFailure}>
                     {'  NEW!'}
                 </span>
