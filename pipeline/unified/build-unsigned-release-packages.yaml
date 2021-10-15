@@ -18,6 +18,7 @@ pool:
 
 variables:
     RUN_RELEASE_TESTS: true
+    - group: mac-notarization-developerid-certificate-secrets
 
 steps:
     - template: ../install-node-prerequisites.yaml

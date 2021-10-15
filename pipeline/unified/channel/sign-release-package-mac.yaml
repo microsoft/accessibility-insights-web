@@ -10,8 +10,6 @@ jobs:
     - job: ${{ parameters.signedArtifactName }}
       pool:
           vmImage: macOS-10.15
-      variables:
-          - group: mac-notarization-developerid-certificate-secrets
       steps:
           - template: ../../install-node-prerequisites.yaml
 
