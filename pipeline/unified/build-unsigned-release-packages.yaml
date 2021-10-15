@@ -18,6 +18,8 @@ pool:
 
 variables:
     RUN_RELEASE_TESTS: true
+    
+variables:
     - group: mac-notarization-developerid-certificate-secrets
 
 steps:
