@@ -26,7 +26,7 @@ jobs:
                 path: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}'
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'ESRP signing installer'
+            displayName: 'CodeSigning'
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
@@ -49,7 +49,7 @@ jobs:
                     ]
 
           - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-            displayName: 'ESRP signing installer'
+            displayName: 'Notarization'
             inputs:
                 ConnectedServiceName: 'ESRP Code Signing'
                 FolderPath: '$(System.DefaultWorkingDirectory)/signing-in-progress/${{ parameters.signedArtifactName }}/packed'
