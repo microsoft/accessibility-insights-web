@@ -24,7 +24,7 @@ const args = ['-c', '-k', '--sequesterRsrc', '--keepParent', 'mac', `${appName}.
 
 console.log(`existingDmg: ${existingDmg}`);
 console.log(`appName: ${appName}`);
-console.log(`path to ditto: ${sevenBin.path7za}`);
+// console.log(`path to 7z: ${sevenBin.path7za}`);
 
 child_process.execFileSync(cmd, args, {
     cwd: parentDir,
