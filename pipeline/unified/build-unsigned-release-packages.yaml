@@ -17,10 +17,9 @@ pool:
     vmImage: $(vmImage)
 
 variables:
-    RUN_RELEASE_TESTS: true
-    
-variables:
     - group: mac-notarization-developerid-certificate-secrets
+    - name: RUN_RELEASE_TESTS
+      value: 'true'
 
 steps:
     - template: ../install-node-prerequisites.yaml
