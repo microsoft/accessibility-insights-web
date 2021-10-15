@@ -46,6 +46,19 @@ steps:
     - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
       displayName: yarn build:unified:all
 
+    - script: |
+          security create-keychain -p password $(System.DefaultWorkingDirectory)/agent.keychain
+          security default-keychain -s $(System.DefaultWorkingDirectory)/agent.keychain
+          security unlock-keychain -p password $(System.DefaultWorkingDirectory)/agent.keychain
+          echo "$(mac-notarization-developerid-certificate-base64p12)" | base64 -D > $(System.DefaultWorkingDirectory)/cert.p12
+          security import $(System.DefaultWorkingDirectory)/cert.p12 -k $(System.DefaultWorkingDirectory)/agent.keychain -P "$(mac-notarization-developerid-certificate-password)" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k $(System.DefaultWorkingDirectory)/agent.keychain
+          codesign -s $(mac-notarization-developerid-certificate-identity) --deep --force --options runtime --entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist $(System.DefaultWorkingDirectory)/drop/electron/unified-canary/packed/mac/*.app
+          codesign -s $(mac-notarization-developerid-certificate-identity) --deep --force --options runtime --entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist $(System.DefaultWorkingDirectory)/drop/electron/unified-insider/packed/mac/*.app
+          codesign -s $(mac-notarization-developerid-certificate-identity) --deep --force --options runtime --entitlements $(System.DefaultWorkingDirectory)/src/electron/resources/entitlements.plist $(System.DefaultWorkingDirectory)/drop/electron/unified-production/packed/mac/*.app
+      displayName: Prepare for hardening
+      condition: and(succeeded(), e(variables.platform, 'darwin'))
+
     - script: yarn pack:unified:all
       displayName: yarn pack:unified:all
       condition: and(succeeded(), ne(variables.platform, 'windows'))
