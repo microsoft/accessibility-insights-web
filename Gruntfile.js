@@ -291,7 +291,7 @@ module.exports = function (grunt) {
             productCategorySpecificCopyFiles.push(
                 {
                     src: 'src/electron/resources/mit_license_en.txt',
-                    dest: `${dropExtensionPath}/LICENSE`,
+                    dest: `${dropExtensionPath}/LICENSE.txt`,
                 },
                 {
                     src: androidServiceBin.apkPath,
