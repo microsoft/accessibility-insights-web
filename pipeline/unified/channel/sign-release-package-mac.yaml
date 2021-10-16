@@ -61,7 +61,7 @@ jobs:
                             "parameters": [
                               {
                                 "parameterName": "BundleId",
-                                "parameterValue": "com.microsoft.accessibilityinsights.unified.$(parameters.channel)"
+                                "parameterValue": "com.microsoft.accessibilityinsights.unified.${{ parameters.channel }}"
                               }
                             ],
                             "toolName": "sign",
