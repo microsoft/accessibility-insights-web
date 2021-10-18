@@ -60,6 +60,11 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
         return this.withAssessment(this.data.tests.assessments.headingsAssessment, enable, step);
     }
 
+    public withNeedsReviewEnable(): VisualizationStoreDataBuilder {
+        this.data.tests.adhoc.needsReview.enabled = true;
+        return this;
+    }
+
     public withAllAdhocTestsTo(enabled: boolean): VisualizationStoreDataBuilder {
         forOwn(this.data.tests.adhoc, testData => {
             testData.enabled = enabled;
@@ -87,6 +92,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
             case VisualizationType.HeadingsAssessment:
                 this.data.tests.assessments.headingsAssessment.enabled = true;
                 break;
+            case VisualizationType.NeedsReview:
+                this.data.tests.adhoc.needsReview.enabled = true;
+                break;
             default:
                 throw new Error(`Unsupported type ${visualizationType}`);
         }
@@ -113,6 +121,9 @@ export class VisualizationStoreDataBuilder extends BaseDataBuilder<Visualization
                 break;
             case VisualizationType.HeadingsAssessment:
                 this.data.tests.assessments.headingsAssessment.enabled = false;
+                break;
+            case VisualizationType.NeedsReview:
+                this.data.tests.adhoc.needsReview.enabled = false;
                 break;
             default:
                 throw new Error(`Unsupported type ${visualizationType}`);
