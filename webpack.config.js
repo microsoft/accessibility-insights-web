@@ -49,6 +49,21 @@ const tsRule = {
     exclude: ['/node_modules/'],
 };
 
+const reportPackageTsRule = {
+    test: /\.tsx?$/,
+    use: [
+        {
+            loader: 'ts-loader',
+            options: {
+                configFile: path.resolve(__dirname, 'packages/report/tsconfig.json'),
+                transpileOnly: true,
+                experimentalWatchApi: true,
+            },
+        },
+    ],
+    exclude: ['/node_modules/'],
+};
+
 const scssRule = (useHash = true) => ({
     test: /\.scss$/,
     use: [
@@ -77,6 +92,31 @@ const commonConfig = {
     entry: commonEntryFiles,
     module: {
         rules: [tsRule, scssRule(true)],
+    },
+    resolve: {
+        // It is important that src is absolute but node_modules is relative. See #2520
+        modules: [path.resolve(__dirname, './src'), 'node_modules'],
+        extensions: ['.tsx', '.ts', '.js'],
+        // axe-core invokes require('crypto'), but only in a path we don't use, so we don't need a polyfill
+        // See https://github.com/dequelabs/axe-core/issues/2873
+        fallback: { crypto: false },
+    },
+    plugins: commonPlugins,
+    performance: {
+        // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
+        maxEntrypointSize: 10 * 1024 * 1024,
+        maxAssetSize: 10 * 1024 * 1024,
+    },
+    stats: {
+        // This is to suppress noise from mini-css-extract-plugin
+        children: false,
+    },
+};
+
+const reportPackageConfig = {
+    entry: commonEntryFiles,
+    module: {
+        rules: [reportPackageTsRule, scssRule(true)],
     },
     resolve: {
         // It is important that src is absolute but node_modules is relative. See #2520
@@ -184,10 +224,10 @@ const packageReportConfig = {
     entry: {
         report: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
     },
-    module: commonConfig.module,
+    module: reportPackageConfig.module,
     externals: [nodeExternals()],
     plugins: commonPlugins,
-    resolve: commonConfig.resolve,
+    resolve: reportPackageConfig.resolve,
     name: 'package-report',
     mode: 'development',
     devtool: false,
