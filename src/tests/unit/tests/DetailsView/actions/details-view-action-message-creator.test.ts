@@ -1041,13 +1041,13 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     });
 
     test('exportResultsClicked', () => {
-        const html = 'html content';
+        const serviceKey = 'html';
         const event = eventStubFactory.createMouseClickEvent() as any;
 
         const telemetry: ExportResultsTelemetryData = {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: 'mouseclick',
-            exportResultsData: 12,
+            exportResultsService: 'html',
             exportResultsType: 'export result type',
         };
 
@@ -1055,16 +1055,16 @@ describe('DetailsViewActionMessageCreatorTest', () => {
 
         telemetryFactoryMock
             .setup(tf =>
-                tf.forExportedHtml(
+                tf.forExportedResults(
                     exportResultsType,
-                    html,
+                    serviceKey,
                     event,
                     TelemetryEventSource.DetailsView,
                 ),
             )
             .returns(() => telemetry);
 
-        testSubject.exportResultsClicked(exportResultsType, html, event);
+        testSubject.exportResultsClicked(exportResultsType, serviceKey, event);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.sendTelemetry(EXPORT_RESULTS, telemetry),

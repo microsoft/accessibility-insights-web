@@ -3,6 +3,7 @@
 exports[` renders ReportExportButton 1`] = `
 <InsightsCommandButton
   componentRef={Object {}}
+  data-automation-id="report-export-button"
   iconProps={
     Object {
       "iconName": "Export",

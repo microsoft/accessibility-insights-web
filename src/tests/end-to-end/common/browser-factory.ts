@@ -144,6 +144,7 @@ async function launchNewBrowserContext(
             '--noerrdialogs',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
+        acceptDownloads: true,
     });
 
     return context;

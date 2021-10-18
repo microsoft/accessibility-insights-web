@@ -44,6 +44,13 @@ export class BackgroundPage extends Page {
         }, flag);
     }
 
+    public async disableFeatureFlag(flag: string): Promise<void> {
+        await this.waitForInitialization();
+        await this.evaluate(flag => {
+            window.insightsFeatureFlags.disableFeature(flag);
+        }, flag);
+    }
+
     constructor(underlyingPage: Playwright.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }

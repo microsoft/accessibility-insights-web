@@ -33,8 +33,13 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export 
 <ReportExportComponent
   deps={
     Object {
+      "reportExportServiceProvider": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "services": undefined,
+      },
       "reportGenerator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
         "reportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
@@ -49,9 +54,22 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export 
   }
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
+  jsonGenerator={[Function]}
   onDialogDismiss={[Function]}
   pageTitle="scan target name"
   reportExportFormat="AutomatedChecks"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+      Object {
+        "generateMenuItem": null,
+        "key": "codepen",
+      },
+    ]
+  }
   scanDate={1970-01-01T00:00:00.000Z}
   updatePersistedDescription={[Function]}
 />
@@ -76,8 +94,13 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
           <ReportExportComponent
             deps={
               Object {
+                "reportExportServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "services": undefined,
+                },
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentJsonExportGenerator": undefined,
                   "assessmentReportHtmlGenerator": undefined,
                   "reportHtmlGenerator": undefined,
                   "reportNameGenerator": undefined,
@@ -92,9 +115,22 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            jsonGenerator={[Function]}
             onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
+            reportExportServices={
+              Array [
+                Object {
+                  "generateMenuItem": null,
+                  "key": "html",
+                },
+                Object {
+                  "generateMenuItem": null,
+                  "key": "codepen",
+                },
+              ]
+            }
             scanDate={1970-01-01T00:00:00.000Z}
             updatePersistedDescription={[Function]}
           />
@@ -240,8 +276,13 @@ exports[`ReflowCommandBar renders with start over button disabled 1`] = `
           <ReportExportComponent
             deps={
               Object {
+                "reportExportServiceProvider": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "services": undefined,
+                },
                 "reportGenerator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "assessmentJsonExportGenerator": undefined,
                   "assessmentReportHtmlGenerator": undefined,
                   "reportHtmlGenerator": undefined,
                   "reportNameGenerator": undefined,
@@ -256,9 +297,22 @@ exports[`ReflowCommandBar renders with start over button disabled 1`] = `
             }
             getExportDescription={[Function]}
             htmlGenerator={[Function]}
+            jsonGenerator={[Function]}
             onDialogDismiss={[Function]}
             pageTitle="scan target name"
             reportExportFormat="AutomatedChecks"
+            reportExportServices={
+              Array [
+                Object {
+                  "generateMenuItem": null,
+                  "key": "html",
+                },
+                Object {
+                  "generateMenuItem": null,
+                  "key": "codepen",
+                },
+              ]
+            }
             updatePersistedDescription={[Function]}
           />
         }

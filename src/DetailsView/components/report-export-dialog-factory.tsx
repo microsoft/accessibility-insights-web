@@ -8,6 +8,11 @@ import {
 } from 'DetailsView/components/export-dialog-with-local-state';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import * as React from 'react';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+
+export type ReportExportDialogFactoryDeps = {
+    reportExportServiceProvider: ReportExportServiceProvider;
+};
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;
@@ -36,7 +41,15 @@ export function getReportExportDialogForAssessment(
         pageTitle: scanMetadata.targetAppInfo.name,
         scanDate: props.deps.getCurrentDate(),
         htmlGenerator: description =>
-            reportGenerator.generateAssessmentReport(
+            reportGenerator.generateAssessmentHTMLReport(
+                assessmentStoreData,
+                assessmentsProvider,
+                featureFlagStoreData,
+                scanMetadata.targetAppInfo,
+                description,
+            ),
+        jsonGenerator: description =>
+            reportGenerator.generateAssessmentJsonExport(
                 assessmentStoreData,
                 assessmentsProvider,
                 featureFlagStoreData,
@@ -50,6 +63,7 @@ export function getReportExportDialogForAssessment(
         isOpen,
         dismissExportDialog,
         afterDialogDismissed,
+        reportExportServices: deps.reportExportServiceProvider.servicesForAssessment(),
     };
     return <ExportDialogWithLocalState {...dialogProps} />;
 }
@@ -86,12 +100,14 @@ export function getReportExportDialogForFastPass(
                 description,
                 props.scanMetadata,
             ),
+        jsonGenerator: () => null,
         updatePersistedDescription: () => null,
         getExportDescription: () => '',
         featureFlagStoreData: props.featureFlagStoreData,
         isOpen,
         dismissExportDialog,
         afterDialogDismissed,
+        reportExportServices: deps.reportExportServiceProvider.servicesForFastPass(),
     };
 
     return <ExportDialogWithLocalState {...dialogProps} />;

@@ -36,8 +36,13 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
       },
       "getCurrentDate": [Function],
       "getDateFromTimestamp": [Function],
+      "reportExportServiceProvider": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "services": undefined,
+      },
       "reportGenerator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
         "reportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
@@ -49,8 +54,25 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
+  jsonGenerator={[Function]}
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="Assessment"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+      Object {
+        "generateMenuItem": null,
+        "key": "json",
+      },
+      Object {
+        "generateMenuItem": null,
+        "key": "codepen",
+      },
+    ]
+  }
   scanDate={2021-02-07T05:02:00.000Z}
   updatePersistedDescription={[Function]}
 />
@@ -92,8 +114,13 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
       },
       "getCurrentDate": [Function],
       "getDateFromTimestamp": [Function],
+      "reportExportServiceProvider": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "services": undefined,
+      },
       "reportGenerator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
         "reportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
@@ -105,8 +132,21 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
+  jsonGenerator={[Function]}
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="AutomatedChecks"
+  reportExportServices={
+    Array [
+      Object {
+        "generateMenuItem": null,
+        "key": "html",
+      },
+      Object {
+        "generateMenuItem": null,
+        "key": "codepen",
+      },
+    ]
+  }
   scanDate={2019-03-12T09:00:00.000Z}
   updatePersistedDescription={[Function]}
 />

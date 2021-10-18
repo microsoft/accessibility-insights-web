@@ -21,6 +21,7 @@ import {
     ShouldShowReportExportButton,
     ShouldShowReportExportButtonProps,
 } from 'DetailsView/components/should-show-report-export-button';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
@@ -48,6 +49,7 @@ describe('ReportExportDialogFactory', () => {
     let afterDialogDismissedMock: IMock<() => void>;
     let props: ReportExportDialogFactoryProps;
     let shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps;
+    let reportExportServiceProviderMock: IMock<ReportExportServiceProvider>;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -66,6 +68,7 @@ describe('ReportExportDialogFactory', () => {
         } as ScanMetadata;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Loose);
+        reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
         dismissExportDialogMock = Mock.ofInstance(() => null);
         afterDialogDismissedMock = Mock.ofInstance(() => null);
         shouldShowReportExportButtonMock = Mock.ofInstance(() => true);
@@ -75,6 +78,7 @@ describe('ReportExportDialogFactory', () => {
             getCurrentDate: () => currentDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: value => scanCompleteDate,
+            reportExportServiceProvider: reportExportServiceProviderMock.object,
         } as DetailsViewCommandBarDeps;
         const switcherNavConfiguration = {
             shouldShowReportExportButton: shouldShowReportExportButtonMock.object,
@@ -104,7 +108,7 @@ describe('ReportExportDialogFactory', () => {
     function setAssessmentReportGenerator(): void {
         reportGeneratorMock
             .setup(reportGenerator =>
-                reportGenerator.generateAssessmentReport(
+                reportGenerator.generateAssessmentHTMLReport(
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
@@ -116,6 +120,27 @@ describe('ReportExportDialogFactory', () => {
             .verifiable(Times.once());
     }
 
+    function setReportExportServiceProviderForAssessment(): void {
+        reportExportServiceProviderMock
+            .setup(r => r.servicesForAssessment())
+            .returns(() => [
+                { key: 'html', generateMenuItem: null },
+                { key: 'json', generateMenuItem: null },
+                { key: 'codepen', generateMenuItem: null },
+            ])
+            .verifiable(Times.once());
+    }
+
+    function setReportExportServiceProviderForFastPass(): void {
+        reportExportServiceProviderMock
+            .setup(r => r.servicesForFastPass())
+            .returns(() => [
+                { key: 'html', generateMenuItem: null },
+                { key: 'codepen', generateMenuItem: null },
+            ])
+            .verifiable(Times.once());
+    }
+
     function setupShouldShowReportExportButton(showReportExportButton: boolean): void {
         shouldShowReportExportButtonMock
             .setup(s => s(shouldShowReportExportButtonProps))
@@ -124,12 +149,14 @@ describe('ReportExportDialogFactory', () => {
 
     describe('getReportExportDialogForAssessment', () => {
         test('expected properties are set', () => {
+            setReportExportServiceProviderForAssessment();
             const dialog = getReportExportDialogForAssessment(props);
 
             expect(dialog).toMatchSnapshot();
 
             reportGeneratorMock.verifyAll();
             detailsViewActionMessageCreatorMock.verifyAll();
+            reportExportServiceProviderMock.verifyAll();
         });
 
         test('htmlGenerator calls reportGenerator', () => {
@@ -188,9 +215,13 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('expected properties are set', () => {
+            setReportExportServiceProviderForFastPass();
             setupShouldShowReportExportButton(true);
+
             const dialog = getReportExportDialogForFastPass(props);
+
             expect(dialog).toMatchSnapshot();
+            reportExportServiceProviderMock.verifyAll();
         });
 
         test('htmlGenerator calls reportGenerator', () => {

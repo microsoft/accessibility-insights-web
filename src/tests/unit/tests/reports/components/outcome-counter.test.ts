@@ -9,21 +9,28 @@ describe('OutcomeCounter', () => {
         {
             identifiers: {
                 urls: {
-                    urls: ['http://url-fail/1', 'http://url-fail/2'],
+                    urlInfos: [
+                        { url: 'http://url-fail/1', baselineStatus: 'unknown' },
+                        { url: 'http://url-fail/2', baselineStatus: 'existing' },
+                        { url: 'http://url-fail/3', baselineStatus: 'new' },
+                    ],
                 },
             },
         } as unknown as CardResult,
         {
             identifiers: {
                 urls: {
-                    urls: ['http://url-fail/1'],
+                    urlInfos: [
+                        { url: 'http://url-fail/1', baselineStatus: 'existing' },
+                        { url: 'http://url-fail/2', baselineStatus: 'new' },
+                    ],
                 },
             },
         } as unknown as CardResult,
         {
             identifiers: {
                 urls: {
-                    urls: [],
+                    urlInfos: [],
                 },
             },
         } as unknown as CardResult,
@@ -37,6 +44,6 @@ describe('OutcomeCounter', () => {
     });
 
     it('counts by identifier urls', () => {
-        expect(countByIdentifierUrls(testCards)).toEqual(3);
+        expect(countByIdentifierUrls(testCards)).toEqual(5);
     });
 });

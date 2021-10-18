@@ -57,6 +57,30 @@ describe(CombinedResultsToCardsModelConverter, () => {
         expect(cardsViewModel).toMatchSnapshot();
     });
 
+    it('with baseline-aware issues', () => {
+        const input: GroupedResults = {
+            failed: [makeBaselineAwareFailuresGroup('failed-rule-1'), makeBaselineAwareFailuresGroup('failed-rule-2')],
+            passed: [makeRule('passed-rule-1')],
+            notApplicable: [makeRule('inapplicable-rule-1')],
+        };
+
+        const cardsViewModel = testSubject.convertResults(input);
+
+        expect(cardsViewModel).toMatchSnapshot();
+    });
+
+    it('with a mixture of url specifications', () => {
+        const input: GroupedResults = {
+            failed: [makeFailuresGroupWithMixedUrlSpecifications('failed-rule-1')],
+            passed: [makeRule('passed-rule-1')],
+            notApplicable: [makeRule('inapplicable-rule-1')],
+        };
+
+        const cardsViewModel = testSubject.convertResults(input);
+
+        expect(cardsViewModel).toMatchSnapshot();
+    });
+
     it('without issues', () => {
         const input: GroupedResults = {
             failed: [],
@@ -113,6 +137,53 @@ describe(CombinedResultsToCardsModelConverter, () => {
                     snippet: `<div>snippet 2</div>`,
                     urls: [`https://example.com/${ruleId}/violations/1`, `https://example.com/${ruleId}/violations/2`, `https://example.com/${ruleId}/violations/3`]
                 }
+            ]
+        };
+    }
+
+    function makeBaselineAwareFailuresGroup(ruleId: string): FailuresGroup {
+        return {
+            key: ruleId,
+            failed: [
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-1`,
+                    fix: makeHowToFixData(ruleId, 1),
+                    snippet: `<div>snippet 1</div>`,
+                    urls: [ {url: `https://example.com/${ruleId}/only-violation`, baselineStatus: 'existing'}, ]
+                },
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-2`,
+                    fix: makeHowToFixData(ruleId, 2),
+                    snippet: `<div>snippet 2</div>`,
+                    urls: [
+                        {url: `https://example.com/${ruleId}/violations/1`, baselineStatus: 'unknown'}, 
+                        {url: `https://example.com/${ruleId}/violations/2`, baselineStatus: 'existing'}, 
+                        {url: `https://example.com/${ruleId}/violations/3`, baselineStatus: 'new'},
+                    ]
+                }
+            ]
+        };
+    }
+
+    function makeFailuresGroupWithMixedUrlSpecifications(ruleId: string): FailuresGroup {
+        const urls: any = [
+            `https://example.com/${ruleId}/violation-1`, 
+            {url: `https://example.com/${ruleId}/violation-2`,},
+            {url:`https://example.com/${ruleId}/violation-3`, baselineStatus: 'new'},
+        ];
+
+        return {
+            key: ruleId,
+            failed: [
+                {
+                    rule: makeRule(ruleId),
+                    elementSelector: `.${ruleId}-selector-1`,
+                    fix: makeHowToFixData(ruleId, 1),
+                    snippet: `<div>snippet 1</div>`,
+                    urls,
+                },
             ]
         };
     }

@@ -13,7 +13,6 @@ export class FeatureFlags {
     public static readonly manualInstanceDetails = 'manualInstanceDetails';
     public static readonly debugTools = 'debugTools';
     public static readonly exportReportOptions = 'exportReportOptions';
-    public static readonly exportReportJSON = 'exportReportJSON';
 }
 
 export interface FeatureFlagDetail {
@@ -96,14 +95,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableName: 'More export options',
             displayableDescription: 'Enables exporting reports to external services',
             isPreviewFeature: true,
-            forceDefault: false,
-        },
-        {
-            id: FeatureFlags.exportReportJSON,
-            defaultValue: false,
-            displayableName: 'Show the export JSON option',
-            displayableDescription: 'Allow the user to export reports to JSON',
-            isPreviewFeature: false,
             forceDefault: false,
         },
     ];

@@ -601,21 +601,21 @@ describe('TelemetryDataFactoryTest', () => {
         expect(JSON.parse(actual.failedRuleResults)).toEqual(failedRuleResultsStub);
     });
 
-    test('forExportedHtml by keypress', () => {
-        const exportedHtml = 'some html string';
+    test('forExportedResults by keypress', () => {
+        const serviceKey = 'html';
         const event = keypressEvent;
         const exportResultsType = 'Assessment';
 
-        const result = testObject.forExportedHtml(
+        const result = testObject.forExportedResults(
             exportResultsType,
-            exportedHtml,
+            serviceKey,
             event,
             testSource,
         );
 
         const expected: ExportResultsTelemetryData = {
             exportResultsType: exportResultsType,
-            exportResultsData: exportedHtml.length,
+            exportResultsService: serviceKey,
             triggeredBy: 'keypress',
             source: testSource,
         };
@@ -623,21 +623,21 @@ describe('TelemetryDataFactoryTest', () => {
         expect(result).toEqual(expected);
     });
 
-    test('forExportedHtml by mouseclick', () => {
-        const exportedHtml = 'some html string1';
+    test('forExportedResults by mouseclick', () => {
+        const serviceKey = 'html';
         const event = mouseClickEvent;
         const exportResultsType = 'AutomatedChecks';
 
-        const result = testObject.forExportedHtml(
+        const result = testObject.forExportedResults(
             exportResultsType,
-            exportedHtml,
+            serviceKey,
             event,
             testSource,
         );
 
         const expected: ExportResultsTelemetryData = {
             exportResultsType: exportResultsType,
-            exportResultsData: exportedHtml.length,
+            exportResultsService: serviceKey,
             triggeredBy: 'mouseclick',
             source: testSource,
         };

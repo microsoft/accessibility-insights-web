@@ -550,7 +550,6 @@ module.exports = function (grunt) {
                     'never',
                     '-c',
                     configFile,
-                    '--dir',
                 ],
             },
             (error, result, code) => {

@@ -21,6 +21,7 @@ import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
 import { ReportGenerator } from 'reports/report-generator';
 import * as styles from './reflow-command-bar.scss';
 
@@ -29,6 +30,7 @@ export type ReflowCommandBarDeps = {
     dropdownClickHandler: DropdownClickHandler;
     reportGenerator: ReportGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
+    reportExportServiceProvider: ReportExportServiceProvider;
 } & ReportExportComponentDeps;
 
 export interface ReflowCommandBarProps {
@@ -74,6 +76,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                         scanMetadata,
                     )
                 }
+                jsonGenerator={() => null}
                 updatePersistedDescription={() => null}
                 getExportDescription={() => ''}
                 featureFlagStoreData={featureFlagStoreData}
@@ -81,6 +84,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                     dropdownMenuButtonRef.dismissMenu();
                     dropdownMenuButtonRef.focus();
                 }}
+                reportExportServices={deps.reportExportServiceProvider.servicesForFastPass()}
             />
         );
     }
