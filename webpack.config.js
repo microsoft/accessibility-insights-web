@@ -114,27 +114,9 @@ const commonConfig = {
 };
 
 const reportPackageConfig = {
-    entry: commonEntryFiles,
+    ...commonConfig,
     module: {
         rules: [reportPackageTsRule, scssRule(true)],
-    },
-    resolve: {
-        // It is important that src is absolute but node_modules is relative. See #2520
-        modules: [path.resolve(__dirname, './src'), 'node_modules'],
-        extensions: ['.tsx', '.ts', '.js'],
-        // axe-core invokes require('crypto'), but only in a path we don't use, so we don't need a polyfill
-        // See https://github.com/dequelabs/axe-core/issues/2873
-        fallback: { crypto: false },
-    },
-    plugins: commonPlugins,
-    performance: {
-        // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
-        maxEntrypointSize: 10 * 1024 * 1024,
-        maxAssetSize: 10 * 1024 * 1024,
-    },
-    stats: {
-        // This is to suppress noise from mini-css-extract-plugin
-        children: false,
     },
 };
 
