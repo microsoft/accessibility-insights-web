@@ -195,7 +195,7 @@ export class LoadAssessmentDataValidator {
                                     type: 'string',
                                 },
                                 expandedTestType: {
-                                    type: 'integer',
+                                    type: ['integer', 'null'],
                                 },
                             },
                             additionalProperties: false,
