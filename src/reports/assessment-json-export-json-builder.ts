@@ -7,8 +7,9 @@ import { AssessmentJsonExport } from 'reports/assessment-json-export-generator';
 import { ReportModel } from 'reports/assessment-report-model';
 
 export interface AssessmentJsonExportFailureInstance {
-    path: string;
-    snippet: string;
+    path?: string;
+    snippet?: string;
+    comment?: string;
 }
 
 export interface AssessmentJsonExportRequirement {
@@ -118,10 +119,17 @@ function processFailedDetailsData(
             );
             const currentInstances: AssessmentJsonExportFailureInstance[] = [];
             requirement.instances.forEach(instance => {
-                currentInstances.push({
-                    path: instance.props[0].value.toString(),
-                    snippet: instance.props[1].value.toString(),
+                const currentInstance: AssessmentJsonExportFailureInstance = {};
+                instance.props.forEach(prop => {
+                    if (prop.key === 'Comment') {
+                        currentInstance.comment = prop.value.toString();
+                    } else if (prop.key === 'Path') {
+                        currentInstance.path = prop.value.toString();
+                    } else if (prop.key === 'Snippet') {
+                        currentInstance.snippet = prop.value.toString();
+                    }
                 });
+                currentInstances.push(currentInstance);
             });
 
             currentGuidanceLinks.forEach(link => {

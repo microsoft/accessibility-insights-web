@@ -42,6 +42,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
       },
       "reportGenerator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
         "reportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
@@ -53,6 +54,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
+  jsonGenerator={[Function]}
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="Assessment"
   reportExportServices={
@@ -118,6 +120,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
       },
       "reportGenerator": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
         "reportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
@@ -129,6 +132,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
   getExportDescription={[Function]}
   htmlGenerator={[Function]}
   isOpen={true}
+  jsonGenerator={[Function]}
   pageTitle="command-bar-test-tab-title"
   reportExportFormat="AutomatedChecks"
   reportExportServices={

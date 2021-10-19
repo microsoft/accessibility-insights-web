@@ -23,7 +23,7 @@ describe('ExportDialog', () => {
     );
     const fileProviderMock = Mock.ofType<FileURLProvider>();
     const eventStub = 'event stub' as any;
-    const onExportClickMock = Mock.ofInstance(() => {});
+    const generateExportsMock = Mock.ofInstance(() => {});
     const afterDismissedMock = Mock.ofInstance(() => null);
     const reportExportServicesStub = [
         {
@@ -39,11 +39,21 @@ describe('ExportDialog', () => {
     ] as ReportExportService[];
     let props: ExportDialogProps;
 
+    const onlyIncludeHtmlService = () => {
+        props.reportExportServices = [
+            {
+                key: 'html',
+                generateMenuItem: () => null,
+                exportForm: CodePenReportExportService.exportForm,
+            },
+        ] as ReportExportService[];
+    };
+
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
         detailsViewActionMessageCreatorMock.reset();
-        onExportClickMock.reset();
+        generateExportsMock.reset();
         fileProviderMock.reset();
 
         const deps = {
@@ -54,13 +64,15 @@ describe('ExportDialog', () => {
         props = {
             deps,
             isOpen: false,
-            html: 'fake html',
-            fileName: 'THE REPORT FILE NAME',
+            htmlExportData: 'fake html',
+            htmlFileName: 'THE REPORT FILE NAME',
+            jsonFileName: 'JSON file name',
+            jsonExportData: 'fake json',
             description: 'description',
+            generateExports: generateExportsMock.object,
             onClose: onCloseMock.object,
             onDescriptionChange: onDescriptionChangeMock.object,
             reportExportFormat: 'Assessment',
-            onExportClick: onExportClickMock.object,
             featureFlagStoreData: {},
             afterDismissed: afterDismissedMock.object,
             reportExportServices: reportExportServicesStub,
@@ -72,6 +84,7 @@ describe('ExportDialog', () => {
 
         it.each(isOpenOptions)('with open %p', isOpen => {
             props.isOpen = isOpen;
+            onlyIncludeHtmlService();
             fileProviderMock
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
@@ -84,7 +97,6 @@ describe('ExportDialog', () => {
 
         it('with export dropdown', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-            props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
@@ -103,15 +115,7 @@ describe('ExportDialog', () => {
 
         it('without export dropdown due to lack of service', () => {
             props.featureFlagStoreData[FeatureFlags.exportReportOptions] = true;
-            props.featureFlagStoreData[FeatureFlags.exportReportJSON] = true;
-            props.reportExportServices = [
-                {
-                    key: 'html',
-                    generateMenuItem: () => null,
-                    exportForm: CodePenReportExportService.exportForm,
-                },
-            ] as ReportExportService[];
-
+            onlyIncludeHtmlService();
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
                 .verifiable(Times.once());
@@ -129,8 +133,10 @@ describe('ExportDialog', () => {
 
         it('with CodePen export form', () => {
             const formProps = {
-                html: props.html,
-                fileName: props.fileName,
+                htmlExportData: props.htmlExportData,
+                htmlFileName: props.htmlFileName,
+                jsonFileName: props.jsonFileName,
+                jsonExportData: props.jsonExportData,
                 description: props.description,
                 onSubmit: jest.fn(),
             };
@@ -148,7 +154,7 @@ describe('ExportDialog', () => {
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
-            onExportClickMock.setup(getter => getter()).verifiable(Times.never());
+            generateExportsMock.setup(getter => getter()).verifiable(Times.never());
             const wrapper = shallow(<ExportDialog {...props} />);
 
             wrapper.find(Dialog).prop('onDismiss')();
@@ -157,11 +163,12 @@ describe('ExportDialog', () => {
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             detailsViewActionMessageCreatorMock.verifyAll();
-            onExportClickMock.verifyAll();
+            generateExportsMock.verifyAll();
         });
 
         it('handles click on export button', () => {
             const unchangedDescription = 'description';
+            onlyIncludeHtmlService();
             onDescriptionChangeMock
                 .setup(dc => dc(It.isValue(unchangedDescription)))
                 .verifiable(Times.once());
@@ -171,7 +178,7 @@ describe('ExportDialog', () => {
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.exactly(2));
-            onExportClickMock.setup(getter => getter()).verifiable(Times.once());
+            generateExportsMock.setup(getter => getter()).verifiable(Times.once());
 
             detailsViewActionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.reportExportFormat, 'html', eventStub))
@@ -179,15 +186,15 @@ describe('ExportDialog', () => {
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
-            const flaggedComponent = wrapper.find(PrimaryButton);
+            const component = wrapper.find(PrimaryButton);
 
-            flaggedComponent.simulate('click', eventStub);
+            component.simulate('click', eventStub);
 
             fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             detailsViewActionMessageCreatorMock.verifyAll();
-            onExportClickMock.verifyAll();
+            generateExportsMock.verifyAll();
         });
 
         it('handles text changes for the description', () => {
@@ -210,7 +217,7 @@ describe('ExportDialog', () => {
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             detailsViewActionMessageCreatorMock.verifyAll();
-            onExportClickMock.verifyAll();
+            generateExportsMock.verifyAll();
         });
     });
 });

@@ -17,6 +17,7 @@ describe('ExportDialogWithLocalState', () => {
     let props: ExportDialogWithLocalStateProps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
+    let jsonGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
     let dismissDialogMock: IMock<() => void>;
@@ -25,6 +26,7 @@ describe('ExportDialogWithLocalState', () => {
     const exportDescription = 'export description';
     const scanDate = new Date(2019, 5, 28);
     const pageTitle = 'test title';
+    const fileExtension = '.html';
     const reportExportFormat = 'Assessment';
     const exportName = 'export name';
     const reportExportServicesStub: ReportExportService[] = [
@@ -37,6 +39,7 @@ describe('ExportDialogWithLocalState', () => {
             reportGenerator: reportGeneratorMock.object,
         } as ExportDialogWithLocalStateDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
+        jsonGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
         getDescriptionMock = Mock.ofInstance(() => null);
         dismissDialogMock = Mock.ofInstance(() => null);
@@ -47,6 +50,7 @@ describe('ExportDialogWithLocalState', () => {
             pageTitle,
             scanDate,
             htmlGenerator: htmlGeneratorMock.object,
+            jsonGenerator: jsonGeneratorMock.object,
             updatePersistedDescription: updateDescriptionMock.object,
             getExportDescription: getDescriptionMock.object,
             featureFlagStoreData: {
@@ -96,7 +100,7 @@ describe('ExportDialogWithLocalState', () => {
             isOpen: false,
         };
         reportGeneratorMock
-            .setup(r => r.generateName(reportExportFormat, scanDate, pageTitle))
+            .setup(r => r.generateName(reportExportFormat, scanDate, pageTitle, fileExtension))
             .returns(() => exportName);
         getDescriptionMock.setup(g => g()).returns(() => exportDescription);
 
@@ -128,7 +132,7 @@ describe('ExportDialogWithLocalState', () => {
         updateDescriptionMock.verifyAll();
     });
 
-    test('clicking export on the dialog should trigger generateHtml with the current exportDescription', () => {
+    test('clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription', () => {
         const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
         wrapper.setState({ exportDescription: testContentWithSpecials });
 
@@ -137,12 +141,18 @@ describe('ExportDialogWithLocalState', () => {
             .returns(() => 'test html')
             .verifiable(Times.once());
 
+        jsonGeneratorMock
+            .setup(jgm => jgm(testContentWithSpecials))
+            .returns(() => 'test json')
+            .verifiable(Times.once());
+
         const dialog = wrapper.find(ExportDialog);
 
-        dialog.props().onExportClick();
+        dialog.props().generateExports();
 
         expect(wrapper.getElement()).toMatchSnapshot();
 
         htmlGeneratorMock.verifyAll();
+        jsonGeneratorMock.verifyAll();
     });
 });

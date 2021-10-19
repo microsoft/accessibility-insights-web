@@ -76,6 +76,7 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                         scanMetadata,
                     )
                 }
+                jsonGenerator={() => null}
                 updatePersistedDescription={() => null}
                 getExportDescription={() => ''}
                 featureFlagStoreData={featureFlagStoreData}

@@ -38,9 +38,9 @@ class CodePenExportForm extends React.Component<ReportExportFormProps> {
                     name="data"
                     type="hidden"
                     value={JSON.stringify({
-                        title: this.props.fileName,
+                        title: this.props.htmlFileName,
                         description: this.props.description,
-                        html: this.props.html,
+                        html: this.props.htmlExportData,
                         editors: '100', // collapse CSS and JS editors
                     })}
                 />

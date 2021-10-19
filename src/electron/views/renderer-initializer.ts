@@ -536,6 +536,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             new UnifiedReportNameGenerator(),
             reportHtmlGenerator,
             null,
+            null,
         );
 
         const startTesting = () => {
