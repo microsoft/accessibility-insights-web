@@ -61,6 +61,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
         toggleLabel: 'Show elements needing review',
         linkToDetailsViewText: 'List view and filtering',
     },
+    chromeCommand: '06_toggle-needsReview',
     launchPanelDisplayOrder: 6,
     adhocToolsPanelDisplayOrder: 6,
     getAnalyzer: provider =>

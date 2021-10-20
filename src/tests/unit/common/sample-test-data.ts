@@ -12,4 +12,5 @@ export const ShortcutCommandsTestData: chrome.commands.Command[] = [
     { description: 'Toggle Headings', name: '03_toggle-headings', shortcut: 'Ctrl+Shift+3' },
     { description: 'Toggle Tab stops', name: '04_toggle-tabStops', shortcut: '' },
     { description: 'Toggle Color', name: '05_toggle-color', shortcut: '' },
+    { description: 'Toggle Needs review', name: '06_toggle-needsReview', shortcut: '' },
 ];
