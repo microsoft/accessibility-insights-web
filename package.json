@@ -93,7 +93,7 @@
     "devDependencies": {
         "7zip-bin": "^5.1.1",
         "@electron/get": "^1.13.0",
-        "@swc/core": "^1.2.93",
+        "@swc/core": "^1.2.102",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.158",
         "@types/enzyme": "^3.10.9",
@@ -158,7 +158,7 @@
         "sass-loader": "^12.1.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
-        "simple-git": "^2.46.0",
+        "simple-git": "^2.47.0",
         "source-map-loader": "^3.0.0",
         "terser-webpack-plugin": "^5.2.4",
         "ts-loader": "^9.2.6",
