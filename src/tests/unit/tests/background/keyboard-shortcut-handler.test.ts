@@ -139,6 +139,7 @@ describe('KeyboardShortcutHandler', () => {
         ['Headings', VisualizationType.Headings],
         ['Color', VisualizationType.Color],
         ['TabStops', VisualizationType.TabStops],
+        ['NeedsReview', VisualizationType.NeedsReview],
     ];
 
     const visualizationTypesThatShouldNotifyOnEnable = [
@@ -146,6 +147,7 @@ describe('KeyboardShortcutHandler', () => {
         ['Landmarks', VisualizationType.Landmarks],
         ['Headings', VisualizationType.Headings],
         ['Color', VisualizationType.Color],
+        ['NeedsReview', VisualizationType.NeedsReview],
     ];
 
     const visualizationTypesThatShouldNotNotifyOnEnable = [
