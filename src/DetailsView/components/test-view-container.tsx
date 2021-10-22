@@ -2,8 +2,11 @@
 // Licensed under the MIT License.
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { AdhocTabStopsTestView } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import * as React from 'react';
 
@@ -71,6 +74,15 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
                 <AdhocIssuesTestView
                     instancesSection={NeedsReviewInstancesSection}
                     {...testViewProps}
+                />
+            );
+        case 'AdhocTabStops':
+            return (
+                <FlaggedComponent
+                    enableJSXElement={<AdhocTabStopsTestView {...testViewProps} />}
+                    disableJSXElement={<AdhocStaticTestView {...testViewProps} />}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    featureFlag={FeatureFlags.newTabStopsDetailsView}
                 />
             );
         case 'Assessment':
