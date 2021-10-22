@@ -729,6 +729,28 @@ describe('AssessmentActionCreatorTest', () => {
         updateSelectedPivotChildMock.verifyAll();
     });
 
+    it('handles SaveAssessment message', () => {
+        const interpreterMock = createInterpreterMock(
+            AssessmentMessages.SaveAssessment,
+            telemetryOnlyPayload,
+            testTabId,
+        );
+
+        const testSubject = new AssessmentActionCreator(
+            interpreterMock.object,
+            assessmentActionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        telemetryEventHandlerMock.verify(
+            handler =>
+                handler.publishTelemetry(TelemetryEvents.SAVE_ASSESSMENT, telemetryOnlyPayload),
+            Times.once(),
+        );
+    });
+
     function setupAssessmentActionsMock(
         actionName: keyof AssessmentActions,
         actionMock: IMock<Action<any>>,

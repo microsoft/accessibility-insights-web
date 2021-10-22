@@ -141,6 +141,10 @@ export class AssessmentActionCreator {
             Messages.Visualizations.DetailsView.Select,
             this.onPivotChildSelected,
         );
+        this.interpreter.registerTypeToPayloadCallback(
+            AssessmentMessages.SaveAssessment,
+            this.onSaveAssessment,
+        );
     }
 
     private onContinuePreviousAssessment = (payload: BaseActionPayload, tabId: number): void => {
@@ -153,6 +157,11 @@ export class AssessmentActionCreator {
         const eventName = TelemetryEvents.LOAD_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.LoadAssessment.invoke(payload);
+    };
+
+    private onSaveAssessment = (payload: BaseActionPayload): void => {
+        const eventName = TelemetryEvents.SAVE_ASSESSMENT;
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
     };
 
     private onPassUnmarkedInstances = (payload: ToggleActionPayload, tabId: number): void => {
