@@ -17,6 +17,17 @@ export interface TabbedElementData extends TabStopEvent {
     propertyBag?: TabOrderPropertyBag;
 }
 
+export type TabStopRequirementStatus = 'pass' | 'fail' | 'unknown';
+
+export type TabStopRequirementState = {
+    [requirementId: string]: {
+        status: TabStopRequirementStatus;
+        instances: {
+            description: string;
+        }[];
+    };
+};
+
 interface TabStopsScanResultData {
     tabbedElements: TabbedElementData[];
 }
