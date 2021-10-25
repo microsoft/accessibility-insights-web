@@ -49,6 +49,21 @@ const tsRule = {
     exclude: ['/node_modules/'],
 };
 
+const reportPackageTsRule = {
+    test: /\.tsx?$/,
+    use: [
+        {
+            loader: 'ts-loader',
+            options: {
+                configFile: path.resolve(__dirname, 'packages/report/tsconfig.json'),
+                transpileOnly: true,
+                experimentalWatchApi: true,
+            },
+        },
+    ],
+    exclude: ['/node_modules/'],
+};
+
 const scssRule = (useHash = true) => ({
     test: /\.scss$/,
     use: [
@@ -95,6 +110,13 @@ const commonConfig = {
     stats: {
         // This is to suppress noise from mini-css-extract-plugin
         children: false,
+    },
+};
+
+const reportPackageConfig = {
+    ...commonConfig,
+    module: {
+        rules: [reportPackageTsRule, scssRule(true)],
     },
 };
 
@@ -184,10 +206,10 @@ const packageReportConfig = {
     entry: {
         report: [path.resolve(__dirname, 'src/reports/package/reporter-factory.ts')],
     },
-    module: commonConfig.module,
+    module: reportPackageConfig.module,
     externals: [nodeExternals()],
     plugins: commonPlugins,
-    resolve: commonConfig.resolve,
+    resolve: reportPackageConfig.resolve,
     name: 'package-report',
     mode: 'development',
     devtool: false,

@@ -76,6 +76,9 @@
         },
         "05_toggle-color": {
             "description": "Toggle Color"
+        },
+        "06_toggle-needsReview": {
+            "description": "Toggle Needs review"
         }
     }
 }
