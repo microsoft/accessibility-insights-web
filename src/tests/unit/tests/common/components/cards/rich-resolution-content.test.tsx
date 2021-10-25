@@ -25,6 +25,7 @@ describe('RichResolutionContent', () => {
         'web/th-has-data-cells',
         'web/link-in-text-block',
         'web/scrollable-region-focusable',
+        'web/label-content-name-mismatch',
         'android/atfa/ClassNameCheck',
         'android/atfa/ClickableSpanCheck',
         'android/atfa/DuplicateClickableBoundsCheck',
