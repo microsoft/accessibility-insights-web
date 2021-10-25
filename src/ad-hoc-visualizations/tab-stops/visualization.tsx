@@ -25,7 +25,7 @@ const tabStopVisualizationConfiguration: FocusAnalyzerConfiguration = {
 export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     key: tabStopsTestKey,
     testMode: TestMode.Adhoc,
-    testViewType: 'AdhocStatic',
+    testViewType: 'AdhocTabStops',
     testViewOverrides: {
         content: createHowToTest(2),
         guidance: extraGuidance,
