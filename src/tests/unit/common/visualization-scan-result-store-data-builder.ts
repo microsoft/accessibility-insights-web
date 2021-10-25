@@ -3,12 +3,15 @@
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import {
     TabbedElementData,
+    TabStopRequirementState,
     VisualizationScanResultData,
 } from '../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
-export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
+export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<
+    VisualizationScanResultData
+> {
     constructor() {
         super();
         this.data = new VisualizationScanResultStore(null, null).getDefaultState();
@@ -18,6 +21,13 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<Vis
         elements: TabbedElementData[],
     ): VisualizationScanResultStoreDataBuilder {
         this.data.tabStops.tabbedElements = elements;
+        return this;
+    }
+
+    public withTabStopRequirements(
+        requirements: TabStopRequirementState,
+    ): VisualizationScanResultStoreDataBuilder {
+        this.data.tabStops.requirements = requirements;
         return this;
     }
 

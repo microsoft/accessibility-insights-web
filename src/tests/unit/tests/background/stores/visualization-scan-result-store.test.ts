@@ -1,12 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AddTabbedElementPayload } from 'background/actions/action-payloads';
+import {
+    AddTabbedElementPayload,
+    AddTabStopInstancePayload,
+    RemoveTabStopInstancePayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
+} from 'background/actions/action-payloads';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import {
     TabbedElementData,
+    TabStopRequirementState,
     VisualizationScanResultData,
 } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -396,6 +403,175 @@ describe('VisualizationScanResultStoreTest', () => {
             initialState,
             expectedState,
         );
+    });
+
+    test('onUpdateTabStopRequirementStatus', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const payload: UpdateTabStopRequirementStatusPayload = {
+            requirementId: 'keyboard-navigation',
+            status: 'pass',
+        };
+
+        const requirements: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'pass',
+                instances: [],
+            },
+            'focus-indicator': {
+                status: 'unknown',
+                instances: [],
+            },
+            'input-focus': {
+                status: 'unknown',
+                instances: [],
+            },
+            'keyboard-traps': {
+                status: 'unknown',
+                instances: [],
+            },
+            'tab-order': {
+                status: 'unknown',
+                instances: [],
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirements(requirements)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('updateTabStopsRequirementStatus')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onAddTabStopInstance', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const payload: AddTabStopInstancePayload = {
+            requirementId: 'keyboard-navigation',
+            description: 'test1',
+        };
+
+        const requirements: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [{ description: 'test1' }],
+            },
+            'focus-indicator': {
+                status: 'unknown',
+                instances: [],
+            },
+            'input-focus': {
+                status: 'unknown',
+                instances: [],
+            },
+            'keyboard-traps': {
+                status: 'unknown',
+                instances: [],
+            },
+            'tab-order': {
+                status: 'unknown',
+                instances: [],
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirements(requirements)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onUpdateTabStopInstance', () => {
+        const payload: UpdateTabStopInstancePayload = {
+            requirementId: 'keyboard-navigation',
+            id: 1,
+            description: 'test2',
+        };
+
+        const requirements: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [{ description: 'test1' }, { description: 'test3' }],
+            },
+            'focus-indicator': {
+                status: 'unknown',
+                instances: [],
+            },
+            'input-focus': {
+                status: 'unknown',
+                instances: [],
+            },
+            'keyboard-traps': {
+                status: 'unknown',
+                instances: [],
+            },
+            'tab-order': {
+                status: 'unknown',
+                instances: [],
+            },
+        };
+
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirements(requirements)
+            .build();
+
+        requirements['keyboard-navigation'].instances[1].description = 'test2';
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirements(requirements)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onRemoveTabStopInstance', () => {
+        const payload: RemoveTabStopInstancePayload = {
+            requirementId: 'keyboard-navigation',
+            id: 0,
+        };
+
+        const requirements: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [{ description: 'test1' }, { description: 'test3' }],
+            },
+            'focus-indicator': {
+                status: 'unknown',
+                instances: [],
+            },
+            'input-focus': {
+                status: 'unknown',
+                instances: [],
+            },
+            'keyboard-traps': {
+                status: 'unknown',
+                instances: [],
+            },
+            'tab-order': {
+                status: 'unknown',
+                instances: [],
+            },
+        };
+
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirements(requirements)
+            .build();
+
+        requirements['keyboard-navigation'].instances.pop();
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirements(requirements)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForVisualizationScanResultActions(
