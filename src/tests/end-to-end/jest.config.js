@@ -23,7 +23,7 @@ module.exports = {
         'default',
         [
             'jest-junit',
-            { outputDirectory: '.', outputName: '<rootDir>/test-results/e2e/junit-e2e.xml' },
+            { outputDirectory: '<rootDir>/test-results/e2e/', outputName: 'junit-e2e.xml' },
         ],
     ],
     rootDir: rootDir,
