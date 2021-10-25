@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { NamedFC } from 'common/react/named-fc';
-import * as React from 'react';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
+import * as React from 'react';
 
 export interface AdhocTabStopsTestViewProps {}
 
