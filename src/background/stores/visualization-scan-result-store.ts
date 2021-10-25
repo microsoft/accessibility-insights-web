@@ -8,7 +8,13 @@ import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
-import { AddTabbedElementPayload } from '../actions/action-payloads';
+import {
+    AddTabbedElementPayload,
+    AddTabStopInstancePayload,
+    RemoveTabStopInstancePayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
+} from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
@@ -28,9 +34,24 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     }
 
     public getDefaultState(): VisualizationScanResultData {
+        const requirements = {};
+        const requirementIds = [
+            'keyboard-navigation',
+            'keyboard-traps',
+            'focus-indicator',
+            'tab-order',
+            'input-focus',
+        ];
+        requirementIds.forEach(requirementId => {
+            requirements[requirementId] = {
+                status: 'unknown',
+                instances: [],
+            };
+        });
         const state: Partial<VisualizationScanResultData> = {
             tabStops: {
                 tabbedElements: null,
+                requirements,
             },
         };
 
@@ -53,7 +74,18 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
         this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
-
+        this.visualizationScanResultsActions.updateTabStopsRequirementStatus.addListener(
+            this.onUpdateTabStopRequirementStatus,
+        );
+        this.visualizationScanResultsActions.addTabStopInstance.addListener(
+            this.onAddTabStopInstance,
+        );
+        this.visualizationScanResultsActions.updateTabStopInstance.addListener(
+            this.onUpdateTabStopInstance,
+        );
+        this.visualizationScanResultsActions.removeTabStopInstance.addListener(
+            this.onRemoveTabStopInstance,
+        );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
@@ -95,6 +127,34 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             },
         );
 
+        this.emitChanged();
+    };
+
+    private onUpdateTabStopRequirementStatus = (
+        payload: UpdateTabStopRequirementStatusPayload,
+    ): void => {
+        const { requirementId, status } = payload;
+        this.state.tabStops.requirements[requirementId].status = status;
+        this.emitChanged();
+    };
+
+    private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
+        const { requirementId, description } = payload;
+        this.state.tabStops.requirements[requirementId].instances.push({
+            description,
+        });
+        this.emitChanged();
+    };
+
+    private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
+        const { requirementId, id, description } = payload;
+        this.state.tabStops.requirements[requirementId].instances[id].description = description;
+        this.emitChanged();
+    };
+
+    private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
+        const { requirementId, id } = payload;
+        this.state.tabStops.requirements[requirementId].instances.splice(id);
         this.emitChanged();
     };
 

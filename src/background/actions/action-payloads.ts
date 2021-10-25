@@ -22,11 +22,13 @@ import {
     UnifiedRule,
 } from 'common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from 'common/types/store-data/user-configuration-store';
+import { TabStopRequirementStatus } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { Rectangle } from 'electron';
 import { WindowState } from 'electron/flux/types/window-state';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -127,6 +129,22 @@ export interface PageVisibilityChangeTabPayload extends BaseActionPayload {
 
 export interface AddTabbedElementPayload extends BaseActionPayload {
     tabbedElements: TabStopEvent[];
+}
+
+export interface UpdateTabStopRequirementStatusPayload extends BaseActionPayload {
+    status: TabStopRequirementStatus;
+    requirementId: TabStopRequirementId;
+}
+export interface RemoveTabStopInstancePayload extends BaseActionPayload {
+    id: number;
+    requirementId: TabStopRequirementId;
+}
+export interface AddTabStopInstancePayload extends BaseActionPayload {
+    requirementId: TabStopRequirementId;
+    description: string;
+}
+export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload {
+    id: number;
 }
 
 export interface SetLaunchPanelState extends BaseActionPayload {
