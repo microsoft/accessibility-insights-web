@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
+import { TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
 import {
     TabbedElementData,
     TabStopRequirementState,
@@ -24,10 +25,11 @@ export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<
         return this;
     }
 
-    public withTabStopRequirements(
-        requirements: TabStopRequirementState,
+    public withTabStopRequirement(
+        requirement: TabStopRequirementState,
     ): VisualizationScanResultStoreDataBuilder {
-        this.data.tabStops.requirements = requirements;
+        const requirementId = Object.keys(requirement)[0];
+        this.data.tabStops.requirements[requirementId] = requirement[requirementId];
         return this;
     }
 

@@ -8,6 +8,7 @@ import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
+import { TabStopRequirementIds } from 'types/tab-stop-requirement-info';
 import {
     AddTabbedElementPayload,
     AddTabStopInstancePayload,
@@ -35,19 +36,12 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
     public getDefaultState(): VisualizationScanResultData {
         const requirements = {};
-        const requirementIds = [
-            'keyboard-navigation',
-            'keyboard-traps',
-            'focus-indicator',
-            'tab-order',
-            'input-focus',
-        ];
-        requirementIds.forEach(requirementId => {
-            requirements[requirementId] = {
+        for (const id of TabStopRequirementIds) {
+            requirements[id] = {
                 status: 'unknown',
                 instances: [],
             };
-        });
+        }
         const state: Partial<VisualizationScanResultData> = {
             tabStops: {
                 tabbedElements: null,
@@ -195,4 +189,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
 
         return selectedRows;
     }
+}
+function TabStopRequirementInfo(TabStopRequirementInfo: any) {
+    throw new Error('Function not implemented.');
 }

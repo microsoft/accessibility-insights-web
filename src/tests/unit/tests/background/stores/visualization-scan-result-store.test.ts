@@ -413,31 +413,15 @@ describe('VisualizationScanResultStoreTest', () => {
             status: 'pass',
         };
 
-        const requirements: TabStopRequirementState = {
+        const requirement: TabStopRequirementState = {
             'keyboard-navigation': {
                 status: 'pass',
-                instances: [],
-            },
-            'focus-indicator': {
-                status: 'unknown',
-                instances: [],
-            },
-            'input-focus': {
-                status: 'unknown',
-                instances: [],
-            },
-            'keyboard-traps': {
-                status: 'unknown',
-                instances: [],
-            },
-            'tab-order': {
-                status: 'unknown',
                 instances: [],
             },
         };
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirements(requirements)
+            .withTabStopRequirement(requirement)
             .build();
 
         createStoreTesterForVisualizationScanResultActions('updateTabStopsRequirementStatus')
@@ -453,31 +437,15 @@ describe('VisualizationScanResultStoreTest', () => {
             description: 'test1',
         };
 
-        const requirements: TabStopRequirementState = {
+        const requirement: TabStopRequirementState = {
             'keyboard-navigation': {
                 status: 'unknown',
                 instances: [{ description: 'test1' }],
             },
-            'focus-indicator': {
-                status: 'unknown',
-                instances: [],
-            },
-            'input-focus': {
-                status: 'unknown',
-                instances: [],
-            },
-            'keyboard-traps': {
-                status: 'unknown',
-                instances: [],
-            },
-            'tab-order': {
-                status: 'unknown',
-                instances: [],
-            },
         };
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirements(requirements)
+            .withTabStopRequirement(requirement)
             .build();
 
         createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
@@ -492,37 +460,21 @@ describe('VisualizationScanResultStoreTest', () => {
             description: 'test2',
         };
 
-        const requirements: TabStopRequirementState = {
+        const requirement: TabStopRequirementState = {
             'keyboard-navigation': {
                 status: 'unknown',
                 instances: [{ description: 'test1' }, { description: 'test3' }],
             },
-            'focus-indicator': {
-                status: 'unknown',
-                instances: [],
-            },
-            'input-focus': {
-                status: 'unknown',
-                instances: [],
-            },
-            'keyboard-traps': {
-                status: 'unknown',
-                instances: [],
-            },
-            'tab-order': {
-                status: 'unknown',
-                instances: [],
-            },
         };
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirements(requirements)
+            .withTabStopRequirement(requirement)
             .build();
 
-        requirements['keyboard-navigation'].instances[1].description = 'test2';
+        requirement['keyboard-navigation'].instances[1].description = 'test2';
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirements(requirements)
+            .withTabStopRequirement(requirement)
             .build();
 
         createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
@@ -536,37 +488,21 @@ describe('VisualizationScanResultStoreTest', () => {
             id: 0,
         };
 
-        const requirements: TabStopRequirementState = {
+        const requirement: TabStopRequirementState = {
             'keyboard-navigation': {
                 status: 'unknown',
                 instances: [{ description: 'test1' }, { description: 'test3' }],
             },
-            'focus-indicator': {
-                status: 'unknown',
-                instances: [],
-            },
-            'input-focus': {
-                status: 'unknown',
-                instances: [],
-            },
-            'keyboard-traps': {
-                status: 'unknown',
-                instances: [],
-            },
-            'tab-order': {
-                status: 'unknown',
-                instances: [],
-            },
         };
 
         const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirements(requirements)
+            .withTabStopRequirement(requirement)
             .build();
 
-        requirements['keyboard-navigation'].instances.pop();
+        requirement['keyboard-navigation'].instances.splice(payload.id, 1);
 
         const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirements(requirements)
+            .withTabStopRequirement(requirement)
             .build();
 
         createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
