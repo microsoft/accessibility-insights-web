@@ -15,14 +15,14 @@ const howToTest: JSX.Element = (
         </li>
         <li>
             Use your keyboard to move input focus through all the interactive elements in the page:
+            <ol>
+                <li>Use Tab and Shift+Tab to navigate between standalone controls. </li>
+                <li>
+                    Use the arrow keys to navigate between the focusable elements within a composite
+                    control.
+                </li>
+            </ol>
         </li>
-        <ol>
-            <li>Use Tab and Shift+Tab to navigate between standalone controls. </li>
-            <li>
-                Use the arrow keys to navigate between the focusable elements within a composite
-                control.
-            </li>
-        </ol>
     </ol>
 );
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
