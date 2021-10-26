@@ -16,9 +16,8 @@ export class VisualizationScanResultActions {
     public readonly disableIssues = new Action();
     public readonly addTabbedElement = new Action<AddTabbedElementPayload>();
     public readonly disableTabStop = new Action();
-    public readonly updateTabStopsRequirementStatus = new Action<
-        UpdateTabStopRequirementStatusPayload
-    >();
+    public readonly updateTabStopsRequirementStatus =
+        new Action<UpdateTabStopRequirementStatusPayload>();
     public readonly addTabStopInstance = new Action<AddTabStopInstancePayload>();
     public readonly updateTabStopInstance = new Action<UpdateTabStopInstancePayload>();
     public readonly removeTabStopInstance = new Action<RemoveTabStopInstancePayload>();
