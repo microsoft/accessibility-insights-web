@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
-import { TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
 import {
     TabbedElementData,
     TabStopRequirementState,

@@ -190,6 +190,3 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         return selectedRows;
     }
 }
-function TabStopRequirementInfo(TabStopRequirementInfo: any) {
-    throw new Error('Function not implemented.');
-}
