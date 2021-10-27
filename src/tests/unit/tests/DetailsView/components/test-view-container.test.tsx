@@ -13,48 +13,51 @@ import * as React from 'react';
 import { ContentPageComponent } from 'views/content/content-page';
 
 describe('TestViewContainer', () => {
-    describe.each(['AdhocStatic', 'AdhocFailure', 'AdhocNeedsReview', 'Assessment'])(
-        'for testViewType=%s',
-        (testViewType: TestViewType) => {
-            const selectedTest: VisualizationType = -1;
-            let configStub: VisualizationConfiguration;
-            let configFactoryStub: VisualizationConfigurationFactory;
-            let props: TestViewContainerProps;
-            beforeEach(() => {
-                configStub = {
-                    key: 'configStub',
-                    testViewType,
-                } as VisualizationConfiguration;
+    describe.each([
+        'AdhocStatic',
+        'AdhocFailure',
+        'AdhocNeedsReview',
+        'AdhocTabStops',
+        'Assessment',
+    ])('for testViewType=%s', (testViewType: TestViewType) => {
+        const selectedTest: VisualizationType = -1;
+        let configStub: VisualizationConfiguration;
+        let configFactoryStub: VisualizationConfigurationFactory;
+        let props: TestViewContainerProps;
+        beforeEach(() => {
+            configStub = {
+                key: 'configStub',
+                testViewType,
+            } as VisualizationConfiguration;
 
-                configFactoryStub = {
-                    getConfiguration: (visualizationType: VisualizationType) => configStub,
-                } as VisualizationConfigurationFactory;
+            configFactoryStub = {
+                getConfiguration: (visualizationType: VisualizationType) => configStub,
+            } as VisualizationConfigurationFactory;
 
-                props = {
-                    someParentProp: 'parent-prop',
-                    visualizationConfigurationFactory: configFactoryStub,
-                    selectedTest,
-                } as unknown as TestViewContainerProps;
-            });
+            props = {
+                someParentProp: 'parent-prop',
+                visualizationConfigurationFactory: configFactoryStub,
+                selectedTest,
+            } as unknown as TestViewContainerProps;
+        });
 
-            it('renders per snapshot with no testViewOverrides', () => {
-                configStub.testViewOverrides = undefined;
-                const rendered = shallow(<TestViewContainer {...props} />);
-                expect(rendered.getElement()).toMatchSnapshot();
-            });
+        it('renders per snapshot with no testViewOverrides', () => {
+            configStub.testViewOverrides = undefined;
+            const rendered = shallow(<TestViewContainer {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
 
-            it('renders per snapshot with testViewOverrides', () => {
-                configStub.testViewOverrides = {
-                    content: stubContentPageComponent('content'),
-                    guidance: stubContentPageComponent('guidance'),
-                };
-                const rendered = shallow(<TestViewContainer {...props} />);
-                expect(rendered.getElement()).toMatchSnapshot();
-            });
+        it('renders per snapshot with testViewOverrides', () => {
+            configStub.testViewOverrides = {
+                content: stubContentPageComponent('content'),
+                guidance: stubContentPageComponent('guidance'),
+            };
+            const rendered = shallow(<TestViewContainer {...props} />);
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
 
-            function stubContentPageComponent(identifier: string): ContentPageComponent {
-                return `stub content page component "${identifier}"` as unknown as ContentPageComponent;
-            }
-        },
-    );
+        function stubContentPageComponent(identifier: string): ContentPageComponent {
+            return `stub content page component "${identifier}"` as unknown as ContentPageComponent;
+        }
+    });
 });

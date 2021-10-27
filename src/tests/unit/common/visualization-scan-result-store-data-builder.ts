@@ -3,21 +3,30 @@
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import {
     TabbedElementData,
+    TabStopRequirementState,
     VisualizationScanResultData,
 } from '../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
-    constructor() {
+    constructor(generateUID?: () => 'abc') {
         super();
-        this.data = new VisualizationScanResultStore(null, null).getDefaultState();
+        this.data = new VisualizationScanResultStore(null, null, generateUID).getDefaultState();
     }
 
     public withTabStopsTabbedElements(
         elements: TabbedElementData[],
     ): VisualizationScanResultStoreDataBuilder {
         this.data.tabStops.tabbedElements = elements;
+        return this;
+    }
+
+    public withTabStopRequirement(
+        requirement: TabStopRequirementState,
+    ): VisualizationScanResultStoreDataBuilder {
+        const requirementId = Object.keys(requirement)[0];
+        this.data.tabStops.requirements[requirementId] = requirement[requirementId];
         return this;
     }
 

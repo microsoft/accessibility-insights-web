@@ -117,6 +117,15 @@ yarn test:e2e -u
 
 # Run from the context of the docker container our Linux CI builds use (requires Docker to be installed)
 yarn test:e2e:docker
+
+# Run tests for the report package
+yarn test:report:e2e
+
+# -u updates snapshots for the report package
+# Windows: 
+yarn test:report:e2e -- -- -- -u
+#Linux and Mac:
+yarn test:report:e2e -- -- -u
 ```
 
 Generally, if a Pull Request doesn't touch any E2E tests, you don't have to run them yourself; the automated Pull Request build will do it for you.
