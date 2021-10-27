@@ -285,6 +285,28 @@ exports[` render renders normally 1`] = `
           "scanResult": null,
         },
         "tabStops": Object {
+          "requirements": Object {
+            "focus-indicator": Object {
+              "instances": Array [],
+              "status": "unknown",
+            },
+            "input-focus": Object {
+              "instances": Array [],
+              "status": "unknown",
+            },
+            "keyboard-navigation": Object {
+              "instances": Array [],
+              "status": "unknown",
+            },
+            "keyboard-traps": Object {
+              "instances": Array [],
+              "status": "unknown",
+            },
+            "tab-order": Object {
+              "instances": Array [],
+              "status": "unknown",
+            },
+          },
           "tabbedElements": null,
         },
       }

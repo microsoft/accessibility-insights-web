@@ -1,12 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AddTabbedElementPayload } from 'background/actions/action-payloads';
+import {
+    AddTabbedElementPayload,
+    AddTabStopInstancePayload,
+    RemoveTabStopInstancePayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
+} from 'background/actions/action-payloads';
 import { TabActions } from 'background/actions/tab-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import {
     TabbedElementData,
+    TabStopRequirementState,
     VisualizationScanResultData,
 } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -15,7 +22,7 @@ import { ScanResults } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
-
+const generateUIDStub = () => 'abc';
 describe('VisualizationScanResultStoreTest', () => {
     test('constructor, no side effects', () => {
         const testObject = createStoreWithNullParams(VisualizationScanResultStore);
@@ -398,11 +405,125 @@ describe('VisualizationScanResultStoreTest', () => {
         );
     });
 
+    test('onUpdateTabStopRequirementStatus', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const payload: UpdateTabStopRequirementStatusPayload = {
+            requirementId: 'keyboard-navigation',
+            status: 'pass',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'pass',
+                instances: [],
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('updateTabStopsRequirementStatus')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onAddTabStopInstance', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+
+        const payload: AddTabStopInstancePayload = {
+            requirementId: 'keyboard-navigation',
+            description: 'test1',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [{ description: 'test1', id: 'abc' }],
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onUpdateTabStopInstance', () => {
+        const payload: UpdateTabStopInstancePayload = {
+            requirementId: 'keyboard-navigation',
+            id: 'xyz',
+            description: 'test2',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [
+                    { description: 'test1', id: 'abc' },
+                    { description: 'test3', id: 'xyz' },
+                ],
+            },
+        };
+
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        requirement['keyboard-navigation'].instances.find(
+            instance => instance.id === 'xyz',
+        ).description = 'test2';
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onRemoveTabStopInstance', () => {
+        const payload: RemoveTabStopInstancePayload = {
+            requirementId: 'keyboard-navigation',
+            id: 'abc',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [
+                    { description: 'test1', id: 'abc' },
+                    { description: 'test3', id: 'xyz' },
+                ],
+            },
+        };
+
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        const newInstances = [{ description: 'test3', id: 'xyz' }];
+        requirement['keyboard-navigation'].instances = newInstances;
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     function createStoreTesterForVisualizationScanResultActions(
         actionName: keyof VisualizationScanResultActions,
     ): StoreTester<VisualizationScanResultData, VisualizationScanResultActions> {
         const factory = (actions: VisualizationScanResultActions) =>
-            new VisualizationScanResultStore(actions, new TabActions());
+            new VisualizationScanResultStore(actions, new TabActions(), generateUIDStub);
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
     }
@@ -411,7 +532,11 @@ describe('VisualizationScanResultStoreTest', () => {
         actionName: keyof TabActions,
     ): StoreTester<VisualizationScanResultData, TabActions> {
         const factory = (actions: TabActions) =>
-            new VisualizationScanResultStore(new VisualizationScanResultActions(), actions);
+            new VisualizationScanResultStore(
+                new VisualizationScanResultActions(),
+                actions,
+                generateUIDStub,
+            );
 
         return new StoreTester(TabActions, actionName, factory);
     }

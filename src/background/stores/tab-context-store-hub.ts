@@ -5,6 +5,7 @@ import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { StoreType } from '../../common/types/store-type';
+import { generateUID } from '../../common/uid-generator';
 import { ActionHub } from '../actions/action-hub';
 import { DetailsViewStore } from './details-view-store';
 import { DevToolStore } from './dev-tools-store';
@@ -42,6 +43,7 @@ export class TabContextStoreHub implements StoreHub {
         this.visualizationScanResultStore = new VisualizationScanResultStore(
             actionHub.visualizationScanResultActions,
             actionHub.tabActions,
+            generateUID,
         );
         this.visualizationScanResultStore.initialize();
 

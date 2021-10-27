@@ -24,12 +24,14 @@ export type TabStopRequirementState = {
         status: TabStopRequirementStatus;
         instances: {
             description: string;
+            id: string;
         }[];
     };
 };
 
 interface TabStopsScanResultData {
     tabbedElements: TabbedElementData[];
+    requirements?: TabStopRequirementState;
 }
 
 export interface VisualizationScanResultData {
