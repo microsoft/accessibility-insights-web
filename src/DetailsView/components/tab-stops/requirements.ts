@@ -3,7 +3,7 @@
 
 import { TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
 
-const requirements: TabStopRequirementInfo = {
+export const requirements: TabStopRequirementInfo = {
     'keyboard-navigation': {
         name: 'Keyboard navigation',
         description: 'All interactive elements can be reached using the Tab and arrow keys. ',
