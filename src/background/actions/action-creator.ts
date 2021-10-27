@@ -22,11 +22,15 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ActionHub } from './action-hub';
 import {
     AddTabbedElementPayload,
+    AddTabStopInstancePayload,
     BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RemoveTabStopInstancePayload,
     RescanVisualizationPayload,
     ToggleActionPayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
 import { InspectActions } from './inspect-actions';
@@ -97,6 +101,26 @@ export class ActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             this.getScanResultsCurrentState,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.UpdateTabStopsRequirementStatus,
+            this.onUpdateTabStopsRequirementStatus,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.AddTabStopInstance,
+            this.onAddTabStopInstance,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.UpdateTabStopInstance,
+            this.onUpdateTabStopInstance,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.RemoveTabStopInstance,
+            this.onRemoveTabStopInstance,
         );
 
         this.interpreter.registerTypeToPayloadCallback(
@@ -235,6 +259,24 @@ export class ActionCreator {
         this.visualizationScanResultActions.addTabbedElement.invoke(payload);
     };
 
+    private onUpdateTabStopsRequirementStatus = (
+        payload: UpdateTabStopRequirementStatusPayload,
+    ): void => {
+        this.visualizationScanResultActions.updateTabStopsRequirementStatus.invoke(payload);
+    };
+
+    private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
+        this.visualizationScanResultActions.addTabStopInstance.invoke(payload);
+    };
+
+    private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
+        this.visualizationScanResultActions.updateTabStopInstance.invoke(payload);
+    };
+
+    private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
+        this.visualizationScanResultActions.removeTabStopInstance.invoke(payload);
+    };
+
     private onRecordingCompleted = (payload: BaseActionPayload): void => {
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.TABSTOPS_RECORDING_COMPLETE,
@@ -293,8 +335,9 @@ export class ActionCreator {
     }
 
     private enableToggleOnDetailsViewOpen(test: VisualizationType, tabId: number): void {
-        const payload: VisualizationTogglePayload =
-            this.createVisualizationTogglePayloadWithNullTelemetry(test);
+        const payload: VisualizationTogglePayload = this.createVisualizationTogglePayloadWithNullTelemetry(
+            test,
+        );
         this.onVisualizationToggle(payload);
     }
 
