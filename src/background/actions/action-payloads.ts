@@ -136,7 +136,7 @@ export interface UpdateTabStopRequirementStatusPayload extends BaseActionPayload
     requirementId: TabStopRequirementId;
 }
 export interface RemoveTabStopInstancePayload extends BaseActionPayload {
-    id: number;
+    id: string;
     requirementId: TabStopRequirementId;
 }
 export interface AddTabStopInstancePayload extends BaseActionPayload {
@@ -144,7 +144,7 @@ export interface AddTabStopInstancePayload extends BaseActionPayload {
     description: string;
 }
 export interface UpdateTabStopInstancePayload extends AddTabStopInstancePayload {
-    id: number;
+    id: string;
 }
 
 export interface SetLaunchPanelState extends BaseActionPayload {

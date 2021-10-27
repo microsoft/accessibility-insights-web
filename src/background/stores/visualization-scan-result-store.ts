@@ -19,19 +19,21 @@ import {
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
-
 export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {
     private visualizationScanResultsActions: VisualizationScanResultActions;
     private tabActions: TabActions;
+    private generateUID: () => string;
 
     constructor(
         visualizationScanResultActions: VisualizationScanResultActions,
         tabActions: TabActions,
+        generateUID: () => string,
     ) {
         super(StoreNames.VisualizationScanResultStore);
 
         this.visualizationScanResultsActions = visualizationScanResultActions;
         this.tabActions = tabActions;
+        this.generateUID = generateUID;
     }
 
     public getDefaultState(): VisualizationScanResultData {
@@ -136,19 +138,25 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         const { requirementId, description } = payload;
         this.state.tabStops.requirements[requirementId].instances.push({
             description,
+            id: this.generateUID(),
         });
         this.emitChanged();
     };
 
     private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
         const { requirementId, id, description } = payload;
-        this.state.tabStops.requirements[requirementId].instances[id].description = description;
+        this.state.tabStops.requirements[requirementId].instances.find(
+            instance => instance.id === id,
+        ).description = description;
         this.emitChanged();
     };
 
     private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
         const { requirementId, id } = payload;
-        this.state.tabStops.requirements[requirementId].instances.splice(id);
+        const newInstances = this.state.tabStops.requirements[requirementId].instances.filter(
+            instance => instance.id !== id,
+        );
+        this.state.tabStops.requirements[requirementId].instances = newInstances;
         this.emitChanged();
     };
 

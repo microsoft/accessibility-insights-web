@@ -10,9 +10,9 @@ import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';
 
 export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
-    constructor() {
+    constructor(generateUID?: () => 'abc') {
         super();
-        this.data = new VisualizationScanResultStore(null, null).getDefaultState();
+        this.data = new VisualizationScanResultStore(null, null, generateUID).getDefaultState();
     }
 
     public withTabStopsTabbedElements(

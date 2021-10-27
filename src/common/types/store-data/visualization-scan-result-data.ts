@@ -24,6 +24,7 @@ export type TabStopRequirementState = {
         status: TabStopRequirementStatus;
         instances: {
             description: string;
+            id: string;
         }[];
     };
 };
