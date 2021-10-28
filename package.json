@@ -96,7 +96,7 @@
         "@swc/core": "^1.2.102",
         "@types/applicationinsights-js": "^1.0.7",
         "@types/chrome": "0.0.158",
-        "@types/enzyme": "^3.10.9",
+        "@types/enzyme": "^3.10.10",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/jest": "^27.0.2",
         "@types/jsdom": "^16.2.13",
