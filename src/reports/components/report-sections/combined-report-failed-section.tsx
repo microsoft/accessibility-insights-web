@@ -28,8 +28,10 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
 
         const ruleCount = cardsViewData.cards.fail.length;
 
+        const sectionId = 'combined-report-failed-section';
+
         const CollapsibleContent = deps.collapsibleControl({
-            id: 'combined-report-failed-section',
+            id: sectionId,
             header: (
                 <CombinedReportResultSectionTitle
                     outcomeCount={ruleCount}
@@ -50,7 +52,9 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     headingLevel={4}
                 />
             ),
-            messageCreator: deps.cardSelectionMessageCreator,
+            onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => {
+                deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
+            },
             headingLevel: 3,
             deps: null,
         });

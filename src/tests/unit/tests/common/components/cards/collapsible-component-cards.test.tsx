@@ -17,6 +17,8 @@ describe('CollapsibleComponentCardsTest', () => {
 
     let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
+    let onExpandCollapseClickMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
+    let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
         header: <div>Some header</div>,
@@ -32,19 +34,22 @@ describe('CollapsibleComponentCardsTest', () => {
     };
 
     beforeEach(() => {
+        onExpandCollapseClickMock =
+            Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
+        clickEventMock = Mock.ofType<React.MouseEvent<HTMLDivElement>>();
         cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
             setFocusVisibility: setFocusVisibilityMock.object,
         };
-        partialProps.messageCreator = cardSelectionMessageCreatorMock.object;
+        partialProps.onExpandCollapseClick = onExpandCollapseClickMock.object;
     });
 
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
-                cardSelectionMessageCreatorMock
-                    .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), It.isAny()))
+                onExpandCollapseClickMock
+                    .setup(mock => mock(clickEventMock.object))
                     .verifiable(Times.never());
 
                 const props: CollapsibleComponentCardsProps = {
@@ -61,9 +66,8 @@ describe('CollapsibleComponentCardsTest', () => {
     });
 
     test('toggle from expanded to collapsed', () => {
-        const eventStub = eventStubFactory.createKeypressEvent() as any;
-        cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub))
+        onExpandCollapseClickMock
+            .setup(mock => mock(clickEventMock.object))
             .verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
@@ -76,7 +80,7 @@ describe('CollapsibleComponentCardsTest', () => {
         expect(result.getElement()).toMatchSnapshot('expanded');
 
         const button = result.find('CustomizedActionButton');
-        button.simulate('click', eventStub);
+        button.simulate('click', clickEventMock.object);
         expect(result.getElement()).toMatchSnapshot('collapsed');
 
         cardSelectionMessageCreatorMock.verifyAll();

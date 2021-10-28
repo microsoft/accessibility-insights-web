@@ -25,9 +25,10 @@ const makeCombinedReportRulesOnlySection = (options: {
         ({ deps, cardsViewData }) => {
             const { outcomeType, title } = options;
             const cardRuleResults = cardsViewData.cards[outcomeType];
+            const sectionId = `${outcomeType}-checks-section`;
 
             const CollapsibleContent = deps.collapsibleControl({
-                id: `${outcomeType}-checks-section`,
+                id: sectionId,
                 header: (
                     <CombinedReportResultSectionTitle
                         outcomeCount={cardRuleResults.length}
@@ -43,7 +44,9 @@ const makeCombinedReportRulesOnlySection = (options: {
                         outcomeType={outcomeType}
                     />
                 ),
-                messageCreator: deps.cardSelectionMessageCreator,
+                onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => {
+                    deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
+                },
                 headingLevel: 3,
                 deps: null,
             });

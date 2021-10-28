@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { CollapsibleComponentMessageCreator } from 'common/message-creators/types/collapsible-component-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -24,7 +23,7 @@ export interface CollapsibleComponentCardsProps {
     containerClassName?: string;
     buttonAriaLabel?: string;
     deps: CollapsibleComponentCardsDeps;
-    messageCreator: CollapsibleComponentMessageCreator;
+    onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => void;
     isExpanded?: boolean;
 }
 
@@ -41,8 +40,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             containerAutomationId,
             containerClassName,
             header,
-            id,
-            messageCreator,
+            onExpandCollapseClick,
         } = props;
 
         const containerProps = { role: 'heading', 'aria-level': headingLevel };
@@ -66,7 +64,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                 deps.setFocusVisibility(true);
             }
 
-            messageCreator.toggleRuleExpandCollapse(id, event);
+            onExpandCollapseClick(event);
         };
 
         return (
