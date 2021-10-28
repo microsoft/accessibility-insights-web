@@ -20,7 +20,7 @@
     },
     "devDependencies": {
         "@types/jest": "^27.0.2",
-        "jest": "^27.2.4",
+        "jest": "^27.3.1",
         "jest-file-snapshot": "^0.5.0",
         "jest-junit": "^13.0.0",
         "prettier": "^2.4.1",
