@@ -35,9 +35,9 @@ describe('CollapsibleComponentCardsTest', () => {
         cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
-            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             setFocusVisibility: setFocusVisibilityMock.object,
         };
+        partialProps.messageCreator = cardSelectionMessageCreatorMock.object;
     });
 
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {

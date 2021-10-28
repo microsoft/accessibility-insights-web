@@ -25,6 +25,7 @@ describe('ReportCollapsibleContainerControl', () => {
                     headingLevel: 5,
                     [propertyName]: value,
                     deps: null,
+                    messageCreator: null,
                     isExpanded: false,
                 };
                 const control = ReportCollapsibleContainerControl(props);
