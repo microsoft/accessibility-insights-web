@@ -3,9 +3,9 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
-import * as Markup from '../../assessments/markup';
 import * as styles from 'DetailsView/components/static-content-common.scss';
 import * as React from 'react';
+import * as Markup from '../../assessments/markup';
 
 export interface AdhocTabStopsTestViewProps {}
 
@@ -33,7 +33,11 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     Use your keyboard to move input focus through all the interactive elements in
                     the page:
                     <ol>
-                        <li>Use Tab and Shift+Tab to navigate between standalone controls. </li>
+                        <li>
+                            Use <Markup.Term>Tab</Markup.Term> and{' '}
+                            <Markup.Term>Shift+Tab</Markup.Term> to navigate between standalone
+                            controls.{' '}
+                        </li>
                         <li>
                             Use the arrow keys to navigate between the focusable elements within a
                             composite control.
