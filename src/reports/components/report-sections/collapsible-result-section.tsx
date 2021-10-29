@@ -33,7 +33,7 @@ export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
             content: <RulesOnly {...props} />,
             headingLevel: 2,
             deps: null,
-            onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => {
+            onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
                 deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(containerId, event);
             },
         });

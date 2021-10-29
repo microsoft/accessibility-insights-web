@@ -17,7 +17,7 @@ describe('CollapsibleComponentCardsTest', () => {
 
     let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
-    let onExpandCollapseClickMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
+    let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
     let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
 
     const partialProps: Partial<CollapsibleComponentCardsProps> = {
@@ -34,21 +34,20 @@ describe('CollapsibleComponentCardsTest', () => {
     };
 
     beforeEach(() => {
-        onExpandCollapseClickMock =
-            Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
+        onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
         clickEventMock = Mock.ofType<React.MouseEvent<HTMLDivElement>>();
         cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
             setFocusVisibility: setFocusVisibilityMock.object,
         };
-        partialProps.onExpandCollapseClick = onExpandCollapseClickMock.object;
+        partialProps.onExpandToggle = onExpandToggleMock.object;
     });
 
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
-                onExpandCollapseClickMock
+                onExpandToggleMock
                     .setup(mock => mock(clickEventMock.object))
                     .verifiable(Times.never());
 
@@ -66,9 +65,7 @@ describe('CollapsibleComponentCardsTest', () => {
     });
 
     test('toggle from expanded to collapsed', () => {
-        onExpandCollapseClickMock
-            .setup(mock => mock(clickEventMock.object))
-            .verifiable(Times.once());
+        onExpandToggleMock.setup(mock => mock(clickEventMock.object)).verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             ...partialProps,

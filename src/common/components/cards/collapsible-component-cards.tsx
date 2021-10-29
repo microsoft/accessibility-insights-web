@@ -23,7 +23,7 @@ export interface CollapsibleComponentCardsProps {
     containerClassName?: string;
     buttonAriaLabel?: string;
     deps: CollapsibleComponentCardsDeps;
-    onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => void;
+    onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => void;
     isExpanded?: boolean;
 }
 
@@ -40,7 +40,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             containerAutomationId,
             containerClassName,
             header,
-            onExpandCollapseClick,
+            onExpandToggle: onExpandToggle,
         } = props;
 
         const containerProps = { role: 'heading', 'aria-level': headingLevel };
@@ -64,7 +64,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
                 deps.setFocusVisibility(true);
             }
 
-            onExpandCollapseClick(event);
+            onExpandToggle(event);
         };
 
         return (

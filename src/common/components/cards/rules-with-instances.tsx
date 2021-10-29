@@ -82,7 +82,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
-                onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => {
+                onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
                     deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(rule.id, event);
                 },
                 isExpanded: rule.isExpanded,

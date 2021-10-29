@@ -44,7 +44,7 @@ const makeCombinedReportRulesOnlySection = (options: {
                         outcomeType={outcomeType}
                     />
                 ),
-                onExpandCollapseClick: (event: React.MouseEvent<HTMLDivElement>) => {
+                onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
                     deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
                 },
                 headingLevel: 3,
