@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
@@ -22,6 +23,7 @@ export const ruleGroupAutomationId = 'cards-rule-group';
 export type RulesWithInstancesDeps = RuleContentDeps &
     CollapsibleComponentCardsDeps & {
         collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
+        cardSelectionMessageCreator: CardSelectionMessageCreator;
     };
 
 export type RulesWithInstancesProps = {
@@ -80,6 +82,9 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
+                onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                    deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(rule.id, event);
+                },
                 isExpanded: rule.isExpanded,
             };
         };

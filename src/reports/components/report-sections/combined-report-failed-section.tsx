@@ -4,13 +4,16 @@
 import { CombinedReportResultSectionTitle } from 'common/components/cards/combined-report-result-section-title';
 import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { ResultSectionContent } from 'common/components/cards/result-section-content';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
-export type CombinedReportFailedSectionDeps = ResultSectionDeps;
+export type CombinedReportFailedSectionDeps = ResultSectionDeps & {
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
+};
 
 export type CombinedReportFailedSectionProps = {
     deps: CombinedReportFailedSectionDeps;
@@ -25,8 +28,10 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
 
         const ruleCount = cardsViewData.cards.fail.length;
 
+        const sectionId = 'combined-report-failed-section';
+
         const CollapsibleContent = deps.collapsibleControl({
-            id: 'combined-report-failed-section',
+            id: sectionId,
             header: (
                 <CombinedReportResultSectionTitle
                     outcomeCount={ruleCount}
@@ -47,6 +52,9 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     headingLevel={4}
                 />
             ),
+            onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
+            },
             headingLevel: 3,
             deps: null,
         });
