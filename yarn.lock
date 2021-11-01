@@ -1973,10 +1973,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.158":
-  version "0.0.158"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.158.tgz#020edeee31ed9decf127fea1972a63ff08fcf2c6"
-  integrity sha512-sjBs9E/XDlYyLf3YkPYIN6sFZ/d9LbwMSK+BYphenFdkk39M5P8xcRfykk54RgZr8/QMex1yKlX5EB52TaqhsQ==
+"@types/chrome@0.0.162":
+  version "0.0.162"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.162.tgz#3483da633b0ff15e24396de06245e277c60db78c"
+  integrity sha512-DiMo9SrOhkb49bXPRke41Nvd9rgDgxn/mqyZ5gQnU+ST3H/vcnnvtwCkpuUl7O9FwoUwECfMSZiBTXuK8sMSwQ==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -9671,10 +9671,10 @@ pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
-pkg-fetch@3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/pkg-fetch/-/pkg-fetch-3.2.3.tgz#9825febf4eadd470c126d3f6bdc2cb6996861d36"
-  integrity sha512-bv9vYANgAZ2Lvxn5Dsq7E0rLqzcqYkV4gnwe2f7oHV9N4SVMfDOIjjFCRuuTltop5EmsOcu7XkQpB5A/pIgC1g==
+pkg-fetch@3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/pkg-fetch/-/pkg-fetch-3.2.4.tgz#5372734b12167d4bacd872be348217461b517390"
+  integrity sha512-ewUD26GP86/8+Fu93zrb30CpJjKOtT4maSgm4SwTX9Ujy1pfdUdv+1PubsY9tTJES0iBYItAtqbfkf7Wu5LV9w==
   dependencies:
     chalk "^4.1.0"
     fs-extra "^9.1.0"
@@ -9684,10 +9684,10 @@ pkg-fetch@3.2.3:
     semver "^7.3.5"
     yargs "^16.2.0"
 
-pkg@^5.3.3:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.3.3.tgz#5ad1dadfc4e55169f0e1046626e669e0428d4cd7"
-  integrity sha512-48qPxwyPvKfUuXxeK+kS3mBvfWWTX2khAdceDThbWCc8OUz3RFyO1Ft8SVkq2gQfPU2DtiPtWaf2SKH0Dlx59g==
+pkg@^5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/pkg/-/pkg-5.4.1.tgz#4d824e42c454f32131e471d7cd8d14bfdb3e1c4c"
+  integrity sha512-iJs3W6MCgeZ4MrH7iZtX6HTqsNzoh2U9rGILL3eOLbQFV43U8WPAzrqRK7cBQGuHx38UXxcGT6G/2yDl/GveRg==
   dependencies:
     "@babel/parser" "7.13.13"
     "@babel/types" "7.13.12"
@@ -9698,7 +9698,7 @@ pkg@^5.3.3:
     into-stream "^6.0.0"
     minimist "^1.2.5"
     multistream "^4.1.0"
-    pkg-fetch "3.2.3"
+    pkg-fetch "3.2.4"
     prebuild-install "6.0.1"
     progress "^2.0.3"
     resolve "^1.20.0"
