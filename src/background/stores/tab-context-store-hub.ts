@@ -43,6 +43,7 @@ export class TabContextStoreHub implements StoreHub {
         this.visualizationScanResultStore = new VisualizationScanResultStore(
             actionHub.visualizationScanResultActions,
             actionHub.tabActions,
+            actionHub.tabStopRequirementActions,
             generateUID,
         );
         this.visualizationScanResultStore.initialize();

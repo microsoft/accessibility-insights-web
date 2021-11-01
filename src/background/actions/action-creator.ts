@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -52,6 +53,7 @@ export class ActionCreator {
     private cardSelectionActions: CardSelectionActions;
     private unifiedScanResultActions: UnifiedScanResultActions;
     private sidePanelActions: SidePanelActions;
+    private tabStopRequirementActions: TabStopRequirementActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -69,6 +71,7 @@ export class ActionCreator {
         this.cardSelectionActions = actionHub.cardSelectionActions;
         this.unifiedScanResultActions = actionHub.scanResultActions;
         this.sidePanelActions = actionHub.sidePanelActions;
+        this.tabStopRequirementActions = actionHub.tabStopRequirementActions;
     }
 
     public registerCallbacks(): void {
@@ -262,19 +265,35 @@ export class ActionCreator {
     private onUpdateTabStopsRequirementStatus = (
         payload: UpdateTabStopRequirementStatusPayload,
     ): void => {
-        this.visualizationScanResultActions.updateTabStopsRequirementStatus.invoke(payload);
+        this.tabStopRequirementActions.updateTabStopsRequirementStatus.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
+            payload,
+        );
     };
 
     private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
-        this.visualizationScanResultActions.addTabStopInstance.invoke(payload);
+        this.tabStopRequirementActions.addTabStopInstance.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
+            payload,
+        );
     };
 
     private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
-        this.visualizationScanResultActions.updateTabStopInstance.invoke(payload);
+        this.tabStopRequirementActions.updateTabStopInstance.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_INSTANCE,
+            payload,
+        );
     };
 
     private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
-        this.visualizationScanResultActions.removeTabStopInstance.invoke(payload);
+        this.tabStopRequirementActions.removeTabStopInstance.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
+            payload,
+        );
     };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {

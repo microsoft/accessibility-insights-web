@@ -23,6 +23,7 @@ import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
@@ -479,9 +480,13 @@ describe('ActionCreatorTest', () => {
                 Messages.Visualizations.TabStops.UpdateTabStopsRequirementStatus,
                 args,
             )
-            .setupActionOnVisualizationScanResultActions(actionName)
-            .setupVisualizationScanResultActionWithInvokeParameter(actionName, requirementStatus);
-
+            .setupActionOnTabStopRequirementActions(actionName)
+            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementStatus)
+            .setupTelemetrySend(
+                TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
+                requirementStatus,
+                null,
+            );
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
 
@@ -498,8 +503,13 @@ describe('ActionCreatorTest', () => {
         const actionName = 'addTabStopInstance';
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.TabStops.AddTabStopInstance, args)
-            .setupActionOnVisualizationScanResultActions(actionName)
-            .setupVisualizationScanResultActionWithInvokeParameter(actionName, requirementInstance);
+            .setupActionOnTabStopRequirementActions(actionName)
+            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementInstance)
+            .setupTelemetrySend(
+                TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
+                requirementInstance,
+                null,
+            );
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -518,9 +528,13 @@ describe('ActionCreatorTest', () => {
         const actionName = 'updateTabStopInstance';
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.TabStops.UpdateTabStopInstance, args)
-            .setupActionOnVisualizationScanResultActions(actionName)
-            .setupVisualizationScanResultActionWithInvokeParameter(actionName, requirementInstance);
-
+            .setupActionOnTabStopRequirementActions(actionName)
+            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementInstance)
+            .setupTelemetrySend(
+                TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_INSTANCE,
+                requirementInstance,
+                null,
+            );
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
 
@@ -537,8 +551,13 @@ describe('ActionCreatorTest', () => {
         const actionName = 'removeTabStopInstance';
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.TabStops.RemoveTabStopInstance, args)
-            .setupActionOnVisualizationScanResultActions(actionName)
-            .setupVisualizationScanResultActionWithInvokeParameter(actionName, requirementInstance);
+            .setupActionOnTabStopRequirementActions(actionName)
+            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementInstance)
+            .setupTelemetrySend(
+                TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
+                requirementInstance,
+                null,
+            );
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -1007,12 +1026,13 @@ class ActionCreatorValidator {
     private devToolsActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private cardSelectionActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private unifiedScanResultActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
-
+    private tabStopRequirementActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private visualizationScanResultActionsContainerMock = Mock.ofType(
         VisualizationScanResultActions,
     );
     private visualizationScanResultActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
+    private tabStopRequirementActionsContainerMock = Mock.ofType(TabStopRequirementActions);
     private detailsViewActionsContainerMock = Mock.ofType(DetailsViewActions);
     private sidePanelActionsContainerMock = Mock.ofType(SidePanelActions);
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
@@ -1041,6 +1061,7 @@ class ActionCreatorValidator {
     private actionHubMock: ActionHub = {
         visualizationActions: this.visualizationActionsContainerMock.object,
         visualizationScanResultActions: this.visualizationScanResultActionsContainerMock.object,
+        tabStopRequirementActions: this.tabStopRequirementActionsContainerMock.object,
         devToolActions: this.devToolActionsContainerMock.object,
         sidePanelActions: this.sidePanelActionsContainerMock.object,
         scopingActions: this.scopingActionsContainerMock.object,
@@ -1141,6 +1162,18 @@ class ActionCreatorValidator {
             actionName,
             expectedInvokeParam,
             this.visualizationScanResultActionMocks,
+        );
+        return this;
+    }
+
+    public setupTabStopRequirementActionWithInvokeParameter(
+        actionName: keyof TabStopRequirementActions,
+        expectedInvokeParam: any,
+    ): ActionCreatorValidator {
+        this.setupActionWithInvokeParameter(
+            actionName,
+            expectedInvokeParam,
+            this.tabStopRequirementActionMocks,
         );
         return this;
     }
@@ -1277,6 +1310,17 @@ class ActionCreatorValidator {
         return this;
     }
 
+    public setupActionOnTabStopRequirementActions(
+        actionName: keyof TabStopRequirementActions,
+    ): ActionCreatorValidator {
+        this.setupAction(
+            actionName,
+            this.tabStopRequirementActionMocks,
+            this.tabStopRequirementActionsContainerMock,
+        );
+        return this;
+    }
+
     public setupActionsOnInspectActions(actionName: keyof InspectActions): ActionCreatorValidator {
         this.setupAction(actionName, this.inspectActionsMock, this.inspectActionsContainerMock);
         return this;
@@ -1341,7 +1385,7 @@ class ActionCreatorValidator {
         this.verifyAllActionMocks();
 
         this.visualizationScanResultActionsContainerMock.verifyAll();
-
+        this.tabStopRequirementActionsContainerMock.verifyAll();
         this.notificationCreatorStrictMock.verifyAll();
         this.interpreterMock.verifyAll();
         this.detailsViewControllerStrictMock.verifyAll();
@@ -1353,6 +1397,7 @@ class ActionCreatorValidator {
     private verifyAllActionMocks(): void {
         this.verifyAllActions(this.visualizationActionMocks);
         this.verifyAllActions(this.visualizationScanResultActionMocks);
+        this.verifyAllActions(this.tabStopRequirementActionMocks);
         this.verifyAllActions(this.devToolsActionMocks);
         this.verifyAllActions(this.inspectActionsMock);
         this.verifyAllActions(this.detailsViewActionsMocks);

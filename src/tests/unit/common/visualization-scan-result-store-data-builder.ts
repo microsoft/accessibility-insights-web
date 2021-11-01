@@ -12,7 +12,12 @@ import { BaseDataBuilder } from './base-data-builder';
 export class VisualizationScanResultStoreDataBuilder extends BaseDataBuilder<VisualizationScanResultData> {
     constructor(generateUID?: () => 'abc') {
         super();
-        this.data = new VisualizationScanResultStore(null, null, generateUID).getDefaultState();
+        this.data = new VisualizationScanResultStore(
+            null,
+            null,
+            null,
+            generateUID,
+        ).getDefaultState();
     }
 
     public withTabStopsTabbedElements(
