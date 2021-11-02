@@ -14,11 +14,14 @@ import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import { TabStopRequirementStatus } from '../../common/types/store-data/visualization-scan-result-data';
 const messages = Messages.Visualizations.TabStops;
 
-export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {
+export class TabStopRequirementActionMessageCreator extends DevToolActionMessageCreator {
     public addTabStopInstance(requirementId: TabStopRequirementId, description: string): void {
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+
         const payload: AddTabStopInstancePayload = {
             requirementId,
             description,
+            telemetry,
         };
 
         this.dispatcher.dispatchMessage({
@@ -26,15 +29,19 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             payload,
         });
     }
+
     public updateTabStopInstance(
         requirementId: TabStopRequirementId,
         id: string,
         description: string,
     ): void {
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+
         const payload: UpdateTabStopInstancePayload = {
             requirementId,
             description,
             id,
+            telemetry,
         };
 
         this.dispatcher.dispatchMessage({
@@ -44,9 +51,11 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     }
 
     public removeTabStopInstance(requirementId: TabStopRequirementId, id: string): void {
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
         const payload: RemoveTabStopInstancePayload = {
             requirementId,
             id,
+            telemetry,
         };
 
         this.dispatcher.dispatchMessage({
@@ -59,9 +68,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         requirementId: TabStopRequirementId,
         status: TabStopRequirementStatus,
     ): void {
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+
         const payload: UpdateTabStopRequirementStatusPayload = {
             requirementId,
             status,
+            telemetry,
         };
 
         this.dispatcher.dispatchMessage({
