@@ -8,10 +8,10 @@ import {
     UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
 } from 'background/actions/action-payloads';
-import { TabStopRequirementStatus } from '../../common/types/store-data/visualization-scan-result-data';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
+import { TabStopRequirementStatus } from '../../common/types/store-data/visualization-scan-result-data';
 const messages = Messages.Visualizations.TabStops;
 
 export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator {

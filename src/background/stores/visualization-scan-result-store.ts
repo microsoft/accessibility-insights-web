@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { StoreNames } from 'common/stores/store-names';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
@@ -17,7 +18,6 @@ import {
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
 import { TabActions } from '../actions/tab-actions';
-import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
 export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {

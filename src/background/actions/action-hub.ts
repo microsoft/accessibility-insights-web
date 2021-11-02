@@ -3,10 +3,10 @@
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
-import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions'
-import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
+import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { AssessmentActions } from './assessment-actions';
 import { ContentActions } from './content-actions';
 import { DetailsViewActions } from './details-view-actions';
