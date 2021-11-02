@@ -46,18 +46,15 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                     return (
                         <TabStopsChoiceGroup
                             status={props.requirementState[item.id].status}
-                            onUndoClicked={ev =>
-                                tabStopsActionMessageCreator.onUndoClicked(ev, item.id)
-                            }
-                            onGroupChoiceChange={(ev, status) =>
+                            onUndoClicked={_ => tabStopsActionMessageCreator.onUndoClicked(item.id)}
+                            onGroupChoiceChange={(_, status) =>
                                 tabStopsActionMessageCreator.onRequirementStatusChange(
-                                    ev,
                                     item.id,
                                     status,
                                 )
                             }
-                            onAddFailureInstanceClicked={ev =>
-                                tabStopsActionMessageCreator.onAddFailureInstance(ev, item.id)
+                            onAddFailureInstanceClicked={_ =>
+                                tabStopsActionMessageCreator.onAddFailureInstance(item.id)
                             }
                         />
                     );

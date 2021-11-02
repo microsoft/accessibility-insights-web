@@ -74,15 +74,15 @@ describe('TabStopsRequirementsTable', () => {
         renderedProps.onAddFailureInstanceClicked(eventStub);
 
         tabStopsActionMessageCreatorMock.verify(
-            m => m.onUndoClicked(eventStub, actualRequirement.id),
+            m => m.onUndoClicked(actualRequirement.id),
             Times.once(),
         );
         tabStopsActionMessageCreatorMock.verify(
-            m => m.onRequirementStatusChange(eventStub, actualRequirement.id, 'fail'),
+            m => m.onRequirementStatusChange(actualRequirement.id, 'fail'),
             Times.once(),
         );
         tabStopsActionMessageCreatorMock.verify(
-            m => m.onAddFailureInstance(eventStub, actualRequirement.id),
+            m => m.onAddFailureInstance(actualRequirement.id),
             Times.once(),
         );
     });
