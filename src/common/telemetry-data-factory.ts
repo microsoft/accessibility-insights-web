@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 import { DictionaryStringTo } from '../types/common-types';
 import {
@@ -253,6 +254,14 @@ export class TelemetryDataFactory {
             source: TelemetryEventSource.DetailsView,
             selectedRequirement: requirement,
             selectedTest: VisualizationType[test],
+        };
+    }
+
+    public forTabStopRequirement(requirementId: TabStopRequirementId) {
+        return {
+            triggeredBy: TriggeredByNotApplicable,
+            source: TelemetryEventSource.DetailsView,
+            requirementId: requirementId,
         };
     }
 

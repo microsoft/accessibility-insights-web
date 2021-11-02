@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { Logger } from 'common/logging/logger';
@@ -84,6 +85,12 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
+        const tabStopRequirementActionCreator = new TabStopRequirementActionCreator(
+            interpreter,
+            actionsHub.tabStopRequirementActions,
+            this.telemetryEventHandler,
+        );
+
         const tabActionCreator = new TabActionCreator(
             interpreter,
             actionsHub.tabActions,
@@ -152,6 +159,7 @@ export class TabContextFactory {
         inspectActionsCreator.registerCallbacks();
         pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
+        tabStopRequirementActionCreator.registerCallbacks();
         popupActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
