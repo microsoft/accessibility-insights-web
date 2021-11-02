@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
-import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
