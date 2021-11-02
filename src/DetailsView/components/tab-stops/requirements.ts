@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
+import {
+    TabStopRequirementContent,
+    TabStopRequirementId,
+    TabStopRequirementInfo,
+} from 'types/tab-stop-requirement-info';
 
 export const requirements: TabStopRequirementInfo = {
     'keyboard-navigation': {
@@ -28,3 +32,12 @@ export const requirements: TabStopRequirementInfo = {
         description: 'Input focus does not move unexpectedly without the user initiating it.',
     },
 };
+
+export const requirementsList = Object.keys(requirements).map(
+    (requirementId: TabStopRequirementId) => {
+        return {
+            ...(requirements[requirementId] as TabStopRequirementContent),
+            id: requirementId,
+        };
+    },
+);

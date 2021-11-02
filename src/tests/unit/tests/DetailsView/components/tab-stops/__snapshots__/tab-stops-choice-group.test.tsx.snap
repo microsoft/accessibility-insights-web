@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsChoiceGroup render options with no label 1`] = `<React.Fragment />`;
+
+exports[`TabStopsChoiceGroup render options with no label 2`] = `<React.Fragment />`;
+
+exports[`TabStopsChoiceGroup render with fail status 1`] = `
+<React.Fragment>
+  <div
+    className="tabStopsChoiceGroup"
+  >
+    <StyledChoiceGroupBase
+      className="fail"
+      componentRef={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "ariaLabel": "Pass",
+            "key": "pass",
+            "onRenderLabel": [Function],
+            "text": "Pass",
+          },
+          Object {
+            "ariaLabel": "Fail",
+            "key": "fail",
+            "onRenderLabel": [Function],
+            "text": "Fail",
+          },
+        ]
+      }
+      selectedKey="fail"
+    />
+  </div>
+  <div>
+    <React.Fragment>
+      <StyledLinkBase
+        className="undoButton"
+        onClick={[Function]}
+      >
+        <StyledIconBase
+          ariaLabel="undo"
+          className="undoButtonIcon"
+          iconName="undo"
+        />
+      </StyledLinkBase>
+      <StyledLinkBase
+        className="undoButton"
+        onClick={[Function]}
+      >
+        <StyledIconBase
+          ariaLabel="add failure instance"
+          iconName="add"
+        />
+      </StyledLinkBase>
+    </React.Fragment>
+  </div>
+</React.Fragment>
+`;
+
+exports[`TabStopsChoiceGroup render with pass status 1`] = `
+<React.Fragment>
+  <div
+    className="tabStopsChoiceGroup"
+  >
+    <StyledChoiceGroupBase
+      className="pass"
+      componentRef={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "ariaLabel": "Pass",
+            "key": "pass",
+            "onRenderLabel": [Function],
+            "text": "Pass",
+          },
+          Object {
+            "ariaLabel": "Fail",
+            "key": "fail",
+            "onRenderLabel": [Function],
+            "text": "Fail",
+          },
+        ]
+      }
+      selectedKey="pass"
+    />
+  </div>
+  <div>
+    <StyledLinkBase
+      className="undoButton"
+      onClick={[Function]}
+    >
+      <StyledIconBase
+        ariaLabel="undo"
+        className="undoButtonIcon"
+        iconName="undo"
+      />
+    </StyledLinkBase>
+  </div>
+</React.Fragment>
+`;
+
+exports[`TabStopsChoiceGroup render with unknown status 1`] = `
+<React.Fragment>
+  <div
+    className="tabStopsChoiceGroup"
+  >
+    <StyledChoiceGroupBase
+      className="unknown"
+      componentRef={[Function]}
+      onChange={[Function]}
+      options={
+        Array [
+          Object {
+            "ariaLabel": "Pass",
+            "key": "pass",
+            "onRenderLabel": [Function],
+            "text": "Pass",
+          },
+          Object {
+            "ariaLabel": "Fail",
+            "key": "fail",
+            "onRenderLabel": [Function],
+            "text": "Fail",
+          },
+        ]
+      }
+      selectedKey="unknown"
+    />
+  </div>
+  <div />
+</React.Fragment>
+`;
