@@ -12,8 +12,10 @@ export const TabStopRequirementIds = [
 export type TabStopRequirementId = typeof TabStopRequirementIds[number];
 
 export type TabStopRequirementInfo = {
-    [requirementId in TabStopRequirementId]: {
-        name: string;
-        description: string;
-    };
+    [requirementId in TabStopRequirementId]: TabStopRequirementContent;
+};
+
+export type TabStopRequirementContent = {
+    name: string;
+    description: string;
 };

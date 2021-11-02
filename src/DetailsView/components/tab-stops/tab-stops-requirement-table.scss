@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+.requirement-column {
+    font-size: 14px;
+}
+
+.pass-fail-column-cell {
+    display: flex;
+    align-items: center;
+}
+
+.requirement-name {
+    font-weight: 600;
+}
