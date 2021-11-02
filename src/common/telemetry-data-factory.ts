@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TabStopRequirementStatus } from 'common/types/store-data/visualization-scan-result-data';
 import * as React from 'react';
 import { ReportExportServiceKey } from 'report-export/types/report-export-service';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
