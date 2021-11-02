@@ -48,7 +48,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         </li>
                         <li>
                             Use the arrow keys to navigate between the focusable elements within a
-                            composite control.=
+                            composite control.
                         </li>
                     </ol>
                 </li>
@@ -56,24 +56,14 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         );
 
         const selectedTest = props.selectedTest;
-
-        const stepsText = (): string => {
-            const fastPassProvider = createFastPassProviderWithFeatureFlags(
-                props.featureFlagStoreData,
-            );
-            return fastPassProvider.getStepsText(selectedTest);
-        };
-
-        const givenProps = {
-            title: displayableData.title,
-            stepsText: stepsText(),
-        };
+        const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
+        const stepsText = fastPassProvider.getStepsText(selectedTest);
 
         return (
             <div className={styles.staticContentInDetailsView}>
                 <h1>
-                    {givenProps.title}
-                    {` ${givenProps.stepsText} `}
+                    {displayableData.title}
+                    {` ${stepsText} `}
                 </h1>
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
