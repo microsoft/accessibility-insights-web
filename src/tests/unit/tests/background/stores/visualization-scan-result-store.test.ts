@@ -8,6 +8,7 @@ import {
     UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { TabActions } from 'background/actions/tab-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -424,7 +425,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('updateTabStopsRequirementStatus')
+        createStoreTesterForTabStopRequirementActions('updateTabStopsRequirementStatus')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -448,7 +449,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -482,7 +483,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -514,7 +515,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .withTabStopRequirement(requirement)
             .build();
 
-        createStoreTesterForVisualizationScanResultActions('addTabStopInstance')
+        createStoreTesterForTabStopRequirementActions('addTabStopInstance')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -523,7 +524,12 @@ describe('VisualizationScanResultStoreTest', () => {
         actionName: keyof VisualizationScanResultActions,
     ): StoreTester<VisualizationScanResultData, VisualizationScanResultActions> {
         const factory = (actions: VisualizationScanResultActions) =>
-            new VisualizationScanResultStore(actions, new TabActions(), generateUIDStub);
+            new VisualizationScanResultStore(
+                actions,
+                new TabActions(),
+                new TabStopRequirementActions(),
+                generateUIDStub,
+            );
 
         return new StoreTester(VisualizationScanResultActions, actionName, factory);
     }
@@ -535,9 +541,24 @@ describe('VisualizationScanResultStoreTest', () => {
             new VisualizationScanResultStore(
                 new VisualizationScanResultActions(),
                 actions,
+                new TabStopRequirementActions(),
                 generateUIDStub,
             );
 
         return new StoreTester(TabActions, actionName, factory);
+    }
+
+    function createStoreTesterForTabStopRequirementActions(
+        actionName: keyof TabStopRequirementActions,
+    ): StoreTester<VisualizationScanResultData, TabStopRequirementActions> {
+        const factory = (actions: TabStopRequirementActions) =>
+            new VisualizationScanResultStore(
+                new VisualizationScanResultActions(),
+                new TabActions(),
+                actions,
+                generateUIDStub,
+            );
+
+        return new StoreTester(TabStopRequirementActions, actionName, factory);
     }
 });

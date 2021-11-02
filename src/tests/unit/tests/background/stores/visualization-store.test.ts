@@ -244,25 +244,33 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onEnableHeadings when headings is disable', () => {
-        const actionName = 'enableVisualization';
-        const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.Headings,
-        };
+    describe('onEnableHeadings with headings already enabled or disabled', () => {
+        test.each`
+            initialDataBuilder
+            ${new VisualizationStoreDataBuilder().withHeadingsEnable()}
+            ${new VisualizationStoreDataBuilder()}
+        `(
+            'case enabled = $initialDataBuilder.data.tests.adhoc.headings.enabled',
+            ({ initialDataBuilder }) => {
+                const actionName = 'enableVisualization';
+                const payload: ToggleActionPayload = {
+                    test: VisualizationType.Headings,
+                };
 
-        const initialState = dataBuilder.build();
-        const expectedState = dataBuilder
-            .withHeadingsEnable()
-            .with('scanning', 'headings')
-            .with('selectedAdhocDetailsView', VisualizationType.Issues)
-            .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-            .with('injectingRequested', true)
-            .build();
+                const initialState = initialDataBuilder.build();
+                const expectedState = new VisualizationStoreDataBuilder()
+                    .withHeadingsEnable()
+                    .with('scanning', 'headings')
+                    .with('selectedAdhocDetailsView', VisualizationType.Issues)
+                    .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
+                    .with('injectingRequested', true)
+                    .build();
 
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+                createStoreTesterForVisualizationActions(actionName)
+                    .withActionParam(payload)
+                    .testListenerToBeCalledOnce(initialState, expectedState);
+            },
+        );
     });
 
     test('onEnableHeadingsAssessment without scan', () => {
@@ -279,21 +287,6 @@ describe('VisualizationStoreTest ', () => {
             .with('selectedAdhocDetailsView', VisualizationType.Issues)
             .with('injectingRequested', true)
             .build();
-
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('onEnableHeadings when headings is already enable', () => {
-        const actionName = 'enableVisualization';
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.Headings,
-        };
-
-        const initialState = new VisualizationStoreDataBuilder().withHeadingsEnable().build();
-
-        const expectedState = new VisualizationStoreDataBuilder().withHeadingsEnable().build();
 
         createStoreTesterForVisualizationActions(actionName)
             .withActionParam(payload)
@@ -415,37 +408,32 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onEnableTabStops when TabStops is disable', () => {
-        const actionName = 'enableVisualization';
-        const dataBuilder = new VisualizationStoreDataBuilder();
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.TabStops,
-        };
-        const initialState = dataBuilder.build();
-        const expectedState = dataBuilder
-            .withTabStopsEnable()
-            .with('injectingRequested', true)
-            .with('scanning', 'tabStops')
-            .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-            .build();
+    describe('onEnableTabStops with TabStops already enabled or disabled', () => {
+        test.each`
+            initialDataBuilder
+            ${new VisualizationStoreDataBuilder().withTabStopsEnable()}
+            ${new VisualizationStoreDataBuilder()}
+        `(
+            'case enabled = $initialDataBuilder.data.tests.adhoc.tabStops.enabled',
+            ({ initialDataBuilder }) => {
+                const actionName = 'enableVisualization';
+                const payload: ToggleActionPayload = {
+                    test: VisualizationType.TabStops,
+                };
 
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
+                const initialState = initialDataBuilder.build();
+                const expectedState = new VisualizationStoreDataBuilder()
+                    .withTabStopsEnable()
+                    .with('injectingRequested', true)
+                    .with('scanning', 'tabStops')
+                    .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
+                    .build();
 
-    test('onEnableTabStops when TabStops is already enable', () => {
-        const actionName = 'enableVisualization';
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.TabStops,
-        };
-        const initialState = new VisualizationStoreDataBuilder().withTabStopsEnable().build();
-
-        const expectedState = new VisualizationStoreDataBuilder().withTabStopsEnable().build();
-
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+                createStoreTesterForVisualizationActions(actionName)
+                    .withActionParam(payload)
+                    .testListenerToBeCalledOnce(initialState, expectedState);
+            },
+        );
     });
 
     test('OnDisableTabStops when TabStops is enable', () => {
@@ -497,36 +485,32 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('onEnableLandmarks when landmarks is disable', () => {
-        const actionName = 'enableVisualization';
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.Landmarks,
-        };
-        const initialState = new VisualizationStoreDataBuilder().build();
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withLandmarksEnable()
-            .with('scanning', 'landmarks')
-            .with('injectingRequested', true)
-            .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-            .build();
+    describe('onEnableLandmarks with landmarks already enabled or disabled', () => {
+        test.each`
+            initialDataBuilder
+            ${new VisualizationStoreDataBuilder().withLandmarksEnable()}
+            ${new VisualizationStoreDataBuilder()}
+        `(
+            'case enabled = $initialDataBuilder.data.tests.adhoc.landmarks.enabled',
+            ({ initialDataBuilder }) => {
+                const actionName = 'enableVisualization';
+                const payload: ToggleActionPayload = {
+                    test: VisualizationType.Landmarks,
+                };
 
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
+                const initialState = initialDataBuilder.build();
+                const expectedState = new VisualizationStoreDataBuilder()
+                    .withLandmarksEnable()
+                    .with('scanning', 'landmarks')
+                    .with('injectingRequested', true)
+                    .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
+                    .build();
 
-    test('onEnableLandmarks when landmarks is already enable', () => {
-        const actionName = 'enableVisualization';
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.Landmarks,
-        };
-        const initialState = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
-
-        const expectedState = new VisualizationStoreDataBuilder().withLandmarksEnable().build();
-
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+                createStoreTesterForVisualizationActions(actionName)
+                    .withActionParam(payload)
+                    .testListenerToBeCalledOnce(initialState, expectedState);
+            },
+        );
     });
 
     test('onDisableLandmarks when landmarks is enable', () => {
@@ -557,40 +541,33 @@ describe('VisualizationStoreTest ', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    test('onEnableIssues when issues is disable', () => {
-        const actionName = 'enableVisualization';
+    describe('onEnableIssues with issues already enabled or disabled', () => {
+        test.each`
+            initialDataBuilder
+            ${new VisualizationStoreDataBuilder().withIssuesEnable()}
+            ${new VisualizationStoreDataBuilder()}
+        `(
+            'case enabled = $initialDataBuilder.data.tests.adhoc.issues.enabled',
+            ({ initialDataBuilder }) => {
+                const actionName = 'enableVisualization';
+                const payload: ToggleActionPayload = {
+                    test: VisualizationType.Issues,
+                };
 
-        const initialState = new VisualizationStoreDataBuilder().build();
+                const initialState = initialDataBuilder.build();
+                const expectedState = new VisualizationStoreDataBuilder()
+                    .withIssuesEnable()
+                    .with('scanning', 'issues')
+                    .with('injectingRequested', true)
+                    .with('selectedAdhocDetailsView', VisualizationType.Issues)
+                    .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
+                    .build();
 
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.Issues,
-        };
-
-        const expectedState = new VisualizationStoreDataBuilder()
-            .withIssuesEnable()
-            .with('scanning', 'issues')
-            .with('injectingRequested', true)
-            .with('selectedAdhocDetailsView', VisualizationType.Issues)
-            .with('selectedDetailsViewPivot', DetailsViewPivotType.fastPass)
-            .build();
-
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('onEnableIssues when issues is already enable', () => {
-        const actionName = 'enableVisualization';
-        const payload: ToggleActionPayload = {
-            test: VisualizationType.Issues,
-        };
-        const initialState = new VisualizationStoreDataBuilder().withIssuesEnable().build();
-
-        const expectedState = new VisualizationStoreDataBuilder().withIssuesEnable().build();
-
-        createStoreTesterForVisualizationActions(actionName)
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+                createStoreTesterForVisualizationActions(actionName)
+                    .withActionParam(payload)
+                    .testListenerToBeCalledOnce(initialState, expectedState);
+            },
+        );
     });
 
     test('onDisableIssues when issues is enable', () => {

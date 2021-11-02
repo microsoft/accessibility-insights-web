@@ -9,6 +9,7 @@ import { InspectActions } from 'background/actions/inspect-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { TabActions } from 'background/actions/tab-actions';
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { VisualizationActions } from 'background/actions/visualization-actions';
 import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 
@@ -31,6 +32,7 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.devToolActions).toBeInstanceOf(DevToolActions);
     expect(hub.scopingActions).toBeInstanceOf(ScopingActions);
     expect(hub.tabActions).toBeInstanceOf(TabActions);
+    expect(hub.tabStopRequirementActions).toBeInstanceOf(TabStopRequirementActions);
     expect(hub.visualizationActions).toBeInstanceOf(VisualizationActions);
     expect(hub.visualizationScanResultActions).toBeInstanceOf(VisualizationScanResultActions);
     expect(hub.inspectActions).toBeInstanceOf(InspectActions);

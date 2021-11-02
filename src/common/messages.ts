@@ -19,6 +19,10 @@ export const Messages = {
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,
             RecordingCompleted: `${messagePrefix}/visualization/tab-stops/completed`,
             TerminateScan: `${messagePrefix}/visualization/tab-stops/terminated`,
+            UpdateTabStopsRequirementStatus: `${messagePrefix}/visualization/tab-stops/requirement-updated`,
+            AddTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-added`,
+            UpdateTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-updated`,
+            RemoveTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-removed`,
         },
         Issues: {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
