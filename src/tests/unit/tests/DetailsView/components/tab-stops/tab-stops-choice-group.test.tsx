@@ -1,19 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import {
+    ITabStopsChoiceGroup,
     onAddFailureInstanceClicked,
     onGroupChoiceChange,
     onUndoClicked,
     TabStopsChoiceGroup,
     TabStopsChoiceGroupsProps,
-    ITabStopsChoiceGroup,
 } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import { shallow } from 'enzyme';
 import { ChoiceGroup, IChoiceGroup, Link } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('TabStopsChoiceGroup', () => {
