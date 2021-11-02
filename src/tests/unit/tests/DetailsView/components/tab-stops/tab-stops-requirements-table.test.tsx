@@ -3,8 +3,8 @@
 
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
-import { TabStopsActionMessageCreator } from 'DetailsView/components/tab-stops/tab-stops-action-message-creator';
 import { TabStopsChoiceGroupsProps } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import {
     TabStopsRequirementsTable,
@@ -21,19 +21,24 @@ import { TabStopRequirementContent } from 'types/tab-stop-requirement-info';
 describe('TabStopsRequirementsTable', () => {
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
-    let tabStopsActionMessageCreatorMock: IMock<TabStopsActionMessageCreator>;
+    let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
+    let addFailureInstanceForRequirementMock: IMock<(requirementId: string) => void>;
     let requirementContentStub: {
         id: string;
     } & TabStopRequirementContent;
 
     beforeEach(() => {
-        tabStopsActionMessageCreatorMock = Mock.ofType<TabStopsActionMessageCreator>();
+        addFailureInstanceForRequirementMock = Mock.ofType<(requirementId: string) => void>();
+        tabStopsRequirementActionMessageCreatorMock =
+            Mock.ofType<TabStopRequirementActionMessageCreator>();
         requirementState = new VisualizationScanResultStoreDataBuilder().build().tabStops
             .requirements;
         props = {
             deps: {
-                tabStopsActionMessageCreator: tabStopsActionMessageCreatorMock.object,
+                tabStopsRequirementActionMessageCreator:
+                    tabStopsRequirementActionMessageCreatorMock.object,
             },
+            addFailureInstanceForRequirement: addFailureInstanceForRequirementMock.object,
             requirementState: requirementState,
         };
         requirementContentStub = {
@@ -73,17 +78,14 @@ describe('TabStopsRequirementsTable', () => {
         renderedProps.onGroupChoiceChange(eventStub, 'fail');
         renderedProps.onAddFailureInstanceClicked(eventStub);
 
-        tabStopsActionMessageCreatorMock.verify(
-            m => m.onUndoClicked(actualRequirement.id),
+        tabStopsRequirementActionMessageCreatorMock.verify(
+            m => m.undoStatusForRequirement(actualRequirement.id),
             Times.once(),
         );
-        tabStopsActionMessageCreatorMock.verify(
-            m => m.onRequirementStatusChange(actualRequirement.id, 'fail'),
+        tabStopsRequirementActionMessageCreatorMock.verify(
+            m => m.updateTabStopRequirementStatus(actualRequirement.id, 'fail'),
             Times.once(),
         );
-        tabStopsActionMessageCreatorMock.verify(
-            m => m.onAddFailureInstance(actualRequirement.id),
-            Times.once(),
-        );
+        addFailureInstanceForRequirementMock.verify(m => m(actualRequirement.id), Times.once());
     });
 });

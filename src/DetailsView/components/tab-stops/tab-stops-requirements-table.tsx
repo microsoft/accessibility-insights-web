@@ -3,8 +3,8 @@
 
 import { NamedFC } from 'common/react/named-fc';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
-import { TabStopsActionMessageCreator } from 'DetailsView/components/tab-stops/tab-stops-action-message-creator';
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as styles from 'DetailsView/components/tab-stops/tab-stops-requirement-table.scss';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
@@ -12,18 +12,19 @@ import * as React from 'react';
 
 export interface TabStopsRequirementsTableProps {
     deps: TabStopsRequirementsTableDeps;
-    requirementState?: TabStopRequirementState;
+    requirementState: TabStopRequirementState;
+    addFailureInstanceForRequirement: (requirementId: string) => void;
 }
 
 export type TabStopsRequirementsTableDeps = {
-    tabStopsActionMessageCreator?: TabStopsActionMessageCreator;
+    tabStopsRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 };
 
 export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>(
     'TabStopsRequirementsTable',
     props => {
-        const { deps } = props;
-        const { tabStopsActionMessageCreator } = deps;
+        const { deps, addFailureInstanceForRequirement } = props;
+        const { tabStopsRequirementActionMessageCreator } = deps;
         const columns: IColumn[] = [
             {
                 name: 'Requirement',
@@ -46,15 +47,19 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                     return (
                         <TabStopsChoiceGroup
                             status={props.requirementState[item.id].status}
-                            onUndoClicked={_ => tabStopsActionMessageCreator.onUndoClicked(item.id)}
+                            onUndoClicked={_ =>
+                                tabStopsRequirementActionMessageCreator.undoStatusForRequirement(
+                                    item.id,
+                                )
+                            }
                             onGroupChoiceChange={(_, status) =>
-                                tabStopsActionMessageCreator.onRequirementStatusChange(
+                                tabStopsRequirementActionMessageCreator.updateTabStopRequirementStatus(
                                     item.id,
                                     status,
                                 )
                             }
                             onAddFailureInstanceClicked={_ =>
-                                tabStopsActionMessageCreator.onAddFailureInstance(item.id)
+                                addFailureInstanceForRequirement(item.id)
                             }
                         />
                     );

@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { TabStopRequirementContent, TabStopRequirementInfo } from 'types/tab-stop-requirement-info';
+import {
+    TabStopRequirementContent,
+    TabStopRequirementId,
+    TabStopRequirementInfo,
+} from 'types/tab-stop-requirement-info';
 
 export const requirements: TabStopRequirementInfo = {
     'keyboard-navigation': {
@@ -29,9 +33,11 @@ export const requirements: TabStopRequirementInfo = {
     },
 };
 
-export const requirementsList = Object.keys(requirements).map(requirementId => {
-    return {
-        ...(requirements[requirementId] as TabStopRequirementContent),
-        id: requirementId,
-    };
-});
+export const requirementsList = Object.keys(requirements).map(
+    (requirementId: TabStopRequirementId) => {
+        return {
+            ...(requirements[requirementId] as TabStopRequirementContent),
+            id: requirementId,
+        };
+    },
+);

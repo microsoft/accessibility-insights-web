@@ -3,10 +3,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    UpdateTabStopRequirementStatusPayload,
     AddTabStopInstancePayload,
-    UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
+    UpdateTabStopInstancePayload,
+    UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
@@ -81,4 +81,6 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
             payload,
         });
     }
+
+    public undoStatusForRequirement(_: TabStopRequirementId): void {}
 }
