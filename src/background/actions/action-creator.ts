@@ -23,15 +23,11 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ActionHub } from './action-hub';
 import {
     AddTabbedElementPayload,
-    AddTabStopInstancePayload,
     BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    RemoveTabStopInstancePayload,
     RescanVisualizationPayload,
     ToggleActionPayload,
-    UpdateTabStopInstancePayload,
-    UpdateTabStopRequirementStatusPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
 import { InspectActions } from './inspect-actions';
@@ -53,7 +49,6 @@ export class ActionCreator {
     private cardSelectionActions: CardSelectionActions;
     private unifiedScanResultActions: UnifiedScanResultActions;
     private sidePanelActions: SidePanelActions;
-    private tabStopRequirementActions: TabStopRequirementActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -71,7 +66,6 @@ export class ActionCreator {
         this.cardSelectionActions = actionHub.cardSelectionActions;
         this.unifiedScanResultActions = actionHub.scanResultActions;
         this.sidePanelActions = actionHub.sidePanelActions;
-        this.tabStopRequirementActions = actionHub.tabStopRequirementActions;
     }
 
     public registerCallbacks(): void {
@@ -104,26 +98,6 @@ export class ActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             this.getScanResultsCurrentState,
-        );
-
-        this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.TabStops.UpdateTabStopsRequirementStatus,
-            this.onUpdateTabStopsRequirementStatus,
-        );
-
-        this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.TabStops.AddTabStopInstance,
-            this.onAddTabStopInstance,
-        );
-
-        this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.TabStops.UpdateTabStopInstance,
-            this.onUpdateTabStopInstance,
-        );
-
-        this.interpreter.registerTypeToPayloadCallback(
-            visualizationMessages.TabStops.RemoveTabStopInstance,
-            this.onRemoveTabStopInstance,
         );
 
         this.interpreter.registerTypeToPayloadCallback(
@@ -260,40 +234,6 @@ export class ActionCreator {
 
     private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
         this.visualizationScanResultActions.addTabbedElement.invoke(payload);
-    };
-
-    private onUpdateTabStopsRequirementStatus = (
-        payload: UpdateTabStopRequirementStatusPayload,
-    ): void => {
-        this.tabStopRequirementActions.updateTabStopsRequirementStatus.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(
-            TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
-            payload,
-        );
-    };
-
-    private onAddTabStopInstance = (payload: AddTabStopInstancePayload): void => {
-        this.tabStopRequirementActions.addTabStopInstance.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(
-            TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
-            payload,
-        );
-    };
-
-    private onUpdateTabStopInstance = (payload: UpdateTabStopInstancePayload): void => {
-        this.tabStopRequirementActions.updateTabStopInstance.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(
-            TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_INSTANCE,
-            payload,
-        );
-    };
-
-    private onRemoveTabStopInstance = (payload: RemoveTabStopInstancePayload): void => {
-        this.tabStopRequirementActions.removeTabStopInstance.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(
-            TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
-            payload,
-        );
     };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {

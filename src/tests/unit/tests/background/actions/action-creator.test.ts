@@ -4,16 +4,12 @@ import { ActionCreator } from 'background/actions/action-creator';
 import { ActionHub } from 'background/actions/action-hub';
 import {
     AddTabbedElementPayload,
-    AddTabStopInstancePayload,
     BaseActionPayload,
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
-    RemoveTabStopInstancePayload,
     RescanVisualizationPayload,
     ToggleActionPayload,
-    UpdateTabStopInstancePayload,
-    UpdateTabStopRequirementStatusPayload,
     VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
@@ -460,104 +456,6 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Visualizations.TabStops.TabbedElementAdded, args)
             .setupActionOnVisualizationScanResultActions(actionName)
             .setupVisualizationScanResultActionWithInvokeParameter(actionName, tabbedElement);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for update tab stops requirement status', () => {
-        const requirementStatus: UpdateTabStopRequirementStatusPayload = {
-            requirementId: 'focus-indicator',
-            status: 'pass',
-        };
-
-        const args = [requirementStatus];
-        const actionName = 'updateTabStopsRequirementStatus';
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(
-                Messages.Visualizations.TabStops.UpdateTabStopsRequirementStatus,
-                args,
-            )
-            .setupActionOnTabStopRequirementActions(actionName)
-            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementStatus)
-            .setupTelemetrySend(
-                TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
-                requirementStatus,
-                null,
-            );
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for tab stops requirement instance added', () => {
-        const requirementInstance: AddTabStopInstancePayload = {
-            requirementId: 'focus-indicator',
-            description: 'testing',
-        };
-
-        const args = [requirementInstance];
-        const actionName = 'addTabStopInstance';
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.TabStops.AddTabStopInstance, args)
-            .setupActionOnTabStopRequirementActions(actionName)
-            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementInstance)
-            .setupTelemetrySend(
-                TelemetryEvents.ADD_TABSTOPS_REQUIREMENT_INSTANCE,
-                requirementInstance,
-                null,
-            );
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for tab stops requirement instance updated', () => {
-        const requirementInstance: UpdateTabStopInstancePayload = {
-            requirementId: 'focus-indicator',
-            id: 'abc',
-            description: 'new description',
-        };
-
-        const args = [requirementInstance];
-        const actionName = 'updateTabStopInstance';
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.TabStops.UpdateTabStopInstance, args)
-            .setupActionOnTabStopRequirementActions(actionName)
-            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementInstance)
-            .setupTelemetrySend(
-                TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_INSTANCE,
-                requirementInstance,
-                null,
-            );
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for tab stops requirement instance removed', () => {
-        const requirementInstance: RemoveTabStopInstancePayload = {
-            requirementId: 'focus-indicator',
-            id: 'abc',
-        };
-
-        const args = [requirementInstance];
-        const actionName = 'removeTabStopInstance';
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.TabStops.RemoveTabStopInstance, args)
-            .setupActionOnTabStopRequirementActions(actionName)
-            .setupTabStopRequirementActionWithInvokeParameter(actionName, requirementInstance)
-            .setupTelemetrySend(
-                TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
-                requirementInstance,
-                null,
-            );
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
