@@ -20,8 +20,6 @@ export interface AdhocTabStopsTestViewProps {
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
     'AdhocTabStopsTestView',
     props => {
-        const displayableData = props.configuration.displayableData;
-
         const description = (
             <p>
                 <Markup.Emphasis>
@@ -56,6 +54,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         );
 
         const selectedTest = props.selectedTest;
+        const displayableData = props.configuration.displayableData;
         const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
         const stepsText = fastPassProvider.getStepsText(selectedTest);
 
