@@ -5,7 +5,8 @@ exports[`AdhocTabStopsTestView renders with content 1`] = `
   className="staticContentInDetailsView"
 >
   <h1>
-    Tab stops Step 2 of 3
+    test title
+     Step 0 of 3 
   </h1>
   <p>
     <Emphasis>
@@ -35,7 +36,7 @@ exports[`AdhocTabStopsTestView renders with content 1`] = `
                
             </li>
             <li>
-              Use the arrow keys to navigate between the focusable elements within a composite control.
+              Use the arrow keys to navigate between the focusable elements within a composite control.=
             </li>
           </ol>
         </li>

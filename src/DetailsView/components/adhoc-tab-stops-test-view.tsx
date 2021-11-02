@@ -1,18 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import * as styles from 'DetailsView/components/static-content-common.scss';
+import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 
-export interface AdhocTabStopsTestViewProps {}
+export interface AdhocTabStopsTestViewProps {
+    configuration: VisualizationConfiguration;
+    featureFlagStoreData: FeatureFlagStoreData;
+    selectedTest: VisualizationType;
+}
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
     'AdhocTabStopsTestView',
     props => {
-        const title = <h1>Tab stops Step 2 of 3</h1>;
+        const displayableData = props.configuration.displayableData;
 
         const description = (
             <p>
@@ -40,16 +48,33 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                         </li>
                         <li>
                             Use the arrow keys to navigate between the focusable elements within a
-                            composite control.
+                            composite control.=
                         </li>
                     </ol>
                 </li>
             </ol>
         );
 
+        const selectedTest = props.selectedTest;
+
+        const stepsText = (): string => {
+            const fastPassProvider = createFastPassProviderWithFeatureFlags(
+                props.featureFlagStoreData,
+            );
+            return fastPassProvider.getStepsText(selectedTest);
+        };
+
+        const givenProps = {
+            title: displayableData.title,
+            stepsText: stepsText(),
+        };
+
         return (
             <div className={styles.staticContentInDetailsView}>
-                {title}
+                <h1>
+                    {givenProps.title}
+                    {` ${givenProps.stepsText} `}
+                </h1>
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
             </div>
