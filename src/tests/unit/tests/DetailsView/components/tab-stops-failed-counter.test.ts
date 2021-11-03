@@ -1,4 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
