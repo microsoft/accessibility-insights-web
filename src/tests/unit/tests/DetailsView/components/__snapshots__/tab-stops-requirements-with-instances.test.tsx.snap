@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsRequirementsWithInstances renders 1`] = `
+<div
+  className="ruleDetailsGroup"
+>
+  <CollapsibleControlStub
+    buttonAriaLabel="keyboard-navigation 1 Failed test requirement description 1"
+    containerAutomationId="tab-stops-results-group"
+    containerClassName="collapsibleRuleDetailsGroup"
+    content={
+      <TabStopsRequirementInstancesCollapsibleContent
+        instances={
+          Array [
+            Object {
+              "description": "test desc 1",
+              "id": "test-id-1",
+            },
+          ]
+        }
+      />
+    }
+    deps={
+      Object {
+        "collapsibleControl": [Function],
+      }
+    }
+    header={
+      <TabStopsMinimalRequirementHeader
+        requirement={
+          Object {
+            "description": "test requirement description 1",
+            "id": "keyboard-navigation",
+            "instances": Array [
+              Object {
+                "description": "test desc 1",
+                "id": "test-id-1",
+              },
+            ],
+            "isExpanded": false,
+            "name": "test requirement name 1",
+          }
+        }
+      />
+    }
+    headingLevel={3}
+    id="keyboard-navigation"
+    isExpanded={false}
+    onExpandToggle={[Function]}
+  />
+  <CollapsibleControlStub
+    buttonAriaLabel="keybaord-traps 1 Failed test requirement description 2"
+    containerAutomationId="tab-stops-results-group"
+    containerClassName="collapsibleRuleDetailsGroup"
+    content={
+      <TabStopsRequirementInstancesCollapsibleContent
+        instances={
+          Array [
+            Object {
+              "description": "test desc 2",
+              "id": "test-id-2",
+            },
+          ]
+        }
+      />
+    }
+    deps={
+      Object {
+        "collapsibleControl": [Function],
+      }
+    }
+    header={
+      <TabStopsMinimalRequirementHeader
+        requirement={
+          Object {
+            "description": "test requirement description 2",
+            "id": "keybaord-traps",
+            "instances": Array [
+              Object {
+                "description": "test desc 2",
+                "id": "test-id-2",
+              },
+            ],
+            "isExpanded": false,
+            "name": "test requirement name 2",
+          }
+        }
+      />
+    }
+    headingLevel={3}
+    id="keybaord-traps"
+    isExpanded={false}
+    onExpandToggle={[Function]}
+  />
+</div>
+`;

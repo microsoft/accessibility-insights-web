@@ -7,6 +7,8 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
+    ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from './action-payloads';
@@ -26,6 +28,11 @@ export class TabStopRequirementActionCreator {
         );
 
         this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.TabStops.ResetTabStopsRequirementStatus,
+            this.onResetTabStopsRequirementStatus,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.TabStops.AddTabStopInstance,
             this.onAddTabStopInstance,
         );
@@ -39,6 +46,11 @@ export class TabStopRequirementActionCreator {
             Messages.Visualizations.TabStops.RemoveTabStopInstance,
             this.onRemoveTabStopInstance,
         );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            this.onRequirementExpansionToggled,
+        );
     }
 
     private onUpdateTabStopsRequirementStatus = (
@@ -47,6 +59,16 @@ export class TabStopRequirementActionCreator {
         this.tabStopRequirementActions.updateTabStopsRequirementStatus.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
+            payload,
+        );
+    };
+
+    private onResetTabStopsRequirementStatus = (
+        payload: ResetTabStopRequirementStatusPayload,
+    ): void => {
+        this.tabStopRequirementActions.resetTabStopRequirementStatus.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(
+            TelemetryEvents.RESET_TABSTOPS_REQUIREMENT_STATUS,
             payload,
         );
     };
@@ -73,5 +95,11 @@ export class TabStopRequirementActionCreator {
             TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
             payload,
         );
+    };
+
+    private onRequirementExpansionToggled = (
+        payload: ToggleTabStopRequirementExpandPayload,
+    ): void => {
+        this.tabStopRequirementActions.toggleTabStopRequirementExpand.invoke(payload);
     };
 }

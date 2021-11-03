@@ -6,7 +6,10 @@ import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { AdhocTabStopsTestView } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import {
+    AdhocTabStopsTestView,
+    AdhocTabStopsTestViewDeps,
+} from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import * as React from 'react';
 
@@ -34,7 +37,8 @@ import { TestViewDeps } from './test-view';
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & TestViewDeps &
-    OverviewContainerDeps;
+    OverviewContainerDeps &
+    AdhocTabStopsTestViewDeps;
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;

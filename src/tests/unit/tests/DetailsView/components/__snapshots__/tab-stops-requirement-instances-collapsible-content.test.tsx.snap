@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
+<StyledWithViewportComponent
+  checkboxVisibility={2}
+  columns={
+    Array [
+      Object {
+        "columnActionsMode": 0,
+        "fieldName": "description",
+        "isResizable": true,
+        "key": "failureDescription",
+        "maxWidth": 400,
+        "minWidth": 200,
+        "name": "Failure description",
+        "onRender": [Function],
+      },
+      Object {
+        "columnActionsMode": 0,
+        "fieldName": "instanceActionButtons",
+        "isIconOnly": true,
+        "isResizable": false,
+        "key": "instanceActionButtons",
+        "maxWidth": 100,
+        "minWidth": 100,
+        "name": "instance actions",
+        "onRender": [Function],
+      },
+    ]
+  }
+  constrainMode={1}
+  items={
+    Array [
+      Object {
+        "description": "test-description",
+        "id": "test-id",
+      },
+    ]
+  }
+  onRenderDetailsHeader={[Function]}
+/>
+`;

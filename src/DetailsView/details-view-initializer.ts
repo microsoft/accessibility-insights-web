@@ -28,6 +28,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
@@ -232,6 +233,12 @@ if (tabId != null) {
                 tab.id,
                 logger,
             );
+
+            const tabStopRequirementActionMessageCreator =
+                new TabStopRequirementActionMessageCreator(
+                    telemetryFactory,
+                    actionMessageDispatcher,
+                );
 
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
                 telemetryFactory,
@@ -515,6 +522,7 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+                tabStopRequirementActionMessageCreator,
             };
 
             const renderer = new DetailsViewRenderer(

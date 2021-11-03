@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsMinimalRequirementHeader renders 1`] = `
+<span
+  className="rule-detail"
+>
+  <span
+    className="outcomeChipContainer"
+  >
+    <span
+      aria-hidden="true"
+    >
+      <OutcomeChip
+        count={1}
+        outcomeType="fail"
+      />
+    </span>
+  </span>
+  <span>
+    <span
+      className="rule-details-id"
+    >
+      test requirement name
+    </span>
+    : 
+    <span
+      className="rule-details-description"
+    >
+      test requirement description
+    </span>
+  </span>
+</span>
+`;

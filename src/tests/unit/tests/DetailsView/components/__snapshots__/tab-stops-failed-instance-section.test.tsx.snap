@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `null`;
+
+exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
+<div
+  className="tabStopsFailureInstanceSection"
+  data-automation-id="tab-stops-failure-instance-section"
+>
+  <h2>
+    <ResultSectionTitle
+      badgeCount={2}
+      outcomeType="fail"
+      title="Failed instances"
+      titleSize="title"
+    />
+  </h2>
+  <TabStopsRequirementsWithInstances
+    deps={Object {}}
+    headingLevel={3}
+    outcomeType="fail"
+    results={
+      Array [
+        Object {
+          "description": "All interactive elements can be reached using the Tab and arrow keys. ",
+          "id": "keyboard-navigation",
+          "instances": Array [
+            Object {
+              "description": "test desc 1",
+              "id": "test-id-1",
+            },
+          ],
+          "isExpanded": false,
+          "name": "Keyboard navigation",
+        },
+        Object {
+          "description": "There are no interactive elements that “trap” input focus and prevent navigating away.",
+          "id": "keyboard-traps",
+          "instances": Array [
+            Object {
+              "description": "test desc 2",
+              "id": "test-id-2",
+            },
+          ],
+          "isExpanded": false,
+          "name": "Keyboard traps",
+        },
+      ]
+    }
+    visualizationScanResultData={
+      Object {
+        "tabStops": Object {
+          "requirements": Object {
+            "keyboard-navigation": Object {
+              "instances": Array [
+                Object {
+                  "description": "test desc 1",
+                  "id": "test-id-1",
+                },
+              ],
+              "isExpanded": false,
+              "status": "fail",
+            },
+            "keyboard-traps": Object {
+              "instances": Array [
+                Object {
+                  "description": "test desc 2",
+                  "id": "test-id-2",
+                },
+              ],
+              "isExpanded": false,
+              "status": "fail",
+            },
+          },
+        },
+      }
+    }
+  />
+</div>
+`;
