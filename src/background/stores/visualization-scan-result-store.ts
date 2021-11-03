@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { StoreNames } from 'common/stores/store-names';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
@@ -22,17 +23,20 @@ import { BaseStoreImpl } from './base-store-impl';
 export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {
     private visualizationScanResultsActions: VisualizationScanResultActions;
     private tabActions: TabActions;
+    private tabStopRequirementActions: TabStopRequirementActions;
     private generateUID: () => string;
 
     constructor(
         visualizationScanResultActions: VisualizationScanResultActions,
         tabActions: TabActions,
+        tabStopRequirementActions: TabStopRequirementActions,
         generateUID: () => string,
     ) {
         super(StoreNames.VisualizationScanResultStore);
 
         this.visualizationScanResultsActions = visualizationScanResultActions;
         this.tabActions = tabActions;
+        this.tabStopRequirementActions = tabStopRequirementActions;
         this.generateUID = generateUID;
     }
 
@@ -70,16 +74,14 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
         this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
-        this.visualizationScanResultsActions.updateTabStopsRequirementStatus.addListener(
+        this.tabStopRequirementActions.updateTabStopsRequirementStatus.addListener(
             this.onUpdateTabStopRequirementStatus,
         );
-        this.visualizationScanResultsActions.addTabStopInstance.addListener(
-            this.onAddTabStopInstance,
-        );
-        this.visualizationScanResultsActions.updateTabStopInstance.addListener(
+        this.tabStopRequirementActions.addTabStopInstance.addListener(this.onAddTabStopInstance);
+        this.tabStopRequirementActions.updateTabStopInstance.addListener(
             this.onUpdateTabStopInstance,
         );
-        this.visualizationScanResultsActions.removeTabStopInstance.addListener(
+        this.tabStopRequirementActions.removeTabStopInstance.addListener(
             this.onRemoveTabStopInstance,
         );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);

@@ -5,6 +5,7 @@ import {
     ResultSectionTitle,
     ResultSectionTitleProps,
 } from 'common/components/cards/result-section-title';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
@@ -12,6 +13,7 @@ import { RulesOnly, RulesOnlyDeps, RulesOnlyProps } from './rules-only';
 
 export type CollapsibleResultSectionDeps = {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 } & RulesOnlyDeps;
 
 export type CollapsibleResultSectionProps = RulesOnlyProps &
@@ -31,6 +33,9 @@ export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
             content: <RulesOnly {...props} />,
             headingLevel: 2,
             deps: null,
+            onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
+                deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(containerId, event);
+            },
         });
 
         return <div className={containerClassName}>{CollapsibleContent}</div>;

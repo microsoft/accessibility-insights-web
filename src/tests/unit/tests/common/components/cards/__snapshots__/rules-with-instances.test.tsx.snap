@@ -134,6 +134,7 @@ exports[`RulesWithInstances renders 1`] = `
     }
     headingLevel={5}
     id="some-rule"
+    onExpandToggle={[Function]}
   />
 </div>
 `;

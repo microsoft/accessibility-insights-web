@@ -181,18 +181,14 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
 
         const configuration = this.visualizationConfigurationFactory.getConfiguration(payload.test);
         this.disableAssessmentVisualizationsWithoutEmitting();
-        const scanData = configuration.getStoreData(this.state.tests);
 
         const step = (payload as AssessmentToggleActionPayload).requirement;
-        const alreadyEnabled = configuration.getTestStatus(scanData, step);
-        if (!alreadyEnabled) {
-            if (!skipScanning) {
-                this.state.scanning = configuration.getIdentifier(step);
-            }
-
-            this.state.injectingRequested = true;
-            configuration.enableTest(this.state.tests, payload);
+        if (!skipScanning) {
+            this.state.scanning = configuration.getIdentifier(step);
         }
+
+        this.state.injectingRequested = true;
+        configuration.enableTest(this.state.tests, payload);
         this.emitChanged();
     }
 
