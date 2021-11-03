@@ -6,6 +6,7 @@ exports[`NextRequirementButton renders 1`] = `
 >
   <span>
     <StyledIconBase
+      ariaLabel="next"
       iconName="ChevronRight"
     />
   </span>
