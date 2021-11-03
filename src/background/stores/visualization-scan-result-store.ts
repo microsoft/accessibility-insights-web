@@ -3,7 +3,10 @@
 
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { StoreNames } from 'common/stores/store-names';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    VisualizationScanResultData,
+    TabStopRequirementStatuses,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
@@ -14,6 +17,7 @@ import {
     AddTabbedElementPayload,
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
+    ResetTabStopRequirementStatusPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
@@ -77,6 +81,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabStopRequirementActions.updateTabStopsRequirementStatus.addListener(
             this.onUpdateTabStopRequirementStatus,
         );
+        this.tabStopRequirementActions.resetTabStopRequirementStatus.addListener(
+            this.onResetTabStopRequirementStatus,
+        );
         this.tabStopRequirementActions.addTabStopInstance.addListener(this.onAddTabStopInstance);
         this.tabStopRequirementActions.updateTabStopInstance.addListener(
             this.onUpdateTabStopInstance,
@@ -133,6 +140,14 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId, status } = payload;
         this.state.tabStops.requirements[requirementId].status = status;
+        this.emitChanged();
+    };
+
+    private onResetTabStopRequirementStatus = (
+        payload: ResetTabStopRequirementStatusPayload,
+    ): void => {
+        const { requirementId } = payload;
+        this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
         this.emitChanged();
     };
 

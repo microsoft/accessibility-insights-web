@@ -79,7 +79,7 @@ describe('TabStopsRequirementsTable', () => {
         renderedProps.onAddFailureInstanceClicked(eventStub);
 
         tabStopsRequirementActionMessageCreatorMock.verify(
-            m => m.undoStatusForRequirement(actualRequirement.id),
+            m => m.resetStatusForRequirement(actualRequirement.id),
             Times.once(),
         );
         tabStopsRequirementActionMessageCreatorMock.verify(

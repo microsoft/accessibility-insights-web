@@ -5,6 +5,7 @@ import {
     UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
+    ResetTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
@@ -57,6 +58,39 @@ describe('TabStopRequirementActionCreator', () => {
             handler =>
                 handler.publishTelemetry(
                     TelemetryEvents.UPDATE_TABSTOPS_REQUIREMENT_STATUS,
+                    payload,
+                ),
+            Times.once(),
+        );
+    });
+
+    test('registerCallback for reset tab stops requirement status', () => {
+        const actionName = 'resetTabStopRequirementStatus';
+        const payload: ResetTabStopRequirementStatusPayload = {
+            requirementId: requirementId,
+        };
+
+        const resetTabStopRequirementStatusMock = createActionMock(payload);
+
+        const actionsMock = createActionsMock(actionName, resetTabStopRequirementStatusMock.object);
+        const interpreterMock = createInterpreterMock(
+            Messages.Visualizations.TabStops.ResetTabStopsRequirementStatus,
+            payload,
+        );
+
+        const testSubject = new TabStopRequirementActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        resetTabStopRequirementStatusMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            handler =>
+                handler.publishTelemetry(
+                    TelemetryEvents.RESET_TABSTOPS_REQUIREMENT_STATUS,
                     payload,
                 ),
             Times.once(),
