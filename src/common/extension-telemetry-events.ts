@@ -14,6 +14,7 @@ export const ADD_TABSTOPS_REQUIREMENT_INSTANCE: string = 'AddTabStopsRequirement
 export const REMOVE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'RemoveTabStopsRequirementInstance';
 export const UPDATE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'UpdateTabStopsRequirementInstance';
 export const UPDATE_TABSTOPS_REQUIREMENT_STATUS: string = 'UpdateTabStopsRequirementStatus';
+export const RESET_TABSTOPS_REQUIREMENT_STATUS: string = 'ResetTabStopsRequirmentStatus';
 export const COLOR_TOGGLE: string = 'ColorToggled';
 export const HEADINGS_TOGGLE: string = 'HeadingsToggled';
 export const SHORTCUT_MODIFIED: string = 'ShortcutModified';
