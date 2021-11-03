@@ -20,6 +20,7 @@ export const Messages = {
             RecordingCompleted: `${messagePrefix}/visualization/tab-stops/completed`,
             TerminateScan: `${messagePrefix}/visualization/tab-stops/terminated`,
             UpdateTabStopsRequirementStatus: `${messagePrefix}/visualization/tab-stops/requirement-updated`,
+            ResetTabStopsRequirementStatus: `${messagePrefix}/visualization/tab-stops/requirement-reset`,
             AddTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-added`,
             UpdateTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-updated`,
             RemoveTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-removed`,
