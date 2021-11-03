@@ -9,9 +9,12 @@ import {
     BaseActionPayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
+<<<<<<< HEAD
     ToggleTabStopRequirementExpandPayload,
     UpdateNeedToCollectTabbingResultsPayload,
     UpdateTabbingCompletedPayload,
+=======
+>>>>>>> de85b0fc6 (add action for undo button in requirements table)
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from './action-payloads';

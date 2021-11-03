@@ -24,6 +24,11 @@ export enum TabStopRequirementStatuses {
     fail = 'fail',
     unknown = 'unknown',
 }
+<<<<<<< HEAD
+=======
+
+export type TabStopRequirementStatus = keyof typeof TabStopRequirementStatuses;
+>>>>>>> de85b0fc6 (add action for undo button in requirements table)
 
 export type TabStopRequirementStatus = keyof typeof TabStopRequirementStatuses;
 

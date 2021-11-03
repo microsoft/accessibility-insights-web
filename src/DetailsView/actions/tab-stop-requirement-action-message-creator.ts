@@ -12,6 +12,7 @@ import {
     UpdateTabbingCompletedPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
+    ResetTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
@@ -105,7 +106,11 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
     }
 
     public resetStatusForRequirement(requirementId: TabStopRequirementId): void {
+<<<<<<< HEAD
         const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId, this.source);
+=======
+        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
+>>>>>>> de85b0fc6 (add action for undo button in requirements table)
 
         const payload: ResetTabStopRequirementStatusPayload = {
             requirementId,
@@ -117,6 +122,7 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
             payload,
         });
     }
+<<<<<<< HEAD
 
     public toggleTabStopRequirementExpand = (
         requirementId: TabStopRequirementId,
@@ -165,4 +171,6 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
             payload,
         });
     };
+=======
+>>>>>>> de85b0fc6 (add action for undo button in requirements table)
 }

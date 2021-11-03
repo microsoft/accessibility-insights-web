@@ -54,7 +54,11 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                         <TabStopsChoiceGroup
                             status={props.requirementState[item.id].status}
                             onUndoClicked={_ =>
+<<<<<<< HEAD
                                 tabStopRequirementActionMessageCreator.resetStatusForRequirement(
+=======
+                                tabStopsRequirementActionMessageCreator.resetStatusForRequirement(
+>>>>>>> de85b0fc6 (add action for undo button in requirements table)
                                     item.id,
                                 )
                             }

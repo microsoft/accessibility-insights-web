@@ -6,10 +6,13 @@ import {
     RemoveTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
+<<<<<<< HEAD
     ToggleTabStopRequirementExpandPayload,
     UpdateTabbingCompletedPayload,
     UpdateNeedToCollectTabbingResultsPayload,
     BaseActionPayload,
+=======
+>>>>>>> de85b0fc6 (add action for undo button in requirements table)
 } from 'background/actions/action-payloads';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
