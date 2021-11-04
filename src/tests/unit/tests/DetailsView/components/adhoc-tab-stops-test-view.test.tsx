@@ -2,24 +2,125 @@
 // Licensed under the MIT License.
 
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    ScanData,
+    TestsEnabledState,
+    VisualizationStoreData,
+} from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import {
     AdhocTabStopsTestView,
+    AdhocTabStopsTestViewDeps,
     AdhocTabStopsTestViewProps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock, MockBehavior } from 'typemoq';
+import { ContentReference } from 'views/content/content-page';
 
 describe('AdhocTabStopsTestView', () => {
-    const props = {
-        configuration: {
-            displayableData: {
-                title: 'test title',
-            } as DisplayableVisualizationTypeData,
-        },
-    } as AdhocTabStopsTestViewProps;
+    let props: AdhocTabStopsTestViewProps;
+    let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
+    let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
+    let displayableDataStub: DisplayableVisualizationTypeData;
+    let scanDataStub: ScanData;
+    let clickHandlerStub: (event: any) => void;
+    let visualizationStoreDataStub: VisualizationStoreData;
+    let selectedTest: VisualizationType;
+    let featureFlagStoreDataStub: FeatureFlagStoreData;
+    let requirementState: TabStopRequirementState;
+    // const props = {
+    //     configuration: {
+    //         displayableData: {
+    //             title: 'test title',
 
-    it('renders with content', () => {
-        const rendered = shallow(<AdhocTabStopsTestView {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
+    //         } as DisplayableVisualizationTypeData,
+    //     },
+    // } as AdhocTabStopsTestViewProps;
+    beforeEach(() => {
+        getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
+        clickHandlerFactoryMock = Mock.ofType(
+            DetailsViewToggleClickHandlerFactory,
+            MockBehavior.Strict,
+        );
+        displayableDataStub = {
+            title: 'test title',
+            toggleLabel: 'test toggle label',
+        } as DisplayableVisualizationTypeData;
+        scanDataStub = {
+            enabled: true,
+        };
+        visualizationStoreDataStub = {
+            tests: {},
+        } as VisualizationStoreData;
+        clickHandlerStub = () => {};
+        selectedTest = -1;
+        featureFlagStoreDataStub = {};
+        requirementState = {};
+
+        props = {
+            configuration: {
+                getStoreData: getStoreDataMock.object,
+                displayableData: displayableDataStub,
+            },
+            clickHandlerFactory: clickHandlerFactoryMock.object,
+            visualizationStoreData: visualizationStoreDataStub,
+            selectedTest,
+            featureFlagStoreData: featureFlagStoreDataStub,
+            requirementState,
+            deps: Mock.ofType<AdhocTabStopsTestViewDeps>().object,
+        } as AdhocTabStopsTestViewProps;
+
+        getStoreDataMock
+            .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
+            .returns(() => scanDataStub)
+            .verifiable();
+
+        clickHandlerFactoryMock
+            .setup(chfm => chfm.createClickHandler(selectedTest, !scanDataStub.enabled))
+            .returns(() => clickHandlerStub)
+            .verifiable();
     });
+
+    it('should return target page changed view as tab is changed', () => {
+        props.tabStoreData = {
+            isChanged: true,
+        };
+
+        const actual = shallow(<AdhocTabStopsTestView {...props} />);
+        expect(actual.debug()).toMatchSnapshot();
+        verifyAll();
+    });
+
+    describe('render', () => {
+        const stubGuidance = 'stub-guidance' as ContentReference;
+
+        const scenarios = [
+            ['guidance', stubGuidance],
+            ['no guidance', null],
+        ];
+
+        it.each(scenarios)('handles %s', (_, guidance) => {
+            props.deps = 'stub-deps' as unknown as AdhocTabStopsTestViewDeps;
+            props.tabStoreData = {
+                isChanged: false,
+            };
+
+            if (guidance) {
+                props.guidance = guidance;
+            }
+
+            const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
+            expect(wrapper.debug()).toMatchSnapshot();
+            verifyAll();
+        });
+    });
+
+    function verifyAll(): void {
+        getStoreDataMock.verifyAll();
+        clickHandlerFactoryMock.verifyAll();
+    }
 });

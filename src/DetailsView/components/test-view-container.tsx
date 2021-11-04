@@ -8,7 +8,7 @@ import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
     AdhocTabStopsTestView,
-    TabStopsFailedInstanceSectionDeps,
+    AdhocTabStopsTestViewDeps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import * as React from 'react';
@@ -39,7 +39,7 @@ export type TestViewContainerDeps = {
     tabStopsRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
-    TabStopsFailedInstanceSectionDeps;
+    AdhocTabStopsTestViewDeps;
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;

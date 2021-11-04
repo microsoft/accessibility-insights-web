@@ -550,19 +550,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
-
-exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false}: verify initial state 1`] = `
-Object {
-  "canInspect": true,
-  "currentRuleIndex": 0,
-  "showDialog": true,
-  "showInsecureOriginPageMessage": false,
-  "showInspectMessage": false,
-  "userConfigurationStoreData": undefined,
-}
-`;
-
 exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
@@ -1113,19 +1100,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false} 1`] = `
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify close button 1`] = `<CancelIcon />`;
-
-exports[`DetailsDialog renders with: {"isDevToolsOpen": false}: verify initial state 1`] = `
-Object {
-  "canInspect": true,
-  "currentRuleIndex": 0,
-  "showDialog": true,
-  "showInsecureOriginPageMessage": false,
-  "showInspectMessage": false,
-  "userConfigurationStoreData": undefined,
-}
-`;
-
 exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
@@ -1674,17 +1648,4 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true} 1`] = `
     />
   </div>
 </StyledWithResponsiveMode>
-`;
-
-exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify close button 1`] = `<CancelIcon />`;
-
-exports[`DetailsDialog renders with: {"isDevToolsOpen": true}: verify initial state 1`] = `
-Object {
-  "canInspect": true,
-  "currentRuleIndex": 0,
-  "showDialog": true,
-  "showInsecureOriginPageMessage": false,
-  "showInspectMessage": false,
-  "userConfigurationStoreData": undefined,
-}
 `;

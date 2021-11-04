@@ -40,46 +40,6 @@ exports[`ExportDialogWithLocalState clicking export on the dialog triggers gener
 />
 `;
 
-exports[`ExportDialogWithLocalState edit text field: test content with special characters: <> $ " \` ' 1`] = `
-<ExportDialog
-  afterDismissed={[Function]}
-  deps={
-    Object {
-      "reportGenerator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "assessmentJsonExportGenerator": undefined,
-        "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
-        "reportNameGenerator": undefined,
-      },
-    }
-  }
-  description="test content with special characters: <> $ \\" \` '"
-  featureFlagStoreData={
-    Object {
-      "test-feature-flag": true,
-    }
-  }
-  generateExports={[Function]}
-  htmlExportData=""
-  htmlFileName=""
-  isOpen={true}
-  jsonExportData=""
-  jsonFileName=""
-  onClose={[Function]}
-  onDescriptionChange={[Function]}
-  reportExportFormat="Assessment"
-  reportExportServices={
-    Array [
-      Object {
-        "generateMenuItem": null,
-        "key": "html",
-      },
-    ]
-  }
-/>
-`;
-
 exports[`ExportDialogWithLocalState on dialog opened 1`] = `
 <ExportDialog
   afterDismissed={[Function]}

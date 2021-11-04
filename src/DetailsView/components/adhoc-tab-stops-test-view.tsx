@@ -16,14 +16,28 @@ import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { ResultSectionDeps } from 'common/components/cards/result-section';
+import { StaticContentDetailsViewDeps } from 'DetailsView/components/static-content-details-view';
+import { VisualizationToggle } from 'common/components/visualization-toggle';
+import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { ContentReference } from 'views/content/content-page';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 
-export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsTableDeps & ResultSectionDeps;
+export type AdhocTabStopsTestViewDeps = TabStopsRequirementsTableDeps &
+    ResultSectionDeps &
+    StaticContentDetailsViewDeps &
+    ContentLinkDeps;
 export interface AdhocTabStopsTestViewProps {
-    deps: TabStopsFailedInstanceSectionDeps;
+    deps: AdhocTabStopsTestViewDeps;
     configuration: VisualizationConfiguration;
+    tabStoreData: Pick<TabStoreData, 'isChanged'>;
     featureFlagStoreData: FeatureFlagStoreData;
+    visualizationStoreData: VisualizationStoreData;
     selectedTest: VisualizationType;
     requirementState: TabStopRequirementState;
+    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
+    guidance?: ContentReference;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
@@ -70,6 +84,11 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
             tabStopsRequirementActionMessageCreator:
                 props.deps.tabStopsRequirementActionMessageCreator,
         };
+        const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const clickHandler = props.clickHandlerFactory.createClickHandler(
+            selectedTest,
+            !scanData.enabled,
+        );
         const addFailureInstanceForRequirement = (requirementId: string): void => {
             //TODO: fill this in
             console.log(requirementId);
@@ -79,7 +98,15 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 <h1>
                     {displayableData.title}
                     {` ${stepsText} `}
+                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
                 </h1>
+                <VisualizationToggle
+                    checked={scanData.enabled}
+                    onClick={clickHandler}
+                    label={displayableData.toggleLabel}
+                    className={styles.detailsViewToggle}
+                    visualizationName={displayableData.title}
+                />
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
                 <TabStopsRequirementsTable

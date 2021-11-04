@@ -29,52 +29,6 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
 </section>
 `;
 
-exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export report 1`] = `
-<ReportExportComponent
-  deps={
-    Object {
-      "reportExportServiceProvider": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "services": undefined,
-      },
-      "reportGenerator": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-        "assessmentJsonExportGenerator": undefined,
-        "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
-        "reportNameGenerator": undefined,
-      },
-      "scanActionCreator": null,
-    }
-  }
-  featureFlagStoreData={
-    Object {
-      "somefeatureflag": true,
-    }
-  }
-  getExportDescription={[Function]}
-  htmlGenerator={[Function]}
-  jsonGenerator={[Function]}
-  onDialogDismiss={[Function]}
-  pageTitle="scan target name"
-  reportExportFormat="AutomatedChecks"
-  reportExportServices={
-    Array [
-      Object {
-        "generateMenuItem": null,
-        "key": "html",
-      },
-      Object {
-        "generateMenuItem": null,
-        "key": "codepen",
-      },
-    ]
-  }
-  scanDate={1970-01-01T00:00:00.000Z}
-  updatePersistedDescription={[Function]}
-/>
-`;
-
 exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = `
 <section
   aria-label="command bar"
