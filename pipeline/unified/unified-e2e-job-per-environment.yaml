@@ -29,7 +29,8 @@ jobs:
           vmImage: ${{ parameters.linuxImage }}
       steps:
           - template: ../install-node-prerequisites.yaml
-          - template: ../docker-tests-template.yaml
+          - template: ../run-tests-in-docker-linux.yaml
+.yaml
             parameters:
                 target: unified
           - template: ./unified-e2e-publish-results.yaml

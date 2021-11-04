@@ -22,27 +22,28 @@ steps:
       env:
           TARGET: ${{ parameters.target }}
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+      displayName: (linux) make sure 'target' parameter is specified
 
     # DOCKER_BUILDKIT=1 allows us to skip non-related targets (github docker/cli@1134)
     - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} .
-      displayName: setup docker
+      displayName: (linux) setup docker
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - script: docker run --network=host -i app --ci
-      displayName: run docker entrypoint
+      displayName: (linux) run docker entrypoint
       timeoutInMinutes: ${{ parameters['run-timeout-minutes'] }}
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - bash: |
           export CONTAINERID=$(docker ps -alq)
           echo "##vso[task.setvariable variable=CONTAINER_ID]$CONTAINERID"
-      displayName: get container id for docker
+      displayName: (linux) get container id for docker
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
-      displayName: copy test results from docker to base agent
+      displayName: (linux) copy test results from docker to base agent
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - script: docker cp $(CONTAINER_ID):/app/drop/ .
-      displayName: copy drop folder from docker to base agent
+      displayName: (linux) copy drop folder from docker to base agent
       condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
