@@ -28,6 +28,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
@@ -237,6 +238,13 @@ if (tabId != null) {
                 telemetryFactory,
                 actionMessageDispatcher,
             );
+
+            const tabStopsRequirementActionMessageCreator =
+                new TabStopRequirementActionMessageCreator(
+                    telemetryFactory,
+                    actionMessageDispatcher,
+                );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -449,6 +457,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                tabStopsRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,

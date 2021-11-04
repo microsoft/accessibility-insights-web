@@ -6,10 +6,12 @@ import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
-import { AdhocTabStopsTestView } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import {
+    AdhocTabStopsTestView,
+    TabStopsFailedInstanceSectionDeps,
+} from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import * as React from 'react';
-
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -22,6 +24,7 @@ import { VisualizationScanResultData } from '../../common/types/store-data/visua
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { TabStopRequirementActionMessageCreator } from '../actions/tab-stop-requirement-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { AdhocIssuesTestView } from './adhoc-issues-test-view';
@@ -33,8 +36,10 @@ import { TestViewDeps } from './test-view';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    tabStopsRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 } & TestViewDeps &
-    OverviewContainerDeps;
+    OverviewContainerDeps &
+    TabStopsFailedInstanceSectionDeps;
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;
@@ -61,7 +66,10 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         props.selectedTest,
     );
     const testViewProps = { configuration, ...configuration.testViewOverrides, ...props };
-
+    const adhocTabStopsTestViewProps = {
+        deps: props.deps,
+        requirementState: props.visualizationScanResultData.tabStops.requirements,
+    };
     switch (configuration.testViewType) {
         case 'AdhocStatic':
             return <AdhocStaticTestView {...testViewProps} />;
@@ -79,7 +87,9 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         case 'AdhocTabStops':
             return (
                 <FlaggedComponent
-                    enableJSXElement={<AdhocTabStopsTestView {...testViewProps} />}
+                    enableJSXElement={
+                        <AdhocTabStopsTestView {...adhocTabStopsTestViewProps} {...testViewProps} />
+                    }
                     disableJSXElement={<AdhocStaticTestView {...testViewProps} />}
                     featureFlagStoreData={props.featureFlagStoreData}
                     featureFlag={FeatureFlags.newTabStopsDetailsView}

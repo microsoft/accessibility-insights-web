@@ -6,15 +6,24 @@ import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
+import {
+    TabStopsRequirementsTable,
+    TabStopsRequirementsTableDeps,
+} from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import * as styles from 'DetailsView/components/static-content-common.scss';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import * as Markup from '../../assessments/markup';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { ResultSectionDeps } from 'common/components/cards/result-section';
 
+export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsTableDeps & ResultSectionDeps;
 export interface AdhocTabStopsTestViewProps {
+    deps: TabStopsFailedInstanceSectionDeps;
     configuration: VisualizationConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
     selectedTest: VisualizationType;
+    requirementState: TabStopRequirementState;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
@@ -57,7 +66,14 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         const displayableData = props.configuration.displayableData;
         const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
         const stepsText = fastPassProvider.getStepsText(selectedTest);
-
+        const tabStopsRequirementTableDeps = {
+            tabStopsRequirementActionMessageCreator:
+                props.deps.tabStopsRequirementActionMessageCreator,
+        };
+        const addFailureInstanceForRequirement = (requirementId: string): void => {
+            //TODO: fill this in
+            console.log(requirementId);
+        };
         return (
             <div className={styles.staticContentInDetailsView}>
                 <h1>
@@ -66,6 +82,11 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 </h1>
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
+                <TabStopsRequirementsTable
+                    deps={tabStopsRequirementTableDeps}
+                    requirementState={props.requirementState}
+                    addFailureInstanceForRequirement={addFailureInstanceForRequirement}
+                />
             </div>
         );
     },
