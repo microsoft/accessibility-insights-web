@@ -13,7 +13,6 @@ steps:
       timeoutInMinutes: 22
 
     - template: ../run-tests-in-docker-linux.yaml
-.yaml
       parameters:
           target: unified
           run-timeout-minutes: 22

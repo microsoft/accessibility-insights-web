@@ -29,7 +29,6 @@ jobs:
           vmImage: ${{ parameters.linuxImage }}
       steps:
           - template: ./run-tests-in-docker-linux.yaml
-.yaml
             parameters:
                 target: web
           - template: ./e2e-test-publish-results.yaml
