@@ -11,7 +11,7 @@ steps:
       condition: and(succeeded(), ne(variables.platform, 'linux'))
       timeoutInMinutes: 22
 
-    - ${{ if eq(variables.platform, 'linux') }}:
+    - ${{ if eq(variables['Agent.OS'], 'linux') }}:
           - template: ../docker-tests-template.yaml
             parameters:
                 target: unified
