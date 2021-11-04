@@ -7,6 +7,7 @@ import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-res
 // Licensed under the MIT License.
 describe('TabStopsFailedCounter', () => {
     let results = [] as TabStopsRequirementResult[];
+    const testSubject = new TabStopsFailedCounter();
 
     beforeEach(() => {
         results = [
@@ -16,14 +17,14 @@ describe('TabStopsFailedCounter', () => {
 
     test('getTotalFailed returns zero when there are no instances', () => {
         results = [];
-        expect(TabStopsFailedCounter.getTotalFailed(results)).toBe(0);
+        expect(testSubject.getTotalFailed(results)).toBe(0);
     });
 
     test('getTotalFailed returns one result when a single failed instance is passed', () => {
         results = [
             { instances: [{ id: 'test-id-1', description: 'test desc 1' }] },
         ] as TabStopsRequirementResult[];
-        expect(TabStopsFailedCounter.getTotalFailed(results)).toBe(1);
+        expect(testSubject.getTotalFailed(results)).toBe(1);
     });
 
     test('getTotalFailed counts all instances from all requirements', () => {
@@ -40,7 +41,7 @@ describe('TabStopsFailedCounter', () => {
                 ],
             },
         ] as TabStopsRequirementResult[];
-        expect(TabStopsFailedCounter.getTotalFailed(results)).toBe(3);
+        expect(testSubject.getTotalFailed(results)).toBe(3);
     });
 
     test('getFailedByRequirementId returns zero when requirementId does not exist', () => {
@@ -50,7 +51,7 @@ describe('TabStopsFailedCounter', () => {
                 instances: [{ id: 'test-id-1', description: 'test desc 1' }],
             },
         ] as TabStopsRequirementResult[];
-        expect(TabStopsFailedCounter.getFailedByRequirementId(results, 'non-existent-id')).toBe(0);
+        expect(testSubject.getFailedByRequirementId(results, 'non-existent-id')).toBe(0);
     });
 
     test('getFailedByRequirementId returns correct number of instances for requirement', () => {
@@ -67,6 +68,6 @@ describe('TabStopsFailedCounter', () => {
                 ],
             },
         ] as TabStopsRequirementResult[];
-        expect(TabStopsFailedCounter.getFailedByRequirementId(results, 'input-focus')).toBe(2);
+        expect(testSubject.getFailedByRequirementId(results, 'input-focus')).toBe(2);
     });
 });

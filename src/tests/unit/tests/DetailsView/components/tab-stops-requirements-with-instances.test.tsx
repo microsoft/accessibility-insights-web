@@ -3,6 +3,7 @@
 
 import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import {
     TabStopsRequirementsWithInstances,
@@ -11,17 +12,24 @@ import {
 } from 'DetailsView/tab-stops-requirements-with-instances';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock } from 'typemoq';
 
 describe('TabStopsRequirementsWithInstances', () => {
+    let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
     const CollapsibleControlStub = getCollapsibleControlStub();
-    const depsStub = {
-        collapsibleControl: (props: CollapsibleComponentCardsProps) => (
-            <CollapsibleControlStub {...props} />
-        ),
-    } as TabStopsRequirementsWithInstancesDeps;
+    let depsStub = {} as TabStopsRequirementsWithInstancesDeps;
     let props = {} as TabStopsRequirementsWithInstancesProps;
 
     beforeEach(() => {
+        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+
+        depsStub = {
+            collapsibleControl: (props: CollapsibleComponentCardsProps) => (
+                <CollapsibleControlStub {...props} />
+            ),
+            tabStopsFailedCounter: tabStopsFailedCounterMock.object,
+        } as TabStopsRequirementsWithInstancesDeps;
+
         props = {
             deps: depsStub,
             headingLevel: 3,

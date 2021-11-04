@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ResultSectionDeps } from 'common/components/cards/result-section';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -10,12 +9,15 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import * as styles from 'DetailsView/components/static-content-common.scss';
-import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
+import {
+    TabStopsFailedInstanceSection,
+    TabStopsFailedInstanceSectionDeps,
+} from 'DetailsView/components/tab-stops-failed-instance-section';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 
-export type AdhocTabStopsTestViewDeps = ResultSectionDeps & {
+export type AdhocTabStopsTestViewDeps = TabStopsFailedInstanceSectionDeps & {
     tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 };
 
@@ -76,7 +78,10 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 </h1>
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
-                <TabStopsFailedInstanceSection {...props} />
+                <TabStopsFailedInstanceSection
+                    deps={props.deps}
+                    visualizationScanResultData={props.visualizationScanResultData}
+                />
             </div>
         );
     },

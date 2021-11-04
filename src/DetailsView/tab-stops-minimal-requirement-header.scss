@@ -1,0 +1,39 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../common/styles/colors.scss';
+@import '../common/styles/fonts.scss';
+
+.requirement-detail {
+    font-size: 14px;
+
+    padding: 16px 8px;
+
+    display: flex;
+    align-items: baseline;
+    text-align: left;
+
+    :global(.outcome-chip) {
+        vertical-align: middle;
+        margin-bottom: 2px;
+    }
+}
+
+.requirement-detail-description {
+    color: $secondary-text !important;
+    word-break: break-all;
+}
+
+.requirement-details-id {
+    font-family: $semiBoldFontFamily;
+    color: $primary-text;
+    word-break: break-all;
+
+    a {
+        font-family: $semiBoldFontFamily;
+        color: $primary-text !important;
+    }
+}
+
+.outcome-chip-container {
+    min-width: 50px;
+}

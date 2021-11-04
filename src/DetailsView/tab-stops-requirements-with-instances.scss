@@ -3,43 +3,10 @@
 @import '../common/styles/colors.scss';
 @import '../common/styles/fonts.scss';
 
-.rule-details-group {
-    :global(.rule-detail) {
-        font-size: 14px;
-
-        padding: 16px 8px;
-
-        display: flex;
-        align-items: baseline;
-        text-align: left;
-
-        :global(.outcome-chip) {
-            vertical-align: middle;
-            margin-bottom: 2px;
-        }
-
-        :global(.rule-details-id) {
-            font-family: $semiBoldFontFamily;
-            color: $primary-text;
-            word-break: break-all;
-
-            a {
-                font-family: $semiBoldFontFamily;
-                color: $primary-text !important;
-            }
-        }
-
-        :global(.rule-detail-description) {
-            color: $secondary-text !important;
-            word-break: break-all;
-        }
-    }
-}
-
-.collapsible-rule-details-group {
+.collapsible-requirement-details-group {
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
 
-    :global(.rule-detail) {
+    :global(.requirement-detail) {
         box-shadow: unset;
     }
 

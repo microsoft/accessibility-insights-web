@@ -5,20 +5,35 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
+    TabStopsFailedInstanceSectionProps,
 } from 'DetailsView/components/tab-stops-failed-instance-section';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock } from 'typemoq';
 
 describe('TabStopsFailedInstanceSection', () => {
-    const depsStub = {} as TabStopsFailedInstanceSectionDeps;
+    let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
+
     const visualizationScanResultDataStub = {
         tabStops: { requirements: {} },
     } as VisualizationScanResultData;
 
-    const props = {
-        deps: depsStub,
-        visualizationScanResultData: visualizationScanResultDataStub,
-    };
+    let props = {} as TabStopsFailedInstanceSectionProps;
+    let depsStub = {} as TabStopsFailedInstanceSectionDeps;
+
+    beforeAll(() => {
+        tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
+
+        depsStub = {
+            tabStopsFailedCounter: tabStopsFailedCounterMock.object,
+        } as TabStopsFailedInstanceSectionDeps;
+
+        props = {
+            deps: depsStub,
+            visualizationScanResultData: visualizationScanResultDataStub,
+        };
+    });
 
     beforeEach(() => {
         props.visualizationScanResultData.tabStops.requirements = {
@@ -36,7 +51,12 @@ describe('TabStopsFailedInstanceSection', () => {
     });
 
     it('renders with failing results', () => {
-        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+        const wrapper = shallow(
+            <TabStopsFailedInstanceSection
+                deps={depsStub}
+                visualizationScanResultData={visualizationScanResultDataStub}
+            />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
@@ -47,7 +67,12 @@ describe('TabStopsFailedInstanceSection', () => {
             requirementsStub[requirementId].instances = [];
         }
 
-        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
+        const wrapper = shallow(
+            <TabStopsFailedInstanceSection
+                deps={depsStub}
+                visualizationScanResultData={visualizationScanResultDataStub}
+            />,
+        );
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

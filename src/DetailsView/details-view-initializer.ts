@@ -36,6 +36,7 @@ import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-hel
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -445,6 +446,8 @@ if (tabId != null) {
                 loadAssessmentDataValidator,
             );
 
+            const tabStopsFailedCounter = new TabStopsFailedCounter();
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -523,6 +526,7 @@ if (tabId != null) {
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
                 tabStopRequirementActionMessageCreator,
+                tabStopsFailedCounter,
             };
 
             const renderer = new DetailsViewRenderer(

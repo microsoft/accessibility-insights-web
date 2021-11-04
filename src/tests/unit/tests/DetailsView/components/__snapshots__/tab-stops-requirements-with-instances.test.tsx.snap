@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TabStopsRequirementsWithInstances renders 1`] = `
-<div
-  className="ruleDetailsGroup"
->
+<div>
   <CollapsibleControlStub
-    buttonAriaLabel="keyboard-navigation 1 Failed test requirement description 1"
+    buttonAriaLabel="keyboard-navigation undefined Failed test requirement description 1"
     containerAutomationId="tab-stops-results-group"
-    containerClassName="collapsibleRuleDetailsGroup"
+    containerClassName="collapsibleRequirementDetailsGroup"
     content={
       <TabStopsRequirementInstancesCollapsibleContent
         instances={
@@ -23,10 +21,25 @@ exports[`TabStopsRequirementsWithInstances renders 1`] = `
     deps={
       Object {
         "collapsibleControl": [Function],
+        "tabStopsFailedCounter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "getFailedByRequirementId": [Function],
+          "getTotalFailed": [Function],
+        },
       }
     }
     header={
       <TabStopsMinimalRequirementHeader
+        deps={
+          Object {
+            "collapsibleControl": [Function],
+            "tabStopsFailedCounter": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "getFailedByRequirementId": [Function],
+              "getTotalFailed": [Function],
+            },
+          }
+        }
         requirement={
           Object {
             "description": "test requirement description 1",
@@ -49,9 +62,9 @@ exports[`TabStopsRequirementsWithInstances renders 1`] = `
     onExpandToggle={[Function]}
   />
   <CollapsibleControlStub
-    buttonAriaLabel="keybaord-traps 1 Failed test requirement description 2"
+    buttonAriaLabel="keybaord-traps undefined Failed test requirement description 2"
     containerAutomationId="tab-stops-results-group"
-    containerClassName="collapsibleRuleDetailsGroup"
+    containerClassName="collapsibleRequirementDetailsGroup"
     content={
       <TabStopsRequirementInstancesCollapsibleContent
         instances={
@@ -67,10 +80,25 @@ exports[`TabStopsRequirementsWithInstances renders 1`] = `
     deps={
       Object {
         "collapsibleControl": [Function],
+        "tabStopsFailedCounter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "getFailedByRequirementId": [Function],
+          "getTotalFailed": [Function],
+        },
       }
     }
     header={
       <TabStopsMinimalRequirementHeader
+        deps={
+          Object {
+            "collapsibleControl": [Function],
+            "tabStopsFailedCounter": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "getFailedByRequirementId": [Function],
+              "getTotalFailed": [Function],
+            },
+          }
+        }
         requirement={
           Object {
             "description": "test requirement description 2",

@@ -20,6 +20,7 @@ export const resultsGroupAutomationId = 'tab-stops-results-group';
 export type TabStopsRequirementsWithInstancesDeps = CollapsibleComponentCardsDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
     tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
+    tabStopsFailedCounter: TabStopsFailedCounter;
 };
 
 export type TabStopsRequirementsWithInstancesProps = {
@@ -39,7 +40,13 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
             return {
                 id: result.id,
                 key: `summary-details-${idx + 1}`,
-                header: <TabStopsMinimalRequirementHeader key={result.id} requirement={result} />,
+                header: (
+                    <TabStopsMinimalRequirementHeader
+                        deps={deps}
+                        key={result.id}
+                        requirement={result}
+                    />
+                ),
                 content: (
                     <TabStopsRequirementInstancesCollapsibleContent
                         key={`${result.id}-requirement-group`}
@@ -47,7 +54,7 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                     />
                 ),
                 containerAutomationId: resultsGroupAutomationId,
-                containerClassName: styles.collapsibleRuleDetailsGroup,
+                containerClassName: styles.collapsibleRequirementDetailsGroup,
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel,
                 deps: deps,
@@ -62,10 +69,10 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
         };
 
         return (
-            <div className={styles.ruleDetailsGroup}>
+            <div>
                 {results.map((requirement, idx) => {
                     const { pastTense } = outcomeTypeSemantics.fail;
-                    const count = TabStopsFailedCounter.getFailedByRequirementId(
+                    const count = deps.tabStopsFailedCounter.getFailedByRequirementId(
                         results,
                         requirement.id,
                     );

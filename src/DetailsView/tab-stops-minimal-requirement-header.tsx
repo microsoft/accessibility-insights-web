@@ -5,9 +5,14 @@ import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { OutcomeChip } from 'reports/components/outcome-chip';
-import { outcomeChipContainer } from 'reports/components/report-sections/minimal-rule-header.scss';
+import * as styles from '../DetailsView/tab-stops-minimal-requirement-header.scss';
+
+export interface TabStopsMinimalRequirementHeaderDeps {
+    tabStopsFailedCounter: TabStopsFailedCounter;
+}
 
 export type TabStopsMinimalRequirementHeaderProps = {
+    deps: TabStopsMinimalRequirementHeaderDeps;
     requirement: TabStopsRequirementResult;
 };
 
@@ -17,7 +22,7 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
         const { requirement } = props;
 
         const renderCountBadge = () => {
-            const count = TabStopsFailedCounter.getFailedByRequirementId(
+            const count = props.deps.tabStopsFailedCounter.getFailedByRequirementId(
                 [requirement],
                 requirement.id,
             );
@@ -29,15 +34,17 @@ export const TabStopsMinimalRequirementHeader = NamedFC<TabStopsMinimalRequireme
             );
         };
 
-        const renderRuleName = () => <span className="rule-details-id">{requirement.name}</span>;
+        const renderRuleName = () => (
+            <span className={styles.requirementDetailsId}>{requirement.name}</span>
+        );
 
         const renderDescription = () => (
-            <span className="rule-details-description">{requirement.description}</span>
+            <span className={styles.requirementDetailDescription}>{requirement.description}</span>
         );
 
         return (
-            <span className="rule-detail">
-                <span className={outcomeChipContainer}>{renderCountBadge()}</span>
+            <span className={styles.requirementDetail}>
+                <span className={styles.outcomeChipContainer}>{renderCountBadge()}</span>
                 <span>
                     {renderRuleName()}: {renderDescription()}
                 </span>
