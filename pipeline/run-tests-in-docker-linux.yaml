@@ -5,6 +5,7 @@
 # - builds and runs a given target in DOCKERFILE
 # - copies /app/test-results & /app/drop back to the base agent
 # - requires you to publish test results or artifacts in the consuming pipeline
+# - only runs on linux agents
 
 parameters:
     - name: target # should be web or unified
