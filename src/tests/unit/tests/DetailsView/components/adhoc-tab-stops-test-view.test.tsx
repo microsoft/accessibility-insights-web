@@ -3,10 +3,7 @@
 
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import {
-    TabStopRequirementState,
-    VisualizationScanResultData,
-} from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import {
     ScanData,
     TestsEnabledState,
@@ -34,7 +31,6 @@ describe('AdhocTabStopsTestView', () => {
     let visualizationStoreDataStub: VisualizationStoreData;
     let selectedTest: VisualizationType;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
-    let requirementState: TabStopRequirementState;
     let visualizationScanResultData: VisualizationScanResultData;
     // const props = {
     //     configuration: {
