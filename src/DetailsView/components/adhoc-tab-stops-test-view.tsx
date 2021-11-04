@@ -1,28 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { ResultSectionDeps } from 'common/components/cards/result-section';
+import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
+import * as styles from 'DetailsView/components/static-content-common.scss';
+import { StaticContentDetailsViewDeps } from 'DetailsView/components/static-content-details-view';
 import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableDeps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
-import * as styles from 'DetailsView/components/static-content-common.scss';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
-import * as Markup from '../../assessments/markup';
-import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
-import { ResultSectionDeps } from 'common/components/cards/result-section';
-import { StaticContentDetailsViewDeps } from 'DetailsView/components/static-content-details-view';
-import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
-import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { ContentReference } from 'views/content/content-page';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import * as Markup from '../../assessments/markup';
 
 export type AdhocTabStopsTestViewDeps = TabStopsRequirementsTableDeps &
     ResultSectionDeps &
