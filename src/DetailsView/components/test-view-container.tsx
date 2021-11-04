@@ -66,10 +66,6 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         props.selectedTest,
     );
     const testViewProps = { configuration, ...configuration.testViewOverrides, ...props };
-    const adhocTabStopsTestViewProps = {
-        deps: props.deps,
-        requirementState: props.visualizationScanResultData.tabStops.requirements,
-    };
     switch (configuration.testViewType) {
         case 'AdhocStatic':
             return <AdhocStaticTestView {...testViewProps} />;
@@ -87,9 +83,7 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         case 'AdhocTabStops':
             return (
                 <FlaggedComponent
-                    enableJSXElement={
-                        <AdhocTabStopsTestView {...adhocTabStopsTestViewProps} {...testViewProps} />
-                    }
+                    enableJSXElement={<AdhocTabStopsTestView {...testViewProps} />}
                     disableJSXElement={<AdhocStaticTestView {...testViewProps} />}
                     featureFlagStoreData={props.featureFlagStoreData}
                     featureFlag={FeatureFlags.newTabStopsDetailsView}

@@ -7,7 +7,10 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    TabStopRequirementState,
+    VisualizationScanResultData,
+} from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
@@ -34,8 +37,8 @@ export interface AdhocTabStopsTestViewProps {
     tabStoreData: Pick<TabStoreData, 'isChanged'>;
     featureFlagStoreData: FeatureFlagStoreData;
     visualizationStoreData: VisualizationStoreData;
+    visualizationScanResultData: VisualizationScanResultData;
     selectedTest: VisualizationType;
-    requirementState: TabStopRequirementState;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     guidance?: ContentReference;
 }
@@ -84,6 +87,8 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
             tabStopsRequirementActionMessageCreator:
                 props.deps.tabStopsRequirementActionMessageCreator,
         };
+        const requirementState = props.visualizationScanResultData.tabStops.requirements;
+
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
         const clickHandler = props.clickHandlerFactory.createClickHandler(
             selectedTest,
@@ -111,7 +116,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 <RequirementInstructions howToTest={howToTest} />
                 <TabStopsRequirementsTable
                     deps={tabStopsRequirementTableDeps}
-                    requirementState={props.requirementState}
+                    requirementState={requirementState}
                     addFailureInstanceForRequirement={addFailureInstanceForRequirement}
                 />
             </div>

@@ -37,6 +37,80 @@ Object {
 }
 `;
 
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported and test-kebabmenuarialabel aria label passed as prop: action button menu props 1`] = `
+Object {
+  "calloutProps": Object {
+    "className": "kebabMenuCallout",
+  },
+  "className": "kebabMenu",
+  "directionalHint": 6,
+  "items": Array [
+    Object {
+      "iconProps": Object {
+        "iconName": "ladybugSolid",
+      },
+      "key": "fileissue",
+      "name": "File issue",
+      "onClick": [Function],
+    },
+    Object {
+      "iconProps": Object {
+        "iconName": "copy",
+      },
+      "key": "copyfailuredetails",
+      "name": "Copy failure details",
+      "onClick": [Function],
+    },
+  ],
+  "shouldFocusOnMount": true,
+}
+`;
+
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported and test-kebabmenuarialabel aria label passed as prop: component-snapshot 1`] = `
+"<div onKeyDown={[Function: handleKeyDown]}>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"test-kebabmenuarialabel\\" onRenderMenuIcon={[Function (anonymous)] { displayName: 'MoreActionsMenuIcon' }} menuProps={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <Toast deps={{...}} timeoutLength={6000} />
+</div>"
+`;
+
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported and undefined aria label passed as prop: action button menu props 1`] = `
+Object {
+  "calloutProps": Object {
+    "className": "kebabMenuCallout",
+  },
+  "className": "kebabMenu",
+  "directionalHint": 6,
+  "items": Array [
+    Object {
+      "iconProps": Object {
+        "iconName": "ladybugSolid",
+      },
+      "key": "fileissue",
+      "name": "File issue",
+      "onClick": [Function],
+    },
+    Object {
+      "iconProps": Object {
+        "iconName": "copy",
+      },
+      "key": "copyfailuredetails",
+      "name": "Copy failure details",
+      "onClick": [Function],
+    },
+  ],
+  "shouldFocusOnMount": true,
+}
+`;
+
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported and undefined aria label passed as prop: component-snapshot 1`] = `
+"<div onKeyDown={[Function: handleKeyDown]}>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function (anonymous)] { displayName: 'MoreActionsMenuIcon' }} menuProps={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function (anonymous)]} issueFilingServicePropertiesMap={{...}} />
+  <Toast deps={{...}} timeoutLength={6000} />
+</div>"
+`;
+
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 1`] = `
 "<div onKeyDown={[Function: handleKeyDown]}>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function (anonymous)] { displayName: 'MoreActionsMenuIcon' }} menuProps={{...}} />

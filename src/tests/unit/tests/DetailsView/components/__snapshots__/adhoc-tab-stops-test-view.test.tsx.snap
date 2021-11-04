@@ -14,7 +14,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
     </Emphasis>
   </p>
   <RequirementInstructions howToTest={{...}} />
-  <TabStopsRequirementsTable deps={{...}} requirementState={{...}} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
+  <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
 </div>"
 `;
 
@@ -32,7 +32,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
     </Emphasis>
   </p>
   <RequirementInstructions howToTest={{...}} />
-  <TabStopsRequirementsTable deps={{...}} requirementState={{...}} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
+  <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
 </div>"
 `;
 
@@ -60,6 +60,6 @@ exports[`AdhocTabStopsTestView should return target page changed view as tab is 
     </Emphasis>
   </p>
   <RequirementInstructions howToTest={{...}} />
-  <TabStopsRequirementsTable deps={{...}} requirementState={{...}} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
+  <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
 </div>"
 `;

@@ -17,6 +17,13 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -42,6 +49,13 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -60,6 +74,13 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />
@@ -87,6 +108,13 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -104,6 +132,13 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />
@@ -130,6 +165,13 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -151,6 +193,13 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
           "getConfiguration": [Function],
         }
       }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
+        }
+      }
     />
   }
   enableJSXElement={
@@ -167,6 +216,13 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
       visualizationConfigurationFactory={
         Object {
           "getConfiguration": [Function],
+        }
+      }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
         }
       }
     />
@@ -198,6 +254,13 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
           "getConfiguration": [Function],
         }
       }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
+        }
+      }
     />
   }
   enableJSXElement={
@@ -219,6 +282,13 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
       visualizationConfigurationFactory={
         Object {
           "getConfiguration": [Function],
+        }
+      }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
         }
       }
     />
@@ -243,6 +313,13 @@ exports[`TestViewContainer for testViewType=Assessment renders per snapshot with
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -265,6 +342,13 @@ exports[`TestViewContainer for testViewType=Assessment renders per snapshot with
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />

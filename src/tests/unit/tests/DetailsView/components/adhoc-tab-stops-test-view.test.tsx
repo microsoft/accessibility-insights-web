@@ -3,7 +3,10 @@
 
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import {
+    TabStopRequirementState,
+    VisualizationScanResultData,
+} from 'common/types/store-data/visualization-scan-result-data';
 import {
     ScanData,
     TestsEnabledState,
@@ -32,6 +35,7 @@ describe('AdhocTabStopsTestView', () => {
     let selectedTest: VisualizationType;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let requirementState: TabStopRequirementState;
+    let visualizationScanResultData: VisualizationScanResultData;
     // const props = {
     //     configuration: {
     //         displayableData: {
@@ -59,7 +63,7 @@ describe('AdhocTabStopsTestView', () => {
         clickHandlerStub = () => {};
         selectedTest = -1;
         featureFlagStoreDataStub = {};
-        requirementState = {};
+        visualizationScanResultData = { tabStops: {} } as VisualizationScanResultData;
 
         props = {
             configuration: {
@@ -70,7 +74,7 @@ describe('AdhocTabStopsTestView', () => {
             visualizationStoreData: visualizationStoreDataStub,
             selectedTest,
             featureFlagStoreData: featureFlagStoreDataStub,
-            requirementState,
+            visualizationScanResultData,
             deps: Mock.ofType<AdhocTabStopsTestViewDeps>().object,
         } as AdhocTabStopsTestViewProps;
 
