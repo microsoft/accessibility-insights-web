@@ -15,6 +15,8 @@ steps:
       condition: and(succeeded(), ne(variables.platform, 'linux'))
       timeoutInMinutes: 22
 
+    - script: echo ${{ parameters.platform }}
+
     - ${{ if eq(parameters.platform, 'linux') }}:
           - template: ../docker-tests-template.yaml
             parameters:
