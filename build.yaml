@@ -144,6 +144,8 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
+            parameters:
+                platform: mac
           - template: pipeline/unified/unified-e2e-publish-results.yaml
       condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
 
@@ -163,5 +165,7 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/unified/unified-e2e-test-interactive.yaml
+            parameters:
+                platform: windows
           - template: pipeline/unified/unified-e2e-publish-results.yaml
       condition: and(succeeded(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))

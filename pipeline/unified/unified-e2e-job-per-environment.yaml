@@ -14,6 +14,8 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: ./unified-e2e-test-interactive.yaml
+            parameters:
+                platform: windows
           - template: ./unified-e2e-publish-results.yaml
 
     - job: 'electron_e2e_tests_mac${{ parameters.jobNameSuffix }}'
@@ -22,6 +24,8 @@ jobs:
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: ./unified-e2e-test-interactive.yaml
+            parameters:
+                platform: mac
           - template: ./unified-e2e-publish-results.yaml
 
     - job: 'electron_e2e_tests_linux${{ parameters.jobNameSuffix }}'

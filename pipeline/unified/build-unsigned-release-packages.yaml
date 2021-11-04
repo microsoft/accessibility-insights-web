@@ -40,6 +40,8 @@ steps:
       timeoutInMinutes: 5
 
     - template: ./unified-e2e-test-interactive.yaml
+      parameters:
+          platform: $(platform)
 
     - template: ./unified-e2e-publish-results.yaml
 
