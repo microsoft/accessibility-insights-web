@@ -1,9 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-parameters:
-    - name: platform
-      type: string
-
 steps:
     - script: yarn build:unified
       displayName: build:unified
@@ -15,10 +11,7 @@ steps:
       condition: and(succeeded(), ne(variables.platform, 'linux'))
       timeoutInMinutes: 22
 
-    - script: echo ${{ parameters.platform }}
-
-    - ${{ if eq(parameters.platform, 'linux') }}:
-          - template: ../docker-tests-template.yaml
-            parameters:
-                target: unified
-                run-timeout-minutes: 22
+    - template: ../docker-tests-template.yaml
+      parameters:
+          target: unified
+          run-timeout-minutes: 22

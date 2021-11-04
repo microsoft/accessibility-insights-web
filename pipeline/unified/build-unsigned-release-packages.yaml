@@ -40,9 +40,6 @@ steps:
       timeoutInMinutes: 5
 
     - template: ./unified-e2e-test-interactive.yaml
-      parameters:
-          platform: $(platform)
-
     - template: ./unified-e2e-publish-results.yaml
 
     - script: yarn build:unified:all --unified-version=$(Build.BuildNumber) --unified-canary-instrumentation-key=$(UnifiedCanaryInstrumentationKey) --unified-insider-instrumentation-key=$(UnifiedInsiderInstrumentationKey) --unified-prod-instrumentation-key=$(UnifiedProdInstrumentationKey)
