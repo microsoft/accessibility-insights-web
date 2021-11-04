@@ -14,6 +14,9 @@ steps:
     - script: echo ${{ variables['Agent.OS'] }}
     - script: echo ${{ variables.platform }}
 
+    - script: echo $(variables['Agent.OS'])
+    - script: echo $(variables.platform)
+
     - ${{ if eq(variables['Agent.OS'], 'linux') }}:
           - template: ../docker-tests-template.yaml
             parameters:
