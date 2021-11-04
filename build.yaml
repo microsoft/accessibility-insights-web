@@ -133,7 +133,9 @@ jobs:
           vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/e2e-test-from-docker.yaml
+          - template: pipeline/docker-tests-template.yaml
+            parameters:
+                target: web
           - template: pipeline/e2e-test-publish-results.yaml
 
     - job: 'e2e_unified_mac'
@@ -150,7 +152,9 @@ jobs:
           vmImage: $(linuxImage)
       steps:
           - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/unified/unified-e2e-test-linux.yaml
+          - template: pipeline/docker-tests-template.yaml
+            parameters:
+                target: unified
           - template: pipeline/unified/unified-e2e-publish-results.yaml
 
     - job: 'e2e_unified_windows'

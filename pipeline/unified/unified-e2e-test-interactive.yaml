@@ -11,11 +11,7 @@ steps:
       condition: and(succeeded(), ne(variables.platform, 'linux'))
       timeoutInMinutes: 22
 
-    - script: DOCKER_BUILDKIT=1 docker build -t app --target unified .
-      displayName: setup docker
-      condition: and(succeeded(), eq(variables.platform, 'linux'))
-
-    - script: docker run --network=host -i app sh -c "yarn test:unified --ci"
-      displayName: run unified tests on docker
-      condition: and(succeeded(), eq(variables.platform, 'linux'))
-      timeoutInMinutes: 22
+    - template: ../docker-tests-template.yaml
+      parameters:
+          target: unified
+          run-timeout-minutes: 22
