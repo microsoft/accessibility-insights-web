@@ -5,7 +5,6 @@
 # - builds and runs a given target in DOCKERFILE
 # - copies /app/test-results & /app/drop back to the base agent
 # - requires you to publish test results or artifacts in the consuming pipeline
-# - assumes we should run on linux (all steps skipped otherwise)
 
 parameters:
     - name: target # should be web or unified
@@ -13,9 +12,6 @@ parameters:
     - name: run-timeout-minutes
       type: number
       default: 30
-
-variables:
-    shouldRun: $[eq(variables['Agent.OS'], 'linux')]
 
 steps:
     - bash: |
@@ -25,28 +21,28 @@ steps:
           fi
       env:
           TARGET: ${{ parameters.target }}
-      shouldRun: and(succeeded(), eq(variables.onLinux, 'true'))
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     # DOCKER_BUILDKIT=1 allows us to skip non-related targets (github docker/cli@1134)
     - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} .
       displayName: setup docker
-      shouldRun: and(succeeded(), eq(variables.onLinux, 'true'))
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - script: docker run --network=host -i app --ci
       displayName: run docker entrypoint
       timeoutInMinutes: ${{ parameters['run-timeout-minutes'] }}
-      shouldRun: and(succeeded(), eq(variables.onLinux, 'true'))
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - bash: |
           export CONTAINERID=$(docker ps -alq)
           echo "##vso[task.setvariable variable=CONTAINER_ID]$CONTAINERID"
       displayName: get container id for docker
-      shouldRun: and(succeeded(), eq(variables.onLinux, 'true'))
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       displayName: copy test results from docker to base agent
-      shouldRun: and(succeeded(), eq(variables.onLinux, 'true'))
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
 
     - script: docker cp $(CONTAINER_ID):/app/drop/ .
       displayName: copy drop folder from docker to base agent
-      shouldRun: and(succeeded(), eq(variables.onLinux, 'true'))
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
