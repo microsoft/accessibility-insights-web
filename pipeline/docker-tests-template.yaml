@@ -15,10 +15,12 @@ parameters:
 
 steps:
     - bash: |
-          if [ -z "$target" ]; then
+          if [ -z "$TARGET" ]; then
             echo "##vso[task.logissue type=error;]Missing template parameter \"target\""
             echo "##vso[task.complete result=Failed;]"
           fi
+      env:
+          TARGET: ${{ parameters.target }}
 
     # DOCKER_BUILDKIT=1 allows us to skip non-related targets (github docker/cli@1134)
     - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} .
