@@ -13,7 +13,6 @@ steps:
 
     - ${{ if eq(variables.platform, 'linux') }}:
           - template: ../docker-tests-template.yaml
-            condition: and(succeeded(), eq(variables.platform, 'linux'))
             parameters:
                 target: unified
                 run-timeout-minutes: 22
