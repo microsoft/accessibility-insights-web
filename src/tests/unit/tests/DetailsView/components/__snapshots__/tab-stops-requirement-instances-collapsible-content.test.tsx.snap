@@ -40,3 +40,44 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
   onRenderDetailsHeader={[Function]}
 />
 `;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance details column 1`] = `
+<AssessmentInstanceDetailsColumn
+  background="#767676"
+  headerText="Comment:"
+  textContent="test requirement description"
+  tooltipId="test-requirement-id"
+/>
+`;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instance icons column 1`] = `
+<React.Fragment>
+  <StyledLinkBase
+    className="editButton"
+    onClick={[Function]}
+  >
+    <StyledIconBase
+      ariaLabel="edit instance"
+      iconName="edit"
+    />
+  </StyledLinkBase>
+  <StyledLinkBase
+    className="removeButton"
+    onClick={[Function]}
+  >
+    <StyledIconBase
+      ariaLabel="delete instance"
+      iconName="delete"
+    />
+  </StyledLinkBase>
+</React.Fragment>
+`;
+
+exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instances column 1`] = `
+<AssessmentInstanceDetailsColumn
+  background="#767676"
+  headerText="Comment:"
+  textContent="test requirement description"
+  tooltipId="test-requirement-id"
+/>
+`;
