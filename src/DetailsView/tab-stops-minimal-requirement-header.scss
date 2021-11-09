@@ -5,9 +5,7 @@
 
 .requirement-detail {
     font-size: 14px;
-
     padding: 16px 8px;
-
     display: flex;
     align-items: baseline;
     text-align: left;
@@ -19,7 +17,7 @@
 }
 
 .requirement-detail-description {
-    color: $secondary-text !important;
+    color: $secondary-text;
     word-break: break-all;
 }
 
@@ -30,7 +28,7 @@
 
     a {
         font-family: $semiBoldFontFamily;
-        color: $primary-text !important;
+        color: $primary-text;
     }
 }
 

@@ -17,6 +17,8 @@ import * as styles from './tab-stops-requirement-instances-collapsible-content.s
 
 export type TabStopsRequirementInstancesCollapsibleContentProps = {
     instances: TabStopsRequirementResultInstance[];
+    onEditButtonClicked: (requirementId: string) => void;
+    onRemoveButtonClicked: (requirementId: string) => void;
 };
 export const TabStopsRequirementInstancesCollapsibleContent =
     NamedFC<TabStopsRequirementInstancesCollapsibleContentProps>(
@@ -40,10 +42,16 @@ export const TabStopsRequirementInstancesCollapsibleContent =
             ): JSX.Element => {
                 return (
                     <>
-                        <Link className={styles.editButton} onClick={() => {}}>
+                        <Link
+                            className={styles.editButton}
+                            onClick={() => props.onEditButtonClicked(instance.id)}
+                        >
                             <Icon iconName="edit" ariaLabel={'edit instance'} />
                         </Link>
-                        <Link className={styles.removeButton} onClick={() => {}}>
+                        <Link
+                            className={styles.removeButton}
+                            onClick={() => props.onRemoveButtonClicked(instance.id)}
+                        >
                             <Icon iconName="delete" ariaLabel={'delete instance'} />
                         </Link>
                     </>

@@ -11,6 +11,7 @@ exports[`TabStopsMinimalRequirementHeader renders 1`] = `
       aria-hidden="true"
     >
       <OutcomeChip
+        count={2}
         outcomeType="fail"
       />
     </span>

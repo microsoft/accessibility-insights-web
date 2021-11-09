@@ -33,7 +33,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
     Array [
       Object {
         "description": "test-description",
-        "id": "test-id",
+        "id": "test-requirement-id",
       },
     ]
   }

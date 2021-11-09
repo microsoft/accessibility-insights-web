@@ -32,6 +32,13 @@ export type TabStopsRequirementsWithInstancesProps = {
 export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWithInstancesProps>(
     'TabStopsRequirementsWithInstances',
     ({ results, deps, headingLevel }) => {
+        const onInstanceRemoveButtonClicked = (requirementId: string) => {
+            console.log('remove ' + requirementId);
+        };
+        const onInstanceEditButtonClicked = (requirementId: string) => {
+            console.log('edit ' + requirementId);
+        };
+
         const getCollapsibleComponentProps = (
             result: TabStopsRequirementResult,
             idx: number,
@@ -51,6 +58,8 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                     <TabStopsRequirementInstancesCollapsibleContent
                         key={`${result.id}-requirement-group`}
                         instances={result.instances}
+                        onEditButtonClicked={onInstanceEditButtonClicked}
+                        onRemoveButtonClicked={onInstanceRemoveButtonClicked}
                     />
                 ),
                 containerAutomationId: resultsGroupAutomationId,

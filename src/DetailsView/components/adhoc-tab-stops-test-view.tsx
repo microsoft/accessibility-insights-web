@@ -6,7 +6,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import * as styles from 'DetailsView/components/static-content-common.scss';
 import {
@@ -17,9 +16,7 @@ import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-prov
 import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 
-export type AdhocTabStopsTestViewDeps = TabStopsFailedInstanceSectionDeps & {
-    tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
-};
+export type AdhocTabStopsTestViewDeps = TabStopsFailedInstanceSectionDeps;
 
 export interface AdhocTabStopsTestViewProps {
     deps: AdhocTabStopsTestViewDeps;

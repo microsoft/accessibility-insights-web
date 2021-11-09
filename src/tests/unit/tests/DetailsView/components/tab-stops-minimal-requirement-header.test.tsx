@@ -10,7 +10,7 @@ import {
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TabStopsMinimalRequirementHeader', () => {
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
@@ -23,9 +23,9 @@ describe('TabStopsMinimalRequirementHeader', () => {
         isExpanded: false,
     } as TabStopsRequirementResult;
 
-    let deps = {} as TabStopsMinimalRequirementHeaderDeps;
+    let deps: TabStopsMinimalRequirementHeaderDeps;
 
-    beforeAll(() => {
+    beforeEach(() => {
         tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
 
         deps = {
@@ -38,7 +38,14 @@ describe('TabStopsMinimalRequirementHeader', () => {
             deps,
             requirement,
         };
+
+        tabStopsFailedCounterMock
+            .setup(tsf => tsf.getFailedByRequirementId(It.isAny(), It.isAnyString()))
+            .returns(() => 2)
+            .verifiable(Times.once());
+
         const wrapped = shallow(<TabStopsMinimalRequirementHeader {...props} />);
         expect(wrapped.getElement()).toMatchSnapshot();
+        tabStopsFailedCounterMock.verifyAll();
     });
 });

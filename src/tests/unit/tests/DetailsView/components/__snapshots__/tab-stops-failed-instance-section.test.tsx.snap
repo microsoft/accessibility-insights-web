@@ -9,6 +9,7 @@ exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
 >
   <h2>
     <ResultSectionTitle
+      badgeCount={10}
       outcomeType="fail"
       title="Failed instances"
       titleSize="title"

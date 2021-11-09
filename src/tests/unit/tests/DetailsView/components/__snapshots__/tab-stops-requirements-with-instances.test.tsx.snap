@@ -16,6 +16,8 @@ exports[`TabStopsRequirementsWithInstances renders 1`] = `
             },
           ]
         }
+        onEditButtonClicked={[Function]}
+        onRemoveButtonClicked={[Function]}
       />
     }
     deps={
@@ -75,6 +77,8 @@ exports[`TabStopsRequirementsWithInstances renders 1`] = `
             },
           ]
         }
+        onEditButtonClicked={[Function]}
+        onRemoveButtonClicked={[Function]}
       />
     }
     deps={

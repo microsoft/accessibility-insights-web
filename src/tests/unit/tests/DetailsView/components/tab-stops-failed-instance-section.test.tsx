@@ -10,7 +10,7 @@ import {
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 describe('TabStopsFailedInstanceSection', () => {
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
@@ -19,23 +19,20 @@ describe('TabStopsFailedInstanceSection', () => {
         tabStops: { requirements: {} },
     } as VisualizationScanResultData;
 
-    let props = {} as TabStopsFailedInstanceSectionProps;
-    let depsStub = {} as TabStopsFailedInstanceSectionDeps;
+    let props: TabStopsFailedInstanceSectionProps;
+    let deps: TabStopsFailedInstanceSectionDeps;
 
-    beforeAll(() => {
+    beforeEach(() => {
         tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
 
-        depsStub = {
+        deps = {
             tabStopsFailedCounter: tabStopsFailedCounterMock.object,
         } as TabStopsFailedInstanceSectionDeps;
 
         props = {
-            deps: depsStub,
+            deps: deps,
             visualizationScanResultData: visualizationScanResultDataStub,
         };
-    });
-
-    beforeEach(() => {
         props.visualizationScanResultData.tabStops.requirements = {
             'keyboard-navigation': {
                 status: 'fail',
@@ -51,13 +48,19 @@ describe('TabStopsFailedInstanceSection', () => {
     });
 
     it('renders with failing results', () => {
+        tabStopsFailedCounterMock
+            .setup(tsf => tsf.getTotalFailed(It.isAny()))
+            .returns(() => 10)
+            .verifiable(Times.once());
+
         const wrapper = shallow(
             <TabStopsFailedInstanceSection
-                deps={depsStub}
+                deps={deps}
                 visualizationScanResultData={visualizationScanResultDataStub}
             />,
         );
         expect(wrapper.getElement()).toMatchSnapshot();
+        tabStopsFailedCounterMock.verifyAll();
     });
 
     it('does not render when no results are failing', () => {
@@ -67,12 +70,18 @@ describe('TabStopsFailedInstanceSection', () => {
             requirementsStub[requirementId].instances = [];
         }
 
+        tabStopsFailedCounterMock
+            .setup(tsf => tsf.getTotalFailed(It.isAny()))
+            .returns(() => 10)
+            .verifiable(Times.never());
+
         const wrapper = shallow(
             <TabStopsFailedInstanceSection
-                deps={depsStub}
+                deps={deps}
                 visualizationScanResultData={visualizationScanResultDataStub}
             />,
         );
         expect(wrapper.getElement()).toMatchSnapshot();
+        tabStopsFailedCounterMock.verifyAll();
     });
 });

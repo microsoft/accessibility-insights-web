@@ -5,6 +5,7 @@ import { ResultSectionTitle } from 'common/components/cards/result-section-title
 import { NamedFC } from 'common/react/named-fc';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import {
     TabStopsRequirementsWithInstances,
     TabStopsRequirementsWithInstancesDeps,
@@ -12,7 +13,9 @@ import {
 import * as React from 'react';
 import * as styles from './tab-stops-failed-instance-section.scss';
 
-export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstancesDeps;
+export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstancesDeps & {
+    tabStopsFailedCounter: TabStopsFailedCounter;
+};
 
 export interface TabStopsFailedInstanceSectionProps {
     deps: TabStopsFailedInstanceSectionDeps;
