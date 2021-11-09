@@ -72,12 +72,3 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
   </StyledLinkBase>
 </React.Fragment>
 `;
-
-exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instances column 1`] = `
-<AssessmentInstanceDetailsColumn
-  background="#767676"
-  headerText="Comment:"
-  textContent="test requirement description"
-  tooltipId="test-requirement-id"
-/>
-`;
