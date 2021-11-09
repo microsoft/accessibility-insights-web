@@ -4,16 +4,25 @@
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import * as styles from 'DetailsView/components/static-content-common.scss';
+import {
+    TabStopsFailedInstanceSection,
+    TabStopsFailedInstanceSectionDeps,
+} from 'DetailsView/components/tab-stops-failed-instance-section';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import * as Markup from '../../assessments/markup';
 
+export type AdhocTabStopsTestViewDeps = TabStopsFailedInstanceSectionDeps;
+
 export interface AdhocTabStopsTestViewProps {
+    deps: AdhocTabStopsTestViewDeps;
     configuration: VisualizationConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
+    visualizationScanResultData: VisualizationScanResultData;
     selectedTest: VisualizationType;
 }
 
@@ -66,6 +75,10 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 </h1>
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
+                <TabStopsFailedInstanceSection
+                    deps={props.deps}
+                    visualizationScanResultData={props.visualizationScanResultData}
+                />
             </div>
         );
     },

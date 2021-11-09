@@ -43,5 +43,9 @@ exports[`AdhocTabStopsTestView renders with content 1`] = `
       </ol>
     }
   />
+  <TabStopsFailedInstanceSection
+    deps={Object {}}
+    visualizationScanResultData={Object {}}
+  />
 </div>
 `;

@@ -4,7 +4,6 @@ import {
     CardsCollapsibleControl,
     CollapsibleComponentCardsProps,
 } from 'common/components/cards/collapsible-component-cards';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
@@ -15,7 +14,6 @@ import { SetFocusVisibility } from 'types/set-focus-visibility';
 describe('CollapsibleComponentCardsTest', () => {
     const eventStubFactory = new EventStubFactory();
 
-    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
     let setFocusVisibilityMock: IMock<SetFocusVisibility>;
     let onExpandToggleMock: IMock<(event: React.MouseEvent<HTMLDivElement>) => void>;
     let clickEventMock: IMock<React.MouseEvent<HTMLDivElement>>;
@@ -36,7 +34,6 @@ describe('CollapsibleComponentCardsTest', () => {
     beforeEach(() => {
         onExpandToggleMock = Mock.ofType<(event: React.MouseEvent<HTMLDivElement>) => void>();
         clickEventMock = Mock.ofType<React.MouseEvent<HTMLDivElement>>();
-        cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         setFocusVisibilityMock = Mock.ofType<SetFocusVisibility>();
         partialProps.deps = {
             setFocusVisibility: setFocusVisibilityMock.object,
@@ -59,7 +56,7 @@ describe('CollapsibleComponentCardsTest', () => {
                 const control = CardsCollapsibleControl(props);
                 const result = shallow(control);
                 expect(result.getElement()).toMatchSnapshot();
-                cardSelectionMessageCreatorMock.verifyAll();
+                onExpandToggleMock.verifyAll();
             });
         });
     });
@@ -80,7 +77,7 @@ describe('CollapsibleComponentCardsTest', () => {
         button.simulate('click', clickEventMock.object);
         expect(result.getElement()).toMatchSnapshot('collapsed');
 
-        cardSelectionMessageCreatorMock.verifyAll();
+        onExpandToggleMock.verifyAll();
     });
 
     describe('set focus visibility when expanding/collapsing', () => {

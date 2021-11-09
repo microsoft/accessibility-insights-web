@@ -28,6 +28,7 @@ import { CardSelectionStoreData } from 'common/types/store-data/card-selection-s
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
+import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
 import { AssessmentViewUpdateHandler } from 'DetailsView/components/assessment-view-update-handler';
 import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-renderer';
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
@@ -35,6 +36,7 @@ import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-hel
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { NullStoreActionMessageCreator } from 'electron/adapters/null-store-action-message-creator';
 import { loadTheme, setFocusVisibility } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
@@ -232,6 +234,12 @@ if (tabId != null) {
                 tab.id,
                 logger,
             );
+
+            const tabStopRequirementActionMessageCreator =
+                new TabStopRequirementActionMessageCreator(
+                    telemetryFactory,
+                    actionMessageDispatcher,
+                );
 
             const detailsViewActionMessageCreator = new DetailsViewActionMessageCreator(
                 telemetryFactory,
@@ -438,6 +446,8 @@ if (tabId != null) {
                 loadAssessmentDataValidator,
             );
 
+            const tabStopsFailedCounter = new TabStopsFailedCounter();
+
             const deps: DetailsViewContainerDeps = {
                 textContent,
                 fixInstructionProcessor,
@@ -515,6 +525,8 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
+                tabStopRequirementActionMessageCreator,
+                tabStopsFailedCounter,
             };
 
             const renderer = new DetailsViewRenderer(

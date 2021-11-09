@@ -8,6 +8,7 @@ import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from './action-payloads';
@@ -44,6 +45,11 @@ export class TabStopRequirementActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.TabStops.RemoveTabStopInstance,
             this.onRemoveTabStopInstance,
+        );
+
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            this.onRequirementExpansionToggled,
         );
     }
 
@@ -89,5 +95,11 @@ export class TabStopRequirementActionCreator {
             TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
             payload,
         );
+    };
+
+    private onRequirementExpansionToggled = (
+        payload: ToggleTabStopRequirementExpandPayload,
+    ): void => {
+        this.tabStopRequirementActions.toggleTabStopRequirementExpand.invoke(payload);
     };
 }

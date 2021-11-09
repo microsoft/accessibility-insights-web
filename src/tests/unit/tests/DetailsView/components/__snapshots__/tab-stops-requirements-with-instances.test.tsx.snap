@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopsRequirementsWithInstances renders 1`] = `
+<div>
+  <CollapsibleControlStub
+    buttonAriaLabel="keyboard-navigation undefined Failed test requirement description 1"
+    containerAutomationId="tab-stops-results-group"
+    containerClassName="collapsibleRequirementDetailsGroup"
+    content={
+      <TabStopsRequirementInstancesCollapsibleContent
+        instances={
+          Array [
+            Object {
+              "description": "test desc 1",
+              "id": "test-id-1",
+            },
+          ]
+        }
+        onEditButtonClicked={[Function]}
+        onRemoveButtonClicked={[Function]}
+      />
+    }
+    deps={
+      Object {
+        "collapsibleControl": [Function],
+        "tabStopsFailedCounter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "getFailedByRequirementId": [Function],
+          "getTotalFailed": [Function],
+        },
+      }
+    }
+    header={
+      <TabStopsMinimalRequirementHeader
+        deps={
+          Object {
+            "collapsibleControl": [Function],
+            "tabStopsFailedCounter": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "getFailedByRequirementId": [Function],
+              "getTotalFailed": [Function],
+            },
+          }
+        }
+        requirement={
+          Object {
+            "description": "test requirement description 1",
+            "id": "keyboard-navigation",
+            "instances": Array [
+              Object {
+                "description": "test desc 1",
+                "id": "test-id-1",
+              },
+            ],
+            "isExpanded": false,
+            "name": "test requirement name 1",
+          }
+        }
+      />
+    }
+    headingLevel={3}
+    id="keyboard-navigation"
+    isExpanded={false}
+    onExpandToggle={[Function]}
+  />
+  <CollapsibleControlStub
+    buttonAriaLabel="keybaord-traps undefined Failed test requirement description 2"
+    containerAutomationId="tab-stops-results-group"
+    containerClassName="collapsibleRequirementDetailsGroup"
+    content={
+      <TabStopsRequirementInstancesCollapsibleContent
+        instances={
+          Array [
+            Object {
+              "description": "test desc 2",
+              "id": "test-id-2",
+            },
+          ]
+        }
+        onEditButtonClicked={[Function]}
+        onRemoveButtonClicked={[Function]}
+      />
+    }
+    deps={
+      Object {
+        "collapsibleControl": [Function],
+        "tabStopsFailedCounter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "getFailedByRequirementId": [Function],
+          "getTotalFailed": [Function],
+        },
+      }
+    }
+    header={
+      <TabStopsMinimalRequirementHeader
+        deps={
+          Object {
+            "collapsibleControl": [Function],
+            "tabStopsFailedCounter": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "getFailedByRequirementId": [Function],
+              "getTotalFailed": [Function],
+            },
+          }
+        }
+        requirement={
+          Object {
+            "description": "test requirement description 2",
+            "id": "keybaord-traps",
+            "instances": Array [
+              Object {
+                "description": "test desc 2",
+                "id": "test-id-2",
+              },
+            ],
+            "isExpanded": false,
+            "name": "test requirement name 2",
+          }
+        }
+      />
+    }
+    headingLevel={3}
+    id="keybaord-traps"
+    isExpanded={false}
+    onExpandToggle={[Function]}
+  />
+</div>
+`;
