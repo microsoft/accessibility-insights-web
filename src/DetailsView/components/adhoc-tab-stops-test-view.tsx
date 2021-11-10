@@ -37,7 +37,7 @@ export interface AdhocTabStopsTestViewProps {
     visualizationScanResultData: VisualizationScanResultData;
     selectedTest: VisualizationType;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
-    guidance: ContentReference;
+    guidance?: ContentReference;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
