@@ -5,9 +5,11 @@ import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import * as styles from 'DetailsView/components/static-content-common.scss';
 import {
@@ -18,6 +20,7 @@ import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableDeps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
+import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
@@ -25,12 +28,15 @@ import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
 import * as Markup from '../../assessments/markup';
 
-export type AdhocTabStopsTestViewDeps = TabStopsRequirementsTableDeps &
+export type AdhocTabStopsTestViewDeps = {
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+} & TabStopsRequirementsTableDeps &
     TabStopsFailedInstanceSectionDeps &
     ContentLinkDeps;
 
 export interface AdhocTabStopsTestViewProps {
     deps: AdhocTabStopsTestViewDeps;
+    tabStoreData: Pick<TabStoreData, 'isChanged'>;
     configuration: VisualizationConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
     visualizationStoreData: VisualizationStoreData;
@@ -95,6 +101,19 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
             //TODO: fill this in
             console.log(requirementId);
         };
+
+        if (props.tabStoreData.isChanged) {
+            return (
+                <TargetPageChangedView
+                    displayableData={displayableData}
+                    visualizationType={selectedTest}
+                    toggleClickHandler={clickHandler}
+                    featureFlagStoreData={props.featureFlagStoreData}
+                    detailsViewActionMessageCreator={props.deps.detailsViewActionMessageCreator}
+                />
+            );
+        }
+
         return (
             <div className={styles.staticContentInDetailsView}>
                 <h1>

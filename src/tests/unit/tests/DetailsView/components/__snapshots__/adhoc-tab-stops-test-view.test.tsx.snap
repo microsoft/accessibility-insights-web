@@ -146,3 +146,18 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
   />
 </div>
 `;
+
+exports[`AdhocTabStopsTestView render should return target page changed view as tab is changed 1`] = `
+<TargetPageChangedView
+  detailsViewActionMessageCreator={[Function]}
+  displayableData={
+    Object {
+      "title": "test title",
+      "toggleLabel": "test toggle label",
+    }
+  }
+  featureFlagStoreData={Object {}}
+  toggleClickHandler={[Function]}
+  visualizationType={-1}
+/>
+`;

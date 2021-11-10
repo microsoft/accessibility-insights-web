@@ -86,8 +86,21 @@ describe('AdhocTabStopsTestView', () => {
             ['no guidance', null],
         ];
 
+        it('should return target page changed view as tab is changed', () => {
+            props.tabStoreData = {
+                isChanged: true,
+            };
+
+            const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
         it.each(scenarios)('handles %s', (_, guidance) => {
             props.deps = 'stub-deps' as unknown as AdhocTabStopsTestViewDeps;
+
+            props.tabStoreData = {
+                isChanged: false,
+            };
 
             if (guidance) {
                 props.guidance = guidance;
