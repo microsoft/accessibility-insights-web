@@ -13,12 +13,14 @@ import {
     Link,
 } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 import * as styles from './tab-stops-requirement-instances-collapsible-content.scss';
 
 export type TabStopsRequirementInstancesCollapsibleContentProps = {
+    requirementId: TabStopRequirementId;
     instances: TabStopsRequirementResultInstance[];
-    onEditButtonClicked: (requirementId: string) => void;
-    onRemoveButtonClicked: (requirementId: string) => void;
+    onEditButtonClicked: (instanceId: string) => void;
+    onRemoveButtonClicked: (requirementId: TabStopRequirementId, instanceId: string) => void;
 };
 export const TabStopsRequirementInstancesCollapsibleContent =
     NamedFC<TabStopsRequirementInstancesCollapsibleContentProps>(
@@ -50,7 +52,9 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                         </Link>
                         <Link
                             className={styles.removeButton}
-                            onClick={() => props.onRemoveButtonClicked(instance.id)}
+                            onClick={() =>
+                                props.onRemoveButtonClicked(props.requirementId, instance.id)
+                            }
                         >
                             <Icon iconName="delete" ariaLabel={'delete instance'} />
                         </Link>

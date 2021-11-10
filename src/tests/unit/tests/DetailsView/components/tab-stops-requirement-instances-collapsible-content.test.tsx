@@ -10,25 +10,30 @@ import { mount, shallow } from 'enzyme';
 import { DetailsList, Link } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
-    let onEditButtonClickedMock: IMock<(requirementId: string) => void>;
-    let onRemoveButtonClickedMock: IMock<(requirementId: string) => void>;
+    let onEditButtonClickedMock: IMock<(instanceId: string) => void>;
+    let onRemoveButtonClickedMock: IMock<
+        (requirementId: TabStopRequirementId, instanceId: string) => void
+    >;
     let props: TabStopsRequirementInstancesCollapsibleContentProps;
     let requirementResultInstanceStub: TabStopsRequirementResultInstance;
 
     beforeEach(() => {
-        onEditButtonClickedMock = Mock.ofType<(requirementId: string) => void>();
-        onRemoveButtonClickedMock = Mock.ofType<(requirementId: string) => void>();
+        onEditButtonClickedMock = Mock.ofType<(instanceId: string) => void>();
+        onRemoveButtonClickedMock =
+            Mock.ofType<(requirementId: TabStopRequirementId, instanceId: string) => void>();
 
         props = {
-            instances: [{ id: 'test-requirement-id', description: 'test-description' }],
+            requirementId: 'keyboard-navigation',
+            instances: [{ id: 'test-instance-id', description: 'test-description' }],
             onEditButtonClicked: onEditButtonClickedMock.object,
             onRemoveButtonClicked: onRemoveButtonClickedMock.object,
         };
 
         requirementResultInstanceStub = {
-            id: 'test-requirement-id',
+            id: 'test-instance-id',
             description: 'test requirement description',
         };
     });
@@ -51,10 +56,13 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     });
 
     test('click events pass through as expected', () => {
-        onEditButtonClickedMock.setup(ebc => ebc('test-requirement-id')).verifiable(Times.once());
-        onRemoveButtonClickedMock.setup(rbc => rbc('test-requirement-id')).verifiable(Times.once());
+        onEditButtonClickedMock.setup(ebc => ebc('test-instance-id')).verifiable(Times.once());
+        onRemoveButtonClickedMock
+            .setup(rbc => rbc(props.requirementId, 'test-instance-id'))
+            .verifiable(Times.once());
         const testSubject = mount(
             <TabStopsRequirementInstancesCollapsibleContent
+                requirementId={props.requirementId}
                 instances={props.instances}
                 onEditButtonClicked={onEditButtonClickedMock.object}
                 onRemoveButtonClicked={onRemoveButtonClickedMock.object}

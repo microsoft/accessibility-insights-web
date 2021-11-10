@@ -12,6 +12,7 @@ import { TabStopsRequirementInstancesCollapsibleContent } from 'DetailsView/tab-
 import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-result';
 import * as React from 'react';
 import { outcomeTypeSemantics } from 'reports/components/outcome-type';
+import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 import * as styles from './tab-stops-requirements-with-instances.scss';
 
@@ -32,8 +33,14 @@ export type TabStopsRequirementsWithInstancesProps = {
 export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWithInstancesProps>(
     'TabStopsRequirementsWithInstances',
     ({ results, deps, headingLevel }) => {
-        const onInstanceRemoveButtonClicked = (requirementId: string) => {
-            console.log('remove ' + requirementId);
+        const onInstanceRemoveButtonClicked = (
+            requirementId: TabStopRequirementId,
+            instanceId: string,
+        ) => {
+            deps.tabStopRequirementActionMessageCreator.removeTabStopInstance(
+                requirementId,
+                instanceId,
+            );
         };
         const onInstanceEditButtonClicked = (requirementId: string) => {
             console.log('edit ' + requirementId);
@@ -57,6 +64,7 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                 content: (
                     <TabStopsRequirementInstancesCollapsibleContent
                         key={`${result.id}-requirement-group`}
+                        requirementId={result.id}
                         instances={result.instances}
                         onEditButtonClicked={onInstanceEditButtonClicked}
                         onRemoveButtonClicked={onInstanceRemoveButtonClicked}
@@ -85,10 +93,16 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                         results,
                         requirement.id,
                     );
+
+                    if (count === 0) {
+                        return null;
+                    }
+
                     const buttonAriaLabel = `${requirement.id} ${count} ${pastTense} ${requirement.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(requirement, idx, buttonAriaLabel),
                     );
+
                     return CollapsibleComponent;
                 })}
             </div>
