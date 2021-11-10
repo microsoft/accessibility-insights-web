@@ -93,13 +93,16 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                         results,
                         requirement.id,
                     );
+
+                    if (count === 0) {
+                        return null;
+                    }
+
                     const buttonAriaLabel = `${requirement.id} ${count} ${pastTense} ${requirement.description}`;
                     const CollapsibleComponent = deps.collapsibleControl(
                         getCollapsibleComponentProps(requirement, idx, buttonAriaLabel),
                     );
-                    if (count === 0) {
-                        return null;
-                    }
+
                     return CollapsibleComponent;
                 })}
             </div>
