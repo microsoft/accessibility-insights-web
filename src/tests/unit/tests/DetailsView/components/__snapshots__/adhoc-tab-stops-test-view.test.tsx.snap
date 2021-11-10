@@ -15,6 +15,7 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
   </p>
   <RequirementInstructions howToTest={{...}} />
   <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
+  <TabStopsFailedInstanceSection deps=\\"stub-deps\\" visualizationScanResultData={{...}} />
 </div>"
 `;
 
@@ -33,6 +34,7 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
   </p>
   <RequirementInstructions howToTest={{...}} />
   <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
+  <TabStopsFailedInstanceSection deps=\\"stub-deps\\" visualizationScanResultData={{...}} />
 </div>"
 `;
 
@@ -61,40 +63,16 @@ exports[`AdhocTabStopsTestView should return target page changed view as tab is 
   </p>
   <RequirementInstructions howToTest={{...}} />
   <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
+  <TabStopsFailedInstanceSection deps={[Function: function () {
+                      var args = [];
+                      for (var _i = 0; _i < arguments.length; _i++) {
+                          args[_i] = arguments[_i];
+                      }
+                      _this._interceptor.removeInvocation(invocation_1);
+                      var method = new MethodInfo(target, p);
+                      var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                      _this._interceptor.intercept(methodInvocation);
+                      return methodInvocation.returnValue;
+                  }] { [Symbol(Symbol.toStringTag)]: [Function: bound toString] }} visualizationScanResultData={{...}} />
 </div>"
-  <RequirementInstructions
-    howToTest={
-      <ol>
-        <li>
-          Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-        </li>
-        <li>
-          Use your keyboard to move input focus through all the interactive elements in the page:
-          <ol>
-            <li>
-              Use 
-              <Term>
-                Tab
-              </Term>
-               and
-               
-              <Term>
-                Shift+Tab
-              </Term>
-               to navigate between standalone controls.
-               
-            </li>
-            <li>
-              Use the arrow keys to navigate between the focusable elements within a composite control.
-            </li>
-          </ol>
-        </li>
-      </ol>
-    }
-  />
-  <TabStopsFailedInstanceSection
-    deps={Object {}}
-    visualizationScanResultData={Object {}}
-  />
-</div>
 `;

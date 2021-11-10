@@ -14,15 +14,14 @@ import { RequirementInstructions } from 'DetailsView/components/requirement-inst
 import * as styles from 'DetailsView/components/static-content-common.scss';
 import { StaticContentDetailsViewDeps } from 'DetailsView/components/static-content-details-view';
 import {
+    TabStopsFailedInstanceSection,
+    TabStopsFailedInstanceSectionDeps,
+} from 'DetailsView/components/tab-stops-failed-instance-section';
+import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableDeps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
-import * as styles from 'DetailsView/components/static-content-common.scss';
-import {
-    TabStopsFailedInstanceSection,
-    TabStopsFailedInstanceSectionDeps,
-} from 'DetailsView/components/tab-stops-failed-instance-section';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
@@ -122,11 +121,10 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     deps={tabStopsRequirementTableDeps}
                     requirementState={requirementState}
                     addFailureInstanceForRequirement={addFailureInstanceForRequirement}
-
+                />
                 <TabStopsFailedInstanceSection
                     deps={props.deps}
                     visualizationScanResultData={props.visualizationScanResultData}
-
                 />
             </div>
         );
