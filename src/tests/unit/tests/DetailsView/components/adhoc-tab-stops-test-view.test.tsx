@@ -32,14 +32,7 @@ describe('AdhocTabStopsTestView', () => {
     let selectedTest: VisualizationType;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let visualizationScanResultData: VisualizationScanResultData;
-    // const props = {
-    //     configuration: {
-    //         displayableData: {
-    //             title: 'test title',
 
-    //         } as DisplayableVisualizationTypeData,
-    //     },
-    // } as AdhocTabStopsTestViewProps;
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         clickHandlerFactoryMock = Mock.ofType(
