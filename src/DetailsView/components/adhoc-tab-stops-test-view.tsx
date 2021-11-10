@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
 import * as styles from 'DetailsView/components/static-content-common.scss';
@@ -12,18 +14,30 @@ import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
 } from 'DetailsView/components/tab-stops-failed-instance-section';
+import {
+    TabStopsRequirementsTable,
+    TabStopsRequirementsTableDeps,
+} from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
+import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
 import * as React from 'react';
+import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { ContentReference } from 'views/content/content-page';
 import * as Markup from '../../assessments/markup';
 
-export type AdhocTabStopsTestViewDeps = TabStopsFailedInstanceSectionDeps;
+export type AdhocTabStopsTestViewDeps = TabStopsRequirementsTableDeps &
+    TabStopsFailedInstanceSectionDeps &
+    ContentLinkDeps;
 
 export interface AdhocTabStopsTestViewProps {
     deps: AdhocTabStopsTestViewDeps;
     configuration: VisualizationConfiguration;
     featureFlagStoreData: FeatureFlagStoreData;
+    visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
     selectedTest: VisualizationType;
+    clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
+    guidance?: ContentReference;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
@@ -66,15 +80,42 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         const displayableData = props.configuration.displayableData;
         const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
         const stepsText = fastPassProvider.getStepsText(selectedTest);
+        const tabStopsRequirementTableDeps = {
+            tabStopsRequirementActionMessageCreator:
+                props.deps.tabStopsRequirementActionMessageCreator,
+        };
+        const requirementState = props.visualizationScanResultData.tabStops.requirements;
 
+        const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
+        const clickHandler = props.clickHandlerFactory.createClickHandler(
+            selectedTest,
+            !scanData.enabled,
+        );
+        const addFailureInstanceForRequirement = (requirementId: string): void => {
+            //TODO: fill this in
+            console.log(requirementId);
+        };
         return (
             <div className={styles.staticContentInDetailsView}>
                 <h1>
                     {displayableData.title}
                     {` ${stepsText} `}
+                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
                 </h1>
+                <VisualizationToggle
+                    checked={scanData.enabled}
+                    onClick={clickHandler}
+                    label={displayableData.toggleLabel}
+                    className={styles.detailsViewToggle}
+                    visualizationName={displayableData.title}
+                />
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
+                <TabStopsRequirementsTable
+                    deps={tabStopsRequirementTableDeps}
+                    requirementState={requirementState}
+                    addFailureInstanceForRequirement={addFailureInstanceForRequirement}
+                />
                 <TabStopsFailedInstanceSection
                     deps={props.deps}
                     visualizationScanResultData={props.visualizationScanResultData}

@@ -1,13 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdhocTabStopsTestView renders with content 1`] = `
+exports[`AdhocTabStopsTestView render handles guidance 1`] = `
 <div
   className="staticContentInDetailsView"
 >
   <h1>
     test title
      Step 0 of 3 
+    <ContentLink
+      deps="stub-deps"
+      iconName="info"
+      reference="stub-guidance"
+    />
   </h1>
+  <VisualizationToggle
+    checked={true}
+    className="detailsViewToggle"
+    label="test toggle label"
+    onClick={[Function]}
+    visualizationName="test title"
+  />
   <p>
     <Emphasis>
       Note: this test requires you to use a keyboard and to visually identify interactive elements.
@@ -43,9 +55,94 @@ exports[`AdhocTabStopsTestView renders with content 1`] = `
       </ol>
     }
   />
+  <TabStopsRequirementsTable
+    addFailureInstanceForRequirement={[Function]}
+    deps={
+      Object {
+        "tabStopsRequirementActionMessageCreator": undefined,
+      }
+    }
+  />
   <TabStopsFailedInstanceSection
-    deps={Object {}}
-    visualizationScanResultData={Object {}}
+    deps="stub-deps"
+    visualizationScanResultData={
+      Object {
+        "tabStops": Object {},
+      }
+    }
+  />
+</div>
+`;
+
+exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
+<div
+  className="staticContentInDetailsView"
+>
+  <h1>
+    test title
+     Step 0 of 3 
+    <ContentLink
+      deps="stub-deps"
+      iconName="info"
+    />
+  </h1>
+  <VisualizationToggle
+    checked={true}
+    className="detailsViewToggle"
+    label="test toggle label"
+    onClick={[Function]}
+    visualizationName="test title"
+  />
+  <p>
+    <Emphasis>
+      Note: this test requires you to use a keyboard and to visually identify interactive elements.
+    </Emphasis>
+  </p>
+  <RequirementInstructions
+    howToTest={
+      <ol>
+        <li>
+          Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
+        </li>
+        <li>
+          Use your keyboard to move input focus through all the interactive elements in the page:
+          <ol>
+            <li>
+              Use 
+              <Term>
+                Tab
+              </Term>
+               and
+               
+              <Term>
+                Shift+Tab
+              </Term>
+               to navigate between standalone controls.
+               
+            </li>
+            <li>
+              Use the arrow keys to navigate between the focusable elements within a composite control.
+            </li>
+          </ol>
+        </li>
+      </ol>
+    }
+  />
+  <TabStopsRequirementsTable
+    addFailureInstanceForRequirement={[Function]}
+    deps={
+      Object {
+        "tabStopsRequirementActionMessageCreator": undefined,
+      }
+    }
+  />
+  <TabStopsFailedInstanceSection
+    deps="stub-deps"
+    visualizationScanResultData={
+      Object {
+        "tabStops": Object {},
+      }
+    }
   />
 </div>
 `;

@@ -245,6 +245,13 @@ if (tabId != null) {
                 telemetryFactory,
                 actionMessageDispatcher,
             );
+
+            const tabStopsRequirementActionMessageCreator =
+                new TabStopRequirementActionMessageCreator(
+                    telemetryFactory,
+                    actionMessageDispatcher,
+                );
+
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -459,6 +466,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
+                tabStopsRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
