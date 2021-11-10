@@ -33,7 +33,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders 1`] = `
     Array [
       Object {
         "description": "test-description",
-        "id": "test-requirement-id",
+        "id": "test-instance-id",
       },
     ]
   }
@@ -46,7 +46,7 @@ exports[`TabStopsRequirementInstancesCollapsibleContent renders captured instanc
   background="#767676"
   headerText="Comment:"
   textContent="test requirement description"
-  tooltipId="test-requirement-id"
+  tooltipId="test-instance-id"
 />
 `;
 
