@@ -1,24 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { Mock } from 'typemoq';
-
-import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
-import { ManualTestStepResult } from '../../../../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import {
-    CapturedInstanceActionType,
-    FailureInstancePanelControl,
-} from '../../../../../DetailsView/components/failure-instance-panel-control';
+import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { ManualTestStepResult } from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+import { FailureInstancePanelControl } from 'DetailsView/components/failure-instance-panel-control';
 import {
     ManualTestStepView,
     ManualTestStepViewProps,
-} from '../../../../../DetailsView/components/manual-test-step-view';
-import { TestStatusChoiceGroup } from '../../../../../DetailsView/components/test-status-choice-group';
-import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
+} from 'DetailsView/components/manual-test-step-view';
+import { TestStatusChoiceGroup } from 'DetailsView/components/test-status-choice-group';
+import { AssessmentInstanceTableHandler } from 'DetailsView/handlers/assessment-instance-table-handler';
+import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { CreateTestAssessmentProvider } from 'tests/unit/common/test-assessment-provider';
+import { Mock } from 'typemoq';
 
 describe('ManualTestStepView', () => {
     const featureFlagStoreData = {} as FeatureFlagStoreData;
