@@ -78,16 +78,6 @@ describe('AdhocTabStopsTestView', () => {
             .verifiable();
     });
 
-    it('should return target page changed view as tab is changed', () => {
-        props.tabStoreData = {
-            isChanged: true,
-        };
-
-        const actual = shallow(<AdhocTabStopsTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
-        verifyAll();
-    });
-
     describe('render', () => {
         const stubGuidance = 'stub-guidance' as ContentReference;
 
@@ -98,16 +88,13 @@ describe('AdhocTabStopsTestView', () => {
 
         it.each(scenarios)('handles %s', (_, guidance) => {
             props.deps = 'stub-deps' as unknown as AdhocTabStopsTestViewDeps;
-            props.tabStoreData = {
-                isChanged: false,
-            };
 
             if (guidance) {
                 props.guidance = guidance;
             }
 
             const wrapper = shallow(<AdhocTabStopsTestView {...props} />);
-            expect(wrapper.debug()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
             verifyAll();
         });
     });
