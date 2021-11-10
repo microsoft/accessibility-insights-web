@@ -62,4 +62,39 @@ exports[`AdhocTabStopsTestView should return target page changed view as tab is 
   <RequirementInstructions howToTest={{...}} />
   <TabStopsRequirementsTable deps={{...}} requirementState={[undefined]} addFailureInstanceForRequirement={[Function: addFailureInstanceForRequirement]} />
 </div>"
+  <RequirementInstructions
+    howToTest={
+      <ol>
+        <li>
+          Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
+        </li>
+        <li>
+          Use your keyboard to move input focus through all the interactive elements in the page:
+          <ol>
+            <li>
+              Use 
+              <Term>
+                Tab
+              </Term>
+               and
+               
+              <Term>
+                Shift+Tab
+              </Term>
+               to navigate between standalone controls.
+               
+            </li>
+            <li>
+              Use the arrow keys to navigate between the focusable elements within a composite control.
+            </li>
+          </ol>
+        </li>
+      </ol>
+    }
+  />
+  <TabStopsFailedInstanceSection
+    deps={Object {}}
+    visualizationScanResultData={Object {}}
+  />
+</div>
 `;

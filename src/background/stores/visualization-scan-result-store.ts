@@ -18,6 +18,7 @@ import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
@@ -50,6 +51,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             requirements[id] = {
                 status: 'unknown',
                 instances: [],
+                isExpanded: false,
             };
         }
         const state: Partial<VisualizationScanResultData> = {
@@ -90,6 +92,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         );
         this.tabStopRequirementActions.removeTabStopInstance.addListener(
             this.onRemoveTabStopInstance,
+        );
+        this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
+            this.onToggleTabStopRequirementExpandCollapse,
         );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
@@ -174,6 +179,15 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             instance => instance.id !== id,
         );
         this.state.tabStops.requirements[requirementId].instances = newInstances;
+        this.emitChanged();
+    };
+
+    private onToggleTabStopRequirementExpandCollapse = (
+        payload: ToggleTabStopRequirementExpandPayload,
+    ): void => {
+        const { requirementId } = payload;
+        const requirement = this.state.tabStops.requirements[requirementId];
+        requirement.isExpanded = !requirement.isExpanded;
         this.emitChanged();
     };
 

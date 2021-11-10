@@ -7,8 +7,10 @@ import {
     UpdateTabStopRequirementStatusPayload,
     UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
+    ToggleTabStopRequirementExpandPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 import {
     TelemetryEventSource,
@@ -171,6 +173,30 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             requirementInstance.requirementId,
             requirementInstance.id,
         );
+
+        dispatcherMock.verify(
+            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
+            Times.once(),
+        );
+
+        telemetryFactoryMock.verifyAll();
+    });
+
+    test('toggleRabStopRequirementExpand', () => {
+        const requirementInstance: ToggleTabStopRequirementExpandPayload = {
+            requirementId: 'input-focus',
+        };
+
+        const eventStub = {} as React.SyntheticEvent;
+
+        const expectedMessage = {
+            messageType: Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            payload: {
+                ...requirementInstance,
+            },
+        };
+
+        testSubject.toggleTabStopRequirementExpand(requirementInstance.requirementId, eventStub);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

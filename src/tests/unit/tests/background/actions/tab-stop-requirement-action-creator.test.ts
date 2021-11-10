@@ -6,6 +6,7 @@ import {
     RemoveTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
 } from 'background/actions/action-payloads';
 import { TabStopRequirementActionCreator } from 'background/actions/tab-stop-requirement-action-creator';
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
@@ -169,6 +170,31 @@ describe('TabStopRequirementActionCreator', () => {
                 ),
             Times.once(),
         );
+    });
+
+    test('registerCallback for on requirement expansion toggled', () => {
+        const actionName = 'toggleTabStopRequirementExpand';
+        const payload: ToggleTabStopRequirementExpandPayload = {
+            requirementId: requirementId,
+        };
+
+        const onRequirementExpansionToggledMock = createActionMock(payload);
+
+        const actionsMock = createActionsMock(actionName, onRequirementExpansionToggledMock.object);
+        const interpreterMock = createInterpreterMock(
+            Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            payload,
+        );
+
+        const testSubject = new TabStopRequirementActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+        );
+
+        testSubject.registerCallbacks();
+
+        onRequirementExpansionToggledMock.verifyAll();
     });
 
     test('registerCallback for remove tab stops requirement instance', () => {
