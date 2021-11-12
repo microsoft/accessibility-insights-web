@@ -90,10 +90,6 @@ describe(TabStopsViewStore, () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    test('onCreateNewFailureInstancePanel', () => {});
-
-    test('onCreateNewFailureInstancePanel', () => {});
-
     function getDefaultState(): TabStopsViewStoreData {
         return createStoreWithNullParams(TabStopsViewStore).getDefaultState();
     }
