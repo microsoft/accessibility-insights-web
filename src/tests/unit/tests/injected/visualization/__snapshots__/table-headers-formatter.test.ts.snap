@@ -10,7 +10,7 @@ Object {
   "textBoxConfig": Object {
     "background": "#6600CC",
     "fontColor": "#FFFFFF",
-    "text": "td headers=\\"headers\\"",
+    "text": "td",
   },
 }
 `;
@@ -25,7 +25,7 @@ Object {
   "textBoxConfig": Object {
     "background": "#6600CC",
     "fontColor": "#FFFFFF",
-    "text": "td headers=\\"headers\\"",
+    "text": "td",
   },
 }
 `;
@@ -40,7 +40,7 @@ Object {
   "textBoxConfig": Object {
     "background": "#0066CC",
     "fontColor": "#FFFFFF",
-    "text": "th id=\\"id\\" headers=\\"headers\\"",
+    "text": "th",
   },
 }
 `;
@@ -55,7 +55,7 @@ Object {
   "textBoxConfig": Object {
     "background": "#0066CC",
     "fontColor": "#FFFFFF",
-    "text": "th id=\\"id\\"",
+    "text": "th",
   },
 }
 `;
