@@ -7,6 +7,7 @@ import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 export interface EditExistingFailureInstancePayload {
     instanceId: string;
     requirementId: TabStopRequirementId;
+    description: string;
 }
 
 export class TabStopsViewActions {

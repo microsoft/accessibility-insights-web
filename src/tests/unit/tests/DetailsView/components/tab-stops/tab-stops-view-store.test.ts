@@ -38,13 +38,7 @@ describe(TabStopsViewStore, () => {
 
     test('onDismissPanel', () => {
         const initialState = getDefaultState();
-        initialState.failureInstanceState = {
-            isPanelOpen: true,
-            description: 'some description',
-            selectedInstanceId: 'some instance id',
-            selectedRequirementId: 'focus-indicator',
-            actionType: CapturedInstanceActionType.EDIT,
-        };
+        initialState.failureInstanceState.isPanelOpen = true;
         const finalState = getDefaultState();
         createStoreForTabStopsViewActions('dismissPanel')
             .withActionParam(null)
@@ -74,16 +68,21 @@ describe(TabStopsViewStore, () => {
 
     test('onEditExistingFailureInstance', () => {
         const requirementId = 'focus-indicator';
+        const expectedDescription = 'some description';
         const someInstanceId = 'some instance id';
         const initialState = getDefaultState();
         const finalState = getDefaultState();
-        finalState.failureInstanceState.selectedRequirementId = requirementId;
-        finalState.failureInstanceState.selectedInstanceId = someInstanceId;
-        finalState.failureInstanceState.isPanelOpen = true;
-        finalState.failureInstanceState.actionType = CapturedInstanceActionType.EDIT;
+        finalState.failureInstanceState = {
+            selectedInstanceId: someInstanceId,
+            selectedRequirementId: requirementId,
+            isPanelOpen: true,
+            description: expectedDescription,
+            actionType: CapturedInstanceActionType.EDIT,
+        };
         const payload: EditExistingFailureInstancePayload = {
             instanceId: someInstanceId,
             requirementId,
+            description: expectedDescription,
         };
         createStoreForTabStopsViewActions('editExistingFailureInstance')
             .withActionParam(payload)
