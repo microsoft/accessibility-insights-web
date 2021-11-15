@@ -15,6 +15,10 @@ import { overviewContainerAutomationId } from 'DetailsView/components/overview-c
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { reportExportButtonAutomationId } from 'DetailsView/components/report-export-button';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
+import {
+    addTabStopsFailureInstanceAutomationId,
+    tabStopsPassFailChoiceGroupAutomationId,
+} from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import { reportExportAsHtmlAutomationId } from 'report-export/services/html-report-export-service';
 import { reportExportAsJsonAutomationId } from 'report-export/services/json-report-export-service';
 import { testSummaryStatusAutomationId } from 'reports/components/assessment-summary-details';
@@ -74,6 +78,13 @@ export const fastPassAutomatedChecksSelectors = {
     cardsRuleId: getAutomationIdSelector(cardsRuleIdAutomationId),
     failureCount: getAutomationIdSelector(failureCountAutomationId),
     iframeWarning: getAutomationIdSelector(IframeWarningContainerAutomationId),
+};
+
+export const tabStopsSelectors = {
+    addFailureInstanceButton: getAutomationIdSelector(addTabStopsFailureInstanceAutomationId),
+    tabStopsPassFailChoiceGroup: getAutomationIdSelector(tabStopsPassFailChoiceGroupAutomationId),
+    tabStopsFailRadioButton:
+        getAutomationIdSelector(tabStopsPassFailChoiceGroupAutomationId) + ' [aria-label="Fail"]',
 };
 
 export const overviewSelectors = {
