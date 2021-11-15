@@ -17,6 +17,9 @@ export interface TabStopsChoiceGroupsProps {
     onAddFailureInstanceClicked: (ev: SupportedMouseEvent) => void;
 }
 
+export const addTabStopsFailureInstanceAutomationId = 'addTabStopsFailureInstance';
+export const tabStopsPassFailChoiceGroupAutomationId = 'tabStopsPassFailChoiceGroup';
+
 export interface ITabStopsChoiceGroup extends IChoiceGroupOption {
     key: InstanceResultStatus;
 }
@@ -29,6 +32,7 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
             <>
                 <div className={styles.tabStopsChoiceGroup}>
                     <ChoiceGroup
+                        data-automation-id={tabStopsPassFailChoiceGroupAutomationId}
                         className={this.props.status}
                         onChange={this.onChange}
                         componentRef={this.setComponentRef}
@@ -65,6 +69,7 @@ export class TabStopsChoiceGroup extends React.Component<TabStopsChoiceGroupsPro
                     <>
                         {this.getUndoButton()}
                         <Link
+                            data-automation-id={addTabStopsFailureInstanceAutomationId}
                             className={styles.undoButton}
                             onClick={this.props.onAddFailureInstanceClicked}
                         >

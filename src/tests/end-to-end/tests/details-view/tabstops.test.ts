@@ -1,7 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlags } from 'common/feature-flags';
+import { formatPageElementForSnapshot } from 'tests/common/element-snapshot-formatter';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
+import {
+    detailsViewSelectors,
+    tabStopsSelectors,
+} from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
@@ -27,7 +32,7 @@ describe('Details View -> FastPass -> TabStops', () => {
     });
 
     afterAll(async () => {
-        await browser?.close();
+        // await browser?.close();
     });
 
     it.each([true, false])(
@@ -40,6 +45,12 @@ describe('Details View -> FastPass -> TabStops', () => {
             expect(results).toHaveLength(0);
         },
     );
+
+    it('Shows proper options when failing a requirement', async () => {
+        await detailsViewPage.waitForSelector(tabStopsSelectors.tabStopsFailRadioButton);
+        await detailsViewPage.clickSelector(tabStopsSelectors.tabStopsFailRadioButton);
+        //should click the fail button but doesn't seem to be working currently
+    });
 });
 
 async function openTabStopsPage(
