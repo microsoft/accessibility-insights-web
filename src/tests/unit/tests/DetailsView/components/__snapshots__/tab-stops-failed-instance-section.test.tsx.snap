@@ -2,8 +2,6 @@
 
 exports[`TabStopsFailedInstanceSection does not render when no results are failing 1`] = `null`;
 
-exports[`TabStopsFailedInstanceSection does not render when results are failing but there are no failed instances 1`] = `null`;
-
 exports[`TabStopsFailedInstanceSection renders with failing results 1`] = `
 <div
   className="tabStopsFailureInstanceSection"
