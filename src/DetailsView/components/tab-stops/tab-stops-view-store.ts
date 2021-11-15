@@ -42,6 +42,7 @@ export class TabStopsViewStore extends BaseStoreImpl<TabStopsViewStoreData> {
     }
 
     private onCreateNewFailureInstancePanel = (requirementId: TabStopRequirementId) => {
+        this.state.failureInstanceState = this.getDefaultState().failureInstanceState;
         this.state.failureInstanceState.isPanelOpen = true;
         this.state.failureInstanceState.selectedRequirementId = requirementId;
         this.state.failureInstanceState.actionType = CapturedInstanceActionType.CREATE;
@@ -52,12 +53,13 @@ export class TabStopsViewStore extends BaseStoreImpl<TabStopsViewStoreData> {
         this.state.failureInstanceState.isPanelOpen = true;
         this.state.failureInstanceState.selectedRequirementId = payload.requirementId;
         this.state.failureInstanceState.selectedInstanceId = payload.instanceId;
+        this.state.failureInstanceState.description = payload.description;
         this.state.failureInstanceState.actionType = CapturedInstanceActionType.EDIT;
         this.emitChanged();
     };
 
     private onDismissPanel = () => {
-        this.state.failureInstanceState = this.getDefaultState().failureInstanceState;
+        this.state.failureInstanceState.isPanelOpen = false;
         this.emitChanged();
     };
 
