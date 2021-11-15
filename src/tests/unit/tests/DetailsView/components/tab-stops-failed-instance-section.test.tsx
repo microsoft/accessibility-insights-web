@@ -72,7 +72,24 @@ describe('TabStopsFailedInstanceSection', () => {
 
         tabStopsFailedCounterMock
             .setup(tsf => tsf.getTotalFailed(It.isAny()))
-            .verifiable(Times.never());
+            .returns(() => 0)
+            .verifiable(Times.once());
+
+        const wrapper = shallow(
+            <TabStopsFailedInstanceSection
+                deps={deps}
+                visualizationScanResultData={visualizationScanResultDataStub}
+            />,
+        );
+        expect(wrapper.getElement()).toMatchSnapshot();
+        tabStopsFailedCounterMock.verifyAll();
+    });
+
+    it('does not render when results are failing but there are no failed instances', () => {
+        tabStopsFailedCounterMock
+            .setup(tsf => tsf.getTotalFailed(It.isAny()))
+            .returns(() => 0)
+            .verifiable(Times.once());
 
         const wrapper = shallow(
             <TabStopsFailedInstanceSection
