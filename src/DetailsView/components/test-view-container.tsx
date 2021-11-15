@@ -11,6 +11,7 @@ import {
     AdhocTabStopsTestViewDeps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
@@ -24,7 +25,6 @@ import { VisualizationScanResultData } from '../../common/types/store-data/visua
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { TabStopRequirementActionMessageCreator } from '../actions/tab-stop-requirement-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { AdhocIssuesTestView } from './adhoc-issues-test-view';
@@ -36,7 +36,6 @@ import { TestViewDeps } from './test-view';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    tabStopsRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
@@ -44,6 +43,7 @@ export type TestViewContainerDeps = {
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;
     tabStoreData: TabStoreData;
+    tabStopsViewStoreData: TabStopsViewStoreData;
     assessmentStoreData: AssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;

@@ -6,6 +6,7 @@ import {
 } from 'common/components/cards/collapsible-component-cards';
 import { NamedFC } from 'common/react/named-fc';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
+import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import { TabStopsMinimalRequirementHeader } from 'DetailsView/tab-stops-minimal-requirement-header';
 import { TabStopsRequirementInstancesCollapsibleContent } from 'DetailsView/tab-stops-requirement-instances-collapsible-content';
@@ -13,7 +14,6 @@ import { TabStopsRequirementResult } from 'DetailsView/tab-stops-requirement-res
 import * as React from 'react';
 import { outcomeTypeSemantics } from 'reports/components/outcome-type';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
-
 import * as styles from './tab-stops-requirements-with-instances.scss';
 
 export const resultsGroupAutomationId = 'tab-stops-results-group';
@@ -22,6 +22,7 @@ export type TabStopsRequirementsWithInstancesDeps = CollapsibleComponentCardsDep
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
     tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
     tabStopsFailedCounter: TabStopsFailedCounter;
+    tabStopsTestViewController: TabStopsTestViewController;
 };
 
 export type TabStopsRequirementsWithInstancesProps = {
@@ -42,8 +43,16 @@ export const TabStopsRequirementsWithInstances = NamedFC<TabStopsRequirementsWit
                 instanceId,
             );
         };
-        const onInstanceEditButtonClicked = (requirementId: string) => {
-            console.log('edit ' + requirementId);
+        const onInstanceEditButtonClicked = (
+            requirementId: TabStopRequirementId,
+            instanceId: string,
+            description: string,
+        ) => {
+            deps.tabStopsTestViewController.editExistingFailureInstance({
+                instanceId,
+                requirementId,
+                description,
+            });
         };
 
         const getCollapsibleComponentProps = (

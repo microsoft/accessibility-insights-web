@@ -37,6 +37,14 @@ exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] =
           "getFailedByRequirementId": [Function],
           "getTotalFailed": [Function],
         },
+        "tabStopsTestViewController": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "createNewFailureInstancePanel": [Function],
+          "dismissPanel": [Function],
+          "editExistingFailureInstance": [Function],
+          "updateDescription": [Function],
+        },
       }
     }
     header={
@@ -54,6 +62,14 @@ exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] =
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "getFailedByRequirementId": [Function],
               "getTotalFailed": [Function],
+            },
+            "tabStopsTestViewController": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "actions": undefined,
+              "createNewFailureInstancePanel": [Function],
+              "dismissPanel": [Function],
+              "editExistingFailureInstance": [Function],
+              "updateDescription": [Function],
             },
           }
         }
@@ -111,6 +127,14 @@ exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] =
           "getFailedByRequirementId": [Function],
           "getTotalFailed": [Function],
         },
+        "tabStopsTestViewController": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "actions": undefined,
+          "createNewFailureInstancePanel": [Function],
+          "dismissPanel": [Function],
+          "editExistingFailureInstance": [Function],
+          "updateDescription": [Function],
+        },
       }
     }
     header={
@@ -128,6 +152,14 @@ exports[`TabStopsRequirementsWithInstances renders when instance count > 0 1`] =
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "getFailedByRequirementId": [Function],
               "getTotalFailed": [Function],
+            },
+            "tabStopsTestViewController": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "actions": undefined,
+              "createNewFailureInstancePanel": [Function],
+              "dismissPanel": [Function],
+              "editExistingFailureInstance": [Function],
+              "updateDescription": [Function],
             },
           }
         }

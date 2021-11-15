@@ -34,6 +34,10 @@ import { NavLinkRenderer } from 'DetailsView/components/left-nav/nav-link-render
 import { LoadAssessmentDataValidator } from 'DetailsView/components/load-assessment-data-validator';
 import { LoadAssessmentHelper } from 'DetailsView/components/load-assessment-helper';
 import { NoContentAvailableViewDeps } from 'DetailsView/components/no-content-available/no-content-available-view';
+import { requirements } from 'DetailsView/components/tab-stops/requirements';
+import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
+import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
+import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { AllUrlsPermissionHandler } from 'DetailsView/handlers/allurls-permission-handler';
 import { NoContentAvailableViewRenderer } from 'DetailsView/no-content-available-view-renderer';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
@@ -213,6 +217,11 @@ if (tabId != null) {
                 tab.id,
             );
 
+            const tabStopsViewActions = new TabStopsViewActions();
+            const tabStopsTestViewController = new TabStopsTestViewController(tabStopsViewActions);
+            const tabStopsViewStore = new TabStopsViewStore(tabStopsViewActions);
+            tabStopsViewStore.initialize();
+
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
@@ -226,6 +235,7 @@ if (tabId != null) {
                 scopingStore,
                 userConfigStore,
                 cardSelectionStore,
+                tabStopsViewStore,
             ]);
 
             const logger = createDefaultLogger();
@@ -245,12 +255,6 @@ if (tabId != null) {
                 telemetryFactory,
                 actionMessageDispatcher,
             );
-
-            const tabStopsRequirementActionMessageCreator =
-                new TabStopRequirementActionMessageCreator(
-                    telemetryFactory,
-                    actionMessageDispatcher,
-                );
 
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
@@ -466,7 +470,7 @@ if (tabId != null) {
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator,
-                tabStopsRequirementActionMessageCreator,
+                tabStopRequirementActionMessageCreator,
                 assessmentsProvider: Assessments,
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
@@ -533,8 +537,9 @@ if (tabId != null) {
                 assessmentViewUpdateHandler,
                 navLinkRenderer,
                 getNarrowModeThresholds: getNarrowModeThresholdsForWeb,
-                tabStopRequirementActionMessageCreator,
+                tabStopRequirements: requirements,
                 tabStopsFailedCounter,
+                tabStopsTestViewController,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -7,24 +7,25 @@ import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-
 import { requirementsList } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsChoiceGroup } from 'DetailsView/components/tab-stops/tab-stops-choice-group';
 import * as styles from 'DetailsView/components/tab-stops/tab-stops-requirement-table.scss';
+import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { DetailsList, IColumn } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 export interface TabStopsRequirementsTableProps {
     deps: TabStopsRequirementsTableDeps;
     requirementState: TabStopRequirementState;
-    addFailureInstanceForRequirement: (requirementId: string) => void;
 }
 
 export type TabStopsRequirementsTableDeps = {
-    tabStopsRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
+    tabStopRequirementActionMessageCreator: TabStopRequirementActionMessageCreator;
+    tabStopsTestViewController: TabStopsTestViewController;
 };
 
 export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>(
     'TabStopsRequirementsTable',
     props => {
-        const { deps, addFailureInstanceForRequirement } = props;
-        const { tabStopsRequirementActionMessageCreator } = deps;
+        const { deps } = props;
+        const { tabStopRequirementActionMessageCreator } = deps;
         const columns: IColumn[] = [
             {
                 name: 'Requirement',
@@ -48,18 +49,20 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                         <TabStopsChoiceGroup
                             status={props.requirementState[item.id].status}
                             onUndoClicked={_ =>
-                                tabStopsRequirementActionMessageCreator.resetStatusForRequirement(
+                                tabStopRequirementActionMessageCreator.resetStatusForRequirement(
                                     item.id,
                                 )
                             }
                             onGroupChoiceChange={(_, status) =>
-                                tabStopsRequirementActionMessageCreator.updateTabStopRequirementStatus(
+                                tabStopRequirementActionMessageCreator.updateTabStopRequirementStatus(
                                     item.id,
                                     status,
                                 )
                             }
                             onAddFailureInstanceClicked={_ =>
-                                addFailureInstanceForRequirement(item.id)
+                                deps.tabStopsTestViewController.createNewFailureInstancePanel(
+                                    item.id,
+                                )
                             }
                         />
                     );

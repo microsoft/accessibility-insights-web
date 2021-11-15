@@ -56,18 +56,21 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
     }
   />
   <TabStopsRequirementsTable
-    addFailureInstanceForRequirement={[Function]}
-    deps={
-      Object {
-        "tabStopsRequirementActionMessageCreator": undefined,
-      }
-    }
+    deps="stub-deps"
   />
   <TabStopsFailedInstanceSection
     deps="stub-deps"
     visualizationScanResultData={
       Object {
         "tabStops": Object {},
+      }
+    }
+  />
+  <TabStopsFailedInstancePanel
+    deps="stub-deps"
+    failureInstanceState={
+      Object {
+        "actionType": "CREATE",
       }
     }
   />
@@ -129,18 +132,21 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
     }
   />
   <TabStopsRequirementsTable
-    addFailureInstanceForRequirement={[Function]}
-    deps={
-      Object {
-        "tabStopsRequirementActionMessageCreator": undefined,
-      }
-    }
+    deps="stub-deps"
   />
   <TabStopsFailedInstanceSection
     deps="stub-deps"
     visualizationScanResultData={
       Object {
         "tabStops": Object {},
+      }
+    }
+  />
+  <TabStopsFailedInstancePanel
+    deps="stub-deps"
+    failureInstanceState={
+      Object {
+        "actionType": "CREATE",
       }
     }
   />

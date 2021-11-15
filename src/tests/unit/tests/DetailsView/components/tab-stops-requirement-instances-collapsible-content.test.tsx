@@ -13,7 +13,9 @@ import { IMock, Mock, Times } from 'typemoq';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 describe('TabStopsRequirementInstancesCollapsibleContent', () => {
-    let onEditButtonClickedMock: IMock<(instanceId: string) => void>;
+    let onEditButtonClickedMock: IMock<
+        (requirementId: TabStopRequirementId, instanceId: string, description: string) => void
+    >;
     let onRemoveButtonClickedMock: IMock<
         (requirementId: TabStopRequirementId, instanceId: string) => void
     >;
@@ -21,7 +23,14 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     let requirementResultInstanceStub: TabStopsRequirementResultInstance;
 
     beforeEach(() => {
-        onEditButtonClickedMock = Mock.ofType<(instanceId: string) => void>();
+        onEditButtonClickedMock =
+            Mock.ofType<
+                (
+                    requirementId: TabStopRequirementId,
+                    instanceId: string,
+                    description: string,
+                ) => void
+            >();
         onRemoveButtonClickedMock =
             Mock.ofType<(requirementId: TabStopRequirementId, instanceId: string) => void>();
 
@@ -56,7 +65,9 @@ describe('TabStopsRequirementInstancesCollapsibleContent', () => {
     });
 
     test('click events pass through as expected', () => {
-        onEditButtonClickedMock.setup(ebc => ebc('test-instance-id')).verifiable(Times.once());
+        onEditButtonClickedMock
+            .setup(ebc => ebc('keyboard-navigation', 'test-instance-id', 'test-description'))
+            .verifiable(Times.once());
         onRemoveButtonClickedMock
             .setup(rbc => rbc(props.requirementId, 'test-instance-id'))
             .verifiable(Times.once());

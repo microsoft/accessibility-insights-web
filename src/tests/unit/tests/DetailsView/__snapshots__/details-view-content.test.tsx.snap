@@ -213,6 +213,17 @@ exports[` render renders normally 1`] = `
         "getSelectedDetailsView": [Function],
       }
     }
+    tabStopsViewStoreData={
+      Object {
+        "failureInstanceState": Object {
+          "actionType": "CREATE",
+          "description": null,
+          "isPanelOpen": false,
+          "selectedInstanceId": null,
+          "selectedRequirementId": null,
+        },
+      }
+    }
     tabStoreData={
       Object {
         "id": 1,
