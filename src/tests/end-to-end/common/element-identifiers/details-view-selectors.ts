@@ -81,10 +81,12 @@ export const fastPassAutomatedChecksSelectors = {
 };
 
 export const tabStopsSelectors = {
+    navDataAutomationId: getAutomationIdSelector('TabStops'),
     addFailureInstanceButton: getAutomationIdSelector(addTabStopsFailureInstanceAutomationId),
     tabStopsPassFailChoiceGroup: getAutomationIdSelector(tabStopsPassFailChoiceGroupAutomationId),
     tabStopsFailRadioButton:
-        getAutomationIdSelector(tabStopsPassFailChoiceGroupAutomationId) + ' [aria-label="Fail"]',
+        getAutomationIdSelector(tabStopsPassFailChoiceGroupAutomationId) +
+        ' > div > div >div:nth-child(2)',
 };
 
 export const overviewSelectors = {
