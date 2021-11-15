@@ -72,7 +72,8 @@ describe('TabStopsFailedInstanceSection', () => {
 
         tabStopsFailedCounterMock
             .setup(tsf => tsf.getTotalFailed(It.isAny()))
-            .verifiable(Times.never());
+            .returns(() => 0)
+            .verifiable(Times.once());
 
         const wrapper = shallow(
             <TabStopsFailedInstanceSection

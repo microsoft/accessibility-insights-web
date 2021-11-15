@@ -43,7 +43,10 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
             });
         }
 
-        if (results.length === 0) {
+        const totalFailedInstancesCount: number =
+            props.deps.tabStopsFailedCounter.getTotalFailed(results);
+
+        if (totalFailedInstancesCount === 0) {
             return null;
         }
 
@@ -55,7 +58,7 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
                 <h2>
                     <ResultSectionTitle
                         title="Failed instances"
-                        badgeCount={props.deps.tabStopsFailedCounter.getTotalFailed(results)}
+                        badgeCount={totalFailedInstancesCount}
                         outcomeType="fail"
                         titleSize="title"
                     />
