@@ -8,9 +8,9 @@ import {
 } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { StartOverComponentFactory } from 'DetailsView/components/start-over-component-factory';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -37,7 +37,6 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
-import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;

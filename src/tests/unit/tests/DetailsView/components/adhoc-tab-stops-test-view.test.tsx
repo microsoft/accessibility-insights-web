@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -16,13 +17,12 @@ import {
     AdhocTabStopsTestViewDeps,
     AdhocTabStopsTestViewProps,
 } from 'DetailsView/components/adhoc-tab-stops-test-view';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
-import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
-import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 
 describe('AdhocTabStopsTestView', () => {
     let props: AdhocTabStopsTestViewProps;
