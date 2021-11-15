@@ -19,7 +19,11 @@ import * as styles from './tab-stops-requirement-instances-collapsible-content.s
 export type TabStopsRequirementInstancesCollapsibleContentProps = {
     requirementId: TabStopRequirementId;
     instances: TabStopsRequirementResultInstance[];
-    onEditButtonClicked: (instanceId: string) => void;
+    onEditButtonClicked: (
+        requirementId: TabStopRequirementId,
+        instanceId: string,
+        description: string,
+    ) => void;
     onRemoveButtonClicked: (requirementId: TabStopRequirementId, instanceId: string) => void;
 };
 export const TabStopsRequirementInstancesCollapsibleContent =
@@ -46,7 +50,13 @@ export const TabStopsRequirementInstancesCollapsibleContent =
                     <>
                         <Link
                             className={styles.editButton}
-                            onClick={() => props.onEditButtonClicked(instance.id)}
+                            onClick={() =>
+                                props.onEditButtonClicked(
+                                    props.requirementId,
+                                    instance.id,
+                                    instance.description,
+                                )
+                            }
                         >
                             <Icon iconName="edit" ariaLabel={'edit instance'} />
                         </Link>

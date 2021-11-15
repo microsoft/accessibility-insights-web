@@ -10,6 +10,7 @@ import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableProps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
+import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
 import { shallow } from 'enzyme';
 import { DetailsList } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -22,23 +23,23 @@ describe('TabStopsRequirementsTable', () => {
     let props: TabStopsRequirementsTableProps;
     let requirementState: TabStopRequirementState;
     let tabStopsRequirementActionMessageCreatorMock: IMock<TabStopRequirementActionMessageCreator>;
-    let addFailureInstanceForRequirementMock: IMock<(requirementId: string) => void>;
     let requirementContentStub: {
         id: string;
     } & TabStopRequirementContent;
+    let tabStopsTestViewControllerMock: IMock<TabStopsTestViewController>;
 
     beforeEach(() => {
-        addFailureInstanceForRequirementMock = Mock.ofType<(requirementId: string) => void>();
+        tabStopsTestViewControllerMock = Mock.ofType<TabStopsTestViewController>();
         tabStopsRequirementActionMessageCreatorMock =
             Mock.ofType<TabStopRequirementActionMessageCreator>();
         requirementState = new VisualizationScanResultStoreDataBuilder().build().tabStops
             .requirements;
         props = {
             deps: {
-                tabStopsRequirementActionMessageCreator:
+                tabStopRequirementActionMessageCreator:
                     tabStopsRequirementActionMessageCreatorMock.object,
+                tabStopsTestViewController: tabStopsTestViewControllerMock.object,
             },
-            addFailureInstanceForRequirement: addFailureInstanceForRequirementMock.object,
             requirementState: requirementState,
         };
         requirementContentStub = {
@@ -86,6 +87,9 @@ describe('TabStopsRequirementsTable', () => {
             m => m.updateTabStopRequirementStatus(actualRequirement.id, 'fail'),
             Times.once(),
         );
-        addFailureInstanceForRequirementMock.verify(m => m(actualRequirement.id), Times.once());
+        tabStopsTestViewControllerMock.verify(
+            m => m.createNewFailureInstancePanel(actualRequirement.id),
+            Times.once(),
+        );
     });
 });

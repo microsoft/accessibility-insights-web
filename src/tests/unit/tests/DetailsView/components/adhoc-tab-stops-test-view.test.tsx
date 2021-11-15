@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { DisplayableVisualizationTypeData } from 'common/types/displayable-visualization-type-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -20,6 +21,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 import { ContentReference } from 'views/content/content-page';
+import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 
 describe('AdhocTabStopsTestView', () => {
     let props: AdhocTabStopsTestViewProps;
@@ -32,7 +35,6 @@ describe('AdhocTabStopsTestView', () => {
     let selectedTest: VisualizationType;
     let featureFlagStoreDataStub: FeatureFlagStoreData;
     let visualizationScanResultData: VisualizationScanResultData;
-
     beforeEach(() => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         clickHandlerFactoryMock = Mock.ofType(
@@ -55,17 +57,23 @@ describe('AdhocTabStopsTestView', () => {
         visualizationScanResultData = { tabStops: {} } as VisualizationScanResultData;
 
         props = {
+            deps: Mock.ofType<AdhocTabStopsTestViewDeps>().object,
             configuration: {
                 getStoreData: getStoreDataMock.object,
                 displayableData: displayableDataStub,
-            },
+            } as VisualizationConfiguration,
             clickHandlerFactory: clickHandlerFactoryMock.object,
             visualizationStoreData: visualizationStoreDataStub,
             selectedTest,
             featureFlagStoreData: featureFlagStoreDataStub,
             visualizationScanResultData,
-            deps: Mock.ofType<AdhocTabStopsTestViewDeps>().object,
-        } as AdhocTabStopsTestViewProps;
+            tabStoreData: null,
+            tabStopsViewStoreData: {
+                failureInstanceState: {
+                    actionType: CapturedInstanceActionType.CREATE,
+                },
+            } as TabStopsViewStoreData,
+        };
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))

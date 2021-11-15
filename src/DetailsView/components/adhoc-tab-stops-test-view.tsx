@@ -17,9 +17,14 @@ import {
     TabStopsFailedInstanceSectionDeps,
 } from 'DetailsView/components/tab-stops-failed-instance-section';
 import {
+    TabStopsFailedInstancePanel,
+    TabStopsFailedInstancePanelDeps,
+} from 'DetailsView/components/tab-stops/tab-stops-failed-instance-panel';
+import {
     TabStopsRequirementsTable,
     TabStopsRequirementsTableDeps,
 } from 'DetailsView/components/tab-stops/tab-stops-requirements-table';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
@@ -31,6 +36,7 @@ import * as Markup from '../../assessments/markup';
 export type AdhocTabStopsTestViewDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
 } & TabStopsRequirementsTableDeps &
+    TabStopsFailedInstancePanelDeps &
     TabStopsFailedInstanceSectionDeps &
     ContentLinkDeps;
 
@@ -44,6 +50,7 @@ export interface AdhocTabStopsTestViewProps {
     selectedTest: VisualizationType;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     guidance?: ContentReference;
+    tabStopsViewStoreData: TabStopsViewStoreData;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
@@ -86,10 +93,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         const displayableData = props.configuration.displayableData;
         const fastPassProvider = createFastPassProviderWithFeatureFlags(props.featureFlagStoreData);
         const stepsText = fastPassProvider.getStepsText(selectedTest);
-        const tabStopsRequirementTableDeps = {
-            tabStopsRequirementActionMessageCreator:
-                props.deps.tabStopsRequirementActionMessageCreator,
-        };
         const requirementState = props.visualizationScanResultData.tabStops.requirements;
 
         const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
@@ -97,10 +100,6 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
             selectedTest,
             !scanData.enabled,
         );
-        const addFailureInstanceForRequirement = (requirementId: string): void => {
-            //TODO: fill this in
-            console.log(requirementId);
-        };
 
         if (props.tabStoreData.isChanged) {
             return (
@@ -130,14 +129,15 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                 />
                 {description}
                 <RequirementInstructions howToTest={howToTest} />
-                <TabStopsRequirementsTable
-                    deps={tabStopsRequirementTableDeps}
-                    requirementState={requirementState}
-                    addFailureInstanceForRequirement={addFailureInstanceForRequirement}
-                />
+                <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
                 <TabStopsFailedInstanceSection
                     deps={props.deps}
                     visualizationScanResultData={props.visualizationScanResultData}
+                />
+                <TabStopsFailedInstancePanel
+                    deps={props.deps}
+                    failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
+                    requirementState={requirementState}
                 />
             </div>
         );

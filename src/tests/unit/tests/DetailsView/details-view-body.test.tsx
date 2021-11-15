@@ -37,6 +37,7 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
@@ -102,6 +103,7 @@ describe('DetailsViewBody', () => {
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
+                tabStopsViewStoreData: { failureInstanceState: {} } as TabStopsViewStoreData,
                 featureFlagStoreData: {} as FeatureFlagStoreData,
                 selectedTest: selectedTest,
                 visualizationConfigurationFactory: configFactoryStub,

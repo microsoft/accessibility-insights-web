@@ -124,6 +124,11 @@ exports[`DetailsViewBody render render 1`] = `
           "StartOverComponentFactory": Object {},
         }
       }
+      tabStopsViewStoreData={
+        Object {
+          "failureInstanceState": Object {},
+        }
+      }
       tabStoreData={
         Object {
           "id": null,
@@ -443,6 +448,11 @@ exports[`DetailsViewBody render render 1`] = `
             "LeftNav": [Function],
             "ReportExportDialogFactory": [Function],
             "StartOverComponentFactory": Object {},
+          }
+        }
+        tabStopsViewStoreData={
+          Object {
+            "failureInstanceState": Object {},
           }
         }
         tabStoreData={
@@ -771,6 +781,11 @@ exports[`DetailsViewBody render render 1`] = `
                 "LeftNav": [Function],
                 "ReportExportDialogFactory": [Function],
                 "StartOverComponentFactory": Object {},
+              }
+            }
+            tabStopsViewStoreData={
+              Object {
+                "failureInstanceState": Object {},
               }
             }
             tabStoreData={

@@ -17,8 +17,8 @@ import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { TabStopsViewStore } from 'DetailsView/components/tab-stops/tab-stops-view-store';
 import { It, Mock, MockBehavior } from 'typemoq';
-
 import { PermissionsStateStore } from '../../../../background/stores/global/permissions-state-store';
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
@@ -58,6 +58,7 @@ export class StoreMocks {
     public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
     public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
     public permissionsStateStoreMock = Mock.ofType(PermissionsStateStore, MockBehavior.Strict);
+    public tabStopsViewStoreMock = Mock.ofType(TabStopsViewStore, MockBehavior.Strict);
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData =
@@ -89,7 +90,7 @@ export class StoreMocks {
     };
     public assessmentStoreData: AssessmentStoreData;
     public permissionsStateStoreData = new PermissionsStateStore(null).getDefaultState();
-
+    public tabStopsViewStoreData = new TabStopsViewStore(null).getDefaultState();
     public cardSelectionStoreData = new CardSelectionStore(null, null).getDefaultState();
 
     constructor() {
