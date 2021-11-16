@@ -17,6 +17,9 @@ export interface FailedInstancePanelProps {
     onDismiss: () => void;
 }
 
+export const addFailedInstanceTextAreaAutomationId: string = 'addFailedInstanceTextArea';
+export const primaryAddFailedInstanceButtonAutomationId: string = 'primaryAddFailedInstanceButton';
+
 export class FailedInstancePanel extends React.Component<FailedInstancePanelProps> {
     public render(): JSX.Element {
         const panelProps: GenericPanelProps = {
@@ -31,6 +34,7 @@ export class FailedInstancePanel extends React.Component<FailedInstancePanelProp
         return (
             <GenericPanel {...panelProps}>
                 <TextField
+                    data-automation-id={addFailedInstanceTextAreaAutomationId}
                     className={styles.observedFailureTextfield}
                     label="Comment"
                     multiline={true}
@@ -50,6 +54,7 @@ export class FailedInstancePanel extends React.Component<FailedInstancePanelProp
             <div>
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
+                    primaryButtonDataAutomationId={primaryAddFailedInstanceButtonAutomationId}
                     primaryButtonDisabled={this.props.instanceDescription === null}
                     primaryButtonText={this.props.confirmButtonText}
                     primaryButtonOnClick={() => {
