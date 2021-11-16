@@ -11,6 +11,7 @@ exports[`FailedInstancePanel primary button disabled without description 1`] = `
 >
   <StyledTextFieldBase
     className="observedFailureTextfield"
+    data-automation-id="addFailedInstanceTextArea"
     label="Comment"
     multiline={true}
     onChange={[Function]}
@@ -23,6 +24,7 @@ exports[`FailedInstancePanel primary button disabled without description 1`] = `
     <ActionAndCancelButtonsComponent
       cancelButtonOnClick={[Function]}
       isHidden={false}
+      primaryButtonDataAutomationId="primaryAddFailedInstanceButton"
       primaryButtonDisabled={true}
       primaryButtonOnClick={[Function]}
       primaryButtonText="some confirm text"
@@ -42,6 +44,7 @@ exports[`FailedInstancePanel renders 1`] = `
 >
   <StyledTextFieldBase
     className="observedFailureTextfield"
+    data-automation-id="addFailedInstanceTextArea"
     label="Comment"
     multiline={true}
     onChange={[Function]}
@@ -54,6 +57,7 @@ exports[`FailedInstancePanel renders 1`] = `
     <ActionAndCancelButtonsComponent
       cancelButtonOnClick={[Function]}
       isHidden={false}
+      primaryButtonDataAutomationId="primaryAddFailedInstanceButton"
       primaryButtonDisabled={false}
       primaryButtonOnClick={[Function]}
       primaryButtonText="some confirm text"

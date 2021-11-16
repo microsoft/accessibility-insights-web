@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { collapsibleButtonAutomationId } from 'common/components/cards/collapsible-component-cards';
 import { resultSectionAutomationId } from 'common/components/cards/result-section';
 import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with-instances';
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
@@ -15,6 +16,11 @@ import { overviewContainerAutomationId } from 'DetailsView/components/overview-c
 import { overviewHeadingAutomationId } from 'DetailsView/components/overview-content/overview-heading';
 import { reportExportButtonAutomationId } from 'DetailsView/components/report-export-button';
 import { startOverAutomationId } from 'DetailsView/components/start-over-component-factory';
+import { tabStopsFailedInstanceSectionAutomationId } from 'DetailsView/components/tab-stops-failed-instance-section';
+import {
+    addFailedInstanceTextAreaAutomationId,
+    primaryAddFailedInstanceButtonAutomationId,
+} from 'DetailsView/components/tab-stops/failed-instance-panel';
 import {
     addTabStopsFailureInstanceAutomationId,
     tabStopsPassFailChoiceGroupAutomationId,
@@ -87,6 +93,15 @@ export const tabStopsSelectors = {
     tabStopsFailRadioButton:
         getAutomationIdSelector(tabStopsPassFailChoiceGroupAutomationId) +
         ' > div > div >div:nth-child(2)',
+    addFailedInstanceTextArea: getAutomationIdSelector(addFailedInstanceTextAreaAutomationId),
+    primaryAddFailedInstanceButton: getAutomationIdSelector(
+        primaryAddFailedInstanceButtonAutomationId,
+    ),
+    failedInstancesSection: getAutomationIdSelector(tabStopsFailedInstanceSectionAutomationId),
+    collapsibleComponentExpandToggleButton: getAutomationIdSelector(collapsibleButtonAutomationId),
+    instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
+    instanceEditButton: '[data-automation-key="instanceActionButtons"] button:nth-child(1)',
+    instanceRemoveButton: '[data-automation-key="instanceActionButtons"] button:nth-child(2)',
 };
 
 export const overviewSelectors = {
