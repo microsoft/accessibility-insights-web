@@ -32,7 +32,7 @@ const resizeTextHowToTest: JSX.Element = (
                 <Markup.Term>System</Markup.Term> {'>'} <Markup.Term>Display</Markup.Term> {'>'}{' '}
                 <Markup.Term>Scale and layout</Markup.Term> to
                 <ol>
-                    <li>Set the resolution to 1920x1080, and</li>
+                    <li>Set the resolution to 1280 pixels wide, and</li>
                     <li>Set scaling to 100%.</li>
                 </ol>
             </li>
