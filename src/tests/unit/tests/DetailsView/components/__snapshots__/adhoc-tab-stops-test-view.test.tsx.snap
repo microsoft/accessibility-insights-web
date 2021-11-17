@@ -13,20 +13,19 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
       reference="stub-guidance"
     />
   </h1>
-  <VisualizationToggle
-    checked={true}
-    className="detailsViewToggle"
-    label="test toggle label"
-    onClick={[Function]}
-    visualizationName="test title"
-  />
   <p>
     <Emphasis>
       Note: this test requires you to use a keyboard and to visually identify interactive elements.
     </Emphasis>
   </p>
-  <RequirementInstructions
-    howToTest={
+  <StyledToggleBase
+    checked={true}
+    className="visualHelperToggle"
+    label="Visual helper"
+    onClick={[Function]}
+  />
+  <CollapsibleComponent
+    content={
       <ol>
         <li>
           Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
@@ -54,7 +53,20 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
         </li>
       </ol>
     }
+    contentClassName="requirementInstructions"
+    header={
+      <h2
+        className="requirementHowToTestHeader"
+      >
+        How to test
+      </h2>
+    }
   />
+  <h2
+    className="requirementTableTitle"
+  >
+    Record your results
+  </h2>
   <TabStopsRequirementsTable
     deps="stub-deps"
   />
@@ -89,20 +101,19 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
       iconName="info"
     />
   </h1>
-  <VisualizationToggle
-    checked={true}
-    className="detailsViewToggle"
-    label="test toggle label"
-    onClick={[Function]}
-    visualizationName="test title"
-  />
   <p>
     <Emphasis>
       Note: this test requires you to use a keyboard and to visually identify interactive elements.
     </Emphasis>
   </p>
-  <RequirementInstructions
-    howToTest={
+  <StyledToggleBase
+    checked={true}
+    className="visualHelperToggle"
+    label="Visual helper"
+    onClick={[Function]}
+  />
+  <CollapsibleComponent
+    content={
       <ol>
         <li>
           Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
@@ -130,7 +141,20 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
         </li>
       </ol>
     }
+    contentClassName="requirementInstructions"
+    header={
+      <h2
+        className="requirementHowToTestHeader"
+      >
+        How to test
+      </h2>
+    }
   />
+  <h2
+    className="requirementTableTitle"
+  >
+    Record your results
+  </h2>
   <TabStopsRequirementsTable
     deps="stub-deps"
   />

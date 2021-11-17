@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { VisualizationToggle } from 'common/components/visualization-toggle';
+import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -10,8 +10,9 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
-import * as styles from 'DetailsView/components/static-content-common.scss';
+import * as styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
+import * as requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
+import * as commonStyles from 'DetailsView/components/static-content-common.scss';
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
@@ -28,6 +29,7 @@ import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stop
 import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
+import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
@@ -114,21 +116,25 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         }
 
         return (
-            <div className={styles.staticContentInDetailsView}>
+            <div className={commonStyles.staticContentInDetailsView}>
                 <h1>
                     {displayableData.title}
                     {` ${stepsText} `}
                     <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
                 </h1>
-                <VisualizationToggle
-                    checked={scanData.enabled}
-                    onClick={clickHandler}
-                    label={displayableData.toggleLabel}
-                    className={styles.detailsViewToggle}
-                    visualizationName={displayableData.title}
-                />
                 {description}
-                <RequirementInstructions howToTest={howToTest} />
+                <Toggle
+                    onClick={clickHandler}
+                    label="Visual helper"
+                    checked={scanData.enabled}
+                    className={styles.visualHelperToggle}
+                />
+                <CollapsibleComponent
+                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    content={howToTest}
+                    contentClassName={requirementInstructionStyles.requirementInstructions}
+                />
+                <h2 className={styles.requirementTableTitle}>Record your results</h2>
                 <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
                 <TabStopsFailedInstanceSection
                     deps={props.deps}
