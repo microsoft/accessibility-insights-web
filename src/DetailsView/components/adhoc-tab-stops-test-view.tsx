@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import * as toggleStyles from 'common/components/cards/visual-helper-toggle.scss';
+import { CollapsibleComponent } from 'common/components/collapsible-component';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -10,8 +10,9 @@ import { VisualizationScanResultData } from 'common/types/store-data/visualizati
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
-import { RequirementInstructions } from 'DetailsView/components/requirement-instructions';
-import * as styles from 'DetailsView/components/static-content-common.scss';
+import * as styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
+import * as requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
+import * as commonStyles from 'DetailsView/components/static-content-common.scss';
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
@@ -115,7 +116,7 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         }
 
         return (
-            <div className={styles.staticContentInDetailsView}>
+            <div className={commonStyles.staticContentInDetailsView}>
                 <h1>
                     {displayableData.title}
                     {` ${stepsText} `}
@@ -126,9 +127,14 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     onClick={clickHandler}
                     label="Visual helper"
                     checked={scanData.enabled}
-                    className={toggleStyles.visualHelperToggle}
+                    className={styles.visualHelperToggle}
                 />
-                <RequirementInstructions howToTest={howToTest} />
+                <CollapsibleComponent
+                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                    content={howToTest}
+                    contentClassName={requirementInstructionStyles.requirementInstructions}
+                />
+                <h2 className={styles.requirementTableTitle}>Record your results</h2>
                 <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
                 <TabStopsFailedInstanceSection
                     deps={props.deps}
