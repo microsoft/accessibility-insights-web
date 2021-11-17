@@ -55,7 +55,6 @@ describe('AdhocTabStopsTestView', () => {
         selectedTest = -1;
         featureFlagStoreDataStub = {};
         visualizationScanResultData = { tabStops: {} } as VisualizationScanResultData;
-
         props = {
             deps: Mock.ofType<AdhocTabStopsTestViewDeps>().object,
             configuration: {

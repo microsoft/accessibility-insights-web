@@ -1,7 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/fonts.scss';
+@import '../../common/styles/common.scss';
+
+.tab-stops-test-view-container {
+    background-color: $neutral-2;
+    height: 100%;
+}
+
+.tab-stops-test-view {
+    padding-top: $fastPassRightPanelMarginTop;
+    padding-right: $fastPassRightPanelMarginRight;
+    padding-left: $fastPassRightPanelMarginLeft;
+    margin-bottom: auto;
+    background-color: $neutral-2;
+    i {
+        font-size: 16px;
+    }
+}
 
 .requirement-table-title {
     @include text-style-title-s;

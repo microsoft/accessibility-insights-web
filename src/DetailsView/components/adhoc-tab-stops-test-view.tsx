@@ -12,7 +12,6 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import * as styles from 'DetailsView/components/adhoc-tab-stops-test-view.scss';
 import * as requirementInstructionStyles from 'DetailsView/components/requirement-instructions.scss';
-import * as commonStyles from 'DetailsView/components/static-content-common.scss';
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
@@ -116,35 +115,40 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
         }
 
         return (
-            <div className={commonStyles.staticContentInDetailsView}>
-                <h1>
-                    {displayableData.title}
-                    {` ${stepsText} `}
-                    <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
-                </h1>
-                {description}
-                <Toggle
-                    onClick={clickHandler}
-                    label="Visual helper"
-                    checked={scanData.enabled}
-                    className={styles.visualHelperToggle}
-                />
-                <CollapsibleComponent
-                    header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
-                    content={howToTest}
-                    contentClassName={requirementInstructionStyles.requirementInstructions}
-                />
-                <h2 className={styles.requirementTableTitle}>Record your results</h2>
-                <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
-                <TabStopsFailedInstanceSection
-                    deps={props.deps}
-                    visualizationScanResultData={props.visualizationScanResultData}
-                />
-                <TabStopsFailedInstancePanel
-                    deps={props.deps}
-                    failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
-                    requirementState={requirementState}
-                />
+            <div className={styles.tabStopsTestViewContainer}>
+                <div className={styles.tabStopsTestView}>
+                    <h1>
+                        {displayableData.title}
+                        {` ${stepsText} `}
+                        <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
+                    </h1>
+                    {description}
+                    <Toggle
+                        onClick={clickHandler}
+                        label="Visual helper"
+                        checked={scanData.enabled}
+                        className={styles.visualHelperToggle}
+                    />
+                    <CollapsibleComponent
+                        header={<h2 className={styles.requirementHowToTestHeader}>How to test</h2>}
+                        content={howToTest}
+                        contentClassName={requirementInstructionStyles.requirementInstructions}
+                    />
+                    <h2 className={styles.requirementTableTitle}>Record your results</h2>
+                    <TabStopsRequirementsTable
+                        deps={props.deps}
+                        requirementState={requirementState}
+                    />
+                    <TabStopsFailedInstanceSection
+                        deps={props.deps}
+                        visualizationScanResultData={props.visualizationScanResultData}
+                    />
+                    <TabStopsFailedInstancePanel
+                        deps={props.deps}
+                        failureInstanceState={props.tabStopsViewStoreData.failureInstanceState}
+                        requirementState={requirementState}
+                    />
+                </div>
             </div>
         );
     },
