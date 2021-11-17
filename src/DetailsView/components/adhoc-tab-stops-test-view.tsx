@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { VisualizationToggle } from 'common/components/visualization-toggle';
+import * as toggleStyles from 'common/components/cards/visual-helper-toggle.scss';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -28,6 +28,7 @@ import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stop
 import { TargetPageChangedView } from 'DetailsView/components/target-page-changed-view';
 import { DetailsViewToggleClickHandlerFactory } from 'DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { createFastPassProviderWithFeatureFlags } from 'fast-pass/fast-pass-provider';
+import { Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
@@ -120,14 +121,13 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     {` ${stepsText} `}
                     <ContentLink deps={props.deps} reference={props.guidance} iconName="info" />
                 </h1>
-                <VisualizationToggle
-                    checked={scanData.enabled}
-                    onClick={clickHandler}
-                    label={displayableData.toggleLabel}
-                    className={styles.detailsViewToggle}
-                    visualizationName={displayableData.title}
-                />
                 {description}
+                <Toggle
+                    onClick={clickHandler}
+                    label="Visual helper"
+                    checked={scanData.enabled}
+                    className={toggleStyles.visualHelperToggle}
+                />
                 <RequirementInstructions howToTest={howToTest} />
                 <TabStopsRequirementsTable deps={props.deps} requirementState={requirementState} />
                 <TabStopsFailedInstanceSection

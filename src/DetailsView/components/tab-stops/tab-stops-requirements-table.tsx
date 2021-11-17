@@ -70,6 +70,13 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
             },
         ];
 
-        return <DetailsList items={requirementsList} columns={columns} checkboxVisibility={2} />;
+        return (
+            <DetailsList
+                className={styles.requirementTable}
+                items={requirementsList}
+                columns={columns}
+                checkboxVisibility={2}
+            />
+        );
     },
 );

@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+@import '../../../common/styles/common.scss';
+
 .requirement-column {
     font-size: 14px;
 }
@@ -12,4 +14,8 @@
 
 .requirement-name {
     font-weight: 600;
+}
+
+.requirement-table * {
+    background-color: $neutral-2;
 }
