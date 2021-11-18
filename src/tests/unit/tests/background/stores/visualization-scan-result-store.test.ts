@@ -3,6 +3,7 @@
 import {
     AddTabbedElementPayload,
     AddTabStopInstancePayload,
+    RemoveAllTabStopInstancesForRequirementPayload,
     RemoveTabStopInstancePayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
@@ -522,6 +523,61 @@ describe('VisualizationScanResultStoreTest', () => {
         createStoreTesterForTabStopRequirementActions('addTabStopInstance')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onRemoveAllTabStopInstancesForRequirement', () => {
+        const payload: RemoveAllTabStopInstancesForRequirementPayload = {
+            requirementId: 'keyboard-navigation',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'fail',
+                instances: [
+                    { description: 'test1', id: 'abc' },
+                    { description: 'test3', id: 'xyz' },
+                ],
+                isExpanded: false,
+            },
+        };
+
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        requirement['keyboard-navigation'].instances = [];
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForTabStopRequirementActions('removeAllTabStopInstancesForRequirement')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onStartOver', () => {
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'fail',
+                instances: [
+                    { description: 'test1', id: 'abc' },
+                    { description: 'test3', id: 'xyz' },
+                ],
+                isExpanded: false,
+            },
+        };
+
+        const initialState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder().build();
+
+        createStoreTesterForTabStopRequirementActions('startOver').testListenerToBeCalledOnce(
+            initialState,
+            expectedState,
+        );
     });
 
     function createStoreTesterForVisualizationScanResultActions(

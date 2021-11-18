@@ -733,11 +733,12 @@ describe('ActionCreatorTest', () => {
     test('registerCallback for onRescanVisualization', () => {
         const tabId = 1;
         const payload: RescanVisualizationPayload = {
-            test: VisualizationType.HeadingsAssessment,
+            test: VisualizationType.TabStops,
         };
         const disableActionName = 'disableVisualization';
         const enableActionName = 'enableVisualization';
         const startScanActionName = 'startScan';
+        const startOverActionName = 'startOver';
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [
@@ -747,9 +748,11 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(disableActionName)
             .setupActionOnVisualizationActions(enableActionName)
             .setupActionOnUnifiedScanResultActions(startScanActionName)
+            .setupActionOnTabStopRequirementActions(startOverActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
             .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
             .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
+            .setupTabStopRequirementActionWithInvokeParameter(startOverActionName, null)
             .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
 
