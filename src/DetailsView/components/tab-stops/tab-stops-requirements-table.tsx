@@ -41,8 +41,8 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
             {
                 name: 'Pass / Fail',
                 key: 'result',
-                minWidth: 150,
-                maxWidth: 150,
+                minWidth: 100,
+                maxWidth: 100,
                 className: styles.passFailColumnCell,
                 onRender: item => {
                     return (

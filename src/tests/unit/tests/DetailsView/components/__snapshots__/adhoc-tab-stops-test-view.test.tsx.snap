@@ -2,178 +2,186 @@
 
 exports[`AdhocTabStopsTestView render handles guidance 1`] = `
 <div
-  className="staticContentInDetailsView"
+  className="tabStopsTestViewContainer"
 >
-  <h1>
-    test title
-     Step 0 of 3 
-    <ContentLink
-      deps="stub-deps"
-      iconName="info"
-      reference="stub-guidance"
-    />
-  </h1>
-  <p>
-    <Emphasis>
-      Note: this test requires you to use a keyboard and to visually identify interactive elements.
-    </Emphasis>
-  </p>
-  <StyledToggleBase
-    checked={true}
-    className="visualHelperToggle"
-    label="Visual helper"
-    onClick={[Function]}
-  />
-  <CollapsibleComponent
-    content={
-      <ol>
-        <li>
-          Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-        </li>
-        <li>
-          Use your keyboard to move input focus through all the interactive elements in the page:
-          <ol>
-            <li>
-              Use 
-              <Term>
-                Tab
-              </Term>
-               and
-               
-              <Term>
-                Shift+Tab
-              </Term>
-               to navigate between standalone controls.
-               
-            </li>
-            <li>
-              Use the arrow keys to navigate between the focusable elements within a composite control.
-            </li>
-          </ol>
-        </li>
-      </ol>
-    }
-    contentClassName="requirementInstructions"
-    header={
-      <h2
-        className="requirementHowToTestHeader"
-      >
-        How to test
-      </h2>
-    }
-  />
-  <h2
-    className="requirementTableTitle"
+  <div
+    className="tabStopsTestView"
   >
-    Record your results
-  </h2>
-  <TabStopsRequirementsTable
-    deps="stub-deps"
-  />
-  <TabStopsFailedInstanceSection
-    deps="stub-deps"
-    visualizationScanResultData={
-      Object {
-        "tabStops": Object {},
+    <h1>
+      test title
+       Step 0 of 3 
+      <ContentLink
+        deps="stub-deps"
+        iconName="info"
+        reference="stub-guidance"
+      />
+    </h1>
+    <p>
+      <Emphasis>
+        Note: this test requires you to use a keyboard and to visually identify interactive elements.
+      </Emphasis>
+    </p>
+    <StyledToggleBase
+      checked={true}
+      className="visualHelperToggle"
+      label="Visual helper"
+      onClick={[Function]}
+    />
+    <CollapsibleComponent
+      content={
+        <ol>
+          <li>
+            Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
+          </li>
+          <li>
+            Use your keyboard to move input focus through all the interactive elements in the page:
+            <ol>
+              <li>
+                Use 
+                <Term>
+                  Tab
+                </Term>
+                 and
+                 
+                <Term>
+                  Shift+Tab
+                </Term>
+                 to navigate between standalone controls.
+                 
+              </li>
+              <li>
+                Use the arrow keys to navigate between the focusable elements within a composite control.
+              </li>
+            </ol>
+          </li>
+        </ol>
       }
-    }
-  />
-  <TabStopsFailedInstancePanel
-    deps="stub-deps"
-    failureInstanceState={
-      Object {
-        "actionType": "CREATE",
+      contentClassName="requirementInstructions"
+      header={
+        <h2
+          className="requirementHowToTestHeader"
+        >
+          How to test
+        </h2>
       }
-    }
-  />
+    />
+    <h2
+      className="requirementTableTitle"
+    >
+      Record your results
+    </h2>
+    <TabStopsRequirementsTable
+      deps="stub-deps"
+    />
+    <TabStopsFailedInstanceSection
+      deps="stub-deps"
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {},
+        }
+      }
+    />
+    <TabStopsFailedInstancePanel
+      deps="stub-deps"
+      failureInstanceState={
+        Object {
+          "actionType": "CREATE",
+        }
+      }
+    />
+  </div>
 </div>
 `;
 
 exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
 <div
-  className="staticContentInDetailsView"
+  className="tabStopsTestViewContainer"
 >
-  <h1>
-    test title
-     Step 0 of 3 
-    <ContentLink
-      deps="stub-deps"
-      iconName="info"
-    />
-  </h1>
-  <p>
-    <Emphasis>
-      Note: this test requires you to use a keyboard and to visually identify interactive elements.
-    </Emphasis>
-  </p>
-  <StyledToggleBase
-    checked={true}
-    className="visualHelperToggle"
-    label="Visual helper"
-    onClick={[Function]}
-  />
-  <CollapsibleComponent
-    content={
-      <ol>
-        <li>
-          Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
-        </li>
-        <li>
-          Use your keyboard to move input focus through all the interactive elements in the page:
-          <ol>
-            <li>
-              Use 
-              <Term>
-                Tab
-              </Term>
-               and
-               
-              <Term>
-                Shift+Tab
-              </Term>
-               to navigate between standalone controls.
-               
-            </li>
-            <li>
-              Use the arrow keys to navigate between the focusable elements within a composite control.
-            </li>
-          </ol>
-        </li>
-      </ol>
-    }
-    contentClassName="requirementInstructions"
-    header={
-      <h2
-        className="requirementHowToTestHeader"
-      >
-        How to test
-      </h2>
-    }
-  />
-  <h2
-    className="requirementTableTitle"
+  <div
+    className="tabStopsTestView"
   >
-    Record your results
-  </h2>
-  <TabStopsRequirementsTable
-    deps="stub-deps"
-  />
-  <TabStopsFailedInstanceSection
-    deps="stub-deps"
-    visualizationScanResultData={
-      Object {
-        "tabStops": Object {},
+    <h1>
+      test title
+       Step 0 of 3 
+      <ContentLink
+        deps="stub-deps"
+        iconName="info"
+      />
+    </h1>
+    <p>
+      <Emphasis>
+        Note: this test requires you to use a keyboard and to visually identify interactive elements.
+      </Emphasis>
+    </p>
+    <StyledToggleBase
+      checked={true}
+      className="visualHelperToggle"
+      label="Visual helper"
+      onClick={[Function]}
+    />
+    <CollapsibleComponent
+      content={
+        <ol>
+          <li>
+            Locate the visual helper on the target page, it will highlight element in focus with an empty circle.
+          </li>
+          <li>
+            Use your keyboard to move input focus through all the interactive elements in the page:
+            <ol>
+              <li>
+                Use 
+                <Term>
+                  Tab
+                </Term>
+                 and
+                 
+                <Term>
+                  Shift+Tab
+                </Term>
+                 to navigate between standalone controls.
+                 
+              </li>
+              <li>
+                Use the arrow keys to navigate between the focusable elements within a composite control.
+              </li>
+            </ol>
+          </li>
+        </ol>
       }
-    }
-  />
-  <TabStopsFailedInstancePanel
-    deps="stub-deps"
-    failureInstanceState={
-      Object {
-        "actionType": "CREATE",
+      contentClassName="requirementInstructions"
+      header={
+        <h2
+          className="requirementHowToTestHeader"
+        >
+          How to test
+        </h2>
       }
-    }
-  />
+    />
+    <h2
+      className="requirementTableTitle"
+    >
+      Record your results
+    </h2>
+    <TabStopsRequirementsTable
+      deps="stub-deps"
+    />
+    <TabStopsFailedInstanceSection
+      deps="stub-deps"
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {},
+        }
+      }
+    />
+    <TabStopsFailedInstancePanel
+      deps="stub-deps"
+      failureInstanceState={
+        Object {
+          "actionType": "CREATE",
+        }
+      }
+    />
+  </div>
 </div>
 `;
 

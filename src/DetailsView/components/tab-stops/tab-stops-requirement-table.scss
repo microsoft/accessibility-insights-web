@@ -5,6 +5,8 @@
 
 .requirement-column {
     font-size: 14px;
+    color: $primary-text;
+    white-space: normal;
 }
 
 .pass-fail-column-cell {
@@ -16,6 +18,12 @@
     font-weight: 600;
 }
 
-.requirement-table * {
-    background-color: $neutral-2;
+.requirement-table {
+    > div[role='grid'] {
+        padding-bottom: 20px;
+    }
+
+    * {
+        background-color: $neutral-2;
+    }
 }
