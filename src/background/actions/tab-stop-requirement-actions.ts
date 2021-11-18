@@ -5,6 +5,7 @@
 import { Action } from 'common/flux/action';
 import {
     AddTabStopInstancePayload,
+    RemoveAllTabStopInstancesForRequirementPayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
@@ -19,8 +20,11 @@ export class TabStopRequirementActions {
     public readonly addTabStopInstance = new Action<AddTabStopInstancePayload>();
     public readonly updateTabStopInstance = new Action<UpdateTabStopInstancePayload>();
     public readonly removeTabStopInstance = new Action<RemoveTabStopInstancePayload>();
+    public readonly removeAllTabStopInstancesForRequirement =
+        new Action<RemoveAllTabStopInstancesForRequirementPayload>();
     public readonly resetTabStopRequirementStatus =
         new Action<ResetTabStopRequirementStatusPayload>();
     public readonly toggleTabStopRequirementExpand =
         new Action<ToggleTabStopRequirementExpandPayload>();
+    public readonly startOver = new Action();
 }

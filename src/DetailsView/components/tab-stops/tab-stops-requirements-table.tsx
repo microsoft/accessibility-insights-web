@@ -48,17 +48,25 @@ export const TabStopsRequirementsTable = NamedFC<TabStopsRequirementsTableProps>
                     return (
                         <TabStopsChoiceGroup
                             status={props.requirementState[item.id].status}
-                            onUndoClicked={_ =>
+                            onUndoClicked={_ => {
                                 tabStopRequirementActionMessageCreator.resetStatusForRequirement(
                                     item.id,
-                                )
-                            }
-                            onGroupChoiceChange={(_, status) =>
+                                );
+                                tabStopRequirementActionMessageCreator.removeAllTabStopInstancesForRequirement(
+                                    item.id,
+                                );
+                            }}
+                            onGroupChoiceChange={(_, status) => {
                                 tabStopRequirementActionMessageCreator.updateTabStopRequirementStatus(
                                     item.id,
                                     status,
-                                )
-                            }
+                                );
+                                if (status === 'pass') {
+                                    tabStopRequirementActionMessageCreator.removeAllTabStopInstancesForRequirement(
+                                        item.id,
+                                    );
+                                }
+                            }}
                             onAddFailureInstanceClicked={_ =>
                                 deps.tabStopsTestViewController.createNewFailureInstancePanel(
                                     item.id,

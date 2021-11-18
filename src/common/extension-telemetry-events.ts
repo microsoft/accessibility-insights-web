@@ -12,6 +12,8 @@ export const TABSTOPS_TOGGLE: string = 'TabStopsToggled';
 export const TABSTOPS_RECORDING_COMPLETE: string = 'TabStopsRecordingComplete';
 export const ADD_TABSTOPS_REQUIREMENT_INSTANCE: string = 'AddTabStopsRequirementInstance';
 export const REMOVE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'RemoveTabStopsRequirementInstance';
+export const REMOVE_ALL_TABSTOPS_INSTANCES_FOR_REQUIREMENT: string =
+    'RemoveAllTabstopsInstancesForRequirement';
 export const UPDATE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'UpdateTabStopsRequirementInstance';
 export const UPDATE_TABSTOPS_REQUIREMENT_STATUS: string = 'UpdateTabStopsRequirementStatus';
 export const RESET_TABSTOPS_REQUIREMENT_STATUS: string = 'ResetTabStopsRequirmentStatus';
