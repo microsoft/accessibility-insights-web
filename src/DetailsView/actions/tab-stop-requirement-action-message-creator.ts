@@ -9,7 +9,6 @@ import {
     UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
-    RemoveAllTabStopInstancesForRequirementPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
@@ -63,19 +62,6 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
 
         this.dispatcher.dispatchMessage({
             messageType: messages.RemoveTabStopInstance,
-            payload,
-        });
-    }
-
-    public removeAllTabStopInstancesForRequirement(requirementId: TabStopRequirementId): void {
-        const telemetry = this.telemetryFactory.forTabStopRequirement(requirementId);
-        const payload: RemoveAllTabStopInstancesForRequirementPayload = {
-            requirementId,
-            telemetry,
-        };
-
-        this.dispatcher.dispatchMessage({
-            messageType: messages.RemoveAllTabStopInstancesForRequirement,
             payload,
         });
     }

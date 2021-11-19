@@ -16,7 +16,6 @@ import { TabStopRequirementIds } from 'types/tab-stop-requirement-info';
 import {
     AddTabbedElementPayload,
     AddTabStopInstancePayload,
-    RemoveAllTabStopInstancesForRequirementPayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
@@ -94,13 +93,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabStopRequirementActions.removeTabStopInstance.addListener(
             this.onRemoveTabStopInstance,
         );
-        this.tabStopRequirementActions.removeAllTabStopInstancesForRequirement.addListener(
-            this.onRemoveAllTabStopInstancesForRequirement,
-        );
         this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
             this.onToggleTabStopRequirementExpandCollapse,
         );
-        this.tabStopRequirementActions.startOver.addListener(this.onStartOver);
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
@@ -150,6 +145,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId, status } = payload;
         this.state.tabStops.requirements[requirementId].status = status;
+        if (status === 'pass') {
+            this.state.tabStops.requirements[requirementId].instances = [];
+        }
         this.emitChanged();
     };
 
@@ -158,6 +156,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId } = payload;
         this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
+        this.state.tabStops.requirements[requirementId].instances = [];
         this.emitChanged();
     };
 
@@ -184,14 +183,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             instance => instance.id !== id,
         );
         this.state.tabStops.requirements[requirementId].instances = newInstances;
-        this.emitChanged();
-    };
-
-    private onRemoveAllTabStopInstancesForRequirement = (
-        payload: RemoveAllTabStopInstancesForRequirementPayload,
-    ): void => {
-        const { requirementId } = payload;
-        this.state.tabStops.requirements[requirementId].instances = [];
         this.emitChanged();
     };
 
@@ -222,11 +213,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     };
 
     private onExistingTabUpdated = (): void => {
-        this.state = this.getDefaultState();
-        this.emitChanged();
-    };
-
-    private onStartOver = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };

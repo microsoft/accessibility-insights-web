@@ -84,31 +84,11 @@ describe('TabStopsRequirementsTable', () => {
             Times.once(),
         );
         tabStopsRequirementActionMessageCreatorMock.verify(
-            m => m.removeAllTabStopInstancesForRequirement(actualRequirement.id),
-            Times.once(),
-        );
-        tabStopsRequirementActionMessageCreatorMock.verify(
             m => m.updateTabStopRequirementStatus(actualRequirement.id, 'fail'),
             Times.once(),
         );
         tabStopsTestViewControllerMock.verify(
             m => m.createNewFailureInstancePanel(actualRequirement.id),
-            Times.once(),
-        );
-    });
-
-    test('all instances are removed for requirement if choice changed to "pass"', () => {
-        const eventStub = new EventStubFactory().createKeypressEvent() as SupportedMouseEvent;
-        const actualRequirement = requirementsList[0]; // must match with state from builder which uses actual requirement.
-        const testSubject = shallow(<TabStopsRequirementsTable {...props} />);
-        const columns = testSubject.find(DetailsList).props().columns;
-        const tabStopsChoiceGroup = columns[1].onRender(actualRequirement) as JSX.Element;
-        const renderedProps = tabStopsChoiceGroup.props as TabStopsChoiceGroupsProps;
-
-        renderedProps.onGroupChoiceChange(eventStub, 'pass');
-
-        tabStopsRequirementActionMessageCreatorMock.verify(
-            m => m.removeAllTabStopInstancesForRequirement(actualRequirement.id),
             Times.once(),
         );
     });

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
-import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
@@ -49,7 +48,6 @@ export class ActionCreator {
     private cardSelectionActions: CardSelectionActions;
     private unifiedScanResultActions: UnifiedScanResultActions;
     private sidePanelActions: SidePanelActions;
-    private tabStopRequirementActions: TabStopRequirementActions;
 
     constructor(
         private readonly interpreter: Interpreter,
@@ -67,7 +65,6 @@ export class ActionCreator {
         this.cardSelectionActions = actionHub.cardSelectionActions;
         this.unifiedScanResultActions = actionHub.scanResultActions;
         this.sidePanelActions = actionHub.sidePanelActions;
-        this.tabStopRequirementActions = actionHub.tabStopRequirementActions;
     }
 
     public registerCallbacks(): void {
@@ -347,9 +344,6 @@ export class ActionCreator {
         this.visualizationActions.disableVisualization.invoke(payload.test);
         this.visualizationActions.enableVisualization.invoke(payload);
         this.unifiedScanResultActions.startScan.invoke(null);
-        if (payload.test === VisualizationType.TabStops) {
-            this.tabStopRequirementActions.startOver.invoke(null);
-        }
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 

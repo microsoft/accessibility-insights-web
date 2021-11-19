@@ -3,8 +3,8 @@
 import {
     AddTabbedElementPayload,
     AddTabStopInstancePayload,
-    RemoveAllTabStopInstancesForRequirementPayload,
     RemoveTabStopInstancePayload,
+    ResetTabStopRequirementStatusPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
@@ -407,8 +407,12 @@ describe('VisualizationScanResultStoreTest', () => {
         );
     });
 
-    test('onUpdateTabStopRequirementStatus', () => {
+    test('onUpdateTabStopRequirementStatus updates status and removes instances', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
+        initialState.tabStops.requirements['keyboard-navigation'].status = 'fail';
+        initialState.tabStops.requirements['keyboard-navigation'].instances = [
+            { description: 'test1', id: 'abc' },
+        ];
 
         const payload: UpdateTabStopRequirementStatusPayload = {
             requirementId: 'keyboard-navigation',
@@ -428,6 +432,34 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
 
         createStoreTesterForTabStopRequirementActions('updateTabStopsRequirementStatus')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onResetTabStopRequirementStatus resets status and removes instances', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+        initialState.tabStops.requirements['keyboard-navigation'].status = 'fail';
+        initialState.tabStops.requirements['keyboard-navigation'].instances = [
+            { description: 'test1', id: 'abc' },
+        ];
+
+        const payload: ResetTabStopRequirementStatusPayload = {
+            requirementId: 'keyboard-navigation',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [],
+                isExpanded: false,
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForTabStopRequirementActions('resetTabStopRequirementStatus')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -523,61 +555,6 @@ describe('VisualizationScanResultStoreTest', () => {
         createStoreTesterForTabStopRequirementActions('addTabStopInstance')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('onRemoveAllTabStopInstancesForRequirement', () => {
-        const payload: RemoveAllTabStopInstancesForRequirementPayload = {
-            requirementId: 'keyboard-navigation',
-        };
-
-        const requirement: TabStopRequirementState = {
-            'keyboard-navigation': {
-                status: 'fail',
-                instances: [
-                    { description: 'test1', id: 'abc' },
-                    { description: 'test3', id: 'xyz' },
-                ],
-                isExpanded: false,
-            },
-        };
-
-        const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirement(requirement)
-            .build();
-
-        requirement['keyboard-navigation'].instances = [];
-
-        const expectedState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirement(requirement)
-            .build();
-
-        createStoreTesterForTabStopRequirementActions('removeAllTabStopInstancesForRequirement')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('onStartOver', () => {
-        const requirement: TabStopRequirementState = {
-            'keyboard-navigation': {
-                status: 'fail',
-                instances: [
-                    { description: 'test1', id: 'abc' },
-                    { description: 'test3', id: 'xyz' },
-                ],
-                isExpanded: false,
-            },
-        };
-
-        const initialState = new VisualizationScanResultStoreDataBuilder()
-            .withTabStopRequirement(requirement)
-            .build();
-
-        const expectedState = new VisualizationScanResultStoreDataBuilder().build();
-
-        createStoreTesterForTabStopRequirementActions('startOver').testListenerToBeCalledOnce(
-            initialState,
-            expectedState,
-        );
     });
 
     function createStoreTesterForVisualizationScanResultActions(

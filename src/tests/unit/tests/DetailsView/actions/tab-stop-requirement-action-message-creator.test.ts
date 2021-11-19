@@ -8,7 +8,6 @@ import {
     UpdateTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ToggleTabStopRequirementExpandPayload,
-    RemoveAllTabStopInstancesForRequirementPayload,
 } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
@@ -174,39 +173,6 @@ describe('TabStopRequirementActionMessageCreatorTest', () => {
             requirementInstance.requirementId,
             requirementInstance.id,
         );
-
-        dispatcherMock.verify(
-            dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),
-            Times.once(),
-        );
-
-        telemetryFactoryMock.verifyAll();
-    });
-
-    test('removeAllTabStopInstancesForRequirement', () => {
-        const requirement: RemoveAllTabStopInstancesForRequirementPayload = {
-            requirementId: 'input-focus',
-        };
-
-        const telemetry = {
-            triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.DetailsView,
-            requirementId: requirement.requirementId,
-        };
-
-        const expectedMessage = {
-            messageType: Messages.Visualizations.TabStops.RemoveAllTabStopInstancesForRequirement,
-            payload: {
-                ...requirement,
-                telemetry,
-            },
-        };
-
-        telemetryFactoryMock
-            .setup(tf => tf.forTabStopRequirement(requirement.requirementId))
-            .returns(() => telemetry);
-
-        testSubject.removeAllTabStopInstancesForRequirement(requirement.requirementId);
 
         dispatcherMock.verify(
             dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)),

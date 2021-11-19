@@ -6,7 +6,6 @@ import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddTabStopInstancePayload,
-    RemoveAllTabStopInstancesForRequirementPayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
     ToggleTabStopRequirementExpandPayload,
@@ -46,11 +45,6 @@ export class TabStopRequirementActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             Messages.Visualizations.TabStops.RemoveTabStopInstance,
             this.onRemoveTabStopInstance,
-        );
-
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.Visualizations.TabStops.RemoveAllTabStopInstancesForRequirement,
-            this.onRemoveAllTabStopInstancesForRequirement,
         );
 
         this.interpreter.registerTypeToPayloadCallback(
@@ -99,16 +93,6 @@ export class TabStopRequirementActionCreator {
         this.tabStopRequirementActions.removeTabStopInstance.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(
             TelemetryEvents.REMOVE_TABSTOPS_REQUIREMENT_INSTANCE,
-            payload,
-        );
-    };
-
-    private onRemoveAllTabStopInstancesForRequirement = (
-        payload: RemoveAllTabStopInstancesForRequirementPayload,
-    ): void => {
-        this.tabStopRequirementActions.removeAllTabStopInstancesForRequirement.invoke(payload);
-        this.telemetryEventHandler.publishTelemetry(
-            TelemetryEvents.REMOVE_ALL_TABSTOPS_INSTANCES_FOR_REQUIREMENT,
             payload,
         );
     };
