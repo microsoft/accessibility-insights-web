@@ -43,4 +43,10 @@ describe('NavLinkButton', () => {
         const testSubject = shallow(<NavLinkButton {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });
+
+    test('renders with the proper aria-label', () => {
+        props['aria-current'] = 'page';
+        const testSubject = shallow(<NavLinkButton {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
 });
