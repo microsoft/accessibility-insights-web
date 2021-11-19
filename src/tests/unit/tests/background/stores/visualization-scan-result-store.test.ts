@@ -4,6 +4,7 @@ import {
     AddTabbedElementPayload,
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
+    ResetTabStopRequirementStatusPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from 'background/actions/action-payloads';
@@ -406,8 +407,12 @@ describe('VisualizationScanResultStoreTest', () => {
         );
     });
 
-    test('onUpdateTabStopRequirementStatus', () => {
+    test('onUpdateTabStopRequirementStatus updates status and removes instances', () => {
         const initialState = new VisualizationScanResultStoreDataBuilder().build();
+        initialState.tabStops.requirements['keyboard-navigation'].status = 'fail';
+        initialState.tabStops.requirements['keyboard-navigation'].instances = [
+            { description: 'test1', id: 'abc' },
+        ];
 
         const payload: UpdateTabStopRequirementStatusPayload = {
             requirementId: 'keyboard-navigation',
@@ -427,6 +432,34 @@ describe('VisualizationScanResultStoreTest', () => {
             .build();
 
         createStoreTesterForTabStopRequirementActions('updateTabStopsRequirementStatus')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('onResetTabStopRequirementStatus resets status and removes instances', () => {
+        const initialState = new VisualizationScanResultStoreDataBuilder().build();
+        initialState.tabStops.requirements['keyboard-navigation'].status = 'fail';
+        initialState.tabStops.requirements['keyboard-navigation'].instances = [
+            { description: 'test1', id: 'abc' },
+        ];
+
+        const payload: ResetTabStopRequirementStatusPayload = {
+            requirementId: 'keyboard-navigation',
+        };
+
+        const requirement: TabStopRequirementState = {
+            'keyboard-navigation': {
+                status: 'unknown',
+                instances: [],
+                isExpanded: false,
+            },
+        };
+
+        const expectedState = new VisualizationScanResultStoreDataBuilder()
+            .withTabStopRequirement(requirement)
+            .build();
+
+        createStoreTesterForTabStopRequirementActions('resetTabStopRequirementStatus')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });

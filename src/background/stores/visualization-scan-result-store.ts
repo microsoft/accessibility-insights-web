@@ -145,6 +145,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId, status } = payload;
         this.state.tabStops.requirements[requirementId].status = status;
+        if (status === 'pass') {
+            this.state.tabStops.requirements[requirementId].instances = [];
+        }
         this.emitChanged();
     };
 
@@ -153,6 +156,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId } = payload;
         this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
+        this.state.tabStops.requirements[requirementId].instances = [];
         this.emitChanged();
     };
 
