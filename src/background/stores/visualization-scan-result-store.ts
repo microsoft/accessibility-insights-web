@@ -77,7 +77,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     }
 
     protected addActionListeners(): void {
-        this.visualizationActions.disableVisualization.addListener(this.onDisableVisualization);
+        this.visualizationActions.rescanVisualization.addListener(this.onRescanVisualization);
         this.visualizationScanResultActions.scanCompleted.addListener(this.onScanCompleted);
         this.visualizationScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.visualizationScanResultActions.addTabbedElement.addListener(this.onAddTabbedElement);
@@ -106,7 +106,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
-    private onDisableVisualization = (type: VisualizationType) => {
+    private onRescanVisualization = (type: VisualizationType) => {
         const config = this.visualizationConfigurationFactory.getConfiguration(type);
         const testKey = config.key;
         if (this.state[testKey] == null) {

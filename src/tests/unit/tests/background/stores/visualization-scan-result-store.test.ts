@@ -84,7 +84,7 @@ describe('VisualizationScanResultStoreTest', () => {
         ).testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onVisualizationDisabled: for test that has state', () => {
+    test('onRescanVisualization: for test that has state', () => {
         const tabEvents: TabbedElementData[] = [
             {
                 target: ['selector'],
@@ -109,12 +109,12 @@ describe('VisualizationScanResultStoreTest', () => {
             .setup(m => m.getConfiguration(visualizationTypeStub))
             .returns(() => configStub);
 
-        createStoreTesterForVisualizationActions('disableVisualization')
+        createStoreTesterForVisualizationActions('rescanVisualization')
             .withActionParam(visualizationTypeStub)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onVisualizationDisabled: for test that does not have state', () => {
+    test('onRescanVisualizationv: for test that does not have state', () => {
         const tabEvents: TabbedElementData[] = [
             {
                 target: ['selector'],
@@ -137,7 +137,7 @@ describe('VisualizationScanResultStoreTest', () => {
             .setup(m => m.getConfiguration(visualizationTypeStub))
             .returns(() => configStub);
 
-        createStoreTesterForVisualizationActions('disableVisualization')
+        createStoreTesterForVisualizationActions('rescanVisualization')
             .withActionParam(visualizationTypeStub)
             .testListenerToNeverBeCalled(initialState, initialState);
     });
