@@ -107,6 +107,10 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     };
 
     private onRescanVisualization = (type: VisualizationType) => {
+        this.resetDataForVisualization(type);
+    };
+
+    private resetDataForVisualization = (type: VisualizationType) => {
         const config = this.visualizationConfigurationFactory.getConfiguration(type);
         const testKey = config.key;
         if (this.state[testKey] == null) {
