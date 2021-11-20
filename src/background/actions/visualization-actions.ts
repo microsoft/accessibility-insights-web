@@ -13,6 +13,7 @@ export class VisualizationActions {
     public readonly enableVisualizationWithoutScan = new Action<ToggleActionPayload>();
     public readonly disableVisualization = new Action<VisualizationType>();
     public readonly disableAssessmentVisualizations = new Action<void>();
+    public readonly rescanVisualization = new Action<VisualizationType>();
 
     public readonly updateFocusedInstance = new Action<string[]>();
 

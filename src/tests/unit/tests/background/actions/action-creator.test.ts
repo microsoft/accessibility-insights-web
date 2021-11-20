@@ -738,6 +738,7 @@ describe('ActionCreatorTest', () => {
         const disableActionName = 'disableVisualization';
         const enableActionName = 'enableVisualization';
         const startScanActionName = 'startScan';
+        const rescanVisualization = 'rescanVisualization';
 
         const validator = new ActionCreatorValidator()
             .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [
@@ -745,9 +746,11 @@ describe('ActionCreatorTest', () => {
                 tabId,
             ])
             .setupActionOnVisualizationActions(disableActionName)
+            .setupActionOnVisualizationActions(rescanVisualization)
             .setupActionOnVisualizationActions(enableActionName)
             .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
+            .setupVisualizationActionWithInvokeParameter(rescanVisualization, payload.test)
             .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
             .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
