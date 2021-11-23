@@ -343,6 +343,7 @@ export class ActionCreator {
     private onRescanVisualization = (payload: RescanVisualizationPayload) => {
         this.visualizationActions.disableVisualization.invoke(payload.test);
         this.visualizationActions.enableVisualization.invoke(payload);
+        this.visualizationActions.rescanVisualization.invoke(payload.test);
         this.unifiedScanResultActions.startScan.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
