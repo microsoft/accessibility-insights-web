@@ -52,6 +52,7 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
             };
             props.onPropertyUpdateCallback(payload);
         };
+        const descriptionId = 'azure-boards-description';
 
         return (
             <>
@@ -59,9 +60,12 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
                     className="issue-setting"
                     label="Enter your Azure Boards project URL"
                     value={props.settings ? props.settings.projectURL : ''}
-                    placeholder="https://dev.azure.com/org/project"
                     onChange={onProjectURLChange}
+                    aria-describedby={descriptionId}
                 />
+                <span id={descriptionId} className="textfield-description">
+                    example: https://dev.azure.com/org/project
+                </span>
                 <Dropdown
                     options={options}
                     placeholder="Select an option"
