@@ -9,6 +9,7 @@ import {
     NarrowModeDetector,
     NarrowModeDetectorDeps,
 } from 'DetailsView/components/narrow-mode-detector';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ThemeDeps } from '../common/components/theme';
@@ -92,6 +93,7 @@ export interface DetailsViewContainerState {
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
     cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
+    tabStopsViewStoreData: TabStopsViewStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {

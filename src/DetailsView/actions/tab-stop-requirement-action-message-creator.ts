@@ -8,6 +8,7 @@ import {
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
     ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
 } from 'background/actions/action-payloads';
 import { DevToolActionMessageCreator } from 'common/message-creators/dev-tool-action-message-creator';
 import { Messages } from 'common/messages';
@@ -96,4 +97,18 @@ export class TabStopRequirementActionMessageCreator extends DevToolActionMessage
             payload,
         });
     }
+
+    public toggleTabStopRequirementExpand = (
+        requirementId: TabStopRequirementId,
+        event: React.SyntheticEvent,
+    ) => {
+        const payload: ToggleTabStopRequirementExpandPayload = {
+            requirementId,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Visualizations.TabStops.RequirementExpansionToggled,
+            payload,
+        });
+    };
 }

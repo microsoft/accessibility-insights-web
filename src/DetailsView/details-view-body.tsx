@@ -11,6 +11,7 @@ import {
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { TabStopsViewStoreData } from 'DetailsView/components/tab-stops/tab-stops-view-store-data';
 import * as styles from 'DetailsView/details-view-body.scss';
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -44,6 +45,7 @@ export type DetailsViewBodyDeps = DetailsViewContentDeps &
 export interface DetailsViewBodyProps {
     deps: DetailsViewBodyDeps;
     tabStoreData: TabStoreData;
+    tabStopsViewStoreData: TabStopsViewStoreData;
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
     featureFlagStoreData: FeatureFlagStoreData;

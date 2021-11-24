@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TestViewType } from 'common/types/test-view-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
@@ -38,6 +39,11 @@ describe('TestViewContainer', () => {
                 someParentProp: 'parent-prop',
                 visualizationConfigurationFactory: configFactoryStub,
                 selectedTest,
+                visualizationScanResultData: {
+                    tabStops: {
+                        requirements: {} as TabStopRequirementState,
+                    },
+                },
             } as unknown as TestViewContainerProps;
         });
 

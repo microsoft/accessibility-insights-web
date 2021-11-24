@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import {
     AppInsightsTelemetryClient,
-    ExtendedEnvelop,
+    ExtendedEnvelope,
 } from 'background/telemetry/app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
 import { configMutator } from 'common/configuration';
@@ -17,7 +17,7 @@ describe('AppInsights telemetry client tests', () => {
     let testSubject: AppInsightsTelemetryClient;
     const aiKey: string = 'ai key';
     let queue: Array<() => void>;
-    let addTelemetryInitializerCallback: (envelope: ExtendedEnvelop) => boolean;
+    let addTelemetryInitializerCallback: (envelope: ExtendedEnvelope) => boolean;
     let aiConfig: Microsoft.ApplicationInsights.IConfig;
     const coreTelemetryData = {
         coreProp1: 'some value',
@@ -64,12 +64,12 @@ describe('AppInsights telemetry client tests', () => {
 
             addTelemetryInitializerStrictMock.verifyAll();
 
-            const extendedEnvelopStub = getEnvelopStub();
+            const extendedEnvelopeStub = getEnvelopeStub();
 
-            const returnVal = addTelemetryInitializerCallback(extendedEnvelopStub as any);
+            const returnVal = addTelemetryInitializerCallback(extendedEnvelopeStub as any);
 
             expect(returnVal).toBe(true);
-            verifyBaseDataProperties(extendedEnvelopStub);
+            verifyBaseDataProperties(extendedEnvelopeStub);
             expect(operationStub.name).toEqual('');
         });
 
@@ -207,10 +207,10 @@ describe('AppInsights telemetry client tests', () => {
         });
     });
 
-    function verifyBaseDataProperties(extendedEnvelop: ExtendedEnvelop): void {
-        expect(extendedEnvelop.data.baseData.properties).toMatchObject(coreTelemetryData);
+    function verifyBaseDataProperties(extendedEnvelope: ExtendedEnvelope): void {
+        expect(extendedEnvelope.data.baseData.properties).toMatchObject(coreTelemetryData);
 
-        expect(extendedEnvelop.data.baseData).toMatchObject(getEnvelopStub().data.baseData);
+        expect(extendedEnvelope.data.baseData).toMatchObject(getEnvelopeStub().data.baseData);
     }
 
     function setupAddTelemetryInitializerCall(): void {
@@ -228,7 +228,7 @@ describe('AppInsights telemetry client tests', () => {
             .verifiable(Times.once());
     }
 
-    function getEnvelopStub(): ExtendedEnvelop {
+    function getEnvelopeStub(): ExtendedEnvelope {
         return {
             data: {
                 baseData: {
@@ -237,7 +237,7 @@ describe('AppInsights telemetry client tests', () => {
                     } as any,
                 },
             },
-        } as ExtendedEnvelop;
+        } as ExtendedEnvelope;
     }
 
     function setupAppInsightsContext(): void {

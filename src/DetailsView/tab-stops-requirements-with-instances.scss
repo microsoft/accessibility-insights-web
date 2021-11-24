@@ -1,0 +1,12 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../common/styles/colors.scss';
+@import '../common/styles/fonts.scss';
+
+.collapsible-requirement-details-group {
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+    &:global(:not(.collapsed)) {
+        box-shadow: unset;
+    }
+}

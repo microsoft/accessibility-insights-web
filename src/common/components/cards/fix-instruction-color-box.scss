@@ -15,7 +15,7 @@ span.fix-instruction-color-box {
     position: absolute;
     left: -10000px;
     top: auto;
-    width: 1px;
     height: 1px;
     overflow: hidden;
+    clip-path: inset(100% 100% 100% 100%);
 }

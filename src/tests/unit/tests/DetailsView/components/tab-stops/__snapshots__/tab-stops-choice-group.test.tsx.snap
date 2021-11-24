@@ -12,6 +12,7 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
     <StyledChoiceGroupBase
       className="fail"
       componentRef={[Function]}
+      data-automation-id="tabStopsPassFailChoiceGroup"
       onChange={[Function]}
       options={
         Array [
@@ -46,6 +47,7 @@ exports[`TabStopsChoiceGroup render with fail status 1`] = `
       </StyledLinkBase>
       <StyledLinkBase
         className="undoButton"
+        data-automation-id="addTabStopsFailureInstance"
         onClick={[Function]}
       >
         <StyledIconBase
@@ -66,6 +68,7 @@ exports[`TabStopsChoiceGroup render with pass status 1`] = `
     <StyledChoiceGroupBase
       className="pass"
       componentRef={[Function]}
+      data-automation-id="tabStopsPassFailChoiceGroup"
       onChange={[Function]}
       options={
         Array [
@@ -109,6 +112,7 @@ exports[`TabStopsChoiceGroup render with unknown status 1`] = `
     <StyledChoiceGroupBase
       className="unknown"
       componentRef={[Function]}
+      data-automation-id="tabStopsPassFailChoiceGroup"
       onChange={[Function]}
       options={
         Array [

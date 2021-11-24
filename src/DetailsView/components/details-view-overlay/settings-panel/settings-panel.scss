@@ -20,4 +20,9 @@
             color: $neutral-100;
         }
     }
+
+    :global(.textfield-description) {
+        color: $secondary-text;
+        font-style: italic;
+    }
 }

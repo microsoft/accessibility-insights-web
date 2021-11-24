@@ -4,9 +4,9 @@
 @import '../../common/styles/common.scss';
 
 .static-content-in-details-view {
-    margin-top: $fastPassRightPanelMarginTop;
-    margin-right: $fastPassRightPanelMarginRight;
-    margin-left: $fastPassRightPanelMarginLeft;
+    padding-top: $fastPassRightPanelMarginTop;
+    padding-right: $fastPassRightPanelMarginRight;
+    padding-left: $fastPassRightPanelMarginLeft;
     margin-bottom: auto;
     ol {
         -webkit-padding-start: 16px;
@@ -17,6 +17,8 @@
     i {
         font-size: 16px;
     }
+    background-color: $neutral-2;
+    height: 100%;
 }
 
 .details-view-toggle {

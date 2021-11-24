@@ -44,7 +44,9 @@ export class TabContextStoreHub implements StoreHub {
             actionHub.visualizationScanResultActions,
             actionHub.tabActions,
             actionHub.tabStopRequirementActions,
+            actionHub.visualizationActions,
             generateUID,
+            visualizationConfigurationFactory,
         );
         this.visualizationScanResultStore.initialize();
 

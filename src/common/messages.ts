@@ -24,6 +24,7 @@ export const Messages = {
             AddTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-added`,
             UpdateTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-updated`,
             RemoveTabStopInstance: `${messagePrefix}/visualization/tab-stops/instance-removed`,
+            RequirementExpansionToggled: `${messagePrefix}/visualization/tab-stops/toggleTabStopRequirementExpand`,
         },
         Issues: {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,

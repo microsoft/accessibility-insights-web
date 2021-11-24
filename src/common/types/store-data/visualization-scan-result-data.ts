@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { TabOrderPropertyBag } from 'injected/tab-order-property-bag';
@@ -32,6 +33,7 @@ export type TabStopRequirementState = {
             description: string;
             id: string;
         }[];
+        isExpanded: boolean;
     };
 };
 
@@ -41,9 +43,9 @@ interface TabStopsScanResultData {
 }
 
 export interface VisualizationScanResultData {
-    issues: IssuesScanResultData;
-    landmarks: IssuesScanResultData;
-    headings: IssuesScanResultData;
-    color: IssuesScanResultData;
-    tabStops: TabStopsScanResultData;
+    [AdHocTestkeys.Issues]: IssuesScanResultData;
+    [AdHocTestkeys.Landmarks]: IssuesScanResultData;
+    [AdHocTestkeys.Headings]: IssuesScanResultData;
+    [AdHocTestkeys.Color]: IssuesScanResultData;
+    [AdHocTestkeys.TabStops]: TabStopsScanResultData;
 }

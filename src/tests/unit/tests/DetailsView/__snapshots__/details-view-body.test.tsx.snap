@@ -124,6 +124,11 @@ exports[`DetailsViewBody render render 1`] = `
           "StartOverComponentFactory": Object {},
         }
       }
+      tabStopsViewStoreData={
+        Object {
+          "failureInstanceState": Object {},
+        }
+      }
       tabStoreData={
         Object {
           "id": null,
@@ -167,22 +172,27 @@ exports[`DetailsViewBody render render 1`] = `
             "requirements": Object {
               "focus-indicator": Object {
                 "instances": Array [],
+                "isExpanded": false,
                 "status": "unknown",
               },
               "input-focus": Object {
                 "instances": Array [],
+                "isExpanded": false,
                 "status": "unknown",
               },
               "keyboard-navigation": Object {
                 "instances": Array [],
+                "isExpanded": false,
                 "status": "unknown",
               },
               "keyboard-traps": Object {
                 "instances": Array [],
+                "isExpanded": false,
                 "status": "unknown",
               },
               "tab-order": Object {
                 "instances": Array [],
+                "isExpanded": false,
                 "status": "unknown",
               },
             },
@@ -440,6 +450,11 @@ exports[`DetailsViewBody render render 1`] = `
             "StartOverComponentFactory": Object {},
           }
         }
+        tabStopsViewStoreData={
+          Object {
+            "failureInstanceState": Object {},
+          }
+        }
         tabStoreData={
           Object {
             "id": null,
@@ -483,22 +498,27 @@ exports[`DetailsViewBody render render 1`] = `
               "requirements": Object {
                 "focus-indicator": Object {
                   "instances": Array [],
+                  "isExpanded": false,
                   "status": "unknown",
                 },
                 "input-focus": Object {
                   "instances": Array [],
+                  "isExpanded": false,
                   "status": "unknown",
                 },
                 "keyboard-navigation": Object {
                   "instances": Array [],
+                  "isExpanded": false,
                   "status": "unknown",
                 },
                 "keyboard-traps": Object {
                   "instances": Array [],
+                  "isExpanded": false,
                   "status": "unknown",
                 },
                 "tab-order": Object {
                   "instances": Array [],
+                  "isExpanded": false,
                   "status": "unknown",
                 },
               },
@@ -763,6 +783,11 @@ exports[`DetailsViewBody render render 1`] = `
                 "StartOverComponentFactory": Object {},
               }
             }
+            tabStopsViewStoreData={
+              Object {
+                "failureInstanceState": Object {},
+              }
+            }
             tabStoreData={
               Object {
                 "id": null,
@@ -806,22 +831,27 @@ exports[`DetailsViewBody render render 1`] = `
                   "requirements": Object {
                     "focus-indicator": Object {
                       "instances": Array [],
+                      "isExpanded": false,
                       "status": "unknown",
                     },
                     "input-focus": Object {
                       "instances": Array [],
+                      "isExpanded": false,
                       "status": "unknown",
                     },
                     "keyboard-navigation": Object {
                       "instances": Array [],
+                      "isExpanded": false,
                       "status": "unknown",
                     },
                     "keyboard-traps": Object {
                       "instances": Array [],
+                      "isExpanded": false,
                       "status": "unknown",
                     },
                     "tab-order": Object {
                       "instances": Array [],
+                      "isExpanded": false,
                       "status": "unknown",
                     },
                   },

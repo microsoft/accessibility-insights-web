@@ -2,12 +2,16 @@
 // Licensed under the MIT License.
 
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { StoreNames } from 'common/stores/store-names';
 import {
-    VisualizationScanResultData,
     TabStopRequirementStatuses,
+    VisualizationScanResultData,
 } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
+import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
@@ -18,6 +22,7 @@ import {
     AddTabStopInstancePayload,
     RemoveTabStopInstancePayload,
     ResetTabStopRequirementStatusPayload,
+    ToggleTabStopRequirementExpandPayload,
     UpdateTabStopInstancePayload,
     UpdateTabStopRequirementStatusPayload,
 } from '../actions/action-payloads';
@@ -25,23 +30,15 @@ import { TabActions } from '../actions/tab-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
 export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationScanResultData> {
-    private visualizationScanResultsActions: VisualizationScanResultActions;
-    private tabActions: TabActions;
-    private tabStopRequirementActions: TabStopRequirementActions;
-    private generateUID: () => string;
-
     constructor(
-        visualizationScanResultActions: VisualizationScanResultActions,
-        tabActions: TabActions,
-        tabStopRequirementActions: TabStopRequirementActions,
-        generateUID: () => string,
+        private visualizationScanResultActions: VisualizationScanResultActions,
+        private tabActions: TabActions,
+        private tabStopRequirementActions: TabStopRequirementActions,
+        private visualizationActions: VisualizationActions,
+        private generateUID: () => string,
+        private visualizationConfigurationFactory: VisualizationConfigurationFactory,
     ) {
         super(StoreNames.VisualizationScanResultStore);
-
-        this.visualizationScanResultsActions = visualizationScanResultActions;
-        this.tabActions = tabActions;
-        this.tabStopRequirementActions = tabStopRequirementActions;
-        this.generateUID = generateUID;
     }
 
     public getDefaultState(): VisualizationScanResultData {
@@ -50,16 +47,23 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
             requirements[id] = {
                 status: 'unknown',
                 instances: [],
+                isExpanded: false,
             };
         }
         const state: Partial<VisualizationScanResultData> = {
-            tabStops: {
+            [AdHocTestkeys.TabStops]: {
                 tabbedElements: null,
                 requirements,
             },
         };
 
-        const keys = ['issues', 'landmarks', 'headings', 'color', 'needsReview'];
+        const keys: AdHocTestkeys[] = [
+            AdHocTestkeys.Issues,
+            AdHocTestkeys.Landmarks,
+            AdHocTestkeys.Headings,
+            AdHocTestkeys.Color,
+            AdHocTestkeys.NeedsReview,
+        ];
 
         keys.forEach(key => {
             state[key] = {
@@ -73,11 +77,11 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     }
 
     protected addActionListeners(): void {
-        this.visualizationScanResultsActions.scanCompleted.addListener(this.onScanCompleted);
-        this.visualizationScanResultsActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.visualizationScanResultsActions.disableIssues.addListener(this.onIssuesDisabled);
-        this.visualizationScanResultsActions.addTabbedElement.addListener(this.onAddTabbedElement);
-        this.visualizationScanResultsActions.disableTabStop.addListener(this.onTabStopsDisabled);
+        this.visualizationActions.rescanVisualization.addListener(this.onRescanVisualization);
+        this.visualizationScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.visualizationScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.visualizationScanResultActions.addTabbedElement.addListener(this.onAddTabbedElement);
+        this.visualizationScanResultActions.disableTabStop.addListener(this.onTabStopsDisabled);
         this.tabStopRequirementActions.updateTabStopsRequirementStatus.addListener(
             this.onUpdateTabStopRequirementStatus,
         );
@@ -91,11 +95,29 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabStopRequirementActions.removeTabStopInstance.addListener(
             this.onRemoveTabStopInstance,
         );
+        this.tabStopRequirementActions.toggleTabStopRequirementExpand.addListener(
+            this.onToggleTabStopRequirementExpandCollapse,
+        );
         this.tabActions.existingTabUpdated.addListener(this.onExistingTabUpdated);
     }
 
     private onTabStopsDisabled = (): void => {
         this.state.tabStops.tabbedElements = null;
+        this.emitChanged();
+    };
+
+    private onRescanVisualization = (type: VisualizationType) => {
+        this.resetDataForVisualization(type);
+    };
+
+    private resetDataForVisualization = (type: VisualizationType) => {
+        const config = this.visualizationConfigurationFactory.getConfiguration(type);
+        const testKey = config.key;
+        if (this.state[testKey] == null) {
+            return;
+        }
+
+        this.state[testKey] = this.getDefaultState()[testKey];
         this.emitChanged();
     };
 
@@ -140,6 +162,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId, status } = payload;
         this.state.tabStops.requirements[requirementId].status = status;
+        if (status === 'pass') {
+            this.state.tabStops.requirements[requirementId].instances = [];
+        }
         this.emitChanged();
     };
 
@@ -148,6 +173,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     ): void => {
         const { requirementId } = payload;
         this.state.tabStops.requirements[requirementId].status = TabStopRequirementStatuses.unknown;
+        this.state.tabStops.requirements[requirementId].instances = [];
         this.emitChanged();
     };
 
@@ -177,6 +203,15 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.emitChanged();
     };
 
+    private onToggleTabStopRequirementExpandCollapse = (
+        payload: ToggleTabStopRequirementExpandPayload,
+    ): void => {
+        const { requirementId } = payload;
+        const requirement = this.state.tabStops.requirements[requirementId];
+        requirement.isExpanded = !requirement.isExpanded;
+        this.emitChanged();
+    };
+
     private onScanCompleted = (payload: ScanCompletedPayload<any>): void => {
         const selectorMap = payload.selectorMap;
         const result = payload.scanResult;
@@ -186,11 +221,6 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.state[payload.key].fullAxeResultsMap = selectorMap;
         this.state[payload.key].scanResult = result;
 
-        this.emitChanged();
-    };
-
-    private onIssuesDisabled = (): void => {
-        this.state.issues.scanResult = null;
         this.emitChanged();
     };
 

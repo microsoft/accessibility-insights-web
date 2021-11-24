@@ -134,13 +134,16 @@ export interface AddTabbedElementPayload extends BaseActionPayload {
 export interface ResetTabStopRequirementStatusPayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
 }
-
 export interface UpdateTabStopRequirementStatusPayload
     extends ResetTabStopRequirementStatusPayload {
     status: TabStopRequirementStatus;
 }
 export interface RemoveTabStopInstancePayload extends BaseActionPayload {
     id: string;
+    requirementId: TabStopRequirementId;
+}
+
+export interface ToggleTabStopRequirementExpandPayload extends BaseActionPayload {
     requirementId: TabStopRequirementId;
 }
 export interface AddTabStopInstancePayload extends BaseActionPayload {
