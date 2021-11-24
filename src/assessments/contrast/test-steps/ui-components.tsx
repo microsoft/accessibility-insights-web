@@ -46,17 +46,19 @@ const howToTest: JSX.Element = (
                 are testing on a Mac) to verify that the following visual information (if present)
                 has a contrast ratio of at least 3:1 against the adjacent background:
                 <ol>
-                    <li>Any visual information that's needed to identify the component</li>
-                    <ol>
-                        <li>
-                            Visual information is almost always needed to identify text inputs,
-                            checkboxes, and radio buttons.
-                        </li>
-                        <li>
-                            Visual information might not be needed to identify other components if
-                            they are identified by their position, text style, or context.
-                        </li>
-                    </ol>
+                    <li>
+                        Any visual information that's needed to identify the component
+                        <ol>
+                            <li>
+                                Visual information is almost always needed to identify text inputs,
+                                checkboxes, and radio buttons.
+                            </li>
+                            <li>
+                                Visual information might not be needed to identify other components
+                                if they are identified by their position, text style, or context.
+                            </li>
+                        </ol>
+                    </li>
                     <li>
                         Any visual information that indicates the component is in its normal state
                     </li>
