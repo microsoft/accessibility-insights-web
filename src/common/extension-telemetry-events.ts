@@ -10,6 +10,11 @@ export const AUTOMATED_CHECKS_TOGGLE: string = 'IssuesToggled';
 export const LANDMARKS_TOGGLE: string = 'LandmarksToggled';
 export const TABSTOPS_TOGGLE: string = 'TabStopsToggled';
 export const TABSTOPS_RECORDING_COMPLETE: string = 'TabStopsRecordingComplete';
+export const ADD_TABSTOPS_REQUIREMENT_INSTANCE: string = 'AddTabStopsRequirementInstance';
+export const REMOVE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'RemoveTabStopsRequirementInstance';
+export const UPDATE_TABSTOPS_REQUIREMENT_INSTANCE: string = 'UpdateTabStopsRequirementInstance';
+export const UPDATE_TABSTOPS_REQUIREMENT_STATUS: string = 'UpdateTabStopsRequirementStatus';
+export const RESET_TABSTOPS_REQUIREMENT_STATUS: string = 'ResetTabStopsRequirmentStatus';
 export const COLOR_TOGGLE: string = 'ColorToggled';
 export const HEADINGS_TOGGLE: string = 'HeadingsToggled';
 export const SHORTCUT_MODIFIED: string = 'ShortcutModified';
@@ -35,6 +40,7 @@ export const EDIT_FAILURE_INSTANCE: string = 'editFailureInstance';
 export const PASS_UNMARKED_INSTANCES: string = 'passUnmarkedInstances';
 export const CONTINUE_PREVIOUS_ASSESSMENT: string = 'ContinuePreviousAssessment';
 export const LOAD_ASSESSMENT: string = 'loadAssessment';
+export const SAVE_ASSESSMENT: string = 'saveAssessment';
 export const ENABLE_VISUAL_HELPER: string = 'enableVisualHelper';
 export const UNDO_TEST_STATUS_CHANGE: string = 'undoTestStatusChange';
 export const UNDO_REQUIREMENT_STATUS_CHANGE: string = 'undoRequirementStatusChange';
@@ -211,6 +217,18 @@ export type InstanceCount = {
     };
     INCOMPLETE: {
         [ruleId: string]: number;
+    };
+};
+
+export type TabStopRequirementInstanceCount = {
+    pass: {
+        [requirementId: string]: number;
+    };
+    fail: {
+        [requirementId: string]: number;
+    };
+    unknown: {
+        [requirementId: string]: number;
     };
 };
 

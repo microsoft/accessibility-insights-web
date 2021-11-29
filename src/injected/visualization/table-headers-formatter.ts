@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { isEmpty } from 'lodash';
 import { DialogRenderer } from '../dialog-renderer';
 import { AssessmentVisualizationInstance } from '../frameCommunicators/html-element-axe-results-helper';
 import { FailureInstanceFormatter } from './failure-instance-formatter';
@@ -30,7 +29,7 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
             fontColor: '#FFFFFF',
         };
 
-        const text = isHeader ? this.getTextForHeader(element) : this.getTextForCell(element);
+        const text = isHeader ? 'th' : 'td';
 
         return {
             textBoxConfig: {
@@ -44,25 +43,5 @@ export class TableHeadersAttributeFormatter extends FailureInstanceFormatter {
             textAlign: 'right',
             failureBoxConfig: this.getFailureBoxConfig(data),
         };
-    }
-
-    private getTextForHeader(element: HTMLElement): string {
-        const idText = `id="${this.getAttribute(element, 'id')}"`;
-        const headersAttr = this.getAttribute(element, 'headers');
-        const headersText = headersAttr === null ? null : `headers="${headersAttr}"`;
-
-        return ['th', idText, headersText].filter(str => !isEmpty(str)).join(' ');
-    }
-
-    private getTextForCell(element: HTMLElement): string {
-        const headersAttr = this.getAttribute(element, 'headers');
-        const headersText = headersAttr === null ? null : `headers="${headersAttr}"`;
-
-        return ['td', headersText].filter(str => !isEmpty(str)).join(' ');
-    }
-
-    private getAttribute(element: HTMLElement, attrName: string): string {
-        const attr = element.attributes.getNamedItem(attrName);
-        return attr ? attr.textContent : null;
     }
 }

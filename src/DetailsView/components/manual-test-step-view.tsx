@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { CapturedInstanceActionType } from 'common/types/captured-instance-action-type';
 import { FailureInstanceData } from 'common/types/failure-instance-data';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { ManualTestStepResult } from 'common/types/store-data/assessment-result-data';
@@ -11,10 +12,7 @@ import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric
 import * as React from 'react';
 import { DictionaryStringTo } from 'types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import {
-    CapturedInstanceActionType,
-    FailureInstancePanelControl,
-} from './failure-instance-panel-control';
+import { FailureInstancePanelControl } from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
 export interface ManualTestStepViewProps {

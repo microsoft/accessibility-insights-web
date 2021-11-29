@@ -9,7 +9,7 @@ export interface TelemetryData {
     baseData: TelemetryBaseData;
 }
 
-export interface ExtendedEnvelop extends Microsoft.ApplicationInsights.IEnvelope {
+export interface ExtendedEnvelope extends Microsoft.ApplicationInsights.IEnvelope {
     data: TelemetryData;
 }
 
@@ -77,7 +77,7 @@ export class AppInsightsTelemetryClient implements TelemetryClient {
 
     private initializeInternal(): void {
         this.appInsights.context.operation.name = '';
-        this.appInsights.context.addTelemetryInitializer((envelope: ExtendedEnvelop) => {
+        this.appInsights.context.addTelemetryInitializer((envelope: ExtendedEnvelope) => {
             const baseData = envelope.data.baseData;
             baseData.properties = {
                 ...baseData.properties,

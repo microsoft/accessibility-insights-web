@@ -271,6 +271,7 @@ describe(DetailsViewContent, () => {
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                         unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
                         cardSelectionStoreData: storeMocks.cardSelectionStoreData,
+                        tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
                     }
                 );
             });
@@ -331,6 +332,7 @@ describe(DetailsViewContent, () => {
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,
             permissionsStateStoreData: storeMocks.permissionsStateStoreData,
+            tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
         };
     }
 });

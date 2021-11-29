@@ -17,6 +17,13 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -42,6 +49,13 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -60,6 +74,13 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />
@@ -87,6 +108,13 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
 />
 `;
 
@@ -104,6 +132,13 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />
@@ -130,6 +165,135 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
       "getConfiguration": [Function],
     }
   }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
+    }
+  }
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with no testViewOverrides 1`] = `
+<FlaggedComponent
+  disableJSXElement={
+    <AdhocStaticTestView
+      configuration={
+        Object {
+          "key": "configStub",
+          "testViewOverrides": undefined,
+          "testViewType": "AdhocTabStops",
+        }
+      }
+      selectedTest={-1}
+      someParentProp="parent-prop"
+      visualizationConfigurationFactory={
+        Object {
+          "getConfiguration": [Function],
+        }
+      }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
+        }
+      }
+    />
+  }
+  enableJSXElement={
+    <AdhocTabStopsTestView
+      configuration={
+        Object {
+          "key": "configStub",
+          "testViewOverrides": undefined,
+          "testViewType": "AdhocTabStops",
+        }
+      }
+      selectedTest={-1}
+      someParentProp="parent-prop"
+      visualizationConfigurationFactory={
+        Object {
+          "getConfiguration": [Function],
+        }
+      }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
+        }
+      }
+    />
+  }
+  featureFlag="newTabStopsDetailsView"
+/>
+`;
+
+exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot with testViewOverrides 1`] = `
+<FlaggedComponent
+  disableJSXElement={
+    <AdhocStaticTestView
+      configuration={
+        Object {
+          "key": "configStub",
+          "testViewOverrides": Object {
+            "content": "stub content page component \\"content\\"",
+            "guidance": "stub content page component \\"guidance\\"",
+          },
+          "testViewType": "AdhocTabStops",
+        }
+      }
+      content="stub content page component \\"content\\""
+      guidance="stub content page component \\"guidance\\""
+      selectedTest={-1}
+      someParentProp="parent-prop"
+      visualizationConfigurationFactory={
+        Object {
+          "getConfiguration": [Function],
+        }
+      }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
+        }
+      }
+    />
+  }
+  enableJSXElement={
+    <AdhocTabStopsTestView
+      configuration={
+        Object {
+          "key": "configStub",
+          "testViewOverrides": Object {
+            "content": "stub content page component \\"content\\"",
+            "guidance": "stub content page component \\"guidance\\"",
+          },
+          "testViewType": "AdhocTabStops",
+        }
+      }
+      content="stub content page component \\"content\\""
+      guidance="stub content page component \\"guidance\\""
+      selectedTest={-1}
+      someParentProp="parent-prop"
+      visualizationConfigurationFactory={
+        Object {
+          "getConfiguration": [Function],
+        }
+      }
+      visualizationScanResultData={
+        Object {
+          "tabStops": Object {
+            "requirements": Object {},
+          },
+        }
+      }
+    />
+  }
+  featureFlag="newTabStopsDetailsView"
 />
 `;
 
@@ -147,6 +311,13 @@ exports[`TestViewContainer for testViewType=Assessment renders per snapshot with
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />
@@ -171,6 +342,13 @@ exports[`TestViewContainer for testViewType=Assessment renders per snapshot with
   visualizationConfigurationFactory={
     Object {
       "getConfiguration": [Function],
+    }
+  }
+  visualizationScanResultData={
+    Object {
+      "tabStops": Object {
+        "requirements": Object {},
+      },
     }
   }
 />
