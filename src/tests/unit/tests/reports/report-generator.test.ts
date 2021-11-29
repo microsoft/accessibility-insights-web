@@ -35,6 +35,7 @@ describe('ReportGenerator', () => {
         toolData: toolDataStub,
         targetAppInfo: targetAppInfo,
     } as ScanMetadata;
+    const featureFlagStoreDataStub: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -54,10 +55,15 @@ describe('ReportGenerator', () => {
         );
     });
 
-    test('generateHtml', () => {
+    test('generateFastPassHtmlReport', () => {
         dataBuilderMock
             .setup(builder =>
-                builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
+                builder.generateHtml(
+                    description,
+                    cardsViewDataStub,
+                    scanMetadataStub,
+                    featureFlagStoreDataStub,
+                ),
             )
             .returns(() => 'returned-data');
 
@@ -67,19 +73,19 @@ describe('ReportGenerator', () => {
             assessmentReportHtmlGeneratorMock.object,
             assessmentJsonExportGeneratorMock.object,
         );
-        const actual = testObject.generateFastPassAutomatedChecksReport(
+        const actual = testObject.generateFastPassHtmlReport(
             cardsViewDataStub,
             description,
             scanMetadataStub,
+            featureFlagStoreDataStub,
         );
 
         expect(actual).toMatchSnapshot();
     });
 
-    test('generateAssessmentHtml', () => {
+    test('generateAssessmentHtmlReport', () => {
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
-        const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';
 
         assessmentReportHtmlGeneratorMock
@@ -87,7 +93,7 @@ describe('ReportGenerator', () => {
                 builder.generateHtml(
                     assessmentStoreData,
                     assessmentsProvider,
-                    featureFlagStoreData,
+                    featureFlagStoreDataStub,
                     targetAppInfo,
                     assessmentDescription,
                 ),
@@ -101,10 +107,10 @@ describe('ReportGenerator', () => {
             assessmentReportHtmlGeneratorMock.object,
             assessmentJsonExportGeneratorMock.object,
         );
-        const actual = testObject.generateAssessmentHTMLReport(
+        const actual = testObject.generateAssessmentHtmlReport(
             assessmentStoreData,
             assessmentsProvider,
-            featureFlagStoreData,
+            featureFlagStoreDataStub,
             targetAppInfo,
             assessmentDescription,
         );

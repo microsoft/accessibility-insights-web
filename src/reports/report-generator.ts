@@ -27,15 +27,21 @@ export class ReportGenerator {
         return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle, fileExtension);
     }
 
-    public generateFastPassAutomatedChecksReport(
+    public generateFastPassHtmlReport(
         cardsViewData: CardsViewModel,
         description: string,
         scanMetadata: ScanMetadata,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(description, cardsViewData, scanMetadata);
+        return this.reportHtmlGenerator.generateHtml(
+            description,
+            cardsViewData,
+            scanMetadata,
+            featureFlagStoreData,
+        );
     }
 
-    public generateAssessmentHTMLReport(
+    public generateAssessmentHtmlReport(
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,

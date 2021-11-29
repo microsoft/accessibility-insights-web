@@ -108,7 +108,7 @@ describe('ReportExportDialogFactory', () => {
     function setAssessmentReportGenerator(): void {
         reportGeneratorMock
             .setup(reportGenerator =>
-                reportGenerator.generateAssessmentHTMLReport(
+                reportGenerator.generateAssessmentHtmlReport(
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
