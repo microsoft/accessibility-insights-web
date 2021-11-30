@@ -21,7 +21,8 @@ exports[`ReportExportComponentTest render 1`] = `
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
+          "automatedChecksReportHtmlGenerator": undefined,
+          "fastPassReportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
         },
       }
@@ -74,7 +75,8 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
+          "automatedChecksReportHtmlGenerator": undefined,
+          "fastPassReportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
         },
       }
@@ -125,7 +127,8 @@ exports[`ReportExportComponentTest user interactions clicking export on the dial
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
+          "automatedChecksReportHtmlGenerator": undefined,
+          "fastPassReportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
         },
       }
@@ -178,7 +181,8 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
+          "automatedChecksReportHtmlGenerator": undefined,
+          "fastPassReportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
         },
       }
@@ -229,7 +233,8 @@ exports[`ReportExportComponentTest user interactions edit text field: test conte
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "assessmentJsonExportGenerator": undefined,
           "assessmentReportHtmlGenerator": undefined,
-          "reportHtmlGenerator": undefined,
+          "automatedChecksReportHtmlGenerator": undefined,
+          "fastPassReportHtmlGenerator": undefined,
           "reportNameGenerator": undefined,
         },
       }

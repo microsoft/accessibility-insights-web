@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-export const TitleSection = NamedFC('TitleSection', () => {
+export const AutomatedChecksTitleSection = NamedFC('AutomatedChecksTitleSection', () => {
     return (
         <div className="title-section">
             <h1>Automated checks results</h1>

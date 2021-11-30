@@ -18,11 +18,11 @@ import { SummaryReportHeaderSection } from 'reports/components/report-sections/s
 import { SummaryReportHead } from 'reports/components/summary-report-head';
 import { UrlResultCounts } from 'reports/package/accessibilityInsightsReport';
 import { FooterTextForService } from 'reports/package/footer-text-for-service';
+import { AutomatedChecksTitleSection } from './automated-checks-title-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
-import { TitleSection } from './title-section';
 
 export type CombinedReportSectionDeps = ResultSectionDeps;
 
@@ -38,7 +38,7 @@ export const CombinedReportSectionFactory: ReportSectionFactory<CombinedReportSe
     BodySection,
     ContentContainer,
     HeaderSection: SummaryReportHeaderSection,
-    TitleSection,
+    TitleSection: AutomatedChecksTitleSection,
     SummarySection: CombinedReportSummarySection,
     DetailsSection: SummaryReportDetailsSection,
     ResultsContainer: RulesResultsContainer,
