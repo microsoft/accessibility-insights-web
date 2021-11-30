@@ -1,0 +1,50 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+# This template:
+# - builds and runs a given target in DOCKERFILE
+# - copies /app/test-results & /app/drop back to the base agent
+# - requires you to publish test results or artifacts in the consuming pipeline
+# - could be applicable to any agent, but intentionally no-ops on non-linux agents
+
+parameters:
+    - name: target # should be web or unified
+      type: string
+    - name: run-timeout-minutes
+      type: number
+      default: 30
+
+steps:
+    - bash: |
+          if [ -z "$TARGET" ]; then
+            echo "##vso[task.logissue type=error;]Missing template parameter \"target\""
+            echo "##vso[task.complete result=Failed;]"
+          fi
+      env:
+          TARGET: ${{ parameters.target }}
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+      displayName: (linux) make sure 'target' parameter is specified
+
+    # DOCKER_BUILDKIT=1 allows us to skip non-related targets (github docker/cli@1134)
+    - script: DOCKER_BUILDKIT=1 docker build -t app --target ${{ parameters.target }} .
+      displayName: (linux) setup docker
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+
+    - script: docker run --network=host -i app --ci
+      displayName: (linux) run docker entrypoint
+      timeoutInMinutes: ${{ parameters['run-timeout-minutes'] }}
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+
+    - bash: |
+          export CONTAINERID=$(docker ps -alq)
+          echo "##vso[task.setvariable variable=CONTAINER_ID]$CONTAINERID"
+      displayName: (linux) get container id for docker
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+
+    - script: docker cp $(CONTAINER_ID):/app/test-results/ .
+      displayName: (linux) copy test results from docker to base agent
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))
+
+    - script: docker cp $(CONTAINER_ID):/app/drop/ .
+      displayName: (linux) copy drop folder from docker to base agent
+      condition: and(succeeded(), eq(variables['Agent.OS'], 'linux'))

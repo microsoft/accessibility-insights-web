@@ -12,4 +12,4 @@ export DEBUG=pw:api
 
 echo "Executing command $@"
 
-exec "$@"
+yarn test:unified --ci
