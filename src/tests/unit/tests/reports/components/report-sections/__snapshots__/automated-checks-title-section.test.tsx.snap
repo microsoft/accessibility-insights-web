@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TitleSection renders 1`] = `
+exports[`AutomatedChecksTitleSection renders 1`] = `
 <div
   className="title-section"
 >
