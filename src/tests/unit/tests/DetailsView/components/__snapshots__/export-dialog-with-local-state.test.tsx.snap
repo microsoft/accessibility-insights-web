@@ -9,7 +9,8 @@ exports[`ExportDialogWithLocalState clicking export on the dialog triggers gener
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
       },
     }
@@ -49,7 +50,8 @@ exports[`ExportDialogWithLocalState edit text field: test content with special c
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
       },
     }
@@ -89,7 +91,8 @@ exports[`ExportDialogWithLocalState on dialog opened 1`] = `
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
       },
     }
@@ -128,7 +131,8 @@ exports[`ExportDialogWithLocalState render with dialog closed 1`] = `
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
       },
     }
@@ -168,7 +172,8 @@ exports[`ExportDialogWithLocalState render with dialog open 1`] = `
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "assessmentJsonExportGenerator": undefined,
         "assessmentReportHtmlGenerator": undefined,
-        "reportHtmlGenerator": undefined,
+        "automatedChecksReportHtmlGenerator": undefined,
+        "fastPassReportHtmlGenerator": undefined,
         "reportNameGenerator": undefined,
       },
     }
