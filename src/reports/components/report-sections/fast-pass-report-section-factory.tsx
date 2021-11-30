@@ -3,10 +3,10 @@
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
 import { WebReportHead } from 'reports/components/web-report-head';
-import { AutomatedChecksTitleSection } from './automated-checks-title-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
+import { FastPassTitleSection } from './fast-pass-title-section';
 import { FooterText } from './footer-text';
 import { NotApplicableChecksSection } from './not-applicable-checks-section';
 import { PassedChecksSection } from './passed-checks-section';
@@ -15,14 +15,14 @@ import { ReportSectionFactory } from './report-section-factory';
 import { ResultsContainer } from './results-container';
 import { AllOutcomesSummarySection } from './summary-section';
 
-// This is for a soon-to-be-legacy FastPass report format. It will be replaced by
-// FastPassReportSectionFactory with feature #1872889. It should be removed with story #1897885.
-export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
+// This is for a new FastPass report format; it will replace AutomatedChecksReportSectionFactory
+// as the default with feature #1872889. This comment should be removed with story #1897885.
+export const FastPassReportSectionFactory: ReportSectionFactory = {
     HeadSection: WebReportHead,
     BodySection,
     ContentContainer,
     HeaderSection: AutomatedChecksHeaderSection,
-    TitleSection: AutomatedChecksTitleSection,
+    TitleSection: FastPassTitleSection,
     SummarySection: AllOutcomesSummarySection,
     DetailsSection,
     ResultsContainer,

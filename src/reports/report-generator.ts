@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -13,7 +14,8 @@ import { ReportNameGenerator } from './report-name-generator';
 export class ReportGenerator {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
-        private reportHtmlGenerator: ReportHtmlGenerator,
+        private automatedChecksReportHtmlGenerator: ReportHtmlGenerator,
+        private fastPassReportHtmlGenerator: ReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
         private assessmentJsonExportGenerator: AssessmentJsonExportGenerator,
     ) {}
@@ -27,15 +29,28 @@ export class ReportGenerator {
         return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle, fileExtension);
     }
 
-    public generateFastPassAutomatedChecksReport(
+    public generateFastPassHtmlReport(
         cardsViewData: CardsViewModel,
         description: string,
         scanMetadata: ScanMetadata,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(description, cardsViewData, scanMetadata);
+        if (featureFlagStoreData[FeatureFlags.newTabStopsDetailsView]) {
+            return this.fastPassReportHtmlGenerator.generateHtml(
+                description,
+                cardsViewData,
+                scanMetadata,
+            );
+        } else {
+            return this.automatedChecksReportHtmlGenerator.generateHtml(
+                description,
+                cardsViewData,
+                scanMetadata,
+            );
+        }
     }
 
-    public generateAssessmentHTMLReport(
+    public generateAssessmentHtmlReport(
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,

@@ -50,6 +50,7 @@ import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-ge
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import { FastPassReportSectionFactory } from 'reports/components/report-sections/fast-pass-report-section-factory';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
@@ -339,8 +340,21 @@ if (tabId != null) {
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
 
-            const reportHtmlGenerator = new ReportHtmlGenerator(
+            // This is for a soon-to-be-legacy FastPass report format.
+            // It should be removed with #1897885.
+            const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
                 AutomatedChecksReportSectionFactory,
+                reactStaticRenderer,
+                getDefaultAddListenerForCollapsibleSection,
+                DateProvider.getUTCStringFromDate,
+                GetGuidanceTagsFromGuidanceLinks,
+                fixInstructionProcessor,
+                recommendColor,
+                getPropertyConfiguration,
+            );
+
+            const fastPassReportHtmlGenerator = new ReportHtmlGenerator(
+                FastPassReportSectionFactory,
                 reactStaticRenderer,
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
@@ -415,7 +429,8 @@ if (tabId != null) {
 
             const reportGenerator = new ReportGenerator(
                 reportNameGenerator,
-                reportHtmlGenerator,
+                automatedChecksReportHtmlGenerator,
+                fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
                 assessmentJsonExportGenerator,
             );

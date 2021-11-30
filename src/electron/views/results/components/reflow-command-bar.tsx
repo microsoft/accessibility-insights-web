@@ -70,10 +70,11 @@ export const ReflowCommandBar = NamedFC<ReflowCommandBarProps>('ReflowCommandBar
                 pageTitle={scanMetadata.targetAppInfo.name}
                 scanDate={scanMetadata.timespan.scanComplete}
                 htmlGenerator={description =>
-                    deps.reportGenerator.generateFastPassAutomatedChecksReport(
+                    deps.reportGenerator.generateFastPassHtmlReport(
                         cardsViewData,
                         description,
                         scanMetadata,
+                        featureFlagStoreData,
                     )
                 }
                 jsonGenerator={() => null}

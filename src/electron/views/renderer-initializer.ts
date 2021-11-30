@@ -521,7 +521,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const documentManipulator = new DocumentManipulator(document);
 
-        const reportHtmlGenerator = new ReportHtmlGenerator(
+        const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
             UnifiedReportSectionFactory,
             new ReactStaticRenderer(),
             getDefaultAddListenerForCollapsibleSection,
@@ -534,7 +534,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const reportGenerator = new ReportGenerator(
             new UnifiedReportNameGenerator(),
-            reportHtmlGenerator,
+            automatedChecksReportHtmlGenerator,
+            null,
             null,
             null,
         );
