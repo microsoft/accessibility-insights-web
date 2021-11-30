@@ -8,7 +8,6 @@ import { RecommendColor } from 'common/components/recommend-color';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 
@@ -37,7 +36,6 @@ export class ReportHtmlGenerator {
         description: string,
         cardsViewData: CardsViewModel,
         scanMetadata: ScanMetadata,
-        featureFlagStoreData: FeatureFlagStoreData,
     ): string {
         const HeadSection = this.sectionFactory.HeadSection;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(<HeadSection />);

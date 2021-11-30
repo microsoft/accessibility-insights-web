@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
@@ -37,14 +38,24 @@ describe('ReportGenerator', () => {
     } as ScanMetadata;
     const featureFlagStoreDataStub: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
 
-    let dataBuilderMock: IMock<ReportHtmlGenerator>;
+    let fastPassReportHtmlGeneratorMock: IMock<ReportHtmlGenerator>;
+    let automatedChecksReportHtmlGeneratorMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
     let assessmentJsonExportGeneratorMock: IMock<AssessmentJsonExportGenerator>;
 
+    let testSubject: ReportGenerator;
+
     beforeEach(() => {
         nameBuilderMock = Mock.ofType<ReportNameGenerator>(undefined, MockBehavior.Strict);
-        dataBuilderMock = Mock.ofType<ReportHtmlGenerator>(undefined, MockBehavior.Strict);
+        automatedChecksReportHtmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>(
+            undefined,
+            MockBehavior.Strict,
+        );
+        fastPassReportHtmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>(
+            undefined,
+            MockBehavior.Strict,
+        );
         assessmentReportHtmlGeneratorMock = Mock.ofType(
             AssessmentReportHtmlGenerator,
             MockBehavior.Strict,
@@ -53,34 +64,53 @@ describe('ReportGenerator', () => {
             AssessmentJsonExportGenerator,
             MockBehavior.Strict,
         );
-    });
 
-    test('generateFastPassHtmlReport', () => {
-        dataBuilderMock
-            .setup(builder =>
-                builder.generateHtml(
-                    description,
-                    cardsViewDataStub,
-                    scanMetadataStub,
-                    featureFlagStoreDataStub,
-                ),
-            )
-            .returns(() => 'returned-data');
-
-        const testObject = new ReportGenerator(
+        testSubject = new ReportGenerator(
             nameBuilderMock.object,
-            dataBuilderMock.object,
+            automatedChecksReportHtmlGeneratorMock.object,
+            fastPassReportHtmlGeneratorMock.object,
             assessmentReportHtmlGeneratorMock.object,
             assessmentJsonExportGeneratorMock.object,
         );
-        const actual = testObject.generateFastPassHtmlReport(
-            cardsViewDataStub,
-            description,
-            scanMetadataStub,
-            featureFlagStoreDataStub,
-        );
+    });
 
-        expect(actual).toMatchSnapshot();
+    describe('generateFastPassHtmlReport', () => {
+        it('uses fastPassReportHtmlGenerator with FeatureFlags.newTabStopsDetailsView', () => {
+            const featureFlagStoreData = { [FeatureFlags.newTabStopsDetailsView]: true };
+
+            fastPassReportHtmlGeneratorMock
+                .setup(builder =>
+                    builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
+                )
+                .returns(() => 'returned-data');
+
+            const actual = testSubject.generateFastPassHtmlReport(
+                cardsViewDataStub,
+                description,
+                scanMetadataStub,
+                featureFlagStoreData,
+            );
+
+            expect(actual).toMatchSnapshot();
+        });
+        it('uses automatedChecksReportHtmlGenerator without FeatureFlags.newTabStopsDetailsView', () => {
+            const featureFlagStoreData = { [FeatureFlags.newTabStopsDetailsView]: false };
+
+            automatedChecksReportHtmlGeneratorMock
+                .setup(builder =>
+                    builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
+                )
+                .returns(() => 'returned-data');
+
+            const actual = testSubject.generateFastPassHtmlReport(
+                cardsViewDataStub,
+                description,
+                scanMetadataStub,
+                featureFlagStoreData,
+            );
+
+            expect(actual).toMatchSnapshot();
+        });
     });
 
     test('generateAssessmentHtmlReport', () => {
@@ -101,13 +131,7 @@ describe('ReportGenerator', () => {
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(
-            nameBuilderMock.object,
-            dataBuilderMock.object,
-            assessmentReportHtmlGeneratorMock.object,
-            assessmentJsonExportGeneratorMock.object,
-        );
-        const actual = testObject.generateAssessmentHtmlReport(
+        const actual = testSubject.generateAssessmentHtmlReport(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreDataStub,
@@ -132,13 +156,7 @@ describe('ReportGenerator', () => {
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(
-            nameBuilderMock.object,
-            dataBuilderMock.object,
-            assessmentReportHtmlGeneratorMock.object,
-            assessmentJsonExportGeneratorMock.object,
-        );
-        const actual = testObject.generateName('InsightsScan', date, title, fileExtension);
+        const actual = testSubject.generateName('InsightsScan', date, title, fileExtension);
 
         const expected = 'returned-name';
         expect(actual).toEqual(expected);
