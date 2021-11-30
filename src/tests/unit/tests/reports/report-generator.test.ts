@@ -82,7 +82,7 @@ describe('ReportGenerator', () => {
                 .setup(builder =>
                     builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
                 )
-                .returns(() => 'returned-data');
+                .returns(() => 'stub FastPass report');
 
             const actual = testSubject.generateFastPassHtmlReport(
                 cardsViewDataStub,
@@ -91,7 +91,7 @@ describe('ReportGenerator', () => {
                 featureFlagStoreData,
             );
 
-            expect(actual).toMatchSnapshot();
+            expect(actual).toEqual('stub FastPass report');
         });
         it('uses automatedChecksReportHtmlGenerator without FeatureFlags.newTabStopsDetailsView', () => {
             const featureFlagStoreData = { [FeatureFlags.newTabStopsDetailsView]: false };
@@ -100,7 +100,7 @@ describe('ReportGenerator', () => {
                 .setup(builder =>
                     builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
                 )
-                .returns(() => 'returned-data');
+                .returns(() => 'stub automated checks report');
 
             const actual = testSubject.generateFastPassHtmlReport(
                 cardsViewDataStub,
@@ -109,7 +109,7 @@ describe('ReportGenerator', () => {
                 featureFlagStoreData,
             );
 
-            expect(actual).toMatchSnapshot();
+            expect(actual).toEqual('stub automated checks report');
         });
     });
 
