@@ -25,11 +25,7 @@ export function shouldShowReportExportButtonForFastpass(
     props: ShouldShowReportExportButtonProps,
 ): boolean {
     const config = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-
     const shouldShow = config.shouldShowExportReport(props.unifiedScanResultStoreData);
 
-    const scanData = config.getStoreData(props.visualizationStoreData.tests);
-    const isEnabled = config.getTestStatus(scanData);
-
-    return shouldShow && isEnabled;
+    return shouldShow;
 }
