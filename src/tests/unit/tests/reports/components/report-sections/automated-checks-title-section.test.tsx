@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { TitleSection } from 'reports/components/report-sections/title-section';
+import { AutomatedChecksTitleSection } from 'reports/components/report-sections/automated-checks-title-section';
 
-describe('TitleSection', () => {
+describe('AutomatedChecksTitleSection', () => {
     it('renders', () => {
-        const wrapped = shallow(<TitleSection />);
+        const wrapped = shallow(<AutomatedChecksTitleSection />);
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });

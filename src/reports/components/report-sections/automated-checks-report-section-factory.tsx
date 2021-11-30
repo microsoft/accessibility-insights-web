@@ -3,6 +3,7 @@
 import { FailedInstancesSection } from 'common/components/cards/failed-instances-section';
 import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
 import { WebReportHead } from 'reports/components/web-report-head';
+import { AutomatedChecksTitleSection } from './automated-checks-title-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
@@ -13,7 +14,6 @@ import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
 import { ResultsContainer } from './results-container';
 import { AllOutcomesSummarySection } from './summary-section';
-import { TitleSection } from './title-section';
 
 // This is for a soon-to-be-legacy FastPass report format. It will be replaced by
 // FastPassReportSectionFactory with feature #1872889. It should be removed with story #1897885.
@@ -22,7 +22,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     BodySection,
     ContentContainer,
     HeaderSection: AutomatedChecksHeaderSection,
-    TitleSection,
+    TitleSection: AutomatedChecksTitleSection,
     SummarySection: AllOutcomesSummarySection,
     DetailsSection,
     ResultsContainer,
