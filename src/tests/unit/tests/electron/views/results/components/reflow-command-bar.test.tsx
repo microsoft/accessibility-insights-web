@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DropdownClickHandler } from 'common/dropdown-click-handler';
+import { FileURLProvider } from 'common/file-url-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
+import { ExportDialogWithLocalState } from 'DetailsView/components/export-dialog-with-local-state';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
@@ -33,6 +35,7 @@ describe('ReflowCommandBar', () => {
     let narrowModeStatusStub: NarrowModeStatus;
     let props: ReflowCommandBarProps;
     let reportExportServiceProviderMock: IMock<ReportExportServiceProvider>;
+    let fileUrlProviderMock: IMock<FileURLProvider>;
 
     beforeEach(() => {
         featureFlagStoreDataStub = {
@@ -56,12 +59,14 @@ describe('ReflowCommandBar', () => {
         scanDateStub = new Date(0);
         reportGeneratorMock = Mock.ofType(ReportGenerator);
         reportExportServiceProviderMock = Mock.ofType(ReportExportServiceProvider);
+        fileUrlProviderMock = Mock.ofType(FileURLProvider);
         setReportExportServiceProviderForFastPass();
         props = {
             deps: {
                 scanActionCreator: null,
                 reportGenerator: reportGeneratorMock.object,
                 reportExportServiceProvider: reportExportServiceProviderMock.object,
+                fileURLProvider: fileUrlProviderMock.object,
             } as ReflowCommandBarDeps,
             scanStoreData: {} as ScanStoreData,
             cardsViewData: cardsViewDataStub,
@@ -191,9 +196,9 @@ describe('ReflowCommandBar', () => {
             const buttonMock = Mock.ofType<IButton>();
             const commandBar = rendered.find(CommandBarButtonsMenu);
             const buttonRefCallback = commandBar.prop('buttonRef') as any;
-            const onDialogDismissCallback = commandBar.prop('renderExportReportButton')().props[
-                'onDialogDismiss'
-            ];
+
+            const exportDialog = rendered.find(ExportDialogWithLocalState);
+            const onDialogDismissCallback = exportDialog.props()['afterDialogDismissed'];
 
             buttonMock.setup(bm => bm.dismissMenu()).verifiable();
             buttonMock.setup(bm => bm.focus()).verifiable();
