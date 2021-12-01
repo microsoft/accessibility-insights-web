@@ -25,9 +25,9 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h2>Example</h2>
         <Markup.PassFail
             failText={<p>This element looks like a heading, but it isn't coded as a heading.</p>}
-            failExample={`[<p style="font-size:2em; font-weight:700;] color:#cc0000">About Accessibility Insights for Web</p>`}
+            failExample={`[<p style="font-size:2em; font-weight:700;] color:#e81123">About Accessibility Insights for Web</p>`}
             passText={<p>The element is coded as a heading.</p>}
-            passExample={`[<h1 ]style="color:#cc0000">About Accessibility Insights for Web[</h1>]`}
+            passExample={`[<h1 ]style="color:#e81123">About Accessibility Insights for Web[</h1>]`}
         />
         <h2>More examples</h2>
         <h3>WCAG success criteria</h3>

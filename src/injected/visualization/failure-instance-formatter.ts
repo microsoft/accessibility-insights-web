@@ -9,7 +9,7 @@ import { FailureBoxConfig, Formatter } from './formatter';
 
 export abstract class FailureInstanceFormatter implements Formatter {
     public static failureBoxConfig: FailureBoxConfig = {
-        background: '#CC0000',
+        background: '#E81123',
         fontColor: '#FFFFFF',
         text: '!',
         boxWidth: '20px',

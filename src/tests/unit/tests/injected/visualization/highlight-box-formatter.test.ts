@@ -17,7 +17,7 @@ describe('HighlightBoxFormatterTests', () => {
 
         expect(config.showVisualization).toBe(true);
         expect(config.failureBoxConfig).toBeNull();
-        expect(config.borderColor).toEqual('#CC0000');
+        expect(config.borderColor).toEqual('#E81123');
         expect(config.textAlign).toEqual('center');
     });
 

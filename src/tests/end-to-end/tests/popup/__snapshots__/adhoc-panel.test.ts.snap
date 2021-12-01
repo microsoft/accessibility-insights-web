@@ -20,48 +20,48 @@ exports[`Popup -> Ad-hoc tools should display the pinned target page visualizati
     >
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
           class="insights-highlight-text failure-label"
-          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
         >
           !
         </div>
       </div>
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
           class="insights-highlight-text failure-label"
-          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
         >
           !
         </div>
       </div>
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
           class="insights-highlight-text failure-label"
-          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
         >
           !
         </div>
       </div>
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
+        style="outline-style: solid; outline-color: rgb(232, 17, 35); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: html-has-lang"
       >
         <div
           class="insights-highlight-text failure-label"
-          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+          style="background: rgb(232, 17, 35); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
         >
           !
         </div>
