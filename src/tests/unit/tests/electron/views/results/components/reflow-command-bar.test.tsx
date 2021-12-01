@@ -6,8 +6,8 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
-import { ReportExportComponent } from 'DetailsView/components/report-export-component';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
+import { ReportExportComponent } from 'DetailsView/components/report-export-component';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ContentPageInfo } from 'electron/types/content-page-info';
 import {
