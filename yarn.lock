@@ -4251,10 +4251,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.19.1:
-  version "3.19.1"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.19.1.tgz#a1d52c5b15e63d90d86458359883b537acc04146"
-  integrity sha512-Gue79dwltEaCVJKIYtA8Wmo7C3FZKZcjn88qIJwR5RtfvityBOWnimsNnkMS0Ya3fJqydAvL8kepMB0XQoR3CQ==
+core-js-bundle@^3.19.2:
+  version "3.19.2"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.19.2.tgz#76bd55119bed5fe178fd819db54952e267ec55ba"
+  integrity sha512-LoFua00O2j1ffgGDViAUQMKuwDXBB/XFOmEGY/9QcyQfIrjlom8XZzj0YymB2aUmPZtHmk1fAjPrz9OEXifW4g==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
@@ -6753,6 +6753,11 @@ image-q@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/image-q/-/image-q-1.1.1.tgz#fc84099664460b90ca862d9300b6bfbbbfbf8056"
   integrity sha1-/IQJlmRGC5DKhi2TALa/u7+/gFY=
+
+immutable@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0.tgz#b86f78de6adef3608395efb269a91462797e2c23"
+  integrity sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==
 
 import-fresh@^3.0.0, import-fresh@^3.1.0, import-fresh@^3.2.1:
   version "3.2.1"
@@ -10836,12 +10841,13 @@ sass-loader@^12.3.0:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@^1.43.4:
-  version "1.43.4"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.43.4.tgz#68c7d6a1b004bef49af0d9caf750e9b252105d1f"
-  integrity sha512-/ptG7KE9lxpGSYiXn7Ar+lKOv37xfWsZRtFYal2QHNigyVQDx685VFT/h7ejVr+R8w7H4tmUgtulsKl5YpveOg==
+sass@^1.44.0:
+  version "1.44.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.44.0.tgz#619aa0a2275c097f9af5e6b8fe8a95e3056430fb"
+  integrity sha512-0hLREbHFXGQqls/K8X+koeP+ogFRPF4ZqetVB19b7Cst9Er8cOR0rc6RU7MaI4W1JmUShd1BPgPoeqmmgMMYFw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
 
 sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
