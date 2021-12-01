@@ -114,11 +114,13 @@ export class ReflowCommandBar extends React.Component<
         return null;
     };
 
-    private startOverButtonProps = {
-        'data-automation-id': commandButtonRefreshId,
-        text: 'Start over',
-        iconProps: { iconName: 'Refresh' },
-        ...this.props.currentContentPageInfo.startOverButtonSettings(this.props),
+    private getStartOverButtonProps = () => {
+        return {
+            'data-automation-id': commandButtonRefreshId,
+            text: 'Start over',
+            iconProps: { iconName: 'Refresh' },
+            ...this.props.currentContentPageInfo.startOverButtonSettings(this.props),
+        };
     };
 
     private renderHamburgerMenuButton = () => {
@@ -140,7 +142,7 @@ export class ReflowCommandBar extends React.Component<
             return (
                 <CommandBarButtonsMenu
                     renderExportReportButton={this.renderExportReportButton}
-                    getStartOverMenuItem={() => this.startOverButtonProps}
+                    getStartOverMenuItem={this.getStartOverButtonProps}
                     buttonRef={ref => {
                         this.dropdownMenuButtonRef = ref;
                     }}
@@ -151,7 +153,7 @@ export class ReflowCommandBar extends React.Component<
         return (
             <>
                 {this.renderExportReportButton()}
-                <InsightsCommandButton {...this.startOverButtonProps} />
+                <InsightsCommandButton {...this.getStartOverButtonProps()} />
             </>
         );
     };
