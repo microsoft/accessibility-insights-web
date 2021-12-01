@@ -89,10 +89,11 @@ export class ReflowCommandBar extends React.Component<
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
                     htmlGenerator={description =>
-                        this.props.deps.reportGenerator.generateFastPassAutomatedChecksReport(
+                        this.props.deps.reportGenerator.generateFastPassHtmlReport(
                             cardsViewData,
                             description,
                             scanMetadata,
+                            featureFlagStoreData,
                         )
                     }
                     jsonGenerator={() => null}
