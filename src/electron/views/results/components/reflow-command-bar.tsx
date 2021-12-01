@@ -121,15 +121,21 @@ export class ReflowCommandBar extends React.Component<
         ...this.props.currentContentPageInfo.startOverButtonSettings(this.props),
     };
 
-    private hamburgerMenuButton = !this.props.narrowModeStatus.isHeaderAndNavCollapsed ? null : (
-        <FastPassLeftNavHamburgerButton
-            isSideNavOpen={this.props.isSideNavOpen}
-            setSideNavOpen={this.props.setSideNavOpen}
-            className={styles.navMenu}
-        />
-    );
+    private renderHamburgerMenuButton = () => {
+        if (this.props.narrowModeStatus.isHeaderAndNavCollapsed) {
+            return (
+                <FastPassLeftNavHamburgerButton
+                    isSideNavOpen={this.props.isSideNavOpen}
+                    setSideNavOpen={this.props.setSideNavOpen}
+                    className={styles.navMenu}
+                />
+            );
+        }
+        return null;
+    };
 
     private getFarButtons = () => {
+        console.log('get far buttons ran');
         if (this.props.narrowModeStatus.isCommandBarCollapsed) {
             return (
                 <CommandBarButtonsMenu
@@ -153,7 +159,7 @@ export class ReflowCommandBar extends React.Component<
     public render(): JSX.Element {
         return (
             <section className={styles.commandBar} aria-label="command bar">
-                {this.hamburgerMenuButton}
+                {this.renderHamburgerMenuButton()}
                 <div className={css(styles.farItems, styles.reflow)}>
                     {this.getFarButtons()}
                     <InsightsCommandButton
