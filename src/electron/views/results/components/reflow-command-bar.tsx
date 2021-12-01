@@ -7,12 +7,12 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { CommandBarButtonsMenu } from 'DetailsView/components/command-bar-buttons-menu';
-import {
-    ExportDialogWithLocalState,
-    ExportDialogWithLocalStateDeps,
-} from 'DetailsView/components/export-dialog-with-local-state';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
 import { ReportExportButton } from 'DetailsView/components/report-export-button';
+import {
+    ReportExportComponent,
+    ReportExportComponentDeps,
+} from 'DetailsView/components/report-export-component';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { TabStopsActionCreator } from 'electron/flux/action/tab-stops-action-creator';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
@@ -29,7 +29,7 @@ export type ReflowCommandBarDeps = {
     reportGenerator: ReportGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
     reportExportServiceProvider: ReportExportServiceProvider;
-} & ExportDialogWithLocalStateDeps;
+} & ReportExportComponentDeps;
 
 export interface ReflowCommandBarProps {
     deps: ReflowCommandBarDeps;
@@ -82,7 +82,7 @@ export class ReflowCommandBar extends React.Component<
         const { deps, scanMetadata, cardsViewData, featureFlagStoreData } = this.props;
         if (this.props.scanMetadata !== null) {
             return (
-                <ExportDialogWithLocalState
+                <ReportExportComponent
                     deps={deps}
                     isOpen={this.state.reportExportDialogIsOpen}
                     reportExportFormat={'AutomatedChecks'}

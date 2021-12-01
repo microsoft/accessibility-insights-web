@@ -3,9 +3,9 @@
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
-    ExportDialogWithLocalState,
-    ExportDialogWithLocalStateProps,
-} from 'DetailsView/components/export-dialog-with-local-state';
+    ReportExportComponent,
+    ReportExportComponentProps,
+} from 'DetailsView/components/report-export-component';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
@@ -35,7 +35,7 @@ export function getReportExportDialogForAssessment(
         afterDialogDismissed,
     } = props;
     const reportGenerator = deps.reportGenerator;
-    const dialogProps: ExportDialogWithLocalStateProps = {
+    const dialogProps: ReportExportComponentProps = {
         deps: deps,
         reportExportFormat: 'Assessment',
         pageTitle: scanMetadata.targetAppInfo.name,
@@ -65,7 +65,7 @@ export function getReportExportDialogForAssessment(
         afterDialogDismissed,
         reportExportServices: deps.reportExportServiceProvider.servicesForAssessment(),
     };
-    return <ExportDialogWithLocalState {...dialogProps} />;
+    return <ReportExportComponent {...dialogProps} />;
 }
 
 export function getReportExportDialogForFastPass(
@@ -89,7 +89,7 @@ export function getReportExportDialogForFastPass(
     const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
     const reportGenerator = deps.reportGenerator;
 
-    const dialogProps: ExportDialogWithLocalStateProps = {
+    const dialogProps: ReportExportComponentProps = {
         deps: deps,
         pageTitle: props.scanMetadata.targetAppInfo.name,
         scanDate: props.scanMetadata.timespan.scanComplete,
@@ -111,5 +111,5 @@ export function getReportExportDialogForFastPass(
         reportExportServices: deps.reportExportServiceProvider.servicesForFastPass(),
     };
 
-    return <ExportDialogWithLocalState {...dialogProps} />;
+    return <ReportExportComponent {...dialogProps} />;
 }

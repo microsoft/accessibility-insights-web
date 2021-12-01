@@ -7,12 +7,12 @@ import { ReportExportService } from 'report-export/types/report-export-service';
 import { ReportGenerator } from 'reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
-export type ExportDialogWithLocalStateDeps = {
+export type ReportExportComponentDeps = {
     reportGenerator: ReportGenerator;
 } & ExportDialogDeps;
 
-export interface ExportDialogWithLocalStateProps {
-    deps: ExportDialogWithLocalStateDeps;
+export interface ReportExportComponentProps {
+    deps: ReportExportComponentDeps;
     isOpen: boolean;
     reportExportFormat: ReportExportFormat;
     pageTitle: string;
@@ -27,7 +27,7 @@ export interface ExportDialogWithLocalStateProps {
     reportExportServices: ReportExportService[];
 }
 
-interface ExportDialogWithLocalStateState {
+interface ReportExportComponentState {
     htmlExportName: string;
     htmlExportData: string;
     jsonExportName: string;
@@ -35,9 +35,9 @@ interface ExportDialogWithLocalStateState {
     exportDescription: string;
 }
 
-export class ExportDialogWithLocalState extends React.Component<
-    ExportDialogWithLocalStateProps,
-    ExportDialogWithLocalStateState
+export class ReportExportComponent extends React.Component<
+    ReportExportComponentProps,
+    ReportExportComponentState
 > {
     constructor(props) {
         super(props);
@@ -105,7 +105,7 @@ export class ExportDialogWithLocalState extends React.Component<
         );
     }
 
-    private dialogWasOpened(prev: ExportDialogWithLocalStateProps): boolean {
+    private dialogWasOpened(prev: ReportExportComponentProps): boolean {
         return this.props.isOpen === true && this.props.isOpen !== prev.isOpen;
     }
 
@@ -117,7 +117,7 @@ export class ExportDialogWithLocalState extends React.Component<
         }));
     }
 
-    public componentDidUpdate(prev: ExportDialogWithLocalStateProps): void {
+    public componentDidUpdate(prev: ReportExportComponentProps): void {
         if (this.dialogWasOpened(prev)) {
             this.onDialogOpened();
         }

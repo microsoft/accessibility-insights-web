@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected properties are set 1`] = `
-<ExportDialogWithLocalState
+<ReportExportComponent
   afterDialogDismissed={[Function]}
   deps={
     Object {
@@ -80,7 +80,7 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
 `;
 
 exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected properties are set 1`] = `
-<ExportDialogWithLocalState
+<ReportExportComponent
   afterDialogDismissed={[Function]}
   deps={
     Object {

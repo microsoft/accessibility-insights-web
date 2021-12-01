@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    ExportDialogWithLocalState,
-    ExportDialogWithLocalStateDeps,
-    ExportDialogWithLocalStateProps,
-} from 'DetailsView/components/export-dialog-with-local-state';
+    ReportExportComponent,
+    ReportExportComponentDeps,
+    ReportExportComponentProps,
+} from 'DetailsView/components/report-export-component';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportExportService } from 'report-export/types/report-export-service';
@@ -12,9 +12,9 @@ import { ReportGenerator } from 'reports/report-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
 
-describe('ExportDialogWithLocalState', () => {
-    let deps: ExportDialogWithLocalStateDeps;
-    let props: ExportDialogWithLocalStateProps;
+describe('ReportExportComponent', () => {
+    let deps: ReportExportComponentDeps;
+    let props: ReportExportComponentProps;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
     let jsonGeneratorMock: IMock<(description: string) => string>;
@@ -37,7 +37,7 @@ describe('ExportDialogWithLocalState', () => {
         reportGeneratorMock = Mock.ofType(ReportGenerator);
         deps = {
             reportGenerator: reportGeneratorMock.object,
-        } as ExportDialogWithLocalStateDeps;
+        } as ReportExportComponentDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
         jsonGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
@@ -65,19 +65,19 @@ describe('ExportDialogWithLocalState', () => {
 
     test('render with dialog closed', () => {
         props.isOpen = false;
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('render with dialog open', () => {
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('dismiss dialog', () => {
         dismissDialogMock.setup(d => d()).verifiable(Times.once());
 
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
         const exportDialog = wrapper.find(ExportDialog);
         exportDialog.props().onClose();
 
@@ -87,7 +87,7 @@ describe('ExportDialogWithLocalState', () => {
     test('afterDialogDismissed', () => {
         afterDialogDismissedMock.setup(d => d()).verifiable(Times.once());
 
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
         const exportDialog = wrapper.find(ExportDialog);
         exportDialog.props().afterDismissed();
 
@@ -104,7 +104,7 @@ describe('ExportDialogWithLocalState', () => {
             .returns(() => exportName);
         getDescriptionMock.setup(g => g()).returns(() => exportDescription);
 
-        const wrapper = shallow(<ExportDialogWithLocalState {...prevProps} />);
+        const wrapper = shallow(<ReportExportComponent {...prevProps} />);
         wrapper.setProps(props);
         wrapper.update();
 
@@ -122,7 +122,7 @@ describe('ExportDialogWithLocalState', () => {
             .returns(() => null)
             .verifiable(Times.once());
 
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
 
         const dialog = wrapper.find(ExportDialog);
         dialog.props().onDescriptionChange(testContentWithSpecials);
@@ -133,7 +133,7 @@ describe('ExportDialogWithLocalState', () => {
     });
 
     test('clicking export on the dialog triggers generateExports, generates json and html with the current exportDescription', () => {
-        const wrapper = shallow(<ExportDialogWithLocalState {...props} />);
+        const wrapper = shallow(<ReportExportComponent {...props} />);
         wrapper.setState({ exportDescription: testContentWithSpecials });
 
         htmlGeneratorMock

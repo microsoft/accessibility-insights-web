@@ -25,7 +25,7 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
       }
       onClick={[Function]}
     />
-    <ExportDialogWithLocalState
+    <ReportExportComponent
       afterDialogDismissed={[Function]}
       deps={
         Object {
@@ -127,7 +127,7 @@ exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = 
       }
       onClick={[Function]}
     />
-    <ExportDialogWithLocalState
+    <ReportExportComponent
       afterDialogDismissed={[Function]}
       deps={
         Object {
@@ -215,7 +215,7 @@ exports[`ReflowCommandBar renders does not create report export when allowsExpor
       }
       onClick={[Function]}
     />
-    <ExportDialogWithLocalState
+    <ReportExportComponent
       afterDialogDismissed={[Function]}
       deps={
         Object {
@@ -343,7 +343,7 @@ exports[`ReflowCommandBar renders with start over button disabled 1`] = `
       }
       onClick={[Function]}
     />
-    <ExportDialogWithLocalState
+    <ReportExportComponent
       afterDialogDismissed={[Function]}
       deps={
         Object {
