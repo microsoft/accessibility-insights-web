@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
     CommandBarProps,
@@ -21,6 +22,7 @@ describe('ShouldShowReportExportButton', () => {
 
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
+    const scanData = {} as ScanData;
     const selectedTest = -1 as VisualizationType;
 
     beforeEach(() => {
@@ -50,7 +52,11 @@ describe('ShouldShowReportExportButton', () => {
         } as DetailsViewCommandBarProps;
     }
 
-    function setupVisualizationConfigurationMock(shouldShow: boolean): void {
+    function setupVisualizationConfigurationMock(shouldShow: boolean, enabled?: boolean): void {
+        visualizationConfigurationMock
+            .setup(m => m.getStoreData(visualizationStoreData.tests))
+            .returns(() => scanData);
+        visualizationConfigurationMock.setup(m => m.getTestStatus(scanData)).returns(() => enabled);
         visualizationConfigurationMock
             .setup(m => m.shouldShowExportReport(unifiedScanResultStoreData))
             .returns(() => shouldShow);
@@ -74,6 +80,27 @@ describe('ShouldShowReportExportButton', () => {
 
         test('returns true if shouldShow is true, ', () => {
             setupVisualizationConfigurationMock(true);
+            const props = getProps();
+            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
+            expect(shouldShowButton).toBe(true);
+        });
+
+        test('returns false if shouldShow is false, test is not enabled', () => {
+            setupVisualizationConfigurationMock(false, false);
+            const props = getProps();
+            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
+            expect(shouldShowButton).toBe(false);
+        });
+
+        test('returns false if shouldShow is false, test is enabled', () => {
+            setupVisualizationConfigurationMock(false, true);
+            const props = getProps();
+            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
+            expect(shouldShowButton).toBe(false);
+        });
+
+        test('returns true if shouldShow is true, test is enabled', () => {
+            setupVisualizationConfigurationMock(true, true);
             const props = getProps();
             const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
             expect(shouldShowButton).toBe(true);
