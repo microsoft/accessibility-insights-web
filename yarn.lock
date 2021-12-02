@@ -1975,10 +1975,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.164":
-  version "0.0.164"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.164.tgz#0a7669cf7225df0c472c69f73ef4b7b1d2d94013"
-  integrity sha512-/EvjbfcowiA+f8Fwv5PSzxHhnAgjIx50Bjy1zQQYYwxlbJ+rI07CXMhrxwz4jUZlxLjnn/kugNQBjZIN58pKyg==
+"@types/chrome@0.0.166":
+  version "0.0.166"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.166.tgz#cdbab1d841e2eefbe902d0e86f39b07d89f4da65"
+  integrity sha512-6ra7JF5jrBVdEIEpAj5dWD6myAhUi1rImLy02l+FTPy2BBUzAGphdoakWrJ8vhIka0qGrvrsmRNJsryB/N4PMg==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -2869,10 +2869,10 @@ app-builder-lib@22.14.5:
     semver "^7.3.5"
     temp-file "^3.4.0"
 
-app-builder-lib@^22.14.9:
-  version "22.14.9"
-  resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-22.14.9.tgz#d06c29ae9feff87b5ef353ee2589b4e05f7b7920"
-  integrity sha512-gSIadvqjANp6BcftNpSJVDYpbu9KGyFSzwHJktg2byL4NlwrSQJlU23rdUZfLCvMODRURAF4jWxqa348x8xNow==
+app-builder-lib@^22.14.10:
+  version "22.14.10"
+  resolved "https://registry.yarnpkg.com/app-builder-lib/-/app-builder-lib-22.14.10.tgz#00a4017902c792c84405b1b47732c3da258e61d4"
+  integrity sha512-5g/0CztD/+OL3V6PH+hV5MeFDg1V827PoyPEnAzz4fXXhCzoBwDanyqKH9b7JwfHkLO6JqH5Des28qET3LkENg==
   dependencies:
     "7zip-bin" "~5.1.1"
     "@develar/schema-utils" "~2.6.5"
@@ -11057,10 +11057,10 @@ simple-get@^3.0.3:
     once "^1.3.1"
     simple-concat "^1.0.0"
 
-simple-git@^2.47.0:
-  version "2.47.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.47.0.tgz#9693b471de7911901f703b4c403fc3e8774cd9be"
-  integrity sha512-+HfCpqPBEZTPWiW9fPdbiPJDslM22MLqrktfzNKyI2pWaJa6DhfNVx4Mds04KZzVv5vjC9/ksw3y5gVf8ECWDg==
+simple-git@^2.48.0:
+  version "2.48.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-2.48.0.tgz#87c262dba8f84d7b96bb3a713e9e34701c1f6e3b"
+  integrity sha512-z4qtrRuaAFJS4PUd0g+xy7aN4y+RvEt/QTJpR184lhJguBA1S/LsVlvE/CM95RsYMOFJG3NGGDjqFCzKU19S/A==
   dependencies:
     "@kwsites/file-exists" "^1.1.1"
     "@kwsites/promise-deferred" "^1.1.1"
