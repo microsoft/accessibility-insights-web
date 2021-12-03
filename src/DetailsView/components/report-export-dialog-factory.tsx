@@ -88,19 +88,25 @@ export function getReportExportDialogForFastPass(
 
     const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
     const reportGenerator = deps.reportGenerator;
+    const generateReportFromDescription = description =>
+        reportGenerator.generateFastPassHtmlReport(
+            {
+                results: {
+                    automatedChecks: props.cardsViewData,
+                    tabStops: null,
+                },
+                description,
+                scanMetadata: props.scanMetadata,
+            },
+            props.featureFlagStoreData,
+        );
 
     const dialogProps: ReportExportComponentProps = {
         deps: deps,
         pageTitle: props.scanMetadata.targetAppInfo.name,
         scanDate: props.scanMetadata.timespan.scanComplete,
         reportExportFormat: 'AutomatedChecks',
-        htmlGenerator: description =>
-            reportGenerator.generateFastPassHtmlReport(
-                props.cardsViewData,
-                description,
-                props.scanMetadata,
-                props.featureFlagStoreData,
-            ),
+        htmlGenerator: generateReportFromDescription,
         jsonGenerator: () => null,
         updatePersistedDescription: () => null,
         getExportDescription: () => '',

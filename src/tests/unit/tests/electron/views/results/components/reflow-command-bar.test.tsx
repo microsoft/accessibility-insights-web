@@ -21,6 +21,7 @@ import { isMatch } from 'lodash';
 import { IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
+import { FastPassReportModel } from 'reports/fast-pass-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { getAutomationIdSelector } from 'tests/common/get-automation-id-selector';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
@@ -168,6 +169,34 @@ describe('ReflowCommandBar', () => {
                 handler => handler.openSettingsPanelHandler(It.isAny()),
                 Times.once(),
             );
+        });
+    });
+
+    describe('report generation', () => {
+        it('pipes input appropriately to the htmlGenerator passed to ReportExportComponent', () => {
+            const descriptionStub = 'description';
+            const expectedReportModel: FastPassReportModel = {
+                description: descriptionStub,
+                results: {
+                    automatedChecks: cardsViewDataStub,
+                    tabStops: null,
+                },
+                scanMetadata: scanMetadataStub,
+            };
+
+            const reportGeneratorOutputStub = 'report generator output';
+            reportGeneratorMock
+                .setup(m =>
+                    m.generateFastPassHtmlReport(expectedReportModel, featureFlagStoreDataStub),
+                )
+                .returns(() => reportGeneratorOutputStub);
+
+            const rendered = mount(<ReflowCommandBar {...props} />);
+
+            const htmlGenerator = rendered.find(ReportExportComponent).prop('htmlGenerator');
+
+            expect(htmlGenerator(descriptionStub)).toBe(reportGeneratorOutputStub);
+            reportGeneratorMock.verifyAll();
         });
     });
 

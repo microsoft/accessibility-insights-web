@@ -105,6 +105,25 @@ describe('ReportExportDialogFactory', () => {
         } as ShouldShowReportExportButtonProps;
     });
 
+    function setFastPassReportGenerator(): void {
+        reportGeneratorMock
+            .setup(reportGenerator =>
+                reportGenerator.generateFastPassHtmlReport(
+                    {
+                        description: theDescription,
+                        scanMetadata,
+                        results: {
+                            automatedChecks: cardsViewData,
+                            tabStops: null,
+                        },
+                    },
+                    featureFlagStoreData,
+                ),
+            )
+            .returns(() => theGeneratorOutput)
+            .verifiable(Times.once());
+    }
+
     function setAssessmentReportGenerator(): void {
         reportGeneratorMock
             .setup(reportGenerator =>
@@ -225,6 +244,7 @@ describe('ReportExportDialogFactory', () => {
         });
 
         test('htmlGenerator calls reportGenerator', () => {
+            setFastPassReportGenerator();
             setupShouldShowReportExportButton(true);
             const dialog = getReportExportDialogForFastPass(props);
 

@@ -3,10 +3,13 @@
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
-import { ScanMetadata, TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
+import {
+    FastPassReportHtmlGenerator,
+    FastPassReportModel,
+} from 'reports/fast-pass-report-html-generator';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
@@ -15,7 +18,7 @@ export class ReportGenerator {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
         private automatedChecksReportHtmlGenerator: ReportHtmlGenerator,
-        private fastPassReportHtmlGenerator: ReportHtmlGenerator,
+        private fastPassReportHtmlGenerator: FastPassReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
         private assessmentJsonExportGenerator: AssessmentJsonExportGenerator,
     ) {}
@@ -30,22 +33,16 @@ export class ReportGenerator {
     }
 
     public generateFastPassHtmlReport(
-        cardsViewData: CardsViewModel,
-        description: string,
-        scanMetadata: ScanMetadata,
+        model: FastPassReportModel,
         featureFlagStoreData: FeatureFlagStoreData,
     ): string {
         if (featureFlagStoreData[FeatureFlags.newTabStopsDetailsView]) {
-            return this.fastPassReportHtmlGenerator.generateHtml(
-                description,
-                cardsViewData,
-                scanMetadata,
-            );
+            return this.fastPassReportHtmlGenerator.generateHtml(model);
         } else {
             return this.automatedChecksReportHtmlGenerator.generateHtml(
-                description,
-                cardsViewData,
-                scanMetadata,
+                model.description,
+                model.results.automatedChecks,
+                model.scanMetadata,
             );
         }
     }

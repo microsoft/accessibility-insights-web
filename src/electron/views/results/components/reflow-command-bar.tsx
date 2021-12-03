@@ -78,8 +78,24 @@ export class ReflowCommandBar extends React.Component<
         return null;
     };
 
-    private renderExportDialog = (): JSX.Element => {
+    private generateReportFromDescription = (description: string): string => {
         const { deps, scanMetadata, cardsViewData, featureFlagStoreData } = this.props;
+        return deps.reportGenerator.generateFastPassHtmlReport(
+            {
+                results: {
+                    automatedChecks: cardsViewData,
+                    tabStops: {},
+                },
+                description,
+                scanMetadata,
+            },
+            featureFlagStoreData,
+        );
+    };
+
+    private renderExportDialog = (): JSX.Element => {
+        const { deps, scanMetadata, featureFlagStoreData } = this.props;
+
         if (this.props.scanMetadata !== null) {
             return (
                 <ReportExportComponent
@@ -88,14 +104,7 @@ export class ReflowCommandBar extends React.Component<
                     reportExportFormat={'AutomatedChecks'}
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
-                    htmlGenerator={description =>
-                        this.props.deps.reportGenerator.generateFastPassHtmlReport(
-                            cardsViewData,
-                            description,
-                            scanMetadata,
-                            featureFlagStoreData,
-                        )
-                    }
+                    htmlGenerator={this.generateReportFromDescription}
                     jsonGenerator={() => null}
                     updatePersistedDescription={() => null}
                     getExportDescription={() => ''}
@@ -137,7 +146,6 @@ export class ReflowCommandBar extends React.Component<
     };
 
     private getFarButtons = () => {
-        console.log('get far buttons ran');
         if (this.props.narrowModeStatus.isCommandBarCollapsed) {
             return (
                 <CommandBarButtonsMenu
