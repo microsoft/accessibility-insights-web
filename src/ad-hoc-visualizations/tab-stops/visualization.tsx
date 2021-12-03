@@ -3,6 +3,7 @@
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { FeatureFlags } from 'common/feature-flags';
 import { Messages } from 'common/messages';
 import { VisualizationType } from 'common/types/visualization-type';
 import { generateUID } from 'common/uid-generator';
@@ -34,7 +35,8 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     enableTest: (data, _) => (data.adhoc[tabStopsTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: () => true,
+    shouldShowExportReport: (data, featureflagStoreData) =>
+        featureflagStoreData[FeatureFlags.newTabStopsDetailsView],
     displayableData: {
         title: 'Tab stops',
         enableMessage: 'Start pressing Tab to start visualizing tab stops.',

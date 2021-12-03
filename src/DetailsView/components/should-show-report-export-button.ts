@@ -2,16 +2,17 @@
 // Licensed under the MIT License.
 
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { FeatureFlags } from 'common/feature-flags';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
 export interface ShouldShowReportExportButtonProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
     visualizationStoreData: VisualizationStoreData;
+    featureFlagStoreData: FeatureFlagStoreData; 
 }
 
 export type ShouldShowReportExportButton = (props: ShouldShowReportExportButtonProps) => boolean;
@@ -26,13 +27,9 @@ export function shouldShowReportExportButtonForFastpass(
     props: ShouldShowReportExportButtonProps,
 ): boolean {
     const config = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-    const shouldShow = config.shouldShowExportReport(props.unifiedScanResultStoreData);
+    const shouldShow = config.shouldShowExportReport(props.unifiedScanResultStoreData, props.featureFlagStoreData);
 
-    if (FeatureFlags.newTabStopsDetailsView) {
-        return shouldShow;
-    } else {
         const scanData = config.getStoreData(props.visualizationStoreData.tests);
         const isEnabled = config.getTestStatus(scanData);
-        return shouldShow && isEnabled;
-    }
+        return shouldShow || isEnabled;
 }

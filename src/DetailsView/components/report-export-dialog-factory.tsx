@@ -76,6 +76,7 @@ export function getReportExportDialogForFastPass(
         selectedTest: props.selectedTest,
         unifiedScanResultStoreData: props.unifiedScanResultStoreData,
         visualizationStoreData: props.visualizationStoreData,
+        featureFlagStoreData: props.featureFlagStoreData,
     };
 
     if (

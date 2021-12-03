@@ -3,6 +3,7 @@
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import {
@@ -21,6 +22,7 @@ describe('ShouldShowReportExportButton', () => {
 
     const visualizationStoreData = { tests: {} } as VisualizationStoreData;
     const unifiedScanResultStoreData = {} as UnifiedScanResultStoreData;
+    const featureFlagStoreData = {} as FeatureFlagStoreData;
     const scanData = {} as ScanData;
     const selectedTest = -1 as VisualizationType;
 
@@ -37,9 +39,9 @@ describe('ShouldShowReportExportButton', () => {
             visualizationStoreData: visualizationStoreData,
             unifiedScanResultStoreData: unifiedScanResultStoreData,
             visualizationConfigurationFactory: visualizationConfigurationFactoryMock.object,
+            featureFlagStoreData: featureFlagStoreData,
             selectedTest: selectedTest,
             deps: null,
-            featureFlagStoreData: null,
             tabStoreData: null,
             assessmentStoreData: null,
             assessmentsProvider: null,
@@ -57,7 +59,7 @@ describe('ShouldShowReportExportButton', () => {
             .returns(() => scanData);
         visualizationConfigurationMock.setup(m => m.getTestStatus(scanData)).returns(() => enabled);
         visualizationConfigurationMock
-            .setup(m => m.shouldShowExportReport(unifiedScanResultStoreData))
+            .setup(m => m.shouldShowExportReport(unifiedScanResultStoreData, featureFlagStoreData))
             .returns(() => shouldShow);
     }
 
@@ -70,36 +72,8 @@ describe('ShouldShowReportExportButton', () => {
     });
 
     describe('shouldShowReportExportButtonForFastpass', () => {
-        test('returns false if shouldShow is false', () => {
-            setupVisualizationConfigurationMock(false);
-            const props = getProps();
-            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
-            expect(shouldShowButton).toBe(false);
-        });
-
         test('returns true if shouldShow is true, ', () => {
             setupVisualizationConfigurationMock(true);
-            const props = getProps();
-            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
-            expect(shouldShowButton).toBe(true);
-        });
-
-        test('returns false if shouldShow is false, test is not enabled', () => {
-            setupVisualizationConfigurationMock(false, false);
-            const props = getProps();
-            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
-            expect(shouldShowButton).toBe(false);
-        });
-
-        test('returns false if shouldShow is false, test is enabled', () => {
-            setupVisualizationConfigurationMock(false, true);
-            const props = getProps();
-            const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
-            expect(shouldShowButton).toBe(false);
-        });
-
-        test('returns true if shouldShow is true, test is enabled', () => {
-            setupVisualizationConfigurationMock(true, true);
             const props = getProps();
             const shouldShowButton = shouldShowReportExportButtonForFastpass(props);
             expect(shouldShowButton).toBe(true);

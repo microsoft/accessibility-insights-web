@@ -5,6 +5,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TestMode } from 'common/configs/test-mode';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { FeatureFlags } from 'common/feature-flags';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -38,7 +39,8 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: () => true,
+    shouldShowExportReport: (data, featureflagStoreData) =>
+        featureflagStoreData[FeatureFlags.newTabStopsDetailsView],
     displayableData: {
         title: 'Automated checks',
         subtitle: (
