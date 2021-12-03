@@ -102,6 +102,7 @@ describe('ReportExportDialogFactory', () => {
             selectedTest: props.selectedTest,
             unifiedScanResultStoreData: props.unifiedScanResultStoreData,
             visualizationStoreData: props.visualizationStoreData,
+            featureFlagStoreData: props.featureFlagStoreData,
         } as ShouldShowReportExportButtonProps;
     });
 
@@ -148,7 +149,7 @@ describe('ReportExportDialogFactory', () => {
     }
 
     describe('getReportExportDialogForAssessment', () => {
-        xtest('expected properties are set', () => {
+        test('expected properties are set', () => {
             setReportExportServiceProviderForAssessment();
             const dialog = getReportExportDialogForAssessment(props);
 
@@ -207,7 +208,7 @@ describe('ReportExportDialogFactory', () => {
     });
 
     describe('getReportExportDialogForFastPass', () => {
-        xtest('renders as null when shouldShowReportExportButton returns falls', () => {
+        test('renders as null when shouldShowReportExportButton returns falls', () => {
             setupShouldShowReportExportButton(false);
             const dialog = getReportExportDialogForFastPass(props);
 

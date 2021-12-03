@@ -28,5 +28,8 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     analyzerProgressMessageType?: string;
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;
-    shouldShowExportReport: (unifiedScanResultStoreData: UnifiedScanResultStoreData, featureFlagStoreData: FeatureFlagStoreData) => boolean;
+    shouldShowExportReport: (
+        unifiedScanResultStoreData: UnifiedScanResultStoreData,
+        featureFlagStoreData: FeatureFlagStoreData,
+    ) => boolean;
 }
