@@ -8,14 +8,14 @@ import {
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportExportService } from 'report-export/types/report-export-service';
-import { ReportGenerator } from 'reports/report-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ExportDialog } from '../../../../../DetailsView/components/export-dialog';
 
 describe('ReportExportComponent', () => {
     let deps: ReportExportComponentDeps;
     let props: ReportExportComponentProps;
-    let reportGeneratorMock: IMock<ReportGenerator>;
+    let reportNameGeneratorMock: IMock<ReportNameGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
     let jsonGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
@@ -34,9 +34,9 @@ describe('ReportExportComponent', () => {
     ];
 
     beforeEach(() => {
-        reportGeneratorMock = Mock.ofType(ReportGenerator);
+        reportNameGeneratorMock = Mock.ofType<ReportNameGenerator>(null);
         deps = {
-            reportGenerator: reportGeneratorMock.object,
+            reportNameGenerator: reportNameGeneratorMock.object,
         } as ReportExportComponentDeps;
         htmlGeneratorMock = Mock.ofInstance(description => null);
         jsonGeneratorMock = Mock.ofInstance(description => null);
@@ -99,7 +99,7 @@ describe('ReportExportComponent', () => {
             ...props,
             isOpen: false,
         };
-        reportGeneratorMock
+        reportNameGeneratorMock
             .setup(r => r.generateName(reportExportFormat, scanDate, pageTitle, fileExtension))
             .returns(() => exportName);
         getDescriptionMock.setup(g => g()).returns(() => exportDescription);

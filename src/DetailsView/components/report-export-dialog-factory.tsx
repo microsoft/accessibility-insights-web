@@ -4,6 +4,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ReportExportComponent,
+    ReportExportComponentDeps,
     ReportExportComponentProps,
 } from 'DetailsView/components/report-export-component';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
@@ -12,7 +13,7 @@ import { ReportExportServiceProvider } from 'report-export/report-export-service
 
 export type ReportExportDialogFactoryDeps = {
     reportExportServiceProvider: ReportExportServiceProvider;
-};
+} & ReportExportComponentDeps;
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;

@@ -12,25 +12,14 @@ import {
 } from 'reports/fast-pass-report-html-generator';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
-import { ReportNameGenerator } from './report-name-generator';
 
 export class ReportGenerator {
     constructor(
-        private reportNameGenerator: ReportNameGenerator,
         private automatedChecksReportHtmlGenerator: ReportHtmlGenerator,
         private fastPassReportHtmlGenerator: FastPassReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
         private assessmentJsonExportGenerator: AssessmentJsonExportGenerator,
     ) {}
-
-    public generateName(
-        baseName: string,
-        scanDate: Date,
-        pageTitle: string,
-        fileExtension: string,
-    ): string {
-        return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle, fileExtension);
-    }
 
     public generateFastPassHtmlReport(
         model: FastPassReportModel,

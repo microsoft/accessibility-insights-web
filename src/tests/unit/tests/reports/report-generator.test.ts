@@ -149,23 +149,4 @@ describe('ReportGenerator', () => {
         const expected = 'generated-assessment-html';
         expect(actual).toEqual(expected);
     });
-
-    test('generateName', () => {
-        nameBuilderMock
-            .setup(builder =>
-                builder.generateName(
-                    'InsightsScan',
-                    It.isValue(date),
-                    It.isValue(title),
-                    It.isValue(fileExtension),
-                ),
-            )
-            .returns(() => 'returned-name')
-            .verifiable(Times.once());
-
-        const actual = testSubject.generateName('InsightsScan', date, title, fileExtension);
-
-        const expected = 'returned-name';
-        expect(actual).toEqual(expected);
-    });
 });

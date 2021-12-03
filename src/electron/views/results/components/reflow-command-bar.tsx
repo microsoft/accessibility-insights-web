@@ -20,13 +20,13 @@ import { ContentPageInfo } from 'electron/types/content-page-info';
 import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import * as styles from './reflow-command-bar.scss';
 
 export type ReflowCommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    reportGenerator: ReportGenerator;
+    reportHtmlGenerator: ReportHtmlGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
     reportExportServiceProvider: ReportExportServiceProvider;
 } & ReportExportComponentDeps;
@@ -78,24 +78,8 @@ export class ReflowCommandBar extends React.Component<
         return null;
     };
 
-    private generateReportFromDescription = (description: string): string => {
-        const { deps, scanMetadata, cardsViewData, featureFlagStoreData } = this.props;
-        return deps.reportGenerator.generateFastPassHtmlReport(
-            {
-                results: {
-                    automatedChecks: cardsViewData,
-                    tabStops: {},
-                },
-                description,
-                scanMetadata,
-            },
-            featureFlagStoreData,
-        );
-    };
-
     private renderExportDialog = (): JSX.Element => {
-        const { deps, scanMetadata, featureFlagStoreData } = this.props;
-
+        const { deps, scanMetadata, cardsViewData, featureFlagStoreData } = this.props;
         if (this.props.scanMetadata !== null) {
             return (
                 <ReportExportComponent
@@ -104,7 +88,13 @@ export class ReflowCommandBar extends React.Component<
                     reportExportFormat={'AutomatedChecks'}
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
-                    htmlGenerator={this.generateReportFromDescription}
+                    htmlGenerator={description =>
+                        this.props.deps.reportHtmlGenerator.generateHtml(
+                            description,
+                            cardsViewData,
+                            scanMetadata,
+                        )
+                    }
                     jsonGenerator={() => null}
                     updatePersistedDescription={() => null}
                     getExportDescription={() => ''}
