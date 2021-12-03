@@ -427,7 +427,6 @@ if (tabId != null) {
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                reportNameGenerator,
                 automatedChecksReportHtmlGenerator,
                 fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,

@@ -15,15 +15,13 @@ import {
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportGenerator', () => {
-    const date = new Date(2018, 2, 12, 15, 46);
     const title = 'title';
     const url = 'http://url/';
-    const fileExtension = '.html';
     const description = 'description';
     const cardsViewDataStub = {
         cards: exampleUnifiedStatusResults,
@@ -80,7 +78,6 @@ describe('ReportGenerator', () => {
         );
 
         testSubject = new ReportGenerator(
-            nameBuilderMock.object,
             automatedChecksReportHtmlGeneratorMock.object,
             fastPassReportHtmlGeneratorMock.object,
             assessmentReportHtmlGeneratorMock.object,
