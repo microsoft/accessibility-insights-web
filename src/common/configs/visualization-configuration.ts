@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ContentPageComponent } from 'views/content/content-page';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -27,5 +28,8 @@ export interface VisualizationConfiguration extends AssessmentVisualizationConfi
     analyzerProgressMessageType?: string;
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;
-    shouldShowExportReport: (unifiedScanResultStoreData: UnifiedScanResultStoreData) => boolean;
+    shouldShowExportReport: (
+        unifiedScanResultStoreData: UnifiedScanResultStoreData,
+        featureFlagStoreData: FeatureFlagStoreData,
+    ) => boolean;
 }

@@ -102,6 +102,7 @@ describe('ReportExportDialogFactory', () => {
             selectedTest: props.selectedTest,
             unifiedScanResultStoreData: props.unifiedScanResultStoreData,
             visualizationStoreData: props.visualizationStoreData,
+            featureFlagStoreData: props.featureFlagStoreData,
         } as ShouldShowReportExportButtonProps;
     });
 
