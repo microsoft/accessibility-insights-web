@@ -81,12 +81,6 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
 </section>
 `;
 
-exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export report 1`] = `
-<ReportExportButton
-  showReportExportDialog={[Function]}
-/>
-`;
-
 exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = `
 <section
   aria-label="command bar"

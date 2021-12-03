@@ -183,7 +183,6 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
             "assessmentReportHtmlGenerator": undefined,
             "automatedChecksReportHtmlGenerator": undefined,
             "fastPassReportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
           },
         }
       }

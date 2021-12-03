@@ -46,7 +46,6 @@ exports[`ReportExportDialogFactory getReportExportDialogForAssessment expected p
         "assessmentReportHtmlGenerator": undefined,
         "automatedChecksReportHtmlGenerator": undefined,
         "fastPassReportHtmlGenerator": undefined,
-        "reportNameGenerator": undefined,
       },
     }
   }
@@ -125,7 +124,6 @@ exports[`ReportExportDialogFactory getReportExportDialogForFastPass expected pro
         "assessmentReportHtmlGenerator": undefined,
         "automatedChecksReportHtmlGenerator": undefined,
         "fastPassReportHtmlGenerator": undefined,
-        "reportNameGenerator": undefined,
       },
     }
   }
