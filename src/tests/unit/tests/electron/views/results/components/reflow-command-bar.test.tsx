@@ -112,7 +112,7 @@ describe('ReflowCommandBar', () => {
 
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
             reportExportServiceProviderMock.verifyAll();
         });
 
@@ -120,14 +120,14 @@ describe('ReflowCommandBar', () => {
             props.scanMetadata = null;
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
         });
 
         it('does not create report export when allowsExportReport is false', () => {
             props.currentContentPageInfo.allowsExportReport = false;
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
         });
     });
 
@@ -182,7 +182,7 @@ describe('ReflowCommandBar', () => {
             const rendered = shallow(<ReflowCommandBar {...props} />);
             const commandBar = rendered.find(CommandBarButtonsMenu);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
             expect(commandBar.prop('renderExportReportButton')()).toMatchSnapshot('export report');
         });
 
@@ -191,7 +191,7 @@ describe('ReflowCommandBar', () => {
 
             const rendered = shallow(<ReflowCommandBar {...props} />);
 
-            expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.debug()).toMatchSnapshot();
         });
 
         test('dropdown menu is dismissed and button focused when dialog is dismissed', () => {
