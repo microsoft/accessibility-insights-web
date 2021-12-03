@@ -14,7 +14,6 @@ import {
 } from 'reports/fast-pass-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ReportNameGenerator } from 'reports/report-name-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
@@ -52,14 +51,12 @@ describe('ReportGenerator', () => {
 
     let fastPassReportHtmlGeneratorMock: IMock<FastPassReportHtmlGenerator>;
     let automatedChecksReportHtmlGeneratorMock: IMock<ReportHtmlGenerator>;
-    let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
     let assessmentJsonExportGeneratorMock: IMock<AssessmentJsonExportGenerator>;
 
     let testSubject: ReportGenerator;
 
     beforeEach(() => {
-        nameBuilderMock = Mock.ofType<ReportNameGenerator>(undefined, MockBehavior.Strict);
         automatedChecksReportHtmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>(
             undefined,
             MockBehavior.Strict,
