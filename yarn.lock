@@ -1975,10 +1975,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/chrome@0.0.166":
-  version "0.0.166"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.166.tgz#cdbab1d841e2eefbe902d0e86f39b07d89f4da65"
-  integrity sha512-6ra7JF5jrBVdEIEpAj5dWD6myAhUi1rImLy02l+FTPy2BBUzAGphdoakWrJ8vhIka0qGrvrsmRNJsryB/N4PMg==
+"@types/chrome@0.0.168":
+  version "0.0.168"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.168.tgz#e92df6601acc07427845a58b5bc62be4330d9b5f"
+  integrity sha512-kMA+5H9PSO7kEixgFgehp8xxzBV5qR9hyLCCt8j4/BIf5SJXXtVB6ik2uycU8PHgfFtMDgIC5/qQZplifYon2g==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"
@@ -4246,10 +4246,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.19.2:
-  version "3.19.2"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.19.2.tgz#76bd55119bed5fe178fd819db54952e267ec55ba"
-  integrity sha512-LoFua00O2j1ffgGDViAUQMKuwDXBB/XFOmEGY/9QcyQfIrjlom8XZzj0YymB2aUmPZtHmk1fAjPrz9OEXifW4g==
+core-js-bundle@^3.19.3:
+  version "3.19.3"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.19.3.tgz#b2b40834ee69ddd391f6ca4b825824128ad822a5"
+  integrity sha512-mzXBG3MkmPpBEVAPCIPx9QAle9mEkuZyuMv7Zivp0bgTG/b9BOZ7rTibYomh9zR0dKc6bM8yyco0zaLuZAv9bQ==
 
 core-js@^2.4.0, core-js@^2.5.3:
   version "2.6.10"
