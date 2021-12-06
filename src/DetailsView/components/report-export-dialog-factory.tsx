@@ -4,6 +4,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ReportExportComponent,
+    ReportExportComponentDeps,
     ReportExportComponentProps,
 } from 'DetailsView/components/report-export-component';
 import { ShouldShowReportExportButtonProps } from 'DetailsView/components/should-show-report-export-button';
@@ -12,7 +13,7 @@ import { ReportExportServiceProvider } from 'report-export/report-export-service
 
 export type ReportExportDialogFactoryDeps = {
     reportExportServiceProvider: ReportExportServiceProvider;
-};
+} & ReportExportComponentDeps;
 
 export type ReportExportDialogFactoryProps = CommandBarProps & {
     isOpen: boolean;
@@ -89,19 +90,25 @@ export function getReportExportDialogForFastPass(
 
     const { deps, isOpen, dismissExportDialog, afterDialogDismissed } = props;
     const reportGenerator = deps.reportGenerator;
+    const generateReportFromDescription = description =>
+        reportGenerator.generateFastPassHtmlReport(
+            {
+                results: {
+                    automatedChecks: props.cardsViewData,
+                    tabStops: null,
+                },
+                description,
+                scanMetadata: props.scanMetadata,
+            },
+            props.featureFlagStoreData,
+        );
 
     const dialogProps: ReportExportComponentProps = {
         deps: deps,
         pageTitle: props.scanMetadata.targetAppInfo.name,
         scanDate: props.scanMetadata.timespan.scanComplete,
         reportExportFormat: 'AutomatedChecks',
-        htmlGenerator: description =>
-            reportGenerator.generateFastPassHtmlReport(
-                props.cardsViewData,
-                description,
-                props.scanMetadata,
-                props.featureFlagStoreData,
-            ),
+        htmlGenerator: generateReportFromDescription,
         jsonGenerator: () => null,
         updatePersistedDescription: () => null,
         getExportDescription: () => '',

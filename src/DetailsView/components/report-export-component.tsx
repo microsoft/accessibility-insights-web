@@ -4,11 +4,11 @@ import { ReportExportFormat } from 'common/extension-telemetry-events';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
 import { ReportExportService } from 'report-export/types/report-export-service';
-import { ReportGenerator } from 'reports/report-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ReportExportComponentDeps = {
-    reportGenerator: ReportGenerator;
+    reportNameGenerator: ReportNameGenerator;
 } & ExportDialogDeps;
 
 export interface ReportExportComponentProps {
@@ -97,7 +97,7 @@ export class ReportExportComponent extends React.Component<
 
     private generateReportName(fileExtension: string): string {
         const { deps, scanDate, reportExportFormat, pageTitle } = this.props;
-        return deps.reportGenerator.generateName(
+        return deps.reportNameGenerator.generateName(
             reportExportFormat,
             scanDate,
             pageTitle,

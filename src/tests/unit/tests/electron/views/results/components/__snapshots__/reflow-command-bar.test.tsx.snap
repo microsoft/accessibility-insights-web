@@ -1,84 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true 1`] = `
-<section
-  aria-label="command bar"
-  className="commandBar"
->
-  <div
-    className="farItems reflow"
-  >
-    <CommandBarButtonsMenu
-      buttonRef={[Function]}
-      getStartOverMenuItem={[Function]}
-      renderExportReportButton={[Function]}
-    />
-    <InsightsCommandButton
-      ariaLabel="settings"
-      className="settingsGearButton"
-      data-automation-id="command-button-settings"
-      iconProps={
-        Object {
-          "className": "settingsGearButtonIcon",
-          "iconName": "Gear",
-        }
-      }
-      onClick={[Function]}
-    />
-    <ReportExportComponent
-      afterDialogDismissed={[Function]}
-      deps={
-        Object {
-          "fileURLProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "provideBlob": undefined,
-            "provideURL": [Function],
-            "windowUtils": undefined,
-          },
-          "reportExportServiceProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "services": undefined,
-          },
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentJsonExportGenerator": undefined,
-            "assessmentReportHtmlGenerator": undefined,
-            "automatedChecksReportHtmlGenerator": undefined,
-            "fastPassReportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-          "scanActionCreator": null,
-        }
-      }
-      dismissExportDialog={[Function]}
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-      getExportDescription={[Function]}
-      htmlGenerator={[Function]}
-      isOpen={false}
-      jsonGenerator={[Function]}
-      pageTitle="scan target name"
-      reportExportFormat="AutomatedChecks"
-      reportExportServices={
-        Array [
-          Object {
-            "generateMenuItem": null,
-            "key": "html",
-          },
-          Object {
-            "generateMenuItem": null,
-            "key": "codepen",
-          },
-        ]
-      }
-      scanDate={1970-01-01T00:00:00.000Z}
-      updatePersistedDescription={[Function]}
-    />
+"<section className=\\"commandBar\\" aria-label=\\"command bar\\">
+  <div className=\\"farItems reflow\\">
+    <CommandBarButtonsMenu renderExportReportButton={[Function (anonymous)]} getStartOverMenuItem={[Function (anonymous)]} buttonRef={[Function: buttonRef]} />
+    <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
   </div>
-</section>
+</section>"
 `;
 
 exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export report 1`] = `
@@ -88,315 +17,43 @@ exports[`ReflowCommandBar reflow behavior isCommandBarCollapsed is true: export 
 `;
 
 exports[`ReflowCommandBar reflow behavior isHeaderAndNavCollapsed is true 1`] = `
-<section
-  aria-label="command bar"
-  className="commandBar"
->
-  <FastPassLeftNavHamburgerButton
-    className="navMenu"
-    isSideNavOpen={true}
-    setSideNavOpen={[Function]}
-  />
-  <div
-    className="farItems reflow"
-  >
-    <React.Fragment>
-      <ReportExportButton
-        showReportExportDialog={[Function]}
-      />
-      <InsightsCommandButton
-        data-automation-id="command-button-refresh"
-        disabled={false}
-        iconProps={
-          Object {
-            "iconName": "Refresh",
-          }
-        }
-        onClick={[Function]}
-        text="Start over"
-      />
-    </React.Fragment>
-    <InsightsCommandButton
-      ariaLabel="settings"
-      className="settingsGearButton"
-      data-automation-id="command-button-settings"
-      iconProps={
-        Object {
-          "className": "settingsGearButtonIcon",
-          "iconName": "Gear",
-        }
-      }
-      onClick={[Function]}
-    />
-    <ReportExportComponent
-      afterDialogDismissed={[Function]}
-      deps={
-        Object {
-          "fileURLProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "provideBlob": undefined,
-            "provideURL": [Function],
-            "windowUtils": undefined,
-          },
-          "reportExportServiceProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "services": undefined,
-          },
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentJsonExportGenerator": undefined,
-            "assessmentReportHtmlGenerator": undefined,
-            "automatedChecksReportHtmlGenerator": undefined,
-            "fastPassReportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-          "scanActionCreator": null,
-        }
-      }
-      dismissExportDialog={[Function]}
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-      getExportDescription={[Function]}
-      htmlGenerator={[Function]}
-      isOpen={false}
-      jsonGenerator={[Function]}
-      pageTitle="scan target name"
-      reportExportFormat="AutomatedChecks"
-      reportExportServices={
-        Array [
-          Object {
-            "generateMenuItem": null,
-            "key": "html",
-          },
-          Object {
-            "generateMenuItem": null,
-            "key": "codepen",
-          },
-        ]
-      }
-      scanDate={1970-01-01T00:00:00.000Z}
-      updatePersistedDescription={[Function]}
-    />
+"<section className=\\"commandBar\\" aria-label=\\"command bar\\">
+  <FastPassLeftNavHamburgerButton isSideNavOpen={true} setSideNavOpen={[Function: setSideNavOpen]} className=\\"navMenu\\" />
+  <div className=\\"farItems reflow\\">
+    <ReportExportButton showReportExportDialog={[Function (anonymous)]} />
+    <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={false} />
+    <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
   </div>
-</section>
+</section>"
 `;
 
 exports[`ReflowCommandBar renders does not create report export when allowsExportReport is false 1`] = `
-<section
-  aria-label="command bar"
-  className="commandBar"
->
-  <div
-    className="farItems reflow"
-  >
-    <React.Fragment>
-      <InsightsCommandButton
-        data-automation-id="command-button-refresh"
-        disabled={false}
-        iconProps={
-          Object {
-            "iconName": "Refresh",
-          }
-        }
-        onClick={[Function]}
-        text="Start over"
-      />
-    </React.Fragment>
-    <InsightsCommandButton
-      ariaLabel="settings"
-      className="settingsGearButton"
-      data-automation-id="command-button-settings"
-      iconProps={
-        Object {
-          "className": "settingsGearButtonIcon",
-          "iconName": "Gear",
-        }
-      }
-      onClick={[Function]}
-    />
-    <ReportExportComponent
-      afterDialogDismissed={[Function]}
-      deps={
-        Object {
-          "fileURLProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "provideBlob": undefined,
-            "provideURL": [Function],
-            "windowUtils": undefined,
-          },
-          "reportExportServiceProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "services": undefined,
-          },
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentJsonExportGenerator": undefined,
-            "assessmentReportHtmlGenerator": undefined,
-            "automatedChecksReportHtmlGenerator": undefined,
-            "fastPassReportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-          "scanActionCreator": null,
-        }
-      }
-      dismissExportDialog={[Function]}
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-      getExportDescription={[Function]}
-      htmlGenerator={[Function]}
-      isOpen={false}
-      jsonGenerator={[Function]}
-      pageTitle="scan target name"
-      reportExportFormat="AutomatedChecks"
-      reportExportServices={
-        Array [
-          Object {
-            "generateMenuItem": null,
-            "key": "html",
-          },
-          Object {
-            "generateMenuItem": null,
-            "key": "codepen",
-          },
-        ]
-      }
-      scanDate={1970-01-01T00:00:00.000Z}
-      updatePersistedDescription={[Function]}
-    />
+"<section className=\\"commandBar\\" aria-label=\\"command bar\\">
+  <div className=\\"farItems reflow\\">
+    <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={false} />
+    <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
   </div>
-</section>
+</section>"
 `;
 
 exports[`ReflowCommandBar renders does not create report export when scan metadata is null 1`] = `
-<section
-  aria-label="command bar"
-  className="commandBar"
->
-  <div
-    className="farItems reflow"
-  >
-    <React.Fragment>
-      <InsightsCommandButton
-        data-automation-id="command-button-refresh"
-        disabled={false}
-        iconProps={
-          Object {
-            "iconName": "Refresh",
-          }
-        }
-        onClick={[Function]}
-        text="Start over"
-      />
-    </React.Fragment>
-    <InsightsCommandButton
-      ariaLabel="settings"
-      className="settingsGearButton"
-      data-automation-id="command-button-settings"
-      iconProps={
-        Object {
-          "className": "settingsGearButtonIcon",
-          "iconName": "Gear",
-        }
-      }
-      onClick={[Function]}
-    />
+"<section className=\\"commandBar\\" aria-label=\\"command bar\\">
+  <div className=\\"farItems reflow\\">
+    <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={false} />
+    <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
   </div>
-</section>
+</section>"
 `;
 
 exports[`ReflowCommandBar renders with start over button disabled 1`] = `
-<section
-  aria-label="command bar"
-  className="commandBar"
->
-  <div
-    className="farItems reflow"
-  >
-    <React.Fragment>
-      <ReportExportButton
-        showReportExportDialog={[Function]}
-      />
-      <InsightsCommandButton
-        data-automation-id="command-button-refresh"
-        disabled={true}
-        iconProps={
-          Object {
-            "iconName": "Refresh",
-          }
-        }
-        onClick={[Function]}
-        text="Start over"
-      />
-    </React.Fragment>
-    <InsightsCommandButton
-      ariaLabel="settings"
-      className="settingsGearButton"
-      data-automation-id="command-button-settings"
-      iconProps={
-        Object {
-          "className": "settingsGearButtonIcon",
-          "iconName": "Gear",
-        }
-      }
-      onClick={[Function]}
-    />
-    <ReportExportComponent
-      afterDialogDismissed={[Function]}
-      deps={
-        Object {
-          "fileURLProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "provideBlob": undefined,
-            "provideURL": [Function],
-            "windowUtils": undefined,
-          },
-          "reportExportServiceProvider": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "services": undefined,
-          },
-          "reportGenerator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentJsonExportGenerator": undefined,
-            "assessmentReportHtmlGenerator": undefined,
-            "automatedChecksReportHtmlGenerator": undefined,
-            "fastPassReportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          },
-          "scanActionCreator": null,
-        }
-      }
-      dismissExportDialog={[Function]}
-      featureFlagStoreData={
-        Object {
-          "somefeatureflag": true,
-        }
-      }
-      getExportDescription={[Function]}
-      htmlGenerator={[Function]}
-      isOpen={false}
-      jsonGenerator={[Function]}
-      pageTitle="scan target name"
-      reportExportFormat="AutomatedChecks"
-      reportExportServices={
-        Array [
-          Object {
-            "generateMenuItem": null,
-            "key": "html",
-          },
-          Object {
-            "generateMenuItem": null,
-            "key": "codepen",
-          },
-        ]
-      }
-      updatePersistedDescription={[Function]}
-    />
+"<section className=\\"commandBar\\" aria-label=\\"command bar\\">
+  <div className=\\"farItems reflow\\">
+    <ReportExportButton showReportExportDialog={[Function (anonymous)]} />
+    <InsightsCommandButton data-automation-id=\\"command-button-refresh\\" text=\\"Start over\\" iconProps={{...}} onClick={[Function: onClick]} disabled={true} />
+    <InsightsCommandButton data-automation-id=\\"command-button-settings\\" ariaLabel=\\"settings\\" iconProps={{...}} onClick={[Function: onClick]} className=\\"settingsGearButton\\" />
+    <ReportExportComponent deps={{...}} isOpen={false} reportExportFormat=\\"AutomatedChecks\\" pageTitle=\\"scan target name\\" scanDate={[undefined]} htmlGenerator={[Function: htmlGenerator]} jsonGenerator={[Function: jsonGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} featureFlagStoreData={{...}} dismissExportDialog={[Function: dismissExportDialog]} afterDialogDismissed={[Function: afterDialogDismissed]} reportExportServices={{...}} />
   </div>
-</section>
+</section>"
 `;

@@ -119,7 +119,6 @@ import * as ReactDOM from 'react-dom';
 import { ReportExportServiceProviderImpl } from 'report-export/report-export-service-provider-impl';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
-import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -521,7 +520,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
 
         const documentManipulator = new DocumentManipulator(document);
 
-        const automatedChecksReportHtmlGenerator = new ReportHtmlGenerator(
+        const reportHtmlGenerator = new ReportHtmlGenerator(
             UnifiedReportSectionFactory,
             new ReactStaticRenderer(),
             getDefaultAddListenerForCollapsibleSection,
@@ -532,13 +531,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getPropertyConfiguration,
         );
 
-        const reportGenerator = new ReportGenerator(
-            new UnifiedReportNameGenerator(),
-            automatedChecksReportHtmlGenerator,
-            null,
-            null,
-            null,
-        );
+        const reportNameGenerator = new UnifiedReportNameGenerator();
 
         const startTesting = () => {
             windowStateActionCreator.setRoute({ routeId: 'resultsView' });
@@ -565,7 +558,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             loadTheme,
             documentManipulator,
             isResultHighlightUnavailable: isResultHighlightUnavailableUnified,
-            reportGenerator: reportGenerator,
+            reportHtmlGenerator,
+            reportNameGenerator,
             fileURLProvider: new FileURLProvider(windowUtils, provideBlob),
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportExportServiceProvider: ReportExportServiceProviderImpl,

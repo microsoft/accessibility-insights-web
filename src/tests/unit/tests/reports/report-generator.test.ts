@@ -5,26 +5,29 @@ import { FeatureFlags } from 'common/feature-flags';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { AssessmentJsonExportGenerator } from 'reports/assessment-json-export-generator';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
+import {
+    FastPassReportHtmlGenerator,
+    FastPassReportModel,
+} from 'reports/fast-pass-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
-import { ReportNameGenerator } from 'reports/report-name-generator';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportGenerator', () => {
-    const date = new Date(2018, 2, 12, 15, 46);
     const title = 'title';
     const url = 'http://url/';
-    const fileExtension = '.html';
     const description = 'description';
     const cardsViewDataStub = {
         cards: exampleUnifiedStatusResults,
         visualHelperEnabled: true,
         allCardsCollapsed: true,
     };
+    const tabStopRequirementStateStub = {} as TabStopRequirementState;
     const toolDataStub: ToolData = {
         applicationProperties: { name: 'some app' },
     } as ToolData;
@@ -37,22 +40,28 @@ describe('ReportGenerator', () => {
         targetAppInfo: targetAppInfo,
     } as ScanMetadata;
     const featureFlagStoreDataStub: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
+    const fastPassReportModelStub: FastPassReportModel = {
+        description,
+        results: {
+            automatedChecks: cardsViewDataStub,
+            tabStops: tabStopRequirementStateStub,
+        },
+        scanMetadata: scanMetadataStub,
+    };
 
-    let fastPassReportHtmlGeneratorMock: IMock<ReportHtmlGenerator>;
+    let fastPassReportHtmlGeneratorMock: IMock<FastPassReportHtmlGenerator>;
     let automatedChecksReportHtmlGeneratorMock: IMock<ReportHtmlGenerator>;
-    let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
     let assessmentJsonExportGeneratorMock: IMock<AssessmentJsonExportGenerator>;
 
     let testSubject: ReportGenerator;
 
     beforeEach(() => {
-        nameBuilderMock = Mock.ofType<ReportNameGenerator>(undefined, MockBehavior.Strict);
         automatedChecksReportHtmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>(
             undefined,
             MockBehavior.Strict,
         );
-        fastPassReportHtmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>(
+        fastPassReportHtmlGeneratorMock = Mock.ofType<FastPassReportHtmlGenerator>(
             undefined,
             MockBehavior.Strict,
         );
@@ -66,7 +75,6 @@ describe('ReportGenerator', () => {
         );
 
         testSubject = new ReportGenerator(
-            nameBuilderMock.object,
             automatedChecksReportHtmlGeneratorMock.object,
             fastPassReportHtmlGeneratorMock.object,
             assessmentReportHtmlGeneratorMock.object,
@@ -79,33 +87,26 @@ describe('ReportGenerator', () => {
             const featureFlagStoreData = { [FeatureFlags.newTabStopsDetailsView]: true };
 
             fastPassReportHtmlGeneratorMock
-                .setup(builder =>
-                    builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
-                )
+                .setup(m => m.generateHtml(fastPassReportModelStub))
                 .returns(() => 'stub FastPass report');
 
             const actual = testSubject.generateFastPassHtmlReport(
-                cardsViewDataStub,
-                description,
-                scanMetadataStub,
+                fastPassReportModelStub,
                 featureFlagStoreData,
             );
 
             expect(actual).toEqual('stub FastPass report');
         });
+
         it('uses automatedChecksReportHtmlGenerator without FeatureFlags.newTabStopsDetailsView', () => {
             const featureFlagStoreData = { [FeatureFlags.newTabStopsDetailsView]: false };
 
             automatedChecksReportHtmlGeneratorMock
-                .setup(builder =>
-                    builder.generateHtml(description, cardsViewDataStub, scanMetadataStub),
-                )
+                .setup(m => m.generateHtml(description, cardsViewDataStub, scanMetadataStub))
                 .returns(() => 'stub automated checks report');
 
             const actual = testSubject.generateFastPassHtmlReport(
-                cardsViewDataStub,
-                description,
-                scanMetadataStub,
+                fastPassReportModelStub,
                 featureFlagStoreData,
             );
 
@@ -140,25 +141,6 @@ describe('ReportGenerator', () => {
         );
 
         const expected = 'generated-assessment-html';
-        expect(actual).toEqual(expected);
-    });
-
-    test('generateName', () => {
-        nameBuilderMock
-            .setup(builder =>
-                builder.generateName(
-                    'InsightsScan',
-                    It.isValue(date),
-                    It.isValue(title),
-                    It.isValue(fileExtension),
-                ),
-            )
-            .returns(() => 'returned-name')
-            .verifiable(Times.once());
-
-        const actual = testSubject.generateName('InsightsScan', date, title, fileExtension);
-
-        const expected = 'returned-name';
         expect(actual).toEqual(expected);
     });
 });

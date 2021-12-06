@@ -50,12 +50,12 @@ import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-ge
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
 import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
-import { FastPassReportSectionFactory } from 'reports/components/report-sections/fast-pass-report-section-factory';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from 'reports/components/requirement-outcome-type';
+import { FastPassReportHtmlGenerator } from 'reports/fast-pass-report-html-generator';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
@@ -353,8 +353,7 @@ if (tabId != null) {
                 getPropertyConfiguration,
             );
 
-            const fastPassReportHtmlGenerator = new ReportHtmlGenerator(
-                FastPassReportSectionFactory,
+            const fastPassReportHtmlGenerator = new FastPassReportHtmlGenerator(
                 reactStaticRenderer,
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
@@ -428,7 +427,6 @@ if (tabId != null) {
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const reportGenerator = new ReportGenerator(
-                reportNameGenerator,
                 automatedChecksReportHtmlGenerator,
                 fastPassReportHtmlGenerator,
                 assessmentReportHtmlGenerator,
@@ -523,6 +521,7 @@ if (tabId != null) {
                 toolData,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+                reportNameGenerator,
                 reportGenerator,
                 reportExportServiceProvider: ReportExportServiceProviderImpl,
                 getCardViewData: getCardViewData,

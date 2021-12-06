@@ -20,13 +20,13 @@ import { ContentPageInfo } from 'electron/types/content-page-info';
 import { css, IButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportExportServiceProvider } from 'report-export/report-export-service-provider';
-import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import * as styles from './reflow-command-bar.scss';
 
 export type ReflowCommandBarDeps = {
     scanActionCreator: ScanActionCreator;
     dropdownClickHandler: DropdownClickHandler;
-    reportGenerator: ReportGenerator;
+    reportHtmlGenerator: ReportHtmlGenerator;
     tabStopsActionCreator: TabStopsActionCreator;
     reportExportServiceProvider: ReportExportServiceProvider;
 } & ReportExportComponentDeps;
@@ -89,11 +89,10 @@ export class ReflowCommandBar extends React.Component<
                     pageTitle={scanMetadata.targetAppInfo.name}
                     scanDate={scanMetadata.timespan.scanComplete}
                     htmlGenerator={description =>
-                        this.props.deps.reportGenerator.generateFastPassHtmlReport(
-                            cardsViewData,
+                        this.props.deps.reportHtmlGenerator.generateHtml(
                             description,
+                            cardsViewData,
                             scanMetadata,
-                            featureFlagStoreData,
                         )
                     }
                     jsonGenerator={() => null}
@@ -137,7 +136,6 @@ export class ReflowCommandBar extends React.Component<
     };
 
     private getFarButtons = () => {
-        console.log('get far buttons ran');
         if (this.props.narrowModeStatus.isCommandBarCollapsed) {
             return (
                 <CommandBarButtonsMenu
