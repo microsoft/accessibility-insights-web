@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders 1`] = `
+"<Fragment>
+  <WebReportHead />
+  <BodySection>
+    <AutomatedChecksHeaderSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+    <ContentSection>
+      <FastPassTitleSection />
+      <DetailsSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+      <p>
+        Placeholder for combined summary section
+      </p>
+      <p>
+        Placeholder for &quot;Automated Checks&quot; heading component
+      </p>
+      <ResultsContainer deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}}>
+        <FailedInstancesSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} cardsViewData={{...}} />
+        <p>
+          Placeholder for incomplete checks
+        </p>
+        <PassedChecksSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} cardsViewData={{...}} />
+      </ResultsContainer>
+      <p>
+        Placeholder for &quot;Tab stops&quot; heading component
+      </p>
+      <ResultsContainer deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}}>
+        <p>
+          Placeholder for results.tabStops rendering
+        </p>
+      </ResultsContainer>
+    </ContentSection>
+    <ReportFooter>
+      <FooterText deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+    </ReportFooter>
+  </BodySection>
+</Fragment>"
+`;
