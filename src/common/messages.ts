@@ -16,6 +16,7 @@ export const Messages = {
             RescanVisualization: `${messagePrefix}/visualization/rescanVisualization`,
         },
         TabStops: {
+            ScanCompleted: `${messagePrefix}/visualization/tab-stops/scanCompleted`,
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,
             RecordingCompleted: `${messagePrefix}/visualization/tab-stops/completed`,
             TerminateScan: `${messagePrefix}/visualization/tab-stops/terminated`,

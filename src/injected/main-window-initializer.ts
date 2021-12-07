@@ -22,10 +22,11 @@ import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { IframeDetector } from 'injected/iframe-detector';
 import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
+import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
+import { getUniqueSelector } from 'scanner/axe-utils';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -301,6 +302,8 @@ export class MainWindowInitializer extends WindowInitializer {
             filterNeedsReviewResults,
         );
 
+        const tabbableElementGetter = new TabbableElementGetter(document, getUniqueSelector);
+
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
@@ -313,6 +316,7 @@ export class MainWindowInitializer extends WindowInitializer {
             unifiedResultSender.sendNeedsReviewResults,
             scanIncompleteWarningDetector,
             logger,
+            tabbableElementGetter,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(

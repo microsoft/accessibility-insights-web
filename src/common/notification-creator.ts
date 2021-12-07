@@ -30,7 +30,7 @@ export class NotificationCreator {
 
     public createNotificationByVisualizationKey(
         selectorMap: DictionaryStringTo<any>,
-        key: string,
+        testStepKey: string,
         visualizationType: VisualizationType,
         warnings: ScanIncompleteWarningId[],
     ): void {
@@ -38,7 +38,7 @@ export class NotificationCreator {
             this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const notificationMessage = configuration.getNotificationMessage(
             selectorMap,
-            key,
+            testStepKey || configuration.key,
             warnings,
         );
 

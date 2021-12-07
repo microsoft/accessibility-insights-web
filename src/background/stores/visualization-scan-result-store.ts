@@ -12,7 +12,7 @@ import {
 } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { VisualizationType } from 'common/types/visualization-type';
-import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
+import { ScanCompletedPayload, TabStopsScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { forOwn, map } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
@@ -53,6 +53,7 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         const state: Partial<VisualizationScanResultData> = {
             [AdHocTestkeys.TabStops]: {
                 tabbedElements: null,
+                calculatedTabOrder: null,
                 requirements,
             },
         };
@@ -79,6 +80,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
     protected addActionListeners(): void {
         this.visualizationActions.rescanVisualization.addListener(this.onRescanVisualization);
         this.visualizationScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.visualizationScanResultActions.tabStopsScanCompleted.addListener(
+            this.onTabStopsScanCompleted,
+        );
         this.visualizationScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.visualizationScanResultActions.addTabbedElement.addListener(this.onAddTabbedElement);
         this.visualizationScanResultActions.disableTabStop.addListener(this.onTabStopsDisabled);
@@ -221,6 +225,11 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.state[payload.key].fullAxeResultsMap = selectorMap;
         this.state[payload.key].scanResult = result;
 
+        this.emitChanged();
+    };
+
+    private onTabStopsScanCompleted = (payload: TabStopsScanCompletedPayload): void => {
+        this.state.tabStops.calculatedTabOrder = payload.calculatedTabStops;
         this.emitChanged();
     };
 

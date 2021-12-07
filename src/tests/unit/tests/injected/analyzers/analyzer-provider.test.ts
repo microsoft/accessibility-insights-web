@@ -66,6 +66,7 @@ describe('AnalyzerProviderTests', () => {
             sendNeedsReviewResultsMock.object,
             scanIncompleteWarningDetectorMock.object,
             failTestOnErrorLogger,
+            null,
         );
     });
 

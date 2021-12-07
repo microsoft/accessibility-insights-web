@@ -11,7 +11,7 @@ import { getStoreStateMessage, Messages } from 'common/messages';
 import { NotificationCreator } from 'common/notification-creator';
 import { StoreNames } from 'common/stores/store-names';
 import { VisualizationType } from 'common/types/visualization-type';
-import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
+import { ScanCompletedPayload, TabStopsScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { DictionaryNumberTo } from 'types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
@@ -75,6 +75,10 @@ export class ActionCreator {
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Common.ScanCompleted,
             this.onAdHocScanCompleted,
+        );
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.TabStops.ScanCompleted,
+            this.onAdHocTabStopsScanCompleted,
         );
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Common.ScrollRequested,
@@ -265,6 +269,23 @@ export class ActionCreator {
             payload.scanIncompleteWarnings,
         );
         await this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
+    };
+
+    private onAdHocTabStopsScanCompleted = async (
+        payload: TabStopsScanCompletedPayload,
+        tabId: number,
+    ): Promise<void> => {
+        const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
+        this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
+        this.visualizationScanResultActions.tabStopsScanCompleted.invoke(payload);
+        this.visualizationActions.scanCompleted.invoke(null);
+        this.notificationCreator.createNotificationByVisualizationKey(
+            null,
+            null,
+            VisualizationType.TabStops,
+            null,
+        );
+        await this.targetTabController.showTargetTab(tabId, VisualizationType.TabStops);
     };
 
     private onScrollRequested = (): void => {

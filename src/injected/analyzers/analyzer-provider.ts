@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
+import { NewTabStopsAnalyzer } from 'injected/analyzers/new-tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
-
+import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { BaseStore } from '../../common/base-store';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
@@ -32,6 +33,7 @@ export class AnalyzerProvider {
         private readonly sendNeedsReviewResults: PostResolveCallback,
         private readonly scanIncompleteWarningDetector: ScanIncompleteWarningDetector,
         private readonly logger: Logger,
+        private readonly tabbableElementGetter: TabbableElementGetter,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -108,6 +110,15 @@ export class AnalyzerProvider {
             this.sendMessageDelegate,
             this.scanIncompleteWarningDetector,
             this.logger,
+        );
+    }
+
+    public createNewFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        return new NewTabStopsAnalyzer(
+            config,
+            this.tabStopsListener,
+            this.sendMessageDelegate,
+            this.tabbableElementGetter,
         );
     }
 

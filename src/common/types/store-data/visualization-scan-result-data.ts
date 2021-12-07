@@ -4,6 +4,7 @@ import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
 import { TabStopEvent } from 'common/types/tab-stop-event';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from 'injected/scanner-utils';
 import { TabOrderPropertyBag } from 'injected/tab-order-property-bag';
+import { TabbableElementInfo } from 'injected/tabbable-element-getter';
 import { ScanResults } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -40,6 +41,7 @@ export type TabStopRequirementState = {
 interface TabStopsScanResultData {
     tabbedElements: TabbedElementData[];
     requirements?: TabStopRequirementState;
+    calculatedTabOrder: TabbableElementInfo[];
 }
 
 export interface VisualizationScanResultData {
