@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 import { Action } from 'common/flux/action';
-import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
 import { TabStopRequirementId } from 'types/tab-stop-requirement-info';
 
 export interface EditExistingFailureInstancePayload {
@@ -12,7 +11,6 @@ export interface EditExistingFailureInstancePayload {
 }
 
 export class TabStopsViewActions {
-    public readonly scanCompleted = new Action<ScanCompletedPayload<any>>();
     public readonly createNewFailureInstancePanel = new Action<string>();
     public readonly editExistingFailureInstance = new Action<EditExistingFailureInstancePayload>();
     public readonly dismissPanel = new Action<void>();
