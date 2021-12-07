@@ -17,7 +17,7 @@ const tabStopsTestKey = AdHocTestkeys.TabStops;
 const tabStopVisualizationConfiguration: FocusAnalyzerConfiguration = {
     key: tabStopsTestKey,
     testType: VisualizationType.TabStops,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+    analyzerMessageType: Messages.Visualizations.TabStops.ScanCompleted,
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
 };
