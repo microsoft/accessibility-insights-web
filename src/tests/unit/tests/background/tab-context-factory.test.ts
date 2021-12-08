@@ -68,6 +68,8 @@ describe('TabContextFactoryTest', () => {
             StoreNames.PathSnippetStore,
             StoreNames.UnifiedScanResultStore,
             StoreNames.CardSelectionStore,
+            StoreNames.NeedsReviewCardSelectionStore,
+            StoreNames.NeedsReviewScanResultStore,
         ];
 
         storeNames.forEach(storeName => {
