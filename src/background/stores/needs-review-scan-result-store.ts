@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
-import { VisualizationType } from 'common/types/visualization-type';
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
-import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanResultStoreData> {
-    constructor(private readonly unifiedScanResultActions: UnifiedScanResultActions) {
+    constructor(private readonly needsReviewScanResultActions: NeedsReviewScanResultActions) {
         super(StoreNames.NeedsReviewScanResultStore);
     }
 
@@ -28,9 +27,9 @@ export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanRes
     }
 
     protected addActionListeners(): void {
-        this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
-        this.unifiedScanResultActions.startScan.addListener(this.onScanStarted);
+        this.needsReviewScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.needsReviewScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.needsReviewScanResultActions.startScan.addListener(this.onScanStarted);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
@@ -45,10 +44,7 @@ export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanRes
         this.emitChanged();
     };
 
-    private onScanStarted = (test: VisualizationType): void => {
-        if (test === VisualizationType.TabStops) {
-            return;
-        }
+    private onScanStarted = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
     };
