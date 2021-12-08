@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
-import {
-    NeedsReviewCardSelectionStoreData,
-    RuleExpandCollapseData,
-} from 'common/types/store-data/needs-review-card-selection-store-data';
+import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { cloneDeep, forOwn } from 'lodash';
 
 import {
@@ -14,7 +13,6 @@ import {
     RuleExpandCollapsePayload,
     UnifiedScanCompletedPayload,
 } from '../../../../../background/actions/action-payloads';
-import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -74,7 +72,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
             visualHelperEnabled: true,
         };
 
-        createStoreForUnifiedScanResultActions('scanCompleted')
+        createStoreForNeedsReviewScanResultActions('scanCompleted')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
@@ -83,13 +81,13 @@ describe('NeedsReviewCardSelectionStore Test', () => {
         return createStoreWithNullParams(NeedsReviewCardSelectionStore).getDefaultState();
     }
 
-    function createStoreForUnifiedScanResultActions(
-        actionName: keyof UnifiedScanResultActions,
-    ): StoreTester<NeedsReviewCardSelectionStoreData, UnifiedScanResultActions> {
-        const factory = (actions: UnifiedScanResultActions) =>
+    function createStoreForNeedsReviewScanResultActions(
+        actionName: keyof NeedsReviewScanResultActions,
+    ): StoreTester<NeedsReviewCardSelectionStoreData, NeedsReviewScanResultActions> {
+        const factory = (actions: NeedsReviewScanResultActions) =>
             new NeedsReviewCardSelectionStore(new NeedsReviewCardSelectionActions(), actions);
 
-        return new StoreTester(UnifiedScanResultActions, actionName, factory);
+        return new StoreTester(NeedsReviewScanResultActions, actionName, factory);
     }
 });
 
@@ -381,7 +379,7 @@ describe('NeedsReviewCardSelectionStore Test', () => {
         actionName: keyof NeedsReviewCardSelectionActions,
     ): StoreTester<NeedsReviewCardSelectionStoreData, NeedsReviewCardSelectionActions> {
         const factory = (actions: NeedsReviewCardSelectionActions) =>
-            new NeedsReviewCardSelectionStore(actions, new UnifiedScanResultActions());
+            new NeedsReviewCardSelectionStore(actions, new NeedsReviewScanResultActions());
 
         return new StoreTester(NeedsReviewCardSelectionActions, actionName, factory);
     }

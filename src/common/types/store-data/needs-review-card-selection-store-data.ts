@@ -1,19 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type NeedsReviewCardSelectionData = { [resultInstanceUid: string]: boolean };
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 
-export interface RuleExpandCollapseData {
-    isExpanded: boolean;
-    cards: NeedsReviewCardSelectionData;
-}
-
-export interface RuleExpandCollapseDataDictionary {
-    [ruleId: string]: RuleExpandCollapseData;
-}
-
-export interface NeedsReviewCardSelectionStoreData {
-    rules: RuleExpandCollapseDataDictionary;
-    visualHelperEnabled: boolean;
-    focusedResultUid: string | null;
-}
+export type NeedsReviewCardSelectionStoreData = CardSelectionStoreData;

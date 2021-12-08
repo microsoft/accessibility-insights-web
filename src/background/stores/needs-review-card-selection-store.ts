@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
-import {
-    NeedsReviewCardSelectionStoreData,
-    RuleExpandCollapseData,
-} from 'common/types/store-data/needs-review-card-selection-store-data';
+import { RuleExpandCollapseData } from 'common/types/store-data/card-selection-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
 import { forOwn, isEmpty } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import {
@@ -12,29 +11,36 @@ import {
     RuleExpandCollapsePayload,
     UnifiedScanCompletedPayload,
 } from '../actions/action-payloads';
-import { CardSelectionActions } from '../actions/card-selection-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class NeedsReviewCardSelectionStore extends BaseStoreImpl<NeedsReviewCardSelectionStoreData> {
     constructor(
-        private readonly cardSelectionActions: CardSelectionActions,
+        private readonly needsReviewCardSelectionActions: NeedsReviewCardSelectionActions,
         private readonly needsReviewScanResultActions: NeedsReviewScanResultActions,
     ) {
         super(StoreNames.NeedsReviewCardSelectionStore);
     }
 
     protected addActionListeners(): void {
-        this.cardSelectionActions.toggleRuleExpandCollapse.addListener(
+        this.needsReviewCardSelectionActions.toggleRuleExpandCollapse.addListener(
             this.toggleRuleExpandCollapse,
         );
-        this.cardSelectionActions.toggleCardSelection.addListener(this.toggleCardSelection);
-        this.cardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
-        this.cardSelectionActions.expandAllRules.addListener(this.expandAllRules);
-        this.cardSelectionActions.toggleVisualHelper.addListener(this.toggleVisualHelper);
-        this.cardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
+        this.needsReviewCardSelectionActions.toggleCardSelection.addListener(
+            this.toggleCardSelection,
+        );
+        this.needsReviewCardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
+        this.needsReviewCardSelectionActions.expandAllRules.addListener(this.expandAllRules);
+        this.needsReviewCardSelectionActions.toggleVisualHelper.addListener(
+            this.toggleVisualHelper,
+        );
+        this.needsReviewCardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
         this.needsReviewScanResultActions.scanCompleted.addListener(this.onScanCompleted);
-        this.cardSelectionActions.resetFocusedIdentifier.addListener(this.onResetFocusedIdentifier);
-        this.cardSelectionActions.navigateToNewCardsView.addListener(this.onNavigateToNewCardsView);
+        this.needsReviewCardSelectionActions.resetFocusedIdentifier.addListener(
+            this.onResetFocusedIdentifier,
+        );
+        this.needsReviewCardSelectionActions.navigateToNewCardsView.addListener(
+            this.onNavigateToNewCardsView,
+        );
     }
 
     public getDefaultState(): NeedsReviewCardSelectionStoreData {
