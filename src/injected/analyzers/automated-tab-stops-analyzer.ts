@@ -18,7 +18,7 @@ export interface ProgressResult<T> {
     result: T;
 }
 
-export class NewTabStopsAnalyzer implements Analyzer {
+export class AutomatedTabStopsAnalyzer implements Analyzer {
     private debouncedProcessTabEvents: DebouncedFunc<() => void> | null = null;
     private pendingTabbedElements: TabStopEvent[] = [];
 

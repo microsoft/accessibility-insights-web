@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Logger } from 'common/logging/logger';
-import { NewTabStopsAnalyzer } from 'injected/analyzers/new-tab-stops-analyzer';
+import { AutomatedTabStopsAnalyzer } from 'injected/analyzers/automated-tab-stops-analyzer';
 import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-detector';
 import { TabbableElementGetter } from 'injected/tabbable-element-getter';
 import { BaseStore } from '../../common/base-store';
@@ -113,8 +113,8 @@ export class AnalyzerProvider {
         );
     }
 
-    public createNewFocusTrackingAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
-        return new NewTabStopsAnalyzer(
+    public createAutomatedTabStopsAnalyzer(config: FocusAnalyzerConfiguration): Analyzer {
+        return new AutomatedTabStopsAnalyzer(
             config,
             this.tabStopsListener,
             this.sendMessageDelegate,
