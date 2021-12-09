@@ -6,6 +6,8 @@ import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { InspectStore } from 'background/stores/inspect-store';
+import { NeedsReviewCardSelectionStore } from 'background/stores/needs-review-card-selection-store';
+import { NeedsReviewScanResultStore } from 'background/stores/needs-review-scan-result-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
@@ -68,6 +70,8 @@ describe('TabContextFactoryTest', () => {
             StoreNames.PathSnippetStore,
             StoreNames.UnifiedScanResultStore,
             StoreNames.CardSelectionStore,
+            StoreNames.NeedsReviewCardSelectionStore,
+            StoreNames.NeedsReviewScanResultStore,
         ];
 
         storeNames.forEach(storeName => {
@@ -142,6 +146,12 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
         expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(UnifiedScanResultStore);
         expect(tabContext.stores.cardSelectionStore).toBeInstanceOf(CardSelectionStore);
+        expect(tabContext.stores.needsReviewCardSelectionStore).toBeInstanceOf(
+            NeedsReviewCardSelectionStore,
+        );
+        expect(tabContext.stores.needsReviewScanResultStore).toBeInstanceOf(
+            NeedsReviewScanResultStore,
+        );
 
         broadcastMock.verifyAll();
     });

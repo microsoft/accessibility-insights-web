@@ -27,4 +27,6 @@ export enum StoreNames {
     DeviceConnectionStore,
     TabStopsStore,
     TabStopsViewStore,
+    NeedsReviewScanResultStore,
+    NeedsReviewCardSelectionStore,
 }
