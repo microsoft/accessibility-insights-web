@@ -7,6 +7,7 @@ import { NullComponent } from 'common/components/null-component';
 import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { FastPassReport, FastPassReportProps } from 'reports/components/fast-pass-report';

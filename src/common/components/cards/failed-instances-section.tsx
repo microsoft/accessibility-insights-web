@@ -15,6 +15,7 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
         userConfigurationStoreData,
         scanMetadata,
         shouldAlertFailuresCount,
+        cardSelectionMessageCreator,
     }) => {
         if (cardsViewData == null || cardsViewData.cards == null) {
             return null;
@@ -39,6 +40,7 @@ export const FailedInstancesSection = NamedFC<CommonInstancesSectionProps>(
                 allCardsCollapsed={cardsViewData.allCardsCollapsed}
                 outcomeCounter={OutcomeCounter.countByCards}
                 headingLevel={3}
+                cardSelectionMessageCreator={cardSelectionMessageCreator}
             />
         );
     },

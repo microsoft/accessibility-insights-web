@@ -6,6 +6,8 @@ import {
     RulesWithInstancesDeps,
 } from 'common/components/cards/rules-with-instances';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
@@ -15,9 +17,11 @@ import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
+    let cardSelectionMessageCreatorMock: IMock<CardSelectionMessageCreator>;
 
     beforeEach(() => {
         fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        cardSelectionMessageCreatorMock = Mock.ofType(AutomatedChecksCardSelectionMessageCreator);
     });
 
     it('renders', () => {
@@ -40,6 +44,7 @@ describe('RulesWithInstances', () => {
                 targetAppInfo={{ name: 'app' }}
                 outcomeCounter={outcomeCounterStub}
                 headingLevel={5}
+                cardSelectionMessageCreator={cardSelectionMessageCreatorMock.object}
             />,
         );
 

@@ -62,7 +62,8 @@ export interface DetailsViewBodyProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    cardsViewData: CardsViewModel;
+    automatedChecksCardsViewData: CardsViewModel;
+    needsReviewCardsViewData: CardsViewModel;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     scanMetadata: ScanMetadata;
     isSideNavOpen: boolean;

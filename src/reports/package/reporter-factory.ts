@@ -172,6 +172,7 @@ const combinedResultsReportGenerator = (parameters: CombinedReportParameters) =>
     );
     const deps = {
         reportHtmlGenerator,
+        cardSelectionMessageCreator: parameters.cardSelectionMessageCreator,
     }
 
     const cardSelectionViewData: CardSelectionViewData = {

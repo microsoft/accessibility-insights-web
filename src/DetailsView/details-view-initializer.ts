@@ -22,10 +22,13 @@ import { Globalization } from 'common/globalization';
 import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { Logger } from 'common/logging/logger';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { getNarrowModeThresholdsForWeb } from 'common/narrow-mode-thresholds';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { toolName } from 'content/strings/application';
 import { textContent } from 'content/strings/text-content';
 import { TabStopRequirementActionMessageCreator } from 'DetailsView/actions/tab-stop-requirement-action-message-creator';
@@ -182,6 +185,21 @@ if (tabId != null) {
                 browserAdapter,
                 tab.id,
             );
+            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
+                StoreNames[StoreNames.CardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
+            const needsReviewScanResultStore = new StoreProxy<NeedsReviewScanResultStoreData>(
+                StoreNames[StoreNames.NeedsReviewScanResultStore],
+                browserAdapter,
+                tab.id,
+            );
+            const needsReviewCardSelectionStore = new StoreProxy<NeedsReviewCardSelectionStoreData>(
+                StoreNames[StoreNames.NeedsReviewCardSelectionStore],
+                browserAdapter,
+                tab.id,
+            );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(
                 StoreNames[StoreNames.PathSnippetStore],
                 browserAdapter,
@@ -212,11 +230,6 @@ if (tabId != null) {
                 browserAdapter,
                 tab.id,
             );
-            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(
-                StoreNames[StoreNames.CardSelectionStore],
-                browserAdapter,
-                tab.id,
-            );
 
             const tabStopsViewActions = new TabStopsViewActions();
             const tabStopsTestViewController = new TabStopsTestViewController(tabStopsViewActions);
@@ -230,12 +243,14 @@ if (tabId != null) {
                 tabStore,
                 visualizationScanResultStore,
                 unifiedScanResultStore,
+                cardSelectionStore,
+                needsReviewScanResultStore,
+                needsReviewCardSelectionStore,
                 visualizationStore,
                 assessmentStore,
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
-                cardSelectionStore,
                 tabStopsViewStore,
             ]);
 
@@ -417,11 +432,20 @@ if (tabId != null) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const cardSelectionMessageCreator = new CardSelectionMessageCreator(
-                actionMessageDispatcher,
-                telemetryFactory,
-                TelemetryEventSource.DetailsView,
-            );
+            const automatedChecksCardSelectionMessageCreator =
+                new AutomatedChecksCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                );
+
+            const needsReviewCardSelectionMessageCreator =
+                new NeedsReviewCardSelectionMessageCreator(
+                    actionMessageDispatcher,
+                    telemetryFactory,
+                    TelemetryEventSource.DetailsView,
+                );
+
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
@@ -529,7 +553,8 @@ if (tabId != null) {
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
-                cardSelectionMessageCreator,
+                automatedChecksCardSelectionMessageCreator,
+                needsReviewCardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: ExpandCollapseVisualHelperModifierButtons,
                 allUrlsPermissionHandler: new AllUrlsPermissionHandler(

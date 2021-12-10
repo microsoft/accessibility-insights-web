@@ -30,7 +30,7 @@ exports[`DetailsViewBody render render 1`] = `
           "resultDescription": "",
         }
       }
-      cardsViewData={
+      automatedChecksCardsViewData={
         Object {
           "allCardsCollapsed": true,
           "cards": Object {
@@ -358,7 +358,7 @@ exports[`DetailsViewBody render render 1`] = `
             "resultDescription": "",
           }
         }
-        cardsViewData={
+        automatedChecksCardsViewData={
           Object {
             "allCardsCollapsed": true,
             "cards": Object {
@@ -691,7 +691,7 @@ exports[`DetailsViewBody render render 1`] = `
                 "resultDescription": "",
               }
             }
-            cardsViewData={
+            automatedChecksCardsViewData={
               Object {
                 "allCardsCollapsed": true,
                 "cards": Object {

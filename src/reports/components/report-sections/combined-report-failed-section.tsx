@@ -11,20 +11,19 @@ import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
 
-export type CombinedReportFailedSectionDeps = ResultSectionDeps & {
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
-};
+export type CombinedReportFailedSectionDeps = ResultSectionDeps;
 
 export type CombinedReportFailedSectionProps = {
     deps: CombinedReportFailedSectionDeps;
     cardsViewData: CardsViewModel;
     scanMetadata: ScanMetadata;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionProps>(
     'CombinedReportFailedSection',
     props => {
-        const { deps, cardsViewData, scanMetadata } = props;
+        const { deps, cardsViewData, scanMetadata, cardSelectionMessageCreator } = props;
 
         const ruleCount = cardsViewData.cards.fail.length;
 
@@ -50,10 +49,11 @@ export const CombinedReportFailedSection = NamedFC<CombinedReportFailedSectionPr
                     userConfigurationStoreData={null}
                     outcomeCounter={OutcomeCounter.countByIdentifierUrls}
                     headingLevel={4}
+                    cardSelectionMessageCreator={cardSelectionMessageCreator}
                 />
             ),
             onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
-                deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
+                cardSelectionMessageCreator.toggleRuleExpandCollapse(sectionId, event);
             },
             headingLevel: 3,
             deps: null,

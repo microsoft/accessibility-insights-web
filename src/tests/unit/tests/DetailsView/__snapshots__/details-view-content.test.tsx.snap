@@ -85,14 +85,7 @@ exports[` render renders normally 1`] = `
         "resultDescription": "",
       }
     }
-    cardSelectionStoreData={
-      Object {
-        "focusedResultUid": null,
-        "rules": Object {},
-        "visualHelperEnabled": false,
-      }
-    }
-    cardsViewData={Object {}}
+    automatedChecksCardsViewData={Object {}}
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -183,6 +176,7 @@ exports[` render renders normally 1`] = `
         "isVirtualKeyboardCollapsed": false,
       }
     }
+    needsReviewCardsViewData={Object {}}
     pathSnippetStoreData={
       Object {
         "path": null,

@@ -46,7 +46,8 @@ describe('ShouldShowReportExportButton', () => {
             assessmentStoreData: null,
             assessmentsProvider: null,
             rightPanelConfiguration: null,
-            cardsViewData: null,
+            automatedChecksCardsViewData: null,
+            needsReviewCardsViewData: null,
             switcherNavConfiguration: null,
             scanMetadata: null,
             narrowModeStatus: null,
@@ -59,7 +60,7 @@ describe('ShouldShowReportExportButton', () => {
             .returns(() => scanData);
         visualizationConfigurationMock.setup(m => m.getTestStatus(scanData)).returns(() => enabled);
         visualizationConfigurationMock
-            .setup(m => m.shouldShowExportReport(unifiedScanResultStoreData, featureFlagStoreData))
+            .setup(m => m.shouldShowExportReport(featureFlagStoreData))
             .returns(() => shouldShow);
     }
 

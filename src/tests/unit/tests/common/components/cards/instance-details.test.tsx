@@ -14,6 +14,7 @@ import {
     CardRowProps,
     PropertyConfiguration,
 } from 'common/configs/unified-result-property-configurations';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
@@ -48,19 +49,19 @@ describe('InstanceDetails', () => {
 
     beforeEach(() => {
         getPropertyConfigByIdMock = Mock.ofInstance(_ => null);
-        cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
+        cardSelectionMessageCreatorMock = Mock.ofType(AutomatedChecksCardSelectionMessageCreator);
         resultStub = exampleUnifiedResult;
         indexStub = 22;
         hiddenButtonRefStub = { current: { focus: jest.fn(), click: jest.fn() } };
         deps = {
             getPropertyConfigById: getPropertyConfigByIdMock.object,
-            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             cardInteractionSupport: allCardInteractionsSupported,
         } as InstanceDetailsDeps;
         props = {
             deps,
             result: resultStub,
             index: indexStub,
+            cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
         } as InstanceDetailsProps;
     });
 

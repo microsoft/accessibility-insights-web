@@ -7,15 +7,15 @@ import {
 } from 'background/actions/action-payloads';
 import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
-import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { IMock, Mock, Times } from 'typemoq';
 
-describe('Card Selection Message Creator', () => {
+describe('Needs Review Card Selection Message Creator', () => {
     let dispatcherMock: IMock<ActionMessageDispatcher>;
-    let testSubject: AutomatedChecksCardSelectionMessageCreator;
+    let testSubject: NeedsReviewCardSelectionMessageCreator;
     let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
     let sourceStub: TelemetryEventSource;
     let eventStub: React.SyntheticEvent;
@@ -27,7 +27,7 @@ describe('Card Selection Message Creator', () => {
         sourceStub = -1;
         eventStub = {} as React.SyntheticEvent;
         telemetryStub = {} as BaseTelemetryData;
-        testSubject = new AutomatedChecksCardSelectionMessageCreator(
+        testSubject = new NeedsReviewCardSelectionMessageCreator(
             dispatcherMock.object,
             telemetryDataFactoryMock.object,
             sourceStub,
@@ -44,7 +44,7 @@ describe('Card Selection Message Creator', () => {
         };
 
         const expectedMessage: Message = {
-            messageType: Messages.CardSelection.CardSelectionToggled,
+            messageType: Messages.NeedsReviewCardSelection.CardSelectionToggled,
             payload,
         };
 
@@ -65,7 +65,7 @@ describe('Card Selection Message Creator', () => {
         };
 
         const expectedMessage: Message = {
-            messageType: Messages.CardSelection.RuleExpansionToggled,
+            messageType: Messages.NeedsReviewCardSelection.RuleExpansionToggled,
             payload,
         };
 
@@ -84,7 +84,7 @@ describe('Card Selection Message Creator', () => {
         };
 
         const expectedMessage: Message = {
-            messageType: Messages.CardSelection.CollapseAllRules,
+            messageType: Messages.NeedsReviewCardSelection.CollapseAllRules,
             payload,
         };
 
@@ -103,7 +103,7 @@ describe('Card Selection Message Creator', () => {
         };
 
         const expectedMessage: Message = {
-            messageType: Messages.CardSelection.ExpandAllRules,
+            messageType: Messages.NeedsReviewCardSelection.ExpandAllRules,
             payload,
         };
 
@@ -122,7 +122,7 @@ describe('Card Selection Message Creator', () => {
         };
 
         const expectedMessage: Message = {
-            messageType: Messages.CardSelection.ToggleVisualHelper,
+            messageType: Messages.NeedsReviewCardSelection.ToggleVisualHelper,
             payload,
         };
 

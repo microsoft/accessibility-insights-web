@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
@@ -16,6 +17,7 @@ export type RuleContentProps = {
     rule: CardRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {
