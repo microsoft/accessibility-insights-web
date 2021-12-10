@@ -76,9 +76,15 @@ describe('SelectorMapHelperTest', () => {
                 rules: rulesStub,
                 results: resultsStub,
             };
+            const needsReviewScanData = {
+                rules: rulesStub,
+                results: resultsStub,
+            };
             const storeData: VisualizationRelatedStoreData = {
                 unifiedScanResultStoreData: unifiedScanData,
                 cardSelectionStoreData: {},
+                needsReviewScanResultStoreData: needsReviewScanData,
+                needsReviewCardSelectionStoreData: {},
             } as VisualizationRelatedStoreData;
 
             getElementBasedViewModelMock

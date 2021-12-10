@@ -229,22 +229,6 @@ exports[` render renders normally 1`] = `
         "url": "http://detailsViewContainerTest/url/",
       }
     }
-    unifiedScanResultStoreData={
-      Object {
-        "results": Array [],
-        "rules": Array [],
-        "targetAppInfo": Object {
-          "name": "DetailsViewContainerTest title",
-          "url": "http://detailsViewContainerTest/url/",
-        },
-        "timestamp": "timestamp",
-        "toolInfo": Object {
-          "applicationProperties": Object {
-            "name": "some app",
-          },
-        },
-      }
-    }
     userConfigurationStoreData={
       Object {
         "adbLocation": null,

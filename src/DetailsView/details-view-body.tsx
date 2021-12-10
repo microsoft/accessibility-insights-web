@@ -4,10 +4,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import classNames from 'classnames';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
-import {
-    ScanMetadata,
-    UnifiedScanResultStoreData,
-} from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { FluentSideNav, FluentSideNavDeps } from 'DetailsView/components/left-nav/fluent-side-nav';
 import { NarrowModeStatus } from 'DetailsView/components/narrow-mode-detector';
@@ -69,7 +66,6 @@ export interface DetailsViewBodyProps {
     isSideNavOpen: boolean;
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
-    unifiedScanResultStoreData: UnifiedScanResultStoreData;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
