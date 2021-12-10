@@ -95,7 +95,7 @@ export function getReportExportDialogForFastPass(
             {
                 results: {
                     automatedChecks: props.cardsViewData,
-                    tabStops: null,
+                    tabStops: props.tabStopRequirementData,
                 },
                 description,
                 scanMetadata: props.scanMetadata,

@@ -133,6 +133,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
                 unifiedScanResultStoreData={storeState.unifiedScanResultStoreData}
+                tabStopRequirementData={storeState.tabStopRequirementData}
             />
         );
     };

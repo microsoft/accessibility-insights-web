@@ -22,7 +22,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementState, VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
@@ -69,6 +69,7 @@ export interface DetailsViewBodyProps {
     setSideNavOpen: (isOpen: boolean, event?: React.MouseEvent<any>) => void;
     narrowModeStatus: NarrowModeStatus;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    tabStopRequirementData: TabStopRequirementState;
 }
 
 export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
