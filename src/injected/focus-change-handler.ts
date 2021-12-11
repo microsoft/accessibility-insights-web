@@ -59,30 +59,31 @@ export class FocusChangeHandler {
         );
     }
 
-    private findAutomatedChecksFocusedResult(storeData: TargetPageStoreData): UnifiedResult | null {
+    private findAutomatedChecksFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
         const focusedResult = storeData.unifiedScanResultStoreData.results.find(
             result => result.uid === storeData.cardSelectionStoreData.focusedResultUid,
         );
-        if (focusedResult != null) {
+
+        if (focusedResult !== undefined) {
             return focusedResult;
         }
 
         throw new Error('focused result was not found');
     }
 
-    private findNeedsReviewFocusedResult(storeData: TargetPageStoreData): UnifiedResult | null {
+    private findNeedsReviewFocusedResult(storeData: TargetPageStoreData): UnifiedResult {
         const focusedResult = storeData.needsReviewScanResultStoreData.results.find(
             result => result.uid === storeData.needsReviewCardSelectionStoreData.focusedResultUid,
         );
 
-        if (focusedResult !== null) {
+        if (focusedResult !== undefined) {
             return focusedResult;
         }
 
         throw new Error('focused result was not found');
     }
 
-    private getTargetFromUnifiedResult(UnifiedResult: UnifiedResult): string[] | null {
+    private getTargetFromUnifiedResult(UnifiedResult: UnifiedResult): string[] {
         return UnifiedResult.identifiers.identifier.split(';');
     }
 
