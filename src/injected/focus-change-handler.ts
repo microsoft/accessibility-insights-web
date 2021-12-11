@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 
 import { TargetPageStoreData } from './client-store-listener';
@@ -44,22 +45,57 @@ export class FocusChangeHandler {
         );
     }
 
-    private getCardResultTarget(storeData: TargetPageStoreData): string[] | null {
-        if (
-            storeData.cardSelectionStoreData.focusedResultUid == null ||
-            isEmpty(storeData.unifiedScanResultStoreData.results)
-        ) {
-            return null;
-        }
+    private automatedChecksDataIsPopulated(storeData: TargetPageStoreData): boolean {
+        return (
+            storeData.cardSelectionStoreData.focusedResultUid !== null &&
+            !isEmpty(storeData.unifiedScanResultStoreData.results)
+        );
+    }
 
+    private needsReviewDataIsPopulated(storeData: TargetPageStoreData): boolean {
+        return (
+            storeData.needsReviewCardSelectionStoreData.focusedResultUid !== null &&
+            !isEmpty(storeData.needsReviewScanResultStoreData.results)
+        );
+    }
+
+    private findAutomatedChecksFocusedResult(storeData: TargetPageStoreData): UnifiedResult | null {
         const focusedResult = storeData.unifiedScanResultStoreData.results.find(
             result => result.uid === storeData.cardSelectionStoreData.focusedResultUid,
         );
-
-        if (focusedResult == null) {
-            throw new Error('focused result was not found');
+        if (focusedResult != null) {
+            return focusedResult;
         }
 
-        return focusedResult.identifiers.identifier.split(';');
+        throw new Error('focused result was not found');
+    }
+
+    private findNeedsReviewFocusedResult(storeData: TargetPageStoreData): UnifiedResult | null {
+        const focusedResult = storeData.needsReviewScanResultStoreData.results.find(
+            result => result.uid === storeData.needsReviewCardSelectionStoreData.focusedResultUid,
+        );
+
+        if (focusedResult !== null) {
+            return focusedResult;
+        }
+
+        throw new Error('focused result was not found');
+    }
+
+    private getTargetFromUnifiedResult(UnifiedResult: UnifiedResult): string[] | null {
+        return UnifiedResult.identifiers.identifier.split(';');
+    }
+
+    private getCardResultTarget(storeData: TargetPageStoreData): string[] | null {
+        if (this.automatedChecksDataIsPopulated(storeData)) {
+            return this.getTargetFromUnifiedResult(
+                this.findAutomatedChecksFocusedResult(storeData),
+            );
+        }
+        if (this.needsReviewDataIsPopulated(storeData)) {
+            return this.getTargetFromUnifiedResult(this.findNeedsReviewFocusedResult(storeData));
+        }
+
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TestMode } from 'common/configs/test-mode';
@@ -46,6 +47,7 @@ export class ActionCreator {
     };
     private inspectActions: InspectActions;
     private cardSelectionActions: CardSelectionActions;
+    private needsReviewCardSelectionActions: NeedsReviewCardSelectionActions;
     private unifiedScanResultActions: UnifiedScanResultActions;
     private sidePanelActions: SidePanelActions;
 
@@ -63,6 +65,7 @@ export class ActionCreator {
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
         this.cardSelectionActions = actionHub.cardSelectionActions;
+        this.needsReviewCardSelectionActions = actionHub.needsReviewCardSelectionActions;
         this.unifiedScanResultActions = actionHub.scanResultActions;
         this.sidePanelActions = actionHub.sidePanelActions;
     }
@@ -270,6 +273,7 @@ export class ActionCreator {
     private onScrollRequested = (): void => {
         this.visualizationActions.scrollRequested.invoke(null);
         this.cardSelectionActions.resetFocusedIdentifier.invoke(null);
+        this.needsReviewCardSelectionActions.resetFocusedIdentifier.invoke(null);
     };
 
     private onDetailsViewOpen = async (
