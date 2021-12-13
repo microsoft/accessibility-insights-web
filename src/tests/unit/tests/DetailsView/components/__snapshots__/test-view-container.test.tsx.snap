@@ -2,11 +2,18 @@
 
 exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot with no testViewOverrides 1`] = `
 <AdhocIssuesTestView
+  cardSelectionMessageCreator={Object {}}
   configuration={
     Object {
       "key": "configStub",
       "testViewOverrides": undefined,
       "testViewType": "AdhocFailure",
+    }
+  }
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
     }
   }
   instancesSection={[Function]}
@@ -29,6 +36,7 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
 
 exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot with testViewOverrides 1`] = `
 <AdhocIssuesTestView
+  cardSelectionMessageCreator={Object {}}
   configuration={
     Object {
       "key": "configStub",
@@ -40,6 +48,12 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
     }
   }
   content="stub content page component \\"content\\""
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
+    }
+  }
   guidance="stub content page component \\"guidance\\""
   instancesSection={[Function]}
   selectedTest={-1}
@@ -61,11 +75,18 @@ exports[`TestViewContainer for testViewType=AdhocFailure renders per snapshot wi
 
 exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapshot with no testViewOverrides 1`] = `
 <AdhocIssuesTestView
+  cardSelectionMessageCreator={Object {}}
   configuration={
     Object {
       "key": "configStub",
       "testViewOverrides": undefined,
       "testViewType": "AdhocNeedsReview",
+    }
+  }
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
     }
   }
   instancesSection={[Function]}
@@ -88,6 +109,7 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
 
 exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapshot with testViewOverrides 1`] = `
 <AdhocIssuesTestView
+  cardSelectionMessageCreator={Object {}}
   configuration={
     Object {
       "key": "configStub",
@@ -99,6 +121,12 @@ exports[`TestViewContainer for testViewType=AdhocNeedsReview renders per snapsho
     }
   }
   content="stub content page component \\"content\\""
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
+    }
+  }
   guidance="stub content page component \\"guidance\\""
   instancesSection={[Function]}
   selectedTest={-1}
@@ -125,6 +153,12 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
       "key": "configStub",
       "testViewOverrides": undefined,
       "testViewType": "AdhocStatic",
+    }
+  }
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
     }
   }
   selectedTest={-1}
@@ -157,6 +191,12 @@ exports[`TestViewContainer for testViewType=AdhocStatic renders per snapshot wit
     }
   }
   content="stub content page component \\"content\\""
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
+    }
+  }
   guidance="stub content page component \\"guidance\\""
   selectedTest={-1}
   someParentProp="parent-prop"
@@ -186,6 +226,12 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
           "testViewType": "AdhocTabStops",
         }
       }
+      deps={
+        Object {
+          "automatedChecksCardSelectionMessageCreator": Object {},
+          "needsReviewCardSelectionMessageCreator": Object {},
+        }
+      }
       selectedTest={-1}
       someParentProp="parent-prop"
       visualizationConfigurationFactory={
@@ -209,6 +255,12 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
           "key": "configStub",
           "testViewOverrides": undefined,
           "testViewType": "AdhocTabStops",
+        }
+      }
+      deps={
+        Object {
+          "automatedChecksCardSelectionMessageCreator": Object {},
+          "needsReviewCardSelectionMessageCreator": Object {},
         }
       }
       selectedTest={-1}
@@ -246,6 +298,12 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
         }
       }
       content="stub content page component \\"content\\""
+      deps={
+        Object {
+          "automatedChecksCardSelectionMessageCreator": Object {},
+          "needsReviewCardSelectionMessageCreator": Object {},
+        }
+      }
       guidance="stub content page component \\"guidance\\""
       selectedTest={-1}
       someParentProp="parent-prop"
@@ -276,6 +334,12 @@ exports[`TestViewContainer for testViewType=AdhocTabStops renders per snapshot w
         }
       }
       content="stub content page component \\"content\\""
+      deps={
+        Object {
+          "automatedChecksCardSelectionMessageCreator": Object {},
+          "needsReviewCardSelectionMessageCreator": Object {},
+        }
+      }
       guidance="stub content page component \\"guidance\\""
       selectedTest={-1}
       someParentProp="parent-prop"
@@ -304,6 +368,12 @@ exports[`TestViewContainer for testViewType=Assessment renders per snapshot with
       "key": "configStub",
       "testViewOverrides": undefined,
       "testViewType": "Assessment",
+    }
+  }
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
     }
   }
   selectedTest={-1}
@@ -336,6 +406,12 @@ exports[`TestViewContainer for testViewType=Assessment renders per snapshot with
     }
   }
   content="stub content page component \\"content\\""
+  deps={
+    Object {
+      "automatedChecksCardSelectionMessageCreator": Object {},
+      "needsReviewCardSelectionMessageCreator": Object {},
+    }
+  }
   guidance="stub content page component \\"guidance\\""
   selectedTest={-1}
   someParentProp="parent-prop"

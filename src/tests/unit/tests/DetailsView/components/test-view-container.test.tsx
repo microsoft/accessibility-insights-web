@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TestViewType } from 'common/types/test-view-type';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -36,6 +38,12 @@ describe('TestViewContainer', () => {
             } as VisualizationConfigurationFactory;
 
             props = {
+                deps: {
+                    automatedChecksCardSelectionMessageCreator:
+                        {} as AutomatedChecksCardSelectionMessageCreator,
+                    needsReviewCardSelectionMessageCreator:
+                        {} as NeedsReviewCardSelectionMessageCreator,
+                },
                 someParentProp: 'parent-prop',
                 visualizationConfigurationFactory: configFactoryStub,
                 selectedTest,

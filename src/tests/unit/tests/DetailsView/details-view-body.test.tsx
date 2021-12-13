@@ -113,7 +113,7 @@ describe('DetailsViewBody', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-                cardsViewData: {
+                automatedChecksCardsViewData: {
                     cards: exampleUnifiedStatusResults,
                     visualHelperEnabled: true,
                     allCardsCollapsed: true,

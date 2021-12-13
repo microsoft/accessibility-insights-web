@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CommonInstancesSectionProps } from 'common/components/cards/common-instances-section-props';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -25,6 +26,7 @@ export interface DetailsListIssuesViewProps {
     cardsViewData: CardsViewModel;
     instancesSection: ReactFCWithDisplayName<CommonInstancesSectionProps>;
     selectedTest: VisualizationType;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
@@ -56,6 +58,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>(
                 cardsViewData={props.cardsViewData}
                 instancesSection={props.instancesSection}
                 visualizationStoreData={props.visualizationStoreData}
+                cardSelectionMessageCreator={props.cardSelectionMessageCreator}
             />
         );
     },

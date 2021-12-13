@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 import { OutcomeCounter } from 'reports/components/outcome-counter';
@@ -32,6 +33,7 @@ export type ResultSectionContentProps = {
     allCardsCollapsed: boolean;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
@@ -50,7 +52,6 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
         if (results.length === 0) {
             return <NoFailedInstancesCongrats outcomeType={outcomeType} deps={props.deps} />;
         }
-
         return (
             <>
                 <deps.cardsVisualizationModifierButtons {...props} />
@@ -63,6 +64,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                     targetAppInfo={targetAppInfo}
                     outcomeCounter={outcomeCounter}
                     headingLevel={headingLevel}
+                    cardSelectionMessageCreator={props.cardSelectionMessageCreator}
                 />
             </>
         );

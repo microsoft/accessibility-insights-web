@@ -7,6 +7,7 @@ import {
 } from 'common/components/cards/instance-details-group';
 import { FixInstructionProcessor } from 'common/components/fix-instruction-processor';
 import { RecommendColor } from 'common/components/recommend-color';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardRuleResult } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -28,6 +29,7 @@ describe('InstanceDetailsGroup', () => {
             rule: rule,
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
+            cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
         };
 
         const wrapper = shallow(<InstanceDetailsGroup {...props} />);

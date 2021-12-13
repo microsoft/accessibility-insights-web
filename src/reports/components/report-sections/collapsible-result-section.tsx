@@ -13,7 +13,6 @@ import { RulesOnly, RulesOnlyDeps, RulesOnlyProps } from './rules-only';
 
 export type CollapsibleResultSectionDeps = {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
 } & RulesOnlyDeps;
 
 export type CollapsibleResultSectionProps = RulesOnlyProps &
@@ -21,12 +20,13 @@ export type CollapsibleResultSectionProps = RulesOnlyProps &
         deps: CollapsibleResultSectionDeps;
         containerId: string;
         containerClassName: string;
+        cardSelectionMessageCreator: CardSelectionMessageCreator;
     };
 
 export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
     'CollapsibleResultSection',
     props => {
-        const { containerClassName, containerId, deps } = props;
+        const { containerClassName, containerId, deps, cardSelectionMessageCreator } = props;
         const CollapsibleContent = deps.collapsibleControl({
             id: containerId,
             header: <ResultSectionTitle {...props} titleSize="title" />,
@@ -34,7 +34,7 @@ export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>(
             headingLevel: 2,
             deps: null,
             onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
-                deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(containerId, event);
+                cardSelectionMessageCreator.toggleRuleExpandCollapse(containerId, event);
             },
         });
 

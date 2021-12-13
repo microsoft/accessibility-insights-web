@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import classNames from 'classnames';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
@@ -19,7 +20,6 @@ import {
     CardRowDeps,
     PropertyConfiguration,
 } from '../../../common/configs/unified-result-property-configurations';
-import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
 import {
     StoredInstancePropertyBag,
     TargetAppData,
@@ -32,7 +32,6 @@ export const instanceCardAutomationId = 'instance-card';
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
-    cardSelectionMessageCreator: CardSelectionMessageCreator;
 } & CardRowDeps &
     InstanceDetailsFooterDeps;
 
@@ -43,10 +42,18 @@ export type InstanceDetailsProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
-    const { result, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
+    const {
+        result,
+        deps,
+        userConfigurationStoreData,
+        rule,
+        targetAppInfo,
+        cardSelectionMessageCreator,
+    } = props;
     const [cardFocused, setCardFocus] = React.useState(false);
 
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
@@ -65,7 +72,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const toggleSelectHandler = (event: React.SyntheticEvent): void => {
         event.stopPropagation();
-        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
+        cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
     };
 
     const hiddenButton = React.useRef(null);
