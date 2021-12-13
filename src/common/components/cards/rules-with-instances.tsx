@@ -23,7 +23,6 @@ export const ruleGroupAutomationId = 'cards-rule-group';
 export type RulesWithInstancesDeps = RuleContentDeps &
     CollapsibleComponentCardsDeps & {
         collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
-        cardSelectionMessageCreator: CardSelectionMessageCreator;
     };
 
 export type RulesWithInstancesProps = {
@@ -35,6 +34,7 @@ export type RulesWithInstancesProps = {
     targetAppInfo: TargetAppData;
     outcomeCounter: OutcomeCounter;
     headingLevel: number;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 };
 
 export const ruleDetailsGroupAutomationId = 'rule-details-group';
@@ -50,6 +50,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
         targetAppInfo,
         outcomeCounter,
         headingLevel,
+        cardSelectionMessageCreator,
     }) => {
         const getCollapsibleComponentProps = (
             rule: CardRuleResult,
@@ -75,6 +76,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         fixInstructionProcessor={fixInstructionProcessor}
                         userConfigurationStoreData={userConfigurationStoreData}
                         targetAppInfo={targetAppInfo}
+                        cardSelectionMessageCreator={cardSelectionMessageCreator}
                     />
                 ),
                 containerAutomationId: ruleGroupAutomationId,
@@ -83,7 +85,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 headingLevel,
                 deps: deps,
                 onExpandToggle: (event: React.MouseEvent<HTMLDivElement>) => {
-                    deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(rule.id, event);
+                    cardSelectionMessageCreator.toggleRuleExpandCollapse(rule.id, event);
                 },
                 isExpanded: rule.isExpanded,
             };

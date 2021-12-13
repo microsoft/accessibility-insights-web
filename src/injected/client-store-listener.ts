@@ -4,6 +4,8 @@ import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
@@ -16,11 +18,13 @@ export interface TargetPageStoreData {
     tabStoreData: TabStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    needsReviewScanResultStoreData: NeedsReviewScanResultStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     assessmentStoreData: AssessmentStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
+    needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
 }
 
 export class ClientStoreListener {

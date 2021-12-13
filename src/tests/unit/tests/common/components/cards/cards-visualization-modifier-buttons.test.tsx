@@ -5,15 +5,14 @@ import {
     ExpandCollapseOnlyModifierButtons,
     ExpandCollapseVisualHelperModifierButtons,
 } from 'common/components/cards/cards-visualization-modifier-buttons';
-import { ExpandCollapseAllButtonDeps } from 'common/components/cards/expand-collapse-all-button';
-import { VisualHelperToggleDeps } from 'common/components/cards/visual-helper-toggle';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 const stubProps: CardsVisualizationModifierButtonsProps = {
-    deps: {} as VisualHelperToggleDeps & ExpandCollapseAllButtonDeps,
     visualHelperEnabled: true,
     allCardsCollapsed: true,
+    cardSelectionMessageCreator: {} as CardSelectionMessageCreator,
 };
 
 describe('ExpandCollapseVisualHelperModifierButtons', () => {

@@ -94,6 +94,7 @@ exports[`IssuesTableTest not scanning, issuesEnabled is true 1`] = `
     className="issuesTableContent"
   >
     <SomeInstancesSection
+      cardSelectionMessageCreator={Object {}}
       cardsViewData={
         Object {
           "allCardsCollapsed": true,

@@ -33,7 +33,7 @@ describe('FocusChangeHandler', () => {
         );
     });
 
-    test('onStoreChange: no target in visualizationStoreData OR cardSelectionStoreData', () => {
+    test('onStoreChange: no target in visualizationStoreData, cardSelectionStoreData, or needsReviewCardSelectionStoreData', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
@@ -42,6 +42,12 @@ describe('FocusChangeHandler', () => {
                 results: [{}],
             },
             cardSelectionStoreData: {
+                focusedResultUid: null,
+            },
+            needsReviewScanResultStoreData: {
+                results: [{}],
+            },
+            needsReviewCardSelectionStoreData: {
                 focusedResultUid: null,
             },
         } as TargetPageStoreData;
@@ -168,6 +174,52 @@ describe('FocusChangeHandler', () => {
         scrollingControllerMock
             .setup(scm => scm.processRequest(It.isAny()))
             .verifiable(Times.never());
+
+        testSubject.handleFocusChangeWithStoreData(storeData);
+
+        targetPageActionMessageCreatorMock.verifyAll();
+        scrollingControllerMock.verifyAll();
+    });
+
+    test('onStoreChange: new target from needs review card selection is not null, matches a result, and different from old target', () => {
+        const storeData: TargetPageStoreData = {
+            visualizationStoreData: {
+                focusedTarget: null,
+            },
+            unifiedScanResultStoreData: {
+                results: [
+                    {
+                        uid: sampleUid,
+                        identifiers: {
+                            identifier: sampleTarget.join(';'),
+                        },
+                    },
+                ],
+            },
+            cardSelectionStoreData: {
+                focusedResultUid: null,
+            },
+            needsReviewScanResultStoreData: {
+                results: [
+                    {
+                        uid: sampleUid,
+                        identifiers: {
+                            identifier: sampleTarget.join(';'),
+                        },
+                    },
+                ],
+            },
+            needsReviewCardSelectionStoreData: {
+                focusedResultUid: sampleUid,
+            },
+        } as TargetPageStoreData;
+
+        targetPageActionMessageCreatorMock
+            .setup(acm => acm.scrollRequested())
+            .verifiable(Times.once());
+        scrollingControllerMock
+            .setup(scm => scm.processRequest(sampleMessage))
+            .verifiable(Times.once());
 
         testSubject.handleFocusChangeWithStoreData(storeData);
 

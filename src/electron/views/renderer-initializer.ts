@@ -40,7 +40,7 @@ import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { isResultHighlightUnavailableUnified } from 'common/is-result-highlight-unavailable';
 import { createDefaultLogger } from 'common/logging/default-logger';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
 import { DropdownActionMessageCreator } from 'common/message-creators/dropdown-action-message-creator';
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
@@ -397,11 +397,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
         );
         detailsViewActionCreator.registerCallback();
 
-        const cardSelectionMessageCreator = new CardSelectionMessageCreator(
-            dispatcher,
-            telemetryDataFactory,
-            TelemetryEventSource.ElectronResultsView,
-        );
+        const automatedChecksCardSelectionMessageCreator =
+            new AutomatedChecksCardSelectionMessageCreator(
+                dispatcher,
+                telemetryDataFactory,
+                TelemetryEventSource.ElectronResultsView,
+            );
 
         const windowFrameListener = new WindowFrameListener(
             windowStateActionCreator,
@@ -500,7 +501,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch, {
             getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
 
             userConfigMessageCreator: userConfigMessageCreator,
-            cardSelectionMessageCreator,
+            cardSelectionMessageCreator: automatedChecksCardSelectionMessageCreator,
 
             detailsViewActionMessageCreator,
             issueFilingActionMessageCreator: issueFilingActionMessageCreator,

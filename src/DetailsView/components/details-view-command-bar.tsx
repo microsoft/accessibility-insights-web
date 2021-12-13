@@ -6,10 +6,7 @@ import { VisualizationConfigurationFactory } from 'common/configs/visualization-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
-import {
-    ScanMetadata,
-    UnifiedScanResultStoreData,
-} from 'common/types/store-data/unified-data-interface';
+import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -88,8 +85,8 @@ export interface DetailsViewCommandBarProps {
     assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationStoreData: VisualizationStoreData;
-    unifiedScanResultStoreData: UnifiedScanResultStoreData;
-    cardsViewData: CardsViewModel;
+    automatedChecksCardsViewData: CardsViewModel;
+    needsReviewCardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanMetadata: ScanMetadata;
     narrowModeStatus: NarrowModeStatus;
@@ -209,7 +206,6 @@ export class DetailsViewCommandBar extends React.Component<
         const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: this.props.visualizationConfigurationFactory,
             selectedTest: this.props.selectedTest,
-            unifiedScanResultStoreData: this.props.unifiedScanResultStoreData,
             visualizationStoreData: this.props.visualizationStoreData,
             featureFlagStoreData: this.props.featureFlagStoreData,
         };

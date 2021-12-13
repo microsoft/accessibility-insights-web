@@ -20,6 +20,7 @@ import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, Times } from 'typemoq';
 
 interface UnifiedResultSenderTestDefinition {
+    expectedMessageType: string;
     getMethodToTest: (testSubject: UnifiedResultSender) => PostResolveCallback;
     getInputResults: () => ScanResults;
     setupConverterMock: (
@@ -67,6 +68,7 @@ describe('sendConvertedResults', () => {
     });
 
     const automatedChecksTest: UnifiedResultSenderTestDefinition = {
+        expectedMessageType: Messages.UnifiedScan.ScanCompleted,
         getMethodToTest: testSubject => testSubject.sendAutomatedChecksResults,
         getInputResults: () => axeInputResults,
         setupConverterMock: (mock: IMock<ConvertScanResultsToUnifiedResults>, input: ScanResults) =>
@@ -79,6 +81,7 @@ describe('sendConvertedResults', () => {
     };
 
     const needsReviewTest: UnifiedResultSenderTestDefinition = {
+        expectedMessageType: Messages.NeedsReviewScan.ScanCompleted,
         getMethodToTest: testSubject => testSubject.sendNeedsReviewResults,
         getInputResults: () => filteredAxeInputResults,
         setupConverterMock: (mock: IMock<ConvertScanResultsToUnifiedResults>, input: ScanResults) =>
@@ -147,7 +150,7 @@ describe('sendConvertedResults', () => {
                     };
 
                     const expectedMessage: Message = {
-                        messageType: Messages.UnifiedScan.ScanCompleted,
+                        messageType: testDefinition.expectedMessageType,
                         payload: expectedPayload,
                     };
 
