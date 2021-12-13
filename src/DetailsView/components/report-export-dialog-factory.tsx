@@ -77,7 +77,6 @@ export function getReportExportDialogForFastPass(
     const shouldShowReportExportButtonProps: ShouldShowReportExportButtonProps = {
         visualizationConfigurationFactory: props.visualizationConfigurationFactory,
         selectedTest: props.selectedTest,
-        unifiedScanResultStoreData: props.unifiedScanResultStoreData,
         visualizationStoreData: props.visualizationStoreData,
         featureFlagStoreData: props.featureFlagStoreData,
     };
@@ -96,7 +95,7 @@ export function getReportExportDialogForFastPass(
         reportGenerator.generateFastPassHtmlReport(
             {
                 results: {
-                    automatedChecks: props.cardsViewData,
+                    automatedChecks: props.automatedChecksCardsViewData,
                     tabStops: props.tabStopRequirementData,
                 },
                 description,

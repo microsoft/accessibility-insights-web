@@ -75,7 +75,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
         const selectedTest =
             selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const cardsViewData = props.deps.getCardViewData(
+        const automatedChecksCardsViewData = props.deps.getCardViewData(
             props.storeState.unifiedScanResultStoreData.rules,
             props.storeState.unifiedScanResultStoreData.results,
             props.deps.getCardSelectionViewData(
@@ -87,6 +87,16 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
 
         const tabStopRequirementData =
             props.storeState.visualizationScanResultStoreData.tabStops.requirements;
+
+        const needsReviewCardsViewData = props.deps.getCardViewData(
+            props.storeState.needsReviewScanResultStoreData.rules,
+            props.storeState.needsReviewScanResultStoreData.results,
+            props.deps.getCardSelectionViewData(
+                props.storeState.needsReviewCardSelectionStoreData,
+                props.storeState.needsReviewScanResultStoreData,
+                props.deps.isResultHighlightUnavailable,
+            ),
+        );
 
         const targetAppInfo = {
             name: props.storeState.tabStoreData.title,
@@ -126,8 +136,8 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
-                cardsViewData={cardsViewData}
-                cardSelectionStoreData={storeState.cardSelectionStoreData}
+                automatedChecksCardsViewData={automatedChecksCardsViewData}
+                needsReviewCardsViewData={needsReviewCardsViewData}
                 scanIncompleteWarnings={
                     storeState.unifiedScanResultStoreData.scanIncompleteWarnings
                 }

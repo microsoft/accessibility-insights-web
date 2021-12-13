@@ -4,6 +4,8 @@ import { Header, HeaderProps } from 'common/components/header';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { IsResultHighlightUnavailable } from 'common/is-result-highlight-unavailable';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { DetailsViewContentWithLocalState } from 'DetailsView/components/details-view-content-with-local-state';
 import {
     NarrowModeDetector,
@@ -83,6 +85,9 @@ export interface DetailsViewContainerState {
     tabStoreData: TabStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    cardSelectionStoreData: CardSelectionStoreData;
+    needsReviewScanResultStoreData: NeedsReviewScanResultStoreData;
+    needsReviewCardSelectionStoreData: NeedsReviewCardSelectionStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewStoreData;
     assessmentStoreData: AssessmentStoreData;
@@ -91,7 +96,6 @@ export interface DetailsViewContainerState {
     userConfigurationStoreData: UserConfigurationStoreData;
     selectedDetailsView: VisualizationType;
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
-    cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
     tabStopsViewStoreData: TabStopsViewStoreData;
 }

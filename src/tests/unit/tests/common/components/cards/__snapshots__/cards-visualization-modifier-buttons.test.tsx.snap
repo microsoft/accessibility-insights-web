@@ -6,7 +6,7 @@ exports[`ExpandCollapseOnlyModifierButtons renders per snapshot 1`] = `
 >
   <ExpandCollapseAllButton
     allCardsCollapsed={true}
-    deps={Object {}}
+    cardSelectionMessageCreator={Object {}}
     visualHelperEnabled={true}
   />
 </div>
@@ -18,12 +18,12 @@ exports[`ExpandCollapseVisualHelperModifierButtons renders per snapshot 1`] = `
 >
   <ExpandCollapseAllButton
     allCardsCollapsed={true}
-    deps={Object {}}
+    cardSelectionMessageCreator={Object {}}
     visualHelperEnabled={true}
   />
   <VisualHelperToggle
     allCardsCollapsed={true}
-    deps={Object {}}
+    cardSelectionMessageCreator={Object {}}
     visualHelperEnabled={true}
   />
 </div>

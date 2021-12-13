@@ -35,7 +35,7 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     enableTest: (data, _) => (data.adhoc[tabStopsTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: (data, featureflagStoreData) =>
+    shouldShowExportReport: featureflagStoreData =>
         featureflagStoreData[FeatureFlags.newTabStopsDetailsView],
     displayableData: {
         title: 'Tab stops',

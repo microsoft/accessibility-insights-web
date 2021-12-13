@@ -85,14 +85,7 @@ exports[` render renders normally 1`] = `
         "resultDescription": "",
       }
     }
-    cardSelectionStoreData={
-      Object {
-        "focusedResultUid": null,
-        "rules": Object {},
-        "visualHelperEnabled": false,
-      }
-    }
-    cardsViewData={Object {}}
+    automatedChecksCardsViewData={Object {}}
     deps={
       Object {
         "detailsViewActionMessageCreator": proxy {
@@ -183,6 +176,7 @@ exports[` render renders normally 1`] = `
         "isVirtualKeyboardCollapsed": false,
       }
     }
+    needsReviewCardsViewData={Object {}}
     pathSnippetStoreData={
       Object {
         "path": null,
@@ -262,22 +256,6 @@ exports[` render renders normally 1`] = `
         "isPageHidden": false,
         "title": "DetailsViewContainerTest title",
         "url": "http://detailsViewContainerTest/url/",
-      }
-    }
-    unifiedScanResultStoreData={
-      Object {
-        "results": Array [],
-        "rules": Array [],
-        "targetAppInfo": Object {
-          "name": "DetailsViewContainerTest title",
-          "url": "http://detailsViewContainerTest/url/",
-        },
-        "timestamp": "timestamp",
-        "toolInfo": Object {
-          "applicationProperties": Object {
-            "name": "some app",
-          },
-        },
       }
     }
     userConfigurationStoreData={

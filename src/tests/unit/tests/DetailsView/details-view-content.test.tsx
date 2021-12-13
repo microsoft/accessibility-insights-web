@@ -176,7 +176,8 @@ describe(DetailsViewContent, () => {
                 .setVisualizationStoreData(visualizationStoreData)
                 .setDetailsViewStoreData(detailsViewState)
                 .setUserConfigurationStoreData(userConfigurationStoreData)
-                .setUnifiedScanResultStoreData(unifiedScanResultStoreData);
+                .setUnifiedScanResultStoreData(unifiedScanResultStoreData)
+                .setNeedsReviewScanResultStoreData(unifiedScanResultStoreData);
 
             const storesHubMock = createStoresHubMock(storeMocks);
 
@@ -211,7 +212,7 @@ describe(DetailsViewContent, () => {
                     ),
                 )
                 .returns(() => cardSelectionViewData)
-                .verifiable(Times.once());
+                .verifiable(Times.exactly(2));
 
             const cardsViewData: CardsViewModel = {} as any;
             getCardViewDataMock
@@ -270,6 +271,9 @@ describe(DetailsViewContent, () => {
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                         unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
+                        needsReviewScanResultStoreData: storeMocks.needsReviewScanResultStoreData,
+                        needsReviewCardSelectionStoreData:
+                            storeMocks.needsReviewCardSelectionStoreData,
                         cardSelectionStoreData: storeMocks.cardSelectionStoreData,
                         tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
                     }
@@ -328,9 +332,11 @@ describe(DetailsViewContent, () => {
             visualizationScanResultStoreData: storeMocks.visualizationScanResultsStoreData,
             scopingPanelStateStoreData: storeMocks.scopingSelectorsData,
             unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
+            needsReviewScanResultStoreData: storeMocks.needsReviewScanResultStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
             cardSelectionStoreData: storeMocks.cardSelectionStoreData,
+            needsReviewCardSelectionStoreData: storeMocks.needsReviewCardSelectionStoreData,
             permissionsStateStoreData: storeMocks.permissionsStateStoreData,
             tabStopsViewStoreData: storeMocks.tabStopsViewStoreData,
         };

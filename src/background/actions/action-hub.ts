@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { InjectionActions } from 'background/actions/injection-actions';
+import { NeedsReviewCardSelectionActions } from 'background/actions/needs-review-card-selection-actions';
+import { NeedsReviewScanResultActions } from 'background/actions/needs-review-scan-result-actions';
 import { SidePanelActions } from 'background/actions/side-panel-actions';
 import { TabStopRequirementActions } from 'background/actions/tab-stop-requirement-actions';
 import { TabActions } from '../actions/tab-actions';
@@ -32,6 +34,8 @@ export class ActionHub {
     public cardSelectionActions: CardSelectionActions;
     public injectionActions: InjectionActions;
     public sidePanelActions: SidePanelActions;
+    public needsReviewScanResultActions: NeedsReviewScanResultActions;
+    public needsReviewCardSelectionActions: NeedsReviewCardSelectionActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
@@ -49,5 +53,7 @@ export class ActionHub {
         this.cardSelectionActions = new CardSelectionActions();
         this.injectionActions = new InjectionActions();
         this.sidePanelActions = new SidePanelActions();
+        this.needsReviewScanResultActions = new NeedsReviewScanResultActions();
+        this.needsReviewCardSelectionActions = new NeedsReviewCardSelectionActions();
     }
 }

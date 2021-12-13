@@ -8,6 +8,8 @@ import { isResultHighlightUnavailableWeb } from 'common/is-result-highlight-unav
 import { createDefaultLogger } from 'common/logging/default-logger';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { NeedsReviewCardSelectionStoreData } from 'common/types/store-data/needs-review-card-selection-store-data';
+import { NeedsReviewScanResultStoreData } from 'common/types/store-data/needs-review-scan-result-data';
 import { PermissionsStateStoreData } from 'common/types/store-data/permissions-state-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -25,7 +27,6 @@ import { ScanIncompleteWarningDetector } from 'injected/scan-incomplete-warning-
 import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
-
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -91,6 +92,8 @@ export class MainWindowInitializer extends WindowInitializer {
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
     private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
     private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
+    private needsReviewScanResultStoreProxy: StoreProxy<NeedsReviewScanResultStoreData>;
+    private needsReviewCardSelectionStoreProxy: StoreProxy<NeedsReviewCardSelectionStoreData>;
     private permissionsStateStoreProxy: StoreProxy<PermissionsStateStoreData>;
 
     public async initialize(): Promise<void> {
@@ -145,6 +148,14 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.CardSelectionStore],
             this.browserAdapter,
         );
+        this.needsReviewScanResultStoreProxy = new StoreProxy<NeedsReviewScanResultStoreData>(
+            StoreNames[StoreNames.NeedsReviewScanResultStore],
+            this.browserAdapter,
+        );
+        this.needsReviewCardSelectionStoreProxy = new StoreProxy<NeedsReviewCardSelectionStoreData>(
+            StoreNames[StoreNames.NeedsReviewCardSelectionStore],
+            this.browserAdapter,
+        );
         this.permissionsStateStoreProxy = new StoreProxy<PermissionsStateStoreData>(
             StoreNames[StoreNames.PermissionsStateStore],
             this.browserAdapter,
@@ -175,6 +186,8 @@ export class MainWindowInitializer extends WindowInitializer {
             this.pathSnippetStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.needsReviewScanResultStoreProxy,
+            this.needsReviewCardSelectionStoreProxy,
             this.permissionsStateStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
@@ -238,6 +251,8 @@ export class MainWindowInitializer extends WindowInitializer {
             this.userConfigStoreProxy,
             this.unifiedScanResultStoreProxy,
             this.cardSelectionStoreProxy,
+            this.needsReviewScanResultStoreProxy,
+            this.needsReviewCardSelectionStoreProxy,
             this.permissionsStateStoreProxy,
         ]);
 

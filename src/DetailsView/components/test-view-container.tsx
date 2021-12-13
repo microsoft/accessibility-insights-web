@@ -4,6 +4,8 @@ import { FailedInstancesSection } from 'common/components/cards/failed-instances
 import { NeedsReviewInstancesSection } from 'common/components/cards/needs-review-instances-section';
 import { FlaggedComponent } from 'common/components/flagged-component';
 import { FeatureFlags } from 'common/feature-flags';
+import { AutomatedChecksCardSelectionMessageCreator } from 'common/message-creators/automated-checks-card-selection-message-creator';
+import { NeedsReviewCardSelectionMessageCreator } from 'common/message-creators/needs-review-card-selection-message-creator';
 import { ScanIncompleteWarningId } from 'common/types/scan-incomplete-warnings';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import {
@@ -39,6 +41,8 @@ import { TestViewDeps } from './test-view';
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    automatedChecksCardSelectionMessageCreator: AutomatedChecksCardSelectionMessageCreator;
+    needsReviewCardSelectionMessageCreator: NeedsReviewCardSelectionMessageCreator;
 } & TestViewDeps &
     OverviewContainerDeps &
     AdhocTabStopsTestViewDeps;
@@ -59,7 +63,8 @@ export interface TestViewContainerProps {
     issuesTableHandler: IssuesTableHandler;
     userConfigurationStoreData: UserConfigurationStoreData;
     scanMetadata: ScanMetadata;
-    cardsViewData: CardsViewModel;
+    automatedChecksCardsViewData: CardsViewModel;
+    needsReviewCardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     scanIncompleteWarnings: ScanIncompleteWarningId[];
     tabStopRequirementData: TabStopRequirementState;
@@ -70,16 +75,26 @@ export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContai
         props.selectedTest,
     );
     const testViewProps = { configuration, ...configuration.testViewOverrides, ...props };
+
     switch (configuration.testViewType) {
         case 'AdhocStatic':
             return <AdhocStaticTestView {...testViewProps} />;
         case 'AdhocFailure':
             return (
-                <AdhocIssuesTestView instancesSection={FailedInstancesSection} {...testViewProps} />
+                <AdhocIssuesTestView
+                    instancesSection={FailedInstancesSection}
+                    cardSelectionMessageCreator={
+                        props.deps.automatedChecksCardSelectionMessageCreator
+                    }
+                    cardsViewData={props.automatedChecksCardsViewData}
+                    {...testViewProps}
+                />
             );
         case 'AdhocNeedsReview':
             return (
                 <AdhocIssuesTestView
+                    cardsViewData={props.needsReviewCardsViewData}
+                    cardSelectionMessageCreator={props.deps.needsReviewCardSelectionMessageCreator}
                     instancesSection={NeedsReviewInstancesSection}
                     {...testViewProps}
                 />

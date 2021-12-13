@@ -39,7 +39,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     },
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
-    shouldShowExportReport: (data, featureflagStoreData) =>
+    shouldShowExportReport: featureflagStoreData =>
         featureflagStoreData[FeatureFlags.newTabStopsDetailsView],
     displayableData: {
         title: 'Automated checks',

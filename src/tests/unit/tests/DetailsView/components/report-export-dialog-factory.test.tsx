@@ -92,7 +92,8 @@ describe('ReportExportDialogFactory', () => {
             featureFlagStoreData,
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
-            cardsViewData,
+            automatedChecksCardsViewData: cardsViewData,
+            needsReviewCardsViewData: cardsViewData,
             tabStopRequirementData,
             scanMetadata,
             switcherNavConfiguration,
@@ -104,7 +105,6 @@ describe('ReportExportDialogFactory', () => {
         shouldShowReportExportButtonProps = {
             visualizationConfigurationFactory: props.visualizationConfigurationFactory,
             selectedTest: props.selectedTest,
-            unifiedScanResultStoreData: props.unifiedScanResultStoreData,
             visualizationStoreData: props.visualizationStoreData,
             featureFlagStoreData: props.featureFlagStoreData,
         } as ShouldShowReportExportButtonProps;
