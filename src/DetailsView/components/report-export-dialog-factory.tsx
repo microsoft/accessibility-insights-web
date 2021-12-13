@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
     ReportExportComponent,
@@ -20,6 +21,7 @@ export type ReportExportDialogFactoryProps = CommandBarProps & {
     dismissExportDialog: () => void;
     afterDialogDismissed: () => void;
     featureFlagStoreData?: FeatureFlagStoreData;
+    tabStopRequirementData: TabStopRequirementState;
 };
 
 export function getReportExportDialogForAssessment(

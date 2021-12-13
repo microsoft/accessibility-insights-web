@@ -30,7 +30,7 @@ import { ScopingStoreData } from '../common/types/store-data/scoping-store-data'
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { TabStopRequirementState, VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
+import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
@@ -94,7 +94,6 @@ export interface DetailsViewContainerState {
     cardSelectionStoreData: CardSelectionStoreData;
     permissionsStateStoreData: PermissionsStateStoreData;
     tabStopsViewStoreData: TabStopsViewStoreData;
-    tabStopRequirementData: TabStopRequirementState;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {

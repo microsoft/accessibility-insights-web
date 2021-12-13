@@ -85,6 +85,9 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             ),
         );
 
+        const tabStopRequirementData =
+            props.storeState.visualizationScanResultStoreData.tabStops.requirements;
+
         const targetAppInfo = {
             name: props.storeState.tabStoreData.title,
             url: props.storeState.tabStoreData.url,
@@ -133,7 +136,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
                 unifiedScanResultStoreData={storeState.unifiedScanResultStoreData}
-                tabStopRequirementData={storeState.tabStopRequirementData}
+                tabStopRequirementData={tabStopRequirementData}
             />
         );
     };

@@ -57,7 +57,6 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
 
                 <p>Placeholder for "Tab stops" heading component</p>
                 <ResultsContainer {...props}>
-                
                     <p>Placeholder for results.tabStops rendering</p>
                 </ResultsContainer>
             </ContentContainer>

@@ -6,7 +6,7 @@ import { VisualizationConfiguration } from 'common/configs/visualization-configu
 import { NamedFC } from 'common/react/named-fc';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { TabStopRequirementState, VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
@@ -52,7 +52,6 @@ export interface AdhocTabStopsTestViewProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     guidance?: ContentReference;
     tabStopsViewStoreData: TabStopsViewStoreData;
-    tabStopRequirementData: TabStopRequirementState;
 }
 
 export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
