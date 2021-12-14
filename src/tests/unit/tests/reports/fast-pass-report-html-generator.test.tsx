@@ -8,10 +8,14 @@ import { RecommendColor } from 'common/components/recommend-color';
 import { DateProvider } from 'common/date-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ScanMetadata, ToolData } from 'common/types/store-data/unified-data-interface';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
-import { FastPassReport, FastPassReportProps } from 'reports/components/fast-pass-report';
+import {
+    FastPassReport,
+    FastPassReportDeps,
+    FastPassReportProps,
+} from 'reports/components/fast-pass-report';
 import { ReportCollapsibleContainerControl } from 'reports/components/report-sections/report-collapsible-container';
-import { SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import {
     FastPassReportHtmlGenerator,
     FastPassReportModel,
@@ -31,6 +35,7 @@ describe(FastPassReportHtmlGenerator, () => {
         const recommendColorMock = Mock.ofType(RecommendColor);
         const getPropertyConfigurationStub = (id: string) => null;
         const cardInteractionSupport = noCardInteractionsSupported;
+        const tabStopsFailedCounterMock = Mock.ofType(TabStopsFailedCounter);
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -85,7 +90,8 @@ describe(FastPassReportHtmlGenerator, () => {
                 cardInteractionSupport: cardInteractionSupport,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
-            } as SectionDeps,
+                tabStopsFailedCounter: tabStopsFailedCounterMock.object,
+            } as FastPassReportDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             recommendColor: recommendColorMock.object,
             description,
@@ -112,6 +118,7 @@ describe(FastPassReportHtmlGenerator, () => {
             fixInstructionProcessorMock.object,
             recommendColorMock.object,
             getPropertyConfigurationStub,
+            tabStopsFailedCounterMock.object,
         );
 
         const actual = testObject.generateHtml(model);

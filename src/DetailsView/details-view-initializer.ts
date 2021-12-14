@@ -354,6 +354,7 @@ if (tabId != null) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
             const recommendColor = new RecommendColor();
+            const tabStopsFailedCounter = new TabStopsFailedCounter();
 
             // This is for a soon-to-be-legacy FastPass report format.
             // It should be removed with #1897885.
@@ -376,6 +377,7 @@ if (tabId != null) {
                 fixInstructionProcessor,
                 recommendColor,
                 getPropertyConfiguration,
+                tabStopsFailedCounter,
             );
 
             // Represents the language in which pages are to be displayed
@@ -493,8 +495,6 @@ if (tabId != null) {
                 document,
                 loadAssessmentDataValidator,
             );
-
-            const tabStopsFailedCounter = new TabStopsFailedCounter();
 
             const deps: DetailsViewContainerDeps = {
                 textContent,
