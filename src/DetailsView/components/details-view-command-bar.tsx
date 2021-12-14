@@ -7,6 +7,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { VersionedAssessmentData } from 'common/types/versioned-assessment-data';
 import { VisualizationType } from 'common/types/visualization-type';
@@ -93,6 +94,7 @@ export interface DetailsViewCommandBarProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     selectedTest: VisualizationType;
     featureFlagStoreData: FeatureFlagStoreData;
+    tabStopRequirementData: TabStopRequirementState;
 }
 export class DetailsViewCommandBar extends React.Component<
     DetailsViewCommandBarProps,
