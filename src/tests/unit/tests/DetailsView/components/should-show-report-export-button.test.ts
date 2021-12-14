@@ -51,6 +51,7 @@ describe('ShouldShowReportExportButton', () => {
             switcherNavConfiguration: null,
             scanMetadata: null,
             narrowModeStatus: null,
+            tabStopRequirementData: null,
         } as DetailsViewCommandBarProps;
     }
 

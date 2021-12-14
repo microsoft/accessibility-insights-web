@@ -85,6 +85,9 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
             ),
         );
 
+        const tabStopRequirementData =
+            props.storeState.visualizationScanResultStoreData.tabStops.requirements;
+
         const needsReviewCardsViewData = props.deps.getCardViewData(
             props.storeState.needsReviewScanResultStoreData.rules,
             props.storeState.needsReviewScanResultStoreData.results,
@@ -142,6 +145,7 @@ export const DetailsViewContent = NamedFC<DetailsViewContentProps>('DetailsViewC
                 isSideNavOpen={props.isSideNavOpen}
                 setSideNavOpen={props.setSideNavOpen}
                 narrowModeStatus={props.narrowModeStatus}
+                tabStopRequirementData={tabStopRequirementData}
             />
         );
     };
