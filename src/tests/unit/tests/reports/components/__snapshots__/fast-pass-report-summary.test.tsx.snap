@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FastPassReportSummary renders per the snapshot 1`] = `
+<h2>
+  Summary
+</h2>
+`;

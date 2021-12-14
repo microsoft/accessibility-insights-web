@@ -7,6 +7,7 @@ import { TabStopRequirementState } from 'common/types/store-data/visualization-s
 import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
+import { FastPassReportSummary } from 'reports/components/fast-pass-report-summary';
 import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
 import { BodySection } from 'reports/components/report-sections/body-section';
 import { ContentContainer } from 'reports/components/report-sections/content-container';
@@ -44,6 +45,7 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                 <FastPassTitleSection />
                 <DetailsSection {...props} />
                 <p>Placeholder for combined summary section</p>
+                <FastPassReportSummary />
 
                 <ResultsContainer {...props}>
                     <FastPassResultsTitleSection title="Automated checks" />
