@@ -60,7 +60,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for tab stops visualization toggle (to enable)', () => {
         const actionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.TabStops;
         const tabId = 1;
         const enabled = true;
@@ -81,9 +80,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupSwitchToTab(tabId)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.TABSTOPS_TOGGLE, payload, tabId);
@@ -96,7 +93,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for tab stops visualization toggle (to disabled)', () => {
         const actionName = 'disableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.TabStops;
         const tabId = 1;
         const enabled = false;
@@ -117,9 +113,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, test)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.TABSTOPS_TOGGLE, payload, tabId);
 
@@ -131,7 +125,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for visualization toggle (to enable)', () => {
         const actionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.Headings;
         const tabId = 1;
         const enabled = true;
@@ -152,9 +145,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.HEADINGS_TOGGLE, payload, tabId);
 
@@ -166,7 +157,6 @@ describe('ActionCreatorTest', () => {
 
     test('registerCallback for visualization toggle (to disable)', () => {
         const actionName = 'disableVisualization';
-        const startScanActionName = 'startScan';
         const test = VisualizationType.Headings;
         const tabId = 1;
         const enabled = false;
@@ -187,9 +177,7 @@ describe('ActionCreatorTest', () => {
 
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(actionName, test)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.HEADINGS_TOGGLE, payload, tabId);
 
@@ -291,7 +279,6 @@ describe('ActionCreatorTest', () => {
 
         const updateViewActionName = 'updateSelectedPivotChild';
         const enablingIssuesActionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const enableVisualizationTelemetryPayload: VisualizationTogglePayload = {
             enabled: true,
             test: viewType,
@@ -305,8 +292,6 @@ describe('ActionCreatorTest', () => {
             ])
             .setupActionOnVisualizationActions(updateViewActionName)
             .setupVisualizationActionWithInvokeParameter(updateViewActionName, actionCreatorPayload)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupActionOnVisualizationActions(enablingIssuesActionName)
             .setupVisualizationActionWithInvokeParameter(
                 enablingIssuesActionName,
@@ -740,7 +725,6 @@ describe('ActionCreatorTest', () => {
         };
         const disableActionName = 'disableVisualization';
         const enableActionName = 'enableVisualization';
-        const startScanActionName = 'startScan';
         const rescanVisualization = 'rescanVisualization';
 
         const validator = new ActionCreatorValidator()
@@ -751,11 +735,9 @@ describe('ActionCreatorTest', () => {
             .setupActionOnVisualizationActions(disableActionName)
             .setupActionOnVisualizationActions(rescanVisualization)
             .setupActionOnVisualizationActions(enableActionName)
-            .setupActionOnUnifiedScanResultActions(startScanActionName)
             .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
             .setupVisualizationActionWithInvokeParameter(rescanVisualization, payload.test)
             .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
-            .setupUnifiedScanResultActionWithInvokeParameter(startScanActionName, null)
             .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
 

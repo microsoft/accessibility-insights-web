@@ -16,7 +16,6 @@ import { VisualizationInstanceProcessor } from 'injected/visualization-instance-
 import * as React from 'react';
 
 const issuesTestKey = AdHocTestkeys.Issues;
-const needsReviewTestKey = AdHocTestkeys.NeedsReview;
 
 const issuesRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: null,
@@ -33,10 +32,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     testViewType: 'AdhocFailure',
     getStoreData: data => data.adhoc[issuesTestKey],
-    enableTest: (data, _) => {
-        data.adhoc[issuesTestKey].enabled = true;
-        data.adhoc[needsReviewTestKey].enabled = false;
-    },
+    enableTest: data => (data.adhoc[issuesTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: featureflagStoreData =>

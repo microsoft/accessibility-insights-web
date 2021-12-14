@@ -29,7 +29,6 @@ export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanRes
     protected addActionListeners(): void {
         this.needsReviewScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.needsReviewScanResultActions.scanCompleted.addListener(this.onScanCompleted);
-        this.needsReviewScanResultActions.startScan.addListener(this.onScanStarted);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
@@ -41,11 +40,6 @@ export class NeedsReviewScanResultStore extends BaseStoreImpl<NeedsReviewScanRes
         this.state.scanIncompleteWarnings = payload.scanIncompleteWarnings;
         this.state.screenshotData = payload.screenshotData;
         this.state.platformInfo = payload.platformInfo;
-        this.emitChanged();
-    };
-
-    private onScanStarted = (): void => {
-        this.state = this.getDefaultState();
         this.emitChanged();
     };
 }
