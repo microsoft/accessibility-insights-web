@@ -88,16 +88,6 @@ describe('NeedsReviewScanResultStore Test', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('onScanStarted', () => {
-        const initialState = getDefaultState();
-        const finalState = getDefaultState();
-
-        createStoreForNeedsReviewScanResultActions('startScan').testListenerToBeCalledOnce(
-            initialState,
-            finalState,
-        );
-    });
-
     function getDefaultState(): NeedsReviewScanResultStoreData {
         return createStoreWithNullParams(NeedsReviewScanResultStore).getDefaultState();
     }

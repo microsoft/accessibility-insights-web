@@ -14,7 +14,6 @@ import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const needsReviewTestKey = AdHocTestkeys.NeedsReview;
-const issuesTestKey = AdHocTestkeys.Issues;
 
 const needsReviewRuleAnalyzerConfiguration: RuleAnalyzerConfiguration = {
     rules: [
@@ -38,10 +37,7 @@ export const NeedsReviewAdHocVisualization: VisualizationConfiguration = {
     testMode: TestMode.Adhoc,
     testViewType: 'AdhocNeedsReview',
     getStoreData: data => data.adhoc[needsReviewTestKey],
-    enableTest: data => {
-        data.adhoc[needsReviewTestKey].enabled = true;
-        data.adhoc[issuesTestKey].enabled = false;
-    },
+    enableTest: data => (data.adhoc[needsReviewTestKey].enabled = true),
     disableTest: data => (data.enabled = false),
     getTestStatus: data => data.enabled,
     shouldShowExportReport: () => false,
