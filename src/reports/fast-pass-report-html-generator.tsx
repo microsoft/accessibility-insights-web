@@ -10,11 +10,15 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { ScanMetadata } from 'common/types/store-data/unified-data-interface';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
-import { FastPassReport, FastPassReportProps } from 'reports/components/fast-pass-report';
+import {
+    FastPassReport,
+    FastPassReportDeps,
+    FastPassReportProps,
+} from 'reports/components/fast-pass-report';
 
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
-import { SectionDeps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export type FastPassReportModel = {
@@ -35,6 +39,7 @@ export class FastPassReportHtmlGenerator {
         private readonly fixInstructionProcessor: FixInstructionProcessor,
         private readonly recommendColor: RecommendColor,
         private readonly getPropertyConfiguration: (id: string) => Readonly<PropertyConfiguration>,
+        private readonly tabStopsFailedCounter: TabStopsFailedCounter,
     ) {}
 
     public generateHtml(model: FastPassReportModel): string {
@@ -51,7 +56,8 @@ export class FastPassReportHtmlGenerator {
                 cardInteractionSupport: noCardInteractionsSupported,
                 cardsVisualizationModifierButtons: NullComponent,
                 LinkComponent: NewTabLink,
-            } as SectionDeps,
+                tabStopsFailedCounter: this.tabStopsFailedCounter,
+            } as FastPassReportDeps,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollapsibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,

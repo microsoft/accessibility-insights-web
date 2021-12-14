@@ -5,8 +5,6 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { TabStopsFailedInstanceSection } from 'DetailsView/components/tab-stops-failed-instance-section';
-import { TabStopsTestViewController } from 'DetailsView/components/tab-stops/tab-stops-test-view-controller';
-import { TabStopsViewActions } from 'DetailsView/components/tab-stops/tab-stops-view-actions';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import * as React from 'react';
 import { AutomatedChecksHeaderSection } from 'reports/components/report-sections/automated-checks-header-section';
@@ -19,22 +17,23 @@ import { FooterText } from 'reports/components/report-sections/footer-text';
 import { PassedChecksSection } from 'reports/components/report-sections/passed-checks-section';
 import { ReportFooter } from 'reports/components/report-sections/report-footer';
 import { ResultsContainer } from 'reports/components/report-sections/results-container';
-import { SectionProps } from './report-sections/report-section-factory';
+import { SectionDeps, SectionProps } from './report-sections/report-section-factory';
 import { WebReportHead } from './web-report-head';
 
 export type FastPassReportResultData = {
     automatedChecks: CardsViewModel;
     tabStops: TabStopRequirementState;
 };
-
+export type FastPassReportDeps = {
+    tabStopsFailedCounter: TabStopsFailedCounter;
+} & SectionDeps;
 export type FastPassReportProps = Omit<
     SectionProps,
     'cardsViewData' | 'userConfigurationStoreData'
 > & {
+    deps: FastPassReportDeps;
     results: FastPassReportResultData;
 };
-const tabStopsViewActions = new TabStopsViewActions();
-const tabStopsTestViewController = new TabStopsTestViewController(tabStopsViewActions);
 
 export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', props => (
     <>
@@ -61,13 +60,13 @@ export const FastPassReport = NamedFC<FastPassReportProps>('FastPassReport', pro
                         cardsViewData={props.results.automatedChecks}
                     />
 
-                    <FastPassResultsTitleSection title="Tab stops" />
+                    <FastPassResultsTitleSection key={4} title="Tab stops" />
 
                     <TabStopsFailedInstanceSection
+                        key={5}
                         deps={{
-                            tabStopsFailedCounter: new TabStopsFailedCounter(),
                             tabStopRequirementActionMessageCreator: undefined,
-                            tabStopsTestViewController: tabStopsTestViewController,
+                            tabStopsTestViewController: undefined,
                             ...props.deps,
                         }}
                         tabStopRequirementState={props.results.tabStops}
