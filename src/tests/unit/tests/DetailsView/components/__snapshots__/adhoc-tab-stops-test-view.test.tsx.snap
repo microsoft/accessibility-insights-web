@@ -75,11 +75,6 @@ exports[`AdhocTabStopsTestView render handles guidance 1`] = `
     />
     <TabStopsFailedInstanceSection
       deps="stub-deps"
-      visualizationScanResultData={
-        Object {
-          "tabStops": Object {},
-        }
-      }
     />
     <TabStopsFailedInstancePanel
       deps="stub-deps"
@@ -167,11 +162,6 @@ exports[`AdhocTabStopsTestView render handles no guidance 1`] = `
     />
     <TabStopsFailedInstanceSection
       deps="stub-deps"
-      visualizationScanResultData={
-        Object {
-          "tabStops": Object {},
-        }
-      }
     />
     <TabStopsFailedInstancePanel
       deps="stub-deps"

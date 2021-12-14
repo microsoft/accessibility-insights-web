@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import {
     TabStopsFailedInstanceSection,
     TabStopsFailedInstanceSectionDeps,
@@ -15,10 +14,6 @@ import { IMock, It, Mock, Times } from 'typemoq';
 describe('TabStopsFailedInstanceSection', () => {
     let tabStopsFailedCounterMock: IMock<TabStopsFailedCounter>;
 
-    const visualizationScanResultDataStub = {
-        tabStops: { requirements: {} },
-    } as VisualizationScanResultData;
-
     let props: TabStopsFailedInstanceSectionProps;
     let deps: TabStopsFailedInstanceSectionDeps;
 
@@ -31,18 +26,17 @@ describe('TabStopsFailedInstanceSection', () => {
 
         props = {
             deps: deps,
-            visualizationScanResultData: visualizationScanResultDataStub,
-        };
-        props.visualizationScanResultData.tabStops.requirements = {
-            'keyboard-navigation': {
-                status: 'fail',
-                instances: [{ id: 'test-id-1', description: 'test desc 1' }],
-                isExpanded: false,
-            },
-            'keyboard-traps': {
-                status: 'fail',
-                instances: [{ id: 'test-id-2', description: 'test desc 2' }],
-                isExpanded: false,
+            tabStopRequirementState: {
+                'keyboard-navigation': {
+                    status: 'fail',
+                    instances: [{ id: 'test-id-1', description: 'test desc 1' }],
+                    isExpanded: false,
+                },
+                'keyboard-traps': {
+                    status: 'fail',
+                    instances: [{ id: 'test-id-2', description: 'test desc 2' }],
+                    isExpanded: false,
+                },
             },
         };
     });
@@ -53,18 +47,13 @@ describe('TabStopsFailedInstanceSection', () => {
             .returns(() => 10)
             .verifiable(Times.once());
 
-        const wrapper = shallow(
-            <TabStopsFailedInstanceSection
-                deps={deps}
-                visualizationScanResultData={visualizationScanResultDataStub}
-            />,
-        );
+        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         tabStopsFailedCounterMock.verifyAll();
     });
 
     it('does not render when no results are failing', () => {
-        const requirementsStub = props.visualizationScanResultData.tabStops.requirements;
+        const requirementsStub = props.tabStopRequirementState;
         for (const requirementId of Object.keys(requirementsStub)) {
             requirementsStub[requirementId].status = 'pass';
             requirementsStub[requirementId].instances = [];
@@ -75,12 +64,7 @@ describe('TabStopsFailedInstanceSection', () => {
             .returns(() => 0)
             .verifiable(Times.once());
 
-        const wrapper = shallow(
-            <TabStopsFailedInstanceSection
-                deps={deps}
-                visualizationScanResultData={visualizationScanResultDataStub}
-            />,
-        );
+        const wrapper = shallow(<TabStopsFailedInstanceSection {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
         tabStopsFailedCounterMock.verifyAll();
     });

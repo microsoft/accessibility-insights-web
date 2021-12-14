@@ -141,7 +141,9 @@ export const AdhocTabStopsTestView = NamedFC<AdhocTabStopsTestViewProps>(
                     />
                     <TabStopsFailedInstanceSection
                         deps={props.deps}
-                        visualizationScanResultData={props.visualizationScanResultData}
+                        tabStopRequirementState={
+                            props.visualizationScanResultData.tabStops.requirements
+                        }
                     />
                     <TabStopsFailedInstancePanel
                         deps={props.deps}

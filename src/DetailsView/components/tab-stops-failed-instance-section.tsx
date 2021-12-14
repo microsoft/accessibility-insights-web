@@ -3,7 +3,7 @@
 
 import { ResultSectionTitle } from 'common/components/cards/result-section-title';
 import { NamedFC } from 'common/react/named-fc';
-import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { TabStopRequirementState } from 'common/types/store-data/visualization-scan-result-data';
 import { requirements } from 'DetailsView/components/tab-stops/requirements';
 import { TabStopsFailedCounter } from 'DetailsView/tab-stops-failed-counter';
 import {
@@ -19,7 +19,7 @@ export type TabStopsFailedInstanceSectionDeps = TabStopsRequirementsWithInstance
 
 export interface TabStopsFailedInstanceSectionProps {
     deps: TabStopsFailedInstanceSectionDeps;
-    visualizationScanResultData: VisualizationScanResultData;
+    tabStopRequirementState: TabStopRequirementState;
 }
 
 export const tabStopsFailedInstanceSectionAutomationId = 'tab-stops-failure-instance-section';
@@ -28,8 +28,8 @@ export const TabStopsFailedInstanceSection = NamedFC<TabStopsFailedInstanceSecti
     'TabStopsFailedInstanceSection',
     props => {
         const results = [];
-        const storeData = props.visualizationScanResultData;
-        for (const [requirementId, data] of Object.entries(storeData.tabStops.requirements)) {
+
+        for (const [requirementId, data] of Object.entries(props.tabStopRequirementState)) {
             if (data.status !== 'fail') {
                 continue;
             }
