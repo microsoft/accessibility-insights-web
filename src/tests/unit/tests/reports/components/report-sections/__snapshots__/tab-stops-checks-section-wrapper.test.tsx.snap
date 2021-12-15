@@ -1,0 +1,122 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TabStopChecksSectionWrapper renders 1`] = `
+<test
+  cardsViewData={
+    Object {
+      "allCardsCollapsed": true,
+      "cards": Object {
+        "fail": Array [
+          Object {
+            "description": "There are no interactive elements that “trap” input focus and prevent navigating away.",
+            "guidance": Array [
+              Object {
+                "href": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html",
+                "tags": Array [],
+                "text": "WCAG 2.1.2",
+              },
+            ],
+            "id": "Keyboard traps",
+            "isExpanded": false,
+            "nodes": Array [],
+            "url": "",
+          },
+        ],
+        "inapplicable": Array [],
+        "pass": Array [
+          Object {
+            "description": "All interactive elements can be reached using the Tab and arrow keys. ",
+            "guidance": Array [
+              Object {
+                "href": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html",
+                "tags": Array [],
+                "text": "WCAG 2.1.1",
+              },
+            ],
+            "id": "Keyboard navigation",
+            "isExpanded": false,
+            "nodes": Array [],
+            "url": "",
+          },
+          Object {
+            "description": "The tab order is consistent with the logical order that's communicated visually.",
+            "guidance": Array [
+              Object {
+                "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order.html",
+                "tags": Array [],
+                "text": "WCAG 2.4.3",
+              },
+            ],
+            "id": "Tab order",
+            "isExpanded": false,
+            "nodes": Array [],
+            "url": "",
+          },
+        ],
+        "unknown": Array [
+          Object {
+            "description": "All interactive elements give a visible indication when they have input focus.",
+            "guidance": Array [
+              Object {
+                "href": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html",
+                "tags": Array [],
+                "text": "WCAG 2.4.7",
+              },
+            ],
+            "id": "Focus indicator",
+            "isExpanded": false,
+            "nodes": Array [],
+            "url": "",
+          },
+          Object {
+            "description": "Input focus does not move unexpectedly without the user initiating it.",
+            "guidance": Array [
+              Object {
+                "href": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html",
+                "tags": Array [],
+                "text": "WCAG 2.3.1",
+              },
+            ],
+            "id": "Input focus",
+            "isExpanded": false,
+            "nodes": Array [],
+            "url": "",
+          },
+        ],
+      },
+      "visualHelperEnabled": false,
+    }
+  }
+  checksSection={[Function]}
+  deps={Object {}}
+  tabStops={
+    Object {
+      "focus-indicator": Object {
+        "instances": Array [],
+        "isExpanded": false,
+        "status": "unknown",
+      },
+      "input-focus": Object {
+        "instances": Array [],
+        "isExpanded": false,
+        "status": "unknown",
+      },
+      "keyboard-navigation": Object {
+        "instances": Array [],
+        "isExpanded": false,
+        "status": "pass",
+      },
+      "keyboard-traps": Object {
+        "instances": Array [],
+        "isExpanded": false,
+        "status": "fail",
+      },
+      "tab-order": Object {
+        "instances": Array [],
+        "isExpanded": false,
+        "status": "pass",
+      },
+    }
+  }
+/>
+`;

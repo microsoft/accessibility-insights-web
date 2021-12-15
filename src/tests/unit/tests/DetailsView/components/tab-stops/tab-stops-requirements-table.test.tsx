@@ -46,6 +46,7 @@ describe('TabStopsRequirementsTable', () => {
             id: 'test id',
             name: 'test name',
             description: 'test description',
+            guidance: [],
         };
     });
 

@@ -272,6 +272,142 @@ exports[`ResultSectionTitle with outcomeType inapplicable renders with no-alerti
 </span>
 `;
 
+exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is 0 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      0
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    0
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is 1 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      1
+       
+      failure was
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    1
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType incomplete renders with alerting, badgeCount is greater than 1 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      2
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    2
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    10
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    10
+    )
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle with outcomeType incomplete renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="combinedReportResultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="heading"
+  >
+    test title
+     (
+    15
+    )
+  </span>
+</span>
+`;
+
 exports[`ResultSectionTitle with outcomeType pass renders with alerting, badgeCount is 0 1`] = `
 <span
   className="combinedReportResultSectionTitle"
