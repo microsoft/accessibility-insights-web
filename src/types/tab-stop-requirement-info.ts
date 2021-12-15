@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { GuidanceLink } from 'common/guidance-links';
+
 export const TabStopRequirementIds = [
     'keyboard-navigation',
     'keyboard-traps',
@@ -18,4 +20,5 @@ export type TabStopRequirementInfo = {
 export type TabStopRequirementContent = {
     name: string;
     description: string;
+    guidance: GuidanceLink[];
 };
