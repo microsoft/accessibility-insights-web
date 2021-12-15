@@ -10,5 +10,4 @@ describe('FastPassReportSummary', () => {
         const rendered = shallow(<FastPassReportSummary />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
-
 });

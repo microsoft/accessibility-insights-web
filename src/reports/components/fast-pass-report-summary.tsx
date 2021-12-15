@@ -3,17 +3,15 @@
 import * as React from 'react';
 import { FastPassOutcomeSummaryBar } from 'reports/components/fast-pass-outcome-summary-bar';
 
-export interface FastPassReportSummaryProps {
-
-};
+export interface FastPassReportSummaryProps {}
 
 export class FastPassReportSummary extends React.Component<FastPassReportSummaryProps> {
     public render(): JSX.Element {
         return (
             <>
-            <h2>Summary</h2>
-            <FastPassOutcomeSummaryBar />
+                <h2>Summary</h2>
+                <FastPassOutcomeSummaryBar />
             </>
         );
     }
-};
+}

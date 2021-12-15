@@ -11,6 +11,7 @@ exports[` renders 1`] = `
       <p>
         Placeholder for combined summary section
       </p>
+      <FastPassReportSummary />
       <ResultsContainer deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}}>
         <FastPassResultsTitleSection title=\\"Automated checks\\" />
         <FailedInstancesSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} cardsViewData={{...}} />
