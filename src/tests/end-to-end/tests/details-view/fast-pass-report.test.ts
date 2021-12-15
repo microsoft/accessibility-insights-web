@@ -1,13 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { FeatureFlags } from 'common/feature-flags';
-import { tabStopsSelectors } from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
+import {
+    detailsViewSelectors,
+    tabStopsSelectors,
+} from 'tests/end-to-end/common/element-identifiers/details-view-selectors';
 import { BackgroundPage } from 'tests/end-to-end/common/page-controllers/background-page';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
-import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+// import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Details View -> FastPass -> Report', () => {
     let browser: Browser;
@@ -43,24 +46,29 @@ describe('Details View -> FastPass -> Report', () => {
     test('Add tabstops failure instance and export', async () => {
         await openTabStopsPage(detailsViewPage);
         addTabStopsFailure(detailsViewPage);
+        await detailsViewPage.waitForAndClickSelector(detailsViewSelectors.exportReportButton);
+        await detailsViewPage.waitForSelector(detailsViewSelectors.SingleExportToHtmlButton);
+        const download = await detailsViewPage.downloadExportReport(
+            detailsViewSelectors.SingleExportToHtmlButton,
+        );
+        console.log('suggested file name', download.suggestedFilename());
+        await detailsViewPage.deleteDownloadedFile(download);
+        // await detailsViewPage.downloadExportReport;
     });
 });
 
 async function openTabStopsPage(detailsViewPage: DetailsViewPage): Promise<void> {
-    await detailsViewPage.waitForSelector(tabStopsSelectors.navDataAutomationId);
-    await detailsViewPage.clickSelector(tabStopsSelectors.navDataAutomationId);
+    await detailsViewPage.waitForAndClickSelector(tabStopsSelectors.navDataAutomationId);
 }
 
 async function addTabStopsFailure(detailsViewPage: DetailsViewPage): Promise<void> {
     const initialFailureInstanceText = 'this is a test failure instance';
 
     //click "Fail" radio
-    await detailsViewPage.waitForSelector(tabStopsSelectors.tabStopsFailRadioButton);
-    await detailsViewPage.clickSelector(tabStopsSelectors.tabStopsFailRadioButton);
+    await detailsViewPage.waitForAndClickSelector(tabStopsSelectors.tabStopsFailRadioButton);
 
     //click "+" button
-    await detailsViewPage.waitForSelector(tabStopsSelectors.addFailureInstanceButton);
-    await detailsViewPage.clickSelector(tabStopsSelectors.addFailureInstanceButton);
+    await detailsViewPage.waitForAndClickSelector(tabStopsSelectors.addFailureInstanceButton);
 
     //add text to TextArea in failed instances panel
     const addFailureTextArea = await detailsViewPage.waitForSelector(
