@@ -138,6 +138,11 @@ export class Page {
         });
     }
 
+    public async waitForAndClickSelector(selector: string): Promise<void> {
+        await this.waitForSelector(selector);
+        await this.clickSelector(selector);
+    }
+
     public async getSelectorElement(
         selector: string,
     ): Promise<Playwright.ElementHandle<Element> | null> {

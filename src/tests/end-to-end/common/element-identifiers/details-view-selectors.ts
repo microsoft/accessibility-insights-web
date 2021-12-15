@@ -6,6 +6,7 @@ import { ruleDetailsGroupAutomationId } from 'common/components/cards/rules-with
 import { instanceTableTextContentAutomationId } from 'DetailsView/components/assessment-instance-details-column';
 import { visualHelperToggleAutomationId } from 'DetailsView/components/base-visual-helper-toggle';
 import { settingsPanelAutomationId } from 'DetailsView/components/details-view-overlay/settings-panel/settings-panel';
+import { SingleExportToHtmlButtonDataAutomationId } from 'DetailsView/components/export-dialog';
 import { reportExportDropdownAutomationId } from 'DetailsView/components/export-dropdown';
 import { reportExportDropdownMenuAutomationId } from 'DetailsView/components/export-dropdown';
 import { IframeWarningContainerAutomationId } from 'DetailsView/components/iframe-warning';
@@ -42,22 +43,19 @@ export const detailsViewSelectors = {
     testNavLink: (testName: string): string => `div [name="${testName}"]`,
     requirementNavLink: (requirementName: string): string => `div [name="${requirementName}"] a`,
     gettingStartedNavLink: 'div [name="Getting started"]',
-
     visualHelperToggle: getAutomationIdSelector(visualHelperToggleAutomationId),
-
     requirementWithStatus: (
         requirementName: string,
         requirementIndex: string,
         status: 'Passed' | 'Failed' | 'Incomplete',
     ): string =>
         `div[name="${requirementName}"][title^="${requirementIndex}: ${requirementName} (${status})"]`,
-
     mainContent: '[role=main]',
     instanceTableTextContent: getAutomationIdSelector(instanceTableTextContentAutomationId),
-
     settingsButton: 'button[name="Settings"]',
-
     automatedChecksResultSection: getAutomationIdSelector(resultSectionAutomationId),
+    exportReportButton: getAutomationIdSelector(reportExportButtonAutomationId),
+    SingleExportToHtmlButton: getAutomationIdSelector(SingleExportToHtmlButtonDataAutomationId),
 };
 
 export const navMenuSelectors = {

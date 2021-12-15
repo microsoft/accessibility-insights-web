@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Playwright from 'playwright';
+import { Download } from 'playwright';
 import { WaitForSelectorOptions } from 'tests/end-to-end/common/playwright-option-types';
 import { CommonSelectors } from '../element-identifiers/common-selectors';
 import {
@@ -122,14 +123,20 @@ export class DetailsViewPage extends Page {
         await this.clickSelector(overviewSelectors.exportDropdown);
     }
 
-    public async downloadExportReport(selector: string): Promise<string> {
+    public async downloadExportReport(selector: string): Promise<Download> {
         const [download] = await Promise.all([
             this.underlyingPage.waitForEvent('download'),
             this.clickSelector(selector),
         ]);
-        const suggestedName = download.suggestedFilename();
+        return download;
+    }
+
+    public async getDownloadFileName(download: Download) {
+        return download.suggestedFilename();
+    }
+
+    public async deleteDownloadedFile(download: Download) {
         await download.delete();
-        return suggestedName;
     }
 
     public async closeExportDialog(): Promise<void> {
