@@ -8,6 +8,7 @@ exports[` renders 1`] = `
     <ContentSection>
       <FastPassTitleSection />
       <DetailsSection deps={{...}} fixInstructionProcessor={{...}} recommendColor={{...}} pageTitle=\\"page-title\\" pageUrl=\\"url:target-page\\" description=\\"test description\\" toolData={{...}} scanResult={{...}} toUtcString={[Function: toUtcString]} getCollapsibleScript={[Function: getScriptStub]} getGuidanceTagsFromGuidanceLinks={[Function: getGuidanceTagsStub]} results={{...}} userConfigurationStoreData={{...}} targetAppInfo={{...}} shouldAlertFailuresCount={false} scanMetadata={{...}} />
+      <FastPassReportSummary />
       <p>
         Placeholder for combined summary section
       </p>
